@@ -1,0 +1,30 @@
+# p0-diagnostic-transitions-s02 — Doors, signs and trainee blocking
+
+Milestone: **M2 Walking skeleton 2 — records + diagnostics loop**
+
+## What
+B doors (CT Scan, Imaging, X-ray, Laboratory, MRCP) with sign plates in the corridor; the trainee can walk up but not pass (short message: 'Patients and staff only — wait for the result'); patient/porter pass on their layer.
+
+## Why
+Approved: B rooms are not modelled or enterable.
+
+## How to implement
+1. Door prefabs (greybox first, Blender versions from p0-blender-equipment-s14).
+2. Proximity message UI; leaves animate open for the patient/porter only.
+3. Message text from content (localisable), shown once per approach with a 5 s cooldown.
+4. Doors use the Blender door asset's `PIVOT_Leaf_*` when available; greybox hinge until then.
+
+## Verification
+In the headset: walking into a B door shows the message and you can't pass; the patient walks through on the next trip.
+
+## Files changed
+Door prefabs (greybox now, Blender `tools/blender/assets/rooms/doors.py` later), `unity/Assets/_Project/Scripts/Diagnostics/DoorController.cs`, `content/diagnostics.json` (messages).
+
+## Dependencies
+p0-environment-rooms-s07.
+
+## Common issues
+Physics push-through: the trainee rig can still be teleported past a blocker — exclude door areas from teleport targets too.
+
+## Sources
+p0-environment-rooms README (approved corridor decision); p0-diagnostic-transitions README.

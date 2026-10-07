@@ -1,0 +1,32 @@
+# p0-scenario-s2-s06 — S2 clock speed and recognition (EXP-S2-1, EXP-S2-2)
+
+Milestone: **M8 S2 complete in VR**
+
+## What
+Try three deterioration-clock speeds with beginner testers; choose the beginner speed (Type D, stored in content); measure unprompted recognition of deterioration; replay all S2 sessions headless; medical review of videos.
+
+## Why
+S2's deterioration clock is a design value (Type D): it must create real time pressure without being unfair to beginners, and recognition of deterioration must be measured, not assumed.
+
+## How to implement
+1. Testers × 3 speeds; record recognition rate and stress feedback.
+2. Store chosen speed in content with a register row.
+3. Agreement + review as S1.
+4. Clock speeds tried: walkthrough default (Type D: HR +5–10 and NEWS2 +1 about every 30 min untreated), ×0.75 and ×0.5 for beginner mode; content stores `beginner_clock_factor`.
+5. Recognition: time from the first deterioration cue to the trainee's escalation/say_concern action, from the session log.
+6. Stress feedback via 3 short questions after each run.
+
+## Verification
+Chosen factor stored in content with a register row (Type D, decided by EXP-S2-1); recognition times tabulated in `results.md`.
+
+## Files changed
+content + `docs/plans/p0/p0-scenario-s2/results.md`.
+
+## Dependencies
+p0-scenario-s2-s05.
+
+## Common issues
+Beginners may 'game' a slow clock — the clock factor is shown in the debrief and assessment always uses the default speed.
+
+## Sources
+Walkthrough Part 13 (Usman timeline), Part 17 (deterioration clock, Type D); p0-scenario-s2 README EXP-S2-1/2.

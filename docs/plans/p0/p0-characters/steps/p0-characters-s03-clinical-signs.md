@@ -1,0 +1,30 @@
+# p0-characters-s03 — Clinical signs: shaders and blend shapes (EXP-CHR-1)
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Visible signs driven by Core state: skin overlay shader params `_Pallor`, `_Flush`, `_Rash`, `_Sweat`, jaundice (skin + yellow sclera), cyanosis cue; expression blend shapes Pain, Fear, Anxious, Calm, Confused, Nauseated, Faint; opioid sedation (small pupils + drowsy); S2 guarding (curled holding right lower abdomen); anaphylaxis (rash/flush + swollen lips) — all blended over 0.3–1 s.
+
+## Why
+Walkthrough Part 16 reactions and 4.11 patterns must be recognisable by medical reviewers.
+
+## How to implement
+1. URP Shader Graph skin overlay with mask texture for rash regions; sclera material param for jaundice.
+2. Blend shapes sculpted/scripted on the chosen base; mapping table Core state → params in `content/visuals/signs.json`.
+3. EXP-CHR-1: screenshots per sign across skin tones in the review pack; reviewers identify the sign (target ≥ 80%).
+4. Skin-tone caveat (inventory D138): test pallor/cyanosis/jaundice on darker skin tones too.
+
+## Verification
+T-AV3 cues visible; EXP-CHR-1 ≥ 80% recognition per sign (or fix list recorded).
+
+## Files changed
+Shader Graph, blend shapes, `content/visuals/signs.json`, review screenshots.
+
+## Dependencies
+p0-characters-s02.
+
+## Common issues
+Rapid changes must blend smoothly (T-AV4).
+
+## Sources
+B-S2 Steps 1–2, 6–7, T-AV1/3/4; walkthrough 4.11, Part 16; inventory D138.

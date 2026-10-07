@@ -1,0 +1,32 @@
+# p0-environment-rooms-s03 — Optimise and light the rooms (EXP-ENV-2)
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Static batching and mesh combining, hidden geometry removed, ASTC textures ≤ 2K, colliders, occlusion culling, baked lighting (lightmap 10–20 texels/m) with light probes around patient and NPC areas; compare 2–3 bake settings.
+
+## Why
+The Quest's mobile GPU can't afford realtime lighting or thousands of draw calls; baked lighting + batching is what makes a detailed OT possible at ≥ 72 fps.
+
+## How to implement
+1. Mesh Combine static props; delete invisible faces.
+2. Lightmap resolution trial 10 / 15 / 20 texels/m (EXP-ENV-2); light probes near bed, OT table, corridor.
+3. Occlusion culling bake per room.
+4. Re-bake after equipment placement (s04).
+5. ASTC texture compression ≤ 2K; mipmaps on; remove unused materials.
+6. Measure before/after each optimisation (OVR Metrics) so effort goes where it helps.
+
+## Verification
+T-EN3: worst OT view ≤ 150 batches; bake setting chosen and recorded.
+
+## Files changed
+Lighting settings assets + lightmaps (LFS) under `unity/Assets/_Project/Art/Rooms/Lighting/`, occlusion data per room scene, `docs/plans/p0/p0-environment-rooms/README.md` (EXP-ENV-2 result).
+
+## Dependencies
+p0-environment-rooms-s02.
+
+## Common issues
+Bake takes hours → GPU lightmapper on the RTX 4050 laptop or lower resolution.
+
+## Sources
+B-S8 Steps 3–4, T-EN3.

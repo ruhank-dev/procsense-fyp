@@ -1,0 +1,30 @@
+# p0-environment-rooms-s06 — Operation Theatre layout (main environment)
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Full OT layout: anaesthetic / Sign In area at the head end, operating table centre under the lights, anaesthesia machine + monitor at the head, laparoscopic tower and diathermy at the side, scrub area, storage cupboards, instrument trolley and back table, WHO board on the wall, computer workstation, doors; walkway space for teleport and NPCs.
+
+## Why
+The OT is the main, fully detailed environment.
+
+## How to implement
+1. `room_manifest_ot.json` with anchors for every OT item in equipment-list.md (#40–#51 + OT room objects).
+2. Use the Charité OR model as a visual layout reference only.
+3. Check reach and clearance in the headset with you; adjust the manifest.
+4. Mark sterile-field zones (around the table) so NPC paths avoid them.
+
+## Verification
+You approve the layout in the headset; all OT anchors defined.
+
+## Files changed
+`unity/Assets/_Project/Data/room_manifest_ot.json`, `Room_OT` scene, headset review notes in the phase README.
+
+## Dependencies
+p0-environment-rooms-s04.
+
+## Common issues
+Leave clear paths between table, machines and door for NPCs.
+
+## Sources
+equipment-list.md; free-model-candidates.md (layout reference).

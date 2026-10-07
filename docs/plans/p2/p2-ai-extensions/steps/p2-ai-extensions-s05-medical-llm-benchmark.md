@@ -1,0 +1,30 @@
+# p2-ai-extensions-s05 — Medical LLM benchmark (EXP-P2AI-3)
+
+Milestone: **M13 P2 extensions**
+
+## What
+Benchmark a medical LLM (e.g. MedGemma — accept its terms first) against the chosen general model on the full AI eval suite, same prompts and schemas: grounding leaks, schema validity, latency p95 on the 6 GB GPU, and a blind reviewer rating of dialogue quality.
+
+## Why
+A medical model might ground better or sound more natural — switch only on measured improvement.
+
+## How to implement
+1. Benchmark; ADR update.
+2. Candidate: MedGemma (accept its terms) or another medical model that fits 6 GB quantised; record version and quantisation.
+3. Run the full `tools/ai_eval/run.py --suite all` with the candidate as the LLM backend; same prompts/schemas.
+4. Compare grounding leaks, schema validity, latency p95, dialogue quality (blind reviewer rating on 50 samples).
+
+## Verification
+Comparison table + ADR update; switch only if grounding/quality improve without breaking latency.
+
+## Files changed
+`docs/decisions/ADR-xxxx-llm-choice.md` (update), eval reports.
+
+## Dependencies
+p1-ai-language-s09.
+
+## Common issues
+Medical models may be more eager to give clinical advice — check the dose-policy and 'no advice' rejections specifically.
+
+## Sources
+Inventory D68 (MedGemma); Implementation Guide B-R1 Step 1, B-M5.

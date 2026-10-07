@@ -1,0 +1,31 @@
+# p0-evaluation-performance-s03 — Weekly on-device profiling
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+A fixed demo route on Quest 2 (bay → corridor → CT door → OT Sign In/Time Out) profiled every week with OVR Metrics (fps, GPU/CPU, memory, hitches); results table; any regression gets a fix step.
+
+## Why
+Quest performance degrades gradually as assets, characters and logic are added; a fixed weekly route measured the same way catches the regression in the week it happens, when the cause is still obvious.
+
+## How to implement
+1. Route script/checklist; capture CSV per week into `docs/plans/p0/p0-vr-platform/perf/`.
+2. Perf gate: ≥ 72 fps avg, no hitch > 50 ms, ≤ 2.5 GB.
+3. Fixed route script: Boot → patient bay (VAR-S1-A Steps 1–3) → corridor → CT door transition → OT greybox/real → Sign In + Time Out; 5 minutes.
+4. Capture OVR Metrics CSV (fps, GPU/CPU level, frame time, memory) + Unity Profiler snapshot of the worst moment.
+5. Weekly table row: date, build hash, avg fps, 1% low, worst hitch, memory, notes; regressions > 5% open a fix step in the owning phase.
+
+## Verification
+One row per week in `docs/plans/p0/p0-vr-platform/perf/README.md`; any regression has a linked fix step.
+
+## Files changed
+`docs/plans/p0/p0-vr-platform/perf/README.md` (weekly table), `docs/plans/p0/p0-vr-platform/perf/<date>.csv`, `docs/plans/p0/p0-evaluation-performance/profiling-route.md`.
+
+## Dependencies
+p0-vr-platform-s07.
+
+## Common issues
+Thermal throttling skews long captures — always start from a cool headset and the same battery level range.
+
+## Sources
+Implementation Guide B-S11 Step 2, perf gate (≥ 72 fps avg, no hitch > 50 ms, ≤ 2.5 GB); B-S8 T-EN1.

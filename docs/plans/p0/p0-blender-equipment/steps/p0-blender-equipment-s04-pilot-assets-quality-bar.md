@@ -1,0 +1,32 @@
+# p0-blender-equipment-s04 — Pilot assets and quality bar (EXP-BL-1)
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Three pilot assets built to the full quality bar — vital-sign monitor on a roll stand (screen as `SCREEN_Main`, cable ports, handle, basket, 5-castor base), IV pole with infusion pump (hooks `SOCKET_Bag_1..4`, pole clamp, pump display `SCREEN_Pump`, door, buttons), patient wristband (strap, clasp, label area `LABEL_Identity`, `SOCKET_Wrist` fit) — iterated until you approve them in Blender and the headset. Lessons become the written quality bar.
+
+## Why
+Before producing ~60 assets, everyone must agree what 'good enough' looks like in the headset — detail level, bevel sizes, materials, triangle range. Three representative pilots (a screen device, a pole + device combo, a small wearable) cover most asset types, so the quality bar learned here applies to all the rest.
+
+## How to implement
+1. Write/confirm the reference sheet for each item (p0-medical-research-data-s09); free-model references are visual only.
+2. One script per asset: `tools/blender/assets/<category>/<asset_id>.py` using `procsense_bpy` helpers; runs from Blender's Scripting tab or headless (`blender -b -P …`).
+3. Organisation: collection per asset, objects `EQ_<AssetId>_<Part>`, shared `M_*` materials, applied transforms, origin at floor contact / natural grip; separate parts for anything that moves or changes state.
+4. `task blender-build -- <asset>` → `task blender-validate` → `task blender-preview`; the developer reviews the 4-view previews with the 1.7 m reference, then you review in Blender and in the headset.
+5. Iterate: the developer self-reviews previews against the reference photos, you review in Blender + headset, the developer revises the script.
+6. Write the agreed quality bar (detail level, bevel sizes, material look, tri ranges) into the blender-equipment README.
+
+## Verification
+You approve all three; quality-bar section written (EXP-BL-1).
+
+## Files changed
+`tools/blender/assets/monitoring/vital_signs_monitor.py`, `tools/blender/assets/iv/iv_pole_pump.py`, `tools/blender/assets/identity/wristband.py`, `docs/research/equipment/{vital_signs_monitor,iv_pole_pump,wristband}.md`, `docs/plans/p0/p0-blender-equipment/README.md` (quality bar section).
+
+## Dependencies
+p0-blender-equipment-s03; p0-medical-research-data-s09 (pilot sheets).
+
+## Common issues
+Don't start other assets until the bar is approved.
+
+## Sources
+p0-blender-equipment README EXP-BL-1.

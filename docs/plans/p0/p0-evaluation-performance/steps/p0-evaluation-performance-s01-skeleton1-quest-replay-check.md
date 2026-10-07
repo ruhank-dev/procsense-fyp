@@ -1,0 +1,34 @@
+# p0-evaluation-performance-s01 — Skeleton 1 Quest replay check
+
+Walking skeleton 1 · step 15 of 15 · blocked until step 14
+
+## What
+Prove the headset and the headless engine agree:
+1. Play skeleton 1 by hand on the Quest; export the session log.
+2. `task sim -- replay --log <quest session>` on the PC → same final-state hash (**EXP-CORE-1**).
+3. Record the first real performance numbers on Quest 2/3 in the greybox bay (**EXP-VR-1**, first data point).
+4. Note usability observations (could the tester read the band/monitor? find the buttons?) — first input for EXP-UI-1/2.
+
+## Why
+If the Quest and the PC disagree, every later bug report from the headset is unreliable — catch it now while the engine is small.
+
+## How to implement
+1. Pull the log: `adb pull /sdcard/Android/data/<package>/files/sessions/<file>.jsonl` (Taskfile `task quest-pull-session`).
+2. Replay + compare hash; write result into `p0-core-engine/README.md` experiment log (EXP-CORE-1).
+3. OVR Metrics Tool capture during play; record FPS/GPU/CPU in `p0-vr-platform/README.md` (EXP-VR-1).
+4. Short notes file in `docs/plans/p0/p0-evaluation-performance/results/skeleton1.md`.
+
+## Verification
+Hash match reported; numbers recorded; skeleton 1 marked done in `walking-skeleton-1.md`.
+
+## Files changed
+`Taskfile.yml` (`quest-pull-session`), experiment logs in phase READMEs, `results/skeleton1.md`.
+
+## Dependencies
+p0-vr-interaction-ui-s01.
+
+## Common issues
+Hash mismatch → check float formatting/culture, dictionary iteration, `Time.deltaTime` leaking into Core (only fixed steps allowed), IL2CPP differences.
+
+## Sources
+Implementation Guide B-R11 T-K1 (replay), B-S11 Step 2 (profiling); core-engine EXP-CORE-1, vr-platform EXP-VR-1.

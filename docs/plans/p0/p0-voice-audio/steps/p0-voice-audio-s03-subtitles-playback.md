@@ -1,0 +1,30 @@
+# p0-voice-audio-s03 — Subtitles and voice playback
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Voice playback driven by Core events: each line plays from the speaking character's position (spatial AudioSource on the avatar's head), with an always-on subtitle (speaker name + text), a queue so lines don't overlap, an interrupt policy (the patient finishes the sentence; urgent staff lines pre-empt), and pooled AudioSources.
+
+## Why
+Subtitles make every line accessible and verifiable (and work when audio fails); a queue/interrupt policy stops characters talking over each other, which breaks realism and comprehension.
+
+## How to implement
+1. `Scripts/Audio/VoicePlayer.cs`, `AudioCatalog.cs`, `SubtitleView.cs`.
+2. Interrupt policy: patient finishes sentence, staff urgent lines pre-empt.
+3. Subtitles show speaker name + line; stay ≥ 2 s; positioned in view, not over the patient's face.
+4. Missing audio file → subtitle only + warning in the log (never silent failure).
+
+## Verification
+Play Mode test: every catalogue line used by VAR-S1-A plays with its subtitle; a removed audio file still shows the subtitle.
+
+## Files changed
+`Scripts/Audio/*`.
+
+## Dependencies
+p0-voice-audio-s02.
+
+## Common issues
+Long lines block urgent ones — urgent priority must pre-empt. Subtitles over the patient's face hide clinical signs — position them below eye level.
+
+## Sources
+Implementation Guide B-S4 Steps 3–4, T-VC3, T-VC4; B-M9 catalogue.

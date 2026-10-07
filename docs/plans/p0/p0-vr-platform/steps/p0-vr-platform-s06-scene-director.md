@@ -1,0 +1,31 @@
+# p0-vr-platform-s06 — SceneDirector: moving the patient
+
+Milestone: **M2 Walking skeleton 2 — records + diagnostics loop**
+
+## What
+Unity reacts to Core transport events: the patient walks (NavMesh), sits in a wheelchair pushed by the porter, or lies on a trolley pushed by the porter with an escort; at a B door the patient enters and is hidden until `PatientReturned`; the trainee teleports with the patient when accompanying.
+
+## Why
+Diagnostic transitions and transfer to theatre need believable movement; Core decides timing, Unity only shows it.
+
+## How to implement
+1. `SceneDirector.MovePatient(from, to, mode)` subscribed to Core transport states (REQUESTED…BACK).
+2. NavMesh baked for bay, corridor, OT; door areas link to hidden 'inside' anchors.
+3. Visual travel time is cosmetic; arrival waits for Core state (T-B4).
+4. Accompany: trainee rig follows/teleports with the patient.
+5. Abstract B-room 'inside' anchors are hidden positions behind doors (no room built).
+
+## Verification
+Device simulator: patient goes bay → CT door → hidden → returns on Core events; T-B4 green.
+
+## Files changed
+`Scripts/Scenes/SceneDirector.cs`, NavMesh data.
+
+## Dependencies
+p0-simulation-workflow-s13; p0-characters-s06.
+
+## Common issues
+NPC walks through beds → re-bake NavMesh / add obstacles (B-S3 troubleshooting).
+
+## Sources
+B-S7 Step 4, T-B4; B-R16 Step 5.

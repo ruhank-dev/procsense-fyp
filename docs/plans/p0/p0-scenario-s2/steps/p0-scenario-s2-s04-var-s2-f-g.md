@@ -1,0 +1,32 @@
+# p0-scenario-s2-s04 — VAR-S2-F (full stomach) and VAR-S2-G (dehydration/AKI)
+
+Milestone: **M8 S2 complete in VR**
+
+## What
+Make these cases fully playable in VR, with their what-ifs and expected end states: VAR-S2-F Mr Bilal, 22; VAR-S2-G Mrs Rukhsana, 45.
+
+## Why
+Each case teaches a specific walkthrough lesson; the case is done only when VR and headless agree and the reviewer accepts the video.
+
+## How to implement
+1. Run the case headless first (`task sim -- run --case <id> --actions tests/golden/<id>_correct.actions.json`) and fix engine/content gaps there.
+2. Play it in VR on the Quest with real rooms/assets; export the session log; `task sim -- replay --log <file>` must match the headless end state.
+3. Play the walkthrough's wrong paths (e.g. skipping the key question) and confirm the consequence matches the walkthrough.
+4. Record a short playthrough video for the medical reviewer.
+5. **VAR-S2-F Mr Bilal, 22** — biryani 2 h ago → RSI plan, not cancellation
+6. **VAR-S2-G Mrs Rukhsana, 45** — vomiting 2 days, HR 116, BP 104/66, urea 12.4, creatinine 160 → AKI stage (guide example: AKI 1), fluids in parallel
+
+## Verification
+For each case: expected end state reached in VR and headless (same hash on replay); wrong-path consequence matches the walkthrough; reviewer video logged.
+
+## Files changed
+`tests/golden/VAR-S2-F_*.actions.json`, `tests/golden/VAR-S2-F_*_expected.json`, `docs/plans/p0/p0-scenario-s2/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases, `tests/golden/VAR-S2-G_*.actions.json`, `tests/golden/VAR-S2-G_*_expected.json`, `docs/plans/p0/p0-scenario-s2/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases
+
+## Dependencies
+p0-scenario-s2-s03.
+
+## Common issues
+A VR-only bug → reproduce headless from the session log first, then fix.
+
+## Sources
+Walkthrough Part 13; inventory D468–D469.

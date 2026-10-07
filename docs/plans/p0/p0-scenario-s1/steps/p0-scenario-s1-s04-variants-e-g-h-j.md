@@ -1,0 +1,34 @@
+# p0-scenario-s1-s04 — VAR-S1-E, -G, -H, -J
+
+Milestone: **M7 S1 complete in VR**
+
+## What
+Make these cases fully playable in VR, with their what-ifs and expected end states: VAR-S1-E Mrs Rabia, 48; VAR-S1-G Ms Sana, 39; VAR-S1-H Ms Hina, 29; VAR-S1-J Mr Kamran, 50.
+
+## Why
+Each case teaches a specific walkthrough lesson; the case is done only when VR and headless agree and the reviewer accepts the video.
+
+## How to implement
+1. Run the case headless first (`task sim -- run --case <id> --actions tests/golden/<id>_correct.actions.json`) and fix engine/content gaps there.
+2. Play it in VR on the Quest with real rooms/assets; export the session log; `task sim -- replay --log <file>` must match the headless end state.
+3. Play the walkthrough's wrong paths (e.g. skipping the key question) and confirm the consequence matches the walkthrough.
+4. Record a short playthrough video for the medical reviewer.
+5. **VAR-S1-E Mrs Rabia, 48** — T 38.4, HR 108, Murphy's +, WBC 15.2, CRP 96, wall 6 mm + fluid → acute cholecystitis branch (TG18)
+6. **VAR-S1-G Ms Sana, 39** — toast + milky tea 07:00, surgery 09:00 → not safe until 13:00
+7. **VAR-S1-H Ms Hina, 29** — LMP 7 weeks; urine pregnancy test positive → stop/redirect per walkthrough
+8. **VAR-S1-J Mr Kamran, 50** — K 6.4 haemolysed, ECG normal → repeat 4.6 → proceed (no emergency treatment)
+
+## Verification
+For each case: expected end state reached in VR and headless (same hash on replay); wrong-path consequence matches the walkthrough; reviewer video logged.
+
+## Files changed
+`tests/golden/VAR-S1-E_*.actions.json`, `tests/golden/VAR-S1-E_*_expected.json`, `docs/plans/p0/p0-scenario-s1/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases, `tests/golden/VAR-S1-G_*.actions.json`, `tests/golden/VAR-S1-G_*_expected.json`, `docs/plans/p0/p0-scenario-s1/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases, `tests/golden/VAR-S1-H_*.actions.json`, `tests/golden/VAR-S1-H_*_expected.json`, `docs/plans/p0/p0-scenario-s1/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases, `tests/golden/VAR-S1-J_*.actions.json`, `tests/golden/VAR-S1-J_*_expected.json`, `docs/plans/p0/p0-scenario-s1/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases
+
+## Dependencies
+p0-scenario-s1-s03.
+
+## Common issues
+A VR-only bug → reproduce headless from the session log first, then fix.
+
+## Sources
+Walkthrough Part 12; inventory D452, D456–D458.

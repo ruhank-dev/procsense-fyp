@@ -1,0 +1,55 @@
+# --- .NET ---
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.trx
+
+# --- Unity (unity/ project) ---
+unity/[Ll]ibrary/
+unity/[Tt]emp/
+unity/[Oo]bj/
+unity/[Bb]uild/
+unity/[Bb]uilds/
+unity/[Ll]ogs/
+unity/[Uu]ser[Ss]ettings/
+unity/[Mm]emoryCaptures/
+unity/*.csproj
+unity/*.sln
+*.apk
+*.aab
+
+# --- Python (tools/, server/) ---
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# --- Node ---
+node_modules/
+
+# --- Secrets: never commit credentials (INSTRUCTIONS §5) ---
+.env
+.env.*
+!.env.example
+
+# --- Local data / models (large or licensed — see docs/research/dataset_register.csv) ---
+data/raw/
+models/
+*.gguf
+*.onnx
+
+# --- Shared memory log (INSTRUCTIONS §8e) ---
+.memory/
+
+# --- Local-only project rules (user decision: never pushed) ---
+AGENTS.md
+INSTRUCTIONS.md
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.idea/

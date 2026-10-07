@@ -1,0 +1,31 @@
+# p0-scenario-s1-s01 — VAR-S1-A full Steps 1–14 in VR
+
+Milestone: **M7 S1 complete in VR**
+
+## What
+Make these cases fully playable in VR, with their what-ifs and expected end states: VAR-S1-A Mrs Ayesha Khan, 42.
+
+## Why
+Each case teaches a specific walkthrough lesson; the case is done only when VR and headless agree and the reviewer accepts the video.
+
+## How to implement
+1. Run the case headless first (`task sim -- run --case <id> --actions tests/golden/<id>_correct.actions.json`) and fix engine/content gaps there.
+2. Play it in VR on the Quest with real rooms/assets; export the session log; `task sim -- replay --log <file>` must match the headless end state.
+3. Play the walkthrough's wrong paths (e.g. skipping the key question) and confirm the consequence matches the walkthrough.
+4. Record a short playthrough video for the medical reviewer.
+5. **VAR-S1-A Mrs Ayesha Khan, 42** — uncomplicated; all normal; water at 06:30 teaching point (2-hour rule at anaesthesia time); expected READY_SAFE (walkthrough Part 12 Scenes 1–11)
+
+## Verification
+For each case: expected end state reached in VR and headless (same hash on replay); wrong-path consequence matches the walkthrough; reviewer video logged.
+
+## Files changed
+`tests/golden/VAR-S1-A_*.actions.json`, `tests/golden/VAR-S1-A_*_expected.json`, `docs/plans/p0/p0-scenario-s1/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases
+
+## Dependencies
+M4, M6 complete.
+
+## Common issues
+A VR-only bug → reproduce headless from the session log first, then fix.
+
+## Sources
+Walkthrough Part 12; inventory D450.

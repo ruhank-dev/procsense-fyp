@@ -1,0 +1,31 @@
+# p0-scenario-s2-s02 — VAR-S2-PD: Usman deterioration timeline
+
+Milestone: **M8 S2 complete in VR**
+
+## What
+Make these cases fully playable in VR, with their what-ifs and expected end states: VAR-S2-PD Mr Usman, 34.
+
+## Why
+Each case teaches a specific walkthrough lesson; the case is done only when VR and headless agree and the reviewer accepts the video.
+
+## How to implement
+1. Run the case headless first (`task sim -- run --case <id> --actions tests/golden/<id>_correct.actions.json`) and fix engine/content gaps there.
+2. Play it in VR on the Quest with real rooms/assets; export the session log; `task sim -- replay --log <file>` must match the headless end state.
+3. Play the walkthrough's wrong paths (e.g. skipping the key question) and confirm the consequence matches the walkthrough.
+4. Record a short playthrough video for the medical reviewer.
+5. **VAR-S2-PD Mr Usman, 34** — deterioration 14:00 → 15:45 (NEWS2 2 → 5 → 10 → 16) if untreated; sepsis tiers + timers; correct action at 14:45 improves him; debrief shows lateness
+
+## Verification
+For each case: expected end state reached in VR and headless (same hash on replay); wrong-path consequence matches the walkthrough; reviewer video logged.
+
+## Files changed
+`tests/golden/VAR-S2-PD_*.actions.json`, `tests/golden/VAR-S2-PD_*_expected.json`, `docs/plans/p0/p0-scenario-s2/results.md` (VR/headless agreement, reviewer notes), fixes in the owning phases
+
+## Dependencies
+p0-scenario-s2-s01.
+
+## Common issues
+A VR-only bug → reproduce headless from the session log first, then fix.
+
+## Sources
+Walkthrough Part 13 (Patient D); inventory D464.
