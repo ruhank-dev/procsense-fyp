@@ -1,0 +1,8 @@
+{
+  "nibp": {
+    "cycle_seconds_min": 30,
+    "cycle_seconds_max": 40,
+    "note": "Walkthrough Part E: 'Wraps arm, starts cycle (~30–40 s)'. Conflicts with Implementation Guide L3-02 (20 s) — see docs/research/issues.md ISS-0001.",
+    "ref": "SR-0034"
+  }
+}

@@ -1,0 +1,30 @@
+# p0-vr-interaction-ui-s03 — Tablet: tabs, talk menu, orders, known facts, hints
+
+Milestone: **M4 Engine complete — VAR-S1-A Steps 1–14 headless**
+
+## What
+Hand-held / wrist-anchored tablet with tabs — Admission, Ask (talk menu by history section), Known (revealed facts by category), Assess (ASA, VTE, scores), Orders (tests with expected turnaround; medicine/fluid/oxygen requests), Results, Treat (pending orders + required-check ticks), Consent (element tracker in practice), Checklist, Handover (SBAR builder), Debrief — plus the practice-mode hint chip.
+
+## Why
+Main input surface; works offline; every VR action has a tablet fallback.
+
+## How to implement
+1. `Scripts/UI/Tablet/TabletController.cs` + `TabRegistry`; panels as prefabs.
+2. All lists (topics, tests, medicine classes) generated from content/Observable — no clinical strings in Unity.
+3. Rejected action → short hint, no visual change (T-B2).
+4. Panel order follows the walkthrough steps so trainees learn the real sequence; 'Pending' list shows outstanding goals (practice only).
+
+## Verification
+Every P0 Step 1–12 action reachable from the tablet; T-UI1 each panel renders state.
+
+## Files changed
+`Scripts/UI/Tablet/*`, tablet prefab.
+
+## Dependencies
+p0-vr-interaction-ui-s01.
+
+## Common issues
+Blurry text → canvas scale / dynamic resolution.
+
+## Sources
+B-S10 Steps 1, 6; B-S7 Step 5.

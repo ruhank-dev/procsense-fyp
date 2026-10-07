@@ -1,0 +1,32 @@
+# p0-scenario-s1-s06 — S1 timing, agreement and review (EXP-S1-1, EXP-S1-2)
+
+Milestone: **M7 S1 complete in VR**
+
+## What
+Measure S1 run length per case with testers; replay every VR S1 session headless (hash agreement); medical reviewer watches the case videos; record results and fixes.
+
+## Why
+Confidence that S1 is correct, reproducible and fits a teaching session.
+
+## How to implement
+1. Collect session logs + videos from s01–s05.
+2. Batch replay script; agreement table.
+3. Review session; fixes tracked.
+4. `tools/eval/replay_all.py --dir sessions/S1` replays every exported VR session and prints a table (case, VR end state, headless end state, hash match).
+5. Timing: median and range per case from session logs (no stopwatch needed).
+6. Review session with the medical professional using the videos; corrections logged as issues.
+
+## Verification
+`results.md` shows 100% replay agreement, per-case timings and reviewer notes.
+
+## Files changed
+`tools/eval/replay_all.py`, `docs/plans/p0/p0-scenario-s1/results.md`, review notes.
+
+## Dependencies
+p0-scenario-s1-s05.
+
+## Common issues
+A VR session that can't be replayed headless usually means Unity wrote state directly — find and route it through Core.
+
+## Sources
+p0-scenario-s1 README EXP-S1-1/2; Implementation Guide B-R11 T-K1 (replay).

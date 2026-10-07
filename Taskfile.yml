@@ -1,0 +1,34 @@
+version: "3"
+
+# Run `task --list` to see everything. Install Task: winget install Task.Task
+
+tasks:
+  build:
+    desc: Build the whole .NET solution (Core, CLI, tests)
+    cmds:
+      - dotnet build ProcSense.sln
+
+  test:
+    desc: Run all Core tests
+    cmds:
+      - dotnet test ProcSense.sln
+
+  run-cli:
+    desc: Run the headless simulator (pass args after --)
+    cmds:
+      - dotnet run --project src/ProcSense.Cli -- {{.CLI_ARGS}}
+
+  content-validate:
+    desc: Check every content file against its schema and the source register (proof of truth)
+    cmds:
+      - uv run --project tools tools/content/validate.py
+
+  plans-index:
+    desc: Rebuild docs/plans/milestones.md from the step files and check step references
+    cmds:
+      - uv run --project tools tools/plans/milestones.py
+
+  clean:
+    desc: Remove build outputs
+    cmds:
+      - dotnet clean ProcSense.sln

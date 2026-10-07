@@ -1,0 +1,29 @@
+# p0-vr-interaction-ui-s07 — OT equipment interactions
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Implement every OT row of `equipment-interaction-spec.md`: lights on/intensity + aiming, table positions, anaesthesia machine check + check log, OT monitor + capnography, airway trolley drawers + laryngoscope light, suction test, lap tower power/faults, CO2 gauge + swap, diathermy pad placement, instrument tray sterility indicator, drapes, resus trolley seal/drawers, forced-air warmer, scrub sink/hand-rub, PPE donning, storage cupboards/drawers, work surfaces, WHO board.
+
+## Why
+The OT is operational, not decorative (user direction); station states feed Core OR readiness.
+
+## How to implement
+1. One row at a time; station checks emit `check_station` / `report_fault` to Core.
+2. Fault visuals from Observable (e.g. insufflator low supply message, red LED).
+3. Perf: T-IN3 OR with all items ≥ 72 fps.
+
+## Verification
+Every OT spec row works in the headset; VAR-S1-A Scene 10 readiness achievable by hand.
+
+## Files changed
+`Scripts/Interaction/OT/*`, `content/equipment/*.json`.
+
+## Dependencies
+p0-vr-interaction-ui-s02; p0-blender-equipment-s11–s13; p0-simulation-workflow-s14.
+
+## Common issues
+Too many poke buttons crowded on machines → panels pop out on approach; station state must come from Core, not from local UI flags.
+
+## Sources
+equipment-interaction-spec.md (OT rows); Implementation Guide B-S9 Steps 3–6, T-IN3; walkthrough Step 11, Part E (#37, #40–#51).

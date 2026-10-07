@@ -1,0 +1,29 @@
+# p0-environment-rooms-s08 — Greybox Operation Theatre
+
+Milestone: **M3 Walking skeleton 3 — OT Sign In / Time Out**
+
+## What
+Placeholder OT from a manifest, like the greybox bay: labelled shapes for the operating table, anaesthesia machine, patient monitor, WHO board, surgical lights, lap tower, doors — at the final anchor names.
+
+## Why
+Walking skeleton 3 proves Steps 13–14 (WHO Sign In and Time Out) end to end — engine, board, NPC answers, readiness — long before the detailed OT exists, so integration problems surface early (approved P3).
+
+## How to implement
+1. Generalise `BuildPatientBay.cs` only as far as needed → `BuildFromManifest.cs`; write `room_manifest_ot.json` (greybox shapes).
+2. Anchor names identical to the final OT layout (s06) so real assets drop in.
+3. Placeholder NPC capsules for anaesthetist, surgeon and scrub nurse at `NPC_<Role>` anchors so checklist answers have a visible speaker.
+
+## Verification
+VAR-S1-A Sign In + Time Out playable in the greybox OT on the Quest.
+
+## Files changed
+`unity/Assets/_Project/Editor/Greybox/BuildFromManifest.cs`, `unity/Assets/_Project/Data/room_manifest_ot.json` (greybox shapes), `Room_OT` scene.
+
+## Dependencies
+p0-environment-rooms-s01.
+
+## Common issues
+Keep anchor names stable — s06 depends on them.
+
+## Sources
+p0 README build order (skeleton 3).

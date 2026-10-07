@@ -1,0 +1,30 @@
+# p0-vr-platform-s07 — Quest builds, profiling and Unity CI
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Build variants Dev / Demo / Study via scripting defines from an editor menu and batchmode; profiler markers around Core Tick and render views; weekly OVR Metrics captures on a fixed route; Unity Play Mode tests in CI (GameCI or a local runner); release checklist.
+
+## Why
+Performance and build regressions caught every week, not at the end (perf gate: ≥ 72 fps average, no hitch > 50 ms, memory ≤ 2.5 GB).
+
+## How to implement
+1. `Editor/BuildScript.cs` (ProcSense → Build → Dev/Demo/Study); `task unity-build -- <variant>`.
+2. ProfilerMarkers in SimulationHost; OVR Metrics CSV per capture stored in `docs/plans/p0/p0-vr-platform/perf/`.
+3. `task unity-test` runs `Unity -runTests -batchmode`; add to CI if licence activation works (verify GameCI personal-licence flow).
+4. `docs/RELEASE.md` checklist (APK + checksum per tag).
+
+## Verification
+T-Q1 (demo path passes perf gate), T-Q3 (each variant builds), T-Q4 (memory) recorded.
+
+## Files changed
+`unity/Assets/_Project/Editor/BuildScript.cs`, CI workflow, `docs/RELEASE.md`, perf captures.
+
+## Dependencies
+p0-vr-platform-s01.
+
+## Common issues
+Hitches → GC/texture uploads: pre-warm; build too large → texture sizes/audio compression.
+
+## Sources
+Implementation Guide B-S11 Steps 1–4, T-Q1–T-Q4.

@@ -1,0 +1,35 @@
+# p0-vr-platform-s03 — SimulationHost, action emitters, state views
+
+Walking skeleton 1 · step 12 of 15 · blocked until s02
+
+## What
+The bridge between Unity and Core (Implementation Guide B-S7):
+- **SimulationHost** (in `Sys_Core`) owns one Core `Session`, ticks it every frame with `Time.deltaTime`, publishes the `ObservableState`,
+  pauses + logs on any Core exception, and **saves the session log** to the Quest's persistent storage.
+- **Emitters** — generic components that turn XR events into `SimAction`s: GrabEmitter, SocketEmitter, PokeEmitter, UIButtonEmitter (debounced).
+- **StateView** base — `Render(ObservableState)` with diff caching; text panels throttled to 10 Hz.
+- **Tablet fallback registry** — every emitter's action also available as a tablet button.
+
+## Why
+Unity stays a view + input layer; every VR interaction is logged and replayable.
+
+## How to implement
+1. `Scripts/Bridge/SimulationHost.cs`, `ActionEmitters/*.cs`, `Views/StateView.cs`, `Fallback/TabletFallbackRegistry.cs`.
+2. Session config (case ID, seed, mode) from a ScriptableObject for now.
+3. Session log written as JSONL to `Application.persistentDataPath/sessions/`; a menu button to export.
+4. Edit Mode / Play Mode tests: emitter fires once per select; rejected action shows a hint and changes nothing visually (T-B2); exception → paused, no crash (T-B5).
+
+## Verification
+Play Mode test passes; in the Editor, a debug button emitting `introduce_self` produces a log line identical in format to the CLI's.
+
+## Files changed
+`unity/Assets/_Project/Scripts/Bridge/*`, `ActionEmitters/*`, `Views/*`, `Fallback/*`, tests, `Sys_Core` scene.
+
+## Dependencies
+p0-vr-platform-s02.
+
+## Common issues
+Double actions → debounce select events; Observable null on first frame → create Session in `Awake` before views (B-S7 troubleshooting).
+
+## Sources
+Implementation Guide B-S7 Steps 1–3, 5, tests T-B1–T-B5.

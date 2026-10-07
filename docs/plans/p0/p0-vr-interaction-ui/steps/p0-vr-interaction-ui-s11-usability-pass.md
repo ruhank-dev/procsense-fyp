@@ -1,0 +1,31 @@
+# p0-vr-interaction-ui-s11 — Usability pass (EXP-UI-1, EXP-VR-2)
+
+Milestone: **M7 S1 complete in VR**
+
+## What
+Think-aloud sessions with 5 new users: Step 1 identity check, attaching sensors, ordering a test, reading results, leading Sign In; controllers vs hand tracking for reading the wristband and labelling a tube.
+
+## Why
+Usability problems found by 5 people now are cheap to fix; the same problems found in the formal study (p0-evaluation-performance-s05) cost a whole study round. Hand tracking may make small-object tasks (wristband, tubes) easier — or harder — and only testing tells.
+
+## How to implement
+1. Script the tasks; record success, time, confusion points.
+2. Fix the top issues; re-test.
+3. 5 participants new to ProcSense; think-aloud; observer notes; session logs captured.
+4. Hand tracking variant: enable Meta hand tracking with XRI hands for the same tasks; compare success/time (EXP-VR-2).
+5. Top 3 issues fixed and re-tested with 2 new users.
+
+## Verification
+EXP-UI-1 (≥ 4/5 complete Step 1 unaided) and EXP-VR-2 recorded in `results/usability-pass.md`.
+
+## Files changed
+`docs/plans/p0/p0-vr-interaction-ui/results/*.md`.
+
+## Dependencies
+p0-vr-interaction-ui-s06, s07.
+
+## Common issues
+Testers who are gamers aren't the target users — recruit at least 3 medical students. Don't coach during think-aloud; note where they get stuck instead.
+
+## Sources
+Implementation Guide B-S10 T-UI2, B-S6 (XR input); vr-interaction-ui README EXP-UI-1, EXP-VR-2; walkthrough Part 16 (what the player does per stage).

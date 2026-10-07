@@ -1,0 +1,33 @@
+# p0-evaluation-performance-s05 — Usability study (EXP-EVAL-1)
+
+Milestone: **M9 P0 release**
+
+## What
+Formal study with medical students / junior doctors (ethics approved): S1 and S2 sessions, System Usability Scale, NASA-TLX, task success and time; analysis script; honest reporting.
+
+## Why
+The FYP needs measured usability with real target users, using standard questionnaires (SUS, NASA-TLX) so results are comparable and credible.
+
+## How to implement
+1. Protocol + consent form + task list; schedule sessions.
+2. `tools/eval/analyse_usability.py` (uv) → tables/plots.
+3. Report results without over-claiming.
+4. Participants: target users (medical students / junior doctors) recruited via the supervisor; consent form; pseudonymous IDs only.
+5. Session (~45 min): briefing, controls practice (5 min), one S1 case + one S2 case, SUS questionnaire, NASA-TLX, short interview.
+6. Measures: SUS score, NASA-TLX subscales, task success per step, time to complete, errors, end states reached.
+7. `tools/eval/analyse_usability.py` → tables + plots in `results/`; report median/IQR, no inferential claims beyond the sample.
+
+## Verification
+Results tables and plots generated from the raw session data; protocol and consent forms stored.
+
+## Files changed
+`docs/plans/p0/p0-evaluation-performance/results/*`, analysis script.
+
+## Dependencies
+M8.
+
+## Common issues
+Small samples: report medians/ranges and qualitative findings; avoid claims like 'significantly better' without a proper design.
+
+## Sources
+Inventory D83 (SUS — Brooke 1996), D84 (NASA-TLX); Master Plan §41; walkthrough Part I section G (VR realism).

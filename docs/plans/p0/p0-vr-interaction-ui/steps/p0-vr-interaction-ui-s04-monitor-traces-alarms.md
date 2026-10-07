@@ -1,0 +1,30 @@
+# p0-vr-interaction-ui-s04 — Patient monitor: numbers, traces, alarms (EXP-UI-3)
+
+Milestone: **M4 Engine complete — VAR-S1-A Steps 1–14 headless**
+
+## What
+Monitor view: values only for attached sensors; ECG trace from PTB-XL templates time-scaled to HR (ring buffer), pleth trace, capnography in the OT; NIBP cycle progress then values; display zones colouring; alarms by Core alarm state with acknowledge/silence; artefact visuals when the probe is poorly placed.
+
+## Why
+Monitoring is central from Step 3 to Time Out; it must look and behave like a real monitor.
+
+## How to implement
+1. `Scripts/UI/Monitor/MonitorView.cs`, `WaveformRenderer.cs` (fixed update rate + interpolation — no jitter).
+2. Alarm limits from content (institutional).
+3. EXP-UI-3: medical reviewer assesses realism; record fixes.
+4. Pleth amplitude/quality reflects probe placement (artefact state from Core); 'no waveform → recheck' teaching (walkthrough Part E).
+
+## Verification
+T-UI3 waveform ≤ 0.5 ms; T-B1 attach → value appears; reviewer verdict recorded.
+
+## Files changed
+`unity/Assets/_Project/Scripts/UI/Monitor/{MonitorView,WaveformRenderer,AlarmIndicator}.cs`, monitor prefab, `content/physio/ecg_templates.json` (consumed), alarm limits in content.
+
+## Dependencies
+p0-clinical-logic-s03; p0-medical-research-data-s15.
+
+## Common issues
+Throttle text to 10 Hz; waveforms at fixed rate.
+
+## Sources
+B-S10 Step 2, T-UI3; B-S7 worked example.

@@ -1,0 +1,30 @@
+# p0-blender-equipment-s15 — LOD and performance pass (EXP-BL-3, EXP-BL-4)
+
+Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
+
+## What
+Profile the fully dressed OT and patient bay on Quest 2 (worst views); generate LODs for large machines; tighten or relax budget classes; time `task blender-build-all` to decide whether generated FBX files are committed or rebuilt in CI.
+
+## Why
+Each asset can pass its own budget while the dressed OT together still drops frames; the only real test is the full room on the weakest target headset (Quest 2).
+
+## How to implement
+1. OVR Metrics in the worst OT view with all P0 assets + characters placed.
+2. `lod.py` LOD1/LOD2 for items > 5k tris; LODGroup set by the importer.
+3. Update `budgets.json`; re-run validator over all assets.
+4. EXP-BL-4: time the full build; decide commit vs rebuild (with EXP-FND-1).
+
+## Verification
+Worst OT view ≤ 150 batches, ≥ 72 fps; decisions recorded.
+
+## Files changed
+`tools/blender/budgets.json`, README experiment log.
+
+## Dependencies
+p0-blender-equipment-s06–s14; p0-environment-rooms-s06.
+
+## Common issues
+LODs that pop visibly → adjust LOD transition distances, not geometry. CI build time grows with assets — cache unchanged assets by script hash.
+
+## Sources
+Implementation Guide B-S1 budgets and T-3D1, B-S8 per-view budget (≤ 150 batches, ≤ 750k tris) and T-EN3, B-S11 perf gate.

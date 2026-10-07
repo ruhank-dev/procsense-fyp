@@ -1,0 +1,30 @@
+# p1-scenario-composer-difficulty-s03 — AI Stage A proposals (EXP-COMP-1)
+
+Milestone: **M11 P1 content — theatre extension, extended cases, composer, Pulse**
+
+## What
+LLM proposes cases using only approved block IDs (enum schema), targeting difficulty/competencies; Stage B defects fed back as 'avoid' hints; passing cases get a validated narrative; each proposal lists problems, types, ladder order, checks, end state, clock and handover items (14B.5 recipe); status stays IMPLEMENTED until clinician approval.
+
+## Why
+An LLM can suggest varied, plausible block combinations faster than a person — but it may only propose: Stage B validates, and only a clinician approves.
+
+## How to implement
+1. `tools/composer/propose.py`; temperature 0.8; dedupe by block-set hash.
+2. Catalogue prompt lists only approved block IDs with one-line descriptions; schema enums per slot type reject invented IDs (T-SA1/T-SA4).
+3. Narratives for passing candidates via `/llm/generate` task=narrative, validated for entities; presentation only.
+4. Dedupe proposals by block-set hash; temperature 0.8 for diversity.
+
+## Verification
+T-SA1–T-SA4 pass; ≥ 12 distinct block sets in 20 proposals (T-SA3).
+
+## Files changed
+`tools/composer/propose.py`, `prompts/composer/v1.txt`, `server/schemas/proposal.py` (enum schema), candidates folder (dev-only).
+
+## Dependencies
+p1-scenario-composer-difficulty-s02; p1-ai-language-s02.
+
+## Common issues
+Low diversity → raise temperature and penalise duplicate block sets; proposals ignoring difficulty → put limits explicitly in the prompt.
+
+## Sources
+Implementation Guide B-R10 Steps 1–5, T-SA1–T-SA4; walkthrough 14B.5.
