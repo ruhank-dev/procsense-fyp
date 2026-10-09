@@ -31,6 +31,14 @@ produce many phrasings; a wrong match or a false mismatch would silently break S
 6. Property check: every phrasing in the matrix must give the same result after normalising twice (idempotent).
 7. P1 hook: the same extractor is what `p1-voice-input` and `p1-ai-language` call on recognised or generated text (listed in their Dependencies).
 
+## Implementation notes (09 October 2026)
+- Built as `SpokenIdentity.Normalise` / `Compare` (`Match`, `Mismatch`, `Missing`, `Ambiguous` for the name and for the date). Covers: honorifics and filler words, surname-first, middle names, accents, upper/lower case, digits and ordinals (14th), ordinal and cardinal day words (fourteenth, fourteen, twenty first), month names and abbreviations, ISO / day-first / month-first numeric dates, spoken years (nineteen eighty four, two thousand and three, twenty oh three), a name that is also a month word (June).
+- **Ambiguity rule:** a numeric date is `Ambiguous` only when it could be her birthday under one reading but not the other (03/04 for 3 April), or has a two-digit year that fits. If neither reading is her birthday it is a plain `Mismatch`. A month word removes the doubt. Never guessed.
+- **Change from the plan:** no date-format setting in `content/` (no new register row), because a date that depends on the order is reported as ambiguous instead of resolved by a convention.
+- `confirm_identity` now rejects `SPOKEN_ANSWER_UNCLEAR` when her answer is incomplete or ambiguous (not a mismatch: the answer text needs fixing); `request_wristband` also requires an unambiguous answer. A wrong name or date is still `ST1_MISMATCH`.
+- Names are matched by exact words (marked `shortcut` in the code); fuzzy matching comes with speech recognition (p1-voice-input, DT-032).
+- 64 new tests: a 24-phrasing match matrix, 19 incomplete/wrong/ambiguous cases, ambiguity, spoken years, month-word names, idempotence, and four inside Step 1. Existing golden runs are unchanged.
+
 ## Verification
 `dotnet test --filter SpokenIdentity` green; VAR-S1-A still verifies; the golden runs in `tests/golden` unchanged unless the answer text changed (record it if so).
 

@@ -594,3 +594,10 @@ _Session: 0485f3e4_
 ``````text
 include this in the instructions md too never to have any and all references that [AI tool] was used in this project or any and all references to [AI tool] as contributer from all the commit histories and from now on dont include that too except from instructions and agents.md
 ``````
+
+## 37. 09 October 2026, 3:14 PM UTC
+_Session: 0485f3e4_
+
+``````text
+okay check now close the 9 PRS and s18 and s19 are approved too and so whats next what about the skeletons other steps i have unity but i dont have the meta quest with me right now
+``````

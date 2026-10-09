@@ -17,6 +17,7 @@ namespace ProcSense.Core.Workflow.Steps
         public const string Mismatch = "ST1_MISMATCH";
         public const string WristbandMissing = "WRISTBAND_MISSING";
         public const string VerifyIdentityFirst = "VERIFY_IDENTITY_FIRST";
+        public const string SpokenAnswerUnclear = "SPOKEN_ANSWER_UNCLEAR";
 
         // Flags this step sets on the patient (read later by scoring and events).
         public const string Introduced = "introduced";
@@ -130,6 +131,13 @@ namespace ProcSense.Core.Workflow.Steps
                 foreach (var p in problems) o.Effects.Add(p);
                 return;
             }
+            var unclear = IdentityCheck.Unclear(_s.Case);
+            if (unclear.Count > 0)
+            {
+                o.Reject(SpokenAnswerUnclear);
+                foreach (var u in unclear) o.Effects.Add(u);
+                return;
+            }
             Clinical.IdentityVerified = true;
             o.Effects.Add("identity_verified");
         }
@@ -159,7 +167,7 @@ namespace ProcSense.Core.Workflow.Steps
         private void RequestWristband(ActionOutcome o)
         {
             if (Clinical.CurrentWristband != null) { o.Effects.Add("nothing_to_resolve"); return; }
-            bool verifiedAnotherWay = Clinical.HasFlag(IdentityAskedOpen) && Clinical.NotesOpened && IdentityCheck.Mismatches(_s.Case, null).Count == 0;
+            bool verifiedAnotherWay = Clinical.HasFlag(IdentityAskedOpen) && Clinical.NotesOpened && IdentityCheck.Mismatches(_s.Case, null).Count == 0 && IdentityCheck.Unclear(_s.Case).Count == 0;
             if (!verifiedAnotherWay) { o.Reject(VerifyIdentityFirst); return; }
             WristbandResolution.ApplyCorrectBand(_s, o, wasMissing: true);
         }

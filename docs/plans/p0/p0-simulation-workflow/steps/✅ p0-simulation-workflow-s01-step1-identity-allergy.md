@@ -44,7 +44,7 @@ Implementation Guide §07 (L1-01…L1-WT2, T01-1…T01-5), B-R11 Step 9; walkthr
 ## Carried-over requirements (added 09 October 2026)
 
 Step 6 is built with these parts **deliberately left for later** (tracked in [deferred-tasks.md](../../../../deferred-tasks.md)):
-- Nurse replaces a wrong wristband / applies a missing one → [p0-simulation-workflow-s18](p0-simulation-workflow-s18-wristband-mismatch-nurse-resolution.md) (DT-006, DT-010, DT-011).
+- Nurse replaces a wrong wristband / applies a missing one → [p0-simulation-workflow-s18](✅%20p0-simulation-workflow-s18-wristband-mismatch-nurse-resolution.md) (DT-006, DT-010, DT-011).
 - Robust spoken-identity matching (today's check is a documented shortcut) → [p0-simulation-workflow-s19](p0-simulation-workflow-s19-robust-spoken-identity.md) (DT-001).
 - CRITICAL / minor score items for rejected or wasteful actions → p0-scoring-debrief-s01 (DT-003, DT-004).
 - `PATIENT_ELSEWHERE` location check → p0-simulation-workflow-s13 (DT-005).
