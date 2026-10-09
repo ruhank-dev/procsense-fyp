@@ -3,7 +3,7 @@
 One register for everything that was **postponed, left outstanding, blocked or depends on something else** — so nothing is forgotten.
 Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a task is deferred, started, finished, blocked, unblocked or re-scoped.
 
-**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–6 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy); step 7 (history questions) is built and awaiting approval.
+**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–7 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions); step 7 (history questions) approved; step 8 (sensors and vitals) is next.
 
 ## Status meanings
 
@@ -61,7 +61,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-030 | Skeleton step 6 (identity/allergy) approval and commit | **Completed** | p0-simulation-workflow-s01 | — | Approved 09 Oct 2026; committed as 9e71540 |
 | DT-037 | Test-run output files `result.json` and `result.session.jsonl` were committed in the repo root (and `bad.json`, `bad.session.jsonl` sit untracked); remove them from git and add them to `.gitignore` | Pending | .gitignore | Owner runs `git rm --cached result.json result.session.jsonl` | Created by running the CLI examples in the project root; use `--out "$TEMP/…"` or a scratch folder instead |
 | DT-038 | Ponytail removal from git: local history rewrite done (backup branch `backup-before-history-rewrite`); needs a check, the local skill files restored, and a force-push | In progress | .gitignore | Owner runs the commands in the hand-off (the agent's shell was blocked after the rewrite) | `.gitignore` entry added. `skills-lock.json` was left in the repo (only the skill folder was named) |
-| DT-039 | Step 7 (history questions) | In progress | [p0-simulation-workflow-s02](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s02-step2-history-disclosure.md) | Owner approval | Built 09 Oct 2026; 58 tests pass. Left for later: fasting-rule evaluation (clinical-logic), pregnancy eligibility and private-ask option (behaviour), `ask` for allergies stays the Step 1 verb `ask_allergies` |
+| DT-039 | Step 7 (history questions) | **Completed** | [p0-simulation-workflow-s02](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s02-step2-history-disclosure.md) | — | Approved 09 Oct 2026; 58 tests pass. Left for later: fasting-rule evaluation (clinical-logic), pregnancy eligibility and private-ask option (behaviour), `ask` for allergies stays the Step 1 verb `ask_allergies` |
 | DT-031 | Earlier history (6–7 Oct 2026: when the plans, ADR-0001 and phase review were written) is not in any session record | Blocked | docs/context/ProcSense_Change_Report.md §G | Owner to supply or confirm | Documented from the plan files only; nothing invented |
 
 DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentation honest (034 and 035 answered 09 Oct 2026):

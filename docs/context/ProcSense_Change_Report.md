@@ -188,7 +188,7 @@ Sections A–F above are the v2.0 baseline (6 Oct 2026) and are left as written.
 
 ### G.2 Build progress (walking skeleton 1)
 
-Approved on 09 Oct 2026: step 1 (VAR-S1-A content), core-engine s01 (clock + RNG), s02 (actions/session/log), s03 (content loader + patient state), s04 (observable, CLI, replay), p0-simulation-workflow-s01 (Step 1 identity and allergy). Built and awaiting approval: p0-simulation-workflow-s02 (Step 2 history questions). Outstanding work: `docs/deferred-tasks.md`.
+Approved on 09 Oct 2026: step 1 (VAR-S1-A content), core-engine s01 (clock + RNG), s02 (actions/session/log), s03 (content loader + patient state), s04 (observable, CLI, replay), p0-simulation-workflow-s01 (Step 1 identity and allergy). p0-simulation-workflow-s02 (Step 2 history questions) approved. Next: step 8 (sensors and vitals). Outstanding work: `docs/deferred-tasks.md`.
 
 ### G.3 Context folder review (09 Oct 2026)
 
