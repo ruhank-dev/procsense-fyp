@@ -11,13 +11,22 @@ namespace ProcSense.Core.Observation
     /// <summary>One value on the monitor or chart, with the clock time it was read.</summary>
     public sealed record ObservedVital(string Name, string Value, string At);
 
+    /// <summary>One goal as the trainee's "known / pending" panel shows it. State is pending, complete or missed; At is the clock time it finished ("" while pending).</summary>
+    public sealed record GoalStatus(string Id, string Label, string State, string At);
+
+    public sealed record DecisionOption(string Id, string Label);
+
+    /// <summary>A decision the trainee has to make. The expected option is never part of the card.</summary>
+    public sealed record DecisionCard(string Id, string Label, IReadOnlyList<DecisionOption> Options);
+
     /// <summary>
     /// Read-only snapshot of what the trainee can perceive right now. Unity and AI read only this, never PatientState,
     /// so undisclosed facts cannot leak. Vitals appear only for attached sensors and readings the trainee has taken.
     /// </summary>
     public sealed record ObservableState(
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
-        Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection)
+        Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
+        IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -65,6 +74,34 @@ namespace ProcSense.Core.Observation
             sb.Append("],\"nurse\":"); JsonText.Quote(sb, Nurse);
             sb.Append(",\"allergy_band\":").Append(AllergyBand ? "true" : "false");
             sb.Append(",\"last_rejection\":"); JsonText.Quote(sb, LastRejection);
+            sb.Append(",\"goals\":[");
+            for (int i = 0; i < Goals.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"id\":"); JsonText.Quote(sb, Goals[i].Id);
+                sb.Append(",\"label\":"); JsonText.Quote(sb, Goals[i].Label);
+                sb.Append(",\"state\":"); JsonText.Quote(sb, Goals[i].State);
+                sb.Append(",\"at\":"); JsonText.Quote(sb, Goals[i].At);
+                sb.Append('}');
+            }
+            sb.Append("],\"decisions\":[");
+            for (int i = 0; i < Decisions.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"id\":"); JsonText.Quote(sb, Decisions[i].Id);
+                sb.Append(",\"label\":"); JsonText.Quote(sb, Decisions[i].Label);
+                sb.Append(",\"options\":[");
+                for (int j = 0; j < Decisions[i].Options.Count; j++)
+                {
+                    if (j > 0) sb.Append(',');
+                    sb.Append("{\"id\":"); JsonText.Quote(sb, Decisions[i].Options[j].Id);
+                    sb.Append(",\"label\":"); JsonText.Quote(sb, Decisions[i].Options[j].Label);
+                    sb.Append('}');
+                }
+                sb.Append("]}");
+            }
+            sb.Append("],\"hint\":"); JsonText.Quote(sb, Hint);
+            sb.Append(",\"block_message\":"); JsonText.Quote(sb, BlockMessage);
             return sb.Append('}').ToString();
         }
 
@@ -106,6 +143,14 @@ namespace ProcSense.Core.Observation
 
         public static string Num(double x) => x.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
 
+        private static string BlockMessage(Session s)
+        {
+            if (!s.LastRejection.StartsWith(Workflow.ReadinessSubsystem.BlockedPrefix, System.StringComparison.Ordinal)) return "";
+            string id = s.LastRejection.Substring(Workflow.ReadinessSubsystem.BlockedPrefix.Length);
+            foreach (var b in s.Graph.Blockers) if (b.Id == id) return b.Message;
+            return "";
+        }
+
         public static ObservableState Build(Session s)
         {
             var c = s.Patient.Clinical;
@@ -119,12 +164,17 @@ namespace ProcSense.Core.Observation
                 if (answer != null) facts.Add(new DisclosedFact(topic, answer));
             }
 
+            bool practice = s.Mode == SessionMode.Practice;   // assessment mode shows no goals and no hints: nothing tells the trainee what is left
             return new ObservableState(
                 Hms(s.Clock.ClockTime),
                 c.Location, c.IdentityVerified, c.AllergiesKnown,
                 c.WristbandRead ? c.CurrentWristband : null,
                 c.NotesOpened ? s.Patient.Profile.Notes : null,
-                facts, BuildVitals(s), c.NurseState, c.AllergyBand, s.LastRejection);
+                facts, BuildVitals(s), c.NurseState, c.AllergyBand, s.LastRejection,
+                practice && s.Tracker != null ? s.Tracker.GoalStatuses() : System.Array.Empty<GoalStatus>(),
+                s.Tracker != null ? s.Tracker.OpenCards() : System.Array.Empty<DecisionCard>(),
+                practice && s.Tracker != null ? s.Tracker.Hint() : "",
+                practice ? BlockMessage(s) : "");
         }
     }
 }

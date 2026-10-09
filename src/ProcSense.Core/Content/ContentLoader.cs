@@ -59,7 +59,8 @@ namespace ProcSense.Core.Content
             var cases = new SortedDictionary<string, CaseCard>(StringComparer.Ordinal);
             foreach (var id in caseIds) cases[id] = LoadCase(reader.ReadText("cases/" + id + ".json"), id);
             var behaviour = LoadBehaviour(reader.ReadText("behaviour.json"));
-            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")));
+            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")),
+                Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"));
         }
 
         public static CaseCard LoadCase(string json, string name)

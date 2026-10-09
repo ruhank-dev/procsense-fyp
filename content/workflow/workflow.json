@@ -1,0 +1,54 @@
+{
+  "goals": [
+    {
+      "id": "G-S1-IDENTITY",
+      "step": 1,
+      "label": "Identity confirmed",
+      "hint": "Ask the patient to say their full name and date of birth, then compare it with the wristband and the notes.",
+      "applies_if": true,
+      "complete_if": { "==": [ { "var": "identity_confirmed" }, true ] },
+      "after": [],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0038" ]
+    },
+    {
+      "id": "G-S1-ALLERGY",
+      "step": 1,
+      "label": "Allergies asked",
+      "hint": "Ask about allergies, and what happened when the patient had one.",
+      "applies_if": true,
+      "complete_if": { "==": [ { "var": "allergies_known" }, true ] },
+      "after": [ "G-S1-IDENTITY" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0039" ]
+    },
+    {
+      "id": "G-S1-REASON",
+      "step": 1,
+      "label": "Reason for admission asked",
+      "hint": "Ask the patient what operation they are here for.",
+      "applies_if": true,
+      "complete_if": { "in": [ "reason_for_admission", { "var": "topics" } ] },
+      "after": [ "G-S1-IDENTITY" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0040" ]
+    },
+    {
+      "id": "G-S1-ADULT",
+      "step": 1,
+      "label": "Responsible adult asked",
+      "hint": "Check that an adult can take the patient home and stay with them for 24 hours.",
+      "applies_if": { "==": [ { "var": "scenario" }, "S1" ] },
+      "complete_if": { "in": [ "responsible_adult", { "var": "topics" } ] },
+      "after": [ "G-S1-IDENTITY" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0041" ]
+    }
+  ],
+  "decision_points": [],
+  "blockers": []
+}

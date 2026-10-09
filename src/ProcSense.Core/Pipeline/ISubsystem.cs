@@ -20,6 +20,8 @@ namespace ProcSense.Core.Pipeline
     /// <summary>Fixed subsystem order (Implementation Guide B-R11 step 6). Log and Observable are built into Session.</summary>
     public static class PipelineOrder
     {
+        /// <summary>Readiness blockers: run before everything else so a blocked verb changes nothing.</summary>
+        public const int Gate = 5;
         public const int Clinical = 10;
         public const int Location = 20;
         public const int Investigations = 30;

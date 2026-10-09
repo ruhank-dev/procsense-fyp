@@ -63,6 +63,18 @@ def rule_problems(doc: dict, register: dict[str, dict]) -> list[str]:
     return problems
 
 
+def workflow_problems(doc: dict, register: dict[str, dict]) -> list[str]:
+    """Every goal, decision point and blocker must cite register ids that exist (the C# loader checks cycles, options and the rest)."""
+    problems = []
+    for kind in ("goals", "decision_points", "blockers"):
+        entries = doc.get(kind, [])
+        ids = [e.get("id") for e in entries]
+        problems += [f"{kind}: duplicate id {i}" for i in sorted({i for i in ids if ids.count(i) > 1})]
+        for e in entries:
+            problems += [f"{kind} {e.get('id')}: ref {rid} not in register" for rid in e.get("refs", []) if rid not in register]
+    return problems
+
+
 def ref_problems(doc: dict, register: dict[str, dict], name: str) -> list[str]:
     """For simple content files (e.g. devices.json): every top-level entry needs a 'ref' that exists."""
     problems = []

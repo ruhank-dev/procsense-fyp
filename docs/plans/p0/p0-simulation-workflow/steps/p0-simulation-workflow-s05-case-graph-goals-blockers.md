@@ -32,3 +32,16 @@ Goal never completes → its rule reads a state key that doesn't exist (check ke
 
 ## Sources
 Implementation Guide B-R12 Steps 1–7, tests T-CG1–T-CG6; walkthrough Parts 3, 11, 16.
+
+## Implementation notes (09 Oct 2026)
+- **Content:** one file, `content/workflow/workflow.json` (`goals`, `decision_points`, `blockers`), validated by `content/schema/workflow.schema.json` and `task content-validate` (schema plus register ids) instead of three separate files. Conditions use the rule language from clinical-logic s01. The real content so far is the four Step 1 goals of the walkthrough (identity confirmed, allergies asked, reason for admission asked, responsible adult asked for S1), with register rows SR-0038 to SR-0041. Decision points and blockers are empty until the clinical steps that need them (for example DP-S1-FAST waits for the fasting rule).
+- **Code:** `Workflow/CaseGraph.cs` (load and validation: duplicate ids, unknown `after` goals, circles listed as `A -> B -> A`, expected option must exist, blocker needs a message), `Workflow/CaseGraphSubsystem.cs` (`ReadinessSubsystem` runs first at the new `PipelineOrder.Gate`; `CaseGraphSubsystem` runs last). Rules read a plain fact dictionary built from the engine's truth (identity, allergies, topics, flags, scenario, ...), not from what the trainee can see.
+- **Goals:** pending, complete or missed with the clock time. A goal can only complete after the goals in its `after` list; a prerequisite that does not apply to the case is not waited for. Re-evaluation uses the dirty-key index: each rule reports the top-level keys it reads (`Logic.ReadKeys`) and is only re-evaluated when one changed.
+- **Deadlines:** `deadline_min` counts from the start of the session. A goal is missed once the clock reaches it; an action applied at that exact moment is too late (the tick comes first). Missing sets the `on_missed` flags and publishes the events on the EventBus. Same result by ticks or by `time_skip`.
+- **Decisions:** a card appears when its trigger is true. `decide` (params `dp`, `option`) applies the option's flags and events and logs `decision:<dp> chose:<option> expected:<options> as_expected|not_expected` plus `score:<item>`. The expected option is never in the Observable.
+- **Blockers:** refuse the listed verbs as `BLOCKED:<id>`. In practice mode `ObservableState.BlockMessage` carries the reason; in assessment mode it is only in the log.
+- **Hints:** practice mode only, the hint of the next pending goal. Assessment mode also hides the goal list, so nothing tells the trainee what is left.
+- **Observable and hashes:** `ObservableState` gained `goals`, `decisions`, `hint`, `block_message`. Log hashes did not change (the skeleton-1 log hash is the same); every golden `state_hash` changed once and was updated deliberately.
+- **Read by the scorer:** `Session.GraphHistory` lists goal and decision events with their sim step and score items.
+- **Not built:** the "difficulty <= 2" part of the hint rule (there is no difficulty in the content yet, DT-056); showing goals, hints, decision cards and the block message in Unity (DT-057). Goal and blocker content for steps 2 to 15 arrives with those steps.
+- **Measured (Release, 200 goals):** about 0.11 ms per action (budget 0.3 ms); a tick still allocates 0 bytes.

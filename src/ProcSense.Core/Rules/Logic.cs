@@ -29,10 +29,53 @@ namespace ProcSense.Core.Rules
 
         private readonly Node _root;
 
-        private Logic(Node root) { _root = root; }
+        private Logic(Node root, IReadOnlyList<string>? readKeys) { _root = root; ReadKeys = readKeys; }
+
+        /// <summary>
+        /// The top-level data keys this rule reads (sorted), or null when it reads keys it cannot name in advance (a computed variable name, or the whole data).
+        /// Callers use it to re-evaluate a rule only when one of those keys changed.
+        /// </summary>
+        public IReadOnlyList<string>? ReadKeys { get; }
 
         /// <summary>Compiles a rule from parsed JSON. Throws ContentException naming the path for anything not in the subset.</summary>
-        public static Logic Compile(object? json, string path = "rule") => new Logic(Build(json, path, 1));
+        public static Logic Compile(object? json, string path = "rule")
+        {
+            var root = Build(json, path, 1);
+            var keys = new SortedSet<string>(StringComparer.Ordinal);
+            return new Logic(root, Collect(json, keys) ? keys.ToList() : null);
+        }
+
+        /// <summary>Walks the raw rule and gathers the top-level keys it reads. Returns false if any read cannot be named. Inside some/all the test reads the item, not the data, so only the list expression counts.</summary>
+        private static bool Collect(object? json, SortedSet<string> keys)
+        {
+            if (json is List<object?> list) return list.All(x => Collect(x, keys));
+            if (!(json is Dictionary<string, object?> map) || map.Count != 1) return true;
+            var entry = map.First();
+            var args = entry.Value is List<object?> a ? a : new List<object?> { entry.Value };
+            switch (entry.Key)
+            {
+                case "var":
+                    if (args.Count == 0 || !(args[0] is string name) || name.Length == 0) return false;
+                    keys.Add(name.Split('.')[0]);
+                    return args.Skip(1).All(x => Collect(x, keys));
+                case "missing":
+                    foreach (var arg in args)
+                    {
+                        var names = arg is List<object?> l ? l : new List<object?> { arg };
+                        foreach (var n in names)
+                        {
+                            if (!(n is string text) || text.Length == 0) return false;
+                            keys.Add(text.Split('.')[0]);
+                        }
+                    }
+                    return true;
+                case "some":
+                case "all":
+                    return args.Count == 0 || Collect(args[0], keys);
+                default:
+                    return args.All(x => Collect(x, keys));
+            }
+        }
 
         /// <summary>The raw result (a number, text, true/false, a list or null).</summary>
         public object? Evaluate(object? data) => _root.Eval(data);
@@ -297,7 +340,7 @@ namespace ProcSense.Core.Rules
             }
         }
 
-        private static bool Same(object? a, object? b)
+        internal static bool Same(object? a, object? b)
         {
             if (a == null || b == null) return a == null && b == null;
             if (TryNumber(a, out double x) && TryNumber(b, out double y)) return x == y;

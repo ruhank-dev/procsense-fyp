@@ -7,7 +7,7 @@ Exit code 0 = all valid, 1 = problems found.
 import sys
 from pathlib import Path
 
-from checks import case_problems, load_json, load_register, ref_problems, rule_problems, schema_errors
+from checks import case_problems, load_json, load_register, ref_problems, rule_problems, schema_errors, workflow_problems
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -36,6 +36,13 @@ def main() -> int:
         doc = load_json(path)
         problems = schema_errors(doc, rule_schema) + rule_problems(doc, register)
         failed |= _report("rules " + path.stem, problems, f"{len(doc.get('rules', []))} rules")
+
+    workflow_schema = load_json(CONTENT / "schema" / "workflow.schema.json")
+    workflow_files = sorted((CONTENT / "workflow").glob("*.json")) + sorted((ROOT / "tests" / "fixtures" / "workflow").glob("*.json"))
+    for path in workflow_files:
+        doc = load_json(path)
+        problems = schema_errors(doc, workflow_schema) + workflow_problems(doc, register)
+        failed |= _report("workflow " + path.stem, problems, f"{len(doc.get('goals', []))} goals, {len(doc.get('decision_points', []))} decisions, {len(doc.get('blockers', []))} blockers")
 
     for name in ("devices", "behaviour", "history_topics"):
         path = CONTENT / f"{name}.json"

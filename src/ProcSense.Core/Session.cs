@@ -61,6 +61,15 @@ namespace ProcSense.Core
         public EventBus Events { get; } = new EventBus();
         public SessionLog Log { get; } = new SessionLog();
 
+        /// <summary>The workflow content for this case (goals, decision points, blockers). Set by the readiness subsystem; empty when the case has none.</summary>
+        public Workflow.CaseGraph Graph { get; internal set; } = Workflow.CaseGraph.Empty;
+
+        /// <summary>The goal and decision tracker, or null when the session runs without one.</summary>
+        internal Workflow.CaseGraphSubsystem? Tracker { get; set; }
+
+        /// <summary>Goals completed or missed and decisions made, with sim steps and score items. The scorer reads this.</summary>
+        public IReadOnlyList<Workflow.GraphEvent> GraphHistory => Tracker?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
+
         /// <summary>Reason the most recent action was rejected, or "" if it was accepted.</summary>
         public string LastRejection { get; private set; } = "";
 

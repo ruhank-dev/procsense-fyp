@@ -42,13 +42,14 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow)
         {
             Cases = cases;
             Nibp = nibp;
             IntroduceSelf = introduceSelf;
             Summarise = summarise;
             HistoryTopics = historyTopics;
+            Workflow = workflow;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -56,5 +57,7 @@ namespace ProcSense.Core.Content
         public BehaviourEffect IntroduceSelf { get; }
         public SummariseEffect Summarise { get; }
         public HistoryTopics HistoryTopics { get; }
+        /// <summary>Goals, decision points and readiness blockers (content/workflow/workflow.json).</summary>
+        public Workflow.CaseGraph Workflow { get; }
     }
 }

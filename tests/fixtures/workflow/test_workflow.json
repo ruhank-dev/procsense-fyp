@@ -1,0 +1,64 @@
+{
+  "goals": [
+    {
+      "id": "TEST-G-DEADLINE",
+      "step": 1,
+      "label": "Test goal with a one minute deadline",
+      "hint": "Test fixture: ask about allergies.",
+      "applies_if": true,
+      "complete_if": { "==": [ { "var": "allergies_known" }, true ] },
+      "after": [],
+      "deadline_min": 1,
+      "on_missed": { "flags": [ "missed.test_goal" ], "events": [ "E-TEST-MISSED" ] },
+      "score_items": [ "SI-TEST-GOAL" ],
+      "refs": [ "SR-0001" ]
+    },
+    {
+      "id": "TEST-G-LATER",
+      "step": 1,
+      "label": "Test goal that waits for the first one",
+      "hint": "Test fixture: ask about the reason for admission.",
+      "applies_if": true,
+      "complete_if": { "in": [ "reason_for_admission", { "var": "topics" } ] },
+      "after": [ "TEST-G-DEADLINE" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0001" ]
+    },
+    {
+      "id": "TEST-G-NOT-HERE",
+      "step": 2,
+      "label": "Test goal that does not apply to this case",
+      "hint": "Test fixture.",
+      "applies_if": { "==": [ { "var": "scenario" }, "S2" ] },
+      "complete_if": true,
+      "after": [],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0001" ]
+    }
+  ],
+  "decision_points": [
+    {
+      "id": "TEST-DP-CHOICE",
+      "step": 1,
+      "label": "Test decision",
+      "trigger": { "in": [ "introduced", { "var": "flags" } ] },
+      "options": [
+        { "id": "proceed", "label": "Carry on", "set_flags": [ "chose.proceed" ], "events_enable": [], "score_item": "SI-TEST-PROCEED" },
+        { "id": "ask_first", "label": "Ask a senior first", "set_flags": [ "chose.ask_first" ], "events_enable": [ "E-TEST-ENABLED" ], "score_item": "SI-TEST-ASK" }
+      ],
+      "expected": [ "ask_first" ],
+      "refs": [ "SR-0001" ]
+    }
+  ],
+  "blockers": [
+    {
+      "id": "TEST-B-IDENTITY-FIRST",
+      "check_at": [ "ask_allergies" ],
+      "blocked_if": { "!=": [ { "var": "identity_confirmed" }, true ] },
+      "message": "Test fixture: confirm the patient's identity before asking about allergies.",
+      "refs": [ "SR-0001" ]
+    }
+  ]
+}
