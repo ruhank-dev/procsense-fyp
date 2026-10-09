@@ -9,14 +9,15 @@ The spoken and subtitled lines of the nurse during a wristband mismatch or missi
 
 | Line (draft intent — final wording authored at implementation) | Trigger |
 |---|---|
-| Acknowledges the report, says she will check ("Let me check") | task `DISPATCHED` |
-| Greets at the bedside / asks to excuse her if the doorway is blocked | `ARRIVED` |
-| Says she is checking the records | `CHECKING_RECORDS` |
-| Says she is replacing the band and what she found (procedural only) | `REPLACING` |
-| Confirms the new band is on and asks the trainee to check it | `DONE` |
-| Missing band: acknowledges and says she will apply a band | `request_wristband` accepted |
+| Acknowledges the report, says she will check ("Let me check") | event `CALLED` |
+| Greets at the bedside / asks to excuse her if the doorway is blocked | event `AT_BEDSIDE` |
+| Says she is checking the records | event `AT_BEDSIDE` (second line) |
+| Says she is replacing the band and what she found (procedural only) | event `REPLACING` |
+| Confirms the new band is on and asks the trainee to check it | event `DONE` |
+| Missing band: acknowledges and says she will apply a band | `request_wristband` accepted (after verification) |
+| Missing band, asked too early: asks the trainee to verify identity first | rejection `VERIFY_IDENTITY_FIRST` |
 | Missing band with allergy: mentions the allergy band | allergy case |
-| Already on the way (duplicate request) | `already_on_the_way` |
+| Nothing to fix (request when the band is fine) | effect `nothing_to_resolve` |
 
 ## Why
 Without voice and subtitles the nurse's arrival is silent and the trainee cannot tell what is happening; lines also give the Core a place to teach ("stop and resolve before anything else").

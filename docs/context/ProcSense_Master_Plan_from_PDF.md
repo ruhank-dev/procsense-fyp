@@ -1,6 +1,6 @@
 <!-- Converted from ProcSense_Master_Plan.pdf — the PDF is generated from a structured document; its headings, paragraphs, lists, tables (every row and cell), diagrams and callouts are written out as Markdown and checked word-for-word against the text extracted from the PDF file. Format conversion only: no summarising, rewriting or correction. -->
 
-> **Project addendum (09 Oct 2026 — not part of the converted document).** The work is now organised as `docs/plans/` (tier P0/P1/P2 → phase → step files, "full scope, no deadlines"); this document is the v2.0 proposal. The schedule and gates below are kept for history — whether they still bind is unconfirmed (DT-035). Core engine location changed by ADR-0001. Outstanding work: `docs/deferred-tasks.md`. Decision history: `ProcSense_Change_Report.md` §G.
+> **Project addendum (09 Oct 2026 — not part of the converted document).** The work is now organised as `docs/plans/` (tier P0/P1/P2 → phase → step files, "full scope, no deadlines"); this document is the v2.0 proposal. The schedule and gates below are kept for history only — the owner confirmed on 09 Oct 2026 that there are no deadlines (DT-035). Core engine location changed by ADR-0001. Outstanding work: `docs/deferred-tasks.md`. Decision history: `ProcSense_Change_Report.md` §G.
 
 *PROCSENSE · MASTER PLAN*
 

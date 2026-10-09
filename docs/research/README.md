@@ -14,7 +14,7 @@ traceable and honest. Nothing clinical enters `content/` or code without a row h
 ## Approval status (owner decision, 09 October 2026)
 
 Existing research and clinical workflows are treated as **clinician-approved**; the `clinician_approval` column therefore reads "Approved … per project owner/user" for existing rows. This is the owner's statement, not an independent review.
-New clinical values still need a register row. Hospital-specific choices (identifier set, allergy-band colour, unknown-patient procedure, triage system) still need a recorded value — see DT-018 in `docs/deferred-tasks.md`.
+On the same day the owner confirmed the statement also closes the 15 institutional decisions and the source conflicts ISS-0001 / ISS-0002 (walkthrough values used). New clinical values still need a register row.
 
 ## Proof-of-truth protocol (every clinical value)
 
