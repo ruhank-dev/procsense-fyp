@@ -1,0 +1,8 @@
+[
+  { "t": 0, "verb": "introduce_self", "target": "patient" },
+  { "t": 0, "verb": "pause", "target": "" },
+  { "t": 0, "verb": "ask_identity", "target": "patient" },
+  { "t": 0, "verb": "resume", "target": "" },
+  { "t": 0, "verb": "time_skip", "target": "", "params": { "minutes": "10" } },
+  { "t": 600, "verb": "ask_identity", "target": "patient" }
+]

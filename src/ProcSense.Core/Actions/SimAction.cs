@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProcSense.Core.Actions
 {
-    public enum Channel { Vr, Tablet, Cli }
+    public enum Channel { Vr, Tablet, Cli, System }
 
     /// <summary>Anything the trainee does. Params are ordinal-sorted so the log is canonical.</summary>
     public sealed class SimAction

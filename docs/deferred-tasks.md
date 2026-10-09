@@ -77,6 +77,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-052 | Remove tool/assistant attributions from the pushed history and from tracked files | **Completed** | INSTRUCTIONS §2c, `no-tool-attributions` check | — | Rewritten history force-pushed 09 Oct 2026 (origin/main 4ab6c63): 0 mentions in commit messages and file names; CI green |
 | DT-053 | Close the nine Dependabot pull requests and delete their branches (they carried the old history) | **Completed** | GitHub PRs | — | All nine closed, branches deleted; GitHub has only `main`. GitHub may still serve old commits by SHA until it garbage-collects |
 | DT-054 | Delete the local backup branch and old refs once the rewrite is verified (`backup-before-history-rewrite`, `refs/original/*`), then `git gc` | Pending | local clone | Owner | They keep the old history on this machine |
+| DT-055 | Review-status gate for modes: practice accepts content at APPROVED_FOR_TRAINING or above, assessment only APPROVED_FOR_ASSESSMENT | Blocked | p0-core-engine-s06 (the rest of s06 is built) | The case/content schema has no review-status field yet (B-M11 schema work, p0-medical-research-data); the owner has also said existing research counts as clinician-approved | Mode is stored and replayed; practice hints and NPC safety nets belong to p0-scoring-debrief and the clinical steps |
 | DT-031 | Earlier history (6–7 Oct 2026: when the plans, ADR-0001 and phase review were written) is not in any session record | Blocked | docs/context/ProcSense_Change_Report.md §G | Owner to supply or confirm | Documented from the plan files only; nothing invented |
 
 DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentation honest (034 and 035 answered 09 Oct 2026):
@@ -98,6 +99,7 @@ DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentat
 
 | Date | Change |
 |---|---|
+| 09 October 2026 (s06) | p0-core-engine-s06 built: pause, resume and time-skip (logged system actions, replay-safe), early stop on attention; review-status gate split out as DT-055 (no field in the content yet). |
 | 09 October 2026 (s19) | s18 approved (DT-006, DT-011 Completed); attribution scrub pushed (DT-052, DT-053 Completed); nine Dependabot PRs closed; s19 built (DT-001 In progress). |
 | 09 October 2026 (s18) | Nurse wristband engine built (DT-006/010/011 In progress). History/attribution scrub started (DT-052–DT-054). |
 | 09 October 2026 (direct-to-main) | Workflow changed to direct pushes (no PRs, no approvals): hook now runs the full `task ci` on any push to `main`, blocks force-push/delete/stale/dirty, no bypass variable; isolated hook test (17 cases) added; CODEOWNERS and PR template removed; main-guard rewritten (red main + force-push alerts, dry run); `docs/TEAM_GIT_WORKFLOW.md` and two messages added. DT-042/046/047 re-scoped; DT-049–DT-051 added. |
