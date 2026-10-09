@@ -21,6 +21,9 @@ namespace ProcSense.Core.Content
         }
 
         public string Str(string key) => Get<string>(key, "text");
+        /// <summary>A nested object, or null when the file says null.</summary>
+        public JsonObj? ObjOrNull(string key) => Raw(key) == null ? null : new JsonObj(Raw(key), Sub(key));
+
         public bool Bool(string key) => Get<bool>(key, "true/false");
         public long Int(string key) => Get<long>(key, "a whole number");
         public JsonObj Obj(string key) => new JsonObj(Raw(key), Sub(key));

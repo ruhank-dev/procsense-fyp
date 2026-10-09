@@ -3,10 +3,12 @@
   "seed": "42",
   "mode": "practice",
   "log_hash": "5271a9930093e6df969331558da706e22f1f3391e6e4a22926812ee0d72b93d6",
-  "state_hash": "3f4ef7ce059cec88cf06fc67967e8262b596cb0ce7070a6ccec016a9940f2ada",
+  "state_hash": "418fd94449682958134b9af2f803649452567ad90d346a4f896cd9b88e8455d3",
   "facts": {
     "identity_confirmed": false,
     "allergies_known": false,
+    "nurse": "",
+    "allergy_band": false,
     "disclosed_topics": [],
     "vitals": {},
     "flags": ["identity_asked_closed", "introduced", "risk.wrong_blood"],

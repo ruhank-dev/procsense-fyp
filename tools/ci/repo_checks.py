@@ -1,7 +1,7 @@
 """Project-rule checks that no compiler or unit test covers. Standard library only.
 
 Usage (from repo root):  task check     or     uv run --project tools tools/ci/repo_checks.py [check ...]
-Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards
+Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards, no-tool-attributions
 Exit code 0 = all pass, 1 = at least one failure. Add a new check here (and a row in docs/CI.md) whenever a new rule appears.
 """
 import re
@@ -185,6 +185,30 @@ def check_team_guards() -> list[str]:
     return problems
 
 
+# --- no-tool-attributions: tracked files must not name an AI tool or carry co-author trailers (INSTRUCTIONS section 2c) ---
+# The pattern is assembled from pieces so this file does not match itself. Files that already mentioned it on 09 Oct 2026 are
+# listed in tools/ci/tool_mentions_baseline.txt; the baseline may only shrink.
+TOOL_PATTERN = re.compile("co-authored-by|" + "cl" + "aude|" + "anthro" + "pic", re.IGNORECASE)
+TOOL_EXEMPT = {"INSTRUCTIONS.md", "AGENTS.md", ".gitignore", "tools/ci/repo_checks.py", "tools/ci/tool_mentions_baseline.txt"}
+
+
+def check_no_tool_attributions() -> list[str]:
+    baseline_file = ROOT / "tools" / "ci" / "tool_mentions_baseline.txt"
+    baseline = {l.strip() for l in read(baseline_file).splitlines() if l.strip() and not l.startswith("#")} if baseline_file.exists() else set()
+    problems, still_listed = [], set()
+    for p in tracked_files():
+        rel = p.relative_to(ROOT).as_posix()
+        if rel in TOOL_EXEMPT or p.suffix.lower() in {".png", ".jpg", ".pdf", ".fbx", ".blend", ".wav", ".ogg", ".dll", ".exe"}:
+            continue
+        if TOOL_PATTERN.search(read(p)):
+            still_listed.add(rel)
+            if rel not in baseline:
+                problems.append(f"{rel}: names an AI tool or has a co-author trailer (INSTRUCTIONS section 2c); reword it")
+    for rel in sorted(baseline - still_listed):
+        problems.append(f"{rel}: is clean now, so remove it from tools/ci/tool_mentions_baseline.txt (the baseline may only shrink)")
+    return problems
+
+
 CHECKS = {
     "core-rules": check_core_rules,
     "hygiene": check_hygiene,
@@ -193,6 +217,7 @@ CHECKS = {
     "prompt-history": check_prompt_history,
     "steps": check_steps,
     "team-guards": check_team_guards,
+    "no-tool-attributions": check_no_tool_attributions,
 }
 
 

@@ -5,112 +5,321 @@
   "description": "One synthetic patient case. Every clinical field must be covered by an entry in `refs` pointing to docs/research/source_register.csv.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "walkthrough_label", "scenario", "identity", "spoken_identity_answer", "wristband", "notes",
-               "allergies", "allergy_answer", "reason_answer", "responsible_adult", "timing", "history", "baseline_vitals", "refs"],
+  "required": [
+    "id",
+    "walkthrough_label",
+    "scenario",
+    "identity",
+    "spoken_identity_answer",
+    "wristband",
+    "notes",
+    "allergies",
+    "allergy_answer",
+    "reason_answer",
+    "responsible_adult",
+    "timing",
+    "history",
+    "baseline_vitals",
+    "refs"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^(VAR|STK|SC)-" },
-    "walkthrough_label": { "type": "string" },
-    "scenario": { "enum": ["S1", "S2"] },
+    "id": {
+      "type": "string",
+      "pattern": "^(VAR|STK|SC|TEST)-"
+    },
+    "walkthrough_label": {
+      "type": "string"
+    },
+    "scenario": {
+      "enum": [
+        "S1",
+        "S2"
+      ]
+    },
     "identity": {
-      "type": "object", "additionalProperties": false,
-      "required": ["title", "full_name", "age", "occupation", "dob", "mrn"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "full_name",
+        "age",
+        "occupation",
+        "dob",
+        "mrn"
+      ],
       "properties": {
-        "title": { "type": "string" },
-        "full_name": { "type": "string" },
-        "age": { "type": "integer", "minimum": 0 },
-        "occupation": { "type": "string" },
-        "dob": { "type": "string", "format": "date" },
-        "mrn": { "type": "string" }
+        "title": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "occupation": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date"
+        },
+        "mrn": {
+          "type": "string"
+        }
       }
     },
-    "spoken_identity_answer": { "type": "string" },
+    "spoken_identity_answer": {
+      "type": "string"
+    },
     "wristband": {
-      "type": "object", "additionalProperties": false,
-      "required": ["name_text", "dob_text", "mrn_text"],
-      "properties": {
-        "name_text": { "type": "string" },
-        "dob_text": { "type": "string" },
-        "mrn_text": { "type": "string" }
-      }
+      "description": "null = the patient has no wristband on the wrist (the nurse must apply one)",
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name_text",
+            "dob_text",
+            "mrn_text"
+          ],
+          "properties": {
+            "name_text": {
+              "type": "string"
+            },
+            "dob_text": {
+              "type": "string"
+            },
+            "mrn_text": {
+              "type": "string"
+            }
+          }
+        }
+      ]
     },
     "notes": {
-      "type": "object", "additionalProperties": false,
-      "required": ["full_name", "dob", "mrn"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "full_name",
+        "dob",
+        "mrn"
+      ],
       "properties": {
-        "full_name": { "type": "string" },
-        "dob": { "type": "string", "format": "date" },
-        "mrn": { "type": "string" }
+        "full_name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date"
+        },
+        "mrn": {
+          "type": "string"
+        }
       }
     },
     "allergies": {
       "type": "array",
       "items": {
-        "type": "object", "additionalProperties": false,
-        "required": ["substance", "reaction"],
-        "properties": { "substance": { "type": "string" }, "reaction": { "type": "string" } }
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "substance",
+          "reaction"
+        ],
+        "properties": {
+          "substance": {
+            "type": "string"
+          },
+          "reaction": {
+            "type": "string"
+          }
+        }
       }
     },
-    "allergy_answer": { "type": "string" },
-    "reason_answer": { "type": "string" },
+    "allergy_answer": {
+      "type": "string"
+    },
+    "reason_answer": {
+      "type": "string"
+    },
     "responsible_adult": {
-      "type": "object", "additionalProperties": false,
-      "required": ["who", "takes_home", "stays_overnight", "text", "wording"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "who",
+        "takes_home",
+        "stays_overnight",
+        "text",
+        "wording"
+      ],
       "properties": {
-        "who": { "type": "string" },
-        "takes_home": { "type": "boolean" },
-        "stays_overnight": { "type": "boolean" },
-        "text": { "type": "string" },
-        "wording": { "$ref": "#/$defs/wording" }
+        "who": {
+          "type": "string"
+        },
+        "takes_home": {
+          "type": "boolean"
+        },
+        "stays_overnight": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": "string"
+        },
+        "wording": {
+          "$ref": "#/$defs/wording"
+        }
       }
     },
     "timing": {
-      "type": "object", "additionalProperties": false,
-      "required": ["time_now", "surgery_time"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "time_now",
+        "surgery_time"
+      ],
       "properties": {
-        "time_now": { "$ref": "#/$defs/clock" },
-        "surgery_time": { "$ref": "#/$defs/clock" }
+        "time_now": {
+          "$ref": "#/$defs/clock"
+        },
+        "surgery_time": {
+          "$ref": "#/$defs/clock"
+        }
       }
     },
     "history": {
       "type": "array",
       "items": {
-        "type": "object", "additionalProperties": false,
-        "required": ["topic", "answer", "wording", "volunteered"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "topic",
+          "answer",
+          "wording",
+          "volunteered"
+        ],
         "properties": {
-          "topic": { "$ref": "#/$defs/topic" },
-          "answer": { "type": "string" },
-          "wording": { "$ref": "#/$defs/wording" },
-          "volunteered": { "type": "boolean", "description": "true = patient says it without being asked (walkthrough Part 16 Stage 2: only the main complaint)" },
-          "clock_time": { "$ref": "#/$defs/clock" }
+          "topic": {
+            "$ref": "#/$defs/topic"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "wording": {
+            "$ref": "#/$defs/wording"
+          },
+          "volunteered": {
+            "type": "boolean",
+            "description": "true = patient says it without being asked (walkthrough Part 16 Stage 2: only the main complaint)"
+          },
+          "clock_time": {
+            "$ref": "#/$defs/clock"
+          }
         }
       }
     },
     "baseline_vitals": {
-      "type": "object", "additionalProperties": false,
-      "required": ["heart_rate", "heart_rhythm", "systolic_bp", "diastolic_bp", "respiratory_rate", "spo2", "oxygen", "temperature_c", "acvpu", "pain_score"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heart_rate",
+        "heart_rhythm",
+        "systolic_bp",
+        "diastolic_bp",
+        "respiratory_rate",
+        "spo2",
+        "oxygen",
+        "temperature_c",
+        "acvpu",
+        "pain_score"
+      ],
       "properties": {
-        "heart_rate": { "type": "number" },
-        "heart_rhythm": { "enum": ["regular", "irregular"] },
-        "systolic_bp": { "type": "number" },
-        "diastolic_bp": { "type": "number" },
-        "respiratory_rate": { "type": "number" },
-        "spo2": { "type": "number" },
-        "oxygen": { "enum": ["room_air", "supplemental"] },
-        "temperature_c": { "type": "number" },
-        "acvpu": { "enum": ["A", "C", "V", "P", "U"] },
-        "pain_score": { "type": "integer", "minimum": 0, "maximum": 10 }
+        "heart_rate": {
+          "type": "number"
+        },
+        "heart_rhythm": {
+          "enum": [
+            "regular",
+            "irregular"
+          ]
+        },
+        "systolic_bp": {
+          "type": "number"
+        },
+        "diastolic_bp": {
+          "type": "number"
+        },
+        "respiratory_rate": {
+          "type": "number"
+        },
+        "spo2": {
+          "type": "number"
+        },
+        "oxygen": {
+          "enum": [
+            "room_air",
+            "supplemental"
+          ]
+        },
+        "temperature_c": {
+          "type": "number"
+        },
+        "acvpu": {
+          "enum": [
+            "A",
+            "C",
+            "V",
+            "P",
+            "U"
+          ]
+        },
+        "pain_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        }
       }
     },
     "refs": {
       "type": "object",
       "description": "Map of JSON path (e.g. 'baseline_vitals.heart_rate', 'history[2]') to a source-register ID (SR-NNNN).",
-      "additionalProperties": { "type": "string", "pattern": "^SR-[0-9]{4}$" }
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^SR-[0-9]{4}$"
+      }
     }
   },
   "$defs": {
-    "clock": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
-    "wording": { "enum": ["quote", "narration"], "description": "quote = the patient's own words in the walkthrough; narration = the walkthrough describes it (UI may show it as a summary line)" },
-    "topic": { "enum": ["complaint", "red_flags", "past_history", "medicines", "herbal", "previous_anaesthetic", "family_anaesthetic",
-                        "smoking", "alcohol", "last_food", "last_drink", "pregnancy"] }
+    "clock": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "wording": {
+      "enum": [
+        "quote",
+        "narration"
+      ],
+      "description": "quote = the patient's own words in the walkthrough; narration = the walkthrough describes it (UI may show it as a summary line)"
+    },
+    "topic": {
+      "enum": [
+        "complaint",
+        "red_flags",
+        "past_history",
+        "medicines",
+        "herbal",
+        "previous_anaesthetic",
+        "family_anaesthetic",
+        "smoking",
+        "alcohol",
+        "last_food",
+        "last_drink",
+        "pregnancy"
+      ]
+    }
   }
 }

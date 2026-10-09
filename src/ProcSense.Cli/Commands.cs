@@ -43,7 +43,7 @@ internal static class Commands
         string outPath = Need(o, "out");
         string logPath = o.GetValueOrDefault("log", Path.ChangeExtension(outPath, ".session.jsonl"));
 
-        var content = ContentLoader.Load(new FileContentReader(ContentDir(o)), caseId);
+        var content = ContentLoader.Load(Reader(o), caseId);
         var script = ActionScript.Parse(File.ReadAllText(Need(o, "actions")));
         var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content));
         SessionFile.Play(session, script);
@@ -61,7 +61,7 @@ internal static class Commands
     {
         string text = File.ReadAllText(Need(o, "log"));
         string caseId = SessionFile.CaseIdOf(text);
-        var content = ContentLoader.Load(new FileContentReader(ContentDir(o)), caseId);
+        var content = ContentLoader.Load(Reader(o), caseId);
         var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
         if (r.Match) { Console.WriteLine($"replay OK, hash match ({r.ActualHash})"); return 0; }
         return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}");
@@ -73,7 +73,9 @@ internal static class Commands
         string dir = o.GetValueOrDefault("dir", "tests/golden");
         bool update = o.ContainsKey("update");
         var scripts = Directory.GetFiles(dir, "*.actions.json").OrderBy(f => f, StringComparer.Ordinal).ToList();
-        var content = ContentLoader.Load(new FileContentReader(ContentDir(o)), "VAR-S1-A");
+        var caseIds = scripts.Select(s => s.Replace(".actions.json", ".expected.json")).Where(File.Exists)
+            .Select(f => (string)((Dictionary<string, object?>)MiniJson.Parse(File.ReadAllText(f))!)["case"]!).Distinct().ToArray();
+        var content = ContentLoader.Load(Reader(o), caseIds);
         int pass = 0, total = 0;
         foreach (var script in scripts)
         {
@@ -103,6 +105,14 @@ internal static class Commands
         if (total == 0) return Fail($"no golden runs found in {dir} (need <name>.actions.json + <name>.expected.json)");
         Console.WriteLine($"golden: {pass}/{total} {(update ? "updated" : "pass")}");
         return pass == total ? 0 : 1;
+    }
+
+    // content/ first, then tests/fixtures (test-only cases such as TEST-ID-MISMATCH live there).
+    private static IContentReader Reader(Dictionary<string, string> o)
+    {
+        string dir = ContentDir(o);
+        string fixtures = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(dir))!, "tests", "fixtures");
+        return new CompositeContentReader(new FileContentReader(dir), new FileContentReader(fixtures));
     }
 
     private static string ContentDir(Dictionary<string, string> o)

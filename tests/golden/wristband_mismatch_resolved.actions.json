@@ -1,0 +1,11 @@
+[
+  { "t": 0,  "verb": "introduce_self" },
+  { "t": 4,  "verb": "ask_identity" },
+  { "t": 9,  "verb": "read_wristband" },
+  { "t": 13, "verb": "open_notes" },
+  { "t": 17, "verb": "confirm_identity" },
+  { "t": 21, "verb": "report_mismatch" },
+  { "t": 26, "verb": "read_wristband" },
+  { "t": 30, "verb": "confirm_identity" },
+  { "t": 36, "verb": "order_blood_test" }
+]

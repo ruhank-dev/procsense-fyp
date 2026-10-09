@@ -24,7 +24,7 @@ namespace ProcSense.Core.Content
     /// <summary>One patient case exactly as authored in content/cases. Refs keep the source-register IDs for the debrief.</summary>
     public sealed record CaseCard(
         string Id, string WalkthroughLabel, string Scenario, Identity Identity, string SpokenIdentityAnswer,
-        Wristband Wristband, NotesIdentifiers Notes, IReadOnlyList<Allergy> Allergies, string AllergyAnswer,
+        Wristband? Wristband, NotesIdentifiers Notes, IReadOnlyList<Allergy> Allergies, string AllergyAnswer,
         string ReasonAnswer, ResponsibleAdult ResponsibleAdult, Timing Timing, IReadOnlyList<HistoryFact> History,
         Vitals BaselineVitals, IReadOnlyDictionary<string, string> Refs);
 

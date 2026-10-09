@@ -1,0 +1,21 @@
+{
+  "case": "TEST-ID-MISSING-BAND-ALLERGY",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5ea9e561002ed6521673dd567523edb25cf3dbcc19af1ce466ab116c6733c855",
+  "state_hash": "0b50c0e47eb77c8c603af8ee0e906cd55b1ac5f4eb1cf8f336b207d44480ed2c",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "DONE",
+    "allergy_band": true,
+    "disclosed_topics": ["identity", "allergies", "allergy_reaction"],
+    "vitals": {},
+    "flags": ["allergy_reaction_asked", "identity_asked_open", "introduced"],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": ""
+  }
+}

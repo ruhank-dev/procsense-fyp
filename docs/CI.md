@@ -24,6 +24,7 @@ Living document (INSTRUCTIONS.md §6b). Whenever a step adds a capability, rule,
 | 5 | Engine | Same tests and hashes on **Linux and Windows** | Platform differences in the engine (proxy for the PC-vs-Quest check EXP-CORE-1) | both OS jobs |
 | 6 | Engine (Linux) | `dotnet format --verify-no-changes` | Style drift against `.editorconfig` | CI only on Windows checkouts (line endings) |
 | 7 | Repo checks | `content/` validated against its schema; every clinical value has a source-register row | Untraced or malformed medical content | `task content-validate` |
+| 7b | Repo checks | Test-only fixture cases in `tests/fixtures/cases/` get the same schema and source-register validation as real cases | Untraced or malformed fixtures | `task content-validate` |
 | 8 | Repo checks | Plan index (`milestones.md`) up to date; step references resolve | Out-of-date plans, links to missing steps | `task plans-check` |
 | 9 | Repo checks | `tools/ci/repo_checks.py`: **core-rules** (no wall clock, `System.Random`, Unity, env vars, console, string hash codes in `src/ProcSense.Core`), **hygiene** (no build output, session files, env files, secrets, big files), **docs-links** (relative Markdown links resolve), **deferred-register** (ids unique, statuses valid), **prompt-history** (numbered 1..N), **steps** (file names and titles agree) | Project rules no compiler checks | `task check` |
 | 10 | Repo checks | GitHub workflow and Dependabot files validate against their schemas | A broken workflow file | `uvx check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml` |
@@ -32,6 +33,7 @@ Living document (INSTRUCTIONS.md §6b). Whenever a step adds a capability, rule,
 | 13 | Repo checks | **team-guards**: the contributor guides, protection config, hook, hook tests, setup check and workflows must exist; the hook must still run `task ci` and have no bypass variable; `ci.yml` must run on pushes to `main` | Someone deleting or weakening the files that guard `main` | `task check` |
 | 14 | Repo checks | **Pre-push hook tested in an isolated temporary repository** (`tools/ci/test_pre_push_hook.py`, 17 cases): feature branches free, `main` pushes run `task ci`, failures/force-push/delete/dirty tree/wrong commit/stale `main`/missing tool blocked, the guide's two-teammate sequence works | A regression in the hook | `uv run --project tools tools/ci/test_pre_push_hook.py` |
 | 15 | Main guard (after CI on `main`) | Issue naming the commit and author when CI is red on `main`; issue when `main` is force-pushed | A red `main` going unnoticed | `.github/workflows/main-guard.yml` (test safely: Actions → Main guard → Run workflow, dry run) |
+| 16 | Repo checks | **no-tool-attributions**: no tracked file may name an AI tool or carry a co-author trailer (INSTRUCTIONS section 2c); the baseline list of excused files (`tools/ci/tool_mentions_baseline.txt`) may only shrink and is empty | Tool attributions creeping back into commits and files | `task check` |
 
 ## Protecting `main` (teammates push directly)
 

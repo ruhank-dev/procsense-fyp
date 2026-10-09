@@ -1,0 +1,10 @@
+[
+  { "t": 0,  "verb": "introduce_self" },
+  { "t": 4,  "verb": "ask_identity" },
+  { "t": 9,  "verb": "open_notes" },
+  { "t": 13, "verb": "request_wristband" },
+  { "t": 18, "verb": "read_wristband" },
+  { "t": 22, "verb": "confirm_identity" },
+  { "t": 28, "verb": "ask_allergies" },
+  { "t": 32, "verb": "ask_allergy_reaction" }
+]

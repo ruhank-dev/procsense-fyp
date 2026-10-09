@@ -21,17 +21,20 @@ namespace ProcSense.Core.Workflow.Steps
         };
 
         /// <summary>Every difference found, as plain sentences. Empty means all three sources agree with the patient's identity.</summary>
-        public static List<string> Mismatches(CaseCard c)
+        public static List<string> Mismatches(CaseCard c, Wristband? band)
         {
             var found = new List<string>();
             var id = c.Identity;
             DateTime.TryParseExact(id.Dob, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var born);
 
-            Compare(found, "wristband name", c.Wristband.NameText, id.FullName);
-            if (!DateTime.TryParseExact(c.Wristband.DobText, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var bandDob) || bandDob != born)
-                found.Add("wristband date of birth '" + c.Wristband.DobText + "' does not match " + id.Dob);
-            string bandMrn = c.Wristband.MrnText.StartsWith("MR ", StringComparison.OrdinalIgnoreCase) ? c.Wristband.MrnText.Substring(3) : c.Wristband.MrnText;
-            if (bandMrn != id.Mrn) found.Add("wristband MRN '" + c.Wristband.MrnText + "' does not match " + id.Mrn);
+            if (band != null) // no band on the wrist: nothing to compare (the missing band itself is handled by the caller)
+            {
+                Compare(found, "wristband name", band.NameText, id.FullName);
+                if (!DateTime.TryParseExact(band.DobText, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var bandDob) || bandDob != born)
+                    found.Add("wristband date of birth '" + band.DobText + "' does not match " + id.Dob);
+                string bandMrn = band.MrnText.StartsWith("MR ", StringComparison.OrdinalIgnoreCase) ? band.MrnText.Substring(3) : band.MrnText;
+                if (bandMrn != id.Mrn) found.Add("wristband MRN '" + band.MrnText + "' does not match " + id.Mrn);
+            }
 
             Compare(found, "notes name", c.Notes.FullName, id.FullName);
             if (c.Notes.Dob != id.Dob) found.Add("notes date of birth '" + c.Notes.Dob + "' does not match " + id.Dob);

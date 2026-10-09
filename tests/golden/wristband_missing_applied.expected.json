@@ -1,0 +1,21 @@
+{
+  "case": "TEST-ID-MISSING-BAND",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "769fb59b229d734057d8415b65b3853f52cd5d7a215c2a0d334381b13dbb1d5f",
+  "state_hash": "fa01ec176035df04f288375ebedbf97ae984b6be184848808defd4bde86408f7",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": false,
+    "nurse": "DONE",
+    "allergy_band": false,
+    "disclosed_topics": ["identity"],
+    "vitals": {},
+    "flags": ["identity_asked_open", "introduced"],
+    "rejections": [{ "verb": "read_wristband", "reason": "WRISTBAND_MISSING" }, { "verb": "request_wristband", "reason": "VERIFY_IDENTITY_FIRST" }],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": ""
+  }
+}

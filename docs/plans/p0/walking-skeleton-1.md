@@ -27,7 +27,7 @@ Walkthrough Part 12, Example Patient A, page 104:
 | 6 | [✅ p0-simulation-workflow-s01-step1-identity-allergy](p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s01-step1-identity-allergy.md) | simulation-workflow | 5 | ✅ |
 | 7 | [✅ p0-simulation-workflow-s02-step2-history-disclosure](p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s02-step2-history-disclosure.md) | simulation-workflow | 6 | ✅ |
 | 8 | [✅ p0-simulation-workflow-s03-step3-sensors-vitals](p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s03-step3-sensors-vitals.md) | simulation-workflow | 6 | ✅ |
-| 9 | [p0-simulation-workflow-s04-golden-run-skeleton1](p0-simulation-workflow/steps/p0-simulation-workflow-s04-golden-run-skeleton1.md) | simulation-workflow | 6–8 | ✅ |
+| 9 | [✅ p0-simulation-workflow-s04-golden-run-skeleton1](p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s04-golden-run-skeleton1.md) | simulation-workflow | 6–8 | ✅ |
 | 10 | [p0-vr-platform-s01-unity-project-quest-setup](p0-vr-platform/steps/p0-vr-platform-s01-unity-project-quest-setup.md) | vr-platform | Unity + Quest installed | ⏳ after installs |
 | 11 | [p0-vr-platform-s02-core-as-unity-package](p0-vr-platform/steps/p0-vr-platform-s02-core-as-unity-package.md) | vr-platform | 5, 10 | ⏳ |
 | 12 | [p0-vr-platform-s03-simulation-host-emitters-views](p0-vr-platform/steps/p0-vr-platform-s03-simulation-host-emitters-views.md) | vr-platform | 11 | ⏳ |

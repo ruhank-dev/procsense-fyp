@@ -5,7 +5,7 @@ using ProcSense.Core.Content;
 namespace ProcSense.Core.State
 {
     /// <summary>What the chart says about the patient: fixed for the whole case.</summary>
-    public sealed record Profile(Identity Identity, Wristband Wristband, NotesIdentifiers Notes, IReadOnlyList<Allergy> Allergies);
+    public sealed record Profile(Identity Identity, Wristband? Wristband, NotesIdentifiers Notes, IReadOnlyList<Allergy> Allergies);
 
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
@@ -18,6 +18,13 @@ namespace ProcSense.Core.State
         public bool AllergiesKnown { get; set; }
         public bool WristbandRead { get; set; }
         public bool NotesOpened { get; set; }
+
+        /// <summary>The band on the patient's wrist right now (null = none). The nurse can replace or apply it.</summary>
+        public Wristband? CurrentWristband { get; set; }
+        public bool AllergyBand { get; set; }
+
+        /// <summary>Last nurse step for the wristband ("" until a nurse was involved, then "DONE").</summary>
+        public string NurseState { get; set; } = "";
         public string Location { get; set; }
 
         private readonly List<string> _revealOrder = new List<string>();
@@ -114,7 +121,7 @@ namespace ProcSense.Core.State
         public static PatientState Create(CaseCard card) => new PatientState(
             new Profile(card.Identity, card.Wristband, card.Notes, card.Allergies),
             card.History,
-            new ClinicalLayer(PatientBay),
+            new ClinicalLayer(PatientBay) { CurrentWristband = card.Wristband, AllergyBand = card.Wristband != null && card.Allergies.Count > 0 },
             new PhysiologicalLayer(card.BaselineVitals),
             new BehaviouralLayer());
     }

@@ -13,9 +13,10 @@
 | Area | Status |
 |---|---|
 | Plans | Tier → phase → step files in `docs/plans/` (221 step files). Postponed / outstanding work: `docs/deferred-tasks.md` |
-| Walking skeleton 1 | Steps 1–8 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy, history questions, sensors + vitals); step 9 (official golden run) built, awaiting approval |
+| Walking skeleton 1 | Steps 1–9 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy, history questions, sensors + vitals); step 9 (official golden run) approved — headless part of skeleton 1 complete; Unity/Quest steps 10–15 remain |
 | Step 1 follow-ups now planned | Nurse wristband replacement + missing band (s18), robust spoken identity (s19), 3D nurse (characters s08), VR + tablet fallback (UI s12), nurse voice (audio s06) |
 | Repository | `github.com/ruhank-dev/procsense-fyp` (transferred from Myt1x54) |
+| Skeleton 1 loose ends | Nurse wristband engine (s18) built: mismatch fix, missing band, allergy band, three new golden runs; awaiting approval. Robust spoken identity (s19) next |
 | CI/CD | GitHub Actions CI is green (Linux + Windows). Teammates push **directly to `main`** after `task ci`; a pre-push hook runs the same checks locally and CI re-checks on GitHub. Real server-side protection is not available on this private free-plan repo (`docs/TEAM_GIT_WORKFLOW.md`, `docs/CI.md`) |
 | Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync; times in UTC (INSTRUCTIONS §3, §8e–§8i) |
 

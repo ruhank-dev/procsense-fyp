@@ -23,6 +23,25 @@ namespace ProcSense.Core.Content
         public string ReadText(string relativePath) => File.ReadAllText(Path.Combine(_root, relativePath));
     }
 
+    /// <summary>Looks in several content folders in order (for example content/ and the test fixtures).</summary>
+    public sealed class CompositeContentReader : IContentReader
+    {
+        private readonly IContentReader[] _readers;
+
+        public CompositeContentReader(params IContentReader[] readers) { _readers = readers; }
+
+        public string ReadText(string relativePath)
+        {
+            foreach (var r in _readers)
+            {
+                try { return r.ReadText(relativePath); }
+                catch (FileNotFoundException) { }
+                catch (DirectoryNotFoundException) { }
+            }
+            throw new FileNotFoundException("not found in any content folder: " + relativePath);
+        }
+    }
+
     /// <summary>Reads and strictly checks content files. Unknown fields, wrong types and clinical values without a source ref are errors.</summary>
     public static class ContentLoader
     {
@@ -63,9 +82,13 @@ namespace ProcSense.Core.Content
 
             var spoken = c.Str("spoken_identity_answer");
 
-            var w = c.Obj("wristband");
-            var wristband = new Wristband(w.Str("name_text"), w.Str("dob_text"), w.Str("mrn_text"));
-            w.Finish();
+            var w = c.ObjOrNull("wristband"); // null = no band on the patient's wrist
+            Wristband? wristband = null;
+            if (w != null)
+            {
+                wristband = new Wristband(w.Str("name_text"), w.Str("dob_text"), w.Str("mrn_text"));
+                w.Finish();
+            }
 
             var n = c.Obj("notes");
             var notes = new NotesIdentifiers(n.Str("full_name"), n.Str("dob"), n.Str("mrn"));

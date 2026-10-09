@@ -16,9 +16,11 @@ namespace ProcSense.Core.Tests
         private static string Expected(string name) => File.ReadAllText(Path.Combine(Dir, name + ".expected.json"));
 
         [Fact]
-        public void The_three_skeleton_1_golden_runs_exist()
+        public void The_skeleton_1_and_wristband_golden_runs_exist()
         {
-            Assert.Equal(new[] { "skeleton1_bloods_first", "skeleton1_closed_question", "skeleton1_correct" }, Names());
+            Assert.Equal(
+                new[] { "skeleton1_bloods_first", "skeleton1_closed_question", "skeleton1_correct", "wristband_mismatch_resolved", "wristband_missing_allergy", "wristband_missing_applied" },
+                Names());
         }
 
         [Fact]

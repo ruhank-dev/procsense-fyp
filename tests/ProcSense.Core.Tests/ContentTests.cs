@@ -23,8 +23,8 @@ namespace ProcSense.Core.Tests
 
             Assert.Equal("Ayesha Khan", card.Identity.FullName);
             Assert.Equal(42, card.Identity.Age);
-            Assert.Equal("AYESHA KHAN", card.Wristband.NameText);
-            Assert.Equal("MR 102938", card.Wristband.MrnText);
+            Assert.Equal("AYESHA KHAN", card.Wristband!.NameText);
+            Assert.Equal("MR 102938", card.Wristband!.MrnText);
             Assert.Empty(card.Allergies);
             Assert.Equal(new TimeSpan(8, 0, 0), card.Timing.TimeNow);
             Assert.Equal(12, card.History.Count);

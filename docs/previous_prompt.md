@@ -5,10 +5,11 @@ Every prompt the project owner has given, in chronological order, with the origi
 
 ## Sources and gaps
 
-- Reconstructed on 09 October 2026 from the session records for this project (3 sessions, 08–09 October 2026); later prompts are appended as they arrive.
+- Reconstructed on 09 October 2026 from the session records of the coding tool for this project (3 sessions, 08–09 October 2026); later prompts are appended as they arrive.
 - **Not available:** no session record exists for the earlier planning work (6–7 October 2026, when the plans, ADR-0001 and phase review were written). Those prompts are not reproduced and nothing is invented about them.
 - All times are **UTC** (owner instruction, 09 October 2026; the first version of this file showed UTC+05:00 local time as well). Text inside a pasted block (terminal output or a pasted document) is kept as pasted; the wrapper tags added by the tool are removed.
 - Short replies such as "yes" or "approved" are kept because they record approvals and decisions.
+- Names of AI tools are replaced by "[AI tool]" (owner instruction, 09 October 2026; INSTRUCTIONS section 2c).
 - At the owner's request (09 October 2026) one retracted sentence was removed from prompts 23 and 24 and replaced by "[removed at the owner's request]".
 
 ---
@@ -241,7 +242,7 @@ yeah use utc step 6 is approved and also yes my approval statement also closes t
 _Session: 0485f3e4_
 
 ``````text
-okay forget about this line that i said [removed at the owner's request] remove that from previous_prompts.md too and also .gitignore and remove from previous commits this the local skills folder and yes start step 7
+okay forget about this line that i said [removed at the owner's request] remove that from previous_prompts.md too and also .gitignore and remove from previous commits this .[AI tool]/skills/ponytail and yes start step 7
 ``````
 
 ## 25. 09 October 2026, 12:26 PM UTC
@@ -557,4 +558,39 @@ Do not merge Dependabot PRs #1–#5 or approve Step 9. Leave both decisions pend
 Deliver a working, tested, documented direct-to-main workflow for Sannan47 and Myt1x54 that checks code locally before pushing wherever possible, keeps CI running on GitHub, minimizes concurrent-change conflicts, preserves the private repository and free plan, and accurately documents all remaining limitations.
 
 Start by inspecting the repository and its current state. Then implement, test, document, and report the actual results.
+``````
+
+## 32. 09 October 2026, 2:42 PM UTC
+_Session: 0485f3e4_
+
+``````text
+ok done so whats nexxt
+``````
+
+## 33. 09 October 2026, 2:44 PM UTC
+_Session: 0485f3e4_
+
+``````text
+oh yeah approved and sent and do the loose ends first what about the other steps i have unity but i dont have quest
+``````
+
+## 34. 09 October 2026, 2:47 PM UTC
+_Session: 0485f3e4 (sent while a task was running)_
+
+``````text
+bro also remove [AI tool] .md from all the commit histories and gitignore that also remove any and all references that [AI tool] was used in this project or any and all references to [AI tool] as contributer from all the commit histories and from now on dont include that too except from instructions and agents.md
+``````
+
+## 35. 09 October 2026, 2:51 PM UTC
+_Session: 0485f3e4 (sent while a task was running)_
+
+``````text
+they havent cloned it yet u may proceed go
+``````
+
+## 36. 09 October 2026, 3:11 PM UTC
+_Session: 0485f3e4_
+
+``````text
+include this in the instructions md too never to have any and all references that [AI tool] was used in this project or any and all references to [AI tool] as contributer from all the commit histories and from now on dont include that too except from instructions and agents.md
 ``````

@@ -3,10 +3,12 @@
   "seed": "42",
   "mode": "practice",
   "log_hash": "dcec6b447e525659b33bb1a6ceeb9f50c68ab74a4ac159c250604de7efbb06cd",
-  "state_hash": "e92e4be932a9be583c552c301c0bb9ebe39ce9c689a0d478b5a9455977cc5cbc",
+  "state_hash": "2f3b3aec20998b2da54168d4da6d7aedb94bd1fe13da6adba254def83b740c6e",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
     "disclosed_topics": [
       "identity",
       "allergies",

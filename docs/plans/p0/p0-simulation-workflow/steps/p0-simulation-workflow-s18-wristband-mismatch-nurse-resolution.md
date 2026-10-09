@@ -37,6 +37,13 @@ without this step the safe path through a mismatch case does not exist.
    a rejected action runs nothing else in the pipeline.
 6. Golden scripts (pattern of p0-simulation-workflow-s04): `tests/golden/mismatch_resolved.actions.json`, `missing_band.actions.json`.
 
+## Implementation notes (09 October 2026)
+- Built as specified, with no simulated-time delay. Test-only cases live in `tests/fixtures/cases/` (`TEST-ID-MISMATCH`, `TEST-ID-MISSING-BAND`, `TEST-ID-MISSING-BAND-ALLERGY`); the case schema allows the `TEST-` id prefix and `wristband: null`. `content/` is searched first, then `tests/fixtures` (`CompositeContentReader`). Fixtures get the same schema and source-register validation as real cases.
+- `report_mismatch` fixes a wrong *wristband* only; a problem in the notes or in what the patient says is reported as `escalate_to_admissions:<detail>` and stays a mismatch (admissions handling is not built).
+- The corrected band is derived from the patient's identity in the walkthrough's band format (marked `shortcut` in `WristbandResolution.CorrectBand`; a test proves it reproduces VAR-S1-A's own band exactly).
+- Observable gained `nurse` ("" or "DONE") and `allergy_band`; the golden runs' final-state hashes were regenerated on purpose (log hashes unchanged). Three golden runs added: `wristband_mismatch_resolved`, `wristband_missing_applied`, `wristband_missing_allergy`.
+- Not in this step: the 3D nurse, VR interaction, tablet fallback and voice lines (p0-characters-s08, p0-vr-interaction-ui-s12, p0-voice-audio-s06).
+
 ## Verification
 `dotnet test` green; `task sim -- run …` on each fixture shows the nurse events in the log and a matching replay hash.
 

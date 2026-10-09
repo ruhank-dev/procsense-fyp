@@ -10,7 +10,10 @@ namespace ProcSense.Core.Tests
         public static readonly string Repo = FindRepoRoot();
         public static readonly string ContentRoot = Path.Combine(Repo, "content");
 
-        public static ContentPackage Package() => ContentLoader.Load(new FileContentReader(ContentRoot), "VAR-S1-A");
+        /// <summary>VAR-S1-A plus the three test-only wristband fixtures from tests/fixtures.</summary>
+        public static ContentPackage Package() => ContentLoader.Load(
+            new CompositeContentReader(new FileContentReader(ContentRoot), new FileContentReader(Path.Combine(Repo, "tests", "fixtures"))),
+            "VAR-S1-A", "TEST-ID-MISMATCH", "TEST-ID-MISSING-BAND", "TEST-ID-MISSING-BAND-ALLERGY");
 
         public static CaseCard Card() => Package().Cases["VAR-S1-A"];
 

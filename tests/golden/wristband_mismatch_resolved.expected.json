@@ -1,0 +1,21 @@
+{
+  "case": "TEST-ID-MISMATCH",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "e93144eb362444a19966e150e2fb61954864a30bbeabcad7358141ea25c8e7ec",
+  "state_hash": "21d78f5a5e2712b6cbb4ef43b0d8efd553b2a185ddee62e6c81ea61acb873e5b",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": false,
+    "nurse": "DONE",
+    "allergy_band": false,
+    "disclosed_topics": ["identity"],
+    "vitals": {},
+    "flags": ["identity_asked_open", "introduced", "mismatch_reported"],
+    "rejections": [{ "verb": "confirm_identity", "reason": "ST1_MISMATCH" }],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": ""
+  }
+}

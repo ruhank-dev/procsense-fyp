@@ -17,7 +17,7 @@ namespace ProcSense.Core.Observation
     /// </summary>
     public sealed record ObservableState(
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
-        Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string LastRejection)
+        Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -62,7 +62,9 @@ namespace ProcSense.Core.Observation
                 sb.Append(",\"at\":"); JsonText.Quote(sb, Vitals[i].At);
                 sb.Append('}');
             }
-            sb.Append("],\"last_rejection\":"); JsonText.Quote(sb, LastRejection);
+            sb.Append("],\"nurse\":"); JsonText.Quote(sb, Nurse);
+            sb.Append(",\"allergy_band\":").Append(AllergyBand ? "true" : "false");
+            sb.Append(",\"last_rejection\":"); JsonText.Quote(sb, LastRejection);
             return sb.Append('}').ToString();
         }
 
@@ -120,9 +122,9 @@ namespace ProcSense.Core.Observation
             return new ObservableState(
                 Hms(s.Clock.ClockTime),
                 c.Location, c.IdentityVerified, c.AllergiesKnown,
-                c.WristbandRead ? s.Patient.Profile.Wristband : null,
+                c.WristbandRead ? c.CurrentWristband : null,
                 c.NotesOpened ? s.Patient.Profile.Notes : null,
-                facts, BuildVitals(s), s.LastRejection);
+                facts, BuildVitals(s), c.NurseState, c.AllergyBand, s.LastRejection);
         }
     }
 }

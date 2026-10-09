@@ -1,0 +1,166 @@
+{
+  "id": "TEST-ID-MISMATCH",
+  "walkthrough_label": "TEST ONLY - the wristband shows the wrong date of birth (derived from VAR-S1-A; not one of the 17 P0 cases)",
+  "scenario": "S1",
+  "identity": {
+    "title": "Mrs",
+    "full_name": "Ayesha Khan",
+    "age": 42,
+    "occupation": "teacher",
+    "dob": "1984-03-14",
+    "mrn": "102938"
+  },
+  "spoken_identity_answer": "Ayesha Khan, fourteenth of March 1984.",
+  "wristband": {
+    "name_text": "AYESHA KHAN",
+    "dob_text": "15/03/1984",
+    "mrn_text": "MR 102938"
+  },
+  "notes": {
+    "full_name": "Ayesha Khan",
+    "dob": "1984-03-14",
+    "mrn": "102938"
+  },
+  "allergies": [],
+  "allergy_answer": "None.",
+  "reason_answer": "To have my gallbladder taken out with keyhole.",
+  "responsible_adult": {
+    "who": "husband",
+    "takes_home": true,
+    "stays_overnight": true,
+    "text": "Her husband will take her home and stay overnight.",
+    "wording": "narration"
+  },
+  "timing": {
+    "time_now": "08:00",
+    "surgery_time": "09:00"
+  },
+  "history": [
+    {
+      "topic": "complaint",
+      "answer": "Attacks under my right ribs after oily food, settle in an hour or two. None in the last 3 weeks.",
+      "wording": "quote",
+      "volunteered": true
+    },
+    {
+      "topic": "red_flags",
+      "answer": "No fever, no yellow eyes, urine normal colour, no back pain.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "past_history",
+      "answer": "None.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "medicines",
+      "answer": "None except paracetamol sometimes.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "herbal",
+      "answer": "None.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "previous_anaesthetic",
+      "answer": "Caesarean section 2012, no problems.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "family_anaesthetic",
+      "answer": "No anaesthetic problems.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "smoking",
+      "answer": "Never.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "alcohol",
+      "answer": "None.",
+      "wording": "narration",
+      "volunteered": false
+    },
+    {
+      "topic": "last_food",
+      "answer": "Dinner at 21:00 last night (rice and chicken).",
+      "wording": "narration",
+      "volunteered": false,
+      "clock_time": "21:00"
+    },
+    {
+      "topic": "last_drink",
+      "answer": "Water at 06:30.",
+      "wording": "narration",
+      "volunteered": false,
+      "clock_time": "06:30"
+    },
+    {
+      "topic": "pregnancy",
+      "answer": "Last period started 10 days ago; she uses a coil. She agrees to a urine pregnancy test (hospital policy).",
+      "wording": "narration",
+      "volunteered": false
+    }
+  ],
+  "baseline_vitals": {
+    "heart_rate": 76,
+    "heart_rhythm": "regular",
+    "systolic_bp": 124,
+    "diastolic_bp": 78,
+    "respiratory_rate": 14,
+    "spo2": 98,
+    "oxygen": "room_air",
+    "temperature_c": 36.7,
+    "acvpu": "A",
+    "pain_score": 0
+  },
+  "refs": {
+    "walkthrough_label": "SR-0001",
+    "identity.title": "SR-0002",
+    "identity.full_name": "SR-0002",
+    "identity.age": "SR-0003",
+    "identity.occupation": "SR-0004",
+    "identity.dob": "SR-0005",
+    "identity.mrn": "SR-0006",
+    "spoken_identity_answer": "SR-0007",
+    "wristband": "SR-0008",
+    "notes": "SR-0009",
+    "allergies": "SR-0010",
+    "allergy_answer": "SR-0010",
+    "reason_answer": "SR-0011",
+    "responsible_adult": "SR-0012",
+    "timing.time_now": "SR-0013",
+    "timing.surgery_time": "SR-0014",
+    "history[0]": "SR-0015",
+    "history[1]": "SR-0016",
+    "history[2]": "SR-0017",
+    "history[3]": "SR-0018",
+    "history[4]": "SR-0019",
+    "history[5]": "SR-0020",
+    "history[6]": "SR-0021",
+    "history[7]": "SR-0022",
+    "history[8]": "SR-0023",
+    "history[9]": "SR-0024",
+    "history[10]": "SR-0025",
+    "history[11]": "SR-0026",
+    "baseline_vitals.heart_rate": "SR-0027",
+    "baseline_vitals.heart_rhythm": "SR-0027",
+    "baseline_vitals.systolic_bp": "SR-0028",
+    "baseline_vitals.diastolic_bp": "SR-0028",
+    "baseline_vitals.respiratory_rate": "SR-0029",
+    "baseline_vitals.spo2": "SR-0030",
+    "baseline_vitals.oxygen": "SR-0030",
+    "baseline_vitals.temperature_c": "SR-0031",
+    "baseline_vitals.acvpu": "SR-0032",
+    "baseline_vitals.pain_score": "SR-0033"
+  }
+}

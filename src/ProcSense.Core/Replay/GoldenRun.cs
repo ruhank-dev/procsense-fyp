@@ -55,6 +55,8 @@ namespace ProcSense.Core.Replay
             sb.Append(",\"state_hash\":"); JsonText.Quote(sb, o.Hash());
             sb.Append(",\"facts\":{\"identity_confirmed\":").Append(o.IdentityConfirmed ? "true" : "false");
             sb.Append(",\"allergies_known\":").Append(o.AllergiesKnown ? "true" : "false");
+            sb.Append(",\"nurse\":"); JsonText.Quote(sb, o.Nurse);
+            sb.Append(",\"allergy_band\":").Append(o.AllergyBand ? "true" : "false");
             sb.Append(",\"disclosed_topics\":["); Join(sb, o.DisclosedFacts.Select(f => f.Topic));
             sb.Append("],\"vitals\":{");
             sb.Append(string.Join(",", o.Vitals.Select(v => Q(v.Name) + ":" + Q(v.Value))));

@@ -21,7 +21,7 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 |---|---|
 | `src/ProcSense.Core` | Deterministic simulation engine (C#, netstandard2.1, no Unity) |
 | `src/ProcSense.Cli` | Headless runner — play a case without Unity |
-| `tests/` | xUnit tests |
+| `tests/` | xUnit tests; `tests/golden` golden runs; `tests/fixtures` test-only cases; `tests/samples` example action scripts |
 | `content/` | Medical content package (every value traced in `docs/research/`) |
 | `unity/` | Unity VR project (later) |
 | `server/` | FastAPI + SQLite backend (later, P1) |

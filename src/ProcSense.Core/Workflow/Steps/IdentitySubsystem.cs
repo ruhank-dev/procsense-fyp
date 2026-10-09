@@ -15,6 +15,8 @@ namespace ProcSense.Core.Workflow.Steps
         public const string IdentityNotConfirmed = "IDENTITY_NOT_CONFIRMED";
         public const string IdentityCheckIncomplete = "IDENTITY_CHECK_INCOMPLETE";
         public const string Mismatch = "ST1_MISMATCH";
+        public const string WristbandMissing = "WRISTBAND_MISSING";
+        public const string VerifyIdentityFirst = "VERIFY_IDENTITY_FIRST";
 
         // Flags this step sets on the patient (read later by scoring and events).
         public const string Introduced = "introduced";
@@ -40,7 +42,7 @@ namespace ProcSense.Core.Workflow.Steps
             foreach (var v in new[]
             {
                 "introduce_self", "ask_identity", "read_name_to_patient", "read_wristband", "open_notes", "confirm_identity",
-                "report_mismatch", "ask_allergies", "ask_allergy_reaction", "ask_reason_for_admission", "ask_responsible_adult",
+                "report_mismatch", "request_wristband", "ask_allergies", "ask_allergy_reaction", "ask_reason_for_admission", "ask_responsible_adult",
             })
                 session.Verbs.Register(v);
 
@@ -61,10 +63,11 @@ namespace ProcSense.Core.Workflow.Steps
                 case "introduce_self": IntroduceSelf(o); break;
                 case "ask_identity": Ask(PatientAnswers.Identity, o); Clinical.SetFlag(IdentityAskedOpen); break;
                 case "read_name_to_patient": ReadNameToPatient(o); break;
-                case "read_wristband": Clinical.WristbandRead = true; o.Effects.Add("wristband_read"); break;
+                case "read_wristband": ReadWristband(o); break;
                 case "open_notes": Clinical.NotesOpened = true; o.Effects.Add("notes_opened"); break;
                 case "confirm_identity": ConfirmIdentity(o); break;
                 case "report_mismatch": ReportMismatch(o); break;
+                case "request_wristband": RequestWristband(o); break;
                 case "ask_allergies": Ask(PatientAnswers.Allergies, o); Clinical.AllergiesKnown = true; break;
                 case "ask_allergy_reaction": Ask(PatientAnswers.AllergyReaction, o); Clinical.SetFlag(AllergyReactionAsked); break;
                 case "ask_reason_for_admission": Ask(PatientAnswers.ReasonForAdmission, o); break;
@@ -104,15 +107,23 @@ namespace ProcSense.Core.Workflow.Steps
             o.Effects.Add("armed:" + WrongBloodRisk);
         }
 
+        private void ReadWristband(ActionOutcome o)
+        {
+            if (Clinical.CurrentWristband == null) { o.Reject(WristbandMissing); return; }
+            Clinical.WristbandRead = true;
+            o.Effects.Add("wristband_read");
+        }
+
         // L1-01: needs the open question, the wristband read and the notes opened; any mismatch stops it.
         private void ConfirmIdentity(ActionOutcome o)
         {
+            if (Clinical.CurrentWristband == null) { o.Reject(WristbandMissing); return; }
             if (!Clinical.HasFlag(IdentityAskedOpen) || !Clinical.WristbandRead || !Clinical.NotesOpened)
             {
                 o.Reject(IdentityCheckIncomplete);
                 return;
             }
-            var problems = IdentityCheck.Mismatches(_s.Case);
+            var problems = IdentityCheck.Mismatches(_s.Case, Clinical.CurrentWristband);
             if (problems.Count > 0)
             {
                 o.Reject(Mismatch);
@@ -123,20 +134,34 @@ namespace ProcSense.Core.Workflow.Steps
             o.Effects.Add("identity_verified");
         }
 
-        // L1-04: reporting a real mismatch is right; reporting when everything matches is an unnecessary delay.
-        // The nurse replacing the band is part of the mismatch scenarios (scenario-s1 phase), not built here.
+        // L1-04: reporting a real mismatch gets it fixed by the nurse at once; reporting when everything matches is an unnecessary delay.
+        // The nurse can only replace a wrong wristband; a problem in the notes or in what the patient says goes to admissions (not built here).
         private void ReportMismatch(ActionOutcome o)
         {
-            if (IdentityCheck.Mismatches(_s.Case).Count > 0)
-            {
-                Clinical.SetFlag(MismatchReported);
-                o.Effects.Add("mismatch_reported");
-            }
-            else
+            var band = Clinical.CurrentWristband;
+            if (band == null) { o.Effects.Add("no_wristband_use_request_wristband"); return; }
+            var all = IdentityCheck.Mismatches(_s.Case, band);
+            if (all.Count == 0)
             {
                 Clinical.SetFlag(UnnecessaryMismatchReport);
                 o.Effects.Add("no_mismatch_found");
+                return;
             }
+            Clinical.SetFlag(MismatchReported);
+            o.Effects.Add("mismatch_reported");
+            if (all.Count != IdentityCheck.Mismatches(_s.Case, null).Count) // the wristband is part of the problem
+                WristbandResolution.ApplyCorrectBand(_s, o, wasMissing: false);
+            foreach (var left in IdentityCheck.Mismatches(_s.Case, Clinical.CurrentWristband))
+                o.Effects.Add("escalate_to_admissions:" + left);
+        }
+
+        // Missing band: the nurse applies one once identity has been verified another way (open question + notes agree with what the patient says).
+        private void RequestWristband(ActionOutcome o)
+        {
+            if (Clinical.CurrentWristband != null) { o.Effects.Add("nothing_to_resolve"); return; }
+            bool verifiedAnotherWay = Clinical.HasFlag(IdentityAskedOpen) && Clinical.NotesOpened && IdentityCheck.Mismatches(_s.Case, null).Count == 0;
+            if (!verifiedAnotherWay) { o.Reject(VerifyIdentityFirst); return; }
+            WristbandResolution.ApplyCorrectBand(_s, o, wasMissing: true);
         }
 
         private static string Signed(long n) => (n >= 0 ? "+" : "") + n.ToString(CultureInfo.InvariantCulture);
