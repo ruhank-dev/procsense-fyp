@@ -3,7 +3,7 @@
 One register for everything that was **postponed, left outstanding, blocked or depends on something else** — so nothing is forgotten.
 Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a task is deferred, started, finished, blocked, unblocked or re-scoped.
 
-**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–8 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions, sensors/vitals); step 7 (history questions) approved; step 8 (sensors and vitals) approved; step 9 (official golden run) is next.
+**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–8 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions, sensors/vitals); step 7 (history questions) approved; step 8 (sensors and vitals) approved; step 9 (official golden run) is built and awaiting approval.
 
 ## Status meanings
 
@@ -39,8 +39,8 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 
 | ID | Task | Status | Planned in | Depends on / blocker | Notes |
 |---|---|---|---|---|---|
-| DT-012 | **Official golden runs** for skeleton 1 (scripts + expected key facts + expected log hash for seed 42; `task golden`; prove a changed action breaks the hash) | Pending | [p0-simulation-workflow-s04](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s04-golden-run-skeleton1.md) | Steps 7 and 8 (history, vitals) | `tests/golden/*.actions.json` today are **sample scripts only**, not validated golden runs |
-| DT-013 | Observable shows vitals only for attached sensors | **Completed** | [p0-simulation-workflow-s03](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s03-step3-sensors-vitals.md) | — | Approved 09 Oct 2026 (69 tests pass) |
+| DT-012 | **Official golden runs** for skeleton 1 (scripts + expected key facts + expected log hash for seed 42; `task golden`; prove a changed action breaks the hash) | In progress | [p0-simulation-workflow-s04](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s04-golden-run-skeleton1.md) | Owner approval of step 9 | Built 09 Oct 2026: 3 golden runs + expected files in `tests/golden/`, `golden` CLI command, 6 tests (75 pass). Older samples moved to `tests/samples/`. Mismatch / missing-band goldens still wait for p0-simulation-workflow-s18 (DT-011) |
+| DT-013 | Observable shows vitals only for attached sensors | **Completed** | [p0-simulation-workflow-s03](plans/p0/p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s03-step3-sensors-vitals.md) | — | Approved 09 Oct 2026 (69 tests pass) |
 | DT-014 | Replace the placeholder `order_blood_test` verb with the real investigation-request verbs, keeping the identity gate | Pending | p0-clinical-logic-s06 / s11 | Clinical-logic phase | Placeholder lives in `IdentitySubsystem.Init` and is marked PLACEHOLDER |
 | DT-015 | Wrong-blood consequence when `risk.wrong_blood` is armed | Pending | p0-physiology-events-behaviour-s09, p0-diagnostic-transitions-s04 | Events and lab-sample steps | Step 6 only arms the flag |
 | DT-021 | EXP-CORE-1: identical hashes on PC and Quest | Blocked | p0-core-engine README | Quest + Unity | |
@@ -54,15 +54,20 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-019 | ISS-0001: BP cuff cycle (walkthrough 30–40 s vs Guide 20 s) | **Completed** | docs/research/issues.md | — | Closed by the owner 09 Oct 2026; walkthrough value stands (SR-0034 now VERIFIED) |
 | DT-024 | Install Unity 6 LTS (Android build support) and set up the Quest | Blocked | p0-vr-platform-s01, p0-foundation-s04 | Owner's machine | Gates skeleton steps 10–15 |
 | DT-025 | Install go-task (`winget install Task.Task`) so `task test` / `task sim` work | Pending | Taskfile.yml exists | Owner's machine | Raw `dotnet` / `uv` commands work meanwhile |
-| DT-026 | Fix `tools/plans/milestones.py` crash on Windows consoles (`UnicodeEncodeError`) | Pending | tools/plans | — | Workaround: `PYTHONUTF8=1` |
+| DT-026 | Fix `tools/plans/milestones.py` crash on Windows consoles (`UnicodeEncodeError`) | **Completed** | tools/plans | — | Fixed 09 Oct 2026 (UTF-8 output; LF line endings; new `--check` mode) |
 | DT-027 | AGENTS.md routes to `docs/invariants/*.md` and `docs/docs/index.md`, which do not exist | Pending | AGENTS.md | Decide: create them or fix the routing | INSTRUCTIONS.md is used as the rule set meanwhile |
-| DT-028 | Foundation steps s01–s04 (remote/LFS/backup, CI, templates, dev-environment guide + `task doctor`) | Pending | p0-foundation | — | The remote repo exists (ruhank-dev/procsense-fyp); LFS, CI and backup are not set up |
+| DT-028 | Foundation steps s01–s04 (remote/LFS/backup, CI, templates, dev-environment guide + `task doctor`) | In progress | p0-foundation | s02 (CI) is built and awaiting your push and approval; s01 LFS/backup, s03, s04 not started | The remote repo exists (ruhank-dev/procsense-fyp). CI/CD files: `.github/workflows/`, `docs/CI.md` |
 | DT-029 | ADR-0001 still says "Proposed" although the code follows it | Pending | docs/decisions | Owner confirms | |
 | DT-030 | Skeleton step 6 (identity/allergy) approval and commit | **Completed** | p0-simulation-workflow-s01 | — | Approved 09 Oct 2026; committed as 9e71540 |
-| DT-037 | Test-run output files `result.json` and `result.session.jsonl` were committed in the repo root (and `bad.json`, `bad.session.jsonl` sit untracked); remove them from git and add them to `.gitignore` | Pending | .gitignore | Owner runs `git rm --cached result.json result.session.jsonl` | Created by running the CLI examples in the project root; use `--out "$TEMP/…"` or a scratch folder instead |
+| DT-037 | Test-run output files tracked in the repo (`result.json`, `result.session.jsonl`, `bad.json`, `bad.session.jsonl`) | In progress | .gitignore, CI hygiene check | Owner runs `git rm --cached bad.json bad.session.jsonl` (and the two result files if still tracked) | `.gitignore` now ignores them; the new hygiene check fails CI until they are untracked |
 | DT-038 | Ponytail removal from git: local history rewrite done (backup branch `backup-before-history-rewrite`); needs a check, the local skill files restored, and a force-push | In progress | .gitignore | Owner runs the commands in the hand-off (the agent's shell was blocked after the rewrite) | `.gitignore` entry added. `skills-lock.json` was left in the repo (only the skill folder was named) |
-| DT-039 | Step 7 (history questions) | **Completed** | [p0-simulation-workflow-s02](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s02-step2-history-disclosure.md) | — | Approved 09 Oct 2026; 58 tests pass. Left for later: fasting-rule evaluation (clinical-logic), pregnancy eligibility and private-ask option (behaviour), `ask` for allergies stays the Step 1 verb `ask_allergies` |
+| DT-039 | Step 7 (history questions) | **Completed** | [p0-simulation-workflow-s02](plans/p0/p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s02-step2-history-disclosure.md) | — | Approved 09 Oct 2026; 58 tests pass. Left for later: fasting-rule evaluation (clinical-logic), pregnancy eligibility and private-ask option (behaviour), `ask` for allergies stays the Step 1 verb `ask_allergies` |
 | DT-040 | Pulse regularity (palpating the radial pulse) and reading durations (RR count, temperature) for Step 3 | Pending | p0-simulation-workflow-s03 follow-up / p0-clinical-logic | Content values for durations; physiology | `heart_rhythm` is in the case but no verb shows it yet; readings are instant (marked `shortcut` in `ObservationsSubsystem`) |
+| DT-041 | Migrate the test project from xunit 2.x (NuGet marks it Legacy) to xunit.v3 | Pending | tests/ProcSense.Core.Tests | — | CI shows a deprecated-package warning until then |
+| DT-042 | Branch protection on `main` with required status checks; code/secret scanning | Blocked | docs/CI.md, p0-foundation-s01 | Owner decision: private repos on the free GitHub plan do not support protection or code scanning; direct pushes to `main` would also stop | Not enabled on purpose |
+| DT-043 | Unity test and Quest build jobs in CI | Blocked | p0-vr-platform-s07, docs/CI.md | Unity project and a licence-activation approach (DT-024) | |
+| DT-044 | Add each roadmap check in `docs/CI.md` when the thing it guards is created | In progress | docs/CI.md roadmap, INSTRUCTIONS §6b | Ongoing duty | Blender validation, case-manifest hash, Quest replay, backend tests, AI eval, pytest for tools |
+| DT-045 | Confirm the first GitHub Actions run is green and record it in `docs/CI.md` | Pending | .github/workflows/ci.yml | Owner pushes the workflows; then run `gh run list` | The workflows were checked against GitHub's schemas and every step was run locally, but not on GitHub itself |
 | DT-031 | Earlier history (6–7 Oct 2026: when the plans, ADR-0001 and phase review were written) is not in any session record | Blocked | docs/context/ProcSense_Change_Report.md §G | Owner to supply or confirm | Documented from the plan files only; nothing invented |
 
 DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentation honest (034 and 035 answered 09 Oct 2026):
@@ -84,5 +89,6 @@ DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentat
 
 | Date | Change |
 |---|---|
+| 09 October 2026 (CI/CD) | CI/CD added (DT-028 re-scoped, DT-026 completed, DT-037 updated, DT-041–DT-045 added). |
 | 09 October 2026 (later) | Owner decisions: step 6 approved (DT-030); approval statement closes the 15 institutional decisions (DT-034, DT-018) and ISS-0001 / ISS-0002 (DT-019); no deadlines (DT-035); wristband applied instantly after verification (DT-006, DT-010 re-scoped, no delay); DT-017 unblocked; times now in UTC. |
 | 09 October 2026 | Register created; context-folder sync and prompt history created (DT-034–DT-036 added).  DT-002 completed (owner accepted the ±1 values; `SR-0035` updated). DT-001, DT-006–DT-011 planned as new step files (workflow s18/s19, characters s08, vr-interaction-ui s12, voice-audio s06). Other items collected from the plans, the step 6 hand-off and the engine steps. |

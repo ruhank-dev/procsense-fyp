@@ -1,0 +1,19 @@
+{
+  "case": "VAR-S1-A",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5271a9930093e6df969331558da706e22f1f3391e6e4a22926812ee0d72b93d6",
+  "state_hash": "3f4ef7ce059cec88cf06fc67967e8262b596cb0ce7070a6ccec016a9940f2ada",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["identity_asked_closed", "introduced", "risk.wrong_blood"],
+    "rejections": [{ "verb": "confirm_identity", "reason": "IDENTITY_CHECK_INCOMPLETE" }],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "IDENTITY_CHECK_INCOMPLETE"
+  }
+}

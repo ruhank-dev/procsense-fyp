@@ -1,0 +1,7 @@
+[
+  { "t": 0,  "verb": "introduce_self" },
+  { "t": 4,  "verb": "read_name_to_patient" },
+  { "t": 9,  "verb": "read_wristband" },
+  { "t": 13, "verb": "open_notes" },
+  { "t": 17, "verb": "confirm_identity" }
+]

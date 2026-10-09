@@ -33,6 +33,7 @@ Master Plan §41 (golden runs); inventory D73; walkthrough Part 12 Scenes 1–3.
 
 ## Carried-over requirements (added 09 October 2026)
 
-- The scripts in `tests/golden/` made during steps 5–6 (`smoke`, `step1-identity`, `step1-bloods-first`) are **sample scripts, not golden runs**. This step creates and validates the official golden runs
+- **Done 09 Oct 2026:** the earlier sample scripts moved to `tests/samples/`; `tests/golden/` now holds only the three official golden runs (`skeleton1_correct`, `skeleton1_bloods_first`, `skeleton1_closed_question`) each with an `.expected.json`. The CLI command is `golden` (`task golden`; `-- --update` rewrites the expected files). CI wiring waits for p0-foundation-s02 (DT-028) — the golden tests already run in `dotnet test`.
+- (Original note) The scripts in `tests/golden/` made during steps 5–6 (`smoke`, `step1-identity`, `step1-bloods-first`) were **sample scripts, not golden runs**. This step creates and validates the official golden runs
   (expected key facts, expected log hash for seed 42, `task golden`, proof that changing one action breaks the hash) — DT-012.
 - Add golden scripts for the wristband mismatch and missing-band cases once p0-simulation-workflow-s18 exists (DT-011).

@@ -22,6 +22,9 @@ Open a test PR that removes one `refs` entry from `VAR-S1-A.json` → CI red wit
 ## Files changed
 `.github/workflows/ci.yml`, `tools/plans/milestones.py` (add `--check`).
 
+## Implementation notes (09 October 2026)
+Built ahead of the rest of M2 at the owner's request, and widened into the full check set in [docs/CI.md](../../../../CI.md): Linux + Windows engine jobs (determinism proof), golden runs, replay round trip, format, content/source-register validation, plan-index check (`milestones.py --check`), project-rule checks (`tools/ci/repo_checks.py`), dependency audit, workflow schema lint, Dependabot, and a tag-driven release workflow. Not done from this step's list: required status checks / branch protection (DT-042) and the deliberate failing-PR demonstration (needs the push; DT-045). Local runner: `task ci`.
+
 ## Dependencies
 p0-foundation-s01.
 

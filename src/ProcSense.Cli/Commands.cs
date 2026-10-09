@@ -12,7 +12,8 @@ internal static class Commands
     private const string Usage =
         "usage:\n" +
         "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--content dir]\n" +
-        "  procsense-sim replay --log session.jsonl [--content dir]";
+        "  procsense-sim replay --log session.jsonl [--content dir]\n" +
+        "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]";
 
     public static int Run(string[] args)
     {
@@ -24,6 +25,7 @@ internal static class Commands
             {
                 "run" => RunCase(opts),
                 "replay" => ReplayLog(opts),
+                "golden" => Golden(opts),
                 _ => Fail($"unknown command '{args[0]}'\n{Usage}"),
             };
         }
@@ -65,6 +67,44 @@ internal static class Commands
         return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}");
     }
 
+    // Runs every *.actions.json that has a matching *.expected.json and compares. --update rewrites the expected files (review the change before committing).
+    private static int Golden(Dictionary<string, string> o)
+    {
+        string dir = o.GetValueOrDefault("dir", "tests/golden");
+        bool update = o.ContainsKey("update");
+        var scripts = Directory.GetFiles(dir, "*.actions.json").OrderBy(f => f, StringComparer.Ordinal).ToList();
+        var content = ContentLoader.Load(new FileContentReader(ContentDir(o)), "VAR-S1-A");
+        int pass = 0, total = 0;
+        foreach (var script in scripts)
+        {
+            string expectedPath = script.Replace(".actions.json", ".expected.json");
+            if (!File.Exists(expectedPath)) continue;
+            total++;
+            string name = Path.GetFileName(script).Replace(".actions.json", "");
+            string scriptText = File.ReadAllText(script), expectedText = File.ReadAllText(expectedPath);
+            if (update)
+            {
+                var h = (Dictionary<string, object?>)MiniJson.Parse(expectedText)!;
+                var fresh = GoldenRun.Expected(scriptText, (string)h["case"]!, ulong.Parse((string)h["seed"]!, CultureInfo.InvariantCulture),
+                    Enum.Parse<SessionMode>((string)h["mode"]!, true), content);
+                File.WriteAllText(expectedPath, fresh);
+                Console.WriteLine($"UPDATED {name}");
+                pass++;
+                continue;
+            }
+            var diffs = GoldenRun.Check(scriptText, expectedText, content);
+            if (diffs.Count == 0) { Console.WriteLine($"PASS    {name}"); pass++; }
+            else
+            {
+                Console.WriteLine($"FAIL    {name}");
+                foreach (var d in diffs) Console.WriteLine("          " + d);
+            }
+        }
+        if (total == 0) return Fail($"no golden runs found in {dir} (need <name>.actions.json + <name>.expected.json)");
+        Console.WriteLine($"golden: {pass}/{total} {(update ? "updated" : "pass")}");
+        return pass == total ? 0 : 1;
+    }
+
     private static string ContentDir(Dictionary<string, string> o)
     {
         if (o.TryGetValue("content", out var dir)) return dir;
@@ -78,8 +118,10 @@ internal static class Commands
         var d = new Dictionary<string, string>();
         for (int i = 0; i < a.Length; i += 2)
         {
-            if (!a[i].StartsWith("--") || i + 1 >= a.Length) throw new ArgumentException($"bad argument '{a[i]}'\n{Usage}");
-            d[a[i][2..]] = a[i + 1];
+            if (!a[i].StartsWith("--")) throw new ArgumentException($"bad argument '{a[i]}'\n{Usage}");
+            bool flag = i + 1 >= a.Length || a[i + 1].StartsWith("--"); // a bare flag such as --update
+            d[a[i][2..]] = flag ? "true" : a[i + 1];
+            if (flag) i--; // the loop adds 2; a flag only used one slot
         }
         return d;
     }

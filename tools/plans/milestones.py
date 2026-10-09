@@ -1,12 +1,14 @@
 """Rebuild docs/plans/milestones.md from the step files and check step references.
 
-Usage: task plans-index   (exit 1 if a step references a step ID that doesn't exist)
+Usage: task plans-index   (rebuild; exit 1 if a step references a step ID that doesn't exist)
+       task plans-check   (CI: --check fails if milestones.md is out of date instead of rewriting it)
 """
 import re
 import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8")  # Windows consoles default to a legacy code page
 PLANS = Path(__file__).resolve().parents[2] / "docs" / "plans"
 STEP_ID = re.compile(r"\b(p[0-2]-[a-z0-9-]+?-s\d{2})\b")
 
@@ -39,7 +41,7 @@ def main() -> int:
         out.append("")
     (PLANS / "milestones.md").write_text("\n".join(out), encoding="utf-8")
 
-    print(f"{len(steps)} steps in {len(by_ms)} milestones → docs/plans/milestones.md")
+    print(f"{len(steps)} steps in {len(by_ms)} milestones" + ("" if "--check" in sys.argv else " → docs/plans/milestones.md"))
     for sid, ref in broken:
         print(f"  BROKEN: {sid} references unknown step {ref}")
     return 1 if broken else 0

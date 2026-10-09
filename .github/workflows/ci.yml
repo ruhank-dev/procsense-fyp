@@ -1,0 +1,128 @@
+name: CI
+
+# What each job guards is listed in docs/CI.md — keep that file and this one in step (INSTRUCTIONS.md section 6b).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  engine:
+    # Build, unit tests and golden runs on both Linux and Windows: identical hashes on both is the determinism proof.
+    name: Engine (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', 'global.json') }}
+          restore-keys: nuget-${{ runner.os }}-
+
+      - name: Restore (retry up to 3 times for network hiccups)
+        run: |
+          for attempt in 1 2 3; do
+            dotnet restore ProcSense.sln && exit 0
+            echo "restore failed (attempt $attempt)"; sleep 10
+          done
+          exit 1
+
+      - name: Build (warnings are errors)
+        run: dotnet build ProcSense.sln --no-restore -c Release -warnaserror
+
+      - name: Unit tests
+        run: dotnet test ProcSense.sln --no-build -c Release --logger "trx;LogFileName=tests-${{ runner.os }}.trx" --results-directory TestResults
+
+      - name: Golden runs through the CLI
+        run: dotnet run --no-build -c Release --project src/ProcSense.Cli -- golden --dir tests/golden
+
+      - name: Replay a recorded session (determinism round trip)
+        run: |
+          dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-A --seed 42 --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/run.json"
+          dotnet run --no-build -c Release --project src/ProcSense.Cli -- replay --log "$RUNNER_TEMP/run.session.jsonl"
+
+      - name: Code format (Linux only; Windows checkouts differ in line endings)
+        if: runner.os == 'Linux'
+        run: dotnet format ProcSense.sln --no-restore --verify-no-changes
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ runner.os }}
+          path: TestResults
+          if-no-files-found: ignore
+
+  repo-checks:
+    name: Content, plans and project rules
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: tools/uv.lock
+
+      - name: Content is valid and every value has a source
+        run: uv run --project tools tools/content/validate.py
+
+      - name: Plan index is up to date and step references resolve
+        run: uv run --project tools tools/plans/milestones.py --check
+
+      - name: Project rules (determinism rules, hygiene, doc links, registers)
+        run: uv run --project tools tools/ci/repo_checks.py
+
+      - name: GitHub workflow and Dependabot files are valid
+        run: uvx check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml && uvx check-jsonschema --builtin-schema vendor.dependabot .github/dependabot.yml
+
+  dependencies:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: No vulnerable NuGet packages (direct or transitive)
+        run: |
+          dotnet restore ProcSense.sln
+          dotnet list ProcSense.sln package --vulnerable --include-transitive 2>&1 | tee audit.txt
+          if grep -q "has the following vulnerable packages" audit.txt; then echo "vulnerable packages found"; exit 1; fi
+
+      - name: Deprecated NuGet packages (warning only)
+        # xunit 2.x is marked Legacy by NuGet; moving to xunit.v3 is tracked as DT-041, so this warns instead of failing.
+        run: |
+          dotnet list ProcSense.sln package --deprecated 2>&1 | tee deprecated.txt
+          if grep -q "has the following deprecated packages" deprecated.txt; then echo "::warning::deprecated NuGet packages found (see this step's log; DT-041)"; fi

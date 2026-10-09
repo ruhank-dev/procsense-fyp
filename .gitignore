@@ -45,6 +45,12 @@ models/
 # --- Shared memory log (INSTRUCTIONS §8e) ---
 .memory/
 
+# --- CLI test output (run it in a scratch folder or with --out "$TEMP/...") ---
+/result*.json
+/result*.jsonl
+/bad*.json
+/bad*.jsonl
+
 # --- Local-only agent skill (user decision 09 Oct 2026: not shared in the repo) ---
 .claude/skills/ponytail/
 

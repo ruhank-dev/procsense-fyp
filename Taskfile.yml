@@ -14,9 +14,34 @@ tasks:
       - dotnet test ProcSense.sln
 
   sim:
-    desc: Run the headless simulator, e.g. task sim -- run --case VAR-S1-A --seed 42 --actions tests/golden/smoke.actions.json --out result.json
+    desc: Run the headless simulator, e.g. task sim -- run --case VAR-S1-A --seed 42 --actions tests/samples/smoke.actions.json --out result.json
     cmds:
       - dotnet run --project src/ProcSense.Cli -- {{.CLI_ARGS}}
+
+  golden:
+    desc: Run every golden run in tests/golden through the CLI and compare with its expected file (add -- --update to rewrite them deliberately)
+    cmds:
+      - dotnet run --project src/ProcSense.Cli -- golden {{.CLI_ARGS}}
+
+  check:
+    desc: Project-rule checks no compiler covers (determinism rules in Core, repo hygiene, doc links, registers, prompt history)
+    cmds:
+      - uv run --project tools tools/ci/repo_checks.py
+
+  plans-check:
+    desc: Fail if docs/plans/milestones.md is out of date (what CI runs)
+    cmds:
+      - uv run --project tools tools/plans/milestones.py --check
+
+  format:
+    desc: Verify code format (CI is the authority; Windows checkouts report line-ending errors)
+    cmds:
+      - dotnet format ProcSense.sln --verify-no-changes
+
+  ci:
+    desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
+    cmds:
+      - python tools/ci/run_all.py {{.CLI_ARGS}}
 
   content-validate:
     desc: Check every content file against its schema and the source register (proof of truth)

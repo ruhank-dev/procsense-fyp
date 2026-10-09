@@ -1,5 +1,7 @@
 # ProcSense
 
+[![CI](https://github.com/ruhank-dev/procsense-fyp/actions/workflows/ci.yml/badge.svg)](https://github.com/ruhank-dev/procsense-fyp/actions/workflows/ci.yml)
+
 VR training simulator (Meta Quest 2/3, Unity 6) for **pre-operative preparation**: the trainee takes an invented
 patient from arrival to the WHO **Time Out** for two scenarios —
 **S1** planned laparoscopic cholecystectomy and **S2** emergency appendectomy — across 15 walkthrough steps.
@@ -24,6 +26,9 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `tools/` | Python content/validation tools; `tools/blender/` procedural equipment scripts (later) |
 | `docs/plans/` | Plan: tiers `p0/ p1/ p2/` → phases → steps — start at `docs/plans/README.md` |
 | `docs/research/` | Proof of truth: source register, dataset register, open medical issues |
+| `docs/CI.md` | Every CI/CD check, what it guards, and the roadmap of checks to add |
+| `docs/deferred-tasks.md` | Register of postponed, outstanding and blocked work |
+| `.github/` | GitHub Actions workflows (CI, release) and Dependabot |
 | `docs/decisions/` | Architecture decision records |
 | `docs/context/` | Original Master Plan, Implementation Guide, Medical Walkthrough (reference) |
 
@@ -41,5 +46,9 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `task test` | `dotnet test ProcSense.sln` |
 | `task sim -- <args>` | `dotnet run --project src/ProcSense.Cli -- <args>` (`run` / `replay`) |
 | `task content-validate` | `uv run --project tools tools/content/validate.py` — checks every content file against its schema and the source register |
+| `task golden` | runs the golden runs in `tests/golden` through the CLI (`-- --update` rewrites the expected files deliberately) |
+| `task check` | `uv run --project tools tools/ci/repo_checks.py` — project rules no compiler covers |
+| `task ci` | `python tools/ci/run_all.py` — every check CI runs, locally |
 | `task plans-index` | `uv run --project tools tools/plans/milestones.py` — rebuilds `docs/plans/milestones.md` from the step files and checks step references |
+| `task plans-check` | fails if `docs/plans/milestones.md` is out of date |
 | `task clean` | `dotnet clean ProcSense.sln` |
