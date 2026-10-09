@@ -33,18 +33,28 @@ namespace ProcSense.Core.Content
     /// <summary>How a trainee behaviour moves the patient's trust and anxiety counters.</summary>
     public sealed record BehaviourEffect(long Trust, long Anxiety, string Ref);
 
+    /// <summary>Summarising after MinTopics topics have been asked raises trust and understanding.</summary>
+    public sealed record SummariseEffect(long MinTopics, long Trust, long Understanding, string Ref);
+
+    /// <summary>The history topics a trainee can ask about, and which of them are sensitive.</summary>
+    public sealed record HistoryTopics(IReadOnlyList<string> Ids, IReadOnlyList<string> Sensitive, string Ref);
+
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics)
         {
             Cases = cases;
             Nibp = nibp;
             IntroduceSelf = introduceSelf;
+            Summarise = summarise;
+            HistoryTopics = historyTopics;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
         public NibpTiming Nibp { get; }
         public BehaviourEffect IntroduceSelf { get; }
+        public SummariseEffect Summarise { get; }
+        public HistoryTopics HistoryTopics { get; }
     }
 }

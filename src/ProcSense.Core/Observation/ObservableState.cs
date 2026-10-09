@@ -63,10 +63,14 @@ namespace ProcSense.Core.Observation
         {
             var c = s.Patient.Clinical;
             var facts = new List<DisclosedFact>();
-            foreach (var topic in PatientAnswers.Topics) // fixed order, so output never depends on set ordering
-                if (c.IsRevealed(topic) && PatientAnswers.For(s.Case, topic) is string answer) facts.Add(new DisclosedFact(topic, answer));
-            foreach (var f in s.Patient.History)
-                if (c.IsRevealed(f.Topic)) facts.Add(new DisclosedFact(f.Topic, f.Answer));
+            foreach (var topic in c.RevealOrder) // the clerking note: oldest line first
+            {
+                string? answer = PatientAnswers.For(s.Case, topic);
+                if (answer == null)
+                    foreach (var f in s.Patient.History)
+                        if (f.Topic == topic) { answer = f.Answer; break; }
+                if (answer != null) facts.Add(new DisclosedFact(topic, answer));
+            }
 
             return new ObservableState(
                 s.Clock.ClockTime.ToString("c", System.Globalization.CultureInfo.InvariantCulture),

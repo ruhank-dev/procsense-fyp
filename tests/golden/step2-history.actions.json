@@ -1,0 +1,14 @@
+[
+  { "t": 0,  "verb": "introduce_self" },
+  { "t": 3,  "verb": "ask_identity" },
+  { "t": 8,  "verb": "read_wristband" },
+  { "t": 12, "verb": "open_notes" },
+  { "t": 15, "verb": "confirm_identity" },
+  { "t": 20, "verb": "ask", "params": { "topic": "red_flags" } },
+  { "t": 24, "verb": "ask", "params": { "topic": "past_history" } },
+  { "t": 28, "verb": "ask", "params": { "topic": "medicines" } },
+  { "t": 32, "verb": "ask", "params": { "topic": "last_food" } },
+  { "t": 36, "verb": "ask", "params": { "topic": "last_drink" } },
+  { "t": 40, "verb": "ask", "params": { "topic": "pregnancy" } },
+  { "t": 45, "verb": "summarise" }
+]

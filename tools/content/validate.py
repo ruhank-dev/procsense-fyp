@@ -24,7 +24,7 @@ def main() -> int:
         problems = schema_errors(doc, case_schema) + case_problems(doc, register)
         failed |= _report(path.stem, problems, f"{len(doc.get('refs', {}))} refs")
 
-    for name in ("devices", "behaviour"):
+    for name in ("devices", "behaviour", "history_topics"):
         path = CONTENT / f"{name}.json"
         if path.exists():
             failed |= _report(name, ref_problems(load_json(path), register, name), "refs ok")

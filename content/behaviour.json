@@ -4,5 +4,12 @@
     "anxiety": -1,
     "note": "Simulator design value: introducing yourself as the first act builds trust and lowers anxiety (Implementation Guide rule L1-03).",
     "ref": "SR-0035"
+  },
+  "summarise": {
+    "min_topics": 5,
+    "trust": 1,
+    "understanding": 1,
+    "note": "Simulator design value: summarising after at least 5 topics have been asked builds trust and understanding (Implementation Guide rule L2-05).",
+    "ref": "SR-0036"
   }
 }
