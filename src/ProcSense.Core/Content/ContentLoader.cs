@@ -1,0 +1,179 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace ProcSense.Core.Content
+{
+    /// <summary>Where raw content text comes from. Core ships a file reader; Unity supplies its own (StreamingAssets / Addressables).</summary>
+    public interface IContentReader
+    {
+        /// <summary>Text of a file under content/, e.g. "cases/VAR-S1-A.json". Throws if it does not exist.</summary>
+        string ReadText(string relativePath);
+    }
+
+    public sealed class FileContentReader : IContentReader
+    {
+        private readonly string _root;
+
+        public FileContentReader(string contentRoot) { _root = contentRoot; }
+
+        public string ReadText(string relativePath) => File.ReadAllText(Path.Combine(_root, relativePath));
+    }
+
+    /// <summary>Reads and strictly checks content files. Unknown fields, wrong types and clinical values without a source ref are errors.</summary>
+    public static class ContentLoader
+    {
+        private static readonly string[] Topics =
+            { "complaint", "red_flags", "past_history", "medicines", "herbal", "previous_anaesthetic", "family_anaesthetic", "smoking", "alcohol", "last_food", "last_drink", "pregnancy" };
+        private static readonly string[] Wordings = { "quote", "narration" };
+        private static readonly Regex Clock = new Regex("^([01][0-9]|2[0-3]):[0-5][0-9]$");
+        private static readonly Regex RefId = new Regex("^SR-[0-9]{4}$");
+
+        // Keys that describe structure, not clinical facts, so they need no source ref (same list as tools/content/checks.py).
+        private static readonly HashSet<string> NonClinical = new HashSet<string> { "id", "scenario", "refs", "topic", "wording", "volunteered" };
+
+        public static ContentPackage Load(IContentReader reader, params string[] caseIds)
+        {
+            var cases = new SortedDictionary<string, CaseCard>(StringComparer.Ordinal);
+            foreach (var id in caseIds) cases[id] = LoadCase(reader.ReadText("cases/" + id + ".json"), id);
+            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")));
+        }
+
+        public static CaseCard LoadCase(string json, string name)
+        {
+            try { return ParseCase(MiniJson.Parse(json)); }
+            catch (ContentException e) { throw new ContentException(name + ": " + e.Message); }
+        }
+
+        private static CaseCard ParseCase(object? node)
+        {
+            var c = new JsonObj(node, "");
+
+            var id = c.Str("id");
+            var label = c.Str("walkthrough_label");
+            var scenario = c.Enum("scenario", "S1", "S2");
+
+            var i = c.Obj("identity");
+            var identity = new Identity(i.Str("title"), i.Str("full_name"), i.Int("age"), i.Str("occupation"), i.Str("dob"), i.Str("mrn"));
+            i.Finish();
+
+            var spoken = c.Str("spoken_identity_answer");
+
+            var w = c.Obj("wristband");
+            var wristband = new Wristband(w.Str("name_text"), w.Str("dob_text"), w.Str("mrn_text"));
+            w.Finish();
+
+            var n = c.Obj("notes");
+            var notes = new NotesIdentifiers(n.Str("full_name"), n.Str("dob"), n.Str("mrn"));
+            n.Finish();
+
+            var allergies = new List<Allergy>();
+            var allergyList = c.Arr("allergies");
+            for (int k = 0; k < allergyList.Count; k++)
+            {
+                var a = new JsonObj(allergyList[k], JsonObj.Index("allergies", k));
+                allergies.Add(new Allergy(a.Str("substance"), a.Str("reaction")));
+                a.Finish();
+            }
+
+            var allergyAnswer = c.Str("allergy_answer");
+            var reason = c.Str("reason_answer");
+
+            var r = c.Obj("responsible_adult");
+            var adult = new ResponsibleAdult(r.Str("who"), r.Bool("takes_home"), r.Bool("stays_overnight"), r.Str("text"), r.Enum("wording", Wordings));
+            r.Finish();
+
+            var t = c.Obj("timing");
+            var timing = new Timing(ClockTime(t, "time_now"), ClockTime(t, "surgery_time"));
+            t.Finish();
+
+            var history = new List<HistoryFact>();
+            var historyList = c.Arr("history");
+            for (int k = 0; k < historyList.Count; k++)
+            {
+                var h = new JsonObj(historyList[k], JsonObj.Index("history", k));
+                string? clock = h.Has("clock_time") ? ClockText(h, "clock_time") : null;
+                history.Add(new HistoryFact(h.Enum("topic", Topics), h.Str("answer"), h.Enum("wording", Wordings), h.Bool("volunteered"), clock));
+                h.Finish();
+            }
+
+            var v = c.Obj("baseline_vitals");
+            var vitals = new Vitals(
+                v.Num("heart_rate"), v.Enum("heart_rhythm", "regular", "irregular"), v.Num("systolic_bp"), v.Num("diastolic_bp"),
+                v.Num("respiratory_rate"), v.Num("spo2"), v.Enum("oxygen", "room_air", "supplemental"), v.Num("temperature_c"),
+                v.Enum("acvpu", "A", "C", "V", "P", "U"), PainScore(v));
+            v.Finish();
+
+            var refs = c.StringMap("refs", RefId);
+            c.Finish();
+            CheckRefCoverage(node); // after the structure checks so an extra field reports as "unknown field" first
+
+            return new CaseCard(id, label, scenario, identity, spoken, wristband, notes, allergies, allergyAnswer, reason, adult, timing, history, vitals, refs);
+        }
+
+        private static long PainScore(JsonObj v)
+        {
+            long p = v.Int("pain_score");
+            if (p < 0 || p > 10) throw new ContentException(v.Sub("pain_score") + ": must be 0 to 10");
+            return p;
+        }
+
+        private static string ClockText(JsonObj o, string key)
+        {
+            string s = o.Str(key);
+            if (!Clock.IsMatch(s)) throw new ContentException(o.Sub(key) + ": '" + s + "' is not a HH:MM time");
+            return s;
+        }
+
+        private static TimeSpan ClockTime(JsonObj o, string key)
+        {
+            string s = ClockText(o, key);
+            return new TimeSpan(int.Parse(s.Substring(0, 2), CultureInfo.InvariantCulture), int.Parse(s.Substring(3, 2), CultureInfo.InvariantCulture), 0);
+        }
+
+        private static NibpTiming LoadNibp(string json)
+        {
+            try
+            {
+                var d = new JsonObj(MiniJson.Parse(json), "");
+                var n = d.Obj("nibp");
+                var nibp = new NibpTiming(n.Num("cycle_seconds_min"), n.Num("cycle_seconds_max"), n.Str("ref"));
+                n.Str("note"); // free text, kept in the file for reviewers
+                n.Finish();
+                d.Finish();
+                return nibp;
+            }
+            catch (ContentException e) { throw new ContentException("devices.json: " + e.Message); }
+        }
+
+        // Every clinical value needs a source ref on its own path or an ancestor (mirrors tools/content/checks.py).
+        private static void CheckRefCoverage(object? node)
+        {
+            var root = node as Dictionary<string, object?> ?? throw new ContentException("<root>: expected an object");
+            var refs = root.TryGetValue("refs", out var rn) ? rn as Dictionary<string, object?> : null;
+            if (refs == null) throw new ContentException("refs: missing field");
+            var keys = refs.Keys.ToList();
+            foreach (var path in LeafPaths(root, "").OrderBy(p => p, StringComparer.Ordinal))
+                if (!keys.Any(r => path == r || path.StartsWith(r + ".", StringComparison.Ordinal) || path.StartsWith(r + "[", StringComparison.Ordinal)))
+                    throw new ContentException("no source reference for '" + path + "'");
+        }
+
+        private static IEnumerable<string> LeafPaths(object? node, string prefix)
+        {
+            if (node is Dictionary<string, object?> d && d.Count > 0)
+            {
+                foreach (var kv in d.Where(kv => !NonClinical.Contains(kv.Key)))
+                    foreach (var p in LeafPaths(kv.Value, prefix.Length == 0 ? kv.Key : prefix + "." + kv.Key)) yield return p;
+            }
+            else if (node is List<object?> l && l.Count > 0)
+            {
+                for (int k = 0; k < l.Count; k++)
+                    foreach (var p in LeafPaths(l[k], JsonObj.Index(prefix, k))) yield return p;
+            }
+            else yield return prefix;
+        }
+    }
+}
