@@ -60,7 +60,7 @@ Each row becomes a real check in the step that creates the thing it guards. Trac
 
 | Add when… | Check to add | Planned in |
 |---|---|---|
-| The Unity project exists | Edit-mode and Play-mode tests in batch mode (GameCI or a local runner); Core as a Unity package compiles | p0-vr-platform-s02, s07 |
+| The Unity project exists | **Added locally:** `task unity-test` runs the Edit-mode and Play-mode tests in batch mode (`tools/unity/run_unity.py`). Still to do: run them in GitHub Actions (needs a free Unity personal licence activation, DT-043) | p0-vr-platform-s02, s07 |
 | Quest builds exist | Build Dev/Demo/Study variants; performance gate (≥ 72 fps average, no hitch > 50 ms, memory ≤ 2.5 GB); APK + checksum on release | p0-vr-platform-s07 |
 | Quest sessions are recorded | Replay a Quest log headless and compare the final-state hash (skeleton 1 done condition) | p0-evaluation-performance-s01 |
 | Blender equipment scripts exist | Headless Blender validation + preview render per asset (size, scale, naming, polygon budget) | p0-blender-equipment-s03 |

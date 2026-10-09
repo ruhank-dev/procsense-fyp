@@ -1,0 +1,4 @@
+<linker>
+  <!-- IL2CPP strips unused code; Core is loaded by plain calls but its content loader and replay code must stay. -->
+  <assembly fullname="ProcSense.Core" preserve="all"/>
+</linker>

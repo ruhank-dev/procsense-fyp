@@ -20,7 +20,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 
 | ID | Task | Status | Planned in | Depends on / blocker | Notes |
 |---|---|---|---|---|---|
-| DT-001 | Robust spoken identity validation: normalise answers, extract names and dates across phrasings, report Match / Mismatch / Missing / Ambiguous | In progress | [p0-simulation-workflow-s19](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s19-robust-spoken-identity.md) | Owner approval of s19 | Built 09 Oct 2026 (150 tests). Becomes Completed on approval. Fuzzy name matching waits for DT-032 |
+| DT-001 | Robust spoken identity validation: normalise answers, extract names and dates across phrasings, report Match / Mismatch / Missing / Ambiguous | **Completed** | [p0-simulation-workflow-s19](plans/p0/p0-simulation-workflow/steps/✅%20p0-simulation-workflow-s19-robust-spoken-identity.md) | — | Approved 09 Oct 2026. Fuzzy name matching waits for DT-032 |
 | DT-002 | Trust/anxiety ±1 values review (`SR-0035`) | **Completed** | — | — | Owner accepted them as simulation mechanics on 09 Oct 2026; register row updated. Reopen only if the owner asks |
 | DT-003 | Critical scoring for rejected safety-critical actions (tests/medicines/transfer before identity; confirming despite a mismatch) | Blocked | [p0-scoring-debrief-s01](plans/p0/p0-scoring-debrief/steps/p0-scoring-debrief-s01-score-items-rubrics.md), s02 | Scoring engine not built (needs p0-clinical-logic-s01) | Step 6 already logs the rejection (`IDENTITY_NOT_CONFIRMED`, `ST1_MISMATCH`); no score item exists yet |
 | DT-004 | Minor score items from Step 1 flags: skipped introduction, unnecessary mismatch report, closed-question identity check | Blocked | p0-scoring-debrief-s01 | Same as DT-003 | Flags already set by Step 6: `introduced`, `unnecessary_mismatch_report`, `identity_asked_closed` |
@@ -45,19 +45,19 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-015 | Wrong-blood consequence when `risk.wrong_blood` is armed | Pending | p0-physiology-events-behaviour-s09, p0-diagnostic-transitions-s04 | Events and lab-sample steps | Step 6 only arms the flag |
 | DT-021 | EXP-CORE-1: identical hashes on PC and Quest | Blocked | p0-core-engine README | Quest + Unity | |
 | DT-022 | EXP-CORE-3: zero allocation per tick; cost of building the observable on every query | Pending | p0-core-engine-s05 | — | Observable is built on demand, not cached |
-| DT-023 | Check C# 9 records (`IsExternalInit` shim) and the JSON reader under Unity 6 IL2CPP | Blocked | p0-vr-platform-s02 | Unity install (DT-024) | |
+| DT-023 | Check C# 9 records (`IsExternalInit` shim) and the JSON reader under Unity 6 IL2CPP | **Completed** | p0-vr-platform-s02 | — | Verified 09 Oct 2026: golden runs pass inside Unity and an Android IL2CPP APK builds |
 
 ### C. Environment, tooling and documentation
 
 | ID | Task | Status | Planned in | Depends on / blocker | Notes |
 |---|---|---|---|---|---|
 | DT-019 | ISS-0001: BP cuff cycle (walkthrough 30–40 s vs Guide 20 s) | **Completed** | docs/research/issues.md | — | Closed by the owner 09 Oct 2026; walkthrough value stands (SR-0034 now VERIFIED) |
-| DT-024 | Install Unity 6 LTS (Android build support) and set up the Quest | Blocked | p0-vr-platform-s01, p0-foundation-s04 | Owner's machine | Gates skeleton steps 10–15 |
+| DT-024 | Install Unity 6 LTS (Android build support) and set up the Quest | In progress | p0-vr-platform-s01, p0-foundation-s04 | Owner's machine | Unity 6000.5.10f1 installed and the project builds; the headset and its developer mode are still missing, which gates skeleton step 15 |
 | DT-025 | Install go-task (`winget install --id Task.Task -e`) so `task ci` / `task setup` work | **Completed** | Taskfile.yml | — | Installed on the owner's machine 09 Oct 2026 (go-task 3.54.0). Teammates still need it: DT-047/DT-048 |
 | DT-026 | Fix `tools/plans/milestones.py` crash on Windows consoles (`UnicodeEncodeError`) | **Completed** | tools/plans | — | Fixed 09 Oct 2026 (UTF-8 output; LF line endings; new `--check` mode) |
 | DT-027 | AGENTS.md routes to `docs/invariants/*.md` and `docs/docs/index.md`, which do not exist | Pending | AGENTS.md | Decide: create them or fix the routing | INSTRUCTIONS.md is used as the rule set meanwhile |
 | DT-028 | Foundation steps s01–s04 (remote/LFS/backup, CI, templates, dev-environment guide + `task doctor`) | In progress | p0-foundation | s02 (CI) is built and awaiting your push and approval; s01 LFS/backup, s03, s04 not started | The remote repo exists (ruhank-dev/procsense-fyp). CI/CD files: `.github/workflows/`, `docs/CI.md` |
-| DT-029 | ADR-0001 still says "Proposed" although the code follows it | Pending | docs/decisions | Owner confirms | |
+| DT-029 | ADR-0001 status | **Completed** | docs/decisions | — | Accepted 09 Oct 2026 with the Unity package wiring (p0-vr-platform-s02) |
 | DT-030 | Skeleton step 6 (identity/allergy) approval and commit | **Completed** | p0-simulation-workflow-s01 | — | Approved 09 Oct 2026; committed as 9e71540 |
 | DT-037 | Test-run output files tracked in the repo (`result.json`, `result.session.jsonl`, `bad.json`, `bad.session.jsonl`) | In progress | .gitignore, CI hygiene check | Owner runs `git rm --cached bad.json bad.session.jsonl` (and the two result files if still tracked) | `.gitignore` now ignores them; the new hygiene check fails CI until they are untracked |
 | DT-038 | Ponytail removal from git: local history rewrite done (backup branch `backup-before-history-rewrite`); needs a check, the local skill files restored, and a force-push | In progress | .gitignore | Owner runs the commands in the hand-off (the agent's shell was blocked after the rewrite) | `.gitignore` entry added. `skills-lock.json` was left in the repo (only the skill folder was named) |
@@ -65,7 +65,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-040 | Pulse regularity (palpating the radial pulse) and reading durations (RR count, temperature) for Step 3 | Pending | p0-simulation-workflow-s03 follow-up / p0-clinical-logic | Content values for durations; physiology | `heart_rhythm` is in the case but no verb shows it yet; readings are instant (marked `shortcut` in `ObservationsSubsystem`) |
 | DT-041 | Migrate the test project from xunit 2.x (NuGet marks it Legacy) to xunit.v3 | Pending | tests/ProcSense.Core.Tests | — | CI shows a deprecated-package warning until then |
 | DT-042 | Server-side enforcement on `main` (required checks, no force-push or deletion) and code/secret scanning | Blocked | `.github/branch-protection.json` (checks-only variant, not applied), `task protect-main`, docs/CI.md | GitHub refuses it on this private free-plan repo ("Upgrade to GitHub Pro or make this repository public"). The owner chose to stay private and free, so this stays blocked | Replaced by local pre-push checks, CI after the push and failure alerts. If ever enabled, CI must also run on feature-branch pushes |
-| DT-043 | Unity test and Quest build jobs in CI | Blocked | p0-vr-platform-s07, docs/CI.md | Unity project and a licence-activation approach (DT-024) | |
+| DT-043 | Unity test and Quest build jobs in CI | Blocked | p0-vr-platform-s07, docs/CI.md | A free Unity personal licence activation for GitHub runners (the project and `task unity-test` now exist) | |
 | DT-044 | Add each roadmap check in `docs/CI.md` when the thing it guards is created | In progress | docs/CI.md roadmap, INSTRUCTIONS §6b | Ongoing duty | Blender validation, case-manifest hash, Quest replay, backend tests, AI eval, pytest for tools |
 | DT-045 | Confirm the first GitHub Actions run is green and record it in `docs/CI.md` | **Completed** | .github/workflows/ci.yml | — | Green on 09 Oct 2026 (~13:20 UTC), run 37935972959, all four jobs incl. Windows |
 | DT-046 | Dependabot pull requests #1–#9 (actions and test-package bumps) | Pending | GitHub PRs | **Owner only**: not to be merged without the owner's explicit say-so | Their CI runs were green when last checked |

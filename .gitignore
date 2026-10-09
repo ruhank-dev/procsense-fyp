@@ -18,6 +18,10 @@ unity/[Uu]ser[Ss]ettings/
 unity/[Mm]emoryCaptures/
 unity/*.csproj
 unity/*.sln
+unity/.vs/
+unity/Assets/StreamingAssets/content/
+unity/Assets/StreamingAssets/content.meta
+artifacts/
 *.apk
 *.aab
 

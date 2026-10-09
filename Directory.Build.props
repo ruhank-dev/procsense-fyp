@@ -1,0 +1,8 @@
+<Project>
+  <!-- Build output lives in artifacts/, never inside src/ProcSense.Core: Unity imports that folder as a package
+       (ADR-0001) and would otherwise pick up the generated obj/*.cs files. -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)artifacts/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)artifacts/bin/$(MSBuildProjectName)/</BaseOutputPath>
+  </PropertyGroup>
+</Project>

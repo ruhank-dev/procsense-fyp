@@ -51,6 +51,16 @@ tasks:
     cmds:
       - dotnet format ProcSense.sln --verify-no-changes
 
+  unity-test:
+    desc: Run the Unity EditMode and PlayMode tests in batch mode (needs Unity 6000.5.10f1; set UNITY_EXE if it is not in the default Hub folder)
+    cmds:
+      - uv run --project tools tools/unity/run_unity.py test
+
+  unity-build:
+    desc: Build the Quest APK into artifacts/unity/ProcSense.apk (needs Unity with Android support)
+    cmds:
+      - uv run --project tools tools/unity/run_unity.py build
+
   ci:
     desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
     cmds:

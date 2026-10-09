@@ -1,0 +1,6 @@
+{
+  "name": "ProcSense.VR",
+  "rootNamespace": "ProcSense.VR",
+  "references": ["ProcSense.Core", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem", "Unity.XR.Interaction.Toolkit", "Unity.XR.CoreUtils"],
+  "autoReferenced": true
+}

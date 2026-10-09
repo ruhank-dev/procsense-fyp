@@ -1,0 +1,9 @@
+{
+  "name": "ProcSense.Tests.PlayMode",
+  "rootNamespace": "ProcSense.Tests.PlayMode",
+  "references": ["ProcSense.Core", "ProcSense.VR", "UnityEngine.TestRunner", "UnityEditor.TestRunner", "Unity.TextMeshPro", "UnityEngine.UI"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+  "autoReferenced": false
+}

@@ -1,0 +1,7 @@
+{
+  "name": "com.procsense.core",
+  "version": "0.0.1",
+  "displayName": "ProcSense Core",
+  "description": "Deterministic simulation engine. Pure C# with no Unity references; the same code runs headless (CLI, CI) and on the headset.",
+  "unity": "6000.0"
+}
