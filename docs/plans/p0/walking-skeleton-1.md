@@ -23,7 +23,7 @@ Walkthrough Part 12, Example Patient A, page 104:
 | 2 | [✅ p0-core-engine-s01-sim-clock-and-rng](p0-core-engine/steps/✅%20p0-core-engine-s01-sim-clock-and-rng.md) | core-engine | — | ✅ |
 | 3 | [✅ p0-core-engine-s02-actions-session-log](p0-core-engine/steps/✅%20p0-core-engine-s02-actions-session-log.md) | core-engine | 2 | ✅ |
 | 4 | [✅ p0-core-engine-s03-content-loader-patient-state](p0-core-engine/steps/✅%20p0-core-engine-s03-content-loader-patient-state.md) | core-engine | 1, 3 | ✅ |
-| 5 | [p0-core-engine-s04-observable-state-cli-replay](p0-core-engine/steps/p0-core-engine-s04-observable-state-cli-replay.md) | core-engine | 4 | ✅ |
+| 5 | [✅ p0-core-engine-s04-observable-state-cli-replay](p0-core-engine/steps/✅%20p0-core-engine-s04-observable-state-cli-replay.md) | core-engine | 4 | ✅ |
 | 6 | [p0-simulation-workflow-s01-step1-identity-allergy](p0-simulation-workflow/steps/p0-simulation-workflow-s01-step1-identity-allergy.md) | simulation-workflow | 5 | ✅ |
 | 7 | [p0-simulation-workflow-s02-step2-history-disclosure](p0-simulation-workflow/steps/p0-simulation-workflow-s02-step2-history-disclosure.md) | simulation-workflow | 6 | ✅ |
 | 8 | [p0-simulation-workflow-s03-step3-sensors-vitals](p0-simulation-workflow/steps/p0-simulation-workflow-s03-step3-sensors-vitals.md) | simulation-workflow | 6 | ✅ |
