@@ -32,7 +32,7 @@ produce many phrasings; a wrong match or a false mismatch would silently break S
 7. P1 hook: the same extractor is what `p1-voice-input` and `p1-ai-language` call on recognised or generated text (listed in their Dependencies).
 
 ## Verification
-`dotnet test --filter SpokenIdentity` green; VAR-S1-A still verifies; `tests/golden/step1-identity` hash unchanged unless the answer text changed (record it if so).
+`dotnet test --filter SpokenIdentity` green; VAR-S1-A still verifies; the golden runs in `tests/golden` unchanged unless the answer text changed (record it if so).
 
 ## Files changed
 `src/ProcSense.Core/Workflow/Steps/SpokenIdentity.cs`, `IdentityCheck.cs`, `content/` (date-format setting + register row), tests.

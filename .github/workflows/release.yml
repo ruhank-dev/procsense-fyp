@@ -1,0 +1,79 @@
+name: Release
+
+# Continuous delivery: pushing a tag such as v0.1.0 runs the full CI, then publishes the headless simulator
+# (self-contained, with content and golden runs) as a GitHub Release. Quest/APK builds join this file when
+# the Unity project exists (docs/CI.md, roadmap).
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  package:
+    name: Package ${{ matrix.rid }}
+    needs: ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        rid: [linux-x64, win-x64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Tag matches the engine version
+        run: |
+          version=$(grep -oP 'Version = "\K[^"]+' src/ProcSense.Core/CoreInfo.cs)
+          if [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+            echo "tag ${GITHUB_REF_NAME} does not match CoreInfo.Version v${version}"; exit 1
+          fi
+
+      - name: Publish the headless simulator
+        run: |
+          dotnet publish src/ProcSense.Cli -c Release -r ${{ matrix.rid }} --self-contained -p:PublishSingleFile=true -o dist/procsense-sim-${{ matrix.rid }}
+          cp -r content dist/procsense-sim-${{ matrix.rid }}/content
+          cp -r tests/golden dist/procsense-sim-${{ matrix.rid }}/golden
+          cp README.md dist/procsense-sim-${{ matrix.rid }}/
+
+      - name: Zip and checksum
+        run: |
+          cd dist
+          zip -r procsense-sim-${GITHUB_REF_NAME}-${{ matrix.rid }}.zip procsense-sim-${{ matrix.rid }}
+          sha256sum procsense-sim-${GITHUB_REF_NAME}-${{ matrix.rid }}.zip > procsense-sim-${GITHUB_REF_NAME}-${{ matrix.rid }}.zip.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: procsense-sim-${{ matrix.rid }}
+          path: |
+            dist/*.zip
+            dist/*.sha256
+
+  publish:
+    name: Publish GitHub Release
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" release/* --repo "${GITHUB_REPOSITORY}" --title "${GITHUB_REF_NAME}" --generate-notes

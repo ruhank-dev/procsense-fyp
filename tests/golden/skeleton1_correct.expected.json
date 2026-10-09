@@ -1,0 +1,36 @@
+{
+  "case": "VAR-S1-A",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "dcec6b447e525659b33bb1a6ceeb9f50c68ab74a4ac159c250604de7efbb06cd",
+  "state_hash": "e92e4be932a9be583c552c301c0bb9ebe39ce9c689a0d478b5a9455977cc5cbc",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "disclosed_topics": [
+      "identity",
+      "allergies",
+      "reason_for_admission",
+      "responsible_adult",
+      "complaint",
+      "red_flags",
+      "past_history",
+      "medicines",
+      "herbal",
+      "previous_anaesthetic",
+      "family_anaesthetic",
+      "smoking",
+      "alcohol",
+      "last_food",
+      "last_drink",
+      "pregnancy"
+    ],
+    "vitals": { "spo2": "98", "oxygen": "room_air", "heart_rate": "76", "systolic_bp": "124", "diastolic_bp": "78", "respiratory_rate": "14", "temperature_c": "36.7", "acvpu": "A", "pain_score": "0" },
+    "flags": ["allergy_reaction_asked", "identity_asked_open", "introduced", "summarised"],
+    "rejections": [],
+    "trust": 2,
+    "anxiety": -1,
+    "understanding": 1,
+    "last_rejection": ""
+  }
+}

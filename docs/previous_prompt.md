@@ -264,3 +264,17 @@ _Session: 0485f3e4_
 ``````text
 approved
 ``````
+
+## 28. 09 October 2026, 12:47 PM UTC
+_Session: 0485f3e4_
+
+``````text
+yep
+``````
+
+## 29. 09 October 2026, 1:05 PM UTC
+_Session: 0485f3e4_
+
+``````text
+setup CI//CD on that repo please and do all the required checks and everything for this project and keep updating the checks and adding on it as we go add this updation thing to instructions.md too go
+``````
