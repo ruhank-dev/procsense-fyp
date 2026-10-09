@@ -11,6 +11,8 @@ patient from arrival to the WHO **Time Out** for two scenarios —
 
 ## Repository
 
+Working in a team? Read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/TEAM_GIT_WORKFLOW.md](docs/TEAM_GIT_WORKFLOW.md): branch, merge `origin/main`, `task ci`, then push straight to `main` (no pull requests). Run `task setup` once after cloning; the pre-push hook it installs runs `task ci` before any push to `main`.
+
 The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch `main`; history restarted on 07 Oct 2026 — the earlier prototype was deliberately overwritten). `AGENTS.md` and `INSTRUCTIONS.md` stay local (git-ignored).
 
 ## Repo layout
@@ -48,7 +50,8 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `task content-validate` | `uv run --project tools tools/content/validate.py` — checks every content file against its schema and the source register |
 | `task golden` | runs the golden runs in `tests/golden` through the CLI (`-- --update` rewrites the expected files deliberately) |
 | `task check` | `uv run --project tools tools/ci/repo_checks.py` — project rules no compiler covers |
-| `task ci` | `python tools/ci/run_all.py` — every check CI runs, locally |
+| `task setup` | `git config core.hooksPath .githooks` + tool check — installs the pre-push hook (runs `task ci` before `main` is updated) |
+| `task ci` | `uv run --project tools tools/ci/run_all.py` — every check CI runs, locally |
 | `task plans-index` | `uv run --project tools tools/plans/milestones.py` — rebuilds `docs/plans/milestones.md` from the step files and checks step references |
 | `task plans-check` | fails if `docs/plans/milestones.md` is out of date |
 | `task clean` | `dotnet clean ProcSense.sln` |

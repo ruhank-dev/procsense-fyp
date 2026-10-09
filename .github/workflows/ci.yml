@@ -101,6 +101,9 @@ jobs:
       - name: Project rules (determinism rules, hygiene, doc links, registers)
         run: uv run --project tools tools/ci/repo_checks.py
 
+      - name: Pre-push hook behaves (tested in an isolated temporary repository)
+        run: uv run --project tools tools/ci/test_pre_push_hook.py
+
       - name: GitHub workflow and Dependabot files are valid
         run: uvx check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml && uvx check-jsonschema --builtin-schema vendor.dependabot .github/dependabot.yml
 

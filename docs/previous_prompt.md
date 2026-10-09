@@ -278,3 +278,283 @@ _Session: 0485f3e4_
 ``````text
 setup CI//CD on that repo please and do all the required checks and everything for this project and keep updating the checks and adding on it as we go add this updation thing to instructions.md too go
 ``````
+
+## 30. 09 October 2026, 1:19 PM UTC
+_Session: 0485f3e4_
+
+``````text
+i pushed lets setup the ci cd stuff first so my other two teamates dont mess anything up
+``````
+
+## 31. 09 October 2026, 2:16 PM UTC
+_Session: 0485f3e4_
+
+``````text
+# ProcSense — Finalize Free Git Safeguards and Direct-to-Main Team Workflow
+
+Work directly in the existing ProcSense repository. Inspect the current repository, Git status, remotes, branches, CI workflows, task configuration, Git hooks, `.github/` files, `CONTRIBUTING.md`, and all relevant context-folder Markdown files before making changes.
+
+Your job is to finish implementing and documenting a safe, practical team workflow for Sannan47 and Myt1x54. They must be able to work independently and push directly to `main`, without requiring me to approve or merge their changes manually.
+
+## 1. Non-negotiable constraints
+
+* Keep this GitHub repository private.
+* Stay on my current free personal GitHub plan.
+* Do not upgrade the plan, purchase anything, make the repository public, or require any paid features.
+* Do not require GitHub Education or student benefits.
+* Do not claim that GitHub branch protection or required status checks are enabled unless you verify they are actually enabled on GitHub.
+* Preserve all existing working code, tests, golden hashes, CI workflows, project plans, medical research, and repository safeguards.
+* Never discard, reset, overwrite, or force-push existing work to resolve a problem.
+* Do not commit secrets, generated files, real patient/candidate data, local environments, caches, or other files that should remain ignored.
+* Keep `data/ontology/` tracked, including its hand-maintained overrides.
+* Do not merge Dependabot PRs #1–#5 or approve the pending Step 9 decision without my explicit authorization.
+* Do not perform destructive Git operations.
+* Do not push any changes on my behalf unless the current task environment and permissions explicitly support it and I have authorized that action.
+* Update all relevant Markdown files in the context folder whenever a project decision, workflow, safeguard, or implementation detail changes. Update the main project instructions file as well so future work follows these rules.
+
+## 2. Intended team workflow: direct pushes to main
+
+Sannan47 and Myt1x54 are collaborators with write access. I want them to be able to push directly to `main` after running the required local checks.
+
+Do not require pull requests. Do not introduce a mandatory approval or merge step. Do not design the workflow around me manually integrating every teammate's changes.
+
+The intended workflow is:
+
+1. Teammates pull the latest repository changes.
+2. They run the setup command to install the repository's safeguards.
+3. They create their own feature branches to work independently.
+4. They run the full local CI task before pushing.
+5. They push their completed branch to GitHub.
+6. Once their branch passes the checks, they synchronize with the latest `origin/main`, incorporate any new changes, rerun the checks, and push their completed changes to `main`.
+7. GitHub Actions runs the CI workflows on the updated `main`.
+8. If CI fails after a direct push, the team is alerted and follows a documented recovery process.
+
+Feature branches are encouraged for development. Direct pushes to `main` are allowed under this workflow, but they should be deliberate and only happen after checks pass.
+
+Do not tell teammates to create pull requests. A teammate may notify the other team members about a change through a message, but notification must not be a prerequisite for pushing.
+
+## 3. Inspect and strengthen the local pre-push safeguards
+
+Inspect the existing `.githooks/` implementation and `task setup` command.
+
+Make sure the installed pre-push hook checks every push to `main` and runs the appropriate repository validation before allowing it.
+
+The required pre-push checks should include, where supported by the existing repository:
+
+* The full `task ci` suite.
+* The engine tests on the available local platform.
+* Content, plans, and project-rule validation.
+* Dependency/security auditing.
+* The repository's safeguard-integrity checks.
+* Any additional validations already required by the project instructions.
+
+Avoid duplicating expensive checks unnecessarily if `task ci` already runs them all. Prefer one reliable entry point and document exactly what it covers.
+
+Requirements:
+
+* If a required check fails, block the push.
+* If a required tool is missing, fail safely with an actionable message rather than silently skipping the check.
+* Ensure `task setup` installs the hooks reliably on Windows PowerShell and any other supported developer environment.
+* Ensure the hook handles pushes to `main` correctly, including multiple ref updates and pushes involving more than one ref.
+* Ensure that a push to a feature branch does not accidentally bypass checks that are intended to protect `main`.
+* Remove or redesign any casual bypass mechanism that would allow a teammate to skip mandatory local checks without an explicit, documented emergency procedure.
+* Do not claim the hook is tamper-proof. A user with local repository access can modify or bypass local hooks.
+* Do not claim a local hook provides server-side enforcement.
+
+Test the hook in a safe temporary repository or isolated test environment. Demonstrate that a passing check permits the push, a failing check blocks it, and feature-branch development still works. Do not test by deliberately breaking the actual project's `main` branch.
+
+If a reliable pre-push implementation is not feasible, explain why and implement the strongest safe alternative without misrepresenting its capabilities.
+
+## 4. Prepare exact instructions for Sannan47 and Myt1x54
+
+Create a standalone document at `docs/TEAM_GIT_WORKFLOW.md`.
+
+It must contain complete, copy-paste-ready PowerShell commands based on the actual repository. Do not invent commands, task names, directory names, or successful output.
+
+Include these sections.
+
+### A. First-time setup
+
+Explain how to:
+
+* Verify Git and Task are installed.
+* Clone the exact repository using the remote URL obtained from the repository configuration.
+* Enter the correct project directory.
+* Run `task setup`.
+* Verify the active branch, remote URL, clean working tree, and installed Git hooks.
+* Run `task ci`.
+* Understand what happens when a check fails and how to report an issue.
+
+### B. Updating an existing clone
+
+Give a separate sequence for existing clones.
+
+Start with `git status` and instructions for safely handling uncommitted changes. Explain how to fetch `origin`, switch to `main` safely, and fast-forward local `main` to the latest `origin/main` without discarding work.
+
+Do not use `git reset --hard`, force-push, or commands that silently destroy local changes.
+
+### C. Creating and using feature branches
+
+Give each teammate a suggested branch naming convention:
+
+* `sannan47/feature-description`
+* `myt1x54/feature-description`
+
+Show the exact commands to create a feature branch from the latest `origin/main`, check changed files, inspect the diff, stage only intended files, commit, and push the feature branch.
+
+Explain that feature branches reduce conflicts by allowing independent development, but do not eliminate conflicts.
+
+### D. Pre-push validation
+
+Explain exactly when `task ci` must be run and what the Git hook automatically checks.
+
+Teammates must run the full check suite before pushing changes intended for `main`. The hook should enforce the checks locally when possible.
+
+Include a copy-paste sequence to:
+
+1. Inspect the current branch and working tree.
+2. Fetch the latest `origin`.
+3. Incorporate the latest `origin/main` into the feature branch using a safe, documented approach.
+4. Resolve any merge conflicts without discarding either person's work.
+5. Run `task ci`.
+6. Push the feature branch.
+7. Fast-forward or merge the tested changes into local `main` safely.
+8. Run the final required checks against the resulting `main`.
+9. Push to `origin/main`.
+
+Use the simplest safe approach compatible with the repository. Avoid force-pushing. Never suggest blindly merging stale branches or automatically resolving conflicts by taking one side.
+
+Make it clear that concurrent pushes to `main` can race. If a push is rejected because `main` advanced, teammates must fetch the latest changes, safely reconcile their work, rerun the checks, and retry.
+
+### E. What to do when CI fails after a push
+
+Document how to:
+
+* Identify which GitHub Actions job failed.
+* Read the failure logs.
+* Notify the team.
+* Reproduce the failure locally where possible.
+* Fix the issue on a branch.
+* Rerun `task ci`.
+* Integrate the fix without overwriting anyone else's work.
+
+If the failure affects `main`, recommend pausing further pushes until the problem is resolved.
+
+Explain that a GitHub Actions failure after a direct push is detection, not prevention: the commit has already reached `main`.
+
+### F. Exact teammate messages
+
+Prepare two ready-to-send messages, one addressed to Sannan47 and one to Myt1x54.
+
+Each message must include:
+
+* The repository URL.
+* The exact first-time setup commands.
+* The exact commands to update an existing clone.
+* The command to run `task setup`.
+* The command to run `task ci`.
+* The feature branch naming convention.
+* The procedure for pushing their branch.
+* The procedure for synchronizing with `origin/main`.
+* The safe direct-to-main procedure.
+* The requirement not to force-push.
+* What to do if checks fail or conflicts occur.
+
+The messages must be understandable to a teammate who has not read this entire conversation. Include the document path so they can refer to the full guide.
+
+## 5. CI and GitHub Actions
+
+Inspect the actual CI workflow files and verify that pushes to `main` trigger the expected validation jobs.
+
+The existing CI is reported to have four jobs:
+
+* Engine on Ubuntu.
+* Engine on Windows.
+* Content/plans/project rules.
+* Dependency audit.
+
+Verify the actual workflow configuration and job names rather than assuming this list is still accurate.
+
+Ensure:
+
+* The workflows run on pushes to `main`.
+* Failures are visible in GitHub Actions.
+* The repository's safeguard-integrity check runs as intended.
+* The failure-notification workflow works as far as can be tested safely.
+* CI failures identify the relevant commit and author when available.
+* The documentation clearly distinguishes local checks from GitHub Actions checks.
+
+Do not add unnecessary workflows or expensive duplicate jobs.
+
+Do not imply that a green GitHub Actions run prevents a direct push unless actual server-side enforcement exists.
+
+## 6. Free-plan limitation and strongest available protection
+
+Inspect `.github/branch-protection.json`, any ruleset configuration, and the existing `task protect-main` implementation.
+
+Attempt only non-destructive verification of the current GitHub configuration if authenticated tooling is available.
+
+Do not repeatedly attempt a paid upgrade, change repository visibility, or modify account billing.
+
+If actual GitHub required status checks for this private repository are unavailable on the current plan:
+
+* Keep the repository private and on the free plan.
+* Retain and strengthen local pre-push checks.
+* Retain the GitHub Actions CI workflows.
+* Retain post-push failure alerts and safeguard-integrity checks.
+* Explain clearly that local hooks can be bypassed and GitHub Actions running after a push cannot stop a bad commit from reaching `main`.
+* Explain that collaborators with write access may still push directly to `main` without server-side required checks.
+* Do not claim that the branch is protected merely because a JSON configuration file exists.
+
+Do not make pull requests a requirement as a workaround, because the team has explicitly chosen direct pushes.
+
+## 7. Safeguard files and project context
+
+Inspect and update the relevant existing files, including where applicable:
+
+* `CONTRIBUTING.md`
+* `.github/`
+* `.githooks/`
+* `docs/CI.md`
+* `docs/TEAM_GIT_WORKFLOW.md`
+* `.github/CODEOWNERS`
+* `.github/workflows/main-guard.yml`
+* The task configuration and safeguard-integrity tests.
+* The context-folder Markdown files.
+* `AGENTS.md`, `INSTRUCTIONS.md`, or the equivalent project instruction files.
+
+Remove contradictory instructions requiring pull requests or mandatory manual approval for direct pushes, while preserving unrelated rules.
+
+Do not remove existing medical-data, secret-management, dependency, or generated-file safeguards.
+
+Keep documentation consistent across files. Do not add a rule to one document while leaving a conflicting instruction elsewhere.
+
+Record every decision and implementation change in the relevant context Markdown files so future work can continue from an accurate record.
+
+## 8. Testing and completion report
+
+Run the relevant local tests and `task ci` after making changes.
+
+Report:
+
+1. Files changed and why.
+2. Exact safeguards implemented.
+3. Tests run and their actual results.
+4. Whether the hook was tested in an isolated environment.
+5. Whether GitHub Actions workflows were verified.
+6. Whether actual server-side branch protection was verified.
+7. What remains vulnerable or bypassable on the free plan.
+8. Whether all changes are committed and pushed, or exactly what remains uncommitted/unpushed.
+9. The exact paths to the teammate guide and the two ready-to-send messages.
+10. Any manual steps I still need to perform.
+
+Do not say work was pushed unless the push actually succeeded. Do not say a GitHub workflow passed unless you have verified its result.
+
+Do not merge Dependabot PRs #1–#5 or approve Step 9. Leave both decisions pending my explicit authorization.
+
+## Final objective
+
+Deliver a working, tested, documented direct-to-main workflow for Sannan47 and Myt1x54 that checks code locally before pushing wherever possible, keeps CI running on GitHub, minimizes concurrent-change conflicts, preserves the private repository and free plan, and accurately documents all remaining limitations.
+
+Start by inspecting the repository and its current state. Then implement, test, document, and report the actual results.
+``````

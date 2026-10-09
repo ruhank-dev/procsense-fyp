@@ -23,6 +23,19 @@ tasks:
     cmds:
       - dotnet run --project src/ProcSense.Cli -- golden {{.CLI_ARGS}}
 
+  setup:
+    desc: One-time setup after cloning - installs the pre-push hook (runs task ci before main is updated) and checks your tools
+    cmds:
+      - git config core.hooksPath .githooks
+      - cmd: chmod +x .githooks/pre-push
+        ignore_error: true
+      - uv run --project tools tools/ci/setup_check.py
+
+  protect-main:
+    desc: DO NOT RUN on the free private plan (GitHub refuses it). Applies .github/branch-protection.json if the plan ever allows server-side protection (DT-042)
+    cmds:
+      - gh api -X PUT repos/ruhank-dev/procsense-fyp/branches/main/protection --input .github/branch-protection.json
+
   check:
     desc: Project-rule checks no compiler covers (determinism rules in Core, repo hygiene, doc links, registers, prompt history)
     cmds:
@@ -41,7 +54,7 @@ tasks:
   ci:
     desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
     cmds:
-      - python tools/ci/run_all.py {{.CLI_ARGS}}
+      - uv run --project tools tools/ci/run_all.py {{.CLI_ARGS}}
 
   content-validate:
     desc: Check every content file against its schema and the source register (proof of truth)

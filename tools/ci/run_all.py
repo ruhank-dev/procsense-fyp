@@ -1,10 +1,11 @@
 """Run every check CI runs, on your machine, in the same order. Standard library only.
 
-Usage (from repo root):  task ci     or     python tools/ci/run_all.py [--quick]
+Usage (from repo root):  task ci     or     uv run --project tools tools/ci/run_all.py [--quick]
 --quick skips the slow steps (build/test) when only docs or content changed.
 Keep this list in step with .github/workflows/ci.yml and docs/CI.md (INSTRUCTIONS.md section 6b).
 """
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -32,8 +33,22 @@ def replay_round_trip() -> tuple[bool, str]:
         return run(CLI + ["replay", "--log", str(Path(tmp) / "run.session.jsonl")])
 
 
+def preflight(quick: bool) -> list[str]:
+    """Tools the checks need. A missing one is an error with an install command, never a silent skip."""
+    need = {"uv": "winget install --id astral-sh.uv -e", "git": "winget install --id Git.Git -e"}
+    if not quick:
+        need["dotnet"] = "winget install --id Microsoft.DotNet.SDK.9 -e"
+    return [f"{tool} is not installed or not on PATH -> {cmd} (then restart the terminal)" for tool, cmd in need.items() if not shutil.which(tool)]
+
+
 def main(argv: list[str]) -> int:
     quick = "--quick" in argv
+    missing = preflight(quick)
+    if missing:
+        print("FAIL  required tools missing; nothing was checked")
+        for m in missing:
+            print("        " + m)
+        return 1
     steps: list[tuple[str, callable]] = []
     if not quick:
         steps += [
@@ -50,6 +65,7 @@ def main(argv: list[str]) -> int:
         ("content + source register", lambda: run(["uv", "run", "--project", "tools", "tools/content/validate.py"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),
         ("project rules", lambda: run(["uv", "run", "--project", "tools", "tools/ci/repo_checks.py"])),
+        ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
     ]
     results = []
     for name, step in steps:

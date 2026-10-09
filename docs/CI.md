@@ -8,9 +8,10 @@ Living document (INSTRUCTIONS.md §6b). Whenever a step adds a capability, rule,
 
 | File | Runs when | What it does |
 |---|---|---|
-| `.github/workflows/ci.yml` | every push to `main`, every pull request, manually, and called by the release | The three jobs below |
+| `.github/workflows/ci.yml` | every push to `main`, Dependabot's pull requests, manually, and called by the release | The jobs below. **After** a push it only detects problems; it cannot stop a commit that has already reached `main` |
 | `.github/workflows/release.yml` | a tag such as `v0.1.0` is pushed | Runs the full CI, then publishes the headless simulator for Linux and Windows (self-contained, with `content/` and the golden runs) as a GitHub Release with SHA-256 checksums |
-| `.github/dependabot.yml` | weekly | Pull requests for NuGet, GitHub Actions and Python (uv) updates |
+| `.github/workflows/main-guard.yml` | when CI finishes on `main`, on force-pushes to `main`, and manually (dry run) | Opens an issue naming the commit and author when CI is red on `main`, or when `main` is force-pushed. Alerts only — see "Protecting `main`" |
+| `.github/dependabot.yml` | weekly | Pull requests for NuGet, GitHub Actions and Python (uv) updates. Merge them once their CI run is green |
 
 ## Checks in place
 
@@ -28,6 +29,28 @@ Living document (INSTRUCTIONS.md §6b). Whenever a step adds a capability, rule,
 | 10 | Repo checks | GitHub workflow and Dependabot files validate against their schemas | A broken workflow file | `uvx check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml` |
 | 11 | Dependencies | No vulnerable NuGet packages (direct or transitive); deprecated packages warn | Known-vulnerable dependencies | `dotnet list ProcSense.sln package --vulnerable --include-transitive` |
 | 12 | Release | Tag must equal `CoreInfo.Version` | Releasing a mislabelled build | `release.yml` |
+| 13 | Repo checks | **team-guards**: the contributor guides, protection config, hook, hook tests, setup check and workflows must exist; the hook must still run `task ci` and have no bypass variable; `ci.yml` must run on pushes to `main` | Someone deleting or weakening the files that guard `main` | `task check` |
+| 14 | Repo checks | **Pre-push hook tested in an isolated temporary repository** (`tools/ci/test_pre_push_hook.py`, 17 cases): feature branches free, `main` pushes run `task ci`, failures/force-push/delete/dirty tree/wrong commit/stale `main`/missing tool blocked, the guide's two-teammate sequence works | A regression in the hook | `uv run --project tools tools/ci/test_pre_push_hook.py` |
+| 15 | Main guard (after CI on `main`) | Issue naming the commit and author when CI is red on `main`; issue when `main` is force-pushed | A red `main` going unnoticed | `.github/workflows/main-guard.yml` (test safely: Actions → Main guard → Run workflow, dry run) |
+
+## Protecting `main` (teammates push directly)
+
+**Workflow:** Sannan47 and Myt1x54 push straight to `main`; there are no pull requests and no approvals ([TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md)). Everything below is about checking *before* the push and noticing *after* it.
+
+GitHub refuses branch protection and rulesets on this private repo on the free plan: *"Upgrade to GitHub Pro or make this repository public"* (checked 09 Oct 2026). The repository stays private and free, so **there is no server-side enforcement**: a collaborator with write access can push to `main` without any check if they skip the local hook.
+
+| Safeguard | Kind | What it does | How it can be bypassed |
+|---|---|---|---|
+| `.githooks/pre-push`, installed by `task setup` | Local, before the push | For any push that updates `main`: runs the full `task ci`; blocks force-pushes and deleting `main`; requires a clean tree that is exactly the commit pushed; fails with an install hint if `task`, `dotnet`, `uv` or `git` is missing. Feature-branch and tag pushes are not checked | `git push --no-verify`, deleting `core.hooksPath`, a clone before `task setup`, editing the hook. The only sanctioned use is the emergency rule in the guide, section E |
+| `tools/ci/test_pre_push_hook.py` (in `task ci` and in CI) | Local + GitHub | Proves the hook still behaves, in a throw-away repository | — |
+| `ci.yml` on every push to `main` | GitHub, **after** the push | Linux + Windows engine jobs, content and project rules, dependency audit | Cannot prevent anything: the commit is already on `main` |
+| `main-guard.yml` | GitHub, after | Issue naming the commit and author when CI is red on `main` or `main` is force-pushed | Alerts only |
+| `team-guards` check | GitHub + local | Fails if the safeguard files are deleted or weakened | A determined person can edit the check too |
+| `.github/branch-protection.json`, `task protect-main` | **Not applied** | A checks-only protection config for the day the plan allows it. If it is ever enabled, CI must also run on feature-branch pushes, otherwise direct pushes of unchecked commits would be rejected | Do not run on the free private plan: GitHub refuses it |
+
+What the hook runs is exactly `task ci` (`tools/ci/run_all.py`): build with warnings as errors, unit tests, golden runs, replay round trip, no vulnerable packages, content + source-register validation, plan-index freshness, project rules (including the team-guards check) and the hook's own tests. The code-format check runs in GitHub only (Linux line endings).
+
+**What remains vulnerable:** anyone with write access can bypass the hook; checks on GitHub arrive after the commit; two simultaneous pushes can interleave (the second is rejected by git or the hook, but nothing re-tests the combined result until GitHub runs); the owner's admin rights are not restricted. Real enforcement needs GitHub Pro (students can usually get it free) or a public repository (DT-042).
 
 ## Roadmap — checks to add as the project grows
 
@@ -55,4 +78,6 @@ Each row becomes a real check in the step that creates the thing it guards. Trac
 
 ## Status
 
-First run on GitHub: **not yet confirmed** (needs the workflows pushed). Update this line with the date and result after the first green run (DT-045).
+CI first run on GitHub: **green on 09 Oct 2026 (about 13:20 UTC)** — run 37935972959: Engine (ubuntu-latest), Engine (windows-latest), Content/plans/project rules and Dependency audit all succeeded. The same hashes passed on Linux and Windows. GitHub reported Node 20 deprecation warnings for the actions; Dependabot's pull requests bump the actions (their CI runs were green).
+
+Hook: tested in an isolated temporary repository, 17/17 cases (09 Oct 2026). `main-guard.yml` (rewritten for direct pushes) has been validated against GitHub's workflow schema but has **not yet run on GitHub**; after it is pushed, test it safely with Actions → Main guard → Run workflow (dry run) — DT-050.

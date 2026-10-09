@@ -1,7 +1,7 @@
 """Project-rule checks that no compiler or unit test covers. Standard library only.
 
 Usage (from repo root):  task check     or     uv run --project tools tools/ci/repo_checks.py [check ...]
-Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps
+Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards
 Exit code 0 = all pass, 1 = at least one failure. Add a new check here (and a row in docs/CI.md) whenever a new rule appears.
 """
 import re
@@ -138,7 +138,8 @@ def check_prompt_history() -> list[str]:
     text = read(f)
     problems = []
     body = text.split("---", 1)[-1]
-    numbers = [int(x) for x in re.findall(r"^## (\d+)\. ", body, flags=re.M)]
+    # An entry heading is "## N. <date>" followed by the "_Session:" line; headings inside a pasted prompt do not count.
+    numbers = [int(x) for x in re.findall(r"^## (\d+)\. [^\n]*\n_Session:", body, flags=re.M)]
     if numbers != list(range(1, len(numbers) + 1)):
         problems.append(f"docs/previous_prompt.md: entries are not numbered 1..N in order (found {numbers[:5]}...)")
     if len(re.findall(r"^``````text$", body, flags=re.M)) != len(numbers):
@@ -160,6 +161,30 @@ def check_steps() -> list[str]:
     return problems
 
 
+# --- team-guards: the files that protect main from teammates must not be deleted by accident ---
+TEAM_GUARDS = [
+    "CONTRIBUTING.md", "docs/TEAM_GIT_WORKFLOW.md", "docs/CI.md", ".github/branch-protection.json", ".github/dependabot.yml",
+    ".github/workflows/ci.yml", ".github/workflows/release.yml", ".github/workflows/main-guard.yml",
+    ".githooks/pre-push", "tools/ci/test_pre_push_hook.py", "tools/ci/setup_check.py",
+]
+
+
+def check_team_guards() -> list[str]:
+    # On disk, not "tracked": CI checks out only committed files, so a missing commit shows up there.
+    problems = [f"{g}: missing (it protects main; see docs/CI.md)" for g in TEAM_GUARDS if not (ROOT / g).exists()]
+    hook = ROOT / ".githooks" / "pre-push"
+    if hook.exists():
+        text = read(hook)
+        if "task ci" not in text:
+            problems.append(".githooks/pre-push: no longer runs 'task ci'")
+        if re.search(r"ALLOW_MAIN_PUSH|SKIP_CHECKS|PROCSENSE_SKIP", text):
+            problems.append(".githooks/pre-push: contains a casual bypass variable (the only escape is the documented 'git push --no-verify')")
+    ci = ROOT / ".github" / "workflows" / "ci.yml"
+    if ci.exists() and not re.search(r"push:\s*\n\s*branches:\s*\[main\]", read(ci)):
+        problems.append(".github/workflows/ci.yml: must run on pushes to main")
+    return problems
+
+
 CHECKS = {
     "core-rules": check_core_rules,
     "hygiene": check_hygiene,
@@ -167,6 +192,7 @@ CHECKS = {
     "deferred-register": check_deferred_register,
     "prompt-history": check_prompt_history,
     "steps": check_steps,
+    "team-guards": check_team_guards,
 }
 
 
