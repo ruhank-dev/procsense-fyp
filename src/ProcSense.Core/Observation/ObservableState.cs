@@ -8,13 +8,16 @@ namespace ProcSense.Core.Observation
 {
     public sealed record DisclosedFact(string Topic, string Answer);
 
+    /// <summary>One value on the monitor or chart, with the clock time it was read.</summary>
+    public sealed record ObservedVital(string Name, string Value, string At);
+
     /// <summary>
     /// Read-only snapshot of what the trainee can perceive right now. Unity and AI read only this, never PatientState,
-    /// so undisclosed facts cannot leak. Vitals appear here once sensors exist (simulation-workflow step 3).
+    /// so undisclosed facts cannot leak. Vitals appear only for attached sensors and readings the trainee has taken.
     /// </summary>
     public sealed record ObservableState(
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
-        Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, string LastRejection)
+        Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string LastRejection)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -50,6 +53,15 @@ namespace ProcSense.Core.Observation
                 sb.Append(",\"answer\":"); JsonText.Quote(sb, DisclosedFacts[i].Answer);
                 sb.Append('}');
             }
+            sb.Append("],\"vitals\":[");
+            for (int i = 0; i < Vitals.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"name\":"); JsonText.Quote(sb, Vitals[i].Name);
+                sb.Append(",\"value\":"); JsonText.Quote(sb, Vitals[i].Value);
+                sb.Append(",\"at\":"); JsonText.Quote(sb, Vitals[i].At);
+                sb.Append('}');
+            }
             sb.Append("],\"last_rejection\":"); JsonText.Quote(sb, LastRejection);
             return sb.Append('}').ToString();
         }
@@ -59,6 +71,39 @@ namespace ProcSense.Core.Observation
 
     public static class ObservableBuilder
     {
+        private static readonly string[] VitalOrder =
+            { "spo2", "oxygen", "heart_rate", "systolic_bp", "diastolic_bp", "respiratory_rate", "temperature_c", "acvpu", "pain_score" };
+
+        // Only what the trainee has gathered: live values while the SpO2 probe is on, and the readings taken so far.
+        private static List<ObservedVital> BuildVitals(Session s)
+        {
+            var p = s.Patient.Physiological;
+            var v = p.Vitals;
+            string now = At(s, s.Clock.Steps);
+            var live = new Dictionary<string, string>();
+            if (p.IsAttached(Workflow.Steps.ObservationsSubsystem.Spo2Probe))
+            {
+                live["spo2"] = Num(v.Spo2);
+                live["oxygen"] = v.Oxygen;
+                live["heart_rate"] = Num(v.HeartRate);
+            }
+            var list = new List<ObservedVital>();
+            foreach (var name in VitalOrder)
+            {
+                if (live.TryGetValue(name, out var value)) list.Add(new ObservedVital(name, value, now));
+                else if (p.Measured.TryGetValue(name, out var m)) list.Add(new ObservedVital(name, m.Value, At(s, m.AtStep)));
+            }
+            return list;
+        }
+
+        private static string At(Session s, long step) => Hms(s.Clock.Start + System.TimeSpan.FromSeconds(step * Time.SimClock.Step));
+
+        /// <summary>HH:MM:SS, with one decimal only when the time falls on a half second ("08:00:44.5").</summary>
+        public static string Hms(System.TimeSpan t) =>
+            t.Milliseconds == 0 ? t.ToString(@"hh\:mm\:ss", System.Globalization.CultureInfo.InvariantCulture) : t.ToString(@"hh\:mm\:ss\.f", System.Globalization.CultureInfo.InvariantCulture);
+
+        public static string Num(double x) => x.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
+
         public static ObservableState Build(Session s)
         {
             var c = s.Patient.Clinical;
@@ -73,11 +118,11 @@ namespace ProcSense.Core.Observation
             }
 
             return new ObservableState(
-                s.Clock.ClockTime.ToString("c", System.Globalization.CultureInfo.InvariantCulture),
+                Hms(s.Clock.ClockTime),
                 c.Location, c.IdentityVerified, c.AllergiesKnown,
                 c.WristbandRead ? s.Patient.Profile.Wristband : null,
                 c.NotesOpened ? s.Patient.Profile.Notes : null,
-                facts, s.LastRejection);
+                facts, BuildVitals(s), s.LastRejection);
         }
     }
 }

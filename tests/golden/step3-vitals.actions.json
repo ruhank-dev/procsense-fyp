@@ -1,0 +1,10 @@
+[
+  { "t": 0,  "verb": "attach_sensor", "params": { "sensor": "spo2" } },
+  { "t": 5,  "verb": "attach_sensor", "params": { "sensor": "nibp_cuff" } },
+  { "t": 8,  "verb": "measure_nibp" },
+  { "t": 20, "verb": "measure_temperature" },
+  { "t": 25, "verb": "count_rr" },
+  { "t": 30, "verb": "assess_acvpu" },
+  { "t": 35, "verb": "ask_pain_score" },
+  { "t": 60, "verb": "wait" }
+]
