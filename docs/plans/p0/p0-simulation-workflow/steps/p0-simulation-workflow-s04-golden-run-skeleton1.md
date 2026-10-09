@@ -30,3 +30,9 @@ p0-simulation-workflow-s01…s03.
 
 ## Sources
 Master Plan §41 (golden runs); inventory D73; walkthrough Part 12 Scenes 1–3.
+
+## Carried-over requirements (added 09 October 2026)
+
+- The scripts in `tests/golden/` made during steps 5–6 (`smoke`, `step1-identity`, `step1-bloods-first`) are **sample scripts, not golden runs**. This step creates and validates the official golden runs
+  (expected key facts, expected log hash for seed 42, `task golden`, proof that changing one action breaks the hash) — DT-012.
+- Add golden scripts for the wristband mismatch and missing-band cases once p0-simulation-workflow-s18 exists (DT-011).

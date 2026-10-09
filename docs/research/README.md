@@ -11,6 +11,11 @@ traceable and honest. Nothing clinical enters `content/` or code without a row h
 | `dataset_register.csv` | One row per external or synthetic dataset: licence, contents, verification |
 | `issues.md` | Conflicts between sources (or source vs walkthrough) waiting for a clinician/supervisor decision |
 
+## Approval status (owner decision, 09 October 2026)
+
+Existing research and clinical workflows are treated as **clinician-approved**; the `clinician_approval` column therefore reads "Approved … per project owner/user" for existing rows. This is the owner's statement, not an independent review.
+New clinical values still need a register row. Hospital-specific choices (identifier set, allergy-band colour, unknown-patient procedure, triage system) still need a recorded value — see DT-018 in `docs/deferred-tasks.md`.
+
 ## Proof-of-truth protocol (every clinical value)
 
 1. **Find it in the walkthrough** (`docs/context/ProcSense_Medical_Walkthrough_v5_1.md`) — record part/section/page.

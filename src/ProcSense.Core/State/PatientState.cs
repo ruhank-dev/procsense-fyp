@@ -27,6 +27,15 @@ namespace ProcSense.Core.State
 
         /// <summary>Returns true the first time a topic is revealed.</summary>
         public bool Reveal(string topic) => _revealed.Add(topic);
+
+        private readonly SortedSet<string> _flags = new SortedSet<string>(StringComparer.Ordinal);
+
+        /// <summary>Named facts about what has happened ("introduced", "risk.wrong_blood"...). Rules set and read them.</summary>
+        public IReadOnlyCollection<string> Flags => _flags;
+
+        public bool HasFlag(string flag) => _flags.Contains(flag);
+
+        public void SetFlag(string flag) => _flags.Add(flag);
     }
 
     /// <summary>Current vital signs. They start at the case baseline; physiology over time arrives in a later phase.</summary>

@@ -35,6 +35,8 @@ Walkthrough Part 12, Example Patient A, page 104:
 | 14 | [p0-vr-interaction-ui-s01-skeleton1-interactions](p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s01-skeleton1-interactions.md) | vr-interaction-ui | 9, 12, 13 | ⏳ |
 | 15 | [p0-evaluation-performance-s01-skeleton1-quest-replay-check](p0-evaluation-performance/steps/p0-evaluation-performance-s01-skeleton1-quest-replay-check.md) | evaluation-performance | 14 | ⏳ |
 
+Outstanding follow-ups that skeleton 1 deliberately leaves for later (nurse wristband workflow, robust spoken identity, scoring, patient-location checks, official golden runs) are tracked in [../../deferred-tasks.md](../../deferred-tasks.md).
+
 Steps 1–9 are fully headless (no Unity needed) and can be built and tested from the terminal now.
 Steps 10–15 wait for the Unity/Quest installs.
 

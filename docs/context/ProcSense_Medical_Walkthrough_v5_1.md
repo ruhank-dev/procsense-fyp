@@ -1,5 +1,7 @@
 <!-- Converted from ProcSense_Medical_Walkthrough_v5_1.pdf — line-by-line conversion: every source line kept in order; headings marked; hard line breaks kept; Markdown-special characters backslash-escaped; running page headers shown as horizontal rule + italic lines. Format conversion only: no summarising, rewriting or correction. -->
 
+> **Project addendum (09 Oct 2026 — not part of the converted document).** The project owner treats this walkthrough, and all existing medical research and clinical workflows, as clinician-approved (walkthrough: first recorded 07 Oct 2026 in `docs/research/source_register.csv`; extended 09 Oct 2026). The status wording below ("READY FOR CLINICIAN VALIDATION — not clinically approved") is the document's own original text and is left unchanged. Source conflicts are tracked in `docs/research/issues.md`. Decision history: `ProcSense_Change_Report.md` §G.
+
 # ProcSense
 
 

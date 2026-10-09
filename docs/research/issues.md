@@ -10,3 +10,4 @@ content they affect.
 | ID | Issue | Sources involved | Current handling | Needs | Status |
 |---|---|---|---|---|---|
 | ISS-0001 | NIBP (BP cuff) measurement cycle length | Walkthrough Part E, BP cuff row, p.201: "starts cycle (~30–40 s)" vs Implementation Guide §09 rule L3-02: "BP value after 20 s sim" | Walkthrough value used (master source): `content/devices.json`, SR-0034 | Team / medical professional to confirm | Open |
+| ISS-0002 | Missing wristband: when is the band applied? | Walkthrough Part 11 Step 1 / equipment table: "missing band → apply after verification" vs Implementation Guide §07 test T01-4: "nurse applies band after delay, identity then confirmable" | Walkthrough (master source) will be implemented in p0-simulation-workflow-s18; both orders get tests | Owner / medical reviewer to confirm which order is intended | Open (logged 09 Oct 2026) |

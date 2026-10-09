@@ -503,3 +503,7 @@ Nothing else was skipped: every file in the project folder and in `outputs/` (in
 | `outputs/ProcSense_Content/whatif_library.csv` | `aee3ae1b0c89e0f5` |
 | `outputs/ProcSense_Content/who_checklist.csv` | `48e8e4b611c87640` |
 | `outputs/ProcSense_Content/who_checklist_raw.txt` | `25a462f063c3cf3f` |
+
+## Addendum — 09 Oct 2026
+
+A one-paragraph blockquote "Project addendum" was added at the top of six converted files (the walkthrough, both Master Plan copies, both Implementation Guide copies and the Data Source Inventory) pointing to the decision log in `ProcSense_Change_Report.md` §G. Nothing below those banners was changed: each file's body is byte-identical to the converted version. `ProcSense_Change_Report.md` and `ProcSense_Team_Board.md` are living documents and are updated in place.

@@ -143,3 +143,62 @@ All passed on the final build:
 - **Adjustment 3 — P1/P2:** P1: remaining 10 variants + 6 stacked cases (content-only after freeze if validated and no new code needed); Step 15 + intra-op extension (decided at Gate 6). P2: SC-1..SC-20.
 - **Adjustment 4 — what-ifs:** P0 = what-ifs bound to P0 cases; the rest are loaded and testable but not polished.
 - **Adjustment 5 — clinician time:** CRG sessions now include the 15 institutional decisions; packs limited to ≤45 min by prioritising Type C and P0 items.
+
+## G. Project decisions and changes since v2.0 (living log)
+
+Sections A–F above are the v2.0 baseline (6 Oct 2026) and are left as written. This section is the running record of everything decided or changed afterwards, kept up to date under INSTRUCTIONS.md §8h. Each row gives the previous state, the new state, and the reason **where one is recorded**.
+
+**Evidence and gaps.** Dates and reasons come from (a) files in this repository (plans, ADR, phase review, register, README) and (b) the session records of 8–9 October 2026 (see `docs/previous_prompt.md`). **No session record exists for 6–7 October 2026**, when the plans, ADR-0001 and the phase review were written; those rows are reconstructed from the plan files only, with reasons marked "not recorded" rather than guessed (open item DT-031 in `docs/deferred-tasks.md`).
+
+### G.1 Decision log
+
+| # | Date | Area | Previous | New | Why | Evidence |
+|---|---|---|---|---|---|---|
+| 1 | 07 Oct 2026 | Plan structure and schedule | Master Plan / Team Board: 14-week schedule with gates, P0/P1/P2 scoped to the 31 Dec deadline | Plans as tier → phase → step files (P0/P1/P2 = build order, "full scope, no deadlines", nothing cut); 216 steps in milestones M0–M13 | Not recorded in the files | `docs/plans/README.md`, `milestones.md` |
+| 2 | 07 Oct 2026 | Core engine location | Guide B-R11: engine files inside `unity/Assets/_Project/Core/`, linked into a `sim/` project | `src/ProcSense.Core` (netstandard2.1, C# 9), built and tested with plain `dotnet`; Unity consumes it as a local package | Engine can be built and tested before Unity exists; one copy of the code | `docs/decisions/ADR-0001-core-location.md` (status still "Proposed" — DT-029) |
+| 3 | 07 Oct 2026 | Walkthrough medical status | Walkthrough and Team Board: "READY FOR CLINICIAN VALIDATION — not approved" | Walkthrough treated as approved by a medical professional (per the project owner); recorded in every register row | Owner statement | `docs/research/source_register.csv` (approval column) |
+| 4 | 07 Oct 2026 | Environment scope | Every location modelled | Category A (fully modelled: OT, one pre-op patient bay, walkable corridor, desk + computer), B (doors: CT, imaging, X-ray, lab, MRCP/ERCP — send, wait, report back, EMR updates), C (computer/UI only) | Owner direction "fully model only what the trainee interacts with" | `docs/plans/README.md`, `phase-review.md` A1–A5 |
+| 5 | 07 Oct 2026 | 3D assets | Open: asset pack, AI text-to-3D, importing free models | Supervisor's room shells; every equipment item is our own Blender Python script; free models only as visual references; no AI text-to-3D | Owner decisions | `docs/plans/README.md`, `working-model.md` |
+| 6 | 07 Oct 2026 | Characters | Avatars for every role | Avatars only for people physically present; phone/report roles are voice/text only | Same "model only what is used" principle | `phase-review.md` A7 |
+| 7 | 07 Oct 2026 | Phase list | Separate `p0-medical-research` and `p0-datasets` | Merged into `p0-medical-research-data`; new phases `p0-diagnostic-transitions` and `p0-patient-records-emr` added | Owner direction on doors, folder vs computer | `phase-review.md` A1, A2, P2 |
+| 8 | 07 Oct 2026 | Build order | Phases built independently | Walking skeleton first (greybox loop before art) | Proof before polish | `phase-review.md` P3, `plans/p0/README.md` |
+| 9 | 07 Oct 2026 | Phase-review proposals | — | Approved: P1 one patient bay, P2 merge datasets, P3 skeleton first, P6 recovery reuses the bay. Rejected: P4 and P5 (Pulse and composer stay in P1), P7 (corridor is walkable, B-room doors do not open) | Owner decisions | `phase-review.md` |
+| 10 | 07 Oct 2026 | Backend and AI | Backend/AI as required parts | Backend optional (P1), headset works without it; every AI path has a non-AI fallback | Offline Quest use, medical safety | `docs/plans/README.md` |
+| 11 | 07 Oct 2026 | Repository | Earlier prototype repository | History restarted; foundation step s00 approved | Not recorded | `README.md`, `✅ p0-foundation-s00…` |
+| 12 | 08 Oct 2026 | Working files | — | `AGENTS.md` carries routing and meta rules; `INSTRUCTIONS.md` carries working-style rules; both are read first every session | Owner prompts "cache agents.md and instruction.md", "use and follow the seperate instruction.md file" | `docs/previous_prompt.md` #1–#3 |
+| 13 | 09 Oct 2026 | Coding style | Ponytail named as active in INSTRUCTIONS §9 | Ponytail skill installed in the project (`the local skills folder`) and used for all coding (smallest working change) | Owner prompt | `docs/previous_prompt.md` #5 |
+| 14 | 09 Oct 2026 | .NET | Projects target net9.0; only .NET 8 and 10 on the machine | .NET 9 SDK installed | Tests could not run | session record |
+| 15 | 09 Oct 2026 | Remote repository | `github.com/Myt1x54/procsense-fyp` | `github.com/ruhank-dev/procsense-fyp` (ownership transferred); local remote and README updated | Owner transferred the repository | `docs/previous_prompt.md` #16–#17 |
+| 16 | 09 Oct 2026 | Hand-off format | Proposed commit message after approval | Every hand-off includes the full `git add` / `git commit` / `git push` commands with the message; the agent never commits unless told | Owner prompt | INSTRUCTIONS §3, `previous_prompt.md` #11 |
+| 17 | 09 Oct 2026 | Engine design (skeleton steps 2–6) | Guide: Session built from content package + case card; JSON via a library | Session takes the case card, builds the patient and starts at the case clock time; **own JSON reader** (no library; Unity IL2CPP safe); C# 9 records with a shim; observable snapshot built on demand; saved session = header line + canonical JSONL with SHA-256; identity gate in the first pipeline subsystem; trust/anxiety values read from `content/behaviour.json` | Determinism, Unity compatibility, no clinical numbers in code | step docs `p0-core-engine-s01…s04`, `p0-simulation-workflow-s01` |
+| 18 | 09 Oct 2026 | Step 1 mismatch rule | Guide L1-01: mismatch state; critical item if the trainee confirms anyway | Confirming with a mismatch is **rejected** (`ST1_MISMATCH`, logged with the differences); the critical score item waits for the scoring phase | Scoring engine not built yet | `IdentitySubsystem`, DT-003 |
+| 19 | 09 Oct 2026 | Trust/anxiety ±1 (`SR-0035`) | Register: "Pending" | Accepted as a simulation mechanic | Owner statement | `source_register.csv`, DT-002 |
+| 20 | 09 Oct 2026 | Clinical approval status | Walkthrough-only approval (row 3) | All existing medical research and clinical workflows treated as clinician-approved. **Not settled by it:** hospital-specific values (Part I decisions, band colours, unknown-patient procedure) and the open source conflicts ISS-0001 / ISS-0002 | Owner statement | `docs/plans/README.md`, DT-018, DT-034 |
+| 21 | 09 Oct 2026 | Nurse wristband workflow | Only in the source documents (L1-04, T01-4, walkthrough); in no step file | Planned: engine s18, 3D nurse entering from outside s08, VR interaction + tablet fallback s12, nurse voice s06; includes the missing-wristband scenario | Owner request | `p0-simulation-workflow-s18`, `p0-characters-s08`, `p0-vr-interaction-ui-s12`, `p0-voice-audio-s06` |
+| 22 | 09 Oct 2026 | Spoken identity check | Token shortcut (name + spelled-out date words) | Robust normaliser/extractor planned (s19); ambiguous dates reported, never guessed | Owner request | `p0-simulation-workflow-s19` |
+| 23 | 09 Oct 2026 | Documentation rules | — | Permanent: prompt history (`docs/previous_prompt.md`), deferred-task register (`docs/deferred-tasks.md`), `docs/context/` kept in sync | Owner request | INSTRUCTIONS §8f–§8h |
+| 24 | 09 Oct 2026 | Memory-log time zone | Log recorded `UTC-08:00` | Machine zone "PST" is Pakistan Standard Time, **UTC+05:00**; log corrected | Checked against session timestamps | `.memory/` log |
+
+### G.2 Build progress (walking skeleton 1)
+
+Approved on 09 Oct 2026: step 1 (VAR-S1-A content), core-engine s01 (clock + RNG), s02 (actions/session/log), s03 (content loader + patient state), s04 (observable, CLI, replay). Built and awaiting approval: p0-simulation-workflow-s01 (Step 1 identity and allergy). Outstanding work: `docs/deferred-tasks.md`.
+
+### G.3 Context folder review (09 Oct 2026)
+
+| File | Affected? | What was done |
+|---|---|---|
+| `ProcSense_Change_Report.md` | Yes | This section |
+| `ProcSense_Team_Board.md` | Yes | Status addendum, current-position table, notes on dates and decisions, two added decision items |
+| `ProcSense_Medical_Walkthrough_v5_1.md` | Yes (status) | Banner only; body unchanged |
+| `ProcSense_Master_Plan_from_TXT.md`, `…_from_PDF.md` | Yes (structure, schedule) | Banner only; body unchanged |
+| `ProcSense_Implementation_Guide_from_TXT.md`, `…_from_PDF.md` | Yes (Core location, Step 1 rules) | Banner only; body unchanged |
+| `ProcSense_Data_Source_Inventory.md` | Yes (registers) | Banner only; body unchanged |
+| `CONVERSION_REPORT.md` | Yes (records the banners) | Addendum |
+
+The converted documents are format-only copies of the original PDFs/TXT/CSV; their bodies are intentionally not edited, so decisions live here and in the Team Board, and the banners point to them.
+
+### G.4 Open or unconfirmed
+
+- 6–7 Oct 2026 history is reconstructed from files only (DT-031).
+- Whether the 09 Oct approval statement also closes the 15 institutional decisions in §F (DT-034).
+- Whether the Team Board dates (gates, 31 Dec submission) still bind, given "no deadlines" in the plans (DT-035).

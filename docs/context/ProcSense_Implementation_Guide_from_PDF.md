@@ -1,5 +1,7 @@
 <!-- Converted from ProcSense_Implementation_Guide.pdf — the PDF is generated from a structured document; its headings, paragraphs, lists, tables (every row and cell), diagrams and callouts are written out as Markdown and checked word-for-word against the text extracted from the PDF file. Format conversion only: no summarising, rewriting or correction. -->
 
+> **Project addendum (09 Oct 2026 — not part of the converted document).** (1) The Core engine lives in `src/ProcSense.Core` (ADR-0001), not `unity/Assets/_Project/Core`. (2) Step 1 rules: L1-01, L1-02, L1-03 (trust +1 / anxiety −1, accepted as a simulation mechanic), L1-WT1 and L1-WT2 are implemented in plan step `p0-simulation-workflow-s01`; L1-04 and tests T01-4 / T01-5 are planned in `p0-simulation-workflow-s18`, `p0-characters-s08`, `p0-vr-interaction-ui-s12`; robust spoken identity in `p0-simulation-workflow-s19`. (3) Outstanding work: `docs/deferred-tasks.md`. Decision history: `ProcSense_Change_Report.md` §G.
+
 *PROCSENSE · IMPLEMENTATION GUIDE*
 
 # Implementation Guide

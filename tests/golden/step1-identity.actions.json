@@ -1,0 +1,11 @@
+[
+  { "t": 0,  "verb": "introduce_self" },
+  { "t": 3,  "verb": "ask_identity" },
+  { "t": 8,  "verb": "read_wristband" },
+  { "t": 12, "verb": "open_notes" },
+  { "t": 15, "verb": "confirm_identity" },
+  { "t": 20, "verb": "ask_allergies" },
+  { "t": 24, "verb": "ask_reason_for_admission" },
+  { "t": 28, "verb": "ask_responsible_adult" },
+  { "t": 32, "verb": "order_blood_test" }
+]

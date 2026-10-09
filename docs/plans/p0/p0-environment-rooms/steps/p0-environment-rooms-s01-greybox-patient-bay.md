@@ -33,3 +33,7 @@ Things feel too big/small in VR → adjust the manifest, re-run the script (neve
 
 ## Sources
 Implementation Guide B-S8 Step 5 (anchors); walkthrough Step 1 'what the trainee sees' (S1 day-surgery bay); p0 README build order (skeleton 1).
+
+## Carried-over requirements (added 09 October 2026)
+
+- The bay needs a **doorway/corridor side** and anchors `ANCHOR_BayDoor`, `ANCHOR_NurseBedside`, `ANCHOR_NurseExit` so a nurse can visibly enter from outside and replace the wristband (p0-characters-s08; DT-007).

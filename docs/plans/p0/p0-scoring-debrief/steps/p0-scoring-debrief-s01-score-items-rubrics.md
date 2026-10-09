@@ -29,3 +29,10 @@ Score changes unexpectedly → golden file diff in the PR shows why.
 
 ## Sources
 Implementation Guide B-M15 Steps 1–2, 6, T-SCO3; walkthrough Part 16.
+
+## Carried-over requirements (added 09 October 2026)
+
+Score items that earlier steps already provide the evidence for (DT-003, DT-004):
+- **CRITICAL**: a safety-critical action rejected by the Core — tests, medicines or transfer attempted before identity is confirmed (`IDENTITY_NOT_CONFIRMED`), or confirming identity despite a mismatch (`ST1_MISMATCH`). Assessment mode only; practice mode shows the banner.
+- **Minor**: no introduction as the first act (flag `introduced` absent), unnecessary mismatch report (`unnecessary_mismatch_report`), closed-question identity check (`identity_asked_closed`), `risk.wrong_blood` armed.
+- A mismatch that was reported and resolved by the nurse (p0-simulation-workflow-s18) is credited, not penalised.

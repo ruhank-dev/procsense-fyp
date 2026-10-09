@@ -43,7 +43,7 @@ internal static class Commands
 
         var content = ContentLoader.Load(new FileContentReader(ContentDir(o)), caseId);
         var script = ActionScript.Parse(File.ReadAllText(Need(o, "actions")));
-        var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default());
+        var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content));
         SessionFile.Play(session, script);
 
         File.WriteAllText(logPath, SessionFile.Write(session));
@@ -60,7 +60,7 @@ internal static class Commands
         string text = File.ReadAllText(Need(o, "log"));
         string caseId = SessionFile.CaseIdOf(text);
         var content = ContentLoader.Load(new FileContentReader(ContentDir(o)), caseId);
-        var r = SessionFile.Replay(text, content, Subsystems.Default);
+        var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
         if (r.Match) { Console.WriteLine($"replay OK, hash match ({r.ActualHash})"); return 0; }
         return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}");
     }
