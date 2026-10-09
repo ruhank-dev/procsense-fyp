@@ -13,8 +13,8 @@ tasks:
     cmds:
       - dotnet test ProcSense.sln
 
-  run-cli:
-    desc: Run the headless simulator (pass args after --)
+  sim:
+    desc: Run the headless simulator, e.g. task sim -- run --case VAR-S1-A --seed 42 --actions tests/golden/smoke.actions.json --out result.json
     cmds:
       - dotnet run --project src/ProcSense.Cli -- {{.CLI_ARGS}}
 

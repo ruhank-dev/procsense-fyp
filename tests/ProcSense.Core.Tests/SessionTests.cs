@@ -37,7 +37,7 @@ namespace ProcSense.Core.Tests
         }
 
         private static Session NewSession(params ISubsystem[] subs) =>
-            new Session(42, SessionMode.Practice, TimeSpan.FromHours(8), subs);
+            new Session(TestCase.Card(), 42, SessionMode.Practice, subs);
 
         [Fact] // T-K2
         public void Unknown_verb_is_rejected_and_logged()

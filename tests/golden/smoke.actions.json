@@ -1,0 +1,5 @@
+[
+  { "t": 0,   "verb": "introduce_self" },
+  { "t": 2.5, "verb": "read_wristband", "target": "patient" },
+  { "t": 7,   "verb": "ask_allergies", "params": { "wording": "open" } }
+]
