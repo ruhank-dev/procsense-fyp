@@ -7,7 +7,7 @@ Exit code 0 = all valid, 1 = problems found.
 import sys
 from pathlib import Path
 
-from checks import case_problems, load_json, load_register, ref_problems, schema_errors
+from checks import case_problems, load_json, load_register, ref_problems, rule_problems, schema_errors
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -28,6 +28,14 @@ def main() -> int:
         doc = load_json(path)
         problems = schema_errors(doc, case_schema) + case_problems(doc, register)
         failed |= _report("fixture " + path.stem, problems, f"{len(doc.get('refs', {}))} refs")
+
+    rule_schema = load_json(CONTENT / "schema" / "rule.schema.json")
+    rule_files = [p for p in sorted((CONTENT / "rules").glob("*.json")) if p.stem != "vectors"]
+    rule_files += sorted((ROOT / "tests" / "fixtures" / "rules").glob("*.json"))
+    for path in rule_files:
+        doc = load_json(path)
+        problems = schema_errors(doc, rule_schema) + rule_problems(doc, register)
+        failed |= _report("rules " + path.stem, problems, f"{len(doc.get('rules', []))} rules")
 
     for name in ("devices", "behaviour", "history_topics"):
         path = CONTENT / f"{name}.json"

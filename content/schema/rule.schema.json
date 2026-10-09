@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schema/rule.schema.json",
+  "title": "ProcSense rules file",
+  "description": "A list of rules in the JsonLogic subset the Core engine evaluates (Core: ProcSense.Core.Rules.Logic). Every rule names its source-register ids, review status and at least one test case. A rule raises a concern, asks for a review, blocks a step or adds a score item; it never cancels surgery by itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rules"],
+  "properties": {
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "when", "then", "severity", "refs", "status", "tests"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]*$" },
+          "when": { "description": "Rule logic: var, ==, !=, <, <=, >, >=, and, or, !, in, if, missing, some, all, +, -." },
+          "then": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "text"],
+            "properties": {
+              "kind": { "enum": ["concern", "require_review", "block", "score_item"] },
+              "text": { "type": "string", "minLength": 1, "description": "The message shown, or the score item id for a score_item." }
+            }
+          },
+          "severity": { "enum": ["low", "medium", "high"] },
+          "refs": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^SR-[0-9]{4}$" } },
+          "status": { "enum": ["DRAFT", "REVIEWED", "APPROVED"] },
+          "tests": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "state", "expect"],
+              "properties": {
+                "name": { "type": "string" },
+                "state": { "type": "object" },
+                "expect": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

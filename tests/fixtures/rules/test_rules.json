@@ -1,0 +1,30 @@
+{
+  "rules": [
+    {
+      "id": "TEST-R-RANGE",
+      "when": { "and": [ { ">=": [ { "var": "n" }, 1 ] }, { "<": [ { "var": "n" }, 5 ] } ] },
+      "then": { "kind": "concern", "text": "Test fixture: n is inside the range." },
+      "severity": "low",
+      "refs": [ "SR-0001" ],
+      "status": "DRAFT",
+      "tests": [
+        { "name": "inside", "state": { "n": 3 }, "expect": true },
+        { "name": "at the open end", "state": { "n": 5 }, "expect": false },
+        { "name": "missing value", "state": {}, "expect": false }
+      ]
+    },
+    {
+      "id": "TEST-R-BLOCK",
+      "when": { "all": [ { "var": "items" }, { "==": [ { "var": "done" }, true ] } ] },
+      "then": { "kind": "block", "text": "Test fixture: every item must be done." },
+      "severity": "high",
+      "refs": [ "SR-0001", "SR-0002" ],
+      "status": "REVIEWED",
+      "tests": [
+        { "name": "all done", "state": { "items": [ { "done": true }, { "done": true } ] }, "expect": true },
+        { "name": "one not done", "state": { "items": [ { "done": true }, { "done": false } ] }, "expect": false },
+        { "name": "no items", "state": { "items": [] }, "expect": false }
+      ]
+    }
+  ]
+}

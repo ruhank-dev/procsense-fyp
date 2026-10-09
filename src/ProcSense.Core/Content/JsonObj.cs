@@ -58,6 +58,9 @@ namespace ProcSense.Core.Content
             return map;
         }
 
+        /// <summary>The value as parsed, whatever its type (used for rule logic and test states).</summary>
+        public object? Any(string key) => Raw(key);
+
         public bool Has(string key) => _d.ContainsKey(key);
 
         public string Sub(string key) => _path.Length == 0 ? key : _path + "." + key;

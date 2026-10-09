@@ -1,0 +1,3002 @@
+{
+ "vectors": [
+  {
+   "name": "1 < 2",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "2 < 1",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "2 < 2",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 2
+   },
+   "expect": false
+  },
+  {
+   "name": "-1 < 1",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": -1,
+    "b": 1
+   },
+   "expect": true
+  },
+  {
+   "name": "0 < 0",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": 0
+   },
+   "expect": false
+  },
+  {
+   "name": "0.5 < 0.25",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0.5,
+    "b": 0.25
+   },
+   "expect": false
+  },
+  {
+   "name": "98 < 94",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 98,
+    "b": 94
+   },
+   "expect": false
+  },
+  {
+   "name": "36.7 < 38",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 36.7,
+    "b": 38
+   },
+   "expect": true
+  },
+  {
+   "name": "1 <= 2",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "2 <= 1",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "2 <= 2",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "-1 <= 1",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": -1,
+    "b": 1
+   },
+   "expect": true
+  },
+  {
+   "name": "0 <= 0",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": 0
+   },
+   "expect": true
+  },
+  {
+   "name": "0.5 <= 0.25",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0.5,
+    "b": 0.25
+   },
+   "expect": false
+  },
+  {
+   "name": "98 <= 94",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 98,
+    "b": 94
+   },
+   "expect": false
+  },
+  {
+   "name": "36.7 <= 38",
+   "rule": {
+    "<=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 36.7,
+    "b": 38
+   },
+   "expect": true
+  },
+  {
+   "name": "1 > 2",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": false
+  },
+  {
+   "name": "2 > 1",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 1
+   },
+   "expect": true
+  },
+  {
+   "name": "2 > 2",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 2
+   },
+   "expect": false
+  },
+  {
+   "name": "-1 > 1",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": -1,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "0 > 0",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": 0
+   },
+   "expect": false
+  },
+  {
+   "name": "0.5 > 0.25",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0.5,
+    "b": 0.25
+   },
+   "expect": true
+  },
+  {
+   "name": "98 > 94",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 98,
+    "b": 94
+   },
+   "expect": true
+  },
+  {
+   "name": "36.7 > 38",
+   "rule": {
+    ">": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 36.7,
+    "b": 38
+   },
+   "expect": false
+  },
+  {
+   "name": "1 >= 2",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": false
+  },
+  {
+   "name": "2 >= 1",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 1
+   },
+   "expect": true
+  },
+  {
+   "name": "2 >= 2",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "-1 >= 1",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": -1,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "0 >= 0",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": 0
+   },
+   "expect": true
+  },
+  {
+   "name": "0.5 >= 0.25",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0.5,
+    "b": 0.25
+   },
+   "expect": true
+  },
+  {
+   "name": "98 >= 94",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 98,
+    "b": 94
+   },
+   "expect": true
+  },
+  {
+   "name": "36.7 >= 38",
+   "rule": {
+    ">=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 36.7,
+    "b": 38
+   },
+   "expect": false
+  },
+  {
+   "name": "1 == 2",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": false
+  },
+  {
+   "name": "2 == 1",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "2 == 2",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "-1 == 1",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": -1,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "0 == 0",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": 0
+   },
+   "expect": true
+  },
+  {
+   "name": "0.5 == 0.25",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0.5,
+    "b": 0.25
+   },
+   "expect": false
+  },
+  {
+   "name": "98 == 94",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 98,
+    "b": 94
+   },
+   "expect": false
+  },
+  {
+   "name": "36.7 == 38",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 36.7,
+    "b": 38
+   },
+   "expect": false
+  },
+  {
+   "name": "1 != 2",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "2 != 1",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 1
+   },
+   "expect": true
+  },
+  {
+   "name": "2 != 2",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 2,
+    "b": 2
+   },
+   "expect": false
+  },
+  {
+   "name": "-1 != 1",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": -1,
+    "b": 1
+   },
+   "expect": true
+  },
+  {
+   "name": "0 != 0",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": 0
+   },
+   "expect": false
+  },
+  {
+   "name": "0.5 != 0.25",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0.5,
+    "b": 0.25
+   },
+   "expect": true
+  },
+  {
+   "name": "98 != 94",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 98,
+    "b": 94
+   },
+   "expect": true
+  },
+  {
+   "name": "36.7 != 38",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 36.7,
+    "b": 38
+   },
+   "expect": true
+  },
+  {
+   "name": "missing < 3 is false",
+   "rule": {
+    "<": [
+     {
+      "var": "nope"
+     },
+     3
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "missing <= 3 is false",
+   "rule": {
+    "<=": [
+     {
+      "var": "nope"
+     },
+     3
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "missing > 3 is false",
+   "rule": {
+    ">": [
+     {
+      "var": "nope"
+     },
+     3
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "missing >= 3 is false",
+   "rule": {
+    ">=": [
+     {
+      "var": "nope"
+     },
+     3
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "null == null",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "null == 0 is false",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     0
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "null != 3",
+   "rule": {
+    "!=": [
+     {
+      "var": "a"
+     },
+     3
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "null < null is false",
+   "rule": {
+    "<": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "strict: 1 == '1'",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": "1"
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: '1' == 1",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": "1",
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: true == 1",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": true,
+    "b": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: 0 == false",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 0,
+    "b": false
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: '' == false",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": "",
+    "b": false
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: null == false",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": null,
+    "b": false
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: 'a' == 'a'",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": "a",
+    "b": "a"
+   },
+   "expect": true
+  },
+  {
+   "name": "strict: 'a' == 'A'",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": "a",
+    "b": "A"
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: [1,2] == [1,2]",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": [
+     1,
+     2
+    ],
+    "b": [
+     1,
+     2
+    ]
+   },
+   "expect": true
+  },
+  {
+   "name": "strict: [1,2] == [2,1]",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": [
+     1,
+     2
+    ],
+    "b": [
+     2,
+     1
+    ]
+   },
+   "expect": false
+  },
+  {
+   "name": "strict: 1 == 1.0",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 1.0
+   },
+   "expect": true
+  },
+  {
+   "name": "strict: '' == ''",
+   "rule": {
+    "==": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": "",
+    "b": ""
+   },
+   "expect": true
+  },
+  {
+   "name": "'a' < 'b'",
+   "rule": {
+    "<": [
+     "a",
+     "b"
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "'b' < 'a' is false",
+   "rule": {
+    "<": [
+     "b",
+     "a"
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "! 0",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": 0
+   },
+   "expect": true
+  },
+  {
+   "name": "if 0",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": 0
+   },
+   "expect": "no"
+  },
+  {
+   "name": "! 1",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": 1
+   },
+   "expect": false
+  },
+  {
+   "name": "if 1",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": 1
+   },
+   "expect": "yes"
+  },
+  {
+   "name": "! \"\"",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": ""
+   },
+   "expect": true
+  },
+  {
+   "name": "if \"\"",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": ""
+   },
+   "expect": "no"
+  },
+  {
+   "name": "! \"x\"",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": "x"
+   },
+   "expect": false
+  },
+  {
+   "name": "if \"x\"",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": "x"
+   },
+   "expect": "yes"
+  },
+  {
+   "name": "! []",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": []
+   },
+   "expect": true
+  },
+  {
+   "name": "if []",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": []
+   },
+   "expect": "no"
+  },
+  {
+   "name": "! [0]",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": [
+     0
+    ]
+   },
+   "expect": false
+  },
+  {
+   "name": "if [0]",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": [
+     0
+    ]
+   },
+   "expect": "yes"
+  },
+  {
+   "name": "! null",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": null
+   },
+   "expect": true
+  },
+  {
+   "name": "if null",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": null
+   },
+   "expect": "no"
+  },
+  {
+   "name": "! false",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": false
+   },
+   "expect": true
+  },
+  {
+   "name": "if false",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": false
+   },
+   "expect": "no"
+  },
+  {
+   "name": "! true",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": true
+   },
+   "expect": false
+  },
+  {
+   "name": "if true",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": true
+   },
+   "expect": "yes"
+  },
+  {
+   "name": "! 2.5",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": 2.5
+   },
+   "expect": false
+  },
+  {
+   "name": "if 2.5",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": 2.5
+   },
+   "expect": "yes"
+  },
+  {
+   "name": "! -1",
+   "rule": {
+    "!": [
+     {
+      "var": "v"
+     }
+    ]
+   },
+   "data": {
+    "v": -1
+   },
+   "expect": false
+  },
+  {
+   "name": "if -1",
+   "rule": {
+    "if": [
+     {
+      "var": "v"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "data": {
+    "v": -1
+   },
+   "expect": "yes"
+  },
+  {
+   "name": "and 1 2",
+   "rule": {
+    "and": [
+     1,
+     2
+    ]
+   },
+   "data": {},
+   "expect": 2
+  },
+  {
+   "name": "and 1 0 3",
+   "rule": {
+    "and": [
+     1,
+     0,
+     3
+    ]
+   },
+   "data": {},
+   "expect": 0
+  },
+  {
+   "name": "and true 'x'",
+   "rule": {
+    "and": [
+     true,
+     "x"
+    ]
+   },
+   "data": {},
+   "expect": "x"
+  },
+  {
+   "name": "and null 1",
+   "rule": {
+    "and": [
+     null,
+     1
+    ]
+   },
+   "data": {},
+   "expect": null
+  },
+  {
+   "name": "or 0 '' 5",
+   "rule": {
+    "or": [
+     0,
+     "",
+     5
+    ]
+   },
+   "data": {},
+   "expect": 5
+  },
+  {
+   "name": "or 0 ''",
+   "rule": {
+    "or": [
+     0,
+     ""
+    ]
+   },
+   "data": {},
+   "expect": ""
+  },
+  {
+   "name": "or false 'a'",
+   "rule": {
+    "or": [
+     false,
+     "a"
+    ]
+   },
+   "data": {},
+   "expect": "a"
+  },
+  {
+   "name": "or null null",
+   "rule": {
+    "or": [
+     null,
+     null
+    ]
+   },
+   "data": {},
+   "expect": null
+  },
+  {
+   "name": "2 in [1,2,3]",
+   "rule": {
+    "in": [
+     2,
+     [
+      1,
+      2,
+      3
+     ]
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "4 in [1,2,3]",
+   "rule": {
+    "in": [
+     4,
+     [
+      1,
+      2,
+      3
+     ]
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "'a' in ['a']",
+   "rule": {
+    "in": [
+     "a",
+     [
+      "a"
+     ]
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "1 in ['1'] is false",
+   "rule": {
+    "in": [
+     1,
+     [
+      "1"
+     ]
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "'ell' in 'hello'",
+   "rule": {
+    "in": [
+     "ell",
+     "hello"
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "'z' in 'hello'",
+   "rule": {
+    "in": [
+     "z",
+     "hello"
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "null in [null]",
+   "rule": {
+    "in": [
+     null,
+     [
+      null
+     ]
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "in a missing list is false",
+   "rule": {
+    "in": [
+     1,
+     {
+      "var": "nope"
+     }
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "var plain",
+   "rule": {
+    "var": "a"
+   },
+   "data": {
+    "a": 5
+   },
+   "expect": 5
+  },
+  {
+   "name": "var dotted",
+   "rule": {
+    "var": "a.b"
+   },
+   "data": {
+    "a": {
+     "b": 6
+    }
+   },
+   "expect": 6
+  },
+  {
+   "name": "var missing deep",
+   "rule": {
+    "var": "a.b.c"
+   },
+   "data": {
+    "a": {
+     "b": 1
+    }
+   },
+   "expect": null
+  },
+  {
+   "name": "var default used",
+   "rule": {
+    "var": [
+     "nope",
+     7
+    ]
+   },
+   "data": {},
+   "expect": 7
+  },
+  {
+   "name": "var default not used",
+   "rule": {
+    "var": [
+     "a",
+     7
+    ]
+   },
+   "data": {
+    "a": 1
+   },
+   "expect": 1
+  },
+  {
+   "name": "var list index",
+   "rule": {
+    "var": "xs.1"
+   },
+   "data": {
+    "xs": [
+     10,
+     20,
+     30
+    ]
+   },
+   "expect": 20
+  },
+  {
+   "name": "var list index out of range",
+   "rule": {
+    "var": "xs.9"
+   },
+   "data": {
+    "xs": [
+     10
+    ]
+   },
+   "expect": null
+  },
+  {
+   "name": "var through a scalar is missing",
+   "rule": {
+    "var": "a.b"
+   },
+   "data": {
+    "a": 3
+   },
+   "expect": null
+  },
+  {
+   "name": "missing one",
+   "rule": {
+    "missing": [
+     "a",
+     "b"
+    ]
+   },
+   "data": {
+    "a": 1
+   },
+   "expect": [
+    "b"
+   ]
+  },
+  {
+   "name": "missing all",
+   "rule": {
+    "missing": [
+     "a",
+     "b"
+    ]
+   },
+   "data": {},
+   "expect": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "name": "missing none",
+   "rule": {
+    "missing": [
+     "a",
+     "b"
+    ]
+   },
+   "data": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": []
+  },
+  {
+   "name": "missing nested",
+   "rule": {
+    "missing": [
+     "x.y"
+    ]
+   },
+   "data": {
+    "x": {
+     "z": 1
+    }
+   },
+   "expect": [
+    "x.y"
+   ]
+  },
+  {
+   "name": "a null value counts as missing",
+   "rule": {
+    "missing": [
+     "a"
+    ]
+   },
+   "data": {
+    "a": null
+   },
+   "expect": [
+    "a"
+   ]
+  },
+  {
+   "name": "some > 2 true",
+   "rule": {
+    "some": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": [
+     1,
+     2,
+     3
+    ]
+   },
+   "expect": true
+  },
+  {
+   "name": "some > 2 false",
+   "rule": {
+    "some": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": [
+     1,
+     2
+    ]
+   },
+   "expect": false
+  },
+  {
+   "name": "some of empty",
+   "rule": {
+    "some": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": []
+   },
+   "expect": false
+  },
+  {
+   "name": "some of missing",
+   "rule": {
+    "some": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "all > 2 true",
+   "rule": {
+    "all": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": [
+     3,
+     4
+    ]
+   },
+   "expect": true
+  },
+  {
+   "name": "all > 2 false",
+   "rule": {
+    "all": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": [
+     3,
+     1
+    ]
+   },
+   "expect": false
+  },
+  {
+   "name": "all of empty",
+   "rule": {
+    "all": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": []
+   },
+   "expect": false
+  },
+  {
+   "name": "all of missing",
+   "rule": {
+    "all": [
+     {
+      "var": "xs"
+     },
+     {
+      ">": [
+       {
+        "var": ""
+       },
+       2
+      ]
+     }
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "some over objects",
+   "rule": {
+    "some": [
+     {
+      "var": "xs"
+     },
+     {
+      "==": [
+       {
+        "var": "k"
+       },
+       "x"
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": [
+     {
+      "k": "y"
+     },
+     {
+      "k": "x"
+     }
+    ]
+   },
+   "expect": true
+  },
+  {
+   "name": "all over objects",
+   "rule": {
+    "all": [
+     {
+      "var": "xs"
+     },
+     {
+      "==": [
+       {
+        "var": "k"
+       },
+       "x"
+      ]
+     }
+    ]
+   },
+   "data": {
+    "xs": [
+     {
+      "k": "x"
+     },
+     {
+      "k": "y"
+     }
+    ]
+   },
+   "expect": false
+  },
+  {
+   "name": "all containing some",
+   "rule": {
+    "all": [
+     {
+      "var": "rows"
+     },
+     {
+      "some": [
+       {
+        "var": "cells"
+       },
+       {
+        "==": [
+         {
+          "var": ""
+         },
+         1
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "data": {
+    "rows": [
+     {
+      "cells": [
+       1,
+       2
+      ]
+     },
+     {
+      "cells": [
+       3,
+       1
+      ]
+     }
+    ]
+   },
+   "expect": true
+  },
+  {
+   "name": "some containing all",
+   "rule": {
+    "some": [
+     {
+      "var": "rows"
+     },
+     {
+      "all": [
+       {
+        "var": "cells"
+       },
+       {
+        ">": [
+         {
+          "var": ""
+         },
+         5
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "data": {
+    "rows": [
+     {
+      "cells": [
+       1,
+       9
+      ]
+     },
+     {
+      "cells": [
+       6,
+       7
+      ]
+     }
+    ]
+   },
+   "expect": true
+  },
+  {
+   "name": "+ three",
+   "rule": {
+    "+": [
+     1,
+     2,
+     3
+    ]
+   },
+   "data": {},
+   "expect": 6
+  },
+  {
+   "name": "+ decimals",
+   "rule": {
+    "+": [
+     1.5,
+     2.5
+    ]
+   },
+   "data": {},
+   "expect": 4
+  },
+  {
+   "name": "+ null is null",
+   "rule": {
+    "+": [
+     1,
+     {
+      "var": "nope"
+     }
+    ]
+   },
+   "data": {},
+   "expect": null
+  },
+  {
+   "name": "- two",
+   "rule": {
+    "-": [
+     5,
+     3
+    ]
+   },
+   "data": {},
+   "expect": 2
+  },
+  {
+   "name": "- one negates",
+   "rule": {
+    "-": [
+     5
+    ]
+   },
+   "data": {},
+   "expect": -5
+  },
+  {
+   "name": "- null is null",
+   "rule": {
+    "-": [
+     {
+      "var": "nope"
+     },
+     3
+    ]
+   },
+   "data": {},
+   "expect": null
+  },
+  {
+   "name": "+ vars",
+   "rule": {
+    "+": [
+     {
+      "var": "a"
+     },
+     {
+      "var": "b"
+     }
+    ]
+   },
+   "data": {
+    "a": 40,
+    "b": 2
+   },
+   "expect": 42
+  },
+  {
+   "name": "nested arithmetic",
+   "rule": {
+    "-": [
+     {
+      "+": [
+       10,
+       5
+      ]
+     },
+     {
+      "+": [
+       1,
+       2
+      ]
+     }
+    ]
+   },
+   "data": {},
+   "expect": 12
+  },
+  {
+   "name": "1 < 2 < 3",
+   "rule": {
+    "<": [
+     1,
+     2,
+     3
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "1 < 3 < 3 is false",
+   "rule": {
+    "<": [
+     1,
+     3,
+     3
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "1 <= 3 <= 3",
+   "rule": {
+    "<=": [
+     1,
+     3,
+     3
+    ]
+   },
+   "data": {},
+   "expect": true
+  },
+  {
+   "name": "3 < 2 < 1 is false",
+   "rule": {
+    "<": [
+     3,
+     2,
+     1
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "a value inside a range",
+   "rule": {
+    "<=": [
+     94,
+     {
+      "var": "x"
+     },
+     96
+    ]
+   },
+   "data": {
+    "x": 95
+   },
+   "expect": true
+  },
+  {
+   "name": "if picks the second branch",
+   "rule": {
+    "if": [
+     false,
+     "a",
+     true,
+     "b",
+     "c"
+    ]
+   },
+   "data": {},
+   "expect": "b"
+  },
+  {
+   "name": "if falls to else",
+   "rule": {
+    "if": [
+     false,
+     "a",
+     false,
+     "b",
+     "c"
+    ]
+   },
+   "data": {},
+   "expect": "c"
+  },
+  {
+   "name": "if without else gives null",
+   "rule": {
+    "if": [
+     false,
+     "a"
+    ]
+   },
+   "data": {},
+   "expect": null
+  },
+  {
+   "name": "if with one argument",
+   "rule": {
+    "if": [
+     "x"
+    ]
+   },
+   "data": {},
+   "expect": "x"
+  },
+  {
+   "name": "range inside",
+   "rule": {
+    "and": [
+     {
+      ">=": [
+       {
+        "var": "n"
+       },
+       1
+      ]
+     },
+     {
+      "<": [
+       {
+        "var": "n"
+       },
+       5
+      ]
+     }
+    ]
+   },
+   "data": {
+    "n": 3
+   },
+   "expect": true
+  },
+  {
+   "name": "range at the open end",
+   "rule": {
+    "and": [
+     {
+      ">=": [
+       {
+        "var": "n"
+       },
+       1
+      ]
+     },
+     {
+      "<": [
+       {
+        "var": "n"
+       },
+       5
+      ]
+     }
+    ]
+   },
+   "data": {
+    "n": 5
+   },
+   "expect": false
+  },
+  {
+   "name": "range with a missing value",
+   "rule": {
+    "and": [
+     {
+      ">=": [
+       {
+        "var": "n"
+       },
+       1
+      ]
+     },
+     {
+      "<": [
+       {
+        "var": "n"
+       },
+       5
+      ]
+     }
+    ]
+   },
+   "data": {},
+   "expect": false
+  },
+  {
+   "name": "or of two conditions",
+   "rule": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "a"
+       },
+       "x"
+      ]
+     },
+     {
+      "in": [
+       {
+        "var": "b"
+       },
+       [
+        "p",
+        "q"
+       ]
+      ]
+     }
+    ]
+   },
+   "data": {
+    "a": "y",
+    "b": "q"
+   },
+   "expect": true
+  },
+  {
+   "name": "not and",
+   "rule": {
+    "!": [
+     {
+      "and": [
+       true,
+       {
+        "==": [
+         {
+          "var": "a"
+         },
+         1
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "data": {
+    "a": 2
+   },
+   "expect": true
+  },
+  {
+   "name": "31 nested operations are allowed",
+   "rule": {
+    "!": [
+     {
+      "!": [
+       {
+        "!": [
+         {
+          "!": [
+           {
+            "!": [
+             {
+              "!": [
+               {
+                "!": [
+                 {
+                  "!": [
+                   {
+                    "!": [
+                     {
+                      "!": [
+                       {
+                        "!": [
+                         {
+                          "!": [
+                           {
+                            "!": [
+                             {
+                              "!": [
+                               {
+                                "!": [
+                                 {
+                                  "!": [
+                                   {
+                                    "!": [
+                                     {
+                                      "!": [
+                                       {
+                                        "!": [
+                                         {
+                                          "!": [
+                                           {
+                                            "!": [
+                                             {
+                                              "!": [
+                                               {
+                                                "!": [
+                                                 {
+                                                  "!": [
+                                                   {
+                                                    "!": [
+                                                     {
+                                                      "!": [
+                                                       {
+                                                        "!": [
+                                                         {
+                                                          "!": [
+                                                           {
+                                                            "!": [
+                                                             {
+                                                              "!": [
+                                                               {
+                                                                "!": [
+                                                                 true
+                                                                ]
+                                                               }
+                                                              ]
+                                                             }
+                                                            ]
+                                                           }
+                                                          ]
+                                                         }
+                                                        ]
+                                                       }
+                                                      ]
+                                                     }
+                                                    ]
+                                                   }
+                                                  ]
+                                                 }
+                                                ]
+                                               }
+                                              ]
+                                             }
+                                            ]
+                                           }
+                                          ]
+                                         }
+                                        ]
+                                       }
+                                      ]
+                                     }
+                                    ]
+                                   }
+                                  ]
+                                 }
+                                ]
+                               }
+                              ]
+                             }
+                            ]
+                           }
+                          ]
+                         }
+                        ]
+                       }
+                      ]
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "data": {},
+   "expect": false
+  }
+ ],
+ "errors": [
+  {
+   "name": "32 nested operations are too deep",
+   "rule": {
+    "!": [
+     {
+      "!": [
+       {
+        "!": [
+         {
+          "!": [
+           {
+            "!": [
+             {
+              "!": [
+               {
+                "!": [
+                 {
+                  "!": [
+                   {
+                    "!": [
+                     {
+                      "!": [
+                       {
+                        "!": [
+                         {
+                          "!": [
+                           {
+                            "!": [
+                             {
+                              "!": [
+                               {
+                                "!": [
+                                 {
+                                  "!": [
+                                   {
+                                    "!": [
+                                     {
+                                      "!": [
+                                       {
+                                        "!": [
+                                         {
+                                          "!": [
+                                           {
+                                            "!": [
+                                             {
+                                              "!": [
+                                               {
+                                                "!": [
+                                                 {
+                                                  "!": [
+                                                   {
+                                                    "!": [
+                                                     {
+                                                      "!": [
+                                                       {
+                                                        "!": [
+                                                         {
+                                                          "!": [
+                                                           {
+                                                            "!": [
+                                                             {
+                                                              "!": [
+                                                               {
+                                                                "!": [
+                                                                 {
+                                                                  "!": [
+                                                                   true
+                                                                  ]
+                                                                 }
+                                                                ]
+                                                               }
+                                                              ]
+                                                             }
+                                                            ]
+                                                           }
+                                                          ]
+                                                         }
+                                                        ]
+                                                       }
+                                                      ]
+                                                     }
+                                                    ]
+                                                   }
+                                                  ]
+                                                 }
+                                                ]
+                                               }
+                                              ]
+                                             }
+                                            ]
+                                           }
+                                          ]
+                                         }
+                                        ]
+                                       }
+                                      ]
+                                     }
+                                    ]
+                                   }
+                                  ]
+                                 }
+                                ]
+                               }
+                              ]
+                             }
+                            ]
+                           }
+                          ]
+                         }
+                        ]
+                       }
+                      ]
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "error": "compile"
+  },
+  {
+   "name": "unknown operator",
+   "rule": {
+    "foo": [
+     1,
+     2
+    ]
+   },
+   "error": "compile"
+  },
+  {
+   "name": "two operators in one object",
+   "rule": {
+    "==": [
+     1,
+     1
+    ],
+    "!=": [
+     1,
+     2
+    ]
+   },
+   "error": "compile"
+  },
+  {
+   "name": "== needs two arguments",
+   "rule": {
+    "==": [
+     1
+    ]
+   },
+   "error": "compile"
+  },
+  {
+   "name": "! needs one argument",
+   "rule": {
+    "!": [
+     1,
+     2
+    ]
+   },
+   "error": "compile"
+  },
+  {
+   "name": "var needs a name",
+   "rule": {
+    "var": []
+   },
+   "error": "compile"
+  },
+  {
+   "name": "object value that is not an operation",
+   "rule": {},
+   "error": "compile"
+  },
+  {
+   "name": "number < text",
+   "rule": {
+    "<": [
+     3,
+     "a"
+    ]
+   },
+   "error": "runtime"
+  },
+  {
+   "name": "true < false",
+   "rule": {
+    "<": [
+     true,
+     false
+    ]
+   },
+   "error": "runtime"
+  },
+  {
+   "name": "list < list",
+   "rule": {
+    "<": [
+     [
+      1
+     ],
+     [
+      2
+     ]
+    ]
+   },
+   "error": "runtime"
+  },
+  {
+   "name": "text + number",
+   "rule": {
+    "+": [
+     "a",
+     1
+    ]
+   },
+   "error": "runtime"
+  },
+  {
+   "name": "some over a number",
+   "rule": {
+    "some": [
+     3,
+     {
+      "==": [
+       1,
+       1
+      ]
+     }
+    ]
+   },
+   "error": "runtime"
+  },
+  {
+   "name": "var with a true/false name",
+   "rule": {
+    "var": [
+     true
+    ]
+   },
+   "error": "runtime"
+  },
+  {
+   "name": "number in text",
+   "rule": {
+    "in": [
+     1,
+     "abc"
+    ]
+   },
+   "error": "runtime"
+  }
+ ]
+}
