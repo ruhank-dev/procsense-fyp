@@ -3,7 +3,7 @@
 One register for everything that was **postponed, left outstanding, blocked or depends on something else** — so nothing is forgotten.
 Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a task is deferred, started, finished, blocked, unblocked or re-scoped.
 
-**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–7 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions); step 7 (history questions) approved; step 8 (sensors and vitals) is built and awaiting approval.
+**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–8 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions, sensors/vitals); step 7 (history questions) approved; step 8 (sensors and vitals) approved; step 9 (official golden run) is next.
 
 ## Status meanings
 
@@ -40,7 +40,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | ID | Task | Status | Planned in | Depends on / blocker | Notes |
 |---|---|---|---|---|---|
 | DT-012 | **Official golden runs** for skeleton 1 (scripts + expected key facts + expected log hash for seed 42; `task golden`; prove a changed action breaks the hash) | Pending | [p0-simulation-workflow-s04](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s04-golden-run-skeleton1.md) | Steps 7 and 8 (history, vitals) | `tests/golden/*.actions.json` today are **sample scripts only**, not validated golden runs |
-| DT-013 | Observable shows vitals only for attached sensors | In progress | [p0-simulation-workflow-s03](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s03-step3-sensors-vitals.md) | Owner approval of step 8 | Built 09 Oct 2026 (69 tests pass); becomes Completed on approval |
+| DT-013 | Observable shows vitals only for attached sensors | **Completed** | [p0-simulation-workflow-s03](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s03-step3-sensors-vitals.md) | — | Approved 09 Oct 2026 (69 tests pass) |
 | DT-014 | Replace the placeholder `order_blood_test` verb with the real investigation-request verbs, keeping the identity gate | Pending | p0-clinical-logic-s06 / s11 | Clinical-logic phase | Placeholder lives in `IdentitySubsystem.Init` and is marked PLACEHOLDER |
 | DT-015 | Wrong-blood consequence when `risk.wrong_blood` is armed | Pending | p0-physiology-events-behaviour-s09, p0-diagnostic-transitions-s04 | Events and lab-sample steps | Step 6 only arms the flag |
 | DT-021 | EXP-CORE-1: identical hashes on PC and Quest | Blocked | p0-core-engine README | Quest + Unity | |
