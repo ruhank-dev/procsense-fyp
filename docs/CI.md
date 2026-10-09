@@ -18,7 +18,7 @@ Living document (INSTRUCTIONS.md §6b). Whenever a step adds a capability, rule,
 | # | Job | Check | Guards against | Local command |
 |---|---|---|---|---|
 | 1 | Engine (Linux + Windows) | Restore with 3 retries, build in Release with warnings as errors | Compile errors, new warnings, flaky network | `dotnet build ProcSense.sln -c Release -warnaserror` |
-| 2 | Engine | Unit tests (xUnit, incl. determinism, content, identity, history, observations, golden) | Broken engine logic | `dotnet test ProcSense.sln` |
+| 2 | Engine | Unit tests (xUnit, incl. determinism, content, identity, history, observations, golden, **compiled-code ban list for Core** and **zero-allocation tick**) | Broken engine logic | `dotnet test ProcSense.sln` |
 | 3 | Engine | Golden runs through the CLI | A change that alters the pinned log or final-state hash | `task golden` |
 | 4 | Engine | Record a session and replay it | Replay no longer reproduces the same hash | `task sim -- run …` then `replay …` |
 | 5 | Engine | Same tests and hashes on **Linux and Windows** | Platform differences in the engine (proxy for the PC-vs-Quest check EXP-CORE-1) | both OS jobs |

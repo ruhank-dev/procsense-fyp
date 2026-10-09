@@ -1,6 +1,6 @@
 # p0-vr-platform-s01 — Unity project and Quest setup
 
-Walking skeleton 1 · step 10 of 15 · **blocked until installs**
+Walking skeleton 1 · step 10 of 15
 
 ## What
 Create the Unity 6 LTS (URP) project in `unity/`, configured for Meta Quest, with an XR rig (teleport + snap turn), the XR Device

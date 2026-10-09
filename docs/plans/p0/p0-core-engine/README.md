@@ -29,6 +29,7 @@ and replays any session exactly (same seed + same actions = same result).
 | EXP-CORE-1 | Identical results on PC (.NET 9) and Quest (IL2CPP/ARM)? | Same golden action list, compare log hash | Equal hashes |
 | EXP-CORE-2 | Is 0.5 s smooth enough for the monitor? | Unity-side interpolation at headset refresh | No visible stepping |
 | EXP-CORE-3 | Allocation per Tick | Profiler/BenchmarkDotNet | 0 bytes after warm-up |
+| EXP-CORE-3 result (09 Oct 2026, s05, Release, skeleton 1 case, 3 subsystems) | `PerformanceTests` | `GC.GetAllocatedBytesForCurrentThread` over 1000 ticks after 200 warm-up ticks | **0 bytes**; 0.0002 ms per tick; 0.0047 ms per action. Re-check as physiology and events are added |
 
 ## Exit
 Replay determinism proven; rejects (unknown verb, wrong location, identity not confirmed) tested; perf targets met; no Unity reference.
