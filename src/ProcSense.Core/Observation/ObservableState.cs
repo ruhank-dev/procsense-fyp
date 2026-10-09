@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using ProcSense.Core.Content;
 using ProcSense.Core.Logging;
+using ProcSense.Core.Workflow;
 
 namespace ProcSense.Core.Observation
 {
@@ -62,7 +63,9 @@ namespace ProcSense.Core.Observation
         {
             var c = s.Patient.Clinical;
             var facts = new List<DisclosedFact>();
-            foreach (var f in s.Patient.History) // case order, so output never depends on set ordering
+            foreach (var topic in PatientAnswers.Topics) // fixed order, so output never depends on set ordering
+                if (c.IsRevealed(topic) && PatientAnswers.For(s.Case, topic) is string answer) facts.Add(new DisclosedFact(topic, answer));
+            foreach (var f in s.Patient.History)
                 if (c.IsRevealed(f.Topic)) facts.Add(new DisclosedFact(f.Topic, f.Answer));
 
             return new ObservableState(

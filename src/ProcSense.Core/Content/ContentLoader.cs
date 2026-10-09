@@ -39,7 +39,7 @@ namespace ProcSense.Core.Content
         {
             var cases = new SortedDictionary<string, CaseCard>(StringComparer.Ordinal);
             foreach (var id in caseIds) cases[id] = LoadCase(reader.ReadText("cases/" + id + ".json"), id);
-            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")));
+            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), LoadBehaviour(reader.ReadText("behaviour.json")));
         }
 
         public static CaseCard LoadCase(string json, string name)
@@ -132,6 +132,21 @@ namespace ProcSense.Core.Content
         {
             string s = ClockText(o, key);
             return new TimeSpan(int.Parse(s.Substring(0, 2), CultureInfo.InvariantCulture), int.Parse(s.Substring(3, 2), CultureInfo.InvariantCulture), 0);
+        }
+
+        private static BehaviourEffect LoadBehaviour(string json)
+        {
+            try
+            {
+                var d = new JsonObj(MiniJson.Parse(json), "");
+                var b = d.Obj("introduce_self");
+                var effect = new BehaviourEffect(b.Int("trust"), b.Int("anxiety"), b.Str("ref"));
+                b.Str("note");
+                b.Finish();
+                d.Finish();
+                return effect;
+            }
+            catch (ContentException e) { throw new ContentException("behaviour.json: " + e.Message); }
         }
 
         private static NibpTiming LoadNibp(string json)

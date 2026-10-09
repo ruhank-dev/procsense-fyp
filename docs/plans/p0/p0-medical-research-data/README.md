@@ -48,6 +48,7 @@ lab distributions and images make the patient believable.
 |---|---|---|---|---|
 | Master medical source | Walkthrough v5.1 (approved), cross-checked against original guidelines | Guidelines only | Walkthrough is designed for this game | New walkthrough version |
 | Walkthrough ≠ newer guideline (e.g. WT-I13, WT-I14) | Keep walkthrough value, log it, ask medical professional | Silently update | Never pick silently (INSTRUCTIONS §4d) | — |
+| Clinical approval status | All existing research and clinical workflows treated as clinician-approved (owner, 09 Oct 2026); new values still get register rows | Per-row clinician sign-off | Owner decision | Owner reopens a specific row |
 | Content format | CSV for tables, JSON for nested (cases, what-ifs) | All JSON; ScriptableObjects | Readable/editable by medical reviewers | Reviewers prefer another format |
 | Content generation | Script: register → `content/` (no hand edits) | Hand-edited | One source of truth | — |
 | How data enters the app | Parameters/aggregates generated at build time | Ship raw rows | Privacy, small app | — |

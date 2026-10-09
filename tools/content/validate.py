@@ -24,9 +24,10 @@ def main() -> int:
         problems = schema_errors(doc, case_schema) + case_problems(doc, register)
         failed |= _report(path.stem, problems, f"{len(doc.get('refs', {}))} refs")
 
-    devices = CONTENT / "devices.json"
-    if devices.exists():
-        failed |= _report("devices", ref_problems(load_json(devices), register, "devices"), "refs ok")
+    for name in ("devices", "behaviour"):
+        path = CONTENT / f"{name}.json"
+        if path.exists():
+            failed |= _report(name, ref_problems(load_json(path), register, name), "refs ok")
 
     print(f"register: {len(register)} rows")
     return 1 if failed else 0

@@ -36,3 +36,7 @@ Text unreadable on Quest → raise font size (start of EXP-UI-2); sockets too fu
 
 ## Sources
 Implementation Guide B-S10 Step 1 (tablet), B-S9 Step 7 (wristband, sockets), B-S7 (emitters/views); walkthrough Part 16 Stages 1–3.
+
+## Carried-over requirements (added 09 October 2026)
+
+- The **tablet "Read wristband" button** (alternative when the band cannot be grabbed, test T01-5) and the nurse/missing-band interactions are specified in [p0-vr-interaction-ui-s12](p0-vr-interaction-ui-s12-wristband-nurse-interaction.md) (DT-008). Build the fallback button here if skeleton 1 needs it first.

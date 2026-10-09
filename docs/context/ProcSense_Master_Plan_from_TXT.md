@@ -1,5 +1,7 @@
 <!-- Converted from ProcSense_Master_Plan.txt — headings (title, part banners, numbered sections, sub-headings, step headings) became Markdown headings; all other lines kept verbatim inside fenced text blocks so tables, lists and diagrams stay exactly as in the source; decorative rule lines (===, ---, ###) used only for headings were dropped. Format conversion only: no summarising, rewriting or correction. -->
 
+> **Project addendum (09 Oct 2026 — not part of the converted document).** The work is now organised as `docs/plans/` (tier P0/P1/P2 → phase → step files, "full scope, no deadlines"); this document is the v2.0 proposal. The schedule and gates below are kept for history — whether they still bind is unconfirmed (DT-035). Core engine location changed by ADR-0001. Outstanding work: `docs/deferred-tasks.md`. Decision history: `ProcSense_Change_Report.md` §G.
+
 # PROCSENSE — MASTER PLAN
 
 ```text

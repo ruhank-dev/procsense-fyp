@@ -7,10 +7,13 @@ namespace ProcSense.Core.Actions
     {
         public const string UnknownVerb = "UNKNOWN_VERB";
 
-        private readonly HashSet<string> _verbs = new HashSet<string>();
+        private readonly Dictionary<string, bool> _verbs = new Dictionary<string, bool>();
 
-        public void Register(string verb) => _verbs.Add(verb);
+        /// <summary>requiresIdentity: tests, medicines and transfers, which are rejected until identity is confirmed.</summary>
+        public void Register(string verb, bool requiresIdentity = false) => _verbs[verb] = requiresIdentity;
 
-        public bool IsKnown(string verb) => _verbs.Contains(verb);
+        public bool IsKnown(string verb) => _verbs.ContainsKey(verb);
+
+        public bool RequiresIdentity(string verb) => _verbs.TryGetValue(verb, out var r) && r;
     }
 }

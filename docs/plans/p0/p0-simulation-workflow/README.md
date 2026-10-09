@@ -10,6 +10,7 @@ locations + transport, SBAR handover structure, five end states.
 ## Scope
 - **In:** case graph with parallel tracks and interrupts, unlock rules (no tests/medicines before identity confirmed), readiness blockers,
   disclosure engine, WHO Sign In / Time Out engine, transport modes (walk / wheelchair / trolley + escort + monitoring, chosen by the trainee and scored against patient stability) + escort rule, end-state resolver.
+- **Also in (added 09 Oct 2026):** nurse-assisted wristband mismatch / missing-band resolution (s18) and robust spoken-identity validation (s19).
 - **Out:** clinical thresholds (clinical-logic), vitals over time (physiology), visuals.
 
 ## Deliverables

@@ -30,16 +30,21 @@ namespace ProcSense.Core.Content
 
     public sealed record NibpTiming(double CycleSecondsMin, double CycleSecondsMax, string Ref);
 
+    /// <summary>How a trainee behaviour moves the patient's trust and anxiety counters.</summary>
+    public sealed record BehaviourEffect(long Trust, long Anxiety, string Ref);
+
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf)
         {
             Cases = cases;
             Nibp = nibp;
+            IntroduceSelf = introduceSelf;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
         public NibpTiming Nibp { get; }
+        public BehaviourEffect IntroduceSelf { get; }
     }
 }

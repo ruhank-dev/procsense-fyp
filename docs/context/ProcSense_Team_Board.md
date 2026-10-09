@@ -6,6 +6,18 @@
 |---|---|---|---|---|
 | Tue 29 Sep | Fri 4 Dec | Fri 18 Dec | Sat 26 Dec | Thu 31 Dec |
 
+> **Status addendum — 09 Oct 2026** (the line above is the v2 original and is kept): the project owner treats all existing medical research and clinical workflows as **clinician-approved** (walkthrough first on 07 Oct, extended 09 Oct). Hospital-specific values and open source conflicts still need input. History: `ProcSense_Change_Report.md` §G.
+
+## 📌 Where the build stands (09 Oct 2026)
+
+| Area | Status |
+|---|---|
+| Plans | Tier → phase → step files in `docs/plans/` (221 step files). Postponed / outstanding work: `docs/deferred-tasks.md` |
+| Walking skeleton 1 | Steps 1–5 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay); step 6 (identity + allergy) built, awaiting approval |
+| Step 1 follow-ups now planned | Nurse wristband replacement + missing band (s18), robust spoken identity (s19), 3D nurse (characters s08), VR + tablet fallback (UI s12), nurse voice (audio s06) |
+| Repository | `github.com/ruhank-dev/procsense-fyp` (transferred from Myt1x54) |
+| Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync (INSTRUCTIONS §3, §8f–§8h) |
+
 ## 🧭 Rules everyone follows
 
 - The trainee **recognises, communicates and initiates**; a clinician confirms; a nurse administers. No trainee dosing.
@@ -57,6 +69,8 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 
 ## 🗺️ Timeline
 
+> **Note (09 Oct 2026):** `docs/plans/README.md` states "Full scope, no deadlines". Whether the dates below still bind is not recorded — owner to confirm (DT-035). GATE 1 (Step 1 playable on Quest, Fri 9 Oct) is **not met**: Step 1 logic runs headless; Unity/Quest are not installed yet (DT-024).
+
 | Week | Work | Milestones |
 |---|---|---|
 | W1 Tue 29 Sep–Sun 4 Oct | Kickoff; Core kernel; Unity project + XR rig; schemas v1 (done per original plan) | — |
@@ -81,7 +95,7 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 > 🚩 GATE 1 Fri 9 Oct: Step 1 playable on Quest
 
 **🟢 Ruhan**
-- [ ] Core: 15-step IDs, identity unlock rule, request-only medicine verbs (B-R11)
+- [ ] Core: 15-step IDs, identity unlock rule, request-only medicine verbs (B-R11) — *identity unlock rule built (step 6, awaiting approval); the rest not started*
 
 **🔵 Sannan**
 - [ ] Step 1 bedside on Quest: wristband rotate-to-read, allergy band, nurse (B-S7/S9)
@@ -223,5 +237,9 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 - [ ] 13. Choice of appendicitis score (AIR default vs AAS) and imaging pathway for high-score young patients — *Surgeon*
 - [ ] 14. Unit-specific complication rates for consent — *Surgeon*
 - [ ] 15. Realism of simulator design values (deterioration clocks, turnaround times) — *Surgeon + anaesthetist*
+- [ ] 16. *(added 09 Oct 2026)* Missing wristband: apply the band before or after verification? Walkthrough says after verification; Guide T01-4 says after a delay (ISS-0002) — *Surgeon / hospital*
+- [ ] 17. *(added 09 Oct 2026)* BP cuff cycle: 30–40 s (walkthrough) or 20 s (Guide)? (ISS-0001) — *Medical reviewer*
+
+> Note (09 Oct 2026): the owner's approval statement does not say whether it closes items 1–15 above (DT-034). They stay open until the owner says so.
 
 > Plus walkthrough issues WT-I01…WT-I14 (see Change Report).

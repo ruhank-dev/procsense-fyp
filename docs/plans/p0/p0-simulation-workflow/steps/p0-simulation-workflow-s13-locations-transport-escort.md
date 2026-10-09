@@ -31,3 +31,8 @@ Patient stuck IN_TRANSIT → missing adjacency entry. Trainee left behind → ac
 
 ## Sources
 Implementation Guide B-R16 Steps 1–7, T-L1–T-L7; walkthrough Part E (wheelchair), Part 17 (escort), 14.9; inventory D202.
+
+## Carried-over requirements (added 09 October 2026)
+
+- Add the **patient-location check** (`PATIENT_ELSEWHERE`, Implementation Guide test T-K4): any action aimed at the patient while she is in another location is rejected and logged. Until now the location is the constant `patient_bay` (DT-005).
+- Track where the nurse is during a wristband task so she can be "outside" before she enters the bay (p0-simulation-workflow-s18).
