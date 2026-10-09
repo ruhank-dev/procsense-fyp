@@ -20,7 +20,7 @@ Walkthrough Part 12, Example Patient A, page 104:
 | # | Step file | Phase | Needs | Can start now? |
 |---|---|---|---|---|
 | 1 | [✅ p0-medical-research-data-s01-var-s1-a-steps-1-3-content](p0-medical-research-data/steps/✅%20p0-medical-research-data-s01-var-s1-a-steps-1-3-content.md) | medical-research-data | — | ✅ |
-| 2 | [p0-core-engine-s01-sim-clock-and-rng](p0-core-engine/steps/p0-core-engine-s01-sim-clock-and-rng.md) | core-engine | — | ✅ |
+| 2 | [✅ p0-core-engine-s01-sim-clock-and-rng](p0-core-engine/steps/✅%20p0-core-engine-s01-sim-clock-and-rng.md) | core-engine | — | ✅ |
 | 3 | [p0-core-engine-s02-actions-session-log](p0-core-engine/steps/p0-core-engine-s02-actions-session-log.md) | core-engine | 2 | ✅ |
 | 4 | [p0-core-engine-s03-content-loader-patient-state](p0-core-engine/steps/p0-core-engine-s03-content-loader-patient-state.md) | core-engine | 1, 3 | ✅ |
 | 5 | [p0-core-engine-s04-observable-state-cli-replay](p0-core-engine/steps/p0-core-engine-s04-observable-state-cli-replay.md) | core-engine | 4 | ✅ |
