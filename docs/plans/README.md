@@ -88,8 +88,7 @@ Details: [p0-environment-rooms](p0/p0-environment-rooms/). Review of the phase l
 
 The project owner has instructed that **all existing medical research and clinical workflows are treated as clinician-approved**, and that the trust/anxiety ±1 values are acceptable simulation mechanics.
 Consequences: no further "pending approval" flag is kept on existing research or workflow rows; the source register's `clinician_approval` column records "Approved … per project owner". 
-Still required for every **new** clinical value or rule: a source-register row (proof of truth), and a recorded value for hospital-specific choices that the approval statement does not supply
-(see DT-018 in [../deferred-tasks.md](../deferred-tasks.md)). Source conflicts (e.g. ISS-0001, ISS-0002) stay open until the owner closes them. The walkthrough's own text still says "READY FOR CLINICIAN VALIDATION"; that wording is the original and is left unchanged — see `docs/context/ProcSense_Change_Report.md` §G.
+The owner confirmed the same day that the statement **also closes the 15 institutional (hospital) decisions and the source conflicts ISS-0001 / ISS-0002**; the walkthrough's values are used. Still required for every **new** clinical value or rule: a source-register row (proof of truth). Minor details (for example a delay or instant) are decided by the agent and reported to the owner. The walkthrough's own text still says "READY FOR CLINICIAN VALIDATION"; that wording is the original and is left unchanged — see `docs/context/ProcSense_Change_Report.md` §G.
 
 ## Cross-phase decisions
 

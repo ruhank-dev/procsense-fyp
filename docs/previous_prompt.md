@@ -5,49 +5,49 @@ Every prompt the project owner has given, in chronological order, with the origi
 
 ## Sources and gaps
 
-- Reconstructed on 09 October 2026 from the Claude Code session records for this project (3 sessions, 08–09 October 2026).
+- Reconstructed on 09 October 2026 from the Claude Code session records for this project (3 sessions, 08–09 October 2026); later prompts are appended as they arrive.
 - **Not available:** no session record exists for the earlier planning work (6–7 October 2026, when the plans, ADR-0001 and phase review were written). Those prompts are not reproduced and nothing is invented about them.
-- Times are shown as local time (UTC+05:00) and UTC. Text inside a pasted block (terminal output or a pasted document) is kept as pasted; the wrapper tags added by the tool are removed.
+- All times are **UTC** (owner instruction, 09 October 2026; the first version of this file showed UTC+05:00 local time as well). Text inside a pasted block (terminal output or a pasted document) is kept as pasted; the wrapper tags added by the tool are removed.
 - Short replies such as "yes" or "approved" are kept because they record approvals and decisions.
 
 ---
 
-## 1. 08 October 2026, 8:07 PM (UTC+05:00 · 15:07 UTC)
+## 1. 08 October 2026, 3:07 PM UTC
 _Session: 76183000_
 
 ``````text
 cache agents.md and instruction.md
 ``````
 
-## 2. 08 October 2026, 9:02 PM (UTC+05:00 · 16:02 UTC)
+## 2. 08 October 2026, 4:02 PM UTC
 _Session: 76183000_
 
 ``````text
 use and follow the seperate instruction.md file
 ``````
 
-## 3. 09 October 2026, 1:53 PM (UTC+05:00 · 08:53 UTC)
+## 3. 09 October 2026, 8:53 AM UTC
 _Session: ccad1599_
 
 ``````text
 cache agents.md and instructions.md
 ``````
 
-## 4. 09 October 2026, 1:55 PM (UTC+05:00 · 08:55 UTC)
+## 4. 09 October 2026, 8:55 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 hi , cache instructions.md and agents.md and use these from now on read these first before anything go
 ``````
 
-## 5. 09 October 2026, 1:59 PM (UTC+05:00 · 08:59 UTC)
+## 5. 09 October 2026, 8:59 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 now i want u to first read all files in the docs folder first all the plans and everything and implement the project in this flow agents.md and instructions.md->p0->p1->p2 i remember we were doing the walking skeleton 1 . md first continue where we left off but first install ponytails and from now on use that for everything
 ``````
 
-## 6. 09 October 2026, 2:23 PM (UTC+05:00 · 09:23 UTC)
+## 6. 09 October 2026, 9:23 AM UTC
 _Session: 0485f3e4_
 
 ``````text
@@ -60,112 +60,112 @@ PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main>
  i have no clue what this means bruh explain it to me
 ``````
 
-## 7. 09 October 2026, 2:24 PM (UTC+05:00 · 09:24 UTC)
+## 7. 09 October 2026, 9:24 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 ah i see approve and install .NET9 and give me all the commit commands too with the message
 ``````
 
-## 8. 09 October 2026, 2:29 PM (UTC+05:00 · 09:29 UTC)
+## 8. 09 October 2026, 9:29 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 i need to push it in this repo
 ``````
 
-## 9. 09 October 2026, 2:30 PM (UTC+05:00 · 09:30 UTC)
+## 9. 09 October 2026, 9:30 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 oh sorry i meant in this repio https://github.com/Myt1x54/procsense-fyp
 ``````
 
-## 10. 09 October 2026, 2:30 PM (UTC+05:00 · 09:30 UTC)
+## 10. 09 October 2026, 9:30 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 yeah sure go ahead
 ``````
 
-## 11. 09 October 2026, 2:35 PM (UTC+05:00 · 09:35 UTC)
+## 11. 09 October 2026, 9:35 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 give me the git commands too everytime oka along with the commit message from now on
 ``````
 
-## 12. 09 October 2026, 2:35 PM (UTC+05:00 · 09:35 UTC)
+## 12. 09 October 2026, 9:35 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 approve
 ``````
 
-## 13. 09 October 2026, 2:41 PM (UTC+05:00 · 09:41 UTC)
+## 13. 09 October 2026, 9:41 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 yeah sure go ahead
 ``````
 
-## 14. 09 October 2026, 2:49 PM (UTC+05:00 · 09:49 UTC)
+## 14. 09 October 2026, 9:49 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 approved and yeah continue with the next thing
 ``````
 
-## 15. 09 October 2026, 3:09 PM (UTC+05:00 · 10:09 UTC)
+## 15. 09 October 2026, 10:09 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 approved
 ``````
 
-## 16. 09 October 2026, 3:11 PM (UTC+05:00 · 10:11 UTC)
+## 16. 09 October 2026, 10:11 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 oh wait where u committing and pushing there was a transfer of ownership and now the repo is transfered to me heres the repo heres the repo
 ``````
 
-## 17. 09 October 2026, 3:11 PM (UTC+05:00 · 10:11 UTC)
+## 17. 09 October 2026, 10:11 AM UTC
 _Session: 0485f3e4 (sent while a task was running)_
 
 ``````text
 https://github.com/ruhank-dev/procsense-fyp
 ``````
 
-## 18. 09 October 2026, 3:12 PM (UTC+05:00 · 10:12 UTC)
+## 18. 09 October 2026, 10:12 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 yes
 ``````
 
-## 19. 09 October 2026, 3:41 PM (UTC+05:00 · 10:41 UTC)
+## 19. 09 October 2026, 10:41 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 approved
 ``````
 
-## 20. 09 October 2026, 3:43 PM (UTC+05:00 · 10:43 UTC)
+## 20. 09 October 2026, 10:43 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 yes
 ``````
 
-## 21. 09 October 2026, 4:16 PM (UTC+05:00 · 11:16 UTC)
+## 21. 09 October 2026, 11:16 AM UTC
 _Session: 0485f3e4_
 
 ``````text
 is this not implemented yet or not in the plans at all Nurse replacing incorrect wristband
 ``````
 
-## 22. 09 October 2026, 4:35 PM (UTC+05:00 · 11:35 UTC)
+## 22. 09 October 2026, 11:35 AM UTC
 _Session: 0485f3e4_
 
 ``````text
@@ -227,4 +227,11 @@ Requirements:
 Update all relevant project plans and documentation, including `INSTRUCTIONS.md`, `docs/previous_prompt.md`, the deferred-task/dependency register in `docs/`, and all affected Markdown files in `context/`.
 
 Ensure that the documentation is consistent, that all currently known outstanding work is recorded, and that the new permanent instructions are explicit enough to guide future development. Do not implement unrelated features as part of this planning-only task.
+``````
+
+## 23. 09 October 2026, 12:03 PM UTC
+_Session: 0485f3e4_
+
+``````text
+yeah use utc step 6 is approved and also yes my approval statement also closes the 15 hospital decisions and yes no deadlines we instantly apply the band after the verification and about this Your approval statement doesn't close either, so they stay open. bro yes it closes everything [removed at the owner's request]
 ``````

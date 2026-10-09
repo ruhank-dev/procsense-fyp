@@ -13,10 +13,10 @@
 | Area | Status |
 |---|---|
 | Plans | Tier → phase → step files in `docs/plans/` (221 step files). Postponed / outstanding work: `docs/deferred-tasks.md` |
-| Walking skeleton 1 | Steps 1–5 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay); step 6 (identity + allergy) built, awaiting approval |
+| Walking skeleton 1 | Steps 1–6 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy); step 7 (history questions) next |
 | Step 1 follow-ups now planned | Nurse wristband replacement + missing band (s18), robust spoken identity (s19), 3D nurse (characters s08), VR + tablet fallback (UI s12), nurse voice (audio s06) |
 | Repository | `github.com/ruhank-dev/procsense-fyp` (transferred from Myt1x54) |
-| Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync (INSTRUCTIONS §3, §8f–§8h) |
+| Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync; times in UTC; minor details decided by the agent and reported (INSTRUCTIONS §3, §8e–§8i) |
 
 ## 🧭 Rules everyone follows
 
@@ -69,7 +69,7 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 
 ## 🗺️ Timeline
 
-> **Note (09 Oct 2026):** `docs/plans/README.md` states "Full scope, no deadlines". Whether the dates below still bind is not recorded — owner to confirm (DT-035). GATE 1 (Step 1 playable on Quest, Fri 9 Oct) is **not met**: Step 1 logic runs headless; Unity/Quest are not installed yet (DT-024).
+> **Note (09 Oct 2026):** the owner confirmed **no deadlines** (matching `docs/plans/README.md`: "Full scope, no deadlines"). The dates below are kept only as history (DT-035). GATE 1 (Step 1 playable on Quest, Fri 9 Oct) is **not met**: Step 1 logic runs headless; Unity/Quest are not installed yet (DT-024).
 
 | Week | Work | Milestones |
 |---|---|---|
@@ -95,7 +95,7 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 > 🚩 GATE 1 Fri 9 Oct: Step 1 playable on Quest
 
 **🟢 Ruhan**
-- [ ] Core: 15-step IDs, identity unlock rule, request-only medicine verbs (B-R11) — *identity unlock rule built (step 6, awaiting approval); the rest not started*
+- [ ] Core: 15-step IDs, identity unlock rule, request-only medicine verbs (B-R11) — *identity unlock rule built and approved (step 6); the rest not started*
 
 **🔵 Sannan**
 - [ ] Step 1 bedside on Quest: wristband rotate-to-read, allergy band, nurse (B-S7/S9)
@@ -222,24 +222,24 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 
 ## ❓ Decisions needed from Ma'am / clinicians
 
-- [ ] 1. Laboratory reference ranges, units and critical-value list — *Hospital laboratory*
-- [ ] 2. Antibiotic protocol: prophylaxis agent/dose/redose; appendicitis regimen; penicillin-allergy alternative (incl. cefazolin after anaphylaxis) — *Microbiology / surgeon*
-- [ ] 3. Consent/legal workflow: form, witness, age/guardian, mature minors, emergency treatment, family involvement — *Institution legal / surgeon*
-- [ ] 4. Fasting policy details (clear 2 h vs 1 h; GLP-1 and SGLT2 policy choice) — *Anaesthesia department*
-- [ ] 5. Local anaesthetic protocols (insulin, steroid cover, K acceptance 3.0–5.5 and INR limits as defaults) — *Anaesthesia department*
-- [ ] 6. Emergency escalation: early-warning tool, responders, sepsis tool — *Hospital*
-- [ ] 7. Equipment availability (MRCP, ERCP, CT, gastric ultrasound, capnography, warming) — *Hospital*
-- [ ] 8. Documentation: ward checklist, handover form, WHO version/additions, site marking — *Theatre governance*
-- [ ] 9. Blood-bank procedure (G&S/crossmatch, labelling) — *Transfusion lab*
-- [ ] 10. Patient identification policy (identifiers, band colours) — *Hospital*
-- [ ] 11. Transfer escort/monitoring rule — *Hospital*
-- [ ] 12. Post-operative/day-case discharge criteria — *Surgeon / anaesthetist*
-- [ ] 13. Choice of appendicitis score (AIR default vs AAS) and imaging pathway for high-score young patients — *Surgeon*
-- [ ] 14. Unit-specific complication rates for consent — *Surgeon*
-- [ ] 15. Realism of simulator design values (deterioration clocks, turnaround times) — *Surgeon + anaesthetist*
-- [ ] 16. *(added 09 Oct 2026)* Missing wristband: apply the band before or after verification? Walkthrough says after verification; Guide T01-4 says after a delay (ISS-0002) — *Surgeon / hospital*
-- [ ] 17. *(added 09 Oct 2026)* BP cuff cycle: 30–40 s (walkthrough) or 20 s (Guide)? (ISS-0001) — *Medical reviewer*
+- [x] 1. Laboratory reference ranges, units and critical-value list — *Hospital laboratory*
+- [x] 2. Antibiotic protocol: prophylaxis agent/dose/redose; appendicitis regimen; penicillin-allergy alternative (incl. cefazolin after anaphylaxis) — *Microbiology / surgeon*
+- [x] 3. Consent/legal workflow: form, witness, age/guardian, mature minors, emergency treatment, family involvement — *Institution legal / surgeon*
+- [x] 4. Fasting policy details (clear 2 h vs 1 h; GLP-1 and SGLT2 policy choice) — *Anaesthesia department*
+- [x] 5. Local anaesthetic protocols (insulin, steroid cover, K acceptance 3.0–5.5 and INR limits as defaults) — *Anaesthesia department*
+- [x] 6. Emergency escalation: early-warning tool, responders, sepsis tool — *Hospital*
+- [x] 7. Equipment availability (MRCP, ERCP, CT, gastric ultrasound, capnography, warming) — *Hospital*
+- [x] 8. Documentation: ward checklist, handover form, WHO version/additions, site marking — *Theatre governance*
+- [x] 9. Blood-bank procedure (G&S/crossmatch, labelling) — *Transfusion lab*
+- [x] 10. Patient identification policy (identifiers, band colours) — *Hospital*
+- [x] 11. Transfer escort/monitoring rule — *Hospital*
+- [x] 12. Post-operative/day-case discharge criteria — *Surgeon / anaesthetist*
+- [x] 13. Choice of appendicitis score (AIR default vs AAS) and imaging pathway for high-score young patients — *Surgeon*
+- [x] 14. Unit-specific complication rates for consent — *Surgeon*
+- [x] 15. Realism of simulator design values (deterioration clocks, turnaround times) — *Surgeon + anaesthetist*
+- [x] 16. *(added 09 Oct 2026)* Missing wristband: apply the band before or after verification? Walkthrough says after verification; Guide T01-4 says after a delay (ISS-0002) — *Surgeon / hospital*
+- [x] 17. *(added 09 Oct 2026)* BP cuff cycle: 30–40 s (walkthrough) or 20 s (Guide)? (ISS-0001) — *Medical reviewer*
 
-> Note (09 Oct 2026): the owner's approval statement does not say whether it closes items 1–15 above (DT-034). They stay open until the owner says so.
+> Note (09 Oct 2026): the owner confirmed that the approval statement **closes items 1–15 above** and the two source conflicts (DT-034, DT-019). They are ticked; no further input is requested. The values in use are the walkthrough's own; where the walkthrough gives none (e.g. the allergy-band colour) the agent picks a neutral placeholder and tells the owner.
 
 > Plus walkthrough issues WT-I01…WT-I14 (see Change Report).

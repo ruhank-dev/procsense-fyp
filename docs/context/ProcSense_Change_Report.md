@@ -178,10 +178,16 @@ Sections A–F above are the v2.0 baseline (6 Oct 2026) and are left as written.
 | 22 | 09 Oct 2026 | Spoken identity check | Token shortcut (name + spelled-out date words) | Robust normaliser/extractor planned (s19); ambiguous dates reported, never guessed | Owner request | `p0-simulation-workflow-s19` |
 | 23 | 09 Oct 2026 | Documentation rules | — | Permanent: prompt history (`docs/previous_prompt.md`), deferred-task register (`docs/deferred-tasks.md`), `docs/context/` kept in sync | Owner request | INSTRUCTIONS §8f–§8h |
 | 24 | 09 Oct 2026 | Memory-log time zone | Log recorded `UTC-08:00` | Machine zone "PST" is Pakistan Standard Time, **UTC+05:00**; log corrected | Checked against session timestamps | `.memory/` log |
+| 25 | 09 Oct 2026 | Step 6 (identity/allergy) | Built, awaiting approval | **Approved**; committed as `9e71540` | Owner | `docs/previous_prompt.md` #23 |
+| 26 | 09 Oct 2026 | Scope of the approval statement | Row 20: did not settle the 15 institutional decisions or ISS-0001 / ISS-0002 | Statement **closes everything**: the 15 institutional decisions (§F), ISS-0001 (walkthrough 30–40 s stands) and ISS-0002 | Owner clarification | DT-034, DT-019, DT-018 |
+| 27 | 09 Oct 2026 | Deadlines | Row 1 recorded the conflict between Team Board dates and "no deadlines" | **No deadlines**; Team Board dates kept only as history | Owner confirmation | DT-035 |
+| 28 | 09 Oct 2026 | Missing / wrong wristband timing (ISS-0002) | Walkthrough "apply after verification" vs Guide T01-4 "after delay" | **Applied instantly after verification.** Agent also chose **no simulated-time delay for the whole nurse workflow** (cosmetic walk-in/replacement paced by the view; no invented timing numbers; no timer state machine) | Owner decision + agent choice on the minor detail, reported to the owner | `p0-simulation-workflow-s18` |
+| 29 | 09 Oct 2026 | Working style | Agent asked about minor details | Agent decides minor details (e.g. delay vs instant), picks the best option and **informs the owner** afterwards | Owner instruction | INSTRUCTIONS §3 |
+| 30 | 09 Oct 2026 | Time standard | Memory log and prompt history showed local time and UTC | **UTC only** (12-hour AM/PM + "UTC") in `.memory/` and `docs/previous_prompt.md` | Owner instruction | INSTRUCTIONS §8e |
 
 ### G.2 Build progress (walking skeleton 1)
 
-Approved on 09 Oct 2026: step 1 (VAR-S1-A content), core-engine s01 (clock + RNG), s02 (actions/session/log), s03 (content loader + patient state), s04 (observable, CLI, replay). Built and awaiting approval: p0-simulation-workflow-s01 (Step 1 identity and allergy). Outstanding work: `docs/deferred-tasks.md`.
+Approved on 09 Oct 2026: step 1 (VAR-S1-A content), core-engine s01 (clock + RNG), s02 (actions/session/log), s03 (content loader + patient state), s04 (observable, CLI, replay), p0-simulation-workflow-s01 (Step 1 identity and allergy). Next: step 7 (history questions). Outstanding work: `docs/deferred-tasks.md`.
 
 ### G.3 Context folder review (09 Oct 2026)
 
@@ -199,6 +205,5 @@ The converted documents are format-only copies of the original PDFs/TXT/CSV; the
 
 ### G.4 Open or unconfirmed
 
-- 6–7 Oct 2026 history is reconstructed from files only (DT-031).
-- Whether the 09 Oct approval statement also closes the 15 institutional decisions in §F (DT-034).
-- Whether the Team Board dates (gates, 31 Dec submission) still bind, given "no deadlines" in the plans (DT-035).
+- 6–7 Oct 2026 history is reconstructed from files only (DT-031) — still open.
+- *Resolved 09 Oct 2026:* whether the approval statement closes the 15 institutional decisions (yes, DT-034); whether the Team Board dates bind (no, DT-035).
