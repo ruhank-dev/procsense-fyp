@@ -107,7 +107,7 @@ namespace ProcSense.Core.Content
                 v.Enum("acvpu", "A", "C", "V", "P", "U"), PainScore(v));
             v.Finish();
 
-            var refs = c.StringMap("refs", RefId);
+            var refs = c.StringMap("refs", RefId, "a register ID like SR-0001");
             c.Finish();
             CheckRefCoverage(node); // after the structure checks so an extra field reports as "unknown field" first
 

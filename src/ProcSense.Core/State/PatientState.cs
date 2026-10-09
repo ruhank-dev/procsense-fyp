@@ -16,6 +16,8 @@ namespace ProcSense.Core.State
 
         public bool IdentityVerified { get; set; }
         public bool AllergiesKnown { get; set; }
+        public bool WristbandRead { get; set; }
+        public bool NotesOpened { get; set; }
         public string Location { get; set; }
 
         /// <summary>History topics the trainee has asked about, in ordinal order. Nothing starts revealed.</summary>

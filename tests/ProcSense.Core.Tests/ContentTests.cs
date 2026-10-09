@@ -9,19 +9,12 @@ namespace ProcSense.Core.Tests
 {
     public class ContentTests
     {
-        private static readonly string Repo = FindRepoRoot();
-        private static readonly string ContentRoot = Path.Combine(Repo, "content");
-
-        private static string FindRepoRoot()
-        {
-            var dir = new DirectoryInfo(AppContext.BaseDirectory);
-            while (dir != null && !File.Exists(Path.Combine(dir.FullName, "ProcSense.sln"))) dir = dir.Parent;
-            return dir?.FullName ?? throw new InvalidOperationException("ProcSense.sln not found above the test folder");
-        }
+        private static readonly string Repo = TestCase.Repo;
+        private static readonly string ContentRoot = TestCase.ContentRoot;
 
         private static string CaseJson() => File.ReadAllText(Path.Combine(ContentRoot, "cases", "VAR-S1-A.json"));
 
-        private static CaseCard Card() => ContentLoader.Load(new FileContentReader(ContentRoot), "VAR-S1-A").Cases["VAR-S1-A"];
+        private static CaseCard Card() => TestCase.Card();
 
         [Fact]
         public void Loaded_case_matches_the_file()

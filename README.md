@@ -39,7 +39,7 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 |---|---|
 | `task build` | `dotnet build ProcSense.sln` |
 | `task test` | `dotnet test ProcSense.sln` |
-| `task run-cli` | `dotnet run --project src/ProcSense.Cli` |
+| `task sim -- <args>` | `dotnet run --project src/ProcSense.Cli -- <args>` (`run` / `replay`) |
 | `task content-validate` | `uv run --project tools tools/content/validate.py` — checks every content file against its schema and the source register |
 | `task plans-index` | `uv run --project tools tools/plans/milestones.py` — rebuilds `docs/plans/milestones.md` from the step files and checks step references |
 | `task clean` | `dotnet clean ProcSense.sln` |

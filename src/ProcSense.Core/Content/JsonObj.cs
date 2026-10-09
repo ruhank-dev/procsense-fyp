@@ -42,14 +42,14 @@ namespace ProcSense.Core.Content
             return v;
         }
 
-        /// <summary>A nested object whose values are all text matching the pattern (e.g. the refs map).</summary>
-        public SortedDictionary<string, string> StringMap(string key, System.Text.RegularExpressions.Regex valuePattern)
+        /// <summary>A nested object whose values are all text (optionally matching a pattern, e.g. the refs map).</summary>
+        public SortedDictionary<string, string> StringMap(string key, System.Text.RegularExpressions.Regex? valuePattern = null, string expected = "text")
         {
             var map = new SortedDictionary<string, string>(System.StringComparer.Ordinal);
             foreach (var kv in Get<Dictionary<string, object?>>(key, "an object"))
             {
-                if (!(kv.Value is string v) || !valuePattern.IsMatch(v))
-                    throw new ContentException(Where(Sub(key)) + "." + kv.Key + ": expected a value like SR-0001");
+                if (!(kv.Value is string v) || (valuePattern != null && !valuePattern.IsMatch(v)))
+                    throw new ContentException(Where(Sub(key)) + "." + kv.Key + ": expected " + expected);
                 map[kv.Key] = v;
             }
             return map;

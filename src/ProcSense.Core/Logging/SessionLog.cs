@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Security.Cryptography;
 using System.Text;
 using ProcSense.Core.Actions;
 
@@ -42,27 +41,8 @@ namespace ProcSense.Core.Logging
 
         public string ToJsonl() => _jsonl.ToString();
 
-        public string Hash()
-        {
-            using (var sha = SHA256.Create())
-            {
-                var hex = new StringBuilder();
-                foreach (byte b in sha.ComputeHash(Encoding.UTF8.GetBytes(ToJsonl())))
-                    hex.Append(b.ToString("x2", CultureInfo.InvariantCulture));
-                return hex.ToString();
-            }
-        }
+        public string Hash() => JsonText.Sha256Hex(ToJsonl());
 
-        private void Str(string s)
-        {
-            _jsonl.Append('"');
-            foreach (char c in s)
-            {
-                if (c == '"' || c == '\\') _jsonl.Append('\\').Append(c);
-                else if (c < 0x20) _jsonl.Append("\\u").Append(((int)c).ToString("x4", CultureInfo.InvariantCulture));
-                else _jsonl.Append(c);
-            }
-            _jsonl.Append('"');
-        }
+        private void Str(string s) => JsonText.Quote(_jsonl, s);
     }
 }

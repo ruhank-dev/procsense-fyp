@@ -1,0 +1,4 @@
+{"header":{"case":"VAR-S1-A","seed":"42","mode":"practice","log_hash":"e931f1e4df8fc53600eea50962899edeb1e33554c59b53b11d8b06b40d870ff8"}}
+{"seq":0,"step":0,"verb":"introduce_self","target":"","channel":"cli","params":{},"accepted":false,"reject":"UNKNOWN_VERB","effects":[]}
+{"seq":1,"step":5,"verb":"read_wristband","target":"patient","channel":"cli","params":{},"accepted":false,"reject":"UNKNOWN_VERB","effects":[]}
+{"seq":2,"step":14,"verb":"ask_allergies","target":"","channel":"cli","params":{"wording":"open"},"accepted":false,"reject":"UNKNOWN_VERB","effects":[]}
