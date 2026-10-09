@@ -20,13 +20,27 @@ namespace ProcSense.Core.State
         public bool NotesOpened { get; set; }
         public string Location { get; set; }
 
-        /// <summary>History topics the trainee has asked about, in ordinal order. Nothing starts revealed.</summary>
+        private readonly List<string> _revealOrder = new List<string>();
+
+        /// <summary>Topics the trainee has asked about, in ordinal order. Nothing starts revealed.</summary>
         public IReadOnlyCollection<string> RevealedTopics => _revealed;
+
+        /// <summary>The same topics in the order they were revealed (the clerking note reads in this order).</summary>
+        public IReadOnlyList<string> RevealOrder => _revealOrder;
+
+        /// <summary>Exact clock times the patient gave for last food and last drink (null until asked).</summary>
+        public TimeSpan? LastFoodAt { get; set; }
+        public TimeSpan? LastDrinkAt { get; set; }
 
         public bool IsRevealed(string topic) => _revealed.Contains(topic);
 
         /// <summary>Returns true the first time a topic is revealed.</summary>
-        public bool Reveal(string topic) => _revealed.Add(topic);
+        public bool Reveal(string topic)
+        {
+            if (!_revealed.Add(topic)) return false;
+            _revealOrder.Add(topic);
+            return true;
+        }
 
         private readonly SortedSet<string> _flags = new SortedSet<string>(StringComparer.Ordinal);
 
@@ -51,6 +65,7 @@ namespace ProcSense.Core.State
     {
         public int Trust { get; set; }
         public int Anxiety { get; set; }
+        public int Understanding { get; set; }
     }
 
     /// <summary>The four layers of the patient model. Built from a case card by PatientFactory; all values come from content.</summary>

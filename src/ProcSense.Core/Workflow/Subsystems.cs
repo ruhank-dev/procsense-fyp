@@ -11,6 +11,7 @@ namespace ProcSense.Core.Workflow
         public static IEnumerable<ISubsystem> Default(ContentPackage content) => new List<ISubsystem>
         {
             new IdentitySubsystem(content),
+            new HistorySubsystem(content),
         };
     }
 }

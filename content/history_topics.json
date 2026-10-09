@@ -1,0 +1,8 @@
+{
+  "topics": {
+    "ids": ["complaint", "red_flags", "past_history", "medicines", "herbal", "previous_anaesthetic", "family_anaesthetic", "smoking", "alcohol", "last_food", "last_drink", "pregnancy"],
+    "sensitive": ["pregnancy"],
+    "note": "History topics a trainee can ask about in Step 2. Pregnancy is flagged sensitive (asked privately); the flag is stored only, no behaviour yet (Implementation Guide rule L2-03).",
+    "ref": "SR-0037"
+  }
+}

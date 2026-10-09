@@ -39,7 +39,8 @@ namespace ProcSense.Core.Content
         {
             var cases = new SortedDictionary<string, CaseCard>(StringComparer.Ordinal);
             foreach (var id in caseIds) cases[id] = LoadCase(reader.ReadText("cases/" + id + ".json"), id);
-            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), LoadBehaviour(reader.ReadText("behaviour.json")));
+            var behaviour = LoadBehaviour(reader.ReadText("behaviour.json"));
+            return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")));
         }
 
         public static CaseCard LoadCase(string json, string name)
@@ -134,19 +135,50 @@ namespace ProcSense.Core.Content
             return new TimeSpan(int.Parse(s.Substring(0, 2), CultureInfo.InvariantCulture), int.Parse(s.Substring(3, 2), CultureInfo.InvariantCulture), 0);
         }
 
-        private static BehaviourEffect LoadBehaviour(string json)
+        private static (BehaviourEffect, SummariseEffect) LoadBehaviour(string json)
         {
             try
             {
                 var d = new JsonObj(MiniJson.Parse(json), "");
                 var b = d.Obj("introduce_self");
-                var effect = new BehaviourEffect(b.Int("trust"), b.Int("anxiety"), b.Str("ref"));
+                var intro = new BehaviourEffect(b.Int("trust"), b.Int("anxiety"), b.Str("ref"));
                 b.Str("note");
                 b.Finish();
+                var m = d.Obj("summarise");
+                var summarise = new SummariseEffect(m.Int("min_topics"), m.Int("trust"), m.Int("understanding"), m.Str("ref"));
+                m.Str("note");
+                m.Finish();
                 d.Finish();
-                return effect;
+                return (intro, summarise);
             }
             catch (ContentException e) { throw new ContentException("behaviour.json: " + e.Message); }
+        }
+
+        private static HistoryTopics LoadHistoryTopics(string json)
+        {
+            try
+            {
+                var d = new JsonObj(MiniJson.Parse(json), "");
+                var t = d.Obj("topics");
+                var ids = Strings(t, "ids");
+                var sensitive = Strings(t, "sensitive");
+                foreach (var s in sensitive)
+                    if (!ids.Contains(s)) throw new ContentException("topics.sensitive: '" + s + "' is not in topics.ids");
+                var topics = new HistoryTopics(ids, sensitive, t.Str("ref"));
+                t.Str("note");
+                t.Finish();
+                d.Finish();
+                return topics;
+            }
+            catch (ContentException e) { throw new ContentException("history_topics.json: " + e.Message); }
+        }
+
+        private static List<string> Strings(JsonObj o, string key)
+        {
+            var result = new List<string>();
+            foreach (var item in o.Arr(key))
+                result.Add(item as string ?? throw new ContentException(o.Sub(key) + ": expected a list of text"));
+            return result;
         }
 
         private static NibpTiming LoadNibp(string json)
