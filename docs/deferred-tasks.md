@@ -3,7 +3,7 @@
 One register for everything that was **postponed, left outstanding, blocked or depends on something else** — so nothing is forgotten.
 Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a task is deferred, started, finished, blocked, unblocked or re-scoped.
 
-**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–6 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy); step 7 (history questions) is next.
+**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–6 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy); step 7 (history questions) is built and awaiting approval.
 
 ## Status meanings
 
@@ -33,7 +33,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-011 | Test-only fixture cases `TEST-ID-MISMATCH`, `TEST-ID-MISSING-BAND`, `TEST-ID-MISSING-BAND-ALLERGY` and their golden scripts | Pending | p0-simulation-workflow-s18 | DT-006 | Not among the 17 P0 cases. Step 6 already uses an in-test mismatch card |
 | DT-016 | Practice-mode red banner "Identity not confirmed" and green tick | Pending | p0-vr-interaction-ui-s01 / s12 | Unity install | Core already exposes `IdentityConfirmed` and `LastRejection` |
 | DT-017 | Emergency identification route for an unconscious or unknown patient (S2) | Pending | p0-scenario-s2 / workflow | — (policy question closed by the owner's approval, 09 Oct 2026) | Use the walkthrough route (wristband + notes + relative + interpreter); life-saving treatment must not be withheld |
-| DT-018 | Hospital-policy values for Step 1: identifier set, allergy-band colour, unknown-patient procedure, triage system | **Completed** | docs/research (Part I decisions) | — | Closed by the owner on 09 Oct 2026 (approval covers the 15 institutional decisions). The walkthrough's values are used (name, DOB, MRN; escalation route per walkthrough). Colour of the allergy band is not given in the walkthrough: the agent picks a neutral placeholder at asset time and informs the owner |
+| DT-018 | Hospital-policy values for Step 1: identifier set, allergy-band colour, unknown-patient procedure, triage system | **Completed** | docs/research (Part I decisions) | — | Closed by the owner on 09 Oct 2026 (approval covers the 15 institutional decisions). The walkthrough's values are used (name, DOB, MRN; escalation route per walkthrough). The allergy-band colour is not given in the walkthrough: it is chosen and proposed to the owner when the asset is built |
 
 ### B. Skeleton 1 and engine follow-ups
 
@@ -60,6 +60,8 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-029 | ADR-0001 still says "Proposed" although the code follows it | Pending | docs/decisions | Owner confirms | |
 | DT-030 | Skeleton step 6 (identity/allergy) approval and commit | **Completed** | p0-simulation-workflow-s01 | — | Approved 09 Oct 2026; committed as 9e71540 |
 | DT-037 | Test-run output files `result.json` and `result.session.jsonl` were committed in the repo root (and `bad.json`, `bad.session.jsonl` sit untracked); remove them from git and add them to `.gitignore` | Pending | .gitignore | Owner runs `git rm --cached result.json result.session.jsonl` | Created by running the CLI examples in the project root; use `--out "$TEMP/…"` or a scratch folder instead |
+| DT-038 | Ponytail removal from git: local history rewrite done (backup branch `backup-before-history-rewrite`); needs a check, the local skill files restored, and a force-push | In progress | .gitignore | Owner runs the commands in the hand-off (the agent's shell was blocked after the rewrite) | `.gitignore` entry added. `skills-lock.json` was left in the repo (only the skill folder was named) |
+| DT-039 | Step 7 (history questions) | In progress | [p0-simulation-workflow-s02](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s02-step2-history-disclosure.md) | Owner approval | Built 09 Oct 2026; 58 tests pass. Left for later: fasting-rule evaluation (clinical-logic), pregnancy eligibility and private-ask option (behaviour), `ask` for allergies stays the Step 1 verb `ask_allergies` |
 | DT-031 | Earlier history (6–7 Oct 2026: when the plans, ADR-0001 and phase review were written) is not in any session record | Blocked | docs/context/ProcSense_Change_Report.md §G | Owner to supply or confirm | Documented from the plan files only; nothing invented |
 
 DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentation honest (034 and 035 answered 09 Oct 2026):

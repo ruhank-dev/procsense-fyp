@@ -3,7 +3,7 @@
 Milestone: **M4 Engine complete — VAR-S1-A Steps 1–14 headless**
 
 Added 09 October 2026 at the project owner's request (the nurse workflow was in the source documents but in no step file — see [deferred-tasks.md](../../../../deferred-tasks.md) DT-006, DT-010, DT-011).
-**Decision (owner, 09 October 2026):** the band is applied **instantly after verification**. The detail "delay or instant" was left to the agent: **instant in Core for both cases** (see "Design decision" below).
+**Decision (owner, 09 October 2026):** the band is applied **instantly after verification**. Extending the same rule to the mismatch case (also instant in Core) is the agent's proposal — see "Design decision" below.
 
 ## What
 The headless rules for fixing a wrong or missing wristband, so the trainee can recover instead of being stuck at `ST1_MISMATCH`:
@@ -19,8 +19,8 @@ The headless rules for fixing a wrong or missing wristband, so the trainee can r
 4. **Test-only fixture cases** (not among the 17 P0 cases): `TEST-ID-MISMATCH` (wristband DOB differs), `TEST-ID-MISSING-BAND`, `TEST-ID-MISSING-BAND-ALLERGY`, built from VAR-S1-A by mutation and marked test-only.
 5. **Observable**: nurse task state and the replaced band appear in `ObservableState`. Band text still shows only after `read_wristband`.
 
-## Design decision (agent, informed to owner)
-The owner said instant after verification and left "delay or instant" to the agent. Chosen: **no simulated-time delay anywhere in this workflow.** Reasons: no invented timing numbers (no new register rows, no `content/staff.json`);
+## Design decision (proposal for the mismatch case)
+The owner decided: instant after verification. Proposed for the whole workflow (change it if a timed nurse visit is preferred): **no simulated-time delay anywhere in this workflow.** Reasons: no invented timing numbers (no new register rows, no `content/staff.json`);
 no timer state machine to keep deterministic and replayable; the learning point is "stop, verify, get it resolved", not waiting. The nurse still visibly walks in and replaces the band in VR, but that is **cosmetic pacing owned by the view**
 (same rule as p0-characters-s06). Trade-off accepted: the simulation clock does not advance while the nurse works. Revisit if a case wants the wait to matter clinically (e.g. an S2 patient deteriorating) — then add a content-defined duration with a register row.
 

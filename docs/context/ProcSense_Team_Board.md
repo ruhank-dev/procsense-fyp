@@ -13,10 +13,10 @@
 | Area | Status |
 |---|---|
 | Plans | Tier → phase → step files in `docs/plans/` (221 step files). Postponed / outstanding work: `docs/deferred-tasks.md` |
-| Walking skeleton 1 | Steps 1–6 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy); step 7 (history questions) next |
+| Walking skeleton 1 | Steps 1–6 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy); step 7 (history questions) built, awaiting approval |
 | Step 1 follow-ups now planned | Nurse wristband replacement + missing band (s18), robust spoken identity (s19), 3D nurse (characters s08), VR + tablet fallback (UI s12), nurse voice (audio s06) |
 | Repository | `github.com/ruhank-dev/procsense-fyp` (transferred from Myt1x54) |
-| Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync; times in UTC; minor details decided by the agent and reported (INSTRUCTIONS §3, §8e–§8i) |
+| Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync; times in UTC (INSTRUCTIONS §3, §8e–§8i) |
 
 ## 🧭 Rules everyone follows
 
@@ -240,6 +240,6 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 - [x] 16. *(added 09 Oct 2026)* Missing wristband: apply the band before or after verification? Walkthrough says after verification; Guide T01-4 says after a delay (ISS-0002) — *Surgeon / hospital*
 - [x] 17. *(added 09 Oct 2026)* BP cuff cycle: 30–40 s (walkthrough) or 20 s (Guide)? (ISS-0001) — *Medical reviewer*
 
-> Note (09 Oct 2026): the owner confirmed that the approval statement **closes items 1–15 above** and the two source conflicts (DT-034, DT-019). They are ticked; no further input is requested. The values in use are the walkthrough's own; where the walkthrough gives none (e.g. the allergy-band colour) the agent picks a neutral placeholder and tells the owner.
+> Note (09 Oct 2026): the owner confirmed that the approval statement **closes items 1–15 above** and the two source conflicts (DT-034, DT-019). They are ticked; no further input is requested. The values in use are the walkthrough's own.g. the allergy-band colour) the agent picks a neutral placeholder and tells the owner.
 
 > Plus walkthrough issues WT-I01…WT-I14 (see Change Report).

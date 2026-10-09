@@ -45,6 +45,9 @@ models/
 # --- Shared memory log (INSTRUCTIONS §8e) ---
 .memory/
 
+# --- Local-only agent skill (user decision 09 Oct 2026: not shared in the repo) ---
+.claude/skills/ponytail/
+
 # --- Local-only project rules (user decision: never pushed) ---
 AGENTS.md
 INSTRUCTIONS.md
