@@ -53,11 +53,31 @@ namespace ProcSense.Core.State
     }
 
     /// <summary>Current vital signs. They start at the case baseline; physiology over time arrives in a later phase.</summary>
+    /// <summary>A one-off reading the trainee took (blood pressure, temperature...), with the sim step it was taken at.</summary>
+    public sealed record Measurement(string Value, long AtStep);
+
     public sealed class PhysiologicalLayer
     {
+        private readonly SortedSet<string> _attached = new SortedSet<string>(StringComparer.Ordinal);
+        private readonly SortedDictionary<string, Measurement> _measured = new SortedDictionary<string, Measurement>(StringComparer.Ordinal);
+
         public PhysiologicalLayer(Vitals vitals) { Vitals = vitals; }
 
         public Vitals Vitals { get; set; }
+
+        /// <summary>Sensors currently on the patient. A live sensor (the SpO2 probe) shows values only while attached.</summary>
+        public IReadOnlyCollection<string> AttachedSensors => _attached;
+
+        public bool IsAttached(string sensor) => _attached.Contains(sensor);
+
+        public bool Attach(string sensor) => _attached.Add(sensor);
+
+        public bool Detach(string sensor) => _attached.Remove(sensor);
+
+        /// <summary>One-off readings by name; a new reading replaces the old one.</summary>
+        public IReadOnlyDictionary<string, Measurement> Measured => _measured;
+
+        public void Record(string name, string value, long atStep) => _measured[name] = new Measurement(value, atStep);
     }
 
     /// <summary>How the patient feels about the trainee. Plain counters for now; the values that move them come from content later.</summary>

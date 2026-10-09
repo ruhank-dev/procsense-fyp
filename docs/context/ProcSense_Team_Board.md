@@ -13,7 +13,7 @@
 | Area | Status |
 |---|---|
 | Plans | Tier → phase → step files in `docs/plans/` (221 step files). Postponed / outstanding work: `docs/deferred-tasks.md` |
-| Walking skeleton 1 | Steps 1–7 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy, history questions); step 8 (sensors + vitals) next |
+| Walking skeleton 1 | Steps 1–7 approved (content, clock/RNG, session/log, loader/patient state, observable/CLI/replay, identity + allergy, history questions); step 8 (sensors + vitals) built, awaiting approval |
 | Step 1 follow-ups now planned | Nurse wristband replacement + missing band (s18), robust spoken identity (s19), 3D nurse (characters s08), VR + tablet fallback (UI s12), nurse voice (audio s06) |
 | Repository | `github.com/ruhank-dev/procsense-fyp` (transferred from Myt1x54) |
 | Working rules added | Git commands with every hand-off; prompt history; deferred-task register; `docs/context/` kept in sync; times in UTC (INSTRUCTIONS §3, §8e–§8i) |

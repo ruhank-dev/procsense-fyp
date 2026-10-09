@@ -99,7 +99,7 @@ namespace ProcSense.Core.Tests
         {
             var s = Play(Script);
 
-            Assert.Equal("08:00:09.5000000", s.Observable.ClockTime); // leftover 0.3 s from earlier + 0.2 s = one more whole step, so the t=9.2 action lands at 9.5 s
+            Assert.Equal("08:00:09.5", s.Observable.ClockTime); // leftover 0.3 s from earlier + 0.2 s = one more whole step, so the t=9.2 action lands at 9.5 s
             Assert.Equal("UNKNOWN_VERB", s.Observable.LastRejection);
         }
 

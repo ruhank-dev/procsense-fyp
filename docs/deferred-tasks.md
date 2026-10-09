@@ -3,7 +3,7 @@
 One register for everything that was **postponed, left outstanding, blocked or depends on something else** — so nothing is forgotten.
 Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a task is deferred, started, finished, blocked, unblocked or re-scoped.
 
-**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–7 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions); step 7 (history questions) approved; step 8 (sensors and vitals) is next.
+**Last updated:** 09 October 2026 (UTC) · **Walking skeleton 1 position:** steps 1–7 approved (content, clock/RNG, session/log, loader/state, observable/CLI/replay, identity/allergy, history questions); step 7 (history questions) approved; step 8 (sensors and vitals) is built and awaiting approval.
 
 ## Status meanings
 
@@ -40,7 +40,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | ID | Task | Status | Planned in | Depends on / blocker | Notes |
 |---|---|---|---|---|---|
 | DT-012 | **Official golden runs** for skeleton 1 (scripts + expected key facts + expected log hash for seed 42; `task golden`; prove a changed action breaks the hash) | Pending | [p0-simulation-workflow-s04](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s04-golden-run-skeleton1.md) | Steps 7 and 8 (history, vitals) | `tests/golden/*.actions.json` today are **sample scripts only**, not validated golden runs |
-| DT-013 | Observable shows vitals only for attached sensors | Pending | [p0-simulation-workflow-s03](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s03-step3-sensors-vitals.md) | Step 7 | Deferred from core-engine-s04; nothing leaks in the meantime |
+| DT-013 | Observable shows vitals only for attached sensors | In progress | [p0-simulation-workflow-s03](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s03-step3-sensors-vitals.md) | Owner approval of step 8 | Built 09 Oct 2026 (69 tests pass); becomes Completed on approval |
 | DT-014 | Replace the placeholder `order_blood_test` verb with the real investigation-request verbs, keeping the identity gate | Pending | p0-clinical-logic-s06 / s11 | Clinical-logic phase | Placeholder lives in `IdentitySubsystem.Init` and is marked PLACEHOLDER |
 | DT-015 | Wrong-blood consequence when `risk.wrong_blood` is armed | Pending | p0-physiology-events-behaviour-s09, p0-diagnostic-transitions-s04 | Events and lab-sample steps | Step 6 only arms the flag |
 | DT-021 | EXP-CORE-1: identical hashes on PC and Quest | Blocked | p0-core-engine README | Quest + Unity | |
@@ -62,6 +62,7 @@ Maintained under INSTRUCTIONS.md §8g. Update it in the same change whenever a t
 | DT-037 | Test-run output files `result.json` and `result.session.jsonl` were committed in the repo root (and `bad.json`, `bad.session.jsonl` sit untracked); remove them from git and add them to `.gitignore` | Pending | .gitignore | Owner runs `git rm --cached result.json result.session.jsonl` | Created by running the CLI examples in the project root; use `--out "$TEMP/…"` or a scratch folder instead |
 | DT-038 | Ponytail removal from git: local history rewrite done (backup branch `backup-before-history-rewrite`); needs a check, the local skill files restored, and a force-push | In progress | .gitignore | Owner runs the commands in the hand-off (the agent's shell was blocked after the rewrite) | `.gitignore` entry added. `skills-lock.json` was left in the repo (only the skill folder was named) |
 | DT-039 | Step 7 (history questions) | **Completed** | [p0-simulation-workflow-s02](plans/p0/p0-simulation-workflow/steps/p0-simulation-workflow-s02-step2-history-disclosure.md) | — | Approved 09 Oct 2026; 58 tests pass. Left for later: fasting-rule evaluation (clinical-logic), pregnancy eligibility and private-ask option (behaviour), `ask` for allergies stays the Step 1 verb `ask_allergies` |
+| DT-040 | Pulse regularity (palpating the radial pulse) and reading durations (RR count, temperature) for Step 3 | Pending | p0-simulation-workflow-s03 follow-up / p0-clinical-logic | Content values for durations; physiology | `heart_rhythm` is in the case but no verb shows it yet; readings are instant (marked `shortcut` in `ObservationsSubsystem`) |
 | DT-031 | Earlier history (6–7 Oct 2026: when the plans, ADR-0001 and phase review were written) is not in any session record | Blocked | docs/context/ProcSense_Change_Report.md §G | Owner to supply or confirm | Documented from the plan files only; nothing invented |
 
 DT-034, DT-035 and DT-036 were owner confirmations needed to keep the documentation honest (034 and 035 answered 09 Oct 2026):

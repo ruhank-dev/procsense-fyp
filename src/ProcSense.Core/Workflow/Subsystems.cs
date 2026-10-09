@@ -12,6 +12,7 @@ namespace ProcSense.Core.Workflow
         {
             new IdentitySubsystem(content),
             new HistorySubsystem(content),
+            new ObservationsSubsystem(content),
         };
     }
 }
