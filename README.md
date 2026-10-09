@@ -9,7 +9,7 @@ patient from arrival to the WHO **Time Out** for two scenarios —
 
 ## Repository
 
-The one and only remote: **https://github.com/Myt1x54/procsense-fyp** (branch `main`; history restarted on 07 Oct 2026 — the earlier prototype was deliberately overwritten). `AGENTS.md` and `INSTRUCTIONS.md` stay local (git-ignored).
+The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch `main`; history restarted on 07 Oct 2026 — the earlier prototype was deliberately overwritten). `AGENTS.md` and `INSTRUCTIONS.md` stay local (git-ignored).
 
 ## Repo layout
 
