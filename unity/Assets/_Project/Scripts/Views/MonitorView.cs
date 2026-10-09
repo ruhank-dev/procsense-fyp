@@ -14,8 +14,8 @@ namespace ProcSense.VR.Views
     {
         private static readonly (string slot, string unit, string[] names)[] Slots =
         {
-            ("SpO2", "%", new[] { "spo2" }), ("Pulse", "/min", new[] { "heart_rate" }), ("BP", "mmHg", new[] { "systolic_bp", "diastolic_bp" }),
-            ("Breathing", "/min", new[] { "respiratory_rate" }), ("Temp", "C", new[] { "temperature_c" }), ("Alert", "", new[] { "acvpu" }), ("Pain", "/10", new[] { "pain_score" }),
+            ("SpO2", "%", new[] { "spo2" }), ("Pulse", "bpm", new[] { "heart_rate" }), ("BP", "mmHg", new[] { "systolic_bp", "diastolic_bp" }),
+            ("Breathing", "breaths/min", new[] { "respiratory_rate" }), ("Temp", "°C", new[] { "temperature_c" }), ("Alert", "", new[] { "acvpu" }), ("Pain", "/10", new[] { "pain_score" }),
         };
 
         private readonly TMP_Text[] _values = new TMP_Text[Slots.Length];
@@ -48,11 +48,7 @@ namespace ProcSense.VR.Views
             {
                 var found = Slots[i].names.Select(n => s.Vitals.FirstOrDefault(v => v.Name == n)).Where(v => v != null).ToList();
                 string text = found.Count == 0 ? "--" : string.Join("/", found.Select(v => v.Value)) + " " + Slots[i].unit + "  (" + found[0].At + ")";
-                if (Slots[i].slot == "SpO2" && found.Count > 0)
-                {
-                    var oxygen = s.Vitals.FirstOrDefault(v => v.Name == "oxygen");
-                    if (oxygen != null) text += "  " + oxygen.Value.Replace('_', ' ');
-                }
+                if (Slots[i].slot == "SpO2" && found.Count > 0) text = found[0].Value + "%";   // just "98%": whether the patient is on air or oxygen is not shown on the monitor
                 SetText(_values[i], text);
             }
         }
