@@ -16,6 +16,8 @@ These are Sannan's explicit instructions from 10 October 2026 and apply to all w
 
 The older repository workflow says no approvals are required. Sannan's newer instructions above take precedence for this work. Preserve repository checks and Git safeguards; add these review gates rather than bypassing them. No number of tests proves the absence of every bug: report the actual checks, known issues and untested conditions honestly.
 
+**Quality requirement (10 October 2026):** Sannan requires polished UI, animations and procedurally authored assets, proper collisions, smooth movement and reliable interactions. Treat the current greybox as foundation work, not the final visual quality bar. Design and profile for Quest 3 against section 7's measured budgets; do not promise zero frame drops from Editor results. Quest 3 is not yet available from the supervisor: continue Editor-verifiable work and leave APK/device replay, comfort and device performance acceptance explicitly pending.
+
 At the start of a future session, read this section, the progress ledger and blockers, inspect the working tree, then read the original step specification for the next task. If code or dependencies changed since the last verification, reassess the evidence before proceeding.
 
 ## 2. Assignment and source of truth
@@ -333,7 +335,7 @@ Status vocabulary: Planned; Historically approved / needs baseline verification;
 | SAN-PLAN | Read assignment and write this plan | Awaiting Sannan review | Documentation self-check passed: 109 relative links resolved, 96 source steps and 12 B-S work packages present, code fences balanced, Git whitespace check passed. No implementation or commit. |
 | SAN-LAYOUT | Conventional Unity folders and editable patient-bay workspace | Accepted by Sannan; commit approved | See section 12. 64 moved GUIDs preserved; EditMode 3/3, PlayMode 12/12 and full repository CI 27/27 passed; scene/screenshots checked. Included in the approved layout commit on sannan47/unity-layout; identify its SHA in Git history. Quest checks remain pending. |
 | SAN-BASE | Baseline and skeleton-1 device replay | Planned | First implementation stage; requires implementation authorization and available Editor/headset |
-| SAN-SCENES | Persistent scene lifecycle/input | Planned | Stage 1; reuse existing components |
+| SAN-SCENES | Persistent scene lifecycle/input | In progress; first slice accepted by Sannan | SAN-FOUNDATION below: collision-safe desktop FPS walking and duplicate-host rejection verified and accepted; full bay/corridor/OT lifecycle remains planned. |
 | SAN-DIAG | Records/diagnostics skeleton | Blocked | Investigation/result/transport runtime contracts and case integration required |
 | SAN-OT | Greybox theatre/WHO skeleton | Blocked | Readiness/checklist/consent/transport runtime contracts required |
 | SAN-BLENDER | Procedural pipeline and pilot assets | Planned | Stage 4; Blender/tool setup and pilot reference review |
@@ -377,7 +379,7 @@ Follow-up tasks / evidence invalidated by later changes:
 
 | ID | Item | Resolution / next action |
 |---|---|---|
-| SAN-B01 | Quest availability/access and current device setup unverified | Establish during Stage 0; headset-dependent acceptance remains pending |
+| SAN-B01 | Quest 3 not yet supplied by supervisor (Sannan, 10 October 2026) | Continue Editor-verifiable Stage 1 work; device replay, comfort and device profiling remain pending. |
 | SAN-B02 | Supervisor shell files not located in this inspection | Inventory during authorized room work; greybox does not block logic |
 | SAN-B03 | Detailed case files not driving normal sessions yet | Obtain/integrate real runtime contract from Core/content work; do not count files as playable cases |
 | SAN-B04 | Investigation, treatment, scoring and complete checklist services missing from inspected default pipeline | Record exact owner handoff per adapter; fixtures do not close this blocker |
@@ -4103,3 +4105,44 @@ Appendix inventory: 96 original phase steps and 12 B-S work packages. This inven
 8. Report any visual/layout issue or unexpected Console error. Only after fixes and verification explicitly accept the implementation. Commit-message approval is a separate later step.
 
 **Commit identity:** the commit containing this log on `sannan47/unity-layout`, subject `refactor(unity): organize assets and improve editor workspace` (no body). Resolve its SHA using `git log -1 --format=%H -- unity/sannan-execution-plan.md`; the SHA is intentionally stored in Git history rather than recursively embedding a commit's own hash in its content. **Author:** Sannan, using the commit email supplied directly in this chat. **Manual implementation acceptance:** Sannan accepted proceeding to commit on 10 October 2026 ("ok now i think we should commit"), and reiterated "go ahead" after installing the tools. **Exact commit-message approval:** the one-line subject above. **Next action:** no push without authorization; proceed to SAN-BASE only when implementation is requested. Pre-existing Pipeline/settings/Core-metadata changes remain outside this commit's scope.
+
+## 13. SAN-FOUNDATION — collision-safe desktop walking and session ownership
+
+Started/updated: 10 October 2026, 23:12 Asia/Karachi. Original scope: Stage 1 first slice, p0-vr-platform-s04 ownership prerequisite. Authorization: Sannan reported walking through walls/falling out of the bay, stated quality requirements and requested proceeding with the next step. Status: self-verified functional checks; awaiting Sannan manual review. Full Stage 1 remains in progress.
+
+### Changes and inspection
+
+- Connected to the existing Unity 6000.5.10f1 Editor at this checkout's absolute `unity` path. The sandbox initially hid the running Pipeline instance; authorized escalated inspection found it ready. No second Editor, package upgrade or scene regeneration.
+- Live inspection confirmed one solid floor and four solid wall colliders were already enabled. The application rig already had a CharacterController and XRI constrained body transformer. The simulator's default FPS implementation changed tracked-device positions directly and bypassed these colliders.
+- Added `Scripts/XR/SimulatorLocomotion.cs` to the saved DevOnly simulator instance via the Editor. It suppresses the simulator's direct FPS body translation and routes planar walking through `XRBodyTransformer` at 1.5 m/s with downward grounding. Controller manipulation remains available; individual-device pose controls are still developer tools and do not prove collision-safe walking. The adapter disables itself outside the Editor.
+- Tuned only the application `PlayerRig.prefab` collision capsule through PrefabUtility: radius 0.25 m, skin 0.025 m, step offset 0.2 m, minimum move distance zero. Third-party sample prefabs unchanged. SceneBuilder includes the adapter in future explicit rebuilds; no rebuild was run.
+- SimulationHost now disables/removes a duplicate host component before it can replace the active Session. It does not introduce DontDestroyOnLoad at this stage; Sys_Core remains loaded during additive room operations. Moving rig/services out of PatientBay and handling actual room replacement belong to the next slice.
+- Added six meaningful PlayMode checks: duplicate host, repeated additive room creation/unload, walls/floor/corner, clear movement, bed collision and end-to-end simulator input. Added required XRI/CoreUtils/InputSystem test assembly references. README documents desktop controls and limitations.
+
+### Verification and evidence
+
+- Live Pipeline commands always included `--caller plugin --skill unity-cli --project-path E:/Study/University/Semester_7/FYP/Procsense/unity`.
+- `run_tests --mode playmode --async_tests true`, collected with `test_status`: final **18/18 passed**, zero failed/skipped, 11.46 s. Evidence: `Logs/foundation-playmode.json` (ignored).
+- `run_tests --mode editor --async_tests true`: **3/3 passed**, zero failed/skipped, 0.48 s. Evidence: `Logs/foundation-editmode.json` (ignored). Golden/replay and content-loading checks retained.
+- First collision test spawned inside the bed; corrected its setup into the clear aisle and added a dedicated bed-blocking test. First end-to-end input fixture used an unowned InputActionReference; fixed it to use a temporary InputActionAsset. Final rerun passed all coverage. Compilation/reload interrupted an early test dispatch; only completed final results above are acceptance evidence.
+- End-to-end input test drove an isolated virtual gamepad axis through the simulator's translation action: rig moved and stopped at the wall, head position relative to the rig stayed unchanged, floor height remained valid. No headset pass is claimed.
+- Final live inspection: Sys_Core, PatientBay and DevOnly open, all clean; zero missing scripts; saved capsule radius 0.25 m; adapter present. PatientBay/Sys_Core layouts unchanged.
+- Inspected `artifacts/unity/bay_overview.png`: room, controllers, tablet and monitor present; still greybox assets and prototype UI, not final visual quality acceptance.
+- `git diff --check` for scripts, Editor code, tests, README and this plan passed. Full diff check reports five trailing spaces emitted by Unity serialization in PlayerRig/DevOnly empty YAML values; cosmetic normalization remains before any eventual commit, without changing asset identities or scene wiring.
+- Full `task ci` not rerun for this uncommitted Unity slice; mandatory before any later commit. Quest APK, device replay, comfort, sustained frame time and memory remain unavailable until supervisor supplies Quest 3. Editor test timing is not a Quest performance measurement.
+
+### Sannan's short manual review
+
+1. Choose `ProcSense -> Open Patient Bay`, press Play and focus Game. Use default FPS mode (no individual simulator device selected).
+2. Use WASD toward all walls, the bed and a corner. Expected: walking stops/slides at solid boundaries; player stays on the floor. Looking upward/downward must not turn walking into flying.
+3. Stop and start Play, then repeat briefly. Expected: consistent walking and no new Console errors.
+4. Use tablet introduction/identity/wristband/notes/confirmation and attach SpO2. Expected: normal interaction responses and monitor update.
+5. Report problems or explicitly accept this foundation slice. Technical service counts and test verification are handled by the assistant; no technical audit is assigned to Sannan.
+
+Implementation acceptance: Sannan explicitly accepted on 10 October 2026, 23:13 Asia/Karachi: "yea that feels great. now to commit". Exact commit-message approval: Sannan approved `fix(unity): constrain simulator walking` with no body on 10 October 2026, 23:15 Asia/Karachi ("that'll do"). Branch remains `sannan47/unity-layout`; no push authorized. Commit identity: the commit containing this entry, with the approved subject and author Sannan <sannanshakeel04@gmail.com>; resolve its SHA with `git log -1 --format=%H -- unity/sannan-execution-plan.md`.
+
+Changed areas: Unity simulator adapter/DevOnly, application rig capsule, SimulationHost, generator compatibility, PlayMode tests, README and this plan. Preserve pre-existing modified `docs/plans/milestones.md`, URP global settings, package manifest/lock and five untracked shared Core `.meta` files; none included in this slice. Preserve all generated metadata.
+
+Next action after acceptance: complete persistent rig/service ownership and additive room loading with validated arrival anchors and fades, then corridor/OT greyboxes and blocked diagnostic doors. Final UI/assets/animations retain separate quality review gates.
+
+Pre-commit preparation (10 October 2026, 23:13 Asia/Karachi): reviewed exact Unity code/test/asset/documentation scope. Normalized only five Unity-generated trailing spaces through the Editor and reimported the two assets; no object IDs, GUIDs or semantic serialized values changed. Asset whitespace check now passes. Required `task ci` completed: **27/27 passed**, exit 0. Staged exactly the 11 reviewed Unity files; staged whitespace check passed and CI left the unrelated change set intact. Reimport inspection confirmed capsule values and adapter GUID unchanged. Approved subject: `fix(unity): constrain simulator walking` (no body). Author for eventual commit: Sannan <sannanshakeel04@gmail.com>. Both implementation and exact message approvals are recorded above; no push authorized.

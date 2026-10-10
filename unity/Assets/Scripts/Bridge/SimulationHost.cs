@@ -47,6 +47,13 @@ namespace ProcSense.VR.Bridge
 
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                // A duplicate service must never replace the running session or tick it twice.
+                enabled = false;
+                Destroy(this);
+                return;
+            }
             Instance = this;
             if (config != null && Session == null) StartSession(config.caseId, (ulong)config.seed, config.mode);
         }

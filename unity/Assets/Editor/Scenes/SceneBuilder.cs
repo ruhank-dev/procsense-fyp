@@ -97,7 +97,11 @@ namespace ProcSense.EditorTools
         {
             var scene = NewScene();
             var sim = AssetDatabase.LoadAssetAtPath<GameObject>(SimulatorPrefab);
-            if (sim != null) PrefabUtility.InstantiatePrefab(sim);
+            if (sim != null)
+            {
+                var instance = (GameObject)PrefabUtility.InstantiatePrefab(sim);
+                instance.AddComponent<ProcSense.VR.XR.SimulatorLocomotion>();
+            }
             else Debug.LogWarning("[SceneBuilder] XR Device Simulator sample missing; run ProcSense/Project setup first");
             Save(scene, "DevOnly");
         }
