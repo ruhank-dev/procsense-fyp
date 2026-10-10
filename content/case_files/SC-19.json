@@ -371,6 +371,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": true,
+   "why": "Type 2 diabetes with a low glucose, confusion, fever and ketones of 3.5 (acidosis risk on an SGLT2 inhibitor): a threat to life, ASA 3 to 4 in an emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

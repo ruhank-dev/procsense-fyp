@@ -327,6 +327,16 @@
  "variant_end_states": {
   "fixed": "ready"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 1,
+   "emergency": false,
+   "why": "He is healthy with gallstones only: ASA 1; the missing consent and the faulty equipment are not a health problem.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

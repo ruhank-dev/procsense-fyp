@@ -437,6 +437,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": true,
+   "why": "Pregnancy is ASA 2 in the book's list; appendicitis with a fast pulse and a raised white count can make it ASA 3 in an emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

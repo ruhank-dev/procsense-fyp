@@ -339,6 +339,16 @@
   "story": "SR-2338",
   "authored": "SR-3738"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": false,
+   "why": "Type 1 diabetes on insulin: well controlled is ASA 2 and poorly controlled is ASA 3; a glucose of 4.6 today sits at the well-controlled end.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

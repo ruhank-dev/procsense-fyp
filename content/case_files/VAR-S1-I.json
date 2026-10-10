@@ -383,6 +383,16 @@
   "story": "SR-2312",
   "authored": "SR-3717"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 1,
+   "emergency": false,
+   "why": "She is well, so ASA 1; a penicillin allergy changes the antibiotic, not the grade.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

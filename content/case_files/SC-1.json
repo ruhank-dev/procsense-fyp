@@ -472,6 +472,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": true,
+   "why": "Sepsis from a burst appendix with low blood pressure and a raised lactate: sepsis is ASA 4 in the ASA's examples; early sepsis can be called 3.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

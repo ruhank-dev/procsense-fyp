@@ -493,6 +493,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": false,
+   "why": "Heart failure with a weak pumping function and kidney disease: moderately reduced heart function is ASA 3 and severely reduced is ASA 4; the slow pulse and low blood pressure today lean to 4.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

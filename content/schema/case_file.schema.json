@@ -32,7 +32,8 @@
     "paths",
     "debrief",
     "verification",
-    "sources"
+    "sources",
+    "risk"
   ],
   "properties": {
     "schema": {
@@ -445,7 +446,7 @@
         "asa",
         "plan"
       ],
-      "description": "The ASA grade (or range) this case expects and the anaesthetic plan, stated here and never worked out by the engine (walkthrough Part 7.4). Required for P0 cases.",
+      "description": "The ASA grade (or range) this case expects and the anaesthetic plan, stated here and never worked out by the engine (walkthrough Part 7.4). Required for every case.",
       "properties": {
         "asa": {
           "type": "object",

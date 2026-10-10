@@ -371,6 +371,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 4,
+   "emergency": true,
+   "why": "Healthy when he first refuses, so 1E; four hours later he is septic and confused, which is ASA 3 to 4: the right grade rises as he worsens.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

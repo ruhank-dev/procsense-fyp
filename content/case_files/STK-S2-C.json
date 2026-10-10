@@ -472,6 +472,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": true,
+   "why": "A healthy man made drowsy by morphine with slow shallow breathing and a low oxygen level: a temporary threat to the airway, ASA 2 to 3 in an emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

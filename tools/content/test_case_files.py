@@ -26,15 +26,15 @@ def broken(case_id, change):
 
 
 class RiskData(unittest.TestCase):
-    """Every P0 case states the ASA grade it expects and the anaesthetic plan (p0-simulation-workflow-s08)."""
+    """Every case states the ASA grade it expects and the anaesthetic plan (p0-simulation-workflow-s08)."""
 
-    def test_a_p0_case_without_risk_is_refused(self):
+    def test_a_case_without_risk_is_refused(self):
         import build_case_files
         cases = build_case_files.build()
         ctx = chk.load_context()
         c = copy.deepcopy(cases["VAR-S1-A"])
         del c["risk"]
-        self.assertTrue(any("needs its expected ASA grade" in p for p in chk.problems(c, ctx)))
+        self.assertTrue(any("risk" in p and "required" in p for p in chk.problems(c, ctx)))
 
     def test_a_backwards_range_or_an_s2_standard_plan_is_refused(self):
         import build_case_files
@@ -47,12 +47,13 @@ class RiskData(unittest.TestCase):
         d["risk"]["plan"] = "standard_ga"
         self.assertTrue(any("rsi" in p for p in chk.problems(d, ctx)))
 
-    def test_every_p0_case_has_a_range_inside_1_to_6_and_a_reason(self):
+    def test_every_case_has_a_range_inside_1_to_6_and_a_reason(self):
         import build_case_files
-        for k, c in build_case_files.build().items():
-            if c["tier"] == "P0":
-                a = c["risk"]["asa"]
-                self.assertTrue(1 <= a["min"] <= a["max"] <= 6 and a["why"].strip(), k)
+        cases = build_case_files.build()
+        self.assertEqual(len(cases), 53)
+        for k, c in cases.items():
+            a = c["risk"]["asa"]
+            self.assertTrue(1 <= a["min"] <= a["max"] <= 6 and a["why"].strip(), k)
 
 
 class FastingIntake(unittest.TestCase):

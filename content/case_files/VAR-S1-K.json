@@ -383,6 +383,16 @@
   "story": "SR-2309",
   "authored": "SR-3718"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 2,
+   "emergency": false,
+   "why": "Anaemia (haemoglobin 98) from iron deficiency is a mild systemic disease without real limits: ASA 2.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

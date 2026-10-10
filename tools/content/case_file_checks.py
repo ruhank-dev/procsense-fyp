@@ -98,8 +98,8 @@ def problems(c: dict, ctx: dict, others: list[dict] | None = None) -> list[str]:
         if not h["volunteered"] and not h["disclose_on"]:
             out.append(f"{w}: history {h['id']} is hidden but has no disclose_on")
     risk = c.get("risk")
-    if c["tier"] == "P0" and risk is None:
-        out.append(f"{w}: a P0 case needs its expected ASA grade and anaesthetic plan (risk)")
+    if risk is None:
+        out.append(f"{w}: every case needs its expected ASA grade and anaesthetic plan (risk)")
     if risk is not None:
         a = risk["asa"]
         if not (1 <= a["min"] <= a["max"] <= 6):

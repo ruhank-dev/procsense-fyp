@@ -341,6 +341,16 @@
   "story": "SR-2349",
   "authored": "SR-3749"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 2,
+   "emergency": true,
+   "why": "Thalassaemia trait is mild and does not limit her (ASA 1 to 2); dehydration from vomiting is a mild illness in an emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

@@ -357,6 +357,16 @@
   "story": "SR-2347",
   "authored": "SR-3747"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": true,
+   "why": "Anaphylaxis just treated, now stable, with an infection still to treat: ASA 2 to 3 in an emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

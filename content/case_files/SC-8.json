@@ -423,6 +423,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 4,
+   "max": 4,
+   "emergency": true,
+   "why": "Kidney disease with a potassium of 6.6, lactate 4.2 and blood pressure 88/50: shock and sepsis are ASA 4 in the ASA's examples.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

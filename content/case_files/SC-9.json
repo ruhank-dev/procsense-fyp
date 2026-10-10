@@ -413,6 +413,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": true,
+   "why": "A stent more than 3 months ago is ASA 3; cholangitis with sepsis (fever, fast pulse, bilirubin 85) is ASA 4; urgent drainage makes it an emergency.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

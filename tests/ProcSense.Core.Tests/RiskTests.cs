@@ -25,10 +25,10 @@ namespace ProcSense.Core.Tests
         private static string Reject(ActionOutcome o) { Assert.False(o.Accepted); return o.RejectReason; }
 
         // A session whose Step 4 findings come from VAR-S1-A and whose risk data come from `riskCase`; `fastingCase` gives the fasting intake. Identity is confirmed, history and examination are done.
-        private static Session Ready(string riskCase = "VAR-S1-A", string? fastingCase = null, SessionMode mode = SessionMode.Practice, bool examined = true)
+        private static Session Ready(string riskCase = "VAR-S1-A", string? fastingCase = null, SessionMode mode = SessionMode.Practice, bool examined = true, CaseFile? riskFile = null)
         {
             var chain = Subsystems.Default(Content).Where(x => !(x is RiskSubsystem) && !(x is FastingSubsystem)).ToList();
-            chain.Add(new RiskSubsystem(Content, File_(riskCase)));
+            chain.Add(new RiskSubsystem(Content, riskFile ?? File_(riskCase)));
             chain.Add(fastingCase == null ? new FastingSubsystem(Content) : new FastingSubsystem(Content, File_(fastingCase)));
             var s = new Session(Content.Cases["VAR-S1-A"], 42, mode, chain);
             foreach (var verb in new[] { "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(s.Apply(Act(verb)).Accepted, verb);
@@ -130,7 +130,7 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void A_case_that_states_no_grade_is_not_marked_and_the_anaesthetist_says_so()
         {
-            var s = Ready("VAR-S1-I");        // a P1 case: no expected grade or plan authored yet
+            var s = Ready(riskFile: File_("VAR-S1-I") with { Risk = null });        // a case that states no expected grade or plan
             Assert.Contains("asa:no_expected", Do(s, "assess_risk", ("asa", "2")).Effects);
             Assert.Equal("", s.Observable.Risk.AsaChip);
             Do(s, "request_anaesthetic_review");
@@ -367,20 +367,18 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void Every_P0_case_file_states_its_grade_and_plan_and_an_emergency_is_never_planned_as_standard()
+        public void Every_case_file_states_its_grade_and_plan_and_an_emergency_is_never_planned_as_standard()
         {
-            int p0 = 0;
+            int all = 0;
             foreach (var path in Directory.GetFiles(Path.Combine(TestCase.ContentRoot, "case_files"), "*.json"))
             {
                 var f = File_(Path.GetFileNameWithoutExtension(path));
-                if (f.Tier == "P0") { p0++; Assert.NotNull(f.Risk); }
-                if (f.Risk != null)
-                {
-                    Assert.InRange(f.Risk.Asa.Min, 1, f.Risk.Asa.Max);
-                    if (f.Scenario == "S2") Assert.Equal("rsi", f.Risk.Plan);
-                }
+                all++;
+                Assert.NotNull(f.Risk);
+                Assert.InRange(f.Risk!.Asa.Min, 1, f.Risk.Asa.Max);
+                if (f.Scenario == "S2") Assert.Equal("rsi", f.Risk.Plan);
             }
-            Assert.Equal(17, p0);
+            Assert.Equal(53, all);
         }
 
         [Fact]

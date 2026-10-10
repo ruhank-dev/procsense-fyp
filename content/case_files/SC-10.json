@@ -348,6 +348,16 @@
   "story": "SR-2342",
   "authored": "SR-3742"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 1,
+   "emergency": true,
+   "why": "A healthy 17-year-old in an emergency: healthy S2 is 1E in the book.",
+   "origin": "book"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

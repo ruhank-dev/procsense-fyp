@@ -380,6 +380,16 @@
   "story": "SR-2310",
   "authored": "SR-3719"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 3,
+   "emergency": false,
+   "why": "A fast irregular pulse today (new atrial fibrillation) with high blood pressure: not controlled, ASA 3.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

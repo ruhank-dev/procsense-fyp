@@ -398,6 +398,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": true,
+   "why": "Suspected ectopic pregnancy with a fast pulse, low blood pressure and a low haemoglobin: pregnancy is ASA 2, and shock from bleeding makes it ASA 3 to 4 in an emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",
