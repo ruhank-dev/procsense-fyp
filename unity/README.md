@@ -3,6 +3,8 @@
 Unity 6000.5.10f1 (URP) project for Meta Quest 2/3, using OpenXR and XR Interaction Toolkit.
 Add this `unity` directory in Unity Hub, keeping it inside the repository: the shared simulation engine is a local package at `../src/ProcSense.Core`.
 
+Use the repository's pinned Editor and committed package manifest/lock file. Unity Pipeline is included for live Editor tooling; the application scripts do not require its APIs. Core package metadata is versioned to preserve Unity GUIDs across team checkouts. The setup commit also retains the sample-prefab serialization and URP settings used by the verified local Editor. A fresh-Library reproduction check has not yet been completed; Editor tests on the working checkout do not establish clean-machine or Quest acceptance.
+
 ## Open and edit
 
 Use **ProcSense → Open Patient Bay**. It opens the visible `PatientBay` scene together with `Sys_Core` (simulation services) and `DevOnly` (Editor XR simulator), and positions the Scene view inside the room.
