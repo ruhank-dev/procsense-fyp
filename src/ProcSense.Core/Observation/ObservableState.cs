@@ -34,9 +34,12 @@ namespace ProcSense.Core.Observation
     public sealed record ObservedTransport(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
 
     /// <summary>A test the trainee ordered: its name, how many times it has been ordered, the state, when it is expected (once the sample is taken or the patient is in the scan room), what the indication rule said (practice mode only) and, once the result has been viewed, which results it holds.</summary>
+    /// <summary>The report of an imaging test as the trainee reads it: the text, the measurements stated in it and the approved picture; the engine's finding code and category are never shown.</summary>
+    public sealed record ObservedReport(string Text, string ImageId, IReadOnlyList<string> Measurements, bool Synthetic);
+
     public sealed record ObservedResult(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin);
 
-    public sealed record ObservedInvestigation(string Test, string Label, int Instance, string State, string Ready, string Indication, IReadOnlyList<ObservedResult> Results, string Note);
+    public sealed record ObservedInvestigation(string Test, string Label, int Instance, string State, string Ready, string Indication, IReadOnlyList<ObservedResult> Results, string Note, ObservedReport? Report);
 
     /// <summary>The lab phone: empty state when no call is waiting; RINGING (nothing is said until it is answered), then the caller's words and how far the call has got.</summary>
     public sealed record ObservedPhone(string State, string Message);
@@ -231,6 +234,17 @@ namespace ProcSense.Core.Observation
                     sb.Append('}');
                 }
                 sb.Append("],\"note\":"); JsonText.Quote(sb, Investigations[i].Note);
+                sb.Append(",\"report\":");
+                var rep = Investigations[i].Report;
+                if (rep == null) sb.Append("null");
+                else
+                {
+                    sb.Append("{\"text\":"); JsonText.Quote(sb, rep.Text);
+                    sb.Append(",\"image\":"); JsonText.Quote(sb, rep.ImageId);
+                    sb.Append(",\"measurements\":"); AppendList(sb, rep.Measurements);
+                    sb.Append(",\"synthetic\":").Append(rep.Synthetic ? "true" : "false");
+                    sb.Append('}');
+                }
                 sb.Append('}');
             }
             sb.Append(']');
@@ -311,7 +325,8 @@ namespace ProcSense.Core.Observation
             {
                 bool processing = o.State == "PROCESSING" || o.State == "RESULT_AVAILABLE" || o.State == "VIEWED" || o.State == "ACKNOWLEDGED";
                 bool seen = o.State == "VIEWED" || o.State == "ACKNOWLEDGED";
-                list.Add(new ObservedInvestigation(o.Test, o.Label, o.Instance, o.State, processing ? At(s, o.ReadyStep).Substring(0, 5) : "", practice ? o.Indication.ToLowerInvariant() : "", seen ? o.Results.Select(r => new ObservedResult(r.Id, r.Analyte, r.Value, r.Unit, r.Range, r.Flag, r.Comment, r.Quality, r.Origin)).ToList() : new List<ObservedResult>(), o.State == "REJECTED" || seen || o.State == "RESULT_AVAILABLE" ? o.Note : ""));
+                list.Add(new ObservedInvestigation(o.Test, o.Label, o.Instance, o.State, processing ? At(s, o.ReadyStep).Substring(0, 5) : "", practice ? o.Indication.ToLowerInvariant() : "", seen ? o.Results.Select(r => new ObservedResult(r.Id, r.Analyte, r.Value, r.Unit, r.Range, r.Flag, r.Comment, r.Quality, r.Origin)).ToList() : new List<ObservedResult>(), o.State == "REJECTED" || seen || o.State == "RESULT_AVAILABLE" ? o.Note : "",
+                    seen && o.Report != null ? new ObservedReport(o.Report.Text, o.Report.ImageId, o.Report.Measurements.Select(kv => kv.Key + ": " + kv.Value).ToList(), o.Report.Synthetic) : null));
             }
             return list;
         }

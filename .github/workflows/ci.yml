@@ -125,6 +125,9 @@ jobs:
       - name: Score tables are up to date (AIR, AAS, Alvarado, TG18, ASGE, STOP-Bang, AKI)
         run: uv run --project tools tools/content/build_scores.py --check
 
+      - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
+        run: uv run --project tools tools/content/build_imaging.py --check
+
       - name: Critical result limits are up to date (16 limits, conditions, actions)
         run: uv run --project tools tools/content/build_critical.py --check
 

@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "7e2eaa7dfb58adbc14836080b0f589df64dd0682692ecee374e73d58e2dd40b9",
- "files": 339,
- "bytes": 16487987,
+ "content_hash": "9733deb544bf6e7b1053a303e32a37043ae05ae23fdc40d7e921e67fdbd9c7f8",
+ "files": 340,
+ "bytes": 16577856,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -12,6 +12,7 @@
   "fasting": 1,
   "flow": 1,
   "images": 77,
+  "imaging": 1,
   "investigations": 4,
   "locations": 1,
   "news2": 1,
@@ -967,6 +968,10 @@
   "images/index.json": {
    "bytes": 86082,
    "sha256": "fad80505950e98e4c4abac6911d54116537d273f770fea7603a926c029a0d0ff"
+  },
+  "imaging/imaging.json": {
+   "bytes": 89869,
+   "sha256": "cb68e0f3b81bc141d0060699822816287b08661fef674cff072f104ced60d911"
   },
   "imaging_library.csv": {
    "bytes": 8330,

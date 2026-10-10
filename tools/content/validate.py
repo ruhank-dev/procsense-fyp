@@ -61,6 +61,8 @@ def main() -> int:
     ind_doc = load_json(CONTENT / "investigations" / "indications.json")
     irefs = set(inv_doc["refs"]) | {t["ref"] for t in inv_doc["tests"]} | {inv_doc["delay"]["ref"]} | {i["ref"] for i in ind_doc["indications"]}
     nr_doc = load_json(CONTENT / "investigations" / "normal_results.json")
+    img_doc = load_json(CONTENT / "imaging" / "imaging.json")
+    irefs |= {f["ref"] for f in img_doc["findings"]} | set(img_doc["refs"])
     crit_doc = load_json(CONTENT / "investigations" / "critical.json")
     irefs |= {r["ref"] for r in crit_doc["rules"]} | set(crit_doc["refs"])
     irefs |= {r["ref"] for t in nr_doc["tests"].values() for r in t["results"]} | set(inv_doc["artefacts"]["refs"])

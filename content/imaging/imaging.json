@@ -1,0 +1,2762 @@
+{
+ "categories": [
+  "normal",
+  "positive",
+  "complicated",
+  "other_diagnosis",
+  "non_diagnostic"
+ ],
+ "tests": {
+  "ultrasound": [
+   "ultrasound_gallbladder",
+   "ultrasound_appendix",
+   "ultrasound_pelvis",
+   "ultrasound_renal"
+  ],
+  "ct": [
+   "ct_appendix_level"
+  ],
+  "mri": [
+   "mri_appendix_level"
+  ],
+  "mrcp": [
+   "mrcp"
+  ],
+  "chest_xray": [
+   "chest_xray"
+  ],
+  "ecg": [
+   "ecg"
+  ]
+ },
+ "clean_fallback": {
+  "chest_xray": "CXR-01",
+  "ecg": "ECG-01"
+ },
+ "findings": [
+  {
+   "code": "CT-AB-00",
+   "plain": "Clean result: no obstruction, no free gas",
+   "category": "normal",
+   "ref": "SR-3307"
+  },
+  {
+   "code": "CT-AB-01",
+   "plain": "Dilated fluid-filled small bowel loops",
+   "category": "other_diagnosis",
+   "ref": "SR-3308"
+  },
+  {
+   "code": "CT-AB-02",
+   "plain": "Gas outside the bowel: perforation",
+   "category": "complicated",
+   "ref": "SR-3309"
+  },
+  {
+   "code": "CT-AP-00",
+   "plain": "Clean result: no problem at the right iliac fossa",
+   "category": "normal",
+   "ref": "SR-3300"
+  },
+  {
+   "code": "CT-AP-01",
+   "plain": "Inflamed appendix, no collection",
+   "category": "positive",
+   "ref": "SR-3301"
+  },
+  {
+   "code": "CT-AP-02",
+   "plain": "Inflamed appendix with a pus collection",
+   "category": "complicated",
+   "ref": "SR-3302"
+  },
+  {
+   "code": "CT-AP-03",
+   "plain": "A tumour of the caecum that can mimic appendicitis in an older patient",
+   "category": "other_diagnosis",
+   "ref": "SR-3303"
+  },
+  {
+   "code": "CT-AP-04",
+   "plain": "Inflamed outpouching of the colon that can mimic appendicitis",
+   "category": "other_diagnosis",
+   "ref": "SR-3304"
+  },
+  {
+   "code": "CT-GB-00",
+   "plain": "Clean result: normal gallbladder",
+   "category": "normal",
+   "ref": "SR-3305"
+  },
+  {
+   "code": "CT-GB-01",
+   "plain": "Thick, gas-containing gallbladder wall",
+   "category": "complicated",
+   "ref": "SR-3306"
+  },
+  {
+   "code": "CXR-01",
+   "plain": "Film without a labelled abnormality",
+   "category": "normal",
+   "ref": "SR-3200"
+  },
+  {
+   "code": "CXR-02",
+   "plain": "Airspace opacity (possible pneumonia or aspiration)",
+   "category": "positive",
+   "ref": "SR-3201"
+  },
+  {
+   "code": "CXR-03",
+   "plain": "Fluid around the lung",
+   "category": "positive",
+   "ref": "SR-3202"
+  },
+  {
+   "code": "CXR-04",
+   "plain": "Air around the lung",
+   "category": "positive",
+   "ref": "SR-3203"
+  },
+  {
+   "code": "CXR-05",
+   "plain": "Enlarged heart shadow",
+   "category": "positive",
+   "ref": "SR-3204"
+  },
+  {
+   "code": "CXR-06",
+   "plain": "Fluid in the lungs (fluid overload, heart failure)",
+   "category": "positive",
+   "ref": "SR-3205"
+  },
+  {
+   "code": "CXR-07",
+   "plain": "Partly collapsed lung (for example after pain or surgery)",
+   "category": "positive",
+   "ref": "SR-3206"
+  },
+  {
+   "code": "CXR-08",
+   "plain": "Gas outside the bowel: perforation",
+   "category": "complicated",
+   "ref": "SR-3207"
+  },
+  {
+   "code": "ECG-01",
+   "plain": "Regular rhythm, normal rate",
+   "category": "normal",
+   "ref": "SR-3100"
+  },
+  {
+   "code": "ECG-02",
+   "plain": "Regular rhythm, fast rate",
+   "category": "positive",
+   "ref": "SR-3101"
+  },
+  {
+   "code": "ECG-03",
+   "plain": "Irregularly irregular rhythm, no clear P waves",
+   "category": "positive",
+   "ref": "SR-3102"
+  },
+  {
+   "code": "ECG-04",
+   "plain": "Regular rhythm, slow rate",
+   "category": "positive",
+   "ref": "SR-3103"
+  },
+  {
+   "code": "ECG-05",
+   "plain": "Slow ventricular rate, atria and ventricles out of step",
+   "category": "positive",
+   "ref": "SR-3104"
+  },
+  {
+   "code": "ECG-06",
+   "plain": "Fast regular narrow-complex rhythm",
+   "category": "positive",
+   "ref": "SR-3105"
+  },
+  {
+   "code": "ECG-07",
+   "plain": "Heart attack pattern",
+   "category": "complicated",
+   "ref": "SR-3106"
+  },
+  {
+   "code": "ECG-08",
+   "plain": "High potassium on the ECG",
+   "category": "positive",
+   "ref": "SR-3107"
+  },
+  {
+   "code": "ECG-09",
+   "plain": "Low potassium on the ECG",
+   "category": "positive",
+   "ref": "SR-3108"
+  },
+  {
+   "code": "ECG-10",
+   "plain": "New fast AF",
+   "category": "positive",
+   "ref": "SR-3109"
+  },
+  {
+   "code": "MR-AP-00",
+   "plain": "Clean result: normal appendix",
+   "category": "normal",
+   "ref": "SR-3310"
+  },
+  {
+   "code": "MR-AP-01",
+   "plain": "Inflamed appendix on MRI (for example in pregnancy)",
+   "category": "positive",
+   "ref": "SR-3311"
+  },
+  {
+   "code": "MRCP-00",
+   "plain": "Clean result: normal bile duct",
+   "category": "normal",
+   "ref": "SR-3312"
+  },
+  {
+   "code": "MRCP-01",
+   "plain": "Dilated duct with a filling defect",
+   "category": "positive",
+   "ref": "SR-3313"
+  },
+  {
+   "code": "US-AP-01",
+   "plain": "Appendicitis",
+   "category": "positive",
+   "ref": "SR-2807"
+  },
+  {
+   "code": "US-AP-02",
+   "plain": "Burst/complicated appendicitis",
+   "category": "complicated",
+   "ref": "SR-2808"
+  },
+  {
+   "code": "US-AP-03",
+   "plain": "Not appendicitis",
+   "category": "other_diagnosis",
+   "ref": "SR-2809"
+  },
+  {
+   "code": "US-AP-04",
+   "plain": "We still don't know — this is NOT the same as negative",
+   "category": "non_diagnostic",
+   "ref": "SR-2810"
+  },
+  {
+   "code": "US-AP-05",
+   "plain": "Appendicitis unlikely",
+   "category": "normal",
+   "ref": "SR-2811"
+  },
+  {
+   "code": "US-GB-00",
+   "plain": "No abnormality at this level",
+   "category": "normal",
+   "ref": "SR-2812"
+  },
+  {
+   "code": "US-GB-01",
+   "plain": "Simple gallstones",
+   "category": "positive",
+   "ref": "SR-2800"
+  },
+  {
+   "code": "US-GB-02",
+   "plain": "Inflamed gallbladder (acute cholecystitis)",
+   "category": "positive",
+   "ref": "SR-2801"
+  },
+  {
+   "code": "US-GB-03",
+   "plain": "Possible blockage of the duct",
+   "category": "other_diagnosis",
+   "ref": "SR-2802"
+  },
+  {
+   "code": "US-GB-04",
+   "plain": "Duct stone (high risk)",
+   "category": "positive",
+   "ref": "SR-2803"
+  },
+  {
+   "code": "US-GB-05",
+   "plain": "Severe complicated inflammation",
+   "category": "complicated",
+   "ref": "SR-2804"
+  },
+  {
+   "code": "US-GB-06",
+   "plain": "Possible gallbladder cancer",
+   "category": "other_diagnosis",
+   "ref": "SR-2805"
+  },
+  {
+   "code": "US-GB-07",
+   "plain": "Diagnosis less certain",
+   "category": "non_diagnostic",
+   "ref": "SR-2806"
+  },
+  {
+   "code": "US-GB-08",
+   "plain": "No abnormality at this level",
+   "category": "non_diagnostic",
+   "ref": "SR-2813"
+  },
+  {
+   "code": "US-PV-00",
+   "plain": "No abnormality at this level",
+   "category": "normal",
+   "ref": "SR-2814"
+  },
+  {
+   "code": "US-PV-01",
+   "plain": "No abnormality at this level",
+   "category": "other_diagnosis",
+   "ref": "SR-2815"
+  },
+  {
+   "code": "US-PV-02",
+   "plain": "No abnormality at this level",
+   "category": "other_diagnosis",
+   "ref": "SR-2816"
+  },
+  {
+   "code": "US-RN-00",
+   "plain": "No abnormality at this level",
+   "category": "normal",
+   "ref": "SR-2817"
+  },
+  {
+   "code": "US-RN-01",
+   "plain": "No abnormality at this level",
+   "category": "other_diagnosis",
+   "ref": "SR-2818"
+  }
+ ],
+ "reports": [
+  {
+   "id": "rep-ct-ab-00-r0",
+   "code": "CT-AB-00",
+   "image_id": "ct-ab-00-r0",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ab-00-r1",
+   "code": "CT-AB-00",
+   "image_id": "ct-ab-00-r1",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ab-00-r2",
+   "code": "CT-AB-00",
+   "image_id": "ct-ab-00-r2",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ab-00-r3",
+   "code": "CT-AB-00",
+   "image_id": "ct-ab-00-r3",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ab-01-s0",
+   "code": "CT-AB-01",
+   "image_id": "ct-ab-01-s0",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 32 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": "32.0",
+    "obstruction": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-01-s1",
+   "code": "CT-AB-01",
+   "image_id": "ct-ab-01-s1",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 34 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": "34.0",
+    "obstruction": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-01-s2",
+   "code": "CT-AB-01",
+   "image_id": "ct-ab-01-s2",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 30 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": "30.0",
+    "obstruction": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-01-s3",
+   "code": "CT-AB-01",
+   "image_id": "ct-ab-01-s3",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 36 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": "36.0",
+    "obstruction": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-02-s0",
+   "code": "CT-AB-02",
+   "image_id": "ct-ab-02-s0",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-02-s1",
+   "code": "CT-AB-02",
+   "image_id": "ct-ab-02-s1",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-02-s2",
+   "code": "CT-AB-02",
+   "image_id": "ct-ab-02-s2",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ab-02-s3",
+   "code": "CT-AB-02",
+   "image_id": "ct-ab-02-s3",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-00-r0",
+   "code": "CT-AP-00",
+   "image_id": "ct-ap-00-r0",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ap-00-r1",
+   "code": "CT-AP-00",
+   "image_id": "ct-ap-00-r1",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ap-00-r2",
+   "code": "CT-AP-00",
+   "image_id": "ct-ap-00-r2",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ap-00-r3",
+   "code": "CT-AP-00",
+   "image_id": "ct-ap-00-r3",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-ap-01-s0",
+   "code": "CT-AP-01",
+   "image_id": "ct-ap-01-s0",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 11 mm with wall thickening containing a calcified appendicitis stone (appendicolith) and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": "11.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-01-s1",
+   "code": "CT-AP-01",
+   "image_id": "ct-ap-01-s1",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 12 mm with wall thickening and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": "12.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-01-s2",
+   "code": "CT-AP-01",
+   "image_id": "ct-ap-01-s2",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 10 mm with wall thickening containing a calcified appendicitis stone (appendicolith) and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": "10.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-01-s3",
+   "code": "CT-AP-01",
+   "image_id": "ct-ap-01-s3",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 13 mm with wall thickening and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": "13.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-02-s0",
+   "code": "CT-AP-02",
+   "image_id": "ct-ap-02-s0",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 13 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 28 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "abscess_mm": "28.0",
+    "appendix_mm": "13.0",
+    "collection": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-02-s1",
+   "code": "CT-AP-02",
+   "image_id": "ct-ap-02-s1",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 14 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 34 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "abscess_mm": "34.0",
+    "appendix_mm": "14.0",
+    "collection": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-02-s2",
+   "code": "CT-AP-02",
+   "image_id": "ct-ap-02-s2",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 12 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 26 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "abscess_mm": "26.0",
+    "appendix_mm": "12.0",
+    "collection": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-02-s3",
+   "code": "CT-AP-02",
+   "image_id": "ct-ap-02-s3",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 15 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 38 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "abscess_mm": "38.0",
+    "appendix_mm": "15.0",
+    "collection": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-03-s0",
+   "code": "CT-AP-03",
+   "image_id": "ct-ap-03-s0",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 38 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "appendix": "normal",
+    "mass_mm": "38.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-03-s1",
+   "code": "CT-AP-03",
+   "image_id": "ct-ap-03-s1",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 45 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "appendix": "normal",
+    "mass_mm": "45.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-03-s2",
+   "code": "CT-AP-03",
+   "image_id": "ct-ap-03-s2",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 40 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "appendix": "normal",
+    "mass_mm": "40.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-03-s3",
+   "code": "CT-AP-03",
+   "image_id": "ct-ap-03-s3",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 50 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "appendix": "normal",
+    "mass_mm": "50.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-04-s0",
+   "code": "CT-AP-04",
+   "image_id": "ct-ap-04-s0",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 8 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "appendix": "normal",
+    "diverticulum": "yes",
+    "wall_mm": "8.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-04-s1",
+   "code": "CT-AP-04",
+   "image_id": "ct-ap-04-s1",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 9 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "appendix": "normal",
+    "diverticulum": "yes",
+    "wall_mm": "9.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-04-s2",
+   "code": "CT-AP-04",
+   "image_id": "ct-ap-04-s2",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 8 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "appendix": "normal",
+    "diverticulum": "yes",
+    "wall_mm": "8.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-ap-04-s3",
+   "code": "CT-AP-04",
+   "image_id": "ct-ap-04-s3",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 10 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "appendix": "normal",
+    "diverticulum": "yes",
+    "wall_mm": "10.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-gb-00-r0",
+   "code": "CT-GB-00",
+   "image_id": "ct-gb-00-r0",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-gb-00-r1",
+   "code": "CT-GB-00",
+   "image_id": "ct-gb-00-r1",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-gb-00-r2",
+   "code": "CT-GB-00",
+   "image_id": "ct-gb-00-r2",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-gb-00-r3",
+   "code": "CT-GB-00",
+   "image_id": "ct-gb-00-r3",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-ct-gb-01-s0",
+   "code": "CT-GB-01",
+   "image_id": "ct-gb-01-s0",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 6 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "complication": "gas",
+    "wall_mm": "6.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-gb-01-s1",
+   "code": "CT-GB-01",
+   "image_id": "ct-gb-01-s1",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 7 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "complication": "gas",
+    "wall_mm": "7.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-gb-01-s2",
+   "code": "CT-GB-01",
+   "image_id": "ct-gb-01-s2",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 6 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "complication": "gas",
+    "wall_mm": "6.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ct-gb-01-s3",
+   "code": "CT-GB-01",
+   "image_id": "ct-gb-01-s3",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 8 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "complication": "gas",
+    "wall_mm": "8.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-cxr-01-r0",
+   "code": "CXR-01",
+   "image_id": "cxr-01-r0",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-01-r1",
+   "code": "CXR-01",
+   "image_id": "cxr-01-r1",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-01-r2",
+   "code": "CXR-01",
+   "image_id": "cxr-01-r2",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-01-r3",
+   "code": "CXR-01",
+   "image_id": "cxr-01-r3",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-02-r0",
+   "code": "CXR-02",
+   "image_id": "cxr-02-r0",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-02-r1",
+   "code": "CXR-02",
+   "image_id": "cxr-02-r1",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-02-r2",
+   "code": "CXR-02",
+   "image_id": "cxr-02-r2",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-02-r3",
+   "code": "CXR-02",
+   "image_id": "cxr-02-r3",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-03-r0",
+   "code": "CXR-03",
+   "image_id": "cxr-03-r0",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-03-r1",
+   "code": "CXR-03",
+   "image_id": "cxr-03-r1",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-03-r2",
+   "code": "CXR-03",
+   "image_id": "cxr-03-r2",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-03-r3",
+   "code": "CXR-03",
+   "image_id": "cxr-03-r3",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-04-r0",
+   "code": "CXR-04",
+   "image_id": "cxr-04-r0",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-04-r1",
+   "code": "CXR-04",
+   "image_id": "cxr-04-r1",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-04-r2",
+   "code": "CXR-04",
+   "image_id": "cxr-04-r2",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-04-r3",
+   "code": "CXR-04",
+   "image_id": "cxr-04-r3",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-05-r0",
+   "code": "CXR-05",
+   "image_id": "cxr-05-r0",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-05-r1",
+   "code": "CXR-05",
+   "image_id": "cxr-05-r1",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-05-r2",
+   "code": "CXR-05",
+   "image_id": "cxr-05-r2",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-05-r3",
+   "code": "CXR-05",
+   "image_id": "cxr-05-r3",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-06-r0",
+   "code": "CXR-06",
+   "image_id": "cxr-06-r0",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-06-r1",
+   "code": "CXR-06",
+   "image_id": "cxr-06-r1",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-06-r2",
+   "code": "CXR-06",
+   "image_id": "cxr-06-r2",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-06-r3",
+   "code": "CXR-06",
+   "image_id": "cxr-06-r3",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-07-r0",
+   "code": "CXR-07",
+   "image_id": "cxr-07-r0",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-07-r1",
+   "code": "CXR-07",
+   "image_id": "cxr-07-r1",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-07-r2",
+   "code": "CXR-07",
+   "image_id": "cxr-07-r2",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-07-r3",
+   "code": "CXR-07",
+   "image_id": "cxr-07-r3",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-cxr-08-s0",
+   "code": "CXR-08",
+   "image_id": "cxr-08-s0",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-cxr-08-s1",
+   "code": "CXR-08",
+   "image_id": "cxr-08-s1",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-cxr-08-s2",
+   "code": "CXR-08",
+   "image_id": "cxr-08-s2",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-cxr-08-s3",
+   "code": "CXR-08",
+   "image_id": "cxr-08-s3",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-01-r0",
+   "code": "ECG-01",
+   "image_id": "ecg-01-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus rhythm. Heart rate 64 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus rhythm.",
+   "measurements": {
+    "rate_bpm": "64",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-01-r1",
+   "code": "ECG-01",
+   "image_id": "ecg-01-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus rhythm. Heart rate 95 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus rhythm.",
+   "measurements": {
+    "rate_bpm": "95",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-01-r2",
+   "code": "ECG-01",
+   "image_id": "ecg-01-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus rhythm. Heart rate 81 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus rhythm.",
+   "measurements": {
+    "rate_bpm": "81",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-01-r3",
+   "code": "ECG-01",
+   "image_id": "ecg-01-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus rhythm. Heart rate 64 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus rhythm.",
+   "measurements": {
+    "rate_bpm": "64",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-02-r0",
+   "code": "ECG-02",
+   "image_id": "ecg-02-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus tachycardia. Heart rate 105 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus tachycardia.",
+   "measurements": {
+    "rate_bpm": "105",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-02-r1",
+   "code": "ECG-02",
+   "image_id": "ecg-02-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus tachycardia. Heart rate 129 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus tachycardia.",
+   "measurements": {
+    "rate_bpm": "129",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-02-r2",
+   "code": "ECG-02",
+   "image_id": "ecg-02-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus tachycardia. Heart rate 105 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus tachycardia.",
+   "measurements": {
+    "rate_bpm": "105",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-02-r3",
+   "code": "ECG-02",
+   "image_id": "ecg-02-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus tachycardia. Heart rate 122 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus tachycardia.",
+   "measurements": {
+    "rate_bpm": "122",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-03-r0",
+   "code": "ECG-03",
+   "image_id": "ecg-03-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 76 per minute (measured from the recording). Beats irregularly irregular; no clear P waves. Impression: Atrial fibrillation.",
+   "measurements": {
+    "rate_bpm": "76",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-03-r1",
+   "code": "ECG-03",
+   "image_id": "ecg-03-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 65 per minute (measured from the recording). Beats irregularly irregular; no clear P waves. Impression: Atrial fibrillation.",
+   "measurements": {
+    "rate_bpm": "65",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-03-r2",
+   "code": "ECG-03",
+   "image_id": "ecg-03-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 66 per minute (measured from the recording). Beats irregularly irregular; no clear P waves. Impression: Atrial fibrillation.",
+   "measurements": {
+    "rate_bpm": "66",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-03-r3",
+   "code": "ECG-03",
+   "image_id": "ecg-03-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 68 per minute (measured from the recording). Beats irregularly irregular; no clear P waves. Impression: Atrial fibrillation.",
+   "measurements": {
+    "rate_bpm": "68",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-04-r0",
+   "code": "ECG-04",
+   "image_id": "ecg-04-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus bradycardia. Heart rate 47 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus bradycardia.",
+   "measurements": {
+    "rate_bpm": "47",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-04-r1",
+   "code": "ECG-04",
+   "image_id": "ecg-04-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus bradycardia. Heart rate 48 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus bradycardia.",
+   "measurements": {
+    "rate_bpm": "48",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-04-r2",
+   "code": "ECG-04",
+   "image_id": "ecg-04-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus bradycardia. Heart rate 46 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus bradycardia.",
+   "measurements": {
+    "rate_bpm": "46",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-04-r3",
+   "code": "ECG-04",
+   "image_id": "ecg-04-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Sinus bradycardia. Heart rate 59 per minute (measured from the recording). Regular rhythm with a P wave before each QRS. Impression: Sinus bradycardia.",
+   "measurements": {
+    "rate_bpm": "59",
+    "regular": "yes",
+    "rhythm": "sinus"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-05-r0",
+   "code": "ECG-05",
+   "image_id": "ecg-05-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Complete heart block. Heart rate 40 per minute (measured from the recording). Slow ventricular rate with no consistent relationship between P waves and QRS complexes. Impression: Complete heart block.",
+   "measurements": {
+    "rate_bpm": "40",
+    "regular": "yes",
+    "rhythm": "chb"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-05-r1",
+   "code": "ECG-05",
+   "image_id": "ecg-05-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Complete heart block. Heart rate 50 per minute (measured from the recording). Slow ventricular rate with no consistent relationship between P waves and QRS complexes. Impression: Complete heart block.",
+   "measurements": {
+    "rate_bpm": "50",
+    "regular": "yes",
+    "rhythm": "chb"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-05-r2",
+   "code": "ECG-05",
+   "image_id": "ecg-05-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Complete heart block. Heart rate 50 per minute (measured from the recording). Slow ventricular rate with no consistent relationship between P waves and QRS complexes. Impression: Complete heart block.",
+   "measurements": {
+    "rate_bpm": "50",
+    "regular": "yes",
+    "rhythm": "chb"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-05-r3",
+   "code": "ECG-05",
+   "image_id": "ecg-05-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Complete heart block. Heart rate 38 per minute (measured from the recording). Slow ventricular rate with no consistent relationship between P waves and QRS complexes. Impression: Complete heart block.",
+   "measurements": {
+    "rate_bpm": "38",
+    "regular": "yes",
+    "rhythm": "chb"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-06-r0",
+   "code": "ECG-06",
+   "image_id": "ecg-06-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Supraventricular tachycardia. Heart rate 142 per minute (measured from the recording). Fast regular narrow-complex rhythm. Impression: Supraventricular tachycardia.",
+   "measurements": {
+    "rate_bpm": "142",
+    "regular": "yes",
+    "rhythm": "svt"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-06-r1",
+   "code": "ECG-06",
+   "image_id": "ecg-06-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Supraventricular tachycardia. Heart rate 170 per minute (measured from the recording). Fast regular narrow-complex rhythm. Impression: Supraventricular tachycardia.",
+   "measurements": {
+    "rate_bpm": "170",
+    "regular": "yes",
+    "rhythm": "svt"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-06-r2",
+   "code": "ECG-06",
+   "image_id": "ecg-06-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Supraventricular tachycardia. Heart rate 156 per minute (measured from the recording). Fast regular narrow-complex rhythm. Impression: Supraventricular tachycardia.",
+   "measurements": {
+    "rate_bpm": "156",
+    "regular": "yes",
+    "rhythm": "svt"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-06-r3",
+   "code": "ECG-06",
+   "image_id": "ecg-06-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Supraventricular tachycardia. Heart rate 152 per minute (measured from the recording). Fast regular narrow-complex rhythm. Impression: Supraventricular tachycardia.",
+   "measurements": {
+    "rate_bpm": "152",
+    "regular": "yes",
+    "rhythm": "svt"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-07-r0",
+   "code": "ECG-07",
+   "image_id": "ecg-07-r0",
+   "text": "Rhythm strip, lead II, 25 mm/s. ST elevation (inferior myocardial infarction pattern). Heart rate 70 per minute (measured from the recording). ST segment elevated by 2.3 mm in lead II (measured). Impression: ST elevation (inferior myocardial infarction pattern).",
+   "measurements": {
+    "rate_bpm": "70",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "st": "elevation",
+    "st_elevation_mm": "2.3"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-07-r1",
+   "code": "ECG-07",
+   "image_id": "ecg-07-r1",
+   "text": "Rhythm strip, lead II, 25 mm/s. ST elevation (inferior myocardial infarction pattern). Heart rate 88 per minute (measured from the recording). ST segment elevated by 2.7 mm in lead II (measured). Impression: ST elevation (inferior myocardial infarction pattern).",
+   "measurements": {
+    "rate_bpm": "88",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "st": "elevation",
+    "st_elevation_mm": "2.7"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-07-r2",
+   "code": "ECG-07",
+   "image_id": "ecg-07-r2",
+   "text": "Rhythm strip, lead II, 25 mm/s. ST elevation (inferior myocardial infarction pattern). Heart rate 55 per minute (measured from the recording). ST segment elevated by 1.1 mm in lead II (measured). Impression: ST elevation (inferior myocardial infarction pattern).",
+   "measurements": {
+    "rate_bpm": "55",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "st": "elevation",
+    "st_elevation_mm": "1.1"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-07-r3",
+   "code": "ECG-07",
+   "image_id": "ecg-07-r3",
+   "text": "Rhythm strip, lead II, 25 mm/s. ST elevation (inferior myocardial infarction pattern). Heart rate 80 per minute (measured from the recording). ST segment elevated by 1.3 mm in lead II (measured). Impression: ST elevation (inferior myocardial infarction pattern).",
+   "measurements": {
+    "rate_bpm": "80",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "st": "elevation",
+    "st_elevation_mm": "1.3"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-ecg-08-s0",
+   "code": "ECG-08",
+   "image_id": "ecg-08-s0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 64 per minute. Tall, narrow, peaked T waves. Impression: peaked T waves, in keeping with a high potassium.",
+   "measurements": {
+    "rate_bpm": "64",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "peaked"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-08-s1",
+   "code": "ECG-08",
+   "image_id": "ecg-08-s1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 95 per minute. Tall, narrow, peaked T waves. Impression: peaked T waves, in keeping with a high potassium.",
+   "measurements": {
+    "rate_bpm": "95",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "peaked"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-08-s2",
+   "code": "ECG-08",
+   "image_id": "ecg-08-s2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 81 per minute. Tall, narrow, peaked T waves. Impression: peaked T waves, in keeping with a high potassium.",
+   "measurements": {
+    "rate_bpm": "81",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "peaked"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-08-s3",
+   "code": "ECG-08",
+   "image_id": "ecg-08-s3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 64 per minute. Tall, narrow, peaked T waves. Impression: peaked T waves, in keeping with a high potassium.",
+   "measurements": {
+    "rate_bpm": "64",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "peaked"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-09-s0",
+   "code": "ECG-09",
+   "image_id": "ecg-09-s0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 64 per minute. Flattened T waves with prominent U waves and slight ST depression. Impression: changes in keeping with a low potassium.",
+   "measurements": {
+    "rate_bpm": "64",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "flat_u"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-09-s1",
+   "code": "ECG-09",
+   "image_id": "ecg-09-s1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 95 per minute. Flattened T waves with prominent U waves and slight ST depression. Impression: changes in keeping with a low potassium.",
+   "measurements": {
+    "rate_bpm": "95",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "flat_u"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-09-s2",
+   "code": "ECG-09",
+   "image_id": "ecg-09-s2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 81 per minute. Flattened T waves with prominent U waves and slight ST depression. Impression: changes in keeping with a low potassium.",
+   "measurements": {
+    "rate_bpm": "81",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "flat_u"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-09-s3",
+   "code": "ECG-09",
+   "image_id": "ecg-09-s3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Regular rhythm, heart rate 64 per minute. Flattened T waves with prominent U waves and slight ST depression. Impression: changes in keeping with a low potassium.",
+   "measurements": {
+    "rate_bpm": "64",
+    "regular": "yes",
+    "rhythm": "sinus",
+    "t_wave": "flat_u"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-10-s0",
+   "code": "ECG-10",
+   "image_id": "ecg-10-s0",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 131 per minute (measured). Beats irregularly irregular; no clear P waves. Impression: atrial fibrillation with a fast ventricular rate.",
+   "measurements": {
+    "rate_bpm": "131",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-10-s1",
+   "code": "ECG-10",
+   "image_id": "ecg-10-s1",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 133 per minute (measured). Beats irregularly irregular; no clear P waves. Impression: atrial fibrillation with a fast ventricular rate.",
+   "measurements": {
+    "rate_bpm": "133",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-10-s2",
+   "code": "ECG-10",
+   "image_id": "ecg-10-s2",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 136 per minute (measured). Beats irregularly irregular; no clear P waves. Impression: atrial fibrillation with a fast ventricular rate.",
+   "measurements": {
+    "rate_bpm": "136",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-ecg-10-s3",
+   "code": "ECG-10",
+   "image_id": "ecg-10-s3",
+   "text": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 128 per minute (measured). Beats irregularly irregular; no clear P waves. Impression: atrial fibrillation with a fast ventricular rate.",
+   "measurements": {
+    "rate_bpm": "128",
+    "regular": "no",
+    "rhythm": "af"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mr-ap-00-r0",
+   "code": "MR-AP-00",
+   "image_id": "mr-ap-00-r0",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-mr-ap-00-r1",
+   "code": "MR-AP-00",
+   "image_id": "mr-ap-00-r1",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-mr-ap-00-r2",
+   "code": "MR-AP-00",
+   "image_id": "mr-ap-00-r2",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-mr-ap-00-r3",
+   "code": "MR-AP-00",
+   "image_id": "mr-ap-00-r3",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false
+  },
+  {
+   "id": "rep-mr-ap-01-s0",
+   "code": "MR-AP-01",
+   "image_id": "mr-ap-01-s0",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 10 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": "10.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mr-ap-01-s1",
+   "code": "MR-AP-01",
+   "image_id": "mr-ap-01-s1",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 11 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": "11.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mr-ap-01-s2",
+   "code": "MR-AP-01",
+   "image_id": "mr-ap-01-s2",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 12 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": "12.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mr-ap-01-s3",
+   "code": "MR-AP-01",
+   "image_id": "mr-ap-01-s3",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 11 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": "11.0",
+    "collection": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-00-s0",
+   "code": "MRCP-00",
+   "image_id": "mrcp-00-s0",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 3.8 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": "3.8",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-00-s1",
+   "code": "MRCP-00",
+   "image_id": "mrcp-00-s1",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 4.2 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": "4.2",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-00-s2",
+   "code": "MRCP-00",
+   "image_id": "mrcp-00-s2",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 4.6 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": "4.6",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-00-s3",
+   "code": "MRCP-00",
+   "image_id": "mrcp-00-s3",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 5 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": "5.0",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-01-s0",
+   "code": "MRCP-01",
+   "image_id": "mrcp-01-s0",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 9.5 mm. A 5 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": "9.5",
+    "stone": "yes",
+    "stone_mm": "5.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-01-s1",
+   "code": "MRCP-01",
+   "image_id": "mrcp-01-s1",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 10.3 mm. A 5.7 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": "10.3",
+    "stone": "yes",
+    "stone_mm": "5.7"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-01-s2",
+   "code": "MRCP-01",
+   "image_id": "mrcp-01-s2",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 11.1 mm. A 6.4 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": "11.1",
+    "stone": "yes",
+    "stone_mm": "6.4"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-mrcp-01-s3",
+   "code": "MRCP-01",
+   "image_id": "mrcp-01-s3",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 11.9 mm. A 7.1 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": "11.9",
+    "stone": "yes",
+    "stone_mm": "7.1"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-01-s0",
+   "code": "US-AP-01",
+   "image_id": "us-ap-01-s0",
+   "text": "Appendix seen in cross-section, 9 mm, non-compressible, with surrounding inflamed echogenic fat. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendicolith": "no",
+    "appendix_mm": "9.0",
+    "compressible": "no",
+    "perforation": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-01-s1",
+   "code": "US-AP-01",
+   "image_id": "us-ap-01-s1",
+   "text": "Appendix seen in cross-section, 8.4 mm, non-compressible, with surrounding inflamed echogenic fat, containing an echogenic appendicolith. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendicolith": "yes",
+    "appendix_mm": "8.4",
+    "compressible": "no",
+    "perforation": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-01-s2",
+   "code": "US-AP-01",
+   "image_id": "us-ap-01-s2",
+   "text": "Appendix seen in cross-section, 9.5 mm, non-compressible, with surrounding inflamed echogenic fat. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendicolith": "no",
+    "appendix_mm": "9.5",
+    "compressible": "no",
+    "perforation": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-01-s3",
+   "code": "US-AP-01",
+   "image_id": "us-ap-01-s3",
+   "text": "Appendix seen in cross-section, 8.8 mm, non-compressible, with surrounding inflamed echogenic fat, containing an echogenic appendicolith. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendicolith": "yes",
+    "appendix_mm": "8.8",
+    "compressible": "no",
+    "perforation": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-02-s0",
+   "code": "US-AP-02",
+   "image_id": "us-ap-02-s0",
+   "text": "Swollen appendix, 9.9 mm, with an adjacent complex collection of 19 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "abscess_mm": "19.0",
+    "appendix_mm": "9.9",
+    "complication": "abscess"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-02-s1",
+   "code": "US-AP-02",
+   "image_id": "us-ap-02-s1",
+   "text": "Swollen appendix, 9.6 mm, with an adjacent complex collection of 20 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "abscess_mm": "20.0",
+    "appendix_mm": "9.6",
+    "complication": "abscess"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-02-s2",
+   "code": "US-AP-02",
+   "image_id": "us-ap-02-s2",
+   "text": "Swollen appendix, 9.3 mm, with an adjacent complex collection of 20 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "abscess_mm": "20.0",
+    "appendix_mm": "9.3",
+    "complication": "abscess"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-02-s3",
+   "code": "US-AP-02",
+   "image_id": "us-ap-02-s3",
+   "text": "Swollen appendix, 9 mm, with an adjacent complex collection of 19 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "abscess_mm": "19.0",
+    "appendix_mm": "9.0",
+    "complication": "abscess"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-03-s0",
+   "code": "US-AP-03",
+   "image_id": "us-ap-03-s0",
+   "text": "Appendix seen, 4.9 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 29 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "4.9",
+    "cyst_mm": "29.0",
+    "other_finding": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-03-s1",
+   "code": "US-AP-03",
+   "image_id": "us-ap-03-s1",
+   "text": "Appendix seen, 4.6 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 24 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "4.6",
+    "cyst_mm": "24.0",
+    "other_finding": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-03-s2",
+   "code": "US-AP-03",
+   "image_id": "us-ap-03-s2",
+   "text": "Appendix seen, 4.1 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 25 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "4.1",
+    "cyst_mm": "25.0",
+    "other_finding": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-03-s3",
+   "code": "US-AP-03",
+   "image_id": "us-ap-03-s3",
+   "text": "Appendix seen, 4.3 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 27 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "4.3",
+    "cyst_mm": "27.0",
+    "other_finding": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-04-s0",
+   "code": "US-AP-04",
+   "image_id": "us-ap-04-s0",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-04-s1",
+   "code": "US-AP-04",
+   "image_id": "us-ap-04-s1",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-04-s2",
+   "code": "US-AP-04",
+   "image_id": "us-ap-04-s2",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-04-s3",
+   "code": "US-AP-04",
+   "image_id": "us-ap-04-s3",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-05-s0",
+   "code": "US-AP-05",
+   "image_id": "us-ap-05-s0",
+   "text": "Appendix seen, 4.6 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "4.6",
+    "other_finding": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-05-s1",
+   "code": "US-AP-05",
+   "image_id": "us-ap-05-s1",
+   "text": "Appendix seen, 4.8 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "4.8",
+    "other_finding": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-05-s2",
+   "code": "US-AP-05",
+   "image_id": "us-ap-05-s2",
+   "text": "Appendix seen, 5 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "5.0",
+    "other_finding": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-ap-05-s3",
+   "code": "US-AP-05",
+   "image_id": "us-ap-05-s3",
+   "text": "Appendix seen, 5.3 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": "5.3",
+    "other_finding": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-00-s0",
+   "code": "US-GB-00",
+   "image_id": "us-gb-00-s0",
+   "text": "Gallbladder is normally distended with a thin wall (1.8 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 4.7 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "duct_mm": "4.7",
+    "fluid": "no",
+    "sludge": "no",
+    "stones": "no",
+    "wall_mm": "1.8"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-00-s1",
+   "code": "US-GB-00",
+   "image_id": "us-gb-00-s1",
+   "text": "Gallbladder is normally distended with a thin wall (1.6 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 3.1 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "duct_mm": "3.1",
+    "fluid": "no",
+    "sludge": "no",
+    "stones": "no",
+    "wall_mm": "1.6"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-00-s2",
+   "code": "US-GB-00",
+   "image_id": "us-gb-00-s2",
+   "text": "Gallbladder is normally distended with a thin wall (1.5 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 3.6 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "duct_mm": "3.6",
+    "fluid": "no",
+    "sludge": "no",
+    "stones": "no",
+    "wall_mm": "1.5"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-00-s3",
+   "code": "US-GB-00",
+   "image_id": "us-gb-00-s3",
+   "text": "Gallbladder is normally distended with a thin wall (1.6 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 4.7 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "duct_mm": "4.7",
+    "fluid": "no",
+    "sludge": "no",
+    "stones": "no",
+    "wall_mm": "1.6"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-01-r0",
+   "code": "US-GB-01",
+   "image_id": "us-gb-01-r0",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-01-r1",
+   "code": "US-GB-01",
+   "image_id": "us-gb-01-r1",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-01-r2",
+   "code": "US-GB-01",
+   "image_id": "us-gb-01-r2",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-01-r3",
+   "code": "US-GB-01",
+   "image_id": "us-gb-01-r3",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-02-r0",
+   "code": "US-GB-02",
+   "image_id": "us-gb-02-r0",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-02-r1",
+   "code": "US-GB-02",
+   "image_id": "us-gb-02-r1",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-02-r2",
+   "code": "US-GB-02",
+   "image_id": "us-gb-02-r2",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-02-r3",
+   "code": "US-GB-02",
+   "image_id": "us-gb-02-r3",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-03-s0",
+   "code": "US-GB-03",
+   "image_id": "us-gb-03-s0",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 2.1 mm. The common bile duct is dilated at 9 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": "9.0",
+    "stones": "yes",
+    "wall_mm": "2.1"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-03-s1",
+   "code": "US-GB-03",
+   "image_id": "us-gb-03-s1",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 1.7 mm. The common bile duct is dilated at 8.2 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": "8.2",
+    "stones": "yes",
+    "wall_mm": "1.7"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-03-s2",
+   "code": "US-GB-03",
+   "image_id": "us-gb-03-s2",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 2.1 mm. The common bile duct is dilated at 9.5 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": "9.5",
+    "stones": "yes",
+    "wall_mm": "2.1"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-03-s3",
+   "code": "US-GB-03",
+   "image_id": "us-gb-03-s3",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 1.7 mm. The common bile duct is dilated at 9.6 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": "9.6",
+    "stones": "yes",
+    "wall_mm": "1.7"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-04-s0",
+   "code": "US-GB-04",
+   "image_id": "us-gb-04-s0",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 8.2 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_mm": "8.2",
+    "duct_stone": "yes",
+    "stones": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-04-s1",
+   "code": "US-GB-04",
+   "image_id": "us-gb-04-s1",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 8.7 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_mm": "8.7",
+    "duct_stone": "yes",
+    "stones": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-04-s2",
+   "code": "US-GB-04",
+   "image_id": "us-gb-04-s2",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 7.8 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_mm": "7.8",
+    "duct_stone": "yes",
+    "stones": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-04-s3",
+   "code": "US-GB-04",
+   "image_id": "us-gb-04-s3",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 7.4 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_mm": "7.4",
+    "duct_stone": "yes",
+    "stones": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-05-r0",
+   "code": "US-GB-05",
+   "image_id": "us-gb-05-r0",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Membranous and gangrenous cholecystitis). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-05-r1",
+   "code": "US-GB-05",
+   "image_id": "us-gb-05-r1",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Membranous and gangrenous cholecystitis). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-05-r2",
+   "code": "US-GB-05",
+   "image_id": "us-gb-05-r2",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Perforation). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-05-r3",
+   "code": "US-GB-05",
+   "image_id": "us-gb-05-r3",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Perforation). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-06-r0",
+   "code": "US-GB-06",
+   "image_id": "us-gb-06-r0",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-06-r1",
+   "code": "US-GB-06",
+   "image_id": "us-gb-06-r1",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-06-r2",
+   "code": "US-GB-06",
+   "image_id": "us-gb-06-r2",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-06-r3",
+   "code": "US-GB-06",
+   "image_id": "us-gb-06-r3",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false
+  },
+  {
+   "id": "rep-us-gb-07-s0",
+   "code": "US-GB-07",
+   "image_id": "us-gb-07-s0",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "sludge": "yes",
+    "stones": "no",
+    "wall_mm": "2.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-07-s1",
+   "code": "US-GB-07",
+   "image_id": "us-gb-07-s1",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "sludge": "yes",
+    "stones": "no",
+    "wall_mm": "2.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-07-s2",
+   "code": "US-GB-07",
+   "image_id": "us-gb-07-s2",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "sludge": "yes",
+    "stones": "no",
+    "wall_mm": "2.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-07-s3",
+   "code": "US-GB-07",
+   "image_id": "us-gb-07-s3",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "sludge": "yes",
+    "stones": "no",
+    "wall_mm": "2.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-08-s0",
+   "code": "US-GB-08",
+   "image_id": "us-gb-08-s0",
+   "text": "Gallbladder wall mildly thickened at 3.7 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 3.6 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "duct_mm": "3.6",
+    "equivocal": "yes",
+    "fluid": "no",
+    "stones": "no",
+    "wall_mm": "3.7"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-08-s1",
+   "code": "US-GB-08",
+   "image_id": "us-gb-08-s1",
+   "text": "Gallbladder wall mildly thickened at 3.9 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 4.6 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "duct_mm": "4.6",
+    "equivocal": "yes",
+    "fluid": "no",
+    "stones": "no",
+    "wall_mm": "3.9"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-08-s2",
+   "code": "US-GB-08",
+   "image_id": "us-gb-08-s2",
+   "text": "Gallbladder wall mildly thickened at 3.4 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 4.9 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "duct_mm": "4.9",
+    "equivocal": "yes",
+    "fluid": "no",
+    "stones": "no",
+    "wall_mm": "3.4"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-gb-08-s3",
+   "code": "US-GB-08",
+   "image_id": "us-gb-08-s3",
+   "text": "Gallbladder wall mildly thickened at 3.5 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 4.1 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "duct_mm": "4.1",
+    "equivocal": "yes",
+    "fluid": "no",
+    "stones": "no",
+    "wall_mm": "3.5"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-00-s0",
+   "code": "US-PV-00",
+   "image_id": "us-pv-00-s0",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "adnexal_mass": "no",
+    "fluid": "no",
+    "uterus": "normal",
+    "uterus_mm": "59.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-00-s1",
+   "code": "US-PV-00",
+   "image_id": "us-pv-00-s1",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "adnexal_mass": "no",
+    "fluid": "no",
+    "uterus": "normal",
+    "uterus_mm": "59.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-00-s2",
+   "code": "US-PV-00",
+   "image_id": "us-pv-00-s2",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "adnexal_mass": "no",
+    "fluid": "no",
+    "uterus": "normal",
+    "uterus_mm": "59.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-00-s3",
+   "code": "US-PV-00",
+   "image_id": "us-pv-00-s3",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "adnexal_mass": "no",
+    "fluid": "no",
+    "uterus": "normal",
+    "uterus_mm": "59.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-01-s0",
+   "code": "US-PV-01",
+   "image_id": "us-pv-01-s0",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "adnexal_mass": "yes",
+    "fluid": "yes",
+    "mass_mm": "23.0",
+    "sac": "no",
+    "uterus": "empty"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-01-s1",
+   "code": "US-PV-01",
+   "image_id": "us-pv-01-s1",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "adnexal_mass": "yes",
+    "fluid": "yes",
+    "mass_mm": "23.0",
+    "sac": "no",
+    "uterus": "empty"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-01-s2",
+   "code": "US-PV-01",
+   "image_id": "us-pv-01-s2",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "adnexal_mass": "yes",
+    "fluid": "yes",
+    "mass_mm": "23.0",
+    "sac": "no",
+    "uterus": "empty"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-01-s3",
+   "code": "US-PV-01",
+   "image_id": "us-pv-01-s3",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "adnexal_mass": "yes",
+    "fluid": "yes",
+    "mass_mm": "23.0",
+    "sac": "no",
+    "uterus": "empty"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-02-s0",
+   "code": "US-PV-02",
+   "image_id": "us-pv-02-s0",
+   "text": "The ovary is enlarged (63 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "doppler_flow": "reduced",
+    "fluid": "no",
+    "ovary_mm": "63.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-02-s1",
+   "code": "US-PV-02",
+   "image_id": "us-pv-02-s1",
+   "text": "The ovary is enlarged (67 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "doppler_flow": "reduced",
+    "fluid": "no",
+    "ovary_mm": "67.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-02-s2",
+   "code": "US-PV-02",
+   "image_id": "us-pv-02-s2",
+   "text": "The ovary is enlarged (71 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "doppler_flow": "reduced",
+    "fluid": "no",
+    "ovary_mm": "71.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-pv-02-s3",
+   "code": "US-PV-02",
+   "image_id": "us-pv-02-s3",
+   "text": "The ovary is enlarged (63 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "doppler_flow": "reduced",
+    "fluid": "no",
+    "ovary_mm": "63.0"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-00-s0",
+   "code": "US-RN-00",
+   "image_id": "us-rn-00-s0",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "kidney_mm": "88.0",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-00-s1",
+   "code": "US-RN-00",
+   "image_id": "us-rn-00-s1",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "kidney_mm": "88.0",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-00-s2",
+   "code": "US-RN-00",
+   "image_id": "us-rn-00-s2",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "kidney_mm": "88.0",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-00-s3",
+   "code": "US-RN-00",
+   "image_id": "us-rn-00-s3",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "kidney_mm": "88.0",
+    "stone": "no"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-01-s0",
+   "code": "US-RN-01",
+   "image_id": "us-rn-01-s0",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 13 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "kidney_mm": "88.0",
+    "pelvis_mm": "13.0",
+    "stone": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-01-s1",
+   "code": "US-RN-01",
+   "image_id": "us-rn-01-s1",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 11 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "kidney_mm": "88.0",
+    "pelvis_mm": "11.0",
+    "stone": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-01-s2",
+   "code": "US-RN-01",
+   "image_id": "us-rn-01-s2",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 15 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "kidney_mm": "88.0",
+    "pelvis_mm": "15.0",
+    "stone": "yes"
+   },
+   "synthetic": true
+  },
+  {
+   "id": "rep-us-rn-01-s3",
+   "code": "US-RN-01",
+   "image_id": "us-rn-01-s3",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 13 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "kidney_mm": "88.0",
+    "pelvis_mm": "13.0",
+    "stone": "yes"
+   },
+   "synthetic": true
+  }
+ ],
+ "case_studies": {
+  "SC-1": {
+   "ct_appendix_level": "CT-AP-02",
+   "ultrasound_appendix": "US-AP-02"
+  },
+  "SC-11": {
+   "ct_appendix_level": "CT-AP-02"
+  },
+  "SC-14": {
+   "ct_appendix_level": "CT-AP-02",
+   "ultrasound_appendix": "US-AP-04"
+  },
+  "SC-2": {
+   "ultrasound_pelvis": "US-PV-01"
+  },
+  "SC-20": {
+   "ct_appendix_level": "CT-AP-03"
+  },
+  "SC-3": {
+   "mri_appendix_level": "MR-AP-01",
+   "ultrasound_appendix": "US-AP-04"
+  },
+  "SC-5": {
+   "ecg": "ECG-10"
+  },
+  "SC-7": {
+   "chest_xray": "CXR-02"
+  },
+  "SC-8": {
+   "ecg": "ECG-08"
+  },
+  "SC-9": {
+   "mrcp": "MRCP-01",
+   "ultrasound_gallbladder": "US-GB-04"
+  },
+  "STK-S1-B": {
+   "ecg": "ECG-03"
+  },
+  "STK-S1-C": {
+   "ecg": "ECG-08"
+  },
+  "STK-S1-D": {
+   "ultrasound_gallbladder": "US-GB-04"
+  },
+  "STK-S2-B": {
+   "ct_appendix_level": "CT-AP-02"
+  },
+  "STK-S2-C": {
+   "chest_xray": "CXR-02"
+  },
+  "STK-S2-D": {
+   "mri_appendix_level": "MR-AP-01",
+   "ultrasound_appendix": "US-AP-04"
+  },
+  "VAR-S1-A": {
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-B": {
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-C": {
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-D": {
+   "ecg": "ECG-03",
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-E": {
+   "ultrasound_gallbladder": "US-GB-02"
+  },
+  "VAR-S1-G": {
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-H": {
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-J": {
+   "ultrasound_gallbladder": "US-GB-01"
+  },
+  "VAR-S1-L": {
+   "ecg": "ECG-10"
+  },
+  "VAR-S1-PB": {
+   "mrcp": "MRCP-01",
+   "ultrasound_gallbladder": "US-GB-03"
+  },
+  "VAR-S2-B": {
+   "ultrasound_pelvis": "US-PV-01"
+  },
+  "VAR-S2-D": {
+   "ct_appendix_level": "CT-AP-01",
+   "ultrasound_appendix": "US-AP-04"
+  },
+  "VAR-S2-E": {
+   "ct_appendix_level": "CT-AP-04"
+  },
+  "VAR-S2-F": {
+   "ultrasound_appendix": "US-AP-01"
+  },
+  "VAR-S2-G": {
+   "ultrasound_appendix": "US-AP-01"
+  },
+  "VAR-S2-H": {
+   "mri_appendix_level": "MR-AP-01",
+   "ultrasound_appendix": "US-AP-04"
+  },
+  "VAR-S2-L": {
+   "ultrasound_appendix": "US-AP-01"
+  },
+  "VAR-S2-PC": {
+   "ultrasound_appendix": "US-AP-01"
+  },
+  "VAR-S2-PD": {
+   "ct_appendix_level": "CT-AP-02"
+  }
+ },
+ "refs": [
+  "SR-0082",
+  "SR-0083"
+ ]
+}

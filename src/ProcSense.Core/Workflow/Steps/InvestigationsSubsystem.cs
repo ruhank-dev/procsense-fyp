@@ -258,6 +258,7 @@ namespace ProcSense.Core.Workflow.Steps
             }
             order.Results.Clear();
             order.Results.AddRange(made.Records);
+            order.Report = _content.Imaging.Resolve(_file?.Id ?? _s.Case.Id, def.Id);
             order.ResultIds = made.Records.Select(r => r.Id).ToList();
             order.State = "RESULT_AVAILABLE";
             Note(order, "RESULT_AVAILABLE", Array.Empty<string>());

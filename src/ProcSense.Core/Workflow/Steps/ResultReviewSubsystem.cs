@@ -22,6 +22,8 @@ namespace ProcSense.Core.Workflow.Steps
         public const string ConfirmVerb = "confirm_patient_on_call";
         public const string ReadBackVerb = "read_back";
         public const string InterpretVerb = "interpret_result";
+        public const string InterpretImagingVerb = "interpret_imaging";
+        public const string UseImagingVerb = "USE_INTERPRET_IMAGING";
 
         public const string NoCall = "NO_CALL";
         public const string CallNotAnswered = "CALL_NOT_ANSWERED";
@@ -70,6 +72,7 @@ namespace ProcSense.Core.Workflow.Steps
             if (_file != null) _facts = new HashSet<string>(_file.Facts, StringComparer.Ordinal);
             foreach (var verb in new[] { AnswerVerb, ConfirmVerb, ReadBackVerb }) session.Verbs.Register(verb);
             session.Verbs.Register(InterpretVerb, requiresIdentity: true);
+            session.Verbs.Register(InterpretImagingVerb, requiresIdentity: true);
             session.Events.Subscribe<ResultReady>(OnResultReady);
         }
 
@@ -108,6 +111,7 @@ namespace ProcSense.Core.Workflow.Steps
                 case ConfirmVerb: Confirm(a, o); break;
                 case ReadBackVerb: ReadBack(a, o); break;
                 case InterpretVerb: Interpret(a, o); break;
+                case InterpretImagingVerb: InterpretImaging(a, o); break;
                 case RiskSubsystem.DecideReadyVerb: if (o.Accepted) Readiness(a, o); break;
             }
             if (o.Accepted) Refresh();
@@ -193,6 +197,7 @@ namespace ProcSense.Core.Workflow.Steps
             var order = Clinical.Investigations.LastOrDefault(x => x.Test == test);
             if (order == null) { o.Reject(NotOrdered); return; }
             if (order.State != "VIEWED" && order.State != "ACKNOWLEDGED") { o.Reject(NotViewed); return; }
+            if (order.Report != null) { o.Reject(UseImagingVerb); return; }
             if (order.Results.Count == 0) { o.Reject(NothingToInterpret); return; }
             if (!a.Params.TryGetValue("interpretation", out var said) || (said != "normal" && said != "abnormal" && said != "artefact")) { o.Reject(UnknownInterpretation); return; }
 
@@ -206,6 +211,31 @@ namespace ProcSense.Core.Workflow.Steps
                 Clinical.SetFlag("interpretation.artefact_taken_at_face_value");
                 _history.Add(new GraphEvent("artefact_taken_at_face_value", test, _s.Clock.Steps, new[] { "debrief.over_treatment_risk" }));
             }
+        }
+
+        // T-IV7: the category of the picture is checked against what the picture really shows. 'Not visualised' is equivocal, so calling it normal is the classic error.
+        private void InterpretImaging(SimAction a, ActionOutcome o)
+        {
+            if (!a.Params.TryGetValue("test", out var test) || test.Length == 0) { o.Reject(MissingTest); return; }
+            if (_content.Investigations.Find(test) == null) { o.Reject(UnknownTest); return; }
+            var order = Clinical.Investigations.LastOrDefault(x => x.Test == test);
+            if (order == null) { o.Reject(NotOrdered); return; }
+            if (order.State != "VIEWED" && order.State != "ACKNOWLEDGED") { o.Reject(NotViewed); return; }
+            if (order.Report == null) { o.Reject(NothingToInterpret); return; }
+            if (!a.Params.TryGetValue("category", out var said) || !_content.Imaging.Categories.Contains(said)) { o.Reject(UnknownInterpretation); return; }
+
+            string truth = order.Report.Category;
+            order.Interpretation = said;
+            bool right = said == truth;
+            o.Effects.Add("imaging_interpretation:" + (right ? "correct" : "wrong"));
+            if (right) { _history.Add(new GraphEvent("imaging_interpretation_correct", test, _s.Clock.Steps, new[] { "credit.imaging_interpretation" })); return; }
+            if (truth == "non_diagnostic" && said == "normal")
+            {
+                Clinical.SetFlag("imaging.equivocal_taken_as_negative");
+                o.Effects.Add("equivocal_taken_as_negative");
+                _history.Add(new GraphEvent("not_visualised_taken_as_negative", test, _s.Clock.Steps, new[] { "major.not_visualised_taken_as_negative" }));
+            }
+            else _history.Add(new GraphEvent("imaging_interpretation_wrong", test, _s.Clock.Steps, new[] { "major.interpretation_wrong" }));
         }
 
         private static string TruthOf(InvestigationOrder order)

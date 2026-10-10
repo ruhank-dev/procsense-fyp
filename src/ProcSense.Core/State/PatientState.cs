@@ -43,6 +43,12 @@ namespace ProcSense.Core.State
     /// </summary>
     public sealed record ResultRecord(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin, string Previous = "");
 
+    /// <summary>
+    /// The report an imaging test (ultrasound, CT, MRI, MRCP, chest X-ray, ECG) shows: the study, the finding code and its category (kept by the engine, never shown), the plain meaning, the report text, the measurements
+    /// stated in the picture, the approved picture it belongs to, and where it came from (case = the finding the case states, clean = a film or strip with no abnormality).
+    /// </summary>
+    public sealed record ImagingReport(string Study, string Code, string Category, string Plain, string ReportId, string ImageId, string Text, IReadOnlyDictionary<string, string> Measurements, bool Synthetic, string Origin);
+
     /// <summary>One value the lab phones: the analyte, the number, and how it is said ("Potassium 6.6 mmol/L").</summary>
     public sealed record CriticalValue(string Analyte, double Value, string Spoken);
 
@@ -91,7 +97,10 @@ namespace ProcSense.Core.State
         /// <summary>Why there is nothing to read: the lab rejected the sample, or the case states no result for this test.</summary>
         public string Note { get; set; } = "";
 
-        /// <summary>What the trainee said the result means (normal, abnormal or artefact), or "".</summary>
+        /// <summary>The report for an imaging test, once it is available (null for other tests, or when nothing is shown).</summary>
+        public ImagingReport? Report { get; set; }
+
+        /// <summary>What the trainee said the result means (normal, abnormal or artefact; for imaging a category), or "".</summary>
         public string Interpretation { get; set; } = "";
     }
 
