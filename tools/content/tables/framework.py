@@ -21,6 +21,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import book  # noqa: E402
 import type_a_checks  # noqa: E402
+import type_bc_checks  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[3]
 CONTENT = ROOT / "content"
@@ -171,12 +172,12 @@ class Table:
                 notes.append(r["note"])
             evidence, url = r["evidence"], self.official_url if checked else ""
             item = f"{self.describe}: {r['key']}"
-            found = type_a_checks.check(item) if (evidence == "A" and not checked) else None
+            found = (type_a_checks.check(item) or type_bc_checks.check(item)) if (evidence in ("A", "B", "C") and not checked) else None
             if found:   # second look at a type A row whose original had not been opened (10 Oct 2026); see tools/content/tables/type_a_checks.py
                 kind, vid, level, text, _ = found
                 notes = [n for n in notes if "has not been opened yet" not in n]
                 if kind == type_a_checks.V:
-                    status, url = "VERIFIED", type_a_checks.URLS[vid]
+                    status, url = "VERIFIED", {**type_a_checks.URLS, **type_bc_checks.URLS}.get(vid, "https://periop-handbook.ukclinicalpharmacy.org/") if vid != "glossary" else "https://en.wikipedia.org/wiki/Glossary_of_medicine"
                     notes.insert(0, f"Checked 10 Oct 2026 ({level}, {vid} in docs/research/clinical_verification.md): {text} Also matches the walkthrough page verbatim.")
                 elif kind == type_a_checks.D:
                     status, evidence = "VERIFIED", "D"

@@ -12,6 +12,7 @@
 | Weight | 7 kg | [same](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | exact |
 | Air temperature settings | 43, 38 and 32 degC (each plus or minus 1.5) | [same](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | exact |
 | Hose length | about 1.8 m | [Bair Hugger 775 listing (also unit 30 x 25 x 34 cm)](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | approx |
+| Full-access underbody blanket | 221 x 91 cm (84 x 36 in), Bair Hugger model 635 | [3M Bair Hugger blanket listing](https://emerdepot.com/products/3m-63500-bair-hugger-blanket-warming-l15) | listing | exact |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 
@@ -43,4 +44,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Blanket dimensions
+- None.

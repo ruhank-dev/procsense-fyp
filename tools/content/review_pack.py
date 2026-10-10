@@ -111,13 +111,17 @@ def build() -> tuple[str, str]:
           "The per-picture review table is `docs/research/image_review_pack.md`; approvals are owner-attested (`content/image_approvals.json`), at training level only.", "",
           "## 7. Equipment sheets", "",
           f"53 sheets in `docs/research/equipment`: {all_dims - open_dims} of {all_dims} dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), {open_dims} are open (no source found, placeholders until one is). "
-          "Pole, wristband, dipstick and cassette sizes are among the open ones.", "",
+          "The open ones are the blood-culture bottle diameter, the dipstick width, the 1 L bag size and the urometer size.", "",
           "## 8. Validation summary", "",
           "CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; "
           "53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, "
           "every result reachable from a case or a what-if); 53 equipment sheets; the content manifest below. The full list with what each catches is `docs/CI.md`.", "",
-          f"Register: {len(reg)} rows. Evidence A (guideline cited by the book): {ev[('A', 'VERIFIED')]} verified, {ev[('A', 'UNVERIFIED')]} still open (checked again and not confirmed; the reason is in each row; see `tools/content/tables/type_a_checks.py`). The others were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. "
-          f"B: {ev[('B', 'VERIFIED')]} verified, {ev[('B', 'UNVERIFIED')]} not opened. C: {ev[('C', 'UNVERIFIED')]} institution-specific. D: {ev[('D', 'VERIFIED')]} authored in the walkthrough.", "",
+          f"Register: {len(reg)} rows, {sum(1 for r in reg if r['status'] == 'VERIFIED')} verified and {sum(1 for r in reg if r['status'] == 'UNVERIFIED')} still unverified. "
+          f"Evidence A (guideline cited by the book): {ev[('A', 'VERIFIED')]} verified at the original or in independent summaries, {ev[('A', 'UNVERIFIED')]} open. "
+          f"B (the book's interpretation): {ev[('B', 'VERIFIED')]} verified, {ev[('B', 'UNVERIFIED')]} open; the glossary was looked up term by term and the treatment clashes were checked against guidelines and product information. "
+          f"C (institution-specific): {ev[('C', 'VERIFIED')]} verified against published UK reference ranges and telephoning limits (local laboratories may differ), {ev[('C', 'UNVERIFIED')]} open. "
+          f"D (simulator design values and teaching script): {ev[('D', 'VERIFIED')]}; this includes the book's step answers and what-ifs, whose thresholds are verified rows (see V-67). "
+          "How each row was checked, with the source and the level (primary or secondary), is in its register note and in docs/research/clinical_verification.md.", "",
           f"Content package: {man['files']} files; per folder: " + ", ".join(f"{k} {v}" for k, v in man["per_folder"].items()) + f". Content hash: `{man['content_hash']}`.", ""]
     buf = io.StringIO()
     w = csv.writer(buf, lineterminator="\n")

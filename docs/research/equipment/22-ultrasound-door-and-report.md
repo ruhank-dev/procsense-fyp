@@ -8,7 +8,7 @@
 
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
-| Door | set by the room design | [HBN 00-04 (circulation and doors) not opened](https://www.england.nhs.uk/estates/health-building-notes/) | open | exact |
+| Door | internal single door: effective clear width 850 mm (minimum 800) from a standard 1000 mm doorset; leaf-and-a-half 1300 mm doorset; a bed turning from a corridor needs 1550 mm effective clear width (1700 mm doorset); extended hospital bed 2370 x 1000 to 1050 mm | [NHS Health Building Note 00-04, Circulation and communication spaces (April 2013), paragraphs 1.16, 8.16 and 8.19 (PDF read)](https://www.england.nhs.uk/wp-content/uploads/2021/05/Health_Building_Note_00-04_-_Circulation_and_communication_spaces_-_updated_April_2013.pdf) | standard | exact |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 

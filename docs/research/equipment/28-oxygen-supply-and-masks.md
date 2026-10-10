@@ -11,7 +11,7 @@
 | CD cylinder | 520 mm long x 100 mm diameter, 460 L, about 3.5 kg full | [BOC cylinder data (supplier summary)](https://dmd-browser.nhsbsa.nhs.uk/ampp/view/63566) | listing | exact |
 | Non-rebreather mask | 1000 mL reservoir bag, 2.1 m tubing, 10 to 15 L/min | [supplier listing](https://alliedtechdistributors.b2bwave.com/products/view/15848) | listing | exact |
 | Nasal cannula | 2.1 m tubing, 1 to 6 L/min | [supplier listings](https://emergency.com.au/shop/first-aid-kits-and-supplies/first-aid-kit-refill-items/airway-management/nasal-cannula-with-tubing-2-1m-adult/) | listing | exact |
-| Wall outlet | terminal unit to BS EN 737-1; probe dimensions are not in that standard | [BS EN 737-1](https://store.sfs.fi/en/sfs-en-737-1-1998) | open | exact |
+| Wall outlet | BS 5682 (BSI) gas-specific terminal unit about 73 x 73 mm and 63 mm deep; probe dimensions are in BS 5682 / EN 737-6 (paywalled) | [GCE Mediunit BSI-type terminal unit listing; BS EN 737-1 scope](https://italy.gcegroup.com/products/mediunit-bsi-type) | listing | approx |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 

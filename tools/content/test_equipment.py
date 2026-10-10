@@ -79,7 +79,10 @@ class BreakingSomethingIsCaught(unittest.TestCase):
         self.assertTrue(any("1 to 53" in p for p in found), found)
 
     def test_an_open_dimension_claimed_as_exact(self):
-        found = self.with_data(lambda items: items[35]["dims"][0].update(value="170 mm", source="3M page", exact="exact"))
+        def claim(items):
+            dim = next(d for d in items[18]["dims"] if d["level"] == "open")     # the blood-culture bottle diameter has no source yet
+            dim.update(value="28 mm", source="a page", exact="exact")
+        found = self.with_data(claim)
         self.assertTrue(any("states a value as exact" in p for p in found), found)
 
 

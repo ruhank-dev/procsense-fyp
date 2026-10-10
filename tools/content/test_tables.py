@@ -653,6 +653,11 @@ class TypeAChecks(unittest.TestCase):
             self.assertEqual(r["status"], "VERIFIED")
             self.assertTrue(r["source_url"].startswith("https://"), r["id"])
 
+    def test_no_register_row_is_left_unverified(self):
+        with open(REGISTER, encoding="utf-8", newline="") as f:
+            reg = list(csv.DictReader(f))
+        self.assertEqual([r["id"] for r in reg if r["status"] == "UNVERIFIED"], [])
+
     def test_the_rows_still_open_say_why(self):
         with open(REGISTER, encoding="utf-8", newline="") as f:
             reg = list(csv.DictReader(f))

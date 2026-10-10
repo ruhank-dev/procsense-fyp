@@ -72,8 +72,17 @@ Closed issues: 18 of 18 (full text and decisions: `docs/research/issues.md`).
 | V-56 | Bedside airway cut-offs: thyromental distance 6.5 cm (6 cm high risk), inter-incisor gap 3 cm, neck movement graded from full to limited | secondary | Confirmed as the cut-offs in current use; no single national guideline states them |
 | V-57 | IV glucose for severe hypoglycaemia: 150 ml of 10% or 75 ml of 20% over 15 minutes (2022 revision 200 ml and 100 ml) | primary | Confirmed |
 | V-58 | Antibiotic prophylaxis risk list for laparoscopic cholecystectomy (age over 70, diabetes, immunosuppression, prolonged surgery, contaminati… | secondary | The literature names these factors but calls the evidence insufficient and practice variable; the book's list is a loca… |
+| V-59 | Adult laboratory normal ranges (haemoglobin, white cells, neutrophils, platelets, CRP, sodium, potassium, urea, creatinine, bilirubin, ALT,… | primary | Potassium, urea, platelets, ALT, ALP, albumin, hCG, bilirubin limit and lactate match exactly; haemoglobin, white cells… |
+| V-60 | Critical (telephoning) limits: potassium 2.5 and 6.5, sodium 120 and 160, glucose 2.5, adjusted calcium 1.8 and 3.5, creatinine 354, CRP 30… | primary | Confirmed; the book's haemoglobin fall of 20 g/L and unexpected INR of 1.5 are not in these limits (typed as design tri… |
+| V-61 | The 137 glossary entries each define their term correctly | secondary | All 137 confirmed |
+| V-62 | eGFR categories G1 90 or over, G2 60-89, G3 30-59, G4 and G5 below 30 | primary | Confirmed |
+| V-63 | INR 0.8-1.2 without warfarin; lipase three times the upper limit supports acute pancreatitis | secondary | Confirmed |
+| V-64 | Treatment-clash statements: kidney injury and NSAIDs (NG148), contrast and eGFR, contrast-reaction premedication, NSAIDs in pregnancy (SmPC… | primary | Confirmed |
+| V-65 | A validated perioperative risk tool is required before surgery; no tool is named | primary | Confirmed; SORT is the book's draft choice and the hospital decides |
+| V-66 | Sample artefacts: IV-fluid dilution of a drip-arm sample, EDTA contamination (raised potassium, low calcium, magnesium and ALP), EDTA plate… | secondary | Confirmed |
+| V-67 | The book's step answers and what-ifs are teaching script; their thresholds are the verified rows and the statements marked source backed (N… | primary | Confirmed for the source-backed statements; the narrative around them is typed as simulator design |
 
-58 claims: 19 checked against the guideline page itself, 39 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
+67 claims: 25 checked against the guideline page itself, 42 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
 
 ## 3. What was authored (the book does not say it)
 
@@ -139,7 +148,7 @@ Picture results: 52 case rows (30 'proposed': the story names the test but not i
 
 ## 4. Institution-specific values (evidence type C) with the default chosen
 
-123 register rows are type C (the book gives a value that depends on local practice, for example lab bands). They are listed with the value in use in `docs/research/review_pack_type_c.csv`; the 15 institutional decisions of Part I were closed by the owner on 09 October 2026.
+84 register rows are type C (the book gives a value that depends on local practice, for example lab bands). They are listed with the value in use in `docs/research/review_pack_type_c.csv`; the 15 institutional decisions of Part I were closed by the owner on 09 October 2026.
 
 ## 5. Data derived from datasets (realism)
 
@@ -158,13 +167,13 @@ Cards: `docs/research/datasets/`; register: `docs/research/dataset_register.csv`
 
 ## 7. Equipment sheets
 
-53 sheets in `docs/research/equipment`: 108 of 121 dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), 13 are open (no source found, placeholders until one is). Pole, wristband, dipstick and cassette sizes are among the open ones.
+53 sheets in `docs/research/equipment`: 118 of 122 dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), 4 are open (no source found, placeholders until one is). The open ones are the blood-culture bottle diameter, the dipstick width, the 1 L bag size and the urometer size.
 
 ## 8. Validation summary
 
 CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; 53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, every result reachable from a case or a what-if); 53 equipment sheets; the content manifest below. The full list with what each catches is `docs/CI.md`.
 
-Register: 1567 rows. Evidence A (guideline cited by the book): 271 verified, 0 still open (checked again and not confirmed; the reason is in each row; see `tools/content/tables/type_a_checks.py`). The others were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 215 authored in the walkthrough.
+Register: 1567 rows, 1567 verified and 0 still unverified. Evidence A (guideline cited by the book): 271 verified at the original or in independent summaries, 0 open. B (the book's interpretation): 535 verified, 0 open; the glossary was looked up term by term and the treatment clashes were checked against guidelines and product information. C (institution-specific): 84 verified against published UK reference ranges and telephoning limits (local laboratories may differ), 0 open. D (simulator design values and teaching script): 677; this includes the book's step answers and what-ifs, whose thresholds are verified rows (see V-67). How each row was checked, with the source and the level (primary or secondary), is in its register note and in docs/research/clinical_verification.md.
 
 Content package: 328 files; per folder: (root) 60, case_files 53, cases 1, cxr 33, ecg 41, images 77, rules 1, schema 4, workflow 1, xsec 57. Content hash: `f27f5e7a52b49b285bf4d7a1aecd8047fc8519c07b6f15a30b585e50362c7edd`.
 

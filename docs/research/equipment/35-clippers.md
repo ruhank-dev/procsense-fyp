@@ -8,7 +8,7 @@
 
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
-| Length | not found | [3M product pages returned no figure](https://www.solventum.com/en-us/home/f/b00041642) | open | exact |
+| Overall size | 95 x 124 x 178 mm (height x width x depth), 3M Surgical Clipper 9667L | [3M clipper 9667L key specifications as listed by a distributor](https://revmedconnect.com/device/3m-company/9667l/10707387814592) | listing | exact |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 
@@ -41,4 +41,3 @@ Low
 ## Open points (nothing here is guessed)
 
 - Dimensions
-- Length: no source found

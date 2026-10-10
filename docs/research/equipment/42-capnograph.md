@@ -8,7 +8,7 @@
 
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
-| Separate device | none: a module of items 9 and 41 | equipment list note 'often part of monitor' | open | exact |
+| Sampling line | 2, 3 or 4 m lengths; no separate device: the capnograph is a module of items 9 and 41 | [Masimo NomoLine sampling line brochure and distributor listings](https://masimo.fr/siteassets/us/documents/pdf/plm-11480e-brochure-nomoline-sampling-lines-us.pdf) | listing | exact |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 
@@ -40,5 +40,4 @@ None (screen element)
 
 ## Open points (nothing here is guessed)
 
-- Sampling line length
-- Separate device: no source found
+- None.

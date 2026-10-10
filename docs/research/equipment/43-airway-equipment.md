@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | Macintosh 3 blade length | 110 to 137 mm depending on maker (126 mm fibre-optic) | [blade listings](https://shop.cardinalhealth.ca/chc/macintosh-fiber-optic-laryngoscope-blade) | listing | approx |
 | Cuffed tube 7.5 mm | internal diameter 7.5 mm, outer 10.5 mm, length 310 mm | [KRUUSE tube listing](https://shop.kruuse.com/CVT-INT/en/EUR/product/272029) | listing | exact |
-| Difficult-airway trolley | not found | no source | open | exact |
+| Difficult-airway trolley | 650 x 480 x 1070 mm with six drawers (typical); other makers 550 x 550 x 993 mm or 615 x 500 x 915 mm | [supplier listings (Vetequip, Bristol Maid Caretray)](https://bristolmaid.com/default/caretray-trolley-airway-difficult-intubation.html) | listing | approx |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 
@@ -43,4 +43,3 @@ Medium
 ## Open points (nothing here is guessed)
 
 - Trolley dimensions
-- Difficult-airway trolley: no source found
