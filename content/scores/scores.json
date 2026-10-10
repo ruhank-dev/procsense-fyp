@@ -1,0 +1,590 @@
+{
+ "point_scores": [
+  {
+   "id": "air",
+   "title": "Appendicitis Inflammatory Response score",
+   "max": 12,
+   "required": [
+    [
+     "pain_rlq"
+    ],
+    [
+     "vomiting"
+    ],
+    [
+     "rebound_light",
+     "rebound_medium",
+     "rebound_strong"
+    ],
+    [
+     "temperature_c"
+    ],
+    [
+     "wbc"
+    ],
+    [
+     "neutrophils_pct"
+    ],
+    [
+     "crp"
+    ]
+   ],
+   "items": [
+    {
+     "id": "air.pain_rlq.yes",
+     "item": "pain_rlq",
+     "option": "yes",
+     "points": 1,
+     "ref": "SR-1008"
+    },
+    {
+     "id": "air.vomiting.yes",
+     "item": "vomiting",
+     "option": "yes",
+     "points": 1,
+     "ref": "SR-1009"
+    },
+    {
+     "id": "air.rebound_light.light",
+     "item": "rebound_light",
+     "option": "light",
+     "points": 1,
+     "ref": "SR-1010"
+    },
+    {
+     "id": "air.rebound_medium.medium",
+     "item": "rebound_medium",
+     "option": "medium",
+     "points": 2,
+     "ref": "SR-1011"
+    },
+    {
+     "id": "air.rebound_strong.strong",
+     "item": "rebound_strong",
+     "option": "strong",
+     "points": 3,
+     "ref": "SR-1012"
+    },
+    {
+     "id": "air.temperature_c.38.5+",
+     "item": "temperature_c",
+     "option": "38.5+",
+     "points": 1,
+     "ref": "SR-1013",
+     "min": 38.5,
+     "min_inclusive": true
+    },
+    {
+     "id": "air.wbc.10.0-14.9",
+     "item": "wbc",
+     "option": "10.0-14.9",
+     "points": 1,
+     "ref": "SR-1014",
+     "min": 10.0,
+     "min_inclusive": true,
+     "max_exclusive": 15.0
+    },
+    {
+     "id": "air.wbc.15.0+",
+     "item": "wbc",
+     "option": "15.0+",
+     "points": 2,
+     "ref": "SR-1015",
+     "min": 15.0,
+     "min_inclusive": true
+    },
+    {
+     "id": "air.neutrophils_pct.70-84",
+     "item": "neutrophils_pct",
+     "option": "70-84",
+     "points": 1,
+     "ref": "SR-1016",
+     "min": 70.0,
+     "min_inclusive": true,
+     "max_exclusive": 85.0
+    },
+    {
+     "id": "air.neutrophils_pct.85+",
+     "item": "neutrophils_pct",
+     "option": "85+",
+     "points": 2,
+     "ref": "SR-1017",
+     "min": 85.0,
+     "min_inclusive": true
+    },
+    {
+     "id": "air.crp.10-49",
+     "item": "crp",
+     "option": "10-49",
+     "points": 1,
+     "ref": "SR-1018",
+     "min": 10.0,
+     "min_inclusive": true,
+     "max_exclusive": 50.0
+    },
+    {
+     "id": "air.crp.50+",
+     "item": "crp",
+     "option": "50+",
+     "points": 2,
+     "ref": "SR-1019",
+     "min": 50.0,
+     "min_inclusive": true
+    }
+   ],
+   "bands": [
+    {
+     "band": "low",
+     "min": 0,
+     "max": 4,
+     "ref": "SR-1107"
+    },
+    {
+     "band": "unsure",
+     "min": 5,
+     "max": 8,
+     "ref": "SR-1108"
+    },
+    {
+     "band": "high",
+     "min": 9,
+     "max": 12,
+     "ref": "SR-1109"
+    }
+   ]
+  },
+  {
+   "id": "aas",
+   "title": "Adult Appendicitis Score",
+   "max": 23,
+   "required": [
+    [
+     "pain_moved"
+    ],
+    [
+     "pain_rlq"
+    ],
+    [
+     "rlq_tenderness"
+    ],
+    [
+     "guarding_mild",
+     "guarding_moderate_or_severe"
+    ],
+    [
+     "wbc"
+    ],
+    [
+     "neutrophils_pct"
+    ],
+    [
+     "crp_pain_under_24h",
+     "crp_pain_24h_or_more"
+    ]
+   ],
+   "items": [
+    {
+     "id": "aas.pain_moved.yes",
+     "item": "pain_moved",
+     "option": "yes",
+     "points": 2,
+     "ref": "SR-1020"
+    },
+    {
+     "id": "aas.pain_rlq.yes",
+     "item": "pain_rlq",
+     "option": "yes",
+     "points": 2,
+     "ref": "SR-1021"
+    },
+    {
+     "id": "aas.rlq_tenderness.women16-49",
+     "item": "rlq_tenderness",
+     "option": "women16-49",
+     "points": 1,
+     "ref": "SR-1022"
+    },
+    {
+     "id": "aas.rlq_tenderness.everyone_else",
+     "item": "rlq_tenderness",
+     "option": "everyone_else",
+     "points": 3,
+     "ref": "SR-1023"
+    },
+    {
+     "id": "aas.guarding_mild.mild",
+     "item": "guarding_mild",
+     "option": "mild",
+     "points": 2,
+     "ref": "SR-1024"
+    },
+    {
+     "id": "aas.guarding_moderate_or_severe.moderate_severe",
+     "item": "guarding_moderate_or_severe",
+     "option": "moderate_severe",
+     "points": 4,
+     "ref": "SR-1025"
+    },
+    {
+     "id": "aas.wbc.7.2-10.8",
+     "item": "wbc",
+     "option": "7.2-10.8",
+     "points": 1,
+     "ref": "SR-1026",
+     "min": 7.2,
+     "min_inclusive": true,
+     "max_exclusive": 10.9
+    },
+    {
+     "id": "aas.wbc.10.9-13.9",
+     "item": "wbc",
+     "option": "10.9-13.9",
+     "points": 2,
+     "ref": "SR-1027",
+     "min": 10.9,
+     "min_inclusive": true,
+     "max_exclusive": 14.0
+    },
+    {
+     "id": "aas.wbc.14.0+",
+     "item": "wbc",
+     "option": "14.0+",
+     "points": 3,
+     "ref": "SR-1028",
+     "min": 14.0,
+     "min_inclusive": true
+    },
+    {
+     "id": "aas.neutrophils_pct.62-74.9",
+     "item": "neutrophils_pct",
+     "option": "62-74.9",
+     "points": 2,
+     "ref": "SR-1029",
+     "min": 62.0,
+     "min_inclusive": true,
+     "max_exclusive": 75.0
+    },
+    {
+     "id": "aas.neutrophils_pct.75-82.9",
+     "item": "neutrophils_pct",
+     "option": "75-82.9",
+     "points": 3,
+     "ref": "SR-1030",
+     "min": 75.0,
+     "min_inclusive": true,
+     "max_exclusive": 83.0
+    },
+    {
+     "id": "aas.neutrophils_pct.83+",
+     "item": "neutrophils_pct",
+     "option": "83+",
+     "points": 4,
+     "ref": "SR-1031",
+     "min": 83.0,
+     "min_inclusive": true
+    },
+    {
+     "id": "aas.crp_pain_under_24h.u24_4-10.9",
+     "item": "crp_pain_under_24h",
+     "option": "u24_4-10.9",
+     "points": 2,
+     "ref": "SR-1032",
+     "min": 4.0,
+     "min_inclusive": true,
+     "max_exclusive": 11.0
+    },
+    {
+     "id": "aas.crp_pain_under_24h.u24_11-24.9",
+     "item": "crp_pain_under_24h",
+     "option": "u24_11-24.9",
+     "points": 3,
+     "ref": "SR-1033",
+     "min": 11.0,
+     "min_inclusive": true,
+     "max_exclusive": 25.0
+    },
+    {
+     "id": "aas.crp_pain_under_24h.u24_25-82.9",
+     "item": "crp_pain_under_24h",
+     "option": "u24_25-82.9",
+     "points": 5,
+     "ref": "SR-1034",
+     "min": 25.0,
+     "min_inclusive": true,
+     "max_exclusive": 83.0
+    },
+    {
+     "id": "aas.crp_pain_under_24h.u24_83-",
+     "item": "crp_pain_under_24h",
+     "option": "u24_83-",
+     "points": 1,
+     "ref": "SR-1035",
+     "min": 83.0,
+     "min_inclusive": true
+    },
+    {
+     "id": "aas.crp_pain_24h_or_more.o24_12-52.9",
+     "item": "crp_pain_24h_or_more",
+     "option": "o24_12-52.9",
+     "points": 2,
+     "ref": "SR-1036",
+     "min": 12.0,
+     "min_inclusive": true,
+     "max_exclusive": 53.0
+    },
+    {
+     "id": "aas.crp_pain_24h_or_more.o24_53-151.9",
+     "item": "crp_pain_24h_or_more",
+     "option": "o24_53-151.9",
+     "points": 2,
+     "ref": "SR-1037",
+     "min": 53.0,
+     "min_inclusive": true,
+     "max_exclusive": 152.0
+    },
+    {
+     "id": "aas.crp_pain_24h_or_more.o24_152-",
+     "item": "crp_pain_24h_or_more",
+     "option": "o24_152-",
+     "points": 1,
+     "ref": "SR-1038",
+     "min": 152.0,
+     "min_inclusive": true
+    }
+   ],
+   "bands": [
+    {
+     "band": "low",
+     "min": 0,
+     "max": 10,
+     "ref": "SR-1110"
+    },
+    {
+     "band": "intermediate",
+     "min": 11,
+     "max": 15,
+     "ref": "SR-1111"
+    },
+    {
+     "band": "high",
+     "min": 16,
+     "ref": "SR-1112"
+    }
+   ]
+  },
+  {
+   "id": "alvarado",
+   "title": "Alvarado score",
+   "max": 10,
+   "required": [
+    [
+     "pain_moved"
+    ],
+    [
+     "loss_of_appetite"
+    ],
+    [
+     "nausea_or_vomiting"
+    ],
+    [
+     "rlq_tenderness"
+    ],
+    [
+     "rebound"
+    ],
+    [
+     "temperature_c"
+    ],
+    [
+     "wbc"
+    ],
+    [
+     "neutrophils_pct"
+    ]
+   ],
+   "items": [
+    {
+     "id": "alvarado.pain_moved.yes",
+     "item": "pain_moved",
+     "option": "yes",
+     "points": 1,
+     "ref": "SR-1000"
+    },
+    {
+     "id": "alvarado.loss_of_appetite.yes",
+     "item": "loss_of_appetite",
+     "option": "yes",
+     "points": 1,
+     "ref": "SR-1001"
+    },
+    {
+     "id": "alvarado.nausea_or_vomiting.yes",
+     "item": "nausea_or_vomiting",
+     "option": "yes",
+     "points": 1,
+     "ref": "SR-1002"
+    },
+    {
+     "id": "alvarado.rlq_tenderness.yes",
+     "item": "rlq_tenderness",
+     "option": "yes",
+     "points": 2,
+     "ref": "SR-1003"
+    },
+    {
+     "id": "alvarado.rebound.yes",
+     "item": "rebound",
+     "option": "yes",
+     "points": 1,
+     "ref": "SR-1004"
+    },
+    {
+     "id": "alvarado.temperature_c.37.3+",
+     "item": "temperature_c",
+     "option": "37.3+",
+     "points": 1,
+     "ref": "SR-1005",
+     "min": 37.3,
+     "min_inclusive": true
+    },
+    {
+     "id": "alvarado.wbc.above10",
+     "item": "wbc",
+     "option": "above10",
+     "points": 2,
+     "ref": "SR-1006",
+     "min": 10.0,
+     "min_inclusive": false
+    },
+    {
+     "id": "alvarado.neutrophils_pct.above75",
+     "item": "neutrophils_pct",
+     "option": "above75",
+     "points": 1,
+     "ref": "SR-1007",
+     "min": 75.0,
+     "min_inclusive": false
+    }
+   ],
+   "bands": [
+    {
+     "band": "unlikely",
+     "min": 0,
+     "max": 4,
+     "ref": "SR-1103"
+    },
+    {
+     "band": "unsure",
+     "min": 5,
+     "max": 6,
+     "ref": "SR-1104"
+    },
+    {
+     "band": "probable",
+     "min": 7,
+     "max": 8,
+     "ref": "SR-1105"
+    },
+    {
+     "band": "very_probable",
+     "min": 9,
+     "max": 10,
+     "ref": "SR-1106"
+    }
+   ]
+  }
+ ],
+ "tg18_cholecystitis": {
+  "grade_iii": {
+   "creatinine_umol": 177,
+   "inr": 1.5,
+   "platelets": 100,
+   "ref": "SR-1204"
+  },
+  "grade_ii": {
+   "wbc": 18,
+   "symptom_hours": 72,
+   "ref": "SR-1205"
+  },
+  "refs": [
+   "SR-1203",
+   "SR-1206"
+  ]
+ },
+ "tg18_cholangitis": {
+  "inflammation": {
+   "temperature_c": 38,
+   "wbc_low": 4,
+   "wbc_high": 10,
+   "crp": 10,
+   "ref": "SR-1207"
+  },
+  "bile_blocked": {
+   "bilirubin_umol": 34,
+   "liver_tests_x_uln": 1.5,
+   "ref": "SR-1208"
+  },
+  "refs": [
+   "SR-1210"
+  ]
+ },
+ "asge": {
+  "high": {
+   "bilirubin_umol": 68,
+   "duct_mm": 6,
+   "ref": "SR-1213"
+  },
+  "intermediate": {
+   "age": 55,
+   "ref": "SR-1214"
+  },
+  "refs": [
+   "SR-1212",
+   "SR-1215"
+  ]
+ },
+ "stopbang": {
+  "items": [
+   "snoring",
+   "tired",
+   "observed",
+   "pressure",
+   "bmi_over_35",
+   "age_over_50",
+   "neck_over_40",
+   "male"
+  ],
+  "bands": [
+   {
+    "band": "low",
+    "min": 0,
+    "max": 2
+   },
+   {
+    "band": "intermediate",
+    "min": 3,
+    "max": 4
+   },
+   {
+    "band": "high",
+    "min": 5,
+    "max": 8
+   }
+  ],
+  "ref": "SR-1229"
+ },
+ "aki": {
+  "stage1_ratio": 1.5,
+  "stage2_ratio": 2.0,
+  "stage3_ratio": 3.0,
+  "stage3_absolute_umol": 354,
+  "rise_48h_umol": 26.5,
+  "refs": [
+   "SR-1211",
+   "SR-0544",
+   "SR-0545",
+   "SR-0546",
+   "SR-0547"
+  ]
+ }
+}

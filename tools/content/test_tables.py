@@ -341,7 +341,7 @@ class Scores(unittest.TestCase):
     def test_tg18_and_asge_facts_are_present(self):
         facts = rows("score_facts")
         groups = {f["group"] for f in facts}
-        self.assertEqual(groups, {"tg18_cholecystitis", "tg18_cholangitis", "asge", "asa", "airway", "stopbang", "vte", "sort"})
+        self.assertEqual(groups, {"tg18_cholecystitis", "tg18_cholangitis", "asge", "asa", "airway", "stopbang", "vte", "sort", "aki"})
         self.assertEqual([f["item"] for f in facts if f["group"] == "asge"], ["cholangitis_first", "high", "intermediate", "low"])
         self.assertEqual(len([f for f in facts if f["group"] == "asa"]), 8)
 

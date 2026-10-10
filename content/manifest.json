@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "b28ceeec37473f5c282f5ac6a99799b2bd29fe9902960ae6fa44e3d952d63f3c",
- "files": 329,
- "bytes": 16420225,
+ "content_hash": "80a84881e577849caf9545fe6b24beda3229b149f8ef6c23fde89ac674f2d117",
+ "files": 330,
+ "bytes": 16430996,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -13,6 +13,7 @@
   "images": 77,
   "rules": 1,
   "schema": 4,
+  "scores": 1,
   "workflow": 1,
   "xsec": 57
  },
@@ -1042,12 +1043,16 @@
    "sha256": "14f70f69fe53feeef0a517d9bb419f99f6958ec8d1cc0d26c1895a29b2fc329e"
   },
   "score_facts.csv": {
-   "bytes": 6011,
-   "sha256": "d5854c03ea584203dbb946161c9756faacfb2e63401f5be1de51f5e0e2b71dbc"
+   "bytes": 6171,
+   "sha256": "b03b0a9884ca8aaab131df3ad51cd5f84e31d0b2c597fb15571757e37cde221e"
   },
   "score_items.csv": {
    "bytes": 7422,
    "sha256": "e2a50d86389cf39ab340b97b284a6d1a614b94e9dbcbe2303d87decd736ad262"
+  },
+  "scores/scores.json": {
+   "bytes": 10611,
+   "sha256": "c25dab209685d8f9adacfd80a601d5e38df1db54d2aa023f2a0087fd796ca3e1"
   },
   "sepsis_ng253_tiers.csv": {
    "bytes": 5104,

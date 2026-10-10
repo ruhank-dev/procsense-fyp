@@ -126,6 +126,8 @@ fact("tg18_cholangitis", "group_b", "B — bile blocked Jaundice (bilirubin 2 mg
 fact("tg18_cholangitis", "group_c", "C — scan Widened bile duct; cause seen (stone, narrowing)", "Widened bile duct")
 fact("tg18_cholangitis", "diagnosis", "Diagnosis Definite = A + B + C; suspected = A + (B or C) → EMERGENCY: sepsis care + urgent drainage (ERCP)", "EMERGENCY",
      note="Cholangitis is an emergency: sepsis care and urgent drainage.")
+fact("aki", "rise_48h", "AKI stage 1: ×1.5–1.9 baseline or +26.5 in 48 h (KDIGO)", "Creatinine rise of 26.5 micromol/L or more within 48 hours", "26.5",
+     note="KDIGO 0.3 mg/dL; NICE NG148 1.3.1 writes 26 micromol/litre.")
 fact("asge", "cholangitis_first", "Fever/shivers AND yellow skin/eyes AND right upper pain? Cholangitis — EMERGENCY: sepsis bundle, senior, urgent ERCP", "Cholangitis — EMERGENCY")
 fact("asge", "high", "Stone seen in duct on scan, OR bilirubin above 68 with duct wider than 6 mm? HIGH risk of duct stone: planned operation is usually deferred; senior; ERCP pathway",
      "HIGH risk of duct stone", "68; 6")

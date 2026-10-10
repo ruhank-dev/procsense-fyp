@@ -50,6 +50,13 @@ def main() -> int:
         stage_ids = [r["id"] for r in csv.DictReader(f)]
     failed |= _report("flow maps", flow_map_problems(flow, register, stage_ids), f"{len(stage_ids)} stages match flow_stages.csv, refs ok")
 
+    scores = load_json(CONTENT / "scores" / "scores.json")
+    refs = {i["ref"] for s in scores["point_scores"] for i in s["items"]} | {b["ref"] for s in scores["point_scores"] for b in s["bands"]}
+    for key in ("tg18_cholecystitis", "tg18_cholangitis", "asge", "aki"):
+        refs |= set(scores[key].get("refs", [])) | {v["ref"] for v in scores[key].values() if isinstance(v, dict) and "ref" in v}
+    refs.add(scores["stopbang"]["ref"])
+    failed |= _report("scores", [f"scores.json: ref {r} not in register" for r in sorted(refs) if r not in register], f"{len(refs)} refs ok")
+
     for path in sorted(CONTENT.glob("*.csv")):
         problems = csv_problems(path, register)
         failed |= _report("table " + path.stem, problems, "every row has a ref")

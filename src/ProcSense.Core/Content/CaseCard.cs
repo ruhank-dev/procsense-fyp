@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -56,6 +56,7 @@ namespace ProcSense.Core.Content
             CaseFiles = caseFiles ?? new Dictionary<string, CaseFile>();
             FlowMaps = flowMaps ?? ProcSense.Core.Workflow.FlowMaps.Empty;
             Exam = exam ?? new ExamEffects(0, "", 0, 0, "", "");
+            Scores = scores ?? ProcSense.Core.Clinical.Scores.ScoreTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -69,6 +70,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Workflow.FlowMaps FlowMaps { get; }
         /// <summary>What examining does to the patient (content/behaviour.json).</summary>
         public ExamEffects Exam { get; }
+        /// <summary>The score tables the clinical calculators read (content/scores/scores.json).</summary>
+        public ProcSense.Core.Clinical.Scores.ScoreTables Scores { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
         public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }

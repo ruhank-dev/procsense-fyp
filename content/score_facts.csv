@@ -10,24 +10,25 @@ tg18_cholangitis.group_a,tg18_cholangitis,group_a,Fever above 38,38; 4; 10; 10,A
 tg18_cholangitis.group_b,tg18_cholangitis,group_b,Jaundice,2; 34; 1.5,B — bile blocked Jaundice (bilirubin 2 mg/dL ≈ 34 µmol/L or more); liver tests above 1.5 × upper limit,61,SR-1208
 tg18_cholangitis.group_c,tg18_cholangitis,group_c,Widened bile duct,,"C — scan Widened bile duct; cause seen (stone, narrowing)",61,SR-1209
 tg18_cholangitis.diagnosis,tg18_cholangitis,diagnosis,EMERGENCY,,Diagnosis Definite = A + B + C; suspected = A + (B or C) → EMERGENCY: sepsis care + urgent drainage (ERCP),61,SR-1210
-asge.cholangitis_first,asge,cholangitis_first,Cholangitis — EMERGENCY,,"Fever/shivers AND yellow skin/eyes AND right upper pain? Cholangitis — EMERGENCY: sepsis bundle, senior, urgent ERCP",48,SR-1211
-asge.high,asge,high,HIGH risk of duct stone,68; 6,"Stone seen in duct on scan, OR bilirubin above 68 with duct wider than 6 mm? HIGH risk of duct stone: planned operation is usually deferred; senior; ERCP pathway",48,SR-1212
-asge.intermediate,asge,intermediate,INTERMEDIATE risk,55,"Any liver test abnormal, OR age over 55, OR duct wide? INTERMEDIATE risk: senior; MRCP (or EUS) to look for a stone",48,SR-1213
-asge.low,asge,low,LOW risk,,LOW risk → continue with planned operation,48,SR-1214
-asa.asa1,asa,asa1,Healthy,1,"ASA 1 Healthy Fit, non-smoker, little alcohol",61,SR-1215
-asa.asa2,asa,asa2,"Mild disease, no real limits",2,"ASA 2 Mild disease, no real limits Smoker, social drinker, pregnant, BMI 30–40, well-controlled diabetes or BP",61,SR-1216
-asa.asa3,asa,asa3,"Severe disease, limits activity",3,"ASA 3 Severe disease, limits activity Poorly controlled diabetes/BP, lung disease (COPD), BMI 40+, dialysis, old heart attack/stroke (over 3 months ago), pacemaker",61,SR-1217
-asa.asa4,asa,asa4,"Severe disease, constant threat to life",4,"ASA 4 Severe disease, constant threat to life Recent heart attack/stroke (under 3 months), sepsis, severe heart valve disease",61,SR-1218
-asa.asa5,asa,asa5,Not expected to survive without the operation,5,"ASA 5 Not expected to survive without the operation Ruptured major artery, massive trauma",61,SR-1219
-asa.asa6,asa,asa6,Brain-dead organ donor,6,ASA 6 Brain-dead organ donor —,61,SR-1220
-asa.emergency_e,asa,emergency_e,Emergency operation,,+ E Emergency operation All S2 patients,61,SR-1221
-asa.expected_grades,asa,expected_grades,healthy S1 = ASA 1,1; 2; 3; 1; 2; 4,"Expected grades for ProcSense patients CLINICAL INTERPRETATION (derived from the ASA 2020 examples): healthy S1 = ASA 1; S1 with controlled BP or diabetes = 2; poorly controlled diabetes, AF on blood thinners, BMI 40+ = 3; healthy S2 = 1E; septic S2 = 2E–4E.",61,SR-1222
-airway.mallampati,airway,mallampati,Class 1–2,1; 2; 3; 4,Mallampati class Patient opens mouth wide and sticks tongue out; what can you see? Class 1–2 (uvula — the dangly bit at the back — visible) Class 3–4 (only base of uvula or only roof of mouth),61,SR-1223
-airway.mouth_opening,airway,mouth_opening,3 cm or more,3,Mouth opening Gap between front teeth 3 cm or more (~2–3 fingers) Less than 3 cm,61,SR-1224
-airway.thyromental,airway,thyromental,6.5 cm or more,6.5; 6,"Chin-to-neck distance (thyromental) Chin tip to Adam's apple, head tilted back 6.5 cm or more Less than 6 cm",61,SR-1225
-airway.neck_movement,airway,neck_movement,Full,,Neck movement Look up / down Full Stiff,61,SR-1226
-stopbang.questions,stopbang,questions,Snoring,8; 35; 50; 40,"8 yes/no questions: Snoring, Tired, Observed stopping breathing, high blood Pressure, BMI above 35, Age above 50, Neck above 40 cm, male Gender",61,SR-1227
-stopbang.bands,stopbang,bands,low risk,0; 2; 3; 4; 5; 8,0–2 low risk 3–4 intermediate; 5–8 high risk,61,SR-1228
-vte.risk_factors,vte,risk_factors,age over 60,60; 30; 90,"Risk factors include: age over 60, BMI over 30, cancer, previous clot, family history of clots, oestrogen pill or HRT, pregnancy, dehydration, reduced mobility, surgery longer than 90 minutes, acute tummy inflammation.",62,SR-1229
-vte.bleeding_risk_factors,vte,bleeding_risk_factors,platelets below 75,75,"Bleeding risk factors: active bleeding, blood thinners, platelets below 75, very high BP.",62,SR-1230
-sort.draft_choice,sort,draft_choice,SORT,216,"NICE quality standard QS216 asks hospitals to use a validated risk tool. Options: SORT (Surgical Outcome Risk Tool, simple), P-POSSUM, ACS NSQIP online calculator.",62,SR-1231
+aki.rise_48h,aki,rise_48h,Creatinine rise of 26.5 micromol/L or more within 48 hours,26.5,AKI stage 1: ×1.5–1.9 baseline or +26.5 in 48 h (KDIGO),35,SR-1211
+asge.cholangitis_first,asge,cholangitis_first,Cholangitis — EMERGENCY,,"Fever/shivers AND yellow skin/eyes AND right upper pain? Cholangitis — EMERGENCY: sepsis bundle, senior, urgent ERCP",48,SR-1212
+asge.high,asge,high,HIGH risk of duct stone,68; 6,"Stone seen in duct on scan, OR bilirubin above 68 with duct wider than 6 mm? HIGH risk of duct stone: planned operation is usually deferred; senior; ERCP pathway",48,SR-1213
+asge.intermediate,asge,intermediate,INTERMEDIATE risk,55,"Any liver test abnormal, OR age over 55, OR duct wide? INTERMEDIATE risk: senior; MRCP (or EUS) to look for a stone",48,SR-1214
+asge.low,asge,low,LOW risk,,LOW risk → continue with planned operation,48,SR-1215
+asa.asa1,asa,asa1,Healthy,1,"ASA 1 Healthy Fit, non-smoker, little alcohol",61,SR-1216
+asa.asa2,asa,asa2,"Mild disease, no real limits",2,"ASA 2 Mild disease, no real limits Smoker, social drinker, pregnant, BMI 30–40, well-controlled diabetes or BP",61,SR-1217
+asa.asa3,asa,asa3,"Severe disease, limits activity",3,"ASA 3 Severe disease, limits activity Poorly controlled diabetes/BP, lung disease (COPD), BMI 40+, dialysis, old heart attack/stroke (over 3 months ago), pacemaker",61,SR-1218
+asa.asa4,asa,asa4,"Severe disease, constant threat to life",4,"ASA 4 Severe disease, constant threat to life Recent heart attack/stroke (under 3 months), sepsis, severe heart valve disease",61,SR-1219
+asa.asa5,asa,asa5,Not expected to survive without the operation,5,"ASA 5 Not expected to survive without the operation Ruptured major artery, massive trauma",61,SR-1220
+asa.asa6,asa,asa6,Brain-dead organ donor,6,ASA 6 Brain-dead organ donor —,61,SR-1221
+asa.emergency_e,asa,emergency_e,Emergency operation,,+ E Emergency operation All S2 patients,61,SR-1222
+asa.expected_grades,asa,expected_grades,healthy S1 = ASA 1,1; 2; 3; 1; 2; 4,"Expected grades for ProcSense patients CLINICAL INTERPRETATION (derived from the ASA 2020 examples): healthy S1 = ASA 1; S1 with controlled BP or diabetes = 2; poorly controlled diabetes, AF on blood thinners, BMI 40+ = 3; healthy S2 = 1E; septic S2 = 2E–4E.",61,SR-1223
+airway.mallampati,airway,mallampati,Class 1–2,1; 2; 3; 4,Mallampati class Patient opens mouth wide and sticks tongue out; what can you see? Class 1–2 (uvula — the dangly bit at the back — visible) Class 3–4 (only base of uvula or only roof of mouth),61,SR-1224
+airway.mouth_opening,airway,mouth_opening,3 cm or more,3,Mouth opening Gap between front teeth 3 cm or more (~2–3 fingers) Less than 3 cm,61,SR-1225
+airway.thyromental,airway,thyromental,6.5 cm or more,6.5; 6,"Chin-to-neck distance (thyromental) Chin tip to Adam's apple, head tilted back 6.5 cm or more Less than 6 cm",61,SR-1226
+airway.neck_movement,airway,neck_movement,Full,,Neck movement Look up / down Full Stiff,61,SR-1227
+stopbang.questions,stopbang,questions,Snoring,8; 35; 50; 40,"8 yes/no questions: Snoring, Tired, Observed stopping breathing, high blood Pressure, BMI above 35, Age above 50, Neck above 40 cm, male Gender",61,SR-1228
+stopbang.bands,stopbang,bands,low risk,0; 2; 3; 4; 5; 8,0–2 low risk 3–4 intermediate; 5–8 high risk,61,SR-1229
+vte.risk_factors,vte,risk_factors,age over 60,60; 30; 90,"Risk factors include: age over 60, BMI over 30, cancer, previous clot, family history of clots, oestrogen pill or HRT, pregnancy, dehydration, reduced mobility, surgery longer than 90 minutes, acute tummy inflammation.",62,SR-1230
+vte.bleeding_risk_factors,vte,bleeding_risk_factors,platelets below 75,75,"Bleeding risk factors: active bleeding, blood thinners, platelets below 75, very high BP.",62,SR-1231
+sort.draft_choice,sort,draft_choice,SORT,216,"NICE quality standard QS216 asks hospitals to use a validated risk tool. Options: SORT (Surgical Outcome Risk Tool, simple), P-POSSUM, ACS NSQIP online calculator.",62,SR-1232
