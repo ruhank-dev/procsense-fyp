@@ -1,0 +1,7 @@
+id,variable,d_n,d_p5,d_p25,d_p50,d_p75,d_p95,quote,page,ref
+temperature_c,temperature_c,26,36.0,36.5,36.8,37.0,37.6,,,SR-2700
+heart_rate,heart_rate,26,66.2,73.8,86.0,97.8,107.5,,,SR-2701
+respiratory_rate,respiratory_rate,26,15.2,16.0,18.0,18.0,22.0,,,SR-2702
+spo2,spo2,26,93.5,96.0,97.0,99.0,100.0,,,SR-2703
+systolic_bp,systolic_bp,26,100.0,112.2,137.0,161.5,188.2,,,SR-2704
+diastolic_bp,diastolic_bp,26,49.2,61.5,72.0,80.8,92.8,,,SR-2705

@@ -1,0 +1,53 @@
+id,parameter,unit,zone,v_low,v_high,v_low2,v_high2,bound,v_state,v_condition,quote,page,ref
+hr.normal,heart_rate,/min,normal,51,90,,,,,,Heart rate /min 51–90 91–110 or 41–50 111–130 ≥131 or ≤40,146,SR-0100
+hr.a.watch,heart_rate,/min,watch,91,110,,,,,,Heart rate /min 51–90 91–110 or 41–50 111–130 ≥131 or ≤40,146,SR-0101
+hr.b.watch,heart_rate,/min,watch,41,50,,,,,,Heart rate /min 51–90 91–110 or 41–50 111–130 ≥131 or ≤40,146,SR-0102
+hr.worry,heart_rate,/min,worry,111,130,,,,,,Heart rate /min 51–90 91–110 or 41–50 111–130 ≥131 or ≤40,146,SR-0103
+hr.a.emergency,heart_rate,/min,emergency,131,,,,,,,Heart rate /min 51–90 91–110 or 41–50 111–130 ≥131 or ≤40,146,SR-0104
+hr.b.emergency,heart_rate,/min,emergency,,40,,,,,,Heart rate /min 51–90 91–110 or 41–50 111–130 ≥131 or ≤40,146,SR-0105
+sbp.normal,systolic_bp_low,mmHg,normal,111,219,,,,,,Top BP (low side) mmHg 111–219 101–110 91–100 ≤90 / MAP below 65,146,SR-0106
+sbp.watch,systolic_bp_low,mmHg,watch,101,110,,,,,,Top BP (low side) mmHg 111–219 101–110 91–100 ≤90 / MAP below 65,146,SR-0107
+sbp.worry,systolic_bp_low,mmHg,worry,91,100,,,,,,Top BP (low side) mmHg 111–219 101–110 91–100 ≤90 / MAP below 65,146,SR-0108
+sbp.a.emergency,systolic_bp_low,mmHg,emergency,,90,,,,,,Top BP (low side) mmHg 111–219 101–110 91–100 ≤90 / MAP below 65,146,SR-0109
+sbp.map.emergency,mean_arterial_pressure,mmHg,emergency,,65,,,below,,,Top BP (low side) mmHg 111–219 101–110 91–100 ≤90 / MAP below 65,146,SR-0110
+bp_high.normal,bp_high,mmHg,normal,,140,,90,below,,,BP (high side) below 140/90 140–179 / 90–109 ≥180/110 (S1 usually deferred after review) ≥180/120 + symptoms,146,SR-0111
+bp_high.watch,bp_high,mmHg,watch,140,179,90,109,,,,BP (high side) below 140/90 140–179 / 90–109 ≥180/110 (S1 usually deferred after review) ≥180/120 + symptoms,146,SR-0112
+bp_high.worry,bp_high,mmHg,worry,180,,110,,,,,BP (high side) below 140/90 140–179 / 90–109 ≥180/110 (S1 usually deferred after review) ≥180/120 + symptoms,146,SR-0113
+bp_high.emergency,bp_high,mmHg,emergency,180,,120,,,,symptoms,BP (high side) below 140/90 140–179 / 90–109 ≥180/110 (S1 usually deferred after review) ≥180/120 + symptoms,146,SR-0114
+rr.normal,respiratory_rate,/min,normal,12,20,,,,,,Breathing /min 12–20 9–11 or 21–24 ≥22 with infection ≥25 or ≤8,146,SR-0115
+rr.a.watch,respiratory_rate,/min,watch,9,11,,,,,,Breathing /min 12–20 9–11 or 21–24 ≥22 with infection ≥25 or ≤8,146,SR-0116
+rr.b.watch,respiratory_rate,/min,watch,21,24,,,,,,Breathing /min 12–20 9–11 or 21–24 ≥22 with infection ≥25 or ≤8,146,SR-0117
+rr.worry,respiratory_rate,/min,worry,22,,,,,,infection,Breathing /min 12–20 9–11 or 21–24 ≥22 with infection ≥25 or ≤8,146,SR-0118
+rr.a.emergency,respiratory_rate,/min,emergency,25,,,,,,,Breathing /min 12–20 9–11 or 21–24 ≥22 with infection ≥25 or ≤8,146,SR-0119
+rr.b.emergency,respiratory_rate,/min,emergency,,8,,,,,,Breathing /min 12–20 9–11 or 21–24 ≥22 with infection ≥25 or ≤8,146,SR-0120
+spo2.normal,spo2,%,normal,96,,,,,,,Oxygen % ≥96 94–95 92–93 ≤91 (critical below 88),146,SR-0121
+spo2.watch,spo2,%,watch,94,95,,,,,,Oxygen % ≥96 94–95 92–93 ≤91 (critical below 88),146,SR-0122
+spo2.worry,spo2,%,worry,92,93,,,,,,Oxygen % ≥96 94–95 92–93 ≤91 (critical below 88),146,SR-0123
+spo2.a.emergency,spo2,%,emergency,,91,,,,,,Oxygen % ≥96 94–95 92–93 ≤91 (critical below 88),146,SR-0124
+spo2.critical.critical,spo2,%,critical,,88,,,below,,,Oxygen % ≥96 94–95 92–93 ≤91 (critical below 88),146,SR-0125
+temp.normal,temperature_c,°C,normal,36.1,37.9,,,,,,Temperature °C 36.1–37.9 35.1–36.0 / 38.0–39.0 ≥39.1 ≤35.0,146,SR-0126
+temp.a.watch,temperature_c,°C,watch,35.1,36.0,,,,,,Temperature °C 36.1–37.9 35.1–36.0 / 38.0–39.0 ≥39.1 ≤35.0,146,SR-0127
+temp.b.watch,temperature_c,°C,watch,38.0,39.0,,,,,,Temperature °C 36.1–37.9 35.1–36.0 / 38.0–39.0 ≥39.1 ≤35.0,146,SR-0128
+temp.worry,temperature_c,°C,worry,39.1,,,,,,,Temperature °C 36.1–37.9 35.1–36.0 / 38.0–39.0 ≥39.1 ≤35.0,146,SR-0129
+temp.emergency,temperature_c,°C,emergency,,35.0,,,,,,Temperature °C 36.1–37.9 35.1–36.0 / 38.0–39.0 ≥39.1 ≤35.0,146,SR-0130
+acvpu.normal,acvpu,,normal,,,,,,Alert,,Alertness Alert — New confusion Voice/Pain/Unresponsive,146,SR-0131
+acvpu.worry,acvpu,,worry,,,,,,New confusion,,Alertness Alert — New confusion Voice/Pain/Unresponsive,146,SR-0132
+acvpu.emergency,acvpu,,emergency,,,,,,Voice/Pain/Unresponsive,,Alertness Alert — New confusion Voice/Pain/Unresponsive,146,SR-0133
+pain.normal,pain_score,/10,normal,0,3,,,,,,Pain /10 0–3 4–6 7–10 Uncontrolled,146,SR-0134
+pain.watch,pain_score,/10,watch,4,6,,,,,,Pain /10 0–3 4–6 7–10 Uncontrolled,146,SR-0135
+pain.worry,pain_score,/10,worry,7,10,,,,,,Pain /10 0–3 4–6 7–10 Uncontrolled,146,SR-0136
+pain.emergency,pain_score,/10,emergency,,,,,,Uncontrolled,,Pain /10 0–3 4–6 7–10 Uncontrolled,146,SR-0137
+crt.normal,capillary_refill,s,normal,,2,,,,,,Capillary refill ≤2 s 2–3 s >3 s Mottled skin,146,SR-0138
+crt.watch,capillary_refill,s,watch,2,3,,,,,,Capillary refill ≤2 s 2–3 s >3 s Mottled skin,146,SR-0139
+crt.worry,capillary_refill,s,worry,3,,,,above,,,Capillary refill ≤2 s 2–3 s >3 s Mottled skin,146,SR-0140
+crt.emergency,capillary_refill,s,emergency,,,,,,Mottled skin,,Capillary refill ≤2 s 2–3 s >3 s Mottled skin,146,SR-0141
+urine.normal,urine_output,mL/kg/h,normal,0.5,,,,,,,Urine ≥0.5 mL/kg/h below for under 6 h below for 6 h+ Almost none,146,SR-0142
+urine.watch,urine_output,mL/kg/h,watch,,,,,,below for under 6 h,,Urine ≥0.5 mL/kg/h below for under 6 h below for 6 h+ Almost none,146,SR-0143
+urine.worry,urine_output,mL/kg/h,worry,,,,,,below for 6 h+,,Urine ≥0.5 mL/kg/h below for under 6 h below for 6 h+ Almost none,146,SR-0144
+urine.emergency,urine_output,mL/kg/h,emergency,,,,,,Almost none,,Urine ≥0.5 mL/kg/h below for under 6 h below for 6 h+ Almost none,146,SR-0145
+shock.normal,shock_index,HR/SBP,normal,0.5,0.7,,,,,,Shock index (HR ÷ SBP) — supporting indicator only 0.5–0.7 (up to ~0.9 in some studies) 0.8–0.9 approaching/above 1.0 (study-derived marker) No validated higher cut-off used,146,SR-0146
+shock.watch,shock_index,HR/SBP,watch,0.8,0.9,,,,,,Shock index (HR ÷ SBP) — supporting indicator only 0.5–0.7 (up to ~0.9 in some studies) 0.8–0.9 approaching/above 1.0 (study-derived marker) No validated higher cut-off used,146,SR-0147
+news2.normal,news2_total,points,normal,0,0,,,,,,NEWS2 0 1–4 5–6 or any single 3 ≥7,146,SR-0148
+news2.watch,news2_total,points,watch,1,4,,,,,,NEWS2 0 1–4 5–6 or any single 3 ≥7,146,SR-0149
+news2.worry,news2_total,points,worry,5,6,,,,,,NEWS2 0 1–4 5–6 or any single 3 ≥7,146,SR-0150
+news2.emergency,news2_total,points,emergency,7,,,,,,,NEWS2 0 1–4 5–6 or any single 3 ≥7,146,SR-0151

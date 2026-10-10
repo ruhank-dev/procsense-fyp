@@ -1,0 +1,17 @@
+id,analyte,direction,inclusive,v_value,v_condition,d_unit,quote,page,ref
+k.low,potassium,low,yes,2.5,,mmol/L,"Potassium 2.5 or below, or 6.5 or above",54,SR-0650
+k.high,potassium,high,yes,6.5,,mmol/L,"Potassium 2.5 or below, or 6.5 or above",54,SR-0651
+na.low,sodium,low,yes,120,,mmol/L,"Sodium 120 or below, or 160 or above",54,SR-0652
+na.high,sodium,high,yes,160,,mmol/L,"Sodium 120 or below, or 160 or above",54,SR-0653
+glu.low,glucose,low,yes,2.5,,mmol/L,Glucose 2.5 or below,54,SR-0654
+ca.low,calcium,low,yes,1.8,,mmol/L,"Calcium 1.8 or below, or 3.5 or above",54,SR-0655
+ca.high,calcium,high,yes,3.5,,mmol/L,"Calcium 1.8 or below, or 3.5 or above",54,SR-0656
+creat.high,creatinine,high,yes,354,without known kidney failure,umol/L,Creatinine 354 or above (without known kidney failure),54,SR-0657
+crp.high,crp,high,yes,300,,mg/L,CRP 300 or above,54,SR-0658
+hb.low,haemoglobin,low,no,70,,g/L,"Haemoglobin Below 70 g/L, or a fall of 20+",54,SR-0659
+hb.fall,haemoglobin,fall,yes,20,,g/L,"Haemoglobin Below 70 g/L, or a fall of 20+",54,SR-0660
+plt.low,platelets,low,no,30,,x10^9/L,Platelets Below 30,54,SR-0661
+neut.low,neutrophils,low,no,0.5,,x10^9/L,Neutrophils Below 0.5,54,SR-0662
+inr.high_on_warfarin,inr,high,yes,5,warfarin,ratio,INR 5 or above on warfarin; above 1.5 unexpectedly,54,SR-0663
+inr.high_unexpected,inr,high,no,1.5,unexpectedly,ratio,INR 5 or above on warfarin; above 1.5 unexpectedly,54,SR-0664
+lac.high,lactate,high,yes,4.0,,mmol/L,Lactate 4.0 or above,54,SR-0665

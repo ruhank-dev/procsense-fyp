@@ -24,7 +24,7 @@ Imaging is report-based (category B rooms); interpretation is taught through cat
 p0-clinical-logic-s06; p0-medical-research-data-s16.
 
 ## Common issues
-Never AI-generated images.
+Images: real licensed first; labelled synthetic only as the reviewed fallback (ADR-0003, 10 Oct 2026; earlier wording "Never AI-generated images"). The finding code, not the picture, drives the engine.
 
 ## Sources
 B-M13 Step 8, T-IV7; walkthrough Part 6 (6.3, 6.4); inventory D44, D222.

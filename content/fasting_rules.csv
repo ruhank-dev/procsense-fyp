@@ -1,0 +1,10 @@
+id,item,v_hours,v_meaning,applies,quote,page,ref
+clear_liquids,clear_liquids,2,"Water, pulp-free juice, black tea/coffee WITHOUT milk",planned,"Clear liquids 2 hours Water, pulp-free juice, black tea/coffee WITHOUT milk, fizzy drinks, special carbohydrate drinks.",69,SR-0820
+breast_milk,breast_milk,4,Listed for completeness,babies (not used: adults only),Breast milk (babies) 4 hours Listed for completeness; ProcSense is adults,69,SR-0821
+milk,milk,6,Milk behaves like food in the stomach,planned,"Milk, formula, tea/coffee WITH milk 6 hours Milk behaves like food in the stomach Count as food",69,SR-0822
+light_meal,light_meal,6,Small easily digested meal,planned,Light meal (e.g. toast + clear drink) 6 hours Small easily digested meal 6 h minimum,69,SR-0823
+heavy_meal,heavy_meal,8,Slow to leave the stomach,planned,"Heavy, fried or fatty meal, meat (e.g. biryani, paratha, nihari) 8 hours or more Slow to leave the stomach 8 h minimum",69,SR-0824
+chewing_gum,chewing_gum,,gum alone shouldn't delay surgery,planned,Chewing gum Don't cancel ASA 2023: gum alone shouldn't delay surgery Remove before sleep,69,SR-0825
+regular_tablets,regular_tablets,,With a sip of water,planned,Regular tablets With a sip of water Unless told to stop that medicine Follow medicine plan,69,SR-0826
+breach,breach_rule,6; 8; 2,tell the anaesthetist NOW,planned (S1),"Solid food/milk within 6 h, heavy meal within 8 h, or clear drink within 2 h? Fasting breach → tell the anaesthetist NOW (never 'round up' the time)",69,SR-0827
+emergency_full_stomach,emergency_full_stomach,,full stomach,emergency (S2),So the anaesthetist treats every emergency patient as a 'full stomach' and uses RSI,70,SR-0828

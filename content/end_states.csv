@@ -1,0 +1,6 @@
+id,code,v_label,v_meaning,quote,page,ref
+ready,READY_SAFE,Ready for incision — safe,All blockers resolved; correct pathway,Ready for incision — safe All blockers resolved; correct pathway.,145,SR-0810
+postponed,POSTPONED_APPROPRIATELY,Appropriately postponed (S1),Correct reason found and communicated — counts as SUCCESS,Appropriately postponed (S1) Correct reason found and communicated — counts as SUCCESS.,145,SR-0811
+redirected,REDIRECTED_APPROPRIATELY,Appropriately redirected,Diagnostic diversion,Appropriately redirected Diagnostic diversion (e.g. suspected ectopic pregnancy → gynaecology); cholangitis → biliary drainage pathway; inflamed gallbladder → acute pathway.,145,SR-0812
+delayed,SAFE_BUT_DELAYED,Safe but delayed,Right outcome with avoidable delays,Safe but delayed Right outcome with avoidable delays.,145,SR-0813
+failure,SAFETY_FAILURE,Safety failure,A blocker was violated or a life-threatening event missed,Safety failure A blocker was violated or a life-threatening event missed.,145,SR-0814

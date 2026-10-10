@@ -1,0 +1,75 @@
+{
+ "A": {
+  "status": "not used",
+  "reason": "container heading: Parts 1 to 18 are listed one by one below"
+ },
+ "1": {
+  "status": "not used",
+  "reason": "background teaching text for developers; the words the player needs come from the glossary (Part 18, p0-medical-research-data-s08)"
+ },
+ "2": {
+  "status": "not used",
+  "reason": "explains the two operations; they are modelled through the cases (Parts 12 and 13) and the steps (Part 11), not as separate data"
+ },
+ "6": {
+  "note": "Ultrasound finding codes (12) and the 26 picture + report pairs for the EMR viewer (ultrasound_findings.csv, content/images; all DRAFT until the clinician approves); the decision wording comes with p0-clinical-logic-s09"
+ },
+ "10": {
+  "status": "planned",
+  "step": "p0-simulation-workflow-s11"
+ },
+ "11": {
+  "note": "All 15 steps, question by question (270 answers), in steps_21_questions.csv"
+ },
+ "12": {
+  "note": "Example Patient A only (VAR-S1-A); the other S1 cases come with p0-medical-research-data-s10"
+ },
+ "13": {
+  "note": "Case seeds, measurements and the Usman timeline (case_seeds, case_measurements, case_timelines); the remaining content authoring is listed in docs/research/case_content_gaps.md"
+ },
+ "14": {
+  "note": "All 47 what-ifs, field by field (whatif_library.csv); case bindings come with the case content (s10 to s12)"
+ },
+ "14B": {
+  "note": "Priority ladder, problem types and the 18 treatment clashes; the worked stacked cases come with p0-medical-research-data-s12"
+ },
+ "B": {
+  "status": "planned",
+  "step": "p0-medical-research-data-s17"
+ },
+ "D": {
+  "note": "The priority scale only; the eight full stacked cases come with p0-medical-research-data-s12"
+ },
+ "E": {
+  "note": "BP cuff timing only (SR-0034); the rest of the equipment comes with p0-medical-research-data-s09"
+ },
+ "H": {
+  "note": "Only the turnaround-times row so far; the rest of the evidence audit comes with p0-medical-research-data-s17"
+ },
+ "I": {
+  "status": "planned",
+  "step": "p0-medical-research-data-s17"
+ },
+ "28": {
+  "status": "not used",
+  "reason": "the list of references; the sources are cited row by row in the source register instead"
+ },
+ "17": {
+  "note": "Vital-sign and blood-test bands and the key decision thresholds (tables vitals_bands, lab_bands, decision_rules)"
+ },
+ "3": {
+  "note": "The five outcomes (decision_outcomes.csv); the 14-box journey is covered by the 15 steps"
+ },
+ "16": {
+  "note": "Player view (13 blocks) and the five end states"
+ },
+ "C": {
+  "note": "All 24 VR reasoning cards (vr_cards.csv); the intra-operative event table is built with the what-if library (s13)"
+ },
+ "F": {
+  "note": "S1 master flow: the 20 stages (flow_stages.csv); the master-flow diagram text is not stored as data"
+ },
+ "G": {
+  "note": "S2 master flow: the 20 stages (flow_stages.csv); the master-flow diagram text is not stored as data"
+ }
+}

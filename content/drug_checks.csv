@@ -1,0 +1,10 @@
+id,kind,name,v_text,quote,page,ref
+check_allergy,check,allergy,allergy?,Every drug decision must pass three checks: allergy? kidneys/liver? pregnancy? (plus 'blood thinner?' for anything that might cause bleeding).,133,SR-1400
+check_kidney_liver,check,kidneys_liver,kidneys/liver?,Every drug decision must pass three checks: allergy? kidneys/liver? pregnancy? (plus 'blood thinner?' for anything that might cause bleeding).,133,SR-1401
+check_pregnancy,check,pregnancy,pregnancy?,Every drug decision must pass three checks: allergy? kidneys/liver? pregnancy? (plus 'blood thinner?' for anything that might cause bleeding).,133,SR-1402
+check_blood_thinner,check,blood_thinner,blood thinner?,Every drug decision must pass three checks: allergy? kidneys/liver? pregnancy? (plus 'blood thinner?' for anything that might cause bleeding).,133,SR-1403
+role_convention,role,role_convention,initiates the appropriate workflow,"The trainee identifies the clinical problem, recognises that a medicine may be needed, communicates it, and initiates the appropriate workflow (e.g. asks the senior/anaesthetist, flags it on the drug chart for confirmation). A qualified clinician confirms the final treatment decision and dose; a nurse or clinician administers.",63,SR-1404
+never_prescribe,role,never_prescribe,never independently prescribes,"The trainee never independently prescribes, selects a dose for, or administers a patient-specific medicine.",63,SR-1405
+policy_patient_specific,dose_policy,PATIENT_SPECIFIC,but not a number,PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED — the simulator shows the decision (e.g. 'a strong painkiller titrated by the clinician') but not a number.,63,SR-1406
+policy_educational,dose_policy,EDUCATIONAL_EXAMPLE,named beside it,EDUCATIONAL EXAMPLE DOSE (SOURCE-BACKED) — NOT A TRAINEE PRESCRIPTION — shown only where an authoritative source gives a standard adult dose (named beside it),63,SR-1407
+policy_institutional,dose_policy,INSTITUTIONAL,INSTITUTIONAL PROTOCOL,CONTEXT-DEPENDENT — INSTITUTIONAL PROTOCOL / CLINICIAN CONFIRMATION,65,SR-1408

@@ -187,18 +187,8 @@ namespace ProcSense.Core.Rules
                     case "<=": return Ordered(data, strict: false, ascending: true);
                     case ">": return Ordered(data, strict: true, ascending: false);
                     case ">=": return Ordered(data, strict: false, ascending: false);
-                    case "and":
-                    {
-                        object? last = null;
-                        foreach (var a in _args) { last = a.Eval(data); if (!Truthy(last)) return last; }
-                        return last;
-                    }
-                    case "or":
-                    {
-                        object? last = null;
-                        foreach (var a in _args) { last = a.Eval(data); if (Truthy(last)) return last; }
-                        return last;
-                    }
+                    case "and": return Chain(data, stopWhenTruthy: false);
+                    case "or": return Chain(data, stopWhenTruthy: true);
                     case "!": return !Truthy(_args[0].Eval(data));
                     case "in": return In(_args[0].Eval(data), _args[1].Eval(data));
                     case "if": return If(data);
@@ -252,6 +242,18 @@ namespace ProcSense.Core.Rules
                     if (!all && ok) return true;
                 }
                 return all;
+            }
+
+            /// <summary>"and" / "or": evaluate left to right and return the first operand that decides, else the last operand's value.</summary>
+            private object? Chain(object? data, bool stopWhenTruthy)
+            {
+                object? last = null;
+                foreach (var a in _args)
+                {
+                    last = a.Eval(data);
+                    if (Truthy(last) == stopWhenTruthy) return last;
+                }
+                return last;
             }
 
             private object? Ordered(object? data, bool strict, bool ascending)

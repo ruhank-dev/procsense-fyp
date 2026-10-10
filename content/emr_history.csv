@@ -1,0 +1,5 @@
+id,case_id,doc_type,title,date_offset,v_fact,d_body,synthetic,status,quote,page,ref
+A.previous_anaesthetic,VAR-S1-A,anaesthetic_history,Previous anaesthetic record,2012 (about 13 years before today),"caesarean section 2012, no problems","Previous anaesthetic: caesarean section 2012, no problems.",yes,DRAFT,"Previous anaesthetic: caesarean section 2012, no problems.",104,SR-3000
+A.clinic_ultrasound,VAR-S1-A,imaging_report,Clinic ultrasound report (before booking),before the booking (date not stated in the book),Several stones; wall 2 mm; duct 4 mm,"Ultrasound (clinic): Several stones; wall 2 mm; duct 4 mm. Appearance: simple gallstones, duct normal.",yes,DRAFT,(Ultrasound from clinic) Several stones; wall 2 mm; duct 4 mm,105,SR-3001
+C.hba1c,VAR-S1-C,lab_result,Previous HbA1c,2 months before today,HbA1c 58 mmol/mol (2 months ago),"HbA1c 58 mmol/mol, taken 2 months ago.",yes,DRAFT,HbA1c 58 mmol/mol (2 months ago),108,SR-3002
+D.egfr,VAR-S1-D,lab_result,Kidney function,not stated in the book,eGFR 68,Kidney function: eGFR 68.,yes,DRAFT,Kidney function eGFR 68.,108,SR-3003

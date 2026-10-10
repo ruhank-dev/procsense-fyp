@@ -1,0 +1,1229 @@
+{
+ "schema": 1,
+ "images": [
+  {
+   "id": "ecg-01-r0",
+   "file": "ECG-01/ecg-01-r0.png",
+   "sha256": "9b68d6c0f4a7327a7b2a1ff9c1b5b74651cc91d079a5804af3c6b9dc173be501",
+   "bytes": 4123,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-01",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus rhythm",
+    "ecg_id": 1,
+    "record": "records100/00000/00001_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-01-r1",
+   "file": "ECG-01/ecg-01-r1.png",
+   "sha256": "39db9c467a3471b0aeeec5782469b4636d2a53054019bf6b92836c48f4d710b2",
+   "bytes": 4238,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-01",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus rhythm",
+    "ecg_id": 215,
+    "record": "records100/00000/00215_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-01-r2",
+   "file": "ECG-01/ecg-01-r2.png",
+   "sha256": "40f2985ea75fb2b5bfe994ac48aeddd21ee192d938843bca1b7e6aefdb2949c4",
+   "bytes": 4393,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-01",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus rhythm",
+    "ecg_id": 561,
+    "record": "records100/00000/00561_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-01-r3",
+   "file": "ECG-01/ecg-01-r3.png",
+   "sha256": "b15513c6ab00106d5cf38db622b866f5be7b867acc7c170a24da95b4f9cf8632",
+   "bytes": 4313,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-01",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus rhythm",
+    "ecg_id": 925,
+    "record": "records100/00000/00925_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-02-r0",
+   "file": "ECG-02/ecg-02-r0.png",
+   "sha256": "d6f5cffc73acd08850180ed906fb49af5c473f1a5bf5ebb9af2c01d89f478d20",
+   "bytes": 4303,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-02",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus tachycardia",
+    "ecg_id": 103,
+    "record": "records100/00000/00103_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-02-r1",
+   "file": "ECG-02/ecg-02-r1.png",
+   "sha256": "4eb697c715bef528ded58edb23a4ba29ceb7a25e032c12e4fee31f75080a970a",
+   "bytes": 5400,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-02",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus tachycardia",
+    "ecg_id": 857,
+    "record": "records100/00000/00857_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-02-r2",
+   "file": "ECG-02/ecg-02-r2.png",
+   "sha256": "e86e725836aab905a3f14775d67e66256fc5f1353db88e7bd60e422e95614832",
+   "bytes": 4944,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-02",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus tachycardia",
+    "ecg_id": 1158,
+    "record": "records100/01000/01158_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-02-r3",
+   "file": "ECG-02/ecg-02-r3.png",
+   "sha256": "e4face42c2656cc45fc0da7c834872d93fb63000fecdb815870931f01332e78f",
+   "bytes": 4896,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-02",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus tachycardia",
+    "ecg_id": 1556,
+    "record": "records100/01000/01556_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-03-r0",
+   "file": "ECG-03/ecg-03-r0.png",
+   "sha256": "9c443bfb2a9a1d0fd1fd971e6f9915853d94ac93cfbc84301e8cc41eacab1a9a",
+   "bytes": 3509,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-03",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Atrial fibrillation",
+    "ecg_id": 152,
+    "record": "records100/00000/00152_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-03-r1",
+   "file": "ECG-03/ecg-03-r1.png",
+   "sha256": "a3feab16ef0c91499570ff019cc055617499bc4f67b1a829db2e34de32545fca",
+   "bytes": 3585,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-03",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Atrial fibrillation",
+    "ecg_id": 656,
+    "record": "records100/00000/00656_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-03-r2",
+   "file": "ECG-03/ecg-03-r2.png",
+   "sha256": "82ca6027251d7a361217486bbfca36dfa817fa1a6a11558c542a78ef5585af58",
+   "bytes": 3689,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-03",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Atrial fibrillation",
+    "ecg_id": 872,
+    "record": "records100/00000/00872_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-03-r3",
+   "file": "ECG-03/ecg-03-r3.png",
+   "sha256": "77ddeb5d60eab26aba9bc8dcfac50e59d07bfe4610f2bdaa425a56e9b6f7728a",
+   "bytes": 3616,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-03",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Atrial fibrillation",
+    "ecg_id": 1627,
+    "record": "records100/01000/01627_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-04-r0",
+   "file": "ECG-04/ecg-04-r0.png",
+   "sha256": "20abc8bb91343250c4c66a24bf3161feb30956c1b5f8fcabdb2be6aef55acdf2",
+   "bytes": 4829,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-04",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus bradycardia",
+    "ecg_id": 2,
+    "record": "records100/00000/00002_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-04-r1",
+   "file": "ECG-04/ecg-04-r1.png",
+   "sha256": "1a686f82b544dc044bb844c16b59782354367e17d3cb7193d85409d90c2e0111",
+   "bytes": 3260,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-04",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus bradycardia",
+    "ecg_id": 568,
+    "record": "records100/00000/00568_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-04-r2",
+   "file": "ECG-04/ecg-04-r2.png",
+   "sha256": "5dcb067018873ad68be16b024651d08f9eda56adafd3daa70de35ce73504a7e8",
+   "bytes": 3820,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-04",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus bradycardia",
+    "ecg_id": 1304,
+    "record": "records100/01000/01304_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-04-r3",
+   "file": "ECG-04/ecg-04-r3.png",
+   "sha256": "34f25d9f816f7c9a0229354b7b9818c04e03ab208ad9c2d502ca77741ed2c0e7",
+   "bytes": 3595,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-04",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Sinus bradycardia",
+    "ecg_id": 1742,
+    "record": "records100/01000/01742_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-05-r0",
+   "file": "ECG-05/ecg-05-r0.png",
+   "sha256": "ff72d50714b28b8b61cbe0313c7f891d057f107c82176b9b760b005fe1ec0f69",
+   "bytes": 3590,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-05",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Complete heart block",
+    "ecg_id": 959,
+    "record": "records100/00000/00959_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-05-r1",
+   "file": "ECG-05/ecg-05-r1.png",
+   "sha256": "7ead1be425337b96282b2e7092b3b471bdfa23c3782e78001fd28d4597be1960",
+   "bytes": 3770,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-05",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Complete heart block",
+    "ecg_id": 4838,
+    "record": "records100/04000/04838_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-05-r2",
+   "file": "ECG-05/ecg-05-r2.png",
+   "sha256": "91a601948cf5a57253db258f149230effe8f592e6bde6bb3beab9942afb47430",
+   "bytes": 4141,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-05",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Complete heart block",
+    "ecg_id": 8210,
+    "record": "records100/08000/08210_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-05-r3",
+   "file": "ECG-05/ecg-05-r3.png",
+   "sha256": "2e72946197d41b39ee57d5b497f13b8e3002ad4c73c322fb758da297e2a432a1",
+   "bytes": 3292,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-05",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Complete heart block",
+    "ecg_id": 8911,
+    "record": "records100/08000/08911_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-06-r0",
+   "file": "ECG-06/ecg-06-r0.png",
+   "sha256": "294955f8136b00398598b7ffcee8a05ba9c8a1fd75a389fcdffe3dfd0af662e6",
+   "bytes": 5167,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-06",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Supraventricular tachycardia",
+    "ecg_id": 1299,
+    "record": "records100/01000/01299_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-06-r1",
+   "file": "ECG-06/ecg-06-r1.png",
+   "sha256": "1f23ca9f0a6c31fddebcb4d0f413aa91cba01cec6d2baf39a27c7d99900400aa",
+   "bytes": 5253,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-06",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Supraventricular tachycardia",
+    "ecg_id": 3476,
+    "record": "records100/03000/03476_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-06-r2",
+   "file": "ECG-06/ecg-06-r2.png",
+   "sha256": "021f4e541ed67a200c6c2b8d224d0371d29d4a6a9900c6adc7a0b459ece17798",
+   "bytes": 6156,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-06",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Supraventricular tachycardia",
+    "ecg_id": 7960,
+    "record": "records100/07000/07960_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-06-r3",
+   "file": "ECG-06/ecg-06-r3.png",
+   "sha256": "2db3ddb04a696bc131343d600035eefd10d3d4f815d4719ade777652fc309f98",
+   "bytes": 5057,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-06",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "Supraventricular tachycardia",
+    "ecg_id": 10306,
+    "record": "records100/10000/10306_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-07-r0",
+   "file": "ECG-07/ecg-07-r0.png",
+   "sha256": "fd88a8f344294b5dbb623945f0c050c6a1a35fb8d16afdf87fb3c707afd4127a",
+   "bytes": 4528,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-07",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "ST elevation (inferior myocardial infarction pattern)",
+    "ecg_id": 189,
+    "record": "records100/00000/00189_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-07-r1",
+   "file": "ECG-07/ecg-07-r1.png",
+   "sha256": "25ce35d20241c623be9b15a9cc6724a8d6b5a15da4c92edac1168b5f30466574",
+   "bytes": 5502,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-07",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "ST elevation (inferior myocardial infarction pattern)",
+    "ecg_id": 1063,
+    "record": "records100/01000/01063_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-07-r2",
+   "file": "ECG-07/ecg-07-r2.png",
+   "sha256": "df9c9600c683a1b2088a3ff02fb989f96379e3d65481a1956cdad79fab2216f9",
+   "bytes": 4220,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-07",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "ST elevation (inferior myocardial infarction pattern)",
+    "ecg_id": 4166,
+    "record": "records100/04000/04166_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-07-r3",
+   "file": "ECG-07/ecg-07-r3.png",
+   "sha256": "e1164e1889e0173f9bb123b182d075b48a375aa37fe8f771d974db05e929385e",
+   "bytes": 4725,
+   "width": 1000,
+   "height": 240,
+   "finding_code": "ECG-07",
+   "synthetic": false,
+   "licence": "CC BY 4.0",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "PTB-XL",
+    "class": "ST elevation (inferior myocardial infarction pattern)",
+    "ecg_id": 11608,
+    "record": "records100/11000/11608_lr",
+    "doi": "10.13026/kfzx-aw45",
+    "url": "https://physionet.org/content/ptb-xl/1.0.3/"
+   },
+   "attribution": "PTB-XL, a large publicly available electrocardiography dataset, Wagner P. et al., PhysioNet, v1.0.3, doi:10.13026/kfzx-aw45, CC BY 4.0. Lead II drawn as a strip by ProcSense; the recording is not otherwise altered.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-08-s0",
+   "file": "ECG-08/ecg-08-s0.png",
+   "sha256": "97883b670fcba34ab266f7847aba83ef24406e84994bdf8d45d08be9bea6a88d",
+   "bytes": 7008,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-08",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 800,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 1"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-08-s1",
+   "file": "ECG-08/ecg-08-s1.png",
+   "sha256": "c844147b7db0a738c16c7ab280a6645c869063bc9afa477b75bbbad699289047",
+   "bytes": 6815,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-08",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 801,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 215"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-08-s2",
+   "file": "ECG-08/ecg-08-s2.png",
+   "sha256": "986fc0f3a1e5bf88312b34db0b4a8c6fff693802fcac50ac8e642648b0590961",
+   "bytes": 7080,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-08",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 802,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 561"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-08-s3",
+   "file": "ECG-08/ecg-08-s3.png",
+   "sha256": "04f6672a09f7aa600aa3bb1171288bccb7928d72aba0c93eecacdce866df8a0a",
+   "bytes": 6937,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-08",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 803,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 925"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-09-s0",
+   "file": "ECG-09/ecg-09-s0.png",
+   "sha256": "0ba9143895dbcc2b9b9872823e78a1524502406920629c5947863682d91cfb43",
+   "bytes": 6212,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-09",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 900,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 1"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-09-s1",
+   "file": "ECG-09/ecg-09-s1.png",
+   "sha256": "fb65f3f12eee477a4072458d81c762302286cf9fac3fb4ad653ae5960954821f",
+   "bytes": 6042,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-09",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 901,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 215"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-09-s2",
+   "file": "ECG-09/ecg-09-s2.png",
+   "sha256": "6bdee88c47d1bf5a46b4759596b96ac5c49571ea132b8d91a9708187bd8e8b14",
+   "bytes": 6375,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-09",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 902,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 561"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-09-s3",
+   "file": "ECG-09/ecg-09-s3.png",
+   "sha256": "16a33bee2c14d1b459d612ca8595bcca26277140e1ff6d5d68e905b4b888a49c",
+   "bytes": 6225,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-09",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 903,
+    "kind": "T waves edited in a real sinus rhythm strip",
+    "base": "PTB-XL ecg_id 925"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-10-s0",
+   "file": "ECG-10/ecg-10-s0.png",
+   "sha256": "133a06952e3fac7be7a3627992831b6a9dfc60eb9e6e014143ea4bedbf2c6a65",
+   "bytes": 5971,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-10",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 1000,
+    "kind": "a real atrial fibrillation strip sped up",
+    "base": "PTB-XL ecg_id 152"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-10-s1",
+   "file": "ECG-10/ecg-10-s1.png",
+   "sha256": "41b1d75dd2b1391bded0cce6a71d009c9223f80547d53b1a0ef1ab1898b7b938",
+   "bytes": 6238,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-10",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 1001,
+    "kind": "a real atrial fibrillation strip sped up",
+    "base": "PTB-XL ecg_id 656"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-10-s2",
+   "file": "ECG-10/ecg-10-s2.png",
+   "sha256": "62077e3a0235b926e9b64e8a3ec7366d6c94304eb2d6bd9792c50d4196e34160",
+   "bytes": 6370,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-10",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 1002,
+    "kind": "a real atrial fibrillation strip sped up",
+    "base": "PTB-XL ecg_id 872"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ecg-10-s3",
+   "file": "ECG-10/ecg-10-s3.png",
+   "sha256": "0f995f9219b7599338448b7d9aead9fafb2d8611f3419934ca88d4507635479e",
+   "bytes": 6151,
+   "width": 1000,
+   "height": 270,
+   "finding_code": "ECG-10",
+   "synthetic": true,
+   "licence": "ProcSense generated from a CC BY 4.0 recording",
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "attribution": "Derived from a PTB-XL recording (Wagner P. et al., doi:10.13026/kfzx-aw45, CC BY 4.0), edited in code and marked as synthetic.",
+   "generator": {
+    "name": "ecg_images.py",
+    "seed": 1003,
+    "kind": "a real atrial fibrillation strip sped up",
+    "base": "PTB-XL ecg_id 1627"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "7818c7ae19bb30fb12aeb5e6c89efbec75ee107f12ec429d8c9f15e833bd7ff4",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

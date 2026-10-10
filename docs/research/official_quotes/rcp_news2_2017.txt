@@ -1,0 +1,32 @@
+Source: Royal College of Physicians, National Early Warning Score (NEWS) 2: Standardising the assessment of acute-illness severity in the NHS (2017).
+URL: https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf   Opened and read: 10 October 2026.
+Short excerpts kept here only so the content checks can be re-run. The full report belongs to the RCP.
+
+Chart 1: The NEWS scoring system (report page 29). Text layer of the PDF:
+Respiration rate (per minute) ≤8 9–11 12–20 21–24 ≥25
+SpO2 Scale 1 (%) ≤91 92–93 94–95 ≥96
+SpO2 Scale 2 (%) ≤83 84–85 86–87 88–92 ≥93 on air 93–94 on oxygen 95–96 on oxygen ≥97 on oxygen
+Air or oxygen? Oxygen Air
+Systolic blood pressure (mmHg) ≤90 91–100 101–110 111–219 ≥220
+Pulse (per minute) ≤40 41–50 51–90 91–110 111–130 ≥131
+Consciousness Alert CVPU
+Temperature (°C) ≤35.0 35.1–36.0 36.1–38.0 38.1–39.0 ≥39.1
+
+The points of each cell were read from the chart image on the same page (the text layer drops the empty cells), 10 October 2026:
+Respiration rate: ≤8 = 3; 9–11 = 1; 12–20 = 0; 21–24 = 2; ≥25 = 3
+SpO2 Scale 1: ≤91 = 3; 92–93 = 2; 94–95 = 1; ≥96 = 0
+SpO2 Scale 2: ≤83 = 3; 84–85 = 2; 86–87 = 1; 88–92 = 0; ≥93 on air = 0; 93–94 on oxygen = 1; 95–96 on oxygen = 2; ≥97 on oxygen = 3
+Air or oxygen: Oxygen = 2; Air = 0
+Systolic blood pressure: ≤90 = 3; 91–100 = 2; 101–110 = 1; 111–219 = 0; ≥220 = 3
+Pulse: ≤40 = 3; 41–50 = 1; 51–90 = 0; 91–110 = 1; 111–130 = 2; ≥131 = 3
+Consciousness: Alert = 0; CVPU = 3
+Temperature: ≤35.0 = 3; 35.1–36.0 = 1; 36.1–38.0 = 0; 38.1–39.0 = 1; ≥39.1 = 2
+
+Chart 2: NEWS thresholds and triggers (report page 30):
+Aggregate score 0–4 Low Ward-based response
+Red score Low–medium Urgent ward-based response Score of 3 in any individual parameter
+Aggregate score 5–6 Medium Key threshold for urgent response
+Aggregate score 7 or more High Urgent or emergency response
+
+Recommendations (report page xx): new confusion scores 3 on the NEWS chart; the AVPU term has been amended to ACVPU, where C represents new confusion.
+Scale 2 is for patients with hypercapnic respiratory failure and a recommended oxygen saturation range of 88–92%, confirmed on blood gas analysis, decided by a competent clinical decision maker and recorded in the notes.

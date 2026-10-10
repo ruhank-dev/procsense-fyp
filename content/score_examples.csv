@@ -1,0 +1,18 @@
+id,score,patient,item,v_points,v_total,v_band,quote,page,ref
+input,both,S2-A,inputs,,,,"S2-A: man, 19; pain moved to lower right 20 hours ago; vomited once; lower-right tenderness; mild guarding; medium rebound; temperature 37.9; WBC 13.6; neutrophils 82%; CRP 38",59,SR-1150
+air.vomiting,air,S2-A,vomiting,1,,,Vomiting 1 —,59,SR-1151
+air.rlq,air,S2-A,rlq,1,,,Lower-right pain 1 2,59,SR-1152
+aas.rlq,aas,S2-A,rlq,2,,,Lower-right pain 1 2,59,SR-1153
+aas.moved,aas,S2-A,moved,2,,,Pain moved — 2,60,SR-1154
+aas.tender,aas,S2-A,tender,3,,,Tenderness (male) — 3,60,SR-1155
+air.rebound,air,S2-A,rebound,2,,,Rebound medium / guarding mild 2 2,60,SR-1156
+aas.rebound,aas,S2-A,rebound,2,,,Rebound medium / guarding mild 2 2,60,SR-1157
+air.temp,air,S2-A,temp,0,,,Temperature 37.9 0 (needs 38.5) —,60,SR-1158
+air.wbc,air,S2-A,wbc,1,,,WBC 13.6 1 2,60,SR-1159
+aas.wbc,aas,S2-A,wbc,2,,,WBC 13.6 1 2,60,SR-1160
+air.neut,air,S2-A,neut,1,,,Neutrophils 82% 1 3,60,SR-1161
+aas.neut,aas,S2-A,neut,3,,,Neutrophils 82% 1 3,60,SR-1162
+air.crp,air,S2-A,crp,1,,,CRP 38 (under 24 h) 1 5,60,SR-1163
+aas.crp,aas,S2-A,crp,5,,,CRP 38 (under 24 h) 1 5,60,SR-1164
+air.total,air,S2-A,total,,7,unsure,TOTAL 7 → 'unsure' (indeterminate) 19 → 'high',60,SR-1165
+aas.total,aas,S2-A,total,,19,high,TOTAL 7 → 'unsure' (indeterminate) 19 → 'high',60,SR-1166

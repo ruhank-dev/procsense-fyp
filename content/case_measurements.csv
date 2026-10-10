@@ -1,0 +1,46 @@
+id,case_id,kind,name,v_value,v_normal,v_zone,quote,page,ref
+VAR-S1-A.bilirubin,VAR-S1-A,lab,bilirubin,12,3–21,Bile flowing normally,Bilirubin 12 µmol/L 3–21 Bile flowing normally,105,SR-2400
+VAR-S1-A.alt,VAR-S1-A,lab,alt,24,7–40,Liver cells fine,ALT 24 U/L ~7–40 Liver cells fine,105,SR-2401
+VAR-S1-A.alp,VAR-S1-A,lab,alp,78,30–130,Bile ducts not blocked,ALP 78 U/L ~30–130 Bile ducts not blocked,105,SR-2402
+VAR-S1-A.ggt,VAR-S1-A,lab,ggt,22,below 40 (women),Confirms ducts fine,GGT 22 U/L below 40 (women) Confirms ducts fine,105,SR-2403
+VAR-S1-A.albumin,VAR-S1-A,lab,albumin,42,35–50,Good nutrition,Albumin 42 g/L 35–50 Good nutrition,105,SR-2404
+VAR-S1-A.urine_pregnancy_test,VAR-S1-A,lab,urine_pregnancy_test,Negative,,Not pregnant,Urine pregnancy test Negative — Not pregnant,105,SR-2405
+VAR-S1-PB.heart_rate,VAR-S1-PB,vital,heart_rate,84,,Normal,Heart rate 84 Normal Calm,106,SR-2406
+VAR-S1-PB.blood_pressure,VAR-S1-PB,vital,blood_pressure,138/84,,Normal,Blood pressure 138/84 Normal Fine,106,SR-2407
+VAR-S1-PB.respiratory_rate,VAR-S1-PB,vital,respiratory_rate,16,,Normal,Breathing 16 Normal Fine,106,SR-2408
+VAR-S1-PB.spo2,VAR-S1-PB,vital,spo2,97,,Normal,Oxygen 97% Normal Fine,106,SR-2409
+VAR-S1-PB.temperature_c,VAR-S1-PB,vital,temperature_c,37.2,,Normal,Temperature 37.2 °C Normal No fever — so probably no infection in the duct (yet),106,SR-2410
+VAR-S1-PB.eyes,VAR-S1-PB,exam,eyes,Yellow tinge to the whites,,Abnormal,Eyes Yellow tinge to the whites Abnormal Jaundice confirmed on examination,106,SR-2411
+VAR-S1-PB.bilirubin,VAR-S1-PB,lab,bilirubin,72,3–21,HIGH (above 68),Bilirubin 72 µmol/L (4.2 mg/dL) 3–21 HIGH (above 68) — bile is backing up,106,SR-2412
+VAR-S1-PB.alp,VAR-S1-PB,lab,alp,380,30–130,About 3× normal,ALP 380 U/L ~30–130 About 3× normal — bile duct cells irritated by blockage,106,SR-2413
+VAR-S1-PB.ggt,VAR-S1-PB,lab,ggt,410,below 40,,GGT 410 U/L below 40 Confirms the ALP is coming from the bile system,106,SR-2414
+VAR-S1-PB.alt,VAR-S1-PB,lab,alt,160,7–40,Moderately raised,ALT 160 U/L ~7–40 Moderately raised — liver cells irritated by backed-up bile,106,SR-2415
+VAR-S1-PB.wbc,VAR-S1-PB,lab,wbc,9.8,4.0–11.0,Normal,WBC 9.8 4.0–11.0 Normal — no strong sign of infection,106,SR-2416
+VAR-S1-PB.crp,VAR-S1-PB,lab,crp,12,below 5,Mildly raised,CRP 12 below 5 Mildly raised,106,SR-2417
+VAR-S1-PB.inr,VAR-S1-PB,lab,inr,1.1,0.8–1.2,Normal,INR 1.1 0.8–1.2 Clotting normal (long blockage could raise it),106,SR-2418
+VAR-S1-PB.lipase,VAR-S1-PB,lab,lipase,45,below 60,Pancreas not inflamed,Lipase 45 below ~60 Pancreas not inflamed,106,SR-2419
+VAR-S1-PB.ultrasound,VAR-S1-PB,imaging,ultrasound,Gallstones; common bile duct 9 mm; no stone seen in duct,duct ≤6 mm,Duct WIDE,Ultrasound today Gallstones; common bile duct 9 mm; no stone seen in duct duct ≤6 mm Duct WIDE — something is blocking it lower down,106,SR-2420
+VAR-S2-PC.heart_rate,VAR-S2-PC,vital,heart_rate,"108, regular",,Fast (91–110),"Heart rate 108, regular Fast (91–110) Body stressed — pain? fever? dehydration? infection?",110,SR-2421
+VAR-S2-PC.blood_pressure,VAR-S2-PC,vital,blood_pressure,128/76,,Normal,Blood pressure 128/76 Normal Circulation coping,110,SR-2422
+VAR-S2-PC.respiratory_rate,VAR-S2-PC,vital,respiratory_rate,18,,Normal,Breathing 18 Normal OK,110,SR-2423
+VAR-S2-PC.spo2,VAR-S2-PC,vital,spo2,98,,Normal,Oxygen 98% on air Normal Lungs fine,110,SR-2424
+VAR-S2-PC.temperature_c,VAR-S2-PC,vital,temperature_c,37.9,,Normal-high,Temperature 37.9 °C Normal-high (fever starts at 38.0) Mild inflammation,110,SR-2425
+VAR-S2-PC.acvpu,VAR-S2-PC,vital,acvpu,Alert,,Normal,Alertness Alert Normal —,110,SR-2426
+VAR-S2-PC.pain_score,VAR-S2-PC,vital,pain_score,8,,Severe,Pain 8/10 Severe Needs pain relief now,110,SR-2427
+VAR-S2-PC.wbc,VAR-S2-PC,lab,wbc,13.6,4.0–11.0,Raised,WBC 13.6 4.0–11.0 Raised — fighting infection,111,SR-2428
+VAR-S2-PC.neutrophils,VAR-S2-PC,lab,neutrophils,82,40–75,high,Neutrophils 82% 40–75% First-responder cells high → bacterial,111,SR-2429
+VAR-S2-PC.crp,VAR-S2-PC,lab,crp,38,below 5,Moderate inflammation,CRP (20 h of symptoms) 38 mg/L below 5 Moderate inflammation,111,SR-2430
+VAR-S2-PC.haemoglobin,VAR-S2-PC,lab,haemoglobin,148,130–170,Normal,Haemoglobin 148 g/L 130–170 Normal — no bleeding,111,SR-2431
+VAR-S2-PC.creatinine,VAR-S2-PC,lab,creatinine,82,60–110,Kidneys fine,Creatinine 82 µmol/L 60–110 Kidneys fine,111,SR-2432
+VAR-S2-PC.potassium,VAR-S2-PC,lab,potassium,3.9,3.5–5.3,Normal,Potassium 3.9 3.5–5.3 Normal,111,SR-2433
+VAR-S2-PC.urine_dipstick,VAR-S2-PC,lab,urine_dipstick,"Ketones +, otherwise negative",Negative,Not eating,"Urine dipstick Ketones +, otherwise negative Negative Not eating (starvation ketones); no infection/blood",111,SR-2434
+VAR-S2-PC.ultrasound,VAR-S2-PC,imaging,ultrasound,"Non-compressible appendix 9 mm, surrounding fat inflamed, no free fluid, no abscess",,Positive — simple (uncomplicated) appendicitis,"Ultrasound (60–120 min later): 'Non-compressible appendix 9 mm, surrounding fat inflamed, no free fluid, no abscess.' → Positive — simple (uncomplicated) appendicitis.",111,SR-2435
+VAR-S2-PD.lactate,VAR-S2-PD,lab,lactate,3.8,,raised — organs short of oxygen,Results: lactate 3.8 (raised — organs short of oxygen); WBC 19.8; CRP 210; creatinine 142 (kidneys struggling). CT: perforated appendix with free fluid.,112,SR-2436
+VAR-S2-PD.wbc,VAR-S2-PD,lab,wbc,19.8,,,Results: lactate 3.8 (raised — organs short of oxygen); WBC 19.8; CRP 210; creatinine 142 (kidneys struggling). CT: perforated appendix with free fluid.,112,SR-2437
+VAR-S2-PD.crp,VAR-S2-PD,lab,crp,210,,,Results: lactate 3.8 (raised — organs short of oxygen); WBC 19.8; CRP 210; creatinine 142 (kidneys struggling). CT: perforated appendix with free fluid.,112,SR-2438
+VAR-S2-PD.creatinine,VAR-S2-PD,lab,creatinine,142,,kidneys struggling,Results: lactate 3.8 (raised — organs short of oxygen); WBC 19.8; CRP 210; creatinine 142 (kidneys struggling). CT: perforated appendix with free fluid.,112,SR-2439
+VAR-S2-PD.ct,VAR-S2-PD,imaging,ct,perforated appendix with free fluid,,,Results: lactate 3.8 (raised — organs short of oxygen); WBC 19.8; CRP 210; creatinine 142 (kidneys struggling). CT: perforated appendix with free fluid.,112,SR-2440
+VAR-S2-PD.after_treatment,VAR-S2-PD,response,after_treatment,108/64; 112; 2.4,,,"BP rises to 108/64 after fluids, HR 112, lactate falls to 2.4 on repeat, urine starts flowing.",113,SR-2441
+VAR-S1-E.vitals,VAR-S1-E,vital,vitals,"T 38.4, HR 108, BP 118/72, RR 20, SpO2 97%",,,"T 38.4, HR 108, BP 118/72, RR 20, SpO2 97%. Murphy's sign positive. WBC 15.2, CRP 96. Ultrasound: wall 6 mm, fluid around gallbladder.",107,SR-2442
+VAR-S1-E.wbc_crp,VAR-S1-E,lab,wbc_crp,"WBC 15.2, CRP 96",,,"T 38.4, HR 108, BP 118/72, RR 20, SpO2 97%. Murphy's sign positive. WBC 15.2, CRP 96. Ultrasound: wall 6 mm, fluid around gallbladder.",107,SR-2443
+VAR-S1-E.ultrasound,VAR-S1-E,imaging,ultrasound,"wall 6 mm, fluid around gallbladder",,,"T 38.4, HR 108, BP 118/72, RR 20, SpO2 97%. Murphy's sign positive. WBC 15.2, CRP 96. Ultrasound: wall 6 mm, fluid around gallbladder.",107,SR-2444

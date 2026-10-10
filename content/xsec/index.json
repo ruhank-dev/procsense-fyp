@@ -1,0 +1,1821 @@
+{
+ "schema": 1,
+ "images": [
+  {
+   "id": "ct-ab-00-r0",
+   "file": "CT-AB-00/ct-ab-00-r0.png",
+   "sha256": "b90d75750d0a199cdbc5f3fc391f236327c6230676ce14a7c2edcc1bda10cd11",
+   "bytes": 102569,
+   "width": 640,
+   "height": 441,
+   "finding_code": "CT-AB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0259 slice 43",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0259.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-00-r1",
+   "file": "CT-AB-00/ct-ab-00-r1.png",
+   "sha256": "3a274d1068c857cbe9436ddbd42f4f75cad58064db115f768ca4a81300029f6e",
+   "bytes": 81957,
+   "width": 640,
+   "height": 349,
+   "finding_code": "CT-AB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0127 slice 42",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0127.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-00-r2",
+   "file": "CT-AB-00/ct-ab-00-r2.png",
+   "sha256": "36ac5fefd8ed71e755184baceccc4a71f419a039caf29868e0d690b4f5b8c121",
+   "bytes": 92469,
+   "width": 640,
+   "height": 406,
+   "finding_code": "CT-AB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0025 slice 46",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0025.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-00-r3",
+   "file": "CT-AB-00/ct-ab-00-r3.png",
+   "sha256": "7922afdf2b3544ae104d369f5cde5a65614baeef3893f5ca3d57074788e33114",
+   "bytes": 81630,
+   "width": 640,
+   "height": 349,
+   "finding_code": "CT-AB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0004 slice 44",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0004.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-01-s0",
+   "file": "CT-AB-01/ct-ab-01-s0.png",
+   "sha256": "5165f8535f81f2df26d54b4966d9f65a70cf56b6b34b5d7fe067f0433cce1b49",
+   "bytes": 107149,
+   "width": 640,
+   "height": 471,
+   "finding_code": "CT-AB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 500,
+    "kind": "dilated loops painted into a real CT slice",
+    "base": "amos_0259 slice 43"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-01-s1",
+   "file": "CT-AB-01/ct-ab-01-s1.png",
+   "sha256": "2d73131ccfccb48d867b254cc33589b737a9f1740ea287104ffeb45e65beb0f9",
+   "bytes": 83781,
+   "width": 640,
+   "height": 379,
+   "finding_code": "CT-AB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 501,
+    "kind": "dilated loops painted into a real CT slice",
+    "base": "amos_0127 slice 42"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-01-s2",
+   "file": "CT-AB-01/ct-ab-01-s2.png",
+   "sha256": "56a44a687a6afe5b02de6bcf7ad3207585988244119223cbcd61113f70262729",
+   "bytes": 94575,
+   "width": 640,
+   "height": 436,
+   "finding_code": "CT-AB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 502,
+    "kind": "dilated loops painted into a real CT slice",
+    "base": "amos_0025 slice 46"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-01-s3",
+   "file": "CT-AB-01/ct-ab-01-s3.png",
+   "sha256": "9860b4ac556eeb1936e185bcf8c0ed3cba7258c265e2a37fc70326a1fe055b9c",
+   "bytes": 81689,
+   "width": 640,
+   "height": 379,
+   "finding_code": "CT-AB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 503,
+    "kind": "dilated loops painted into a real CT slice",
+    "base": "amos_0004 slice 44"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-02-s0",
+   "file": "CT-AB-02/ct-ab-02-s0.png",
+   "sha256": "341b14073276b0c8af081df22483256d3cacb6fbe5cb2e211030a61457642afc",
+   "bytes": 103546,
+   "width": 640,
+   "height": 471,
+   "finding_code": "CT-AB-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 600,
+    "kind": "free gas painted into a real CT slice",
+    "base": "amos_0259 slice 43"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-02-s1",
+   "file": "CT-AB-02/ct-ab-02-s1.png",
+   "sha256": "cb0f4e65731fd3c6b11cb95a267564ef1d6962224d99aca8ac060d6d4697dc9e",
+   "bytes": 81718,
+   "width": 640,
+   "height": 379,
+   "finding_code": "CT-AB-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 601,
+    "kind": "free gas painted into a real CT slice",
+    "base": "amos_0127 slice 42"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-02-s2",
+   "file": "CT-AB-02/ct-ab-02-s2.png",
+   "sha256": "a0f8a5bbefbf646eb41332958a7ad756a57c9e0c6812683d11fb0c47221844e9",
+   "bytes": 93499,
+   "width": 640,
+   "height": 436,
+   "finding_code": "CT-AB-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 602,
+    "kind": "free gas painted into a real CT slice",
+    "base": "amos_0025 slice 46"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ab-02-s3",
+   "file": "CT-AB-02/ct-ab-02-s3.png",
+   "sha256": "1bdba1ebc79785b2579f03d236c0dee73c923b2062717b660b755a55f547f094",
+   "bytes": 82257,
+   "width": 640,
+   "height": 379,
+   "finding_code": "CT-AB-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 603,
+    "kind": "free gas painted into a real CT slice",
+    "base": "amos_0004 slice 44"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-00-r0",
+   "file": "CT-AP-00/ct-ap-00-r0.png",
+   "sha256": "8a1306a75dcd454efbdf31678c5d960f4da89b65ab7043842395ad279cff70d8",
+   "bytes": 98388,
+   "width": 640,
+   "height": 403,
+   "finding_code": "CT-AP-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0259 slice 37",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0259.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-00-r1",
+   "file": "CT-AP-00/ct-ap-00-r1.png",
+   "sha256": "dde78c163a65a1e64081a5cf1ee094bfe24e9a69df27db9fc07bd93666c0fdc4",
+   "bytes": 80744,
+   "width": 640,
+   "height": 443,
+   "finding_code": "CT-AP-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0088 slice 34",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0088.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-00-r2",
+   "file": "CT-AP-00/ct-ap-00-r2.png",
+   "sha256": "9887f1dbee37a6055cf31909584efd5e6024ce22578349ff82bfc4ec4dc507e3",
+   "bytes": 82146,
+   "width": 640,
+   "height": 380,
+   "finding_code": "CT-AP-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0127 slice 38",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0127.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-00-r3",
+   "file": "CT-AP-00/ct-ap-00-r3.png",
+   "sha256": "4cff47b00d8e06962c8aeb19bffcdaeab6823a62dc669d98b9ae86851f76878a",
+   "bytes": 82471,
+   "width": 640,
+   "height": 396,
+   "finding_code": "CT-AP-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0004 slice 33",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0004.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-01-s0",
+   "file": "CT-AP-01/ct-ap-01-s0.png",
+   "sha256": "dfe45e97706be5546b70941ba25011da1fd5fb5e43fd6446e3cba6ff08261abc",
+   "bytes": 100501,
+   "width": 640,
+   "height": 433,
+   "finding_code": "CT-AP-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 100,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0259 slice 37"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-01-s1",
+   "file": "CT-AP-01/ct-ap-01-s1.png",
+   "sha256": "5e9680311caca3409c6ce2aa7117a8c3a9ff50fd9712626529af307e89b21341",
+   "bytes": 82997,
+   "width": 640,
+   "height": 473,
+   "finding_code": "CT-AP-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 101,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0088 slice 34"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-01-s2",
+   "file": "CT-AP-01/ct-ap-01-s2.png",
+   "sha256": "b4982d10cef850ca0887df600d02669c091a2bd67158f0fe6cd3dacb476488f3",
+   "bytes": 83988,
+   "width": 640,
+   "height": 410,
+   "finding_code": "CT-AP-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 102,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0127 slice 38"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-01-s3",
+   "file": "CT-AP-01/ct-ap-01-s3.png",
+   "sha256": "2e1d56fcd6088100a359c4110992694e5040ab1308bc602ce1b619f0415a2d28",
+   "bytes": 84461,
+   "width": 640,
+   "height": 426,
+   "finding_code": "CT-AP-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 103,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0004 slice 33"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-02-s0",
+   "file": "CT-AP-02/ct-ap-02-s0.png",
+   "sha256": "ef8df9fd02b99f1e6ca312e70d7e15e38d82e060ab1b990cc602fe36ac147cc8",
+   "bytes": 100384,
+   "width": 640,
+   "height": 433,
+   "finding_code": "CT-AP-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 200,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0259 slice 37"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-02-s1",
+   "file": "CT-AP-02/ct-ap-02-s1.png",
+   "sha256": "dbe1a2529fb9057b5631d1ce4aa50f3e1b05d073b8ba0c182c248328431dc08e",
+   "bytes": 82309,
+   "width": 640,
+   "height": 473,
+   "finding_code": "CT-AP-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 201,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0088 slice 34"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-02-s2",
+   "file": "CT-AP-02/ct-ap-02-s2.png",
+   "sha256": "ffee9121b0aa8ba2e3c43ec673bc29afd41eebb10f0bec264b1e403b5b6f96e0",
+   "bytes": 83348,
+   "width": 640,
+   "height": 410,
+   "finding_code": "CT-AP-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 202,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0127 slice 38"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-02-s3",
+   "file": "CT-AP-02/ct-ap-02-s3.png",
+   "sha256": "fe51b134ad91982211271415f19fb89cfb3e56f28066c6ab572ae255da73274b",
+   "bytes": 83812,
+   "width": 640,
+   "height": 426,
+   "finding_code": "CT-AP-02",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 203,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0004 slice 33"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-03-s0",
+   "file": "CT-AP-03/ct-ap-03-s0.png",
+   "sha256": "e4b9f0155dcb795faf3c2f79e72570e26eb001124621e8fac631055a8898140c",
+   "bytes": 100536,
+   "width": 640,
+   "height": 433,
+   "finding_code": "CT-AP-03",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 700,
+    "kind": "mass painted into a real CT slice",
+    "base": "amos_0259 slice 37"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-03-s1",
+   "file": "CT-AP-03/ct-ap-03-s1.png",
+   "sha256": "854cbc9748aea9659ade0c27d215abf155b27f3bcab1f6681adc898b8cf9fe70",
+   "bytes": 81935,
+   "width": 640,
+   "height": 473,
+   "finding_code": "CT-AP-03",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 701,
+    "kind": "mass painted into a real CT slice",
+    "base": "amos_0088 slice 34"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-03-s2",
+   "file": "CT-AP-03/ct-ap-03-s2.png",
+   "sha256": "0a2518c7e9b06b0352e4c6ba310e4f248e7cb18eeba93411319e10cd7564b229",
+   "bytes": 83724,
+   "width": 640,
+   "height": 410,
+   "finding_code": "CT-AP-03",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 702,
+    "kind": "mass painted into a real CT slice",
+    "base": "amos_0127 slice 38"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-03-s3",
+   "file": "CT-AP-03/ct-ap-03-s3.png",
+   "sha256": "5f2cf790270361f22b1baa5c0be9deaedfa82948671efdf61d4151902319ba7b",
+   "bytes": 83889,
+   "width": 640,
+   "height": 426,
+   "finding_code": "CT-AP-03",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 703,
+    "kind": "mass painted into a real CT slice",
+    "base": "amos_0004 slice 33"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-04-s0",
+   "file": "CT-AP-04/ct-ap-04-s0.png",
+   "sha256": "6c9c7a476af76931811aba5c47b1296502839d747e847ea915c67142ad9a36b7",
+   "bytes": 100689,
+   "width": 640,
+   "height": 433,
+   "finding_code": "CT-AP-04",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 800,
+    "kind": "diverticulitis painted into a real CT slice",
+    "base": "amos_0259 slice 37"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-04-s1",
+   "file": "CT-AP-04/ct-ap-04-s1.png",
+   "sha256": "e77a3b69f85141e231bf88da5a578d679f9c4abdf1e95c9158706837d443d31f",
+   "bytes": 82799,
+   "width": 640,
+   "height": 473,
+   "finding_code": "CT-AP-04",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 801,
+    "kind": "diverticulitis painted into a real CT slice",
+    "base": "amos_0088 slice 34"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-04-s2",
+   "file": "CT-AP-04/ct-ap-04-s2.png",
+   "sha256": "2c469ee0e6a09f9e12a6447027f44b9dc1d4018195f53cea0f3e95f53348641f",
+   "bytes": 83809,
+   "width": 640,
+   "height": 410,
+   "finding_code": "CT-AP-04",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 802,
+    "kind": "diverticulitis painted into a real CT slice",
+    "base": "amos_0127 slice 38"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-ap-04-s3",
+   "file": "CT-AP-04/ct-ap-04-s3.png",
+   "sha256": "cfa193072b8bba6cf45e2fff4799c18c96224761b687c627825e0892fde95299",
+   "bytes": 84251,
+   "width": 640,
+   "height": 426,
+   "finding_code": "CT-AP-04",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 803,
+    "kind": "diverticulitis painted into a real CT slice",
+    "base": "amos_0004 slice 33"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-00-r0",
+   "file": "CT-GB-00/ct-gb-00-r0.png",
+   "sha256": "ef19f11dc40ca8d1c359390a2a977596927f3e50af3d2b49ffc13cf0f5b5476e",
+   "bytes": 92334,
+   "width": 640,
+   "height": 403,
+   "finding_code": "CT-GB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0259 slice 48",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0259.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-00-r1",
+   "file": "CT-GB-00/ct-gb-00-r1.png",
+   "sha256": "9f3e0ef1e4a2924df22cedf2676a7b494eb2f16dcd7a1f86d8bf5af33425a3c5",
+   "bytes": 65998,
+   "width": 640,
+   "height": 387,
+   "finding_code": "CT-GB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0127 slice 51",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0127.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-00-r2",
+   "file": "CT-GB-00/ct-gb-00-r2.png",
+   "sha256": "7c53574edf792ef951aafdb6bc571f0ef281c2ae3ac13e9bee698a6560138f54",
+   "bytes": 96502,
+   "width": 640,
+   "height": 421,
+   "finding_code": "CT-GB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0025 slice 59",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0025.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-00-r3",
+   "file": "CT-GB-00/ct-gb-00-r3.png",
+   "sha256": "76e318b79055969682859cc35026fcd8ba579b47822e19736667f36e0a0d85b8",
+   "bytes": 99156,
+   "width": 640,
+   "height": 396,
+   "finding_code": "CT-GB-00",
+   "modality": "CT",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0004 slice 59",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0004.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-01-s0",
+   "file": "CT-GB-01/ct-gb-01-s0.png",
+   "sha256": "88fee434802790b3872dabce4aaf0585e416d52013ed94d559c714bb4eb1b3bc",
+   "bytes": 94654,
+   "width": 640,
+   "height": 433,
+   "finding_code": "CT-GB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 300,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0259 slice 48"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-01-s1",
+   "file": "CT-GB-01/ct-gb-01-s1.png",
+   "sha256": "7465065e32f8c10992e01ed7dc554300e3d0db4f04dc468c2f592702e34538d2",
+   "bytes": 68372,
+   "width": 640,
+   "height": 417,
+   "finding_code": "CT-GB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 301,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0127 slice 51"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-01-s2",
+   "file": "CT-GB-01/ct-gb-01-s2.png",
+   "sha256": "1ea776384ec32f96791617a2484a8e18b2b9bcd9cf902502f3cbe4bf5425ae73",
+   "bytes": 98700,
+   "width": 640,
+   "height": 451,
+   "finding_code": "CT-GB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 302,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0025 slice 59"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "ct-gb-01-s3",
+   "file": "CT-GB-01/ct-gb-01-s3.png",
+   "sha256": "ae475f6ea877e80917e07d3e2490fefbc1a188d325abc84c8968ad0e39b8c137",
+   "bytes": 101082,
+   "width": 640,
+   "height": 426,
+   "finding_code": "CT-GB-01",
+   "modality": "CT",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 303,
+    "kind": "finding painted into a real CT slice",
+    "base": "amos_0004 slice 59"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-00-r0",
+   "file": "MR-AP-00/mr-ap-00-r0.png",
+   "sha256": "3836a42b6504cfc84a749f6bf132df976b36efd3bfefe419ac075f1c42e55545",
+   "bytes": 111058,
+   "width": 640,
+   "height": 427,
+   "finding_code": "MR-AP-00",
+   "modality": "MRI",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0555 slice 5",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0555.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-00-r1",
+   "file": "MR-AP-00/mr-ap-00-r1.png",
+   "sha256": "51d7d0277775410defb26bda591a487aa18ff9b03286e716140d1361af11f8df",
+   "bytes": 115446,
+   "width": 640,
+   "height": 362,
+   "finding_code": "MR-AP-00",
+   "modality": "MRI",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0600 slice 6",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0600.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-00-r2",
+   "file": "MR-AP-00/mr-ap-00-r2.png",
+   "sha256": "4654986e3c515b2d93d7a38b0b33dfc809fc88994c7053768c3b778740f1fdb4",
+   "bytes": 89524,
+   "width": 640,
+   "height": 359,
+   "finding_code": "MR-AP-00",
+   "modality": "MRI",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0584 slice 8",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0584.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-00-r3",
+   "file": "MR-AP-00/mr-ap-00-r3.png",
+   "sha256": "22c2b6c60790a73b2294a8c4f0071d1f62534a3348008a2c022d88598a0381a8",
+   "bytes": 121608,
+   "width": 640,
+   "height": 465,
+   "finding_code": "MR-AP-00",
+   "modality": "MRI",
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": {
+    "dataset": "AMOS 2022",
+    "class": "amos_0540 slice 8",
+    "archive": "amos22.zip",
+    "member": "amos22/imagesTr/amos_0540.nii.gz",
+    "doi": "10.5281/zenodo.7155725",
+    "url": "https://zenodo.org/records/7155725"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-01-s0",
+   "file": "MR-AP-01/mr-ap-01-s0.png",
+   "sha256": "551c1b51b05cadc013c7fe4cecffdab7fdb2f8531fb1c6c95559a51cb2b93cbe",
+   "bytes": 113394,
+   "width": 640,
+   "height": 457,
+   "finding_code": "MR-AP-01",
+   "modality": "MRI",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 400,
+    "kind": "finding painted into a real MRI slice",
+    "base": "amos_0555 slice 5"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-01-s1",
+   "file": "MR-AP-01/mr-ap-01-s1.png",
+   "sha256": "3bca5a74000143170c05866ec173084f9c89b10d849f037964af700e38af0546",
+   "bytes": 117546,
+   "width": 640,
+   "height": 392,
+   "finding_code": "MR-AP-01",
+   "modality": "MRI",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 401,
+    "kind": "finding painted into a real MRI slice",
+    "base": "amos_0600 slice 6"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-01-s2",
+   "file": "MR-AP-01/mr-ap-01-s2.png",
+   "sha256": "ede6764266b5d9ef545f9e3a75ac3a5fe760422c745a76d8bff17c75a048eb8a",
+   "bytes": 91821,
+   "width": 640,
+   "height": 389,
+   "finding_code": "MR-AP-01",
+   "modality": "MRI",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 402,
+    "kind": "finding painted into a real MRI slice",
+    "base": "amos_0584 slice 8"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mr-ap-01-s3",
+   "file": "MR-AP-01/mr-ap-01-s3.png",
+   "sha256": "880203ed1df3416798a2eef302e8da7290eeb95343da3239027669bc1898c894",
+   "bytes": 124006,
+   "width": 640,
+   "height": 495,
+   "finding_code": "MR-AP-01",
+   "modality": "MRI",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata.",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 403,
+    "kind": "finding painted into a real MRI slice",
+    "base": "amos_0540 slice 8"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-00-s0",
+   "file": "MRCP-00/mrcp-00-s0.png",
+   "sha256": "f2dfaec3eb18ce53b40977b35b34f2d8ff4ffe2d2290f3bcf171bdfaa7102d48",
+   "bytes": 185753,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-00",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7000,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-00-s1",
+   "file": "MRCP-00/mrcp-00-s1.png",
+   "sha256": "19104e49028a737cf22cf4ee5d1d0882c498c9079a1416ff5311a5d184ca9bd7",
+   "bytes": 185242,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-00",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7001,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-00-s2",
+   "file": "MRCP-00/mrcp-00-s2.png",
+   "sha256": "84c27040e92ab94281a83334d6e5f8c6e011feb190d8fa284f3be7b31297c631",
+   "bytes": 184955,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-00",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7002,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-00-s3",
+   "file": "MRCP-00/mrcp-00-s3.png",
+   "sha256": "922e82475435e136058e3b073a08cf71c801922798955824646df11b334761a9",
+   "bytes": 186140,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-00",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7003,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-01-s0",
+   "file": "MRCP-01/mrcp-01-s0.png",
+   "sha256": "9a521ac616b7120a5ede823fd6ae8bd36245a2692977a46bb84a731293105bb2",
+   "bytes": 185338,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-01",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7010,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-01-s1",
+   "file": "MRCP-01/mrcp-01-s1.png",
+   "sha256": "c76da108f9be501986dace60f0d72b0c4078b687769c03f6e2878daf731070f7",
+   "bytes": 184525,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-01",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7011,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-01-s2",
+   "file": "MRCP-01/mrcp-01-s2.png",
+   "sha256": "29748acca3c89b63b77841d06f243da3b6653fc53825bb48e0a3ea4ddbb968da",
+   "bytes": 184585,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-01",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7012,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "mrcp-01-s3",
+   "file": "MRCP-01/mrcp-01-s3.png",
+   "sha256": "06e233d501de14ac315cda2d1f49f57d963dfba1d5f8f41dab57638803d51a7e",
+   "bytes": 185695,
+   "width": 640,
+   "height": 510,
+   "finding_code": "MRCP-01",
+   "modality": "MRCP",
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "xsec.py",
+    "seed": 7013,
+    "kind": "drawn entirely in code",
+    "base": null
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

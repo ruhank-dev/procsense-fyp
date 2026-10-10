@@ -1,0 +1,549 @@
+{
+ "schema": 1,
+ "reports": [
+  {
+   "id": "rep-cxr-01-r0",
+   "finding_code": "CXR-01",
+   "image_id": "cxr-01-r0",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-01-r1",
+   "finding_code": "CXR-01",
+   "image_id": "cxr-01-r1",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-01-r2",
+   "finding_code": "CXR-01",
+   "image_id": "cxr-01-r2",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-01-r3",
+   "finding_code": "CXR-01",
+   "image_id": "cxr-01-r3",
+   "text": "Chest X-ray, PA. No acute abnormality is labelled on this film. Impression: No abnormality labelled.",
+   "measurements": {
+    "label": "no_finding"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-02-r0",
+   "finding_code": "CXR-02",
+   "image_id": "cxr-02-r0",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-02-r1",
+   "finding_code": "CXR-02",
+   "image_id": "cxr-02-r1",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-02-r2",
+   "finding_code": "CXR-02",
+   "image_id": "cxr-02-r2",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-02-r3",
+   "finding_code": "CXR-02",
+   "image_id": "cxr-02-r3",
+   "text": "Chest X-ray, PA. Airspace opacity labelled as consolidation. The extent and side are not stated for this image. Impression: Consolidation (possible pneumonia or aspiration; clinical correlation needed).",
+   "measurements": {
+    "label": "consolidation"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-03-r0",
+   "finding_code": "CXR-03",
+   "image_id": "cxr-03-r0",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-03-r1",
+   "finding_code": "CXR-03",
+   "image_id": "cxr-03-r1",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-03-r2",
+   "finding_code": "CXR-03",
+   "image_id": "cxr-03-r2",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-03-r3",
+   "finding_code": "CXR-03",
+   "image_id": "cxr-03-r3",
+   "text": "Chest X-ray, PA. Pleural effusion labelled on this film. The size and side are not stated for this image. Impression: Pleural effusion.",
+   "measurements": {
+    "label": "effusion"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-04-r0",
+   "finding_code": "CXR-04",
+   "image_id": "cxr-04-r0",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-04-r1",
+   "finding_code": "CXR-04",
+   "image_id": "cxr-04-r1",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-04-r2",
+   "finding_code": "CXR-04",
+   "image_id": "cxr-04-r2",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-04-r3",
+   "finding_code": "CXR-04",
+   "image_id": "cxr-04-r3",
+   "text": "Chest X-ray, PA. Pneumothorax labelled on this film. The size and side are not stated for this image. Impression: Pneumothorax.",
+   "measurements": {
+    "label": "pneumothorax"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-05-r0",
+   "finding_code": "CXR-05",
+   "image_id": "cxr-05-r0",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-05-r1",
+   "finding_code": "CXR-05",
+   "image_id": "cxr-05-r1",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-05-r2",
+   "finding_code": "CXR-05",
+   "image_id": "cxr-05-r2",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-05-r3",
+   "finding_code": "CXR-05",
+   "image_id": "cxr-05-r3",
+   "text": "Chest X-ray, PA. Enlarged cardiac silhouette labelled (cardiomegaly). No measurement is stated for this image. Impression: Cardiomegaly.",
+   "measurements": {
+    "label": "cardiomegaly"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-06-r0",
+   "finding_code": "CXR-06",
+   "image_id": "cxr-06-r0",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-06-r1",
+   "finding_code": "CXR-06",
+   "image_id": "cxr-06-r1",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-06-r2",
+   "finding_code": "CXR-06",
+   "image_id": "cxr-06-r2",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-06-r3",
+   "finding_code": "CXR-06",
+   "image_id": "cxr-06-r3",
+   "text": "Chest X-ray, PA. Features labelled as pulmonary oedema. The extent is not stated for this image. Impression: Pulmonary oedema (fluid in the lungs).",
+   "measurements": {
+    "label": "edema"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-07-r0",
+   "finding_code": "CXR-07",
+   "image_id": "cxr-07-r0",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-07-r1",
+   "finding_code": "CXR-07",
+   "image_id": "cxr-07-r1",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-07-r2",
+   "finding_code": "CXR-07",
+   "image_id": "cxr-07-r2",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-07-r3",
+   "finding_code": "CXR-07",
+   "image_id": "cxr-07-r3",
+   "text": "Chest X-ray, PA. Atelectasis (partial lung collapse) labelled on this film. The side and extent are not stated for this image. Impression: Atelectasis.",
+   "measurements": {
+    "label": "atelectasis"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Label from the dataset (text-mined from the original report, not clinician-checked); wording limited to what the label supports",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-08-s0",
+   "finding_code": "CXR-08",
+   "image_id": "cxr-08-s0",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording; the crescent is painted in at the right hemidiaphragm of a real film",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-08-s1",
+   "finding_code": "CXR-08",
+   "image_id": "cxr-08-s1",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording; the crescent is painted in at the right hemidiaphragm of a real film",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-08-s2",
+   "finding_code": "CXR-08",
+   "image_id": "cxr-08-s2",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording; the crescent is painted in at the right hemidiaphragm of a real film",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-cxr-08-s3",
+   "finding_code": "CXR-08",
+   "image_id": "cxr-08-s3",
+   "text": "Chest X-ray, PA, erect. A crescent of free gas lies under the right hemidiaphragm. Impression: free air under the diaphragm (pneumoperitoneum), suggesting a perforated hollow organ.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording; the crescent is painted in at the right hemidiaphragm of a real film",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

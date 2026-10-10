@@ -1,0 +1,15 @@
+id,code,d_finding,d_plain,d_rules,quote,page,ref
+CT-AP-00,CT-AP-00,CT: no appendicitis,Clean result: no problem at the right iliac fossa,appendix=normal;collection=no,,,SR-3300
+CT-AP-01,CT-AP-01,"CT: acute appendicitis, uncomplicated","Inflamed appendix, no collection",appendix_mm>6;collection=no,,,SR-3301
+CT-AP-02,CT-AP-02,CT: appendicitis with abscess,Inflamed appendix with a pus collection,appendix_mm>6;collection=yes;abscess_mm>=10,,,SR-3302
+CT-AP-03,CT-AP-03,CT: caecal mass,A tumour of the caecum that can mimic appendicitis in an older patient,mass_mm>=20;appendix=normal,,,SR-3303
+CT-AP-04,CT-AP-04,CT: right-sided colonic diverticulitis,Inflamed outpouching of the colon that can mimic appendicitis,wall_mm>4;diverticulum=yes;appendix=normal,,,SR-3304
+CT-GB-00,CT-GB-00,CT: no acute gallbladder abnormality,Clean result: normal gallbladder,wall_mm<=3,,,SR-3305
+CT-GB-01,CT-GB-01,CT: complicated (emphysematous) cholecystitis,"Thick, gas-containing gallbladder wall",wall_mm>4;complication=gas,,,SR-3306
+CT-AB-00,CT-AB-00,CT: no acute abdominal abnormality at the mid abdomen,"Clean result: no obstruction, no free gas",obstruction=no,,,SR-3307
+CT-AB-01,CT-AB-01,CT: small bowel obstruction,Dilated fluid-filled small bowel loops,bowel_mm>25;obstruction=yes,,,SR-3308
+CT-AB-02,CT-AB-02,CT: free intraperitoneal air,Gas outside the bowel: perforation,free_air=yes,,,SR-3309
+MR-AP-00,MR-AP-00,MRI: no appendicitis,Clean result: normal appendix,appendix=normal;collection=no,,,SR-3310
+MR-AP-01,MR-AP-01,MRI: acute appendicitis,Inflamed appendix on MRI (for example in pregnancy),appendix_mm>6;collection=no,,,SR-3311
+MRCP-00,MRCP-00,MRCP: normal biliary tree,Clean result: normal bile duct,duct_mm<=6;stone=no,,,SR-3312
+MRCP-01,MRCP-01,MRCP: stone in the common bile duct,Dilated duct with a filling defect,duct_mm>6;stone=yes,,,SR-3313

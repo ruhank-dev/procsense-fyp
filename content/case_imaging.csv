@@ -1,0 +1,38 @@
+id,case_id,test,d_finding_code,d_basis,d_note,quote,page,ref
+VAR-S1-A.ultrasound_gallbladder,VAR-S1-A,ultrasound_gallbladder,US-GB-01,book,"Clinic ultrasound in the history: several stones, wall 2 mm, duct 4 mm",,,SR-3400
+VAR-S1-PB.ultrasound_gallbladder,VAR-S1-PB,ultrasound_gallbladder,US-GB-03,book,Bile duct 9 mm,,,SR-3401
+VAR-S1-PB.mrcp,VAR-S1-PB,mrcp,MRCP-01,proposed,The story offers MRCP for an intermediate-risk duct; a stone is the result that keeps the ERCP pathway testable,,,SR-3402
+VAR-S1-E.ultrasound_gallbladder,VAR-S1-E,ultrasound_gallbladder,US-GB-02,book,Inflamed gallbladder,,,SR-3403
+STK-S1-D.ultrasound_gallbladder,STK-S1-D,ultrasound_gallbladder,US-GB-04,proposed,Stacked case that ends on the ERCP pathway: stone in the duct,,,SR-3404
+VAR-S2-PC.ultrasound_appendix,VAR-S2-PC,ultrasound_appendix,US-AP-01,book,"Positive, simple appendicitis",,,SR-3405
+VAR-S2-PD.ct_appendix_level,VAR-S2-PD,ct_appendix_level,CT-AP-02,proposed,"Septic patient, source search: complicated appendicitis with abscess",,,SR-3406
+VAR-S2-D.ultrasound_appendix,VAR-S2-D,ultrasound_appendix,US-AP-04,book,Appendix not seen: equivocal,,,SR-3407
+VAR-S2-D.ct_appendix_level,VAR-S2-D,ct_appendix_level,CT-AP-01,proposed,CT scan is the senior's option after an equivocal ultrasound,,,SR-3408
+VAR-S2-H.ultrasound_appendix,VAR-S2-H,ultrasound_appendix,US-AP-04,proposed,Ultrasound first,,,SR-3409
+VAR-S2-H.mri_appendix_level,VAR-S2-H,mri_appendix_level,MR-AP-01,proposed,MRI if unclear (CT avoided as first choice),,,SR-3410
+STK-S2-B.ct_appendix_level,STK-S2-B,ct_appendix_level,CT-AP-02,proposed,Stacked case that uses CT,,,SR-3411
+STK-S2-C.chest_xray,STK-S2-C,chest_xray,CXR-02,proposed,Aspiration suspected: chest X-ray shows consolidation,,,SR-3412
+VAR-S1-D.ecg,VAR-S1-D,ecg,ECG-03,book,Atrial fibrillation on apixaban,,,SR-3413
+VAR-S2-B.ultrasound_pelvis,VAR-S2-B,ultrasound_pelvis,US-PV-01,book,Ectopic pregnancy mimicking appendicitis,,,SR-3414
+VAR-S2-E.ct_appendix_level,VAR-S2-E,ct_appendix_level,CT-AP-04,proposed,"Older patient: the story says bowel cancer or diverticulitis can mimic appendicitis and CT is preferred; diverticulitis here, a caecal mass is SC-20",,,SR-3415
+SC-1.ultrasound_appendix,SC-1,ultrasound_appendix,US-AP-02,proposed,Burst appendix with sepsis,,,SR-3416
+SC-1.ct_appendix_level,SC-1,ct_appendix_level,CT-AP-02,proposed,Burst appendix with sepsis,,,SR-3417
+SC-2.ultrasound_pelvis,SC-2,ultrasound_pelvis,US-PV-01,book,"Ruptured tubal ectopic pregnancy, a classic appendicitis mimic",,,SR-3418
+SC-3.ultrasound_appendix,SC-3,ultrasound_appendix,US-AP-04,book,Ultrasound non-diagnostic,,,SR-3419
+SC-3.mri_appendix_level,SC-3,mri_appendix_level,MR-AP-01,proposed,Pregnant: MRI after a non-diagnostic ultrasound,,,SR-3420
+SC-5.ecg,SC-5,ecg,ECG-10,book,HR 124 irregular: new fast AF,,,SR-3421
+SC-7.chest_xray,SC-7,chest_xray,CXR-02,proposed,Drowsy and vomiting after morphine: aspiration risk,,,SR-3422
+SC-8.ecg,SC-8,ecg,ECG-08,proposed,K 6.6 with sepsis and kidney injury,,,SR-3423
+SC-9.ultrasound_gallbladder,SC-9,ultrasound_gallbladder,US-GB-04,proposed,"Duct stone with obstruction and infection (bilirubin 85, fever)",,,SR-3424
+SC-9.mrcp,SC-9,mrcp,MRCP-01,proposed,Duct stone,,,SR-3425
+SC-11.ct_appendix_level,SC-11,ct_appendix_level,CT-AP-02,proposed,Untreated appendix perforated within hours,,,SR-3426
+SC-14.ultrasound_appendix,SC-14,ultrasound_appendix,US-AP-04,book,Appendix not seen,,,SR-3427
+SC-14.ct_appendix_level,SC-14,ct_appendix_level,CT-AP-02,proposed,Deterioration overrides wait-and-see: CT shows abscess,,,SR-3428
+SC-20.ct_appendix_level,SC-20,ct_appendix_level,CT-AP-03,proposed,70-year-old with anaemia: caecal cancer presenting like appendicitis,,,SR-3429
+VAR-S1-H.pregnancy_test,VAR-S1-H,pregnancy_test,PREG-01,book,Urine pregnancy test positive,,,SR-3430
+VAR-S2-B.pregnancy_test,VAR-S2-B,pregnancy_test,PREG-01,book,Urine pregnancy test positive,,,SR-3431
+SC-2.pregnancy_test,SC-2,pregnancy_test,PREG-01,book,hCG positive,,,SR-3432
+SC-3.pregnancy_test,SC-3,pregnancy_test,PREG-01,proposed,Pregnant (appendicitis in pregnancy),,,SR-3433
+VAR-S1-J.blood_sample_appearance,VAR-S1-J,blood_sample_appearance,TUBE-01,book,Potassium 6.4 haemolysed,,,SR-3434
+SC-12.blood_sample_appearance,SC-12,blood_sample_appearance,TUBE-01,book,K 6.1 haemolysed,,,SR-3435
+SC-19.urine_dipstick,SC-19,urine_dipstick,DIP-02,proposed,Ketones 3.5 on an SGLT2 inhibitor with sepsis,,,SR-3436

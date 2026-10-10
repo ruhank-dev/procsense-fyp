@@ -6,7 +6,7 @@ Milestone: **M5 Content complete — all 17 P0 cases as data**
 Real, licensed images for the EMR viewer where cases need them — gallbladder ultrasound (UIdataGB), chest X-ray (NIH ChestX-ray14), abdominal CT (public set to find) — each chosen to match a case's report and approved by the medical professional; report-only where nothing suitable exists (adult appendix ultrasound).
 
 ## Why
-Real images make results believable, but they are medical data: they must be licensed for this use, match the case's finding exactly, and be approved by the medical reviewer — and AI-generated medical images are never allowed.
+Real images make results believable, but they are medical data: they must be licensed for this use, match the case's finding exactly, and be approved by the medical reviewer. **Updated 10 Oct 2026 ([ADR-0003](../../../../decisions/ADR-0003-synthetic-medical-images.md)):** where no suitable real image exists, a clearly labelled synthetic image with a matching report may be used, but only after clinician review (the earlier wording was "AI-generated medical images are never allowed"). Ultrasound images and reports: [feature plan](../ultrasound-images-and-reports.md).
 
 ## How to implement
 1. Open each dataset page; record access/terms/contents in the dataset register.
@@ -15,7 +15,7 @@ Real images make results believable, but they are medical data: they must be lic
 4. Downscale to the size the EMR viewer needs (keeps the APK small).
 
 ## Verification
-Every image used has a register row and an approval entry.
+Every image used has a register row, a licence record (real) or a generator record and visible mark (synthetic), and an approval state; unapproved images are not shown.
 
 ## Files changed
 `content/images/*`, `content/images/index.json`, dataset register.

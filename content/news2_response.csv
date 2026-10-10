@@ -1,0 +1,6 @@
+id,band,v_min,v_max,risk,frequency,responder,quote,page,ref
+0,0,0,0,Low,At least every 12 hours,Routine,0 Low At least every 12 hours Routine,31,SR-0300
+1-4,1-4,1,4,Low,At least every 4–6 hours,Nurse decides whether to call a doctor,1–4 Low At least every 4–6 hours Nurse decides whether to call a doctor,31,SR-0301
+single3,single3,3,3,Low-medium,At least hourly,Urgent review by the ward doctor,Any single item scoring 3 Low–medium At least hourly Urgent review by the ward doctor,31,SR-0302
+5-6,5-6,5,6,Medium,At least hourly,Urgent review by a doctor skilled in acutely ill patients,5–6 Medium At least hourly Urgent review by a doctor skilled in acutely ill patients,31,SR-0303
+7+,7+,7,,High,Continuous monitoring,"Emergency team response, including critical-care skills","7 or more High Continuous monitoring Emergency team response, including critical-care skills",31,SR-0304

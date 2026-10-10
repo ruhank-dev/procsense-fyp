@@ -1,0 +1,1417 @@
+{
+ "schema": 1,
+ "reports": [
+  {
+   "id": "rep-us-ap-01-s0",
+   "finding_code": "US-AP-01",
+   "image_id": "us-ap-01-s0",
+   "text": "Appendix seen in cross-section, 9 mm, non-compressible, with surrounding inflamed echogenic fat. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendix_mm": 9.0,
+    "compressible": "no",
+    "perforation": "no",
+    "appendicolith": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-01-s1",
+   "finding_code": "US-AP-01",
+   "image_id": "us-ap-01-s1",
+   "text": "Appendix seen in cross-section, 8.4 mm, non-compressible, with surrounding inflamed echogenic fat, containing an echogenic appendicolith. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendix_mm": 8.4,
+    "compressible": "no",
+    "perforation": "no",
+    "appendicolith": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-01-s2",
+   "finding_code": "US-AP-01",
+   "image_id": "us-ap-01-s2",
+   "text": "Appendix seen in cross-section, 9.5 mm, non-compressible, with surrounding inflamed echogenic fat. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendix_mm": 9.5,
+    "compressible": "no",
+    "perforation": "no",
+    "appendicolith": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-01-s3",
+   "finding_code": "US-AP-01",
+   "image_id": "us-ap-01-s3",
+   "text": "Appendix seen in cross-section, 8.8 mm, non-compressible, with surrounding inflamed echogenic fat, containing an echogenic appendicolith. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+   "measurements": {
+    "appendix_mm": 8.8,
+    "compressible": "no",
+    "perforation": "no",
+    "appendicolith": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-02-s0",
+   "finding_code": "US-AP-02",
+   "image_id": "us-ap-02-s0",
+   "text": "Swollen appendix, 9.9 mm, with an adjacent complex collection of 19 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "appendix_mm": 9.9,
+    "abscess_mm": 19.0,
+    "complication": "abscess"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-02-s1",
+   "finding_code": "US-AP-02",
+   "image_id": "us-ap-02-s1",
+   "text": "Swollen appendix, 9.6 mm, with an adjacent complex collection of 20 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "appendix_mm": 9.6,
+    "abscess_mm": 20.0,
+    "complication": "abscess"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-02-s2",
+   "finding_code": "US-AP-02",
+   "image_id": "us-ap-02-s2",
+   "text": "Swollen appendix, 9.3 mm, with an adjacent complex collection of 20 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "appendix_mm": 9.3,
+    "abscess_mm": 20.0,
+    "complication": "abscess"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-02-s3",
+   "finding_code": "US-AP-02",
+   "image_id": "us-ap-02-s3",
+   "text": "Swollen appendix, 9 mm, with an adjacent complex collection of 19 mm containing gas and debris, and surrounding inflammatory change. Impression: Positive, complicated appendicitis (abscess).",
+   "measurements": {
+    "appendix_mm": 9.0,
+    "abscess_mm": 19.0,
+    "complication": "abscess"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-03-s0",
+   "finding_code": "US-AP-03",
+   "image_id": "us-ap-03-s0",
+   "text": "Appendix seen, 4.9 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 29 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 4.9,
+    "other_finding": "yes",
+    "cyst_mm": 29.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-03-s1",
+   "finding_code": "US-AP-03",
+   "image_id": "us-ap-03-s1",
+   "text": "Appendix seen, 4.6 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 24 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 4.6,
+    "other_finding": "yes",
+    "cyst_mm": 24.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-03-s2",
+   "finding_code": "US-AP-03",
+   "image_id": "us-ap-03-s2",
+   "text": "Appendix seen, 4.1 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 25 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 4.1,
+    "other_finding": "yes",
+    "cyst_mm": 25.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-03-s3",
+   "finding_code": "US-AP-03",
+   "image_id": "us-ap-03-s3",
+   "text": "Appendix seen, 4.3 mm, compressible, without surrounding inflammation. Separate anechoic ovarian cyst, 27 mm. Impression: Negative for appendicitis; other finding (ovarian cyst).",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 4.3,
+    "other_finding": "yes",
+    "cyst_mm": 27.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-04-s0",
+   "finding_code": "US-AP-04",
+   "image_id": "us-ap-04-s0",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-04-s1",
+   "finding_code": "US-AP-04",
+   "image_id": "us-ap-04-s1",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-04-s2",
+   "finding_code": "US-AP-04",
+   "image_id": "us-ap-04-s2",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-04-s3",
+   "finding_code": "US-AP-04",
+   "image_id": "us-ap-04-s3",
+   "text": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+   "measurements": {
+    "appendix": "not_seen"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-05-s0",
+   "finding_code": "US-AP-05",
+   "image_id": "us-ap-05-s0",
+   "text": "Appendix seen, 4.6 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 4.6,
+    "other_finding": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-05-s1",
+   "finding_code": "US-AP-05",
+   "image_id": "us-ap-05-s1",
+   "text": "Appendix seen, 4.8 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 4.8,
+    "other_finding": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-05-s2",
+   "finding_code": "US-AP-05",
+   "image_id": "us-ap-05-s2",
+   "text": "Appendix seen, 5 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 5.0,
+    "other_finding": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-ap-05-s3",
+   "finding_code": "US-AP-05",
+   "image_id": "us-ap-05-s3",
+   "text": "Appendix seen, 5.3 mm, compressible, thin wall, without surrounding inflammation. No other abnormality. Impression: Normal appendix; appendicitis unlikely.",
+   "measurements": {
+    "appendix": "normal",
+    "appendix_mm": 5.3,
+    "other_finding": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-00-s0",
+   "finding_code": "US-GB-00",
+   "image_id": "us-gb-00-s0",
+   "text": "Gallbladder is normally distended with a thin wall (1.8 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 4.7 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "stones": "no",
+    "wall_mm": 1.8,
+    "duct_mm": 4.7,
+    "fluid": "no",
+    "sludge": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-00-s1",
+   "finding_code": "US-GB-00",
+   "image_id": "us-gb-00-s1",
+   "text": "Gallbladder is normally distended with a thin wall (1.6 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 3.1 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "stones": "no",
+    "wall_mm": 1.6,
+    "duct_mm": 3.1,
+    "fluid": "no",
+    "sludge": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-00-s2",
+   "finding_code": "US-GB-00",
+   "image_id": "us-gb-00-s2",
+   "text": "Gallbladder is normally distended with a thin wall (1.5 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 3.6 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "stones": "no",
+    "wall_mm": 1.5,
+    "duct_mm": 3.6,
+    "fluid": "no",
+    "sludge": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-00-s3",
+   "finding_code": "US-GB-00",
+   "image_id": "us-gb-00-s3",
+   "text": "Gallbladder is normally distended with a thin wall (1.6 mm), no stones, no sludge and no pericholecystic fluid. The common bile duct is normal at 4.7 mm (normal up to 6 mm). Impression: Normal gallbladder and bile duct.",
+   "measurements": {
+    "stones": "no",
+    "wall_mm": 1.6,
+    "duct_mm": 4.7,
+    "fluid": "no",
+    "sludge": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-01-r0",
+   "finding_code": "US-GB-01",
+   "image_id": "us-gb-01-r0",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-01-r1",
+   "finding_code": "US-GB-01",
+   "image_id": "us-gb-01-r1",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-01-r2",
+   "finding_code": "US-GB-01",
+   "image_id": "us-gb-01-r2",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-01-r3",
+   "finding_code": "US-GB-01",
+   "image_id": "us-gb-01-r3",
+   "text": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-02-r0",
+   "finding_code": "US-GB-02",
+   "image_id": "us-gb-02-r0",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-02-r1",
+   "finding_code": "US-GB-02",
+   "image_id": "us-gb-02-r1",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-02-r2",
+   "finding_code": "US-GB-02",
+   "image_id": "us-gb-02-r2",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-02-r3",
+   "finding_code": "US-GB-02",
+   "image_id": "us-gb-02-r3",
+   "text": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-03-s0",
+   "finding_code": "US-GB-03",
+   "image_id": "us-gb-03-s0",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 2.1 mm. The common bile duct is dilated at 9 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": 9.0,
+    "wall_mm": 2.1,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-03-s1",
+   "finding_code": "US-GB-03",
+   "image_id": "us-gb-03-s1",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 1.7 mm. The common bile duct is dilated at 8.2 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": 8.2,
+    "wall_mm": 1.7,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-03-s2",
+   "finding_code": "US-GB-03",
+   "image_id": "us-gb-03-s2",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 2.1 mm. The common bile duct is dilated at 9.5 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": 9.5,
+    "wall_mm": 2.1,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-03-s3",
+   "finding_code": "US-GB-03",
+   "image_id": "us-gb-03-s3",
+   "text": "Gallbladder contains a stone with posterior acoustic shadowing; wall 1.7 mm. The common bile duct is dilated at 9.6 mm (normal up to 6 mm). Impression: Bile duct wider than 6 mm: possible blockage of the duct.",
+   "measurements": {
+    "duct_mm": 9.6,
+    "wall_mm": 1.7,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-04-s0",
+   "finding_code": "US-GB-04",
+   "image_id": "us-gb-04-s0",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 8.2 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_stone": "yes",
+    "duct_mm": 8.2,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-04-s1",
+   "finding_code": "US-GB-04",
+   "image_id": "us-gb-04-s1",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 8.7 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_stone": "yes",
+    "duct_mm": 8.7,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-04-s2",
+   "finding_code": "US-GB-04",
+   "image_id": "us-gb-04-s2",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 7.8 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_stone": "yes",
+    "duct_mm": 7.8,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-04-s3",
+   "finding_code": "US-GB-04",
+   "image_id": "us-gb-04-s3",
+   "text": "Echogenic stone with posterior acoustic shadowing within the common bile duct (duct 7.4 mm). The gallbladder also contains stones. Impression: Stone seen in the bile duct.",
+   "measurements": {
+    "duct_stone": "yes",
+    "duct_mm": 7.4,
+    "stones": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-05-r0",
+   "finding_code": "US-GB-05",
+   "image_id": "us-gb-05-r0",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Membranous and gangrenous cholecystitis). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-05-r1",
+   "finding_code": "US-GB-05",
+   "image_id": "us-gb-05-r1",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Membranous and gangrenous cholecystitis). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-05-r2",
+   "finding_code": "US-GB-05",
+   "image_id": "us-gb-05-r2",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Perforation). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-05-r3",
+   "finding_code": "US-GB-05",
+   "image_id": "us-gb-05-r3",
+   "text": "Appearances of severe complicated inflammation of the gallbladder (Perforation). Measurements are not stated for this image. Impression: Severe complicated inflammation of the gallbladder.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-06-r0",
+   "finding_code": "US-GB-06",
+   "image_id": "us-gb-06-r0",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-06-r1",
+   "finding_code": "US-GB-06",
+   "image_id": "us-gb-06-r1",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-06-r2",
+   "finding_code": "US-GB-06",
+   "image_id": "us-gb-06-r2",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-06-r3",
+   "finding_code": "US-GB-06",
+   "image_id": "us-gb-06-r3",
+   "text": "Gallbladder wall thickening or mass with appearances suspicious for malignancy. Measurements are not stated for this image. Impression: Possible gallbladder cancer.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3 category wording; limited to what the dataset class supports; the clinician confirms the match",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-07-s0",
+   "finding_code": "US-GB-07",
+   "image_id": "us-gb-07-s0",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "stones": "no",
+    "sludge": "yes",
+    "wall_mm": 2.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-07-s1",
+   "finding_code": "US-GB-07",
+   "image_id": "us-gb-07-s1",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "stones": "no",
+    "sludge": "yes",
+    "wall_mm": 2.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-07-s2",
+   "finding_code": "US-GB-07",
+   "image_id": "us-gb-07-s2",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "stones": "no",
+    "sludge": "yes",
+    "wall_mm": 2.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-07-s3",
+   "finding_code": "US-GB-07",
+   "image_id": "us-gb-07-s3",
+   "text": "Gallbladder contains low-level layering echoes (sludge) without stones or acoustic shadowing; wall 2 mm. Impression: No stones, only sludge.",
+   "measurements": {
+    "stones": "no",
+    "sludge": "yes",
+    "wall_mm": 2.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-08-s0",
+   "finding_code": "US-GB-08",
+   "image_id": "us-gb-08-s0",
+   "text": "Gallbladder wall mildly thickened at 3.7 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 3.6 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "wall_mm": 3.7,
+    "stones": "no",
+    "fluid": "no",
+    "duct_mm": 3.6,
+    "equivocal": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-08-s1",
+   "finding_code": "US-GB-08",
+   "image_id": "us-gb-08-s1",
+   "text": "Gallbladder wall mildly thickened at 3.9 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 4.6 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "wall_mm": 3.9,
+    "stones": "no",
+    "fluid": "no",
+    "duct_mm": 4.6,
+    "equivocal": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-08-s2",
+   "finding_code": "US-GB-08",
+   "image_id": "us-gb-08-s2",
+   "text": "Gallbladder wall mildly thickened at 3.4 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 4.9 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "wall_mm": 3.4,
+    "stones": "no",
+    "fluid": "no",
+    "duct_mm": 4.9,
+    "equivocal": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-gb-08-s3",
+   "finding_code": "US-GB-08",
+   "image_id": "us-gb-08-s3",
+   "text": "Gallbladder wall mildly thickened at 3.5 mm. No gallstones and no pericholecystic fluid are seen. The common bile duct is normal at 4.1 mm (normal up to 6 mm). Appearances are equivocal. Impression: Possible early cholecystitis: inconclusive.",
+   "measurements": {
+    "wall_mm": 3.5,
+    "stones": "no",
+    "fluid": "no",
+    "duct_mm": 4.1,
+    "equivocal": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-00-s0",
+   "finding_code": "US-PV-00",
+   "image_id": "us-pv-00-s0",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "uterus": "normal",
+    "uterus_mm": 59.0,
+    "fluid": "no",
+    "adnexal_mass": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-00-s1",
+   "finding_code": "US-PV-00",
+   "image_id": "us-pv-00-s1",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "uterus": "normal",
+    "uterus_mm": 59.0,
+    "fluid": "no",
+    "adnexal_mass": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-00-s2",
+   "finding_code": "US-PV-00",
+   "image_id": "us-pv-00-s2",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "uterus": "normal",
+    "uterus_mm": 59.0,
+    "fluid": "no",
+    "adnexal_mass": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-00-s3",
+   "finding_code": "US-PV-00",
+   "image_id": "us-pv-00-s3",
+   "text": "Transabdominal pelvic scan through a filled bladder. The uterus is normal in size and echotexture (59 mm long axis). Both ovaries are normal. No free fluid and no adnexal mass. Impression: Normal pelvic scan.",
+   "measurements": {
+    "uterus": "normal",
+    "uterus_mm": 59.0,
+    "fluid": "no",
+    "adnexal_mass": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-01-s0",
+   "finding_code": "US-PV-01",
+   "image_id": "us-pv-01-s0",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "uterus": "empty",
+    "sac": "no",
+    "adnexal_mass": "yes",
+    "mass_mm": 23.0,
+    "fluid": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-01-s1",
+   "finding_code": "US-PV-01",
+   "image_id": "us-pv-01-s1",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "uterus": "empty",
+    "sac": "no",
+    "adnexal_mass": "yes",
+    "mass_mm": 23.0,
+    "fluid": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-01-s2",
+   "finding_code": "US-PV-01",
+   "image_id": "us-pv-01-s2",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "uterus": "empty",
+    "sac": "no",
+    "adnexal_mass": "yes",
+    "mass_mm": 23.0,
+    "fluid": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-01-s3",
+   "finding_code": "US-PV-01",
+   "image_id": "us-pv-01-s3",
+   "text": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+   "measurements": {
+    "uterus": "empty",
+    "sac": "no",
+    "adnexal_mass": "yes",
+    "mass_mm": 23.0,
+    "fluid": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-02-s0",
+   "finding_code": "US-PV-02",
+   "image_id": "us-pv-02-s0",
+   "text": "The ovary is enlarged (63 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "ovary_mm": 63.0,
+    "fluid": "no",
+    "doppler_flow": "reduced"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-02-s1",
+   "finding_code": "US-PV-02",
+   "image_id": "us-pv-02-s1",
+   "text": "The ovary is enlarged (67 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "ovary_mm": 67.0,
+    "fluid": "no",
+    "doppler_flow": "reduced"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-02-s2",
+   "finding_code": "US-PV-02",
+   "image_id": "us-pv-02-s2",
+   "text": "The ovary is enlarged (71 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "ovary_mm": 71.0,
+    "fluid": "no",
+    "doppler_flow": "reduced"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-pv-02-s3",
+   "finding_code": "US-PV-02",
+   "image_id": "us-pv-02-s3",
+   "text": "The ovary is enlarged (63 mm) with a swollen echogenic stroma and peripheral follicles. Doppler flow is reduced. No free fluid. Impression: Enlarged ovary with reduced flow: suspected ovarian torsion.",
+   "measurements": {
+    "ovary_mm": 63.0,
+    "fluid": "no",
+    "doppler_flow": "reduced"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-00-s0",
+   "finding_code": "US-RN-00",
+   "image_id": "us-rn-00-s0",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "stone": "no",
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-00-s1",
+   "finding_code": "US-RN-00",
+   "image_id": "us-rn-00-s1",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "stone": "no",
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-00-s2",
+   "finding_code": "US-RN-00",
+   "image_id": "us-rn-00-s2",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "stone": "no",
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-00-s3",
+   "finding_code": "US-RN-00",
+   "image_id": "us-rn-00-s3",
+   "text": "Kidney, long axis (88 mm). Normal cortical thickness and a normal central echo complex. No hydronephrosis and no stone. Impression: Normal kidney.",
+   "measurements": {
+    "hydronephrosis": "no",
+    "stone": "no",
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-01-s0",
+   "finding_code": "US-RN-01",
+   "image_id": "us-rn-01-s0",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 13 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "stone": "yes",
+    "pelvis_mm": 13.0,
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-01-s1",
+   "finding_code": "US-RN-01",
+   "image_id": "us-rn-01-s1",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 11 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "stone": "yes",
+    "pelvis_mm": 11.0,
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-01-s2",
+   "finding_code": "US-RN-01",
+   "image_id": "us-rn-01-s2",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 15 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "stone": "yes",
+    "pelvis_mm": 15.0,
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-us-rn-01-s3",
+   "finding_code": "US-RN-01",
+   "image_id": "us-rn-01-s3",
+   "text": "Kidney, long axis (88 mm). Dilated renal pelvis and calyces (pelvis 13 mm) with an echogenic stone and posterior acoustic shadow at the pelvi-ureteric junction. Impression: Hydronephrosis with an obstructing stone.",
+   "measurements": {
+    "hydronephrosis": "yes",
+    "stone": "yes",
+    "pelvis_mm": 13.0,
+    "kidney_mm": 88.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Walkthrough Part 6.3/6.4 category wording; numbers are those drawn in the image",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

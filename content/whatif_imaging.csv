@@ -1,0 +1,68 @@
+id,whatif_id,test,d_cause,d_finding_code,quote,page,ref
+w03.ecg.ECG-10,w03,ecg,"new atrial fibrillation (sepsis, dehydration, salts)",ECG-10,,,SR-3500
+w03.ecg.ECG-06,w03,ecg,fast regular narrow-complex rhythm (SVT),ECG-06,,,SR-3501
+w03.ecg.ECG-02,w03,ecg,"sinus tachycardia (pain, fever, bleeding, dehydration)",ECG-02,,,SR-3502
+w04.ecg.ECG-05,w04,ecg,heart block,ECG-05,,,SR-3503
+w04.ecg.ECG-04,w04,ecg,beta-blocker or digoxin: sinus bradycardia,ECG-04,,,SR-3504
+w04.ecg.ECG-08,w04,ecg,very high potassium,ECG-08,,,SR-3505
+w07.chest_xray.CXR-02,w07,chest_xray,aspiration or chest infection,CXR-02,,,SR-3506
+w07.chest_xray.CXR-06,w07,chest_xray,fluid overload after many boluses,CXR-06,,,SR-3507
+w07.chest_xray.CXR-07,w07,chest_xray,collapsed lung areas from pain,CXR-07,,,SR-3508
+w07.chest_xray.CXR-01,w07,chest_xray,"no chest cause (probe error, opioid)",CXR-01,,,SR-3509
+w11.chest_xray.CXR-08,w11,chest_xray,perforation: free air under the diaphragm,CXR-08,,,SR-3510
+w11.ct_abdomen_midlevel.CT-AB-02,w11,ct_abdomen_midlevel,perforation,CT-AB-02,,,SR-3511
+w11.ct_abdomen_midlevel.CT-AB-01,w11,ct_abdomen_midlevel,blocked bowel,CT-AB-01,,,SR-3512
+w11.ct_appendix_level.CT-AP-02,w11,ct_appendix_level,burst appendix with abscess,CT-AP-02,,,SR-3513
+w11.ct_gallbladder_level.CT-GB-01,w11,ct_gallbladder_level,burst or gas-forming gallbladder,CT-GB-01,,,SR-3514
+w11.ultrasound_pelvis.US-PV-02,w11,ultrasound_pelvis,twisted ovary,US-PV-02,,,SR-3515
+w11.ultrasound_pelvis.US-PV-01,w11,ultrasound_pelvis,ruptured ectopic pregnancy,US-PV-01,,,SR-3516
+w12.ecg.ECG-08,w12,ecg,real high potassium,ECG-08,,,SR-3517
+w12.ecg.ECG-01,w12,ecg,faulty sample: the ECG is normal,ECG-01,,,SR-3518
+w13.ecg.ECG-09,w13,ecg,real low potassium,ECG-09,,,SR-3519
+w25.ecg.ECG-10,w25,ecg,new atrial fibrillation,ECG-10,,,SR-3520
+w25.ecg.ECG-07,w25,ecg,heart attack: ST elevation,ECG-07,,,SR-3521
+w26.ultrasound_pelvis.US-PV-01,w26,ultrasound_pelvis,ectopic pregnancy until proven otherwise,US-PV-01,,,SR-3522
+w26.ultrasound_pelvis.US-PV-00,w26,ultrasound_pelvis,normal early pregnancy: normal pelvis,US-PV-00,,,SR-3523
+w26.mri_appendix_level.MR-AP-01,w26,mri_appendix_level,appendicitis in pregnancy,MR-AP-01,,,SR-3524
+w35.ultrasound_appendix.US-AP-04,w35,ultrasound_appendix,appendix not visualised,US-AP-04,,,SR-3525
+w35.ultrasound_gallbladder.US-GB-08,w35,ultrasound_gallbladder,possible early cholecystitis,US-GB-08,,,SR-3526
+w35.ct_appendix_level.CT-AP-01,w35,ct_appendix_level,next imaging shows appendicitis,CT-AP-01,,,SR-3527
+w35.ct_appendix_level.CT-AP-00,w35,ct_appendix_level,next imaging shows no appendicitis,CT-AP-00,,,SR-3528
+w19.mrcp.MRCP-01,w19,mrcp,stone in the duct,MRCP-01,,,SR-3529
+w19.mrcp.MRCP-00,w19,mrcp,no duct stone,MRCP-00,,,SR-3530
+w19.ultrasound_gallbladder.US-GB-03,w19,ultrasound_gallbladder,duct wider than 6 mm,US-GB-03,,,SR-3531
+w19.ultrasound_gallbladder.US-GB-04,w19,ultrasound_gallbladder,stone seen in the duct,US-GB-04,,,SR-3532
+w20.mrcp.MRCP-01,w20,mrcp,blocked duct,MRCP-01,,,SR-3533
+w39.ct_appendix_level.CT-AP-02,w39,ct_appendix_level,perforation or abscess,CT-AP-02,,,SR-3534
+w39.ct_abdomen_midlevel.CT-AB-02,w39,ct_abdomen_midlevel,perforation,CT-AB-02,,,SR-3535
+w05.ultrasound_gallbladder.US-GB-02,w05,ultrasound_gallbladder,inflamed gallbladder,US-GB-02,,,SR-3536
+w05.chest_xray.CXR-02,w05,chest_xray,chest infection,CXR-02,,,SR-3537
+w40.ct_appendix_level.CT-AP-02,w40,ct_appendix_level,source: appendix abscess,CT-AP-02,,,SR-3538
+w40.chest_xray.CXR-02,w40,chest_xray,source: chest,CXR-02,,,SR-3539
+w40.ultrasound_kidney.US-RN-01,w40,ultrasound_kidney,source: obstructed kidney,US-RN-01,,,SR-3540
+w10.chest_xray.CXR-02,w10,chest_xray,low oxygen from chest infection,CXR-02,,,SR-3541
+w11.ultrasound_gallbladder.US-GB-05,w11,ultrasound_gallbladder,burst gallbladder,US-GB-05,,,SR-3542
+w11.ultrasound_appendix.US-AP-02,w11,ultrasound_appendix,burst appendix with abscess,US-AP-02,,,SR-3543
+w19.ultrasound_gallbladder.US-GB-06,w19,ultrasound_gallbladder,mass or polyp: possible gallbladder cancer,US-GB-06,,,SR-3544
+w35.ultrasound_gallbladder.US-GB-07,w35,ultrasound_gallbladder,sludge only: diagnosis less certain,US-GB-07,,,SR-3545
+w26.ultrasound_appendix.US-AP-03,w26,ultrasound_appendix,no ectopic: another pelvic finding (ovarian cyst),US-AP-03,,,SR-3546
+w07.chest_xray.CXR-03,w07,chest_xray,pleural effusion,CXR-03,,,SR-3547
+w07.chest_xray.CXR-04,w07,chest_xray,collapsed lung (pneumothorax),CXR-04,,,SR-3548
+w07.chest_xray.CXR-05,w07,chest_xray,long-standing heart failure: enlarged heart,CXR-05,,,SR-3549
+w26.ultrasound_pelvis.US-PV-02,w26,ultrasound_pelvis,twisted ovary,US-PV-02,,,SR-3550
+w40.ct_appendix_level.CT-AP-03,w40,ct_appendix_level,older patient: caecal mass,CT-AP-03,,,SR-3551
+w39.ct_appendix_level.CT-AP-04,w39,ct_appendix_level,older patient: right-sided diverticulitis,CT-AP-04,,,SR-3552
+w05.ultrasound_kidney.US-RN-01,w05,ultrasound_kidney,urine infection with a stone,US-RN-01,,,SR-3553
+w05.ultrasound_appendix.US-AP-01,w05,ultrasound_appendix,appendicitis,US-AP-01,,,SR-3554
+w26.pregnancy_test.PREG-01,w26,pregnancy_test,positive: normal early pregnancy or ectopic,PREG-01,,,SR-3555
+w05.urine_dipstick.DIP-01,w05,urine_dipstick,urine infection,DIP-01,,,SR-3556
+w22.urine_dipstick.DIP-02,w22,urine_dipstick,ketones in the urine: suspected ketoacidosis,DIP-02,,,SR-3557
+w40.urine_dipstick.DIP-01,w40,urine_dipstick,source: urine infection,DIP-01,,,SR-3558
+w11.urine_dipstick.DIP-03,w11,urine_dipstick,stone: blood in the urine,DIP-03,,,SR-3559
+w12.blood_sample_appearance.TUBE-01,w12,blood_sample_appearance,faulty sample: haemolysed,TUBE-01,,,SR-3560
+w36.blood_sample_appearance.TUBE-01,w36,blood_sample_appearance,haemolysed sample,TUBE-01,,,SR-3561
+w36.blood_sample_appearance.TUBE-02,w36,blood_sample_appearance,lipaemic sample,TUBE-02,,,SR-3562
+w38.blood_sample_appearance.TUBE-01,w38,blood_sample_appearance,check the sample: haemolysed,TUBE-01,,,SR-3563
+w36.ecg.ECG-01,w36,ecg,implausible potassium in a well patient: the ECG is normal,ECG-01,,,SR-3564
+w38.ecg.ECG-08,w38,ecg,real critical potassium,ECG-08,,,SR-3565
+w38.ecg.ECG-01,w38,ecg,critical result is spurious: the ECG is normal,ECG-01,,,SR-3566

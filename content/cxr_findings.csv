@@ -1,0 +1,9 @@
+id,code,d_finding,d_plain,d_rules,quote,page,ref
+CXR-01,CXR-01,No finding labelled,Film without a labelled abnormality,label=no_finding,,,SR-3200
+CXR-02,CXR-02,Consolidation,Airspace opacity (possible pneumonia or aspiration),label=consolidation,,,SR-3201
+CXR-03,CXR-03,Pleural effusion,Fluid around the lung,label=effusion,,,SR-3202
+CXR-04,CXR-04,Pneumothorax,Air around the lung,label=pneumothorax,,,SR-3203
+CXR-05,CXR-05,Cardiomegaly,Enlarged heart shadow,label=cardiomegaly,,,SR-3204
+CXR-06,CXR-06,Pulmonary oedema,"Fluid in the lungs (fluid overload, heart failure)",label=edema,,,SR-3205
+CXR-07,CXR-07,Atelectasis,Partly collapsed lung (for example after pain or surgery),label=atelectasis,,,SR-3206
+CXR-08,CXR-08,Free air under the diaphragm (pneumoperitoneum),Gas outside the bowel: perforation,free_air=yes,,,SR-3207

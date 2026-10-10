@@ -95,6 +95,39 @@ jobs:
       - name: Content is valid and every value has a source
         run: uv run --project tools tools/content/validate.py
 
+      - name: Walkthrough extract has the expected counts
+        run: uv run --project tools tools/content/extract_walkthrough.py --check
+
+      - name: Traceability is up to date and every walkthrough part is accounted for
+        run: uv run --project tools tools/content/trace.py --check
+
+      - name: Content tools tests
+        run: uv run --project tools tools/content/test_content_tools.py
+
+      - name: Content tables are verified against the book and up to date
+        run: uv run --project tools tools/content/build_tables.py --check
+
+      - name: Content table meaning tests
+        run: uv run --project tools tools/content/test_tables.py
+
+      - name: Case content gaps list is up to date
+        run: uv run --project tools tools/content/case_gaps.py --check
+
+      - name: Images and reports are valid (ultrasound, ECG, chest X-ray, CT, MRI, MRCP)
+        run: uv run --project tools tools/content/validate_images.py
+
+      - name: Imaging library is complete and up to date
+        run: uv run --project tools tools/content/imaging_library.py --check
+
+      - name: Image review pack is up to date
+        run: uv run --project tools tools/content/image_review_pack.py --check
+
+      - name: Dataset register and cards are up to date
+        run: uv run --project tools tools/data/dataset_cards.py --check
+
+      - name: Image and dataset tests
+        run: uv run --project tools tools/content/test_images.py
+
       - name: Plan index is up to date and step references resolve
         run: uv run --project tools tools/plans/milestones.py --check
 

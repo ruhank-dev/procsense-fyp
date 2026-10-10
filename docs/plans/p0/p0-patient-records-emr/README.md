@@ -26,7 +26,7 @@ Previous admissions/tests. New results show a badge on their tab when they arriv
 ## Content needed (medical-research)
 The walkthrough cases give current presentation, history and results. **Previous reports/scans/admissions are mostly not authored in the walkthrough.**
 They must be written per case, **consistent with the case**, marked **synthetic**, and medically approved — logged in the source register like any clinical content.
-Images in the viewer: licensed real images (see p0-medical-research-data) or report-only where none exist; **never AI-generated medical images**.
+Images in the viewer: licensed real images (see p0-medical-research-data), otherwise a clearly labelled synthetic image with a matching report **after clinician review** ([ADR-0003](../../../decisions/ADR-0003-synthetic-medical-images.md), 10 Oct 2026), otherwise report-only. (Earlier wording: "never AI-generated medical images".) An unapproved image is never shown; the viewer falls back to the report.
 
 ## Decisions
 | Decision | Chosen | Alternatives | Why | Revisit if |

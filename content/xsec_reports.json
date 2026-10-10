@@ -1,0 +1,997 @@
+{
+ "schema": 1,
+ "reports": [
+  {
+   "id": "rep-ct-ab-00-r0",
+   "finding_code": "CT-AB-00",
+   "image_id": "ct-ab-00-r0",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-00-r1",
+   "finding_code": "CT-AB-00",
+   "image_id": "ct-ab-00-r1",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-00-r2",
+   "finding_code": "CT-AB-00",
+   "image_id": "ct-ab-00-r2",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-00-r3",
+   "finding_code": "CT-AB-00",
+   "image_id": "ct-ab-00-r3",
+   "text": "CT abdomen, axial, soft-tissue window, mid abdomen. No bowel dilatation, no free gas and no free fluid at this level. Impression: No acute abdominal abnormality at this level.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-01-s0",
+   "finding_code": "CT-AB-01",
+   "image_id": "ct-ab-01-s0",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 32 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": 32.0,
+    "obstruction": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-01-s1",
+   "finding_code": "CT-AB-01",
+   "image_id": "ct-ab-01-s1",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 34 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": 34.0,
+    "obstruction": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-01-s2",
+   "finding_code": "CT-AB-01",
+   "image_id": "ct-ab-01-s2",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 30 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": 30.0,
+    "obstruction": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-01-s3",
+   "finding_code": "CT-AB-01",
+   "image_id": "ct-ab-01-s3",
+   "text": "CT abdomen, axial. Multiple fluid-filled dilated small bowel loops, the widest 36 mm. Appearances are of small bowel obstruction. Impression: Small bowel obstruction.",
+   "measurements": {
+    "bowel_mm": 36.0,
+    "obstruction": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-02-s0",
+   "finding_code": "CT-AB-02",
+   "image_id": "ct-ab-02-s0",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-02-s1",
+   "finding_code": "CT-AB-02",
+   "image_id": "ct-ab-02-s1",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-02-s2",
+   "finding_code": "CT-AB-02",
+   "image_id": "ct-ab-02-s2",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ab-02-s3",
+   "finding_code": "CT-AB-02",
+   "image_id": "ct-ab-02-s3",
+   "text": "CT abdomen, axial. Free gas lies under the anterior abdominal wall with mesenteric fat stranding. Appearances are of a perforated hollow organ. Impression: Free intraperitoneal air: perforation.",
+   "measurements": {
+    "free_air": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-00-r0",
+   "finding_code": "CT-AP-00",
+   "image_id": "ct-ap-00-r0",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-00-r1",
+   "finding_code": "CT-AP-00",
+   "image_id": "ct-ap-00-r1",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-00-r2",
+   "finding_code": "CT-AP-00",
+   "image_id": "ct-ap-00-r2",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-00-r3",
+   "finding_code": "CT-AP-00",
+   "image_id": "ct-ap-00-r3",
+   "text": "CT abdomen and pelvis, axial, soft-tissue window, right iliac fossa level. No acute abnormality is identified at this level: no periappendiceal fat stranding and no collection. Impression: No acute abnormality at the level of the right iliac fossa.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-01-s0",
+   "finding_code": "CT-AP-01",
+   "image_id": "ct-ap-01-s0",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 11 mm with wall thickening containing a calcified appendicitis stone (appendicolith) and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": 11.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-01-s1",
+   "finding_code": "CT-AP-01",
+   "image_id": "ct-ap-01-s1",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 12 mm with wall thickening and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": 12.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-01-s2",
+   "finding_code": "CT-AP-01",
+   "image_id": "ct-ap-01-s2",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 10 mm with wall thickening containing a calcified appendicitis stone (appendicolith) and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": 10.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-01-s3",
+   "finding_code": "CT-AP-01",
+   "image_id": "ct-ap-01-s3",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 13 mm with wall thickening and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+   "measurements": {
+    "appendix_mm": 13.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-02-s0",
+   "finding_code": "CT-AP-02",
+   "image_id": "ct-ap-02-s0",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 13 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 28 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "appendix_mm": 13.0,
+    "collection": "yes",
+    "abscess_mm": 28.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-02-s1",
+   "finding_code": "CT-AP-02",
+   "image_id": "ct-ap-02-s1",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 14 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 34 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "appendix_mm": 14.0,
+    "collection": "yes",
+    "abscess_mm": 34.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-02-s2",
+   "finding_code": "CT-AP-02",
+   "image_id": "ct-ap-02-s2",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 12 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 26 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "appendix_mm": 12.0,
+    "collection": "yes",
+    "abscess_mm": 26.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-02-s3",
+   "finding_code": "CT-AP-02",
+   "image_id": "ct-ap-02-s3",
+   "text": "CT abdomen and pelvis, axial. The appendix is dilated to 15 mm with surrounding fat stranding, and an adjacent rim-enhancing collection of 38 mm containing small gas bubbles. Impression: Complicated appendicitis with an abscess.",
+   "measurements": {
+    "appendix_mm": 15.0,
+    "collection": "yes",
+    "abscess_mm": 38.0
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-03-s0",
+   "finding_code": "CT-AP-03",
+   "image_id": "ct-ap-03-s0",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 38 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "mass_mm": 38.0,
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-03-s1",
+   "finding_code": "CT-AP-03",
+   "image_id": "ct-ap-03-s1",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 45 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "mass_mm": 45.0,
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-03-s2",
+   "finding_code": "CT-AP-03",
+   "image_id": "ct-ap-03-s2",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 40 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "mass_mm": 40.0,
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-03-s3",
+   "finding_code": "CT-AP-03",
+   "image_id": "ct-ap-03-s3",
+   "text": "CT abdomen and pelvis, axial. An irregular soft-tissue mass of 50 mm arises from the caecal wall. The appendix is not inflamed and there is only mild surrounding stranding. Impression: Caecal mass, suspicious for a tumour.",
+   "measurements": {
+    "mass_mm": 50.0,
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-04-s0",
+   "finding_code": "CT-AP-04",
+   "image_id": "ct-ap-04-s0",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 8 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "wall_mm": 8.0,
+    "diverticulum": "yes",
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-04-s1",
+   "finding_code": "CT-AP-04",
+   "image_id": "ct-ap-04-s1",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 9 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "wall_mm": 9.0,
+    "diverticulum": "yes",
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-04-s2",
+   "finding_code": "CT-AP-04",
+   "image_id": "ct-ap-04-s2",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 8 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "wall_mm": 8.0,
+    "diverticulum": "yes",
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-ap-04-s3",
+   "finding_code": "CT-AP-04",
+   "image_id": "ct-ap-04-s3",
+   "text": "CT abdomen and pelvis, axial. Segmental thickening of the caecal and ascending colon wall (wall 10 mm) with marked pericolic fat stranding and an inflamed diverticulum containing a gas bubble. The appendix is normal. Impression: Right-sided colonic diverticulitis.",
+   "measurements": {
+    "wall_mm": 10.0,
+    "diverticulum": "yes",
+    "appendix": "normal"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-00-r0",
+   "finding_code": "CT-GB-00",
+   "image_id": "ct-gb-00-r0",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-00-r1",
+   "finding_code": "CT-GB-00",
+   "image_id": "ct-gb-00-r1",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-00-r2",
+   "finding_code": "CT-GB-00",
+   "image_id": "ct-gb-00-r2",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-00-r3",
+   "finding_code": "CT-GB-00",
+   "image_id": "ct-gb-00-r3",
+   "text": "CT abdomen, axial, soft-tissue window, upper abdomen. The gallbladder is seen without wall thickening, pericholecystic stranding or gas. Impression: No acute gallbladder abnormality.",
+   "measurements": {},
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-01-s0",
+   "finding_code": "CT-GB-01",
+   "image_id": "ct-gb-01-s0",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 6 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "wall_mm": 6.0,
+    "complication": "gas"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-01-s1",
+   "finding_code": "CT-GB-01",
+   "image_id": "ct-gb-01-s1",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 7 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "wall_mm": 7.0,
+    "complication": "gas"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-01-s2",
+   "finding_code": "CT-GB-01",
+   "image_id": "ct-gb-01-s2",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 6 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "wall_mm": 6.0,
+    "complication": "gas"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-ct-gb-01-s3",
+   "finding_code": "CT-GB-01",
+   "image_id": "ct-gb-01-s3",
+   "text": "CT abdomen, axial. The gallbladder wall is thickened to 8 mm with gas locules within the wall and surrounding fat stranding. Impression: Complicated (emphysematous) cholecystitis.",
+   "measurements": {
+    "wall_mm": 8.0,
+    "complication": "gas"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-00-r0",
+   "finding_code": "MR-AP-00",
+   "image_id": "mr-ap-00-r0",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-00-r1",
+   "finding_code": "MR-AP-00",
+   "image_id": "mr-ap-00-r1",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-00-r2",
+   "finding_code": "MR-AP-00",
+   "image_id": "mr-ap-00-r2",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-00-r3",
+   "finding_code": "MR-AP-00",
+   "image_id": "mr-ap-00-r3",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance, right iliac fossa level. The appendix is not enlarged and there is no periappendiceal inflammation or collection. Impression: No evidence of appendicitis at this level.",
+   "measurements": {
+    "appendix": "normal",
+    "collection": "no"
+   },
+   "synthetic": false,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-01-s0",
+   "finding_code": "MR-AP-01",
+   "image_id": "mr-ap-01-s0",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 10 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": 10.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-01-s1",
+   "finding_code": "MR-AP-01",
+   "image_id": "mr-ap-01-s1",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 11 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": 11.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-01-s2",
+   "finding_code": "MR-AP-01",
+   "image_id": "mr-ap-01-s2",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 12 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": 12.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mr-ap-01-s3",
+   "finding_code": "MR-AP-01",
+   "image_id": "mr-ap-01-s3",
+   "text": "MRI abdomen and pelvis, axial T1-weighted fat-suppressed contrast-enhanced appearance. The appendix is dilated to 11 mm with an enhancing wall and surrounding inflammatory change. No collection. Impression: Acute appendicitis.",
+   "measurements": {
+    "appendix_mm": 11.0,
+    "collection": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-00-s0",
+   "finding_code": "MRCP-00",
+   "image_id": "mrcp-00-s0",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 3.8 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": 3.8,
+    "stone": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-00-s1",
+   "finding_code": "MRCP-00",
+   "image_id": "mrcp-00-s1",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 4.2 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": 4.2,
+    "stone": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-00-s2",
+   "finding_code": "MRCP-00",
+   "image_id": "mrcp-00-s2",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 4.6 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": 4.6,
+    "stone": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-00-s3",
+   "finding_code": "MRCP-00",
+   "image_id": "mrcp-00-s3",
+   "text": "MRCP, coronal thick-slab. The common bile duct measures 5 mm. No filling defect. Intrahepatic ducts are not dilated. Impression: Normal biliary tree.",
+   "measurements": {
+    "duct_mm": 5.0,
+    "stone": "no"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-01-s0",
+   "finding_code": "MRCP-01",
+   "image_id": "mrcp-01-s0",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 9.5 mm. A 5 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": 9.5,
+    "stone_mm": 5.0,
+    "stone": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-01-s1",
+   "finding_code": "MRCP-01",
+   "image_id": "mrcp-01-s1",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 10.3 mm. A 5.7 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": 10.3,
+    "stone_mm": 5.7,
+    "stone": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-01-s2",
+   "finding_code": "MRCP-01",
+   "image_id": "mrcp-01-s2",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 11.1 mm. A 6.4 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": 11.1,
+    "stone_mm": 6.4,
+    "stone": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "rep-mrcp-01-s3",
+   "finding_code": "MRCP-01",
+   "image_id": "mrcp-01-s3",
+   "text": "MRCP, coronal thick-slab. The common bile duct is dilated to 11.9 mm. A 7.1 mm filling defect lies in the distal duct, with dilated duct above it. Impression: Stone in the common bile duct.",
+   "measurements": {
+    "duct_mm": 11.9,
+    "stone_mm": 7.1,
+    "stone": "yes"
+   },
+   "synthetic": true,
+   "status": "APPROVED_FOR_TRAINING",
+   "wording": "Category wording of the finding; numbers are those painted or drawn in the picture; real clean pictures state only the absence of an obvious abnormality",
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

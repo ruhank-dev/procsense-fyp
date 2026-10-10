@@ -30,6 +30,10 @@ Two tracks run in parallel: the **engine track** (headless, fully testable) and 
 Medical research runs underneath both. Environment rule: **fully model only what the trainee interacts with** (OT + patient bay);
 diagnostics are doors (B); history and results live in the EMR (C).
 
+## Work order since 10 Oct 2026: data first
+
+The owner decided that **all data work comes before the remaining engine and VR work**. The stage order, dependencies and status are in [data-first-order.md](data-first-order.md); the decision is [ADR-0002](../../decisions/ADR-0002-data-first-order.md). The walking-skeleton order below still describes what is built and how it was built; its remaining engine steps resume after the data stages.
+
 ## Build order — walking skeleton first (approved, phase review P3)
 
 **All steps by milestone:** [../milestones.md](../milestones.md) · **Current:** [walking-skeleton-1.md](walking-skeleton-1.md) — 15 steps across 6 phases (steps 1–9 headless, 10–15 after Unity/Quest installs).

@@ -63,6 +63,21 @@ def rule_problems(doc: dict, register: dict[str, dict]) -> list[str]:
     return problems
 
 
+def csv_problems(path: Path, register: dict[str, dict]) -> list[str]:
+    """A content table (CSV) must have a 'ref' column and every row must cite register ids that exist (several ids separated by ';')."""
+    with open(path, encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        if not reader.fieldnames or "ref" not in reader.fieldnames:
+            return [f"{path.name}: needs a 'ref' column holding the source-register id of each row"]
+        problems = []
+        for n, row in enumerate(reader, start=2):   # line 1 is the header
+            ids = [x.strip() for x in (row.get("ref") or "").split(";") if x.strip()]
+            if not ids:
+                problems.append(f"{path.name} line {n}: no source reference")
+            problems += [f"{path.name} line {n}: ref {rid} not in register" for rid in ids if rid not in register]
+    return problems
+
+
 def workflow_problems(doc: dict, register: dict[str, dict]) -> list[str]:
     """Every goal, decision point and blocker must cite register ids that exist (the C# loader checks cycles, options and the rest)."""
     problems = []

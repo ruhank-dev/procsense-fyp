@@ -1,0 +1,11 @@
+id,code,d_finding,d_plain,d_rules,quote,page,ref
+ECG-01,ECG-01,Normal sinus rhythm,"Regular rhythm, normal rate",rhythm=sinus;regular=yes;rate_bpm>=60;rate_bpm<100,,,SR-3100
+ECG-02,ECG-02,Sinus tachycardia,"Regular rhythm, fast rate",rhythm=sinus;regular=yes;rate_bpm>=100,,,SR-3101
+ECG-03,ECG-03,Atrial fibrillation,"Irregularly irregular rhythm, no clear P waves",rhythm=af;regular=no;rate_bpm>=40,,,SR-3102
+ECG-04,ECG-04,Sinus bradycardia,"Regular rhythm, slow rate",rhythm=sinus;regular=yes;rate_bpm<60,,,SR-3103
+ECG-05,ECG-05,Complete heart block,"Slow ventricular rate, atria and ventricles out of step",rhythm=chb;rate_bpm<65,,,SR-3104
+ECG-06,ECG-06,Supraventricular tachycardia,Fast regular narrow-complex rhythm,rhythm=svt;regular=yes;rate_bpm>=140,,,SR-3105
+ECG-07,ECG-07,ST elevation (inferior myocardial infarction pattern),Heart attack pattern,rhythm=sinus;st=elevation;st_elevation_mm>=1,,,SR-3106
+ECG-08,ECG-08,Hyperkalaemia pattern (peaked T waves),High potassium on the ECG,rhythm=sinus;t_wave=peaked,,,SR-3107
+ECG-09,ECG-09,Hypokalaemia pattern (flat T waves with U waves),Low potassium on the ECG,rhythm=sinus;t_wave=flat_u,,,SR-3108
+ECG-10,ECG-10,Atrial fibrillation with a fast ventricular rate,New fast AF,rhythm=af;regular=no;rate_bpm>=120,,,SR-3109

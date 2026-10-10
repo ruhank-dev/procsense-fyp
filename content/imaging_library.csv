@@ -1,0 +1,61 @@
+test,finding_code,role,finding,pictures,real,synthetic,picture_ids,lowest_status,ref
+ultrasound_gallbladder,US-GB-00,clean,(finding wording not in the book),4,0,4,us-gb-00-s0 us-gb-00-s1 us-gb-00-s2 us-gb-00-s3,APPROVED_FOR_TRAINING,SR-2812
+ultrasound_gallbladder,US-GB-01,problem,Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less,4,4,0,us-gb-01-r0 us-gb-01-r1 us-gb-01-r2 us-gb-01-r3,APPROVED_FOR_TRAINING,SR-2800
+ultrasound_gallbladder,US-GB-02,problem,"Stones + wall thicker than 4 mm, fluid around gallbladder",4,4,0,us-gb-02-r0 us-gb-02-r1 us-gb-02-r2 us-gb-02-r3,APPROVED_FOR_TRAINING,SR-2801
+ultrasound_gallbladder,US-GB-03,problem,Bile duct wider than 6 mm,4,0,4,us-gb-03-s0 us-gb-03-s1 us-gb-03-s2 us-gb-03-s3,APPROVED_FOR_TRAINING,SR-2802
+ultrasound_gallbladder,US-GB-04,problem,Stone seen in the bile duct,4,0,4,us-gb-04-s0 us-gb-04-s1 us-gb-04-s2 us-gb-04-s3,APPROVED_FOR_TRAINING,SR-2803
+ultrasound_gallbladder,US-GB-05,problem,"Gas in the wall, pus pocket, gallbladder burst",4,4,0,us-gb-05-r0 us-gb-05-r1 us-gb-05-r2 us-gb-05-r3,APPROVED_FOR_TRAINING,SR-2804
+ultrasound_gallbladder,US-GB-06,problem,"Polyp 10 mm or larger, mass, calcified wall",4,4,0,us-gb-06-r0 us-gb-06-r1 us-gb-06-r2 us-gb-06-r3,APPROVED_FOR_TRAINING,SR-2805
+ultrasound_gallbladder,US-GB-07,problem,"No stones, only 'sludge'",4,0,4,us-gb-07-s0 us-gb-07-s1 us-gb-07-s2 us-gb-07-s3,APPROVED_FOR_TRAINING,SR-2806
+ultrasound_gallbladder,US-GB-08,problem,(finding wording not in the book),4,0,4,us-gb-08-s0 us-gb-08-s1 us-gb-08-s2 us-gb-08-s3,APPROVED_FOR_TRAINING,SR-2813
+ultrasound_appendix,US-AP-01,problem,"Appendix swollen (wider than 6 mm), won't squash under the probe, inflamed fat around it, maybe a hard stone inside (appendicolith)",4,0,4,us-ap-01-s0 us-ap-01-s1 us-ap-01-s2 us-ap-01-s3,APPROVED_FOR_TRAINING,SR-2807
+ultrasound_appendix,US-AP-02,problem,"Hole/gas outside the appendix, pus pocket (abscess), inflammatory lump, fluid",4,0,4,us-ap-02-s0 us-ap-02-s1 us-ap-02-s2 us-ap-02-s3,APPROVED_FOR_TRAINING,SR-2808
+ultrasound_appendix,US-AP-03,problem,"Normal appendix; e.g. ovarian cyst, kidney stone, inflamed bowel",4,0,4,us-ap-03-s0 us-ap-03-s1 us-ap-03-s2 us-ap-03-s3,APPROVED_FOR_TRAINING,SR-2809
+ultrasound_appendix,US-AP-04,problem,'Appendix not seen'; borderline size; no other signs,4,0,4,us-ap-04-s0 us-ap-04-s1 us-ap-04-s2 us-ap-04-s3,APPROVED_FOR_TRAINING,SR-2810
+ultrasound_appendix,US-AP-05,clean,Appendix seen and normal,4,0,4,us-ap-05-s0 us-ap-05-s1 us-ap-05-s2 us-ap-05-s3,APPROVED_FOR_TRAINING,SR-2811
+ecg,ECG-01,clean,Normal sinus rhythm,4,4,0,ecg-01-r0 ecg-01-r1 ecg-01-r2 ecg-01-r3,APPROVED_FOR_TRAINING,SR-3100
+ecg,ECG-02,problem,Sinus tachycardia,4,4,0,ecg-02-r0 ecg-02-r1 ecg-02-r2 ecg-02-r3,APPROVED_FOR_TRAINING,SR-3101
+ecg,ECG-03,problem,Atrial fibrillation,4,4,0,ecg-03-r0 ecg-03-r1 ecg-03-r2 ecg-03-r3,APPROVED_FOR_TRAINING,SR-3102
+ecg,ECG-04,problem,Sinus bradycardia,4,4,0,ecg-04-r0 ecg-04-r1 ecg-04-r2 ecg-04-r3,APPROVED_FOR_TRAINING,SR-3103
+ecg,ECG-05,problem,Complete heart block,4,4,0,ecg-05-r0 ecg-05-r1 ecg-05-r2 ecg-05-r3,APPROVED_FOR_TRAINING,SR-3104
+ecg,ECG-06,problem,Supraventricular tachycardia,4,4,0,ecg-06-r0 ecg-06-r1 ecg-06-r2 ecg-06-r3,APPROVED_FOR_TRAINING,SR-3105
+ecg,ECG-07,problem,ST elevation (inferior myocardial infarction pattern),4,4,0,ecg-07-r0 ecg-07-r1 ecg-07-r2 ecg-07-r3,APPROVED_FOR_TRAINING,SR-3106
+ecg,ECG-08,problem,Hyperkalaemia pattern (peaked T waves),4,0,4,ecg-08-s0 ecg-08-s1 ecg-08-s2 ecg-08-s3,APPROVED_FOR_TRAINING,SR-3107
+ecg,ECG-09,problem,Hypokalaemia pattern (flat T waves with U waves),4,0,4,ecg-09-s0 ecg-09-s1 ecg-09-s2 ecg-09-s3,APPROVED_FOR_TRAINING,SR-3108
+ecg,ECG-10,problem,Atrial fibrillation with a fast ventricular rate,4,0,4,ecg-10-s0 ecg-10-s1 ecg-10-s2 ecg-10-s3,APPROVED_FOR_TRAINING,SR-3109
+chest_xray,CXR-01,clean,No finding labelled,4,4,0,cxr-01-r0 cxr-01-r1 cxr-01-r2 cxr-01-r3,APPROVED_FOR_TRAINING,SR-3200
+chest_xray,CXR-02,problem,Consolidation,4,4,0,cxr-02-r0 cxr-02-r1 cxr-02-r2 cxr-02-r3,APPROVED_FOR_TRAINING,SR-3201
+chest_xray,CXR-03,problem,Pleural effusion,4,4,0,cxr-03-r0 cxr-03-r1 cxr-03-r2 cxr-03-r3,APPROVED_FOR_TRAINING,SR-3202
+chest_xray,CXR-04,problem,Pneumothorax,4,4,0,cxr-04-r0 cxr-04-r1 cxr-04-r2 cxr-04-r3,APPROVED_FOR_TRAINING,SR-3203
+chest_xray,CXR-05,problem,Cardiomegaly,4,4,0,cxr-05-r0 cxr-05-r1 cxr-05-r2 cxr-05-r3,APPROVED_FOR_TRAINING,SR-3204
+chest_xray,CXR-06,problem,Pulmonary oedema,4,4,0,cxr-06-r0 cxr-06-r1 cxr-06-r2 cxr-06-r3,APPROVED_FOR_TRAINING,SR-3205
+chest_xray,CXR-07,problem,Atelectasis,4,4,0,cxr-07-r0 cxr-07-r1 cxr-07-r2 cxr-07-r3,APPROVED_FOR_TRAINING,SR-3206
+chest_xray,CXR-08,problem,Free air under the diaphragm (pneumoperitoneum),4,0,4,cxr-08-s0 cxr-08-s1 cxr-08-s2 cxr-08-s3,APPROVED_FOR_TRAINING,SR-3207
+pregnancy_test,PREG-00,clean,Pregnancy test negative,0,0,0,,TEXT,SR-3600
+pregnancy_test,PREG-01,problem,Pregnancy test positive,0,0,0,,TEXT,SR-3601
+urine_dipstick,DIP-00,clean,Urine dipstick normal,0,0,0,,TEXT,SR-3602
+urine_dipstick,DIP-01,problem,Urine dipstick: infection pattern,0,0,0,,TEXT,SR-3603
+urine_dipstick,DIP-02,problem,Urine dipstick: glucose and ketones,0,0,0,,TEXT,SR-3604
+urine_dipstick,DIP-03,problem,Urine dipstick: blood,0,0,0,,TEXT,SR-3605
+blood_sample_appearance,TUBE-00,clean,Blood sample acceptable,0,0,0,,TEXT,SR-3606
+blood_sample_appearance,TUBE-01,problem,Blood sample haemolysed,0,0,0,,TEXT,SR-3607
+blood_sample_appearance,TUBE-02,problem,Blood sample lipaemic,0,0,0,,TEXT,SR-3608
+ultrasound_pelvis,US-PV-00,clean,(finding wording not in the book),4,0,4,us-pv-00-s0 us-pv-00-s1 us-pv-00-s2 us-pv-00-s3,APPROVED_FOR_TRAINING,SR-2814
+ultrasound_pelvis,US-PV-01,problem,(finding wording not in the book),4,0,4,us-pv-01-s0 us-pv-01-s1 us-pv-01-s2 us-pv-01-s3,APPROVED_FOR_TRAINING,SR-2815
+ultrasound_pelvis,US-PV-02,problem,(finding wording not in the book),4,0,4,us-pv-02-s0 us-pv-02-s1 us-pv-02-s2 us-pv-02-s3,APPROVED_FOR_TRAINING,SR-2816
+ultrasound_kidney,US-RN-00,clean,(finding wording not in the book),4,0,4,us-rn-00-s0 us-rn-00-s1 us-rn-00-s2 us-rn-00-s3,APPROVED_FOR_TRAINING,SR-2817
+ultrasound_kidney,US-RN-01,problem,(finding wording not in the book),4,0,4,us-rn-01-s0 us-rn-01-s1 us-rn-01-s2 us-rn-01-s3,APPROVED_FOR_TRAINING,SR-2818
+ct_abdomen_midlevel,CT-AB-00,clean,CT: no acute abdominal abnormality at the mid abdomen,4,4,0,ct-ab-00-r0 ct-ab-00-r1 ct-ab-00-r2 ct-ab-00-r3,APPROVED_FOR_TRAINING,SR-3307
+ct_abdomen_midlevel,CT-AB-01,problem,CT: small bowel obstruction,4,0,4,ct-ab-01-s0 ct-ab-01-s1 ct-ab-01-s2 ct-ab-01-s3,APPROVED_FOR_TRAINING,SR-3308
+ct_abdomen_midlevel,CT-AB-02,problem,CT: free intraperitoneal air,4,0,4,ct-ab-02-s0 ct-ab-02-s1 ct-ab-02-s2 ct-ab-02-s3,APPROVED_FOR_TRAINING,SR-3309
+ct_appendix_level,CT-AP-00,clean,CT: no appendicitis,4,4,0,ct-ap-00-r0 ct-ap-00-r1 ct-ap-00-r2 ct-ap-00-r3,APPROVED_FOR_TRAINING,SR-3300
+ct_appendix_level,CT-AP-01,problem,"CT: acute appendicitis, uncomplicated",4,0,4,ct-ap-01-s0 ct-ap-01-s1 ct-ap-01-s2 ct-ap-01-s3,APPROVED_FOR_TRAINING,SR-3301
+ct_appendix_level,CT-AP-02,problem,CT: appendicitis with abscess,4,0,4,ct-ap-02-s0 ct-ap-02-s1 ct-ap-02-s2 ct-ap-02-s3,APPROVED_FOR_TRAINING,SR-3302
+ct_appendix_level,CT-AP-03,problem,CT: caecal mass,4,0,4,ct-ap-03-s0 ct-ap-03-s1 ct-ap-03-s2 ct-ap-03-s3,APPROVED_FOR_TRAINING,SR-3303
+ct_appendix_level,CT-AP-04,problem,CT: right-sided colonic diverticulitis,4,0,4,ct-ap-04-s0 ct-ap-04-s1 ct-ap-04-s2 ct-ap-04-s3,APPROVED_FOR_TRAINING,SR-3304
+ct_gallbladder_level,CT-GB-00,clean,CT: no acute gallbladder abnormality,4,4,0,ct-gb-00-r0 ct-gb-00-r1 ct-gb-00-r2 ct-gb-00-r3,APPROVED_FOR_TRAINING,SR-3305
+ct_gallbladder_level,CT-GB-01,problem,CT: complicated (emphysematous) cholecystitis,4,0,4,ct-gb-01-s0 ct-gb-01-s1 ct-gb-01-s2 ct-gb-01-s3,APPROVED_FOR_TRAINING,SR-3306
+mri_appendix_level,MR-AP-00,clean,MRI: no appendicitis,4,4,0,mr-ap-00-r0 mr-ap-00-r1 mr-ap-00-r2 mr-ap-00-r3,APPROVED_FOR_TRAINING,SR-3310
+mri_appendix_level,MR-AP-01,problem,MRI: acute appendicitis,4,0,4,mr-ap-01-s0 mr-ap-01-s1 mr-ap-01-s2 mr-ap-01-s3,APPROVED_FOR_TRAINING,SR-3311
+mrcp,MRCP-00,clean,MRCP: normal biliary tree,4,0,4,mrcp-00-s0 mrcp-00-s1 mrcp-00-s2 mrcp-00-s3,APPROVED_FOR_TRAINING,SR-3312
+mrcp,MRCP-01,problem,MRCP: stone in the common bile duct,4,0,4,mrcp-01-s0 mrcp-01-s1 mrcp-01-s2 mrcp-01-s3,APPROVED_FOR_TRAINING,SR-3313

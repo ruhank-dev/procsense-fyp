@@ -1,0 +1,945 @@
+{
+ "schema": 1,
+ "images": [
+  {
+   "id": "cxr-01-r0",
+   "file": "CXR-01/cxr-01-r0.jpg",
+   "sha256": "093082f746dbfca593e5dcf607c053d5727441a9e1d748902f035f4020009361",
+   "bytes": 44053,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "No Finding",
+    "shard": "test-00000-of-00010",
+    "row": 4,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-01-r1",
+   "file": "CXR-01/cxr-01-r1.jpg",
+   "sha256": "3109486b87dad10922c5d1de0b9a9a73036c3e2a643258068ef11efaf5e4dd72",
+   "bytes": 37491,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "No Finding",
+    "shard": "test-00001-of-00010",
+    "row": 733,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-01-r2",
+   "file": "CXR-01/cxr-01-r2.jpg",
+   "sha256": "1a0de6d743aa20b3328235f86ff9f81fe1f72e88a290cacc627e113fa2d919f2",
+   "bytes": 42884,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "No Finding",
+    "shard": "test-00003-of-00010",
+    "row": 360,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-01-r3",
+   "file": "CXR-01/cxr-01-r3.jpg",
+   "sha256": "ad921c3cf2643c5fc57f5ca24eb68d5872e183af7f94edc202547bce03e41761",
+   "bytes": 41453,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "No Finding",
+    "shard": "test-00003-of-00010",
+    "row": 843,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-02-r0",
+   "file": "CXR-02/cxr-02-r0.jpg",
+   "sha256": "f1148b7f3105b8099c72680eb320b3ff62b369cd4e465c7b2993ea4643f39d7b",
+   "bytes": 41615,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Consolidation",
+    "shard": "test-00000-of-00010",
+    "row": 445,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-02-r1",
+   "file": "CXR-02/cxr-02-r1.jpg",
+   "sha256": "264ea5677354af098dc5f0ec77f4be6573647282e9b359eaed9723a4deb28f42",
+   "bytes": 44456,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Consolidation",
+    "shard": "test-00001-of-00010",
+    "row": 144,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-02-r2",
+   "file": "CXR-02/cxr-02-r2.jpg",
+   "sha256": "99940ce11dbb9bc5afe5a3710587473999763dc701258effc2ae72e451040065",
+   "bytes": 50363,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Consolidation",
+    "shard": "test-00001-of-00010",
+    "row": 249,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-02-r3",
+   "file": "CXR-02/cxr-02-r3.jpg",
+   "sha256": "23b8f0c17cd0764b0b334ca90edfc3eff18905d135c7e87d6591aa99455ca4e5",
+   "bytes": 33117,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Consolidation",
+    "shard": "test-00000-of-00010",
+    "row": 426,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-03-r0",
+   "file": "CXR-03/cxr-03-r0.jpg",
+   "sha256": "26b714d0df47f97b18e064d8e1ca7fd45d0487d2800fec57773c9707da5925c8",
+   "bytes": 32934,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-03",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Effusion",
+    "shard": "test-00003-of-00010",
+    "row": 603,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-03-r1",
+   "file": "CXR-03/cxr-03-r1.jpg",
+   "sha256": "09e61c7d68b16db42e78fb1ed37777ca23c7d427efdd3804264b81bcbce1056f",
+   "bytes": 44898,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-03",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Effusion",
+    "shard": "test-00004-of-00010",
+    "row": 261,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-03-r2",
+   "file": "CXR-03/cxr-03-r2.jpg",
+   "sha256": "16cc497e1e09bcf480a2d74a04dd4033a8284dd3df78a1345045c6594305865d",
+   "bytes": 43079,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-03",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Effusion",
+    "shard": "test-00002-of-00010",
+    "row": 845,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-03-r3",
+   "file": "CXR-03/cxr-03-r3.jpg",
+   "sha256": "57b84a3298cfc9af34d04a460de57795ee98f869a4d626103fe45a000e344c90",
+   "bytes": 39997,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-03",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Effusion",
+    "shard": "test-00000-of-00010",
+    "row": 95,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-04-r0",
+   "file": "CXR-04/cxr-04-r0.jpg",
+   "sha256": "d978d78941a39850746ba4e61dbfecbf1236c21d3b3012d57d78ef777f1ea916",
+   "bytes": 46706,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-04",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Pneumothorax",
+    "shard": "test-00000-of-00010",
+    "row": 6,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-04-r1",
+   "file": "CXR-04/cxr-04-r1.jpg",
+   "sha256": "985a1505df94e97e9a686bd520fa4a7f0588fb10f0ba287152f44dc675a3b08b",
+   "bytes": 35976,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-04",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Pneumothorax",
+    "shard": "test-00001-of-00010",
+    "row": 345,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-04-r2",
+   "file": "CXR-04/cxr-04-r2.jpg",
+   "sha256": "1f97bf61dce09b355d002953aae4ba8d87a09f85ee1f4290237acc75286f9a91",
+   "bytes": 42054,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-04",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Pneumothorax",
+    "shard": "test-00003-of-00010",
+    "row": 752,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-04-r3",
+   "file": "CXR-04/cxr-04-r3.jpg",
+   "sha256": "8949a8982608acf53c3549a8ae1f0da95a52349bd9da0103a9cbd29b9f579824",
+   "bytes": 39550,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-04",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Pneumothorax",
+    "shard": "test-00002-of-00010",
+    "row": 204,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-05-r0",
+   "file": "CXR-05/cxr-05-r0.jpg",
+   "sha256": "1c2e12304a4c3787fa177b642e74e8f17603c6c9080c73a999072b00ea3e0eca",
+   "bytes": 43201,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Cardiomegaly",
+    "shard": "test-00000-of-00010",
+    "row": 1000,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-05-r1",
+   "file": "CXR-05/cxr-05-r1.jpg",
+   "sha256": "64318deecee5a036575e5f59b5ba890fb4c031dd1f8f629c225df6f15d3ac31a",
+   "bytes": 45356,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Cardiomegaly",
+    "shard": "test-00001-of-00010",
+    "row": 533,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-05-r2",
+   "file": "CXR-05/cxr-05-r2.jpg",
+   "sha256": "2d6644f2e9aaac4bca4aeb029fcb6ad651d8ca9b1d6f45d2f6fcda582bd39993",
+   "bytes": 40168,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Cardiomegaly",
+    "shard": "test-00002-of-00010",
+    "row": 412,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-05-r3",
+   "file": "CXR-05/cxr-05-r3.jpg",
+   "sha256": "cf317c38f65f8ea41657e8e6c3c4b6313dae4a83db63cc76ec1c16a171568a28",
+   "bytes": 37824,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Cardiomegaly",
+    "shard": "test-00003-of-00010",
+    "row": 448,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-06-r0",
+   "file": "CXR-06/cxr-06-r0.jpg",
+   "sha256": "0c966912dc31c7cbcaf42a3c597ddd234d60dee03f7a3b97a5dc25dc776f6e9c",
+   "bytes": 39013,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Edema",
+    "shard": "test-00000-of-00010",
+    "row": 624,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-06-r1",
+   "file": "CXR-06/cxr-06-r1.jpg",
+   "sha256": "14a758b7d0a1baabf742c48853a23354a7bf5af84d96ac0538fed0b29ec1b920",
+   "bytes": 38727,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Edema",
+    "shard": "test-00002-of-00010",
+    "row": 606,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-06-r2",
+   "file": "CXR-06/cxr-06-r2.jpg",
+   "sha256": "931d701654eff4454d52397f0758d67c02ac23511cf6bd3b13f9912ea2dcd3e1",
+   "bytes": 42836,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Edema",
+    "shard": "test-00003-of-00010",
+    "row": 175,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-06-r3",
+   "file": "CXR-06/cxr-06-r3.jpg",
+   "sha256": "2a51d7cc53a83fec38aedade3053164a8b120554e21d88a846df8f55173489d2",
+   "bytes": 43364,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Edema",
+    "shard": "test-00003-of-00010",
+    "row": 919,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-07-r0",
+   "file": "CXR-07/cxr-07-r0.jpg",
+   "sha256": "917ceb42f35c087581272c0468bffacb8b2b61b451822f57ea31fdc3ad63071a",
+   "bytes": 33114,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-07",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Atelectasis",
+    "shard": "test-00000-of-00010",
+    "row": 563,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-07-r1",
+   "file": "CXR-07/cxr-07-r1.jpg",
+   "sha256": "64539715db1a6734b7bdec2cf2a105963d7bc495c802d1da4d62fa19bf37f39b",
+   "bytes": 34573,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-07",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Atelectasis",
+    "shard": "test-00001-of-00010",
+    "row": 135,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-07-r2",
+   "file": "CXR-07/cxr-07-r2.jpg",
+   "sha256": "21aea2511e93daf86b6eeabdf23c41b39855c2c14d44d4623955a6db893602f6",
+   "bytes": 39714,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-07",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Atelectasis",
+    "shard": "test-00002-of-00010",
+    "row": 545,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-07-r3",
+   "file": "CXR-07/cxr-07-r3.jpg",
+   "sha256": "3cfe280c048521c00ff419d47a21057be08b93ac20fd5fe8fc962cc68ba965c1",
+   "bytes": 32883,
+   "width": 640,
+   "height": 640,
+   "finding_code": "CXR-07",
+   "synthetic": false,
+   "source": {
+    "dataset": "NIH ChestX-ray14",
+    "class": "Atelectasis",
+    "shard": "test-00003-of-00010",
+    "row": 253,
+    "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+   },
+   "licence": "NIH Clinical Center terms: no restrictions on use; attribution required",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-08-s0",
+   "file": "CXR-08/cxr-08-s0.png",
+   "sha256": "84bc877daa0ffc8c9c558f04c444c95861851d192a74038655fc3636f9d442aa",
+   "bytes": 166817,
+   "width": 640,
+   "height": 670,
+   "finding_code": "CXR-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated from an NIH ChestX-ray14 image",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": {
+    "name": "cxr_images.py",
+    "seed": 80,
+    "kind": "free air painted into a real chest film",
+    "base": "test-00004 row 640"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-08-s1",
+   "file": "CXR-08/cxr-08-s1.png",
+   "sha256": "6f0f0b7ca8454e2b66509c79d55890aff28bd4f0ddb7130418486d2d6fcbbaf0",
+   "bytes": 153288,
+   "width": 640,
+   "height": 670,
+   "finding_code": "CXR-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated from an NIH ChestX-ray14 image",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": {
+    "name": "cxr_images.py",
+    "seed": 81,
+    "kind": "free air painted into a real chest film",
+    "base": "test-00002 row 522"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-08-s2",
+   "file": "CXR-08/cxr-08-s2.png",
+   "sha256": "19e0af27617878701ac3939eee643067f51c6e9d8939d99148eff60f9591dd6f",
+   "bytes": 163671,
+   "width": 640,
+   "height": 670,
+   "finding_code": "CXR-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated from an NIH ChestX-ray14 image",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": {
+    "name": "cxr_images.py",
+    "seed": 82,
+    "kind": "free air painted into a real chest film",
+    "base": "test-00000 row 460"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "cxr-08-s3",
+   "file": "CXR-08/cxr-08-s3.png",
+   "sha256": "882037760c37e46960e60db52b0d10a557d47568f0b53cc1279a97542df29a7f",
+   "bytes": 162605,
+   "width": 640,
+   "height": 670,
+   "finding_code": "CXR-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated from an NIH ChestX-ray14 image",
+   "attribution": "NIH Clinical Center chest X-ray database (ChestX-ray14), https://nihcc.app.box.com/v/ChestXray-NIHCC; Wang X., Peng Y., Lu L., Lu Z., Bagheri M., Summers R., ChestX-ray8, IEEE CVPR 2017, pp. 3462-3471. NIH Clinical Center is the data provider. Image resized and re-encoded without metadata.",
+   "generator": {
+    "name": "cxr_images.py",
+    "seed": 83,
+    "kind": "free air painted into a real chest film",
+    "base": "test-00001 row 237"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "1a334267df6eeb33f4edefd904d02c5080f7f69860277aaafcbef42681e7508e",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+id,artefact,v_effect,v_comment,response,quote,page,ref
+haemolysed,haemolysed,potassium looks falsely high,haemolysed,"Read the lab comment; repeat; if dangerous and possibly real, treat and repeat at the same time.","Haemolysed sample — the red blood cells burst in the tube (from a difficult blood draw or delay). They release potassium, so the potassium looks falsely high. The lab writes 'haemolysed' on the report.",34,SR-0700
+drip_arm,drip_arm,diluted,,Repeat from the other arm.,Drip-arm sample — blood taken from the same arm as a running drip is diluted (or full of sugar from a sugar drip).,34,SR-0701
+wrong_tube_edta,wrong_tube_edta,falsely raises potassium and lowers calcium,,Repeat in the correct tube.,Wrong tube contamination — e.g. the purple tube's chemical (EDTA) falsely raises potassium and lowers calcium.,34,SR-0702
+mislabelled,mislabelled,results belong to someone else,,Re-take with bedside labelling; report the incident.,Mislabelled sample — results belong to someone else.,34,SR-0703
+rejected,rejected,Lab rejects sample,,Re-take with bedside labelling; report the incident,Mislabelled / rejected sample Lab rejects sample Re-take with bedside labelling; report the incident,54,SR-0704
+clumped,clumped,clumping,,"Repeat, using a different tube if the platelets are very low in a well person.","Faulty sample (haemolysis, clumping, drip arm, wrong patient).",127,SR-0705

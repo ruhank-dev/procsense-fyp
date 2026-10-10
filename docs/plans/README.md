@@ -2,6 +2,8 @@
 
 **Status:** Phases approved (07 October 2026). **All steps written:** [milestones.md](milestones.md) (216 steps, M0–M13; regenerate with `task plans-index`). **Current work:** [p0/walking-skeleton-1.md](p0/walking-skeleton-1.md). **Postponed / outstanding work:** [../deferred-tasks.md](../deferred-tasks.md). **Prompt history:** [../previous_prompt.md](../previous_prompt.md).
 
+**Work order (10 Oct 2026): data first.** All data work (walkthrough extraction, clinical tables, decision rules, flow maps, cases, datasets, synthetic data, ultrasound images with reports, review pack) is done before the remaining engine and VR work: [p0/data-first-order.md](p0/data-first-order.md), [ADR-0002](../decisions/ADR-0002-data-first-order.md).
+
 **Full scope, no deadlines.** Nothing is cut. P0 / P1 / P2 is the **build order** (what the next layer stands on),
 not a list of optional features.
 

@@ -71,6 +71,21 @@ tasks:
     cmds:
       - uv run --project tools tools/content/validate.py
 
+  content-extract:
+    desc: Parse the walkthrough into content/_extract/walkthrough_extract.json and check the counts (a drafting aid, git-ignored)
+    cmds:
+      - uv run --project tools tools/content/extract_walkthrough.py
+
+  content-build:
+    desc: Build the generated content tables (CSV) and their source-register rows from tools/content/tables, checking every row against the book first
+    cmds:
+      - uv run --project tools tools/content/build_tables.py
+
+  content-trace:
+    desc: Regenerate docs/research/traceability.md (walkthrough part -> content files -> register rows)
+    cmds:
+      - uv run --project tools tools/content/trace.py
+
   plans-index:
     desc: Rebuild docs/plans/milestones.md from the step files and check step references
     cmds:

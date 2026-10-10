@@ -59,10 +59,24 @@ def main(argv: list[str]) -> int:
         ]
         if os.name != "nt":  # Windows checkouts use CRLF; CI (Linux, LF) is the authority for formatting
             steps.append(("code format", lambda: run(["dotnet", "format", "ProcSense.sln", "--verify-no-changes"])))
+        else:  # on Windows only the indentation/spacing rules are checked (line endings are CRLF here), so a format failure shows up before the push, not in CI
+            steps.append(("code format (whitespace rules only)", lambda: (lambda r: (r[0] or "error WHITESPACE" not in r[1], r[1]))(
+                run(["dotnet", "format", "whitespace", "ProcSense.sln", "--verify-no-changes"]))))
         steps.append(("no vulnerable packages", lambda: run(["dotnet", "list", "ProcSense.sln", "package", "--vulnerable", "--include-transitive"],
                                                           fail_if_in_output="has the following vulnerable packages")))
     steps += [
         ("content + source register", lambda: run(["uv", "run", "--project", "tools", "tools/content/validate.py"])),
+        ("walkthrough extract counts", lambda: run(["uv", "run", "--project", "tools", "tools/content/extract_walkthrough.py", "--check"])),
+        ("traceability up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/trace.py", "--check"])),
+        ("content tools tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_content_tools.py"])),
+        ("content tables verified against the book and up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_tables.py", "--check"])),
+        ("content table meaning tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_tables.py"])),
+        ("case content gaps list up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/case_gaps.py", "--check"])),
+        ("images + reports valid (ultrasound, ECG, chest X-ray, CT, MRI, MRCP)", lambda: run(["uv", "run", "--project", "tools", "tools/content/validate_images.py"])),
+        ("imaging library complete and up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/imaging_library.py", "--check"])),
+        ("image review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/image_review_pack.py", "--check"])),
+        ("dataset register and cards up to date", lambda: run(["uv", "run", "--project", "tools", "tools/data/dataset_cards.py", "--check"])),
+        ("image and dataset tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_images.py"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),
         ("project rules", lambda: run(["uv", "run", "--project", "tools", "tools/ci/repo_checks.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),

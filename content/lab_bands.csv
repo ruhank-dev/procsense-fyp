@@ -1,0 +1,105 @@
+id,analyte,unit,zone,sex,basis,v_low,v_high,bound,v_state,v_condition,quote,page,ref
+hb.normal.M.130-170,haemoglobin,g/L,normal,M,,130,170,,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0500
+hb.normal.F.120-150,haemoglobin,g/L,normal,F,,120,150,,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0501
+hb.mild.M.110-129,haemoglobin,g/L,mild,M,,110,129,,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0502
+hb.mild.F.110-119,haemoglobin,g/L,mild,F,,110,119,,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0503
+hb.significant.all.80-109,haemoglobin,g/L,significant,,,80,109,,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0504
+hb.severe.all.-80,haemoglobin,g/L,severe,,,,80,below,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0505
+hb.critical.all.-70,haemoglobin,g/L,critical,,,,70,below,,,Haemoglobin g/L M 130–170; F 120–150 110–129/119 80–109 below 80 (crit. below 70),146,SR-0506
+wbc.normal.all.4.0-11.0,wbc,x10^9/L,normal,,,4.0,11.0,,,,WBC ×109/L 4.0–11.0 11.1–15.0 15.1–20.0 >20 or <4,146,SR-0507
+wbc.mild.all.11.1-15.0,wbc,x10^9/L,mild,,,11.1,15.0,,,,WBC ×109/L 4.0–11.0 11.1–15.0 15.1–20.0 >20 or <4,146,SR-0508
+wbc.significant.all.15.1-20.0,wbc,x10^9/L,significant,,,15.1,20.0,,,,WBC ×109/L 4.0–11.0 11.1–15.0 15.1–20.0 >20 or <4,146,SR-0509
+wbc.severe.high.20-,wbc,x10^9/L,severe,,,20,,above,,,WBC ×109/L 4.0–11.0 11.1–15.0 15.1–20.0 >20 or <4,146,SR-0510
+wbc.severe.low.-4,wbc,x10^9/L,severe,,,,4,below,,,WBC ×109/L 4.0–11.0 11.1–15.0 15.1–20.0 >20 or <4,146,SR-0511
+neut.normal.all.2.0-7.5,neutrophils,x10^9/L,normal,,,2.0,7.5,,,,Neutrophils 2.0–7.5 — <1.5 <0.5,146,SR-0512
+neut.significant.all.-1.5,neutrophils,x10^9/L,significant,,,,1.5,below,,,Neutrophils 2.0–7.5 — <1.5 <0.5,146,SR-0513
+neut.severe.all.-0.5,neutrophils,x10^9/L,severe,,,,0.5,below,,,Neutrophils 2.0–7.5 — <1.5 <0.5,146,SR-0514
+plt.normal.all.150-400,platelets,x10^9/L,normal,,,150,400,,,,Platelets 150–400 100–149 50–99 <50 (crit. <30),146,SR-0515
+plt.mild.all.100-149,platelets,x10^9/L,mild,,,100,149,,,,Platelets 150–400 100–149 50–99 <50 (crit. <30),146,SR-0516
+plt.significant.all.50-99,platelets,x10^9/L,significant,,,50,99,,,,Platelets 150–400 100–149 50–99 <50 (crit. <30),146,SR-0517
+plt.severe.all.-50,platelets,x10^9/L,severe,,,,50,below,,,Platelets 150–400 100–149 50–99 <50 (crit. <30),146,SR-0518
+plt.critical.all.-30,platelets,x10^9/L,critical,,,,30,below,,,Platelets 150–400 100–149 50–99 <50 (crit. <30),146,SR-0519
+crp.normal.all.-5,crp,mg/L,normal,,,,5,below,,,CRP mg/L <5 10–49 50–149 ≥150 (≥300 critical),146,SR-0520
+crp.mild.all.10-49,crp,mg/L,mild,,,10,49,,,,CRP mg/L <5 10–49 50–149 ≥150 (≥300 critical),146,SR-0521
+crp.significant.all.50-149,crp,mg/L,significant,,,50,149,,,,CRP mg/L <5 10–49 50–149 ≥150 (≥300 critical),146,SR-0522
+crp.severe.all.150-,crp,mg/L,severe,,,150,,,,,CRP mg/L <5 10–49 50–149 ≥150 (≥300 critical),146,SR-0523
+crp.critical.all.300-,crp,mg/L,critical,,,300,,,,,CRP mg/L <5 10–49 50–149 ≥150 (≥300 critical),146,SR-0524
+na.normal.all.135-145,sodium,mmol/L,normal,,,135,145,,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0525
+na.mild.low.130-134,sodium,mmol/L,mild,,,130,134,,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0526
+na.mild.high.146-150,sodium,mmol/L,mild,,,146,150,,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0527
+na.significant.low.125-129,sodium,mmol/L,significant,,,125,129,,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0528
+na.significant.high.151-155,sodium,mmol/L,significant,,,151,155,,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0529
+na.severe.low.-125,sodium,mmol/L,severe,,,,125,below,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0530
+na.severe.high.155-,sodium,mmol/L,severe,,,155,,above,,,Sodium mmol/L 135–145 130–134 / 146–150 125–129 / 151–155 <125 / >155,146,SR-0531
+k.normal.all.3.5-5.3,potassium,mmol/L,normal,,,3.5,5.3,,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0532
+k.mild.low.3.0-3.4,potassium,mmol/L,mild,,,3.0,3.4,,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0533
+k.mild.high.5.5-5.9,potassium,mmol/L,mild,,,5.5,5.9,,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0534
+k.significant.low.2.5-2.9,potassium,mmol/L,significant,,,2.5,2.9,,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0535
+k.significant.high.6.0-6.4,potassium,mmol/L,significant,,,6.0,6.4,,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0536
+k.severe.low.-2.5,potassium,mmol/L,severe,,,,2.5,below,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0537
+k.severe.high.6.5-,potassium,mmol/L,severe,,,6.5,,,,,Potassium mmol/L 3.5–5.3 3.0–3.4 / 5.5–5.9 2.5–2.9 / 6.0–6.4 <2.5 / ≥6.5,146,SR-0538
+urea.normal.all.2.5-7.8,urea,mmol/L,normal,,,2.5,7.8,,,,Urea mmol/L 2.5–7.8 7.9–12 >12 —,146,SR-0539
+urea.mild.all.7.9-12,urea,mmol/L,mild,,,7.9,12,,,,Urea mmol/L 2.5–7.8 7.9–12 >12 —,146,SR-0540
+urea.significant.all.12-,urea,mmol/L,significant,,,12,,above,,,Urea mmol/L 2.5–7.8 7.9–12 >12 —,146,SR-0541
+creat.normal.M.60-110,creatinine,umol/L,normal,M,,60,110,,,,Creatinine µmol/L M 60–110; F 45–90 ×1.5–1.9 baseline ×2–2.9 ×3 or ≥354,146,SR-0542
+creat.normal.F.45-90,creatinine,umol/L,normal,F,,45,90,,,,Creatinine µmol/L M 60–110; F 45–90 ×1.5–1.9 baseline ×2–2.9 ×3 or ≥354,146,SR-0543
+creat.mild.all.1.5-1.9,creatinine,umol/L,mild,,baseline,1.5,1.9,,,,Creatinine µmol/L M 60–110; F 45–90 ×1.5–1.9 baseline ×2–2.9 ×3 or ≥354,146,SR-0544
+creat.significant.all.2-2.9,creatinine,umol/L,significant,,baseline,2,2.9,,,,Creatinine µmol/L M 60–110; F 45–90 ×1.5–1.9 baseline ×2–2.9 ×3 or ≥354,146,SR-0545
+creat.severe.x3.3-,creatinine,umol/L,severe,,baseline,3,,,,,Creatinine µmol/L M 60–110; F 45–90 ×1.5–1.9 baseline ×2–2.9 ×3 or ≥354,146,SR-0546
+creat.severe.abs.354-,creatinine,umol/L,severe,,,354,,,,,Creatinine µmol/L M 60–110; F 45–90 ×1.5–1.9 baseline ×2–2.9 ×3 or ≥354,146,SR-0547
+egfr.normal.all.90-,egfr,mL/min/1.73m2,normal,,,90,,,,,eGFR ≥90 60–89 30–59 <30,146,SR-0548
+egfr.mild.all.60-89,egfr,mL/min/1.73m2,mild,,,60,89,,,,eGFR ≥90 60–89 30–59 <30,146,SR-0549
+egfr.significant.all.30-59,egfr,mL/min/1.73m2,significant,,,30,59,,,,eGFR ≥90 60–89 30–59 <30,146,SR-0550
+egfr.severe.all.-30,egfr,mL/min/1.73m2,severe,,,,30,below,,,eGFR ≥90 60–89 30–59 <30,146,SR-0551
+glu.normal.all.6-10,glucose_perioperative_diabetic,mmol/L,normal,,,6,10,,,,"Glucose (diabetic, peri-op) 6–10 (to 12 OK) 12.1–14 >14 <4.0 (severe <3.0)",146,SR-0552
+glu.acceptable.to12.-12,glucose_perioperative_diabetic,mmol/L,acceptable,,,,12,,,,"Glucose (diabetic, peri-op) 6–10 (to 12 OK) 12.1–14 >14 <4.0 (severe <3.0)",146,SR-0553
+glu.mild.all.12.1-14,glucose_perioperative_diabetic,mmol/L,mild,,,12.1,14,,,,"Glucose (diabetic, peri-op) 6–10 (to 12 OK) 12.1–14 >14 <4.0 (severe <3.0)",146,SR-0554
+glu.significant.all.14-,glucose_perioperative_diabetic,mmol/L,significant,,,14,,above,,,"Glucose (diabetic, peri-op) 6–10 (to 12 OK) 12.1–14 >14 <4.0 (severe <3.0)",146,SR-0555
+glu.severe.low.-4.0,glucose_perioperative_diabetic,mmol/L,severe,,,,4.0,below,,,"Glucose (diabetic, peri-op) 6–10 (to 12 OK) 12.1–14 >14 <4.0 (severe <3.0)",146,SR-0556
+glu.critical.severe-low.-3.0,glucose_perioperative_diabetic,mmol/L,critical,,,,3.0,below,,,"Glucose (diabetic, peri-op) 6–10 (to 12 OK) 12.1–14 >14 <4.0 (severe <3.0)",146,SR-0557
+hba1c.normal.all.-42,hba1c,mmol/mol,normal,,,,42,below,,,HbA1c mmol/mol <42 42–47 / 48–69 >69 (postpone S1) —,146,SR-0558
+hba1c.mild.a.42-47,hba1c,mmol/mol,mild,,,42,47,,,,HbA1c mmol/mol <42 42–47 / 48–69 >69 (postpone S1) —,146,SR-0559
+hba1c.mild.b.48-69,hba1c,mmol/mol,mild,,,48,69,,,,HbA1c mmol/mol <42 42–47 / 48–69 >69 (postpone S1) —,146,SR-0560
+hba1c.significant.all.69-,hba1c,mmol/mol,significant,,,69,,above,,,HbA1c mmol/mol <42 42–47 / 48–69 >69 (postpone S1) —,146,SR-0561
+ket.normal.all.-0.6,ketones,mmol/L,normal,,,,0.6,below,,,Ketones mmol/L <0.6 0.6–1.4 1.5–2.9 ≥3.0,146,SR-0562
+ket.mild.all.0.6-1.4,ketones,mmol/L,mild,,,0.6,1.4,,,,Ketones mmol/L <0.6 0.6–1.4 1.5–2.9 ≥3.0,146,SR-0563
+ket.significant.all.1.5-2.9,ketones,mmol/L,significant,,,1.5,2.9,,,,Ketones mmol/L <0.6 0.6–1.4 1.5–2.9 ≥3.0,146,SR-0564
+ket.severe.all.3.0-,ketones,mmol/L,severe,,,3.0,,,,,Ketones mmol/L <0.6 0.6–1.4 1.5–2.9 ≥3.0,146,SR-0565
+bili.normal.all.3-21,bilirubin,umol/L,normal,,,3,21,,,,Bilirubin µmol/L 3–21 22–30 31–68 >68,146,SR-0566
+bili.mild.all.22-30,bilirubin,umol/L,mild,,,22,30,,,,Bilirubin µmol/L 3–21 22–30 31–68 >68,146,SR-0567
+bili.significant.all.31-68,bilirubin,umol/L,significant,,,31,68,,,,Bilirubin µmol/L 3–21 22–30 31–68 >68,146,SR-0568
+bili.severe.all.68-,bilirubin,umol/L,severe,,,68,,above,,,Bilirubin µmol/L 3–21 22–30 31–68 >68,146,SR-0569
+alt.normal.all.-40,alt,U/L,normal,,,,40,,,,ALT U/L ≤40 41–120 121–400 >400,146,SR-0570
+alt.mild.all.41-120,alt,U/L,mild,,,41,120,,,,ALT U/L ≤40 41–120 121–400 >400,146,SR-0571
+alt.significant.all.121-400,alt,U/L,significant,,,121,400,,,,ALT U/L ≤40 41–120 121–400 >400,146,SR-0572
+alt.severe.all.400-,alt,U/L,severe,,,400,,above,,,ALT U/L ≤40 41–120 121–400 >400,146,SR-0573
+alp.normal.all.30-130,alp,U/L,normal,,,30,130,,,,ALP U/L 30–130 ≤2× upper 2–5× upper >5× upper,146,SR-0574
+alp.mild.all.-2,alp,U/L,mild,,upper_limit,,2,,,,ALP U/L 30–130 ≤2× upper 2–5× upper >5× upper,146,SR-0575
+alp.significant.all.2-5,alp,U/L,significant,,upper_limit,2,5,,,,ALP U/L 30–130 ≤2× upper 2–5× upper >5× upper,146,SR-0576
+alp.severe.all.5-,alp,U/L,severe,,upper_limit,5,,above,,,ALP U/L 30–130 ≤2× upper 2–5× upper >5× upper,146,SR-0577
+ggt.normal.M.-60,ggt,U/L,normal,M,,,60,below,,,GGT U/L M<60; F<40 ≤3× upper >3× upper —,146,SR-0578
+ggt.normal.F.-40,ggt,U/L,normal,F,,,40,below,,,GGT U/L M<60; F<40 ≤3× upper >3× upper —,146,SR-0579
+ggt.mild.all.-3,ggt,U/L,mild,,upper_limit,,3,,,,GGT U/L M<60; F<40 ≤3× upper >3× upper —,146,SR-0580
+ggt.significant.all.3-,ggt,U/L,significant,,upper_limit,3,,above,,,GGT U/L M<60; F<40 ≤3× upper >3× upper —,146,SR-0581
+alb.normal.all.35-50,albumin,g/L,normal,,,35,50,,,,Albumin g/L 35–50 30–34 25–29 <25,146,SR-0582
+alb.mild.all.30-34,albumin,g/L,mild,,,30,34,,,,Albumin g/L 35–50 30–34 25–29 <25,146,SR-0583
+alb.significant.all.25-29,albumin,g/L,significant,,,25,29,,,,Albumin g/L 35–50 30–34 25–29 <25,146,SR-0584
+alb.severe.all.-25,albumin,g/L,severe,,,,25,below,,,Albumin g/L 35–50 30–34 25–29 <25,146,SR-0585
+lip.normal.all.-,lipase,U/L,normal,,upper_limit,,,,upper limit,,Lipase <upper limit 1–3× >3× (pancreatitis) —,146,SR-0586
+lip.mild.all.1-3,lipase,U/L,mild,,upper_limit,1,3,,,,Lipase <upper limit 1–3× >3× (pancreatitis) —,146,SR-0587
+lip.significant.all.3-,lipase,U/L,significant,,upper_limit,3,,above,,,Lipase <upper limit 1–3× >3× (pancreatitis) —,146,SR-0588
+inr.normal.all.0.8-1.2,inr,ratio,normal,,,0.8,1.2,,,,INR (no warfarin) 0.8–1.2 1.3–1.5 >1.5 >2.0,147,SR-0589
+inr.mild.all.1.3-1.5,inr,ratio,mild,,,1.3,1.5,,,,INR (no warfarin) 0.8–1.2 1.3–1.5 >1.5 >2.0,147,SR-0590
+inr.significant.all.1.5-,inr,ratio,significant,,,1.5,,above,,,INR (no warfarin) 0.8–1.2 1.3–1.5 >1.5 >2.0,147,SR-0591
+inr.severe.all.2.0-,inr,ratio,severe,,,2.0,,above,,,INR (no warfarin) 0.8–1.2 1.3–1.5 >1.5 >2.0,147,SR-0592
+lac.normal.all.-2.0,lactate,mmol/L,normal,,,,2.0,below,,,Lactate mmol/L <2.0 — 2.0–3.9 ≥4.0,147,SR-0593
+lac.significant.all.2.0-3.9,lactate,mmol/L,significant,,,2.0,3.9,,,,Lactate mmol/L <2.0 — 2.0–3.9 ≥4.0,147,SR-0594
+lac.severe.all.4.0-,lactate,mmol/L,severe,,,4.0,,,,,Lactate mmol/L <2.0 — 2.0–3.9 ≥4.0,147,SR-0595
+hcg.normal.all.-5,beta_hcg,IU/L,normal,,,,5,below,,,β-hCG IU/L <5 5–25 (repeat 48 h) >25 positive + pain/shock,147,SR-0596
+hcg.mild.all.5-25,beta_hcg,IU/L,mild,,,5,25,,,,β-hCG IU/L <5 5–25 (repeat 48 h) >25 positive + pain/shock,147,SR-0597
+hcg.significant.all.25-,beta_hcg,IU/L,significant,,,25,,above,,,β-hCG IU/L <5 5–25 (repeat 48 h) >25 positive + pain/shock,147,SR-0598
+qtc.normal.M.-450,qtc,ms,normal,M,,,450,below,,,QTc ms (ECG) M<450; F<460 Prolonged ≥450 M / ≥460 F — ≥500 markedly prolonged,147,SR-0599
+qtc.normal.F.-460,qtc,ms,normal,F,,,460,below,,,QTc ms (ECG) M<450; F<460 Prolonged ≥450 M / ≥460 F — ≥500 markedly prolonged,147,SR-0600
+qtc.mild.M.450-,qtc,ms,mild,M,,450,,,,,QTc ms (ECG) M<450; F<460 Prolonged ≥450 M / ≥460 F — ≥500 markedly prolonged,147,SR-0601
+qtc.mild.F.460-,qtc,ms,mild,F,,460,,,,,QTc ms (ECG) M<450; F<460 Prolonged ≥450 M / ≥460 F — ≥500 markedly prolonged,147,SR-0602
+qtc.severe.all.500-,qtc,ms,severe,,,500,,,,,QTc ms (ECG) M<450; F<460 Prolonged ≥450 M / ≥460 F — ≥500 markedly prolonged,147,SR-0603

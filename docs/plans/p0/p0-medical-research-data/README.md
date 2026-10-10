@@ -4,6 +4,8 @@
 
 (Merged from p0-medical-research + p0-datasets — phase review P2, approved 07 October 2026.)
 
+> **Work order (10 Oct 2026):** this phase now runs **first**, ahead of the remaining engine and VR work. Order, dependencies and status: [data-first-order.md](../data-first-order.md) ([ADR-0002](../../../decisions/ADR-0002-data-first-order.md)). Ultrasound images with matching reports: [ultrasound-images-and-reports.md](ultrasound-images-and-reports.md).
+
 ## Goal
 1. **Proof of truth:** every clinical value, rule, threshold, case fact and dose example has a recorded walkthrough reference,
    original source opened and checked, evidence type (A/B/C/D) and status. `content/` is generated only from these rows.
@@ -22,7 +24,7 @@ lab distributions and images make the patient believable.
 - **Equipment references:** real-world dimensions/components/appearance for every Blender asset.
 - **Data:** dataset discovery + content check, aggregate extraction (percentiles, noise models, waveform templates), synthetic generators
   (lab noise/artefacts, vital trajectories) with dataset cards, real result images for the EMR viewer.
-- **Out:** inventing or changing approved medical decisions; AI-generated medical images (never); raw third-party patient rows in builds.
+- **Out:** inventing or changing approved medical decisions; raw third-party patient rows in builds; AI-generated medical images **except** as the labelled, clinician-reviewed fallback in [ADR-0003](../../../decisions/ADR-0003-synthetic-medical-images.md) (10 Oct 2026; until then the rule was "AI-generated medical images (never)").
 
 ## Deliverables
 - `docs/research/source_register.csv` complete for P0 content; `docs/research/issues.md` with every conflict + who resolved it.
@@ -39,7 +41,7 @@ lab distributions and images make the patient believable.
 | ECG traces | PTB-XL (PhysioNet) | 12-lead → monitor trace |
 | Gallbladder ultrasound images | UIdataGB (Mendeley Data) | Medical approval per image |
 | Chest X-ray images | NIH ChestX-ray14 | Label noise; medical approval per image |
-| CT images for the EMR viewer (abdomen) | to research (public CT datasets) | Report-only if none suitable; never AI images |
+| CT images for the EMR viewer (abdomen) | to research (public CT datasets) | Real image if licensed and approved; otherwise labelled synthetic image for review (ADR-0003) or report only. Earlier wording: "Report-only if none suitable; never AI images" |
 | Adult appendix ultrasound | none known free | Text report from finding codes |
 | Drug label safety fields | openFDA | No doses imported |
 
@@ -53,7 +55,7 @@ lab distributions and images make the patient believable.
 | Content generation | Script: register → `content/` (no hand edits) | Hand-edited | One source of truth | — |
 | How data enters the app | Parameters/aggregates generated at build time | Ship raw rows | Privacy, small app | — |
 | Case lab values | Authored (walkthrough); generator adds only noise/artefacts inside verified bands | Fully generated | Cases are clinically designed | — |
-| Missing imaging | Text reports | AI images | Never generate medical images | Real image set found |
+| Missing imaging | **Real licensed image first; else labelled synthetic image + matching report, clinician review before use; else text report** (owner, 10 Oct 2026, [ADR-0003](../../../decisions/ADR-0003-synthetic-medical-images.md)) | Text report only (the earlier choice: "never generate medical images") | Owner wants images next to reports; labelling and review keep it safe | A real image set is found for that finding |
 
 ## Experiments
 | ID | Question | Method | Success metric |

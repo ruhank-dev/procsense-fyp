@@ -6,6 +6,8 @@
 |---|---|---|---|---|
 | Tue 29 Sep | Fri 4 Dec | Fri 18 Dec | Sat 26 Dec | Thu 31 Dec |
 
+> **Status addendum — 10 Oct 2026:** the project owner moved **all data work ahead of the remaining engine and VR work** (see `docs/plans/p0/data-first-order.md`, ADR-0002) and allowed clearly labelled synthetic ultrasound images with matching reports as a fallback when no real dataset fits, after clinician review (ADR-0003). The weekly checklist below is history; no deadlines apply.
+
 > **Status addendum — 09 Oct 2026** (the line above is the v2 original and is kept): the project owner treats all existing medical research and clinical workflows as **clinician-approved** (walkthrough first on 07 Oct, extended 09 Oct). Hospital-specific values and open source conflicts still need input. History: `ProcSense_Change_Report.md` §G.
 
 ## 📌 Where the build stands (09 Oct 2026)

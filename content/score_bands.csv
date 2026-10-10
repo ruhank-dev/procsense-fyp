@@ -1,0 +1,14 @@
+id,score,band,v_low,v_high,quote,page,ref
+alvarado.max,alvarado,max,,10,Maximum 10 12 23,59,SR-1100
+air.max,air,max,,12,Maximum 10 12 23,59,SR-1101
+aas.max,aas,max,,23,Maximum 10 12 23,59,SR-1102
+alvarado.unlikely,alvarado,unlikely,0,4,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1103
+alvarado.unsure,alvarado,unsure,5,6,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1104
+alvarado.probable,alvarado,probable,7,8,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1105
+alvarado.very_probable,alvarado,very_probable,9,10,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1106
+air.low,air,low,0,4,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1107
+air.unsure,air,unsure,5,8,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1108
+air.high,air,high,9,12,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1109
+aas.low,aas,low,0,10,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1110
+aas.intermediate,aas,intermediate,11,15,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1111
+aas.high,aas,high,16,,Meaning 0–4 unlikely; 5–6 unsure; 7–8 probable; 9–10 very probable 0–4 low; 5–8 unsure; 9–12 high 0–10 low; 11–15 intermediate; 16+ high,59,SR-1112

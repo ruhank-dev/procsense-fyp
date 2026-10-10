@@ -1,0 +1,2425 @@
+{
+ "schema": 1,
+ "images": [
+  {
+   "id": "us-ap-01-s0",
+   "file": "US-AP-01/us-ap-01-s0.png",
+   "sha256": "f6d9a5e0886d9f568f9cdf0f8f331045e8e572e3851bb538cf0233685acfd3bb",
+   "bytes": 107933,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2214594823,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S2-PC"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-01-s1",
+   "file": "US-AP-01/us-ap-01-s1.png",
+   "sha256": "0e4bad143b34de1755719896a6fefcad0bd7674c6c601193b59fb79729756ead",
+   "bytes": 107825,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1661877352,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-01-s2",
+   "file": "US-AP-01/us-ap-01-s2.png",
+   "sha256": "a7532729c838426eb993a2466888a3c894c373937d62ceb4c7362fb4ec8d35a9",
+   "bytes": 107892,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3916571935,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-01-s3",
+   "file": "US-AP-01/us-ap-01-s3.png",
+   "sha256": "d1ec5b9dcbf2ededa8bd09105e320758c457ff45d71d10201db42703b470ab8e",
+   "bytes": 107654,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1682318464,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-02-s0",
+   "file": "US-AP-02/us-ap-02-s0.png",
+   "sha256": "f59924ec9253163bb929bbcbbfb4a002c0bf4a42a03a6167b94ec774dd0257d8",
+   "bytes": 106714,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3191906990,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-02-s1",
+   "file": "US-AP-02/us-ap-02-s1.png",
+   "sha256": "fa2bff819787b6f1511783eb66d8672406e1585fedc6db62335110a432afa91f",
+   "bytes": 106829,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 97142502,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-02-s2",
+   "file": "US-AP-02/us-ap-02-s2.png",
+   "sha256": "5f9b2ae1d896cde3e0ffafd064464ac16c88f2a708976939a0b3b0af73ae9650",
+   "bytes": 106520,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2492153961,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-02-s3",
+   "file": "US-AP-02/us-ap-02-s3.png",
+   "sha256": "3cede23283e3d9ab5e9b3c3bf6fc8ac7befc7131d1e279a1ffc16f9046a28953",
+   "bytes": 107396,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1453798553,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-03-s0",
+   "file": "US-AP-03/us-ap-03-s0.png",
+   "sha256": "c4567d3487d273157650f0a9345fd9b5891199b86886510d64adc127d304c139",
+   "bytes": 97480,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3630509932,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-03-s1",
+   "file": "US-AP-03/us-ap-03-s1.png",
+   "sha256": "74e4d85ed7d0b9e61d4a54ca774435df13ae838ac2dcafd6679bc84545ac0efc",
+   "bytes": 100706,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2516745965,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-03-s2",
+   "file": "US-AP-03/us-ap-03-s2.png",
+   "sha256": "62ab0587a415eee89ca1bce273ee6309c5ffd35b76431aa121f37714dcf2c4d0",
+   "bytes": 100362,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 120965027,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-03-s3",
+   "file": "US-AP-03/us-ap-03-s3.png",
+   "sha256": "e94138fa32250c320183befbee7c2b386ba136e3e651e0d18c1c9b1498689b65",
+   "bytes": 99052,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 43895442,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-04-s0",
+   "file": "US-AP-04/us-ap-04-s0.png",
+   "sha256": "4ddfa64575d9ce1ff787d787485487ee3016369931150e59cd29112514873ea4",
+   "bytes": 100211,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 528933595,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-04-s1",
+   "file": "US-AP-04/us-ap-04-s1.png",
+   "sha256": "5a3e14e1828a11498dfdedd4046903bc5897157ac87bfafed583a196e737c200",
+   "bytes": 100801,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3634889511,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-04-s2",
+   "file": "US-AP-04/us-ap-04-s2.png",
+   "sha256": "0b247c97b5896c3782d521666e2a9fd0bc20d46a144234774ebfe0570610d10e",
+   "bytes": 100792,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3254250288,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-04-s3",
+   "file": "US-AP-04/us-ap-04-s3.png",
+   "sha256": "3a0701718664f9839befa17af77c5417afda18d8649cf8db7e76b9086ab184cb",
+   "bytes": 101013,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1106448632,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-05-s0",
+   "file": "US-AP-05/us-ap-05-s0.png",
+   "sha256": "2399626022014c7028b31e9ca53d44e12ad2f743ae571c7b4aaaaa586f717ae3",
+   "bytes": 107378,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-05",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1576666905,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-05-s1",
+   "file": "US-AP-05/us-ap-05-s1.png",
+   "sha256": "1bf23f4939b001fa6011103720785a251e8039e3a0bac80b3f2ca050f4b9353d",
+   "bytes": 107331,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-05",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2129335204,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-05-s2",
+   "file": "US-AP-05/us-ap-05-s2.png",
+   "sha256": "cb0077be750913adda51606a52053261d2a483a7c06b6a98152a3c79e43cbb75",
+   "bytes": 107400,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-05",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 556085103,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-ap-05-s3",
+   "file": "US-AP-05/us-ap-05-s3.png",
+   "sha256": "c70ed9a8b90db208977c196ea86ce21a4ab7dafb795717f937e47286ba88a952",
+   "bytes": 107650,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-AP-05",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2043937828,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-00-s0",
+   "file": "US-GB-00/us-gb-00-s0.png",
+   "sha256": "53a7258ecf9b703144f412c8e25ae8a8e1bfe193fc7bfd3033dc698d6038142d",
+   "bytes": 96109,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3405486837,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-00-s1",
+   "file": "US-GB-00/us-gb-00-s1.png",
+   "sha256": "949e8a03083aed36a98a0b4b39da0358090f3fbd833e7fb6b9216dc01f12d318",
+   "bytes": 96736,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2925073891,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-00-s2",
+   "file": "US-GB-00/us-gb-00-s2.png",
+   "sha256": "74999c1542509f4be3a6706c5f3a1a14476532d1f734d28426d3e8b882d8e4fc",
+   "bytes": 96330,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3137785566,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-00-s3",
+   "file": "US-GB-00/us-gb-00-s3.png",
+   "sha256": "b2f3332ee6a0988fec0466ac02727719e23056ec455e80702712d98b28df2443",
+   "bytes": 96013,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3270025016,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-01-r0",
+   "file": "US-GB-01/us-gb-01-r0.jpg",
+   "sha256": "72595bdcf0759b127d2440cf8247656125c79bd4f1bffe14a8a7eae44a69af10",
+   "bytes": 41780,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Gallstones",
+    "archive": "1Gallstones.zip",
+    "member": "1Gallstones/a27 (31).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-A"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-01-r1",
+   "file": "US-GB-01/us-gb-01-r1.jpg",
+   "sha256": "dfdc5285209381ad74326a57f08e294db7cd035be259ddc0fcedb0768ee2b9c6",
+   "bytes": 41852,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Gallstones",
+    "archive": "1Gallstones.zip",
+    "member": "1Gallstones/a6 (7).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-A"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-01-r2",
+   "file": "US-GB-01/us-gb-01-r2.jpg",
+   "sha256": "fb797aee56b4d9ed09fee04e3578d10ebe399f55e47aa7475edd2e2d17bfe1cb",
+   "bytes": 34649,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Gallstones",
+    "archive": "1Gallstones.zip",
+    "member": "1Gallstones/a22 (34).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-A"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-01-r3",
+   "file": "US-GB-01/us-gb-01-r3.jpg",
+   "sha256": "520d2ab4467d12508cae98878eb3fadbb9c484750fddc27bbb80908e4b32a7cd",
+   "bytes": 32037,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-01",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Gallstones",
+    "archive": "1Gallstones.zip",
+    "member": "1Gallstones/a19 (37).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-A"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-02-r0",
+   "file": "US-GB-02/us-gb-02-r0.jpg",
+   "sha256": "43ac3578ce32a86b2125498e5c6017db22230f7dece21acb380782a99ec15ce4",
+   "bytes": 34846,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "cholecystitis",
+    "archive": "3cholecystitis.zip",
+    "member": "3cholecystitis/c2 (12).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-E"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-02-r1",
+   "file": "US-GB-02/us-gb-02-r1.jpg",
+   "sha256": "b064710667eb48be1dfe884d13d3d7226c539abd18efa7c9134db12595e706ff",
+   "bytes": 28042,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "cholecystitis",
+    "archive": "3cholecystitis.zip",
+    "member": "3cholecystitis/c3 (25).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-E"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-02-r2",
+   "file": "US-GB-02/us-gb-02-r2.jpg",
+   "sha256": "044df818bfb384d63b5724b6d8b9eeea30bc0811e541e241092c18670bdde050",
+   "bytes": 33551,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "cholecystitis",
+    "archive": "3cholecystitis.zip",
+    "member": "3cholecystitis/c24 (5).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-E"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-02-r3",
+   "file": "US-GB-02/us-gb-02-r3.jpg",
+   "sha256": "7e30d37913135f905870c845f83f00ebbe888c41ab0f3738e97a2397d8c2a368",
+   "bytes": 41220,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-02",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "cholecystitis",
+    "archive": "3cholecystitis.zip",
+    "member": "3cholecystitis/c27 (26).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-E"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-03-s0",
+   "file": "US-GB-03/us-gb-03-s0.png",
+   "sha256": "26b87f852e4eefed422b1ce4b402038e7d249da539ca1b4e89ee73982772d3d9",
+   "bytes": 94402,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 98308797,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [
+    "VAR-S1-PB"
+   ],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-03-s1",
+   "file": "US-GB-03/us-gb-03-s1.png",
+   "sha256": "0f2d18674410b7fbfa6abf1dcf83a6bf954d97d668e753577c076afadb540f7b",
+   "bytes": 94558,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 324497504,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-03-s2",
+   "file": "US-GB-03/us-gb-03-s2.png",
+   "sha256": "f91450f6465a9dd23135139af59d996dab68f2bb03f47a98fbd181afd41588f2",
+   "bytes": 94252,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 394632547,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-03-s3",
+   "file": "US-GB-03/us-gb-03-s3.png",
+   "sha256": "494b5051949935eac0df1e38deffb6613cd3defe53f490d3e2b9b3d001c8c424",
+   "bytes": 93824,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-03",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2595952054,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-04-s0",
+   "file": "US-GB-04/us-gb-04-s0.png",
+   "sha256": "1893e0bee67062e5e08d4bec17e95476d0c2808074517158f8b475b054ac1680",
+   "bytes": 93142,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 714099618,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-04-s1",
+   "file": "US-GB-04/us-gb-04-s1.png",
+   "sha256": "a6685986ea96b57e996d5897a46b74ea49a3d858f998e6f30b94821766f087d2",
+   "bytes": 93043,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3863944271,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-04-s2",
+   "file": "US-GB-04/us-gb-04-s2.png",
+   "sha256": "d277bf4c0c1f3138da85423a957eeb2498660c0c9361c450fa6629702392efab",
+   "bytes": 93561,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1246684978,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-04-s3",
+   "file": "US-GB-04/us-gb-04-s3.png",
+   "sha256": "bf7cf7f72ff11b96c320dba0d5bfcbb3a7742fea0be67b21b8fd0d04129a2847",
+   "bytes": 93626,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-04",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2245734228,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-05-r0",
+   "file": "US-GB-05/us-gb-05-r0.jpg",
+   "sha256": "17a4276ba37fbac236de6c69375494b0b191a307e722103762c923272c342a46",
+   "bytes": 32660,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Membranous and gangrenous cholecystitis",
+    "archive": "4Membranous_and_gangrenous_cholecystitis.zip",
+    "member": "4Membranous and gangrenous cholecystitis/d12 (66).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-05-r1",
+   "file": "US-GB-05/us-gb-05-r1.jpg",
+   "sha256": "b4aa2971048acb0d339687b3811924f609209f7af06115ad53c62a745313bd2c",
+   "bytes": 32834,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Membranous and gangrenous cholecystitis",
+    "archive": "4Membranous_and_gangrenous_cholecystitis.zip",
+    "member": "4Membranous and gangrenous cholecystitis/d2 (9).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-05-r2",
+   "file": "US-GB-05/us-gb-05-r2.jpg",
+   "sha256": "342555f2fac399d614f84dbe4ed062c5525fdb2fafb64cbfc38f45fab45933e4",
+   "bytes": 29503,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Perforation",
+    "archive": "5Perforation.zip",
+    "member": "5Perforation/e19 (31).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-05-r3",
+   "file": "US-GB-05/us-gb-05-r3.jpg",
+   "sha256": "bef8c6a9265227725ec6dcda9d20991c3342a7cf60323fa0bc7aa4a3f5dc0eb8",
+   "bytes": 35682,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-05",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Perforation",
+    "archive": "5Perforation.zip",
+    "member": "5Perforation/e16 (1).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-06-r0",
+   "file": "US-GB-06/us-gb-06-r0.jpg",
+   "sha256": "8e5f4afd2d9950d3a1662d2d5442c18a52bf9d81405c75de13c0ae0506ef731b",
+   "bytes": 35391,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Carcinoma",
+    "archive": "8Carcinoma.zip",
+    "member": "8Carcinoma/h4 (26).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-06-r1",
+   "file": "US-GB-06/us-gb-06-r1.jpg",
+   "sha256": "6feb14c368d0239a1993c1108712a1edac66b01034a4dceaf3b0b882ad223ef6",
+   "bytes": 23624,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Carcinoma",
+    "archive": "8Carcinoma.zip",
+    "member": "8Carcinoma/h7 (64).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-06-r2",
+   "file": "US-GB-06/us-gb-06-r2.jpg",
+   "sha256": "1606482e3c182929f5f4445b5e45b74f5db02d507f83cccbf09eeecec296e27a",
+   "bytes": 47906,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Carcinoma",
+    "archive": "8Carcinoma.zip",
+    "member": "8Carcinoma/h10 (89).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-06-r3",
+   "file": "US-GB-06/us-gb-06-r3.jpg",
+   "sha256": "f81af0d81b0447af2619ff271c55938f5cc8a27dd4b8ef5a13a57f832fca7620",
+   "bytes": 39871,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-06",
+   "synthetic": false,
+   "source": {
+    "dataset": "UIdataGB",
+    "class": "Carcinoma",
+    "archive": "8Carcinoma.zip",
+    "member": "8Carcinoma/h14 (67).jpg",
+    "doi": "10.17632/r6h24d2d3y.2",
+    "url": "https://data.mendeley.com/datasets/r6h24d2d3y/2"
+   },
+   "licence": "CC BY 4.0",
+   "attribution": "Gallbladder Diseases Dataset (UIdataGB), Turki A., Obaid A.M., Bellaaj H. et al., Mendeley Data, V2, doi:10.17632/r6h24d2d3y.2, CC BY 4.0. Images downscaled and re-encoded without metadata.",
+   "generator": null,
+   "mark": null,
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-07-s0",
+   "file": "US-GB-07/us-gb-07-s0.png",
+   "sha256": "c8fe8eaa2de2ad42e708e922a8e934237d5719f433b23fe0f781373afc3d20ad",
+   "bytes": 100437,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-07",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 300197629,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-07-s1",
+   "file": "US-GB-07/us-gb-07-s1.png",
+   "sha256": "cde0f03e77c4d8f816bbd26e498481355b9f7677a1dd28d292370d39b0c7abff",
+   "bytes": 100430,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-07",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1064884726,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-07-s2",
+   "file": "US-GB-07/us-gb-07-s2.png",
+   "sha256": "453419f4cfd5bd3f69e621ff750cca090bd58a55b8a23ad2df7d47a52292d4be",
+   "bytes": 100134,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-07",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2360058262,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-07-s3",
+   "file": "US-GB-07/us-gb-07-s3.png",
+   "sha256": "3f079dffe5fa52176567bb98326feeabedbc4097329004449a7f6737905948ec",
+   "bytes": 100565,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-07",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3893724064,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-08-s0",
+   "file": "US-GB-08/us-gb-08-s0.png",
+   "sha256": "b1091fce97d3ce930dd9b190989f0e4e40d1845bf188f24ddaa6869c31389099",
+   "bytes": 98344,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2074374709,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-08-s1",
+   "file": "US-GB-08/us-gb-08-s1.png",
+   "sha256": "5c03475ced0bd63822aa894e218da69c38a2f2e41efabc46edd1426ca8d75444",
+   "bytes": 100726,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2493220244,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-08-s2",
+   "file": "US-GB-08/us-gb-08-s2.png",
+   "sha256": "100e422bc8239602c2946faf7268da0675d748deedc0cf7c29573d502c4d5f23",
+   "bytes": 97758,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1637666378,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-gb-08-s3",
+   "file": "US-GB-08/us-gb-08-s3.png",
+   "sha256": "b7183bc065f318ac60117491016a8c58ac3cb7017fbb805dc77d95cc5d008ab1",
+   "bytes": 100860,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-GB-08",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1610116501,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-00-s0",
+   "file": "US-PV-00/us-pv-00-s0.png",
+   "sha256": "6571a601190a50c3fcc76aa970a2e52cae5e5c2b83ba42997755ac77c1f6a2de",
+   "bytes": 102266,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3952822080,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-00-s1",
+   "file": "US-PV-00/us-pv-00-s1.png",
+   "sha256": "fc3a5a3152aa56214b4fd3f3d023437cbed6444c3732aa7ebcd7a765dfbe1db3",
+   "bytes": 102374,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 4062789609,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-00-s2",
+   "file": "US-PV-00/us-pv-00-s2.png",
+   "sha256": "bd17c34c578f308c74fdd11cfe93b3f95f176a4a83993a1de0cc44ebaad66bd0",
+   "bytes": 102374,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3919959001,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-00-s3",
+   "file": "US-PV-00/us-pv-00-s3.png",
+   "sha256": "736d4ba5f00e4a268cfc30a7b6ca6e062aeb6e56058d068147a19617ef61a554",
+   "bytes": 102380,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3504155568,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-01-s0",
+   "file": "US-PV-01/us-pv-01-s0.png",
+   "sha256": "122dff680cbb9c3560a09710a2d1e240458d04b8b9b2a21e711ae1a742fec7d1",
+   "bytes": 100747,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2918461724,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-01-s1",
+   "file": "US-PV-01/us-pv-01-s1.png",
+   "sha256": "60b8986bebc59726e1e6fb06b28d1af0f8ebe7c7ea1092dd7736336e4f04a7d8",
+   "bytes": 100641,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1345654873,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-01-s2",
+   "file": "US-PV-01/us-pv-01-s2.png",
+   "sha256": "bc7a6b39e3425229f514ebdb7721d06ce5d86a90a2da951ba51b036593cde8fc",
+   "bytes": 100830,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 396233751,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-01-s3",
+   "file": "US-PV-01/us-pv-01-s3.png",
+   "sha256": "2ae66fff07fba6a5d783fab244b02a194075ea6d2504dbce46073a54cad525ec",
+   "bytes": 100803,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3824080528,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-02-s0",
+   "file": "US-PV-02/us-pv-02-s0.png",
+   "sha256": "3e83547402f4cfcee6e526f7823a69e907b04b247b77b3512c0e7af9f8baa05d",
+   "bytes": 103244,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 157341534,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-02-s1",
+   "file": "US-PV-02/us-pv-02-s1.png",
+   "sha256": "df1aaff33167133feaf3ca60d8631a6d4c1f44c7e3011dbc7d2d5ead85935e02",
+   "bytes": 103219,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 189906703,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-02-s2",
+   "file": "US-PV-02/us-pv-02-s2.png",
+   "sha256": "e51ce1604a862e4f1d9e2ef5179b8928d5b69b14f5c5142162bd34d4fe44f09c",
+   "bytes": 103180,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 2019604291,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-pv-02-s3",
+   "file": "US-PV-02/us-pv-02-s3.png",
+   "sha256": "d11c72da2fddb8560608b4d5733e881f5838079c63a79836fee9b469cc1f7947",
+   "bytes": 103225,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-PV-02",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1534290964,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-00-s0",
+   "file": "US-RN-00/us-rn-00-s0.png",
+   "sha256": "a24b331039a464704adac46f6f52bd0f11be900e8578cc799ac0d944a88877f5",
+   "bytes": 106974,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3367097290,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-00-s1",
+   "file": "US-RN-00/us-rn-00-s1.png",
+   "sha256": "2ace7304bb1f66608ba1cbe2e36756dbc94b8e593d6041d525288d0bbb3d9f0e",
+   "bytes": 107199,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 709576385,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-00-s2",
+   "file": "US-RN-00/us-rn-00-s2.png",
+   "sha256": "7bc2bfe257e9d1a42acaf231b3d5da8c73131fe2b8a45298a33e9811e5bef116",
+   "bytes": 107052,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3509400729,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-00-s3",
+   "file": "US-RN-00/us-rn-00-s3.png",
+   "sha256": "c6ffe3b3d44ed482a6a93bf40f76741018b69e638cf7e6226081030ced224b98",
+   "bytes": 107002,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-00",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1164757535,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-01-s0",
+   "file": "US-RN-01/us-rn-01-s0.png",
+   "sha256": "0f0e36d39731c259047f7ce639ba9f955b689de9e0c65ca41b6ed1a69ac0d298",
+   "bytes": 105041,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1720312498,
+    "variant": 0,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-01-s1",
+   "file": "US-RN-01/us-rn-01-s1.png",
+   "sha256": "0f107e7a8044cd8f730601c7844677e87bdff9047b18eb6155942c779890450e",
+   "bytes": 105054,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1299675376,
+    "variant": 1,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-01-s2",
+   "file": "US-RN-01/us-rn-01-s2.png",
+   "sha256": "43a93427eb5b73a3c1b3a3a722318fb527ac037d8001f3e3282fa0548430a659",
+   "bytes": 104804,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 1400841078,
+    "variant": 2,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  },
+  {
+   "id": "us-rn-01-s3",
+   "file": "US-RN-01/us-rn-01-s3.png",
+   "sha256": "7dec517bd3856fdda0509633d2bd48998ec012383800a268a753c83b3388179f",
+   "bytes": 105093,
+   "width": 640,
+   "height": 480,
+   "finding_code": "US-RN-01",
+   "synthetic": true,
+   "source": null,
+   "licence": "ProcSense generated (CC0 for our own use)",
+   "attribution": "",
+   "generator": {
+    "name": "ultrasound_synth.py",
+    "seed": 3979792860,
+    "variant": 3,
+    "kind": "stylised procedural illustration, not a trained generative model"
+   },
+   "mark": {
+    "text": "SIMULATION: synthetic image, not a real scan",
+    "strip_sha256": "47c21fdb582a90449fe1c70f34c84185702a6d32caefab832d9b142b84065b65",
+    "strip_height": 30
+   },
+   "status": "APPROVED_FOR_TRAINING",
+   "cases": [],
+   "review_required": true,
+   "approval": {
+    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+    "date": "2026-10-10",
+    "note": "Owner-attested clinician approval for real-use framing of the FYP; reconfirm with the named clinician before any assessment use"
+   }
+  }
+ ]
+}

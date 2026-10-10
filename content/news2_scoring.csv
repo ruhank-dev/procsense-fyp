@@ -1,0 +1,38 @@
+id,scale,parameter,v_low,v_high,v_state,o_points,quote,page,ref
+1.respiratory_rate.-8,1,respiratory_rate,,8,,3,Breathing rate (per min) ≤8 9–11 12–20 21–24 ≥25,30,SR-0200
+1.respiratory_rate.9-11,1,respiratory_rate,9,11,,1,Breathing rate (per min) ≤8 9–11 12–20 21–24 ≥25,30,SR-0201
+1.respiratory_rate.12-20,1,respiratory_rate,12,20,,0,Breathing rate (per min) ≤8 9–11 12–20 21–24 ≥25,30,SR-0202
+1.respiratory_rate.21-24,1,respiratory_rate,21,24,,2,Breathing rate (per min) ≤8 9–11 12–20 21–24 ≥25,30,SR-0203
+1.respiratory_rate.25-,1,respiratory_rate,25,,,3,Breathing rate (per min) ≤8 9–11 12–20 21–24 ≥25,30,SR-0204
+1.spo2.-91,1,spo2,,91,,3,Oxygen level SpO2 (%) — usual scale ≤91 92–93 94–95 ≥96,31,SR-0205
+1.spo2.92-93,1,spo2,92,93,,2,Oxygen level SpO2 (%) — usual scale ≤91 92–93 94–95 ≥96,31,SR-0206
+1.spo2.94-95,1,spo2,94,95,,1,Oxygen level SpO2 (%) — usual scale ≤91 92–93 94–95 ≥96,31,SR-0207
+1.spo2.96-,1,spo2,96,,,0,Oxygen level SpO2 (%) — usual scale ≤91 92–93 94–95 ≥96,31,SR-0208
+1.systolic_bp.-90,1,systolic_bp,,90,,3,Top BP number (mmHg) ≤90 91–100 101–110 111–219 ≥220,31,SR-0209
+1.systolic_bp.91-100,1,systolic_bp,91,100,,2,Top BP number (mmHg) ≤90 91–100 101–110 111–219 ≥220,31,SR-0210
+1.systolic_bp.101-110,1,systolic_bp,101,110,,1,Top BP number (mmHg) ≤90 91–100 101–110 111–219 ≥220,31,SR-0211
+1.systolic_bp.111-219,1,systolic_bp,111,219,,0,Top BP number (mmHg) ≤90 91–100 101–110 111–219 ≥220,31,SR-0212
+1.systolic_bp.220-,1,systolic_bp,220,,,3,Top BP number (mmHg) ≤90 91–100 101–110 111–219 ≥220,31,SR-0213
+1.heart_rate.-40,1,heart_rate,,40,,3,Heart rate (per min) ≤40 41–50 51–90 91–110 111–130 ≥131,31,SR-0214
+1.heart_rate.41-50,1,heart_rate,41,50,,1,Heart rate (per min) ≤40 41–50 51–90 91–110 111–130 ≥131,31,SR-0215
+1.heart_rate.51-90,1,heart_rate,51,90,,0,Heart rate (per min) ≤40 41–50 51–90 91–110 111–130 ≥131,31,SR-0216
+1.heart_rate.91-110,1,heart_rate,91,110,,1,Heart rate (per min) ≤40 41–50 51–90 91–110 111–130 ≥131,31,SR-0217
+1.heart_rate.111-130,1,heart_rate,111,130,,2,Heart rate (per min) ≤40 41–50 51–90 91–110 111–130 ≥131,31,SR-0218
+1.heart_rate.131-,1,heart_rate,131,,,3,Heart rate (per min) ≤40 41–50 51–90 91–110 111–130 ≥131,31,SR-0219
+1.temperature_c.-35.0,1,temperature_c,,35.0,,3,Temperature (°C) ≤35.0 35.1–36.0 36.1–38.0 38.1–39.0 ≥39.1,31,SR-0220
+1.temperature_c.35.1-36.0,1,temperature_c,35.1,36.0,,1,Temperature (°C) ≤35.0 35.1–36.0 36.1–38.0 38.1–39.0 ≥39.1,31,SR-0221
+1.temperature_c.36.1-38.0,1,temperature_c,36.1,38.0,,0,Temperature (°C) ≤35.0 35.1–36.0 36.1–38.0 38.1–39.0 ≥39.1,31,SR-0222
+1.temperature_c.38.1-39.0,1,temperature_c,38.1,39.0,,1,Temperature (°C) ≤35.0 35.1–36.0 36.1–38.0 38.1–39.0 ≥39.1,31,SR-0223
+1.temperature_c.39.1-,1,temperature_c,39.1,,,2,Temperature (°C) ≤35.0 35.1–36.0 36.1–38.0 38.1–39.0 ≥39.1,31,SR-0224
+1.oxygen.air,1,supplemental_oxygen,,,room air,0,On extra oxygen? Yes No (room air),31,SR-0225
+1.oxygen.oxygen,1,supplemental_oxygen,,,Yes,2,On extra oxygen? Yes No (room air),31,SR-0226
+1.acvpu.alert,1,acvpu,,,Alert,0,Alertness Alert Confused / Voice / Pain / Unresponsive,31,SR-0227
+1.acvpu.cvpu,1,acvpu,,,Voice,3,Alertness Alert Confused / Voice / Pain / Unresponsive,31,SR-0228
+2.spo2.-83,2,spo2,,83,,3,,,SR-0229
+2.spo2.84-85,2,spo2,84,85,,2,,,SR-0230
+2.spo2.86-87,2,spo2,86,87,,1,,,SR-0231
+2.spo2.88-92,2,spo2,88,92,,0,,,SR-0232
+2.spo2.on_air.93-,2,spo2,93,,on air,0,,,SR-0233
+2.spo2.on_oxygen.93-94,2,spo2,93,94,on oxygen,1,,,SR-0234
+2.spo2.on_oxygen.95-96,2,spo2,95,96,on oxygen,2,,,SR-0235
+2.spo2.on_oxygen.97-,2,spo2,97,,on oxygen,3,,,SR-0236

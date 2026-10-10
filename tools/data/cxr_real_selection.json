@@ -1,0 +1,199 @@
+{
+ "note": "Picked by eye from contact sheets on 2026-10-10 (five cached shards of the Hugging Face copy, PA view, one label; oedema allows its usual companion labels). Labels are text-mined, not clinician-checked. free_air_bases are real No Finding films the free-air crescent is painted into.",
+ "images": [
+  {
+   "id": "cxr-01-r0",
+   "shard": "test-00000",
+   "row": 4,
+   "label": "No Finding"
+  },
+  {
+   "id": "cxr-01-r1",
+   "shard": "test-00001",
+   "row": 733,
+   "label": "No Finding"
+  },
+  {
+   "id": "cxr-01-r2",
+   "shard": "test-00003",
+   "row": 360,
+   "label": "No Finding"
+  },
+  {
+   "id": "cxr-01-r3",
+   "shard": "test-00003",
+   "row": 843,
+   "label": "No Finding"
+  },
+  {
+   "id": "cxr-02-r0",
+   "shard": "test-00000",
+   "row": 445,
+   "label": "Consolidation"
+  },
+  {
+   "id": "cxr-02-r1",
+   "shard": "test-00001",
+   "row": 144,
+   "label": "Consolidation"
+  },
+  {
+   "id": "cxr-02-r2",
+   "shard": "test-00001",
+   "row": 249,
+   "label": "Consolidation"
+  },
+  {
+   "id": "cxr-02-r3",
+   "shard": "test-00000",
+   "row": 426,
+   "label": "Consolidation"
+  },
+  {
+   "id": "cxr-03-r0",
+   "shard": "test-00003",
+   "row": 603,
+   "label": "Effusion"
+  },
+  {
+   "id": "cxr-03-r1",
+   "shard": "test-00004",
+   "row": 261,
+   "label": "Effusion"
+  },
+  {
+   "id": "cxr-03-r2",
+   "shard": "test-00002",
+   "row": 845,
+   "label": "Effusion"
+  },
+  {
+   "id": "cxr-03-r3",
+   "shard": "test-00000",
+   "row": 95,
+   "label": "Effusion"
+  },
+  {
+   "id": "cxr-04-r0",
+   "shard": "test-00000",
+   "row": 6,
+   "label": "Pneumothorax"
+  },
+  {
+   "id": "cxr-04-r1",
+   "shard": "test-00001",
+   "row": 345,
+   "label": "Pneumothorax"
+  },
+  {
+   "id": "cxr-04-r2",
+   "shard": "test-00003",
+   "row": 752,
+   "label": "Pneumothorax"
+  },
+  {
+   "id": "cxr-04-r3",
+   "shard": "test-00002",
+   "row": 204,
+   "label": "Pneumothorax"
+  },
+  {
+   "id": "cxr-05-r0",
+   "shard": "test-00000",
+   "row": 1000,
+   "label": "Cardiomegaly"
+  },
+  {
+   "id": "cxr-05-r1",
+   "shard": "test-00001",
+   "row": 533,
+   "label": "Cardiomegaly"
+  },
+  {
+   "id": "cxr-05-r2",
+   "shard": "test-00002",
+   "row": 412,
+   "label": "Cardiomegaly"
+  },
+  {
+   "id": "cxr-05-r3",
+   "shard": "test-00003",
+   "row": 448,
+   "label": "Cardiomegaly"
+  },
+  {
+   "id": "cxr-06-r0",
+   "shard": "test-00000",
+   "row": 624,
+   "label": "Edema"
+  },
+  {
+   "id": "cxr-06-r1",
+   "shard": "test-00002",
+   "row": 606,
+   "label": "Edema"
+  },
+  {
+   "id": "cxr-06-r2",
+   "shard": "test-00003",
+   "row": 175,
+   "label": "Edema"
+  },
+  {
+   "id": "cxr-06-r3",
+   "shard": "test-00003",
+   "row": 919,
+   "label": "Edema"
+  },
+  {
+   "id": "cxr-07-r0",
+   "shard": "test-00000",
+   "row": 563,
+   "label": "Atelectasis"
+  },
+  {
+   "id": "cxr-07-r1",
+   "shard": "test-00001",
+   "row": 135,
+   "label": "Atelectasis"
+  },
+  {
+   "id": "cxr-07-r2",
+   "shard": "test-00002",
+   "row": 545,
+   "label": "Atelectasis"
+  },
+  {
+   "id": "cxr-07-r3",
+   "shard": "test-00003",
+   "row": 253,
+   "label": "Atelectasis"
+  }
+ ],
+ "free_air_bases": [
+  {
+   "shard": "test-00004",
+   "row": 640,
+   "label": "No Finding",
+   "variant": 0
+  },
+  {
+   "shard": "test-00002",
+   "row": 522,
+   "label": "No Finding",
+   "variant": 1
+  },
+  {
+   "shard": "test-00000",
+   "row": 460,
+   "label": "No Finding",
+   "variant": 2
+  },
+  {
+   "shard": "test-00001",
+   "row": 237,
+   "label": "No Finding",
+   "variant": 3
+  }
+ ]
+}

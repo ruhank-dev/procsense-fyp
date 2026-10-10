@@ -1,0 +1,19 @@
+id,inventory,rule,v_number,kind,triggers,quote,page,ref
+fasting_planned,D187,fasting_planned,2 h / 6 h / 8 h,threshold,think: tell the anaesthetist if breached; the anaesthetist decides,Fasting: clear / milk & light meal / heavy meal 2 h / 6 h / 8 h,147,SR-0900
+s1_bp_postpone,D188,s1_bp_postpone,180/110; 160/100,threshold,think: senior/anaesthetic review; S1 usually deferred after review,S1 BP postpone ≥180/110 on repeat (GP target <160/100),147,SR-0901
+s1_diabetes_postpone,D189,s1_diabetes_postpone,69; 8.5,threshold,think: optimise before planned surgery; senior/anaesthetic review,S1 diabetes postpone HbA1c >69 mmol/mol (8.5%),147,SR-0902
+periop_glucose_target,D190,periop_glucose_target,6–10; 6–12,threshold,"target range; outside it, think and tell the team",Peri-op sugar target 6–10 (6–12 acceptable) mmol/L,147,SR-0903
+duct_stone_high_risk,D191,duct_stone_high_risk,68; 4; 6,threshold,involve: senior; ERCP pathway before cholecystectomy,Bile-duct stone high risk Bilirubin >68 µmol/L (4 mg/dL) + duct >6 mm; or stone seen; or cholangitis,147,SR-0904
+gallbladder_moderate_grade,D192,gallbladder_moderate_grade,18; 72,threshold,involve: senior; acute pathway,Gallbladder 'moderate' grade WBC >18; lump; >72 h; severe local inflammation,147,SR-0905
+appendix_abnormal_width,D193,appendix_abnormal_width,6,threshold,think: supports appendicitis; senior decision,Appendix abnormal width >6 mm,147,SR-0906
+air_bands,D194,air_bands,0–4; 5–8; 9–12,threshold,think: guides scan or senior decision,"AIR bands 0–4 low, 5–8 unsure, 9–12 high",147,SR-0907
+aas_bands,D195,aas_bands,0–10; 11–15; 16,threshold,think: guides scan or senior decision,"AAS bands 0–10 low, 11–15 intermediate, ≥16 high",147,SR-0908
+sepsis_antibiotics,D196,sepsis_antibiotics,1; 3; 6,threshold,think: flag antibiotics and fluids; a clinician prescribes,"Sepsis antibiotics Within 1 h if NEWS2 ≥7 (or 5–6 with a single 3); 3 h if 5–6; 6 h if 1–4 (NICE NG253, 2025)",147,SR-0909
+antibiotic_before_incision,D197,antibiotic_before_incision,60,threshold,think: Time Out checks the antibiotic was given in time,Antibiotic before incision Within 60 min,147,SR-0910
+theatre_temperature,D198,theatre_temperature,36.0,threshold,think: warming equipment,Theatre temperature ≥36.0 °C,147,SR-0911
+sign_in_blood_loss,D199,sign_in_blood_loss,500; 7,threshold,think: blood ready and access at Sign In,Blood loss question (Sign In) >500 mL (7 mL/kg children),147,SR-0912
+appendectomy_timing,D200,appendectomy_timing,24,threshold,think: the surgeon sets the timing; context-dependent,Appendectomy timing Generally prompt; WSES 2025: laparoscopic appendectomy within 24 h of admission when surgery is indicated,147,SR-0913
+acute_cholecystitis_surgery,D201,acute_cholecystitis_surgery,72 h; 1 week,threshold,involve: senior; acute pathway,Acute cholecystitis surgery Early (ideally ≤72 h; NICE ≤1 week),147,SR-0914
+transfer_escort,D202,transfer_escort,4; 5–6; 7,threshold,think: who escorts the patient,Transfer escort NEWS2 ≤4 porter+nurse; 5–6 nurse+monitor; ≥7 doctor+nurse+full monitoring,148,SR-0915
+deterioration_clock,D203,deterioration_clock,5–10; 1; 30,simulator_design,the clock the S2 deterioration runs on,Deterioration clock (untreated S2) HR +5–10 and NEWS2 +1 about every 30 min,148,SR-0916
+low_spo2_trigger,D205,low_spo2_trigger,85,simulator_trigger,EMERGENCY: call for help now,"Obvious respiratory distress, cyanosis, falling consciousness, or SpO2 very low (e.g. ≤85% — a ProcSense simulator trigger, not a guideline cut-off)?",29,SR-0917

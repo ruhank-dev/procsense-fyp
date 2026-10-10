@@ -40,3 +40,10 @@ Goal: practical phases for the FYP workflow — no time on things the trainee ne
 ## Kept as is (checked, still needed)
 Core engine, simulation workflow, clinical logic, physiology/events/behaviour, scoring/debrief, case library, VR platform, Blender equipment,
 VR interaction/UI, voice/audio, both scenarios, evaluation/performance; P1 theatre extension, extended cases, backend, AI language, voice input, P1 evaluation; P2 phases.
+
+## Update — 10 October 2026 (owner instruction)
+
+| # | Change | Type | Why |
+|---|---|---|---|
+| A-D1 | **Data first:** all data work (extraction, clinical tables, decision rules, flow maps, cases, datasets, synthetic data, review pack) is done before the remaining engine and VR work — [data-first-order.md](p0/data-first-order.md), [ADR-0002](../decisions/ADR-0002-data-first-order.md) | Reorder | Most remaining engine steps read content that does not exist yet |
+| A-D2 | **Ultrasound images with matching reports:** real dataset first, labelled synthetic fallback, clinician review — [feature plan](p0/p0-medical-research-data/ultrasound-images-and-reports.md), [ADR-0003](../decisions/ADR-0003-synthetic-medical-images.md) | Change | Replaces "no AI-generated medical images"; the old wording is kept as history where it appeared |

@@ -1,0 +1,5 @@
+id,case_id,time,v_hr,v_bp,v_rr,v_spo2,v_temp,v_acvpu,v_news2_book,v_what,quote,page,ref
+14:00,VAR-S2-PD,14:00,102,124/78,20,97,38.3,A,2,"Infection, coping. Workup started.","14:00 102 124/78 20 97% 38.3 A 2 Infection, coping. Workup started.",112,SR-2500
+14:45,VAR-S2-PD,14:45,116,112/70,22,96,38.9,A,5,"Something has changed. Heart faster, BP lower, breathing faster, fever higher.","14:45 (no fluids/antibiotics given yet) 116 112/70 22 96% 38.9 A 5 Something has changed. Heart faster, BP lower, breathing faster, fever higher.",112,SR-2501
+15:15,VAR-S2-PD,15:15,128,92/58,26,94,39.2,A,10,Sepsis with poor circulation — EMERGENCY,15:15 128 92/58 26 94% 39.2 A 10 Sepsis with poor circulation — EMERGENCY,112,SR-2502
+15:45,VAR-S2-PD,15:45,138,82/48,30,91,39.4,Confused,16,Septic shock — near collapse,15:45 if nobody acts 138 82/48 30 91% 39.4 Confused 16 Septic shock — near collapse,112,SR-2503

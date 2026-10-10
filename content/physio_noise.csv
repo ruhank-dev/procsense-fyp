@@ -1,0 +1,7 @@
+id,variable,unit,d_sigma,d_phi,d_level_p5,d_level_p50,d_level_p95,d_cases,d_samples,quote,page,ref
+heart_rate,heart_rate,/min,2.196,0.786,55.55,73.5,90.0,40,184078,,,SR-2600
+spo2,spo2,%,0.454,0.76,98.0,100.0,100.0,40,187353,,,SR-2601
+nibp_systolic,nibp_systolic,mmHg,11.062,0.107,96.4,106.5,117.8,25,1131,,,SR-2602
+nibp_diastolic,nibp_diastolic,mmHg,7.178,0.12,53.25,64.0,74.75,26,1109,,,SR-2603
+respiratory_rate,respiratory_rate,/min,4.891,0.746,11.95,14.0,18.7,14,54464,,,SR-2604
+temperature_c,temperature_c,C,0.057,0.78,35.0,36.1,36.69,38,150683,,,SR-2605

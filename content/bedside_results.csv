@@ -1,0 +1,10 @@
+id,code,test,d_finding,d_text,d_rules,quote,page,ref
+PREG-00,PREG-00,pregnancy_test,Pregnancy test negative,"Urine pregnancy test: negative (one line, at the control mark only).",result=negative,,,SR-3600
+PREG-01,PREG-01,pregnancy_test,Pregnancy test positive,"Urine pregnancy test: positive (two lines, at the control mark and the test mark).",result=positive,,,SR-3601
+DIP-00,DIP-00,urine_dipstick,Urine dipstick normal,"Urine dipstick: leukocytes negative, nitrite negative, protein negative, blood negative, glucose negative, ketones negative.",glucose=negative;ketones=negative;blood=negative;nitrite=negative,,,SR-3602
+DIP-01,DIP-01,urine_dipstick,Urine dipstick: infection pattern,"Urine dipstick: leukocytes ++, nitrite positive, protein trace, blood trace, glucose negative, ketones negative. Suggests a urinary tract infection.",leukocytes=positive;nitrite=positive,,,SR-3603
+DIP-02,DIP-02,urine_dipstick,Urine dipstick: glucose and ketones,"Urine dipstick: glucose ++++, ketones +++, protein trace, leukocytes negative, nitrite negative, blood negative. Suspected diabetic ketoacidosis.",glucose=positive;ketones=positive,,,SR-3604
+DIP-03,DIP-03,urine_dipstick,Urine dipstick: blood,"Urine dipstick: blood +++, protein trace, leukocytes negative, nitrite negative, glucose negative, ketones negative. Blood in the urine (haematuria).",blood=positive,,,SR-3605
+TUBE-00,TUBE-00,blood_sample_appearance,Blood sample acceptable,"Sample appearance after centrifugation: serum clear and straw-coloured; no haemolysis, no lipaemia.",sample=acceptable,,,SR-3606
+TUBE-01,TUBE-01,blood_sample_appearance,Blood sample haemolysed,"Sample appearance after centrifugation: serum pink to red, haemolysis visible. Potassium and some other results are unreliable; repeat the sample.",sample=haemolysed,,,SR-3607
+TUBE-02,TUBE-02,blood_sample_appearance,Blood sample lipaemic,"Sample appearance after centrifugation: serum cloudy and milky, lipaemia visible. Some results may be unreliable; the lab will comment.",sample=lipaemic,,,SR-3608
