@@ -62,8 +62,9 @@ Closed issues: 18 of 18 (full text and decisions: `docs/research/issues.md`).
 | V-46 | IV fluid resuscitation with a crystalloid bolus and reassessment (CG174 1.3.1); no routine antibiotic prophylaxis for clean non-prosthetic… | primary | Confirmed; NG253 now gives a smaller sepsis bolus than CG174 (ISS-0015) |
 | V-47 | Sulfonylureas omitted while fasting; metformin continued when at most one meal is missed | secondary | Confirmed |
 | V-48 | Glucocorticoid cover for people on long-term steroids or with adrenal insufficiency having planned or emergency surgery; Parkinson's medici… | primary | Confirmed; the Parkinson's half of the epilepsy and Parkinson's row is confirmed, the epilepsy half was not found in NG… |
+| V-49 | Perioperative diabetes medicines: SGLT2 inhibitors omitted the day before and the day of surgery, ketones daily; metformin continued; sulfo… | primary | Confirmed; this is the UK source the book's SGLT2 days follow (V-37 now primary); the book's 'omit or local policy' for… |
 
-48 claims: 12 checked against the guideline page itself, 36 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
+49 claims: 13 checked against the guideline page itself, 36 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
 
 ## 3. What was authored (the book does not say it)
 
@@ -154,7 +155,7 @@ Cards: `docs/research/datasets/`; register: `docs/research/dataset_register.csv`
 
 CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; 53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, every result reachable from a case or a what-if); 53 equipment sheets; the content manifest below. The full list with what each catches is `docs/CI.md`.
 
-Register: 1567 rows. Evidence A (guideline cited by the book): 244 verified, 33 still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 209 authored in the walkthrough.
+Register: 1567 rows. Evidence A (guideline cited by the book): 247 verified, 29 still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 210 authored in the walkthrough.
 
 Content package: 328 files; per folder: (root) 60, case_files 53, cases 1, cxr 33, ecg 41, images 77, rules 1, schema 4, workflow 1, xsec 57. Content hash: `f27f5e7a52b49b285bf4d7a1aecd8047fc8519c07b6f15a30b585e50362c7edd`.
 
