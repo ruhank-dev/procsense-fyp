@@ -182,6 +182,10 @@ def check_team_guards() -> list[str]:
     ci = ROOT / ".github" / "workflows" / "ci.yml"
     if ci.exists() and not re.search(r"push:\s*\n\s*branches:\s*\[main\]", read(ci)):
         problems.append(".github/workflows/ci.yml: must run on pushes to main")
+    for wf in sorted((ROOT / ".github" / "workflows").glob("*.yml")):  # an unquoted ': ' in a step name makes GitHub reject the whole workflow (it then fails in 0 s with no job)
+        for n, line in enumerate(read(wf).splitlines(), 1):
+            if re.match(r"\s*- name: [^\"'].*: ", line):
+                problems.append(f"{wf.relative_to(ROOT).as_posix()}:{n}: step name contains ': ' and is not quoted (invalid YAML; GitHub will not run the workflow)")
     return problems
 
 

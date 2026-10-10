@@ -116,7 +116,7 @@ jobs:
       - name: Images and reports are valid (ultrasound, ECG, chest X-ray, CT, MRI, MRCP)
         run: uv run --project tools tools/content/validate_images.py
 
-      - name: Case files are built, valid and up to date (53 cases: 17 P0, 16 P1, 20 P2)
+      - name: "Case files are built, valid and up to date (53 cases: 17 P0, 16 P1, 20 P2)"
         run: uv run --project tools tools/content/build_case_files.py --check
 
       - name: Case file tests
