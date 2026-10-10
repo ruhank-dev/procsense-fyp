@@ -122,6 +122,12 @@ jobs:
       - name: Case file tests
         run: uv run --project tools tools/content/test_case_files.py
 
+      - name: Equipment sheets are up to date (53 items)
+        run: uv run --project tools tools/content/equipment_sheets.py --check
+
+      - name: Equipment sheet tests
+        run: uv run --project tools tools/content/test_equipment.py
+
       - name: Imaging library is complete and up to date
         run: uv run --project tools tools/content/imaging_library.py --check
 

@@ -1,0 +1,44 @@
+# 35: Clippers (equipment-list #35)
+
+**Status:** DRAFT, approved for training on the owner's statement · **Written:** 10 October 2026 · **Tier:** P0 · **Kind:** 3D · **Room:** ward/ED · **Scenarios (S1 / S2):** cond. / cond. · **Steps:** 10
+
+**Representative device:** 3M Surgical Clipper (generic)
+
+## Dimensions (every number has a source)
+
+| Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
+|---|---|---|---|---|
+| Length | not found | [3M product pages returned no figure](https://www.solventum.com/en-us/home/f/b00041642) | open | exact |
+
+Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+
+## Components
+
+Handheld clipper with a single-use head.
+
+## Materials and colours
+
+Blue and white plastic.
+
+## States
+
+- off
+- on
+- used
+
+## Interaction (from the equipment list and the interaction spec)
+
+- Equipment list: Clippers not razor
+- Trainee does: Uses clippers (not razor)
+- System response: Hair-removal state on site
+- Failure or scenario: Razor → infection risk
+- Asset needs (named points): `GRAB_`
+
+## Triangle-budget class
+
+Low
+
+## Open points (nothing here is guessed)
+
+- Dimensions
+- Length: no source found
