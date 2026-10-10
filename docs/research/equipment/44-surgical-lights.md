@@ -8,7 +8,7 @@
 
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
-| Dome | the model name indicates a 600 mm dome; no figure was returned | [Draeger Polaris 600 product pages](https://www.draeger.com/en_uk/Products/Polaris-600) | open | approx |
+| Lighthead diameter | 785 mm | [Draeger Polaris 600 specification as listed by a distributor](https://remma.fr/en/model/surgical-lamp-polaris-600) | listing | exact |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 
@@ -40,4 +40,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Dome diameter and illuminance figures from the data sheet
+- Illuminance figures from the data sheet

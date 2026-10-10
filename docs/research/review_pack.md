@@ -54,8 +54,11 @@ Closed issues: 18 of 18 (full text and decisions: `docs/research/issues.md`).
 | V-38 | The book's educational examples for adrenaline in anaphylaxis and for fast-acting sugar in hypoglycaemia match their sources (no number is… | secondary | Confirmed |
 | V-39 | Acute cholecystitis: laparoscopic cholecystectomy within 1 week of diagnosis (NICE CG188); early surgery, within 72 hours in TG13 | secondary | Confirmed; TG18 recommends early surgery regardless of symptom duration |
 | V-40 | Sepsis antibiotics: 1 hour for NEWS2 7 or more, up to 3 hours for 5 to 6, up to 6 hours for the lowest scores | secondary | Confirmed |
+| V-41 | Routine preoperative tests for elective surgery: pregnancy question and test if in doubt; HbA1c if diabetic and none in 3 months; no routin… | primary | Confirmed for planned surgery; NG45 does not cover emergency surgery |
+| V-42 | Surgical VTE risk factors (age over 60, BMI over 30, anaesthetic and surgical time over 90 minutes, 60 for pelvic or lower limb); pharmacol… | secondary | Confirmed; the platelet-count limit for bleeding risk was not found and stays open |
+| V-43 | Medicine cautions that appear in the US label wording kept in drug_label_safety.csv (liver disease for paracetamol, respiratory depression… | primary | Confirmed for the two groups named |
 
-40 claims: 5 checked against the guideline page itself, 35 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
+43 claims: 7 checked against the guideline page itself, 36 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
 
 ## 3. What was authored (the book does not say it)
 
@@ -140,13 +143,13 @@ Cards: `docs/research/datasets/`; register: `docs/research/dataset_register.csv`
 
 ## 7. Equipment sheets
 
-53 sheets in `docs/research/equipment`: 104 of 121 dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), 17 are open (no source found, placeholders until one is). Pole, wristband, dipstick and cassette sizes are among the open ones.
+53 sheets in `docs/research/equipment`: 108 of 121 dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), 13 are open (no source found, placeholders until one is). Pole, wristband, dipstick and cassette sizes are among the open ones.
 
 ## 8. Validation summary
 
 CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; 53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, every result reachable from a case or a what-if); 53 equipment sheets; the content manifest below. The full list with what each catches is `docs/CI.md`.
 
-Register: 1567 rows. Evidence A (guideline cited by the book): 224 verified, 64 still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 198 authored in the walkthrough.
+Register: 1567 rows. Evidence A (guideline cited by the book): 236 verified, 43 still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 207 authored in the walkthrough.
 
 Content package: 328 files; per folder: (root) 60, case_files 53, cases 1, cxr 33, ecg 41, images 77, rules 1, schema 4, workflow 1, xsec 57. Content hash: `f27f5e7a52b49b285bf4d7a1aecd8047fc8519c07b6f15a30b585e50362c7edd`.
 

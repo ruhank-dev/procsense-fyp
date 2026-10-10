@@ -8,7 +8,7 @@
 
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
-| Portable unit | 1.5 kg, 30 L/min; dimensions not found | [Laerdal LCSU 4 listing](https://laerdal.com/doc/2115/Laerdal-Compact-Suction-Unit-LCSU-4) | open | exact |
+| Portable unit | 185 x 262 x 81 mm (7.3 x 10.3 x 3.2 in), 1.53 kg, 300 mL canister version; 30 L/min | [Laerdal LCSU 4 specification as listed by St John Ambulance and distributors](https://shop.sja.org.uk/products/laerdal-compact-suction-unit-lcsu-4) | listing | exact |
 | Wall regulator with safety jar | 230 x 70 x 90 mm (H x W x D) | [RVTM3 listing](https://storage.mtender.gov.md/get/82735822-42c3-4eaa-9cbd-c8fb46ecc789-1646984995908) | listing | approx |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
@@ -43,4 +43,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Portable unit dimensions
+- None.

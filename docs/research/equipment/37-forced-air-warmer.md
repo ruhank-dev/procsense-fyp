@@ -11,7 +11,7 @@
 | Unit height x width x depth | 300 x 250 x 340 mm | [Bair Hugger 775 listing](https://somatechnology.com/patient-warmers/bair-hugger-775) | listing | exact |
 | Weight | 7 kg | [same](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | exact |
 | Air temperature settings | 43, 38 and 32 degC (each plus or minus 1.5) | [same](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | exact |
-| Blanket and hose length | not found | no source | open | exact |
+| Hose length | about 1.8 m | [Bair Hugger 775 listing (also unit 30 x 25 x 34 cm)](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | approx |
 
 Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
 
@@ -43,5 +43,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Blanket and hose dimensions
-- Blanket and hose length: no source found
+- Blanket dimensions

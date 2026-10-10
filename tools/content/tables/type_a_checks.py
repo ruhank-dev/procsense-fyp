@@ -108,6 +108,22 @@ rule(r"Score fact: (vte\.|airway\.(mouth_opening|thyromental|neck_movement))", O
 rule(r"Score fact: tg18_cholecystitis\.", O, "", "open", "Only Grade I and II were checked (V-06); the diagnostic groups and Grade III organ-failure limits were not re-read.")
 
 
+# ---------------------------------------------------------------- second pass (10 Oct 2026, later): NICE NG45 text opened (BJUI reproduction), NG89 summaries, openFDA labels
+_FIRST: list[tuple[str, str, str, str, str]] = []
+
+
+def first(pattern: str, kind: str, vid: str, level: str, text: str) -> None:
+    _FIRST.append((pattern, kind, vid, level, text))
+
+
+first(r"Test indication: (pregnancy|fbc|u_and_e|hba1c|clotting|urine_dipstick|ecg|chest_xray)$", V, "V-41", "primary",
+      "The planned-surgery (S1) side matches NICE NG45 (text opened): ask about pregnancy and test if in doubt; HbA1c if diabetic and none in 3 months; no routine urine dipstick or chest X-ray; FBC, kidney function, ECG and clotting by ASA grade, surgery grade and comorbidity. The emergency (S2) side is outside NG45, which covers elective surgery only, and is the book's practice.")
+first(r"Test indication: ", D, "", "design", "The book's diagnostic work-up for the surgical problem (liver tests, inflammation, glucose, group and save, imaging, sepsis tests); NICE NG45 does not cover these, so there is no guideline row to match.")
+first(r"Score fact: vte\.risk_factors$", V, "V-42", "secondary", "NICE NG89 surgical risk factors: age over 60, BMI over 30, anaesthetic and surgical time over 90 minutes (60 for pelvic or lower limb surgery).")
+first(r"Medicine plan: vte_prophylaxis$", V, "V-42", "secondary", "NICE NG89: pharmacological prophylaxis from 6 to 12 hours after surgery and for at least 7 days after abdominal surgery when the clot risk outweighs the bleeding risk.")
+first(r"Medicine plan: (paracetamol|opioids)$", V, "V-43", "primary", "openFDA label wording kept in content/drug_label_safety.csv supports the caution (severe liver disease for paracetamol; respiratory depression for opioids); the dose example is the book's own and is not used by the simulator.")
+RULES[:0] = _FIRST
+
 URLS = {
     "V-01": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf", "V-03": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8039746/", "V-04": "https://pubmed.ncbi.nlm.nih.gov/29032610/",
     "V-06": "https://pure.fujita-hu.ac.jp/en/publications/tokyo-guidelines-2018-diagnostic-criteria-and-severity-grading-of/", "V-07": "https://www.cpoc.org.uk/", "V-08": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6686768/",
@@ -119,6 +135,8 @@ URLS = {
     "V-33": "https://www.acc.org/Latest-in-Cardiology/Articles/2024/02/05/11/43/2023-ESH-Hypertension-Guideline-Update", "V-34": "https://sccm.org/sepsisguidelines",
     "V-35": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4925633", "V-37": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12464960/", "V-38": "https://www.medicines.org.uk/emc/product/3449/smpc",
     "V-39": "https://www.nice.org.uk/guidance/QS104/chapter/quality-statement-1-acute-cholecystitis", "V-40": "https://aomrc.org.uk/publication/statement-on-the-initial-antimicrobial-treatment-of-sepsis-v2-0",
+    "V-41": "https://www.bjuinternational.com/?p=33086", "V-42": "https://gpnotebook.com/pages/respiratory-and-chest-medicine/deep-vein-thrombosis/risk-factors-and-associated-increased-risk-for-development-of-venous-thromboembolism-in-surgical-patients",
+    "V-43": "https://open.fda.gov/apis/drug/label/",
 }
 
 
