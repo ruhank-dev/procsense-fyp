@@ -8,7 +8,7 @@ import csv
 import sys
 from pathlib import Path
 
-from checks import case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems
+from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -91,6 +91,11 @@ def main() -> int:
     fasting = load_json(CONTENT / "fasting" / "fasting.json")
     frefs = {c["ref"] for c in fasting["classes"].values()} | set(fasting["refs"])
     failed |= _report("fasting", [f"fasting.json: ref {r} not in register" for r in sorted(frefs) if r not in register], f"{len(frefs)} refs ok")
+
+    treatments = load_json(CONTENT / "treatments.json")
+    with open(CONTENT / "medicines.csv", encoding="utf-8", newline="") as f:
+        medicine_ids = {r["id"] for r in csv.DictReader(f)}
+    failed |= _report("treatments", treatment_problems(treatments, register, medicine_ids), f"{len(treatments['treatments'])} treatments, doses only with a reviewer")
 
     for path in sorted(CONTENT.glob("*.csv")):
         problems = csv_problems(path, register)

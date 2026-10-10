@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "content_hash": "9733deb544bf6e7b1053a303e32a37043ae05ae23fdc40d7e921e67fdbd9c7f8",
- "files": 340,
- "bytes": 16577856,
+ "content_hash": "df9b805462ad42db3e855b9a5c26ef4c80c49ec20f4e94c28e766ef5bdadf8ef",
+ "files": 341,
+ "bytes": 16594159,
  "per_folder": {
-  "(root)": 60,
+  "(root)": 61,
   "case_files": 53,
   "cases": 1,
   "cxr": 33,
@@ -1116,6 +1116,10 @@
   "treatment_clashes.csv": {
    "bytes": 7060,
    "sha256": "95d801fa7a176e93f5331a4942c751e4159a7658ef76a8e87040ebbad3aaf5de"
+  },
+  "treatments.json": {
+   "bytes": 16303,
+   "sha256": "0ea3bf45051dcd82f2c020b83b113a7f4fdebc227ce44d1fe010622e9649d8f2"
   },
   "turnaround.csv": {
    "bytes": 429,

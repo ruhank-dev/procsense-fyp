@@ -1,0 +1,709 @@
+{
+ "checks": [
+  {
+   "id": "identity",
+   "phase": "before",
+   "severity": "critical",
+   "meaning": "The patient's identity is confirmed"
+  },
+  {
+   "id": "allergy_known",
+   "phase": "before",
+   "severity": "critical",
+   "meaning": "The patient's allergies are known"
+  },
+  {
+   "id": "indication",
+   "phase": "before",
+   "severity": "major",
+   "meaning": "There is a recorded reason for the treatment"
+  },
+  {
+   "id": "restriction",
+   "phase": "before",
+   "severity": "critical",
+   "meaning": "None of the patient's conditions restricts this treatment"
+  },
+  {
+   "id": "timing",
+   "phase": "before",
+   "severity": "major",
+   "meaning": "The timing wording for this treatment has been checked"
+  },
+  {
+   "id": "order",
+   "phase": "before",
+   "severity": "major",
+   "meaning": "A clinician has confirmed the order"
+  },
+  {
+   "id": "documentation",
+   "phase": "after",
+   "severity": "minor",
+   "meaning": "The treatment is recorded"
+  }
+ ],
+ "prerequisites": [
+  {
+   "id": "iv_access",
+   "reject": "IV_ACCESS_REQUIRED",
+   "meaning": "IV access is in place"
+  }
+ ],
+ "effects": [
+  {
+   "id": "EFF-ANALGESIA",
+   "note": "Pain falls"
+  },
+  {
+   "id": "EFF-ANTIEMETIC",
+   "note": "Nausea settles"
+  },
+  {
+   "id": "EFF-FLUID-BOLUS",
+   "note": "Circulating volume rises: blood pressure up, heart rate down"
+  },
+  {
+   "id": "EFF-OXYGEN",
+   "note": "Oxygen saturation rises"
+  },
+  {
+   "id": "EFF-ANTIBIOTIC",
+   "note": "Infection treated: slows the deterioration clock"
+  },
+  {
+   "id": "EFF-ADRENALINE",
+   "note": "Allergic reaction reverses"
+  },
+  {
+   "id": "EFF-GLUCOSE-RISE",
+   "note": "Low blood sugar corrects"
+  },
+  {
+   "id": "EFF-POTASSIUM-LOWER",
+   "note": "Potassium falls"
+  },
+  {
+   "id": "EFF-OPIOID-REVERSAL",
+   "note": "Slow breathing from an opioid reverses"
+  }
+ ],
+ "refs": [
+  "SR-4100",
+  "SR-4101",
+  "SR-4102",
+  "SR-4103",
+  "SR-4104",
+  "SR-4106"
+ ],
+ "treatments": [
+  {
+   "id": "TR-PARACETAMOL",
+   "kind": "medicine",
+   "label": "Paracetamol",
+   "medicine": {
+    "id": "paracetamol",
+    "ref": "SR-1300"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "IV paracetamol (SmPC): 1 g as a 15-minute infusion, up to four times a day with at least 4 hours between doses, maximum 4 g/day for adults over 50 kg (3 g/day if additional risk factors such as liver disease, malnutrition, dehydration); under 50 kg weight-based (15 mg/kg per dose, maximum 60 mg/kg/day, not above 3 g); longer interval in severe kidney impairment. Oral dosing: per BNF/SmPC — prescriber decides",
+    "source": "SmPC",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": {
+    "id": "paracetamol",
+    "ref": "SR-3800"
+   },
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "restriction",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [
+    {
+     "tag": "severe_liver_disease",
+     "ref": "SR-1300"
+    }
+   ],
+   "effects": [
+    "EFF-ANALGESIA"
+   ],
+   "refs": [
+    "SR-1300",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-NSAID",
+   "kind": "medicine",
+   "label": "NSAIDs",
+   "medicine": {
+    "id": "nsaids",
+    "ref": "SR-1301"
+   },
+   "dose_policy": "PATIENT_SPECIFIC",
+   "dose_display": null,
+   "label_row": {
+    "id": "nsaids",
+    "ref": "SR-3801"
+   },
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "restriction",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [
+    {
+     "tag": "kidney_injury",
+     "ref": "SR-1301"
+    },
+    {
+     "tag": "dehydration",
+     "ref": "SR-1301"
+    },
+    {
+     "tag": "peptic_ulcer_bleeding",
+     "ref": "SR-1301"
+    },
+    {
+     "tag": "blood_thinner",
+     "ref": "SR-1301"
+    },
+    {
+     "tag": "asthma",
+     "ref": "SR-1301"
+    },
+    {
+     "tag": "pregnancy",
+     "ref": "SR-1301"
+    },
+    {
+     "tag": "heart_failure",
+     "ref": "SR-1301"
+    }
+   ],
+   "effects": [
+    "EFF-ANALGESIA"
+   ],
+   "refs": [
+    "SR-1301",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-OPIOID",
+   "kind": "medicine",
+   "label": "Opioids",
+   "medicine": {
+    "id": "opioids",
+    "ref": "SR-1302"
+   },
+   "dose_policy": "PATIENT_SPECIFIC",
+   "dose_display": null,
+   "label_row": {
+    "id": "opioids",
+    "ref": "SR-3802"
+   },
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "restriction",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [
+    {
+     "tag": "kidney_failure",
+     "ref": "SR-1302"
+    }
+   ],
+   "effects": [
+    "EFF-ANALGESIA"
+   ],
+   "refs": [
+    "SR-1302",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-ANTIEMETIC",
+   "kind": "medicine",
+   "label": "Antiemetics",
+   "medicine": {
+    "id": "antiemetics",
+    "ref": "SR-1303"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "ondansetron (SmPC, post-operative nausea/vomiting): 4 mg by slow IV injection (not less than 30 s), at induction for prevention or as a single dose for established PONV; use for other causes of nausea is the prescriber's decision",
+    "source": "SmPC",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": {
+    "id": "antiemetics",
+    "ref": "SR-3803"
+   },
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "restriction",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [
+    {
+     "tag": "long_qtc",
+     "ref": "SR-1303"
+    },
+    {
+     "tag": "bowel_obstruction",
+     "ref": "SR-1303"
+    }
+   ],
+   "effects": [
+    "EFF-ANTIEMETIC"
+   ],
+   "refs": [
+    "SR-1303",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-IV-FLUIDS",
+   "kind": "fluid",
+   "label": "IV fluids",
+   "medicine": {
+    "id": "iv_fluids",
+    "ref": "SR-1304"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "resuscitation (NICE CG174 rec 1.3.1): crystalloid with sodium 130–154 mmol/L as a 500 mL bolus over less than 15 minutes, then reassess",
+    "source": "NICE CG174 rec 1.3.1",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "restriction",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [
+    {
+     "tag": "heart_failure",
+     "ref": "SR-1304"
+    },
+    {
+     "tag": "kidney_failure",
+     "ref": "SR-1304"
+    }
+   ],
+   "effects": [
+    "EFF-FLUID-BOLUS"
+   ],
+   "refs": [
+    "SR-1304",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-ABX-PROPHYLAXIS",
+   "kind": "medicine",
+   "label": "Preventive antibiotic (planned surgery, higher risk)",
+   "medicine": {
+    "id": "abx_s1_higher_risk",
+    "ref": "SR-1306"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "cefazolin (ASHP/IDSA/SIS/SHEA 2013): 2 g IV, 3 g if body weight is 120 kg or more; choice of agent and any redose depend on institutional policy, allergy history and kidney function",
+    "source": "ASHP/IDSA/SIS/SHEA 2013",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "timing",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [],
+   "refs": [
+    "SR-1306",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-ABX-S2",
+   "kind": "medicine",
+   "label": "Broad antibiotics (emergency appendicitis)",
+   "medicine": {
+    "id": "abx_s2_all",
+    "ref": "SR-1307"
+   },
+   "dose_policy": "INSTITUTIONAL",
+   "dose_display": null,
+   "label_row": null,
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "timing",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-ANTIBIOTIC"
+   ],
+   "refs": [
+    "SR-1307",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-STEROID-COVER",
+   "kind": "medicine",
+   "label": "Steroid cover at induction",
+   "medicine": {
+    "id": "steroids",
+    "ref": "SR-1330"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "hydrocortisone 100 mg IV at induction (Association of Anaesthetists / RCP / Society for Endocrinology, Anaesthesia 2020); the anaesthetist decides who needs it and what follows",
+    "source": "Association of Anaesthetists / RCP / Society for Endocrinology, Anaesthesia 2020",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": {
+    "id": "steroids",
+    "ref": "SR-3820"
+   },
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "timing",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [],
+   "refs": [
+    "SR-1330",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-VTE-PROPHYLAXIS",
+   "kind": "medicine",
+   "label": "Clot prevention (VTE prophylaxis)",
+   "medicine": {
+    "id": "vte_prophylaxis",
+    "ref": "SR-1334"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "enoxaparin (SmPC): 20 mg once daily SC for moderate VTE risk, 40 mg once daily SC for high risk; 20 mg daily if creatinine clearance is 15–30 mL/min; the SmPC advises about 7–10 days minimum in moderate-risk patients",
+    "source": "SmPC",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "timing",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [],
+   "refs": [
+    "SR-1334",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-ADRENALINE",
+   "kind": "medicine",
+   "label": "Adrenaline (anaphylaxis)",
+   "medicine": {
+    "id": "adrenaline",
+    "ref": "SR-1335"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "adults and children over 12: 500 micrograms (0.5 mL of 1 mg/mL) IM into the anterolateral thigh; repeat after 5 minutes if airway, breathing or circulation problems persist; IV adrenaline only by experienced specialists (Resuscitation Council UK 2021; this is a standard algorithm dose — the responsible clinician confirms)",
+    "source": "Resuscitation Council UK 2021",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-ADRENALINE"
+   ],
+   "refs": [
+    "SR-1335",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-FAST-SUGAR",
+   "kind": "medicine",
+   "label": "Fast-acting sugar (low blood sugar, can swallow)",
+   "medicine": {
+    "id": "fast_sugar",
+    "ref": "SR-1336"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "JBDS hospital hypoglycaemia guideline: 15–20 g quick-acting carbohydrate if the patient is conscious and able to swallow (and the protocol allows oral treatment — fasting status matters), recheck glucose after 10–15 minutes and repeat as the protocol directs",
+    "source": "JBDS hospital hypoglycaemia guideline",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-GLUCOSE-RISE"
+   ],
+   "refs": [
+    "SR-1336",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-IV-GLUCOSE",
+   "kind": "medicine",
+   "label": "IV glucose (low blood sugar, cannot swallow)",
+   "medicine": {
+    "id": "iv_glucose",
+    "ref": "SR-1337"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "JBDS: IV 10% glucose 150–200 mL (or 20% glucose 75–100 mL) over about 15 minutes, recheck after 10 minutes; prescriber and hospital protocol confirm",
+    "source": "JBDS",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-GLUCOSE-RISE"
+   ],
+   "refs": [
+    "SR-1337",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-HYPERKALAEMIA",
+   "kind": "medicine",
+   "label": "Hyperkalaemia treatment",
+   "medicine": {
+    "id": "hyperkalaemia",
+    "ref": "SR-1338"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "UK Kidney Association algorithm: with ECG changes, 30 mL of 10% calcium gluconate IV over 10 min (or 10 mL of 10% calcium chloride); insulin–glucose 10 units soluble insulin in 25 g glucose IV over 15–30 min, followed by 10% glucose 50 mL/h for 5 h if pre-treatment glucose is below 7 mmol/L; repeat ECG and monitor potassium and glucose. Emergency prescription by the responsible clinician",
+    "source": "UK Kidney Association algorithm",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-POTASSIUM-LOWER"
+   ],
+   "refs": [
+    "SR-1338",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-NALOXONE",
+   "kind": "medicine",
+   "label": "Naloxone (opioid overdose)",
+   "medicine": {
+    "id": "naloxone",
+    "ref": "SR-1339"
+   },
+   "dose_policy": "PATIENT_SPECIFIC",
+   "dose_display": null,
+   "label_row": {
+    "id": "naloxone",
+    "ref": "SR-3821"
+   },
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-OPIOID-REVERSAL"
+   ],
+   "refs": [
+    "SR-1339",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-SEPSIS-BUNDLE",
+   "kind": "medicine",
+   "label": "Sepsis emergency treatment",
+   "medicine": {
+    "id": "sepsis_emergency",
+    "ref": "SR-1340"
+   },
+   "dose_policy": "EDUCATIONAL_EXAMPLE",
+   "dose_display": {
+    "text": "500 mL crystalloid bolus over less than 15 minutes then reassess (NICE CG174; scope exclusions above)",
+    "source": "NICE CG174",
+    "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
+   },
+   "label_row": null,
+   "requires": [
+    "iv_access"
+   ],
+   "required_checks": [
+    "identity",
+    "allergy_known",
+    "indication",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [
+    "EFF-FLUID-BOLUS",
+    "EFF-ANTIBIOTIC"
+   ],
+   "refs": [
+    "SR-1340",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-OXYGEN",
+   "kind": "oxygen",
+   "label": "Oxygen",
+   "medicine": null,
+   "dose_policy": "NONE",
+   "dose_display": null,
+   "label_row": null,
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "indication",
+    "restriction",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [
+    {
+     "tag": "co2_retainer",
+     "ref": "SR-0986"
+    }
+   ],
+   "effects": [
+    "EFF-OXYGEN"
+   ],
+   "refs": [
+    "SR-0986",
+    "SR-4105"
+   ]
+  },
+  {
+   "id": "TR-IV-ACCESS",
+   "kind": "procedure",
+   "label": "IV access (cannula)",
+   "medicine": null,
+   "dose_policy": "NONE",
+   "dose_display": null,
+   "label_row": null,
+   "requires": [],
+   "required_checks": [
+    "identity",
+    "order",
+    "documentation"
+   ],
+   "restricted_by": [],
+   "effects": [],
+   "refs": [
+    "SR-4103",
+    "SR-4105"
+   ]
+  }
+ ]
+}
