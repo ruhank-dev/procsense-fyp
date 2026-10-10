@@ -27,8 +27,9 @@ namespace ProcSense.Core.Clinical
         private static readonly Regex Parenthetical = new Regex(@"\s*\(.*\)\s*$", RegexOptions.CultureInvariant);
 
         public InvestigationTables(IReadOnlyList<InvestigationDef> tests, IReadOnlyList<string> tubes, IReadOnlyList<IndicationRow> indications, string delayEvent, double delayMinutes,
-            IReadOnlyList<string>? labels = null, double dripDilution = 1, double edtaPotassiumRise = 0, IReadOnlyDictionary<string, NormalSet>? normals = null)
+            IReadOnlyList<string>? labels = null, double dripDilution = 1, double edtaPotassiumRise = 0, IReadOnlyDictionary<string, NormalSet>? normals = null, CriticalTable? critical = null)
         {
+            Critical = critical ?? CriticalTable.Empty;
             Tests = tests; Tubes = tubes; Indications = indications; DelayEvent = delayEvent; DelayMinutes = delayMinutes;
             Labels = labels ?? new List<string> { "bedside", "prelabelled", "unlabelled" }; DripDilution = dripDilution; EdtaPotassiumRise = edtaPotassiumRise;
             Normals = normals ?? new Dictionary<string, NormalSet>();
@@ -47,6 +48,8 @@ namespace ProcSense.Core.Clinical
         /// <summary>Potassium rises by this much (mmol/L) when a gold-tube test is taken into an EDTA tube.</summary>
         public double EdtaPotassiumRise { get; }
         public IReadOnlyDictionary<string, NormalSet> Normals { get; }
+        /// <summary>The limits the lab phones about (content/investigations/critical.json).</summary>
+        public CriticalTable Critical { get; }
 
         public InvestigationDef? Find(string id) => Tests.FirstOrDefault(t => t.Id == id);
 
@@ -65,7 +68,7 @@ namespace ProcSense.Core.Clinical
         /// <summary>True for the results a case states for a second look ("Potassium (repeat)", "Capillary glucose (repeat in 30 minutes)").</summary>
         public static bool IsRepeat(string resultName) => resultName.IndexOf("(repeat", StringComparison.OrdinalIgnoreCase) >= 0;
 
-        public static InvestigationTables Parse(string investigationsJson, string indicationsJson, string? normalsJson = null)
+        public static InvestigationTables Parse(string investigationsJson, string indicationsJson, string? normalsJson = null, string? criticalJson = null)
         {
             var root = new JsonObj(MiniJson.Parse(investigationsJson), "investigations");
             var tubes = new List<string>();
@@ -152,7 +155,7 @@ namespace ProcSense.Core.Clinical
                 o.Finish();
             }
             ind.Finish();
-            return new InvestigationTables(tests, tubes, rows, delayEvent, delayMinutes, labels, dilution, rise, normals);
+            return new InvestigationTables(tests, tubes, rows, delayEvent, delayMinutes, labels, dilution, rise, normals, criticalJson == null ? null : CriticalTable.Parse(criticalJson));
         }
     }
 

@@ -46,5 +46,9 @@ namespace ProcSense.Core.Content
         CaseFileIdentity Identity, string SpokenIdentityAnswer, Wristband? Wristband, IReadOnlyList<Allergy> Allergies, string AllergyAnswer, string ReasonAnswer,
         CaseFilePresentation Presentation, IReadOnlyList<CaseFileHistory> History, IReadOnlyList<CaseFileObservation> Observations, IReadOnlyList<CaseFileExamination> Examination,
         IReadOnlyList<CaseFileResult> Results, IReadOnlyList<CaseFileScore> Scores, IReadOnlyList<CaseFileProblem> Problems, IReadOnlyList<CaseFileDecision> Decisions,
-        string ExpectedEndState, IReadOnlyDictionary<string, string> VariantEndStates, CaseFilePaths Paths, CaseFileDebrief Debrief, IReadOnlyList<string> Verification, CaseFileSources Sources, CaseFileRisk? Risk = null, bool Pregnant = false);
+        string ExpectedEndState, IReadOnlyDictionary<string, string> VariantEndStates, CaseFilePaths Paths, CaseFileDebrief Debrief, IReadOnlyList<string> Verification, CaseFileSources Sources, CaseFileRisk? Risk = null, bool Pregnant = false, IReadOnlyList<string>? FactsOrNull = null)
+    {
+        /// <summary>Facts about the patient that change which critical limits apply: on_warfarin, known_kidney_failure.</summary>
+        public IReadOnlyList<string> Facts => FactsOrNull ?? new List<string>();
+    }
 }

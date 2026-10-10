@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "bdb838111d279ba6a05d75f7b1687f1c7d4321aa8a00450a9f4c9db9e8915e10",
- "files": 338,
- "bytes": 16483410,
+ "content_hash": "7e2eaa7dfb58adbc14836080b0f589df64dd0682692ecee374e73d58e2dd40b9",
+ "files": 339,
+ "bytes": 16487987,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -12,7 +12,7 @@
   "fasting": 1,
   "flow": 1,
   "images": 77,
-  "investigations": 3,
+  "investigations": 4,
   "locations": 1,
   "news2": 1,
   "npc": 1,
@@ -38,7 +38,7 @@
   },
   "case_approvals.json": {
    "bytes": 25357,
-   "sha256": "eb0474dd131bb2cd1177b1c772962dfbc9f2b0aff57fd48eaf7aeefa58573b5a"
+   "sha256": "604e250d0caf56889c49c6fcf17f5b6453e4076675b52c7a3ee83807f05d71cb"
   },
   "case_files/SC-1.json": {
    "bytes": 11070,
@@ -57,8 +57,8 @@
    "sha256": "3fcdb7b0ea6444db0b86356933f94d813d6cb659a9addd1e0043617b97abd768"
   },
   "case_files/SC-13.json": {
-   "bytes": 7468,
-   "sha256": "d6c5acfdcc2a6d53e76d7ea5a9dc576ae5834e084935b2c8a1354e5083246351"
+   "bytes": 7500,
+   "sha256": "48c28ce9ab3ea036828d2866fc41b598c0678effc495d6bf4d1a0e06573ffe24"
   },
   "case_files/SC-14.json": {
    "bytes": 8581,
@@ -976,6 +976,10 @@
    "bytes": 65286,
    "sha256": "573305295c111d1cb9c2c33910e38c3879d9153e908a745a141984162a5a6d43"
   },
+  "investigations/critical.json": {
+   "bytes": 3639,
+   "sha256": "cb3a3be17f13d6ade713fb29185b0bdf4fcc66db1c866170262e9305faf8c9e2"
+  },
   "investigations/indications.json": {
    "bytes": 3875,
    "sha256": "ed7dee31fcfffcc4f2729df318cd6072978c283fee9f29ef5d756c5d3333c8ee"
@@ -1061,8 +1065,8 @@
    "sha256": "918eb2e3a23e9397dd9e6f274189fc68bd9976be067daccf5fb138b3d753d00f"
   },
   "schema/case_file.schema.json": {
-   "bytes": 21420,
-   "sha256": "bbdc93e895325930083de80b9ede5dc756152a7361108b14dafaefc533e904fd"
+   "bytes": 21674,
+   "sha256": "651b540f9338a11d772e7556e0615d01e8002f2ad62cf4b253d0de2c135a05ae"
   },
   "schema/rule.schema.json": {
    "bytes": 2127,
@@ -1137,8 +1141,8 @@
    "sha256": "aed4bdaaafd158774b2f4867d75f53c9ed38d3f2dc85f8deb3fc3fd55edfa3d0"
   },
   "workflow/workflow.json": {
-   "bytes": 7192,
-   "sha256": "432455960b24e6f7f2952fa70584530f863fec8c8413a023ab46c2fb8bb9b54f"
+   "bytes": 7844,
+   "sha256": "8c9d2115cb5bd0b17e2b03f092536e430bf6c560352003e345df363853f30242"
   },
   "xsec/CT-AB-00/ct-ab-00-r0.png": {
    "bytes": 102569,

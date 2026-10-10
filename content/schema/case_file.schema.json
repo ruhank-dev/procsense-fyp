@@ -439,6 +439,16 @@
         }
       }
     },
+    "facts": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "on_warfarin",
+          "known_kidney_failure"
+        ]
+      },
+      "description": "Facts that change which critical-result limits apply. Omitted means none."
+    },
     "pregnant": {
       "type": "boolean",
       "const": true,

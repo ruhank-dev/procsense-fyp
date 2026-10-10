@@ -191,6 +191,20 @@
       "blocked_if": { "in": [ "readiness.blocked", { "var": "flags" } ] },
       "message": "Fasting breach unresolved: the anaesthetist has not agreed to go ahead.",
       "refs": [ "SR-0062" ]
+    },
+    {
+      "id": "B-CRITICAL",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "in": [ "critical.unacknowledged", { "var": "flags" } ] },
+      "message": "A critical result has not been dealt with: answer the lab's call, confirm the patient, read the values back, then acknowledge it with an action and a note.",
+      "refs": [ "SR-0078" ]
+    },
+    {
+      "id": "B-RESULTS",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "in": [ "results.unreviewed_required", { "var": "flags" } ] },
+      "message": "A result this patient needed has not been opened: review it first.",
+      "refs": [ "SR-0079" ]
     }
   ]
 }

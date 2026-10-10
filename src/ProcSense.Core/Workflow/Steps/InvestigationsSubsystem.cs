@@ -187,6 +187,7 @@ namespace ProcSense.Core.Workflow.Steps
             if (!TestFrom(a, o, out var def)) return;
             var order = Latest(def.Id);
             if (order == null) { o.Reject(NotOrdered); return; }
+            if (order.State == "VIEWED" && _s.ResultReview != null && !_s.ResultReview.GateAcknowledge(a, o, order)) return;
             if (order.State == "VIEWED") { order.State = "ACKNOWLEDGED"; Note(order, "ACKNOWLEDGED", Array.Empty<string>()); o.Effects.Add("acknowledged:" + def.Id); }
             else if (order.State == "ACKNOWLEDGED") o.Effects.Add("already_acknowledged:" + def.Id);
             else o.Reject(order.State == "RESULT_AVAILABLE" ? ViewFirst : NotReady);

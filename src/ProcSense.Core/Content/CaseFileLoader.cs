@@ -249,10 +249,17 @@ namespace ProcSense.Core.Content
             }
 
             bool pregnant = c.Has("pregnant") && c.Bool("pregnant");
+            var facts = new List<string>();
+            if (c.Has("facts"))
+                foreach (var fact in Strings(c, "facts"))
+                {
+                    if (fact != "on_warfarin" && fact != "known_kidney_failure") throw new ContentException(c.Sub("facts") + ": '" + fact + "' is not a known fact");
+                    facts.Add(fact);
+                }
 
             c.Finish();
             return new CaseFile(id, label, scenario, tier, status, approval, referenceDate, baseCard, identity, spoken, wristband, allergies, allergyAnswer, reason, presentation, history, observations,
-                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant);
+                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts);
         }
 
         // The checks that need no table: they hold for any case file.

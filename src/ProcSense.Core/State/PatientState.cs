@@ -41,7 +41,24 @@ namespace ProcSense.Core.State
     /// One result the trainee can read: the analyte, the value as text, the unit, the normal range, the flag (normal, high, low, abnormal...), the lab's comment, the sample-quality artefact if any
     /// (haemolysed, drip_arm, wrong_tube_edta, mislabelled) and where it came from (case = stated by the case, generated = supplied normal, artefact = changed by how the sample was taken).
     /// </summary>
-    public sealed record ResultRecord(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin);
+    public sealed record ResultRecord(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin, string Previous = "");
+
+    /// <summary>One value the lab phones: the analyte, the number, and how it is said ("Potassium 6.6 mmol/L").</summary>
+    public sealed record CriticalValue(string Analyte, double Value, string Spoken);
+
+    /// <summary>A critical-result phone call: RINGING, ANSWERED, IDENTITY_CONFIRMED (the patient's name and date of birth confirmed with the caller), READ_BACK (every value read back exactly), DONE (acknowledged with an action and a note).</summary>
+    public sealed class CriticalCall
+    {
+        public int Id { get; set; }
+        public string Test { get; set; } = "";
+        public string State { get; set; } = "";
+        public string Message { get; set; } = "";
+        public long RangAtStep { get; set; }
+        public int ReadBackAttempts { get; set; }
+        public string Action { get; set; } = "";
+        public string Note { get; set; } = "";
+        public List<CriticalValue> Values { get; } = new List<CriticalValue>();
+    }
 
     /// <summary>
     /// One test the trainee ordered (the Nth time for that test): its state (REQUESTED, PROCESSING, RESULT_AVAILABLE, VIEWED, ACKNOWLEDGED), what the indication rule said at the time (APPROPRIATE or NOT_INDICATED),
@@ -73,6 +90,9 @@ namespace ProcSense.Core.State
 
         /// <summary>Why there is nothing to read: the lab rejected the sample, or the case states no result for this test.</summary>
         public string Note { get; set; } = "";
+
+        /// <summary>What the trainee said the result means (normal, abnormal or artefact), or "".</summary>
+        public string Interpretation { get; set; } = "";
     }
 
     /// <summary>What the trainee has found out and where the patient is.</summary>
@@ -163,6 +183,9 @@ namespace ProcSense.Core.State
         public void SetFlag(string flag) => _flags.Add(flag);
 
         public void ClearFlag(string flag) => _flags.Remove(flag);
+
+        /// <summary>Critical-result phone calls, oldest first.</summary>
+        public List<CriticalCall> CriticalCalls { get; } = new List<CriticalCall>();
 
         /// <summary>Every test ordered, oldest first.</summary>
         public List<InvestigationOrder> Investigations { get; } = new List<InvestigationOrder>();

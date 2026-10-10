@@ -38,6 +38,9 @@ namespace ProcSense.Core.Observation
 
     public sealed record ObservedInvestigation(string Test, string Label, int Instance, string State, string Ready, string Indication, IReadOnlyList<ObservedResult> Results, string Note);
 
+    /// <summary>The lab phone: empty state when no call is waiting; RINGING (nothing is said until it is answered), then the caller's words and how far the call has got.</summary>
+    public sealed record ObservedPhone(string State, string Message);
+
     public sealed record ObservedNews2(string At, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
 
     public sealed record ObservedRisk(string Asa, string AsaChip, string Vte, IReadOnlyList<string> Scores, IReadOnlyList<string> Prompts, IReadOnlyList<string> AnaesthetistLines, string Plan, string Decision, bool Blocked);
@@ -55,7 +58,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -231,6 +234,9 @@ namespace ProcSense.Core.Observation
                 sb.Append('}');
             }
             sb.Append(']');
+            sb.Append(",\"phone\":{\"state\":"); JsonText.Quote(sb, Phone.State);
+            sb.Append(",\"message\":"); JsonText.Quote(sb, Phone.Message);
+            sb.Append('}');
             return sb.Append('}').ToString();
         }
 
@@ -292,6 +298,12 @@ namespace ProcSense.Core.Observation
             return list;
         }
 
+        private static ObservedPhone BuildPhone(State.ClinicalLayer c)
+        {
+            var call = c.CriticalCalls.FirstOrDefault(x => x.State != "DONE");
+            return call == null ? new ObservedPhone("", "") : new ObservedPhone(call.State, call.State == "RINGING" ? "" : call.Message);
+        }
+
         private static List<ObservedInvestigation> BuildInvestigations(Session s, bool practice)
         {
             var list = new List<ObservedInvestigation>();
@@ -351,7 +363,7 @@ namespace ProcSense.Core.Observation
                 BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice),
                 practice ? c.News2.Select(n => new ObservedNews2(At(s, n.Step), n.Total, n.Single3, n.Tier, n.Frequency, n.Responder, n.Note)).ToList() : new List<ObservedNews2>(),
                 c.TraineeLocation, c.Transport == null ? null : new ObservedTransport(c.Transport.State, c.Transport.To, c.Transport.Mode, c.Transport.Escort, c.Transport.Monitoring, c.Transport.Oxygen, c.Transport.Arrives, c.Transport.Message),
-                BuildInvestigations(s, practice));
+                BuildInvestigations(s, practice), BuildPhone(s.Patient.Clinical));
         }
     }
 }

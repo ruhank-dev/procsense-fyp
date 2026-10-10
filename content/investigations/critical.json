@@ -1,0 +1,213 @@
+{
+ "rules": [
+  {
+   "id": "k.low",
+   "analyte": "potassium",
+   "direction": "low",
+   "inclusive": true,
+   "value": 2.5,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0650"
+  },
+  {
+   "id": "k.high",
+   "analyte": "potassium",
+   "direction": "high",
+   "inclusive": true,
+   "value": 6.5,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0651"
+  },
+  {
+   "id": "na.low",
+   "analyte": "sodium",
+   "direction": "low",
+   "inclusive": true,
+   "value": 120.0,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0652"
+  },
+  {
+   "id": "na.high",
+   "analyte": "sodium",
+   "direction": "high",
+   "inclusive": true,
+   "value": 160.0,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0653"
+  },
+  {
+   "id": "glu.low",
+   "analyte": "glucose",
+   "direction": "low",
+   "inclusive": true,
+   "value": 2.5,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0654"
+  },
+  {
+   "id": "ca.low",
+   "analyte": "calcium",
+   "direction": "low",
+   "inclusive": true,
+   "value": 1.8,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0655"
+  },
+  {
+   "id": "ca.high",
+   "analyte": "calcium",
+   "direction": "high",
+   "inclusive": true,
+   "value": 3.5,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0656"
+  },
+  {
+   "id": "creat.high",
+   "analyte": "creatinine",
+   "direction": "high",
+   "inclusive": true,
+   "value": 354.0,
+   "unit": "umol/L",
+   "condition": "no_known_kidney_failure",
+   "ref": "SR-0657"
+  },
+  {
+   "id": "crp.high",
+   "analyte": "crp",
+   "direction": "high",
+   "inclusive": true,
+   "value": 300.0,
+   "unit": "mg/L",
+   "condition": "always",
+   "ref": "SR-0658"
+  },
+  {
+   "id": "hb.low",
+   "analyte": "haemoglobin",
+   "direction": "low",
+   "inclusive": false,
+   "value": 70.0,
+   "unit": "g/L",
+   "condition": "always",
+   "ref": "SR-0659"
+  },
+  {
+   "id": "hb.fall",
+   "analyte": "haemoglobin",
+   "direction": "fall",
+   "inclusive": true,
+   "value": 20.0,
+   "unit": "g/L",
+   "condition": "always",
+   "ref": "SR-0660"
+  },
+  {
+   "id": "plt.low",
+   "analyte": "platelets",
+   "direction": "low",
+   "inclusive": false,
+   "value": 30.0,
+   "unit": "x10^9/L",
+   "condition": "always",
+   "ref": "SR-0661"
+  },
+  {
+   "id": "neut.low",
+   "analyte": "neutrophils",
+   "direction": "low",
+   "inclusive": false,
+   "value": 0.5,
+   "unit": "x10^9/L",
+   "condition": "always",
+   "ref": "SR-0662"
+  },
+  {
+   "id": "inr.high_on_warfarin",
+   "analyte": "inr",
+   "direction": "high",
+   "inclusive": true,
+   "value": 5.0,
+   "unit": "ratio",
+   "condition": "on_warfarin",
+   "ref": "SR-0663"
+  },
+  {
+   "id": "inr.high_unexpected",
+   "analyte": "inr",
+   "direction": "high",
+   "inclusive": false,
+   "value": 1.5,
+   "unit": "ratio",
+   "condition": "not_on_warfarin",
+   "ref": "SR-0664"
+  },
+  {
+   "id": "lac.high",
+   "analyte": "lactate",
+   "direction": "high",
+   "inclusive": true,
+   "value": 4.0,
+   "unit": "mmol/L",
+   "condition": "always",
+   "ref": "SR-0665"
+  }
+ ],
+ "aliases": {
+  "potassium": [
+   "Potassium"
+  ],
+  "sodium": [
+   "Sodium"
+  ],
+  "glucose": [
+   "Capillary glucose",
+   "Finger-prick glucose"
+  ],
+  "calcium": [
+   "Calcium"
+  ],
+  "creatinine": [
+   "Creatinine"
+  ],
+  "crp": [
+   "CRP"
+  ],
+  "haemoglobin": [
+   "Hb",
+   "Haemoglobin"
+  ],
+  "platelets": [
+   "Platelets"
+  ],
+  "neutrophils": [
+   "Neutrophils"
+  ],
+  "inr": [
+   "INR"
+  ],
+  "lactate": [
+   "Lactate"
+  ]
+ },
+ "actions": [
+  "repeat_sample",
+  "treat_and_repeat",
+  "escalate_senior",
+  "order_ecg",
+  "review_patient",
+  "postpone_surgery"
+ ],
+ "refs": [
+  "SR-0076",
+  "SR-0077"
+ ]
+}
