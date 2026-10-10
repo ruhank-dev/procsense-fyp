@@ -7,6 +7,7 @@ One card per dataset used (purpose, method, what ships, limits). The register is
 - [DS-0003-mimic-iv-demo.md](DS-0003-mimic-iv-demo.md)
 - [DS-0005-uidatagb.md](DS-0005-uidatagb.md)
 - [DS-0006-nih-chestxray14.md](DS-0006-nih-chestxray14.md)
+- [DS-0007-openfda.md](DS-0007-openfda.md)
 - [DS-0011-synthetic-ultrasound.md](DS-0011-synthetic-ultrasound.md)
 - [DS-0012-emr-distractors.md](DS-0012-emr-distractors.md)
 - [DS-0014-amos.md](DS-0014-amos.md)

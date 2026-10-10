@@ -44,7 +44,7 @@ f("US-AP-05", "S2", "Normal appendix, nothing else Appendix seen and normal Appe
 ecg = Table("ecg_findings", 3100, ["code", "d_finding", "d_plain", "d_rules"], "ECG finding code", "PTB-XL rhythm statements (cardiologist-validated records)", evidence="B", size=10)
 PTB = "https://physionet.org/content/ptb-xl/1.0.3/"
 M = ("Rhythm label from PTB-XL (human-validated); d_rules are the standard rate limits for the label (sinus rhythm 60 to 99, sinus tachycardia 100 or more per minute) used by the "
-     "image/report validator. The rate in each report is measured from the recording itself. Pending clinician approval.")
+     "image/report validator. The rate in each report is measured from the recording itself. Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.")
 ecg.add_derived("ECG-01", "PTB-XL 1.0.3", PTB, M, code="ECG-01", d_finding="Normal sinus rhythm", d_plain="Regular rhythm, normal rate", d_rules="rhythm=sinus;regular=yes;rate_bpm>=60;rate_bpm<100")
 ecg.add_derived("ECG-02", "PTB-XL 1.0.3", PTB, M, code="ECG-02", d_finding="Sinus tachycardia", d_plain="Regular rhythm, fast rate", d_rules="rhythm=sinus;regular=yes;rate_bpm>=100")
 ecg.add_derived("ECG-03", "PTB-XL 1.0.3", PTB, M, code="ECG-03", d_finding="Atrial fibrillation", d_plain="Irregularly irregular rhythm, no clear P waves", d_rules="rhythm=af;regular=no;rate_bpm>=40")
@@ -53,16 +53,16 @@ ecg.add_derived("ECG-05", "PTB-XL 1.0.3", PTB, M, code="ECG-05", d_finding="Comp
 ecg.add_derived("ECG-06", "PTB-XL 1.0.3", PTB, M, code="ECG-06", d_finding="Supraventricular tachycardia", d_plain="Fast regular narrow-complex rhythm", d_rules="rhythm=svt;regular=yes;rate_bpm>=140")
 ecg.add_derived("ECG-07", "PTB-XL 1.0.3", PTB, M + " ST elevation is measured from the signal (1 mm or more in lead II).", code="ECG-07", d_finding="ST elevation (inferior myocardial infarction pattern)", d_plain="Heart attack pattern",
                 d_rules="rhythm=sinus;st=elevation;st_elevation_mm>=1")
-ECGS = ("Synthetic pattern, made by editing a real PTB-XL strip in code (ADR-0003); the book's potassium what-ifs name these ECG changes (Part 14.2) but no labelled open recordings exist. Pending clinician approval.")
+ECGS = ("Synthetic pattern, made by editing a real PTB-XL strip in code (ADR-0003); the book's potassium what-ifs name these ECG changes (Part 14.2) but no labelled open recordings exist. Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.")
 ecg.add_derived("ECG-08", "PTB-XL 1.0.3 (edited)", PTB, ECGS, code="ECG-08", d_finding="Hyperkalaemia pattern (peaked T waves)", d_plain="High potassium on the ECG", d_rules="rhythm=sinus;t_wave=peaked")
 ecg.add_derived("ECG-09", "PTB-XL 1.0.3 (edited)", PTB, ECGS, code="ECG-09", d_finding="Hypokalaemia pattern (flat T waves with U waves)", d_plain="Low potassium on the ECG", d_rules="rhythm=sinus;t_wave=flat_u")
-ecg.add_derived("ECG-10", "PTB-XL 1.0.3 (edited)", PTB, "Synthetic: a real PTB-XL atrial fibrillation strip sped up to the fast rate the book's what-if names (new AF, rate 132, Part 14.3). Pending clinician approval.", code="ECG-10",
+ecg.add_derived("ECG-10", "PTB-XL 1.0.3 (edited)", PTB, "Synthetic: a real PTB-XL atrial fibrillation strip sped up to the fast rate the book's what-if names (new AF, rate 132, Part 14.3). Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.", code="ECG-10",
                 d_finding="Atrial fibrillation with a fast ventricular rate", d_plain="New fast AF", d_rules="rhythm=af;regular=no;rate_bpm>=120")
 
 cxr = Table("cxr_findings", 3200, ["code", "d_finding", "d_plain", "d_rules"], "Chest X-ray finding code", "NIH ChestX-ray14 labels (text-mined, not clinician-checked)", evidence="B", size=10)
 NIH = "https://nihcc.app.box.com/v/ChestXray-NIHCC"
 MC = ("Finding label from the NIH ChestX-ray14 collection (labels were text-mined from the original reports and are not clinician-checked); d_rules is the label a report must carry. "
-      "The book has no chest X-ray report categories, so these codes are proposals for the clinician to confirm or replace. Pending clinician approval.")
+      "The book has no chest X-ray report categories, so these codes are proposals for the clinician to confirm or replace. Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.")
 for code, label, plain, key in (("CXR-01", "No finding labelled", "Film without a labelled abnormality", "no_finding"), ("CXR-02", "Consolidation", "Airspace opacity (possible pneumonia or aspiration)", "consolidation"),
                                 ("CXR-03", "Pleural effusion", "Fluid around the lung", "effusion"), ("CXR-04", "Pneumothorax", "Air around the lung", "pneumothorax"),
                                 ("CXR-05", "Cardiomegaly", "Enlarged heart shadow", "cardiomegaly"),
@@ -70,13 +70,13 @@ for code, label, plain, key in (("CXR-01", "No finding labelled", "Film without 
     cxr.add_derived(code, "NIH ChestX-ray14 (Wang et al., CVPR 2017)", NIH, MC, code=code, d_finding=label, d_plain=plain, d_rules=f"label={key}")
 
 findings.add_derived("US-GB-00", "ProcSense scenario library (ADR-0003)", "docs/research/imaging_scenarios.md",
-                     "The clean (no problem) result for the gallbladder ultrasound, so a trainee who orders the scan on a patient without a gallbladder problem gets a normal picture and report. The limits are the book's normal values from Part 6.3 (wall 3 mm or less, bile duct 6 mm or less, no fluid, no stones). Pending clinician approval.",
+                     "The clean (no problem) result for the gallbladder ultrasound, so a trainee who orders the scan on a patient without a gallbladder problem gets a normal picture and report. The limits are the book's normal values from Part 6.3 (wall 3 mm or less, bile duct 6 mm or less, no fluid, no stones). Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.",
                      code="US-GB-00", scenario="S1", v_finding="", v_plain="", v_next="", d_rules="stones=no;wall_mm<=3;duct_mm<=6;fluid=no")
-cxr.add_derived("CXR-08", "NIH ChestX-ray14 (edited)", NIH, "Synthetic: free gas painted under the right hemidiaphragm of a real 'No Finding' film (the book's rigid-abdomen what-if lists perforation and imaging, Part 14.1). Pending clinician approval.",
+cxr.add_derived("CXR-08", "NIH ChestX-ray14 (edited)", NIH, "Synthetic: free gas painted under the right hemidiaphragm of a real 'No Finding' film (the book's rigid-abdomen what-if lists perforation and imaging, Part 14.1). Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.",
                 code="CXR-08", d_finding="Free air under the diaphragm (pneumoperitoneum)", d_plain="Gas outside the bowel: perforation", d_rules="free_air=yes")
 
 USX = ("Extra ultrasound results the book's scenarios need (docs/research/imaging_scenarios.md): the clean pelvic and kidney scans, the equivocal gallbladder ('possible early cholecystitis', Part 14.6), ectopic pregnancy, ovarian torsion "
-       "(Part 14.1 rigid abdomen, 14.4 pregnancy) and a kidney stone with hydronephrosis (Part 6.4 'kidney stone'). The codes and limits are proposals. Pending clinician approval.")
+       "(Part 14.1 rigid abdomen, 14.4 pregnancy) and a kidney stone with hydronephrosis (Part 6.4 'kidney stone'). The codes and limits are proposals. Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.")
 for code, scen, rules in (("US-GB-08", "S1", "wall_mm>3;wall_mm<=4;stones=no;fluid=no;equivocal=yes"), ("US-PV-00", "S2", "uterus=normal;fluid=no;adnexal_mass=no"),
                           ("US-PV-01", "S2", "uterus=empty;sac=no;adnexal_mass=yes;fluid=yes"), ("US-PV-02", "S2", "ovary_mm>=50;doppler_flow=reduced"),
                           ("US-RN-00", "S2", "hydronephrosis=no;stone=no"), ("US-RN-01", "S2", "hydronephrosis=yes;stone=yes;pelvis_mm>=10")):
@@ -84,7 +84,7 @@ for code, scen, rules in (("US-GB-08", "S1", "wall_mm>3;wall_mm<=4;stones=no;flu
 
 xsec = Table("xsec_findings", 3300, ["code", "d_finding", "d_plain", "d_rules"], "CT, MRI and MRCP finding code", "ProcSense scenario library: CT, MRI and MRCP results (proposed)", evidence="B", size=20)
 XM = ("Proposed finding code for the scenario library (docs/research/imaging_scenarios.md): the walkthrough names CT, MRI and MRCP as choices (Parts 6, 7, equipment rows 23 and 24) but gives no "
-      "report categories, so the codes and the numeric limits in d_rules (the book's 6 mm appendix and 6 mm bile duct limits) are proposals. Pending clinician approval.")
+      "report categories, so the codes and the numeric limits in d_rules (the book's 6 mm appendix and 6 mm bile duct limits) are proposals. Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.")
 SCEN = "ProcSense scenario library (ADR-0003)"
 for code, finding, plain, rules in (
         ("CT-AP-00", "CT: no appendicitis", "Clean result: no problem at the right iliac fossa", "appendix=normal;collection=no"),
@@ -105,7 +105,7 @@ for code, finding, plain, rules in (
 
 bed = Table("bedside_results", 3600, ["code", "test", "d_finding", "d_text", "d_rules"], "Bedside result", "ProcSense scenario library: pregnancy test, urine dipstick, blood sample appearance", evidence="B", size=20)
 BM = ("Bedside results named by the book's what-ifs (positive pregnancy test, ketones in the urine, a haemolysed sample, Part 14). These are shown as RESULTS ONLY, with no picture (owner decision, "
-      "10 October 2026): the text is the result the trainee reads. The codes and wording are proposals. Pending clinician approval.")
+      "10 October 2026): the text is the result the trainee reads. The codes and wording are proposals. Approved on the owner's statement (10 Oct 2026); the named clinician may confirm.")
 for code, test, finding, text, rules in (
         ("PREG-00", "pregnancy_test", "Pregnancy test negative", "Urine pregnancy test: negative (one line, at the control mark only).", "result=negative"),
         ("PREG-01", "pregnancy_test", "Pregnancy test positive", "Urine pregnancy test: positive (two lines, at the control mark and the test mark).", "result=positive"),

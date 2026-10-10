@@ -140,6 +140,12 @@ jobs:
       - name: Image and dataset tests
         run: uv run --project tools tools/content/test_images.py
 
+      - name: Content manifest is up to date
+        run: uv run --project tools tools/content/content_manifest.py --check
+
+      - name: Medical review pack is up to date
+        run: uv run --project tools tools/content/review_pack.py --check
+
       - name: Plan index is up to date and step references resolve
         run: uv run --project tools tools/plans/milestones.py --check
 

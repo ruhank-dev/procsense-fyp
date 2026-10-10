@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "tables"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import framework  # noqa: E402
 
-MODULES = ["d1_vitals", "d2_labs", "d3_decisions", "d4_scores", "d5_medicines", "d6_structure", "d7_whatif", "d8_cases", "d10_imaging", "d9_datasets", "d11_emr", "d12_case_imaging", "d13_whatif_imaging", "d14_case_files"]
+MODULES = ["d1_vitals", "d2_labs", "d3_decisions", "d4_scores", "d5_medicines", "d6_structure", "d7_whatif", "d8_cases", "d10_imaging", "d9_datasets", "d11_emr", "d12_case_imaging", "d13_whatif_imaging", "d14_case_files", "d15_label_safety"]
 
 
 def load():

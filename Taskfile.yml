@@ -86,6 +86,20 @@ tasks:
     cmds:
       - uv run --project tools tools/content/build_case_files.py
 
+  content-refresh:
+    desc: Regenerate every generated content file and document in dependency order (tables, case files, imaging library, review packs, equipment sheets, traceability, manifest); run after any content change
+    cmds:
+      - uv run --project tools tools/content/build_tables.py
+      - uv run --project tools tools/content/build_case_files.py
+      - uv run --project tools tools/content/imaging_library.py
+      - uv run --project tools tools/content/image_review_pack.py
+      - uv run --project tools tools/data/dataset_cards.py
+      - uv run --project tools tools/content/equipment_sheets.py
+      - uv run --project tools tools/content/case_gaps.py
+      - uv run --project tools tools/content/trace.py
+      - uv run --project tools tools/content/content_manifest.py
+      - uv run --project tools tools/content/review_pack.py
+
   content-trace:
     desc: Regenerate docs/research/traceability.md (walkthrough part -> content files -> register rows)
     cmds:

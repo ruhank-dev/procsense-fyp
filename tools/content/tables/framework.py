@@ -152,7 +152,7 @@ class Table:
             r["ref"] = rid
             if r.get("derived_from"):
                 out.append([rid, f"{self.describe}: {r['key']}", self.value_text(r), "", "", r["derived_from"], self.source_location, r["derived_url"], "B", "VERIFIED", TODAY,
-                            "Project team (script)", "Pending: clinician review of the plots (EXP-DATA-1)",
+                            "Project team (script)", "Approved on the owner's statement that the clinician approves everything (10 Oct 2026); the named clinician may still review the plots (EXP-DATA-1)",
                             "Computed from the dataset by a reproducible script (see the dataset register and card). " + r["note"]])
                 continue
             checked = bool(r["official"])

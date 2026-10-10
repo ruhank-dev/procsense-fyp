@@ -33,6 +33,7 @@ def build() -> tuple[list[list[str]], dict[str, str]]:
     real = [i for i in images if not i["synthetic"]]
     synth = [i for i in images if i["synthetic"]]
     classes = sorted({i["source"]["class"] for i in real})
+    label = json.loads((DERIVED / "openfda_label_safety.json").read_text(encoding="utf-8"))
     xs = json.loads((ROOT / "content" / "xsec" / "index.json").read_text(encoding="utf-8"))["images"]
     xs_real, xs_synth = [i for i in xs if not i["synthetic"]], [i for i in xs if i["synthetic"]]
     images_cxr = json.loads((ROOT / "content" / "cxr" / "index.json").read_text(encoding="utf-8"))["images"]
@@ -57,15 +58,15 @@ def build() -> tuple[list[list[str]], dict[str, str]]:
          "NIH Clinical Center terms: no restrictions on use, attribution required (read in the Google Cloud and RSNA documentation; the NIH page itself is script-driven and could not be read; the Hugging Face copy states no licence)",
          "Open download; only one 450 MB shard of the 45 GB copy is used", f"yes: one shard read ({len([i for i in images_cxr])} pictures chosen by eye from contact sheets); labels only, no radiology reports", "false",
          f"USED ({len(images_cxr)} images, approved for training on the owner's statement)", TODAY,
-         "Labels are text-mined and not clinician-checked, so reports state only what the label supports. Patient id, age and sex are not copied. Oedema rarely stands alone, so its pictures also carry the usual companion labels. Four shards (about 4,500 films) were read. Re-confirm the NIH terms on the primary page before release. Card: datasets/DS-0006-nih-chestxray14.md"],
-        ["DS-0007", "openFDA Drug Label API", "Contraindication and warning wording for the medicine groups (never doses)", "https://open.fda.gov/apis/drug/label/", "CC0 1.0 (terms page read)",
-         "Open API", "partly: the terms page was read; no label data pulled", "false", "NOT USED YET", TODAY,
-         "The medicine content comes from the walkthrough; label text could add wording later. Doses are never imported."],
+         "Labels are text-mined and not clinician-checked, so reports state only what the label supports. Patient id, age and sex are not copied. Oedema rarely stands alone, so its pictures also carry the usual companion labels. Four shards (about 4,500 films) were read. The NIH Clinical Center news release (27 September 2017) says the dataset is freely accessible to the scientific community; the 'no restrictions, attribution required' wording comes from the Google Cloud and RSNA documentation; the Box page itself is script-driven and could not be read. Card: datasets/DS-0006-nih-chestxray14.md"],
+        ["DS-0007", "openFDA Drug Label API", "Contraindication and boxed-warning wording for the medicine groups (never doses)", "https://open.fda.gov/apis/drug/label/", "CC0 1.0 (terms page read)",
+         "Open API, no account", f"yes: {len(label['medicines'])} labels queried and read (tools/data/extract_openfda.py); sentences with doses dropped", "false", f"USED ({len(label['medicines'])} medicine groups, wording only)", TODAY,
+         "US labels as stand-ins for the UK product of the same group; aspirin and adrenaline returned no usable label. Card: datasets/DS-0007-openfda.md"],
         ["DS-0008", "Regensburg Pediatric Appendicitis Dataset", "Reference for appendicitis score distributions", "https://archive.ics.uci.edu/dataset/938/regensburg+pediatric+appendicitis", "not confirmed (the UCI page says 'see linked dataset', Zenodo 7669442)",
          "Open download", "partly: page read", "false", "NOT USED", TODAY, "Children only: not suitable for the adult S2 cases. Licence still to confirm if it is ever used."],
-        ["DS-0009", "PriMock57", "Medical conversation audio for the speech-recognition evaluation (P1)", "https://github.com/babylonhealth/primock57", "not checked", "not checked", "no", "false", "NOT CHECKED (P1)", TODAY, "Planned for the P1 voice phase."],
-        ["DS-0010", "Mozilla Common Voice (accented English)", "Accent robustness for speech recognition (P1)", "https://commonvoice.mozilla.org/en/datasets", "not read (script-driven page)", "not checked", "no", "false", "NOT CHECKED (P1)", TODAY,
-         "Planned for the P1 voice phase."],
+        ["DS-0009", "PriMock57", "Medical conversation audio for the speech-recognition evaluation (P1)", "https://github.com/babylonhealth/primock57", "not checked", "not checked", "no", "false", "NOT NEEDED", TODAY, "Decision 10 Oct 2026: speech recognition uses an existing recogniser (for example Whisper or a cloud service), not a dataset we train on; a short authored phrase list recorded by the team is enough for the P0/P1 checks. Reconsider if accent robustness must be measured."],
+        ["DS-0010", "Mozilla Common Voice (accented English)", "Accent robustness for speech recognition (P1)", "https://commonvoice.mozilla.org/en/datasets", "not read (script-driven page)", "not checked", "no", "false", "NOT NEEDED", TODAY,
+         "Decision 10 Oct 2026: not needed; existing speech recognisers already cover accents. Optional later for measuring accent robustness."],
         ["DS-0011", "ProcSense synthetic ultrasound set", "Labelled stand-in images where no real image exists (ADR-0003): ultrasound, ECG patterns, free-air chest film", "content/images (built by tools/data/ultrasound.py)", "ProcSense generated",
          "In the repository", f"yes: {len(synth) + len(xs_synth)} images rendered and looked at; mark read back from the pixels by CI", "true", "APPROVED_FOR_TRAINING (owner-attested)", TODAY,
          "Ultrasound: stylised procedural illustrations. CT/MRI: findings painted into real AMOS slices. MRCP: drawn entirely in code (clearly diagrammatic). Never a trained generative model; every image carries the visible mark. Card: datasets/DS-0011-synthetic-ultrasound.md"],
@@ -190,6 +191,22 @@ A fan-shaped field with speckle texture, a simple anatomy sketch and the finding
 
 ## Limits
 These are teaching illustrations, much simpler than a real scan; not a trained generative model; never used to train or test any diagnostic model. Approved for training on the owner's statement (see `content/image_approvals.json`).
+""",
+        "DS-0007-openfda.md": f"""# DS-0007 openFDA drug labels: safety wording
+
+**Source:** https://open.fda.gov/apis/drug/label/ · **Licence:** CC0 1.0 · **Checked:** {TODAY}: {len(label['medicines'])} labels queried.
+
+## Purpose
+Reference wording for contraindications and boxed warnings of the medicine groups, for the safety checks and the debrief. Never doses.
+
+## Method (`tools/data/extract_openfda.py`)
+One representative generic per medicine group; the newest single-ingredient label; only the contraindications and boxed-warning text; every sentence with a dose, rate or strength (a number with mg, mcg, g, mL, units, mEq, %) is dropped, as are section cross-references. The label's set id and effective date are kept.
+
+## What ships
+`content/drug_label_safety.csv` ({len(label['medicines'])} rows, one register row each).
+
+## Limits
+US labels, used as stand-ins for the UK product of the same group; aspirin and adrenaline returned no usable label; brand names can appear inside quotes. The clinician confirms local wording.
 """,
         "DS-0014-amos.md": f"""# DS-0014 AMOS 2022: abdominal CT and MRI
 

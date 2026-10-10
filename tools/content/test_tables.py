@@ -610,5 +610,31 @@ class Register(unittest.TestCase):
                 self.assertIn("not been opened", r["notes"], r["id"])
 
 
+class LabelSafety(unittest.TestCase):
+    """openFDA label wording (DT-060): reference wording only, never a dose."""
+
+    DOSE = __import__("re").compile(r"\d+(?:\.\d+)?\s?(?:mg|mcg|g|ml|mL|units?|IU|mEq|mmol|%)|mg/|units/", __import__("re").I)
+
+    def test_every_row_belongs_to_a_medicine_group_and_has_wording(self):
+        meds = {r["id"] for r in rows("medicines")}
+        got = rows("drug_label_safety")
+        self.assertGreaterEqual(len(got), 20)
+        for r in got:
+            self.assertIn(r["medicine_id"], meds)
+            self.assertTrue(r["d_contraindications"] or r["d_boxed_warning"], r["id"])
+            self.assertIn("set id", r["d_label"])
+
+    def test_no_dose_rate_or_strength_is_imported(self):
+        for r in rows("drug_label_safety"):
+            for col in ("d_contraindications", "d_boxed_warning"):
+                self.assertIsNone(self.DOSE.search(r[col]), f"{r['id']} {col}: {r[col][:80]}")
+
+    def test_the_known_safety_facts_are_there(self):
+        by = {r["medicine_id"]: r for r in rows("drug_label_safety")}
+        self.assertIn("hypersensitivity", by["paracetamol"]["d_contraindications"].lower())
+        self.assertIn("acidosis", (by["metformin"]["d_contraindications"] + by["metformin"]["d_boxed_warning"]).lower())
+        self.assertIn("bleeding", (by["warfarin"]["d_boxed_warning"] + by["doacs"]["d_contraindications"]).lower())
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
