@@ -1,0 +1,197 @@
+{
+ "locations": [
+  {
+   "id": "patient_bay",
+   "label": "Patient bay",
+   "adjacent": [
+    {
+     "to": "corridor",
+     "minutes": 1
+    }
+   ],
+   "capabilities": [
+    "bedside"
+   ],
+   "returns": true,
+   "stay_minutes": 0
+  },
+  {
+   "id": "corridor",
+   "label": "Corridor",
+   "adjacent": [
+    {
+     "to": "ultrasound",
+     "minutes": 2
+    },
+    {
+     "to": "xray",
+     "minutes": 2
+    },
+    {
+     "to": "ct",
+     "minutes": 3
+    },
+    {
+     "to": "mri",
+     "minutes": 4
+    },
+    {
+     "to": "theatre_reception",
+     "minutes": 3
+    }
+   ],
+   "capabilities": [],
+   "returns": true,
+   "stay_minutes": 0
+  },
+  {
+   "id": "ultrasound",
+   "label": "Ultrasound room",
+   "adjacent": [],
+   "capabilities": [
+    "ultrasound"
+   ],
+   "returns": true,
+   "stay_minutes": 10
+  },
+  {
+   "id": "xray",
+   "label": "X-ray room",
+   "adjacent": [],
+   "capabilities": [
+    "xray"
+   ],
+   "returns": true,
+   "stay_minutes": 5
+  },
+  {
+   "id": "ct",
+   "label": "CT scanner",
+   "adjacent": [],
+   "capabilities": [
+    "ct"
+   ],
+   "returns": true,
+   "stay_minutes": 15
+  },
+  {
+   "id": "mri",
+   "label": "MRI scanner",
+   "adjacent": [],
+   "capabilities": [
+    "mri",
+    "mrcp"
+   ],
+   "returns": true,
+   "stay_minutes": 30
+  },
+  {
+   "id": "theatre_reception",
+   "label": "Theatre reception",
+   "adjacent": [
+    {
+     "to": "theatre",
+     "minutes": 1
+    }
+   ],
+   "capabilities": [
+    "handover"
+   ],
+   "returns": false,
+   "stay_minutes": 0
+  },
+  {
+   "id": "theatre",
+   "label": "Operating theatre",
+   "adjacent": [],
+   "capabilities": [
+    "theatre"
+   ],
+   "returns": false,
+   "stay_minutes": 0
+  }
+ ],
+ "transport": {
+  "porter_arrival_minutes": {
+   "min": 2,
+   "max": 4
+  },
+  "porter_unavailable_extra_minutes": 8,
+  "prepare_minutes": 2,
+  "modes": [
+   {
+    "id": "walk",
+    "needs_stable_s1": true
+   },
+   {
+    "id": "wheelchair",
+    "needs_stable_s1": true
+   },
+   {
+    "id": "trolley",
+    "needs_stable_s1": false
+   }
+  ],
+  "escort_roles": [
+   "porter",
+   "nurse",
+   "doctor"
+  ],
+  "monitoring_levels": [
+   "none",
+   "portable",
+   "full"
+  ],
+  "escort_tiers": [
+   {
+    "min_news2": 0,
+    "max_news2": 4,
+    "escort": [
+     "porter",
+     "nurse"
+    ],
+    "monitoring": "none",
+    "oxygen": false,
+    "ref": "SR-0915"
+   },
+   {
+    "min_news2": 5,
+    "max_news2": 6,
+    "escort": [
+     "nurse"
+    ],
+    "monitoring": "portable",
+    "oxygen": false,
+    "ref": "SR-0915"
+   },
+   {
+    "min_news2": 7,
+    "escort": [
+     "doctor",
+     "nurse"
+    ],
+    "monitoring": "full",
+    "oxygen": true,
+    "ref": "SR-0915"
+   }
+  ],
+  "unstable_from_news2": 5,
+  "messages": {
+   "porter_unavailable": "The porter is not available; the transfer is delayed by about {minutes} minutes."
+  }
+ },
+ "corridor_event": {
+  "spo2": 89,
+  "at_fraction": 0.5,
+  "event": "E-CORRIDOR-DETERIORATION",
+  "ref": "SR-0069"
+ },
+ "refs": [
+  "SR-0066",
+  "SR-0067",
+  "SR-0068",
+  "SR-0069",
+  "SR-0070"
+ ],
+ "note": "Simulator design values: the places, how long it takes to walk between them and how long a scan takes, the porter's arrival time and how long the patient is prepared are the project's settings (Implementation Guide B-R16: 'durations are SIM parameters'); the first figures follow its worked example (3 minutes to ultrasound, 10 minutes there, 8 minutes' delay when the porter is unavailable). The escort tiers are the walkthrough's provisional rule (Part 17), to be confirmed by the hospital."
+}

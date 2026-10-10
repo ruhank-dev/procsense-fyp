@@ -34,6 +34,9 @@ namespace ProcSense.Core.State
     /// <summary>One NEWS2 worked out from the observations the trainee had gathered at that moment (Step is the sim step). Kept for the chart, the EMR and the debrief.</summary>
     public sealed record News2Record(long Step, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
 
+    /// <summary>What the trainee sees of a transfer: its state (REQUESTED, DELAYED, PREPARING, IN_TRANSIT, ARRIVED, DONE, RETURNING, BACK, CANCELLED), where to, how, with whom, and when it arrives.</summary>
+    public sealed record TransportView(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
+
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
     {
@@ -52,7 +55,16 @@ namespace ProcSense.Core.State
 
         /// <summary>Last nurse step for the wristband ("" until a nurse was involved, then "DONE").</summary>
         public string NurseState { get; set; } = "";
+
+        /// <summary>Where the nurse is during her wristband task: "" until she is called, "corridor" (outside) when called, then the patient's place.</summary>
+        public string NurseLocation { get; set; } = "";
         public string Location { get; set; }
+
+        /// <summary>Where the trainee is. It is the patient's place until a transfer: a trainee who does not accompany stays behind, and actions aimed at the patient are then refused.</summary>
+        public string TraineeLocation { get; set; } = PatientFactory.PatientBay;
+
+        /// <summary>The transfer in progress or the last one, or null when there has been none.</summary>
+        public TransportView? Transport { get; set; }
 
         private readonly List<string> _revealOrder = new List<string>();
 

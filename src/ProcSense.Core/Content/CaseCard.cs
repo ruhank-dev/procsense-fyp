@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -60,6 +60,7 @@ namespace ProcSense.Core.Content
             Fasting = fasting ?? ProcSense.Core.Clinical.FastingRules.Empty;
             Risk = risk ?? ProcSense.Core.Clinical.RiskTables.Empty;
             News2 = news2 ?? ProcSense.Core.Clinical.News2Table.Empty;
+            Locations = locations ?? ProcSense.Core.Location.LocationTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -81,6 +82,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Clinical.RiskTables Risk { get; }
         /// <summary>The NEWS2 chart and response table (content/news2/news2.json).</summary>
         public ProcSense.Core.Clinical.News2Table News2 { get; }
+        /// <summary>The places, transfer timing and escort rule (content/locations/locations.json).</summary>
+        public ProcSense.Core.Location.LocationTables Locations { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
         public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }

@@ -30,6 +30,9 @@ namespace ProcSense.Core.Observation
     /// the scores calculated so far, the tests the tablet suggests for a missing score item, what the anaesthetist has said, the agreed plan, the readiness decision and whether readiness is blocked.
     /// </summary>
     /// <summary>One NEWS2 on the chart: when it was worked out, the total, whether a single reading scored 3, the response tier and what to do (frequency and who responds), and a note (for example that NEWS2 is not used in pregnancy).</summary>
+    /// <summary>A transfer as the trainee sees it: state, destination, how the patient goes, with whom and how monitored, when it arrives, and a message (for example that the porter is unavailable).</summary>
+    public sealed record ObservedTransport(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
+
     public sealed record ObservedNews2(string At, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
 
     public sealed record ObservedRisk(string Asa, string AsaChip, string Vte, IReadOnlyList<string> Scores, IReadOnlyList<string> Prompts, IReadOnlyList<string> AnaesthetistLines, string Plan, string Decision, bool Blocked);
@@ -47,7 +50,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -178,6 +181,21 @@ namespace ProcSense.Core.Observation
                 sb.Append('}');
             }
             sb.Append(']');
+            sb.Append(",\"trainee_location\":"); JsonText.Quote(sb, TraineeLocation);
+            sb.Append(",\"transport\":");
+            if (Transport == null) sb.Append("null");
+            else
+            {
+                sb.Append("{\"state\":"); JsonText.Quote(sb, Transport.State);
+                sb.Append(",\"to\":"); JsonText.Quote(sb, Transport.To);
+                sb.Append(",\"mode\":"); JsonText.Quote(sb, Transport.Mode);
+                sb.Append(",\"escort\":"); AppendList(sb, Transport.Escort);
+                sb.Append(",\"monitoring\":"); JsonText.Quote(sb, Transport.Monitoring);
+                sb.Append(",\"oxygen\":").Append(Transport.Oxygen ? "true" : "false");
+                sb.Append(",\"arrives\":"); JsonText.Quote(sb, Transport.Arrives);
+                sb.Append(",\"message\":"); JsonText.Quote(sb, Transport.Message);
+                sb.Append('}');
+            }
             return sb.Append('}').ToString();
         }
 
@@ -284,7 +302,8 @@ namespace ProcSense.Core.Observation
                 practice ? BlockMessage(s) : "",
                 practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
                 BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice),
-                practice ? c.News2.Select(n => new ObservedNews2(At(s, n.Step), n.Total, n.Single3, n.Tier, n.Frequency, n.Responder, n.Note)).ToList() : new List<ObservedNews2>());
+                practice ? c.News2.Select(n => new ObservedNews2(At(s, n.Step), n.Total, n.Single3, n.Tier, n.Frequency, n.Responder, n.Note)).ToList() : new List<ObservedNews2>(),
+                c.TraineeLocation, c.Transport == null ? null : new ObservedTransport(c.Transport.State, c.Transport.To, c.Transport.Mode, c.Transport.Escort, c.Transport.Monitoring, c.Transport.Oxygen, c.Transport.Arrives, c.Transport.Message));
         }
     }
 }

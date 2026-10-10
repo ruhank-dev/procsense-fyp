@@ -8,9 +8,12 @@ namespace ProcSense.Core.Workflow.Steps
     /// <summary>One step of the nurse's visit, published on the EventBus so views can show her walking in and replacing the band.</summary>
     public readonly struct NurseTaskChanged
     {
-        public NurseTaskChanged(string state) { State = state; }
+        public NurseTaskChanged(string state, string location) { State = state; Location = location; }
 
         public string State { get; }
+
+        /// <summary>Where the nurse is at this step: outside (in the corridor) when she has been called, then with the patient.</summary>
+        public string Location { get; }
     }
 
     /// <summary>
@@ -40,7 +43,8 @@ namespace ProcSense.Core.Workflow.Steps
             var clinical = s.Patient.Clinical;
             foreach (var step in new[] { Called, AtBedside, Replacing, Done })
             {
-                s.Events.Publish(new NurseTaskChanged(step));
+                clinical.NurseLocation = step == Called ? "corridor" : clinical.Location;
+                s.Events.Publish(new NurseTaskChanged(step, clinical.NurseLocation));
                 o.Effects.Add("nurse:" + step);
             }
             clinical.CurrentWristband = CorrectBand(s.Case.Identity);

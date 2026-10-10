@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "809209a670ee3227ebe076893cb5fb58b5cca8011ac8d5c6a2445069a0f5feab",
- "files": 334,
- "bytes": 16468077,
+ "content_hash": "ea0f2c24dc1f89db495f4d01e34b9224a863425b6d7e9379db9d7a6328465d31",
+ "files": 335,
+ "bytes": 16471577,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -12,6 +12,7 @@
   "fasting": 1,
   "flow": 1,
   "images": 77,
+  "locations": 1,
   "news2": 1,
   "npc": 1,
   "risk": 1,
@@ -981,6 +982,10 @@
   "lab_plausibility.csv": {
    "bytes": 927,
    "sha256": "08cabd9ea0f1cc90f35d8d477d3cee2b64da3046495421c2b60bb7b65d46aec6"
+  },
+  "locations/locations.json": {
+   "bytes": 3500,
+   "sha256": "2eb337aeb1b3235946fd56a8ca367c5be76f1f0f7ada4869fede17c4a87ba4b6"
   },
   "medicines.csv": {
    "bytes": 20262,

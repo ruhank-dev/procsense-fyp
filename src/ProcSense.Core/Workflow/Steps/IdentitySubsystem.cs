@@ -45,7 +45,7 @@ namespace ProcSense.Core.Workflow.Steps
                 "introduce_self", "ask_identity", "read_name_to_patient", "read_wristband", "open_notes", "confirm_identity",
                 "report_mismatch", "request_wristband", "ask_allergies", "ask_allergy_reaction", "ask_reason_for_admission", "ask_responsible_adult",
             })
-                session.Verbs.Register(v);
+                session.Verbs.Register(v, requiresPatient: v != "open_notes" && v != "confirm_identity" && v != "report_mismatch");   // the notes are the folder, and confirming or reporting is the trainee's own judgement
 
             // PLACEHOLDER: stands in for the real blood-test request (clinical-logic phase) so the unlock rule can be tested now.
             session.Verbs.Register("order_blood_test", requiresIdentity: true);

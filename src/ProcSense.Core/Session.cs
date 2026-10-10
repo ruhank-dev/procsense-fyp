@@ -67,6 +67,12 @@ namespace ProcSense.Core
         /// <summary>The goal and decision tracker, or null when the session runs without one.</summary>
         internal Workflow.CaseGraphSubsystem? Tracker { get; set; }
 
+        /// <summary>The place and transfer system, or null when the session runs without one.</summary>
+        internal Location.TransportSubsystem? Transport { get; set; }
+
+        /// <summary>Transfer states, safety findings and the corridor event, with sim steps and score items.</summary>
+        public IReadOnlyList<Workflow.GraphEvent> TransportHistory => Transport?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
+
         /// <summary>The scenario flow map runner (stages, tracks, interrupts), or null when the session runs without one.</summary>
         internal Workflow.FlowSubsystem? Flow { get; set; }
 

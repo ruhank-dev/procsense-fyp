@@ -30,8 +30,8 @@ namespace ProcSense.Core.Workflow.Steps
         public void Init(Session session)
         {
             _s = session;
-            session.Verbs.Register("ask", requiresIdentity: true);
-            session.Verbs.Register("summarise", requiresIdentity: true);
+            session.Verbs.Register("ask", requiresIdentity: true, requiresPatient: true);
+            session.Verbs.Register("summarise", requiresIdentity: true, requiresPatient: true);
         }
 
         public void OnAction(SimAction a, ActionOutcome o)

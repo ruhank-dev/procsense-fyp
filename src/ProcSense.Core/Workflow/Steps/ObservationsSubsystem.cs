@@ -42,7 +42,7 @@ namespace ProcSense.Core.Workflow.Steps
             _s = session;
             _devices = session.Random.Stream("devices");
             foreach (var v in new[] { "attach_sensor", "detach_sensor", "measure_nibp", "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score", "wait" })
-                session.Verbs.Register(v);
+                session.Verbs.Register(v, requiresPatient: v != "wait");
         }
 
         public void OnAction(SimAction a, ActionOutcome o)

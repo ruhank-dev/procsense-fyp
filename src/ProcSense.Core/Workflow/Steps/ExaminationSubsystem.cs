@@ -53,7 +53,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             _s = session;
             _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
-            foreach (var verb in new[] { AskPermissionVerb, OfferChaperoneVerb, ExamineVerb, MurphyVerb, AirwayVerb }) session.Verbs.Register(verb, requiresIdentity: true);
+            foreach (var verb in new[] { AskPermissionVerb, OfferChaperoneVerb, ExamineVerb, MurphyVerb, AirwayVerb }) session.Verbs.Register(verb, requiresIdentity: true, requiresPatient: true);
             if (_file != null)
             {
                 Clinical.ExamTotal = _file.Examination.Count(e => !IsAirway(e));

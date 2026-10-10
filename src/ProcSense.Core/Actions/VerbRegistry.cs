@@ -7,13 +7,15 @@ namespace ProcSense.Core.Actions
     {
         public const string UnknownVerb = "UNKNOWN_VERB";
 
-        private readonly Dictionary<string, bool> _verbs = new Dictionary<string, bool>();
+        private readonly Dictionary<string, (bool identity, bool patient)> _verbs = new Dictionary<string, (bool, bool)>();
 
-        /// <summary>requiresIdentity: tests, medicines and transfers, which are rejected until identity is confirmed.</summary>
-        public void Register(string verb, bool requiresIdentity = false) => _verbs[verb] = requiresIdentity;
+        /// <summary>requiresIdentity: tests, medicines and transfers, which are rejected until identity is confirmed. requiresPatient: actions aimed at the patient, which are refused while the patient is in another place.</summary>
+        public void Register(string verb, bool requiresIdentity = false, bool requiresPatient = false) => _verbs[verb] = (requiresIdentity, requiresPatient);
 
         public bool IsKnown(string verb) => _verbs.ContainsKey(verb);
 
-        public bool RequiresIdentity(string verb) => _verbs.TryGetValue(verb, out var r) && r;
+        public bool RequiresIdentity(string verb) => _verbs.TryGetValue(verb, out var r) && r.identity;
+
+        public bool RequiresPatient(string verb) => _verbs.TryGetValue(verb, out var r) && r.patient;
     }
 }
