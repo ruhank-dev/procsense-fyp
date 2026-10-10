@@ -79,6 +79,12 @@ namespace ProcSense.Core
         /// <summary>Tests ordered, their states, tests not indicated and tests missed, with sim steps and score items.</summary>
         public IReadOnlyList<Workflow.GraphEvent> InvestigationHistory => Investigations?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
 
+        /// <summary>The request, confirm and give system for medicines, fluids, oxygen and IV access, or null when the session runs without one.</summary>
+        internal Clinical.MedicineWorkflowSubsystem? Medicine { get; set; }
+
+        /// <summary>Treatments requested, confirmed, given or challenged, and failed checks, with sim steps and score items.</summary>
+        public IReadOnlyList<Workflow.GraphEvent> MedicineHistory => Medicine?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
+
         /// <summary>The place and transfer system, or null when the session runs without one.</summary>
         internal Location.TransportSubsystem? Transport { get; set; }
 

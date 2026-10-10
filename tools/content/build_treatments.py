@@ -12,7 +12,7 @@ timing wording in the row, an IV requirement must rest on wording that names the
 the reviewer (rule DOSE_REQUIRES_REVIEWER); PATIENT_SPECIFIC and INSTITUTIONAL rows carry no dose at all.
 
 Which checks a treatment lists, the severities, the effect ids and the IV rule are simulator design values (evidence type D) and the restriction tags are an interpretation of the "care" column
-(type B). They have register rows SR-4100..SR-4106, rewritten by this script.
+(type B). They have register rows SR-4100..SR-4109, rewritten by this script.
 """
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "content" / "treatments.json"
 REGISTER = ROOT / "docs" / "research" / "source_register.csv"
-BLOCK = range(4100, 4110)
+BLOCK = range(4100, 4120)
 TODAY = "2026-10-11"
 REVIEWER = "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
 
@@ -47,6 +47,31 @@ CHECKS = [
 
 PREREQUISITES = [("iv_access", "IV_ACCESS_REQUIRED", "IV access is in place")]
 
+# Medicine workflow (s11). The two delays are simulator design values (evidence type D) and are tuned with testers.
+WORKFLOW = {"confirm_seconds": 60, "administer_seconds": 60}
+
+# The oxygen devices of equipment item 28 (docs/research/equipment/28-oxygen-supply-and-masks.md): nasal cannula and the simple and non-rebreather masks.
+OXYGEN_DEVICES = [("nasal_cannula", "Nasal cannula"), ("simple_mask", "Simple face mask"), ("non_rebreather_mask", "Non-rebreather mask")]
+OXYGEN_SHEET = ROOT / "docs" / "research" / "equipment" / "28-oxygen-supply-and-masks.md"
+
+# An allergy to a whole group of medicines (walkthrough 14.4): the words in the allergy record that name the group, and the words that mean an immediate severe reaction.
+ALLERGY_GROUPS = {"antibiotic": ["penicillin", "antibiotic"]}
+SEVERE_REACTION_WORDS = ["throat swelling", "collapse", "anaphylaxis"]
+# What the nurse does about a critical problem: practice mode (the beginner) challenges and does not give; assessment mode gives it, marks it critical and, for an allergen, makes the reaction eligible.
+ALLERGY_OUTCOME = {"practice": "challenge", "assessment": "reaction"}
+HYPERSENSITIVITY_EVENT = "E-HYPERSENSITIVITY"
+
+# The approved lines the clinician and the nurse say (the trainee never sees a line that is not here).
+LINES = {
+    "confirm": "I confirm the order for {treatment}.",
+    "confirm_allergy_caution": "I have noted the allergy on record: {allergy}. I will take that into account.",
+    "challenge_allergy_conflict": "Before I give this, I have to stop: the chart records an allergy to {allergy}. Please ask the clinician to review the order.",
+    "challenge_allergy_unknown": "Before I give this, can you confirm the patient's allergy status?",
+    "challenge_restriction": "Before I give this, I am worried about {condition}. Please ask the clinician to review the order.",
+    "given": "{treatment} has been given.",
+    "iv_in_place": "The IV access is in.",
+}
+
 # Effect ids the physiology step (p0-physiology-events-behaviour-s05) will define; names only, no numbers.
 EFFECTS = [
     ("EFF-ANALGESIA", "Pain falls"), ("EFF-ANTIEMETIC", "Nausea settles"), ("EFF-FLUID-BOLUS", "Circulating volume rises: blood pressure up, heart rate down"),
@@ -55,8 +80,9 @@ EFFECTS = [
 ]
 
 
-def T(id, kind, label, medicine, *, checks=None, requires=(), iv_phrase="", restricted=(), timing_phrase="", effects=()):
-    return dict(id=id, kind=kind, label=label, medicine=medicine, checks=checks, requires=list(requires), iv_phrase=iv_phrase, restricted=list(restricted), timing_phrase=timing_phrase, effects=list(effects))
+def T(id, kind, label, medicine, *, checks=None, requires=(), iv_phrase="", restricted=(), timing_phrase="", effects=(), allergen_group=""):
+    return dict(id=id, kind=kind, label=label, medicine=medicine, checks=checks, requires=list(requires), iv_phrase=iv_phrase, restricted=list(restricted), timing_phrase=timing_phrase, effects=list(effects),
+                allergen_group=allergen_group)
 
 
 # (tag, phrase that must appear in the medicine row's care column)
@@ -70,8 +96,8 @@ TREATMENTS = [
     T("TR-IV-FLUIDS", "fluid", "IV fluids", "iv_fluids", requires=["iv_access"], iv_phrase="iv_fluids", restricted=[("heart_failure", "Heart failure"), ("kidney_failure", "kidney failure")],
       effects=["EFF-FLUID-BOLUS"]),
     T("TR-ABX-PROPHYLAXIS", "medicine", "Preventive antibiotic (planned surgery, higher risk)", "abx_s1_higher_risk", requires=["iv_access"], iv_phrase="2 g IV",
-      timing_phrase="Within 60 minutes"),
-    T("TR-ABX-S2", "medicine", "Broad antibiotics (emergency appendicitis)", "abx_s2_all", timing_phrase="As soon as decided", effects=["EFF-ANTIBIOTIC"]),
+      timing_phrase="Within 60 minutes", allergen_group="antibiotic"),
+    T("TR-ABX-S2", "medicine", "Broad antibiotics (emergency appendicitis)", "abx_s2_all", timing_phrase="As soon as decided", effects=["EFF-ANTIBIOTIC"], allergen_group="antibiotic"),
     T("TR-STEROID-COVER", "medicine", "Steroid cover at induction", "steroids", requires=["iv_access"], iv_phrase="IV at induction", timing_phrase="at induction"),
     T("TR-VTE-PROPHYLAXIS", "medicine", "Clot prevention (VTE prophylaxis)", "vte_prophylaxis", timing_phrase="6-12 hours after surgery"),
     T("TR-ADRENALINE", "medicine", "Adrenaline (anaphylaxis)", "adrenaline", effects=["EFF-ADRENALINE"]),
@@ -79,7 +105,7 @@ TREATMENTS = [
     T("TR-IV-GLUCOSE", "medicine", "IV glucose (low blood sugar, cannot swallow)", "iv_glucose", requires=["iv_access"], iv_phrase="IV 10% glucose", effects=["EFF-GLUCOSE-RISE"]),
     T("TR-HYPERKALAEMIA", "medicine", "Hyperkalaemia treatment", "hyperkalaemia", requires=["iv_access"], iv_phrase="calcium gluconate IV", effects=["EFF-POTASSIUM-LOWER"]),
     T("TR-NALOXONE", "medicine", "Naloxone (opioid overdose)", "naloxone", effects=["EFF-OPIOID-REVERSAL"]),
-    T("TR-SEPSIS-BUNDLE", "medicine", "Sepsis emergency treatment", "sepsis_emergency", requires=["iv_access"], iv_phrase="bolus", effects=["EFF-FLUID-BOLUS", "EFF-ANTIBIOTIC"]),
+    T("TR-SEPSIS-BUNDLE", "medicine", "Sepsis emergency treatment", "sepsis_emergency", requires=["iv_access"], iv_phrase="bolus", effects=["EFF-FLUID-BOLUS", "EFF-ANTIBIOTIC"], allergen_group="antibiotic"),
     T("TR-OXYGEN", "oxygen", "Oxygen", None, checks=["identity", "indication", "restriction", "order", "documentation"], effects=["EFF-OXYGEN"]),
     T("TR-IV-ACCESS", "procedure", "IV access (cannula)", None, checks=["identity", "order", "documentation"]),
 ]
@@ -89,6 +115,11 @@ NON_MEDICINE = {
     "TR-OXYGEN": ("SR-0986", [("co2_retainer", "SR-0986")]),
     "TR-IV-ACCESS": ("SR-4103", []),
 }
+
+
+DOSE_LABEL_ROWS = {"EDUCATIONAL_EXAMPLE": ("policy_educational", "EDUCATIONAL EXAMPLE DOSE (SOURCE-BACKED) — NOT A TRAINEE PRESCRIPTION"),
+                   "PATIENT_SPECIFIC": ("policy_patient_specific", "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED"),
+                   "INSTITUTIONAL": ("policy_institutional", "CONTEXT-DEPENDENT — INSTITUTIONAL PROTOCOL / CLINICIAN CONFIRMATION")}
 
 
 def read_csv(name: str) -> dict[str, dict]:
@@ -141,6 +172,9 @@ def build_doc() -> dict:
             restricted = [{"tag": tag, "ref": r} for tag, r in restricted_pairs]
             entry["label_row"] = None
             refs = [ref, "SR-4105"]
+        entry["allergen_group"] = t["allergen_group"] or None
+        if t["allergen_group"] and t["medicine"] and not contains(" ".join(meds[t["medicine"]][c] for c in ("group", "v_for", "quote")), "antibiotic"):
+            raise SystemExit(f"{t['id']}: medicines.csv/{t['medicine']} does not mention antibiotics")
         entry["requires"] = t["requires"]
         if t["checks"] is not None:
             entry["required_checks"] = list(t["checks"])
@@ -157,11 +191,36 @@ def build_doc() -> dict:
         if ("timing" in entry["required_checks"]) != bool(t["timing_phrase"]):
             raise SystemExit(f"{t['id']}: the timing check and the timing wording must go together")
         treatments.append(entry)
+    checks_csv = read_csv("drug_checks.csv")
+    dose_labels = {}
+    for policy, (rid, text) in DOSE_LABEL_ROWS.items():
+        if not contains(checks_csv[rid]["quote"], text):
+            raise SystemExit(f"drug_checks.csv/{rid} no longer contains '{text}'")
+        dose_labels[policy] = {"text": text, "ref": checks_csv[rid]["ref"]}
+    dose_labels["NONE"] = {"text": "", "ref": checks_csv["policy_educational"]["ref"]}
+    severe_quote = meds["abx_allergy_severe"]["quote"]
+    for word in SEVERE_REACTION_WORDS:
+        if not contains(severe_quote, word):
+            raise SystemExit(f"medicines.csv/abx_allergy_severe does not contain '{word}'")
+    clash_quote = clashes["antibiotic_penicillin_allergy"]["v_clash"]
+    for word in ALLERGY_GROUPS["antibiotic"]:
+        if not contains(clash_quote, word) and not contains(meds["abx_allergy_severe"]["quote"] + " " + meds["abx_allergy_mild"]["quote"] + " " + "antibiotic", word):
+            raise SystemExit(f"the antibiotic-allergy rows do not contain '{word}'")
+    sheet = OXYGEN_SHEET.read_text(encoding="utf-8").lower()
+    for word in ("nasal cannula", "non-rebreather", "simple"):
+        if word not in sheet:
+            raise SystemExit(f"{OXYGEN_SHEET.name} does not mention '{word}'")
     return {
+        "workflow": {"confirm_seconds": WORKFLOW["confirm_seconds"], "administer_seconds": WORKFLOW["administer_seconds"], "ref": "SR-4107"},
+        "oxygen_devices": [{"id": i, "label": l} for i, l in OXYGEN_DEVICES],
+        "allergy": {"groups": [{"id": g, "keywords": k} for g, k in ALLERGY_GROUPS.items()], "severe_reaction_words": SEVERE_REACTION_WORDS,
+                    "outcome": ALLERGY_OUTCOME, "event": HYPERSENSITIVITY_EVENT, "refs": ["SR-0973", "SR-1311", "SR-4108"]},
+        "dose_labels": dose_labels,
+        "lines": [{"id": i, "text": t} for i, t in LINES.items()],
         "checks": [{"id": c, "phase": p, "severity": s, "meaning": m} for c, p, s, m in CHECKS],
         "prerequisites": [{"id": i, "reject": r, "meaning": m} for i, r, m in PREREQUISITES],
         "effects": [{"id": i, "note": n} for i, n in EFFECTS],
-        "refs": ["SR-4100", "SR-4101", "SR-4102", "SR-4103", "SR-4104", "SR-4106"],
+        "refs": ["SR-4100", "SR-4101", "SR-4102", "SR-4103", "SR-4104", "SR-4106", "SR-4109"],
         "treatments": treatments,
     }
 
@@ -186,6 +245,12 @@ def register_rows(doc: dict) -> list[list[str]]:
             "Names only. The physiology step (p0-physiology-events-behaviour-s05) defines what each effect does and owns content/physio/effects.json; until it exists this file is the list of ids treatments may use."),
         row(4105, "Treatment required checks per treatment", "; ".join(f"{t['id']}: {' '.join(t['required_checks'])}" for t in doc["treatments"]), "D",
             "Each treatment lists its checks explicitly (no implicit checks in code). Timing is listed only where the medicines.csv row states timing wording; restriction only where the care column names a condition; emergency treatments keep identity, allergy, order and documentation."),
+        row(4107, "Medicine workflow: confirmation and administration delays", f"clinician confirms after {WORKFLOW['confirm_seconds']} s; nurse gives {WORKFLOW['administer_seconds']} s later", "D",
+            "Simulator design values (p0-clinical-logic-s11): how long the clinician and the nurse take. No source gives them; they are tuned with testers and kept in content, never in code."),
+        row(4108, "Medicine workflow: what happens at an allergen or another critical problem", f"practice: {ALLERGY_OUTCOME['practice']}; assessment: {ALLERGY_OUTCOME['assessment']} ({HYPERSENSITIVITY_EVENT} eligible)", "D",
+            "Walkthrough 14.4 and Implementation Guide test T-TR3: a beginner has the nurse challenge the request, an advanced trainee has it given and the reaction happens. Until the difficulty setting exists (DT-056) practice mode is the beginner and assessment mode the advanced setting. The allergy group words come from the antibiotic-allergy rows (SR-0973, SR-1311); the severe-reaction words are those of the book's severe row (throat swelling, collapse, anaphylaxis)."),
+        row(4109, "Medicine workflow: approved lines and dose labels", "; ".join(f"{i}" for i, _ in LINES.items()), "D",
+            "The clinician's and the nurse's lines are wording the project team wrote; they state no clinical fact and no dose. A dose is shown only under the label of its dose policy (SR-1406, SR-1407, SR-1408): an educational example with its source, or the words 'the clinician decides'."),
         row(4106, "Treatment restriction tags", "; ".join(sorted({r['tag'] for t in doc['treatments'] for r in t['restricted_by']})), "B",
             "Each tag restates a condition named in the care column of the treatment's medicines.csv row (or the treatment-clash row for oxygen); the generator refuses a tag whose wording is not in that column."),
     ]
@@ -215,7 +280,7 @@ def main(argv: list[str]) -> int:
         if not OUT.exists() or OUT.read_text(encoding="utf-8") != text:
             bad.append("content/treatments.json")
         if REGISTER.read_text(encoding="utf-8") != register:
-            bad.append("the SR-4100..SR-4106 rows of docs/research/source_register.csv")
+            bad.append("the SR-4100..SR-4109 rows of docs/research/source_register.csv")
         if bad:
             print("FAIL  out of date: " + ", ".join(bad) + "; run tools/content/build_treatments.py")
             return 1
@@ -223,7 +288,7 @@ def main(argv: list[str]) -> int:
         return 0
     OUT.write_text(text, encoding="utf-8", newline="\n")
     REGISTER.write_text(register, encoding="utf-8", newline="")
-    print(f"wrote {OUT.relative_to(ROOT)} ({len(doc['treatments'])} treatments) and the SR-4100..SR-4106 register rows")
+    print(f"wrote {OUT.relative_to(ROOT)} ({len(doc['treatments'])} treatments) and the SR-4100..SR-4109 register rows")
     return 0
 
 

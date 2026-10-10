@@ -26,7 +26,19 @@ namespace ProcSense.Core.Clinical
     /// physiology effect ids it causes. DosePolicy is EDUCATIONAL_EXAMPLE, PATIENT_SPECIFIC, INSTITUTIONAL or NONE; only EDUCATIONAL_EXAMPLE may carry a <see cref="Dose"/>.
     /// </summary>
     public sealed record TreatmentDef(string Id, string Kind, string Label, string? MedicineId, string DosePolicy, DoseDisplay? Dose, IReadOnlyList<string> Requires,
-        IReadOnlyList<string> RequiredChecks, IReadOnlyList<Restriction> RestrictedBy, IReadOnlyList<string> Effects, IReadOnlyList<string> Refs);
+        IReadOnlyList<string> RequiredChecks, IReadOnlyList<Restriction> RestrictedBy, IReadOnlyList<string> Effects, IReadOnlyList<string> Refs, string? AllergenGroup = null);
+
+    /// <summary>How long the clinician takes to confirm an order and the nurse to give it (design values from content, never from code).</summary>
+    public sealed record WorkflowTiming(double ConfirmSeconds, double AdministerSeconds);
+
+    /// <summary>An allergy to a whole group of medicines: the words in an allergy record that name the group (for example "penicillin" or "antibiotic").</summary>
+    public sealed record AllergyGroup(string Id, IReadOnlyList<string> Keywords);
+
+    /// <summary>
+    /// How an allergy conflict is judged and what happens: the group words, the words that mean an immediate severe reaction, and the outcome per mode ("challenge" = the nurse refuses and says so,
+    /// "reaction" = it is given, marked critical and the hypersensitivity event becomes eligible), plus the event name.
+    /// </summary>
+    public sealed record AllergyRules(IReadOnlyList<AllergyGroup> Groups, IReadOnlyList<string> SevereWords, string PracticeOutcome, string AssessmentOutcome, string Event);
 
     /// <summary>The treatment library (content/treatments.json, built from the verified medicine table).</summary>
     public sealed class TreatmentTables
@@ -38,11 +50,27 @@ namespace ProcSense.Core.Clinical
 
         public static readonly TreatmentTables Empty = new TreatmentTables(new List<CheckKind>(), new List<Prerequisite>(), new List<string>(), new List<TreatmentDef>());
 
-        public TreatmentTables(IReadOnlyList<CheckKind> checks, IReadOnlyList<Prerequisite> prerequisites, IReadOnlyList<string> effects, IReadOnlyList<TreatmentDef> treatments)
+        public TreatmentTables(IReadOnlyList<CheckKind> checks, IReadOnlyList<Prerequisite> prerequisites, IReadOnlyList<string> effects, IReadOnlyList<TreatmentDef> treatments,
+            WorkflowTiming? timing = null, IReadOnlyList<string>? oxygenDevices = null, AllergyRules? allergy = null, IReadOnlyDictionary<string, string>? doseLabels = null, IReadOnlyDictionary<string, string>? lines = null)
         {
             Checks = checks; Prerequisites = prerequisites; Effects = effects; Treatments = treatments;
             ById = treatments.ToDictionary(t => t.Id, StringComparer.Ordinal);
+            Timing = timing ?? new WorkflowTiming(0, 0);
+            OxygenDevices = oxygenDevices ?? new List<string>();
+            Allergy = allergy ?? new AllergyRules(new List<AllergyGroup>(), new List<string>(), "challenge", "reaction", "");
+            DoseLabels = doseLabels ?? new Dictionary<string, string>();
+            Lines = lines ?? new Dictionary<string, string>();
         }
+
+        /// <summary>The clinician's and the nurse's delays (content/treatments.json, section workflow).</summary>
+        public WorkflowTiming Timing { get; }
+        /// <summary>The oxygen devices a trainee can ask for (nasal_cannula, simple_mask, non_rebreather_mask).</summary>
+        public IReadOnlyList<string> OxygenDevices { get; }
+        public AllergyRules Allergy { get; }
+        /// <summary>The label shown beside a dose, by dose policy (empty text for NONE).</summary>
+        public IReadOnlyDictionary<string, string> DoseLabels { get; }
+        /// <summary>The approved lines the clinician and nurse say, by id, with {placeholders}.</summary>
+        public IReadOnlyDictionary<string, string> Lines { get; }
 
         /// <summary>The checks a treatment can list, in the order they are reported.</summary>
         public IReadOnlyList<CheckKind> Checks { get; }
@@ -93,6 +121,42 @@ namespace ProcSense.Core.Clinical
 
             CheckRefs(root.Arr("refs"), root.Sub("refs"));
 
+            var workflow = root.Obj("workflow");
+            var timing = new WorkflowTiming(workflow.Num("confirm_seconds"), workflow.Num("administer_seconds"));
+            CheckRef(workflow.Str("ref"), workflow.Sub("ref")); workflow.Finish();
+            if (timing.ConfirmSeconds <= 0 || timing.AdministerSeconds <= 0) throw new ContentException(root.Sub("workflow") + ": the delays must be more than 0 seconds");
+
+            var devices = new List<string>();
+            var rawDevices = root.Arr("oxygen_devices");
+            for (int i = 0; i < rawDevices.Count; i++)
+            {
+                var d = new JsonObj(rawDevices[i], JsonObj.Index(root.Sub("oxygen_devices"), i));
+                string id = d.Str("id"); d.Str("label"); d.Finish();
+                if (devices.Contains(id)) throw new ContentException(root.Sub("oxygen_devices") + ": duplicate device '" + id + "'");
+                devices.Add(id);
+            }
+
+            var allergy = ParseAllergy(root.Obj("allergy"));
+
+            var doseLabels = new Dictionary<string, string>();
+            var labelsObj = root.Obj("dose_labels");
+            foreach (var policy in Policies)
+            {
+                var l = labelsObj.Obj(policy);
+                doseLabels[policy] = l.Str("text"); CheckRef(l.Str("ref"), l.Sub("ref")); l.Finish();
+            }
+            labelsObj.Finish();
+
+            var lines = new Dictionary<string, string>();
+            var rawLines = root.Arr("lines");
+            for (int i = 0; i < rawLines.Count; i++)
+            {
+                var l = new JsonObj(rawLines[i], JsonObj.Index(root.Sub("lines"), i));
+                string id = l.Str("id"), text = l.Str("text"); l.Finish();
+                if (lines.ContainsKey(id)) throw new ContentException(root.Sub("lines") + ": duplicate line '" + id + "'");
+                lines[id] = text;
+            }
+
             var treatments = new List<TreatmentDef>();
             var rawTreatments = root.Arr("treatments");
             for (int i = 0; i < rawTreatments.Count; i++)
@@ -101,8 +165,36 @@ namespace ProcSense.Core.Clinical
                 if (treatments.Any(x => x.Id == t.Id)) throw new ContentException(root.Sub("treatments") + ": duplicate treatment '" + t.Id + "'");
                 treatments.Add(t);
             }
+            foreach (var t in treatments)
+                if (t.AllergenGroup != null && !allergy.Groups.Any(g => g.Id == t.AllergenGroup))
+                    throw new ContentException(root.Sub("treatments") + ": " + t.Id + " names the allergy group '" + t.AllergenGroup + "', which is not defined");
+            foreach (var needed in new[] { "confirm", "given", "challenge_allergy_conflict", "challenge_allergy_unknown", "challenge_restriction", "iv_in_place" })
+                if (!lines.ContainsKey(needed)) throw new ContentException(root.Sub("lines") + ": the line '" + needed + "' is missing");
             root.Finish();
-            return new TreatmentTables(checks, prerequisites, effects, treatments);
+            return new TreatmentTables(checks, prerequisites, effects, treatments, timing, devices, allergy, doseLabels, lines);
+        }
+
+        private static AllergyRules ParseAllergy(JsonObj o)
+        {
+            var groups = new List<AllergyGroup>();
+            var rawGroups = o.Arr("groups");
+            for (int i = 0; i < rawGroups.Count; i++)
+            {
+                var g = new JsonObj(rawGroups[i], JsonObj.Index(o.Sub("groups"), i));
+                var keywords = Strings(g, "keywords");
+                if (keywords.Count == 0) throw new ContentException(g.Sub("keywords") + ": needs at least one word");
+                groups.Add(new AllergyGroup(g.Str("id"), keywords.Select(k => k.ToLowerInvariant()).ToList()));
+                g.Finish();
+            }
+            var severe = Strings(o, "severe_reaction_words").Select(w => w.ToLowerInvariant()).ToList();
+            if (severe.Count == 0) throw new ContentException(o.Sub("severe_reaction_words") + ": needs at least one word");
+            var outcome = o.Obj("outcome");
+            string practice = outcome.Enum("practice", "challenge", "reaction"), assessment = outcome.Enum("assessment", "challenge", "reaction");
+            outcome.Finish();
+            string ev = o.Str("event");
+            foreach (var r in o.Arr("refs")) CheckRef(r as string ?? "", o.Sub("refs"));
+            o.Finish();
+            return new AllergyRules(groups, severe, practice, assessment, ev);
         }
 
         private static TreatmentDef ParseTreatment(JsonObj o, List<CheckKind> checks, List<Prerequisite> prerequisites, List<string> effects)
@@ -170,11 +262,13 @@ namespace ProcSense.Core.Clinical
             var labelRow = o.ObjOrNull("label_row"); // the label data row reviewers read (never a dose)
             if (labelRow != null) { labelRow.Str("id"); CheckRef(labelRow.Str("ref"), labelRow.Sub("ref")); labelRow.Finish(); }
 
+            string? allergenGroup = o.Any("allergen_group") as string;   // null in the file means this treatment is not tied to an allergy group
+
             var refs = Strings(o, "refs");
             if (refs.Count == 0) throw new ContentException(where + ": needs a source reference");
             foreach (var r in refs) CheckRef(r, o.Sub("refs"));
             o.Finish();
-            return new TreatmentDef(id, kind, label, medicineId, policy, dose, requires, required, restrictions, effectIds, refs);
+            return new TreatmentDef(id, kind, label, medicineId, policy, dose, requires, required, restrictions, effectIds, refs, allergenGroup);
         }
 
         private static List<string> Strings(JsonObj o, string key)

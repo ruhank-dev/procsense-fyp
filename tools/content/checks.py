@@ -122,9 +122,13 @@ def treatment_problems(doc: dict, register: dict[str, dict], medicine_ids: set[s
     check_ids = [c["id"] for c in doc["checks"]]
     effect_ids = {e["id"] for e in doc["effects"]}
     prerequisite_ids = {p["id"] for p in doc["prerequisites"]}
-    for rid in doc.get("refs", []):
+    section_refs = list(doc.get("refs", [])) + [doc["workflow"]["ref"]] + [v["ref"] for v in doc["dose_labels"].values()] + list(doc["allergy"]["refs"])
+    for rid in section_refs:
         if rid not in register:
             problems.append(f"treatments: ref {rid} not in register")
+    if doc["workflow"]["confirm_seconds"] <= 0 or doc["workflow"]["administer_seconds"] <= 0:
+        problems.append("treatments: the workflow delays must be more than 0 seconds")
+    groups = {g["id"] for g in doc["allergy"]["groups"]}
     seen: set[str] = set()
     for t in doc["treatments"]:
         where = f"treatments:{t['id']}"
@@ -150,6 +154,8 @@ def treatment_problems(doc: dict, register: dict[str, dict], medicine_ids: set[s
         problems += [f"{where}: unknown check {c}" for c in t["required_checks"] if c not in check_ids]
         problems += [f"{where}: unknown effect {e}" for e in t["effects"] if e not in effect_ids]
         problems += [f"{where}: unknown prerequisite {r}" for r in t["requires"] if r not in prerequisite_ids]
+        if t.get("allergen_group") and t["allergen_group"] not in groups:
+            problems.append(f"{where}: allergy group {t['allergen_group']} is not defined")
         if ("restriction" in t["required_checks"]) != bool(t["restricted_by"]):
             problems.append(f"{where}: the restriction check and the restriction list must go together")
     return problems

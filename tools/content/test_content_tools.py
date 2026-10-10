@@ -204,6 +204,14 @@ class TreatmentChecks(unittest.TestCase):
         self.assertIn("SR-9999", found)
         self.assertIn("names no row of medicines.csv", found)
 
+    def test_an_undefined_allergy_group_or_a_missing_workflow_register_row_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-ABX-S2")["allergen_group"] = "latex"
+        doc["workflow"]["ref"] = "SR-9998"
+        found = " ".join(self.problems(doc))
+        self.assertIn("allergy group latex is not defined", found)
+        self.assertIn("SR-9998", found)
+
     def test_the_restriction_check_and_the_restriction_list_go_together(self):
         doc = copy.deepcopy(self.doc)
         self.treatment(doc, "TR-NSAID")["restricted_by"] = []

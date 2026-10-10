@@ -1,4 +1,97 @@
 {
+ "workflow": {
+  "confirm_seconds": 60,
+  "administer_seconds": 60,
+  "ref": "SR-4107"
+ },
+ "oxygen_devices": [
+  {
+   "id": "nasal_cannula",
+   "label": "Nasal cannula"
+  },
+  {
+   "id": "simple_mask",
+   "label": "Simple face mask"
+  },
+  {
+   "id": "non_rebreather_mask",
+   "label": "Non-rebreather mask"
+  }
+ ],
+ "allergy": {
+  "groups": [
+   {
+    "id": "antibiotic",
+    "keywords": [
+     "penicillin",
+     "antibiotic"
+    ]
+   }
+  ],
+  "severe_reaction_words": [
+   "throat swelling",
+   "collapse",
+   "anaphylaxis"
+  ],
+  "outcome": {
+   "practice": "challenge",
+   "assessment": "reaction"
+  },
+  "event": "E-HYPERSENSITIVITY",
+  "refs": [
+   "SR-0973",
+   "SR-1311",
+   "SR-4108"
+  ]
+ },
+ "dose_labels": {
+  "EDUCATIONAL_EXAMPLE": {
+   "text": "EDUCATIONAL EXAMPLE DOSE (SOURCE-BACKED) — NOT A TRAINEE PRESCRIPTION",
+   "ref": "SR-1407"
+  },
+  "PATIENT_SPECIFIC": {
+   "text": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "ref": "SR-1406"
+  },
+  "INSTITUTIONAL": {
+   "text": "CONTEXT-DEPENDENT — INSTITUTIONAL PROTOCOL / CLINICIAN CONFIRMATION",
+   "ref": "SR-1408"
+  },
+  "NONE": {
+   "text": "",
+   "ref": "SR-1407"
+  }
+ },
+ "lines": [
+  {
+   "id": "confirm",
+   "text": "I confirm the order for {treatment}."
+  },
+  {
+   "id": "confirm_allergy_caution",
+   "text": "I have noted the allergy on record: {allergy}. I will take that into account."
+  },
+  {
+   "id": "challenge_allergy_conflict",
+   "text": "Before I give this, I have to stop: the chart records an allergy to {allergy}. Please ask the clinician to review the order."
+  },
+  {
+   "id": "challenge_allergy_unknown",
+   "text": "Before I give this, can you confirm the patient's allergy status?"
+  },
+  {
+   "id": "challenge_restriction",
+   "text": "Before I give this, I am worried about {condition}. Please ask the clinician to review the order."
+  },
+  {
+   "id": "given",
+   "text": "{treatment} has been given."
+  },
+  {
+   "id": "iv_in_place",
+   "text": "The IV access is in."
+  }
+ ],
  "checks": [
   {
    "id": "identity",
@@ -94,7 +187,8 @@
   "SR-4102",
   "SR-4103",
   "SR-4104",
-  "SR-4106"
+  "SR-4106",
+  "SR-4109"
  ],
  "treatments": [
   {
@@ -115,6 +209,7 @@
     "id": "paracetamol",
     "ref": "SR-3800"
    },
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -152,6 +247,7 @@
     "id": "nsaids",
     "ref": "SR-3801"
    },
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -213,6 +309,7 @@
     "id": "opioids",
     "ref": "SR-3802"
    },
+   "allergen_group": null,
    "requires": [
     "iv_access"
    ],
@@ -256,6 +353,7 @@
     "id": "antiemetics",
     "ref": "SR-3803"
    },
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -298,6 +396,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": null,
    "requires": [
     "iv_access"
    ],
@@ -342,6 +441,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": "antibiotic",
    "requires": [
     "iv_access"
    ],
@@ -371,6 +471,7 @@
    "dose_policy": "INSTITUTIONAL",
    "dose_display": null,
    "label_row": null,
+   "allergen_group": "antibiotic",
    "requires": [],
    "required_checks": [
     "identity",
@@ -407,6 +508,7 @@
     "id": "steroids",
     "ref": "SR-3820"
    },
+   "allergen_group": null,
    "requires": [
     "iv_access"
    ],
@@ -440,6 +542,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -471,6 +574,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -503,6 +607,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -535,6 +640,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": null,
    "requires": [
     "iv_access"
    ],
@@ -569,6 +675,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": null,
    "requires": [
     "iv_access"
    ],
@@ -602,6 +709,7 @@
     "id": "naloxone",
     "ref": "SR-3821"
    },
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -634,6 +742,7 @@
     "reviewer": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
    },
    "label_row": null,
+   "allergen_group": "antibiotic",
    "requires": [
     "iv_access"
    ],
@@ -662,6 +771,7 @@
    "dose_policy": "NONE",
    "dose_display": null,
    "label_row": null,
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
@@ -692,6 +802,7 @@
    "dose_policy": "NONE",
    "dose_display": null,
    "label_row": null,
+   "allergen_group": null,
    "requires": [],
    "required_checks": [
     "identity",
