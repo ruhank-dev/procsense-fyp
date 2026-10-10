@@ -90,6 +90,19 @@ def workflow_problems(doc: dict, register: dict[str, dict]) -> list[str]:
     return problems
 
 
+def flow_map_problems(doc: dict, register: dict[str, dict], stage_ids: list[str]) -> list[str]:
+    """content/flow/flow_maps.json: every stage cites a register id that exists, and the stages are exactly the 40 rows of flow_stages.csv (the C# loader checks order, steps and tracks)."""
+    problems = []
+    found = []
+    for m in doc.get("maps", []):
+        for s in m.get("stages", []):
+            found.append(s.get("id"))
+            problems += [f"flow stage {s.get('id')}: ref {rid} not in register" for rid in s.get("refs", []) if rid not in register]
+    problems += [f"flow stage {i}: in flow_stages.csv but not in flow_maps.json" for i in stage_ids if i not in found]
+    problems += [f"flow stage {i}: in flow_maps.json but not in flow_stages.csv" for i in found if i not in stage_ids]
+    return problems
+
+
 def ref_problems(doc: dict, register: dict[str, dict], name: str) -> list[str]:
     """For simple content files (e.g. devices.json): every top-level entry needs a 'ref' that exists."""
     problems = []

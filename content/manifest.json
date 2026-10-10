@@ -1,14 +1,15 @@
 {
  "schema": 1,
- "content_hash": "f27f5e7a52b49b285bf4d7a1aecd8047fc8519c07b6f15a30b585e50362c7edd",
- "files": 328,
- "bytes": 16395884,
+ "content_hash": "196ab6f449ddfeb918abb1f6cd3fb79e976e587e8c8d38b2aabb96f1f93d52eb",
+ "files": 329,
+ "bytes": 16414780,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
   "cases": 1,
   "cxr": 33,
   "ecg": 41,
+  "flow": 1,
   "images": 77,
   "rules": 1,
   "schema": 4,
@@ -627,6 +628,10 @@
   "fasting_rules.csv": {
    "bytes": 1684,
    "sha256": "5757ee2216e257feb4e29c235f275386529779d43f6deb30cf6a523827ee7d49"
+  },
+  "flow/flow_maps.json": {
+   "bytes": 18896,
+   "sha256": "8553b1b3f30519ab685faf6280b8353999e25176a8ce263b67808f3b29ed2e81"
   },
   "flow_stages.csv": {
    "bytes": 36092,

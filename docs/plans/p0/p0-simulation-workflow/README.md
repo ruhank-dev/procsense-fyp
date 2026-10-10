@@ -28,6 +28,7 @@ Case graph engine + Step/FlowStage schema; checklist engine; transport subsystem
 | ID | Question | Method | Success metric |
 |---|---|---|---|
 | EXP-WF-1 | All 40 S1/S2 stages expressible as data? | Encode both maps | 0 stages need custom code |
+| EXP-WF-1 result (10 Oct 2026, s06) | `FlowMapTests.Both_real_maps_load_with_twenty_stages_each_and_need_no_custom_code` | Parse both maps through the JsonLogic evaluator | **40 of 40 stages are data, 0 need custom code** (S1 and S2, 20 each; every walkthrough step 1 to 15 is covered by a stage in each map) |
 | EXP-WF-2 | Late-surfacing hidden facts behave as written? | Golden runs skipping each question | Expected late stop every time |
 
 ## Exit

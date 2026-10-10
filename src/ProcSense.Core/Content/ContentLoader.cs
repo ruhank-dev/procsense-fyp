@@ -65,7 +65,8 @@ namespace ProcSense.Core.Content
             foreach (var id in caseFileIds) files[id] = LoadCaseFile(reader, id);
             var behaviour = LoadBehaviour(reader.ReadText("behaviour.json"));
             return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")),
-                Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"), files);
+                Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"), files,
+                Workflow.FlowMaps.Parse(reader.ReadText("flow/flow_maps.json"), "flow"));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

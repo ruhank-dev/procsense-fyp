@@ -1,0 +1,1210 @@
+{
+ "maps": [
+  {
+   "scenario": "S1",
+   "stages": [
+    {
+     "id": "S1.01",
+     "stage": 1,
+     "title": "Patient arrival",
+     "track": "patient",
+     "steps": [
+      1
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "==": [
+       {
+        "var": "wristband_read"
+       },
+       true
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1800"
+     ]
+    },
+    {
+     "id": "S1.02",
+     "stage": 2,
+     "title": "Initial assessment",
+     "track": "patient",
+     "steps": [
+      1
+     ],
+     "after": [
+      "S1.01"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "and": [
+       {
+        "==": [
+         {
+          "var": "identity_confirmed"
+         },
+         true
+        ]
+       },
+       {
+        "==": [
+         {
+          "var": "allergies_known"
+         },
+         true
+        ]
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1801"
+     ]
+    },
+    {
+     "id": "S1.03",
+     "stage": 3,
+     "title": "Observations",
+     "track": "patient",
+     "steps": [
+      3
+     ],
+     "after": [
+      "S1.02"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "and": [
+       {
+        "in": [
+         "spo2",
+         {
+          "var": "sensors"
+         }
+        ]
+       },
+       {
+        "in": [
+         "systolic_bp",
+         {
+          "var": "measured"
+         }
+        ]
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1802"
+     ]
+    },
+    {
+     "id": "S1.04",
+     "stage": 4,
+     "title": "History",
+     "track": "patient",
+     "steps": [
+      2,
+      4
+     ],
+     "after": [
+      "S1.03"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "and": [
+       {
+        "in": [
+         "complaint",
+         {
+          "var": "topics"
+         }
+        ]
+       },
+       {
+        "in": [
+         "medicines",
+         {
+          "var": "topics"
+         }
+        ]
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1803"
+     ]
+    },
+    {
+     "id": "S1.05",
+     "stage": 5,
+     "title": "Investigations",
+     "track": "patient",
+     "steps": [
+      6
+     ],
+     "after": [
+      "S1.04"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_05.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1804"
+     ]
+    },
+    {
+     "id": "S1.06",
+     "stage": 6,
+     "title": "Results",
+     "track": "patient",
+     "steps": [
+      7
+     ],
+     "after": [
+      "S1.05"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_06.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1805"
+     ]
+    },
+    {
+     "id": "S1.07",
+     "stage": 7,
+     "title": "Abnormal branches",
+     "track": "patient",
+     "steps": [
+      8
+     ],
+     "after": [
+      "S1.06"
+     ],
+     "applies_if": {
+      "in": [
+       "branch.abnormal",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_07.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1806"
+     ]
+    },
+    {
+     "id": "S1.08",
+     "stage": 8,
+     "title": "Optimisation",
+     "track": "patient",
+     "steps": [
+      8
+     ],
+     "after": [
+      "S1.07"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_08.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1807"
+     ]
+    },
+    {
+     "id": "S1.09",
+     "stage": 9,
+     "title": "Consent",
+     "track": "patient",
+     "steps": [
+      9
+     ],
+     "after": [
+      "S1.08"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_09.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1808"
+     ]
+    },
+    {
+     "id": "S1.10",
+     "stage": 10,
+     "title": "Anaesthetic assessment",
+     "track": "patient",
+     "steps": [
+      5,
+      10
+     ],
+     "after": [
+      "S1.09"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_10.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1809"
+     ]
+    },
+    {
+     "id": "S1.11",
+     "stage": 11,
+     "title": "WHO Sign In",
+     "track": "patient",
+     "steps": [
+      12,
+      13
+     ],
+     "after": [
+      "S1.10"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_11.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1810"
+     ]
+    },
+    {
+     "id": "S1.12",
+     "stage": 12,
+     "title": "Theatre preparation (runs in parallel before the patient arrives)",
+     "track": "theatre",
+     "steps": [
+      11
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_12.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1811"
+     ]
+    },
+    {
+     "id": "S1.13",
+     "stage": 13,
+     "title": "WHO Time Out",
+     "track": "patient",
+     "steps": [
+      14
+     ],
+     "after": [
+      "S1.11",
+      "S1.12"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_13.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1812"
+     ]
+    },
+    {
+     "id": "S1.14",
+     "stage": 14,
+     "title": "Procedure start",
+     "track": "patient",
+     "steps": [
+      14
+     ],
+     "after": [
+      "S1.13"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_14.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1813"
+     ]
+    },
+    {
+     "id": "S1.15",
+     "stage": 15,
+     "title": "Relevant intra-operative training events (ProcSense extension)",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S1.14"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_15.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1814"
+     ]
+    },
+    {
+     "id": "S1.16",
+     "stage": 16,
+     "title": "WHO Sign Out",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S1.15"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_16.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1815"
+     ]
+    },
+    {
+     "id": "S1.17",
+     "stage": 17,
+     "title": "Recovery / handover",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S1.16"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_17.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1816"
+     ]
+    },
+    {
+     "id": "S1.18",
+     "stage": 18,
+     "title": "Deterioration branches",
+     "track": "interrupt",
+     "steps": [
+      8
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": {
+      "in": [
+       "event.deterioration",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "done_if": {
+      "in": [
+       "stage.s1_18.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": true,
+     "suspends": [
+      "patient"
+     ],
+     "refs": [
+      "SR-1817"
+     ]
+    },
+    {
+     "id": "S1.19",
+     "stage": 19,
+     "title": "Emergency branches",
+     "track": "interrupt",
+     "steps": [
+      8
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": {
+      "in": [
+       "event.emergency",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "done_if": {
+      "in": [
+       "stage.s1_19.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": true,
+     "suspends": [
+      "patient"
+     ],
+     "refs": [
+      "SR-1818"
+     ]
+    },
+    {
+     "id": "S1.20",
+     "stage": 20,
+     "title": "Debrief",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S1.17"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s1_20.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1819"
+     ]
+    }
+   ]
+  },
+  {
+   "scenario": "S2",
+   "stages": [
+    {
+     "id": "S2.01",
+     "stage": 1,
+     "title": "Patient arrival",
+     "track": "patient",
+     "steps": [
+      1
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "==": [
+       {
+        "var": "wristband_read"
+       },
+       true
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1820"
+     ]
+    },
+    {
+     "id": "S2.02",
+     "stage": 2,
+     "title": "Initial assessment",
+     "track": "patient",
+     "steps": [
+      1
+     ],
+     "after": [
+      "S2.01"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "and": [
+       {
+        "==": [
+         {
+          "var": "identity_confirmed"
+         },
+         true
+        ]
+       },
+       {
+        "==": [
+         {
+          "var": "allergies_known"
+         },
+         true
+        ]
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1821"
+     ]
+    },
+    {
+     "id": "S2.03",
+     "stage": 3,
+     "title": "Observations",
+     "track": "patient",
+     "steps": [
+      3
+     ],
+     "after": [
+      "S2.02"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "and": [
+       {
+        "in": [
+         "spo2",
+         {
+          "var": "sensors"
+         }
+        ]
+       },
+       {
+        "in": [
+         "systolic_bp",
+         {
+          "var": "measured"
+         }
+        ]
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1822"
+     ]
+    },
+    {
+     "id": "S2.04",
+     "stage": 4,
+     "title": "History",
+     "track": "patient",
+     "steps": [
+      2,
+      4
+     ],
+     "after": [
+      "S2.03"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "and": [
+       {
+        "in": [
+         "complaint",
+         {
+          "var": "topics"
+         }
+        ]
+       },
+       {
+        "in": [
+         "medicines",
+         {
+          "var": "topics"
+         }
+        ]
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1823"
+     ]
+    },
+    {
+     "id": "S2.05",
+     "stage": 5,
+     "title": "Investigations",
+     "track": "patient",
+     "steps": [
+      6
+     ],
+     "after": [
+      "S2.04"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_05.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1824"
+     ]
+    },
+    {
+     "id": "S2.06",
+     "stage": 6,
+     "title": "Results",
+     "track": "patient",
+     "steps": [
+      7
+     ],
+     "after": [
+      "S2.05"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_06.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1825"
+     ]
+    },
+    {
+     "id": "S2.07",
+     "stage": 7,
+     "title": "Abnormal branches",
+     "track": "patient",
+     "steps": [
+      8
+     ],
+     "after": [
+      "S2.06"
+     ],
+     "applies_if": {
+      "in": [
+       "branch.abnormal",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_07.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1826"
+     ]
+    },
+    {
+     "id": "S2.08",
+     "stage": 8,
+     "title": "Optimisation (in parallel)",
+     "track": "optimisation",
+     "steps": [
+      8
+     ],
+     "after": [
+      "S2.05"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_08.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1827"
+     ]
+    },
+    {
+     "id": "S2.09",
+     "stage": 9,
+     "title": "Consent",
+     "track": "patient",
+     "steps": [
+      9
+     ],
+     "after": [
+      "S2.07"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_09.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1828"
+     ]
+    },
+    {
+     "id": "S2.10",
+     "stage": 10,
+     "title": "Anaesthetic assessment",
+     "track": "patient",
+     "steps": [
+      5,
+      10
+     ],
+     "after": [
+      "S2.09"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_10.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1829"
+     ]
+    },
+    {
+     "id": "S2.11",
+     "stage": 11,
+     "title": "WHO Sign In",
+     "track": "patient",
+     "steps": [
+      12,
+      13
+     ],
+     "after": [
+      "S2.10"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_11.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1830"
+     ]
+    },
+    {
+     "id": "S2.12",
+     "stage": 12,
+     "title": "Theatre preparation",
+     "track": "theatre",
+     "steps": [
+      11
+     ],
+     "after": [
+      "S2.07"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_12.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1831"
+     ]
+    },
+    {
+     "id": "S2.13",
+     "stage": 13,
+     "title": "WHO Time Out",
+     "track": "patient",
+     "steps": [
+      14
+     ],
+     "after": [
+      "S2.11",
+      "S2.12"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_13.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1832"
+     ]
+    },
+    {
+     "id": "S2.14",
+     "stage": 14,
+     "title": "Procedure start",
+     "track": "patient",
+     "steps": [
+      14
+     ],
+     "after": [
+      "S2.13"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_14.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1833"
+     ]
+    },
+    {
+     "id": "S2.15",
+     "stage": 15,
+     "title": "Relevant intra-operative training events (ProcSense extension)",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S2.14"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_15.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1834"
+     ]
+    },
+    {
+     "id": "S2.16",
+     "stage": 16,
+     "title": "WHO Sign Out",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S2.15"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_16.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1835"
+     ]
+    },
+    {
+     "id": "S2.17",
+     "stage": 17,
+     "title": "Recovery / handover",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S2.16"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_17.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1836"
+     ]
+    },
+    {
+     "id": "S2.18",
+     "stage": 18,
+     "title": "Deterioration branches",
+     "track": "interrupt",
+     "steps": [
+      8
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": {
+      "in": [
+       "event.deterioration",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "done_if": {
+      "in": [
+       "stage.s2_18.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": true,
+     "suspends": [
+      "patient"
+     ],
+     "refs": [
+      "SR-1837"
+     ]
+    },
+    {
+     "id": "S2.19",
+     "stage": 19,
+     "title": "Emergency branches",
+     "track": "interrupt",
+     "steps": [
+      8
+     ],
+     "after": [],
+     "applies_if": true,
+     "start_if": {
+      "in": [
+       "event.emergency",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "done_if": {
+      "in": [
+       "stage.s2_19.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": true,
+     "suspends": [
+      "patient"
+     ],
+     "refs": [
+      "SR-1838"
+     ]
+    },
+    {
+     "id": "S2.20",
+     "stage": 20,
+     "title": "Debrief",
+     "track": "patient",
+     "steps": [
+      15
+     ],
+     "after": [
+      "S2.17"
+     ],
+     "applies_if": true,
+     "start_if": true,
+     "done_if": {
+      "in": [
+       "stage.s2_20.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "interrupt": false,
+     "suspends": [],
+     "refs": [
+      "SR-1839"
+     ]
+    }
+   ]
+  }
+ ]
+}

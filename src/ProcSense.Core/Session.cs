@@ -67,6 +67,15 @@ namespace ProcSense.Core
         /// <summary>The goal and decision tracker, or null when the session runs without one.</summary>
         internal Workflow.CaseGraphSubsystem? Tracker { get; set; }
 
+        /// <summary>The scenario flow map runner (stages, tracks, interrupts), or null when the session runs without one.</summary>
+        internal Workflow.FlowSubsystem? Flow { get; set; }
+
+        /// <summary>Stages started, finished or skipped and interrupts raised or resolved, with sim steps.</summary>
+        public IReadOnlyList<Workflow.GraphEvent> FlowHistory => Flow?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
+
+        /// <summary>Every stage of this scenario's map and its state (for the scorer and tests; the trainee only sees <see cref="ObservableState.Flow"/>).</summary>
+        public IReadOnlyList<Observation.FlowStageStatus> FlowStages => Flow?.Stages() ?? (IReadOnlyList<Observation.FlowStageStatus>)System.Array.Empty<Observation.FlowStageStatus>();
+
         /// <summary>Goals completed or missed and decisions made, with sim steps and score items. The scorer reads this.</summary>
         public IReadOnlyList<Workflow.GraphEvent> GraphHistory => Tracker?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
 

@@ -14,6 +14,9 @@ namespace ProcSense.Core.Observation
     /// <summary>One goal as the trainee's "known / pending" panel shows it. State is pending, complete or missed; At is the clock time it finished ("" while pending).</summary>
     public sealed record GoalStatus(string Id, string Label, string State, string At);
 
+    /// <summary>One stage of the scenario map as the tablet shows it: state is active, suspended (stopped by an emergency), done or skipped.</summary>
+    public sealed record FlowStageStatus(string Id, string Title, string Track, string State);
+
     public sealed record DecisionOption(string Id, string Label);
 
     /// <summary>A decision the trainee has to make. The expected option is never part of the card.</summary>
@@ -26,7 +29,7 @@ namespace ProcSense.Core.Observation
     public sealed record ObservableState(
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
-        IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage)
+        IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -102,6 +105,17 @@ namespace ProcSense.Core.Observation
             }
             sb.Append("],\"hint\":"); JsonText.Quote(sb, Hint);
             sb.Append(",\"block_message\":"); JsonText.Quote(sb, BlockMessage);
+            sb.Append(",\"flow\":[");
+            for (int i = 0; i < Flow.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"id\":"); JsonText.Quote(sb, Flow[i].Id);
+                sb.Append(",\"title\":"); JsonText.Quote(sb, Flow[i].Title);
+                sb.Append(",\"track\":"); JsonText.Quote(sb, Flow[i].Track);
+                sb.Append(",\"state\":"); JsonText.Quote(sb, Flow[i].State);
+                sb.Append('}');
+            }
+            sb.Append(']');
             return sb.Append('}').ToString();
         }
 
@@ -174,7 +188,8 @@ namespace ProcSense.Core.Observation
                 practice && s.Tracker != null ? s.Tracker.GoalStatuses() : System.Array.Empty<GoalStatus>(),
                 s.Tracker != null ? s.Tracker.OpenCards() : System.Array.Empty<DecisionCard>(),
                 practice && s.Tracker != null ? s.Tracker.Hint() : "",
-                practice ? BlockMessage(s) : "");
+                practice ? BlockMessage(s) : "",
+                practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>());
         }
     }
 }

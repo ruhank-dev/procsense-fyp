@@ -4,10 +4,11 @@ Usage (from repo root):  task content-validate
                     or:  uv run --project tools tools/content/validate.py
 Exit code 0 = all valid, 1 = problems found.
 """
+import csv
 import sys
 from pathlib import Path
 
-from checks import case_problems, csv_problems, load_json, load_register, ref_problems, rule_problems, schema_errors, workflow_problems
+from checks import case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -43,6 +44,11 @@ def main() -> int:
         doc = load_json(path)
         problems = schema_errors(doc, workflow_schema) + workflow_problems(doc, register)
         failed |= _report("workflow " + path.stem, problems, f"{len(doc.get('goals', []))} goals, {len(doc.get('decision_points', []))} decisions, {len(doc.get('blockers', []))} blockers")
+
+    flow = load_json(CONTENT / "flow" / "flow_maps.json")
+    with open(CONTENT / "flow_stages.csv", encoding="utf-8", newline="") as f:
+        stage_ids = [r["id"] for r in csv.DictReader(f)]
+    failed |= _report("flow maps", flow_map_problems(flow, register, stage_ids), f"{len(stage_ids)} stages match flow_stages.csv, refs ok")
 
     for path in sorted(CONTENT.glob("*.csv")):
         problems = csv_problems(path, register)
