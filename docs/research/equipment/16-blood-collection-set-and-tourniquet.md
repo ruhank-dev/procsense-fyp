@@ -11,7 +11,7 @@
 | Needle | 21 G = 0.8 mm outer diameter, green hub (ISO 6009 colour code); length 25 to 38 mm is typical | [ISO 6009 hypodermic needle colour code, as quoted on supplier and UNFPA listings](https://globalsupply.unfpa.org/products/needle-luer-21g-sterile-1000656.html) | standard | approx |
 | Tourniquet | strap 25 mm wide x about 457 mm long (1 x 18 in), latex-free, supplied on a perforated roll | [supplier listings for disposable phlebotomy tourniquet rolls](https://wellbefore.com/products/ml%c2%ae-orange-tourniquet-strap-roll-of-25) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -37,4 +37,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Manufacturer figures for the needle and tourniquet
+- None.

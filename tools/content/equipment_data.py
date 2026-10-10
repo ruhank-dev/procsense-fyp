@@ -173,3 +173,60 @@ ROOM = [
     ("Physical patient folder and printed report sheets", "A4 210 x 297 mm", ISO216, "https://www.iso.org/standard/36631.html", "standard"),
     ("Computer workstation and desk, phone, specimen drop station, storage cupboards, light control panel, disinfectant wipes dispenser, diagnostic door plates", "no source opened; sizes set by the room design", "none", "", "open"),
 ]
+
+
+# ---------------------------------------------------------------------------------------------------------------- second pass (10 October 2026, later)
+# Every row that was 'open' was searched again (manufacturer data sheets, FDA 510(k) files, instrument manuals, distributor listings, NHS Health Building Note 00-04, NPSA, IEC 60601-1-8).
+# 'unpublished' = the places named in the source were opened and the manufacturer publishes no such figure; the model uses a design size, marked approximate.
+# 'design' = a user-interface, layout or content item that has no physical dimension (the project defines it).
+def _fix(item: int, part: str, **kw) -> None:
+    for dm in ITEMS[item]["dims"]:
+        if dm["part"] == part:
+            dm.update(kw)
+            return
+    raise KeyError((item, part))
+
+
+def _add(item: int, *rows: dict) -> None:
+    ITEMS[item]["dims"].extend(rows)
+
+
+NPSA = "https://brenmoor.com/wp-content/uploads/2025/02/standardising-wristbands-improves-patient-safety.pdf"
+_add(1, d("Band colour and content (NPSA)", "white band with black text; core identifiers last name, first name, date of birth and NHS number", "NPSA Safer Practice Notice 24, Standardising wristbands improves patient safety (2007), as published by Brenmoor", NPSA, "listing"),
+     d("Band length and width in mm", "the NPSA notice sets colour and content, not millimetres; no national size is published, the Zebra adult band is the representative size", "NPSA SPN 24 (read) and the Zebra Z-Band data", NPSA, "unpublished", "approx"))
+_add(2, d("Colour (NPSA)", "red band with the patient identifiers in black text on a white panel, for a known risk such as an allergy", "NPSA Safer Practice Notice 24 (2007)", NPSA, "listing"))
+_add(5, d("Thickness", "a thin A4 folder of a few millimetres; no standard exists, the model chooses it", "project design choice (no real-world figure is defined)", "", "design", "approx"))
+_add(8, d("Bouffant cap diameter", "53 cm (21 in) or 60 cm (24 in), one size", "disposable bouffant cap supplier listings", "https://www.schoolhealth.com/bouffant-caps", "listing"))
+_add(9, d("Roll stand", "overall height 116.8 cm (46 in) with a 63.5 cm (25 in) base; a shorter model is 100.3 cm", "GCX roll stand kit for Philips IntelliVue MX400 to MX550", "https://www.gcx.com/parts/1056070", "listing"),
+     d("Alarm tone design", "each pulse has a fundamental frequency of 150 to 1000 Hz; a high-priority burst has 10 fast pulses, a medium-priority burst 3 slower pulses, a low-priority burst 1 or 2", "IEC 60601-1-8 as summarised by MDDI and Same Sky", "https://www.mddionline.com/components/audible-alarms-in-medical-equipment", "standard"))
+_add(10, d("Hose length", "an adult cuff comes with a short attached hose of about 30 cm; an extension air hose of 1.5 m is the usual length", "Philips adult NIBP air hose 1.5 m and compatible M1574A cuff listings", "https://acc.usa.philips.com/healthcare/product/989803209761/adult-nibp-air-hose-length-15m-492-feet", "listing", "approx"))
+_add(13, d("Printout paper width", "not published in the PageWriter TC30 data sheet or brochure (printer: thermal paper, 200 by 500 dpi, 25 mm/s); the model prints on A4 width", "Philips PageWriter TC30 data sheet and the Soma Technology brochure, both opened", "https://www.somatechnology.com/pdfFiles/Philips-PageWriter-TC30-ECG.pdf", "unpublished", "approx"))
+_add(15, d("Glucose and ketone meter (FreeStyle Optium Neo)", "87 x 60 x 9 mm, 36 g; reads glucose and blood beta-ketone with separate strips; 0.6 microlitre sample", "Abbott FreeStyle Optium Neo specifications on distributor and teardown pages", "https://ts.ifixit.com/Device/Abbott_FreeStyle_Optium", "listing"),
+      d("Alternative: Nova Max Plus", "91.4 x 58.4 x 22.9 mm, 75 g; becomes a ketone meter with the ketone strip (0.8 microlitre)", "Nova Max Plus consumer guide listing", "https://consumerguide.diabetes.org/products/nova-max-plus", "listing"))
+_add(17, d("Rack (36 places, 13 mm tubes)", "4 x 4 x 2.25 in (about 102 x 102 x 57 mm)", "Health Care Logistics blood tube rack listing", "https://wellbefore.com/products/health-care-logi-blood-tube-rack-13-mm-4-in-w-x-4-in-l-x-2-1-4-in-h", "listing"))
+_fix(18, "Diameter", value="not published: BD gives the height only (127 mm / 5.0 in, FDA file K113558); the model uses a design diameter that fits the instrument vial station",
+     source="BD BACTEC Plus Aerobic/F: FDA 510(k) K113558 and K222559, BD product datasheet, the BACTEC FX user manual and distributor listings were opened; none states the diameter",
+     url="https://www.accessdata.fda.gov/cdrh_docs/pdf11/K113558.pdf", level="unpublished", exact="approx")
+_fix(19, "Dipstick", value="5 mm wide; 10-parameter strips are 108 to 112 mm long", source="urine reagent strip specifications (ACON Mission Expert and compatible strips)",
+     url="https://aconlabs.com/intl/urinalysis/mission-expert/urine-reagent-strips", level="listing", exact="approx")
+_fix(26, "1 L bag size", value="not published: manufacturers give carton sizes only (a 500 mL bag is about 177 x 136 x 54 mm in its carton listing); the model scales a 1 L soft bag from its fill volume",
+     source="Baxter Viaflo and Fresenius Kabi freeflex catalogue pages, the freeflex technical manual and distributor listings were opened; none states the bag size",
+     url="https://gruposdetrabajo.sefh.es/gps/images/stories/MANUAL_TECNICO_Freeflex_Fresenius_Kabi.pdf", level="unpublished", exact="approx")
+_fix(28, "Wall outlet", level="listing")
+_fix(31, "Urometer", value="500 mL urometer chamber about 10 x 10 x 10 cm; a Bard 350 mL urine meter with 2,500 mL bag packs at 7 x 2.5 x 12 in", source="Romsons Urometer 500 listing and Bard 153204 listing",
+     url="https://www.tradeindia.com/products/urometer-500-urine-bag-with-measured-volume-chamber-2500156.html", level="listing", exact="approx")
+_add(27, d("Display layout", "a user-interface item: the project draws the pump screen", "project design (no physical dimension)", "", "design"))
+_add(32, d("Drug chart layout", "a user-interface item: the project draws the chart", "project design (no physical dimension)", "", "design"))
+_add(41, d("Check-log layout", "a user-interface item: the project draws the machine-check log", "project design (no physical dimension)", "", "design"))
+_add(44, d("Central illuminance", "adjustable 20,000 to 160,000 lux", "Draeger Polaris 600 product information", "https://www.draeger.com/Content/Documents/Products/polaris-600-pi-9107070-id-id.pdf", "datasheet"))
+_add(48, d("Laparoscopic cholecystectomy and appendicectomy set contents", "Maryland dissector, atraumatic grasper, Metzenbaum scissors, suction and irrigation, monopolar hook, clip applier, trocars with reducers, Veress needle; sets vary by trust and surgeon preference",
+           "NHS trust instrument-tray documents, Molnlycke laparoscopic tray components and operating-theatre set-up references", "https://belfasttrust.hscni.net/download/835/june/25612/37416-laparoscopic-cholecystectomy-instrument-trays.pdf", "listing"))
+_add(50, d("Drawer layout", "labelled drawers in airway, breathing, circulation, drugs and fluids groups (representation only); each hospital sets its own layout", "project design following the ABCDE grouping of the Resuscitation Council UK (representation)", "", "design"))
+_add(51, d("Form layout", "the WHO checklist wording is fixed (verified, V-31); the board layout is the project's design", "project design", "", "design"))
+_add(20, d("Lab-room model", "not planned: the result appears in the EMR only (decision)", "project decision recorded in the equipment list", "", "design"))
+for _n in (1, 2, 5, 8, 9, 10, 13, 15, 16, 17, 18, 19, 20, 22, 23, 24, 26, 27, 28, 31, 32, 34, 35, 37, 41, 42, 43, 44, 48, 50, 51):
+    ITEMS[_n]["open_"] = []
+ROOM[:] = [r for r in ROOM if not r[0].startswith(("Wall oxygen terminal unit", "Computer workstation"))] + [
+    ("Wall oxygen terminal unit and flowmeter", "BS 5682 (BSI) gas-specific terminal unit about 73 x 73 mm and 63 mm deep; probe dimensions are in BS 5682 / EN 737-6 (paywalled)", "GCE Mediunit BSI-type terminal unit listing", "https://italy.gcegroup.com/products/mediunit-bsi-type", "listing"),
+    ("Computer workstation and desk, phone, specimen drop station, storage cupboards, light control panel, disinfectant wipes dispenser, diagnostic door plates", "sizes are a room-design choice (office furniture and wall fittings have no clinical dimension)", "project design", "", "design"),
+]

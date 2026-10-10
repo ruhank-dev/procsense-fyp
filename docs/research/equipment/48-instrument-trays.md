@@ -10,8 +10,9 @@
 |---|---|---|---|---|
 | Container footprint | 600 x 300 mm (DIN 1/1) | [DIN 58952 container module (recalled; Aesculap catalogue pages confirm the 1/1 container)](https://api.dispatcher.qas.cw.bbraun.com/content/dam/aesculap-us/us/website/aesculap-implant_systems/company/DOC1647-SterilContainer-JS-Series-GTIN-Data-Sheet.pdf) | listing | approx |
 | Container heights | 90, 120, 135, 187 and 200 mm | [Aesculap SterilContainer JS series](https://api.dispatcher.qas.cw.bbraun.com/content/dam/aesculap-us/us/website/aesculap-implant_systems/company/DOC1647-SterilContainer-JS-Series-GTIN-Data-Sheet.pdf) | listing | exact |
+| Laparoscopic cholecystectomy and appendicectomy set contents | Maryland dissector, atraumatic grasper, Metzenbaum scissors, suction and irrigation, monopolar hook, clip applier, trocars with reducers, Veress needle; sets vary by trust and surgeon preference | [NHS trust instrument-tray documents, Molnlycke laparoscopic tray components and operating-theatre set-up references](https://belfasttrust.hscni.net/download/835/june/25612/37416-laparoscopic-cholecystectomy-instrument-trays.pdf) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -41,4 +42,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Instrument list per set
+- None.

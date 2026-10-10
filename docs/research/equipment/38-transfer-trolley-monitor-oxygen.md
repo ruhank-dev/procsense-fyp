@@ -13,7 +13,7 @@
 | Patient surface | 660 x 1910 mm | [same](https://www.somatechnology.com/pdfFiles/Stryker-Prime-Series-Stretchers.pdf) | listing | exact |
 | Castors | 203 mm (8 in) | [same](https://www.somatechnology.com/pdfFiles/Stryker-Prime-Series-Stretchers.pdf) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

@@ -167,7 +167,7 @@ Cards: `docs/research/datasets/`; register: `docs/research/dataset_register.csv`
 
 ## 7. Equipment sheets
 
-53 sheets in `docs/research/equipment`: 118 of 122 dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), 4 are open (no source found, placeholders until one is). The open ones are the blood-culture bottle diameter, the dipstick width, the 1 L bag size and the urometer size.
+53 sheets in `docs/research/equipment`: 142 dimension rows. 131 have a source (manufacturer data sheets, catalogue and distributor specifications, standards such as ISO 216, NHS Health Building Note 00-04 and IEC 60601-1-8), 4 are not published by the manufacturer after the data sheet, regulatory file, manual and listings were opened (wristband millimetres, ECG paper width, blood-culture bottle diameter, 1 L bag size: a design size is used and marked approximate), 7 are user-interface or layout items with no physical dimension, and 0 are open.
 
 ## 8. Validation summary
 

@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | Sampling line | 2, 3 or 4 m lengths; no separate device: the capnograph is a module of items 9 and 41 | [Masimo NomoLine sampling line brochure and distributor listings](https://masimo.fr/siteassets/us/documents/pdf/plm-11480e-brochure-nomoline-sampling-lines-us.pdf) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

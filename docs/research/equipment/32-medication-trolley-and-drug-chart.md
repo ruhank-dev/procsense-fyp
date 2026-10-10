@@ -9,8 +9,9 @@
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
 | Width x depth x height | 511 x 542 x 1072 mm | [Bristol Maid pharmacy trolley listing](https://dentalworld.sigmasolve.com/p/furniture/bristol-maid-controlled-drug-cabinets/pharmacy-trolley-trolley-drug-dispensing-patient-double-door-bolt-lock-18-a-12-c-trays) | listing | exact |
+| Drug chart layout | a user-interface item: the project draws the chart | project design (no physical dimension) | design | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -40,4 +41,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Drug chart layout is a UI item
+- Drug chart layout: design item, no physical dimension

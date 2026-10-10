@@ -11,7 +11,7 @@
 | Size E | 865 mm long x 102 mm diameter, 1800 L at 50 bar, 8.5 kg full | [BOC carbon dioxide cylinder data](https://www.bioclinicalservices.com.au/british-oxygen-company/medical-cylinder-data/medical-gas-cylinder-data-chart-aug-2011) | listing | exact |
 | Size C | 430 mm x 89 mm, 450 L, 3.0 kg full | [same](https://www.bioclinicalservices.com.au/british-oxygen-company/medical-cylinder-data/medical-gas-cylinder-data-chart) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

@@ -9,8 +9,9 @@
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
 | Lighthead diameter | 785 mm | [Draeger Polaris 600 specification as listed by a distributor](https://remma.fr/en/model/surgical-lamp-polaris-600) | listing | exact |
+| Central illuminance | adjustable 20,000 to 160,000 lux | [Draeger Polaris 600 product information](https://www.draeger.com/Content/Documents/Products/polaris-600-pi-9107070-id-id.pdf) | datasheet | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -40,4 +41,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Illuminance figures from the data sheet
+- None.

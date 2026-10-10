@@ -12,7 +12,7 @@
 | Insufflator (ConMed 35L) | 338 x 175 x 375 mm (H x W x D), 10.4 kg | [ConMed Linvatec 35L listing](https://www.medwrench.com/equipment/6891/conmed-linvatec-35l) | listing | exact |
 | Insufflator (Olympus UHI-4) | 370 x 120 x 300 mm, 9.3 kg | [Olympus tower configuration listing](https://www.somatechnology.com/pdfFiles/olympus-hysteroflator-100-insufflator.pdf) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

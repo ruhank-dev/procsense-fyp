@@ -80,8 +80,8 @@ class BreakingSomethingIsCaught(unittest.TestCase):
 
     def test_an_open_dimension_claimed_as_exact(self):
         def claim(items):
-            dim = next(d for d in items[18]["dims"] if d["level"] == "open")     # the blood-culture bottle diameter has no source yet
-            dim.update(value="28 mm", source="a page", exact="exact")
+            dim = items[18]["dims"][0]
+            dim.update(value="28 mm", source="a page", exact="exact", level="open")
         found = self.with_data(claim)
         self.assertTrue(any("states a value as exact" in p for p in found), found)
 

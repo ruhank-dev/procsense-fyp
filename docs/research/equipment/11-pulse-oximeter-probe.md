@@ -12,7 +12,7 @@
 | Finger thickness accepted | 8 to 26 mm | [same](https://www.wms.co.uk/Equipment/Diagnostic/Pulse-Oximeter/Nonin-9550-Onyx-II-Finger-Pulse-Oximeter/p/W6415) | listing | exact |
 | Weight | 53.5 g with batteries | [same](https://www.medi-shop.gr/en/oximeters/finger-oximeter-onyx-ii-9550) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

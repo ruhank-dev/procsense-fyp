@@ -637,6 +637,17 @@ class LabelSafety(unittest.TestCase):
 
 
 class TypeAChecks(unittest.TestCase):
+    def test_teaching_script_claims_each_have_source_and_level(self):
+        import csv
+        with open(ROOT / "docs" / "research" / "teaching_script_check.csv", encoding="utf-8", newline="") as f:
+            rows = list(csv.DictReader(f))
+        self.assertGreaterEqual(len(rows), 50)
+        for r in rows:
+            self.assertIn(r["level"], ("primary", "secondary", "design"), r["claim_id"])
+            self.assertTrue(r["source"].strip() and r["result"].strip(), r["claim_id"])
+            if r["level"] != "design":
+                self.assertTrue(r["url"].startswith("https://"), r["claim_id"])
+
     """The second look at type A rows (tools/content/tables/type_a_checks.py): no row is VERIFIED without a level and a V-id that exists in the log."""
 
     def test_every_verified_claim_cites_a_logged_claim_with_a_url(self):

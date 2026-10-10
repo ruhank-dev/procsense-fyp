@@ -10,8 +10,9 @@
 |---|---|---|---|---|
 | Defibrillator height x width x depth | 230 x 296 x 279 mm, 6.6 kg | [HeartStart XL+ listing](https://somatechnology.com/defibrillators/philips-heartstart-xl-plus) | listing | exact |
 | Trolley (typical) | about 1100 x 800 x 700 mm, or a slim 1550 x 675 x 400 mm model | [supplier listings](https://org.gem.gov.in/cart/cart_global/directBuy/135863) | listing | approx |
+| Drawer layout | labelled drawers in airway, breathing, circulation, drugs and fluids groups (representation only); each hospital sets its own layout | project design following the ABCDE grouping of the Resuscitation Council UK (representation) | design | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -41,4 +42,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Drawer layout
+- Drawer layout: design item, no physical dimension

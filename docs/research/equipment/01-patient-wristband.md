@@ -9,8 +9,10 @@
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
 | Band length x width | 279 x 25 mm (1 x 11 in; some listings 279.4 x 25.4) | [Zebra Z-Band Direct adult band, labelzone.co.uk listing](https://www.labelzone.co.uk/products/zebra-z-band-direct-wristband-25-x-279mm-white-box-of-6-rolls) | listing | exact |
+| Band colour and content (NPSA) | white band with black text; core identifiers last name, first name, date of birth and NHS number | [NPSA Safer Practice Notice 24, Standardising wristbands improves patient safety (2007), as published by Brenmoor](https://brenmoor.com/wp-content/uploads/2025/02/standardising-wristbands-improves-patient-safety.pdf) | listing | exact |
+| Band length and width in mm | the NPSA notice sets colour and content, not millimetres; no national size is published, the Zebra adult band is the representative size | [NPSA SPN 24 (read) and the Zebra Z-Band data](https://brenmoor.com/wp-content/uploads/2025/02/standardising-wristbands-improves-patient-safety.pdf) | unpublished | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -41,4 +43,4 @@ Very low
 
 ## Open points (nothing here is guessed)
 
-- NPSA millimetre sizes for adult, child and neonatal bands were not found; the Zebra adult band is the representative size
+- Band length and width in mm: not published by the manufacturer (a design size is used, approximate)

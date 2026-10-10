@@ -11,9 +11,9 @@
 | Pole height range | 1120 to 2000 mm | [Hidemar IV pole on casters H166 (MedicalExpo catalogue)](https://www.medicalexpo.com/prod/hidemar/product-68739-483238.html) | listing | exact |
 | Pole base / castors | 600 mm diameter; five swivel castors of 50 mm, two with brakes | [same](https://www.medicalexpo.com/prod/hidemar/product-68739-483238.html) | listing | exact |
 | Pole material | stainless steel 18/10, four hooks | [same](https://www.medicalexpo.com/prod/hidemar/product-68739-483238.html) | listing | exact |
-| 1 L bag size | not found (a 500 mL bag is about 177 x 136 x 54 mm in its carton listing) | [Baxter Viaflex catalogue listings](https://www.yesmed.com.au/brands/baxter/baxter-viaflex-iv-solutions-0-9-sodium-chloride-500ml.html) | open | approx |
+| 1 L bag size | not published: manufacturers give carton sizes only (a 500 mL bag is about 177 x 136 x 54 mm in its carton listing); the model scales a 1 L soft bag from its fill volume | [Baxter Viaflo and Fresenius Kabi freeflex catalogue pages, the freeflex technical manual and distributor listings were opened; none states the bag size](https://gruposdetrabajo.sefh.es/gps/images/stories/MANUAL_TECNICO_Freeflex_Fresenius_Kabi.pdf) | unpublished | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -44,6 +44,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Exact bag dimensions
-- Pole figures come from a catalogue listing, not a datasheet
-- 1 L bag size: no source found
+- 1 L bag size: not published by the manufacturer (a design size is used, approximate)

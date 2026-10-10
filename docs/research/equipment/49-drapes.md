@@ -11,7 +11,7 @@
 | Laparotomy drape | 1500 x 2400 mm | [supplier listings](https://www.tradeindia.com/products/laparotomy-drape-pack-c11865320.html) | listing | approx |
 | Plain drape | 1500 x 2000 mm | [supplier listings](https://www.tradeindia.com/products/disposable-surgical-drape-c12185281.html) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

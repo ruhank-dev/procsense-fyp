@@ -13,7 +13,7 @@
 | Overall length | 2100 to 2400 mm (retracted to extended) | [same](https://assets.hillrom.com/is/content/hillrom/178171-EN-r3_VersaCare_SpecSheet-LRpdf-2) | listing | exact |
 | Deck height | 330 to 430 mm low; 760 to 860 mm high | [same](https://assets.hillrom.com/is/content/hillrom/178171-EN-r3_VersaCare_SpecSheet-LRpdf-2) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

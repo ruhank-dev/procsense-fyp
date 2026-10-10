@@ -10,8 +10,9 @@
 |---|---|---|---|---|
 | Small adult cuff (bladder) | 12 x 22 cm for arm 22 to 26 cm | [AHA cuff size table as cited in the literature](https://www.nature.com/articles/hr2010210) | listing | exact |
 | Standard adult cuff (bladder) | 16 x 30 cm for arm 27 to 34 cm | [same](https://www.nature.com/articles/hr2010210) | listing | exact |
+| Hose length | an adult cuff comes with a short attached hose of about 30 cm; an extension air hose of 1.5 m is the usual length | [Philips adult NIBP air hose 1.5 m and compatible M1574A cuff listings](https://acc.usa.philips.com/healthcare/product/989803209761/adult-nibp-air-hose-length-15m-492-feet) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -42,4 +43,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Hose length
+- None.

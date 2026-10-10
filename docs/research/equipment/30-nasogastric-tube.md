@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | Size and length | 16 Fr (about 5.3 mm outer diameter) x 1210 to 1250 mm | [Ryles tube supplier pages](https://www.medshop.com.au/products/uniq-ryles-x-ray-line-and-tip-no-mandrin-1210-mm-funnel-luer-adapter-ch16-4eyes) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

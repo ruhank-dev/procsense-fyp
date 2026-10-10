@@ -10,9 +10,9 @@
 |---|---|---|---|---|
 | Bottle height (Standard/10 plastic vial) | 5.0 in (127 mm) | [FDA 510(k) summary K161810 (related model)](https://fda.innolitics.com/device/K161810) | listing | approx |
 | Fill | up to 10 mL blood per bottle; 30 mL medium bottle for the Plus aerobic | [BD BACTEC Plus listings](https://www.livingstone.com.au/products/bd442023-bd-bactec-plus-aerobic-culture-vials-30ml-plastic-50-pack) | listing | approx |
-| Diameter | not found | no source | open | exact |
+| Diameter | not published: BD gives the height only (127 mm / 5.0 in, FDA file K113558); the model uses a design diameter that fits the instrument vial station | [BD BACTEC Plus Aerobic/F: FDA 510(k) K113558 and K222559, BD product datasheet, the BACTEC FX user manual and distributor listings were opened; none states the diameter](https://www.accessdata.fda.gov/cdrh_docs/pdf11/K113558.pdf) | unpublished | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -43,5 +43,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Bottle diameter
-- Diameter: no source found
+- Diameter: not published by the manufacturer (a design size is used, approximate)

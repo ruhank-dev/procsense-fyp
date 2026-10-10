@@ -12,7 +12,7 @@
 | Cuffed tube 7.5 mm | internal diameter 7.5 mm, outer 10.5 mm, length 310 mm | [KRUUSE tube listing](https://shop.kruuse.com/CVT-INT/en/EUR/product/272029) | listing | exact |
 | Difficult-airway trolley | 650 x 480 x 1070 mm with six drawers (typical); other makers 550 x 550 x 993 mm or 615 x 500 x 915 mm | [supplier listings (Vetequip, Bristol Maid Caretray)](https://bristolmaid.com/default/caretray-trolley-airway-difficult-intubation.html) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -42,4 +42,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Trolley dimensions
+- None.

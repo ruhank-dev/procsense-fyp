@@ -9,8 +9,9 @@
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
 | Board | 297 x 420 mm (A3) | [ISO 216 paper sizes (A3 297 x 420 mm, A4 210 x 297 mm)](https://www.iso.org/standard/36631.html) | standard | approx |
+| Form layout | the WHO checklist wording is fixed (verified, V-31); the board layout is the project's design | project design | design | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -40,4 +41,4 @@ Very low
 
 ## Open points (nothing here is guessed)
 
-- Local form layout
+- Form layout: design item, no physical dimension

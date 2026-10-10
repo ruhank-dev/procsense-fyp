@@ -9,9 +9,9 @@
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
 | Catheter | 16 Fr x 400 to 430 mm, 10 mL balloon | [Foley catheter supplier pages](https://www.eboshealthcare.com.au/catalogue-products/urology/catheters/catheter-foley-2-w-16fr-10ml-10s/) | listing | exact |
-| Urometer | not found | no source | open | exact |
+| Urometer | 500 mL urometer chamber about 10 x 10 x 10 cm; a Bard 350 mL urine meter with 2,500 mL bag packs at 7 x 2.5 x 12 in | [Romsons Urometer 500 listing and Bard 153204 listing](https://www.tradeindia.com/products/urometer-500-urine-bag-with-measured-volume-chamber-2500156.html) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -37,4 +37,4 @@ Low
 
 ## Open points (nothing here is guessed)
 
-- Urometer dimensions
+- None.

@@ -10,8 +10,9 @@
 |---|---|---|---|---|
 | Height x width x depth | 1480 x 1150 x 790 mm | [Perseus A500 listing](https://www.somatechnology.com/pdfFiles/Drager-Perseus-A500-anesthesia-machine.pdf) | listing | exact |
 | Weight | 163 kg | [same](https://www.somatechnology.com/anesthesia-machines/drager-perseus-a500) | listing | exact |
+| Check-log layout | a user-interface item: the project draws the machine-check log | project design (no physical dimension) | design | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -43,4 +44,4 @@ High
 
 ## Open points (nothing here is guessed)
 
-- Check-log layout
+- Check-log layout: design item, no physical dimension

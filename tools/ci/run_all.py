@@ -75,6 +75,7 @@ def main(argv: list[str]) -> int:
         ("images + reports valid (ultrasound, ECG, chest X-ray, CT, MRI, MRCP)", lambda: run(["uv", "run", "--project", "tools", "tools/content/validate_images.py"])),
         ("case files built, valid and up to date (53 cases: 17 P0, 16 P1, 20 P2)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_case_files.py", "--check"])),
         ("case file tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_case_files.py"])),
+        ("EXP-DATA-2: generated lab values stay in their band (10,000 seeds)", lambda: run(["uv", "run", "--project", "tools", "tools/content/exp_data2.py"])),
         ("equipment sheets up to date (53 items)", lambda: run(["uv", "run", "--project", "tools", "tools/content/equipment_sheets.py", "--check"])),
         ("equipment sheet tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_equipment.py"])),
         ("imaging library complete and up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/imaging_library.py", "--check"])),

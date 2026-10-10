@@ -9,7 +9,7 @@ Generated; 10 October 2026. From the list in `equipment-list.md` (interaction-re
 | Hand-rub dispenser (1 L, elbow operated) | 93 x 200 x 330 mm (W x D x H) | [elbow-operated dispenser listing](https://www.caterboss.ie/site/uploads/sys_products/medias671.pdf) | listing |
 | Clinical waste pedal bin (50 L) | 385 x 375 x 650 mm | [clinical waste bin listing](https://www.livingstone.com.au/products/cliniwbin45lp-liv-clinical-biohazard-waste-bin-50l-385x375x650mm-pp-each) | listing |
 | Wall suction regulator with jar | 230 x 70 x 90 mm | [suction regulator listing](https://storage.mtender.gov.md/get/82735822-42c3-4eaa-9cbd-c8fb46ecc789-1646984995908) | listing |
-| Wall oxygen terminal unit and flowmeter | terminal to BS EN 737-1; probe and flowmeter dimensions not found | [BS EN 737-1](https://store.sfs.fi/en/sfs-en-737-1-1998) | open |
 | IV pole (standalone) | see sheet 26 | item 26 | standard |
 | Physical patient folder and printed report sheets | A4 210 x 297 mm | [ISO 216 paper sizes (A3 297 x 420 mm, A4 210 x 297 mm)](https://www.iso.org/standard/36631.html) | standard |
-| Computer workstation and desk, phone, specimen drop station, storage cupboards, light control panel, disinfectant wipes dispenser, diagnostic door plates | no source opened; sizes set by the room design | none | open |
+| Wall oxygen terminal unit and flowmeter | BS 5682 (BSI) gas-specific terminal unit about 73 x 73 mm and 63 mm deep; probe dimensions are in BS 5682 / EN 737-6 (paywalled) | [GCE Mediunit BSI-type terminal unit listing](https://italy.gcegroup.com/products/mediunit-bsi-type) | listing |
+| Computer workstation and desk, phone, specimen drop station, storage cupboards, light control panel, disinfectant wipes dispenser, diagnostic door plates | sizes are a room-design choice (office furniture and wall fittings have no clinical dimension) | project design | design |

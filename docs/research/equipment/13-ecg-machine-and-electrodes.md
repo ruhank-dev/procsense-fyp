@@ -13,8 +13,9 @@
 | Display | 10 in touch screen | [same](https://somatechnology.com/ekg-machines/philips-pagewriter-tc30) | listing | exact |
 | Electrode (Red Dot 2670-3) | 1.5 x 1.75 in (about 38 x 44 mm), silver/silver-chloride | [3M Red Dot listing](https://mms.mckesson.com/product/486607/Solventum-Corporation-2670-3) | listing | exact |
 | Electrodes for a 12-lead ECG | 10 (4 limb, 6 chest) | [Standard 12-lead layout](https://myshare-cms.siemens.com/12-lead-ecg-placement) | listing | exact |
+| Printout paper width | not published in the PageWriter TC30 data sheet or brochure (printer: thermal paper, 200 by 500 dpi, 25 mm/s); the model prints on A4 width | [Philips PageWriter TC30 data sheet and the Soma Technology brochure, both opened](https://www.somatechnology.com/pdfFiles/Philips-PageWriter-TC30-ECG.pdf) | unpublished | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -46,4 +47,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Printout paper width
+- Printout paper width: not published by the manufacturer (a design size is used, approximate)

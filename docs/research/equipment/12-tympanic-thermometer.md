@@ -12,7 +12,7 @@
 | Weight | 120 g | [same](https://www.multitronic.fi/en/products/4508973/braun-thermoscan-7-age-precision-irt6520bwe-ear-thermometer---black) | listing | exact |
 | Range | 34 to 42.2 degC, 3 s measurement | [same](https://www.galaxus.de/en/s6/product/thermoscan-pi-ear-thermometer-7-irt-6520-ear-medical-thermometers-18520032) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

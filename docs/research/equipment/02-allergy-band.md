@@ -9,8 +9,9 @@
 | Part | Value | Source (date opened or seen: 10 October 2026) | Level | Exact / approx |
 |---|---|---|---|---|
 | Band length x width | 279 x 25 mm | [Zebra Z-Band Direct adult band (as item 1)](https://www.labelzone.co.uk/products/zebra-z-band-direct-wristband-25-4-x-279-4mm-red-kit-of-6-cartridges) | listing | exact |
+| Colour (NPSA) | red band with the patient identifiers in black text on a white panel, for a known risk such as an allergy | [NPSA Safer Practice Notice 24 (2007)](https://brenmoor.com/wp-content/uploads/2025/02/standardising-wristbands-improves-patient-safety.pdf) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -40,4 +41,4 @@ Very low
 
 ## Open points (nothing here is guessed)
 
-- The institutional allergy colour
+- None.

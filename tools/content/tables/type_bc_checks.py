@@ -135,9 +135,9 @@ rule(r"Priority ladder step: ", D, "", "design", "The book's own prioritisation 
 for fam in ("Flow stage", "Player-view stage", "VR reasoning card", "Priority scale \\(Part D\\)", "Decision outcome", "End state", "Problem type"):
     rule(rf"{fam}: ", D, "", "design", "Structure of the simulator (scenario flow, screens, scoring outcomes); the thresholds it uses are the verified rows.")
 rule(r"Step answer: ", D, "V-67", "design",
-     "The book's teaching script for this step: the simulator's design content. Its clinical thresholds are verified rows (NEWS2 V-01, NG253 V-44, fasting V-09, potassium V-15, WHO checklist V-31, diabetes V-49) and the statements the book marks as source backed were checked: NG45 tests V-41, hair removal with clippers (NICE NG125), warming (NICE CG65 V-22), NEWS2 ranges V-01.")
+     "The book's teaching script for this step: the simulator's design content. Its clinical thresholds are verified rows (NEWS2 V-01, NG253 V-44, fasting V-09, potassium V-15, WHO checklist V-31, diabetes V-49) and every clinical statement in the script was checked one by one against its source (50 claims, docs/research/teaching_script_check.csv): NG45 tests V-41, hair removal with clippers (NICE NG125), warming (NICE CG65 V-22), NEWS2 ranges V-01.")
 rule(r"What-if: ", D, "V-67", "design",
-     "The book's what-if script: the simulator's design content. The clinical thresholds it uses are verified rows; checked individually: warming below 36.0 (NICE CG65 V-22), potassium fall after insulin-glucose of about 0.65 to 1.0 mmol/L at 30 to 60 minutes (UKKA 2026 guideline), anaphylaxis treatment (UK Resuscitation Council, V-38), duct-stone risk bands (V-03), sepsis timing (V-44).")
+     "The book's what-if script: the simulator's design content. The clinical thresholds it uses are verified rows; checked one by one in docs/research/teaching_script_check.csv: warming below 36.0 (NICE CG65 V-22), potassium fall after insulin-glucose of about 0.65 to 1.0 mmol/L at 30 to 60 minutes (UKKA 2026 guideline), anaphylaxis treatment (UK Resuscitation Council, V-38), duct-stone risk bands (V-03), sepsis timing (V-44).")
 
 
 def check(item: str) -> tuple[str, str, str, str, str] | None:

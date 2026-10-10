@@ -14,7 +14,7 @@
 | Hose length | about 1.8 m | [Bair Hugger 775 listing (also unit 30 x 25 x 34 cm)](https://www.somatechnology.com/pdfFiles/Bair-Hugger-775-Warmer.pdf) | listing | approx |
 | Full-access underbody blanket | 221 x 91 cm (84 x 36 in), Bair Hugger model 635 | [3M Bair Hugger blanket listing](https://emerdepot.com/products/3m-63500-bair-hugger-blanket-warming-l15) | listing | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 

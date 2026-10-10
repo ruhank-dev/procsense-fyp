@@ -110,8 +110,11 @@ def build() -> tuple[str, str]:
           "Real pictures (UIdataGB, NIH ChestX-ray14, AMOS, PTB-XL) keep their licence and attribution; every synthetic picture carries the visible mark and names its generator and real base. "
           "The per-picture review table is `docs/research/image_review_pack.md`; approvals are owner-attested (`content/image_approvals.json`), at training level only.", "",
           "## 7. Equipment sheets", "",
-          f"53 sheets in `docs/research/equipment`: {all_dims - open_dims} of {all_dims} dimension rows have a source (two read in a manufacturer data sheet, the rest manufacturer specifications on catalogue pages or standards), {open_dims} are open (no source found, placeholders until one is). "
-          "The open ones are the blood-culture bottle diameter, the dipstick width, the 1 L bag size and the urometer size.", "",
+          f"53 sheets in `docs/research/equipment`: {all_dims} dimension rows. {sum(1 for it in eq.ITEMS.values() for d in it['dims'] if d['level'] in ('datasheet', 'listing', 'standard'))} have a source "
+          f"(manufacturer data sheets, catalogue and distributor specifications, standards such as ISO 216, NHS Health Building Note 00-04 and IEC 60601-1-8), "
+          f"{sum(1 for it in eq.ITEMS.values() for d in it['dims'] if d['level'] == 'unpublished')} are not published by the manufacturer after the data sheet, regulatory file, manual and listings were opened "
+          f"(wristband millimetres, ECG paper width, blood-culture bottle diameter, 1 L bag size: a design size is used and marked approximate), "
+          f"{sum(1 for it in eq.ITEMS.values() for d in it['dims'] if d['level'] == 'design')} are user-interface or layout items with no physical dimension, and {open_dims} are open.", "",
           "## 8. Validation summary", "",
           "CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; "
           "53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, "

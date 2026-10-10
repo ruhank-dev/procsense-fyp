@@ -12,8 +12,10 @@
 | Weight | 5.9 kg | [same](https://www.somatechnology.com/pdfFiles/Philips-IntelliVue-MX450-Patient-Monitor.pdf) | datasheet | exact |
 | Display | 12 in WXGA colour touch screen, useful screen 261.1 x 163.2 mm | [same](https://www.somatechnology.com/pdfFiles/Philips-IntelliVue-MX450-Patient-Monitor.pdf) | datasheet | exact |
 | Waveform sweep speeds | 6.25, 12.5, 25 and 50 mm/s | [same](https://www.somatechnology.com/pdfFiles/Philips-IntelliVue-MX450-Patient-Monitor.pdf) | datasheet | exact |
+| Roll stand | overall height 116.8 cm (46 in) with a 63.5 cm (25 in) base; a shorter model is 100.3 cm | [GCX roll stand kit for Philips IntelliVue MX400 to MX550](https://www.gcx.com/parts/1056070) | listing | exact |
+| Alarm tone design | each pulse has a fundamental frequency of 150 to 1000 Hz; a high-priority burst has 10 fast pulses, a medium-priority burst 3 slower pulses, a low-priority burst 1 or 2 | [IEC 60601-1-8 as summarised by MDDI and Same Sky](https://www.mddionline.com/components/audible-alarms-in-medical-equipment) | standard | exact |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -49,5 +51,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Stand dimensions
-- Alarm sound design
+- None.

@@ -21,7 +21,7 @@ import equipment_data as data  # noqa: E402
 OUT = ROOT / "docs" / "research" / "equipment"
 LIST = ROOT / "docs" / "plans" / "p0" / "p0-blender-equipment" / "equipment-list.md"
 SPEC = ROOT / "docs" / "plans" / "p0" / "p0-vr-interaction-ui" / "equipment-interaction-spec.md"
-LEVELS = {"datasheet": "manufacturer data sheet opened", "listing": "manufacturer specification as printed on a distributor or catalogue page", "standard": "published standard", "open": "not found"}
+LEVELS = {"listing": "manufacturer specification as printed on a distributor or catalogue page", "standard": "published standard", "datasheet": "manufacturer data sheet opened", "unpublished": "the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate", "design": "a user-interface, layout or content item with no physical dimension; defined by the project", "open": "not found"}
 DATE = "10 October 2026"
 
 
@@ -64,6 +64,7 @@ def sheet(n: int, it: dict, li: dict, spec: list[dict]) -> str:
         L += [f"- Trainee does: {s['does']}", f"- System response: {s['system']}", f"- Failure or scenario: {s['failure']}", f"- Asset needs (named points): {s['needs']}"]
     L += ["", "## Triangle-budget class", "", it["tri"], "", "## Open points (nothing here is guessed)", ""]
     opens = list(it["open_"]) + [f"{dm['part']}: no source found" for dm in it["dims"] if dm["level"] == "open" and not any(dm["part"] in o for o in it["open_"])]
+    opens += [f"{dm['part']}: " + ("not published by the manufacturer (a design size is used, approximate)" if dm["level"] == "unpublished" else "design item, no physical dimension") for dm in it["dims"] if dm["level"] in ("unpublished", "design")]
     L += [f"- {o}" for o in opens] if opens else ["- None."]
     return "\n".join(L) + "\n"
 
@@ -82,8 +83,10 @@ def problems() -> list[str]:
         for dm in it["dims"]:
             if dm["level"] not in LEVELS:
                 out.append(f"item {n}: unknown level {dm['level']}")
-            if dm["level"] in ("datasheet", "listing") and not dm["url"]:
+            if dm["level"] in ("datasheet", "listing", "unpublished") and not dm["url"]:
                 out.append(f"item {n}: '{dm['part']}' is level {dm['level']} but has no URL")
+            if dm["level"] in ("unpublished", "design") and not dm["source"].strip():
+                out.append(f"item {n}: '{dm['part']}' is level {dm['level']} but names no source or reason")
             if dm["level"] == "standard" and not dm["source"]:
                 out.append(f"item {n}: '{dm['part']}' names no standard")
             if not dm["value"].strip():

@@ -13,7 +13,7 @@
 | Nasal cannula | 2.1 m tubing, 1 to 6 L/min | [supplier listings](https://emergency.com.au/shop/first-aid-kits-and-supplies/first-aid-kit-refill-items/airway-management/nasal-cannula-with-tubing-2-1m-adult/) | listing | exact |
 | Wall outlet | BS 5682 (BSI) gas-specific terminal unit about 73 x 73 mm and 63 mm deep; probe dimensions are in BS 5682 / EN 737-6 (paywalled) | [GCE Mediunit BSI-type terminal unit listing; BS EN 737-1 scope](https://italy.gcegroup.com/products/mediunit-bsi-type) | listing | approx |
 
-Levels: **datasheet** = manufacturer data sheet opened; **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **open** = not found.
+Levels: **listing** = manufacturer specification as printed on a distributor or catalogue page; **standard** = published standard; **datasheet** = manufacturer data sheet opened; **unpublished** = the data sheet, regulatory file, manual and listings named in the source were opened and the figure is not published; the model uses a design size, marked approximate; **design** = a user-interface, layout or content item with no physical dimension; defined by the project; **open** = not found.
 
 ## Components
 
@@ -44,4 +44,4 @@ Medium
 
 ## Open points (nothing here is guessed)
 
-- Wall outlet dimensions
+- None.
