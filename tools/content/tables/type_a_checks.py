@@ -39,9 +39,10 @@ rule(r"Vital-sign display band: (spo2\.critical\.critical|acvpu\.worry|pain\.|cr
 rule(r"NEWS2 response tier: (0|1-4)$", V, "V-01", "primary", "RCP chart 2: aggregate 0 to 4 is the low band with a ward-based response; the finer split of 0 is the book's.")
 rule(r"Sepsis tier \(NICE NG253\): (high|moderate)\.single3$", D, "ISS-0005", "design",
      "The book upgrades the tier when one parameter scores 3; NICE NG253 1.6.2 asks for a high-priority review for a definite decision. The safer simulator rule is kept by decision (ISS-0005).")
-rule(r"Sepsis tier \(NICE NG253\): (high|moderate|low)\.antibiotics$", V, "V-40", "secondary",
-     "NG253 gives 1-, 3- and 6-hour maximums by risk level; the AoMRC statement v2.0 (October 2022) gives 1 hour for NEWS2 7 or more, up to 3 hours for 5 to 6, up to 6 hours for the lowest scores.")
-rule(r"Sepsis tier \(NICE NG253\): (high|moderate)\.review$", O, "", "open", "The NG253 text kept here does not state a review time for this tier; not confirmed.")
+rule(r"Sepsis tier \(NICE NG253\): (high|moderate|low)\.antibiotics$", V, "V-40", "primary",
+     "NICE NG253 (page opened): antibiotics within 1 hour for high risk (1.8.3), deferral for up to 3 hours at medium risk (1.8.17) and up to 6 hours at low risk; the AoMRC statement v2.0 gives the same hours.")
+rule(r"Sepsis tier \(NICE NG253\): moderate\.review$", V, "V-44", "primary", "NICE NG253 (page opened): a clinician with core competencies (FY2 or above) reviews the person and the venous lactate within 1 hour of being assessed as medium risk.")
+rule(r"Sepsis tier \(NICE NG253\): high\.review$", D, "V-44", "design", "NG253 1.8.2 asks for an urgent assessment by an FY2-level clinician but gives no hour for it; the book's 1 hour is kept as the simulator's review clock.")
 
 # ---------------------------------------------------------------- fasting
 rule(r"Fasting rule: (clear_liquids|milk|light_meal|heavy_meal)$", V, "V-09", "secondary", "ASA practice guideline (2017, clear liquids reaffirmed 2023), ANZCA PG07: clear liquids 2 h, light meal and non-human milk 6 h, fried or fatty meal 8 h or more.")
@@ -119,9 +120,14 @@ def first(pattern: str, kind: str, vid: str, level: str, text: str) -> None:
 first(r"Test indication: (pregnancy|fbc|u_and_e|hba1c|clotting|urine_dipstick|ecg|chest_xray)$", V, "V-41", "primary",
       "The planned-surgery (S1) side matches NICE NG45 (text opened): ask about pregnancy and test if in doubt; HbA1c if diabetic and none in 3 months; no routine urine dipstick or chest X-ray; FBC, kidney function, ECG and clotting by ASA grade, surgery grade and comorbidity. The emergency (S2) side is outside NG45, which covers elective surgery only, and is the book's practice.")
 first(r"Test indication: ", D, "", "design", "The book's diagnostic work-up for the surgical problem (liver tests, inflammation, glucose, group and save, imaging, sepsis tests); NICE NG45 does not cover these, so there is no guideline row to match.")
-first(r"Score fact: vte\.risk_factors$", V, "V-42", "secondary", "NICE NG89 surgical risk factors: age over 60, BMI over 30, anaesthetic and surgical time over 90 minutes (60 for pelvic or lower limb surgery).")
+first(r"Score fact: vte\.risk_factors_old$", V, "V-42", "secondary", "NICE NG89 surgical risk factors: age over 60, BMI over 30, anaesthetic and surgical time over 90 minutes (60 for pelvic or lower limb surgery).")
 first(r"Medicine plan: vte_prophylaxis$", V, "V-42", "secondary", "NICE NG89: pharmacological prophylaxis from 6 to 12 hours after surgery and for at least 7 days after abdominal surgery when the clot risk outweighs the bleeding risk.")
 first(r"Medicine plan: (paracetamol|opioids)$", V, "V-43", "primary", "openFDA label wording kept in content/drug_label_safety.csv supports the caution (severe liver disease for paracetamol; respiratory depression for opioids); the dose example is the book's own and is not used by the simulator.")
+first(r"Score fact: vte\.(risk_factors|bleeding_risk_factors)$", V, "V-45", "primary", "NICE NG89 VTE risk assessment tool (opened): age over 60, BMI over 30, anaesthetic and surgical time over 90 minutes; bleeding risk includes platelets below 75.")
+first(r"Medicine plan: cocp_hrt$", V, "V-45", "primary", "NICE NG89 1.3.13 (page opened): consider stopping oestrogen-containing contraceptives or HRT 4 weeks before elective surgery.")
+first(r"Medicine plan: (iv_fluids|abx_s1_low_risk)$", V, "V-46", "primary", "NICE CG174 1.3.1 (page opened): crystalloid bolus for resuscitation, reassess; NICE NG125 1.2.13 (page opened): no routine antibiotic prophylaxis for clean uncomplicated surgery.")
+first(r"Medicine plan: sepsis_emergency$", D, "ISS-0015", "design", "The book's example is the CG174 bolus; the current NICE NG253 (page opened) gives a smaller bolus with reassessment. The difference is logged (ISS-0015) and the debrief names the source of each; the simulator stores no volume.")
+first(r"Medicine plan: (metformin|sulfonylureas)$", V, "V-47", "secondary", "CPOC and hospital peri-operative diabetes guidance: sulfonylureas are omitted while fasting; metformin is continued in most patients when at most one meal is missed.")
 RULES[:0] = _FIRST
 
 URLS = {
@@ -136,7 +142,7 @@ URLS = {
     "V-35": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4925633", "V-37": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12464960/", "V-38": "https://www.medicines.org.uk/emc/product/3449/smpc",
     "V-39": "https://www.nice.org.uk/guidance/QS104/chapter/quality-statement-1-acute-cholecystitis", "V-40": "https://aomrc.org.uk/publication/statement-on-the-initial-antimicrobial-treatment-of-sepsis-v2-0",
     "V-41": "https://www.bjuinternational.com/?p=33086", "V-42": "https://gpnotebook.com/pages/respiratory-and-chest-medicine/deep-vein-thrombosis/risk-factors-and-associated-increased-risk-for-development-of-venous-thromboembolism-in-surgical-patients",
-    "V-43": "https://open.fda.gov/apis/drug/label/",
+    "V-43": "https://open.fda.gov/apis/drug/label/", "V-44": "https://www.nice.org.uk/guidance/ng253/chapter/Managing-suspected-sepsis", "V-45": "https://www.nice.org.uk/guidance/ng89/chapter/Recommendations", "V-46": "https://www.nice.org.uk/guidance/cg174/chapter/1-Recommendations", "V-47": "https://pharmaceutical-journal.com/article/ld/perioperative-management-of-type-2-diabetes-mellitus",
 }
 
 
