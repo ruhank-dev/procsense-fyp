@@ -49,13 +49,13 @@ namespace ProcSense.EditorTools
         // Quest-friendly URP: no HDR, no post-processing cost, MSAA 4x, small shadow budget.
         private static void ConfigureUrp()
         {
-            const string path = "Assets/_Project/Settings/URP_Quest.asset";
+            const string path = "Assets/Settings/URP_Quest.asset";
             var asset = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(path);
             if (asset == null)
             {
-                System.IO.Directory.CreateDirectory("Assets/_Project/Settings");
+                System.IO.Directory.CreateDirectory("Assets/Settings");
                 var renderer = ScriptableObject.CreateInstance<UniversalRendererData>();
-                AssetDatabase.CreateAsset(renderer, "Assets/_Project/Settings/URP_Quest_Renderer.asset");
+                AssetDatabase.CreateAsset(renderer, "Assets/Settings/URP_Quest_Renderer.asset");
                 asset = UniversalRenderPipelineAsset.Create(renderer);
                 AssetDatabase.CreateAsset(asset, path);
                 asset.supportsHDR = false;

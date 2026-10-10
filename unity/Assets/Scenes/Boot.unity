@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Boot.BootLoader
   scenes:
   - Sys_Core
-  - Skeleton1_PatientBay
+  - PatientBay
   editorOnlyScene: DevOnly
 --- !u!4 &1209759847
 Transform:

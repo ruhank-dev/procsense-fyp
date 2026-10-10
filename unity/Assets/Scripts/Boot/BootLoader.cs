@@ -10,7 +10,7 @@ namespace ProcSense.VR.Boot
     /// </summary>
     public class BootLoader : MonoBehaviour
     {
-        [SerializeField] private string[] scenes = { "Sys_Core", "Skeleton1_PatientBay" };
+        [SerializeField] private string[] scenes = { "Sys_Core", "PatientBay" };
         [SerializeField] private string editorOnlyScene = "DevOnly";
 
         private IEnumerator Start()

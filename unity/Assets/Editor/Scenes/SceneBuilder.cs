@@ -16,14 +16,15 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 namespace ProcSense.EditorTools
 {
     /// <summary>
-    /// Generates the four scenes (Boot, Sys_Core, Skeleton1_PatientBay, DevOnly) from code and the room manifest, so nothing is hand-placed
+    /// Generates the four scenes (Boot, Sys_Core, PatientBay, DevOnly) from code and the room manifest, so nothing is hand-placed
     /// and a re-run gives the same scenes. Batch: -executeMethod ProcSense.EditorTools.SceneBuilder.BuildAll
     /// </summary>
     public static class SceneBuilder
     {
-        private const string ScenesDir = "Assets/_Project/Scenes";
-        private const string ManifestPath = "Assets/_Project/Content/room_manifest_bay.json";
-        private const string StarterPrefabs = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/Prefabs/";
+        private const string ScenesDir = "Assets/Scenes";
+        private const string ManifestPath = "Assets/Data/room_manifest_bay.json";
+        private const string MaterialsDir = "Assets/Materials/Prototype";
+        private const string PlayerRigPath = "Assets/Prefabs/XR/PlayerRig.prefab";
         private const string SimulatorPrefab = "Assets/Samples/XR Interaction Toolkit/3.6.1/XR Device Simulator/XR Device Simulator.prefab";
 
         [Serializable] private class Room { public float width, depth, height; }
@@ -35,23 +36,36 @@ namespace ProcSense.EditorTools
         }
         [Serializable] private class Manifest { public Room room; public Item[] items; }
 
-        [MenuItem("ProcSense/Build scenes")]
+        [MenuItem("ProcSense/Tools/Rebuild Prototype Scenes")]
+        private static void RebuildFromMenu()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+            if (!EditorUtility.DisplayDialog("Rebuild prototype scenes?",
+                "This replaces the saved Boot, Sys_Core, PatientBay and DevOnly scenes from the room manifest. " +
+                "Manual scene layout edits will be overwritten. Use Open Patient Bay to edit the existing scenes.",
+                "Rebuild", "Cancel")) return;
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            BuildAll();
+            WorkspaceMenu.OpenPatientBay();
+        }
+
         public static void BuildAll()
         {
             Directory.CreateDirectory(ScenesDir);
+            Directory.CreateDirectory(MaterialsDir);
             var config = MakeConfig();
             BuildSysCore(config);
             BuildPatientBay();
             BuildDevOnly();
             BuildBoot();
-            EditorBuildSettings.scenes = new[] { "Boot", "Sys_Core", "Skeleton1_PatientBay", "DevOnly" }
+            EditorBuildSettings.scenes = new[] { "Boot", "Sys_Core", "PatientBay", "DevOnly" }
                 .Select(n => new EditorBuildSettingsScene(ScenesDir + "/" + n + ".unity", true)).ToArray();
             Debug.Log("[SceneBuilder] done");
         }
 
         private static SessionConfig MakeConfig()
         {
-            string path = "Assets/_Project/Content/SessionConfig_Skeleton1.asset";
+            string path = "Assets/Data/SessionConfig_Skeleton1.asset";
             var config = AssetDatabase.LoadAssetAtPath<SessionConfig>(path);
             if (config == null) { config = ScriptableObject.CreateInstance<SessionConfig>(); AssetDatabase.CreateAsset(config, path); }
             return config;
@@ -108,14 +122,14 @@ namespace ProcSense.EditorTools
 
             foreach (var item in manifest.items) Place(root, item);
 
-            var rig = AssetDatabase.LoadAssetAtPath<GameObject>(StarterPrefabs + "XR Origin (XR Rig).prefab");
+            var rig = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerRigPath);
             if (rig != null)
             {
                 var go = (GameObject)PrefabUtility.InstantiatePrefab(rig);
                 go.transform.position = new Vector3(0, 0, -1.4f);
             }
-            else Debug.LogWarning("[SceneBuilder] XR rig sample missing; run ProcSense/Project setup first");
-            Save(scene, "Skeleton1_PatientBay");
+            else throw new InvalidOperationException("Player rig missing: " + PlayerRigPath);
+            Save(scene, "PatientBay");
         }
 
         private static Vector3 V(float[] a) => new Vector3(a[0], a[1], a[2]);
@@ -133,7 +147,7 @@ namespace ProcSense.EditorTools
 
         private static Material Material(Color color)
         {
-            string path = "Assets/_Project/Content/Mat_" + ColorUtility.ToHtmlStringRGB(color) + ".mat";
+            string path = MaterialsDir + "/Mat_" + ColorUtility.ToHtmlStringRGB(color) + ".mat";
             var m = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (m != null) return m;
             m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = color };
