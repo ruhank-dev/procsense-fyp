@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "d7ba91411d3baa43f2b4496d31db4a4eb8446488d0daefd85311b1cd390e917d",
- "files": 337,
- "bytes": 16481164,
+ "content_hash": "bdb838111d279ba6a05d75f7b1687f1c7d4321aa8a00450a9f4c9db9e8915e10",
+ "files": 338,
+ "bytes": 16483410,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -12,7 +12,7 @@
   "fasting": 1,
   "flow": 1,
   "images": 77,
-  "investigations": 2,
+  "investigations": 3,
   "locations": 1,
   "news2": 1,
   "npc": 1,
@@ -981,8 +981,12 @@
    "sha256": "ed7dee31fcfffcc4f2729df318cd6072978c283fee9f29ef5d756c5d3333c8ee"
   },
   "investigations/investigations.json": {
-   "bytes": 5712,
-   "sha256": "8dd6ee587bdbb0f601fc09639f870c9cfef47e022dc42a34812073ad7aac4f36"
+   "bytes": 6193,
+   "sha256": "9027666bbb5d01655bf2d9deff20c4d5b8e9125d43d950df69366842a754151f"
+  },
+  "investigations/normal_results.json": {
+   "bytes": 1765,
+   "sha256": "f92586c2109bc0f990c41b592f50c85f7f3e063828a3332d0312bc143b4a3944"
   },
   "lab_bands.csv": {
    "bytes": 13726,

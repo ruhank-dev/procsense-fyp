@@ -34,7 +34,9 @@ namespace ProcSense.Core.Observation
     public sealed record ObservedTransport(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
 
     /// <summary>A test the trainee ordered: its name, how many times it has been ordered, the state, when it is expected (once the sample is taken or the patient is in the scan room), what the indication rule said (practice mode only) and, once the result has been viewed, which results it holds.</summary>
-    public sealed record ObservedInvestigation(string Test, string Label, int Instance, string State, string Ready, string Indication, IReadOnlyList<string> Results);
+    public sealed record ObservedResult(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin);
+
+    public sealed record ObservedInvestigation(string Test, string Label, int Instance, string State, string Ready, string Indication, IReadOnlyList<ObservedResult> Results, string Note);
 
     public sealed record ObservedNews2(string At, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
 
@@ -209,7 +211,23 @@ namespace ProcSense.Core.Observation
                 sb.Append(",\"state\":"); JsonText.Quote(sb, Investigations[i].State);
                 sb.Append(",\"ready\":"); JsonText.Quote(sb, Investigations[i].Ready);
                 sb.Append(",\"indication\":"); JsonText.Quote(sb, Investigations[i].Indication);
-                sb.Append(",\"results\":"); AppendList(sb, Investigations[i].Results);
+                sb.Append(",\"results\":[");
+                for (int j = 0; j < Investigations[i].Results.Count; j++)
+                {
+                    var r = Investigations[i].Results[j];
+                    if (j > 0) sb.Append(',');
+                    sb.Append("{\"id\":"); JsonText.Quote(sb, r.Id);
+                    sb.Append(",\"analyte\":"); JsonText.Quote(sb, r.Analyte);
+                    sb.Append(",\"value\":"); JsonText.Quote(sb, r.Value);
+                    sb.Append(",\"unit\":"); JsonText.Quote(sb, r.Unit);
+                    sb.Append(",\"range\":"); JsonText.Quote(sb, r.Range);
+                    sb.Append(",\"flag\":"); JsonText.Quote(sb, r.Flag);
+                    sb.Append(",\"comment\":"); JsonText.Quote(sb, r.Comment);
+                    sb.Append(",\"quality\":"); JsonText.Quote(sb, r.Quality);
+                    sb.Append(",\"origin\":"); JsonText.Quote(sb, r.Origin);
+                    sb.Append('}');
+                }
+                sb.Append("],\"note\":"); JsonText.Quote(sb, Investigations[i].Note);
                 sb.Append('}');
             }
             sb.Append(']');
@@ -281,7 +299,7 @@ namespace ProcSense.Core.Observation
             {
                 bool processing = o.State == "PROCESSING" || o.State == "RESULT_AVAILABLE" || o.State == "VIEWED" || o.State == "ACKNOWLEDGED";
                 bool seen = o.State == "VIEWED" || o.State == "ACKNOWLEDGED";
-                list.Add(new ObservedInvestigation(o.Test, o.Label, o.Instance, o.State, processing ? At(s, o.ReadyStep).Substring(0, 5) : "", practice ? o.Indication.ToLowerInvariant() : "", seen ? o.ResultIds.ToList() : new List<string>()));
+                list.Add(new ObservedInvestigation(o.Test, o.Label, o.Instance, o.State, processing ? At(s, o.ReadyStep).Substring(0, 5) : "", practice ? o.Indication.ToLowerInvariant() : "", seen ? o.Results.Select(r => new ObservedResult(r.Id, r.Analyte, r.Value, r.Unit, r.Range, r.Flag, r.Comment, r.Quality, r.Origin)).ToList() : new List<ObservedResult>(), o.State == "REJECTED" || seen || o.State == "RESULT_AVAILABLE" ? o.Note : ""));
             }
             return list;
         }

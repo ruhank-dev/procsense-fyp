@@ -1,0 +1,99 @@
+{
+ "tests": {
+  "lft": {
+   "scenario": "S1",
+   "results": [
+    {
+     "id": "gen.lft.bilirubin",
+     "analyte": "Bilirubin",
+     "sex": "F",
+     "value": "12",
+     "unit": "umol/L",
+     "range": "3-21",
+     "ref": "SR-0566"
+    },
+    {
+     "id": "gen.lft.bilirubin",
+     "analyte": "Bilirubin",
+     "sex": "M",
+     "value": "12",
+     "unit": "umol/L",
+     "range": "3-21",
+     "ref": "SR-0566"
+    },
+    {
+     "id": "gen.lft.alt",
+     "analyte": "ALT",
+     "sex": "F",
+     "value": "20",
+     "unit": "U/L",
+     "range": "0-40",
+     "ref": "SR-0570"
+    },
+    {
+     "id": "gen.lft.alt",
+     "analyte": "ALT",
+     "sex": "M",
+     "value": "20",
+     "unit": "U/L",
+     "range": "0-40",
+     "ref": "SR-0570"
+    },
+    {
+     "id": "gen.lft.alp",
+     "analyte": "ALP",
+     "sex": "F",
+     "value": "80",
+     "unit": "U/L",
+     "range": "30-130",
+     "ref": "SR-0574"
+    },
+    {
+     "id": "gen.lft.alp",
+     "analyte": "ALP",
+     "sex": "M",
+     "value": "80",
+     "unit": "U/L",
+     "range": "30-130",
+     "ref": "SR-0574"
+    },
+    {
+     "id": "gen.lft.ggt",
+     "analyte": "GGT",
+     "sex": "F",
+     "value": "20",
+     "unit": "U/L",
+     "range": "below 40",
+     "ref": "SR-0579"
+    },
+    {
+     "id": "gen.lft.ggt",
+     "analyte": "GGT",
+     "sex": "M",
+     "value": "30",
+     "unit": "U/L",
+     "range": "below 60",
+     "ref": "SR-0578"
+    },
+    {
+     "id": "gen.lft.albumin",
+     "analyte": "Albumin",
+     "sex": "F",
+     "value": "42",
+     "unit": "g/L",
+     "range": "35-50",
+     "ref": "SR-0582"
+    },
+    {
+     "id": "gen.lft.albumin",
+     "analyte": "Albumin",
+     "sex": "M",
+     "value": "42",
+     "unit": "g/L",
+     "range": "35-50",
+     "ref": "SR-0582"
+    }
+   ]
+  }
+ }
+}

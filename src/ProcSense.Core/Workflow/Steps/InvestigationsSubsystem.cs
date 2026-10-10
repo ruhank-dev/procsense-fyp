@@ -41,12 +41,14 @@ namespace ProcSense.Core.Workflow.Steps
         public const string WrongKind = "WRONG_KIND";
         public const string AlreadyTaken = "ALREADY_TAKEN";
         public const string UnknownTube = "UNKNOWN_TUBE";
+        public const string UnknownLabel = "UNKNOWN_LABEL";
         public const string NotReady = "NOT_READY";
         public const string ViewFirst = "VIEW_FIRST";
 
         private readonly ContentPackage _content;
         private readonly CaseFile? _fixed;
         private readonly IndicationEvaluator _indications;
+        private readonly ResultGenerator _generator;
         private readonly List<GraphEvent> _history = new List<GraphEvent>();
         private readonly HashSet<string> _missedReported = new HashSet<string>(StringComparer.Ordinal);
         private CaseFile? _file;
@@ -57,7 +59,7 @@ namespace ProcSense.Core.Workflow.Steps
         /// <param name="caseFile">Test hook: use this case file instead of the one named like the case card.</param>
         public InvestigationsSubsystem(ContentPackage content, CaseFile? caseFile = null)
         {
-            _content = content; _fixed = caseFile; _indications = new IndicationEvaluator(content.Investigations);
+            _content = content; _fixed = caseFile; _indications = new IndicationEvaluator(content.Investigations); _generator = new ResultGenerator(content.Investigations);
         }
 
         public int Order => PipelineOrder.Investigations;
@@ -122,7 +124,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             if (!TestFrom(a, o, out var def)) return;
             var last = Latest(def.Id);
-            if (last != null && last.State != "RESULT_AVAILABLE" && last.State != "VIEWED" && last.State != "ACKNOWLEDGED") { o.Reject(OrderPending); return; }
+            if (last != null && last.State != "RESULT_AVAILABLE" && last.State != "VIEWED" && last.State != "ACKNOWLEDGED" && last.State != "REJECTED") { o.Reject(OrderPending); return; }
             // an imaging test can ask for the transfer in the same request (mode, escort, monitoring, accompany): the patient then goes to the scan room
             if (def.Kind == "imaging" && a.Params.ContainsKey("mode") && Clinical.Location != def.Location)
             {
@@ -161,6 +163,7 @@ namespace ProcSense.Core.Workflow.Steps
             if (order == null) { o.Reject(NotOrdered); return; }
             if (order.State != "REQUESTED") { o.Reject(AlreadyTaken); return; }
             if (a.Params.TryGetValue("tube", out var tube) && tube.Length > 0 && !Tables.Tubes.Contains(tube)) { o.Reject(UnknownTube); return; }
+            if (a.Params.TryGetValue("label", out var label) && label.Length > 0 && !Tables.Labels.Contains(label)) { o.Reject(UnknownLabel); return; }
             foreach (var key in new[] { "tube", "arm", "label" })
                 if (a.Params.TryGetValue(key, out var v)) order.Sample[key] = v;
             Note(order, "SAMPLE_TAKEN", Array.Empty<string>());
@@ -226,30 +229,47 @@ namespace ProcSense.Core.Workflow.Steps
 
         private void StartProcessing(InvestigationOrder order, InvestigationDef def)
         {
-            order.ResultIds = ResultsFor(order, def).Select(r => r.Id).ToList();
-            var results = ResultsFor(order, def);
+            var results = ResultGenerator.CaseResults(_file, def, ValidBefore(order));
+            order.ResultIds = results.Select(r => r.Id).ToList();
             double minutes = results.Count > 0 ? results.Max(r => (double)r.MinutesToResult) : def.MinMinutes + _rng.NextDouble() * (def.MaxMinutes - def.MinMinutes);
             order.ReadyStep = _s.Clock.Steps + (long)Math.Round(minutes * 60 / SimClock.Step);
             order.State = "PROCESSING";
             Note(order, "PROCESSING", Array.Empty<string>());
         }
 
+        // The earlier samples of this test that gave results to trust (a rejected or mislabelled one does not count), so a re-take is a first sample and not a repeat.
+        private int ValidBefore(InvestigationOrder order) =>
+            Clinical.Investigations.Count(x => x.Test == order.Test && x.Id < order.Id && x.Valid && (x.State == "RESULT_AVAILABLE" || x.State == "VIEWED" || x.State == "ACKNOWLEDGED"));
+
         private void Finish(InvestigationOrder order)
         {
+            var def = Tables.Find(order.Test)!;
+            var made = _generator.Generate(_file, def, ValidBefore(order), order.Sample, _s.Case.Scenario);
+            order.Valid = made.Valid;
+            order.Note = made.Note;
+            if (made.Outcome == "rejected")
+            {
+                order.State = "REJECTED";
+                Note(order, "REJECTED", new[] { "incident.sample_rejected" });
+                Clinical.SetFlag("incident.sample_rejected");
+                _s.Events.Publish(new WorkflowEvent("E-SAMPLE-REJECTED", order.Test));
+                return;
+            }
+            order.Results.Clear();
+            order.Results.AddRange(made.Records);
+            order.ResultIds = made.Records.Select(r => r.Id).ToList();
             order.State = "RESULT_AVAILABLE";
             Note(order, "RESULT_AVAILABLE", Array.Empty<string>());
+            if (made.Outcome == "mislabelled")
+            {
+                Clinical.SetFlag("incident.wrong_blood");
+                _history.Add(new GraphEvent("sample_mislabelled", order.Test, _s.Clock.Steps, new[] { "incident.wrong_blood" }));
+                _s.Events.Publish(new WorkflowEvent("E-SAMPLE-MISLABELLED", order.Test));
+            }
+            foreach (var r in made.Records.Where(r => r.Quality.Length > 0 && r.Quality != "mislabelled").Select(r => r.Quality).Distinct())
+                _history.Add(new GraphEvent("sample_artefact:" + r, order.Test, _s.Clock.Steps, Array.Empty<string>()));
             if (order.ResultIds.Count == 0) _s.Events.Publish(new ResultReady(order.Test, "", order.Instance));
             foreach (var id in order.ResultIds) _s.Events.Publish(new ResultReady(order.Test, id, order.Instance));
-        }
-
-        // The case's results for this test. The first order gets the first set; a second or later order gets the repeat set when the case states one, otherwise the same results (nothing has changed).
-        private List<CaseFileResult> ResultsFor(InvestigationOrder order, InvestigationDef def)
-        {
-            if (_file == null) return new List<CaseFileResult>();
-            var mine = _file.Results.Where(r => def.Analytes.Contains(InvestigationTables.BaseName(r.Test))).ToList();
-            var first = mine.Where(r => !InvestigationTables.IsRepeat(r.Test)).ToList();
-            var repeat = mine.Where(r => InvestigationTables.IsRepeat(r.Test)).ToList();
-            return order.Instance > 1 && repeat.Count > 0 ? repeat : first;
         }
 
         // A lab delay (the event named in the content) pushes every test still processing back by the content's minutes.

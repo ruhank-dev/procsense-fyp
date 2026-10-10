@@ -9,6 +9,12 @@ namespace ProcSense.Core.Clinical
     /// <summary>One test the trainee can order: what it is (blood, bedside or imaging), which tube a blood test goes in, where imaging is done, the analytes of the case's results that belong to it, and its default turnaround.</summary>
     public sealed record InvestigationDef(string Id, string Label, string Kind, string Tube, string Location, IReadOnlyList<string> Analytes, double MinMinutes, double MaxMinutes, string Ref);
 
+    /// <summary>A normal result the engine may supply when the case states none (supplied for the scenario named, for the patient's sex).</summary>
+    public sealed record NormalResult(string Id, string Analyte, string Sex, string Value, string Unit, string Range, string Ref);
+
+    /// <summary>The normal results for one test and the scenario they may be supplied for (S1 only for the liver tests).</summary>
+    public sealed record NormalSet(string Scenario, IReadOnlyList<NormalResult> Results);
+
     /// <summary>When a test is indicated: its kind for a planned (S1) and an emergency (S2) patient, and why (always, conditional, not_routine, per_policy or not_used).</summary>
     public sealed record IndicationRow(string Test, string S1, string S2, string Why, string WhenS1, string WhenS2, string Ref);
 
@@ -17,11 +23,15 @@ namespace ProcSense.Core.Clinical
     {
         public static readonly InvestigationTables Empty = new InvestigationTables(new List<InvestigationDef>(), new List<string>(), new List<IndicationRow>(), "", 0);
 
+
         private static readonly Regex Parenthetical = new Regex(@"\s*\(.*\)\s*$", RegexOptions.CultureInvariant);
 
-        public InvestigationTables(IReadOnlyList<InvestigationDef> tests, IReadOnlyList<string> tubes, IReadOnlyList<IndicationRow> indications, string delayEvent, double delayMinutes)
+        public InvestigationTables(IReadOnlyList<InvestigationDef> tests, IReadOnlyList<string> tubes, IReadOnlyList<IndicationRow> indications, string delayEvent, double delayMinutes,
+            IReadOnlyList<string>? labels = null, double dripDilution = 1, double edtaPotassiumRise = 0, IReadOnlyDictionary<string, NormalSet>? normals = null)
         {
             Tests = tests; Tubes = tubes; Indications = indications; DelayEvent = delayEvent; DelayMinutes = delayMinutes;
+            Labels = labels ?? new List<string> { "bedside", "prelabelled", "unlabelled" }; DripDilution = dripDilution; EdtaPotassiumRise = edtaPotassiumRise;
+            Normals = normals ?? new Dictionary<string, NormalSet>();
         }
 
         public IReadOnlyList<InvestigationDef> Tests { get; }
@@ -30,6 +40,13 @@ namespace ProcSense.Core.Clinical
         /// <summary>The event name that extends every test still processing, and by how many minutes.</summary>
         public string DelayEvent { get; }
         public double DelayMinutes { get; }
+        /// <summary>How a sample can be labelled: bedside, prelabelled or unlabelled.</summary>
+        public IReadOnlyList<string> Labels { get; }
+        /// <summary>A drip-arm sample is this fraction of the true value.</summary>
+        public double DripDilution { get; }
+        /// <summary>Potassium rises by this much (mmol/L) when a gold-tube test is taken into an EDTA tube.</summary>
+        public double EdtaPotassiumRise { get; }
+        public IReadOnlyDictionary<string, NormalSet> Normals { get; }
 
         public InvestigationDef? Find(string id) => Tests.FirstOrDefault(t => t.Id == id);
 
@@ -48,7 +65,7 @@ namespace ProcSense.Core.Clinical
         /// <summary>True for the results a case states for a second look ("Potassium (repeat)", "Capillary glucose (repeat in 30 minutes)").</summary>
         public static bool IsRepeat(string resultName) => resultName.IndexOf("(repeat", StringComparison.OrdinalIgnoreCase) >= 0;
 
-        public static InvestigationTables Parse(string investigationsJson, string indicationsJson)
+        public static InvestigationTables Parse(string investigationsJson, string indicationsJson, string? normalsJson = null)
         {
             var root = new JsonObj(MiniJson.Parse(investigationsJson), "investigations");
             var tubes = new List<string>();
@@ -82,9 +99,44 @@ namespace ProcSense.Core.Clinical
             double delayMinutes = delay.Num("minutes");
             if (delayMinutes < 0) throw new ContentException(delay.Sub("minutes") + ": cannot be negative");
             delay.Str("ref"); delay.Finish();
+            var labels = new List<string>();
+            foreach (var l in root.Arr("labels")) labels.Add(l as string ?? throw new ContentException(root.Sub("labels") + ": expected text"));
+            foreach (var need in new[] { "bedside", "prelabelled", "unlabelled" })
+                if (!labels.Contains(need)) throw new ContentException(root.Sub("labels") + ": the label '" + need + "' is missing");
+            var art = root.Obj("artefacts");
+            double dilution = art.Num("drip_dilution_factor"), rise = art.Num("edta_potassium_rise");
+            if (dilution <= 0 || dilution >= 1) throw new ContentException(art.Sub("drip_dilution_factor") + ": must be between 0 and 1");
+            if (rise <= 0) throw new ContentException(art.Sub("edta_potassium_rise") + ": must be more than 0");
+            foreach (var r in art.Arr("refs")) if (!(r is string)) throw new ContentException(art.Sub("refs") + ": expected register ids");
+            art.Finish();
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
             root.Str("note");
             root.Finish();
+
+            var normals = new SortedDictionary<string, NormalSet>(StringComparer.Ordinal);
+            if (normalsJson != null)
+            {
+                var nroot = new JsonObj(MiniJson.Parse(normalsJson), "normal_results");
+                var ntests = nroot.Obj("tests");
+                foreach (var test in tests.Select(t => t.Id))
+                {
+                    if (!ntests.Has(test)) continue;
+                    var set = ntests.Obj(test);
+                    string scenario = set.Enum("scenario", "S1", "S2");
+                    var list = new List<NormalResult>();
+                    var rawRows = set.Arr("results");
+                    for (int i = 0; i < rawRows.Count; i++)
+                    {
+                        var r = new JsonObj(rawRows[i], JsonObj.Index(set.Sub("results"), i));
+                        list.Add(new NormalResult(r.Str("id"), r.Str("analyte"), r.Enum("sex", "F", "M"), r.Str("value"), r.Str("unit"), r.Str("range"), r.Str("ref")));
+                        r.Finish();
+                    }
+                    set.Finish();
+                    normals[test] = new NormalSet(scenario, list);
+                }
+                ntests.Finish();
+                nroot.Finish();
+            }
 
             var ind = new JsonObj(MiniJson.Parse(indicationsJson), "indications");
             var rows = new List<IndicationRow>();
@@ -100,7 +152,7 @@ namespace ProcSense.Core.Clinical
                 o.Finish();
             }
             ind.Finish();
-            return new InvestigationTables(tests, tubes, rows, delayEvent, delayMinutes);
+            return new InvestigationTables(tests, tubes, rows, delayEvent, delayMinutes, labels, dilution, rise, normals);
         }
     }
 

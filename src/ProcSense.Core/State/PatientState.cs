@@ -38,6 +38,12 @@ namespace ProcSense.Core.State
     public sealed record TransportView(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
 
     /// <summary>
+    /// One result the trainee can read: the analyte, the value as text, the unit, the normal range, the flag (normal, high, low, abnormal...), the lab's comment, the sample-quality artefact if any
+    /// (haemolysed, drip_arm, wrong_tube_edta, mislabelled) and where it came from (case = stated by the case, generated = supplied normal, artefact = changed by how the sample was taken).
+    /// </summary>
+    public sealed record ResultRecord(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin);
+
+    /// <summary>
     /// One test the trainee ordered (the Nth time for that test): its state (REQUESTED, PROCESSING, RESULT_AVAILABLE, VIEWED, ACKNOWLEDGED), what the indication rule said at the time (APPROPRIATE or NOT_INDICATED),
     /// how the sample was taken (tube, arm, label) for the result generator, the case results it will hold, and when it is ready.
     /// </summary>
@@ -58,6 +64,15 @@ namespace ProcSense.Core.State
         public bool Delayed { get; set; }
         public SortedDictionary<string, string> Sample { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
         public List<string> ResultIds { get; set; } = new List<string>();
+
+        /// <summary>The results once the test is available (empty while processing, when rejected, or when the case states none).</summary>
+        public List<ResultRecord> Results { get; } = new List<ResultRecord>();
+
+        /// <summary>False when the sample was rejected or belonged to someone else: a repeat then returns the first set of results, not the repeat set.</summary>
+        public bool Valid { get; set; } = true;
+
+        /// <summary>Why there is nothing to read: the lab rejected the sample, or the case states no result for this test.</summary>
+        public string Note { get; set; } = "";
     }
 
     /// <summary>What the trainee has found out and where the patient is.</summary>

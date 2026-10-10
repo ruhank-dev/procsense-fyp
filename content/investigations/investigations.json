@@ -346,9 +346,24 @@
   "SR-0071",
   "SR-0072",
   "SR-0073",
+  "SR-0074",
+  "SR-0075",
   "SR-0750",
   "SR-0751",
   "SR-0752"
  ],
- "note": "Simulator design: which analytes belong to which test, the tube each blood test goes in (the usual colour convention), the kind of test and where imaging is done. Turnaround is only a default: each case states the minutes for each of its own results, which win; FBC 45 minutes and imaging 60 to 120 minutes are the walkthrough's (SR-0750, SR-0751), the other defaults are the project's (WT-I10 unresolved)."
+ "note": "Simulator design: which analytes belong to which test, the tube each blood test goes in (the usual colour convention), the kind of test and where imaging is done. Turnaround is only a default: each case states the minutes for each of its own results, which win; FBC 45 minutes and imaging 60 to 120 minutes are the walkthrough's (SR-0750, SR-0751), the other defaults are the project's (WT-I10 unresolved). Sample quality: a drip-arm sample is diluted to 0.6 of its value and a blood test taken into an EDTA tube that should have gone in a gold tube raises potassium by 2.5 mmol/L; both numbers are the project's settings (the table says only 'diluted' and 'falsely raises').",
+ "labels": [
+  "bedside",
+  "prelabelled",
+  "unlabelled"
+ ],
+ "artefacts": {
+  "drip_dilution_factor": 0.6,
+  "edta_potassium_rise": 2.5,
+  "refs": [
+   "SR-0701",
+   "SR-0702"
+  ]
+ }
 }
