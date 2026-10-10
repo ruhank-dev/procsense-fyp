@@ -32,6 +32,14 @@ In Play mode, focus the Game view and use the XR Device Simulator's normal FPS m
 
 The current room and UI remain prototypes. Final visual quality, animations, seated comfort and Quest 3 performance require their own verification and review; Editor checks do not close the headset gate.
 
+## Teleport and comfort controls
+
+Blue pads are teleport destinations at the bay tablet, bedside and exit, and at the OT station/exit. The corridor floor permits teleporting within clear supported space. Controller teleport rays use the Starter Assets teleport input; aim at a pad or the corridor floor and release/select to travel. Invalid targets cannot be selected. A short fade covers movement, and destinations are rechecked for obstruction before relocation. Teleports and room transitions cannot overlap.
+
+Controller locomotion defaults to teleport and 45° snap-turn; 180° turnaround and smooth-turn/movement actions are disabled. Desktop collision-safe WASD walking is retained. With Game focused, **F7** cycles the current room's pads, **[ / ]** turn left/right, and **F6** toggles seated calibration. The **MOVEMENT** panel in each room offers **Calibrate seated / Use standing height** and **30° / 45°** snap-turn selection through mouse or controller UI rays. Sit first, then calibrate: it adjusts the camera/controller floor offset to a virtual eye height of 1.6 m, without moving the clinical patient or changing Core state. Returning to standing restores the previous offset; settings survive room navigation. Recalibrate after changing physical posture or tracking setup.
+
+These are Editor-verified foundations. The headset comfort comparison and questionnaire with at least three testers, seated reach/readability and Quest frame-time measurements remain pending device access.
+
 ## Room navigation
 
 `Sys_Core` owns the one Session, EventSystem, PlayerRig and RoomLoader. It remains loaded while room scenes are loaded/unloaded additively. `DevOnly` remains available in the Editor. A fresh Boot load starts a new session; room navigation preserves it. The bay has an **Enter** panel on its right wall marked **CORRIDOR**. In the corridor, **PATIENT BAY** is on the left near the arrival end and **OPERATING THEATRE** is on the right at the far end. The OT return panel is on its front wall. Click Enter with the mouse or controller UI ray. Use WASD to approach panels.

@@ -11,6 +11,7 @@ namespace ProcSense.VR.Boot
         private UnityEngine.UI.Button _button;
         private TMPro.TMP_Text _status;
         private RoomLoader _loader;
+        private ProcSense.VR.XR.SafeTeleportProvider _teleport;
 
         private void Start()
         {
@@ -35,8 +36,10 @@ namespace ProcSense.VR.Boot
         {
             if (Restricted || _button == null) return;
             if (_loader == null) _loader = FindAnyObjectByType<RoomLoader>();
-            _button.interactable = _loader != null && !_loader.Busy;
-            string text = _loader == null ? "Navigation unavailable" : _loader.Busy ? "Moving…" : string.IsNullOrEmpty(_loader.LastError) ? "Trainee navigation" : _loader.LastError;
+            if (_teleport == null) _teleport = FindAnyObjectByType<ProcSense.VR.XR.SafeTeleportProvider>();
+            bool moving = (_loader != null && _loader.Busy) || (_teleport != null && _teleport.Busy);
+            _button.interactable = _loader != null && !moving;
+            string text = _loader == null ? "Navigation unavailable" : moving ? "Moving…" : string.IsNullOrEmpty(_loader.LastError) ? "Trainee navigation" : _loader.LastError;
             if (_status.text != text) _status.text = text;
         }
     }

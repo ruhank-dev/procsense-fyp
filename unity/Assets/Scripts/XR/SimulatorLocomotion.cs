@@ -21,6 +21,7 @@ namespace ProcSense.VR.XR
         private float _bodyMultiplier;
         private readonly XROriginMovement _movement = new XROriginMovement();
         public bool Suspended { get; set; }
+        private ProcSense.VR.Boot.RoomLoader _rooms;
 
         private void OnEnable()
         {
@@ -37,6 +38,8 @@ namespace ProcSense.VR.XR
 
         private void Update()
         {
+            if (_rooms == null) _rooms = FindAnyObjectByType<ProcSense.VR.Boot.RoomLoader>();
+            if (_rooms != null && _rooms.Busy) return;
             if (_body == null)
             {
                 _body = FindFirstObjectByType<XRBodyTransformer>();

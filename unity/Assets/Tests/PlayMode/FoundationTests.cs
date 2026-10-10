@@ -137,6 +137,7 @@ namespace ProcSense.Tests.PlayMode
             var simulator = Object.FindFirstObjectByType<XRDeviceSimulator>();
             var rig = Object.FindFirstObjectByType<XROrigin>();
             Assert.IsTrue(simulator.manipulatingFPS);
+            Assert.That(rig.transform.position.y, Is.InRange(-0.05f, 0.1f), "Boot must not let the persistent rig fall before the room loads");
             var original = simulator.keyboardXTranslateAction;
             var device = InputSystem.AddDevice<Gamepad>();
             var asset = ScriptableObject.CreateInstance<InputActionAsset>();
@@ -152,7 +153,11 @@ namespace ProcSense.Tests.PlayMode
                 InputSystem.QueueStateEvent(device, new GamepadState { leftStick = Vector2.left });
                 float finish = Time.time + 2.5f;
                 while (Time.time < finish) yield return null;
-                Assert.That(rig.transform.position.x, Is.InRange(-2.3f, -1.5f));
+                Assert.That(rig.transform.position.x, Is.InRange(-2.3f, -1.5f),
+                    "rig=" + rig.transform.position + " camera=" + rig.Camera.transform.position +
+                    " relative=" + rig.transform.InverseTransformPoint(rig.Camera.transform.position) + " headStart=" + headStart +
+                    " forward=" + rig.Camera.transform.forward + " capsule=" + rig.GetComponent<CharacterController>().enabled +
+                    " body=" + rig.GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.Locomotion.XRBodyTransformer>().constrainedBodyManipulator);
                 Assert.That(rig.transform.position.y, Is.InRange(-0.05f, 0.1f));
                 var headEnd = rig.transform.InverseTransformPoint(rig.Camera.transform.position);
                 Assert.That(headEnd.x, Is.EqualTo(headStart.x).Within(0.02f), "FPS walking must move the rig, not tracked head position");

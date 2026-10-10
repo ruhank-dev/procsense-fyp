@@ -10,20 +10,53 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 namespace ProcSense.VR.Boot
 {
     /// <summary>Owns trainee room presentation. Sys_Core/DevOnly stay loaded; clinical state is untouched.</summary>
+    [DefaultExecutionOrder(-150)]
     public sealed class RoomLoader : MonoBehaviour
     {
         public string CurrentRoom { get; private set; } = "PatientBay";
         public bool Busy { get; private set; }
         public string LastError { get; private set; } = "";
         private XROrigin _rig;
-        private CanvasGroup _fade;
+        private LocomotionFade _fade;
         private bool _cancelled;
+        private bool _initializing = true;
         private readonly Dictionary<Behaviour, bool> _movement = new Dictionary<Behaviour, bool>();
         private readonly Dictionary<GameObject, bool> _sourceRoots = new Dictionary<GameObject, bool>();
 
+        private void Awake()
+        {
+            Busy = true;
+            _rig = FindAnyObjectByType<XROrigin>();
+            if (_rig != null) FreezeMovement();
+        }
+
+        private IEnumerator Start()
+        {
+            while (!SceneManager.GetSceneByName(CurrentRoom).isLoaded) yield return null;
+            if (_rig == null) _rig = FindAnyObjectByType<XROrigin>();
+            if (_rig != null)
+            {
+                var scene = SceneManager.GetSceneByName(CurrentRoom);
+                var anchors = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<RoomAnchor>()).ToArray();
+                var anchor = anchors.FirstOrDefault(a => a.FromRoom == "Default") ?? anchors.FirstOrDefault();
+                if (anchor != null)
+                {
+                    var controller = _rig.GetComponent<CharacterController>();
+                    controller.enabled = false;
+                    _rig.transform.position = anchor.transform.position;
+                    _rig.transform.rotation = anchor.transform.rotation;
+                    controller.enabled = true;
+                    Physics.SyncTransforms();
+                }
+            }
+            _initializing = false;
+            RestoreMovement();
+            Busy = false;
+        }
+
         public void InitializeOpenedRoom(Scene room)
         {
-            if (Busy || !room.isLoaded) return;
+            if ((Busy && !_initializing) || !room.isLoaded) return;
             CurrentRoom = room.name;
             if (room.name == "PatientBay") return; // Keep the rig's normal bay starting pose.
             _rig = FindAnyObjectByType<XROrigin>();
@@ -39,6 +72,8 @@ namespace ProcSense.VR.Boot
         public bool RequestRoom(string room)
         {
             if (!isActiveAndEnabled || Busy) return false;
+            var teleport = FindAnyObjectByType<SafeTeleportProvider>();
+            if (teleport != null && teleport.Busy) return false;
             LastError = "";
             if (!Allowed(CurrentRoom, room) || !Application.CanStreamedLevelBeLoaded(room))
             { LastError = "This route is unavailable."; return false; }
@@ -111,7 +146,7 @@ namespace ProcSense.VR.Boot
             {
                 RestoreSource();
                 RestoreMovement();
-                if (_fade != null) _fade.alpha = 0;
+                if (_fade != null) _fade.Alpha = 0;
                 Busy = false;
             }
         }
@@ -154,28 +189,12 @@ namespace ProcSense.VR.Boot
         private void EnsureFade()
         {
             if (_fade != null) return;
-            var go = new GameObject("TransitionFade", typeof(RectTransform), typeof(Canvas), typeof(CanvasGroup));
-            go.transform.SetParent(_rig.Camera.transform, false);
-            go.transform.localPosition = Vector3.forward * Mathf.Max(0.15f, _rig.Camera.nearClipPlane + 0.05f);
-            ((RectTransform)go.transform).sizeDelta = new Vector2(4, 4);
-            var canvas = go.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.WorldSpace;
-            canvas.overrideSorting = true;
-            canvas.sortingOrder = 32760;
-            var image = go.AddComponent<UnityEngine.UI.Image>();
-            image.color = Color.black;
-            image.raycastTarget = false;
-            _fade = go.GetComponent<CanvasGroup>();
-            _fade.alpha = 0;
-            _fade.blocksRaycasts = false;
+            _fade = _rig.GetComponent<LocomotionFade>();
         }
 
         private IEnumerator Fade(float target)
         {
-            float start = _fade.alpha;
-            for (float time = 0; time < 0.3f; time += Time.unscaledDeltaTime)
-            { _fade.alpha = Mathf.Lerp(start, target, Mathf.SmoothStep(0, 1, time / 0.3f)); yield return null; }
-            _fade.alpha = target;
+            yield return _fade.Fade(target, 0.3f);
         }
 
         private void OnDisable()
@@ -185,7 +204,7 @@ namespace ProcSense.VR.Boot
             if (Busy) return;
             RestoreSource();
             RestoreMovement();
-            if (_fade != null) _fade.alpha = 0;
+            if (_fade != null) _fade.Alpha = 0;
             Busy = false;
         }
     }

@@ -61,6 +61,7 @@ namespace ProcSense.EditorTools
             EditorBuildSettings.scenes = new[] { "Boot", "Sys_Core", "PatientBay", "DevOnly" }
                 .Select(n => new EditorBuildSettingsScene(ScenesDir + "/" + n + ".unity", true)).ToArray();
             NavigationSetup.Apply();
+            ComfortSetup.Apply();
             Debug.Log("[SceneBuilder] done");
         }
 
