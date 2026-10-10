@@ -1,0 +1,118 @@
+{
+ "schema": 1,
+ "note": "Written by fetch_all.py --make-manifest from a verified download; checked by fetch_all.py",
+ "files": {
+  "uidatagb/1Gallstones.zip": {
+   "bytes": 193949658,
+   "sha256": "3a4ef879d12b451be56782c481552f4c1a56ea04bf74d2b26008fe832cd700ac"
+  },
+  "uidatagb/3cholecystitis.zip": {
+   "bytes": 169243548,
+   "sha256": "005e751089d63131f8d04a6113537c24de332fde60df5e66ed50a25ca320ea8f"
+  },
+  "uidatagb/4Membranous_and_gangrenous_cholecystitis.zip": {
+   "bytes": 169372735,
+   "sha256": "89f2868303931e7c7ab3b09f71f8638ec4371d509adc4302ea3dfb3aa3efdfb4"
+  },
+  "uidatagb/5Perforation.zip": {
+   "bytes": 154421124,
+   "sha256": "5cbac20e56809e55251b1ef2f3c059210b201471e3943421bdefad004c568dd6"
+  },
+  "uidatagb/8Carcinoma.zip": {
+   "bytes": 236151981,
+   "sha256": "bdfd7f866bdd466f45c1a3474c2979e2c9b4759ffc4964b467e8cda355ad63c4"
+  },
+  "amos/imagesTr_amos_0004.nii.gz": {
+   "bytes": 16974388,
+   "sha256": "0c65994c6c53182ef0fe8e1d86e597b843cb99db2dc1ac8f27876e34319ca9d9"
+  },
+  "amos/labelsTr_amos_0004.nii.gz": {
+   "bytes": 72645,
+   "sha256": "cb8bac8e724ccff8842285f460c0d5ab361aa15c4bab25bd371a25fef9cf79b3"
+  },
+  "amos/imagesTr_amos_0025.nii.gz": {
+   "bytes": 17311635,
+   "sha256": "a0c6be5a17412f7fcc9ac668caa7a5b5f7385382d450b0979c6aec81be64e92a"
+  },
+  "amos/labelsTr_amos_0025.nii.gz": {
+   "bytes": 78834,
+   "sha256": "e448ff4e4aff564757f241f3126fc92232f1cc7f5f0d8d39203326f521e8697b"
+  },
+  "amos/imagesTr_amos_0088.nii.gz": {
+   "bytes": 14684129,
+   "sha256": "6948c143220d7abdb876d22cd5b47349e1edbbcbba04ee953271f04fc6662ac7"
+  },
+  "amos/labelsTr_amos_0088.nii.gz": {
+   "bytes": 69452,
+   "sha256": "e11b4fda234d2a5d5bc134294954aa361b52ebc11961b129262ee463e5d0145b"
+  },
+  "amos/imagesTr_amos_0127.nii.gz": {
+   "bytes": 16875440,
+   "sha256": "790b314d6dd39fd648e9bd7af0768686eee6efc0fb4bc7528d69b7fda35458a1"
+  },
+  "amos/labelsTr_amos_0127.nii.gz": {
+   "bytes": 83190,
+   "sha256": "98210ce6d28654bde606f3d05348a1ade8754fe576bd27817c4b0eddb45340c9"
+  },
+  "amos/imagesTr_amos_0259.nii.gz": {
+   "bytes": 16622488,
+   "sha256": "9c613016a98e62605a97439f28b30423aa0df74d61420b699a051e61af484106"
+  },
+  "amos/labelsTr_amos_0259.nii.gz": {
+   "bytes": 103971,
+   "sha256": "26702eb2cd9c06f19b0aa6abe1ef84a2fb0e14c0be78cd9cf9ac3094b61648cc"
+  },
+  "amos/imagesTr_amos_0540.nii.gz": {
+   "bytes": 2884101,
+   "sha256": "b6b1e22fff196859934ad12d50691b10706c2df80184113a6162ef45df551e6b"
+  },
+  "amos/labelsTr_amos_0540.nii.gz": {
+   "bytes": 45537,
+   "sha256": "9cd2588fa63eae1368f3e95f07b9fb10738d2ac2b0638464cb918e72781070c3"
+  },
+  "amos/imagesTr_amos_0555.nii.gz": {
+   "bytes": 3890661,
+   "sha256": "b16fae6f7d84118f5212a0fab1664c10370fc15aafe706dfd2386fb7015b3a5a"
+  },
+  "amos/labelsTr_amos_0555.nii.gz": {
+   "bytes": 49924,
+   "sha256": "41ea5b7097c456575e1c48c6f8e6a65adc51329e6b06a671f2a95de7ca78acdc"
+  },
+  "amos/imagesTr_amos_0584.nii.gz": {
+   "bytes": 3919743,
+   "sha256": "64797b44a47b9744e7f5ade47c86876612f0b17008ccc1d9114c0ece59c68f81"
+  },
+  "amos/labelsTr_amos_0584.nii.gz": {
+   "bytes": 48865,
+   "sha256": "536a1eeaeecf523ce3ffb40d8ea0fcc5f36cbe79d839a3089b3cc4b78b7e0f85"
+  },
+  "amos/imagesTr_amos_0600.nii.gz": {
+   "bytes": 3935291,
+   "sha256": "f639a1acb609efa81decd5b28a35ce0c66e1e3582f8258f318315165ee6f0d8e"
+  },
+  "amos/labelsTr_amos_0600.nii.gz": {
+   "bytes": 47169,
+   "sha256": "846ae3de9d7f2b755f4d8aeafc0ecdbc7961ff17ed8fec206d131c3d4bce794d"
+  },
+  "nih/test-00000.parquet": {
+   "bytes": 451607539,
+   "sha256": "b9953f3ceddcccc93984561ae86da6da9e6f6fdaedab26ed6610af523dc83eff"
+  },
+  "nih/test-00001.parquet": {
+   "bytes": 450344262,
+   "sha256": "3a5c8f966834271898b39583b722fdf5a1e4a7debc4692cdf04b4fe4eb60a39e"
+  },
+  "nih/test-00002.parquet": {
+   "bytes": 450004827,
+   "sha256": "eaf8425e52ce43a59b09b13f495c6b1e153c235a0fddb429c9e1c62c1b3acf4a"
+  },
+  "nih/test-00003.parquet": {
+   "bytes": 449046639,
+   "sha256": "58cd9cb0445256ddcf0394aef83cb8a88656f40e56d4d664c72d09471d4199ac"
+  },
+  "nih/test-00004.parquet": {
+   "bytes": 451643918,
+   "sha256": "0485ec3e35a868790c83e0063c976624b2888770fd59ae4c4b692b701088c896"
+  }
+ }
+}

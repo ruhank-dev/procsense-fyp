@@ -86,6 +86,29 @@ tasks:
     cmds:
       - uv run --project tools tools/content/trace.py
 
+  data-fetch:
+    desc: Download the open datasets the pictures are built from into tools/data/cache (about 3 GB, git-ignored; only needed to rebuild, see tools/data/README.md)
+    cmds:
+      - uv run --project tools --extra images tools/data/fetch_all.py
+
+  data-check:
+    desc: Verify the downloaded source datasets against tools/data/fetch_manifest.json (no network)
+    cmds:
+      - uv run --project tools --extra images tools/data/fetch_all.py --check
+
+  data-rebuild:
+    desc: Rebuild every generated picture, report, table and register from the fetched datasets (run data-fetch first); the result should match what is committed
+    cmds:
+      - uv run --project tools --extra images tools/data/ultrasound.py build
+      - uv run --project tools --extra images tools/data/ecg_images.py
+      - uv run --project tools --extra images tools/data/cxr_images.py build
+      - uv run --project tools --extra images tools/data/xsec.py build
+      - uv run --project tools tools/content/build_tables.py
+      - uv run --project tools tools/content/imaging_library.py
+      - uv run --project tools tools/content/image_review_pack.py
+      - uv run --project tools tools/data/dataset_cards.py
+      - uv run --project tools tools/content/trace.py
+
   plans-index:
     desc: Rebuild docs/plans/milestones.md from the step files and check step references
     cmds:

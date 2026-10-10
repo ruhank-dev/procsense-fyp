@@ -53,5 +53,7 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `task setup` | `git config core.hooksPath .githooks` + tool check — installs the pre-push hook (runs `task ci` before `main` is updated) |
 | `task ci` | `uv run --project tools tools/ci/run_all.py` — every check CI runs, locally |
 | `task plans-index` | `uv run --project tools tools/plans/milestones.py` — rebuilds `docs/plans/milestones.md` from the step files and checks step references |
+| `task data-fetch` | downloads the open source datasets the pictures are built from (about 3 GB, git-ignored; **only needed to rebuild**: every generated picture, report and table is already committed). See `tools/data/README.md` |
+| `task data-check` / `task data-rebuild` | verifies the downloaded data against its manifest / rebuilds every generated picture, report, table and register from it |
 | `task plans-check` | fails if `docs/plans/milestones.md` is out of date |
 | `task clean` | `dotnet clean ProcSense.sln` |

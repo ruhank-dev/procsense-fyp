@@ -10,3 +10,7 @@ verification status). Rebuilt from the walkthrough in a later plan step.
 - `task content-validate`: every content file against its schema and the source register (cases, rules, workflow, CSV tables need a `ref` column).
 - `task content-extract`: parses the walkthrough into `content/_extract/walkthrough_extract.json` (git-ignored drafting aid; never trust a drafted number without re-reading the page) and checks the counts.
 - `task content-trace`: regenerates `docs/research/traceability.md` (which walkthrough part feeds which file and register rows).
+
+
+## Pictures and where they come from
+The pictures (`images/`, `ecg/`, `cxr/`, `xsec/`), their reports and `imaging_library.csv` are generated and committed. How to refetch the source data and rebuild them: `tools/data/README.md`.

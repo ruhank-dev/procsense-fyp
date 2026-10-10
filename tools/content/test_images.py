@@ -271,6 +271,38 @@ class LibraryTests(unittest.TestCase):
         self.assertTrue(any("does not belong" in p for p in found), found)
 
 
+class FetchManifestTests(unittest.TestCase):
+    """The fetch script must name every source file the committed pictures were built from, and pin each with a checksum (offline check)."""
+
+    def test_the_fetch_list_covers_every_source_the_builders_use(self):
+        sys.path.insert(0, str(ROOT / "tools/data"))
+        import re
+        import fetch_all
+        wanted = fetch_all.wanted()
+        amos = {w["scan"] for w in wanted if w["kind"] == "amos"}
+        used = set(re.findall(r'vid="(amos_\d+)"', (ROOT / "tools/data/xsec.py").read_text(encoding="utf-8")))      # read as text: xsec.py needs numpy and nibabel
+        self.assertTrue(used and used <= amos, used - amos)
+        sel = json.loads((ROOT / "tools/data/ultrasound_real_selection.json").read_text(encoding="utf-8"))["images"]
+        classes = {int(i["archive"][0]) for i in sel}
+        self.assertTrue(classes <= {w["class"] for w in wanted if w["kind"] == "uidatagb"})
+        nih = {w["n"] for w in wanted if w["kind"] == "nih"}
+        self.assertEqual(nih, set(fetch_all.nih_shards()))
+
+    def test_the_manifest_pins_every_large_file(self):
+        sys.path.insert(0, str(ROOT / "tools/data"))
+        import fetch_all
+        known = json.loads(fetch_all.MANIFEST.read_text(encoding="utf-8"))["files"]
+        for w in fetch_all.wanted():
+            if w["kind"] == "ptbxl":
+                continue
+            if w["kind"] == "uidatagb":
+                self.assertTrue(any(k.startswith(f"uidatagb/{w['class']}") for k in known), w)
+            else:
+                self.assertIn(w["path"], known)
+        for v in known.values():
+            self.assertEqual(len(v["sha256"]), 64)
+
+
 class RuleReaderTests(unittest.TestCase):
     def test_alternative_words_inherit_the_key(self):
         self.assertEqual(vi.rule_problems("complication=gas|pus|perforation", {"complication": "pus"}), [])
