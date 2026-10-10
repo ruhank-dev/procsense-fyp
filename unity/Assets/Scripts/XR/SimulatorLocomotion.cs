@@ -20,6 +20,7 @@ namespace ProcSense.VR.XR
         private XROrigin _origin;
         private float _bodyMultiplier;
         private readonly XROriginMovement _movement = new XROriginMovement();
+        public bool Suspended { get; set; }
 
         private void OnEnable()
         {
@@ -41,7 +42,7 @@ namespace ProcSense.VR.XR
                 _body = FindFirstObjectByType<XRBodyTransformer>();
                 _origin = FindFirstObjectByType<XROrigin>();
             }
-            if (_body == null || _origin == null || !_simulator.manipulatingFPS || Time.time <= 1f) return;
+            if (Suspended || _body == null || _origin == null || !_simulator.manipulatingFPS || Time.time <= 1f) return;
             var input = new Vector2(
                 _simulator.keyboardXTranslateAction != null ? _simulator.keyboardXTranslateAction.action.ReadValue<float>() : 0f,
                 _simulator.keyboardZTranslateAction != null ? _simulator.keyboardZTranslateAction.action.ReadValue<float>() : 0f);

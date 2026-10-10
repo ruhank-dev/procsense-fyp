@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 namespace ProcSense.VR.Boot
 {
     /// <summary>
-    /// Boot scene: loads Sys_Core (the SimulationHost) first, then the patient bay, then the headset-free test rig in the Editor.
+    /// Boot scene: loads Sys_Core (session, player rig and room loader) first, then the bay and the Editor simulator.
     /// Sys_Core goes first so the Session already exists when the views wake up.
     /// </summary>
     public class BootLoader : MonoBehaviour

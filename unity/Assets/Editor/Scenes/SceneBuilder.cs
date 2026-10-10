@@ -16,7 +16,7 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 namespace ProcSense.EditorTools
 {
     /// <summary>
-    /// Generates the four scenes (Boot, Sys_Core, PatientBay, DevOnly) from code and the room manifest, so nothing is hand-placed
+    /// Generates the foundation scenes from code and the bay manifest, then installs navigation without replacing existing corridor/OT scenes.
     /// and a re-run gives the same scenes. Batch: -executeMethod ProcSense.EditorTools.SceneBuilder.BuildAll
     /// </summary>
     public static class SceneBuilder
@@ -60,6 +60,7 @@ namespace ProcSense.EditorTools
             BuildBoot();
             EditorBuildSettings.scenes = new[] { "Boot", "Sys_Core", "PatientBay", "DevOnly" }
                 .Select(n => new EditorBuildSettingsScene(ScenesDir + "/" + n + ".unity", true)).ToArray();
+            NavigationSetup.Apply();
             Debug.Log("[SceneBuilder] done");
         }
 
@@ -82,6 +83,10 @@ namespace ProcSense.EditorTools
             var events = new GameObject("EventSystem");
             events.AddComponent<EventSystem>();
             events.AddComponent<XRUIInputModule>();
+            var rig = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerRigPath);
+            if (rig == null) throw new InvalidOperationException("Player rig missing: " + PlayerRigPath);
+            ((GameObject)PrefabUtility.InstantiatePrefab(rig)).transform.position = new Vector3(0, 0, -1.4f);
+            new GameObject("RoomLoader").AddComponent<ProcSense.VR.Boot.RoomLoader>();
             Save(scene, "Sys_Core");
         }
 
@@ -126,13 +131,7 @@ namespace ProcSense.EditorTools
 
             foreach (var item in manifest.items) Place(root, item);
 
-            var rig = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerRigPath);
-            if (rig != null)
-            {
-                var go = (GameObject)PrefabUtility.InstantiatePrefab(rig);
-                go.transform.position = new Vector3(0, 0, -1.4f);
-            }
-            else throw new InvalidOperationException("Player rig missing: " + PlayerRigPath);
+            NavigationSetup.AddBayNavigation();
             Save(scene, "PatientBay");
         }
 
