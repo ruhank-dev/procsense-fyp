@@ -80,7 +80,8 @@ namespace ProcSense.Core.Content
                 Clinical.FastingRules.Parse(reader.ReadText("fasting/fasting.json"), "fasting"),
                 Clinical.RiskTables.Parse(reader.ReadText("risk/risk.json"), reader.ReadText("npc/anaesthetist_intents.json")),
                 Clinical.News2Table.Parse(reader.ReadText("news2/news2.json"), "news2"),
-                Location.LocationTables.Parse(reader.ReadText("locations/locations.json"), "locations"));
+                Location.LocationTables.Parse(reader.ReadText("locations/locations.json"), "locations"),
+                Clinical.InvestigationTables.Parse(reader.ReadText("investigations/investigations.json"), reader.ReadText("investigations/indications.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

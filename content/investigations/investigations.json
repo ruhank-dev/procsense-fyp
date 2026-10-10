@@ -1,0 +1,354 @@
+{
+ "tubes": [
+  "edta_purple",
+  "serum_gold",
+  "citrate_blue",
+  "grey_fluoride",
+  "pink_edta"
+ ],
+ "tests": [
+  {
+   "id": "fbc",
+   "label": "Full blood count",
+   "kind": "blood",
+   "analytes": [
+    "WBC",
+    "Hb",
+    "Haemoglobin",
+    "MCV",
+    "Neutrophils"
+   ],
+   "minutes": {
+    "min": 45,
+    "max": 45
+   },
+   "ref": "SR-0750",
+   "tube": "edta_purple"
+  },
+  {
+   "id": "crp",
+   "label": "CRP",
+   "kind": "blood",
+   "analytes": [
+    "CRP"
+   ],
+   "minutes": {
+    "min": 45,
+    "max": 45
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "u_and_e",
+   "label": "Urea and electrolytes",
+   "kind": "blood",
+   "analytes": [
+    "Creatinine",
+    "Potassium",
+    "Sodium",
+    "Urea",
+    "eGFR"
+   ],
+   "minutes": {
+    "min": 45,
+    "max": 45
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "lft",
+   "label": "Liver function tests",
+   "kind": "blood",
+   "analytes": [
+    "Bilirubin",
+    "ALT",
+    "ALP",
+    "GGT",
+    "Albumin"
+   ],
+   "minutes": {
+    "min": 45,
+    "max": 45
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "hba1c",
+   "label": "HbA1c",
+   "kind": "blood",
+   "analytes": [
+    "HbA1c"
+   ],
+   "minutes": {
+    "min": 120,
+    "max": 120
+   },
+   "ref": "SR-0752",
+   "tube": "edta_purple"
+  },
+  {
+   "id": "clotting",
+   "label": "Clotting screen",
+   "kind": "blood",
+   "analytes": [
+    "INR"
+   ],
+   "minutes": {
+    "min": 30,
+    "max": 30
+   },
+   "ref": "SR-0752",
+   "tube": "citrate_blue"
+  },
+  {
+   "id": "group_and_save",
+   "label": "Group and save",
+   "kind": "blood",
+   "analytes": [],
+   "minutes": {
+    "min": 45,
+    "max": 45
+   },
+   "ref": "SR-0752",
+   "tube": "pink_edta"
+  },
+  {
+   "id": "lactate_cultures",
+   "label": "Lactate and blood cultures",
+   "kind": "blood",
+   "analytes": [
+    "Lactate",
+    "Blood cultures"
+   ],
+   "minutes": {
+    "min": 30,
+    "max": 30
+   },
+   "ref": "SR-0752",
+   "tube": "grey_fluoride"
+  },
+  {
+   "id": "lipase",
+   "label": "Lipase",
+   "kind": "blood",
+   "analytes": [
+    "Lipase"
+   ],
+   "minutes": {
+    "min": 45,
+    "max": 45
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "ferritin",
+   "label": "Ferritin",
+   "kind": "blood",
+   "analytes": [
+    "Ferritin"
+   ],
+   "minutes": {
+    "min": 120,
+    "max": 120
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "tsh",
+   "label": "Thyroid stimulating hormone",
+   "kind": "blood",
+   "analytes": [
+    "TSH"
+   ],
+   "minutes": {
+    "min": 120,
+    "max": 120
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "tryptase",
+   "label": "Tryptase",
+   "kind": "blood",
+   "analytes": [
+    "Tryptase"
+   ],
+   "minutes": {
+    "min": 120,
+    "max": 120
+   },
+   "ref": "SR-0752",
+   "tube": "serum_gold"
+  },
+  {
+   "id": "pregnancy",
+   "label": "Pregnancy test",
+   "kind": "bedside",
+   "analytes": [
+    "Urine pregnancy test",
+    "Pregnancy test"
+   ],
+   "minutes": {
+    "min": 5,
+    "max": 5
+   },
+   "ref": "SR-0752"
+  },
+  {
+   "id": "urine_dipstick",
+   "label": "Urine dipstick",
+   "kind": "bedside",
+   "analytes": [
+    "Urine dipstick"
+   ],
+   "minutes": {
+    "min": 5,
+    "max": 5
+   },
+   "ref": "SR-0752"
+  },
+  {
+   "id": "glucose_fingerprick",
+   "label": "Finger-prick glucose and ketones",
+   "kind": "bedside",
+   "analytes": [
+    "Capillary glucose",
+    "Finger-prick glucose",
+    "Capillary ketones",
+    "Ketones"
+   ],
+   "minutes": {
+    "min": 2,
+    "max": 2
+   },
+   "ref": "SR-0752"
+  },
+  {
+   "id": "ecg",
+   "label": "ECG",
+   "kind": "bedside",
+   "analytes": [
+    "ECG"
+   ],
+   "minutes": {
+    "min": 10,
+    "max": 10
+   },
+   "ref": "SR-0752"
+  },
+  {
+   "id": "bmi",
+   "label": "Weight and BMI",
+   "kind": "bedside",
+   "analytes": [
+    "BMI"
+   ],
+   "minutes": {
+    "min": 5,
+    "max": 5
+   },
+   "ref": "SR-0752"
+  },
+  {
+   "id": "stopbang",
+   "label": "STOP-BANG questions",
+   "kind": "bedside",
+   "analytes": [
+    "STOP-BANG"
+   ],
+   "minutes": {
+    "min": 5,
+    "max": 5
+   },
+   "ref": "SR-0752"
+  },
+  {
+   "id": "ultrasound",
+   "label": "Ultrasound",
+   "kind": "imaging",
+   "analytes": [
+    "Ultrasound appendix"
+   ],
+   "minutes": {
+    "min": 60,
+    "max": 120
+   },
+   "ref": "SR-0751",
+   "location": "ultrasound"
+  },
+  {
+   "id": "ct",
+   "label": "CT",
+   "kind": "imaging",
+   "analytes": [
+    "CT appendix"
+   ],
+   "minutes": {
+    "min": 60,
+    "max": 120
+   },
+   "ref": "SR-0751",
+   "location": "ct"
+  },
+  {
+   "id": "mri",
+   "label": "MRI",
+   "kind": "imaging",
+   "analytes": [
+    "MRI appendix"
+   ],
+   "minutes": {
+    "min": 60,
+    "max": 120
+   },
+   "ref": "SR-0751",
+   "location": "mri"
+  },
+  {
+   "id": "mrcp",
+   "label": "MRCP",
+   "kind": "imaging",
+   "analytes": [],
+   "minutes": {
+    "min": 60,
+    "max": 120
+   },
+   "ref": "SR-0751",
+   "location": "mri"
+  },
+  {
+   "id": "chest_xray",
+   "label": "Chest X-ray",
+   "kind": "imaging",
+   "analytes": [
+    "Chest X-ray"
+   ],
+   "minutes": {
+    "min": 60,
+    "max": 120
+   },
+   "ref": "SR-0751",
+   "location": "xray"
+  }
+ ],
+ "delay": {
+  "event": "E-LAB-DELAY",
+  "minutes": 30,
+  "ref": "SR-0073"
+ },
+ "refs": [
+  "SR-0071",
+  "SR-0072",
+  "SR-0073",
+  "SR-0750",
+  "SR-0751",
+  "SR-0752"
+ ],
+ "note": "Simulator design: which analytes belong to which test, the tube each blood test goes in (the usual colour convention), the kind of test and where imaging is done. Turnaround is only a default: each case states the minutes for each of its own results, which win; FBC 45 minutes and imaging 60 to 120 minutes are the walkthrough's (SR-0750, SR-0751), the other defaults are the project's (WT-I10 unresolved)."
+}

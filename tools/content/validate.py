@@ -57,6 +57,18 @@ def main() -> int:
     refs.add(scores["stopbang"]["ref"])
     failed |= _report("scores", [f"scores.json: ref {r} not in register" for r in sorted(refs) if r not in register], f"{len(refs)} refs ok")
 
+    inv_doc = load_json(CONTENT / "investigations" / "investigations.json")
+    ind_doc = load_json(CONTENT / "investigations" / "indications.json")
+    irefs = set(inv_doc["refs"]) | {t["ref"] for t in inv_doc["tests"]} | {inv_doc["delay"]["ref"]} | {i["ref"] for i in ind_doc["indications"]}
+    inv_problems = [f"investigations: ref {r} not in register" for r in sorted(irefs) if r not in register]
+    known = {a for t in inv_doc["tests"] for a in t["analytes"]}
+    for case_path in sorted((CONTENT / "case_files").glob("*.json")):
+        for res in load_json(case_path)["results"]:
+            base = res["test"].split(" (")[0].strip()
+            if base not in known:
+                inv_problems.append(f"{case_path.stem}: the result '{res['test']}' belongs to no test in investigations.json")
+    failed |= _report("investigations", inv_problems, f"{len(irefs)} refs ok, every case result belongs to a test")
+
     loc_doc = load_json(CONTENT / "locations" / "locations.json")
     lrefs = set(loc_doc["refs"]) | {t["ref"] for t in loc_doc["transport"]["escort_tiers"]} | {loc_doc["corridor_event"]["ref"]}
     failed |= _report("locations and transport", [f"locations.json: ref {r} not in register" for r in sorted(lrefs) if r not in register], f"{len(lrefs)} refs ok")

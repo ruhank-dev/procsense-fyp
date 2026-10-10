@@ -33,6 +33,9 @@ namespace ProcSense.Core.Observation
     /// <summary>A transfer as the trainee sees it: state, destination, how the patient goes, with whom and how monitored, when it arrives, and a message (for example that the porter is unavailable).</summary>
     public sealed record ObservedTransport(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
 
+    /// <summary>A test the trainee ordered: its name, how many times it has been ordered, the state, when it is expected (once the sample is taken or the patient is in the scan room), what the indication rule said (practice mode only) and, once the result has been viewed, which results it holds.</summary>
+    public sealed record ObservedInvestigation(string Test, string Label, int Instance, string State, string Ready, string Indication, IReadOnlyList<string> Results);
+
     public sealed record ObservedNews2(string At, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
 
     public sealed record ObservedRisk(string Asa, string AsaChip, string Vte, IReadOnlyList<string> Scores, IReadOnlyList<string> Prompts, IReadOnlyList<string> AnaesthetistLines, string Plan, string Decision, bool Blocked);
@@ -50,7 +53,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -196,6 +199,20 @@ namespace ProcSense.Core.Observation
                 sb.Append(",\"message\":"); JsonText.Quote(sb, Transport.Message);
                 sb.Append('}');
             }
+            sb.Append(",\"investigations\":[");
+            for (int i = 0; i < Investigations.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"test\":"); JsonText.Quote(sb, Investigations[i].Test);
+                sb.Append(",\"label\":"); JsonText.Quote(sb, Investigations[i].Label);
+                sb.Append(",\"instance\":").Append(Investigations[i].Instance.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                sb.Append(",\"state\":"); JsonText.Quote(sb, Investigations[i].State);
+                sb.Append(",\"ready\":"); JsonText.Quote(sb, Investigations[i].Ready);
+                sb.Append(",\"indication\":"); JsonText.Quote(sb, Investigations[i].Indication);
+                sb.Append(",\"results\":"); AppendList(sb, Investigations[i].Results);
+                sb.Append('}');
+            }
+            sb.Append(']');
             return sb.Append('}').ToString();
         }
 
@@ -257,6 +274,18 @@ namespace ProcSense.Core.Observation
             return list;
         }
 
+        private static List<ObservedInvestigation> BuildInvestigations(Session s, bool practice)
+        {
+            var list = new List<ObservedInvestigation>();
+            foreach (var o in s.Patient.Clinical.Investigations)
+            {
+                bool processing = o.State == "PROCESSING" || o.State == "RESULT_AVAILABLE" || o.State == "VIEWED" || o.State == "ACKNOWLEDGED";
+                bool seen = o.State == "VIEWED" || o.State == "ACKNOWLEDGED";
+                list.Add(new ObservedInvestigation(o.Test, o.Label, o.Instance, o.State, processing ? At(s, o.ReadyStep).Substring(0, 5) : "", practice ? o.Indication.ToLowerInvariant() : "", seen ? o.ResultIds.ToList() : new List<string>()));
+            }
+            return list;
+        }
+
         private static ObservedRisk BuildRisk(State.RiskState r, bool practice) => new ObservedRisk(
             r.ProposedAsa.HasValue ? r.ProposedAsa.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) + (r.ProposedEmergency ? "E" : "") : "",
             practice ? r.AsaClass : "", r.Vte, r.Scores.Select(kv => kv.Key + ": " + kv.Value).ToList(), r.Prompts.ToList(), r.AnaesthetistLines.ToList(), r.Plan, r.Decision, r.Blocked);
@@ -303,7 +332,8 @@ namespace ProcSense.Core.Observation
                 practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
                 BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice),
                 practice ? c.News2.Select(n => new ObservedNews2(At(s, n.Step), n.Total, n.Single3, n.Tier, n.Frequency, n.Responder, n.Note)).ToList() : new List<ObservedNews2>(),
-                c.TraineeLocation, c.Transport == null ? null : new ObservedTransport(c.Transport.State, c.Transport.To, c.Transport.Mode, c.Transport.Escort, c.Transport.Monitoring, c.Transport.Oxygen, c.Transport.Arrives, c.Transport.Message));
+                c.TraineeLocation, c.Transport == null ? null : new ObservedTransport(c.Transport.State, c.Transport.To, c.Transport.Mode, c.Transport.Escort, c.Transport.Monitoring, c.Transport.Oxygen, c.Transport.Arrives, c.Transport.Message),
+                BuildInvestigations(s, practice));
         }
     }
 }

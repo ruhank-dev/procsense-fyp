@@ -18,6 +18,7 @@ namespace ProcSense.Core.Workflow
             new ExaminationSubsystem(content),
             new FastingSubsystem(content),
             new RiskSubsystem(content),
+            new InvestigationsSubsystem(content),
             new News2Subsystem(content),
             new CaseGraphSubsystem(content.Workflow),
             new FlowSubsystem(content.FlowMaps),

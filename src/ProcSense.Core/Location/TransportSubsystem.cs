@@ -109,6 +109,9 @@ namespace ProcSense.Core.Location
             }
         }
 
+        /// <summary>Starts a transfer to <paramref name="to"/> from the parameters of another action (an imaging order that carries the escort choice).</summary>
+        internal void RequestTo(SimAction a, ActionOutcome o, string to) => Request_(a, o, to);
+
         private void Request_(SimAction a, ActionOutcome o, string? fixedTo)
         {
             if (_r != null && _r.State != "BACK" && _r.State != "CANCELLED" && !(_r.State == "DONE" && !_r.Returns)) { o.Reject(InProgress); return; }

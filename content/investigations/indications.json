@@ -1,0 +1,157 @@
+{
+ "indications": [
+  {
+   "test": "lft",
+   "s1": "always",
+   "s2": "conditional",
+   "why": "Look for bile blockage",
+   "when_s1": "YES (all)",
+   "when_s2": "If upper pain or unclear diagnosis",
+   "ref": "SR-0850"
+  },
+  {
+   "test": "pregnancy",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Changes diagnosis, imaging, anaesthesia, drugs and timing",
+   "when_s1": "If pregnancy is possible or uncertain — offered with consent",
+   "when_s2": "If pregnancy is possible — offered with consent (urgent in abdominal pain)",
+   "ref": "SR-0851"
+  },
+  {
+   "test": "fbc",
+   "s1": "conditional",
+   "s2": "always",
+   "why": "Infection, bleeding, anaemia",
+   "when_s1": "If sicker (ASA 3+), anaemia symptoms, heart/kidney disease, or local rule",
+   "when_s2": "YES",
+   "ref": "SR-0852"
+  },
+  {
+   "test": "crp",
+   "s1": "conditional",
+   "s2": "always",
+   "why": "Inflammation; score",
+   "when_s1": "Only if inflammation suspected",
+   "when_s2": "YES",
+   "ref": "SR-0853"
+  },
+  {
+   "test": "u_and_e",
+   "s1": "conditional",
+   "s2": "always",
+   "why": "Kidneys, potassium, dehydration",
+   "when_s1": "If 65+, diabetes, kidney disease, water tablets/ACE-i, ASA 3+",
+   "when_s2": "YES",
+   "ref": "SR-0854"
+  },
+  {
+   "test": "glucose_fingerprick",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Low/high sugar",
+   "when_s1": "If diabetic",
+   "when_s2": "If diabetic or vomiting",
+   "ref": "SR-0855"
+  },
+  {
+   "test": "hba1c",
+   "s1": "conditional",
+   "s2": "not_used",
+   "why": "Diabetes control",
+   "when_s1": "If diabetic and none in 3 months",
+   "when_s2": "No",
+   "ref": "SR-0856"
+  },
+  {
+   "test": "clotting",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Bleeding risk",
+   "when_s1": "If on blood thinners or liver disease",
+   "when_s2": "If on blood thinners, septic, liver disease",
+   "ref": "SR-0857"
+  },
+  {
+   "test": "group_and_save",
+   "s1": "per_policy",
+   "s2": "per_policy",
+   "why": "Blood ready if needed",
+   "when_s1": "Per hospital rule",
+   "when_s2": "Per rule; always if bleeding suspected",
+   "ref": "SR-0858"
+  },
+  {
+   "test": "urine_dipstick",
+   "s1": "not_routine",
+   "s2": "always",
+   "why": "Urine infection/stone look-alikes",
+   "when_s1": "No (not routine)",
+   "when_s2": "YES",
+   "ref": "SR-0859"
+  },
+  {
+   "test": "ecg",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Heart rhythm",
+   "when_s1": "If heart/kidney/diabetes disease, irregular pulse, 65+ (some)",
+   "when_s2": "If 65+, heart disease, HR above 130, irregular, salt problems",
+   "ref": "SR-0860"
+  },
+  {
+   "test": "lactate_cultures",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Sepsis",
+   "when_s1": "If septic",
+   "when_s2": "If sepsis suspected",
+   "ref": "SR-0861"
+  },
+  {
+   "test": "lipase",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Pancreatitis",
+   "when_s1": "If severe upper pain / back pain",
+   "when_s2": "If diagnosis unclear",
+   "ref": "SR-0862"
+  },
+  {
+   "test": "ultrasound",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "See inside",
+   "when_s1": "Already done before booking; repeat if acute",
+   "when_s2": "Young/female/pregnant first",
+   "ref": "SR-0863"
+  },
+  {
+   "test": "ct",
+   "s1": "conditional",
+   "s2": "conditional",
+   "why": "Detailed scan",
+   "when_s1": "Only for complications",
+   "when_s2": "Adults when unclear; older patients",
+   "ref": "SR-0864"
+  },
+  {
+   "test": "mrcp",
+   "s1": "conditional",
+   "s2": "not_used",
+   "why": "Look for duct stones",
+   "when_s1": "If liver tests abnormal / duct wide",
+   "when_s2": "No",
+   "ref": "SR-0865"
+  },
+  {
+   "test": "chest_xray",
+   "s1": "not_routine",
+   "s2": "conditional",
+   "why": "",
+   "when_s1": "No (not routine)",
+   "when_s2": "Only if breathing problems / suspected burst gut",
+   "ref": "SR-0866"
+  }
+ ]
+}

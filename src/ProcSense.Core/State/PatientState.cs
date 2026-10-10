@@ -37,6 +37,29 @@ namespace ProcSense.Core.State
     /// <summary>What the trainee sees of a transfer: its state (REQUESTED, DELAYED, PREPARING, IN_TRANSIT, ARRIVED, DONE, RETURNING, BACK, CANCELLED), where to, how, with whom, and when it arrives.</summary>
     public sealed record TransportView(string State, string To, string Mode, IReadOnlyList<string> Escort, string Monitoring, bool Oxygen, string Arrives, string Message);
 
+    /// <summary>
+    /// One test the trainee ordered (the Nth time for that test): its state (REQUESTED, PROCESSING, RESULT_AVAILABLE, VIEWED, ACKNOWLEDGED), what the indication rule said at the time (APPROPRIATE or NOT_INDICATED),
+    /// how the sample was taken (tube, arm, label) for the result generator, the case results it will hold, and when it is ready.
+    /// </summary>
+    public sealed class InvestigationOrder
+    {
+        public int Id { get; set; }
+        public string Test { get; set; } = "";
+        public string Label { get; set; } = "";
+        public int Instance { get; set; }
+        public string State { get; set; } = "";
+        public string Kind { get; set; } = "";
+        public string Location { get; set; } = "";
+        public long OrderedStep { get; set; }
+        public long ReadyStep { get; set; }
+        public string Indication { get; set; } = "";
+        public string Reason { get; set; } = "";
+        public string Urgency { get; set; } = "";
+        public bool Delayed { get; set; }
+        public SortedDictionary<string, string> Sample { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
+        public List<string> ResultIds { get; set; } = new List<string>();
+    }
+
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
     {
@@ -125,6 +148,9 @@ namespace ProcSense.Core.State
         public void SetFlag(string flag) => _flags.Add(flag);
 
         public void ClearFlag(string flag) => _flags.Remove(flag);
+
+        /// <summary>Every test ordered, oldest first.</summary>
+        public List<InvestigationOrder> Investigations { get; } = new List<InvestigationOrder>();
 
         /// <summary>The NEWS2 scores so far, oldest first (clinical.news2[]).</summary>
         public List<News2Record> News2 { get; } = new List<News2Record>();
