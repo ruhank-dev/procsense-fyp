@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "6dff5e58fcacc1e4fa8ca26668ccf4467cd545e8905e7a17ccb5014c205723d9",
- "files": 333,
- "bytes": 16463670,
+ "content_hash": "809209a670ee3227ebe076893cb5fb58b5cca8011ac8d5c6a2445069a0f5feab",
+ "files": 334,
+ "bytes": 16468077,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -12,6 +12,7 @@
   "fasting": 1,
   "flow": 1,
   "images": 77,
+  "news2": 1,
   "npc": 1,
   "risk": 1,
   "rules": 1,
@@ -35,7 +36,7 @@
   },
   "case_approvals.json": {
    "bytes": 25357,
-   "sha256": "adfed922353f02134a40978b61ccd7c12134bc0b62889deef94b632a9fed6e19"
+   "sha256": "eb0474dd131bb2cd1177b1c772962dfbc9f2b0aff57fd48eaf7aeefa58573b5a"
   },
   "case_files/SC-1.json": {
    "bytes": 11070,
@@ -82,16 +83,16 @@
    "sha256": "14a176d2c80cb552f5b25e380190b2f048be38326d6824ad8016da0a78e98195"
   },
   "case_files/SC-2.json": {
-   "bytes": 9160,
-   "sha256": "c82f8303465b250406bd9697e86ab3c156f8e0303bdf4e0f9f2f55e8ab639e5d"
+   "bytes": 9179,
+   "sha256": "00fb94784ec33f6d1d79bb9b2a31d99aa060d66147570f79932b0085720ff03b"
   },
   "case_files/SC-20.json": {
    "bytes": 7935,
    "sha256": "632cde105bea9819eafdd07b74ff8cfd2b63c1f14e3c3663e86b80cfa2ea9d58"
   },
   "case_files/SC-3.json": {
-   "bytes": 8481,
-   "sha256": "6b89652daf8819d633e1ef30afa07517cf2ddab1bdd38d040eb3d62a31bb5b1f"
+   "bytes": 8500,
+   "sha256": "a7d82290bdbda4602ec46c87b8b57ee03a3fc68178b202a341f7b32ad55b5826"
   },
   "case_files/SC-4.json": {
    "bytes": 7771,
@@ -146,8 +147,8 @@
    "sha256": "6f48bd1786ce3ec7488ccdb77fd39df8bd6d9d08f480f659bd909bf631520e1b"
   },
   "case_files/STK-S2-D.json": {
-   "bytes": 10940,
-   "sha256": "707524cf4d53c4640931039bf79b867efa787c46c828c0d76f13ba770a416582"
+   "bytes": 10959,
+   "sha256": "5cc5ee6b3a933c585024af64f010cabd7684a094cd1298260cd7df956d7ef7f3"
   },
   "case_files/VAR-S1-A.json": {
    "bytes": 12198,
@@ -174,8 +175,8 @@
    "sha256": "0317ddfb5a6242866c23ec68492712c26e30bc885e6f9b592076486ac5c35891"
   },
   "case_files/VAR-S1-H.json": {
-   "bytes": 8739,
-   "sha256": "eea97527cc5b6a51b6a5bcb2186ad4030e21b662398356bc19b2c6c09df48561"
+   "bytes": 8758,
+   "sha256": "67da9173a57ece1fde19e58c4ae65a64f80d306caae8c0332f0b2af4a2b8dfe6"
   },
   "case_files/VAR-S1-I.json": {
    "bytes": 9926,
@@ -202,8 +203,8 @@
    "sha256": "246eb43d855c842ba92f4db7873f1304133cb3464a05060bc5f5b02118aab352"
   },
   "case_files/VAR-S2-B.json": {
-   "bytes": 8891,
-   "sha256": "3cd39b619e8eb9db0ffc4340e8e4fdf08af085882be33b62cebc54c713cd3722"
+   "bytes": 8910,
+   "sha256": "3fa09353725a644079340c504e6a810f7f3b2cf238bf9b50d6bd4a841b05320a"
   },
   "case_files/VAR-S2-D.json": {
    "bytes": 8317,
@@ -222,8 +223,8 @@
    "sha256": "79e4116e71a5e372edb606b8f6cf891f5c138cb7341df342763975e96672f7df"
   },
   "case_files/VAR-S2-H.json": {
-   "bytes": 10171,
-   "sha256": "dc6a2c56dba6d094e6e0fe8c7c4aa2d541ee10c3182e373cb56d7d26c5ba3c50"
+   "bytes": 10190,
+   "sha256": "5cf29076a274021dcf595b7c47d4a48b756fa7d22d8cf39043b2e02caf1f8f04"
   },
   "case_files/VAR-S2-I.json": {
    "bytes": 9203,
@@ -985,6 +986,10 @@
    "bytes": 20262,
    "sha256": "4a9ec1188af0af64decb2bd28e81a355aa56223e0cabefe4130600d0cd01b7f7"
   },
+  "news2/news2.json": {
+   "bytes": 4074,
+   "sha256": "47ca95a76174e47fcb63b32a06b93766bb5b1e36155357d299d6ba5e0b83ec74"
+  },
   "news2_response.csv": {
    "bytes": 892,
    "sha256": "66b8b1431f4c098237c3cea8aa05e792d4196d42460fe86e9848c6fcc5f3ea64"
@@ -1038,8 +1043,8 @@
    "sha256": "918eb2e3a23e9397dd9e6f274189fc68bd9976be067daccf5fb138b3d753d00f"
   },
   "schema/case_file.schema.json": {
-   "bytes": 21201,
-   "sha256": "81c23418709814bc65b5ba1a8336060d7624343c30397c9c3416bb5405159a65"
+   "bytes": 21420,
+   "sha256": "bbdc93e895325930083de80b9ede5dc756152a7361108b14dafaefc533e904fd"
   },
   "schema/rule.schema.json": {
    "bytes": 2127,

@@ -1,0 +1,276 @@
+{
+ "parameters": {
+  "respiratory_rate": [
+   {
+    "max": 8.0,
+    "points": 3,
+    "ref": "SR-0200"
+   },
+   {
+    "min": 9.0,
+    "max": 11.0,
+    "points": 1,
+    "ref": "SR-0201"
+   },
+   {
+    "min": 12.0,
+    "max": 20.0,
+    "points": 0,
+    "ref": "SR-0202"
+   },
+   {
+    "min": 21.0,
+    "max": 24.0,
+    "points": 2,
+    "ref": "SR-0203"
+   },
+   {
+    "min": 25.0,
+    "points": 3,
+    "ref": "SR-0204"
+   }
+  ],
+  "spo2": [
+   {
+    "max": 91.0,
+    "points": 3,
+    "ref": "SR-0205"
+   },
+   {
+    "min": 92.0,
+    "max": 93.0,
+    "points": 2,
+    "ref": "SR-0206"
+   },
+   {
+    "min": 94.0,
+    "max": 95.0,
+    "points": 1,
+    "ref": "SR-0207"
+   },
+   {
+    "min": 96.0,
+    "points": 0,
+    "ref": "SR-0208"
+   }
+  ],
+  "systolic_bp": [
+   {
+    "max": 90.0,
+    "points": 3,
+    "ref": "SR-0209"
+   },
+   {
+    "min": 91.0,
+    "max": 100.0,
+    "points": 2,
+    "ref": "SR-0210"
+   },
+   {
+    "min": 101.0,
+    "max": 110.0,
+    "points": 1,
+    "ref": "SR-0211"
+   },
+   {
+    "min": 111.0,
+    "max": 219.0,
+    "points": 0,
+    "ref": "SR-0212"
+   },
+   {
+    "min": 220.0,
+    "points": 3,
+    "ref": "SR-0213"
+   }
+  ],
+  "heart_rate": [
+   {
+    "max": 40.0,
+    "points": 3,
+    "ref": "SR-0214"
+   },
+   {
+    "min": 41.0,
+    "max": 50.0,
+    "points": 1,
+    "ref": "SR-0215"
+   },
+   {
+    "min": 51.0,
+    "max": 90.0,
+    "points": 0,
+    "ref": "SR-0216"
+   },
+   {
+    "min": 91.0,
+    "max": 110.0,
+    "points": 1,
+    "ref": "SR-0217"
+   },
+   {
+    "min": 111.0,
+    "max": 130.0,
+    "points": 2,
+    "ref": "SR-0218"
+   },
+   {
+    "min": 131.0,
+    "points": 3,
+    "ref": "SR-0219"
+   }
+  ],
+  "temperature_c": [
+   {
+    "max": 35.0,
+    "points": 3,
+    "ref": "SR-0220"
+   },
+   {
+    "min": 35.1,
+    "max": 36.0,
+    "points": 1,
+    "ref": "SR-0221"
+   },
+   {
+    "min": 36.1,
+    "max": 38.0,
+    "points": 0,
+    "ref": "SR-0222"
+   },
+   {
+    "min": 38.1,
+    "max": 39.0,
+    "points": 1,
+    "ref": "SR-0223"
+   },
+   {
+    "min": 39.1,
+    "points": 2,
+    "ref": "SR-0224"
+   }
+  ]
+ },
+ "spo2_scale2": [
+  {
+   "max": 83.0,
+   "points": 3,
+   "ref": "SR-0229",
+   "condition": "any"
+  },
+  {
+   "min": 84.0,
+   "max": 85.0,
+   "points": 2,
+   "ref": "SR-0230",
+   "condition": "any"
+  },
+  {
+   "min": 86.0,
+   "max": 87.0,
+   "points": 1,
+   "ref": "SR-0231",
+   "condition": "any"
+  },
+  {
+   "min": 88.0,
+   "max": 92.0,
+   "points": 0,
+   "ref": "SR-0232",
+   "condition": "any"
+  },
+  {
+   "min": 93.0,
+   "points": 0,
+   "ref": "SR-0233",
+   "condition": "on_air"
+  },
+  {
+   "min": 93.0,
+   "max": 94.0,
+   "points": 1,
+   "ref": "SR-0234",
+   "condition": "on_oxygen"
+  },
+  {
+   "min": 95.0,
+   "max": 96.0,
+   "points": 2,
+   "ref": "SR-0235",
+   "condition": "on_oxygen"
+  },
+  {
+   "min": 97.0,
+   "points": 3,
+   "ref": "SR-0236",
+   "condition": "on_oxygen"
+  }
+ ],
+ "supplemental_oxygen": {
+  "air": 0,
+  "oxygen": 2,
+  "refs": [
+   "SR-0225",
+   "SR-0226"
+  ]
+ },
+ "acvpu": {
+  "alert": 0,
+  "other": 3,
+  "refs": [
+   "SR-0227",
+   "SR-0228"
+  ]
+ },
+ "precision": {
+  "respiratory_rate": 0,
+  "spo2": 0,
+  "systolic_bp": 0,
+  "heart_rate": 0,
+  "temperature_c": 1
+ },
+ "response": [
+  {
+   "id": "0",
+   "risk": "Low",
+   "frequency": "At least every 12 hours",
+   "responder": "Routine",
+   "ref": "SR-0300",
+   "min": 0,
+   "max": 0
+  },
+  {
+   "id": "1-4",
+   "risk": "Low",
+   "frequency": "At least every 4–6 hours",
+   "responder": "Nurse decides whether to call a doctor",
+   "ref": "SR-0301",
+   "min": 1,
+   "max": 4
+  },
+  {
+   "id": "single3",
+   "risk": "Low-medium",
+   "frequency": "At least hourly",
+   "responder": "Urgent review by the ward doctor",
+   "ref": "SR-0302"
+  },
+  {
+   "id": "5-6",
+   "risk": "Medium",
+   "frequency": "At least hourly",
+   "responder": "Urgent review by a doctor skilled in acutely ill patients",
+   "ref": "SR-0303",
+   "min": 5,
+   "max": 6
+  },
+  {
+   "id": "7+",
+   "risk": "High",
+   "frequency": "Continuous monitoring",
+   "responder": "Emergency team response, including critical-care skills",
+   "ref": "SR-0304",
+   "min": 7
+  }
+ ]
+}

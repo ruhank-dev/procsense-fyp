@@ -248,9 +248,11 @@ namespace ProcSense.Core.Content
                 r.Finish();
             }
 
+            bool pregnant = c.Has("pregnant") && c.Bool("pregnant");
+
             c.Finish();
             return new CaseFile(id, label, scenario, tier, status, approval, referenceDate, baseCard, identity, spoken, wristband, allergies, allergyAnswer, reason, presentation, history, observations,
-                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk);
+                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant);
         }
 
         // The checks that need no table: they hold for any case file.

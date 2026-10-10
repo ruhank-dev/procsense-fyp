@@ -31,6 +31,9 @@ namespace ProcSense.Core.State
         public bool Blocked { get; set; }
     }
 
+    /// <summary>One NEWS2 worked out from the observations the trainee had gathered at that moment (Step is the sim step). Kept for the chart, the EMR and the debrief.</summary>
+    public sealed record News2Record(long Step, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
+
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
     {
@@ -110,6 +113,9 @@ namespace ProcSense.Core.State
         public void SetFlag(string flag) => _flags.Add(flag);
 
         public void ClearFlag(string flag) => _flags.Remove(flag);
+
+        /// <summary>The NEWS2 scores so far, oldest first (clinical.news2[]).</summary>
+        public List<News2Record> News2 { get; } = new List<News2Record>();
 
         /// <summary>Step 5: the risk assessment, anaesthetic review and readiness decision.</summary>
         public RiskState Risk { get; } = new RiskState();

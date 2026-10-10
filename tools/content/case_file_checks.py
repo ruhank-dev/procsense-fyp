@@ -97,6 +97,8 @@ def problems(c: dict, ctx: dict, others: list[dict] | None = None) -> list[str]:
     for h in c["history"]:
         if not h["volunteered"] and not h["disclose_on"]:
             out.append(f"{w}: history {h['id']} is hidden but has no disclose_on")
+    if c.get("pregnant") and c["identity"]["sex"] != "F":
+        out.append(f"{w}: only a female patient can be pregnant")
     risk = c.get("risk")
     if risk is None:
         out.append(f"{w}: every case needs its expected ASA grade and anaesthetic plan (risk)")

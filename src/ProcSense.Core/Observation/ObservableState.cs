@@ -29,6 +29,9 @@ namespace ProcSense.Core.Observation
     /// What Step 5 shows: the grade the trainee proposed, the chip comparing it with the case (credit, minor or major; practice mode only), the clot form result (plan_required, no_plan or ""),
     /// the scores calculated so far, the tests the tablet suggests for a missing score item, what the anaesthetist has said, the agreed plan, the readiness decision and whether readiness is blocked.
     /// </summary>
+    /// <summary>One NEWS2 on the chart: when it was worked out, the total, whether a single reading scored 3, the response tier and what to do (frequency and who responds), and a note (for example that NEWS2 is not used in pregnancy).</summary>
+    public sealed record ObservedNews2(string At, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
+
     public sealed record ObservedRisk(string Asa, string AsaChip, string Vte, IReadOnlyList<string> Scores, IReadOnlyList<string> Prompts, IReadOnlyList<string> AnaesthetistLines, string Plan, string Decision, bool Blocked);
 
     public sealed record DecisionOption(string Id, string Label);
@@ -44,7 +47,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -161,6 +164,20 @@ namespace ProcSense.Core.Observation
             sb.Append(",\"decision\":"); JsonText.Quote(sb, Risk.Decision);
             sb.Append(",\"blocked\":").Append(Risk.Blocked ? "true" : "false");
             sb.Append('}');
+            sb.Append(",\"news2\":[");
+            for (int i = 0; i < News2.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"at\":"); JsonText.Quote(sb, News2[i].At);
+                sb.Append(",\"total\":").Append(News2[i].Total.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                sb.Append(",\"single3\":").Append(News2[i].Single3 ? "true" : "false");
+                sb.Append(",\"tier\":"); JsonText.Quote(sb, News2[i].Tier);
+                sb.Append(",\"frequency\":"); JsonText.Quote(sb, News2[i].Frequency);
+                sb.Append(",\"responder\":"); JsonText.Quote(sb, News2[i].Responder);
+                sb.Append(",\"note\":"); JsonText.Quote(sb, News2[i].Note);
+                sb.Append('}');
+            }
+            sb.Append(']');
             return sb.Append('}').ToString();
         }
 
@@ -266,7 +283,8 @@ namespace ProcSense.Core.Observation
                 practice && s.Tracker != null ? s.Tracker.Hint() : "",
                 practice ? BlockMessage(s) : "",
                 practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
-                BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice));
+                BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice),
+                practice ? c.News2.Select(n => new ObservedNews2(At(s, n.Step), n.Total, n.Single3, n.Tier, n.Frequency, n.Responder, n.Note)).ToList() : new List<ObservedNews2>());
         }
     }
 }

@@ -25,6 +25,9 @@ import lib  # noqa: E402
 import s1, s1b, s2, stk, p1v, p1stk, p2  # noqa: E402,F401
 from risk import RISK  # noqa: E402
 
+# The cases whose patient is pregnant (history and the pregnancy test say so): NEWS2 is not the tool for them once the trainee knows.
+PREGNANT = {"VAR-S1-H", "VAR-S2-B", "SC-2", "SC-3", "STK-S2-D", "VAR-S2-H"}
+
 OUT = ROOT / "content" / "case_files"
 APPROVALS = ROOT / "content" / "case_approvals.json"
 BY = "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
@@ -58,6 +61,8 @@ def fill(c: dict, ctx: dict) -> dict:
         if h["topic"] in ("last_food", "last_drink"):
             h["intake"] = fasting_intake.intake(h["topic"], h["answer"], c["presentation"]["time_now"])
     cid = c["id"]
+    if cid in PREGNANT:
+        c["pregnant"] = True
     if cid in RISK:
         c["risk"] = json.loads(json.dumps(RISK[cid]))
     meas = sorted({r["source_row"] for r in c["results"] if r.get("source_row")} | {m for m, r in ctx["measurements"].items() if r["case_id"] == cid})

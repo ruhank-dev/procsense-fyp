@@ -439,6 +439,11 @@
         }
       }
     },
+    "pregnant": {
+      "type": "boolean",
+      "const": true,
+      "description": "Present (true) only when the patient is pregnant: NEWS2 is then not used once the trainee knows. Omitted means not pregnant."
+    },
     "risk": {
       "type": "object",
       "additionalProperties": false,

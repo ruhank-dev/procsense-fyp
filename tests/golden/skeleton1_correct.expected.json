@@ -3,7 +3,7 @@
   "seed": "42",
   "mode": "practice",
   "log_hash": "82ccec26beb012e29057ca7178d86e31fe600a72b5b865a19cc0814014a28ac5",
-  "state_hash": "fb49ada7d0718014e0ba3b3bfa14455978bb79ca302b07e7a9b8ed1691bf4777",
+  "state_hash": "4ec6ebbc4fdf1c22a5f5aecaa7f53e91c1148987ffdf2ad6f751b9ec08e17177",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -36,6 +36,7 @@
       "exam.started",
       "identity_asked_open",
       "introduced",
+      "news2.computed",
       "ready.decided",
       "risk.asa_proposed",
       "score.stopbang.computed",

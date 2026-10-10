@@ -57,6 +57,10 @@ def main() -> int:
     refs.add(scores["stopbang"]["ref"])
     failed |= _report("scores", [f"scores.json: ref {r} not in register" for r in sorted(refs) if r not in register], f"{len(refs)} refs ok")
 
+    news2_doc = load_json(CONTENT / "news2" / "news2.json")
+    nrefs = {c["ref"] for cs in news2_doc["parameters"].values() for c in cs} | {c["ref"] for c in news2_doc["spo2_scale2"]} | set(news2_doc["supplemental_oxygen"]["refs"]) | set(news2_doc["acvpu"]["refs"]) | {b["ref"] for b in news2_doc["response"]}
+    failed |= _report("news2", [f"news2.json: ref {r} not in register" for r in sorted(nrefs) if r not in register], f"{len(nrefs)} refs ok")
+
     risk_doc = load_json(CONTENT / "risk" / "risk.json")
     intents_doc = load_json(CONTENT / "npc" / "anaesthetist_intents.json")
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}

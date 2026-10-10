@@ -437,6 +437,7 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "pregnant": true,
  "risk": {
   "asa": {
    "min": 2,
