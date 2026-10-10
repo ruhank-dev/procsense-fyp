@@ -7,6 +7,9 @@ namespace ProcSense.Core.State
     /// <summary>What the chart says about the patient: fixed for the whole case.</summary>
     public sealed record Profile(Identity Identity, Wristband? Wristband, NotesIdentifiers Notes, IReadOnlyList<Allergy> Allergies);
 
+    /// <summary>One examination finding the trainee has found: the case's finding id, the region or check it came from, and the wording.</summary>
+    public sealed record ExamFinding(string Id, string Region, string Text);
+
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
     {
@@ -48,6 +51,29 @@ namespace ProcSense.Core.State
             _revealOrder.Add(topic);
             return true;
         }
+
+        private readonly List<ExamFinding> _findings = new List<ExamFinding>();
+        private readonly SortedDictionary<string, string> _airway = new SortedDictionary<string, string>(StringComparer.Ordinal);
+
+        /// <summary>Examination findings the trainee has found, oldest first (the findings list on the tablet).</summary>
+        public IReadOnlyList<ExamFinding> Findings => _findings;
+
+        /// <summary>Airway checks the trainee has made (mouth_opening, mallampati, neck, thyromental) with what they showed; kept for the anaesthetic assessment and Sign In.</summary>
+        public IReadOnlyDictionary<string, string> Airway => _airway;
+
+        /// <summary>How many region findings (not airway checks) and airway checks this case has to find. Set once by the examination subsystem; rules read them to know when examining is complete.</summary>
+        public int ExamTotal { get; set; }
+        public int AirwayTotal { get; set; }
+
+        /// <summary>Returns true the first time a finding is found.</summary>
+        public bool AddFinding(ExamFinding f)
+        {
+            foreach (var x in _findings) if (x.Id == f.Id) return false;
+            _findings.Add(f);
+            return true;
+        }
+
+        public void SetAirway(string item, string text) => _airway[item] = text;
 
         private readonly SortedSet<string> _flags = new SortedSet<string>(StringComparer.Ordinal);
 

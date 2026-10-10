@@ -11,5 +11,23 @@
     "understanding": 1,
     "note": "Simulator design value: summarising after at least 5 topics have been asked builds trust and understanding (Implementation Guide rule L2-05).",
     "ref": "SR-0036"
+  },
+  "exam_without_permission": {
+    "trust": -1,
+    "reaction": "Oh!",
+    "note": "Simulator design value: examining before asking permission lowers trust by 1 and is kept as professionalism evidence for the debrief (Implementation Guide L4-01, E4-A).",
+    "ref": "SR-0042"
+  },
+  "exam_painful_first": {
+    "pain": 1,
+    "trust": -1,
+    "reaction": "Ow! That hurts.",
+    "note": "Simulator design value: pressing the painful region before any other region raises pain by 1 and lowers trust by 1 (Implementation Guide E4-B).",
+    "ref": "SR-0043"
+  },
+  "murphy_positive": {
+    "reaction": "Ow!",
+    "note": "Simulator design value: a positive Murphy's sign makes the patient cry out (Implementation Guide T04-4).",
+    "ref": "SR-0044"
   }
 }

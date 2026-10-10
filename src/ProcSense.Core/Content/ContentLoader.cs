@@ -54,7 +54,16 @@ namespace ProcSense.Core.Content
         // Keys that describe structure, not clinical facts, so they need no source ref (same list as tools/content/checks.py).
         private static readonly HashSet<string> NonClinical = new HashSet<string> { "id", "scenario", "refs", "topic", "wording", "volunteered" };
 
-        public static ContentPackage Load(IContentReader reader, params string[] caseIds) => Load(reader, caseIds, new string[0]);
+        /// <summary>Loads the cards for <paramref name="caseIds"/> and, where one exists, the playable case file of the same id (the examination findings come from it).</summary>
+        public static ContentPackage Load(IContentReader reader, params string[] caseIds) =>
+            Load(reader, caseIds, caseIds.Where(id => HasCaseFile(reader, id)).ToList());
+
+        private static bool HasCaseFile(IContentReader reader, string id)
+        {
+            try { reader.ReadText("case_files/" + id + ".json"); return true; }
+            catch (FileNotFoundException) { return false; }
+            catch (DirectoryNotFoundException) { return false; }
+        }
 
         /// <summary>Loads the cards for <paramref name="caseIds"/> and, next to them, the playable case files for <paramref name="caseFileIds"/> (content/case_files/&lt;id&gt;.json).</summary>
         public static ContentPackage Load(IContentReader reader, IReadOnlyList<string> caseIds, IReadOnlyList<string> caseFileIds)
@@ -66,7 +75,7 @@ namespace ProcSense.Core.Content
             var behaviour = LoadBehaviour(reader.ReadText("behaviour.json"));
             return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")),
                 Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"), files,
-                Workflow.FlowMaps.Parse(reader.ReadText("flow/flow_maps.json"), "flow"));
+                Workflow.FlowMaps.Parse(reader.ReadText("flow/flow_maps.json"), "flow"), behaviour.Item3);
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>
@@ -173,7 +182,7 @@ namespace ProcSense.Core.Content
             return new TimeSpan(int.Parse(s.Substring(0, 2), CultureInfo.InvariantCulture), int.Parse(s.Substring(3, 2), CultureInfo.InvariantCulture), 0);
         }
 
-        private static (BehaviourEffect, SummariseEffect) LoadBehaviour(string json)
+        private static (BehaviourEffect, SummariseEffect, ExamEffects) LoadBehaviour(string json)
         {
             try
             {
@@ -186,8 +195,13 @@ namespace ProcSense.Core.Content
                 var summarise = new SummariseEffect(m.Int("min_topics"), m.Int("trust"), m.Int("understanding"), m.Str("ref"));
                 m.Str("note");
                 m.Finish();
+                var np = d.Obj("exam_without_permission");
+                var pf = d.Obj("exam_painful_first");
+                var mp = d.Obj("murphy_positive");
+                var exam = new ExamEffects(np.Int("trust"), np.Str("reaction"), pf.Int("pain"), pf.Int("trust"), pf.Str("reaction"), mp.Str("reaction"));
+                foreach (var o in new[] { np, pf, mp }) { o.Str("note"); o.Str("ref"); o.Finish(); }
                 d.Finish();
-                return (intro, summarise);
+                return (intro, summarise, exam);
             }
             catch (ContentException e) { throw new ContentException("behaviour.json: " + e.Message); }
         }

@@ -33,6 +33,9 @@ namespace ProcSense.Core.Content
     /// <summary>How a trainee behaviour moves the patient's trust and anxiety counters.</summary>
     public sealed record BehaviourEffect(long Trust, long Anxiety, string Ref);
 
+    /// <summary>What examining does to the patient: without permission (trust and the patient's words), the painful region first (pain, trust, words), and a positive Murphy's sign (words).</summary>
+    public sealed record ExamEffects(long NoPermissionTrust, string NoPermissionReaction, long PainfulPain, long PainfulTrust, string PainfulReaction, string MurphyReaction);
+
     /// <summary>Summarising after MinTopics topics have been asked raises trust and understanding.</summary>
     public sealed record SummariseEffect(long MinTopics, long Trust, long Understanding, string Ref);
 
@@ -42,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -52,6 +55,7 @@ namespace ProcSense.Core.Content
             Workflow = workflow;
             CaseFiles = caseFiles ?? new Dictionary<string, CaseFile>();
             FlowMaps = flowMaps ?? ProcSense.Core.Workflow.FlowMaps.Empty;
+            Exam = exam ?? new ExamEffects(0, "", 0, 0, "", "");
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -63,6 +67,8 @@ namespace ProcSense.Core.Content
         public Workflow.CaseGraph Workflow { get; }
         /// <summary>The scenario master maps: 20 stages for S1 and for S2 (content/flow/flow_maps.json).</summary>
         public ProcSense.Core.Workflow.FlowMaps FlowMaps { get; }
+        /// <summary>What examining does to the patient (content/behaviour.json).</summary>
+        public ExamEffects Exam { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
         public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }

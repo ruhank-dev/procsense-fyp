@@ -254,7 +254,11 @@
    "disclose_on": [
     "examine:abdomen"
    ],
-   "origin": "book"
+   "origin": "book",
+   "painful": true,
+   "flags": [
+    "finding.rigid_abdomen"
+   ]
   },
   {
    "id": "ex.band",

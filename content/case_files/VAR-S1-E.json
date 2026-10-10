@@ -187,23 +187,28 @@
  "examination": [
   {
    "id": "ex.murphy",
-   "system": "abdomen",
+   "system": "murphy",
    "finding": "Tender under the right ribs; Murphy's sign positive.",
    "abnormal": true,
    "disclose_on": [
-    "examine:abdomen"
+    "examine:murphy"
    ],
-   "origin": "book"
+   "origin": "book",
+   "painful": true,
+   "flags": [
+    "finding.murphy_positive"
+   ]
   },
   {
    "id": "ex.abdomen",
-   "system": "abdomen_other",
-   "finding": "No guarding elsewhere; no palpable lump.",
+   "system": "abdomen",
+   "finding": "Tender under the right ribs; no guarding elsewhere; no palpable lump.",
    "abnormal": false,
    "disclose_on": [
-    "examine:abdomen_other"
+    "examine:abdomen"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true
   },
   {
    "id": "ex.eyes",

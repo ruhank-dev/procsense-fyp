@@ -193,27 +193,68 @@
    "disclose_on": [
     "examine:eyes"
    ],
-   "origin": "authored"
-  },
-  {
-   "id": "ex.abdomen",
-   "system": "abdomen",
-   "finding": "Soft and non-tender; Murphy's sign negative.",
-   "abnormal": false,
-   "disclose_on": [
-    "examine:abdomen"
-   ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "ex.chest",
    "system": "chest",
-   "finding": "Chest clear; heart sounds normal.",
+   "finding": "Heart and lungs sound normal.",
    "abnormal": false,
    "disclose_on": [
     "examine:chest"
    ],
-   "origin": "authored"
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tummy soft; mild tenderness under the right ribs, only with deep pressure.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book",
+   "painful": true
+  },
+  {
+   "id": "ex.murphy",
+   "system": "murphy",
+   "finding": "Murphy's sign negative.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:murphy"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.mouth",
+   "system": "airway",
+   "finding": "Mouth opens well (3 fingers).",
+   "abnormal": false,
+   "disclose_on": [
+    "airway_check:mouth_opening"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.mallampati",
+   "system": "airway",
+   "finding": "Mallampati class 2.",
+   "abnormal": false,
+   "disclose_on": [
+    "airway_check:mallampati"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.neck",
+   "system": "airway",
+   "finding": "Neck moves normally.",
+   "abnormal": false,
+   "disclose_on": [
+    "airway_check:neck"
+   ],
+   "origin": "book"
   }
  ],
  "results": [

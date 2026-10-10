@@ -125,7 +125,8 @@ namespace ProcSense.Core.Content
             for (int k = 0; k < exList.Count; k++)
             {
                 var e = new JsonObj(exList[k], JsonObj.Index("examination", k));
-                examination.Add(new CaseFileExamination(e.Str("id"), e.Str("system"), e.Str("finding"), e.Bool("abnormal"), Strings(e, "disclose_on"), e.Enum("origin", Origins)));
+                examination.Add(new CaseFileExamination(e.Str("id"), e.Str("system"), e.Str("finding"), e.Bool("abnormal"), Strings(e, "disclose_on"), e.Enum("origin", Origins),
+                    e.Has("painful") && e.Bool("painful"), e.Has("flags") ? Strings(e, "flags") : new List<string>()));
                 e.Finish();
             }
 

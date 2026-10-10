@@ -2,8 +2,8 @@
   "case": "VAR-S1-A",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "dcec6b447e525659b33bb1a6ceeb9f50c68ab74a4ac159c250604de7efbb06cd",
-  "state_hash": "9201ccbff597799fdefce451383230245ae2d644eb4c29f62f32b3db48ac32da",
+  "log_hash": "69d2ca0ea0ed60e20b802c7b6f9f1ee9ac30841e985d5b7ef6fbc9117c7996b5",
+  "state_hash": "c445ccab400ec1abc9a783ba88076e1a8accc28ef9a9a565cb1899cdc1643896",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -28,7 +28,14 @@
       "pregnancy"
     ],
     "vitals": { "spo2": "98", "oxygen": "room_air", "heart_rate": "76", "systolic_bp": "124", "diastolic_bp": "78", "respiratory_rate": "14", "temperature_c": "36.7", "acvpu": "A", "pain_score": "0" },
-    "flags": ["allergy_reaction_asked", "identity_asked_open", "introduced", "summarised"],
+    "flags": [
+      "allergy_reaction_asked",
+      "exam.permission_asked",
+      "exam.started",
+      "identity_asked_open",
+      "introduced",
+      "summarised"
+    ],
     "rejections": [],
     "trust": 2,
     "anxiety": -1,

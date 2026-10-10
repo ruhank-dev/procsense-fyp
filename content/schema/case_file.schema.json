@@ -396,6 +396,18 @@
               "type": "string"
             }
           },
+          "painful": {
+            "type": "boolean",
+            "description": "Pressing here hurts, so a careful trainee examines it after the other regions (rule E4-B). Omitted means false."
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.]*$"
+            },
+            "description": "Facts this finding sets when the trainee finds it, for rules (for example finding.rigid_abdomen). Omitted means none."
+          },
           "origin": {
             "$ref": "#/$defs/origin"
           }

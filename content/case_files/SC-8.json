@@ -236,7 +236,11 @@
    "disclose_on": [
     "examine:abdomen"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true,
+   "flags": [
+    "finding.rigid_abdomen"
+   ]
   }
  ],
  "results": [

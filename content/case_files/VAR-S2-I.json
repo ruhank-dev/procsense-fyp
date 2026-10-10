@@ -202,7 +202,8 @@
    "disclose_on": [
     "examine:abdomen"
    ],
-   "origin": "book"
+   "origin": "book",
+   "painful": true
   },
   {
    "id": "ex.rebound",
@@ -212,7 +213,8 @@
    "disclose_on": [
     "examine:rebound"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true
   }
  ],
  "results": [

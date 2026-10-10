@@ -19,6 +19,9 @@ namespace ProcSense.Core.Workflow
     /// <summary>The facts rules can read. Built from the engine's truth (not from what the trainee can see), so goals judge what was really done.</summary>
     internal static class RuleState
     {
+        /// <summary>Findings found by an airway check carry this region name; they are counted apart from the region findings.</summary>
+        public const string AirwayRegion = "airway_check:";
+
         public static Dictionary<string, object?> Build(Session s)
         {
             var c = s.Patient.Clinical;
@@ -30,6 +33,10 @@ namespace ProcSense.Core.Workflow
             foreach (var x in s.Patient.Physiological.AttachedSensors) sensors.Add(x);
             var measured = new List<object?>();
             foreach (var m in s.Patient.Physiological.Measured.Keys) measured.Add(m);
+            var findings = new List<object?>();
+            foreach (var f in c.Findings) findings.Add(f.Id);
+            var airway = new List<object?>();
+            foreach (var a in c.Airway.Keys) airway.Add(a);
 
             return new Dictionary<string, object?>(StringComparer.Ordinal)
             {
@@ -48,6 +55,12 @@ namespace ProcSense.Core.Workflow
                 ["flags"] = flags,
                 ["sensors"] = sensors,
                 ["measured"] = measured,
+                ["findings"] = findings,
+                ["airway"] = airway,
+                ["exam_total"] = (long)c.ExamTotal,
+                ["exam_done"] = (long)c.Findings.Count(f => !f.Region.StartsWith(AirwayRegion, StringComparison.Ordinal)),
+                ["airway_total"] = (long)c.AirwayTotal,
+                ["airway_done"] = (long)c.Airway.Count,
             };
         }
     }
@@ -117,6 +130,7 @@ namespace ProcSense.Core.Workflow
             public long AtStep = -1;
             public long DeadlineStep = -1;
             public bool NeedsEval = true;
+            public bool Active;     // false until the goal's active_if holds; an inactive goal is not shown, hinted, or completed
         }
 
         private sealed class PointRun
@@ -152,7 +166,7 @@ namespace ProcSense.Core.Workflow
             foreach (var def in _graph.Goals)
             {
                 if (!def.AppliesIf.Test(state)) continue;
-                var run = new GoalRun { Def = def };
+                var run = new GoalRun { Def = def, Active = def.ActiveIf.Test(state) };
                 if (def.DeadlineMinutes.HasValue)
                 {
                     run.DeadlineStep = (long)Math.Round(def.DeadlineMinutes.Value * 60 / Time.SimClock.Step);
@@ -177,7 +191,7 @@ namespace ProcSense.Core.Workflow
             for (int i = 0; i < _withDeadline.Count; i++)
             {
                 var g = _withDeadline[i];
-                if (g.State == GoalState.Pending && _step >= g.DeadlineStep) Miss(g);
+                if (g.Active && g.State == GoalState.Pending && _step >= g.DeadlineStep) Miss(g);
             }
         }
 
@@ -187,7 +201,7 @@ namespace ProcSense.Core.Workflow
         {
             var list = new List<Observation.GoalStatus>(_goals.Count);
             foreach (var g in _goals)
-                list.Add(new Observation.GoalStatus(g.Def.Id, g.Def.Label, g.State.ToString().ToLowerInvariant(),
+                if (g.Active) list.Add(new Observation.GoalStatus(g.Def.Id, g.Def.Label, g.State.ToString().ToLowerInvariant(),
                     g.AtStep < 0 ? "" : Observation.ObservableBuilder.Hms(_session!.Clock.Start + TimeSpan.FromSeconds(g.AtStep * Time.SimClock.Step))));
             return list;
         }
@@ -205,7 +219,7 @@ namespace ProcSense.Core.Workflow
         internal string Hint()
         {
             foreach (var g in _goals)
-                if (g.State == GoalState.Pending && PrerequisitesDone(g)) return g.Def.Hint;
+                if (g.Active && g.State == GoalState.Pending && PrerequisitesDone(g)) return g.Def.Hint;
             return "";
         }
 
@@ -232,7 +246,14 @@ namespace ProcSense.Core.Workflow
                 progress = false;
                 foreach (var g in _goals)
                 {
-                    if (g.State != GoalState.Pending || !PrerequisitesDone(g)) continue;
+                    if (g.State != GoalState.Pending) continue;
+                    if (!g.Active)
+                    {
+                        if (!g.Def.ActiveIf.Test(state)) continue;
+                        g.Active = true;
+                        g.NeedsEval = true;
+                    }
+                    if (!PrerequisitesDone(g)) continue;
                     if (!g.NeedsEval && !Reads(g.Def.CompleteIf, _changed)) continue;
                     g.NeedsEval = false;
                     if (!g.Def.CompleteIf.Test(state)) continue;

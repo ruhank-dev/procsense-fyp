@@ -15,7 +15,7 @@ namespace ProcSense.Core.Content
         TimeSpan Time, string Condition, double HeartRate, string HeartRhythm, double SystolicBp, double DiastolicBp, double RespiratoryRate, double Spo2, string Oxygen,
         double TemperatureC, string Acvpu, long PainScore, long News2, string Note, string Origin, string? Variant);
 
-    public sealed record CaseFileExamination(string Id, string System, string Finding, bool Abnormal, IReadOnlyList<string> DiscloseOn, string Origin);
+    public sealed record CaseFileExamination(string Id, string System, string Finding, bool Abnormal, IReadOnlyList<string> DiscloseOn, string Origin, bool Painful = false, IReadOnlyList<string>? Flags = null);
     public sealed record PreviousResult(string Value, string When);
 
     public sealed record CaseFileResult(

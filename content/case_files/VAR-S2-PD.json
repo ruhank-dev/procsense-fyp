@@ -260,7 +260,8 @@
    "disclose_on": [
     "examine:abdomen"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true
   },
   {
    "id": "ex.1445",
@@ -270,7 +271,11 @@
    "disclose_on": [
     "examine:abdomen_later"
    ],
-   "origin": "book"
+   "origin": "book",
+   "painful": true,
+   "flags": [
+    "finding.rigid_abdomen"
+   ]
   }
  ],
  "results": [

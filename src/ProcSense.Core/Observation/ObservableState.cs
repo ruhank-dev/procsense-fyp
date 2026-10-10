@@ -17,6 +17,10 @@ namespace ProcSense.Core.Observation
     /// <summary>One stage of the scenario map as the tablet shows it: state is active, suspended (stopped by an emergency), done or skipped.</summary>
     public sealed record FlowStageStatus(string Id, string Title, string Track, string State);
 
+    /// <summary>One examination finding the trainee has found (region and wording), and one airway check with what it showed.</summary>
+    public sealed record ObservedFinding(string Region, string Text);
+    public sealed record ObservedAirway(string Item, string Text);
+
     public sealed record DecisionOption(string Id, string Label);
 
     /// <summary>A decision the trainee has to make. The expected option is never part of the card.</summary>
@@ -29,7 +33,8 @@ namespace ProcSense.Core.Observation
     public sealed record ObservableState(
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
-        IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow)
+        IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -116,6 +121,23 @@ namespace ProcSense.Core.Observation
                 sb.Append('}');
             }
             sb.Append(']');
+            sb.Append(",\"findings\":[");
+            for (int i = 0; i < Findings.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"region\":"); JsonText.Quote(sb, Findings[i].Region);
+                sb.Append(",\"text\":"); JsonText.Quote(sb, Findings[i].Text);
+                sb.Append('}');
+            }
+            sb.Append("],\"airway\":[");
+            for (int i = 0; i < Airway.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"item\":"); JsonText.Quote(sb, Airway[i].Item);
+                sb.Append(",\"text\":"); JsonText.Quote(sb, Airway[i].Text);
+                sb.Append('}');
+            }
+            sb.Append(']');
             return sb.Append('}').ToString();
         }
 
@@ -157,6 +179,22 @@ namespace ProcSense.Core.Observation
 
         public static string Num(double x) => x.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture);
 
+        // What the trainee has found: region findings in the order they were found, and the airway checks by item.
+        private static List<ObservedFinding> BuildFindings(State.ClinicalLayer c)
+        {
+            var list = new List<ObservedFinding>();
+            foreach (var f in c.Findings)
+                if (!f.Region.StartsWith(RuleState.AirwayRegion, System.StringComparison.Ordinal)) list.Add(new ObservedFinding(f.Region, f.Text));
+            return list;
+        }
+
+        private static List<ObservedAirway> BuildAirway(State.ClinicalLayer c)
+        {
+            var list = new List<ObservedAirway>();
+            foreach (var kv in c.Airway) list.Add(new ObservedAirway(kv.Key, kv.Value));
+            return list;
+        }
+
         private static string BlockMessage(Session s)
         {
             if (!s.LastRejection.StartsWith(Workflow.ReadinessSubsystem.BlockedPrefix, System.StringComparison.Ordinal)) return "";
@@ -189,7 +227,8 @@ namespace ProcSense.Core.Observation
                 s.Tracker != null ? s.Tracker.OpenCards() : System.Array.Empty<DecisionCard>(),
                 practice && s.Tracker != null ? s.Tracker.Hint() : "",
                 practice ? BlockMessage(s) : "",
-                practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>());
+                practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
+                BuildFindings(c), BuildAirway(c));
         }
     }
 }

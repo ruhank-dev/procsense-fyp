@@ -19,7 +19,7 @@ CASES["STK-S1-D"] = case(
      O("09:30", 102, 118, 70, 20, 97, 38.4, cond="after_correct_action", note="After fluids and antibiotics given within the hour: responding; lactate 1.7.", origin="authored"),
      O("10:30", 124, 86, 50, 26, 93, 39.4, cond="if_no_action", note="Antibiotics delayed for results: BP falls to 86/50, NEWS2 rises (book: 9 or more), septic shock.", origin="book")],
     [E("ex.general", "general", "Flushed, shivering intermittently, uncomfortable but alert.", True, "book"), E("ex.eyes", "eyes", "Yellow tinge to the whites of the eyes.", True, "book"),
-     E("ex.abdomen", "abdomen", "Tender under the right ribs; Murphy's sign positive; no peritonism.", True)],
+     E("ex.murphy", "murphy", "Murphy's sign positive.", True), E("ex.abdomen", "abdomen", "Tender under the right ribs; no peritonism.", True)],
     [R("lab.wbc", "WBC", 16.4, "x10^9/L", "4.0-11.0", "high", "Raised (TG18 criterion A)", ("6.9", "pre-assessment 2 months ago"), 45, origin="book"),
      R("lab.crp", "CRP", 142, "mg/L", "below 5", "high", "Raised (TG18 criterion A)", ("6", "pre-assessment 2 months ago"), 45, origin="book"),
      R("lab.bili", "Bilirubin", 64, "umol/L", "3-21", "high", "Jaundice: obstruction (TG18 criterion B)", ("11", "pre-assessment 2 months ago"), 45, origin="book"),

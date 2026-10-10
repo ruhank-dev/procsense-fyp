@@ -12,8 +12,9 @@ namespace ProcSense.Core.Workflow
     public sealed class GoalDef
     {
         public GoalDef(string id, int step, string label, string hint, Logic appliesIf, Logic completeIf, IReadOnlyList<string> after, double? deadlineMinutes,
-            IReadOnlyList<string> onMissedFlags, IReadOnlyList<string> onMissedEvents, IReadOnlyList<string> scoreItems, IReadOnlyList<string> refs)
+            IReadOnlyList<string> onMissedFlags, IReadOnlyList<string> onMissedEvents, IReadOnlyList<string> scoreItems, IReadOnlyList<string> refs, Logic? activeIf = null)
         {
+            ActiveIf = activeIf ?? Logic.Compile(true, "active_if");
             Id = id; Step = step; Label = label; Hint = hint; AppliesIf = appliesIf; CompleteIf = completeIf; After = after; DeadlineMinutes = deadlineMinutes;
             OnMissedFlags = onMissedFlags; OnMissedEvents = onMissedEvents; ScoreItems = scoreItems; Refs = refs;
         }
@@ -24,6 +25,8 @@ namespace ProcSense.Core.Workflow
         /// <summary>Shown as the practice-mode hint while this is the next goal.</summary>
         public string Hint { get; }
         public Logic AppliesIf { get; }
+        /// <summary>The goal only exists for the trainee once this holds (for example "call the senior now" appears when a rigid abdomen is found). Defaults to always.</summary>
+        public Logic ActiveIf { get; }
         public Logic CompleteIf { get; }
         /// <summary>Goals that must be complete before this one can complete (a hard order). Cycles are a load error.</summary>
         public IReadOnlyList<string> After { get; }
@@ -171,6 +174,7 @@ namespace ProcSense.Core.Workflow
             if (step < 1 || step > 15) throw new ContentException(o.Sub("step") + ": must be 1 to 15 (the 15 steps of the walkthrough)");
             string label = o.Str("label"), hint = o.Str("hint");
             var applies = Logic.Compile(o.Any("applies_if"), o.Sub("applies_if"));
+            var active = o.Has("active_if") ? Logic.Compile(o.Any("active_if"), o.Sub("active_if")) : null;
             var complete = Logic.Compile(o.Any("complete_if"), o.Sub("complete_if"));
             var after = Strings(o, "after", Id, "a goal id");
             double? deadline = null;
@@ -184,7 +188,7 @@ namespace ProcSense.Core.Workflow
             var flags = Strings(missed, "flags", Name, "a flag name like missed.allergy");
             var events = Strings(missed, "events", Id, "an event id like E-ALLERGY-MISSED");
             missed.Finish();
-            return new GoalDef(id, step, label, hint, applies, complete, after, deadline, flags, events, Strings(o, "score_items"), Refs(o));
+            return new GoalDef(id, step, label, hint, applies, complete, after, deadline, flags, events, Strings(o, "score_items"), Refs(o), active);
         }
 
         private static DecisionPointDef DecisionPoint(JsonObj o)

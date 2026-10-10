@@ -193,7 +193,8 @@
    "disclose_on": [
     "examine:abdomen"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true
   },
   {
    "id": "ex.shoulder",
@@ -203,7 +204,8 @@
    "disclose_on": [
     "examine:general"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true
   }
  ],
  "results": [

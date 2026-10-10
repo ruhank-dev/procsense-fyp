@@ -73,6 +73,9 @@
           "applies_if": {
             "description": "Rule logic: does this goal apply to the case?"
           },
+          "active_if": {
+            "description": "Rule logic (optional): the goal only exists for the trainee once this holds, for example a goal that appears when a rigid abdomen is found. Omitted means always."
+          },
           "complete_if": {
             "description": "Rule logic: is the goal done?"
           },

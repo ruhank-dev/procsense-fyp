@@ -241,14 +241,28 @@
    "origin": "book"
   },
   {
+   "id": "ex.murphy",
+   "system": "murphy",
+   "finding": "Murphy's sign positive.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:murphy"
+   ],
+   "origin": "authored",
+   "flags": [
+    "finding.murphy_positive"
+   ]
+  },
+  {
    "id": "ex.abdomen",
    "system": "abdomen",
-   "finding": "Tender under the right ribs; Murphy's sign positive; no peritonism.",
+   "finding": "Tender under the right ribs; no peritonism.",
    "abnormal": true,
    "disclose_on": [
     "examine:abdomen"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "painful": true
   }
  ],
  "results": [

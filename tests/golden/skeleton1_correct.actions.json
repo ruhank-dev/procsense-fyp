@@ -30,5 +30,14 @@
   { "t": 145, "verb": "count_rr" },
   { "t": 150, "verb": "assess_acvpu" },
   { "t": 155, "verb": "ask_pain_score" },
-  { "t": 190, "verb": "wait" }
+
+  { "t": 170, "verb": "ask_exam_permission" },
+  { "t": 172, "verb": "examine", "params": { "region": "eyes" } },
+  { "t": 176, "verb": "examine", "params": { "region": "chest" } },
+  { "t": 182, "verb": "examine", "params": { "region": "abdomen" } },
+  { "t": 188, "verb": "murphy_test" },
+  { "t": 194, "verb": "airway_check", "params": { "item": "mouth_opening" } },
+  { "t": 197, "verb": "airway_check", "params": { "item": "mallampati" } },
+  { "t": 200, "verb": "airway_check", "params": { "item": "neck" } },
+  { "t": 230, "verb": "wait" }
 ]

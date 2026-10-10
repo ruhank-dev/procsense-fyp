@@ -47,6 +47,55 @@
       "on_missed": { "flags": [], "events": [] },
       "score_items": [],
       "refs": [ "SR-0041" ]
+    },
+    {
+      "id": "G-EXAM-PERMISSION",
+      "step": 4,
+      "label": "Permission asked before examining",
+      "hint": "Ask the patient's permission before you examine them (offer a chaperone if the hospital requires one).",
+      "applies_if": true,
+      "complete_if": { "in": [ "exam.permission_asked", { "var": "flags" } ] },
+      "after": [ "G-S1-IDENTITY" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0045" ]
+    },
+    {
+      "id": "G-EXAM-REGIONS",
+      "step": 4,
+      "label": "Patient examined",
+      "hint": "Examine the patient, starting away from the area that hurts.",
+      "applies_if": { ">": [ { "var": "exam_total" }, 0 ] },
+      "complete_if": { ">=": [ { "var": "exam_done" }, { "var": "exam_total" } ] },
+      "after": [ "G-EXAM-PERMISSION" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0046" ]
+    },
+    {
+      "id": "G-EXAM-AIRWAY",
+      "step": 4,
+      "label": "Airway checked",
+      "hint": "Check the airway: mouth opening, Mallampati, neck movement and thyromental distance.",
+      "applies_if": { ">": [ { "var": "airway_total" }, 0 ] },
+      "complete_if": { ">=": [ { "var": "airway_done" }, { "var": "airway_total" } ] },
+      "after": [ "G-EXAM-PERMISSION" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0047" ]
+    },
+    {
+      "id": "G-SENIOR-NOW",
+      "step": 4,
+      "label": "Senior called now",
+      "hint": "A rigid, board-like abdomen is an emergency: call the senior now.",
+      "applies_if": true,
+      "active_if": { "in": [ "finding.rigid_abdomen", { "var": "flags" } ] },
+      "complete_if": { "in": [ "escalated.senior", { "var": "flags" } ] },
+      "after": [],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0048" ]
     }
   ],
   "decision_points": [],

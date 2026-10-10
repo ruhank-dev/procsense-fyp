@@ -4,6 +4,7 @@ A case is a plain dict; `build()` in tools/content/build_case_files.py fills in 
 """
 from __future__ import annotations
 
+import re
 from datetime import date
 
 REF = date(2026, 10, 10)    # the game's 'today' (ISS-0018): every age below is computed from the date of birth against this date
@@ -54,8 +55,27 @@ def O(time, hr, sbp, dbp, rr, spo2, temp, acvpu="A", oxygen="room_air", pain=0, 
     return o
 
 
-def E(id, system, finding, abnormal=False, origin="authored", ask=None):
-    return {"id": id, "system": system, "finding": finding, "abnormal": abnormal, "disclose_on": ask or [f"examine:{system}"], "origin": origin}
+_NEGATED_PAIN = re.compile(r"\b(?:no|non|not|without)[- ](?:[a-z]+ ){0,2}(?:tender(?:ness)?|guarding|rigidity|rebound|pain)", re.IGNORECASE)
+_PAIN_WORDS = re.compile(r"tender|guard|rigid|rebound|pain", re.IGNORECASE)
+
+
+def E(id, system, finding, abnormal=False, origin="authored", ask=None, painful=None, flags=None):
+    """One examination finding. 'painful' (pressing there hurts, so a careful trainee examines it last) and 'flags' (facts the finding sets when revealed, for rules) are worked out
+    from the wording unless given: negated wording ('no tenderness') is not painful, 'rigid' sets finding.rigid_abdomen and a positive Murphy's sign sets finding.murphy_positive."""
+    if painful is None:
+        painful = bool(_PAIN_WORDS.search(_NEGATED_PAIN.sub("", finding)))
+    if flags is None:
+        flags = []
+        if re.search(r"\brigid\b", finding, re.IGNORECASE):
+            flags.append("finding.rigid_abdomen")
+        if re.search(r"murphy'?s sign positive", finding, re.IGNORECASE):
+            flags.append("finding.murphy_positive")
+    e = {"id": id, "system": system, "finding": finding, "abnormal": abnormal, "disclose_on": ask or [f"examine:{system}"], "origin": origin}
+    if painful:
+        e["painful"] = True
+    if flags:
+        e["flags"] = list(flags)
+    return e
 
 
 def R(id, test, value, unit, normal, flag="normal", comment="", prev=None, mins=45, quality=None, origin="authored", row=None, variant=None):
