@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "content_hash": "e70ae2557cf35e87f9f0c90a72bed1f88e1e0b65ec397536b087c18e713cc9a9",
- "files": 291,
- "bytes": 16020989,
+ "content_hash": "887a74cb7a03fa8a56ff5fa51899edc9d8eeaf3f01b463f51ea93c68b71254fc",
+ "files": 292,
+ "bytes": 16029536,
  "per_folder": {
-  "(root)": 59,
+  "(root)": 60,
   "case_files": 17,
   "cases": 1,
   "cxr": 33,
@@ -459,6 +459,10 @@
   "ed_triage_abdominal.csv": {
    "bytes": 439,
    "sha256": "898614a03eb9b189e873d40a6c55601b13a9abc8130e080560da77da5a1a36cd"
+  },
+  "emr_case_records.csv": {
+   "bytes": 8547,
+   "sha256": "b573d08ce7113961c82687c8f4c7aa3db3053fb1a61909c119932f1429c58ff4"
   },
   "emr_distractors.csv": {
    "bytes": 576,

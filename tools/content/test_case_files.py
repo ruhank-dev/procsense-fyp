@@ -78,6 +78,41 @@ class TheSeventeenCases(unittest.TestCase):
         self.assertTrue(all(i.startswith(("VAR-", "STK-", "SC-")) for i in ids))
 
 
+class EmrRecords(unittest.TestCase):
+    """The previous records written for each case (content/emr_case_records.csv) restate the case file and add nothing."""
+
+    @classmethod
+    def setUpClass(cls):
+        import csv
+        with open(ROOT / "content/emr_case_records.csv", encoding="utf-8", newline="") as f:
+            cls.rec = list(csv.DictReader(f))
+
+    def test_every_case_has_records_and_planned_patients_have_a_clinic_ultrasound(self):
+        for cid, c in CASES.items():
+            mine = [r for r in self.rec if r["case_id"] == cid]
+            self.assertTrue(mine, cid)
+            kinds = {r["doc_type"] for r in mine}
+            self.assertIn("clinic_letter", kinds, cid)
+            if c["scenario"] == "S1":
+                self.assertIn("imaging_report", kinds, cid)
+
+    def test_records_name_the_right_patient_and_hold_no_dose(self):
+        for r in self.rec:
+            c = CASES[r["case_id"]]
+            if r["doc_type"] == "clinic_letter":
+                self.assertIn(c["identity"]["full_name"], r["d_body"])
+                self.assertIn(c["identity"]["mrn"], r["d_body"])
+            self.assertIsNone(chk.DOSE.search(r["d_body"]), r["id"])
+            self.assertEqual(r["synthetic"], "yes")
+
+    def test_previous_results_are_the_case_files_previous_values(self):
+        for c in CASES.values():
+            prev = [x for x in c["results"] if x.get("previous")]
+            body = " ".join(r["d_body"] for r in self.rec if r["case_id"] == c["id"] and r["doc_type"] == "lab_result")
+            for x in prev:
+                self.assertIn(x["previous"]["value"], body, c["id"])
+
+
 class BreakingSomethingIsCaught(unittest.TestCase):
     def has(self, case_id, change, expect):
         found = broken(case_id, change)
