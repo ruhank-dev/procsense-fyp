@@ -548,6 +548,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 4,
+   "emergency": true,
+   "why": "A patient who is deteriorating into sepsis: the book gives septic S2 patients 2E to 4E, so the right grade rises as the numbers worsen.",
+   "origin": "book"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

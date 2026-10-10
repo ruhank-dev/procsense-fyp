@@ -23,6 +23,7 @@ import news2  # noqa: E402
 import fasting_intake  # noqa: E402
 import lib  # noqa: E402
 import s1, s1b, s2, stk, p1v, p1stk, p2  # noqa: E402,F401
+from risk import RISK  # noqa: E402
 
 OUT = ROOT / "content" / "case_files"
 APPROVALS = ROOT / "content" / "case_approvals.json"
@@ -57,6 +58,8 @@ def fill(c: dict, ctx: dict) -> dict:
         if h["topic"] in ("last_food", "last_drink"):
             h["intake"] = fasting_intake.intake(h["topic"], h["answer"], c["presentation"]["time_now"])
     cid = c["id"]
+    if cid in RISK:
+        c["risk"] = json.loads(json.dumps(RISK[cid]))
     meas = sorted({r["source_row"] for r in c["results"] if r.get("source_row")} | {m for m, r in ctx["measurements"].items() if r["case_id"] == cid})
     c["sources"] = {"story": ctx["case_seeds"][cid], "authored": ctx["authoring"][cid], **({"measurements": meas} if meas else {})}
     return c

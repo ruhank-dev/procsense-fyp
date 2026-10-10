@@ -235,9 +235,22 @@ namespace ProcSense.Core.Content
                 if (!RefId.IsMatch(r)) throw new ContentException("sources.measurements: '" + r + "' is not a register ID like SR-0001");
             so.Finish();
 
+            CaseFileRisk? risk = null;
+            if (c.Has("risk"))
+            {
+                var r = c.Obj("risk");
+                var a = r.Obj("asa");
+                int min = (int)a.Int("min"), max = (int)a.Int("max");
+                if (min < 1 || max > 6 || min > max) throw new ContentException(a.Sub("min") + ": needs 1 <= min <= max <= 6");
+                var asa = new CaseFileAsa(min, max, a.Bool("emergency"), a.Str("why"), a.Enum("origin", Origins));
+                a.Finish();
+                risk = new CaseFileRisk(asa, r.Enum("plan", "standard_ga", "rsi"));
+                r.Finish();
+            }
+
             c.Finish();
             return new CaseFile(id, label, scenario, tier, status, approval, referenceDate, baseCard, identity, spoken, wristband, allergies, allergyAnswer, reason, presentation, history, observations,
-                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements));
+                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk);
         }
 
         // The checks that need no table: they hold for any case file.

@@ -1,0 +1,181 @@
+{
+ "asa_difference": {
+  "credit": 0,
+  "minor": 1,
+  "note": "Simulator design value: a proposal inside the case's range is credited, one grade outside it is a minor teaching point, further out is major (Implementation Guide L5-01: wrong ASA by 1 is minor).",
+  "ref": "SR-0053"
+ },
+ "delay_unexplained": {
+  "anxiety": 1,
+  "note": "Simulator design value: a delay the patient was not told about raises anxiety by 1 (Implementation Guide, Step 5 behaviour).",
+  "ref": "SR-0054"
+ },
+ "readiness_options": [
+  {
+   "id": "proceed",
+   "label": "Proceed to theatre",
+   "delay": false
+  },
+  {
+   "id": "optimise",
+   "label": "Optimise first",
+   "delay": true
+  },
+  {
+   "id": "more_tests",
+   "label": "More tests",
+   "delay": true
+  },
+  {
+   "id": "review",
+   "label": "Senior or anaesthetic review",
+   "delay": true
+  },
+  {
+   "id": "postpone",
+   "label": "Postpone",
+   "delay": true
+  }
+ ],
+ "vte": {
+  "risk_factors": [
+   {
+    "id": "age_over_60",
+    "label": "Age over 60"
+   },
+   {
+    "id": "bmi_over_30",
+    "label": "BMI over 30"
+   },
+   {
+    "id": "cancer",
+    "label": "Cancer"
+   },
+   {
+    "id": "previous_clot",
+    "label": "Previous clot"
+   },
+   {
+    "id": "family_history_clots",
+    "label": "Family history of clots"
+   },
+   {
+    "id": "oestrogen_or_hrt",
+    "label": "Oestrogen pill or HRT"
+   },
+   {
+    "id": "pregnancy",
+    "label": "Pregnancy"
+   },
+   {
+    "id": "dehydration",
+    "label": "Dehydration"
+   },
+   {
+    "id": "reduced_mobility",
+    "label": "Reduced mobility"
+   },
+   {
+    "id": "surgery_over_90_minutes",
+    "label": "Surgery longer than 90 minutes"
+   },
+   {
+    "id": "acute_tummy_inflammation",
+    "label": "Acute tummy inflammation"
+   }
+  ],
+  "bleeding_factors": [
+   {
+    "id": "active_bleeding",
+    "label": "Active bleeding"
+   },
+   {
+    "id": "blood_thinners",
+    "label": "Blood thinners"
+   },
+   {
+    "id": "platelets_below_75",
+    "label": "Platelets below 75"
+   },
+   {
+    "id": "very_high_bp",
+    "label": "Very high blood pressure"
+   }
+  ],
+  "refs": [
+   "SR-1230",
+   "SR-1231"
+  ]
+ },
+ "scores": [
+  "air",
+  "aas",
+  "alvarado",
+  "stopbang",
+  "tg18_cholecystitis",
+  "tg18_cholangitis",
+  "asge"
+ ],
+ "missing_prompts": {
+  "wbc": {
+   "test": "FBC",
+   "text": "Order a full blood count: the white cell count is missing."
+  },
+  "neutrophils_pct": {
+   "test": "FBC",
+   "text": "Order a full blood count: the neutrophil percentage is missing."
+  },
+  "crp": {
+   "test": "CRP",
+   "text": "Order a CRP: it is missing."
+  },
+  "crp_pain_under_24h": {
+   "test": "CRP",
+   "text": "Order a CRP: it is missing."
+  },
+  "bilirubin_umol": {
+   "test": "LFT",
+   "text": "Order liver tests: the bilirubin is missing."
+  },
+  "liver_tests_x_uln": {
+   "test": "LFT",
+   "text": "Order liver tests: they are missing."
+  },
+  "creatinine_umol": {
+   "test": "UE",
+   "text": "Order urea and electrolytes: the creatinine is missing."
+  },
+  "inr": {
+   "test": "COAG",
+   "text": "Order a clotting screen: the INR is missing."
+  },
+  "platelets": {
+   "test": "FBC",
+   "text": "Order a full blood count: the platelet count is missing."
+  },
+  "raised_wbc": {
+   "test": "FBC",
+   "text": "Order a full blood count: the white cell count is missing."
+  },
+  "raised_crp": {
+   "test": "CRP",
+   "text": "Order a CRP: it is missing."
+  },
+  "imaging_inflamed": {
+   "test": "US",
+   "text": "Request an ultrasound: the scan finding is missing."
+  },
+  "duct_mm": {
+   "test": "US",
+   "text": "Request an ultrasound: the bile duct width is missing."
+  },
+  "stone_on_scan": {
+   "test": "US",
+   "text": "Request an ultrasound: whether a stone is seen is missing."
+  }
+ },
+ "note": "Simulator design: which test answers each missing score item (the test ids are those of the investigations list, built in p0-clinical-logic s06); the wording is the project's.",
+ "refs": [
+  "SR-0055"
+ ]
+}

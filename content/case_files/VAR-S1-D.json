@@ -407,6 +407,16 @@
  "variant_end_states": {
   "D2": "postponed"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 3,
+   "emergency": false,
+   "why": "Atrial fibrillation on a blood thinner is ASA 3 in the book's list of expected grades.",
+   "origin": "book"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

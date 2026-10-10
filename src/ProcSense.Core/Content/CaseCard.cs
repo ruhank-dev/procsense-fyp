@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -58,6 +58,7 @@ namespace ProcSense.Core.Content
             Exam = exam ?? new ExamEffects(0, "", 0, 0, "", "");
             Scores = scores ?? ProcSense.Core.Clinical.Scores.ScoreTables.Empty;
             Fasting = fasting ?? ProcSense.Core.Clinical.FastingRules.Empty;
+            Risk = risk ?? ProcSense.Core.Clinical.RiskTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -75,6 +76,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Clinical.Scores.ScoreTables Scores { get; }
         /// <summary>The fasting hours by kind of intake (content/fasting/fasting.json).</summary>
         public ProcSense.Core.Clinical.FastingRules Fasting { get; }
+        /// <summary>Step 5 content: the risk tables and the anaesthetist's approved lines (content/risk, content/npc).</summary>
+        public ProcSense.Core.Clinical.RiskTables Risk { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
         public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }

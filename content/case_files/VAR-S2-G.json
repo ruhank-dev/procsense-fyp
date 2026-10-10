@@ -384,6 +384,16 @@
   "story": "SR-2318",
   "authored": "SR-3714"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": true,
+   "why": "Vomiting for two days with kidney injury stage 1 and a fast pulse: mild to severe systemic disturbance (2E to 3E).",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

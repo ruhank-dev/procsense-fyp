@@ -34,6 +34,9 @@ namespace ProcSense.Core.Content
     public sealed record CaseFileDebrief(
         IReadOnlyList<string> Recognised, IReadOnlyList<string> Missed, string Priority, string WhyPriority, string Related, string Independent, string TriggerEscalation, string IfIgnored, string Remember);
 
+    /// <summary>The ASA grade (or range) the case expects, with an E for an emergency, the reason, and where it comes from; the engine never works this out.</summary>
+    public sealed record CaseFileAsa(int Min, int Max, bool Emergency, string Why, string Origin);
+    public sealed record CaseFileRisk(CaseFileAsa Asa, string Plan);
     public sealed record CaseFileApproval(string By, string Date, string Note);
     public sealed record CaseFileSources(string Story, string Authored, IReadOnlyList<string> Measurements);
 
@@ -43,5 +46,5 @@ namespace ProcSense.Core.Content
         CaseFileIdentity Identity, string SpokenIdentityAnswer, Wristband? Wristband, IReadOnlyList<Allergy> Allergies, string AllergyAnswer, string ReasonAnswer,
         CaseFilePresentation Presentation, IReadOnlyList<CaseFileHistory> History, IReadOnlyList<CaseFileObservation> Observations, IReadOnlyList<CaseFileExamination> Examination,
         IReadOnlyList<CaseFileResult> Results, IReadOnlyList<CaseFileScore> Scores, IReadOnlyList<CaseFileProblem> Problems, IReadOnlyList<CaseFileDecision> Decisions,
-        string ExpectedEndState, IReadOnlyDictionary<string, string> VariantEndStates, CaseFilePaths Paths, CaseFileDebrief Debrief, IReadOnlyList<string> Verification, CaseFileSources Sources);
+        string ExpectedEndState, IReadOnlyDictionary<string, string> VariantEndStates, CaseFilePaths Paths, CaseFileDebrief Debrief, IReadOnlyList<string> Verification, CaseFileSources Sources, CaseFileRisk? Risk = null);
 }

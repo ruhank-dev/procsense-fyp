@@ -1,0 +1,53 @@
+{
+ "intents": [
+  {
+   "id": "ask_asa",
+   "line": "What ASA grade would you give this patient, and why?",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "asa_agreed",
+   "line": "I agree: ASA {asa}.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "asa_corrected",
+   "line": "I would call this ASA {asa}, because {why} That is a teaching point, not a mark against you.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "asa_no_expected",
+   "line": "I have heard your grade; I will confirm it myself before the list.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "plan_standard_ga",
+   "line": "The plan is a standard general anaesthetic.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "plan_rsi",
+   "line": "The plan is a rapid sequence induction: this patient is treated as having a full stomach.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "fasting_delay",
+   "line": "The fasting time has not been reached. We should wait until {time}, and the patient needs to be told why.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "fasting_unresolved",
+   "line": "I have not agreed to go ahead while the fasting breach is unresolved.",
+   "ref": "SR-0056"
+  },
+  {
+   "id": "vte_incomplete",
+   "line": "The clot and bleeding risk form is not finished.",
+   "ref": "SR-0056"
+  }
+ ],
+ "note": "Approved intent table for the anaesthetist (Implementation Guide: the anaesthetist replies from approved intents). {asa} is the grade with an E for an emergency, {why} the case's stated reason, {time} the clock time the fasting rule is met.",
+ "refs": [
+  "SR-0056"
+ ]
+}

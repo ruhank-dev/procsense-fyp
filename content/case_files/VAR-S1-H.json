@@ -348,6 +348,16 @@
   "story": "SR-2307",
   "authored": "SR-3707"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 2,
+   "emergency": false,
+   "why": "Pregnancy is ASA 2 in the book's list of examples.",
+   "origin": "book"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

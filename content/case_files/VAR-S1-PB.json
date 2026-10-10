@@ -522,6 +522,16 @@
    "SR-2420"
   ]
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": false,
+   "why": "A stone that may have moved into the bile duct, with jaundice: a mild to severe systemic problem (ASA 2 to 3).",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

@@ -2,8 +2,8 @@
   "case": "VAR-S1-A",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "d884996fc5817b76dce1c8baed3a71746da629a8cb5239d4ee5557754780062a",
-  "state_hash": "ad7eb58ea34871060b63f6a2d088ee8b1c84906083896fa8612bf27ff90d4f18",
+  "log_hash": "82ccec26beb012e29057ca7178d86e31fe600a72b5b865a19cc0814014a28ac5",
+  "state_hash": "fb49ada7d0718014e0ba3b3bfa14455978bb79ca302b07e7a9b8ed1691bf4777",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -30,11 +30,17 @@
     "vitals": { "spo2": "98", "oxygen": "room_air", "heart_rate": "76", "systolic_bp": "124", "diastolic_bp": "78", "respiratory_rate": "14", "temperature_c": "36.7", "acvpu": "A", "pain_score": "0" },
     "flags": [
       "allergy_reaction_asked",
+      "anaesthetic.plan_agreed",
+      "anaesthetist.called",
       "exam.permission_asked",
       "exam.started",
       "identity_asked_open",
       "introduced",
-      "summarised"
+      "ready.decided",
+      "risk.asa_proposed",
+      "score.stopbang.computed",
+      "summarised",
+      "vte.done"
     ],
     "rejections": [],
     "trust": 2,

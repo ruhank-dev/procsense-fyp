@@ -389,6 +389,16 @@
    "SR-2444"
   ]
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": false,
+   "why": "A planned patient now unwell with an inflamed gallbladder, no organ failure: mild systemic illness (ASA 2) to severe (ASA 3).",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

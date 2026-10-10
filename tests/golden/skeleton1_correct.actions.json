@@ -39,5 +39,10 @@
   { "t": 194, "verb": "airway_check", "params": { "item": "mouth_opening" } },
   { "t": 197, "verb": "airway_check", "params": { "item": "mallampati" } },
   { "t": 200, "verb": "airway_check", "params": { "item": "neck" } },
-  { "t": 230, "verb": "wait" }
+  { "t": 210, "verb": "assess_risk", "params": { "asa": "1" } },
+  { "t": 216, "verb": "assess_vte", "params": { "items": "age_over_60:no,bmi_over_30:no,cancer:no,previous_clot:no,family_history_clots:no,oestrogen_or_hrt:no,pregnancy:no,dehydration:no,reduced_mobility:no,surgery_over_90_minutes:no,acute_tummy_inflammation:no,active_bleeding:no,blood_thinners:no,platelets_below_75:no,very_high_bp:no" } },
+  { "t": 224, "verb": "compute_score", "params": { "score": "stopbang", "snoring": "false", "tired": "false", "observed": "false", "pressure": "false", "bmi_over_35": "false", "age_over_50": "false", "neck_over_40": "false", "male": "false" } },
+  { "t": 232, "verb": "request_anaesthetic_review" },
+  { "t": 240, "verb": "decide_ready", "params": { "option": "proceed" } },
+  { "t": 270, "verb": "wait" }
 ]

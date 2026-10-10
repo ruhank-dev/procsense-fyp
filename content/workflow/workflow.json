@@ -97,6 +97,66 @@
       "refs": [ "SR-0047" ]
     },
     {
+      "id": "G-RISK-ASA",
+      "step": 5,
+      "label": "ASA grade proposed",
+      "hint": "Propose an ASA grade for the patient on the Assess tab.",
+      "applies_if": true,
+      "complete_if": { "in": [ "risk.asa_proposed", { "var": "flags" } ] },
+      "after": ["G-EXAM-PERMISSION"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0057" ]
+    },
+    {
+      "id": "G-RISK-VTE",
+      "step": 5,
+      "label": "Clot and bleeding risk form completed",
+      "hint": "Answer every item of the clot and bleeding risk form.",
+      "applies_if": true,
+      "complete_if": { "in": [ "vte.done", { "var": "flags" } ] },
+      "after": ["G-EXAM-PERMISSION"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0058" ]
+    },
+    {
+      "id": "G-ANAES-REVIEW",
+      "step": 5,
+      "label": "Anaesthetist called",
+      "hint": "Call the anaesthetist and present the summary.",
+      "applies_if": true,
+      "complete_if": { "in": [ "anaesthetist.called", { "var": "flags" } ] },
+      "after": ["G-RISK-ASA"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0059" ]
+    },
+    {
+      "id": "G-ANAES-PLAN",
+      "step": 5,
+      "label": "Anaesthetic plan agreed",
+      "hint": "Agree the anaesthetic plan with the anaesthetist.",
+      "applies_if": true,
+      "complete_if": { "in": [ "anaesthetic.plan_agreed", { "var": "flags" } ] },
+      "after": ["G-ANAES-REVIEW"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0060" ]
+    },
+    {
+      "id": "G-READY",
+      "step": 5,
+      "label": "Readiness decision made",
+      "hint": "Choose: proceed, optimise, more tests, review or postpone.",
+      "applies_if": true,
+      "complete_if": { "in": [ "ready.decided", { "var": "flags" } ] },
+      "after": ["G-ANAES-PLAN"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0061" ]
+    },
+    {
       "id": "G-SENIOR-NOW",
       "step": 4,
       "label": "Senior called now",
@@ -124,5 +184,13 @@
       "refs": [ "SR-0051" ]
     }
   ],
-  "blockers": []
+  "blockers": [
+    {
+      "id": "B-READINESS",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "in": [ "readiness.blocked", { "var": "flags" } ] },
+      "message": "Fasting breach unresolved: the anaesthetist has not agreed to go ahead.",
+      "refs": [ "SR-0062" ]
+    }
+  ]
 }

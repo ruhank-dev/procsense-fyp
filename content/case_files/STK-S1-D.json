@@ -650,6 +650,16 @@
  "variant_end_states": {
   "if_no_action": "failure"
  },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": true,
+   "why": "Cholangitis with sepsis (NEWS2 7) needs urgent drainage: sepsis is ASA 3 to 4, and the operation is now an emergency.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

@@ -16,6 +16,7 @@ namespace ProcSense.Core.Workflow
             new ObservationsSubsystem(content),
             new ExaminationSubsystem(content),
             new FastingSubsystem(content),
+            new RiskSubsystem(content),
             new CaseGraphSubsystem(content.Workflow),
             new FlowSubsystem(content.FlowMaps),
         };

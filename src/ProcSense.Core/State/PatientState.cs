@@ -10,6 +10,27 @@ namespace ProcSense.Core.State
     /// <summary>One examination finding the trainee has found: the case's finding id, the region or check it came from, and the wording.</summary>
     public sealed record ExamFinding(string Id, string Region, string Text);
 
+    /// <summary>
+    /// What Step 5 has recorded: the ASA grade the trainee proposed (and how it compared with the case), the scores they calculated, the anaesthetist's lines so far, the agreed plan,
+    /// the clot and bleeding answers and the readiness decision.
+    /// </summary>
+    public sealed class RiskState
+    {
+        public int? ProposedAsa { get; set; }
+        public bool ProposedEmergency { get; set; }
+        /// <summary>credit, minor or major once a grade is proposed against a case that states one; "" otherwise.</summary>
+        public string AsaClass { get; set; } = "";
+        public SortedDictionary<string, string> Scores { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
+        public List<string> Prompts { get; } = new List<string>();
+        public List<string> AnaesthetistLines { get; } = new List<string>();
+        public string Plan { get; set; } = "";
+        /// <summary>plan_required, no_plan or "" while the form is not done.</summary>
+        public string Vte { get; set; } = "";
+        public bool BleedingRisk { get; set; }
+        public string Decision { get; set; } = "";
+        public bool Blocked { get; set; }
+    }
+
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
     {
@@ -87,6 +108,11 @@ namespace ProcSense.Core.State
         public bool HasFlag(string flag) => _flags.Contains(flag);
 
         public void SetFlag(string flag) => _flags.Add(flag);
+
+        public void ClearFlag(string flag) => _flags.Remove(flag);
+
+        /// <summary>Step 5: the risk assessment, anaesthetic review and readiness decision.</summary>
+        public RiskState Risk { get; } = new RiskState();
     }
 
     /// <summary>Current vital signs. They start at the case baseline; physiology over time arrives in a later phase.</summary>

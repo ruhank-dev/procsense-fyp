@@ -407,6 +407,16 @@
  "variant_end_states": {
   "C2": "postponed"
  },
+ "risk": {
+  "asa": {
+   "min": 2,
+   "max": 3,
+   "emergency": false,
+   "why": "Type 2 diabetes: well controlled is ASA 2 and poorly controlled is ASA 3; an HbA1c of 58 sits between the two, and the poorly controlled variant leans to 3.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

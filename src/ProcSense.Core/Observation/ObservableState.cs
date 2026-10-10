@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ProcSense.Core.Content;
 using ProcSense.Core.Logging;
@@ -24,6 +25,12 @@ namespace ProcSense.Core.Observation
     /// <summary>The fasting chip: unknown until both food and drink are asked, then meets, breach or uncertain; SafeFrom is the clock time the rule will be met ("" when it already is); Plan is "rsi" for an emergency patient with a full stomach.</summary>
     public sealed record FastingChip(string Status, string SafeFrom, string Plan);
 
+    /// <summary>
+    /// What Step 5 shows: the grade the trainee proposed, the chip comparing it with the case (credit, minor or major; practice mode only), the clot form result (plan_required, no_plan or ""),
+    /// the scores calculated so far, the tests the tablet suggests for a missing score item, what the anaesthetist has said, the agreed plan, the readiness decision and whether readiness is blocked.
+    /// </summary>
+    public sealed record ObservedRisk(string Asa, string AsaChip, string Vte, IReadOnlyList<string> Scores, IReadOnlyList<string> Prompts, IReadOnlyList<string> AnaesthetistLines, string Plan, string Decision, bool Blocked);
+
     public sealed record DecisionOption(string Id, string Label);
 
     /// <summary>A decision the trainee has to make. The expected option is never part of the card.</summary>
@@ -37,7 +44,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -144,7 +151,28 @@ namespace ProcSense.Core.Observation
             sb.Append(",\"safe_from\":"); JsonText.Quote(sb, Fasting.SafeFrom);
             sb.Append(",\"plan\":"); JsonText.Quote(sb, Fasting.Plan);
             sb.Append('}');
+            sb.Append(",\"risk\":{\"asa\":"); JsonText.Quote(sb, Risk.Asa);
+            sb.Append(",\"asa_chip\":"); JsonText.Quote(sb, Risk.AsaChip);
+            sb.Append(",\"vte\":"); JsonText.Quote(sb, Risk.Vte);
+            sb.Append(",\"scores\":"); AppendList(sb, Risk.Scores);
+            sb.Append(",\"prompts\":"); AppendList(sb, Risk.Prompts);
+            sb.Append(",\"anaesthetist\":"); AppendList(sb, Risk.AnaesthetistLines);
+            sb.Append(",\"plan\":"); JsonText.Quote(sb, Risk.Plan);
+            sb.Append(",\"decision\":"); JsonText.Quote(sb, Risk.Decision);
+            sb.Append(",\"blocked\":").Append(Risk.Blocked ? "true" : "false");
+            sb.Append('}');
             return sb.Append('}').ToString();
+        }
+
+        private static void AppendList(StringBuilder sb, IReadOnlyList<string> items)
+        {
+            sb.Append('[');
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (i > 0) sb.Append(',');
+                JsonText.Quote(sb, items[i]);
+            }
+            sb.Append(']');
         }
 
         public string Hash() => JsonText.Sha256Hex(ToJson());
@@ -194,6 +222,10 @@ namespace ProcSense.Core.Observation
             return list;
         }
 
+        private static ObservedRisk BuildRisk(State.RiskState r, bool practice) => new ObservedRisk(
+            r.ProposedAsa.HasValue ? r.ProposedAsa.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) + (r.ProposedEmergency ? "E" : "") : "",
+            practice ? r.AsaClass : "", r.Vte, r.Scores.Select(kv => kv.Key + ": " + kv.Value).ToList(), r.Prompts.ToList(), r.AnaesthetistLines.ToList(), r.Plan, r.Decision, r.Blocked);
+
         private static List<ObservedAirway> BuildAirway(State.ClinicalLayer c)
         {
             var list = new List<ObservedAirway>();
@@ -234,7 +266,7 @@ namespace ProcSense.Core.Observation
                 practice && s.Tracker != null ? s.Tracker.Hint() : "",
                 practice ? BlockMessage(s) : "",
                 practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
-                BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""));
+                BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice));
         }
     }
 }

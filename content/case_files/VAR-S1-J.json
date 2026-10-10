@@ -365,6 +365,16 @@
   "story": "SR-2308",
   "authored": "SR-3708"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 1,
+   "emergency": false,
+   "why": "He is well: ASA 1; the haemolysed potassium was a sample problem, not a disease.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

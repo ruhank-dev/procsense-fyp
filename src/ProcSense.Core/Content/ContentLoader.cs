@@ -77,7 +77,8 @@ namespace ProcSense.Core.Content
                 Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"), files,
                 Workflow.FlowMaps.Parse(reader.ReadText("flow/flow_maps.json"), "flow"), behaviour.Item3,
                 Clinical.Scores.ScoreTables.Parse(reader.ReadText("scores/scores.json"), "scores"),
-                Clinical.FastingRules.Parse(reader.ReadText("fasting/fasting.json"), "fasting"));
+                Clinical.FastingRules.Parse(reader.ReadText("fasting/fasting.json"), "fasting"),
+                Clinical.RiskTables.Parse(reader.ReadText("risk/risk.json"), reader.ReadText("npc/anaesthetist_intents.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

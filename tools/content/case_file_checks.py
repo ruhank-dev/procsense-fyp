@@ -97,6 +97,15 @@ def problems(c: dict, ctx: dict, others: list[dict] | None = None) -> list[str]:
     for h in c["history"]:
         if not h["volunteered"] and not h["disclose_on"]:
             out.append(f"{w}: history {h['id']} is hidden but has no disclose_on")
+    risk = c.get("risk")
+    if c["tier"] == "P0" and risk is None:
+        out.append(f"{w}: a P0 case needs its expected ASA grade and anaesthetic plan (risk)")
+    if risk is not None:
+        a = risk["asa"]
+        if not (1 <= a["min"] <= a["max"] <= 6):
+            out.append(f"{w}: risk.asa needs 1 <= min <= max <= 6")
+        if risk["plan"] == "standard_ga" and c["scenario"] == "S2":
+            out.append(f"{w}: an S2 emergency is planned as rsi, not standard_ga")
     now = c["presentation"]["time_now"]
     for h in c["history"]:
         if h["topic"] in ("last_food", "last_drink"):

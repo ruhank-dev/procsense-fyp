@@ -314,6 +314,16 @@
   "story": "SR-2306",
   "authored": "SR-3706"
  },
+ "risk": {
+  "asa": {
+   "min": 1,
+   "max": 1,
+   "emergency": false,
+   "why": "She is healthy with no illness: ASA 1; the fasting breach changes the timing, not the grade.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ },
  "approval": {
   "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
   "date": "2026-10-10",

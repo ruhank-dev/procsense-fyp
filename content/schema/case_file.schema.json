@@ -438,6 +438,55 @@
         }
       }
     },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asa",
+        "plan"
+      ],
+      "description": "The ASA grade (or range) this case expects and the anaesthetic plan, stated here and never worked out by the engine (walkthrough Part 7.4). Required for P0 cases.",
+      "properties": {
+        "asa": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max",
+            "emergency",
+            "why",
+            "origin"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "emergency": {
+              "type": "boolean"
+            },
+            "why": {
+              "type": "string"
+            },
+            "origin": {
+              "$ref": "#/$defs/origin"
+            }
+          }
+        },
+        "plan": {
+          "enum": [
+            "standard_ga",
+            "rsi"
+          ]
+        }
+      }
+    },
     "results": {
       "type": "array",
       "items": {
