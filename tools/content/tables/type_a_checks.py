@@ -128,6 +128,7 @@ first(r"Medicine plan: cocp_hrt$", V, "V-45", "primary", "NICE NG89 1.3.13 (page
 first(r"Medicine plan: (iv_fluids|abx_s1_low_risk)$", V, "V-46", "primary", "NICE CG174 1.3.1 (page opened): crystalloid bolus for resuscitation, reassess; NICE NG125 1.2.13 (page opened): no routine antibiotic prophylaxis for clean uncomplicated surgery.")
 first(r"Medicine plan: sepsis_emergency$", D, "ISS-0015", "design", "The book's example is the CG174 bolus; the current NICE NG253 (page opened) gives a smaller bolus with reassessment. The difference is logged (ISS-0015) and the debrief names the source of each; the simulator stores no volume.")
 first(r"Medicine plan: (metformin|sulfonylureas)$", V, "V-47", "secondary", "CPOC and hospital peri-operative diabetes guidance: sulfonylureas are omitted while fasting; metformin is continued in most patients when at most one meal is missed.")
+first(r"Medicine plan: steroids$", V, "V-48", "primary", "NICE NG243 1.4.8 (page opened): people having planned or emergency surgery are offered glucocorticoid cover; adrenal crisis is the risk of missing it.")
 RULES[:0] = _FIRST
 
 URLS = {
@@ -142,7 +143,7 @@ URLS = {
     "V-35": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4925633", "V-37": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12464960/", "V-38": "https://www.medicines.org.uk/emc/product/3449/smpc",
     "V-39": "https://www.nice.org.uk/guidance/QS104/chapter/quality-statement-1-acute-cholecystitis", "V-40": "https://aomrc.org.uk/publication/statement-on-the-initial-antimicrobial-treatment-of-sepsis-v2-0",
     "V-41": "https://www.bjuinternational.com/?p=33086", "V-42": "https://gpnotebook.com/pages/respiratory-and-chest-medicine/deep-vein-thrombosis/risk-factors-and-associated-increased-risk-for-development-of-venous-thromboembolism-in-surgical-patients",
-    "V-43": "https://open.fda.gov/apis/drug/label/", "V-44": "https://www.nice.org.uk/guidance/ng253/chapter/Managing-suspected-sepsis", "V-45": "https://www.nice.org.uk/guidance/ng89/chapter/Recommendations", "V-46": "https://www.nice.org.uk/guidance/cg174/chapter/1-Recommendations", "V-47": "https://pharmaceutical-journal.com/article/ld/perioperative-management-of-type-2-diabetes-mellitus",
+    "V-43": "https://open.fda.gov/apis/drug/label/", "V-44": "https://www.nice.org.uk/guidance/ng253/chapter/Managing-suspected-sepsis", "V-45": "https://www.nice.org.uk/guidance/ng89/chapter/Recommendations", "V-46": "https://www.nice.org.uk/guidance/cg174/chapter/1-Recommendations", "V-48": "https://www.nice.org.uk/guidance/ng243/chapter/Recommendations", "V-47": "https://pharmaceutical-journal.com/article/ld/perioperative-management-of-type-2-diabetes-mellitus",
 }
 
 
