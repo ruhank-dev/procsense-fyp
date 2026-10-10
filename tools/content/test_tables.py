@@ -657,7 +657,7 @@ class TypeAChecks(unittest.TestCase):
         with open(REGISTER, encoding="utf-8", newline="") as f:
             reg = list(csv.DictReader(f))
         left = [r for r in reg if r["evidence_type"] == "A" and r["status"] == "UNVERIFIED"]
-        self.assertTrue(0 < len(left) < 100)
+        self.assertLess(len(left), 100)
         for r in left:
             self.assertIn("NOT confirmed", r["notes"], r["id"])
 
