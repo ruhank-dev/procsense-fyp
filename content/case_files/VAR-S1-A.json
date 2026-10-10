@@ -1,0 +1,459 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-A",
+ "walkthrough_label": "Example Patient A - uncomplicated S1 (everything goes right)",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": "VAR-S1-A",
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Ayesha Khan",
+  "sex": "F",
+  "age": 42,
+  "occupation": "teacher",
+  "dob": "1984-03-14",
+  "mrn": "102938"
+ },
+ "spoken_identity_answer": "Ayesha Khan, fourteenth of March 1984.",
+ "wristband": {
+  "name_text": "AYESHA KHAN",
+  "dob_text": "14/03/1984",
+  "mrn_text": "MR 102938"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out with keyhole.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "09:00",
+  "summary": "A fit 42-year-old teacher booked for planned keyhole gallbladder removal at 09:00. Nothing is wrong today: the case teaches careful confirmation without over-investigating."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Attacks under my right ribs after oily food, settle in an hour or two. None in the last 3 weeks.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes, urine normal colour, no back pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None except paracetamol sometimes.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "Caesarean section 2012, no problems.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 21:00 last night (rice and chicken).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Last period started 10 days ago; she uses a coil. She agrees to a urine pregnancy test (hospital policy).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "book"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 76,
+   "heart_rhythm": "regular",
+   "systolic_bp": 124,
+   "diastolic_bp": 78,
+   "respiratory_rate": 14,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Baseline vital signs; every value in the normal band.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.eyes",
+   "system": "eyes",
+   "finding": "Whites of the eyes are white; no jaundice.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Soft and non-tender; Murphy's sign negative.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.chest",
+   "system": "chest",
+   "finding": "Chest clear; heart sounds normal.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:chest"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.bilirubin",
+   "test": "Bilirubin",
+   "value": "12",
+   "unit": "umol/L",
+   "normal_range": "3-21",
+   "flag": "normal",
+   "comment": "Bile flowing normally",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2400"
+  },
+  {
+   "id": "lab.alt",
+   "test": "ALT",
+   "value": "24",
+   "unit": "U/L",
+   "normal_range": "7-40",
+   "flag": "normal",
+   "comment": "Liver cells fine",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2401"
+  },
+  {
+   "id": "lab.alp",
+   "test": "ALP",
+   "value": "78",
+   "unit": "U/L",
+   "normal_range": "30-130",
+   "flag": "normal",
+   "comment": "Bile ducts not blocked",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2402"
+  },
+  {
+   "id": "lab.ggt",
+   "test": "GGT",
+   "value": "22",
+   "unit": "U/L",
+   "normal_range": "below 40 (women)",
+   "flag": "normal",
+   "comment": "Confirms ducts fine",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2403"
+  },
+  {
+   "id": "lab.albumin",
+   "test": "Albumin",
+   "value": "42",
+   "unit": "g/L",
+   "normal_range": "35-50",
+   "flag": "normal",
+   "comment": "Good nutrition",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2404"
+  },
+  {
+   "id": "lab.upt",
+   "test": "Urine pregnancy test",
+   "value": "Negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "negative",
+   "comment": "Not pregnant",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2405"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Computed from the baseline vital signs",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "a.nothing",
+   "type": "information_only",
+   "label": "Nothing abnormal: the patient is fit and fasted",
+   "rank": 1,
+   "why": "The task is to confirm identity, allergies, fasting and the usual tests without inventing problems.",
+   "expected_actions": [
+    "Complete the identity check against the wristband and the notes",
+    "Confirm there are no allergies",
+    "Check fasting times",
+    "Do the liver tests and the urine pregnancy test"
+   ]
+  },
+  {
+   "id": "a.blockers",
+   "type": "safety_blocker",
+   "label": "Identity, allergy, consent and pregnancy-status checkpoints",
+   "rank": 2,
+   "why": "No transfer until each checkpoint is closed.",
+   "expected_actions": [
+    "Close each checkpoint before transfer"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "a.d1",
+   "prompt": "Which extra tests does Mrs Khan need before surgery?",
+   "rule": null,
+   "options": [
+    {
+     "id": "a.d1.1",
+     "text": "Only the liver tests and the pregnancy test: she is healthy and under 65, so chest X-ray, ECG, clotting and kidney tests would not change anything",
+     "correct": true,
+     "consequence": "Matches the book: routine extra tests are not ordered."
+    },
+    {
+     "id": "a.d1.2",
+     "text": "Chest X-ray, ECG, clotting and kidney tests as well",
+     "correct": false,
+     "consequence": "Not harmful, but none would change management; the debrief notes the wasted time."
+    }
+   ]
+  },
+  {
+   "id": "a.d2",
+   "prompt": "Is she fasted enough for 09:00?",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "a.d2.1",
+     "text": "Yes: last solid food was about 12 hours ago and her last water 2.5 hours ago",
+     "correct": true,
+     "consequence": "Within the 6 hour and 2 hour rules."
+    },
+    {
+     "id": "a.d2.2",
+     "text": "No: postpone",
+     "correct": false,
+     "consequence": "Unnecessary delay."
+    }
+   ]
+  },
+  {
+   "id": "a.d3",
+   "prompt": "Proceed to theatre?",
+   "rule": null,
+   "options": [
+    {
+     "id": "a.d3.1",
+     "text": "Yes: safe to continue",
+     "correct": true,
+     "consequence": "End state: ready for incision."
+    },
+    {
+     "id": "a.d3.2",
+     "text": "Postpone",
+     "correct": false,
+     "consequence": "No reason to postpone."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Check identity: spoken name and date of birth, wristband, notes",
+   "Allergies: none",
+   "Short history including the red flags and fasting times",
+   "Baseline vital signs, NEWS2 0",
+   "Liver tests and urine pregnancy test",
+   "Report to the anaesthetist; proceed"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Orders chest X-ray, ECG, clotting and kidney tests",
+    "shows": "Results all normal; time passes",
+    "risk": "Delay and cost with no benefit",
+    "recovery": "Stop ordering; proceed once the standard checks are done"
+   }
+  ],
+  "missed": [
+   "Skipping the urine pregnancy test (hospital policy) leaves the pregnancy status undocumented at Sign In"
+  ],
+  "recovery": [
+   "Do the test late; document; tell the anaesthetist"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Identity matched in three places",
+   "Fasting times adequate",
+   "No unnecessary tests"
+  ],
+  "missed": [
+   "Pregnancy status not documented"
+  ],
+  "priority": "Confirm identity, allergies and fasting",
+  "why_priority": "Wrong-patient and fasting errors are the most serious avoidable harms",
+  "related": "The checks are independent",
+  "independent": "Nothing in this case is connected: it is a clean pass",
+  "trigger_escalation": "Any mismatch in identity or an unknown allergy",
+  "if_ignored": "Not applicable: the case ends well",
+  "remember": "A normal patient still needs every check; do not invent problems"
+ },
+ "verification": [
+  "V-09"
+ ],
+ "sources": {
+  "story": "SR-2300",
+  "authored": "SR-3700",
+  "measurements": [
+   "SR-2400",
+   "SR-2401",
+   "SR-2402",
+   "SR-2403",
+   "SR-2404",
+   "SR-2405"
+  ]
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

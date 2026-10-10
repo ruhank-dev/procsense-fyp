@@ -1,0 +1,346 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-D",
+ "walkthrough_label": "Patient S2-D - the scan didn't answer the question",
+ "scenario": "S2",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Zainab Anwar",
+  "sex": "F",
+  "age": 28,
+  "occupation": "nurse",
+  "dob": "1998-08-14",
+  "mrn": "956208"
+ },
+ "spoken_identity_answer": "Zainab Anwar, fourteenth of August 1998.",
+ "wristband": {
+  "name_text": "ZAINAB ANWAR",
+  "dob_text": "14/08/1998",
+  "mrn_text": "MR 956208"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have pain in my lower right tummy.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "13:00",
+  "summary": "Ms Zainab, 28, has pain 5/10 in the lower right tummy. The ultrasound says 'appendix not visualised, no free fluid'."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain in the lower right tummy since yesterday.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever; no vaginal bleeding; no urinary symptoms.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Breakfast at 08:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 11:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Last period 3 weeks ago; the pregnancy test is negative.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "book"
+  }
+ ],
+ "observations": [
+  {
+   "time": "13:00",
+   "condition": "initial",
+   "heart_rate": 92,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 16,
+   "spo2": 99,
+   "oxygen": "room_air",
+   "temperature_c": 37.4,
+   "acvpu": "A",
+   "pain_score": 5,
+   "news2": 1,
+   "note": "Pain 5/10; T 37.4; HR 92.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Mild tenderness in the lower right tummy; no guarding or rebound.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "10.9",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "22",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Mildly raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.upt",
+   "test": "Urine pregnancy test",
+   "value": "Negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "negative",
+   "comment": "Not pregnant",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "AIR",
+   "value": "5 (indeterminate)",
+   "note": "Intermediate",
+   "origin": "book"
+  },
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "HR 92 scores 1",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sd.unknown",
+   "type": "pathway_changing",
+   "label": "The scan did not answer the question: 'not visualised' is not 'negative'",
+   "rank": 1,
+   "why": "AIR 5 is intermediate; the appendix was not seen. The senior chooses CT, or admission with observation and re-scoring in 6 to 12 hours.",
+   "expected_actions": [
+    "Score: AIR 5",
+    "Do not treat 'not visualised' as negative",
+    "Senior decides: CT or admit, nil by mouth, pain relief, re-examine and re-score in 6 to 12 hours",
+    "Consider gynaecology causes (ovary)"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sd.d1",
+   "prompt": "AIR 5 and 'appendix not visualised, no free fluid'. What now?",
+   "rule": "air_bands",
+   "options": [
+    {
+     "id": "sd.d1.1",
+     "text": "This is non-diagnostic: do not discharge; the senior decides between CT and admission with re-examination and re-scoring in 6 to 12 hours; consider gynaecology causes",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sd.d1.2",
+     "text": "Appendicitis is excluded: discharge",
+     "correct": false,
+     "consequence": "The classic beginner error."
+    },
+    {
+     "id": "sd.d1.3",
+     "text": "Operate immediately",
+     "correct": false,
+     "consequence": "Not indicated yet."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Calculate AIR 5",
+   "Recognise 'not visualised' as inconclusive",
+   "Escalate to the senior; CT or admit and re-score",
+   "Consider ovarian causes"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Treats 'not visualised' as negative and discharges",
+    "shows": "She returns worse with a burst appendix",
+    "risk": "Perforation",
+    "recovery": "Recall; re-score; image"
+   }
+  ],
+  "missed": [
+   "Not considering gynaecological causes"
+  ],
+  "recovery": [
+   "Consider them now"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Inconclusive scan recognised"
+  ],
+  "missed": [
+   "Gynaecology causes"
+  ],
+  "priority": "An inconclusive scan",
+  "why_priority": "A missed appendicitis may perforate",
+  "related": "Score, scan and observations",
+  "independent": "None",
+  "trigger_escalation": "'Not visualised' with an intermediate score",
+  "if_ignored": "Perforation",
+  "remember": "'Not seen' means 'we do not know'"
+ },
+ "verification": [
+  "V-11",
+  "V-12"
+ ],
+ "sources": {
+  "story": "SR-2316",
+  "authored": "SR-3712"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

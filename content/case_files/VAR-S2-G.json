@@ -1,0 +1,384 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-G",
+ "walkthrough_label": "Patient S2-G - dehydrated with kidney injury",
+ "scenario": "S2",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Rukhsana Begum",
+  "sex": "F",
+  "age": 45,
+  "occupation": "seamstress",
+  "dob": "1980-10-27",
+  "mrn": "978441"
+ },
+ "spoken_identity_answer": "Rukhsana Begum, twenty-seventh of October 1980.",
+ "wristband": {
+  "name_text": "RUKHSANA BEGUM",
+  "dob_text": "27/10/1980",
+  "mrn_text": "MR 978441"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have been sick for two days and have pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "12:00",
+  "summary": "Mrs Rukhsana, 45, has been vomiting for two days: HR 116, BP 104/66, dry mouth, little urine. Urea 12.4 and creatinine 160 (usual 85)."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Vomiting for two days and pain in the lower right tummy.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "authored"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No blood in the vomit; little urine today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Ibuprofen for the pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Nothing for two days apart from sips of water.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Sips of water at 10:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Last period 2 weeks ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 116,
+   "heart_rhythm": "regular",
+   "systolic_bp": 104,
+   "diastolic_bp": 66,
+   "respiratory_rate": 20,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 3,
+   "note": "Dry mouth, little urine.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.mouth",
+   "system": "mouth",
+   "finding": "Dry mouth; reduced skin turgor.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:mouth"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender in the lower right tummy; no rebound.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.urea",
+   "test": "Urea",
+   "value": "12.4",
+   "unit": "mmol/L",
+   "normal_range": "2.5-7.8",
+   "flag": "high",
+   "comment": "Raised: dehydration",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "160",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Kidney injury stage 1 (about 1.9 times her usual)",
+   "quality": null,
+   "previous": {
+    "value": "85",
+    "when": "her usual value"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "3.3",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "low",
+   "comment": "Low after two days of vomiting",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "14.2",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised: infection is part of the cause",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "AKI stage",
+   "value": "1",
+   "note": "Creatinine about 1.9 times her usual 85",
+   "origin": "book"
+  },
+  {
+   "name": "NEWS2",
+   "value": "3",
+   "note": "HR 116 (2) + BP 104 (1); recomputed",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sg.aki",
+   "type": "optimisable",
+   "label": "Dehydration with acute kidney injury (stage 1)",
+   "rank": 1,
+   "why": "Treatable: fluids with re-checks, stop kidney-harming medicines, measure urine, repeat bloods.",
+   "expected_actions": [
+    "IV fluids with re-checks",
+    "Stop ibuprofen and other kidney-harming medicines",
+    "Measure urine output",
+    "Repeat bloods"
+   ]
+  },
+  {
+   "id": "sg.surgery",
+   "type": "pathway_changing",
+   "label": "Surgery proceeds once she is resuscitated: the infection is part of the cause",
+   "rank": 2,
+   "why": "Do not delay the source control waiting for the kidneys to normalise.",
+   "expected_actions": [
+    "Senior surgeon and anaesthetist aware",
+    "Proceed once resuscitation has started"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sg.d1",
+   "prompt": "Creatinine 160 (usual 85), dehydrated, on ibuprofen. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "sg.d1.1",
+     "text": "Kidney injury stage 1 from dehydration: IV fluids with re-checks; stop ibuprofen; measure urine; repeat bloods; surgery proceeds once resuscitated",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sg.d1.2",
+     "text": "Give more ibuprofen for the pain",
+     "correct": false,
+     "consequence": "Harms the kidneys."
+    },
+    {
+     "id": "sg.d1.3",
+     "text": "Postpone surgery until the kidneys are normal",
+     "correct": false,
+     "consequence": "The infection is part of the cause."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Recognise AKI stage 1",
+   "IV fluids with re-checks",
+   "Stop ibuprofen",
+   "Measure urine output; repeat bloods",
+   "Proceed to surgery once resuscitated"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Continues ibuprofen",
+    "shows": "Creatinine rises on repeat",
+    "risk": "Worse kidney injury",
+    "recovery": "Stop; fluids"
+   }
+  ],
+  "missed": [
+   "Not asking about her medicines"
+  ],
+  "recovery": [
+   "Ask; stop"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "AKI recognised",
+   "Medicines reviewed"
+  ],
+  "missed": [
+   "Medicines not asked"
+  ],
+  "priority": "Dehydration with kidney injury",
+  "why_priority": "It is treatable and affects drug choices",
+  "related": "Dehydration, creatinine and medicines",
+  "independent": "None",
+  "trigger_escalation": "A creatinine above 1.5 times the usual",
+  "if_ignored": "Worsening kidney injury",
+  "remember": "Ask about ibuprofen; treat the dehydration and proceed"
+ },
+ "verification": [
+  "V-12"
+ ],
+ "sources": {
+  "story": "SR-2318",
+  "authored": "SR-3714"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

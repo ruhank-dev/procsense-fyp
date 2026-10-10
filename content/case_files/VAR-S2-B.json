@@ -1,0 +1,350 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-B",
+ "walkthrough_label": "Patient S2-B - differential diagnosis / diagnostic diversion: it may NOT be appendicitis (ectopic pregnancy)",
+ "scenario": "S2",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Sadia Noor",
+  "sex": "F",
+  "age": 24,
+  "occupation": "call-centre agent",
+  "dob": "2002-03-30",
+  "mrn": "845117"
+ },
+ "spoken_identity_answer": "Sadia Noor, thirtieth of March 2002.",
+ "wristband": {
+  "name_text": "SADIA NOOR",
+  "dob_text": "30/03/2002",
+  "mrn_text": "MR 845117"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have bad pain and feel dizzy.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "11:00",
+  "summary": "Ms Sadia, 24, has lower-right pain, shoulder-tip pain and feels dizzy. Her last period was 7 weeks ago and the urine pregnancy test is positive."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain in the lower right tummy, and a pain at the tip of my shoulder. I feel dizzy.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Some spotting yesterday; no fever; no urinary symptoms.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Toast this morning at 07:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Tea at 08:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "My last period was seven weeks ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "book"
+  }
+ ],
+ "observations": [
+  {
+   "time": "11:00",
+   "condition": "initial",
+   "heart_rate": 112,
+   "heart_rhythm": "regular",
+   "systolic_bp": 98,
+   "diastolic_bp": 60,
+   "respiratory_rate": 20,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.2,
+   "acvpu": "A",
+   "pain_score": 7,
+   "news2": 4,
+   "note": "Fast heart and lowish BP: possible internal bleeding. NEWS2 recomputed.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender in the lower tummy, worse on the right; no rebound at present.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.pallor",
+   "system": "general",
+   "finding": "Pale and clammy.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.upt",
+   "test": "Urine pregnancy test",
+   "value": "Positive",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "positive",
+   "comment": "Pregnant (about 7 weeks): ectopic must be excluded",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book"
+  },
+  {
+   "id": "lab.hb",
+   "test": "Haemoglobin",
+   "value": "104",
+   "unit": "g/L",
+   "normal_range": "120-150",
+   "flag": "low",
+   "comment": "Low: she may be bleeding inside",
+   "quality": null,
+   "previous": {
+    "value": "128",
+    "when": "booked at her GP 6 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "4",
+   "note": "HR 112 (2) + BP 98 (2); recomputed from the table",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sb.bleed",
+   "type": "life_threat",
+   "label": "Possible ruptured ectopic pregnancy with internal bleeding",
+   "rank": 1,
+   "why": "Positive pregnancy test plus pain, shoulder-tip pain, fast heart, lowish BP and low Hb: NICE NG126 says exclude ectopic the same day.",
+   "expected_actions": [
+    "Stop the appendicitis pathway",
+    "Call for help",
+    "Two large drips; crossmatch blood",
+    "Gynaecology now; keep nil by mouth"
+   ]
+  },
+  {
+   "id": "sb.blocker",
+   "type": "safety_blocker",
+   "label": "Pregnancy status positive: it changes everything",
+   "rank": 2,
+   "why": "If the pregnancy test is never done it is a hard safety failure.",
+   "expected_actions": [
+    "Do the urine pregnancy test before any scan or drug decision"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sb.d1",
+   "prompt": "Positive pregnancy test, shoulder-tip pain, HR 112, BP 98/60, Hb 104. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "sb.d1.1",
+     "text": "Stop the appendicitis pathway: emergency call, two large drips, crossmatch blood, gynaecology now, nil by mouth",
+     "correct": true,
+     "consequence": "Matches the book and NICE NG126."
+    },
+    {
+     "id": "sb.d1.2",
+     "text": "Continue the appendicitis work-up and send for CT",
+     "correct": false,
+     "consequence": "Ectopic until proven otherwise; avoid CT and delay."
+    },
+    {
+     "id": "sb.d1.3",
+     "text": "Discharge with painkillers",
+     "correct": false,
+     "consequence": "Unsafe."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Do the urine pregnancy test",
+   "Recognise shoulder-tip pain and shock signs",
+   "Stop the appendicitis pathway",
+   "Emergency call, two drips, crossmatch, gynaecology, nil by mouth"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Never does the pregnancy test",
+    "shows": "The debrief records a hard safety failure",
+    "risk": "Missed ectopic pregnancy",
+    "recovery": "Do the test now; stop and escalate"
+   }
+  ],
+  "missed": [
+   "Not asking about the last period"
+  ],
+  "recovery": [
+   "Ask; test; escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Ectopic considered",
+   "Pathway stopped"
+  ],
+  "missed": [
+   "Pregnancy test"
+  ],
+  "priority": "A possible ruptured ectopic pregnancy",
+  "why_priority": "Life-threatening bleeding",
+  "related": "Pain, shoulder-tip pain, tachycardia, low BP, low Hb",
+  "independent": "None",
+  "trigger_escalation": "A positive test with pain, or shoulder-tip pain",
+  "if_ignored": "Death from internal bleeding",
+  "remember": "Always test for pregnancy in women of reproductive age with tummy pain"
+ },
+ "verification": [
+  "V-10"
+ ],
+ "sources": {
+  "story": "SR-2315",
+  "authored": "SR-3711"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

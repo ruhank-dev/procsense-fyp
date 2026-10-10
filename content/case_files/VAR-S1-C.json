@@ -1,0 +1,407 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-C",
+ "walkthrough_label": "Patient S1-C - diabetes",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Nasreen Akhtar",
+  "sex": "F",
+  "age": 55,
+  "occupation": "primary school cook",
+  "dob": "1970-11-02",
+  "mrn": "518842"
+ },
+ "spoken_identity_answer": "Nasreen Akhtar, second of November 1970.",
+ "wristband": {
+  "name_text": "NASREEN AKHTAR",
+  "dob_text": "02/11/1970",
+  "mrn_text": "MR 518842"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Nasreen, 55, has type 2 diabetes treated with metformin and gliclazide. HbA1c was 58 mmol/mol two months ago and her finger-prick sugar this morning is 7.8. Variant C2 has HbA1c 82, sugar 13.4 and ketones 0.4."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Attacks of pain under the ribs after meals; none this week.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "authored"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Type 2 diabetes for eight years.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Metformin and gliclazide. She has not taken them this morning.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Past the menopause.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 74,
+   "heart_rhythm": "regular",
+   "systolic_bp": 132,
+   "diastolic_bp": 80,
+   "respiratory_rate": 14,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Baseline vital signs, all normal.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Soft; no tenderness.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.feet",
+   "system": "feet",
+   "finding": "No foot ulcers.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:feet"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hba1c",
+   "test": "HbA1c",
+   "value": "58",
+   "unit": "mmol/mol",
+   "normal_range": "below 42 (below 69 is acceptable for planned surgery)",
+   "flag": "high",
+   "comment": "Taken 2 months ago: diabetes acceptably controlled for planned surgery",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 0,
+   "origin": "book",
+   "source_row": "SR-3002"
+  },
+  {
+   "id": "lab.glucose",
+   "test": "Finger-prick glucose",
+   "value": "7.8",
+   "unit": "mmol/L",
+   "normal_range": "6-10 (perioperative target)",
+   "flag": "normal",
+   "comment": "Inside the target 6 to 10",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book"
+  },
+  {
+   "id": "lab.hba1c.c2",
+   "test": "HbA1c",
+   "value": "82",
+   "unit": "mmol/mol",
+   "normal_range": "below 42 (below 69 is acceptable for planned surgery)",
+   "flag": "high",
+   "comment": "Variant C2: above 69",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 0,
+   "origin": "book",
+   "variant": "C2"
+  },
+  {
+   "id": "lab.glucose.c2",
+   "test": "Finger-prick glucose",
+   "value": "13.4",
+   "unit": "mmol/L",
+   "normal_range": "6-10 (perioperative target)",
+   "flag": "high",
+   "comment": "Variant C2: high",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book",
+   "variant": "C2"
+  },
+  {
+   "id": "lab.ketones.c2",
+   "test": "Ketones",
+   "value": "0.4",
+   "unit": "mmol/L",
+   "normal_range": "below 0.6",
+   "flag": "normal",
+   "comment": "Variant C2: normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book",
+   "variant": "C2"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "All vital signs in the normal band",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "c.diabetes",
+   "type": "optimisable",
+   "label": "Diabetes control and the medicine plan for the fasting day",
+   "rank": 1,
+   "why": "HbA1c 58 is below 69 and the sugar is in the target: proceed with a medicine plan (metformin as normal; omit gliclazide today) and hourly sugar checks. In C2, HbA1c above 69 means optimise first.",
+   "expected_actions": [
+    "Check HbA1c and today's sugar against the thresholds",
+    "Plan the medicines for a fasting day",
+    "Put her first on the list if possible",
+    "Check sugar at least hourly; tell the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "c.d1",
+   "prompt": "HbA1c 58, sugar 7.8. What do you do?",
+   "rule": "s1_diabetes_postpone",
+   "options": [
+    {
+     "id": "c.d1.1",
+     "text": "Proceed: metformin as normal, omit gliclazide today, first on the list, sugar at least hourly, tell the anaesthetist",
+     "correct": true,
+     "consequence": "Matches the book. The prescriber confirms the plan; no doses are set here."
+    },
+    {
+     "id": "c.d1.2",
+     "text": "Postpone because she is diabetic",
+     "correct": false,
+     "consequence": "HbA1c below 69 is acceptable for planned surgery."
+    },
+    {
+     "id": "c.d1.3",
+     "text": "Give both tablets as usual",
+     "correct": false,
+     "consequence": "Gliclazide while fasting could cause low sugar."
+    }
+   ]
+  },
+  {
+   "id": "c.d2",
+   "prompt": "Variant C2: HbA1c 82, sugar 13.4, ketones 0.4. What do you do?",
+   "rule": "s1_diabetes_postpone",
+   "options": [
+    {
+     "id": "c.d2.1",
+     "text": "Discuss with the anaesthetist or diabetes team; the usual answer is postpone and optimise",
+     "correct": true,
+     "consequence": "HbA1c above 69 and a high sugar: planned surgery is deferred."
+    },
+    {
+     "id": "c.d2.2",
+     "text": "Proceed as for C1",
+     "correct": false,
+     "consequence": "Above the threshold."
+    }
+   ],
+   "variant": "C2"
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Check HbA1c and the finger-prick sugar",
+   "Compare with 69 mmol/mol and the 6 to 10 target",
+   "Medicine plan: metformin as normal, omit gliclazide",
+   "First on the list; hourly sugar; tell the anaesthetist"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Lets her take gliclazide this morning",
+    "shows": "Sugar falls to 3.4 while fasting",
+    "risk": "Hypoglycaemia in a fasting patient",
+    "recovery": "Treat per the hypoglycaemia protocol; tell the anaesthetist"
+   }
+  ],
+  "missed": [
+   "Not checking today's sugar"
+  ],
+  "recovery": [
+   "Check now; act on the result"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "HbA1c and sugar both checked",
+   "Medicine plan for fasting"
+  ],
+  "missed": [
+   "Today's sugar not checked"
+  ],
+  "priority": "Make a safe plan for a diabetic patient on a fasting day",
+  "why_priority": "Low sugar is the immediate risk of the usual tablets",
+  "related": "HbA1c is long-term control; sugar is today",
+  "independent": "None",
+  "trigger_escalation": "HbA1c above 69 or a sugar outside the target",
+  "if_ignored": "Hypoglycaemia while fasting, or surgery in poorly controlled diabetes",
+  "remember": "Check HbA1c and sugar, then plan the medicines"
+ },
+ "verification": [
+  "V-07"
+ ],
+ "sources": {
+  "story": "SR-2304",
+  "authored": "SR-3704",
+  "measurements": [
+   "SR-3002"
+  ]
+ },
+ "variant_end_states": {
+  "C2": "postponed"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

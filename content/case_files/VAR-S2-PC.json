@@ -1,0 +1,594 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-PC",
+ "walkthrough_label": "Example Patient C - emergency S2 (classic appendicitis)",
+ "scenario": "S2",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Hamza Ali",
+  "sex": "M",
+  "age": 19,
+  "occupation": "student",
+  "dob": "2007-06-02",
+  "mrn": "910227"
+ },
+ "spoken_identity_answer": "Hamza Ali, second of June 2007.",
+ "wristband": {
+  "name_text": "HAMZA ALI",
+  "dob_text": "02/06/2007",
+  "mrn_text": "MR 910227"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have bad tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "10:00",
+  "summary": "Hamza, 19, a student, is brought in by his brother at 10:00 with tummy pain since last night. Triage: abdominal pain 14 hours, HR 108, T 37.9, pain 8/10: very urgent."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "It started around my belly button around 8 last night, then moved down here [lower right] by the morning. I don't want to eat. I threw up once. Hurts when the car went over bumps.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No urine symptoms, no diarrhoea, no testicle pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "No illnesses.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous operations.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Chicken and rice at 19:00 last night.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "10:00",
+   "condition": "initial",
+   "heart_rate": 108,
+   "heart_rhythm": "regular",
+   "systolic_bp": 128,
+   "diastolic_bp": 76,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.9,
+   "acvpu": "A",
+   "pain_score": 8,
+   "news2": 1,
+   "note": "Triage and first vital signs: only the heart rate is raised (91 to 110); NEWS2 1.",
+   "origin": "book"
+  },
+  {
+   "time": "11:00",
+   "condition": "after_correct_action",
+   "heart_rate": 96,
+   "heart_rhythm": "regular",
+   "systolic_bp": 126,
+   "diastolic_bp": 76,
+   "respiratory_rate": 16,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "A",
+   "pain_score": 3,
+   "news2": 1,
+   "note": "After analgesia and fluids: heart rate 96, pain 3/10.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.rif",
+   "system": "abdomen",
+   "finding": "Tender in the lower right tummy (McBurney's point), mild guarding, rebound tenderness medium, Rovsing's sign positive; the rest of the tummy is soft.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.testes",
+   "system": "testicles",
+   "finding": "Testicles normal.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:testicles"
+   ],
+   "origin": "book"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "13.6",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised: fighting infection",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2428"
+  },
+  {
+   "id": "lab.neut",
+   "test": "Neutrophils",
+   "value": "82",
+   "unit": "%",
+   "normal_range": "40-75",
+   "flag": "high",
+   "comment": "First-responder cells high: suggests a bacterial cause",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2429"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "38",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Moderate inflammation (20 hours of symptoms)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2430"
+  },
+  {
+   "id": "lab.hb",
+   "test": "Haemoglobin",
+   "value": "148",
+   "unit": "g/L",
+   "normal_range": "130-170",
+   "flag": "normal",
+   "comment": "Normal: no bleeding",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2431"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "82",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "normal",
+   "comment": "Kidneys fine",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2432"
+  },
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "3.9",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2433"
+  },
+  {
+   "id": "lab.dip",
+   "test": "Urine dipstick",
+   "value": "Ketones +, otherwise negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "abnormal",
+   "comment": "Not eating: starvation ketones; no infection or blood",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book",
+   "source_row": "SR-2434"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "HR 108 scores 1; all other values 0",
+   "origin": "book"
+  },
+  {
+   "name": "AIR",
+   "value": "7 (indeterminate)",
+   "note": "Appendicitis Inflammatory Response score",
+   "origin": "book"
+  },
+  {
+   "name": "AAS",
+   "value": "19 (high)",
+   "note": "Adult Appendicitis Score",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "pc.pain",
+   "type": "time_critical",
+   "label": "Severe pain (8/10) must not wait for the paperwork",
+   "rank": 1,
+   "why": "Analgesia does not hide the diagnosis; the clinician prescribes, the nurse gives.",
+   "expected_actions": [
+    "Check allergies",
+    "Ask the nurse for pain relief now",
+    "Re-check after treatment"
+   ]
+  },
+  {
+   "id": "pc.appendicitis",
+   "type": "pathway_changing",
+   "label": "Probable appendicitis: scan, senior decision, antibiotics, theatre",
+   "rank": 2,
+   "why": "Story, examination, raised WBC and CRP and a positive ultrasound make simple appendicitis.",
+   "expected_actions": [
+    "Cannula and bloods",
+    "Pain relief, anti-sickness, IV fluids, nil by mouth",
+    "AIR 7 is indeterminate: request an ultrasound",
+    "Call the senior with SBAR",
+    "Antibiotics per protocol; consent; theatre"
+   ]
+  },
+  {
+   "id": "pc.aspiration",
+   "type": "safety_blocker",
+   "label": "Emergency patient in pain with analgesia: treat as a full stomach",
+   "rank": 3,
+   "why": "Fasting times look adequate but the anaesthetist still plans a rapid sequence induction.",
+   "expected_actions": [
+    "Record food and drink times",
+    "Tell the anaesthetist",
+    "Sign In: aspiration risk YES"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "pc.d1",
+   "prompt": "What do you do in the first 15 to 30 minutes?",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "pc.d1.1",
+     "text": "Cannula and bloods, pain relief requested for the clinician to prescribe, anti-sickness if needed, IV fluids, nil by mouth, re-check vital signs",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "pc.d1.2",
+     "text": "Wait for the scan result before any pain relief",
+     "correct": false,
+     "consequence": "Pain relief does not hide the diagnosis."
+    },
+    {
+     "id": "pc.d1.3",
+     "text": "Let him eat and drink",
+     "correct": false,
+     "consequence": "He may need surgery: nil by mouth."
+    }
+   ]
+  },
+  {
+   "id": "pc.d2",
+   "prompt": "AIR is 7 and AAS is 19. What now?",
+   "rule": "air_bands",
+   "options": [
+    {
+     "id": "pc.d2.1",
+     "text": "AIR 7 is indeterminate in this hospital's default score: request an ultrasound",
+     "correct": true,
+     "consequence": "Context-dependent; many hospitals scan anyway."
+    },
+    {
+     "id": "pc.d2.2",
+     "text": "Send him home",
+     "correct": false,
+     "consequence": "Probable appendicitis."
+    },
+    {
+     "id": "pc.d2.3",
+     "text": "Operate without senior review",
+     "correct": false,
+     "consequence": "The senior decides."
+    }
+   ]
+  },
+  {
+   "id": "pc.d3",
+   "prompt": "The ultrasound shows a non-compressible 9 mm appendix with inflamed fat. What now?",
+   "rule": "appendectomy_timing",
+   "options": [
+    {
+     "id": "pc.d3.1",
+     "text": "Simple appendicitis: call the senior surgeon with SBAR; antibiotics now; anaesthetist review; consent; theatre promptly",
+     "correct": true,
+     "consequence": "Matches the book; timing per surgeon (WSES: within 24 hours of admission when surgery is indicated)."
+    },
+    {
+     "id": "pc.d3.2",
+     "text": "Wait for 24 hours of observation",
+     "correct": false,
+     "consequence": "Surgery is indicated."
+    }
+   ]
+  },
+  {
+   "id": "pc.d4",
+   "prompt": "He is pain 3/10, alert and understands. How is consent handled?",
+   "rule": null,
+   "options": [
+    {
+     "id": "pc.d4.1",
+     "text": "Explain the diagnosis, laparoscopic removal, the risks and the alternative of antibiotics alone (CODA 29% needed surgery by 90 days; APPAC 39.1% recurrence in 5 years); teach-back; he chooses surgery and signs",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "pc.d4.2",
+     "text": "Tell him he has no choice",
+     "correct": false,
+     "consequence": "Capacity and choice must be respected."
+    }
+   ]
+  },
+  {
+   "id": "pc.d5",
+   "prompt": "At Sign In: what is the aspiration risk?",
+   "rule": null,
+   "options": [
+    {
+     "id": "pc.d5.1",
+     "text": "YES: food at 19:00, strong painkillers, emergency: treat as a full stomach; RSI equipment and suction ready",
+     "correct": true,
+     "consequence": "Matches the book (ASA 1E)."
+    },
+    {
+     "id": "pc.d5.2",
+     "text": "No: 15 hours is enough",
+     "correct": false,
+     "consequence": "Pain and opioids slow the stomach."
+    }
+   ]
+  },
+  {
+   "id": "pc.d6",
+   "prompt": "At Time Out (12:55): the antibiotic was given at 12:10. Is that in time?",
+   "rule": "antibiotic_before_incision",
+   "options": [
+    {
+     "id": "pc.d6.1",
+     "text": "Yes: given 45 minutes before, within the 60 minute rule; ultrasound displayed",
+     "correct": true,
+     "consequence": "Ready for incision."
+    },
+    {
+     "id": "pc.d6.2",
+     "text": "No: stop",
+     "correct": false,
+     "consequence": "Within 60 minutes."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Quick identity check; allergies; ask the nurse for pain relief",
+   "Vital signs; NEWS2 1",
+   "History: classic appendicitis story",
+   "Examination; testicles; urine",
+   "Bloods; AIR; ultrasound",
+   "SBAR to the senior",
+   "Antibiotics; anaesthetic review; consent; handover; Sign In; Time Out at 12:55"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Makes him wait in pain while doing the paperwork",
+    "shows": "Pain stays 8/10; HR stays high",
+    "risk": "Suffering and a misleading heart rate",
+    "recovery": "Give pain relief and fluids, re-measure"
+   },
+   {
+    "mistake": "Does not check the testicles",
+    "shows": "A twisted testicle is missed in a young man",
+    "risk": "Wrong diagnosis",
+    "recovery": "Examine; if abnormal, urology"
+   }
+  ],
+  "missed": [
+   "Not giving antibiotics before Time Out"
+  ],
+  "recovery": [
+   "Give them and record the time; delay incision if under the 60 minute rule"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Pain treated early",
+   "Classic story recognised",
+   "Look-alikes excluded",
+   "Aspiration risk planned"
+  ],
+  "missed": [
+   "Antibiotic timing"
+  ],
+  "priority": "Pain and probable appendicitis",
+  "why_priority": "Pain relief does not wait; the diagnosis proceeds in parallel",
+  "related": "Story, exam, bloods and scan fit together",
+  "independent": "The ketones are starvation, not infection",
+  "trigger_escalation": "NEWS2 7 or more, low BP or sepsis signs",
+  "if_ignored": "A burst appendix",
+  "remember": "Treat the pain and think about the heart rate; do not assume a heart problem"
+ },
+ "verification": [
+  "V-11",
+  "V-12",
+  "V-09"
+ ],
+ "sources": {
+  "story": "SR-2313",
+  "authored": "SR-3709",
+  "measurements": [
+   "SR-2421",
+   "SR-2422",
+   "SR-2423",
+   "SR-2424",
+   "SR-2425",
+   "SR-2426",
+   "SR-2427",
+   "SR-2428",
+   "SR-2429",
+   "SR-2430",
+   "SR-2431",
+   "SR-2432",
+   "SR-2433",
+   "SR-2434",
+   "SR-2435"
+  ]
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

@@ -8,41 +8,35 @@ may be authored for clinician review.
 
 The 'in the story' columns are a keyword reading, not a clinical judgement (yes = the story mentions it; it may still be incomplete).
 
-| Case | Walkthrough label | Story length (words) | identity | history | vital signs | examination findings | results | imaging report | problems and the expected decision at each decision point | expected end state | debrief block |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| VAR-S1-A | Example Patient A | 1096 | yes | yes | yes | yes | yes | yes | yes | yes | **no** |
-| VAR-S1-PB | Example Patient B | 593 | yes | yes | yes | yes | yes | yes | yes | **no** | yes |
-| VAR-S1-E | Patient S1-E | 188 | yes | **no** | yes | yes | yes | yes | yes | **no** | **no** |
-| VAR-S1-B | Patient S1-B | 121 | yes | yes | yes | **no** | **no** | **no** | yes | **no** | **no** |
-| VAR-S1-C | Patient S1-C | 134 | yes | **no** | **no** | **no** | yes | **no** | yes | **no** | **no** |
-| VAR-S1-D | Patient S1-D | 118 | yes | yes | **no** | **no** | **no** | **no** | yes | **no** | **no** |
-| VAR-S1-G | Patient S1-G | 76 | yes | **no** | **no** | **no** | **no** | **no** | **no** | yes | **no** |
-| VAR-S1-H | Patient S1-H | 78 | yes | **no** | **no** | **no** | **no** | **no** | yes | yes | **no** |
-| VAR-S1-J | Patient S1-J | 64 | yes | yes | **no** | **no** | yes | **no** | yes | **no** | **no** |
-| VAR-S2-PC | Example Patient C | 1098 | yes | yes | yes | yes | yes | yes | yes | yes | **no** |
-| VAR-S2-PD | Example Patient D | 502 | yes | yes | yes | yes | yes | yes | yes | **no** | yes |
-| VAR-S2-B | Patient S2-B | 140 | yes | **no** | yes | **no** | yes | **no** | yes | yes | yes |
-| VAR-S2-D | Patient S2-D | 89 | yes | **no** | yes | **no** | yes | yes | yes | **no** | **no** |
-| VAR-S2-F | Patient S2-F | 67 | yes | **no** | **no** | **no** | **no** | **no** | yes | **no** | **no** |
-| VAR-S2-G | Patient S2-G | 74 | yes | **no** | yes | **no** | yes | **no** | **no** | **no** | **no** |
-| STK-S1-D | STACKED CASE S1-D | 1454 | yes | yes | yes | yes | yes | yes | yes | **no** | yes |
-| STK-S2-B | STACKED CASE S2-B | 1063 | yes | yes | yes | **no** | yes | yes | yes | **no** | yes |
+| Case | Walkthrough label | Story length (words) | Playable case file | identity | history | vital signs | examination findings | results | imaging report | problems and the expected decision at each decision point | expected end state | debrief block |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| VAR-S1-A | Example Patient A | 1096 | yes | yes | yes | yes | yes | yes | yes | yes | yes | **no** |
+| VAR-S1-PB | Example Patient B | 593 | yes | yes | yes | yes | yes | yes | yes | yes | **no** | yes |
+| VAR-S1-E | Patient S1-E | 188 | yes | yes | **no** | yes | yes | yes | yes | yes | **no** | **no** |
+| VAR-S1-B | Patient S1-B | 121 | yes | yes | yes | yes | **no** | **no** | **no** | yes | **no** | **no** |
+| VAR-S1-C | Patient S1-C | 134 | yes | yes | **no** | **no** | **no** | yes | **no** | yes | **no** | **no** |
+| VAR-S1-D | Patient S1-D | 118 | yes | yes | yes | **no** | **no** | **no** | **no** | yes | **no** | **no** |
+| VAR-S1-G | Patient S1-G | 76 | yes | yes | **no** | **no** | **no** | **no** | **no** | **no** | yes | **no** |
+| VAR-S1-H | Patient S1-H | 78 | yes | yes | **no** | **no** | **no** | **no** | **no** | yes | yes | **no** |
+| VAR-S1-J | Patient S1-J | 64 | yes | yes | yes | **no** | **no** | yes | **no** | yes | **no** | **no** |
+| VAR-S2-PC | Example Patient C | 1098 | yes | yes | yes | yes | yes | yes | yes | yes | yes | **no** |
+| VAR-S2-PD | Example Patient D | 502 | yes | yes | yes | yes | yes | yes | yes | yes | **no** | yes |
+| VAR-S2-B | Patient S2-B | 140 | yes | yes | **no** | yes | **no** | yes | **no** | yes | yes | yes |
+| VAR-S2-D | Patient S2-D | 89 | yes | yes | **no** | yes | **no** | yes | yes | yes | **no** | **no** |
+| VAR-S2-F | Patient S2-F | 67 | yes | yes | **no** | **no** | **no** | **no** | **no** | yes | **no** | **no** |
+| VAR-S2-G | Patient S2-G | 74 | yes | yes | **no** | yes | **no** | yes | **no** | **no** | **no** | **no** |
+| STK-S1-D | STACKED CASE S1-D | 1454 | yes | yes | yes | yes | yes | yes | yes | yes | **no** | yes |
+| STK-S2-B | STACKED CASE S2-B | 1063 | yes | yes | yes | yes | **no** | yes | yes | yes | **no** | yes |
 
-## Missing for every case
+## Status (10 October 2026)
 
-- disclose_on rules for every hidden fact
-- previous values for every result
-- lab comments and sample-quality flags
-- the debrief block
-- an explicit expected end state
+The owner asked for all case content to be authored (synthetic, no doses, checked against reliable sources). The **17 P0 cases now have playable case files** in `content/case_files/`
+(schema `content/schema/case_file.schema.json`, built by `tools/content/build_case_files.py` from `tools/content/cases/`, checked in CI): history with when each fact is disclosed,
+examination, results with flag, comment, quality and previous values, scores, ranked problems, decisions with correct and wrong options, end state, correct / incorrect / missed /
+recovery paths and the debrief. Every item says whether the book states it or it was authored; authored detail cites one register row per case (`content/case_files_authoring.csv`).
 
-## What is complete
+Still open:
 
-- VAR-S1-A: Steps 1 to 3 as a case file (`content/cases/VAR-S1-A.json`), with the scenes of Example Patient A in the seed.
-- VAR-S1-PB, VAR-S2-PC, VAR-S2-PD, VAR-S1-E: the measurements the book prints are in `content/case_measurements.csv`; the Usman timeline is in `content/case_timelines.csv`.
-- STK-S1-D and STK-S2-B (Part D): the book gives 20 sections for each, so these two are the closest to full case files.
-
-## Format decision needed before the full case files are written
-
-The current case format (`content/schema/case.schema.json`, read by the Core loader) holds Steps 1 to 3. Labs, imaging, medicines, timelines and expected outcomes need
-an extended format (p0-case-library s01, B-M11). That is a design step; the loader rejects unknown fields on purpose, so VAR-S1-A is not extended here.
+- The Core loader reads only the Steps 1 to 3 card (`content/cases/*.json`); reading the case files is an engine step (p0-case-library s01). The case files are the format decision: a separate file per case, the card kept for what Core already loads.
+- The scenario cards SC-1 to SC-20 and the non-P0 variants (for example S1-I, S1-K, S2-E, S2-H) have stories only; their picture results are mapped (`content/case_imaging.csv`) but no case file is written for them.
+- The named clinician should confirm the authored detail and the 'proposed' picture results before any assessment use.

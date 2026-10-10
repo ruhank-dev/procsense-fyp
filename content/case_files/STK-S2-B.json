@@ -1,0 +1,512 @@
+{
+ "schema": 1,
+ "id": "STK-S2-B",
+ "walkthrough_label": "STACKED CASE S2-B - perforated appendicitis with a penicillin anaphylaxis history",
+ "scenario": "S2",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Ravi Patel",
+  "sex": "M",
+  "age": 34,
+  "occupation": "software tester",
+  "dob": "1992-07-22",
+  "mrn": "662184"
+ },
+ "spoken_identity_answer": "Ravi Patel, twenty-second of July 1992.",
+ "wristband": {
+  "name_text": "RAVI PATEL",
+  "dob_text": "22/07/1992",
+  "mrn_text": "MR 662184"
+ },
+ "allergies": [
+  {
+   "substance": "Penicillin",
+   "reaction": "Throat swelling and collapse in 2019 (anaphylaxis)"
+  }
+ ],
+ "allergy_answer": "Penicillin: throat swelling and collapse in 2019.",
+ "reason_answer": "I have bad tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "12:00",
+  "summary": "Mr Ravi Patel, 34, has had three days of abdominal pain, now generalised. Hot, sweaty, breathing fast, lying very still, abdomen rigid; allergic to penicillin (throat swelling and collapse in 2019)."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Three days of tummy pain, and now it is all over.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever and sweats; vomiting.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "allergy_detail",
+   "topic": "allergy_detail",
+   "answer": "Penicillin: my throat swelled and I collapsed in 2019.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:allergy",
+    "ask:allergies",
+    "ask:reaction",
+    "ask:penicillin"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "Occasional.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Eaten 10 hours ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Sips of water 4 hours ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 128,
+   "heart_rhythm": "regular",
+   "systolic_bp": 92,
+   "diastolic_bp": 58,
+   "respiratory_rate": 26,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 39.2,
+   "acvpu": "A",
+   "pain_score": 8,
+   "news2": 10,
+   "note": "NEWS2 10 as the book states: high risk (NG253).",
+   "origin": "book"
+  },
+  {
+   "time": "13:30",
+   "condition": "after_correct_action",
+   "heart_rate": 112,
+   "heart_rhythm": "regular",
+   "systolic_bp": 106,
+   "diastolic_bp": 64,
+   "respiratory_rate": 22,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.5,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 6,
+   "note": "After the correct action: BP 106/64; lactate 2.4.",
+   "origin": "book"
+  },
+  {
+   "time": "13:30",
+   "condition": "if_no_action",
+   "heart_rate": 138,
+   "heart_rhythm": "regular",
+   "systolic_bp": 80,
+   "diastolic_bp": 46,
+   "respiratory_rate": 30,
+   "spo2": 90,
+   "oxygen": "room_air",
+   "temperature_c": 39.5,
+   "acvpu": "C",
+   "pain_score": 0,
+   "news2": 17,
+   "note": "Trend unnoticed: BP falls, confusion, septic shock.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Hot, sweaty, breathing fast, lying very still; alert but frightened.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Abdomen rigid.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.band",
+   "system": "allergy_band",
+   "finding": "Red allergy band on the wrist.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:allergy_band"
+   ],
+   "origin": "book"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.8",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "book"
+  },
+  {
+   "id": "lab.lactate2",
+   "test": "Lactate (repeat after fluids)",
+   "value": "2.4",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Responding",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 90,
+   "origin": "book"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "19.8",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Severe inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "210",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Severe inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "142",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "high",
+   "comment": "Possible acute kidney injury (baseline unknown)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "10",
+   "note": "High risk (7 or more)",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s2b.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis with hypoperfusion (NEWS2 10, lactate 3.8)",
+   "rank": 1,
+   "why": "Mortality rises with delay.",
+   "expected_actions": [
+    "Senior now",
+    "IV access; cultures first if no delay; lactate",
+    "Antibiotics and a fluid bolus within 1 hour, prescribed by the clinician",
+    "Oxygen to target"
+   ]
+  },
+  {
+   "id": "s2b.allergy",
+   "type": "safety_blocker",
+   "label": "Allergy-safe antibiotic: penicillin anaphylaxis 2019",
+   "rank": 2,
+   "why": "A wrong antibiotic could cause anaphylaxis in a shocked patient; it must not delay the antibiotic.",
+   "expected_actions": [
+    "Ask the exact reaction",
+    "Tell the prescriber and pharmacist",
+    "A non-penicillin regimen per the local allergy pathway"
+   ]
+  },
+  {
+   "id": "s2b.source",
+   "type": "pathway_changing",
+   "label": "Perforated appendix: urgent source control",
+   "rank": 3,
+   "why": "Urgent theatre after resuscitation starts; CT shows perforation with free fluid.",
+   "expected_actions": [
+    "Anaesthetist and senior now",
+    "RSI; allergy check for anaesthetic drugs; renal dosing",
+    "Antibiotic cover before and after (2 to 3 days, WSES 2025)"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s2b.d1",
+   "prompt": "NEWS2 10 in a hot, rigid-abdomen patient. What now?",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "s2b.d1.1",
+     "text": "High-risk sepsis: call the senior; IV access, cultures, lactate; start the bundle",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s2b.d1.2",
+     "text": "Request CT before any treatment",
+     "correct": false,
+     "consequence": "Resuscitation and antibiotics come first."
+    }
+   ]
+  },
+  {
+   "id": "s2b.d2",
+   "prompt": "A red allergy band: penicillin anaphylaxis in 2019. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2b.d2.1",
+     "text": "Ask the exact reaction and tell the prescriber; a non-penicillin regimen is chosen by the prescriber per the institutional allergy pathway, without delaying the 1 hour antibiotic",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s2b.d2.2",
+     "text": "Request standard co-amoxiclav",
+     "correct": false,
+     "consequence": "Risk of anaphylaxis; the nurse challenges."
+    },
+    {
+     "id": "s2b.d2.3",
+     "text": "Hold the antibiotic until the allergy is clarified",
+     "correct": false,
+     "consequence": "Delays a time-critical drug."
+    }
+   ]
+  },
+  {
+   "id": "s2b.d3",
+   "prompt": "Lactate 3.8, creatinine 142, CT shows perforation with free fluid. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2b.d3.1",
+     "text": "Fluid bolus by the clinician with reassessment; hand over to the anaesthetist; urgent theatre once resuscitation has started",
+     "correct": true,
+     "consequence": "Matches the book; after treatment BP is 106/64 and lactate 2.4."
+    },
+    {
+     "id": "s2b.d3.2",
+     "text": "Delay surgery to normalise the kidneys",
+     "correct": false,
+     "consequence": "Source control is the treatment."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Recognise NEWS2 10 and call the senior",
+   "Check the allergy before every drug",
+   "Allergy-safe antibiotic within 1 hour",
+   "Fluids; lactate; urgent theatre"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Requests standard co-amoxiclav",
+    "shows": "The nurse challenges the allergy",
+    "risk": "Anaphylaxis risk",
+    "recovery": "Stop the drug; use the allergy pathway"
+   },
+   {
+    "mistake": "Waits for CT before antibiotics",
+    "shows": "NEWS2 rises",
+    "risk": "Delay and shock",
+    "recovery": "Give within 1 hour"
+   }
+  ],
+  "missed": [
+   "Trend unnoticed: BP falls; confusion; septic shock"
+  ],
+  "recovery": [
+   "Recognise late, call the senior, start the bundle, stabilise"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Sepsis recognised",
+   "Allergy checked"
+  ],
+  "missed": [
+   "Allergy detail; antibiotic timing"
+  ],
+  "priority": "Sepsis",
+  "why_priority": "Time-critical",
+  "related": "The allergy is independent history that makes the antibiotic decision harder",
+  "independent": "The allergy",
+  "trigger_escalation": "NEWS2 7 or more",
+  "if_ignored": "Death or shock",
+  "remember": "Check allergy before every drug, especially in a rush"
+ },
+ "verification": [
+  "V-01",
+  "V-02",
+  "V-12",
+  "V-13"
+ ],
+ "sources": {
+  "story": "SR-2330",
+  "authored": "SR-3716"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

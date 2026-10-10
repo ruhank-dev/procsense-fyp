@@ -1,0 +1,410 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-B",
+ "walkthrough_label": "Patient S1-B - high blood pressure",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Tariq Mahmood",
+  "sex": "M",
+  "age": 58,
+  "occupation": "taxi driver",
+  "dob": "1968-01-23",
+  "mrn": "412330"
+ },
+ "spoken_identity_answer": "Tariq Mahmood, twenty-third of January 1968.",
+ "wristband": {
+  "name_text": "TARIQ MAHMOOD",
+  "dob_text": "23/01/1968",
+  "mrn_text": "MR 412330"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Tariq, 58, on blood pressure tablets, has no GP blood pressure readings in his letter. First reading 172/104; after 5 minutes' rest 168/102. A second variant has 188/114 and 186/112."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "A bit of indigestion after fatty meals; no pain today.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "authored"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No headache, no chest pain, no breathlessness, no change in vision.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "High blood pressure for six years.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "A blood pressure tablet each morning; he took it today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 80,
+   "heart_rhythm": "regular",
+   "systolic_bp": 172,
+   "diastolic_bp": 104,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "First reading 172/104.",
+   "origin": "book"
+  },
+  {
+   "time": "08:06",
+   "condition": "initial",
+   "heart_rate": 78,
+   "heart_rhythm": "regular",
+   "systolic_bp": 168,
+   "diastolic_bp": 102,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Repeat after 5 minutes' rest and correct cuff size: 168/102.",
+   "origin": "book"
+  },
+  {
+   "time": "08:00",
+   "condition": "variant",
+   "heart_rate": 82,
+   "heart_rhythm": "regular",
+   "systolic_bp": 188,
+   "diastolic_bp": 114,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Variant B2: 188/114 then 186/112 on repeat: above the limit.",
+   "origin": "book"
+  },
+  {
+   "time": "08:06",
+   "condition": "variant",
+   "heart_rate": 80,
+   "heart_rhythm": "regular",
+   "systolic_bp": 186,
+   "diastolic_bp": 112,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Variant B2 repeat.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.cvs",
+   "system": "heart",
+   "finding": "Regular pulse; heart sounds normal; no ankle swelling.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:heart"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.fundi",
+   "system": "eyes",
+   "finding": "No visible eye signs of organ damage at the bedside.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Sinus rhythm, no acute change",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "normal",
+   "comment": "Routine for treated hypertension",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Heart rate 78, BP 168 (NEWS2 gives 0 for 111 to 219), other values normal",
+   "origin": "book"
+  },
+  {
+   "name": "Blood pressure grade",
+   "value": "Grade 2 (160 to 179 / 100 to 109)",
+   "note": "Below the 180/110 postpone limit",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "b.bp",
+   "type": "optimisable",
+   "label": "Blood pressure high but below 180/110 and no organ-damage symptoms",
+   "rank": 1,
+   "why": "Rule (AAGBI/BHS, V-07): below 180/110 in clinic, surgery proceeds; the GP reviews afterwards.",
+   "expected_actions": [
+    "Repeat the reading properly (rest, right cuff)",
+    "Ask about headache, chest pain, breathlessness, vision",
+    "Compare with 180/110",
+    "Tell the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "b.d1",
+   "prompt": "168/102 on repeat, no symptoms of organ damage. What now?",
+   "rule": "s1_bp_postpone",
+   "options": [
+    {
+     "id": "b.d1.1",
+     "text": "Surgery can proceed: tell the anaesthetist and ask the GP to review the blood pressure after surgery",
+     "correct": true,
+     "consequence": "Below 180/110: proceed (variant B1)."
+    },
+    {
+     "id": "b.d1.2",
+     "text": "Postpone and send him back to the GP",
+     "correct": false,
+     "consequence": "Not required below 180/110."
+    },
+    {
+     "id": "b.d1.3",
+     "text": "Give a drug to bring it down quickly before theatre",
+     "correct": false,
+     "consequence": "Rapid lowering is not done to make surgery possible."
+    }
+   ]
+  },
+  {
+   "id": "b.d2",
+   "prompt": "Variant B2: 188/114 and 186/112 on repeat. What now?",
+   "rule": "s1_bp_postpone",
+   "options": [
+    {
+     "id": "b.d2.1",
+     "text": "Postpone and refer for control; do not try to drop the pressure rapidly today",
+     "correct": true,
+     "consequence": "At or above 180/110 the planned operation is deferred."
+    },
+    {
+     "id": "b.d2.2",
+     "text": "Proceed as for B1",
+     "correct": false,
+     "consequence": "Above the limit."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Repeat after 5 minutes' rest with the right cuff",
+   "Ask about symptoms of organ damage",
+   "Compare with 180/110",
+   "B1: proceed and tell the anaesthetist; B2: postpone and refer"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Treats a single high reading as real without repeating",
+    "shows": "Repeat is lower",
+    "risk": "Needless postponement",
+    "recovery": "Repeat the reading properly"
+   },
+   {
+    "mistake": "Lowers the pressure rapidly with a drug",
+    "shows": "BP drops and he becomes dizzy",
+    "risk": "Harm from rapid lowering",
+    "recovery": "Stop; observe"
+   }
+  ],
+  "missed": [
+   "Not asking about headache, chest pain or breathlessness"
+  ],
+  "recovery": [
+   "Ask now; if symptomatic, escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Reading repeated properly",
+   "Threshold applied"
+  ],
+  "missed": [
+   "Symptom questions"
+  ],
+  "priority": "Decide proceed or postpone from the repeated reading and symptoms",
+  "why_priority": "The limit is 180/110 in clinic",
+  "related": "Reading, symptoms and the limit work together",
+  "independent": "None",
+  "trigger_escalation": "180/110 or above, or symptoms of organ damage",
+  "if_ignored": "Needless postponement, or harm from forcing the pressure down",
+  "remember": "Repeat before you act; the limit is 180/110"
+ },
+ "verification": [
+  "V-07"
+ ],
+ "sources": {
+  "story": "SR-2303",
+  "authored": "SR-3703"
+ },
+ "variant_end_states": {
+  "B2": "postponed"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

@@ -1,0 +1,384 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-E",
+ "walkthrough_label": "Patient S1-E - the planned patient with an inflamed gallbladder",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Rabia Siddiqui",
+  "sex": "F",
+  "age": 48,
+  "occupation": "bank clerk",
+  "dob": "1978-05-09",
+  "mrn": "311207"
+ },
+ "spoken_identity_answer": "Rabia Siddiqui, ninth of May 1978.",
+ "wristband": {
+  "name_text": "RABIA SIDDIQUI",
+  "dob_text": "09/05/1978",
+  "mrn_text": "MR 311207"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out, but the pain is bad today.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:30",
+  "summary": "Mrs Rabia, 48, booked for planned gallbladder removal, arrives with constant pain for 2 days and felt hot overnight: she now has an acute illness."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Constant pain under the right ribs for two days; I felt hot and shivery overnight.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No yellow eyes. Urine normal colour.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Paracetamol.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dry toast yesterday at noon; nothing since because of the pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Sips of water at 05:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Last period 3 weeks ago; she agrees to a test.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 108,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 20,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.4,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 2,
+   "note": "NEWS2 2 as the book states: HR 108 (1) + T 38.4 (1).",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.murphy",
+   "system": "abdomen",
+   "finding": "Tender under the right ribs; Murphy's sign positive.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen_other",
+   "finding": "No guarding elsewhere; no palpable lump.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen_other"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.eyes",
+   "system": "eyes",
+   "finding": "No jaundice.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "15.2",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised: whole-body inflammation (not above 18)",
+   "quality": null,
+   "previous": {
+    "value": "6.8",
+    "when": "pre-assessment 6 weeks ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2443"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "96",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised: whole-body inflammation",
+   "quality": null,
+   "previous": {
+    "value": "4",
+    "when": "pre-assessment 6 weeks ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2443"
+  },
+  {
+   "id": "lab.upt",
+   "test": "Urine pregnancy test",
+   "value": "Negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "negative",
+   "comment": "Not pregnant",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "2",
+   "note": "HR 108 (1) + T 38.4 (1) as the book states; recomputed",
+   "origin": "book"
+  },
+  {
+   "name": "Tokyo 2018 grade",
+   "value": "I (mild)",
+   "note": "WBC 15.2 not above 18; symptoms under 72 hours; no mass; no organ failure",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "e.cholecystitis",
+   "type": "pathway_changing",
+   "label": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+   "rank": 1,
+   "why": "A planned patient with local signs (Murphy's), systemic inflammation (WBC, CRP, fever) and a scan with a thick wall and fluid is no longer a routine list patient.",
+   "expected_actions": [
+    "Recognise A (local signs), B (systemic signs) and C (imaging)",
+    "Grade it: Grade I",
+    "Do not take her on today's planned list as a routine case",
+    "Senior surgeon review; antibiotics per protocol; move to the acute pathway"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "e.d1",
+   "prompt": "Mrs Rabia has fever, a positive Murphy's sign, WBC 15.2, CRP 96 and a scan with a 6 mm wall and fluid. What now?",
+   "rule": "gallbladder_moderate_grade",
+   "options": [
+    {
+     "id": "e.d1.1",
+     "text": "She has acute cholecystitis (Grade I): not suitable for the routine list; senior review, antibiotics and the acute pathway",
+     "correct": true,
+     "consequence": "Matches the book; early keyhole surgery is usually the plan."
+    },
+    {
+     "id": "e.d1.2",
+     "text": "Proceed with the planned operation as booked",
+     "correct": false,
+     "consequence": "She is acutely ill; the elective pathway no longer applies."
+    },
+    {
+     "id": "e.d1.3",
+     "text": "Send her home on tablets",
+     "correct": false,
+     "consequence": "Fever and raised inflammatory markers need review today."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Notice fever and tachycardia in a planned patient",
+   "Examine: Murphy's positive",
+   "Blood tests: WBC and CRP",
+   "Ultrasound: wall 6 mm, fluid",
+   "Tokyo grade I",
+   "Call the senior; acute pathway"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Continues the list",
+    "shows": "The anaesthetist finds T 38.4 at Sign In",
+    "risk": "An acutely infected patient anaesthetised as elective",
+    "recovery": "Stop and escalate"
+   }
+  ],
+  "missed": [
+   "Does not take a temperature: the inflammation is missed until the anaesthetist checks"
+  ],
+  "recovery": [
+   "Repeat vital signs, send bloods, call the senior"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Fever and tachycardia noticed",
+   "Tokyo A, B and C combined",
+   "Pathway changed"
+  ],
+  "missed": [
+   "Not examining the abdomen"
+  ],
+  "priority": "Acute cholecystitis in a planned patient",
+  "why_priority": "The pathway changes from elective to acute",
+  "related": "Local signs, systemic signs and the scan fit together",
+  "independent": "None",
+  "trigger_escalation": "Fever in a planned patient",
+  "if_ignored": "Worsening infection and a delayed operation",
+  "remember": "Planned patients can arrive unwell: always take the temperature"
+ },
+ "verification": [
+  "V-06",
+  "V-01"
+ ],
+ "sources": {
+  "story": "SR-2302",
+  "authored": "SR-3702",
+  "measurements": [
+   "SR-2442",
+   "SR-2443",
+   "SR-2444"
+  ]
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

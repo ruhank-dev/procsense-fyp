@@ -1,0 +1,346 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-H",
+ "walkthrough_label": "Patient S1-H - possible pregnancy",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Hina Rauf",
+  "sex": "F",
+  "age": 29,
+  "occupation": "pharmacy assistant",
+  "dob": "1997-02-25",
+  "mrn": "822371"
+ },
+ "spoken_identity_answer": "Hina Rauf, twenty-fifth of February 1997.",
+ "wristband": {
+  "name_text": "HINA RAUF",
+  "dob_text": "25/02/1997",
+  "mrn_text": "MR 822371"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Ms Hina, 29, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Attacks of pain under the ribs after fatty meals.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes; no vaginal bleeding; no pain in the lower tummy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "My last period was seven weeks ago. I did not think about it.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "book"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 78,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 70,
+   "respiratory_rate": 14,
+   "spo2": 99,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Baseline vital signs, all normal.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Soft; mild tenderness under the right ribs; no lower tummy tenderness.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.shoulder",
+   "system": "general",
+   "finding": "No shoulder-tip pain; not dizzy.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.upt",
+   "test": "Urine pregnancy test",
+   "value": "Positive",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "positive",
+   "comment": "Pregnant (about 7 weeks)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "All vital signs in the normal band",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "h.preg",
+   "type": "safety_blocker",
+   "label": "Positive pregnancy test before planned surgery",
+   "rank": 1,
+   "why": "Changes imaging, drugs, anaesthesia and timing; she has no pain or bleeding, so ectopic pregnancy is not suspected but must be kept in mind.",
+   "expected_actions": [
+    "Tell her privately and sensitively",
+    "Do not proceed with planned surgery",
+    "Senior surgeon, anaesthetist and the obstetric team decide",
+    "Safety-net advice: lower tummy pain, bleeding, shoulder-tip pain or dizziness means come straight back"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "h.d1",
+   "prompt": "The pregnancy test is positive. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "h.d1.1",
+     "text": "Postpone the planned surgery; the senior surgeon, anaesthetist and obstetric team decide; discuss it privately and sensitively",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "h.d1.2",
+     "text": "Proceed because she has no pain in her lower tummy",
+     "correct": false,
+     "consequence": "Pregnancy status changes drugs, imaging and anaesthesia."
+    },
+    {
+     "id": "h.d1.3",
+     "text": "Tell her in front of other patients",
+     "correct": false,
+     "consequence": "Privacy and sensitivity are required."
+    }
+   ]
+  },
+  {
+   "id": "h.d2",
+   "prompt": "What if her gallbladder trouble became urgent during the pregnancy?",
+   "rule": null,
+   "options": [
+    {
+     "id": "h.d2.1",
+     "text": "Laparoscopic cholecystectomy is possible in any trimester when needed (SAGES); for non-urgent surgery the second trimester is usual",
+     "correct": true,
+     "consequence": "ISS-0017: the book prefers the second trimester; SAGES allows any trimester when surgery is needed."
+    },
+    {
+     "id": "h.d2.2",
+     "text": "Surgery is never possible in pregnancy",
+     "correct": false,
+     "consequence": "Incorrect."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Do the pregnancy test per policy",
+   "Tell her privately and kindly",
+   "Stop the planned surgery",
+   "Involve the senior, anaesthetist and obstetric team",
+   "Safety-net advice"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Does not do the pregnancy test",
+    "shows": "The anaesthetist asks at Sign In",
+    "risk": "Unknown pregnancy status: a hard safety failure",
+    "recovery": "Do the test and stop"
+   }
+  ],
+  "missed": [
+   "Not asking about the last period"
+  ],
+  "recovery": [
+   "Ask; test"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Test done and acted on",
+   "Private and sensitive"
+  ],
+  "missed": [
+   "Last period not asked"
+  ],
+  "priority": "A positive pregnancy test",
+  "why_priority": "It changes surgery, drugs and imaging",
+  "related": "Test and history",
+  "independent": "None",
+  "trigger_escalation": "A positive test",
+  "if_ignored": "Unplanned exposure to drugs or imaging",
+  "remember": "Always know the pregnancy status before surgery"
+ },
+ "verification": [
+  "V-10",
+  "V-14"
+ ],
+ "sources": {
+  "story": "SR-2307",
+  "authored": "SR-3707"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

@@ -1,0 +1,407 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-D",
+ "walkthrough_label": "Patient S1-D - on a blood thinner",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Imran Sheikh",
+  "sex": "M",
+  "age": 67,
+  "occupation": "retired bus driver",
+  "dob": "1959-04-17",
+  "mrn": "603155"
+ },
+ "spoken_identity_answer": "Imran Sheikh, seventeenth of April 1959.",
+ "wristband": {
+  "name_text": "IMRAN SHEIKH",
+  "dob_text": "17/04/1959",
+  "mrn_text": "MR 603155"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Imran, 67, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain under the ribs after fatty food, on and off for a year.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "authored"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Atrial fibrillation (irregular heartbeat), high blood pressure.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Apixaban for my heartbeat, and one blood pressure tablet.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 19:30 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_dose.d1",
+   "topic": "medicines",
+   "answer": "Three days ago, as the pre-op nurse told me.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last dose",
+    "ask:apixaban",
+    "ask:blood thinner"
+   ],
+   "origin": "book",
+   "variant": "D1"
+  },
+  {
+   "id": "last_dose.d2",
+   "topic": "medicines",
+   "answer": "This morning. I forgot what the nurse said.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last dose",
+    "ask:apixaban",
+    "ask:blood thinner"
+   ],
+   "origin": "book",
+   "variant": "D2"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 78,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 134,
+   "diastolic_bp": 82,
+   "respiratory_rate": 14,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Pulse irregular but rate 78: known, controlled atrial fibrillation.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.pulse",
+   "system": "heart",
+   "finding": "Pulse irregularly irregular, rate about 78; heart sounds normal.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:heart"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Soft; no tenderness.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.egfr",
+   "test": "eGFR",
+   "value": "68",
+   "unit": "mL/min/1.73m2",
+   "normal_range": "90 or above (60 to 89 is mildly reduced)",
+   "flag": "low",
+   "comment": "Mildly reduced: enough for the usual apixaban pause",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Atrial fibrillation, rate controlled",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "abnormal",
+   "comment": "Known atrial fibrillation; confirms the pulse",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Rate 78, other values normal; irregular rhythm is not scored by NEWS2",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "d.anticoag",
+   "type": "pathway_changing",
+   "label": "Anticoagulant still active: bleeding risk at surgery",
+   "rank": 1,
+   "why": "Apixaban is usually omitted for a day or two before planned surgery with good kidneys. If he took it this morning, the drug is active and planned surgery is deferred.",
+   "expected_actions": [
+    "Ask exactly when he last took apixaban",
+    "Check kidney function",
+    "Decide: three days ago means proceed; this morning means defer and re-list",
+    "Tell the surgeon and the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "d.d1",
+   "prompt": "He says: 'Three days ago, as the pre-op nurse told me.' What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "d.d1.1",
+     "text": "Stopped long enough with good kidney function: proceed; restart after surgery as the surgeon decides",
+     "correct": true,
+     "consequence": "Variant D1 (PAUSE-type pause: 1 to 2 days with normal kidneys)."
+    },
+    {
+     "id": "d.d1.2",
+     "text": "Postpone anyway",
+     "correct": false,
+     "consequence": "No reason to delay."
+    }
+   ],
+   "variant": "D1"
+  },
+  {
+   "id": "d.d2",
+   "prompt": "He says: 'This morning, I forgot.' What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "d.d2.1",
+     "text": "The drug is still active: the surgeon and anaesthetist usually defer and re-list; reversal is not used just to make a planned operation possible",
+     "correct": true,
+     "consequence": "Variant D2: postpone."
+    },
+    {
+     "id": "d.d2.2",
+     "text": "Proceed because the operation is minor",
+     "correct": false,
+     "consequence": "Bleeding risk with an active anticoagulant."
+    },
+    {
+     "id": "d.d2.3",
+     "text": "Give a reversal agent so surgery can go ahead",
+     "correct": false,
+     "consequence": "Not done for planned surgery."
+    }
+   ],
+   "variant": "D2"
+  },
+  {
+   "id": "d.d3",
+   "prompt": "Pulse irregular, rate 78. What do you do?",
+   "rule": null,
+   "options": [
+    {
+     "id": "d.d3.1",
+     "text": "Known, controlled atrial fibrillation: record it and confirm with an ECG",
+     "correct": true,
+     "consequence": "Fine for surgery."
+    },
+    {
+     "id": "d.d3.2",
+     "text": "Treat it as a new emergency rhythm",
+     "correct": false,
+     "consequence": "Rate controlled and known."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Ask exactly when he last took apixaban",
+   "Check kidney function",
+   "D1: proceed; D2: defer and re-list",
+   "ECG to confirm known atrial fibrillation"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Does not ask when the last dose was",
+    "shows": "The anaesthetist asks at Sign In and finds a dose this morning",
+    "risk": "Surgery with an active anticoagulant",
+    "recovery": "Stop; defer and re-list"
+   }
+  ],
+  "missed": [
+   "Not noticing the irregular pulse"
+  ],
+  "recovery": [
+   "Feel the pulse; ECG"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Last dose asked exactly",
+   "Kidney function used"
+  ],
+  "missed": [
+   "Last dose not asked"
+  ],
+  "priority": "Is the anticoagulant still active?",
+  "why_priority": "Bleeding risk at surgery",
+  "related": "Anticoagulant, kidney function and timing go together",
+  "independent": "The rate-controlled atrial fibrillation",
+  "trigger_escalation": "A dose within the pause window",
+  "if_ignored": "Bleeding in surgery",
+  "remember": "Ask exactly when the last tablet was taken"
+ },
+ "verification": [
+  "V-08"
+ ],
+ "sources": {
+  "story": "SR-2305",
+  "authored": "SR-3705"
+ },
+ "variant_end_states": {
+  "D2": "postponed"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

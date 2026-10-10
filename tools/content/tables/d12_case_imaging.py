@@ -7,7 +7,7 @@ library's proposal for the clinician. Both are approved on the owner's statement
 """
 from framework import Table
 
-ci = Table("case_imaging", 3400, ["case_id", "test", "d_finding_code", "d_basis", "d_note"], "Case imaging result", "ProcSense imaging library", evidence="B", size=60)
+ci = Table("case_imaging", 3400, ["case_id", "test", "d_finding_code", "d_basis", "d_note"], "Case imaging result", "ProcSense imaging library", evidence="B", size=80)
 URL = "docs/research/imaging_scenarios.md"
 M = "Result a case gives when this test is ordered; tests not listed for a case return the clean result (see tools/content/imaging_library.py)."
 
@@ -56,6 +56,12 @@ row("SC-3", "pregnancy_test", "PREG-01", "proposed", "Pregnant (appendicitis in 
 row("VAR-S1-J", "blood_sample_appearance", "TUBE-01", "book", "Potassium 6.4 haemolysed")
 row("SC-12", "blood_sample_appearance", "TUBE-01", "book", "K 6.1 haemolysed")
 row("SC-19", "urine_dipstick", "DIP-02", "proposed", "Ketones 3.5 on an SGLT2 inhibitor with sepsis")
+
+# every planned (S1) patient is booked for gallbladder removal because of gallstones, and every simple S2 appendicitis case shows the same on ultrasound
+for c in ("VAR-S1-B", "VAR-S1-C", "VAR-S1-D", "VAR-S1-G", "VAR-S1-H", "VAR-S1-J"):
+    row(c, "ultrasound_gallbladder", "US-GB-01", "proposed", "Booked for gallbladder removal for gallstones: the clinic ultrasound shows simple gallstones")
+for c in ("VAR-S2-F", "VAR-S2-G"):
+    row(c, "ultrasound_appendix", "US-AP-01", "proposed", "Appendicitis managed like Example Patient C: ultrasound shows a simple inflamed appendix")
 
 TABLES = [ci]
 OFFICIAL_FILES = {}

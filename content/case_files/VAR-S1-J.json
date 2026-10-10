@@ -1,0 +1,365 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-J",
+ "walkthrough_label": "Patient S1-J - the 'high potassium' that wasn't",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Kamran Javed",
+  "sex": "M",
+  "age": 50,
+  "occupation": "electrician",
+  "dob": "1976-09-05",
+  "mrn": "934018"
+ },
+ "spoken_identity_answer": "Kamran Javed, fifth of September 1976.",
+ "wristband": {
+  "name_text": "KAMRAN JAVED",
+  "dob_text": "05/09/1976",
+  "mrn_text": "MR 934018"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Kamran, 50, is well. The pre-operative potassium comes back 6.4 'haemolysed'. His ECG and kidney function are normal."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Attacks of pain under the ribs after fatty meals.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "authored"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes, no weakness, no palpitations.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 70,
+   "heart_rhythm": "regular",
+   "systolic_bp": 126,
+   "diastolic_bp": 78,
+   "respiratory_rate": 14,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "He is well; baseline vital signs normal.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Looks well; no weakness.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.pulse",
+   "system": "heart",
+   "finding": "Regular pulse; heart sounds normal.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:heart"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.k1",
+   "test": "Potassium",
+   "value": "6.4",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "high",
+   "comment": "Haemolysed sample: the cells burst in the tube, so the potassium looks falsely high. Repeat.",
+   "quality": "haemolysed",
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Normal",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "normal",
+   "comment": "No peaked T waves",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "84",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "normal",
+   "comment": "Kidney function normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.k2",
+   "test": "Potassium (repeat)",
+   "value": "4.6",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "normal",
+   "comment": "Repeat sample: normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 90,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "Potassium zone",
+   "value": "6.4 is moderately high (6.0 to 6.4), below the 6.5 critical limit",
+   "note": "UKKA categories",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "j.k",
+   "type": "time_critical",
+   "label": "Potassium 6.4 on a haemolysed sample in a well patient",
+   "rank": 1,
+   "why": "Well patient, normal ECG and kidneys and a lab comment that the cells burst make a false result likely; it must still be repeated urgently.",
+   "expected_actions": [
+    "Read the lab comment",
+    "Look at the patient and check the ECG and kidney function",
+    "Repeat the potassium urgently from a clean sample",
+    "Tell the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "j.d1",
+   "prompt": "Potassium 6.4 'haemolysed' in a well man with a normal ECG and kidneys. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "j.d1.1",
+     "text": "Probably a false result: repeat urgently, tell the anaesthetist; the repeat is 4.6, so proceed",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "j.d1.2",
+     "text": "Treat it as true hyperkalaemia and cancel",
+     "correct": false,
+     "consequence": "Unsupported by the patient, ECG and kidneys."
+    },
+    {
+     "id": "j.d1.3",
+     "text": "Ignore it",
+     "correct": false,
+     "consequence": "An unrepeated high potassium cannot be ignored."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Read the lab comment: haemolysed",
+   "Check the patient, ECG and kidney function",
+   "Repeat urgently",
+   "Tell the anaesthetist",
+   "Repeat 4.6: proceed"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Treats the potassium without repeating",
+    "shows": "Repeat is normal",
+    "risk": "Needless treatment",
+    "recovery": "Stop; repeat first"
+   }
+  ],
+  "missed": [
+   "Not reading the lab comment"
+  ],
+  "recovery": [
+   "Read the comment; repeat"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Lab comment read",
+   "Result checked against the patient"
+  ],
+  "missed": [
+   "Lab comment not read"
+  ],
+  "priority": "A likely false result that still needs repeating",
+  "why_priority": "A true potassium of this size can cause rhythm problems",
+  "related": "Sample quality, patient and ECG",
+  "independent": "None",
+  "trigger_escalation": "A potassium above 6.0 whatever the sample",
+  "if_ignored": "Missing a true result, or needless treatment",
+  "remember": "Read the lab comment and repeat; do not act on one implausible value"
+ },
+ "verification": [
+  "V-15"
+ ],
+ "sources": {
+  "story": "SR-2308",
+  "authored": "SR-3708"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

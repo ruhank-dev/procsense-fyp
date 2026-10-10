@@ -1,0 +1,521 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-PB",
+ "walkthrough_label": "Example Patient B - abnormal S1 (the 'elective' patient who isn't well today)",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Farzana Ahmed",
+  "sex": "F",
+  "age": 61,
+  "occupation": "retired shopkeeper",
+  "dob": "1965-08-21",
+  "mrn": "205814"
+ },
+ "spoken_identity_answer": "Farzana Ahmed, twenty-first of August 1965.",
+ "wristband": {
+  "name_text": "FARZANA AHMED",
+  "dob_text": "21/08/1965",
+  "mrn_text": "MR 205814"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "09:00",
+  "summary": "Mrs Ahmed, 61, is booked for planned keyhole gallbladder removal. Her daughter noticed yellow eyes last week and she has dark urine: a stone may have moved into the main bile duct."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Some aching under the ribs on and off.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "My daughter said my eyes looked a bit yellow last week. And my urine has been dark like tea. No fever or shivering.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Gallstones, found on a scan last year.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Paracetamol when the pain comes.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Tea and a biscuit yesterday evening at 20:00, nothing since.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable (past the menopause).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 84,
+   "heart_rhythm": "regular",
+   "systolic_bp": 138,
+   "diastolic_bp": 84,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 37.2,
+   "acvpu": "A",
+   "pain_score": 2,
+   "news2": 0,
+   "note": "No fever: probably no infection in the duct (yet).",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.eyes",
+   "system": "eyes",
+   "finding": "Yellow tinge to the whites of the eyes.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Mild tenderness under the right ribs; no guarding; no lump.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.skin",
+   "system": "skin",
+   "finding": "Skin is not itchy-scratched; no rash.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:skin"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.bilirubin",
+   "test": "Bilirubin",
+   "value": "72",
+   "unit": "umol/L",
+   "normal_range": "3-21",
+   "flag": "high",
+   "comment": "HIGH (above 68): bile is backing up",
+   "quality": null,
+   "previous": {
+    "value": "14",
+    "when": "pre-assessment 6 weeks ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2412"
+  },
+  {
+   "id": "lab.alp",
+   "test": "ALP",
+   "value": "380",
+   "unit": "U/L",
+   "normal_range": "30-130",
+   "flag": "high",
+   "comment": "About 3 times normal: bile duct cells irritated by blockage",
+   "quality": null,
+   "previous": {
+    "value": "118",
+    "when": "pre-assessment 6 weeks ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2413"
+  },
+  {
+   "id": "lab.ggt",
+   "test": "GGT",
+   "value": "410",
+   "unit": "U/L",
+   "normal_range": "below 40",
+   "flag": "high",
+   "comment": "Confirms the ALP is coming from the bile system",
+   "quality": null,
+   "previous": {
+    "value": "35",
+    "when": "pre-assessment 6 weeks ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2414"
+  },
+  {
+   "id": "lab.alt",
+   "test": "ALT",
+   "value": "160",
+   "unit": "U/L",
+   "normal_range": "7-40",
+   "flag": "high",
+   "comment": "Moderately raised: liver cells irritated by backed-up bile",
+   "quality": null,
+   "previous": {
+    "value": "32",
+    "when": "pre-assessment 6 weeks ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2415"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "9.8",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "normal",
+   "comment": "Normal: no strong sign of infection",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2416"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "12",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Mildly raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2417"
+  },
+  {
+   "id": "lab.inr",
+   "test": "INR",
+   "value": "1.1",
+   "unit": "ratio",
+   "normal_range": "0.8-1.2",
+   "flag": "normal",
+   "comment": "Clotting normal (a long blockage could raise it)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2418"
+  },
+  {
+   "id": "lab.lipase",
+   "test": "Lipase",
+   "value": "45",
+   "unit": "U/L",
+   "normal_range": "below 60",
+   "flag": "normal",
+   "comment": "Pancreas not inflamed",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2419"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Computed from the vital signs",
+   "origin": "book"
+  },
+  {
+   "name": "Bile-duct-stone risk",
+   "value": "High",
+   "note": "Bilirubin above 68 micromol/L plus a duct wider than 6 mm (ASGE 2019)",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "pb.stone",
+   "type": "pathway_changing",
+   "label": "Probable stone in the main bile duct: not what she was booked for",
+   "rank": 1,
+   "why": "Jaundice, cholestatic liver tests and a 9 mm duct make a duct stone likely; operating on the gallbladder alone would leave it in place.",
+   "expected_actions": [
+    "Ask the red-flag questions and look at her eyes",
+    "Request liver tests and an ultrasound",
+    "Score the risk: high",
+    "Do not proceed today; call the senior surgeon"
+   ]
+  },
+  {
+   "id": "pb.cholangitis",
+   "type": "time_critical",
+   "label": "Watch for infection of the duct (cholangitis)",
+   "rank": 2,
+   "why": "No fever, shivering or low BP today, but it can develop.",
+   "expected_actions": [
+    "Check temperature, pulse and BP again",
+    "Give her safety-net advice: fever, shivering or worse pain means come straight back"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "pb.d1",
+   "prompt": "Bilirubin 72 and the bile duct is 9 mm on ultrasound. What now?",
+   "rule": "duct_stone_high_risk",
+   "options": [
+    {
+     "id": "pb.d1.1",
+     "text": "High risk of a duct stone: do not proceed today, call the senior surgeon, plan ERCP before the gallbladder operation",
+     "correct": true,
+     "consequence": "Matches the book and ASGE 2019."
+    },
+    {
+     "id": "pb.d1.2",
+     "text": "Proceed with today's operation",
+     "correct": false,
+     "consequence": "The stone would stay in the duct: risk of cholangitis or pancreatitis."
+    },
+    {
+     "id": "pb.d1.3",
+     "text": "Proceed and order an MRCP afterwards",
+     "correct": false,
+     "consequence": "MRCP is for intermediate risk before the operation; this is high risk."
+    }
+   ]
+  },
+  {
+   "id": "pb.d2",
+   "prompt": "Is there any sign of cholangitis today (fever, shivering, low BP)?",
+   "rule": null,
+   "options": [
+    {
+     "id": "pb.d2.1",
+     "text": "No: she has no fever, normal BP and pulse",
+     "correct": true,
+     "consequence": "Not the emergency branch; the high-risk pathway applies."
+    },
+    {
+     "id": "pb.d2.2",
+     "text": "Yes: start the sepsis bundle",
+     "correct": false,
+     "consequence": "Not supported by her observations."
+    }
+   ]
+  },
+  {
+   "id": "pb.d3",
+   "prompt": "What safety-net advice do you give Mrs Ahmed?",
+   "rule": null,
+   "options": [
+    {
+     "id": "pb.d3.1",
+     "text": "If you get a fever, shivering or worse pain, come straight back: it could be an infection in the duct",
+     "correct": true,
+     "consequence": "Correct."
+    },
+    {
+     "id": "pb.d3.2",
+     "text": "No advice is needed",
+     "correct": false,
+     "consequence": "The risk of infection remains until the stone is cleared."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Ask the red-flag questions: yellow eyes, dark urine, fever, pain",
+   "Examine the eyes: jaundice confirmed",
+   "Vital signs; liver tests; ultrasound",
+   "Risk tool: high",
+   "Stop today's plan; senior; ERCP pathway",
+   "Explain to Mrs Ahmed, document, safety-net advice"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Ignores the abnormal liver tests and goes ahead",
+    "shows": "The senior or anaesthetist character stops the case",
+    "risk": "Stone left in the duct",
+    "recovery": "Review the results and call the senior"
+   }
+  ],
+  "missed": [
+   "Does not ask about yellow eyes or look: the liver tests (if ordered) still flag it"
+  ],
+  "recovery": [
+   "Recognise from the tests, then call the senior"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Jaundice picked up from the history and examination",
+   "High risk correctly scored",
+   "Planned operation stopped"
+  ],
+  "missed": [
+   "Not asking the red-flag questions"
+  ],
+  "priority": "A probable duct stone in a planned patient",
+  "why_priority": "It changes the whole pathway",
+  "related": "Jaundice, cholestatic tests and the wide duct all come from the same blocked duct",
+  "independent": "None: the findings are linked",
+  "trigger_escalation": "Yellow eyes, dark urine, abnormal liver tests",
+  "if_ignored": "A stone left in the duct can cause life-threatening infection",
+  "remember": "Ask about yellow eyes in every gallstone patient"
+ },
+ "verification": [
+  "V-03"
+ ],
+ "sources": {
+  "story": "SR-2301",
+  "authored": "SR-3701",
+  "measurements": [
+   "SR-2406",
+   "SR-2407",
+   "SR-2408",
+   "SR-2409",
+   "SR-2410",
+   "SR-2411",
+   "SR-2412",
+   "SR-2413",
+   "SR-2414",
+   "SR-2415",
+   "SR-2416",
+   "SR-2417",
+   "SR-2418",
+   "SR-2419",
+   "SR-2420"
+  ]
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

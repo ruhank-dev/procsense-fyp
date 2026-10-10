@@ -1,0 +1,543 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-PD",
+ "walkthrough_label": "Example Patient D - the deteriorating patient (watch the numbers change)",
+ "scenario": "S2",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Usman Qadir",
+  "sex": "M",
+  "age": 34,
+  "occupation": "warehouse supervisor",
+  "dob": "1991-12-03",
+  "mrn": "774902"
+ },
+ "spoken_identity_answer": "Usman Qadir, third of December 1991.",
+ "wristband": {
+  "name_text": "USMAN QADIR",
+  "dob_text": "03/12/1991",
+  "mrn_text": "MR 774902"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have had tummy pain for three days.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "14:00",
+  "summary": "Usman, 34, arrives at 14:00 after three days of tummy pain he 'tried to sleep off'. The numbers change over the next two hours: the trainee must notice the trend."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Three days of tummy pain. I tried to sleep it off.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever and sweats since yesterday; no urine symptoms.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Ibuprofen from the shop for the pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Toast two days ago; sips of water today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Sips of water at 12:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "14:00",
+   "condition": "initial",
+   "heart_rate": 102,
+   "heart_rhythm": "regular",
+   "systolic_bp": 124,
+   "diastolic_bp": 78,
+   "respiratory_rate": 20,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.3,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 2,
+   "note": "Infection, coping. Workup started. Book NEWS2 2.",
+   "origin": "book"
+  },
+  {
+   "time": "14:45",
+   "condition": "initial",
+   "heart_rate": 116,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 70,
+   "respiratory_rate": 22,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 38.9,
+   "acvpu": "A",
+   "pain_score": 7,
+   "news2": 5,
+   "note": "No fluids or antibiotics given yet. Heart faster, BP lower, breathing faster, fever higher. Book NEWS2 5.",
+   "origin": "book"
+  },
+  {
+   "time": "15:15",
+   "condition": "initial",
+   "heart_rate": 128,
+   "heart_rhythm": "regular",
+   "systolic_bp": 92,
+   "diastolic_bp": 58,
+   "respiratory_rate": 26,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 39.2,
+   "acvpu": "A",
+   "pain_score": 8,
+   "news2": 10,
+   "note": "Sepsis with poor circulation: EMERGENCY. Book NEWS2 10.",
+   "origin": "book"
+  },
+  {
+   "time": "15:45",
+   "condition": "if_no_action",
+   "heart_rate": 138,
+   "heart_rhythm": "regular",
+   "systolic_bp": 82,
+   "diastolic_bp": 48,
+   "respiratory_rate": 30,
+   "spo2": 91,
+   "oxygen": "room_air",
+   "temperature_c": 39.4,
+   "acvpu": "C",
+   "pain_score": 8,
+   "news2": 17,
+   "note": "If nobody acts: septic shock, near collapse. The book prints NEWS2 16; the table gives 17 (ISS-0016, owner decided: use 17).",
+   "origin": "book"
+  },
+  {
+   "time": "16:30",
+   "condition": "after_correct_action",
+   "heart_rate": 112,
+   "heart_rhythm": "regular",
+   "systolic_bp": 108,
+   "diastolic_bp": 64,
+   "respiratory_rate": 22,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 38.4,
+   "acvpu": "A",
+   "pain_score": 5,
+   "news2": 6,
+   "note": "After the correct action: BP 108/64 and HR 112 after fluids; lactate falls to 2.4; urine flowing.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.1400",
+   "system": "abdomen",
+   "finding": "At 14:00: tender in the lower right tummy with guarding.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.1445",
+   "system": "abdomen_later",
+   "finding": "At 14:45: sweaty; tummy now tender everywhere and rigid: suggests perforation with spreading peritonitis.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen_later"
+   ],
+   "origin": "book"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.8",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Raised: organs short of oxygen",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "book",
+   "source_row": "SR-2436"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "19.8",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Very high",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2437"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "210",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Severe inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2438"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "142",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "high",
+   "comment": "Kidneys struggling",
+   "quality": null,
+   "previous": {
+    "value": "78",
+    "when": "usual value, 1 year ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book",
+   "source_row": "SR-2439"
+  },
+  {
+   "id": "lab.lactate2",
+   "test": "Lactate (repeat after treatment)",
+   "value": "2.4",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Falling after resuscitation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 90,
+   "origin": "book",
+   "source_row": "SR-2441"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2 at 14:00",
+   "value": "2",
+   "note": "",
+   "origin": "book"
+  },
+  {
+   "name": "NEWS2 at 14:45",
+   "value": "5",
+   "note": "Urgent review",
+   "origin": "book"
+  },
+  {
+   "name": "NEWS2 at 15:15",
+   "value": "10",
+   "note": "Emergency",
+   "origin": "book"
+  },
+  {
+   "name": "NEWS2 at 15:45 (no action)",
+   "value": "17",
+   "note": "Recomputed; the book prints 16 (ISS-0016)",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "pd.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis with poor circulation (NEWS2 5 then 10)",
+   "rank": 1,
+   "why": "A rising heart rate, falling BP and rising temperature are one trend: perforated appendix with sepsis.",
+   "expected_actions": [
+    "Notice the trend at 14:45",
+    "Look at him: sweaty, tummy rigid",
+    "Call for senior review",
+    "Sepsis bundle: blood cultures, lactate, IV antibiotics, fluid bolus with re-check, oxygen per protocol, urine measurement"
+   ]
+  },
+  {
+   "id": "pd.clock",
+   "type": "time_critical",
+   "label": "Antibiotics and fluids within 1 hour for the high-risk tier",
+   "rank": 2,
+   "why": "NICE NG253: high-risk tier needs antibiotics and fluids within 1 hour.",
+   "expected_actions": [
+    "Give antibiotics and fluids by the clinician's order",
+    "Record the time"
+   ]
+  },
+  {
+   "id": "pd.source",
+   "type": "pathway_changing",
+   "label": "Perforated appendix: urgent source control",
+   "rank": 3,
+   "why": "Surgery removes the source once resuscitation has started.",
+   "expected_actions": [
+    "Request urgent CT if the senior wants it (escort and monitor)",
+    "Emergency call at 15:15: senior surgeon and anaesthetist",
+    "Handover with lactate, fluids, antibiotic time, NEWS2, kidney injury, aspiration risk"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "pd.d1",
+   "prompt": "At 14:45 NEWS2 is 5 (was 2). What do you do?",
+   "rule": "deterioration_clock",
+   "options": [
+    {
+     "id": "pd.d1.1",
+     "text": "Go and look at him; call for urgent senior review; start the sepsis bundle (cultures, lactate, IV antibiotics and a fluid bolus, oxygen if needed, urine measurement); request urgent CT if the senior wants it",
+     "correct": true,
+     "consequence": "Matches the book (NEWS2 5 to 6: urgent review; NG253)."
+    },
+    {
+     "id": "pd.d1.2",
+     "text": "Wait for the next routine observations",
+     "correct": false,
+     "consequence": "The trend is the warning; waiting costs time."
+    },
+    {
+     "id": "pd.d1.3",
+     "text": "Give paracetamol and re-check in an hour",
+     "correct": false,
+     "consequence": "Treats the number, not the sepsis."
+    }
+   ]
+  },
+  {
+   "id": "pd.d2",
+   "prompt": "At 15:15 NEWS2 is 10. What now?",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "pd.d2.1",
+     "text": "Emergency call: senior surgeon and anaesthetist now; critical care aware; ABCDE; a second drip, more fluid boluses with re-checks, antibiotics if not yet given, catheter; theatre urgently after resuscitation starts",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "pd.d2.2",
+     "text": "Send him for CT first before treating",
+     "correct": false,
+     "consequence": "Resuscitation starts first."
+    }
+   ]
+  },
+  {
+   "id": "pd.d3",
+   "prompt": "If he is confused, how is consent handled?",
+   "rule": null,
+   "options": [
+    {
+     "id": "pd.d3.1",
+     "text": "If he still has capacity: a brief but complete discussion; if not, the senior follows the emergency route per local protocol",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "pd.d3.2",
+     "text": "Operate without any discussion",
+     "correct": false,
+     "consequence": "Capacity must be assessed."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "14:45: notice the trend; look at him; call urgent senior review; sepsis bundle",
+   "15:15: emergency call; ABCDE; antibiotics within the hour; source control",
+   "After treatment BP 108/64, HR 112, lactate 2.4; theatre urgently"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Does not act at 14:45",
+    "shows": "By 15:15 NEWS2 10; by 15:45 BP 82/48, confused, NEWS2 17",
+    "risk": "Septic shock",
+    "recovery": "Act now: emergency call, bundle"
+   }
+  ],
+  "missed": [
+   "Antibiotics given at 15:55 (70 minutes late) in the missed-trend path"
+  ],
+  "recovery": [
+   "Recognise late, call the senior, start the bundle, stabilise, go to theatre"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "The trend at 14:45",
+   "Early escalation"
+  ],
+  "missed": [
+   "Antibiotic timing"
+  ],
+  "priority": "Sepsis with poor circulation",
+  "why_priority": "Time-critical and life-threatening",
+  "related": "Heart rate, BP, breathing and fever are one story",
+  "independent": "None",
+  "trigger_escalation": "NEWS2 5 or more with infection; NEWS2 7 or more",
+  "if_ignored": "Septic shock and death",
+  "remember": "Look at the trend, not one number; sepsis criteria were met at 14:45"
+ },
+ "verification": [
+  "V-01",
+  "V-02",
+  "V-12"
+ ],
+ "sources": {
+  "story": "SR-2314",
+  "authored": "SR-3710",
+  "measurements": [
+   "SR-2436",
+   "SR-2437",
+   "SR-2438",
+   "SR-2439",
+   "SR-2440",
+   "SR-2441"
+  ]
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

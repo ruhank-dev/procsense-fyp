@@ -1,0 +1,636 @@
+{
+ "schema": 1,
+ "id": "STK-S1-D",
+ "walkthrough_label": "STACKED CASE S1-D - planned patient develops acute cholangitis",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Aisha Bello",
+  "sex": "F",
+  "age": 62,
+  "occupation": "school secretary",
+  "dob": "1964-01-08",
+  "mrn": "551029"
+ },
+ "spoken_identity_answer": "Aisha Bello, eighth of January 1964.",
+ "wristband": {
+  "name_text": "AISHA BELLO",
+  "dob_text": "08/01/1964",
+  "mrn_text": "MR 551029"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out, but I have been unwell.",
+ "presentation": {
+  "setting": "ward",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Aisha Bello, 62, is admitted for her booked laparoscopic cholecystectomy after three episodes of biliary colic. Since pre-assessment she has developed fever, jaundice and rigors: the elective pathway no longer simply continues."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Constant pain under the right ribs since yesterday. I was shivering last night.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Rigors last night; dark urine and pale stools; itching.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:fever",
+    "ask:yellow",
+    "ask:urine colour",
+    "ask:itching"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "High blood pressure. Gallstones on an ultrasound; three episodes of colic.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Amlodipine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 19:00 yesterday; nothing since.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 112,
+   "heart_rhythm": "regular",
+   "systolic_bp": 108,
+   "diastolic_bp": 66,
+   "respiratory_rate": 22,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 39.2,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 7,
+   "note": "BP 108/66 (usual 132/78); NEWS2 7: high risk with infection (NICE NG253).",
+   "origin": "book"
+  },
+  {
+   "time": "09:30",
+   "condition": "after_correct_action",
+   "heart_rate": 102,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 70,
+   "respiratory_rate": 20,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.4,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "After fluids and antibiotics given within the hour: responding; lactate 1.7.",
+   "origin": "authored"
+  },
+  {
+   "time": "10:30",
+   "condition": "if_no_action",
+   "heart_rate": 124,
+   "heart_rhythm": "regular",
+   "systolic_bp": 86,
+   "diastolic_bp": 50,
+   "respiratory_rate": 26,
+   "spo2": 93,
+   "oxygen": "room_air",
+   "temperature_c": 39.4,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 12,
+   "note": "Antibiotics delayed for results: BP falls to 86/50, NEWS2 rises (book: 9 or more), septic shock.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Flushed, shivering intermittently, uncomfortable but alert.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.eyes",
+   "system": "eyes",
+   "finding": "Yellow tinge to the whites of the eyes.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender under the right ribs; Murphy's sign positive; no peritonism.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "16.4",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised (TG18 criterion A)",
+   "quality": null,
+   "previous": {
+    "value": "6.9",
+    "when": "pre-assessment 2 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "142",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised (TG18 criterion A)",
+   "quality": null,
+   "previous": {
+    "value": "6",
+    "when": "pre-assessment 2 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.bili",
+   "test": "Bilirubin",
+   "value": "64",
+   "unit": "umol/L",
+   "normal_range": "3-21",
+   "flag": "high",
+   "comment": "Jaundice: obstruction (TG18 criterion B)",
+   "quality": null,
+   "previous": {
+    "value": "11",
+    "when": "pre-assessment 2 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.alp",
+   "test": "ALP",
+   "value": "410",
+   "unit": "U/L",
+   "normal_range": "30-130",
+   "flag": "high",
+   "comment": "Cholestatic pattern",
+   "quality": null,
+   "previous": {
+    "value": "102",
+    "when": "pre-assessment 2 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ggt",
+   "test": "GGT",
+   "value": "520",
+   "unit": "U/L",
+   "normal_range": "below 40",
+   "flag": "high",
+   "comment": "Cholestatic pattern",
+   "quality": null,
+   "previous": {
+    "value": "30",
+    "when": "pre-assessment 2 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.alt",
+   "test": "ALT",
+   "value": "210",
+   "unit": "U/L",
+   "normal_range": "7-40",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": {
+    "value": "29",
+    "when": "pre-assessment 2 months ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "2.6",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Early hypoperfusion (Sepsis-3 criterion 2 or more)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "book"
+  },
+  {
+   "id": "lab.lactate2",
+   "test": "Lactate (repeat after fluids)",
+   "value": "1.7",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "normal",
+   "comment": "Responding",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 90,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "96",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Kidney strain",
+   "quality": null,
+   "previous": {
+    "value": "70",
+    "when": "her baseline"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.inr",
+   "test": "INR",
+   "value": "1.3",
+   "unit": "ratio",
+   "normal_range": "0.8-1.2",
+   "flag": "high",
+   "comment": "Acceptable; monitor",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.cultures",
+   "test": "Blood cultures",
+   "value": "Pending",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "abnormal",
+   "comment": "Taken before antibiotics; result in 24 to 48 hours",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 0,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "7",
+   "note": "High risk (7 or more) with infection: NICE NG253 high-risk tier",
+   "origin": "book"
+  },
+  {
+   "name": "TG18 cholangitis",
+   "value": "Definite: A + B + C; Grade II",
+   "note": "WBC above 12 and fever 39 or more; no organ failure",
+   "origin": "book"
+  },
+  {
+   "name": "Bile-duct-stone risk",
+   "value": "High",
+   "note": "Cholangitis and a duct 10 mm",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s1d.sepsis",
+   "type": "life_threat",
+   "label": "High-risk sepsis (NEWS2 7, lactate 2.6)",
+   "rank": 1,
+   "why": "Circulation threat; antibiotics and fluids are time-critical within 1 hour.",
+   "expected_actions": [
+    "Call the senior",
+    "IV access; blood cultures; lactate",
+    "Antibiotics and fluids within 1 hour by the clinician's order"
+   ]
+  },
+  {
+   "id": "s1d.duct",
+   "type": "pathway_changing",
+   "label": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)",
+   "rank": 2,
+   "why": "Source control, biliary drainage, is the definitive treatment.",
+   "expected_actions": [
+    "Request urgent liver tests and ultrasound",
+    "Refer to gastroenterology for ERCP",
+    "The elective list is cancelled"
+   ]
+  },
+  {
+   "id": "s1d.aki",
+   "type": "optimisable",
+   "label": "Early kidney strain",
+   "rank": 3,
+   "why": "Responds to resuscitation; monitor.",
+   "expected_actions": [
+    "Watch urine output",
+    "Repeat creatinine"
+   ]
+  },
+  {
+   "id": "s1d.chole",
+   "type": "information_only",
+   "label": "Cholecystectomy",
+   "rank": 4,
+   "why": "Planned later, after drainage and recovery.",
+   "expected_actions": [
+    "Re-list per the senior surgeon"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s1d.d1",
+   "prompt": "Shivering, T 39.2, HR 112, NEWS2 7 in a planned patient. What now?",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "s1d.d1.1",
+     "text": "Call the senior; IV access, blood cultures, lactate: this is possible sepsis (NEWS2 7)",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s1d.d1.2",
+     "text": "Give paracetamol and continue the list",
+     "correct": false,
+     "consequence": "A septic patient would be anaesthetised."
+    },
+    {
+     "id": "s1d.d1.3",
+     "text": "Wait for the results before acting",
+     "correct": false,
+     "consequence": "Time-critical within 1 hour."
+    }
+   ]
+  },
+  {
+   "id": "s1d.d2",
+   "prompt": "Yellow eyes and dark urine. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1d.d2.1",
+     "text": "Biliary obstruction: request liver tests and an ultrasound urgently and tell the senior; cholestatic tests plus CBD 10 mm make cholangitis",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s1d.d2.2",
+     "text": "Treat only the fever",
+     "correct": false,
+     "consequence": "Misses the source."
+    }
+   ]
+  },
+  {
+   "id": "s1d.d3",
+   "prompt": "Lactate 2.6. What now?",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "s1d.d3.1",
+     "text": "Hypoperfusion: flag fluids and antibiotics within 1 hour (prescribed by the clinician) and repeat the lactate after fluids; it falls to 1.7",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s1d.d3.2",
+     "text": "Ignore it because the BP is acceptable",
+     "correct": false,
+     "consequence": "Cryptic shock."
+    }
+   ]
+  },
+  {
+   "id": "s1d.d4",
+   "prompt": "TG18 Grade II acute cholangitis. What now?",
+   "rule": "duct_stone_high_risk",
+   "options": [
+    {
+     "id": "s1d.d4.1",
+     "text": "Refer for biliary drainage (ERCP) by gastroenterology; the elective list is cancelled; the senior sets the timing",
+     "correct": true,
+     "consequence": "Matches TG18 (early drainage for Grade II)."
+    },
+    {
+     "id": "s1d.d4.2",
+     "text": "Proceed with the cholecystectomy today",
+     "correct": false,
+     "consequence": "The elective operation does not simply continue."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Notice fever in a planned patient",
+   "NEWS2 7 with infection: call the senior; sepsis bundle",
+   "Liver tests and ultrasound",
+   "TG18 Grade II: ERCP pathway",
+   "Antibiotics and fluids within 1 hour; repeat lactate"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Gives paracetamol and continues the list",
+    "shows": "The anaesthetist finds T 39 at Sign In",
+    "risk": "A septic patient anaesthetised",
+    "recovery": "Case stopped; escalate"
+   },
+   {
+    "mistake": "Delays antibiotics waiting for results",
+    "shows": "NEWS2 rises to 9; BP 86/50",
+    "risk": "Septic shock",
+    "recovery": "Give within the hour"
+   }
+  ],
+  "missed": [
+   "Fever unaddressed: rigors worsen; BP falls; septic shock"
+  ],
+  "recovery": [
+   "Recognise sepsis late, call the senior, start the bundle; stabilises; ERCP"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Fever and jaundice pattern recognised",
+   "Sepsis bundle in the hour"
+  ],
+  "missed": [
+   "Planned patients can arrive unwell"
+  ],
+  "priority": "High-risk sepsis",
+  "why_priority": "Time-critical",
+  "related": "Fever, cholestatic tests and the dilated duct share one source: the bile duct",
+  "independent": "None",
+  "trigger_escalation": "Fever in an elective patient; NEWS2 7",
+  "if_ignored": "Septic shock",
+  "remember": "Check temperature and jaundice in every gallstone patient"
+ },
+ "verification": [
+  "V-01",
+  "V-02",
+  "V-03",
+  "V-04",
+  "V-05"
+ ],
+ "sources": {
+  "story": "SR-2328",
+  "authored": "SR-3715"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

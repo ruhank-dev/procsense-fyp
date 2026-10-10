@@ -1,0 +1,812 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schema/case_file.schema.json",
+  "title": "ProcSense playable case file",
+  "description": "The full content of one P0 case: who the patient is, what is hidden until asked, what each examination and test shows, the expected decisions and the debrief. Built by tools/content/build_case_files.py from tools/content/cases/. Picture results are NOT stored here: content/case_imaging.csv and content/whatif_imaging.csv say which finding a test returns. Every item says whether the walkthrough states it ('book') or it was authored to make the case playable ('authored'); both cite register rows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "id",
+    "walkthrough_label",
+    "scenario",
+    "tier",
+    "synthetic",
+    "status",
+    "reference_date",
+    "identity",
+    "spoken_identity_answer",
+    "wristband",
+    "allergies",
+    "allergy_answer",
+    "reason_answer",
+    "presentation",
+    "history",
+    "observations",
+    "examination",
+    "results",
+    "scores",
+    "problems",
+    "decisions",
+    "expected_end_state",
+    "paths",
+    "debrief",
+    "verification",
+    "sources"
+  ],
+  "properties": {
+    "schema": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^(VAR|STK)-S[12]-[A-Z]+$"
+    },
+    "walkthrough_label": {
+      "type": "string"
+    },
+    "scenario": {
+      "enum": [
+        "S1",
+        "S2"
+      ]
+    },
+    "tier": {
+      "const": "P0"
+    },
+    "synthetic": {
+      "const": true
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "APPROVED_FOR_TRAINING",
+        "APPROVED_FOR_ASSESSMENT"
+      ]
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "by",
+        "date",
+        "note"
+      ],
+      "properties": {
+        "by": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "reference_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "base_card": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "id of the Core-loaded case card (content/cases) this file extends; identity here must agree with it"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "full_name",
+        "sex",
+        "age",
+        "occupation",
+        "dob",
+        "mrn"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "sex": {
+          "enum": [
+            "F",
+            "M"
+          ]
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "occupation": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date"
+        },
+        "mrn": {
+          "type": "string"
+        }
+      }
+    },
+    "spoken_identity_answer": {
+      "type": "string"
+    },
+    "wristband": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name_text",
+            "dob_text",
+            "mrn_text"
+          ],
+          "properties": {
+            "name_text": {
+              "type": "string"
+            },
+            "dob_text": {
+              "type": "string"
+            },
+            "mrn_text": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "allergies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "substance",
+          "reaction"
+        ],
+        "properties": {
+          "substance": {
+            "type": "string"
+          },
+          "reaction": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "allergy_answer": {
+      "type": "string"
+    },
+    "reason_answer": {
+      "type": "string"
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "setting",
+        "time_now",
+        "summary"
+      ],
+      "properties": {
+        "setting": {
+          "enum": [
+            "ward",
+            "pre-assessment",
+            "emergency department"
+          ]
+        },
+        "time_now": {
+          "$ref": "#/$defs/clock"
+        },
+        "surgery_time": {
+          "$ref": "#/$defs/clock"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "topic",
+          "answer",
+          "volunteered",
+          "disclose_on",
+          "origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "volunteered": {
+            "type": "boolean"
+          },
+          "disclose_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ask:<topic or keyword>; empty when volunteered"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          },
+          "variant": {
+            "type": "string",
+            "description": "present only for items that belong to one variant of the case (for example B2, C2, D2); absent = every variant"
+          }
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "time",
+          "condition",
+          "heart_rate",
+          "heart_rhythm",
+          "systolic_bp",
+          "diastolic_bp",
+          "respiratory_rate",
+          "spo2",
+          "oxygen",
+          "temperature_c",
+          "acvpu",
+          "pain_score",
+          "news2",
+          "note",
+          "origin"
+        ],
+        "properties": {
+          "time": {
+            "$ref": "#/$defs/clock"
+          },
+          "condition": {
+            "enum": [
+              "initial",
+              "after_correct_action",
+              "if_no_action",
+              "variant"
+            ]
+          },
+          "heart_rate": {
+            "type": "number"
+          },
+          "heart_rhythm": {
+            "enum": [
+              "regular",
+              "irregular"
+            ]
+          },
+          "systolic_bp": {
+            "type": "number"
+          },
+          "diastolic_bp": {
+            "type": "number"
+          },
+          "respiratory_rate": {
+            "type": "number"
+          },
+          "spo2": {
+            "type": "number"
+          },
+          "oxygen": {
+            "enum": [
+              "room_air",
+              "supplemental"
+            ]
+          },
+          "temperature_c": {
+            "type": "number"
+          },
+          "acvpu": {
+            "enum": [
+              "A",
+              "C",
+              "V",
+              "P",
+              "U"
+            ]
+          },
+          "pain_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "news2": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "recomputed from content/news2_scoring.csv by the builder; the book's printed total, where it differs, is in note"
+          },
+          "note": {
+            "type": "string"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          },
+          "variant": {
+            "type": "string",
+            "description": "present only for items that belong to one variant of the case (for example B2, C2, D2); absent = every variant"
+          }
+        }
+      }
+    },
+    "examination": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "system",
+          "finding",
+          "abnormal",
+          "disclose_on",
+          "origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "system": {
+            "type": "string"
+          },
+          "finding": {
+            "type": "string"
+          },
+          "abnormal": {
+            "type": "boolean"
+          },
+          "disclose_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          }
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "test",
+          "value",
+          "unit",
+          "normal_range",
+          "flag",
+          "comment",
+          "previous",
+          "minutes_to_result",
+          "origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "test": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "normal_range": {
+            "type": "string"
+          },
+          "flag": {
+            "enum": [
+              "normal",
+              "high",
+              "low",
+              "critical_high",
+              "critical_low",
+              "abnormal",
+              "positive",
+              "negative"
+            ]
+          },
+          "comment": {
+            "type": "string"
+          },
+          "quality": {
+            "enum": [
+              null,
+              "haemolysed",
+              "drip_arm",
+              "wrong_tube_edta",
+              "clotted",
+              "lipaemic"
+            ]
+          },
+          "previous": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "value",
+                  "when"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  },
+                  "when": {
+                    "type": "string"
+                  }
+                }
+              }
+            ],
+            "description": "previous values are always authored (the book gives none); they cite the case's authoring row"
+          },
+          "minutes_to_result": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          },
+          "source_row": {
+            "type": "string",
+            "pattern": "^SR-[0-9]{4}$"
+          },
+          "variant": {
+            "type": "string",
+            "description": "present only for items that belong to one variant of the case (for example B2, C2, D2); absent = every variant"
+          }
+        }
+      }
+    },
+    "scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "value",
+          "note",
+          "origin"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          }
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "label",
+          "rank",
+          "why",
+          "expected_actions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "life_threat",
+              "safety_blocker",
+              "time_critical",
+              "pathway_changing",
+              "optimisable",
+              "information_only"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "why": {
+            "type": "string"
+          },
+          "expected_actions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "prompt",
+          "rule",
+          "options"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "rule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "options": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "text",
+                "correct",
+                "consequence"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "correct": {
+                  "type": "boolean"
+                },
+                "consequence": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "variant": {
+            "type": "string",
+            "description": "present only for items that belong to one variant of the case (for example B2, C2, D2); absent = every variant"
+          }
+        }
+      }
+    },
+    "expected_end_state": {
+      "enum": [
+        "ready",
+        "postponed",
+        "redirected",
+        "delayed",
+        "failure"
+      ]
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect",
+        "missed",
+        "recovery"
+      ],
+      "properties": {
+        "correct": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "incorrect": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mistake",
+              "shows",
+              "risk",
+              "recovery"
+            ],
+            "properties": {
+              "mistake": {
+                "type": "string"
+              },
+              "shows": {
+                "type": "string"
+              },
+              "risk": {
+                "type": "string"
+              },
+              "recovery": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "missed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recovery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "debrief": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recognised",
+        "missed",
+        "priority",
+        "why_priority",
+        "related",
+        "independent",
+        "trigger_escalation",
+        "if_ignored",
+        "remember"
+      ],
+      "properties": {
+        "recognised": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "type": "string"
+        },
+        "why_priority": {
+          "type": "string"
+        },
+        "related": {
+          "type": "string"
+        },
+        "independent": {
+          "type": "string"
+        },
+        "trigger_escalation": {
+          "type": "string"
+        },
+        "if_ignored": {
+          "type": "string"
+        },
+        "remember": {
+          "type": "string"
+        }
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^V-[0-9]{2}$"
+      },
+      "description": "ids in docs/research/clinical_verification.md"
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "story",
+        "authored"
+      ],
+      "properties": {
+        "story": {
+          "type": "string",
+          "pattern": "^SR-[0-9]{4}$"
+        },
+        "authored": {
+          "type": "string",
+          "pattern": "^SR-[0-9]{4}$"
+        },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SR-[0-9]{4}$"
+          }
+        }
+      }
+    },
+    "variant_end_states": {
+      "type": "object",
+      "description": "end state per variant where it differs from expected_end_state",
+      "additionalProperties": {
+        "enum": [
+          "ready",
+          "postponed",
+          "redirected",
+          "delayed",
+          "failure"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "clock": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "origin": {
+      "enum": [
+        "book",
+        "authored"
+      ],
+      "description": "book = stated by the walkthrough (cites the case's story or measurement rows); authored = added to make the case playable (cites the case's authoring row)"
+    }
+  }
+}

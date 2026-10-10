@@ -22,10 +22,10 @@
   "note": "All 15 steps, question by question (270 answers), in steps_21_questions.csv"
  },
  "12": {
-  "note": "Example Patient A only (VAR-S1-A); the other S1 cases come with p0-medical-research-data-s10"
+  "note": "Example Patient A plus the other S1 cases as playable case files (content/case_files); the card for Core is VAR-S1-A only"
  },
  "13": {
-  "note": "Case seeds, measurements and the Usman timeline (case_seeds, case_measurements, case_timelines); the remaining content authoring is listed in docs/research/case_content_gaps.md"
+  "note": "Case seeds, measurements, the Usman timeline and the six S2 P0 cases as playable case files (content/case_files)"
  },
  "14": {
   "note": "All 47 what-ifs, field by field (whatif_library.csv); case bindings come with the case content (s10 to s12)"

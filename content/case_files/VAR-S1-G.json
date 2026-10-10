@@ -1,0 +1,314 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-G",
+ "walkthrough_label": "Patient S1-G - ate breakfast",
+ "scenario": "S1",
+ "tier": "P0",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Sana Farooq",
+  "sex": "F",
+  "age": 39,
+  "occupation": "accountant",
+  "dob": "1987-07-12",
+  "mrn": "719420"
+ },
+ "spoken_identity_answer": "Sana Farooq, twelfth of July 1987.",
+ "wristband": {
+  "name_text": "SANA FAROOQ",
+  "dob_text": "12/07/1987",
+  "mrn_text": "MR 719420"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "09:00",
+  "summary": "Ms Sana, 39, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Attacks of pain under the ribs after meals.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Toast and tea with milk at 07:00 this morning.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Tea with milk at 07:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Last period 2 weeks ago; she agrees to a test.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 72,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 74,
+   "respiratory_rate": 14,
+   "spo2": 99,
+   "oxygen": "room_air",
+   "temperature_c": 36.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Baseline vital signs, all normal.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Soft; no tenderness.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.upt",
+   "test": "Urine pregnancy test",
+   "value": "Negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "negative",
+   "comment": "Not pregnant",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "Fasting",
+   "value": "Toast and milky tea = light meal: 6 hours needed, so not safe until 13:00",
+   "note": "Fasting rule: clear liquids 2 h, light meal (milk counts as food) 6 h, heavy meal 8 h",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "g.fasting",
+   "type": "safety_blocker",
+   "label": "Fasting rule broken: a light meal 2 hours before surgery",
+   "rank": 1,
+   "why": "A full stomach risks aspiration under anaesthetic.",
+   "expected_actions": [
+    "Record the exact time and what she ate",
+    "Tell the anaesthetist immediately and honestly",
+    "Do not round the time"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "g.d1",
+   "prompt": "She ate toast and milky tea at 07:00; surgery is at 09:00. What do you do?",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "g.d1.1",
+     "text": "Tell the anaesthetist at once: a light meal needs 6 hours, so it is not safe until 13:00; the likely outcome is the end of the list or postponement",
+     "correct": true,
+     "consequence": "Matches the book and the ASA fasting guideline."
+    },
+    {
+     "id": "g.d1.2",
+     "text": "Say nothing, because it was only toast",
+     "correct": false,
+     "consequence": "Milk counts as food; the rule is 6 hours."
+    },
+    {
+     "id": "g.d1.3",
+     "text": "Record 'fasted' to keep the list on time",
+     "correct": false,
+     "consequence": "Falsifying the time is a safety failure."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "delayed",
+ "paths": {
+  "correct": [
+   "Ask the exact time and what she ate",
+   "Apply the 6 hour light meal rule: 13:00",
+   "Tell the anaesthetist immediately",
+   "Move to the end of the list or postpone"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Records 'fasted' to avoid trouble",
+    "shows": "The anaesthetist asks at Sign In",
+    "risk": "Aspiration under anaesthetic",
+    "recovery": "Correct the record; tell the anaesthetist"
+   }
+  ],
+  "missed": [
+   "Not asking about the last food"
+  ],
+  "recovery": [
+   "Ask and record now"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Honest report of the meal",
+   "Rule applied"
+  ],
+  "missed": [
+   "Last food not asked"
+  ],
+  "priority": "A breached fasting rule",
+  "why_priority": "Aspiration risk",
+  "related": "Meal, milk and timing",
+  "independent": "None",
+  "trigger_escalation": "Any food or milky drink inside the fasting window",
+  "if_ignored": "Aspiration pneumonitis",
+  "remember": "Milk counts as food; record exact times"
+ },
+ "verification": [
+  "V-09"
+ ],
+ "sources": {
+  "story": "SR-2306",
+  "authored": "SR-3706"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}
