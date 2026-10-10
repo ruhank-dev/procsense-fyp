@@ -146,7 +146,7 @@ def mk(id, label, sc, who, summary, complaint, hx, vitals, exam, results, scores
             answers[k], origin[k] = v[0], v[1]
         else:
             answers[k] = v
-    last_food = answers.pop("last_food", "Dinner at 20:00 yesterday." if sc == "S1" else "Lunch at 12:00 today.")
+    last_food = answers.pop("last_food", "Dinner at 20:00 yesterday." if sc == "S1" else "Lunch at 12:00 yesterday.")
     last_drink = answers.pop("last_drink", "Water at 06:30.")
     history_ = history(complaint, red_flags=answers.pop("red_flags", "No fever, no yellow eyes."), past=answers.pop("past_history", "None."), medicines=answers.pop("medicines", "None."),
                        herbal=answers.pop("herbal", "None."), prev_an=answers.pop("previous_anaesthetic", "No previous anaesthetics."), fam_an=answers.pop("family_anaesthetic", "No anaesthetic problems in the family."),

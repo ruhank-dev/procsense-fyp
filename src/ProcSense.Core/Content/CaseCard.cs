@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -57,6 +57,7 @@ namespace ProcSense.Core.Content
             FlowMaps = flowMaps ?? ProcSense.Core.Workflow.FlowMaps.Empty;
             Exam = exam ?? new ExamEffects(0, "", 0, 0, "", "");
             Scores = scores ?? ProcSense.Core.Clinical.Scores.ScoreTables.Empty;
+            Fasting = fasting ?? ProcSense.Core.Clinical.FastingRules.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -72,6 +73,8 @@ namespace ProcSense.Core.Content
         public ExamEffects Exam { get; }
         /// <summary>The score tables the clinical calculators read (content/scores/scores.json).</summary>
         public ProcSense.Core.Clinical.Scores.ScoreTables Scores { get; }
+        /// <summary>The fasting hours by kind of intake (content/fasting/fasting.json).</summary>
+        public ProcSense.Core.Clinical.FastingRules Fasting { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
         public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }

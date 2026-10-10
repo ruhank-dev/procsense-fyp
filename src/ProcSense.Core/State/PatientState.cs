@@ -75,6 +75,10 @@ namespace ProcSense.Core.State
 
         public void SetAirway(string item, string text) => _airway[item] = text;
 
+        /// <summary>The fasting status once both the last food and the last drink are known (null until then), and the clock time it will be safe ("" when it already is).</summary>
+        public ProcSense.Core.Clinical.FastingResult? Fasting { get; set; }
+        public string FastingSafeFrom { get; set; } = "";
+
         private readonly SortedSet<string> _flags = new SortedSet<string>(StringComparer.Ordinal);
 
         /// <summary>Named facts about what has happened ("introduced", "risk.wrong_blood"...). Rules set and read them.</summary>

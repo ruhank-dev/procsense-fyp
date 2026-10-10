@@ -100,7 +100,7 @@ namespace ProcSense.Core.Content
             for (int k = 0; k < historyList.Count; k++)
             {
                 var h = new JsonObj(historyList[k], JsonObj.Index("history", k));
-                history.Add(new CaseFileHistory(h.Str("id"), h.Str("topic"), h.Str("answer"), h.Bool("volunteered"), Strings(h, "disclose_on"), h.Enum("origin", Origins), Optional(h, "variant")));
+                history.Add(new CaseFileHistory(h.Str("id"), h.Str("topic"), h.Str("answer"), h.Bool("volunteered"), Strings(h, "disclose_on"), h.Enum("origin", Origins), Optional(h, "variant"), Intake(h)));
                 h.Finish();
             }
 
@@ -298,6 +298,15 @@ namespace ProcSense.Core.Content
             var seen = new HashSet<string>(StringComparer.Ordinal);
             foreach (var id in ids)
                 if (!seen.Add(id)) throw new ContentException(where + ": the id '" + id + "' is used twice");
+        }
+
+        private static CaseFileIntake? Intake(JsonObj h)
+        {
+            if (!h.Has("intake")) return null;
+            var i = h.Obj("intake");
+            var intake = new CaseFileIntake(i.Enum("kind", "none", "unknown", "clear_liquids", "milk", "light_meal", "heavy_meal"), i.Has("hours_before_now") ? i.Num("hours_before_now") : (double?)null);
+            i.Finish();
+            return intake;
         }
 
         private static string? Optional(JsonObj o, string key) => o.Has(key) ? o.Str(key) : null;

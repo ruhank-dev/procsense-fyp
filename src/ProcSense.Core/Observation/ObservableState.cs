@@ -21,6 +21,9 @@ namespace ProcSense.Core.Observation
     public sealed record ObservedFinding(string Region, string Text);
     public sealed record ObservedAirway(string Item, string Text);
 
+    /// <summary>The fasting chip: unknown until both food and drink are asked, then meets, breach or uncertain; SafeFrom is the clock time the rule will be met ("" when it already is); Plan is "rsi" for an emergency patient with a full stomach.</summary>
+    public sealed record FastingChip(string Status, string SafeFrom, string Plan);
+
     public sealed record DecisionOption(string Id, string Label);
 
     /// <summary>A decision the trainee has to make. The expected option is never part of the card.</summary>
@@ -34,7 +37,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -137,7 +140,10 @@ namespace ProcSense.Core.Observation
                 sb.Append(",\"text\":"); JsonText.Quote(sb, Airway[i].Text);
                 sb.Append('}');
             }
-            sb.Append(']');
+            sb.Append("],\"fasting\":{\"status\":"); JsonText.Quote(sb, Fasting.Status);
+            sb.Append(",\"safe_from\":"); JsonText.Quote(sb, Fasting.SafeFrom);
+            sb.Append(",\"plan\":"); JsonText.Quote(sb, Fasting.Plan);
+            sb.Append('}');
             return sb.Append('}').ToString();
         }
 
@@ -228,7 +234,7 @@ namespace ProcSense.Core.Observation
                 practice && s.Tracker != null ? s.Tracker.Hint() : "",
                 practice ? BlockMessage(s) : "",
                 practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
-                BuildFindings(c), BuildAirway(c));
+                BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""));
         }
     }
 }

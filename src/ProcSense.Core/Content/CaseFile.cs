@@ -9,7 +9,9 @@ namespace ProcSense.Core.Content
 
     public sealed record CaseFileIdentity(string Title, string FullName, string Sex, long Age, string Occupation, string Dob, string Mrn);
     public sealed record CaseFilePresentation(string Setting, TimeSpan TimeNow, TimeSpan? SurgeryTime, string Summary);
-    public sealed record CaseFileHistory(string Id, string Topic, string Answer, bool Volunteered, IReadOnlyList<string> DiscloseOn, string Origin, string? Variant);
+    /// <summary>What the patient last ate or drank (kind: none, unknown, clear_liquids, milk, light_meal or heavy_meal) and how long before the case's 'now'; null hours = not stated.</summary>
+    public sealed record CaseFileIntake(string Kind, double? HoursBeforeNow);
+    public sealed record CaseFileHistory(string Id, string Topic, string Answer, bool Volunteered, IReadOnlyList<string> DiscloseOn, string Origin, string? Variant, CaseFileIntake? Intake = null);
 
     public sealed record CaseFileObservation(
         TimeSpan Time, string Condition, double HeartRate, string HeartRhythm, double SystolicBp, double DiastolicBp, double RespiratoryRate, double Spo2, string Oxygen,

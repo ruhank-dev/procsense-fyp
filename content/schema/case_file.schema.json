@@ -260,6 +260,30 @@
           "origin": {
             "$ref": "#/$defs/origin"
           },
+          "intake": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "none",
+                  "unknown",
+                  "clear_liquids",
+                  "milk",
+                  "light_meal",
+                  "heavy_meal"
+                ]
+              },
+              "hours_before_now": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "description": "Only on last_food and last_drink: what the patient took and how many hours before the case's 'now'. Worked out from the answer when the file is built (tools/content/fasting_intake.py); read by the fasting rule."
+          },
           "variant": {
             "type": "string",
             "description": "present only for items that belong to one variant of the case (for example B2, C2, D2); absent = every variant"

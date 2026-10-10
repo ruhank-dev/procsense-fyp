@@ -157,7 +157,11 @@
     "ask:when did you eat",
     "ask:fasting"
    ],
-   "origin": "book"
+   "origin": "book",
+   "intake": {
+    "kind": "unknown",
+    "hours_before_now": 10.0
+   }
   },
   {
    "id": "last_drink",
@@ -168,7 +172,11 @@
     "ask:last drink",
     "ask:fasting"
    ],
-   "origin": "authored"
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 4.0
+   }
   },
   {
    "id": "pregnancy",

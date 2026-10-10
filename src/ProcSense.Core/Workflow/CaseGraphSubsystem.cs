@@ -56,6 +56,7 @@ namespace ProcSense.Core.Workflow
                 ["sensors"] = sensors,
                 ["measured"] = measured,
                 ["findings"] = findings,
+                ["fasting"] = c.Fasting?.Status ?? "unknown",
                 ["airway"] = airway,
                 ["exam_total"] = (long)c.ExamTotal,
                 ["exam_done"] = (long)c.Findings.Count(f => !f.Region.StartsWith(AirwayRegion, StringComparison.Ordinal)),

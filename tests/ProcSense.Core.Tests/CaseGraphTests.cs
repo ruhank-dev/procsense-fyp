@@ -58,7 +58,7 @@ namespace ProcSense.Core.Tests
             SessionFile.Play(s, script);
 
             var goals = s.Observable.Goals;
-            Assert.Equal(new[] { "G-S1-IDENTITY", "G-S1-ALLERGY", "G-S1-REASON", "G-S1-ADULT", "G-EXAM-PERMISSION", "G-EXAM-REGIONS", "G-EXAM-AIRWAY" }, goals.Select(g => g.Id));   // G-SENIOR-NOW only appears when a rigid abdomen is found
+            Assert.Equal(new[] { "G-S1-IDENTITY", "G-S1-ALLERGY", "G-S1-REASON", "G-S1-ADULT", "G-FASTING", "G-EXAM-PERMISSION", "G-EXAM-REGIONS", "G-EXAM-AIRWAY" }, goals.Select(g => g.Id));   // G-SENIOR-NOW only appears when a rigid abdomen is found
             Assert.All(goals, g => Assert.Equal("complete", g.State));
             Assert.All(goals, g => Assert.NotEqual("", g.At));
         }

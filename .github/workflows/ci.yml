@@ -125,6 +125,9 @@ jobs:
       - name: Score tables are up to date (AIR, AAS, Alvarado, TG18, ASGE, STOP-Bang, AKI)
         run: uv run --project tools tools/content/build_scores.py --check
 
+      - name: Fasting table is up to date (clear 2 h, milk 6 h, light meal 6 h, heavy meal 8 h)
+        run: uv run --project tools tools/content/build_fasting.py --check
+
       - name: Case file tests
         run: uv run --project tools tools/content/test_case_files.py
 

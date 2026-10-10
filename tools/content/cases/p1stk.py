@@ -155,7 +155,7 @@ CASES["STK-S2-D"] = mk(
     "Mrs Maria Santos, 29, is 18 weeks pregnant. 20 hours of right-sided pain and nausea. HR 108, BP 112/68, T 37.9. WBC 15.8, CRP 64. Ultrasound did not see the appendix.",
     "Pain on my right side since yesterday, and I feel sick.",
     {"red_flags": "Baby is moving. No bleeding or discharge. No burning when I pass urine.", "past_history": "One earlier pregnancy, normal.", "pregnancy": "18 weeks pregnant, second pregnancy; antenatal record normal.", "medicines": "Pregnancy vitamins.",
-     "last_food": "Breakfast at 08:00.", "last_drink": "Tea at 10:30."},
+     "last_food": "Breakfast at 07:00 today.", "last_drink": "Tea at 07:30 today."},
     [O("12:00", 108, 112, 68, 18, 98, 37.9, pain=6, note="Pregnancy raises the heart rate by about 10 to 20; 108 is higher than pregnancy explains. Maternity early-warning score is used; NEWS2 shown for reference.", origin="book")],
     [E("ex.general", "general", "Uncomfortable, alert.", True), E("ex.abdomen", "abdomen", "Tender on the right, higher than usual for appendicitis.", True, "book"), E("ex.obs", "obstetric", "Fetal heartbeat heard; uterus soft.", False)],
     [R("lab.wbc", "WBC", 15.8, "x10^9/L", "4.0-11.0", "high", "Partly raised by pregnancy; still supports inflammation", None, 45, origin="book"), R("lab.crp", "CRP", 64, "mg/L", "below 5", "high", "Raised", None, 45, origin="book"),

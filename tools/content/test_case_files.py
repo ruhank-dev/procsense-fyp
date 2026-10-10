@@ -25,6 +25,38 @@ def broken(case_id, change):
     return chk.problems(c, CTX, list(CASES.values()))
 
 
+class FastingIntake(unittest.TestCase):
+    """tools/content/fasting_intake.py reads the wording of last food and last drink once, when the files are built."""
+
+    def test_the_walkthrough_cases(self):
+        import fasting_intake as fi
+        self.assertEqual(fi.intake("last_food", "Dinner at 21:00 last night (rice and chicken).", "08:00"), {"kind": "heavy_meal", "hours_before_now": 11.0})
+        self.assertEqual(fi.intake("last_drink", "Water at 06:30.", "08:00"), {"kind": "clear_liquids", "hours_before_now": 1.5})
+        self.assertEqual(fi.intake("last_food", "Toast and tea with milk at 07:00 this morning.", "08:00"), {"kind": "light_meal", "hours_before_now": 1.0})
+        self.assertEqual(fi.intake("last_drink", "Tea with milk at 07:00.", "08:00"), {"kind": "milk", "hours_before_now": 1.0})
+        self.assertEqual(fi.intake("last_food", "Biryani at 12:00 today, about 2 hours ago.", "14:00"), {"kind": "heavy_meal", "hours_before_now": 2.0})
+
+    def test_other_ways_of_saying_when(self):
+        import fasting_intake as fi
+        self.assertEqual(fi.intake("last_food", "Dry toast yesterday at noon; nothing since.", "08:00")["hours_before_now"], 20.0)
+        self.assertEqual(fi.intake("last_food", "Toast two days ago; sips of water today.", "14:00"), {"kind": "light_meal", "hours_before_now": 48.0})
+        self.assertEqual(fi.intake("last_drink", "Sips of water 3 hours ago.", "08:00"), {"kind": "clear_liquids", "hours_before_now": 3.0})
+        self.assertEqual(fi.intake("last_food", "A kebab 3 hours ago.", "08:00"), {"kind": "heavy_meal", "hours_before_now": 3.0})
+
+    def test_what_is_not_clear_is_not_guessed(self):
+        import fasting_intake as fi
+        self.assertEqual(fi.intake("last_food", "Breakfast at 08:00.", "13:00"), {"kind": "unknown", "hours_before_now": 5.0})
+        self.assertEqual(fi.intake("last_food", "Unknown; probably a few hours ago.", "08:00"), {"kind": "unknown"})
+        self.assertEqual(fi.intake("last_food", "Nothing since lunch.", "08:00"), {"kind": "none"})
+
+    def test_every_case_records_it_and_none_has_a_time_today_that_is_later_than_now(self):
+        import build_case_files
+        for k, c in build_case_files.build().items():
+            for h in c["history"]:
+                if h["topic"] in ("last_food", "last_drink"):
+                    self.assertIn("intake", h, k)
+
+
 class TheFiftyThreeCases(unittest.TestCase):
     def test_exactly_the_53_cases_exist_in_three_tiers(self):
         self.assertEqual(len(CASES), 53)

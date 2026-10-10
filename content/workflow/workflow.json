@@ -49,6 +49,18 @@
       "refs": [ "SR-0041" ]
     },
     {
+      "id": "G-FASTING",
+      "step": 2,
+      "label": "Fasting checked",
+      "hint": "Ask when the patient last ate and last drank, and compare with the time of anaesthesia.",
+      "applies_if": true,
+      "complete_if": { "!=": [ { "var": "fasting" }, "unknown" ] },
+      "after": [ "G-S1-IDENTITY" ],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0050" ]
+    },
+    {
       "id": "G-EXAM-PERMISSION",
       "step": 4,
       "label": "Permission asked before examining",
@@ -98,6 +110,19 @@
       "refs": [ "SR-0048" ]
     }
   ],
-  "decision_points": [],
+  "decision_points": [
+    {
+      "id": "DP-S1-FAST",
+      "step": 2,
+      "label": "The fasting time has not been reached",
+      "trigger": { "in": [ "fasting.breach", { "var": "flags" } ] },
+      "options": [
+        { "id": "proceed", "label": "Carry on as planned", "set_flags": [ "fasting.proceeded_despite_breach" ], "events_enable": [], "score_item": "CRITICAL.proceed_despite_fasting_breach" },
+        { "id": "inform_and_delay", "label": "Tell the anaesthetist and delay the operation until the fasting time is met", "set_flags": [ "fasting.anaesthetist_informed" ], "events_enable": [ "E-OT-DELAY" ], "score_item": "fasting.informed_and_delayed" }
+      ],
+      "expected": [ "inform_and_delay" ],
+      "refs": [ "SR-0051" ]
+    }
+  ],
   "blockers": []
 }

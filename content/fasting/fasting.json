@@ -1,0 +1,27 @@
+{
+ "classes": {
+  "clear_liquids": {
+   "hours": 2.0,
+   "ref": "SR-0820"
+  },
+  "milk": {
+   "hours": 6.0,
+   "ref": "SR-0822"
+  },
+  "light_meal": {
+   "hours": 6.0,
+   "ref": "SR-0823"
+  },
+  "heavy_meal": {
+   "hours": 8.0,
+   "ref": "SR-0824"
+  }
+ },
+ "unknown_kind_hours": 8.0,
+ "refs": [
+  "SR-0827",
+  "SR-0828",
+  "SR-0825",
+  "SR-0826"
+ ]
+}

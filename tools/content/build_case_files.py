@@ -20,6 +20,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "cases"))
 import case_file_checks as chk  # noqa: E402
 import news2  # noqa: E402
+import fasting_intake  # noqa: E402
 import lib  # noqa: E402
 import s1, s1b, s2, stk, p1v, p1stk, p2  # noqa: E402,F401
 
@@ -52,6 +53,9 @@ def fill(c: dict, ctx: dict) -> dict:
         o["news2"] = news2.score(o["heart_rate"], o["systolic_bp"], o["respiratory_rate"], o["spo2"], o["temperature_c"], o["acvpu"], o["oxygen"])
     pres = c["presentation"]
     c["presentation"] = {"setting": pres["setting"], "time_now": pres["time_now"], **({"surgery_time": pres["surgery_time"]} if "surgery_time" in pres else {}), "summary": pres["summary"]}
+    for h in c["history"]:
+        if h["topic"] in ("last_food", "last_drink"):
+            h["intake"] = fasting_intake.intake(h["topic"], h["answer"], c["presentation"]["time_now"])
     cid = c["id"]
     meas = sorted({r["source_row"] for r in c["results"] if r.get("source_row")} | {m for m, r in ctx["measurements"].items() if r["case_id"] == cid})
     c["sources"] = {"story": ctx["case_seeds"][cid], "authored": ctx["authoring"][cid], **({"measurements": meas} if meas else {})}

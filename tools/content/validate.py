@@ -57,6 +57,10 @@ def main() -> int:
     refs.add(scores["stopbang"]["ref"])
     failed |= _report("scores", [f"scores.json: ref {r} not in register" for r in sorted(refs) if r not in register], f"{len(refs)} refs ok")
 
+    fasting = load_json(CONTENT / "fasting" / "fasting.json")
+    frefs = {c["ref"] for c in fasting["classes"].values()} | set(fasting["refs"])
+    failed |= _report("fasting", [f"fasting.json: ref {r} not in register" for r in sorted(frefs) if r not in register], f"{len(frefs)} refs ok")
+
     for path in sorted(CONTENT.glob("*.csv")):
         problems = csv_problems(path, register)
         failed |= _report("table " + path.stem, problems, "every row has a ref")

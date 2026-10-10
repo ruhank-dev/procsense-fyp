@@ -97,6 +97,17 @@ def problems(c: dict, ctx: dict, others: list[dict] | None = None) -> list[str]:
     for h in c["history"]:
         if not h["volunteered"] and not h["disclose_on"]:
             out.append(f"{w}: history {h['id']} is hidden but has no disclose_on")
+    now = c["presentation"]["time_now"]
+    for h in c["history"]:
+        if h["topic"] in ("last_food", "last_drink"):
+            m = re.search(r"\b([01]?\d|2[0-3]):([0-5]\d)\b", h["answer"])
+            if m and re.search(r"\b(today|this morning)\b", h["answer"], re.IGNORECASE) and f"{int(m.group(1)):02d}:{m.group(2)}" > now:
+                out.append(f"{w}: {h['topic']} says '{h['answer']}' but the case starts at {now}: a time today cannot be later than now")
+            intake = h.get("intake")
+            if intake is None:
+                out.append(f"{w}: {h['topic']} has no intake (kind and hours before now)")
+            elif intake["kind"] not in ("none", "unknown") and "hours_before_now" not in intake:
+                out.append(f"{w}: {h['topic']} intake {intake['kind']} has no hours_before_now")
     topics = {h["topic"] for h in c["history"]}
     for t in ("complaint", "red_flags", "past_history", "medicines", "last_food", "last_drink"):
         if t not in topics:
