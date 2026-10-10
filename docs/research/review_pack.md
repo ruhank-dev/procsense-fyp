@@ -63,8 +63,12 @@ Closed issues: 18 of 18 (full text and decisions: `docs/research/issues.md`).
 | V-47 | Sulfonylureas omitted while fasting; metformin continued when at most one meal is missed | secondary | Confirmed |
 | V-48 | Glucocorticoid cover for people on long-term steroids or with adrenal insufficiency having planned or emergency surgery; Parkinson's medici… | primary | Confirmed; the Parkinson's half of the epilepsy and Parkinson's row is confirmed, the epilepsy half was not found in NG… |
 | V-49 | Perioperative diabetes medicines: SGLT2 inhibitors omitted the day before and the day of surgery, ketones daily; metformin continued; sulfo… | primary | Confirmed; this is the UK source the book's SGLT2 days follow (V-37 now primary); the book's 'omit or local policy' for… |
+| V-50 | Perioperative handling of warfarin, dabigatran, aspirin, herbal medicines, beta-blockers, statins, calcium-channel blockers, antiepileptics… | primary | Confirmed for the first group; the handbook continues diuretics and omits ACE inhibitors on the morning of surgery (som… |
+| V-51 | Hyperkalaemia: severity bands, calcium gluconate dose and rate, insulin with glucose, 10% glucose afterwards if glucose is below 7 | primary | Confirmed except the insulin-glucose infusion time; the 2026 calcium rate is 10 minutes (it was 15), which is what the… |
+| V-52 | Antiemetic cautions (ondansetron QT prolongation and apomorphine; metoclopramide and gastrointestinal obstruction), naloxone reverses opioi… | primary | Confirmed; the book's P2Y12 days differ for clopidogrel and ticagrelor, so that row is typed as a design value |
+| V-53 | Beta-lactam allergy: immediate versus non-immediate reactions, cross-reactivity by side chain, cephalosporin with a different side chain co… | primary | Confirmed for the mild and severe rows; the SJS/TEN avoid-the-family row stays open |
 
-49 claims: 13 checked against the guideline page itself, 36 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
+53 claims: 17 checked against the guideline page itself, 36 against two or more independent published summaries (the guideline text was not opened), 0 recalled. Details and links: `docs/research/clinical_verification.md`.
 
 ## 3. What was authored (the book does not say it)
 
@@ -155,7 +159,7 @@ Cards: `docs/research/datasets/`; register: `docs/research/dataset_register.csv`
 
 CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; 53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, every result reachable from a case or a what-if); 53 equipment sheets; the content manifest below. The full list with what each catches is `docs/CI.md`.
 
-Register: 1567 rows. Evidence A (guideline cited by the book): 247 verified, 29 still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 210 authored in the walkthrough.
+Register: 1567 rows. Evidence A (guideline cited by the book): 259 verified, 14 still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. B: 375 verified, 583 not opened. C: 123 institution-specific. D: 213 authored in the walkthrough.
 
 Content package: 328 files; per folder: (root) 60, case_files 53, cases 1, cxr 33, ecg 41, images 77, rules 1, schema 4, workflow 1, xsec 57. Content hash: `f27f5e7a52b49b285bf4d7a1aecd8047fc8519c07b6f15a30b585e50362c7edd`.
 
