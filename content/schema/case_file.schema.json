@@ -40,7 +40,7 @@
     },
     "id": {
       "type": "string",
-      "pattern": "^(VAR|STK)-S[12]-[A-Z]+$"
+      "pattern": "^((VAR|STK)-S[12]-[A-Z]+|SC-[0-9]+)$"
     },
     "walkthrough_label": {
       "type": "string"
@@ -52,7 +52,12 @@
       ]
     },
     "tier": {
-      "const": "P0"
+      "enum": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "description": "P0 = the 17 pilot cases; P1 = variants and stacked cases of the next phase; P2 = the 20 scenario cards"
     },
     "synthetic": {
       "const": true

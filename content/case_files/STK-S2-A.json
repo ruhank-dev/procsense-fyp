@@ -1,0 +1,526 @@
+{
+ "schema": 1,
+ "id": "STK-S2-A",
+ "walkthrough_label": "STACKED CASE S2-A - appendicitis with dehydration, acute kidney injury and low potassium",
+ "scenario": "S2",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Sofia Rossi",
+  "sex": "F",
+  "age": 45,
+  "occupation": "shop manager",
+  "dob": "1981-03-18",
+  "mrn": "624501"
+ },
+ "spoken_identity_answer": "Sofia Rossi, eighteenth of March 1981.",
+ "wristband": {
+  "name_text": "SOFIA ROSSI",
+  "dob_text": "18/03/1981",
+  "mrn_text": "MR 624501"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mrs Sofia Rossi, 45, has had 48 hours of pain moving to the right lower tummy and vomiting 6 to 8 times a day. HR 118, BP 102/64, T 38.1. Creatinine 158 (baseline 82), potassium 3.0."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain that started in the middle and is now low on the right; I keep being sick.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Vomited 6 to 8 times a day for 2 days. Passing very little urine today. Feel faint when standing.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Anti-inflammatory painkillers from the chemist for the pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "36 hours ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Sips of water 3 hours ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not using contraception; last period 2 weeks ago; test agreed.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 118,
+   "heart_rhythm": "regular",
+   "systolic_bp": 102,
+   "diastolic_bp": 64,
+   "respiratory_rate": 20,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.1,
+   "acvpu": "A",
+   "pain_score": 7,
+   "news2": 4,
+   "note": "NEWS2 4 as the book states; tachycardia and low BP: dehydration.",
+   "origin": "book"
+  },
+  {
+   "time": "13:30",
+   "condition": "after_correct_action",
+   "heart_rate": 100,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "After fluids ordered by the clinician and reassessment: HR 100, BP 118/72.",
+   "origin": "authored"
+  },
+  {
+   "time": "13:30",
+   "condition": "if_no_action",
+   "heart_rate": 126,
+   "heart_rhythm": "regular",
+   "systolic_bp": 90,
+   "diastolic_bp": 54,
+   "respiratory_rate": 24,
+   "spo2": 95,
+   "oxygen": "room_air",
+   "temperature_c": 38.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 9,
+   "note": "Untreated: worsening dehydration and sepsis.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Lying still, pale, dry lips, talks in full sentences.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Guarded and tender low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.crt",
+   "system": "crt",
+   "finding": "Capillary refill 3 seconds.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:crt"
+   ],
+   "origin": "book"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "158",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Acute kidney injury stage 1 (1.9 times baseline)",
+   "quality": null,
+   "previous": {
+    "value": "82",
+    "when": "GP baseline"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.urea",
+   "test": "Urea",
+   "value": "13.2",
+   "unit": "mmol/L",
+   "normal_range": "2.5-7.8",
+   "flag": "high",
+   "comment": "Pre-renal pattern",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "3.0",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "low",
+   "comment": "Low after vomiting",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "16.5",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "112",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "2.4",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.preg",
+   "test": "Pregnancy test",
+   "value": "Negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "negative",
+   "comment": "Not pregnant",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "4",
+   "note": "Low-risk tier by score (NG253) but clinical concern from the trend",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "stka2.fluids",
+   "type": "time_critical",
+   "label": "Dehydration with tachycardia, low BP and slow capillary refill",
+   "rank": 1,
+   "why": "Anaesthesia would drop the BP further; IV access, bloods and fluids (by the clinician's order) come first.",
+   "expected_actions": [
+    "IV access and bloods",
+    "Fluid bolus by clinician order, then reassess",
+    "Hourly observations",
+    "Tell the senior"
+   ]
+  },
+  {
+   "id": "stka2.aki",
+   "type": "pathway_changing",
+   "label": "Acute kidney injury (stage 1), pre-renal, made worse by anti-inflammatory painkillers",
+   "rank": 2,
+   "why": "Stop anti-inflammatories; drug choices change.",
+   "expected_actions": [
+    "Stop anti-inflammatories",
+    "Strict urine output",
+    "Repeat U&E"
+   ]
+  },
+  {
+   "id": "stka2.k",
+   "type": "safety_blocker",
+   "label": "Low potassium (3.0)",
+   "rank": 3,
+   "why": "Low potassium affects the heart rhythm; replace by the clinician's order and recheck.",
+   "expected_actions": [
+    "Tell the senior",
+    "Repeat potassium"
+   ]
+  },
+  {
+   "id": "stka2.appx",
+   "type": "pathway_changing",
+   "label": "Appendicitis needing urgent source control",
+   "rank": 4,
+   "why": "Surgery after the resuscitation is under way.",
+   "expected_actions": [
+    "Surgeon and anaesthetist told",
+    "Consent"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "stka2.d1",
+   "prompt": "HR 118, BP 102/64, slow capillary refill. What now?",
+   "rule": "deterioration_clock",
+   "options": [
+    {
+     "id": "stka2.d1.1",
+     "text": "Hypovolaemia: IV access, bloods, fluid bolus by the clinician's order and reassess; tell the senior",
+     "correct": true,
+     "consequence": "Matches the book and NICE CG174."
+    },
+    {
+     "id": "stka2.d1.2",
+     "text": "Give a painkiller and wait",
+     "correct": false,
+     "consequence": "Dehydration worsens."
+    }
+   ]
+  },
+  {
+   "id": "stka2.d2",
+   "prompt": "Creatinine 158 (baseline 82), urea 13.2. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stka2.d2.1",
+     "text": "Acute kidney injury stage 1: stop anti-inflammatories, watch urine output, tell the senior",
+     "correct": true,
+     "consequence": "Matches KDIGO."
+    },
+    {
+     "id": "stka2.d2.2",
+     "text": "Ignore it because the sugar is normal",
+     "correct": false,
+     "consequence": "Kidney injury changes drug choices."
+    }
+   ]
+  },
+  {
+   "id": "stka2.d3",
+   "prompt": "Potassium 3.0 after vomiting. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stka2.d3.1",
+     "text": "Tell the senior; replacement by the clinician's order and a repeat result; cardiac monitoring if needed",
+     "correct": true,
+     "consequence": "Safe."
+    },
+    {
+     "id": "stka2.d3.2",
+     "text": "Do nothing",
+     "correct": false,
+     "consequence": "Arrhythmia risk."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Hypovolaemia recognised",
+   "IV access and fluids",
+   "Anti-inflammatories stopped",
+   "Potassium replaced by the clinician",
+   "Appendicitis pathway continues"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Gives a painkiller and waits",
+    "shows": "BP falls",
+    "risk": "Collapse at induction",
+    "recovery": "Resuscitate first"
+   },
+   {
+    "mistake": "Continues the anti-inflammatory",
+    "shows": "Creatinine rises",
+    "risk": "Worse kidney injury",
+    "recovery": "Stop it"
+   }
+  ],
+  "missed": [
+   "Kidney injury not recognised"
+  ],
+  "recovery": [
+   "Check U&E and escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Dehydration with tachycardia, low BP and slow capillary refill",
+   "Acute kidney injury (stage 1), pre-renal, made worse by anti-inflammatory painkillers"
+  ],
+  "missed": [
+   "Kidney injury not recognised"
+  ],
+  "priority": "Dehydration with tachycardia, low BP and slow capillary refill",
+  "why_priority": "Anaesthesia would drop the BP further; IV access, bloods and fluids (by the clinician's order) come first.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Dehydration, kidneys and potassium all come from the same two days of vomiting."
+ },
+ "verification": [
+  "V-02",
+  "V-17"
+ ],
+ "sources": {
+  "story": "SR-2329",
+  "authored": "SR-3730"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

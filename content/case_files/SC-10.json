@@ -1,0 +1,347 @@
+{
+ "schema": 1,
+ "id": "SC-10",
+ "walkthrough_label": "SCENARIO CARD 10 (S2) - Language barrier + 17 years old + needs urgent surgery",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Master",
+  "full_name": "Shahzaib Gul",
+  "sex": "M",
+  "age": 17,
+  "occupation": "school student",
+  "dob": "2009-04-25",
+  "mrn": "635010"
+ },
+ "spoken_identity_answer": "Shahzaib Gul, twenty-fifth of April 2009.",
+ "wristband": {
+  "name_text": "SHAHZAIB GUL",
+  "dob_text": "25/04/2009",
+  "mrn_text": "MR 635010"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Shahzaib Gul, 17, speaks Pashto only; his father is present; appendicitis needing urgent surgery."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "(Through an interpreter) Pain in my right side.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever, vomiting.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 102,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 20,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 38.3,
+   "acvpu": "A",
+   "pain_score": 7,
+   "news2": 2,
+   "note": "NEWS2 per table.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Flushed and anxious; father at the bedside.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender and guarded low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "16.0",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "92",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "AIR score",
+   "value": "10",
+   "note": "High",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc10.int",
+   "type": "safety_blocker",
+   "label": "Language barrier",
+   "rank": 1,
+   "why": "A trained interpreter, not a sibling or child.",
+   "expected_actions": [
+    "Book a trained interpreter"
+   ]
+  },
+  {
+   "id": "sc10.consent",
+   "type": "pathway_changing",
+   "label": "A minor: consent per law",
+   "rank": 2,
+   "why": "Parent or guardian consents; involve the young person.",
+   "expected_actions": [
+    "Follow hospital policy"
+   ]
+  },
+  {
+   "id": "sc10.pain",
+   "type": "time_critical",
+   "label": "Pain relief first",
+   "rank": 3,
+   "why": "Analgesia by the clinician.",
+   "expected_actions": [
+    "Request analgesia"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc10.d1",
+   "prompt": "Pashto-only 17-year-old needs consent.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc10.d1.1",
+     "text": "Trained interpreter; parent or guardian consent per the law; involve the patient; pain relief first",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc10.d1.2",
+     "text": "Use the 10-year-old brother as interpreter",
+     "correct": false,
+     "consequence": "Inappropriate."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Interpreter",
+   "Valid consent",
+   "Pain relief"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Uses a child interpreter",
+    "shows": "Consent invalid",
+    "risk": "Harm",
+    "recovery": "Use a trained interpreter"
+   }
+  ],
+  "missed": [
+   "Interpreter not arranged"
+  ],
+  "recovery": [
+   "Book one"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Language barrier",
+   "A minor: consent per law"
+  ],
+  "missed": [
+   "Interpreter not arranged"
+  ],
+  "priority": "Language barrier",
+  "why_priority": "A trained interpreter, not a sibling or child.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Consent needs understanding in a language the patient knows."
+ },
+ "verification": [
+  "V-12"
+ ],
+ "sources": {
+  "story": "SR-2342",
+  "authored": "SR-3742"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

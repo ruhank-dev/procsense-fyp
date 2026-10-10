@@ -1,0 +1,493 @@
+{
+ "schema": 1,
+ "id": "STK-S1-C",
+ "walkthrough_label": "STACKED CASE S1-C - true high potassium with ECG changes, acute kidney injury and a slow heart (heart-failure medicines)",
+ "scenario": "S1",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Helena Novak",
+  "sex": "F",
+  "age": 71,
+  "occupation": "retired seamstress",
+  "dob": "1955-09-29",
+  "mrn": "614403"
+ },
+ "spoken_identity_answer": "Helena Novak, twenty-ninth of September 1955.",
+ "wristband": {
+  "name_text": "HELENA NOVAK",
+  "dob_text": "29/09/1955",
+  "mrn_text": "MR 614403"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Helena Novak, 71, is booked for keyhole gallbladder removal. She has heart failure and kidney disease, three days of diarrhoea last week, a slow pulse (52) and BP 104/62. Potassium 6.6, not haemolysed, with peaked T waves."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I came for my gallbladder, but I feel dizzy when I stand and very tired.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Diarrhoea for three days last week, not eating or drinking much. Passing little urine today. No chest pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Heart failure with a weak pumping function. Chronic kidney disease (G3b).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Ramipril, spironolactone, bisoprolol and furosemide. I am still taking all my tablets despite not eating.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 19:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 52,
+   "heart_rhythm": "regular",
+   "systolic_bp": 104,
+   "diastolic_bp": 62,
+   "respiratory_rate": 18,
+   "spo2": 95,
+   "oxygen": "room_air",
+   "temperature_c": 36.5,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "HR 52 (scores 3 for 40 or less only; 41 to 50 scores 1, 51 to 90 scores 0); BP 104/62 (usual about 130/80).",
+   "origin": "book"
+  },
+  {
+   "time": "08:25",
+   "condition": "after_correct_action",
+   "heart_rate": 76,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 66,
+   "respiratory_rate": 18,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 36.5,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "After the emergency pathway is started by the clinician: rhythm improving.",
+   "origin": "authored"
+  },
+  {
+   "time": "09:00",
+   "condition": "if_no_action",
+   "heart_rate": 38,
+   "heart_rhythm": "regular",
+   "systolic_bp": 84,
+   "diastolic_bp": 50,
+   "respiratory_rate": 20,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 36.4,
+   "acvpu": "V",
+   "pain_score": 0,
+   "news2": 10,
+   "note": "Untreated hyperkalaemia: bradycardia, low BP, drowsy: risk of cardiac arrest.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Tired and dry-mouthed, alert, a little dizzy on standing.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.pulse",
+   "system": "pulse",
+   "finding": "Slow and regular.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:pulse"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.chest",
+   "system": "chest",
+   "finding": "Mild basal crackles.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:chest"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.fluid",
+   "system": "fluid",
+   "finding": "Dry mucous membranes; low urine output.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:fluid"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "6.6",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "critical_high",
+   "comment": "Severe hyperkalaemia (6.5 or more); not haemolysed",
+   "quality": null,
+   "previous": {
+    "value": "4.6",
+    "when": "3 months ago"
+   },
+   "minutes_to_result": 20,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "168",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Acute kidney injury on chronic kidney disease (baseline 112)",
+   "quality": null,
+   "previous": {
+    "value": "112",
+    "when": "baseline"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Tall peaked T waves with a slow rate",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "ECG changes make this an emergency (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "Systolic 104 scores 1; heart rate 52 scores 0",
+   "origin": "authored"
+  },
+  {
+   "name": "AKI stage",
+   "value": "1",
+   "note": "Creatinine 1.5 times baseline",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "stkc.k",
+   "type": "life_threat",
+   "label": "Severe hyperkalaemia (6.6) with ECG changes",
+   "rank": 1,
+   "why": "UKKA: 6.5 or more is severe and any ECG change makes it an emergency; risk of fatal arrhythmia at induction.",
+   "expected_actions": [
+    "Call the senior and the emergency team now",
+    "Cardiac monitor and repeat ECG",
+    "Treat without waiting for a repeat sample (ECG already abnormal)",
+    "Stop the potassium-raising medicines (clinician)"
+   ]
+  },
+  {
+   "id": "stkc.aki",
+   "type": "time_critical",
+   "label": "Acute kidney injury after diarrhoea (ramipril and spironolactone still taken)",
+   "rank": 2,
+   "why": "Reduces potassium excretion; the medicines are reviewed by the clinician.",
+   "expected_actions": [
+    "Fluid status and urine output",
+    "Repeat U&E",
+    "Medicines review"
+   ]
+  },
+  {
+   "id": "stkc.brady",
+   "type": "safety_blocker",
+   "label": "Slow heart and low BP",
+   "rank": 3,
+   "why": "Beta-blocker and hyperkalaemia both slow the heart; risk of collapse at induction.",
+   "expected_actions": [
+    "Manual pulse and repeat BP",
+    "Tell the anaesthetist"
+   ]
+  },
+  {
+   "id": "stkc.op",
+   "type": "pathway_changing",
+   "label": "The planned operation is cancelled",
+   "rank": 4,
+   "why": "Not an elective patient any more.",
+   "expected_actions": [
+    "Cancel and re-list after recovery"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "stkc.d1",
+   "prompt": "Pulse 52 and BP 104/62. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkc.d1.1",
+     "text": "Check pulse and BP again, request an urgent 12-lead ECG and potassium, and tell the senior",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "stkc.d1.2",
+     "text": "Record it and proceed to the anaesthetic room",
+     "correct": false,
+     "consequence": "Risk of collapse."
+    }
+   ]
+  },
+  {
+   "id": "stkc.d2",
+   "prompt": "Potassium 6.6, not haemolysed, with peaked T waves. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkc.d2.1",
+     "text": "Emergency: senior and emergency team now, cardiac monitor; do not wait for a repeat",
+     "correct": true,
+     "consequence": "UKKA: any ECG change is an emergency."
+    },
+    {
+     "id": "stkc.d2.2",
+     "text": "Ask for a repeat sample first",
+     "correct": false,
+     "consequence": "The ECG is already abnormal."
+    }
+   ]
+  },
+  {
+   "id": "stkc.d3",
+   "prompt": "What about the planned operation?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkc.d3.1",
+     "text": "Cancel it; treat the potassium and the kidney injury first; re-list after recovery",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "stkc.d3.2",
+     "text": "Operate anyway",
+     "correct": false,
+     "consequence": "Fatal arrhythmia risk."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Slow pulse and low BP noticed",
+   "ECG and potassium",
+   "Emergency pathway",
+   "Operation cancelled",
+   "Medicines reviewed"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Proceeds to theatre",
+    "shows": "Cardiac arrest risk",
+    "risk": "Potassium 6.6 at induction",
+    "recovery": "Stop; emergency"
+   },
+   {
+    "mistake": "Waits for a repeat sample",
+    "shows": "Rhythm worsens",
+    "risk": "Delay",
+    "recovery": "Treat now"
+   }
+  ],
+  "missed": [
+   "Potassium result not acted on"
+  ],
+  "recovery": [
+   "Call for help and start the pathway"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Severe hyperkalaemia (6.6) with ECG changes",
+   "Acute kidney injury after diarrhoea (ramipril and spironolactone still taken)"
+  ],
+  "missed": [
+   "Potassium result not acted on"
+  ],
+  "priority": "Severe hyperkalaemia (6.6) with ECG changes",
+  "why_priority": "UKKA: 6.5 or more is severe and any ECG change makes it an emergency; risk of fatal arrhythmia at induction.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Treat what the ECG shows; do not wait for a repeat."
+ },
+ "verification": [
+  "V-15",
+  "V-17"
+ ],
+ "sources": {
+  "story": "SR-2327",
+  "authored": "SR-3729"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

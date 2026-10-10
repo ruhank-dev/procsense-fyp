@@ -1,0 +1,410 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-H",
+ "walkthrough_label": "PATIENT S2-H - pregnant with appendicitis",
+ "scenario": "S2",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Mehwish Tariq",
+  "sex": "F",
+  "age": 30,
+  "occupation": "bank clerk",
+  "dob": "1996-06-25",
+  "mrn": "623302"
+ },
+ "spoken_identity_answer": "Mehwish Tariq, twenty-fifth of June 1996.",
+ "wristband": {
+  "name_text": "MEHWISH TARIQ",
+  "dob_text": "25/06/1996",
+  "mrn_text": "MR 623302"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mrs Mehwish Tariq, 30, is 20 weeks pregnant with right-sided pain higher than usual. T 37.8, HR 102, WBC 14."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain on the right side, higher up than I would expect, and I feel sick.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Baby is moving as usual. No bleeding, no waters breaking, no burning when I pass urine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "One normal pregnancy before.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Pregnancy vitamins.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "Epidural in the last pregnancy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "20 weeks pregnant, second pregnancy; antenatal checks normal.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 102,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 68,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 1,
+   "note": "Maternity early-warning score used instead of NEWS2; NEWS2 shown for reference only.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Uncomfortable, alert.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender on the right, higher than usual; uterus soft.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.obs",
+   "system": "obstetric",
+   "finding": "Fetal heartbeat heard by the midwife; uterus not tender.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:obstetric"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "14.0",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Partly raised by pregnancy alone",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "52",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.preg",
+   "test": "Pregnancy test",
+   "value": "Positive (20 weeks, known)",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "positive",
+   "comment": "Known pregnancy",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "2",
+   "note": "Not validated in pregnancy; the maternity score is used",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s2h.preg",
+   "type": "pathway_changing",
+   "label": "Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up",
+   "rank": 1,
+   "why": "Pregnancy changes the picture and the imaging choice; the obstetric team joins early.",
+   "expected_actions": [
+    "Involve the obstetric team early",
+    "Ultrasound first, MRI if unclear, CT not first",
+    "Left-side tilt when lying",
+    "Maternity early-warning score, not NEWS2"
+   ]
+  },
+  {
+   "id": "s2h.wbc",
+   "type": "information_only",
+   "label": "White cell count partly raised by pregnancy",
+   "rank": 2,
+   "why": "Interpret with the trend and CRP.",
+   "expected_actions": [
+    "Trend the result"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s2h.d1",
+   "prompt": "A pregnant woman with right-sided pain. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2h.d1.1",
+     "text": "Involve the obstetric team early; ultrasound first, then MRI if unclear; avoid CT as a first choice",
+     "correct": true,
+     "consequence": "Matches the book and SAGES."
+    },
+    {
+     "id": "s2h.d1.2",
+     "text": "Request CT first because it is fastest",
+     "correct": false,
+     "consequence": "Avoid ionising imaging first in pregnancy."
+    }
+   ]
+  },
+  {
+   "id": "s2h.d2",
+   "prompt": "How should she lie on the trolley?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2h.d2.1",
+     "text": "Tilted to the left side so the womb does not press on the large vein",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s2h.d2.2",
+     "text": "Flat on her back",
+     "correct": false,
+     "consequence": "The womb can press on a large vein."
+    }
+   ]
+  },
+  {
+   "id": "s2h.d3",
+   "prompt": "Keyhole surgery is being discussed.",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2h.d3.1",
+     "text": "Keyhole appendicectomy is acceptable in pregnancy; the senior and obstetrics decide",
+     "correct": true,
+     "consequence": "Matches SAGES guidance."
+    },
+    {
+     "id": "s2h.d3.2",
+     "text": "Refuse any operation because she is pregnant",
+     "correct": false,
+     "consequence": "Delay raises the risk to mother and baby."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Obstetric team early",
+   "Ultrasound then MRI",
+   "Left tilt",
+   "Maternity score",
+   "Keyhole surgery acceptable"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Requests CT first",
+    "shows": "The radiologist queries it",
+    "risk": "Avoidable radiation",
+    "recovery": "Switch to ultrasound/MRI"
+   },
+   {
+    "mistake": "Uses NEWS2 alone",
+    "shows": "The midwife points out the maternity score",
+    "risk": "Pregnancy changes are missed",
+    "recovery": "Use the maternity score"
+   }
+  ],
+  "missed": [
+   "Obstetric team called late"
+  ],
+  "recovery": [
+   "Call obstetrics, change the imaging plan"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up",
+   "White cell count partly raised by pregnancy"
+  ],
+  "missed": [
+   "Obstetric team called late"
+  ],
+  "priority": "Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up",
+  "why_priority": "Pregnancy changes the picture and the imaging choice; the obstetric team joins early.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "In pregnancy the team, the score and the imaging all change."
+ },
+ "verification": [
+  "V-14",
+  "V-16"
+ ],
+ "sources": {
+  "story": "SR-2320",
+  "authored": "SR-3722"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

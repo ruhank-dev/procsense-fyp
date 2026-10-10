@@ -57,6 +57,14 @@ row("VAR-S1-J", "blood_sample_appearance", "TUBE-01", "book", "Potassium 6.4 hae
 row("SC-12", "blood_sample_appearance", "TUBE-01", "book", "K 6.1 haemolysed")
 row("SC-19", "urine_dipstick", "DIP-02", "proposed", "Ketones 3.5 on an SGLT2 inhibitor with sepsis")
 
+row("VAR-S1-L", "ecg", "ECG-10", "book", "HR 128 irregularly irregular: new fast AF")
+row("STK-S1-B", "ecg", "ECG-03", "book", "Known atrial fibrillation, rate 84")
+row("STK-S1-C", "ecg", "ECG-08", "book", "Tall peaked T waves with potassium 6.6")
+row("STK-S2-D", "ultrasound_appendix", "US-AP-04", "book", "Appendix not visualised")
+row("STK-S2-D", "mri_appendix_level", "MR-AP-01", "book", "MRI after non-diagnostic ultrasound (no ionising radiation)")
+row("VAR-S2-J", "urine_dipstick", "DIP-01", "book", "Leucocytes 2+, nitrite negative, trace blood")
+row("VAR-S2-L", "ultrasound_appendix", "US-AP-01", "proposed", "Simple appendicitis with no stone inside")
+
 # every planned (S1) patient is booked for gallbladder removal because of gallstones, and every simple S2 appendicitis case shows the same on ultrasound
 for c in ("VAR-S1-B", "VAR-S1-C", "VAR-S1-D", "VAR-S1-G", "VAR-S1-H", "VAR-S1-J"):
     row(c, "ultrasound_gallbladder", "US-GB-01", "proposed", "Booked for gallbladder removal for gallstones: the clinic ultrasound shows simple gallstones")

@@ -1,0 +1,328 @@
+{
+ "schema": 1,
+ "id": "SC-5",
+ "walkthrough_label": "SCENARIO CARD 5 (S1) - On apixaban (taken this morning) + new fast AF",
+ "scenario": "S1",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Sajid Mahmood",
+  "sex": "M",
+  "age": 72,
+  "occupation": "retired clerk",
+  "dob": "1954-02-19",
+  "mrn": "635005"
+ },
+ "spoken_identity_answer": "Sajid Mahmood, nineteenth of February 1954.",
+ "wristband": {
+  "name_text": "SAJID MAHMOOD",
+  "dob_text": "19/02/1954",
+  "mrn_text": "MR 635005"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Sajid Mahmood, 72: HR 124 irregular, BP 128/80; took his apixaban this morning out of habit."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "My heart is racing and I have gallstone pain.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Heart racing since yesterday. No chest pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Atrial fibrillation, high blood pressure.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Apixaban and bisoprolol. I took my apixaban this morning as I always do.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 124,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 128,
+   "diastolic_bp": 80,
+   "respiratory_rate": 18,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "New fast AF; NEWS2 2.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Comfortable at rest.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.pulse",
+   "system": "pulse",
+   "finding": "Fast and irregular.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:pulse"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Atrial fibrillation, fast ventricular rate",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "abnormal",
+   "comment": "Fast AF (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "2",
+   "note": "Heart rate 111 to 130 scores 2",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc5.af",
+   "type": "pathway_changing",
+   "label": "New fast AF",
+   "rank": 1,
+   "why": "Medical review for rate control.",
+   "expected_actions": [
+    "12-lead ECG",
+    "Medical review"
+   ]
+  },
+  {
+   "id": "sc5.doac",
+   "type": "safety_blocker",
+   "label": "Apixaban not stopped: bleeding risk",
+   "rank": 2,
+   "why": "Two independent reasons to postpone.",
+   "expected_actions": [
+    "Confirm last dose",
+    "Tell the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc5.d1",
+   "prompt": "Fast AF and apixaban taken today.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc5.d1.1",
+     "text": "Two independent reasons to postpone: medical review for rate control and a proper anticoagulation stop plan",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc5.d1.2",
+     "text": "Proceed because it is keyhole surgery",
+     "correct": false,
+     "consequence": "Bleeding and rhythm risk."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "AF recognised",
+   "Dose time confirmed",
+   "Postponed"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Proceeds",
+    "shows": "List stopped",
+    "risk": "Bleeding or arrhythmia",
+    "recovery": "Stop"
+   }
+  ],
+  "missed": [
+   "Dose time not asked"
+  ],
+  "recovery": [
+   "Ask"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "New fast AF",
+   "Apixaban not stopped: bleeding risk"
+  ],
+  "missed": [
+   "Dose time not asked"
+  ],
+  "priority": "New fast AF",
+  "why_priority": "Medical review for rate control.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Two independent reasons strengthen the case to postpone."
+ },
+ "verification": [
+  "V-08",
+  "V-23"
+ ],
+ "sources": {
+  "story": "SR-2337",
+  "authored": "SR-3737"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

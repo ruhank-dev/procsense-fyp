@@ -54,13 +54,26 @@ namespace ProcSense.Core.Content
         // Keys that describe structure, not clinical facts, so they need no source ref (same list as tools/content/checks.py).
         private static readonly HashSet<string> NonClinical = new HashSet<string> { "id", "scenario", "refs", "topic", "wording", "volunteered" };
 
-        public static ContentPackage Load(IContentReader reader, params string[] caseIds)
+        public static ContentPackage Load(IContentReader reader, params string[] caseIds) => Load(reader, caseIds, new string[0]);
+
+        /// <summary>Loads the cards for <paramref name="caseIds"/> and, next to them, the playable case files for <paramref name="caseFileIds"/> (content/case_files/&lt;id&gt;.json).</summary>
+        public static ContentPackage Load(IContentReader reader, IReadOnlyList<string> caseIds, IReadOnlyList<string> caseFileIds)
         {
             var cases = new SortedDictionary<string, CaseCard>(StringComparer.Ordinal);
             foreach (var id in caseIds) cases[id] = LoadCase(reader.ReadText("cases/" + id + ".json"), id);
+            var files = new SortedDictionary<string, CaseFile>(StringComparer.Ordinal);
+            foreach (var id in caseFileIds) files[id] = LoadCaseFile(reader, id);
             var behaviour = LoadBehaviour(reader.ReadText("behaviour.json"));
             return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")),
-                Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"));
+                Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"), files);
+        }
+
+        /// <summary>One playable case file; the file name and the id inside must agree.</summary>
+        public static CaseFile LoadCaseFile(IContentReader reader, string id)
+        {
+            var file = CaseFileLoader.Load(reader.ReadText("case_files/" + id + ".json"), "case_files/" + id);
+            if (file.Id != id) throw new ContentException("case_files/" + id + ": the file holds the case " + file.Id);
+            return file;
         }
 
         public static CaseCard LoadCase(string json, string name)

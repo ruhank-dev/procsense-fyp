@@ -1,0 +1,362 @@
+{
+ "schema": 1,
+ "id": "SC-3",
+ "walkthrough_label": "SCENARIO CARD 3 (S2) - Pregnant (20 weeks) + appendicitis + fever",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Rabia Hussain",
+  "sex": "F",
+  "age": 32,
+  "occupation": "primary school teacher",
+  "dob": "1993-12-01",
+  "mrn": "635003"
+ },
+ "spoken_identity_answer": "Rabia Hussain, first of December 1993.",
+ "wristband": {
+  "name_text": "RABIA HUSSAIN",
+  "dob_text": "01/12/1993",
+  "mrn_text": "MR 635003"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mrs Rabia Hussain, 32, 20 weeks pregnant: T 38.2, HR 108, WBC 15, ultrasound non-diagnostic."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain in my right side and a fever.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Baby moving. No bleeding.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Pregnancy vitamins.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "20 weeks, second pregnancy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 108,
+   "heart_rhythm": "regular",
+   "systolic_bp": 110,
+   "diastolic_bp": 66,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 38.2,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 3,
+   "note": "Maternity score used; NEWS2 reference only.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Uncomfortable, alert.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender on the right, higher than usual.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "15.0",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Partly pregnancy",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.us",
+   "test": "Ultrasound appendix",
+   "value": "Appendix not visualised",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Non-diagnostic (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.mri",
+   "test": "MRI appendix",
+   "value": "Findings of appendicitis",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "MRI after non-diagnostic ultrasound (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 90,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "3",
+   "note": "Not validated in pregnancy",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc3.preg",
+   "type": "pathway_changing",
+   "label": "Appendicitis in pregnancy with fever",
+   "rank": 1,
+   "why": "Obstetrics early, MRI not CT first, analgesia avoiding anti-inflammatories, antibiotics from the safe local list, left tilt.",
+   "expected_actions": [
+    "Obstetrics early",
+    "MRI",
+    "Left tilt",
+    "Maternity score"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc3.d1",
+   "prompt": "Fever and appendicitis in pregnancy.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc3.d1.1",
+     "text": "Involve obstetrics early; MRI after the ultrasound; left tilt; maternity score",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc3.d1.2",
+     "text": "CT first",
+     "correct": false,
+     "consequence": "Avoid ionising imaging first."
+    }
+   ]
+  },
+  {
+   "id": "sc3.d2",
+   "prompt": "Pain relief?",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc3.d2.1",
+     "text": "Paracetamol with an opioid if needed, by the clinician; avoid anti-inflammatories",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc3.d2.2",
+     "text": "Anti-inflammatory tablets",
+     "correct": false,
+     "consequence": "Avoid in pregnancy."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Obstetrics early",
+   "MRI",
+   "Left tilt"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Requests CT first",
+    "shows": "Radiology challenges",
+    "risk": "Avoidable radiation",
+    "recovery": "MRI"
+   }
+  ],
+  "missed": [
+   "Obstetrics late"
+  ],
+  "recovery": [
+   "Call obstetrics"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Appendicitis in pregnancy with fever"
+  ],
+  "missed": [
+   "Obstetrics late"
+  ],
+  "priority": "Appendicitis in pregnancy with fever",
+  "why_priority": "Obstetrics early, MRI not CT first, analgesia avoiding anti-inflammatories, antibiotics from the safe local list, left tilt.",
+  "related": "A single issue",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Appendicitis in pregnancy needs the obstetric team and MRI."
+ },
+ "verification": [
+  "V-14",
+  "V-16"
+ ],
+ "sources": {
+  "story": "SR-2335",
+  "authored": "SR-3735"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

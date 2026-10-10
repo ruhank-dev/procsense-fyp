@@ -1,0 +1,380 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-L",
+ "walkthrough_label": "PATIENT S1-L - new irregular heartbeat",
+ "scenario": "S1",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Aslam Chaudhry",
+  "sex": "M",
+  "age": 70,
+  "occupation": "retired bus driver",
+  "dob": "1955-11-23",
+  "mrn": "613206"
+ },
+ "spoken_identity_answer": "Aslam Chaudhry, twenty-third of November 1955.",
+ "wristband": {
+  "name_text": "ASLAM CHAUDHRY",
+  "dob_text": "23/11/1955",
+  "mrn_text": "MR 613206"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Aslam Chaudhry, 70, is booked for keyhole gallbladder removal. Since this morning his heart is racing. Pulse 128, irregularly irregular; the ECG shows atrial fibrillation (new)."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "My heart has been fluttering since this morning.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No chest pain. A little breathless going up stairs.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "High blood pressure. Gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Amlodipine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "Hernia repair years ago, no problems.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "A few drinks at a family party last night.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 128,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 132,
+   "diastolic_bp": 84,
+   "respiratory_rate": 18,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 36.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "Irregularly irregular pulse; NEWS2 2.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Comfortable at rest, aware of his heartbeat.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.pulse",
+   "system": "pulse",
+   "finding": "Irregularly irregular.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:pulse"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.chest",
+   "system": "chest",
+   "finding": "Clear; no added sounds.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:chest"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Atrial fibrillation, ventricular rate about 128",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "abnormal",
+   "comment": "New atrial fibrillation (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book"
+  },
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "4.1",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.tsh",
+   "test": "TSH",
+   "value": "1.8",
+   "unit": "mU/L",
+   "normal_range": "0.4-4.0",
+   "flag": "normal",
+   "comment": "Thyroid normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 120,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "2",
+   "note": "Heart rate 111 to 130 scores 2",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s1l.af",
+   "type": "pathway_changing",
+   "label": "New fast atrial fibrillation (heart rate 128)",
+   "rank": 1,
+   "why": "The heart is not filling and emptying efficiently and stroke risk rises; the planned operation is usually deferred while the medical team controls the rate and decides about anticoagulation.",
+   "expected_actions": [
+    "Confirm with a 12-lead ECG",
+    "Tell the senior and the anaesthetist",
+    "Medical team for rate control and the blood-thinner decision",
+    "Look for triggers: salts, thyroid, infection, alcohol"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s1l.d1",
+   "prompt": "Pulse 128 and irregularly irregular. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1l.d1.1",
+     "text": "12-lead ECG to confirm; tell the senior and the anaesthetist",
+     "correct": true,
+     "consequence": "Matches the book: new AF."
+    },
+    {
+     "id": "s1l.d1.2",
+     "text": "Record it and carry on to theatre",
+     "correct": false,
+     "consequence": "Fast new AF is not safe to anaesthetise."
+    }
+   ]
+  },
+  {
+   "id": "s1l.d2",
+   "prompt": "ECG shows AF. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1l.d2.1",
+     "text": "The list is usually deferred; the medical team controls the rate and decides about a blood thinner; check potassium, thyroid and for infection",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s1l.d2.2",
+     "text": "Give a blood thinner on the trainee's own decision",
+     "correct": false,
+     "consequence": "Anticoagulation is the clinician's decision."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Confirm AF on ECG",
+   "Escalate",
+   "Look for triggers",
+   "Postpone with medical review"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Proceeds without an ECG",
+    "shows": "The anaesthetist stops the list",
+    "risk": "Fast AF anaesthetised",
+    "recovery": "Stop and escalate"
+   },
+   {
+    "mistake": "Starts a blood thinner himself",
+    "shows": "The pharmacist challenges",
+    "risk": "Bleeding risk without a plan",
+    "recovery": "Leave it to the clinician"
+   }
+  ],
+  "missed": [
+   "Irregular pulse noticed but not acted on"
+  ],
+  "recovery": [
+   "ECG, senior, medical review"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "New fast atrial fibrillation (heart rate 128)"
+  ],
+  "missed": [
+   "Irregular pulse noticed but not acted on"
+  ],
+  "priority": "New fast atrial fibrillation (heart rate 128)",
+  "why_priority": "The heart is not filling and emptying efficiently and stroke risk rises; the planned operation is usually deferred while the medical team controls the rate and decides about anticoagulation.",
+  "related": "A single issue",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A new fast irregular rhythm stops an elective list until the heart rate is controlled."
+ },
+ "verification": [
+  "V-01",
+  "V-23"
+ ],
+ "sources": {
+  "story": "SR-2310",
+  "authored": "SR-3719"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

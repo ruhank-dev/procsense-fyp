@@ -93,10 +93,10 @@ def debrief(recognised, missed, priority, why, related, independent, trigger, if
 
 
 def case(id, label, scenario, identity, presentation, history, observations, examination, results, scores, problems, decisions, end_state, paths, debrief_, verification,
-         spoken=None, allergies=(), allergy_answer="None.", reason="", wristband="auto", base_card=None, variant_end=None):
+         spoken=None, allergies=(), allergy_answer="None.", reason="", wristband="auto", base_card=None, variant_end=None, tier="P0"):
     s = identity
     return {
-        "schema": 1, "id": id, "walkthrough_label": label, "scenario": scenario, "tier": "P0", "synthetic": True, "status": "DRAFT", "reference_date": REF.isoformat(), "base_card": base_card,
+        "schema": 1, "id": id, "walkthrough_label": label, "scenario": scenario, "tier": tier, "synthetic": True, "status": "DRAFT", "reference_date": REF.isoformat(), "base_card": base_card,
         "identity": s, "spoken_identity_answer": spoken or f"{s['full_name']}, {_spoken_date(s['dob'])}.", "wristband": wristband, "allergies": [dict(substance=a, reaction=r) for a, r in allergies],
         "allergy_answer": allergy_answer, "reason_answer": reason, "presentation": presentation, "history": history, "observations": observations, "examination": examination, "results": results,
         "scores": scores, "problems": problems, "decisions": decisions, "expected_end_state": end_state, "paths": paths, "debrief": debrief_, "verification": verification,
@@ -114,3 +114,34 @@ ORD = {1: "first", 2: "second", 3: "third", 4: "fourth", 5: "fifth", 6: "sixth",
 def _spoken_date(iso: str) -> str:
     y, m, d = (int(x) for x in iso.split("-"))
     return f"{ORD[d]} of {MONTHS[m]} {y}"
+
+
+def mk(id, label, sc, who, summary, complaint, hx, vitals, exam, results, scores, problems, decisions, end, correct, wrong, missed, recovery, remember, ver, setting=None, time="08:00", surgery="10:00",
+       allergies=(), allergy_answer=None, reason=None, variant_end=None, trigger=None, if_ignored=None, tier="P1", recognised=None, independent="None"):
+    """A compact case: `hx` maps a topic to an answer (or (answer, 'book')); the rest of the twelve topics get plain 'none' answers; the debrief is built from the problems and the lesson."""
+    setting = setting or ("pre-assessment" if sc == "S1" else "emergency department")
+    origin, answers = {"complaint": "book"}, {}
+    for k, v in hx.items():
+        if isinstance(v, tuple):
+            answers[k], origin[k] = v[0], v[1]
+        else:
+            answers[k] = v
+    last_food = answers.pop("last_food", "Dinner at 20:00 yesterday." if sc == "S1" else "Lunch at 12:00 today.")
+    last_drink = answers.pop("last_drink", "Water at 06:30.")
+    history_ = history(complaint, red_flags=answers.pop("red_flags", "No fever, no yellow eyes."), past=answers.pop("past_history", "None."), medicines=answers.pop("medicines", "None."),
+                       herbal=answers.pop("herbal", "None."), prev_an=answers.pop("previous_anaesthetic", "No previous anaesthetics."), fam_an=answers.pop("family_anaesthetic", "No anaesthetic problems in the family."),
+                       smoking=answers.pop("smoking", "Never."), alcohol=answers.pop("alcohol", "None."), last_food=last_food, last_drink=last_drink, pregnancy=answers.pop("pregnancy", "Not applicable."), origin=origin)
+    for h in history_:
+        if h["topic"] != "complaint":
+            h["origin"] = origin.get(h["topic"], "authored")
+    pres = {"setting": setting, "time_now": time, "summary": summary}
+    if sc == "S1":
+        pres["surgery_time"] = surgery
+    top = [p for p in problems if p["rank"] <= 2]
+    c = case(id, label, sc, who, pres, history_, vitals, exam, results, scores, problems, decisions, end,
+             {"correct": correct, "incorrect": [bad(*w) for w in wrong], "missed": missed, "recovery": recovery},
+             debrief(recognised or [p["label"] for p in top], [m for m in missed], problems[0]["label"], problems[0]["why"], "The findings in this case point to the same cause" if len(problems) > 1 else "A single issue",
+                     independent, trigger or "Any value outside its safe band or any breach of a safety rule", if_ignored or "Harm from the missed problem or an unsafe operation", remember),
+             ver, allergies=allergies, allergy_answer=allergy_answer or ("None." if not allergies else "; ".join(f"{a}: {r}" for a, r in allergies)), reason=reason or ("To have my gallbladder taken out." if sc == "S1" else "I have tummy pain."),
+             variant_end=variant_end, tier=tier)
+    return c

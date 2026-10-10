@@ -1,0 +1,471 @@
+{
+ "schema": 1,
+ "id": "STK-S2-C",
+ "walkthrough_label": "STACKED CASE S2-C - opioid sedation with vomiting and a recent meal: airway and aspiration risk, falling SpO2",
+ "scenario": "S2",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Leo Chen",
+  "sex": "M",
+  "age": 22,
+  "occupation": "university student",
+  "dob": "2003-11-11",
+  "mrn": "624502"
+ },
+ "spoken_identity_answer": "Leo Chen, eleventh of November 2003.",
+ "wristband": {
+  "name_text": "LEO CHEN",
+  "dob_text": "11/11/2003",
+  "mrn_text": "MR 624502"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Leo Chen, 22, has suspected appendicitis. IV morphine was given 40 minutes ago. He is drowsy, retching, slow shallow breathing: RR 9, SpO2 90, rousable to voice. He ate a kebab 3 hours ago."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "My stomach really hurts... I feel sick... so sleepy.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Vomited twice. Pain 9 out of 10 before the injection.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Only the morphine just given.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "A kebab 3 hours ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "A drink of water 1 hour ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 96,
+   "heart_rhythm": "regular",
+   "systolic_bp": 122,
+   "diastolic_bp": 70,
+   "respiratory_rate": 9,
+   "spo2": 90,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "V",
+   "pain_score": 3,
+   "news2": 8,
+   "note": "RR 9 scores 3, SpO2 90 scores 3, voice scores 3; NEWS2 per table: high risk.",
+   "origin": "book"
+  },
+  {
+   "time": "12:15",
+   "condition": "after_correct_action",
+   "heart_rate": 88,
+   "heart_rhythm": "regular",
+   "systolic_bp": 124,
+   "diastolic_bp": 72,
+   "respiratory_rate": 14,
+   "spo2": 96,
+   "oxygen": "supplemental",
+   "temperature_c": 37.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "After airway positioning, suction, oxygen and the clinician's decision about the antidote: waking.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:30",
+   "condition": "if_no_action",
+   "heart_rate": 110,
+   "heart_rhythm": "regular",
+   "systolic_bp": 108,
+   "diastolic_bp": 62,
+   "respiratory_rate": 6,
+   "spo2": 84,
+   "oxygen": "supplemental",
+   "temperature_c": 37.9,
+   "acvpu": "P",
+   "pain_score": 0,
+   "news2": 13,
+   "note": "Aspiration: SpO2 84, breathing 6, responds only to pain.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Drowsy, rousable to voice, retching.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.pupils",
+   "system": "pupils",
+   "finding": "Small pupils.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:pupils"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.chest",
+   "system": "chest",
+   "finding": "Reduced air entry at the bases.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:chest"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.cbg",
+   "test": "Capillary glucose",
+   "value": "5.6",
+   "unit": "mmol/L",
+   "normal_range": "4-7.8",
+   "flag": "normal",
+   "comment": "Hypoglycaemia excluded",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "15.4",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.cxr",
+   "test": "Chest X-ray",
+   "value": "Right lower zone shadowing",
+   "unit": "",
+   "normal_range": "clear",
+   "flag": "abnormal",
+   "comment": "Possible aspiration (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "9",
+   "note": "Slow breathing, low saturation, reduced alertness",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "stkc2.airway",
+   "type": "life_threat",
+   "label": "Airway at risk: reduced consciousness with vomiting after a recent meal",
+   "rank": 1,
+   "why": "Airway first in ABCDE; stomach contents can reach the lungs.",
+   "expected_actions": [
+    "Call the anaesthetist and the senior now",
+    "Recovery position or side-lying, suction",
+    "Stimulate; oxygen",
+    "Stop further opioid"
+   ]
+  },
+  {
+   "id": "stkc2.breath",
+   "type": "life_threat",
+   "label": "Slow breathing (RR 9) and SpO2 90 from the opioid",
+   "rank": 2,
+   "why": "Opioid effect; the clinician considers the antidote.",
+   "expected_actions": [
+    "Oxygen to the target",
+    "Reassess every few minutes",
+    "Clinician decides about naloxone"
+   ]
+  },
+  {
+   "id": "stkc2.aspiration",
+   "type": "time_critical",
+   "label": "Aspiration risk: full stomach",
+   "rank": 3,
+   "why": "Anaesthesia needs a rapid sequence plan; check the chest and chest X-ray if aspiration is suspected.",
+   "expected_actions": [
+    "Anaesthetist told",
+    "Chest X-ray if needed",
+    "NG tube per senior"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "stkc2.d1",
+   "prompt": "Drowsy with RR 9 and SpO2 90 after morphine. What now?",
+   "rule": "low_spo2_trigger",
+   "options": [
+    {
+     "id": "stkc2.d1.1",
+     "text": "Call the anaesthetist and the senior now; open the airway, give oxygen, stop opioids; the clinician decides about the antidote",
+     "correct": true,
+     "consequence": "Matches the book: ABCDE."
+    },
+    {
+     "id": "stkc2.d1.2",
+     "text": "Give more painkiller for the pain",
+     "correct": false,
+     "consequence": "Further sedation."
+    }
+   ]
+  },
+  {
+   "id": "stkc2.d2",
+   "prompt": "He is retching and ate 3 hours ago. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkc2.d2.1",
+     "text": "Place him on his side, suction ready, treat as a full stomach; tell the anaesthetist",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "stkc2.d2.2",
+     "text": "Lay him flat and wait",
+     "correct": false,
+     "consequence": "Aspiration."
+    }
+   ]
+  },
+  {
+   "id": "stkc2.d3",
+   "prompt": "SpO2 90. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkc2.d3.1",
+     "text": "Check the probe and the patient; oxygen to the target; reassess; chest X-ray if aspiration is suspected",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "stkc2.d3.2",
+     "text": "Ignore it as a bad trace",
+     "correct": false,
+     "consequence": "May be real hypoxia."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Airway first",
+   "Anaesthetist called",
+   "Oxygen and suction",
+   "Opioids stopped",
+   "Full stomach plan"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Gives more morphine",
+    "shows": "RR falls to 6",
+    "risk": "Respiratory arrest",
+    "recovery": "Stop; airway"
+   },
+   {
+    "mistake": "Lays him flat",
+    "shows": "He vomits and aspirates",
+    "risk": "Chest infection",
+    "recovery": "Side-lying, suction"
+   }
+  ],
+  "missed": [
+   "Airway not protected"
+  ],
+  "recovery": [
+   "Roll, suction, call for help"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Airway at risk: reduced consciousness with vomiting after a recent meal",
+   "Slow breathing (RR 9) and SpO2 90 from the opioid"
+  ],
+  "missed": [
+   "Airway not protected"
+  ],
+  "priority": "Airway at risk: reduced consciousness with vomiting after a recent meal",
+  "why_priority": "Airway first in ABCDE; stomach contents can reach the lungs.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Airway comes before the pain."
+ },
+ "verification": [
+  "V-09",
+  "V-01"
+ ],
+ "sources": {
+  "story": "SR-2331",
+  "authored": "SR-3731"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

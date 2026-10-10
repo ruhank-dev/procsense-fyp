@@ -1,0 +1,382 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-K",
+ "walkthrough_label": "PATIENT S1-K - anaemia",
+ "scenario": "S1",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Shazia Iqbal",
+  "sex": "F",
+  "age": 52,
+  "occupation": "school cook",
+  "dob": "1974-03-09",
+  "mrn": "613205"
+ },
+ "spoken_identity_answer": "Shazia Iqbal, ninth of March 1974.",
+ "wristband": {
+  "name_text": "SHAZIA IQBAL",
+  "dob_text": "09/03/1974",
+  "mrn_text": "MR 613205"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Shazia Iqbal, 52, is booked for keyhole gallbladder removal. She feels tired. Her Hb is 98 and her red cells are small (MCV 72)."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain under my right ribs after fatty food, and I am very tired all the time.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever. No black stools that I noticed. I have lost a little weight over three months.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Gallstones. Heavy periods until a year ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not pregnant; periods irregular now.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 92,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "Pale, tired; NEWS2 1.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Pale but comfortable.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.eyes",
+   "system": "eyes",
+   "finding": "Pale inner eyelids; whites of the eyes are white.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Mild tenderness under the right ribs.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "98",
+   "unit": "g/L",
+   "normal_range": "120-150",
+   "flag": "low",
+   "comment": "Moderate anaemia (80 to 109)",
+   "quality": null,
+   "previous": {
+    "value": "118",
+    "when": "pre-assessment 1 year ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.mcv",
+   "test": "MCV",
+   "value": "72",
+   "unit": "fL",
+   "normal_range": "80-100",
+   "flag": "low",
+   "comment": "Small red cells: suggests iron deficiency",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ferritin",
+   "test": "Ferritin",
+   "value": "8",
+   "unit": "ug/L",
+   "normal_range": "15-200",
+   "flag": "low",
+   "comment": "Low iron stores",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 120,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "Heart rate 92",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s1k.anaemia",
+   "type": "pathway_changing",
+   "label": "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency",
+   "rank": 1,
+   "why": "The cause must be found at her age (diet, periods, or slow bleeding from the gut) and the planned operation waits for the senior and the anaesthetist.",
+   "expected_actions": [
+    "Check ferritin and iron studies",
+    "Ask about bleeding, black stools, periods, diet",
+    "Tell the senior and the anaesthetist",
+    "Plan to find and treat the cause before re-listing"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s1k.d1",
+   "prompt": "Hb 98 and MCV 72 in a tired 52-year-old. What does it mean?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1k.d1.1",
+     "text": "Moderate anaemia with small cells, probably iron deficiency: ask about bleeding and diet and request iron studies",
+     "correct": true,
+     "consequence": "Matches the book and WHO anaemia bands."
+    },
+    {
+     "id": "s1k.d1.2",
+     "text": "Treat it as normal for her age",
+     "correct": false,
+     "consequence": "Unexplained iron deficiency needs a cause."
+    }
+   ]
+  },
+  {
+   "id": "s1k.d2",
+   "prompt": "The operation is booked for this morning. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1k.d2.1",
+     "text": "Discuss with the senior and the anaesthetist; the operation is likely postponed while the cause is found and treated",
+     "correct": true,
+     "consequence": "Institution-dependent; the senior decides."
+    },
+    {
+     "id": "s1k.d2.2",
+     "text": "Proceed without telling anyone",
+     "correct": false,
+     "consequence": "The result is a pathway change."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Recognise moderate iron-deficiency pattern",
+   "Ask about bleeding and diet",
+   "Senior and anaesthetist told",
+   "Postponed with a plan"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Ignores the result",
+    "shows": "The nurse queries the low Hb",
+    "risk": "Operation proceeds in an anaemic, unexplained patient",
+    "recovery": "Stop and tell the senior"
+   },
+   {
+    "mistake": "Blames the tiredness on age",
+    "shows": "The result remains unexplained",
+    "risk": "A bleeding source is missed",
+    "recovery": "Ask the cause"
+   }
+  ],
+  "missed": [
+   "Unexplained iron deficiency not investigated"
+  ],
+  "recovery": [
+   "Raise the result, ask the history, discuss with the senior"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency"
+  ],
+  "missed": [
+   "Unexplained iron deficiency not investigated"
+  ],
+  "priority": "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency",
+  "why_priority": "The cause must be found at her age (diet, periods, or slow bleeding from the gut) and the planned operation waits for the senior and the anaesthetist.",
+  "related": "A single issue",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Anaemia with small cells in a woman of this age needs a cause before elective surgery."
+ },
+ "verification": [
+  "V-18"
+ ],
+ "sources": {
+  "story": "SR-2309",
+  "authored": "SR-3718"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

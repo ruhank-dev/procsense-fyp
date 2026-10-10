@@ -25,9 +25,19 @@ def broken(case_id, change):
     return chk.problems(c, CTX, list(CASES.values()))
 
 
-class TheSeventeenCases(unittest.TestCase):
-    def test_exactly_the_seventeen_p0_cases_exist(self):
-        self.assertEqual(sorted(CASES), sorted(P0))
+class TheFiftyThreeCases(unittest.TestCase):
+    def test_exactly_the_53_cases_exist_in_three_tiers(self):
+        self.assertEqual(len(CASES), 53)
+        tiers = {t: sorted(i for i, c in CASES.items() if c["tier"] == t) for t in ("P0", "P1", "P2")}
+        self.assertEqual(tiers["P0"], sorted(P0))
+        self.assertEqual((len(tiers["P0"]), len(tiers["P1"]), len(tiers["P2"])), (17, 16, 20))
+        self.assertEqual(tiers["P2"], sorted(f"SC-{n}" for n in range(1, 21)))
+
+    def test_every_case_in_the_seed_table_has_a_case_file(self):
+        import csv
+        with open(ROOT / "content/case_seeds.csv", encoding="utf-8", newline="") as f:
+            seeds = {r["id"] for r in csv.DictReader(f)}
+        self.assertEqual(seeds - set(CASES) - {"VAR-S1-F"}, set(), "a seed case has no case file")
 
     def test_every_case_passes_the_checker(self):
         for cid, c in CASES.items():

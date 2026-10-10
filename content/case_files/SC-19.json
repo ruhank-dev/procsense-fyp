@@ -1,0 +1,371 @@
+{
+ "schema": 1,
+ "id": "SC-19",
+ "walkthrough_label": "SCENARIO CARD 19 (S2) - Low sugar + confusion + sepsis in a diabetic on an SGLT2 inhibitor",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Rashid Mahmood",
+  "sex": "M",
+  "age": 60,
+  "occupation": "retired engineer",
+  "dob": "1966-02-02",
+  "mrn": "635019"
+ },
+ "spoken_identity_answer": "Rashid Mahmood, second of February 1966.",
+ "wristband": {
+  "name_text": "RASHID MAHMOOD",
+  "dob_text": "02/02/1966",
+  "mrn_text": "MR 635019"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Rashid Mahmood, 60: glucose 3.4, confused, T 38.8, HR 120, ketones 3.5."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I do not feel right; confused.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever; not eating for two days.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Type 2 diabetes.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "An SGLT2 inhibitor and metformin.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 120,
+   "heart_rhythm": "regular",
+   "systolic_bp": 104,
+   "diastolic_bp": 62,
+   "respiratory_rate": 24,
+   "spo2": 95,
+   "oxygen": "room_air",
+   "temperature_c": 38.8,
+   "acvpu": "C",
+   "pain_score": 0,
+   "news2": 10,
+   "note": "Confused; NEWS2 high.",
+   "origin": "authored"
+  },
+  {
+   "time": "13:00",
+   "condition": "after_correct_action",
+   "heart_rate": 100,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.9,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "After treatment.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Confused, flushed, deep breathing.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.glu",
+   "test": "Capillary glucose",
+   "value": "3.4",
+   "unit": "mmol/L",
+   "normal_range": "6-10",
+   "flag": "low",
+   "comment": "Hypoglycaemia",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ket",
+   "test": "Capillary ketones",
+   "value": "3.5",
+   "unit": "mmol/L",
+   "normal_range": "below 0.6",
+   "flag": "high",
+   "comment": "Ketoacidosis range (3.0 or more)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book"
+  },
+  {
+   "id": "lab.dip",
+   "test": "Urine dipstick",
+   "value": "Glucose and ketones positive",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "abnormal",
+   "comment": "Written result",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "9",
+   "note": "High risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc19.glu",
+   "type": "life_threat",
+   "label": "Low sugar",
+   "rank": 1,
+   "why": "Treat immediately.",
+   "expected_actions": [
+    "Treat and recheck"
+   ]
+  },
+  {
+   "id": "sc19.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis",
+   "rank": 2,
+   "why": "Bundle.",
+   "expected_actions": [
+    "Cultures",
+    "Antibiotics in 1 hour"
+   ]
+  },
+  {
+   "id": "sc19.dka",
+   "type": "life_threat",
+   "label": "Ketoacidosis on an SGLT2 inhibitor",
+   "rank": 3,
+   "why": "DKA protocol by the clinician.",
+   "expected_actions": [
+    "DKA protocol"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc19.d1",
+   "prompt": "Glucose 3.4, ketones 3.5, T 38.8.",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc19.d1.1",
+     "text": "Treat the low sugar immediately, sepsis bundle, DKA protocol; diabetes team, senior and anaesthetist",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc19.d1.2",
+     "text": "Treat only the sepsis",
+     "correct": false,
+     "consequence": "Other threats missed."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Three life threats",
+   "Diabetes team"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Treats only the sepsis",
+    "shows": "Hypoglycaemia",
+    "risk": "Harm",
+    "recovery": "Treat all"
+   }
+  ],
+  "missed": [
+   "Ketones missed"
+  ],
+  "recovery": [
+   "Check"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Low sugar",
+   "Sepsis"
+  ],
+  "missed": [
+   "Ketones missed"
+  ],
+  "priority": "Low sugar",
+  "why_priority": "Treat immediately.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Three conditions can cause the same confusion."
+ },
+ "verification": [
+  "V-02",
+  "V-20"
+ ],
+ "sources": {
+  "story": "SR-2351",
+  "authored": "SR-3751"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

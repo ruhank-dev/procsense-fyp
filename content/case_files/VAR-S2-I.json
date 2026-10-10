@@ -1,0 +1,378 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-I",
+ "walkthrough_label": "PATIENT S2-I - 16 years old",
+ "scenario": "S2",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Master",
+  "full_name": "Hamid Khan",
+  "sex": "M",
+  "age": 16,
+  "occupation": "school student",
+  "dob": "2010-09-03",
+  "mrn": "623303"
+ },
+ "spoken_identity_answer": "Hamid Khan, third of September 2010.",
+ "wristband": {
+  "name_text": "HAMID KHAN",
+  "dob_text": "03/09/2010",
+  "mrn_text": "MR 623303"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Hamid Khan, 16, has classic appendicitis: central pain moved to the right, nausea, fever."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "My tummy hurt in the middle yesterday and now it is low on the right.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever, vomited once, no diarrhoea.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy. Asthma in childhood, none now.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "Tonsils out at seven, no problems.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 104,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 70,
+   "respiratory_rate": 20,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 38.2,
+   "acvpu": "A",
+   "pain_score": 7,
+   "news2": 2,
+   "note": "NEWS2 3 (HR 104 scores 1, temperature 38.2 scores 1, RR 20 scores 0... see table).",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Flushed, lying still, anxious; father is with him.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender and guarded low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.rebound",
+   "system": "rebound",
+   "finding": "Pain when the hand is released.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:rebound"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "16.1",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "88",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "AIR score",
+   "value": "10",
+   "note": "High probability",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s2i.consent",
+   "type": "pathway_changing",
+   "label": "A minor (16): consent follows the applicable law",
+   "rank": 1,
+   "why": "A parent or guardian and/or a competent young person consents under the applicable law; Hamid is part of the discussion.",
+   "expected_actions": [
+    "Follow the hospital policy on consent for a minor",
+    "Involve Hamid in the discussion",
+    "Document who consented and how"
+   ]
+  },
+  {
+   "id": "s2i.appendix",
+   "type": "time_critical",
+   "label": "Classic appendicitis",
+   "rank": 2,
+   "why": "Surgery within 24 hours of admission when indicated.",
+   "expected_actions": [
+    "Tell the surgeon",
+    "Analgesia by the clinician",
+    "Fasting"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s2i.d1",
+   "prompt": "Hamid is 16 and needs surgery. Who gives consent?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2i.d1.1",
+     "text": "Follow the hospital policy and the law for a minor: a parent or guardian and/or a competent young person; include Hamid in the discussion",
+     "correct": true,
+     "consequence": "Matches the book; institutional rule."
+    },
+    {
+     "id": "s2i.d1.2",
+     "text": "Hamid signs alone without checking the policy",
+     "correct": false,
+     "consequence": "The law and the policy must be followed."
+    }
+   ]
+  },
+  {
+   "id": "s2i.d2",
+   "prompt": "What about the explanation?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2i.d2.1",
+     "text": "Explain to Hamid and his father in simple words and document the discussion",
+     "correct": true,
+     "consequence": "Good practice."
+    },
+    {
+     "id": "s2i.d2.2",
+     "text": "Speak only to the father",
+     "correct": false,
+     "consequence": "The young person should be included."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Policy on consent for a minor",
+   "Hamid included",
+   "Documented",
+   "Fasting and surgeon told"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Gets consent from Hamid alone without the policy",
+    "shows": "The nurse queries the form",
+    "risk": "Invalid consent",
+    "recovery": "Follow the policy"
+   },
+   {
+    "mistake": "Ignores Hamid in the conversation",
+    "shows": "He stays silent",
+    "risk": "Poor consent",
+    "recovery": "Include him"
+   }
+  ],
+  "missed": [
+   "Consent route not checked"
+  ],
+  "recovery": [
+   "Stop and check the policy"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "A minor (16): consent follows the applicable law",
+   "Classic appendicitis"
+  ],
+  "missed": [
+   "Consent route not checked"
+  ],
+  "priority": "A minor (16): consent follows the applicable law",
+  "why_priority": "A parent or guardian and/or a competent young person consents under the applicable law; Hamid is part of the discussion.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A young person is part of the decision; the law and policy say who signs."
+ },
+ "verification": [
+  "V-11",
+  "V-12"
+ ],
+ "sources": {
+  "story": "SR-2321",
+  "authored": "SR-3723"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

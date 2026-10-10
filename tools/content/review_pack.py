@@ -114,9 +114,9 @@ def build() -> tuple[str, str]:
           "Pole, wristband, dipstick and cassette sizes are among the open ones.", "",
           "## 8. Validation summary", "",
           "CI (`task ci`, also run by the pre-push hook) checks, among others: source register and every content table against the book (verbatim) and the official quotes; NEWS2 and sepsis tables against the RCP and NICE pages; "
-          "17 case files (schema, NEWS2, flags, no doses); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, "
+          "53 case files (17 P0, 16 P1, 20 P2: schema, NEWS2, flags, no doses; also loaded by Core's own strict loader); every picture against its recorded hash, licence, attribution and the visible mark; the imaging library (clean and problem results, at least 4 pictures each, "
           "every result reachable from a case or a what-if); 53 equipment sheets; the content manifest below. The full list with what each catches is `docs/CI.md`.", "",
-          f"Register: {len(reg)} rows. Evidence A (guideline cited by the book): {ev[('A', 'VERIFIED')]} verified, {ev[('A', 'UNVERIFIED')]} not yet opened at the original (the original claims that matter for the cases are in section 2). "
+          f"Register: {len(reg)} rows. Evidence A (guideline cited by the book): {ev[('A', 'VERIFIED')]} verified, {ev[('A', 'UNVERIFIED')]} still open (checked again on 10 October 2026 and not confirmed, with the reason in each row; see `tools/content/tables/type_a_checks.py`). The rest were verified at the original or in two or more independent summaries, or re-typed D where they are simulator design values; every claim is in section 2. "
           f"B: {ev[('B', 'VERIFIED')]} verified, {ev[('B', 'UNVERIFIED')]} not opened. C: {ev[('C', 'UNVERIFIED')]} institution-specific. D: {ev[('D', 'VERIFIED')]} authored in the walkthrough.", "",
           f"Content package: {man['files']} files; per folder: " + ", ".join(f"{k} {v}" for k, v in man["per_folder"].items()) + f". Content hash: `{man['content_hash']}`.", ""]
     buf = io.StringIO()

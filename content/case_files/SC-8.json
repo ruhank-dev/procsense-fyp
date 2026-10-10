@@ -1,0 +1,419 @@
+{
+ "schema": 1,
+ "id": "SC-8",
+ "walkthrough_label": "SCENARIO CARD 8 (S2) - High potassium + AKI + sepsis",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Waqas Nadeem",
+  "sex": "M",
+  "age": 63,
+  "occupation": "retired mechanic",
+  "dob": "1963-03-03",
+  "mrn": "635008"
+ },
+ "spoken_identity_answer": "Waqas Nadeem, third of March 1963.",
+ "wristband": {
+  "name_text": "WAQAS NADEEM",
+  "dob_text": "03/03/1963",
+  "mrn_text": "MR 635008"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Waqas Nadeem, 63: K 6.6, creatinine 210, lactate 4.2, BP 88/50."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Awful tummy pain and I feel faint.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever and shaking. Hardly any urine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Kidney disease.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Ramipril.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 122,
+   "heart_rhythm": "regular",
+   "systolic_bp": 88,
+   "diastolic_bp": 50,
+   "respiratory_rate": 26,
+   "spo2": 93,
+   "oxygen": "room_air",
+   "temperature_c": 38.9,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 11,
+   "note": "Septic shock.",
+   "origin": "authored"
+  },
+  {
+   "time": "13:00",
+   "condition": "after_correct_action",
+   "heart_rate": 104,
+   "heart_rhythm": "regular",
+   "systolic_bp": 106,
+   "diastolic_bp": 62,
+   "respiratory_rate": 20,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.0,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "Responding.",
+   "origin": "authored"
+  },
+  {
+   "time": "13:00",
+   "condition": "if_no_action",
+   "heart_rate": 38,
+   "heart_rhythm": "regular",
+   "systolic_bp": 70,
+   "diastolic_bp": 40,
+   "respiratory_rate": 30,
+   "spo2": 88,
+   "oxygen": "room_air",
+   "temperature_c": 38.6,
+   "acvpu": "P",
+   "pain_score": 0,
+   "news2": 16,
+   "note": "Hyperkalaemic arrhythmia.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Hot, sweaty and drowsy.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Rigid abdomen.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "6.6",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "critical_high",
+   "comment": "Severe hyperkalaemia",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 20,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "210",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "high",
+   "comment": "Acute kidney injury",
+   "quality": null,
+   "previous": {
+    "value": "95",
+    "when": "usual"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "4.2",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Peaked T waves",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Hyperkalaemia (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "11",
+   "note": "High risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc8.k",
+   "type": "life_threat",
+   "label": "Dangerous potassium",
+   "rank": 1,
+   "why": "Emergency team, monitor, ECG, treatment by the clinician.",
+   "expected_actions": [
+    "Emergency team",
+    "Monitor",
+    "ECG"
+   ]
+  },
+  {
+   "id": "sc8.shock",
+   "type": "life_threat",
+   "label": "Septic shock",
+   "rank": 2,
+   "why": "Bundle within 1 hour; fluids.",
+   "expected_actions": [
+    "Cultures",
+    "Antibiotics in 1 hour",
+    "Fluids by clinician"
+   ]
+  },
+  {
+   "id": "sc8.anaes",
+   "type": "safety_blocker",
+   "label": "No suxamethonium; correct potassium first",
+   "rank": 3,
+   "why": "Anaesthetist decides the plan.",
+   "expected_actions": [
+    "Tell the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc8.d1",
+   "prompt": "K 6.6, BP 88/50, lactate 4.2.",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc8.d1.1",
+     "text": "Emergency team, monitor and ECG, start the sepsis bundle, critical care involved",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc8.d1.2",
+     "text": "Wait for a repeat sample",
+     "correct": false,
+     "consequence": "Delay."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Two life threats",
+   "Emergency team",
+   "Critical care"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Waits",
+    "shows": "Arrhythmia",
+    "risk": "Arrest",
+    "recovery": "Treat"
+   }
+  ],
+  "missed": [
+   "Potassium ignored"
+  ],
+  "recovery": [
+   "Rescue"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Dangerous potassium",
+   "Septic shock"
+  ],
+  "missed": [
+   "Potassium ignored"
+  ],
+  "priority": "Dangerous potassium",
+  "why_priority": "Emergency team, monitor, ECG, treatment by the clinician.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Treat the potassium and the shock together."
+ },
+ "verification": [
+  "V-15",
+  "V-17",
+  "V-21"
+ ],
+ "sources": {
+  "story": "SR-2340",
+  "authored": "SR-3740"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

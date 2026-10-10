@@ -1,0 +1,340 @@
+{
+ "schema": 1,
+ "id": "SC-17",
+ "walkthrough_label": "SCENARIO CARD 17 (S2) - Thalassaemia trait + dehydration",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Iqra Saleem",
+  "sex": "F",
+  "age": 25,
+  "occupation": "dental student",
+  "dob": "2001-10-10",
+  "mrn": "635017"
+ },
+ "spoken_identity_answer": "Iqra Saleem, tenth of October 2001.",
+ "wristband": {
+  "name_text": "IQRA SALEEM",
+  "dob_text": "10/10/2001",
+  "mrn_text": "MR 635017"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Ms Iqra Saleem, 25: known thalassaemia trait; Hb 108 with small cells; dehydrated from vomiting."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain low on the right and I keep vomiting.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Vomiting; poor intake.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Thalassaemia trait.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not pregnant.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 106,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 68,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 1,
+   "note": "Dehydrated; NEWS2 per table.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Dry lips, comfortable.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "108",
+   "unit": "g/L",
+   "normal_range": "120-150",
+   "flag": "low",
+   "comment": "Chronic: explained by the trait",
+   "quality": null,
+   "previous": {
+    "value": "110",
+    "when": "last year"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.mcv",
+   "test": "MCV",
+   "value": "68",
+   "unit": "fL",
+   "normal_range": "80-100",
+   "flag": "low",
+   "comment": "Small cells",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "AIR score",
+   "value": "8",
+   "note": "Indeterminate",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc17.hb",
+   "type": "information_only",
+   "label": "Anaemia explained by thalassaemia trait",
+   "rank": 1,
+   "why": "Chronic; no new bleeding; HbA1c unreliable (irrelevant in S2).",
+   "expected_actions": [
+    "Tell the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc17.fluids",
+   "type": "time_critical",
+   "label": "Dehydration",
+   "rank": 2,
+   "why": "Fluids by the clinician.",
+   "expected_actions": [
+    "Fluids",
+    "Re-check"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc17.d1",
+   "prompt": "Hb 108 with small cells.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc17.d1.1",
+     "text": "Explained by her known trait; treat the dehydration; tell the anaesthetist",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc17.d1.2",
+     "text": "Call it acute bleeding",
+     "correct": false,
+     "consequence": "It is chronic."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Trait recognised",
+   "Fluids"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Calls it acute bleeding",
+    "shows": "Wrong pathway",
+    "risk": "Delay",
+    "recovery": "Check the history"
+   }
+  ],
+  "missed": [
+   "Trait not asked"
+  ],
+  "recovery": [
+   "Ask"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Anaemia explained by thalassaemia trait",
+   "Dehydration"
+  ],
+  "missed": [
+   "Trait not asked"
+  ],
+  "priority": "Anaemia explained by thalassaemia trait",
+  "why_priority": "Chronic; no new bleeding; HbA1c unreliable (irrelevant in S2).",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Know the baseline before you call a result abnormal."
+ },
+ "verification": [
+  "V-18"
+ ],
+ "sources": {
+  "story": "SR-2349",
+  "authored": "SR-3749"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

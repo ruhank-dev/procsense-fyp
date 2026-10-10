@@ -1,0 +1,468 @@
+{
+ "schema": 1,
+ "id": "SC-1",
+ "walkthrough_label": "SCENARIO CARD 1 (S2) - Sepsis + penicillin anaphylaxis + AKI",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Danish Rehman",
+  "sex": "M",
+  "age": 38,
+  "occupation": "warehouse supervisor",
+  "dob": "1988-05-30",
+  "mrn": "635001"
+ },
+ "spoken_identity_answer": "Danish Rehman, thirtieth of May 1988.",
+ "wristband": {
+  "name_text": "DANISH REHMAN",
+  "dob_text": "30/05/1988",
+  "mrn_text": "MR 635001"
+ },
+ "allergies": [
+  {
+   "substance": "Penicillin",
+   "reaction": "Throat swelling"
+  }
+ ],
+ "allergy_answer": "Penicillin: my throat swelled.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Danish Rehman, 38, burst appendix: HR 126, BP 94/58, RR 24, T 39.0, lactate 3.6. Penicillin once caused throat swelling. Creatinine 170 (usual 80)."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Terrible pain in my whole tummy for two days and I feel awful.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever and shaking. Vomiting. Very little urine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 126,
+   "heart_rhythm": "regular",
+   "systolic_bp": 94,
+   "diastolic_bp": 58,
+   "respiratory_rate": 24,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 39.0,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 8,
+   "note": "Sepsis: NEWS2 high risk.",
+   "origin": "authored"
+  },
+  {
+   "time": "13:30",
+   "condition": "after_correct_action",
+   "heart_rate": 108,
+   "heart_rhythm": "regular",
+   "systolic_bp": 108,
+   "diastolic_bp": 66,
+   "respiratory_rate": 20,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 38.2,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 3,
+   "note": "After the sepsis bundle and fluids: responding.",
+   "origin": "authored"
+  },
+  {
+   "time": "13:30",
+   "condition": "if_no_action",
+   "heart_rate": 140,
+   "heart_rhythm": "regular",
+   "systolic_bp": 78,
+   "diastolic_bp": 44,
+   "respiratory_rate": 30,
+   "spo2": 89,
+   "oxygen": "room_air",
+   "temperature_c": 39.6,
+   "acvpu": "C",
+   "pain_score": 0,
+   "news2": 17,
+   "note": "Untreated: septic shock.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Hot, sweaty, breathing fast, lying very still.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Rigid abdomen.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.band",
+   "system": "allergy_band",
+   "finding": "Red allergy band: penicillin.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:allergy_band"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.6",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "170",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "high",
+   "comment": "Acute kidney injury (usual 80)",
+   "quality": null,
+   "previous": {
+    "value": "80",
+    "when": "usual"
+   },
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "21.0",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Severe inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "10",
+   "note": "High risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc1.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis with poor circulation",
+   "rank": 1,
+   "why": "ABCDE, senior and anaesthetist, oxygen if needed, cultures.",
+   "expected_actions": [
+    "Call the senior and the anaesthetist",
+    "Cultures and lactate",
+    "Oxygen to target"
+   ]
+  },
+  {
+   "id": "sc1.allergy",
+   "type": "safety_blocker",
+   "label": "Severe penicillin allergy before the antibiotic",
+   "rank": 2,
+   "why": "The antibiotic follows the allergy rule, still within 1 hour.",
+   "expected_actions": [
+    "Ask the reaction",
+    "Prescriber chooses a non-penicillin regimen by the hospital rule",
+    "Within 1 hour"
+   ]
+  },
+  {
+   "id": "sc1.aki",
+   "type": "pathway_changing",
+   "label": "Acute kidney injury caused by poor circulation",
+   "rank": 3,
+   "why": "Fluids help; no anti-inflammatories; kidney-adjusted drugs.",
+   "expected_actions": [
+    "Fluid bolus by clinician order and re-check",
+    "No anti-inflammatories",
+    "Strict urine output"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc1.d1",
+   "prompt": "NEWS2 10 with lactate 3.6. What first?",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc1.d1.1",
+     "text": "ABCDE, call the senior and anaesthetist, cultures and lactate, start the bundle",
+     "correct": true,
+     "consequence": "Life threat first."
+    },
+    {
+     "id": "sc1.d1.2",
+     "text": "Wait for the CT",
+     "correct": false,
+     "consequence": "Delay."
+    }
+   ]
+  },
+  {
+   "id": "sc1.d2",
+   "prompt": "Penicillin allergy with throat swelling. Which antibiotic?",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc1.d2.1",
+     "text": "The prescriber chooses by the hospital allergy rule, within 1 hour",
+     "correct": true,
+     "consequence": "Safety blocker before the drug."
+    },
+    {
+     "id": "sc1.d2.2",
+     "text": "Standard first-line penicillin",
+     "correct": false,
+     "consequence": "Anaphylaxis."
+    }
+   ]
+  },
+  {
+   "id": "sc1.d3",
+   "prompt": "Creatinine 170.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc1.d3.1",
+     "text": "Fluids by clinician order and re-check; no anti-inflammatories; kidney-adjusted antibiotic doses by the prescriber",
+     "correct": true,
+     "consequence": "Poor circulation caused it."
+    },
+    {
+     "id": "sc1.d3.2",
+     "text": "Ignore the creatinine",
+     "correct": false,
+     "consequence": "AKI worsens."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Sepsis bundle",
+   "Allergy-safe antibiotic in 1 hour",
+   "Fluids and kidney care"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Gives standard antibiotic",
+    "shows": "Allergy challenged",
+    "risk": "Anaphylaxis",
+    "recovery": "Stop; allergy rule"
+   },
+   {
+    "mistake": "Delays for CT",
+    "shows": "Shock",
+    "risk": "Death",
+    "recovery": "Bundle now"
+   }
+  ],
+  "missed": [
+   "Allergy not asked"
+  ],
+  "recovery": [
+   "Ask, escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Sepsis with poor circulation",
+   "Severe penicillin allergy before the antibiotic"
+  ],
+  "missed": [
+   "Allergy not asked"
+  ],
+  "priority": "Sepsis with poor circulation",
+  "why_priority": "ABCDE, senior and anaesthetist, oxygen if needed, cultures.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Treat the circulation first, then pick the antibiotic by the allergy, still within the hour."
+ },
+ "verification": [
+  "V-02",
+  "V-13",
+  "V-17",
+  "V-21"
+ ],
+ "sources": {
+  "story": "SR-2333",
+  "authored": "SR-3733"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

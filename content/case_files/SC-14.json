@@ -1,0 +1,379 @@
+{
+ "schema": 1,
+ "id": "SC-14",
+ "walkthrough_label": "SCENARIO CARD 14 (S2) - Equivocal ultrasound + deteriorating vital signs",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Mahnoor Raza",
+  "sex": "F",
+  "age": 28,
+  "occupation": "graphic designer",
+  "dob": "1997-11-16",
+  "mrn": "635014"
+ },
+ "spoken_identity_answer": "Mahnoor Raza, sixteenth of November 1997.",
+ "wristband": {
+  "name_text": "MAHNOOR RAZA",
+  "dob_text": "16/11/1997",
+  "mrn_text": "MR 635014"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Ms Mahnoor Raza, 28: appendix not seen; HR 104 rising to 122; T 38.9; CRP 160."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain low on the right.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever; vomiting.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not pregnant.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 104,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 38.0,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 1,
+   "note": "NEWS2 per table.",
+   "origin": "authored"
+  },
+  {
+   "time": "14:00",
+   "condition": "if_no_action",
+   "heart_rate": 122,
+   "heart_rhythm": "regular",
+   "systolic_bp": 106,
+   "diastolic_bp": 64,
+   "respiratory_rate": 22,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 38.9,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 6,
+   "note": "Deteriorating.",
+   "origin": "authored"
+  },
+  {
+   "time": "14:30",
+   "condition": "after_correct_action",
+   "heart_rate": 98,
+   "heart_rhythm": "regular",
+   "systolic_bp": 120,
+   "diastolic_bp": 74,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "After senior review and the faster pathway.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender and guarded low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "160",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Rising",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.us",
+   "test": "Ultrasound appendix",
+   "value": "Appendix not visualised",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Equivocal (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ct",
+   "test": "CT appendix",
+   "value": "Complicated appendicitis with abscess",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Picture result",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "5",
+   "note": "Rising",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc14.det",
+   "type": "time_critical",
+   "label": "Deterioration overrides wait-and-see",
+   "rank": 1,
+   "why": "Senior urgently; sepsis screen.",
+   "expected_actions": [
+    "Senior now",
+    "Sepsis screen"
+   ]
+  },
+  {
+   "id": "sc14.imaging",
+   "type": "pathway_changing",
+   "label": "CT now with escort and monitoring, or straight to surgery",
+   "rank": 2,
+   "why": "The senior decides.",
+   "expected_actions": [
+    "CT with escort",
+    "Or theatre"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc14.d1",
+   "prompt": "Equivocal ultrasound and a rising heart rate.",
+   "rule": "deterioration_clock",
+   "options": [
+    {
+     "id": "sc14.d1.1",
+     "text": "Escalate to the senior now, sepsis screen, CT with escort or straight to surgery",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc14.d1.2",
+     "text": "Keep observing",
+     "correct": false,
+     "consequence": "Observation option withdrawn."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Deterioration recognised",
+   "Senior called"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Keeps observing",
+    "shows": "Septic",
+    "risk": "Harm",
+    "recovery": "Escalate"
+   }
+  ],
+  "missed": [
+   "Trend missed"
+  ],
+  "recovery": [
+   "Escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Deterioration overrides wait-and-see",
+   "CT now with escort and monitoring, or straight to surgery"
+  ],
+  "missed": [
+   "Trend missed"
+  ],
+  "priority": "Deterioration overrides wait-and-see",
+  "why_priority": "Senior urgently; sepsis screen.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A worsening trend ends wait-and-see."
+ },
+ "verification": [
+  "V-02",
+  "V-11"
+ ],
+ "sources": {
+  "story": "SR-2346",
+  "authored": "SR-3746"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

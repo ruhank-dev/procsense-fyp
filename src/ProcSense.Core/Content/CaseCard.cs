@@ -42,7 +42,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -50,6 +50,7 @@ namespace ProcSense.Core.Content
             Summarise = summarise;
             HistoryTopics = historyTopics;
             Workflow = workflow;
+            CaseFiles = caseFiles ?? new Dictionary<string, CaseFile>();
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -59,5 +60,7 @@ namespace ProcSense.Core.Content
         public HistoryTopics HistoryTopics { get; }
         /// <summary>Goals, decision points and readiness blockers (content/workflow/workflow.json).</summary>
         public Workflow.CaseGraph Workflow { get; }
+        /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
+        public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }
 }

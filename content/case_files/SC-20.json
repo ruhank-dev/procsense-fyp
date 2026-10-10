@@ -1,0 +1,351 @@
+{
+ "schema": 1,
+ "id": "SC-20",
+ "walkthrough_label": "SCENARIO CARD 20 (S2) - Older patient + appendicitis picture + weight loss + anaemia + on aspirin",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Anwar Baig",
+  "sex": "M",
+  "age": 70,
+  "occupation": "retired postman",
+  "dob": "1956-09-27",
+  "mrn": "635020"
+ },
+ "spoken_identity_answer": "Anwar Baig, twenty-seventh of September 1956.",
+ "wristband": {
+  "name_text": "ANWAR BAIG",
+  "dob_text": "27/09/1956",
+  "mrn_text": "MR 635020"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Anwar Baig, 70: CRP 80, Hb 102, aspirin for stroke prevention; weight loss."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain low on the right for a week.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Lost some weight; tired.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "A minor stroke some years ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Aspirin.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 94,
+   "heart_rhythm": "regular",
+   "systolic_bp": 140,
+   "diastolic_bp": 84,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 37.5,
+   "acvpu": "A",
+   "pain_score": 4,
+   "news2": 1,
+   "note": "NEWS2 per table.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender low on the right with a fullness.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "102",
+   "unit": "g/L",
+   "normal_range": "130-170",
+   "flag": "low",
+   "comment": "Mild-moderate anaemia",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "80",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ct",
+   "test": "CT appendix",
+   "value": "Caecal mass with inflammation",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Possible tumour (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "HR 94",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc20.ct",
+   "type": "pathway_changing",
+   "label": "Possible caecal tumour presenting like appendicitis",
+   "rank": 1,
+   "why": "CT before deciding.",
+   "expected_actions": [
+    "CT",
+    "Senior"
+   ]
+  },
+  {
+   "id": "sc20.asp",
+   "type": "optimisable",
+   "label": "Aspirin usually continues",
+   "rank": 2,
+   "why": "Senior decides.",
+   "expected_actions": [
+    "Senior decides"
+   ]
+  },
+  {
+   "id": "sc20.gs",
+   "type": "information_only",
+   "label": "Group and save",
+   "rank": 3,
+   "why": "Prepare.",
+   "expected_actions": [
+    "Group and save"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc20.d1",
+   "prompt": "70-year-old with anaemia and weight loss.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc20.d1.1",
+     "text": "CT before deciding; continue aspirin usually; group and save; the CT decides surgery or colorectal team",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc20.d1.2",
+     "text": "Operate for appendicitis immediately",
+     "correct": false,
+     "consequence": "Possible tumour."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "delayed",
+ "paths": {
+  "correct": [
+   "CT first",
+   "Aspirin considered"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Operates immediately",
+    "shows": "Tumour missed",
+    "risk": "Harm",
+    "recovery": "CT"
+   }
+  ],
+  "missed": [
+   "Anaemia ignored"
+  ],
+  "recovery": [
+   "CT"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Possible caecal tumour presenting like appendicitis",
+   "Aspirin usually continues"
+  ],
+  "missed": [
+   "Anaemia ignored"
+  ],
+  "priority": "Possible caecal tumour presenting like appendicitis",
+  "why_priority": "CT before deciding.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Older patients with this picture need a scan first."
+ },
+ "verification": [
+  "V-11",
+  "V-18"
+ ],
+ "sources": {
+  "story": "SR-2352",
+  "authored": "SR-3752"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

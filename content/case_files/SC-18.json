@@ -1,0 +1,327 @@
+{
+ "schema": 1,
+ "id": "SC-18",
+ "walkthrough_label": "SCENARIO CARD 18 (S1) - Missing consent + equipment fault + late list",
+ "scenario": "S1",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Bilal Hashmi",
+  "sex": "M",
+  "age": 52,
+  "occupation": "estate agent",
+  "dob": "1973-12-05",
+  "mrn": "635018"
+ },
+ "spoken_identity_answer": "Bilal Hashmi, fifth of December 1973.",
+ "wristband": {
+  "name_text": "BILAL HASHMI",
+  "dob_text": "05/12/1973",
+  "mrn_text": "MR 635018"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Bilal Hashmi, 52: consent form not signed; insufflator fault; list running late."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Booked for gallbladder removal.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 76,
+   "heart_rhythm": "regular",
+   "systolic_bp": 126,
+   "diastolic_bp": 78,
+   "respiratory_rate": 14,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Well; NEWS2 0.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Well and a little irritated by the delay.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "142",
+   "unit": "g/L",
+   "normal_range": "130-170",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Well",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc18.consent",
+   "type": "safety_blocker",
+   "label": "Consent form not signed",
+   "rank": 1,
+   "why": "Re-consent properly, not rushed.",
+   "expected_actions": [
+    "Re-consent"
+   ]
+  },
+  {
+   "id": "sc18.equip",
+   "type": "safety_blocker",
+   "label": "Insufflator fault",
+   "rank": 2,
+   "why": "Report the equipment.",
+   "expected_actions": [
+    "Report the fault"
+   ]
+  },
+  {
+   "id": "sc18.time",
+   "type": "pathway_changing",
+   "label": "Late list",
+   "rank": 3,
+   "why": "If time runs out, postpone rather than rush.",
+   "expected_actions": [
+    "Postpone if needed"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc18.d1",
+   "prompt": "Form unsigned, equipment faulty, list late.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc18.d1.1",
+     "text": "Neither is a medical emergency; re-consent properly, report the equipment; postpone if time runs out",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc18.d1.2",
+     "text": "Rush through to save time",
+     "correct": false,
+     "consequence": "Unsafe."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Consent redone",
+   "Equipment reported"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Rushes",
+    "shows": "Unsafe",
+    "risk": "Harm",
+    "recovery": "Slow down"
+   }
+  ],
+  "missed": [
+   "Consent missed"
+  ],
+  "recovery": [
+   "Re-consent"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Consent form not signed",
+   "Insufflator fault"
+  ],
+  "missed": [
+   "Consent missed"
+  ],
+  "priority": "Consent form not signed",
+  "why_priority": "Re-consent properly, not rushed.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "System failures cluster on busy lists; do not rush."
+ },
+ "verification": [
+  "V-22"
+ ],
+ "sources": {
+  "story": "SR-2350",
+  "authored": "SR-3750"
+ },
+ "variant_end_states": {
+  "fixed": "ready"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

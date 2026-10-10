@@ -1,0 +1,390 @@
+{
+ "schema": 1,
+ "id": "VAR-S2-J",
+ "walkthrough_label": "PATIENT S2-J - looks like a urine infection",
+ "scenario": "S2",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Aqsa Mirza",
+  "sex": "F",
+  "age": 26,
+  "occupation": "call-centre agent",
+  "dob": "1999-12-12",
+  "mrn": "623304"
+ },
+ "spoken_identity_answer": "Aqsa Mirza, twelfth of December 1999.",
+ "wristband": {
+  "name_text": "AQSA MIRZA",
+  "dob_text": "12/12/1999",
+  "mrn_text": "MR 623304"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Ms Aqsa Mirza, 26, has burning when passing urine and lower-right pain. Dipstick: leucocytes 2+, nitrite negative, trace blood. Pregnancy test negative."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "It burns when I pass urine and I have pain low on the right.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Slight fever. No vaginal discharge. Nausea.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "One urine infection two years ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "The oral contraceptive pill.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not pregnant; last period 3 weeks ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 98,
+   "heart_rhythm": "regular",
+   "systolic_bp": 114,
+   "diastolic_bp": 70,
+   "respiratory_rate": 17,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.9,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 1,
+   "note": "HR 98 scores 1, temperature 37.9 scores 0... NEWS2 per table.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Uncomfortable, walking carefully.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender low on the right; no loin tenderness.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.loin",
+   "system": "loin",
+   "finding": "No tenderness over the kidneys.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:loin"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.dip",
+   "test": "Urine dipstick",
+   "value": "Leucocytes 2+, nitrite negative, trace blood",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "abnormal",
+   "comment": "Leucocytes without nitrite: infection is not the only explanation (picture result: written result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "book"
+  },
+  {
+   "id": "lab.preg",
+   "test": "Pregnancy test",
+   "value": "Negative",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "negative",
+   "comment": "Not pregnant",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "book"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "15.2",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "70",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "AIR score",
+   "value": "7",
+   "note": "Indeterminate: imaging or senior decision",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s2j.mimic",
+   "type": "pathway_changing",
+   "label": "Do not stop at 'urine infection': an inflamed appendix next to the bladder can cause the same dipstick",
+   "rank": 1,
+   "why": "Leucocytes without nitrite plus lower-right tenderness keeps appendicitis in play.",
+   "expected_actions": [
+    "Send a urine culture",
+    "Continue appendicitis assessment: score and imaging",
+    "Tell the senior"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s2j.d1",
+   "prompt": "The dipstick shows leucocytes 2+, nitrite negative. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s2j.d1.1",
+     "text": "Do not stop at 'UTI': send a urine culture and carry on the appendicitis assessment",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s2j.d1.2",
+     "text": "Treat as a urine infection and send her home",
+     "correct": false,
+     "consequence": "The appendix may be inflamed next to the bladder."
+    }
+   ]
+  },
+  {
+   "id": "s2j.d2",
+   "prompt": "What next?",
+   "rule": "air_bands",
+   "options": [
+    {
+     "id": "s2j.d2.1",
+     "text": "Calculate the AIR score and discuss imaging with the senior",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s2j.d2.2",
+     "text": "Cancel the assessment",
+     "correct": false,
+     "consequence": "Appendicitis is not excluded."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Not stopped at UTI",
+   "Culture sent",
+   "Appendicitis assessment continued",
+   "Senior told"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Sends her home on a urine-infection label",
+    "shows": "She returns worse",
+    "risk": "Missed appendicitis",
+    "recovery": "Re-assess"
+   },
+   {
+    "mistake": "Does not send a culture",
+    "shows": "The result is lost",
+    "risk": "Treatment is not guided",
+    "recovery": "Send culture"
+   }
+  ],
+  "missed": [
+   "Anchoring on the urine dipstick"
+  ],
+  "recovery": [
+   "Re-open the assessment"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Do not stop at 'urine infection': an inflamed appendix next to the bladder can cause the same dipstick"
+  ],
+  "missed": [
+   "Anchoring on the urine dipstick"
+  ],
+  "priority": "Do not stop at 'urine infection': an inflamed appendix next to the bladder can cause the same dipstick",
+  "why_priority": "Leucocytes without nitrite plus lower-right tenderness keeps appendicitis in play.",
+  "related": "A single issue",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A positive dipstick does not close the abdominal question."
+ },
+ "verification": [
+  "V-11"
+ ],
+ "sources": {
+  "story": "SR-2322",
+  "authored": "SR-3724"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

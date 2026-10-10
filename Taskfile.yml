@@ -82,7 +82,7 @@ tasks:
       - uv run --project tools tools/content/build_tables.py
 
   content-cases:
-    desc: Build content/case_files (the 17 playable P0 cases) from tools/content/cases and validate them
+    desc: Build content/case_files (the 53 playable cases) from tools/content/cases and validate them
     cmds:
       - uv run --project tools tools/content/build_case_files.py
 

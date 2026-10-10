@@ -1,0 +1,382 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-I",
+ "walkthrough_label": "PATIENT S1-I - penicillin anaphylaxis",
+ "scenario": "S1",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Amna Hashmi",
+  "sex": "F",
+  "age": 45,
+  "occupation": "pharmacy assistant",
+  "dob": "1981-05-17",
+  "mrn": "613204"
+ },
+ "spoken_identity_answer": "Amna Hashmi, seventeenth of May 1981.",
+ "wristband": {
+  "name_text": "AMNA HASHMI",
+  "dob_text": "17/05/1981",
+  "mrn_text": "MR 613204"
+ },
+ "allergies": [
+  {
+   "substance": "Penicillin",
+   "reaction": "Throat swelling and collapse in 2015 (anaphylaxis)"
+  }
+ ],
+ "allergy_answer": "Penicillin: my throat swelled up and I collapsed in 2015.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Amna Hashmi, 45, is booked for keyhole gallbladder removal. She is well. In 2015 penicillin caused throat swelling and collapse."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Three attacks of pain under my right ribs after oily meals; the scan showed gallstones.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever, no yellow eyes, no dark urine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Gallstones only.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "One caesarean section years ago, no problems with the anaesthetic.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not pregnant; last period 10 days ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 76,
+   "heart_rhythm": "regular",
+   "systolic_bp": 122,
+   "diastolic_bp": 76,
+   "respiratory_rate": 14,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Well; NEWS2 0.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Well, comfortable, no distress.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.band",
+   "system": "allergy_band",
+   "finding": "Red allergy band on the wrist: penicillin.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:allergy_band"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Soft, mildly tender under the right ribs, no guarding.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "134",
+   "unit": "g/L",
+   "normal_range": "120-150",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "64",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Well; low-risk planned patient",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s1i.allergy",
+   "type": "safety_blocker",
+   "label": "Severe immediate penicillin allergy (throat swelling and collapse, 2015)",
+   "rank": 1,
+   "why": "A wrong antibiotic could cause anaphylaxis; the reaction must be recorded exactly and be visible to everyone.",
+   "expected_actions": [
+    "Ask and record the reaction",
+    "Allergy band on and the record updated",
+    "Tell the anaesthetist and the pharmacist",
+    "If an antibiotic is needed, the prescriber chooses by the hospital allergy rule"
+   ]
+  },
+  {
+   "id": "s1i.lowrisk",
+   "type": "information_only",
+   "label": "Low-risk planned operation: an antibiotic is probably not needed",
+   "rank": 2,
+   "why": "The allergy matters most if an antibiotic is prescribed; the simulator does not decide that.",
+   "expected_actions": [
+    "Note the plan for the prescriber"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s1i.d1",
+   "prompt": "She says penicillin once made her throat swell and she collapsed. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1i.d1.1",
+     "text": "Record the exact reaction, check the allergy band and tell the anaesthetist and pharmacist",
+     "correct": true,
+     "consequence": "Matches the book: severe immediate allergy, record the reaction."
+    },
+    {
+     "id": "s1i.d1.2",
+     "text": "Write 'allergy' in the notes and say nothing else",
+     "correct": false,
+     "consequence": "A vague entry hides how severe the reaction was."
+    }
+   ]
+  },
+  {
+   "id": "s1i.d2",
+   "prompt": "The team asks which antibiotic she can have if one is needed.",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1i.d2.1",
+     "text": "The prescriber chooses according to the hospital penicillin-allergy rule; the trainee does not pick a drug",
+     "correct": true,
+     "consequence": "Matches the book; the choice is institutional and clinician-controlled."
+    },
+    {
+     "id": "s1i.d2.2",
+     "text": "Suggest a penicillin-family drug because it is the usual choice",
+     "correct": false,
+     "consequence": "Risk of anaphylaxis in a patient with a severe reaction."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Ask the reaction and record it",
+   "Allergy band checked",
+   "Anaesthetist and pharmacist told",
+   "Antibiotic choice left to the prescriber and the hospital rule"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Does not record the reaction",
+    "shows": "The nurse asks what the allergy was",
+    "risk": "Later staff cannot judge its severity",
+    "recovery": "Ask and record it now"
+   },
+   {
+    "mistake": "Suggests a penicillin-family drug",
+    "shows": "The pharmacist challenges it",
+    "risk": "Anaphylaxis",
+    "recovery": "Stop; use the allergy rule"
+   }
+  ],
+  "missed": [
+   "Vague allergy entry"
+  ],
+  "recovery": [
+   "Ask again, record the reaction, update the band and the notes"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Severe allergy recorded",
+   "Band checked"
+  ],
+  "missed": [
+   "Vague allergy entry"
+  ],
+  "priority": "Severe immediate penicillin allergy (throat swelling and collapse, 2015)",
+  "why_priority": "A wrong antibiotic could cause anaphylaxis; the reaction must be recorded exactly and be visible to everyone.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A severe allergy is recorded exactly and checked before every drug."
+ },
+ "verification": [
+  "V-13"
+ ],
+ "sources": {
+  "story": "SR-2312",
+  "authored": "SR-3717"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

@@ -1,0 +1,370 @@
+{
+ "schema": 1,
+ "id": "SC-11",
+ "walkthrough_label": "SCENARIO CARD 11 (S2) - Refuses surgery + becomes septic later",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Kashif Ali",
+  "sex": "M",
+  "age": 41,
+  "occupation": "plumber",
+  "dob": "1985-01-28",
+  "mrn": "635011"
+ },
+ "spoken_identity_answer": "Kashif Ali, twenty-eighth of January 1985.",
+ "wristband": {
+  "name_text": "KASHIF ALI",
+  "dob_text": "28/01/1985",
+  "mrn_text": "MR 635011"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Kashif Ali, 41, initially refuses surgery with capacity; four hours later NEWS2 8 and confused."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain low on the right; I do not want surgery.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Mild fever.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 90,
+   "heart_rhythm": "regular",
+   "systolic_bp": 124,
+   "diastolic_bp": 76,
+   "respiratory_rate": 16,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.8,
+   "acvpu": "A",
+   "pain_score": 5,
+   "news2": 0,
+   "note": "Initial: capable refusal.",
+   "origin": "authored"
+  },
+  {
+   "time": "16:00",
+   "condition": "variant",
+   "heart_rate": 122,
+   "heart_rhythm": "regular",
+   "systolic_bp": 94,
+   "diastolic_bp": 56,
+   "respiratory_rate": 24,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 39.2,
+   "acvpu": "C",
+   "pain_score": 0,
+   "news2": 12,
+   "note": "Four hours later: NEWS2 8 and confused.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Initially comfortable and clear.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender low on the right.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.0",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion (at 16:00)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.ct",
+   "test": "CT appendix",
+   "value": "Perforated appendix with free fluid",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "At 16:00 (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "8",
+   "note": "At 16:00",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc11.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis now",
+   "rank": 1,
+   "why": "Bundle.",
+   "expected_actions": [
+    "Senior now",
+    "Cultures",
+    "Antibiotics in 1 hour"
+   ]
+  },
+  {
+   "id": "sc11.capacity",
+   "type": "pathway_changing",
+   "label": "Capacity now lost from sepsis",
+   "rank": 2,
+   "why": "Treat the cause and reassess capacity.",
+   "expected_actions": [
+    "Senior-led best-interests decision"
+   ]
+  },
+  {
+   "id": "sc11.refusal",
+   "type": "safety_blocker",
+   "label": "Earlier capable refusal is respected where it clearly applied",
+   "rank": 3,
+   "why": "Senior, legal and ethics guidance.",
+   "expected_actions": [
+    "Document fully"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc11.d1",
+   "prompt": "Four hours later: NEWS2 8 and confused.",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc11.d1.1",
+     "text": "Sepsis bundle; senior-led decision on capacity and best interests; document everything",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc11.d1.2",
+     "text": "Take the earlier refusal as final and do nothing",
+     "correct": false,
+     "consequence": "Treatable cause."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Sepsis recognised",
+   "Senior-led decision",
+   "Documented"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Does nothing",
+    "shows": "Shock",
+    "risk": "Death",
+    "recovery": "Bundle"
+   }
+  ],
+  "missed": [
+   "Late recognition"
+  ],
+  "recovery": [
+   "Escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Sepsis now",
+   "Capacity now lost from sepsis"
+  ],
+  "missed": [
+   "Late recognition"
+  ],
+  "priority": "Sepsis now",
+  "why_priority": "Bundle.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Capacity can change when the patient becomes unwell."
+ },
+ "verification": [
+  "V-02",
+  "V-21"
+ ],
+ "sources": {
+  "story": "SR-2343",
+  "authored": "SR-3743"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

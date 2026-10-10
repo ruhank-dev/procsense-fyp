@@ -1,0 +1,378 @@
+{
+ "schema": 1,
+ "id": "VAR-S1-M",
+ "walkthrough_label": "PATIENT S1-M - sleep apnoea risk",
+ "scenario": "S1",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Rizwan Anwar",
+  "sex": "M",
+  "age": 44,
+  "occupation": "taxi driver",
+  "dob": "1982-08-14",
+  "mrn": "613207"
+ },
+ "spoken_identity_answer": "Rizwan Anwar, fourteenth of August 1982.",
+ "wristband": {
+  "name_text": "RIZWAN ANWAR",
+  "dob_text": "14/08/1982",
+  "mrn_text": "MR 613207"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Rizwan Anwar, 44, is booked for keyhole gallbladder removal. BMI 41. Loud snoring; his wife says he stops breathing at night. STOP-BANG 6, SpO2 95."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain under my right ribs after rich meals. My wife says I snore and stop breathing at night.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Falls asleep easily in the day. No fever.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "High blood pressure, no sleep study yet. Gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Ramipril.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "None, but I am nervous about being put to sleep.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "Occasional.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 84,
+   "heart_rhythm": "regular",
+   "systolic_bp": 142,
+   "diastolic_bp": 88,
+   "respiratory_rate": 16,
+   "spo2": 95,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "BMI 41, SpO2 95; NEWS2 0 (SpO2 95 scores 1).",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Large neck, comfortable at rest, sleepy.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.airway",
+   "system": "airway",
+   "finding": "Short thick neck; limited mouth opening not noted; airway to be assessed by the anaesthetist.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:airway"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.chest",
+   "system": "chest",
+   "finding": "Clear.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:chest"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.bmi",
+   "test": "BMI",
+   "value": "41",
+   "unit": "kg/m2",
+   "normal_range": "18.5-24.9",
+   "flag": "high",
+   "comment": "Class III obesity",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "book"
+  },
+  {
+   "id": "lab.stopbang",
+   "test": "STOP-BANG",
+   "value": "6",
+   "unit": "points",
+   "normal_range": "below 3",
+   "flag": "high",
+   "comment": "High risk of obstructive sleep apnoea",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "STOP-BANG",
+   "value": "6",
+   "note": "High risk of obstructive sleep apnoea",
+   "origin": "book"
+  },
+  {
+   "name": "ASA grade",
+   "value": "3",
+   "note": "BMI above 40 with sleep apnoea risk",
+   "origin": "book"
+  },
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "SpO2 95 scores 1",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "s1m.osa",
+   "type": "pathway_changing",
+   "label": "High risk of obstructive sleep apnoea with BMI 41",
+   "rank": 1,
+   "why": "Airway and breathing after anaesthesia and with painkillers need extra precautions; the anaesthetist decides to proceed with monitoring or to request a sleep study first.",
+   "expected_actions": [
+    "Tell the anaesthetist",
+    "ASA grade 3 recorded",
+    "Plan extra monitoring after surgery and careful painkillers",
+    "Anaesthetist decides: proceed with precautions or sleep study first"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "s1m.d1",
+   "prompt": "STOP-BANG 6 and BMI 41. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1m.d1.1",
+     "text": "High risk of sleep apnoea: tell the anaesthetist; record ASA 3",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "s1m.d1.2",
+     "text": "Note the score only",
+     "correct": false,
+     "consequence": "The anaesthetist must plan for it."
+    }
+   ]
+  },
+  {
+   "id": "s1m.d2",
+   "prompt": "Who decides whether the list goes ahead?",
+   "rule": null,
+   "options": [
+    {
+     "id": "s1m.d2.1",
+     "text": "The anaesthetist: proceed with monitoring after surgery and careful painkillers, or ask for a sleep study first",
+     "correct": true,
+     "consequence": "Institution-dependent; the clinician decides."
+    },
+    {
+     "id": "s1m.d2.2",
+     "text": "The nurse alone",
+     "correct": false,
+     "consequence": "Not a nursing decision."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Tell the anaesthetist",
+   "ASA 3",
+   "Plan monitoring after surgery",
+   "Careful painkillers"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Does not mention the snoring risk",
+    "shows": "Recovery has no extra monitoring",
+    "risk": "Breathing pauses after opioids",
+    "recovery": "Tell the anaesthetist now"
+   },
+   {
+    "mistake": "Lets the nurse decide alone",
+    "shows": "The anaesthetist is not asked",
+    "risk": "Unplanned risk",
+    "recovery": "Ask the anaesthetist"
+   }
+  ],
+  "missed": [
+   "Sleep apnoea risk not linked to the anaesthetic plan"
+  ],
+  "recovery": [
+   "Tell the anaesthetist; add monitoring after surgery"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "High risk of obstructive sleep apnoea with BMI 41"
+  ],
+  "missed": [
+   "Sleep apnoea risk not linked to the anaesthetic plan"
+  ],
+  "priority": "High risk of obstructive sleep apnoea with BMI 41",
+  "why_priority": "Airway and breathing after anaesthesia and with painkillers need extra precautions; the anaesthetist decides to proceed with monitoring or to request a sleep study first.",
+  "related": "A single issue",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "BMI above 40 and a high STOP-BANG score need an anaesthetic plan, not just a number."
+ },
+ "verification": [
+  "V-09"
+ ],
+ "sources": {
+  "story": "SR-2311",
+  "authored": "SR-3720"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

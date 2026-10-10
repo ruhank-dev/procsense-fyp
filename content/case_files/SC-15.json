@@ -1,0 +1,357 @@
+{
+ "schema": 1,
+ "id": "SC-15",
+ "walkthrough_label": "SCENARIO CARD 15 (S2) - Anaphylaxis to antibiotic + still needs antibiotics",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Yasir Hameed",
+  "sex": "M",
+  "age": 35,
+  "occupation": "driver",
+  "dob": "1991-06-18",
+  "mrn": "635015"
+ },
+ "spoken_identity_answer": "Yasir Hameed, eighteenth of June 1991.",
+ "wristband": {
+  "name_text": "YASIR HAMEED",
+  "dob_text": "18/06/1991",
+  "mrn_text": "MR 635015"
+ },
+ "allergies": [
+  {
+   "substance": "Antibiotic given today",
+   "reaction": "Anaphylaxis, treated with adrenaline"
+  }
+ ],
+ "allergy_answer": "I reacted to the drip today.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Mr Yasir Hameed, 35: reaction to the first antibiotic; treated with adrenaline; now stable; the infection still needs treatment."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain low on the right, and a rash and wheeze after the drip.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 112,
+   "heart_rhythm": "regular",
+   "systolic_bp": 100,
+   "diastolic_bp": 60,
+   "respiratory_rate": 22,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 38.4,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 8,
+   "note": "Reaction under treatment by the clinician.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:30",
+   "condition": "after_correct_action",
+   "heart_rate": 90,
+   "heart_rhythm": "regular",
+   "systolic_bp": 118,
+   "diastolic_bp": 72,
+   "respiratory_rate": 16,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 37.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Stable.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Flushed with hives, wheezy before treatment; now settled.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.band",
+   "system": "allergy_band",
+   "finding": "New allergy band placed.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:allergy_band"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.tryp",
+   "test": "Tryptase",
+   "value": "Raised",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Supports anaphylaxis",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 120,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "6",
+   "note": "Before treatment",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc15.record",
+   "type": "safety_blocker",
+   "label": "Record the new allergy",
+   "rank": 1,
+   "why": "Alternative antibiotic from a different family per the policy.",
+   "expected_actions": [
+    "Record the allergy",
+    "Allergy band",
+    "Prescriber chooses"
+   ]
+  },
+  {
+   "id": "sc15.anaes",
+   "type": "pathway_changing",
+   "label": "Anaesthetist informed",
+   "rank": 2,
+   "why": "Reaction may recur.",
+   "expected_actions": [
+    "Tell the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc15.time",
+   "type": "pathway_changing",
+   "label": "Surgery timing per senior",
+   "rank": 3,
+   "why": "Once stable.",
+   "expected_actions": [
+    "Senior decides"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc15.d1",
+   "prompt": "He reacted to the first antibiotic.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc15.d1.1",
+     "text": "Record the new allergy, tell the anaesthetist, alternative antibiotic from a different family per the policy",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc15.d1.2",
+     "text": "Give the same antibiotic again",
+     "correct": false,
+     "consequence": "Anaphylaxis."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Allergy recorded",
+   "Alternative chosen"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Repeats the antibiotic",
+    "shows": "Anaphylaxis",
+    "risk": "Death",
+    "recovery": "Stop"
+   }
+  ],
+  "missed": [
+   "Allergy not recorded"
+  ],
+  "recovery": [
+   "Record"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Record the new allergy",
+   "Anaesthetist informed"
+  ],
+  "missed": [
+   "Allergy not recorded"
+  ],
+  "priority": "Record the new allergy",
+  "why_priority": "Alternative antibiotic from a different family per the policy.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A new allergy must be recorded immediately."
+ },
+ "verification": [
+  "V-13"
+ ],
+ "sources": {
+  "story": "SR-2347",
+  "authored": "SR-3747"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

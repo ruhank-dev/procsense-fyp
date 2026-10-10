@@ -1,0 +1,397 @@
+{
+ "schema": 1,
+ "id": "SC-2",
+ "walkthrough_label": "SCENARIO CARD 2 (S2) - Positive pregnancy test + lower-right pain + low BP",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Nimra Javed",
+  "sex": "F",
+  "age": 24,
+  "occupation": "salon assistant",
+  "dob": "2002-04-08",
+  "mrn": "635002"
+ },
+ "spoken_identity_answer": "Nimra Javed, eighth of April 2002.",
+ "wristband": {
+  "name_text": "NIMRA JAVED",
+  "dob_text": "08/04/2002",
+  "mrn_text": "MR 635002"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "08:00",
+  "summary": "Ms Nimra Javed, 24: HR 118, BP 92/56, pregnancy test positive, Hb 98, pain low on one side."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Sharp pain low in my tummy on one side and I feel faint.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Light vaginal bleeding since yesterday. Shoulder-tip pain.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Lunch at 12:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Late period; not sure if pregnant.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 118,
+   "heart_rhythm": "regular",
+   "systolic_bp": 92,
+   "diastolic_bp": 56,
+   "respiratory_rate": 20,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.9,
+   "acvpu": "A",
+   "pain_score": 8,
+   "news2": 4,
+   "note": "Shocked: ruptured ectopic pregnancy suspected.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:45",
+   "condition": "after_correct_action",
+   "heart_rate": 100,
+   "heart_rhythm": "regular",
+   "systolic_bp": 106,
+   "diastolic_bp": 64,
+   "respiratory_rate": 18,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.9,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 2,
+   "note": "After fluids and urgent gynaecology: stabilising.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:45",
+   "condition": "if_no_action",
+   "heart_rate": 136,
+   "heart_rhythm": "regular",
+   "systolic_bp": 72,
+   "diastolic_bp": 40,
+   "respiratory_rate": 28,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "V",
+   "pain_score": 0,
+   "news2": 13,
+   "note": "Bleeding continues: collapse.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Pale and clammy.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender low on one side with guarding.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.preg",
+   "test": "Pregnancy test",
+   "value": "Positive",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "positive",
+   "comment": "hCG positive",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "book"
+  },
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "98",
+   "unit": "g/L",
+   "normal_range": "120-150",
+   "flag": "low",
+   "comment": "Low: possible blood loss",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "7",
+   "note": "High risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc2.bleed",
+   "type": "life_threat",
+   "label": "Possible internal bleeding",
+   "rank": 1,
+   "why": "Two large drips, crossmatch, fluids or blood.",
+   "expected_actions": [
+    "Call for help",
+    "Two large IV lines",
+    "Crossmatch"
+   ]
+  },
+  {
+   "id": "sc2.dx",
+   "type": "pathway_changing",
+   "label": "Ectopic pregnancy until proven otherwise",
+   "rank": 2,
+   "why": "Gynaecology now; the appendicitis pathway stops.",
+   "expected_actions": [
+    "Gynaecology now",
+    "Pelvic ultrasound",
+    "Avoid CT"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc2.d1",
+   "prompt": "Positive pregnancy test with pain and low BP.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc2.d1.1",
+     "text": "Possible ectopic: call for help, two drips, crossmatch, gynaecology now",
+     "correct": true,
+     "consequence": "Matches NICE NG126."
+    },
+    {
+     "id": "sc2.d1.2",
+     "text": "Continue the appendicitis pathway",
+     "correct": false,
+     "consequence": "Misses the ectopic."
+    }
+   ]
+  },
+  {
+   "id": "sc2.d2",
+   "prompt": "What imaging?",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc2.d2.1",
+     "text": "Pelvic ultrasound by gynaecology; avoid CT",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc2.d2.2",
+     "text": "CT abdomen first",
+     "correct": false,
+     "consequence": "Radiation and delay."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Pregnancy test",
+   "Bleed recognised",
+   "Gynaecology now"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Misses the pregnancy test",
+    "shows": "Safety failure",
+    "risk": "Death",
+    "recovery": "Test now"
+   }
+  ],
+  "missed": [
+   "Pregnancy test missed"
+  ],
+  "recovery": [
+   "Test and escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Possible internal bleeding",
+   "Ectopic pregnancy until proven otherwise"
+  ],
+  "missed": [
+   "Pregnancy test missed"
+  ],
+  "priority": "Possible internal bleeding",
+  "why_priority": "Two large drips, crossmatch, fluids or blood.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Always do a pregnancy test in a woman with lower tummy pain."
+ },
+ "verification": [
+  "V-10"
+ ],
+ "sources": {
+  "story": "SR-2334",
+  "authored": "SR-3734"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

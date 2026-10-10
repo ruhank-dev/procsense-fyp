@@ -1,0 +1,446 @@
+{
+ "schema": 1,
+ "id": "STK-S1-B",
+ "walkthrough_label": "STACKED CASE S1-B - anticoagulated AF with iron-deficiency anaemia and an anticoagulant taken this morning",
+ "scenario": "S1",
+ "tier": "P1",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "George Mensah",
+  "sex": "M",
+  "age": 69,
+  "occupation": "retired teacher",
+  "dob": "1957-01-20",
+  "mrn": "614402"
+ },
+ "spoken_identity_answer": "George Mensah, twentieth of January 1957.",
+ "wristband": {
+  "name_text": "GEORGE MENSAH",
+  "dob_text": "20/01/1957",
+  "mrn_text": "MR 614402"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr George Mensah, 69, is booked for keyhole gallbladder removal. Known atrial fibrillation on a blood thinner that should have been stopped. He is pale and tired; Hb 104, MCV 74, ferritin 9."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Pain under the right ribs after meals, and I have been so tired for three months.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "My stools have been darker for some weeks. No chest pain, no breathlessness at rest.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Atrial fibrillation, high blood pressure, early kidney disease (stage G3a).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Apixaban, bisoprolol, amlodipine. I took my apixaban at seven this morning as I always do.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 84,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 138,
+   "diastolic_bp": 82,
+   "respiratory_rate": 15,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "Known AF, rate controlled; NEWS2 1.",
+   "origin": "book"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Calm, slightly pale, talking normally.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.eyes",
+   "system": "eyes",
+   "finding": "Pale inner eyelids.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:eyes"
+   ],
+   "origin": "book"
+  },
+  {
+   "id": "ex.pulse",
+   "system": "pulse",
+   "finding": "Irregularly irregular, rate 84.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:pulse"
+   ],
+   "origin": "book"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Hb",
+   "value": "104",
+   "unit": "g/L",
+   "normal_range": "130-170",
+   "flag": "low",
+   "comment": "Moderate anaemia (men: below 130)",
+   "quality": null,
+   "previous": {
+    "value": "131",
+    "when": "2 years ago"
+   },
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.mcv",
+   "test": "MCV",
+   "value": "74",
+   "unit": "fL",
+   "normal_range": "80-100",
+   "flag": "low",
+   "comment": "Small cells: iron deficiency",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ferritin",
+   "test": "Ferritin",
+   "value": "9",
+   "unit": "ug/L",
+   "normal_range": "30-300",
+   "flag": "low",
+   "comment": "Iron deficiency",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 120,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "98",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "normal",
+   "comment": "Early kidney disease, stable",
+   "quality": null,
+   "previous": {
+    "value": "96",
+    "when": "last year"
+   },
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Atrial fibrillation, rate 84",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "abnormal",
+   "comment": "Known rhythm, not new (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "Heart rate 84 irregular; SpO2 97",
+   "origin": "authored"
+  },
+  {
+   "name": "CHA2DS2-VASc",
+   "value": "3",
+   "note": "Stroke risk with AF",
+   "origin": "book"
+  }
+ ],
+ "problems": [
+  {
+   "id": "stkb.dose",
+   "type": "safety_blocker",
+   "label": "Blood thinner taken this morning although the plan was to stop it two days before",
+   "rank": 1,
+   "why": "Bleeding risk at surgery; the anaesthetist and surgeon decide timing. The PAUSE plan (stop 2 days before for a moderate-bleeding-risk operation, no bridging) was not followed.",
+   "expected_actions": [
+    "Confirm exactly when the last dose was taken",
+    "Tell the anaesthetist and the surgeon",
+    "Re-plan the list with a proper stop time",
+    "Do not stop or restart on your own"
+   ]
+  },
+  {
+   "id": "stkb.anaemia",
+   "type": "pathway_changing",
+   "label": "Iron-deficiency anaemia in an older man on a blood thinner (darker stools): a bleeding source must be looked for",
+   "rank": 2,
+   "why": "WHO 2024: anaemia is below 130 in men. Unexplained iron deficiency is a red flag for gut bleeding.",
+   "expected_actions": [
+    "Iron studies and group and save",
+    "Ask about dark stools",
+    "Refer for investigation of the cause"
+   ]
+  },
+  {
+   "id": "stkb.af",
+   "type": "information_only",
+   "label": "Known atrial fibrillation, rate controlled",
+   "rank": 3,
+   "why": "Confirm with an ECG that it is the known rhythm.",
+   "expected_actions": [
+    "12-lead ECG",
+    "Note for the anaesthetist"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "stkb.d1",
+   "prompt": "He took his blood thinner at seven this morning. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkb.d1.1",
+     "text": "Tell the anaesthetist and surgeon; the list cannot simply continue; plan a proper stop time",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "stkb.d1.2",
+     "text": "Say nothing as the surgery is only keyhole",
+     "correct": false,
+     "consequence": "Bleeding risk."
+    }
+   ]
+  },
+  {
+   "id": "stkb.d2",
+   "prompt": "Hb 104, MCV 74, ferritin 9 and darker stools. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkb.d2.1",
+     "text": "Moderate iron-deficiency anaemia: group and save, iron studies, refer to find the source; tell the senior",
+     "correct": true,
+     "consequence": "Matches WHO bands."
+    },
+    {
+     "id": "stkb.d2.2",
+     "text": "Treat it as chronic kidney disease only",
+     "correct": false,
+     "consequence": "A bleeding source could be missed."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Last dose time confirmed",
+   "Anaesthetist and surgeon told",
+   "Iron deficiency recognised",
+   "Group and save",
+   "Postponed with a plan"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Lets the list continue",
+    "shows": "The anaesthetist stops it",
+    "risk": "Bleeding at surgery",
+    "recovery": "Stop and escalate"
+   },
+   {
+    "mistake": "Ignores the dark stools",
+    "shows": "The anaemia stays unexplained",
+    "risk": "Gut source missed",
+    "recovery": "Ask and refer"
+   }
+  ],
+  "missed": [
+   "Anticoagulant timing not asked"
+  ],
+  "recovery": [
+   "Ask again; escalate"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Blood thinner taken this morning although the plan was to stop it two days before",
+   "Iron-deficiency anaemia in an older man on a blood thinner (darker stools): a bleeding source must be looked for"
+  ],
+  "missed": [
+   "Anticoagulant timing not asked"
+  ],
+  "priority": "Blood thinner taken this morning although the plan was to stop it two days before",
+  "why_priority": "Bleeding risk at surgery; the anaesthetist and surgeon decide timing. The PAUSE plan (stop 2 days before for a moderate-bleeding-risk operation, no bridging) was not followed.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Two independent problems can each be a reason to postpone."
+ },
+ "verification": [
+  "V-08",
+  "V-18"
+ ],
+ "sources": {
+  "story": "SR-2326",
+  "authored": "SR-3728"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

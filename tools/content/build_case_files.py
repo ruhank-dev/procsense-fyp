@@ -1,4 +1,4 @@
-"""Builds content/case_files/<id>.json for the 17 P0 cases from tools/content/cases/ (s1, s1b, s2, stk), recomputes what can be computed, validates, and applies approvals.
+"""Builds content/case_files/<id>.json for the 53 cases (17 P0, 16 P1, 20 P2) from tools/content/cases/ (s1, s1b, s2, stk, p1v, p1stk, p2), recomputes what can be computed, validates, and applies approvals.
 
     uv run --project tools tools/content/build_case_files.py            # write
     uv run --project tools tools/content/build_case_files.py --check    # fail if a file is missing, out of date or invalid (CI)
@@ -21,7 +21,7 @@ sys.path.insert(0, str(HERE / "cases"))
 import case_file_checks as chk  # noqa: E402
 import news2  # noqa: E402
 import lib  # noqa: E402
-import s1, s1b, s2, stk  # noqa: E402,F401
+import s1, s1b, s2, stk, p1v, p1stk, p2  # noqa: E402,F401
 
 OUT = ROOT / "content" / "case_files"
 APPROVALS = ROOT / "content" / "case_approvals.json"
@@ -31,7 +31,7 @@ NOTE = "Owner-attested clinician approval, 10 October 2026; verified against the
 
 def all_cases() -> dict[str, dict]:
     cases: dict[str, dict] = {}
-    for mod in (s1, s1b, s2, stk):
+    for mod in (s1, s1b, s2, stk, p1v, p1stk, p2):
         for k, v in mod.CASES.items():
             assert k not in cases, k
             cases[k] = v

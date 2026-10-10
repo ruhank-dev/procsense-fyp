@@ -1,0 +1,339 @@
+{
+ "schema": 1,
+ "id": "SC-6",
+ "walkthrough_label": "SCENARIO CARD 6 (S1) - Fasting breach + diabetes on insulin",
+ "scenario": "S1",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "APPROVED_FOR_TRAINING",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Uzma Aziz",
+  "sex": "F",
+  "age": 49,
+  "occupation": "bookkeeper",
+  "dob": "1976-10-22",
+  "mrn": "635006"
+ },
+ "spoken_identity_answer": "Uzma Aziz, twenty-second of October 1976.",
+ "wristband": {
+  "name_text": "UZMA AZIZ",
+  "dob_text": "22/10/1976",
+  "mrn_text": "MR 635006"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Uzma Aziz, 49, ate toast at 07:00 because her sugar felt low; she is on basal insulin; glucose 4.6."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I felt shaky and had some toast at seven.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "No fever.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Type 1 diabetes; gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Basal insulin.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Toast at 07:00, a light meal.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 07:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 80,
+   "heart_rhythm": "regular",
+   "systolic_bp": 124,
+   "diastolic_bp": 76,
+   "respiratory_rate": 16,
+   "spo2": 98,
+   "oxygen": "room_air",
+   "temperature_c": 36.6,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "NEWS2 0.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Well, slightly anxious.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.glu",
+   "test": "Capillary glucose",
+   "value": "4.6",
+   "unit": "mmol/L",
+   "normal_range": "6-10",
+   "flag": "low",
+   "comment": "Looming low (4.0 to 5.9)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book"
+  },
+  {
+   "id": "lab.glu2",
+   "test": "Capillary glucose (repeat in 30 minutes)",
+   "value": "6.2",
+   "unit": "mmol/L",
+   "normal_range": "6-10",
+   "flag": "normal",
+   "comment": "In range",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 32,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "0",
+   "note": "Well",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc6.glu",
+   "type": "optimisable",
+   "label": "Glucose 4.6: treat if below 4.0; recheck in 30 minutes",
+   "rank": 1,
+   "why": "4.0 to 5.9 is a looming low.",
+   "expected_actions": [
+    "Recheck in 30 minutes"
+   ]
+  },
+  {
+   "id": "sc6.fast",
+   "type": "safety_blocker",
+   "label": "Fasting breach: a light meal 1 hour ago",
+   "rank": 2,
+   "why": "Light meals need 6 hours; the anaesthetist decides.",
+   "expected_actions": [
+    "Tell the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc6.plan",
+   "type": "pathway_changing",
+   "label": "Insulin plan likely too much for fasting",
+   "rank": 3,
+   "why": "Review the plan.",
+   "expected_actions": [
+    "Diabetes team to review"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc6.d1",
+   "prompt": "She ate toast at 07:00.",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "sc6.d1.1",
+     "text": "Tell the anaesthetist of the breach and recheck the glucose; the list is re-timed later or postponed",
+     "correct": true,
+     "consequence": "Matches the book."
+    },
+    {
+     "id": "sc6.d1.2",
+     "text": "Hide the breach to keep the list",
+     "correct": false,
+     "consequence": "Aspiration risk."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "delayed",
+ "paths": {
+  "correct": [
+   "Breach told",
+   "Glucose rechecked",
+   "Plan reviewed"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Hides the toast",
+    "shows": "Anaesthetist finds out",
+    "risk": "Aspiration risk",
+    "recovery": "Tell now"
+   }
+  ],
+  "missed": [
+   "Breach not mentioned"
+  ],
+  "recovery": [
+   "Tell"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Glucose 4.6: treat if below 4.0; recheck in 30 minutes",
+   "Fasting breach: a light meal 1 hour ago"
+  ],
+  "missed": [
+   "Breach not mentioned"
+  ],
+  "priority": "Glucose 4.6: treat if below 4.0; recheck in 30 minutes",
+  "why_priority": "4.0 to 5.9 is a looming low.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Hypoglycaemia caused the fasting breach."
+ },
+ "verification": [
+  "V-09",
+  "V-20"
+ ],
+ "sources": {
+  "story": "SR-2338",
+  "authored": "SR-3738"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
+  "date": "2026-10-10",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+ }
+}

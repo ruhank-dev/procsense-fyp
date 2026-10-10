@@ -1,0 +1,237 @@
+"""The ten P1 variant cases (S1-I, K, L, M and S2-E, H, I, J, K, L): one change to a familiar patient, with the book's one-paragraph story from content/case_seeds.csv.
+Every patient is synthetic. Nothing here states a medicine dose (the project never does)."""
+from lib import D, E, O, P, R, S, mk, person
+
+CASES = {}
+NONE12 = "None."
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S1-I
+CASES["VAR-S1-I"] = mk(
+    "VAR-S1-I", "PATIENT S1-I - penicillin anaphylaxis", "S1", person("Mrs", "Amna Hashmi", "F", 45, "pharmacy assistant", 5, 17, "613204"),
+    "Mrs Amna Hashmi, 45, is booked for keyhole gallbladder removal. She is well. In 2015 penicillin caused throat swelling and collapse.",
+    "Three attacks of pain under my right ribs after oily meals; the scan showed gallstones.",
+    {"red_flags": "No fever, no yellow eyes, no dark urine.", "past_history": "Gallstones only.", "pregnancy": "Not pregnant; last period 10 days ago.",
+     "previous_anaesthetic": "One caesarean section years ago, no problems with the anaesthetic."},
+    [O("08:00", 76, 122, 76, 14, 98, 36.6, note="Well; NEWS2 0.", origin="authored")],
+    [E("ex.general", "general", "Well, comfortable, no distress.", False), E("ex.band", "allergy_band", "Red allergy band on the wrist: penicillin.", True, "book"),
+     E("ex.abdomen", "abdomen", "Soft, mildly tender under the right ribs, no guarding.", False)],
+    [R("lab.hb", "Hb", 134, "g/L", "120-150", "normal", "Normal", None, 45), R("lab.creat", "Creatinine", 64, "umol/L", "45-90", "normal", "Normal", None, 45)],
+    [S("NEWS2", "0", "Well; low-risk planned patient", "authored")],
+    [P("s1i.allergy", "safety_blocker", "Severe immediate penicillin allergy (throat swelling and collapse, 2015)", 1, "A wrong antibiotic could cause anaphylaxis; the reaction must be recorded exactly and be visible to everyone.",
+       ["Ask and record the reaction", "Allergy band on and the record updated", "Tell the anaesthetist and the pharmacist", "If an antibiotic is needed, the prescriber chooses by the hospital allergy rule"]),
+     P("s1i.lowrisk", "information_only", "Low-risk planned operation: an antibiotic is probably not needed", 2, "The allergy matters most if an antibiotic is prescribed; the simulator does not decide that.", ["Note the plan for the prescriber"])],
+    [D("s1i.d1", "She says penicillin once made her throat swell and she collapsed. What now?",
+       [("Record the exact reaction, check the allergy band and tell the anaesthetist and pharmacist", True, "Matches the book: severe immediate allergy, record the reaction."),
+        ("Write 'allergy' in the notes and say nothing else", False, "A vague entry hides how severe the reaction was.")]),
+     D("s1i.d2", "The team asks which antibiotic she can have if one is needed.",
+       [("The prescriber chooses according to the hospital penicillin-allergy rule; the trainee does not pick a drug", True, "Matches the book; the choice is institutional and clinician-controlled."),
+        ("Suggest a penicillin-family drug because it is the usual choice", False, "Risk of anaphylaxis in a patient with a severe reaction.")])],
+    "ready", ["Ask the reaction and record it", "Allergy band checked", "Anaesthetist and pharmacist told", "Antibiotic choice left to the prescriber and the hospital rule"],
+    [("Does not record the reaction", "The nurse asks what the allergy was", "Later staff cannot judge its severity", "Ask and record it now"),
+     ("Suggests a penicillin-family drug", "The pharmacist challenges it", "Anaphylaxis", "Stop; use the allergy rule")],
+    ["Vague allergy entry"], ["Ask again, record the reaction, update the band and the notes"], "A severe allergy is recorded exactly and checked before every drug.", ["V-13"],
+    allergies=[("Penicillin", "Throat swelling and collapse in 2015 (anaphylaxis)")], allergy_answer="Penicillin: my throat swelled up and I collapsed in 2015.", recognised=["Severe allergy recorded", "Band checked"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S1-K
+CASES["VAR-S1-K"] = mk(
+    "VAR-S1-K", "PATIENT S1-K - anaemia", "S1", person("Mrs", "Shazia Iqbal", "F", 52, "school cook", 3, 9, "613205"),
+    "Mrs Shazia Iqbal, 52, is booked for keyhole gallbladder removal. She feels tired. Her Hb is 98 and her red cells are small (MCV 72).",
+    "Pain under my right ribs after fatty food, and I am very tired all the time.",
+    {"red_flags": "No fever. No black stools that I noticed. I have lost a little weight over three months.", "past_history": "Gallstones. Heavy periods until a year ago.",
+     "pregnancy": "Not pregnant; periods irregular now.", "herbal": "None.", "previous_anaesthetic": "No previous anaesthetics."},
+    [O("08:00", 92, 118, 72, 16, 97, 36.6, note="Pale, tired; NEWS2 1.", origin="authored")],
+    [E("ex.general", "general", "Pale but comfortable.", True), E("ex.eyes", "eyes", "Pale inner eyelids; whites of the eyes are white.", True), E("ex.abdomen", "abdomen", "Mild tenderness under the right ribs.", False)],
+    [R("lab.hb", "Hb", 98, "g/L", "120-150", "low", "Moderate anaemia (80 to 109)", ("118", "pre-assessment 1 year ago"), 45, origin="book"),
+     R("lab.mcv", "MCV", 72, "fL", "80-100", "low", "Small red cells: suggests iron deficiency", None, 45, origin="book"),
+     R("lab.ferritin", "Ferritin", 8, "ug/L", "15-200", "low", "Low iron stores", None, 120)],
+    [S("NEWS2", "1", "Heart rate 92", "authored")],
+    [P("s1k.anaemia", "pathway_changing", "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency", 1, "The cause must be found at her age (diet, periods, or slow bleeding from the gut) and the planned operation waits for the senior and the anaesthetist.",
+       ["Check ferritin and iron studies", "Ask about bleeding, black stools, periods, diet", "Tell the senior and the anaesthetist", "Plan to find and treat the cause before re-listing"])],
+    [D("s1k.d1", "Hb 98 and MCV 72 in a tired 52-year-old. What does it mean?",
+       [("Moderate anaemia with small cells, probably iron deficiency: ask about bleeding and diet and request iron studies", True, "Matches the book and WHO anaemia bands."), ("Treat it as normal for her age", False, "Unexplained iron deficiency needs a cause.")]),
+     D("s1k.d2", "The operation is booked for this morning. What now?",
+       [("Discuss with the senior and the anaesthetist; the operation is likely postponed while the cause is found and treated", True, "Institution-dependent; the senior decides."), ("Proceed without telling anyone", False, "The result is a pathway change.")])],
+    "postponed", ["Recognise moderate iron-deficiency pattern", "Ask about bleeding and diet", "Senior and anaesthetist told", "Postponed with a plan"],
+    [("Ignores the result", "The nurse queries the low Hb", "Operation proceeds in an anaemic, unexplained patient", "Stop and tell the senior"), ("Blames the tiredness on age", "The result remains unexplained", "A bleeding source is missed", "Ask the cause")],
+    ["Unexplained iron deficiency not investigated"], ["Raise the result, ask the history, discuss with the senior"], "Anaemia with small cells in a woman of this age needs a cause before elective surgery.", ["V-18"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S1-L
+CASES["VAR-S1-L"] = mk(
+    "VAR-S1-L", "PATIENT S1-L - new irregular heartbeat", "S1", person("Mr", "Aslam Chaudhry", "M", 70, "retired bus driver", 11, 23, "613206"),
+    "Mr Aslam Chaudhry, 70, is booked for keyhole gallbladder removal. Since this morning his heart is racing. Pulse 128, irregularly irregular; the ECG shows atrial fibrillation (new).",
+    "My heart has been fluttering since this morning.",
+    {"red_flags": "No chest pain. A little breathless going up stairs.", "past_history": "High blood pressure. Gallstones.", "medicines": "Amlodipine.", "alcohol": "A few drinks at a family party last night.",
+     "previous_anaesthetic": "Hernia repair years ago, no problems."},
+    [O("08:00", 128, 132, 84, 18, 96, 36.8, rhythm="irregular", note="Irregularly irregular pulse; NEWS2 2.", origin="book")],
+    [E("ex.general", "general", "Comfortable at rest, aware of his heartbeat.", False), E("ex.pulse", "pulse", "Irregularly irregular.", True, "book"), E("ex.chest", "chest", "Clear; no added sounds.", False)],
+    [R("lab.ecg", "ECG", "Atrial fibrillation, ventricular rate about 128", "", "sinus rhythm", "abnormal", "New atrial fibrillation (picture result)", None, 10, origin="book"),
+     R("lab.k", "Potassium", 4.1, "mmol/L", "3.5-5.3", "normal", "Normal", None, 45), R("lab.tsh", "TSH", 1.8, "mU/L", "0.4-4.0", "normal", "Thyroid normal", None, 120)],
+    [S("NEWS2", "2", "Heart rate 111 to 130 scores 2", "authored")],
+    [P("s1l.af", "pathway_changing", "New fast atrial fibrillation (heart rate 128)", 1, "The heart is not filling and emptying efficiently and stroke risk rises; the planned operation is usually deferred while the medical team controls the rate and decides about anticoagulation.",
+       ["Confirm with a 12-lead ECG", "Tell the senior and the anaesthetist", "Medical team for rate control and the blood-thinner decision", "Look for triggers: salts, thyroid, infection, alcohol"])],
+    [D("s1l.d1", "Pulse 128 and irregularly irregular. What now?",
+       [("12-lead ECG to confirm; tell the senior and the anaesthetist", True, "Matches the book: new AF."), ("Record it and carry on to theatre", False, "Fast new AF is not safe to anaesthetise.")]),
+     D("s1l.d2", "ECG shows AF. What now?",
+       [("The list is usually deferred; the medical team controls the rate and decides about a blood thinner; check potassium, thyroid and for infection", True, "Matches the book."), ("Give a blood thinner on the trainee's own decision", False, "Anticoagulation is the clinician's decision.")])],
+    "postponed", ["Confirm AF on ECG", "Escalate", "Look for triggers", "Postpone with medical review"],
+    [("Proceeds without an ECG", "The anaesthetist stops the list", "Fast AF anaesthetised", "Stop and escalate"), ("Starts a blood thinner himself", "The pharmacist challenges", "Bleeding risk without a plan", "Leave it to the clinician")],
+    ["Irregular pulse noticed but not acted on"], ["ECG, senior, medical review"], "A new fast irregular rhythm stops an elective list until the heart rate is controlled.", ["V-01", "V-23"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S1-M
+CASES["VAR-S1-M"] = mk(
+    "VAR-S1-M", "PATIENT S1-M - sleep apnoea risk", "S1", person("Mr", "Rizwan Anwar", "M", 44, "taxi driver", 8, 14, "613207"),
+    "Mr Rizwan Anwar, 44, is booked for keyhole gallbladder removal. BMI 41. Loud snoring; his wife says he stops breathing at night. STOP-BANG 6, SpO2 95.",
+    "Pain under my right ribs after rich meals. My wife says I snore and stop breathing at night.",
+    {"red_flags": "Falls asleep easily in the day. No fever.", "past_history": "High blood pressure, no sleep study yet. Gallstones.", "medicines": "Ramipril.", "alcohol": "Occasional.",
+     "previous_anaesthetic": "None, but I am nervous about being put to sleep."},
+    [O("08:00", 84, 142, 88, 16, 95, 36.7, note="BMI 41, SpO2 95; NEWS2 0 (SpO2 95 scores 1).", origin="book")],
+    [E("ex.general", "general", "Large neck, comfortable at rest, sleepy.", True), E("ex.airway", "airway", "Short thick neck; limited mouth opening not noted; airway to be assessed by the anaesthetist.", True),
+     E("ex.chest", "chest", "Clear.", False)],
+    [R("lab.bmi", "BMI", 41, "kg/m2", "18.5-24.9", "high", "Class III obesity", None, 5, origin="book"), R("lab.stopbang", "STOP-BANG", 6, "points", "below 3", "high", "High risk of obstructive sleep apnoea", None, 5, origin="book")],
+    [S("STOP-BANG", "6", "High risk of obstructive sleep apnoea", "book"), S("ASA grade", "3", "BMI above 40 with sleep apnoea risk", "book"), S("NEWS2", "1", "SpO2 95 scores 1", "authored")],
+    [P("s1m.osa", "pathway_changing", "High risk of obstructive sleep apnoea with BMI 41", 1, "Airway and breathing after anaesthesia and with painkillers need extra precautions; the anaesthetist decides to proceed with monitoring or to request a sleep study first.",
+       ["Tell the anaesthetist", "ASA grade 3 recorded", "Plan extra monitoring after surgery and careful painkillers", "Anaesthetist decides: proceed with precautions or sleep study first"])],
+    [D("s1m.d1", "STOP-BANG 6 and BMI 41. What now?",
+       [("High risk of sleep apnoea: tell the anaesthetist; record ASA 3", True, "Matches the book."), ("Note the score only", False, "The anaesthetist must plan for it.")]),
+     D("s1m.d2", "Who decides whether the list goes ahead?",
+       [("The anaesthetist: proceed with monitoring after surgery and careful painkillers, or ask for a sleep study first", True, "Institution-dependent; the clinician decides."), ("The nurse alone", False, "Not a nursing decision.")])],
+    "ready", ["Tell the anaesthetist", "ASA 3", "Plan monitoring after surgery", "Careful painkillers"],
+    [("Does not mention the snoring risk", "Recovery has no extra monitoring", "Breathing pauses after opioids", "Tell the anaesthetist now"), ("Lets the nurse decide alone", "The anaesthetist is not asked", "Unplanned risk", "Ask the anaesthetist")],
+    ["Sleep apnoea risk not linked to the anaesthetic plan"], ["Tell the anaesthetist; add monitoring after surgery"], "BMI above 40 and a high STOP-BANG score need an anaesthetic plan, not just a number.", ["V-09"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S2-E
+CASES["VAR-S2-E"] = mk(
+    "VAR-S2-E", "PATIENT S2-E - older patient", "S2", person("Mr", "Akbar Sheikh", "M", 68, "retired shopkeeper", 4, 2, "623301"),
+    "Mr Akbar Sheikh, 68, has right lower tummy pain and has lost weight recently. T 37.6, HR 96, Hb 112, CRP 64.",
+    "Pain low on the right for four days, and I have lost weight over the last months.",
+    {"red_flags": "Weight loss of about four kilograms in three months. Bowel habit has changed a little. No black stools.", "past_history": "Diverticular disease, noted on a scan years ago.",
+     "medicines": "Aspirin.", "alcohol": "None.", "smoking": "Ex-smoker.", "previous_anaesthetic": "Cataract surgery, local anaesthetic only."},
+    [O("12:00", 96, 138, 82, 18, 97, 37.6, pain=5, note="HR 96 scores 1; NEWS2 2.", origin="book")],
+    [E("ex.general", "general", "Thin, comfortable, mildly unwell.", True), E("ex.abdomen", "abdomen", "Tender low on the right with a vague fullness; no rigidity.", True), E("ex.rectal", "rectal", "Not performed in the simulator.", False)],
+    [R("lab.hb", "Hb", 112, "g/L", "130-170", "low", "Mild anaemia (men: below 130)", None, 45, origin="book"), R("lab.crp", "CRP", 64, "mg/L", "below 5", "high", "Raised; inflammation", None, 45, origin="book"),
+     R("lab.wbc", "WBC", 12.8, "x10^9/L", "4.0-11.0", "high", "Mildly raised", None, 45)],
+    [S("NEWS2", "2", "Heart rate 96 and temperature 37.6", "authored")],
+    [P("s2e.mimic", "pathway_changing", "In older people bowel cancer or diverticulitis can mimic appendicitis (weight loss with anaemia is a warning)", 1, "A CT scan before deciding on surgery separates appendicitis from a tumour or diverticulitis, and changes who operates.",
+       ["Request CT before deciding", "Tell the senior", "Group and save a sample", "Continue aspirin unless the senior says otherwise"]),
+     P("s2e.anaemia", "optimisable", "Mild anaemia with weight loss", 2, "Unexplained in a 68-year-old; iron studies and a colon assessment follow.", ["Iron studies", "Refer the cause for follow-up"])],
+    [D("s2e.d1", "Right-sided pain, weight loss, Hb 112 at 68. What now?",
+       [("Think of bowel cancer or diverticulitis as well as appendicitis; request CT before deciding", True, "Matches the book: CT is preferred."), ("Book appendicectomy on the pain alone", False, "A tumour could be missed.")]),
+     D("s2e.d2", "The CT is requested. What now?",
+       [("Tell the senior, keep the patient comfortable and re-observe; the pathway follows the CT", True, "The pathway is decided by the CT."), ("Wait without observing", False, "Deterioration would be missed.")], rule="deterioration_clock")],
+    "delayed", ["Think of mimics in older patients", "CT before surgery", "Senior told", "Observations repeated"],
+    [("Books surgery on pain alone", "The senior asks for the scan", "Wrong operation or missed tumour", "Request CT"), ("Does not repeat observations", "NEWS2 rises unnoticed", "Late recognition", "Re-observe")],
+    ["Weight loss and anaemia not linked"], ["Raise it with the senior and request CT"], "Older patients with right lower pain need a scan before surgery.", ["V-11", "V-18"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S2-H
+CASES["VAR-S2-H"] = mk(
+    "VAR-S2-H", "PATIENT S2-H - pregnant with appendicitis", "S2", person("Mrs", "Mehwish Tariq", "F", 30, "bank clerk", 6, 25, "623302"),
+    "Mrs Mehwish Tariq, 30, is 20 weeks pregnant with right-sided pain higher than usual. T 37.8, HR 102, WBC 14.",
+    "Pain on the right side, higher up than I would expect, and I feel sick.",
+    {"red_flags": "Baby is moving as usual. No bleeding, no waters breaking, no burning when I pass urine.", "past_history": "One normal pregnancy before.", "pregnancy": "20 weeks pregnant, second pregnancy; antenatal checks normal.",
+     "medicines": "Pregnancy vitamins.", "previous_anaesthetic": "Epidural in the last pregnancy."},
+    [O("12:00", 102, 112, 68, 18, 98, 37.8, pain=6, note="Maternity early-warning score used instead of NEWS2; NEWS2 shown for reference only.", origin="book")],
+    [E("ex.general", "general", "Uncomfortable, alert.", True), E("ex.abdomen", "abdomen", "Tender on the right, higher than usual; uterus soft.", True, "book"),
+     E("ex.obs", "obstetric", "Fetal heartbeat heard by the midwife; uterus not tender.", False)],
+    [R("lab.wbc", "WBC", 14.0, "x10^9/L", "4.0-11.0", "high", "Partly raised by pregnancy alone", None, 45, origin="book"), R("lab.crp", "CRP", 52, "mg/L", "below 5", "high", "Raised", None, 45),
+     R("lab.preg", "Pregnancy test", "Positive (20 weeks, known)", "", "negative", "positive", "Known pregnancy", None, 5)],
+    [S("NEWS2", "2", "Not validated in pregnancy; the maternity score is used", "authored")],
+    [P("s2h.preg", "pathway_changing", "Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up", 1, "Pregnancy changes the picture and the imaging choice; the obstetric team joins early.",
+       ["Involve the obstetric team early", "Ultrasound first, MRI if unclear, CT not first", "Left-side tilt when lying", "Maternity early-warning score, not NEWS2"]),
+     P("s2h.wbc", "information_only", "White cell count partly raised by pregnancy", 2, "Interpret with the trend and CRP.", ["Trend the result"])],
+    [D("s2h.d1", "A pregnant woman with right-sided pain. What now?",
+       [("Involve the obstetric team early; ultrasound first, then MRI if unclear; avoid CT as a first choice", True, "Matches the book and SAGES."), ("Request CT first because it is fastest", False, "Avoid ionising imaging first in pregnancy.")]),
+     D("s2h.d2", "How should she lie on the trolley?",
+       [("Tilted to the left side so the womb does not press on the large vein", True, "Matches the book."), ("Flat on her back", False, "The womb can press on a large vein.")]),
+     D("s2h.d3", "Keyhole surgery is being discussed.",
+       [("Keyhole appendicectomy is acceptable in pregnancy; the senior and obstetrics decide", True, "Matches SAGES guidance."), ("Refuse any operation because she is pregnant", False, "Delay raises the risk to mother and baby.")])],
+    "ready", ["Obstetric team early", "Ultrasound then MRI", "Left tilt", "Maternity score", "Keyhole surgery acceptable"],
+    [("Requests CT first", "The radiologist queries it", "Avoidable radiation", "Switch to ultrasound/MRI"), ("Uses NEWS2 alone", "The midwife points out the maternity score", "Pregnancy changes are missed", "Use the maternity score")],
+    ["Obstetric team called late"], ["Call obstetrics, change the imaging plan"], "In pregnancy the team, the score and the imaging all change.", ["V-14", "V-16"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S2-I
+CASES["VAR-S2-I"] = mk(
+    "VAR-S2-I", "PATIENT S2-I - 16 years old", "S2", person("Master", "Hamid Khan", "M", 16, "school student", 9, 3, "623303"),
+    "Hamid Khan, 16, has classic appendicitis: central pain moved to the right, nausea, fever.",
+    "My tummy hurt in the middle yesterday and now it is low on the right.",
+    {"red_flags": "Fever, vomited once, no diarrhoea.", "past_history": "Healthy. Asthma in childhood, none now.", "medicines": "None.", "previous_anaesthetic": "Tonsils out at seven, no problems.",
+     "smoking": "Never.", "alcohol": "None."},
+    [O("12:00", 104, 118, 70, 20, 98, 38.2, pain=7, note="NEWS2 3 (HR 104 scores 1, temperature 38.2 scores 1, RR 20 scores 0... see table).", origin="authored")],
+    [E("ex.general", "general", "Flushed, lying still, anxious; father is with him.", True), E("ex.abdomen", "abdomen", "Tender and guarded low on the right.", True, "book"), E("ex.rebound", "rebound", "Pain when the hand is released.", True)],
+    [R("lab.wbc", "WBC", 16.1, "x10^9/L", "4.0-11.0", "high", "Raised", None, 45), R("lab.crp", "CRP", 88, "mg/L", "below 5", "high", "Raised", None, 45)],
+    [S("AIR score", "10", "High probability", "authored")],
+    [P("s2i.consent", "pathway_changing", "A minor (16): consent follows the applicable law", 1, "A parent or guardian and/or a competent young person consents under the applicable law; Hamid is part of the discussion.",
+       ["Follow the hospital policy on consent for a minor", "Involve Hamid in the discussion", "Document who consented and how"]),
+     P("s2i.appendix", "time_critical", "Classic appendicitis", 2, "Surgery within 24 hours of admission when indicated.", ["Tell the surgeon", "Analgesia by the clinician", "Fasting"])],
+    [D("s2i.d1", "Hamid is 16 and needs surgery. Who gives consent?",
+       [("Follow the hospital policy and the law for a minor: a parent or guardian and/or a competent young person; include Hamid in the discussion", True, "Matches the book; institutional rule."), ("Hamid signs alone without checking the policy", False, "The law and the policy must be followed.")]),
+     D("s2i.d2", "What about the explanation?",
+       [("Explain to Hamid and his father in simple words and document the discussion", True, "Good practice."), ("Speak only to the father", False, "The young person should be included.")])],
+    "ready", ["Policy on consent for a minor", "Hamid included", "Documented", "Fasting and surgeon told"],
+    [("Gets consent from Hamid alone without the policy", "The nurse queries the form", "Invalid consent", "Follow the policy"), ("Ignores Hamid in the conversation", "He stays silent", "Poor consent", "Include him")],
+    ["Consent route not checked"], ["Stop and check the policy"], "A young person is part of the decision; the law and policy say who signs.", ["V-11", "V-12"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S2-J
+CASES["VAR-S2-J"] = mk(
+    "VAR-S2-J", "PATIENT S2-J - looks like a urine infection", "S2", person("Ms", "Aqsa Mirza", "F", 26, "call-centre agent", 12, 12, "623304"),
+    "Ms Aqsa Mirza, 26, has burning when passing urine and lower-right pain. Dipstick: leucocytes 2+, nitrite negative, trace blood. Pregnancy test negative.",
+    "It burns when I pass urine and I have pain low on the right.",
+    {"red_flags": "Slight fever. No vaginal discharge. Nausea.", "past_history": "One urine infection two years ago.", "pregnancy": "Not pregnant; last period 3 weeks ago.", "medicines": "The oral contraceptive pill.",
+     "previous_anaesthetic": "No previous anaesthetics."},
+    [O("12:00", 98, 114, 70, 17, 98, 37.9, pain=6, note="HR 98 scores 1, temperature 37.9 scores 0... NEWS2 per table.", origin="authored")],
+    [E("ex.general", "general", "Uncomfortable, walking carefully.", True), E("ex.abdomen", "abdomen", "Tender low on the right; no loin tenderness.", True), E("ex.loin", "loin", "No tenderness over the kidneys.", False)],
+    [R("lab.dip", "Urine dipstick", "Leucocytes 2+, nitrite negative, trace blood", "", "negative", "abnormal", "Leucocytes without nitrite: infection is not the only explanation (picture result: written result)", None, 5, origin="book"),
+     R("lab.preg", "Pregnancy test", "Negative", "", "negative", "negative", "Not pregnant", None, 5, origin="book"),
+     R("lab.wbc", "WBC", 15.2, "x10^9/L", "4.0-11.0", "high", "Raised", None, 45), R("lab.crp", "CRP", 70, "mg/L", "below 5", "high", "Raised", None, 45)],
+    [S("AIR score", "7", "Indeterminate: imaging or senior decision", "authored")],
+    [P("s2j.mimic", "pathway_changing", "Do not stop at 'urine infection': an inflamed appendix next to the bladder can cause the same dipstick", 1, "Leucocytes without nitrite plus lower-right tenderness keeps appendicitis in play.",
+       ["Send a urine culture", "Continue appendicitis assessment: score and imaging", "Tell the senior"])],
+    [D("s2j.d1", "The dipstick shows leucocytes 2+, nitrite negative. What now?",
+       [("Do not stop at 'UTI': send a urine culture and carry on the appendicitis assessment", True, "Matches the book."), ("Treat as a urine infection and send her home", False, "The appendix may be inflamed next to the bladder.")]),
+     D("s2j.d2", "What next?",
+       [("Calculate the AIR score and discuss imaging with the senior", True, "Matches the book."), ("Cancel the assessment", False, "Appendicitis is not excluded.")], rule="air_bands")],
+    "ready", ["Not stopped at UTI", "Culture sent", "Appendicitis assessment continued", "Senior told"],
+    [("Sends her home on a urine-infection label", "She returns worse", "Missed appendicitis", "Re-assess"), ("Does not send a culture", "The result is lost", "Treatment is not guided", "Send culture")],
+    ["Anchoring on the urine dipstick"], ["Re-open the assessment"], "A positive dipstick does not close the abdominal question.", ["V-11"])
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S2-K
+CASES["VAR-S2-K"] = mk(
+    "VAR-S2-K", "PATIENT S2-K - penicillin allergy", "S2", person("Mr", "Faisal Dar", "M", 21, "student", 2, 14, "623305"),
+    "Mr Faisal Dar, 21, has appendicitis. He says 'allergic to penicillin - I got a rash as a child'.",
+    "Pain low on the right since last night.",
+    {"red_flags": "Slight fever, vomited once.", "past_history": "Healthy.", "medicines": "None."},
+    [O("12:00", 100, 122, 74, 18, 98, 38.1, pain=6, note="NEWS2 per table.", origin="authored")],
+    [E("ex.general", "general", "Uncomfortable but alert.", True), E("ex.abdomen", "abdomen", "Tender and guarded low on the right.", True), E("ex.band", "allergy_band", "No allergy band yet; the history gives the allergy.", True)],
+    [R("lab.wbc", "WBC", 15.0, "x10^9/L", "4.0-11.0", "high", "Raised", None, 45), R("lab.crp", "CRP", 96, "mg/L", "below 5", "high", "Raised", None, 45)],
+    [S("AIR score", "9", "High probability", "authored")],
+    [P("s2k.allergy", "safety_blocker", "Penicillin 'allergy': mild childhood rash, delayed", 1, "A mild delayed rash differs from anaphylaxis; many guidelines allow cefazolin-type antibiotics, but the hospital rule and the prescriber decide, and the allergy is recorded precisely.",
+       ["Ask what happened, when, and how soon after the drug", "Record the allergy precisely", "Tell the prescriber and pharmacist", "Antibiotic by the hospital allergy rule"])],
+    [D("s2k.d1", "He says he is allergic to penicillin. What now?",
+       [("Ask exactly what happened and when, record it precisely and tell the prescriber and pharmacist", True, "Matches the book."), ("Record 'penicillin allergy' only", False, "Vague entries hide the difference between a mild rash and anaphylaxis.")]),
+     D("s2k.d2", "Which antibiotic?",
+       [("The prescriber chooses by the hospital rule; a mild delayed childhood rash often allows a cefazolin-type drug", True, "Institutional; clinician decides."), ("Withhold all antibiotics", False, "Delays treatment.")])],
+    "ready", ["Allergy history taken", "Recorded precisely", "Prescriber and pharmacist told", "Antibiotic chosen by hospital rule"],
+    [("Records 'allergic' only", "The prescriber cannot judge severity", "Poor antibiotic choice", "Take the history"), ("Withholds antibiotics", "NEWS2 rises", "Delayed treatment", "Ask the prescriber")],
+    ["Allergy detail not asked"], ["Take the history and record it precisely"], "Ask what the reaction was before you label an allergy.", ["V-13"],
+    allergies=[("Penicillin", "Mild rash as a child (delayed)")], allergy_answer="Penicillin: I had a rash as a child.")
+
+# ---------------------------------------------------------------------------------------------------------------- VAR-S2-L
+CASES["VAR-S2-L"] = mk(
+    "VAR-S2-L", "PATIENT S2-L - refuses surgery", "S2", person("Mr", "Naveed Butt", "M", 37, "electrician", 7, 7, "623306"),
+    "Mr Naveed Butt, 37, has simple appendicitis and full capacity. He asks, 'Can't I just take antibiotics?'",
+    "Pain low on the right since yesterday. I do not want an operation if I can avoid it.",
+    {"red_flags": "Mild fever.", "past_history": "Healthy.", "medicines": "None.", "previous_anaesthetic": "None."},
+    [O("12:00", 90, 126, 78, 16, 98, 37.8, pain=5, note="NEWS2 per table.", origin="authored")],
+    [E("ex.general", "general", "Comfortable, alert, asking questions.", False), E("ex.abdomen", "abdomen", "Tender low on the right without perforation signs.", True)],
+    [R("lab.wbc", "WBC", 13.2, "x10^9/L", "4.0-11.0", "high", "Mildly raised", None, 45), R("lab.crp", "CRP", 48, "mg/L", "below 5", "high", "Raised", None, 45),
+     R("lab.us", "Ultrasound appendix", "Simple appendicitis, no stone inside", "", "normal appendix", "abnormal", "Simple appendicitis (picture result)", None, 45)],
+    [S("AIR score", "8", "Indeterminate; ultrasound positive", "authored")],
+    [P("s2l.choice", "pathway_changing", "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside", 1,
+       "About two in five people treated with antibiotics alone had a recurrence over five years (APPAC trial); the choice is his after an honest, balanced explanation.",
+       ["Explain both options honestly", "Senior discussion", "Respect his choice and document it", "Safety-net advice: return if pain worsens, fever, vomiting"])],
+    [D("s2l.d1", "He asks about antibiotics only. What now?",
+       [("Explain honestly: possible in simple appendicitis without a stone, but recurrence is common; involve the senior", True, "Matches the book (APPAC)."), ("Tell him he must have the operation", False, "A capable patient may choose.")]),
+     D("s2l.d2", "He chooses antibiotics. What now?",
+       [("Respect it, document the discussion, agree an antibiotic plan and give safety-net advice", True, "Matches the book."), ("Discharge with no advice", False, "He needs return advice.")])],
+    "ready", ["Honest explanation of both options", "Senior involved", "Choice respected and documented", "Safety-net advice"],
+    [("Pressures him into surgery", "He becomes angry", "Loss of trust and consent", "Re-explain"), ("Discharges without safety-net advice", "He returns septic", "Missed deterioration", "Give advice")],
+    ["Safety-net advice missing"], ["Re-contact and advise"], "A capable patient can choose; your job is an honest explanation and a safety net.", ["V-11", "V-12"])

@@ -605,9 +605,9 @@ class Register(unittest.TestCase):
         for r in generated:
             if r["status"] == "VERIFIED" and r["evidence_type"] == "A":
                 self.assertTrue(r["source_url"].startswith("https://"), r["id"])
-                self.assertIn("opened", r["notes"], r["id"])
+                self.assertTrue("opened" in r["notes"] or "Checked 10 Oct 2026" in r["notes"], r["id"])
             if r["status"] == "UNVERIFIED":
-                self.assertIn("not been opened", r["notes"], r["id"])
+                self.assertTrue("not been opened" in r["notes"] or "NOT confirmed" in r["notes"], r["id"])
 
 
 class LabelSafety(unittest.TestCase):
@@ -634,6 +634,32 @@ class LabelSafety(unittest.TestCase):
         self.assertIn("hypersensitivity", by["paracetamol"]["d_contraindications"].lower())
         self.assertIn("acidosis", (by["metformin"]["d_contraindications"] + by["metformin"]["d_boxed_warning"]).lower())
         self.assertIn("bleeding", (by["warfarin"]["d_boxed_warning"] + by["doacs"]["d_contraindications"]).lower())
+
+
+class TypeAChecks(unittest.TestCase):
+    """The second look at type A rows (tools/content/tables/type_a_checks.py): no row is VERIFIED without a level and a V-id that exists in the log."""
+
+    def test_every_verified_claim_cites_a_logged_claim_with_a_url(self):
+        import re
+        log = (ROOT / "docs/research/clinical_verification.md").read_text(encoding="utf-8")
+        with open(REGISTER, encoding="utf-8", newline="") as f:
+            reg = list(csv.DictReader(f))
+        cited = [r for r in reg if "Checked 10 Oct 2026 (" in r["notes"]]
+        self.assertGreater(len(cited), 150)
+        for r in cited:
+            m = re.search(r"Checked 10 Oct 2026 \((primary|secondary), (V-\d\d)", r["notes"])
+            self.assertTrue(m, r["id"])
+            self.assertIn(f"| {m.group(2)} |", log, r["id"])
+            self.assertEqual(r["status"], "VERIFIED")
+            self.assertTrue(r["source_url"].startswith("https://"), r["id"])
+
+    def test_the_rows_still_open_say_why(self):
+        with open(REGISTER, encoding="utf-8", newline="") as f:
+            reg = list(csv.DictReader(f))
+        left = [r for r in reg if r["evidence_type"] == "A" and r["status"] == "UNVERIFIED"]
+        self.assertTrue(0 < len(left) < 100)
+        for r in left:
+            self.assertIn("NOT confirmed", r["notes"], r["id"])
 
 
 if __name__ == "__main__":
