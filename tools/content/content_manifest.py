@@ -20,11 +20,8 @@ EXCLUDE_DIRS = {"_extract", "__pycache__"}
 
 
 def files() -> list[Path]:
-    out = []
-    for p in sorted(CONTENT.rglob("*")):
-        if p.is_file() and p != OUT and not (set(p.relative_to(CONTENT).parts) & EXCLUDE_DIRS):
-            out.append(p)
-    return out
+    out = [p for p in CONTENT.rglob("*") if p.is_file() and p != OUT and not (set(p.relative_to(CONTENT).parts) & EXCLUDE_DIRS)]
+    return sorted(out, key=lambda p: p.relative_to(CONTENT).as_posix())     # a plain string order: Path ordering ignores case on Windows but not on Linux, which changed the hash
 
 
 def build() -> dict:
