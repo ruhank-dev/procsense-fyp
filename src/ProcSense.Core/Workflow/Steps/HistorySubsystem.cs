@@ -50,6 +50,8 @@ namespace ProcSense.Core.Workflow.Steps
             if (fact == null) { o.Reject(TopicNotInCase); return; }
 
             Volunteer(o);
+            // a sensitive topic is told only when trust and willingness have reached the content's limits (the behaviour model's gate); until then the patient hesitates and the trainee can build trust and ask again
+            if (!Clinical.IsRevealed(topic) && _s.BehaviourStep != null && !_s.BehaviourStep.MayDisclose(topic)) { o.Effects.Add("patient_hesitates:" + topic); return; }
             if (!Clinical.Reveal(topic)) { o.Effects.Add("already_known:" + topic); return; }
             if (fact.ClockTime != null) RecordTime(topic, fact.ClockTime);
             o.Effects.Add("answered:" + topic);

@@ -48,7 +48,10 @@ FACTORS = {
     "recent_stent": ["stent"],
 }
 # The context the engine knows: S2 means urgent surgery, a suspected infection with a sepsis tier of moderate or higher means sepsis.
-CONTEXT = ["urgent_surgery", "sepsis"]
+# the situation tags the engine now works out from the session (DT-072): see ClashSubsystem.Context
+CONTEXT = ["urgent_surgery", "sepsis", "nil_by_mouth", "high_potassium", "need_suxamethonium", "full_stomach", "low_oxygen", "confused", "consent_needed"]
+# the two numbers those tags use, from the verified bands: potassium 6.0 and above is the "significant" band (SR-0536), oxygen 91% or less is the emergency sign (SR-0124)
+LIMITS = {"high_potassium_from": 6.0, "low_oxygen_to": 91, "refs": ["SR-0536", "SR-0124"]}
 # Each clash row of treatment_clashes.csv: the tags that must all be present.
 WHEN = {
     "fluid_heart_kidney": [["need_fluid", "heart_failure"], ["need_fluid", "kidney_failure"]],
@@ -71,7 +74,7 @@ WHEN = {
     "low_oxygen_copd": [["low_oxygen", "co2_retainer"]],
     "confused_consent_emergency": [["confused", "consent_needed", "urgent_surgery"]],
 }
-PENDING_TAGS = ["nil_by_mouth", "high_potassium", "need_suxamethonium", "full_stomach", "low_oxygen", "confused", "consent_needed"]
+PENDING_TAGS: list[str] = []         # every tag a clash row names is now worked out by the engine
 
 # medicines.csv plan rows that become Step 8 decisions, with the words that name the medicine in a case's history
 PLANS = {
@@ -118,6 +121,7 @@ def build() -> str:
         "factors": [{"tag": t, "words": w} for t, w in FACTORS.items()],
         "context": CONTEXT,
         "pending_tags": PENDING_TAGS,
+        "limits": LIMITS,
         "clashes": clashes,
         "plans": plans,
         "refs": ["SR-0092", "SR-0093"],

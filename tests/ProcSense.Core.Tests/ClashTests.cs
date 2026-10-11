@@ -46,13 +46,12 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void Five_clashes_need_facts_the_engine_does_not_know_yet_and_cannot_be_raised()
+        public void Every_one_of_the_18_clashes_can_now_be_raised_because_the_engine_works_out_every_tag_they_name()
         {
-            var unreachable = new[] { "insulin_nbm", "high_potassium_suxamethonium", "full_stomach_emergency", "low_oxygen_copd", "confused_consent_emergency" };
             var everything = new HashSet<string>(Tables.Factors.Select(f => f.Tag).Concat(Tables.Needs.Values.SelectMany(x => x)).Concat(Tables.Context).Append("pregnancy"));
-            var raisable = Tables.Clashes.Where(c => c.When.Any(a => a.All(everything.Contains))).Select(c => c.Id);
-            Assert.DoesNotContain(raisable, id => unreachable.Contains(id));
-            Assert.Equal(13, raisable.Count());
+            var raisable = Tables.Clashes.Where(c => c.When.Any(a => a.All(everything.Contains))).Select(c => c.Id).ToList();
+            Assert.Equal(18, raisable.Count);
+            Assert.Equal(new[] { 6.0, 91.0 }, new[] { Tables.HighPotassiumFrom, Tables.LowOxygenTo });
         }
 
         // ---------------------------------------------------------------- the checker

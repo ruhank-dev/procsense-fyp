@@ -264,5 +264,20 @@ namespace ProcSense.Core.Tests
             Assert.False(s.Behaviour.MayDisclose("pregnancy"));
             Assert.True(s.Behaviour.MayDisclose("smoking"));
         }
+
+        // DT-085: the history step asks the gate
+        [Fact]
+        public void The_history_step_makes_a_pressured_patient_hesitate_about_a_sensitive_topic_and_tells_it_once_trust_is_rebuilt()
+        {
+            var s = Start();
+            foreach (var verb in new[] { "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) s.Apply(new Actions.SimAction(verb, "patient"));
+            s.Behaviour!.Trigger("pressure"); s.Behaviour.Trigger("pressure");
+            var asked = s.Apply(new Actions.SimAction("ask", "patient", Actions.Channel.Cli, new Dictionary<string, string> { ["topic"] = "pregnancy" }));
+            Assert.Contains("patient_hesitates:pregnancy", asked.Effects);
+            Assert.DoesNotContain(s.Observable.DisclosedFacts, f => f.Topic == "pregnancy");
+            s.Behaviour.Trigger("introduce_self"); s.Behaviour.Trigger("introduce_self"); s.Behaviour.Trigger("explain_before_action"); s.Behaviour.Trigger("explain_before_action");
+            var again = s.Apply(new Actions.SimAction("ask", "patient", Actions.Channel.Cli, new Dictionary<string, string> { ["topic"] = "pregnancy" }));
+            Assert.Contains("answered:pregnancy", again.Effects);
+        }
     }
 }

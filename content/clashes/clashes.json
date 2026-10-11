@@ -190,9 +190,7 @@
  ],
  "context": [
   "urgent_surgery",
-  "sepsis"
- ],
- "pending_tags": [
+  "sepsis",
   "nil_by_mouth",
   "high_potassium",
   "need_suxamethonium",
@@ -201,6 +199,15 @@
   "confused",
   "consent_needed"
  ],
+ "pending_tags": [],
+ "limits": {
+  "high_potassium_from": 6.0,
+  "low_oxygen_to": 91,
+  "refs": [
+   "SR-0536",
+   "SR-0124"
+  ]
+ },
  "clashes": [
   {
    "id": "fluid_heart_kidney",

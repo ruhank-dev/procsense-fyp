@@ -77,11 +77,36 @@ namespace ProcSense.Core.Workflow.Steps
 
         public void OnTick() { }
 
+        // The situation tags the clash table names, worked out from the session as it is now (DT-072).
         private IEnumerable<string> Context()
         {
+            var c = _s.Patient.Clinical;
+            var v = _s.Patient.Physiological.Vitals;
             if (_s.Case.Scenario == "S2") yield return "urgent_surgery";
             var tier = _s.Sepsis?.Tier;
             if (tier == "moderate" || tier == "high") yield return "sepsis";
+            if (c.Fasting != null && c.Fasting.Status != "unknown") yield return "nil_by_mouth";                  // the trainee has found out what the patient last ate and drank: nothing more by mouth
+            if (c.Fasting?.Plan == "rsi") yield return "full_stomach";
+            if (c.Risk.Plan == "rsi") yield return "need_suxamethonium";                                           // a rapid sequence induction is planned
+            if (v.Spo2 <= Tables.LowOxygenTo) yield return "low_oxygen";
+            if (v.Acvpu != "A" || c.HasFlag("physio.confusion")) yield return "confused";
+            if (!c.HasFlag(SignedFlag) && !c.HasFlag(ConsentSubsystem.EmergencyFlag)) yield return "consent_needed";
+            if (ViewedPotassium() >= Tables.HighPotassiumFrom) yield return "high_potassium";
+        }
+
+        private const string SignedFlag = "consent.signed";
+
+        // the highest potassium among the results the trainee has opened
+        private double ViewedPotassium()
+        {
+            double highest = double.NegativeInfinity;
+            foreach (var order in _s.Patient.Clinical.Investigations)
+            {
+                if (order.State != "VIEWED" && order.State != "ACKNOWLEDGED") continue;
+                foreach (var r in order.Results)
+                    if (r.Analyte == "Potassium" && double.TryParse(r.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var x) && x > highest) highest = x;
+            }
+            return highest;
         }
     }
 }

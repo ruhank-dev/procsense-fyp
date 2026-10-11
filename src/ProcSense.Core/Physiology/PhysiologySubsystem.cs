@@ -63,7 +63,7 @@ namespace ProcSense.Core.Physiology
             };
             var glucose = _file?.Results.FirstOrDefault(r => r.Test.StartsWith("Capillary glucose", StringComparison.Ordinal) && !r.Test.Contains("repeat"));
             if (glucose != null && double.TryParse(glucose.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double g)) { Glucose = g; _hasGlucose = true; baseline["glucose"] = g; }
-            _engine = new LitePhysio(_content.Physio);
+            _engine = new LitePhysio(_content.Physio) { NoiseEnabled = _content.Physio.NoiseEnabled || session.Noise };
             _engine.Initialise(baseline, session.Random.Stream("physio"));
             session.Events.Subscribe<TreatmentGiven>(OnGiven);
             Refresh();

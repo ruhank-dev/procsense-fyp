@@ -224,6 +224,23 @@ namespace ProcSense.Core.Tests
             Assert.Equal("RESULT_AVAILABLE", StateOf(s, "u_and_e"));
         }
 
+        // DT-074: the repeat lactate after treatment is the case's own value (2.4 for Mr Usman), not the first one
+        [Fact]
+        public void A_repeat_lactate_after_the_first_returns_the_improved_value_the_case_states()
+        {
+            var s = NewSession("VAR-S2-PD", "S2");
+            Order(s, "lactate_cultures"); Do(s, "take_sample", ("test", "lactate_cultures"), ("tube", "grey_fluoride"));
+            Minutes(s, 150);
+            Assert.Equal("3.8", s.Patient.Clinical.Investigations.Single().Results.Single(r => r.Id == "lab.lactate").Value);
+            Assert.True(Order(s, "lactate_cultures").Accepted);
+            Do(s, "take_sample", ("test", "lactate_cultures"), ("tube", "grey_fluoride"));
+            var second = s.Patient.Clinical.Investigations.Last();
+            Assert.Equal(2, second.Instance);
+            Assert.Contains("lab.lactate2", second.ResultIds);
+            Minutes(s, 300);
+            Assert.Equal("2.4", second.Results.Single(r => r.Id == "lab.lactate2").Value);
+        }
+
         [Fact]
         public void A_repeat_with_no_repeat_result_in_the_case_returns_the_same_results()
         {

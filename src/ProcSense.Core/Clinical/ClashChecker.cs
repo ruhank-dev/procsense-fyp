@@ -23,11 +23,11 @@ namespace ProcSense.Core.Clinical
     /// <summary>The treatment clash table, the way a case's factors are read and the medicine plans (content/clashes/clashes.json, built from the verified tables).</summary>
     public sealed class ClashTables
     {
-        public static readonly ClashTables Empty = new ClashTables(new Dictionary<string, IReadOnlyList<string>>(), new List<FactorDef>(), new List<string>(), new List<ClashDef>(), new List<MedicinePlanDef>());
+        public static readonly ClashTables Empty = new ClashTables(new Dictionary<string, IReadOnlyList<string>>(), new List<FactorDef>(), new List<string>(), new List<ClashDef>(), new List<MedicinePlanDef>(), 0, 0);
 
-        public ClashTables(IReadOnlyDictionary<string, IReadOnlyList<string>> needs, IReadOnlyList<FactorDef> factors, IReadOnlyList<string> context, IReadOnlyList<ClashDef> clashes, IReadOnlyList<MedicinePlanDef> plans)
+        public ClashTables(IReadOnlyDictionary<string, IReadOnlyList<string>> needs, IReadOnlyList<FactorDef> factors, IReadOnlyList<string> context, IReadOnlyList<ClashDef> clashes, IReadOnlyList<MedicinePlanDef> plans, double highPotassiumFrom, double lowOxygenTo)
         {
-            Needs = needs; Factors = factors; Context = context; Clashes = clashes; Plans = plans;
+            Needs = needs; Factors = factors; Context = context; Clashes = clashes; Plans = plans; HighPotassiumFrom = highPotassiumFrom; LowOxygenTo = lowOxygenTo;
         }
 
         /// <summary>Treatment or test id to what is being asked for (need_pain_relief and so on).</summary>
@@ -36,6 +36,12 @@ namespace ProcSense.Core.Clinical
         public IReadOnlyList<string> Context { get; }
         public IReadOnlyList<ClashDef> Clashes { get; }
         public IReadOnlyList<MedicinePlanDef> Plans { get; }
+
+        /// <summary>A potassium result at or above this is the 'high potassium' tag (the significant band).</summary>
+        public double HighPotassiumFrom { get; }
+
+        /// <summary>An oxygen saturation at or below this is the 'low oxygen' tag (the emergency sign).</summary>
+        public double LowOxygenTo { get; }
 
         public static ClashTables Parse(string json, string source = "clashes")
         {
@@ -84,9 +90,13 @@ namespace ProcSense.Core.Clinical
             }
             var checks = root.Arr("checks");
             foreach (var c in checks) { var o = new JsonObj(c, root.Sub("checks")); o.Str("id"); o.Str("text"); o.Str("ref"); o.Finish(); }
+            var limits = root.Obj("limits");
+            double highK = limits.Num("high_potassium_from"), lowO2 = limits.Num("low_oxygen_to");
+            foreach (var r in limits.Arr("refs")) if (!(r is string)) throw new ContentException(limits.Sub("refs") + ": expected register ids");
+            limits.Finish();
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
             root.Finish();
-            return new ClashTables(needs, factors, context, clashes, plans);
+            return new ClashTables(needs, factors, context, clashes, plans, highK, lowO2);
         }
 
         private static List<string> TextList(object? node, string path)
