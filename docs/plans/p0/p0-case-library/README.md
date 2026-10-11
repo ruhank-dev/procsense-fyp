@@ -2,6 +2,8 @@
 
 **Tier:** P0 (17 cases; rest in p1-case-library-extended, SC-1..20 in p2) · **Builds on:** p0-clinical-logic, p0-medical-research-data · **Feeds:** scenarios, evaluation
 
+> **Progress, 12 Oct 2026:** s02 (all 17 P0 cases play to their expected end state), s03 (what-if bindings), s04 (Stage B validator), s05 (mutation tests, 60 of 60 rejected) and s06 (adaptive difficulty, a rating and a lookup) are built and tested, awaiting approval. s01's common header fields are not built because no case needs them yet (DT-095); the review-status gate and the manifest check are (ADR-0006).
+
 ## Goal
 The 17 P0 patients as validated data with namespaced IDs, hidden facts + disclosure rules, what-if bindings, a contradiction
 validator that rejects impossible cases, and deterministic difficulty selection.

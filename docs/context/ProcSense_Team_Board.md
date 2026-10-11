@@ -6,6 +6,8 @@
 |---|---|---|---|---|
 | Tue 29 Sep | Fri 4 Dec | Fri 18 Dec | Sat 26 Dec | Thu 31 Dec |
 
+> **Status addendum — 12 Oct 2026:** the clinical-logic, physiology and simulation-workflow steps, the case-library steps s02 to s06, the scoring and debrief steps, the Event Director, the grounding validator and the per-character AI context are built and tested (CI all green). Items needing a clinician are in `docs/research/clinician_signoff.md` (Q1 to Q13) and are awaiting sign-off, never assumed. What is AI, what is rules, and what is blocked is in `docs/ai-roadmap-status.md`. Decision log rows 40 to 52 in the Change Report.
+
 > **Status addendum — 10 Oct 2026:** the project owner moved **all data work ahead of the remaining engine and VR work** (see `docs/plans/p0/data-first-order.md`, ADR-0002) and allowed clearly labelled synthetic ultrasound images with matching reports as a fallback when no real dataset fits, after clinician review (ADR-0003). The weekly checklist below is history; no deadlines apply.
 
 > **Status addendum — 09 Oct 2026** (the line above is the v2 original and is kept): the project owner treats all existing medical research and clinical workflows as **clinician-approved** (walkthrough first on 07 Oct, extended 09 Oct). Hospital-specific values and open source conflicts still need input. History: `ProcSense_Change_Report.md` §G.

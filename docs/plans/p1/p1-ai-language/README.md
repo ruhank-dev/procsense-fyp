@@ -2,6 +2,8 @@
 
 **Tier:** P1 · **Builds on:** p1-backend, p0-scoring-debrief, p0-physiology-events-behaviour · **Feeds:** p1-voice-input, p1-scenario-composer-difficulty
 
+> **Progress, 12 Oct 2026:** s01 (the grounding validator, Python and C# twin with shared vectors) and s03 (the per-character read-only context and the reaction queue) are built and tested, awaiting approval. s02 and s04 to s09 need a served model, human labellers or the backend and are blocked or pending (DT-096, DT-097). The full audit is `docs/ai-roadmap-status.md`; the rule is ADR-0005.
+
 ## Goal
 Controlled AI around the deterministic core: free-text patient/staff dialogue that never leaks hidden facts or invents medicine,
 a communication classifier producing evidence, and AI-worded debriefs that can't invent mistakes. Built validator-first.

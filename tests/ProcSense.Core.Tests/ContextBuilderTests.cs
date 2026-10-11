@@ -78,7 +78,7 @@ namespace ProcSense.Core.Tests
             var fact = asked.Dto.Facts.Single(f => f.Topic == "medicines");
             Assert.True(fact.DisclosableNow);
             Assert.False(fact.Disclosed);
-            Assert.Empty(asked.Validation.Facts.Where(f => f.Id == "h.medicines" && !f.DisclosableNow && !f.Disclosed));      // not hidden any more this turn
+            Assert.DoesNotContain(asked.Validation.Facts, f => f.Id == "h.medicines" && !f.DisclosableNow && !f.Disclosed);      // not hidden any more this turn
             s.Apply(new SimAction("ask", "patient", Channel.Cli, new Dictionary<string, string> { ["topic"] = "medicines" }));
             var after = Patient(s).Dto.Facts.Single(f => f.Topic == "medicines");
             Assert.True(after.Disclosed);
