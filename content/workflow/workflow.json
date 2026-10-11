@@ -157,6 +157,30 @@
       "refs": [ "SR-0061" ]
     },
     {
+      "id": "G-TESTS",
+      "step": 6,
+      "label": "The tests this patient needs are ordered",
+      "hint": "Order the tests this patient needs, and only those.",
+      "applies_if": true,
+      "complete_if": { "in": [ "tests.needed_ordered", { "var": "flags" } ] },
+      "after": ["G-S1-IDENTITY"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0086" ]
+    },
+    {
+      "id": "G-RESULTS",
+      "step": 7,
+      "label": "The results are opened",
+      "hint": "Open every result you ordered and read it.",
+      "applies_if": true,
+      "complete_if": { "in": [ "tests.needed_reviewed", { "var": "flags" } ] },
+      "after": ["G-TESTS"],
+      "on_missed": { "flags": [], "events": [] },
+      "score_items": [],
+      "refs": [ "SR-0086" ]
+    },
+    {
       "id": "G-SENIOR-NOW",
       "step": 4,
       "label": "Senior called now",
@@ -205,6 +229,13 @@
       "blocked_if": { "in": [ "results.unreviewed_required", { "var": "flags" } ] },
       "message": "A result this patient needed has not been opened: review it first.",
       "refs": [ "SR-0079" ]
+    },
+    {
+      "id": "B-PREGNANCY",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "in": [ "pregnancy.status_required", { "var": "flags" } ] },
+      "message": "Pregnancy status required: ask the patient privately, or offer a pregnancy test with consent.",
+      "refs": [ "SR-0087" ]
     }
   ]
 }

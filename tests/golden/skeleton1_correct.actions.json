@@ -23,6 +23,10 @@
   { "t": 100, "verb": "ask", "params": { "topic": "pregnancy" } },
   { "t": 106, "verb": "summarise" },
 
+  { "t": 107, "verb": "order_investigation", "params": { "test": "lft" } },
+  { "t": 109, "verb": "take_sample", "params": { "test": "lft", "tube": "serum_gold" } },
+  { "t": 111, "verb": "order_investigation", "params": { "test": "pregnancy" } },
+  { "t": 113, "verb": "perform_bedside_test", "params": { "test": "pregnancy" } },
   { "t": 120, "verb": "attach_sensor", "params": { "sensor": "spo2" } },
   { "t": 125, "verb": "attach_sensor", "params": { "sensor": "nibp_cuff" } },
   { "t": 128, "verb": "measure_nibp" },
@@ -43,6 +47,9 @@
   { "t": 216, "verb": "assess_vte", "params": { "items": "age_over_60:no,bmi_over_30:no,cancer:no,previous_clot:no,family_history_clots:no,oestrogen_or_hrt:no,pregnancy:no,dehydration:no,reduced_mobility:no,surgery_over_90_minutes:no,acute_tummy_inflammation:no,active_bleeding:no,blood_thinners:no,platelets_below_75:no,very_high_bp:no" } },
   { "t": 224, "verb": "compute_score", "params": { "score": "stopbang", "snoring": "false", "tired": "false", "observed": "false", "pressure": "false", "bmi_over_35": "false", "age_over_50": "false", "neck_over_40": "false", "male": "false" } },
   { "t": 232, "verb": "request_anaesthetic_review" },
-  { "t": 240, "verb": "decide_ready", "params": { "option": "proceed" } },
-  { "t": 270, "verb": "wait" }
+  { "t": 236, "verb": "time_skip", "params": { "minutes": "60" } },
+  { "t": 3836, "verb": "view_result", "params": { "test": "lft" } },
+  { "t": 3840, "verb": "view_result", "params": { "test": "pregnancy" } },
+  { "t": 3850, "verb": "decide_ready", "params": { "option": "proceed" } },
+  { "t": 3880, "verb": "wait" }
 ]

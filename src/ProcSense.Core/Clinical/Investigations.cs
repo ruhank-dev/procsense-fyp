@@ -9,6 +9,9 @@ namespace ProcSense.Core.Clinical
     /// <summary>One test the trainee can order: what it is (blood, bedside or imaging), which tube a blood test goes in, where imaging is done, the analytes of the case's results that belong to it, and its default turnaround.</summary>
     public sealed record InvestigationDef(string Id, string Label, string Kind, string Tube, string Location, IReadOnlyList<string> Analytes, double MinMinutes, double MaxMinutes, string Ref);
 
+    /// <summary>The pregnancy gate: who is eligible (sex and age band) and which tests it blocks until the pregnancy status is known.</summary>
+    public sealed record PregnancyGate(string Sex, int MinAge, int MaxAge, IReadOnlyList<string> Blocks);
+
     /// <summary>A normal result the engine may supply when the case states none (supplied for the scenario named, for the patient's sex).</summary>
     public sealed record NormalResult(string Id, string Analyte, string Sex, string Value, string Unit, string Range, string Ref);
 
@@ -27,8 +30,9 @@ namespace ProcSense.Core.Clinical
         private static readonly Regex Parenthetical = new Regex(@"\s*\(.*\)\s*$", RegexOptions.CultureInvariant);
 
         public InvestigationTables(IReadOnlyList<InvestigationDef> tests, IReadOnlyList<string> tubes, IReadOnlyList<IndicationRow> indications, string delayEvent, double delayMinutes,
-            IReadOnlyList<string>? labels = null, double dripDilution = 1, double edtaPotassiumRise = 0, IReadOnlyDictionary<string, NormalSet>? normals = null, CriticalTable? critical = null)
+            IReadOnlyList<string>? labels = null, double dripDilution = 1, double edtaPotassiumRise = 0, IReadOnlyDictionary<string, NormalSet>? normals = null, CriticalTable? critical = null, PregnancyGate? gate = null)
         {
+            Gate = gate ?? new PregnancyGate("F", 12, 55, new List<string>());
             Critical = critical ?? CriticalTable.Empty;
             Tests = tests; Tubes = tubes; Indications = indications; DelayEvent = delayEvent; DelayMinutes = delayMinutes;
             Labels = labels ?? new List<string> { "bedside", "prelabelled", "unlabelled" }; DripDilution = dripDilution; EdtaPotassiumRise = edtaPotassiumRise;
@@ -50,6 +54,8 @@ namespace ProcSense.Core.Clinical
         public IReadOnlyDictionary<string, NormalSet> Normals { get; }
         /// <summary>The limits the lab phones about (content/investigations/critical.json).</summary>
         public CriticalTable Critical { get; }
+        /// <summary>Who must have a known pregnancy status before radiation imaging or theatre.</summary>
+        public PregnancyGate Gate { get; }
 
         public InvestigationDef? Find(string id) => Tests.FirstOrDefault(t => t.Id == id);
 
@@ -97,6 +103,14 @@ namespace ProcSense.Core.Clinical
             }
             var dup = tests.SelectMany(t => t.Analytes.Select(a => (a, t.Id))).GroupBy(x => x.a).FirstOrDefault(g => g.Count() > 1);
             if (dup != null) throw new ContentException(root.Sub("tests") + ": the analyte '" + dup.Key + "' belongs to more than one test");
+            var gateObj = root.Obj("pregnancy_gate");
+            var blocks = new List<string>();
+            foreach (var b in gateObj.Arr("blocks")) blocks.Add(b as string ?? throw new ContentException(gateObj.Sub("blocks") + ": expected test ids"));
+            foreach (var b in blocks) if (tests.All(t => t.Id != b)) throw new ContentException(gateObj.Sub("blocks") + ": '" + b + "' is not a test");
+            int minAge = (int)gateObj.Int("min_age"), maxAge = (int)gateObj.Int("max_age");
+            if (minAge < 0 || maxAge < minAge) throw new ContentException(gateObj.Sub("min_age") + ": needs 0 <= min_age <= max_age");
+            var gate = new PregnancyGate(gateObj.Enum("sex", "F", "M"), minAge, maxAge, blocks);
+            gateObj.Str("ref"); gateObj.Finish();
             var delay = root.Obj("delay");
             string delayEvent = delay.Str("event");
             double delayMinutes = delay.Num("minutes");
@@ -155,7 +169,7 @@ namespace ProcSense.Core.Clinical
                 o.Finish();
             }
             ind.Finish();
-            return new InvestigationTables(tests, tubes, rows, delayEvent, delayMinutes, labels, dilution, rise, normals, criticalJson == null ? null : CriticalTable.Parse(criticalJson));
+            return new InvestigationTables(tests, tubes, rows, delayEvent, delayMinutes, labels, dilution, rise, normals, criticalJson == null ? null : CriticalTable.Parse(criticalJson), gate);
         }
     }
 

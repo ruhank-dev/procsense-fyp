@@ -2,8 +2,8 @@
   "case": "VAR-S1-A",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "dd91d7a7f98da65bc17778d65b42bde08dd7e9af6d6324b20e719c0d781fbc4e",
-  "state_hash": "fd741bf861a5b3b3e228f4d61f42c76602d94d4c4e0d444a3500538e6f56bb84",
+  "log_hash": "f4a586fa781c38884cd780dc45a2481036ba6255a326ae046003e87cacf0282a",
+  "state_hash": "e77490f4fe06babf64ad9f7103a24d42af3cb3725edba09c60184029d82aed5a",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -41,6 +41,8 @@
       "risk.asa_proposed",
       "score.stopbang.computed",
       "summarised",
+      "tests.needed_ordered",
+      "tests.needed_reviewed",
       "vte.done"
     ],
     "rejections": [],

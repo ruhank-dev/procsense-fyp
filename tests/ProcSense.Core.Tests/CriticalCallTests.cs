@@ -33,6 +33,7 @@ namespace ProcSense.Core.Tests
                 .Concat(new ISubsystem[] { new InvestigationsSubsystem(Content, file), new ResultReviewSubsystem(Content, file) });
             var s = new Session(Content.Cases["VAR-S1-A"], 42, SessionMode.Practice, chain);
             foreach (var verb in new[] { "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(Do(s, verb).Accepted, verb);
+            Do(s, "ask", ("topic", "pregnancy"));   // the pregnancy question is asked first, so the pregnancy gate (imaging with radiation, theatre) is open
             return s;
         }
 

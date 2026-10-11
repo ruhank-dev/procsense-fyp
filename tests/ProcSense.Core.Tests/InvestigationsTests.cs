@@ -32,6 +32,7 @@ namespace ProcSense.Core.Tests
             var card = scenario == "S1" ? Content.Cases["VAR-S1-A"] : Content.Cases["VAR-S1-A"] with { Scenario = scenario };
             var s = new Session(card, seed, mode, chain);
             if (confirmed) foreach (var verb in new[] { "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(Do(s, verb).Accepted, verb);
+            Do(s, "ask", ("topic", "pregnancy"));   // the pregnancy question is asked first, so the pregnancy gate (imaging with radiation, theatre) is open
             return s;
         }
 

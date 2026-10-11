@@ -44,6 +44,10 @@ namespace ProcSense.Core.Workflow.Steps
         public const string UnknownLabel = "UNKNOWN_LABEL";
         public const string NotReady = "NOT_READY";
         public const string ViewFirst = "VIEW_FIRST";
+        public const string PregnancyStatusRequired = "PREGNANCY_STATUS_REQUIRED";
+        public const string PregnancyFlag = "pregnancy.status_required";
+        public const string TestsOrderedFlag = "tests.needed_ordered";
+        public const string ResultsReviewedFlag = "tests.needed_reviewed";
 
         private readonly ContentPackage _content;
         private readonly CaseFile? _fixed;
@@ -106,6 +110,24 @@ namespace ProcSense.Core.Workflow.Steps
                 case AcknowledgeVerb: Acknowledge(a, o); break;
                 case RiskSubsystem.DecideReadyVerb: if (o.Accepted) ReportMissed(o); break;
             }
+            if (o.Accepted) Refresh();
+        }
+
+        // Who must have a known pregnancy status: the patient's sex and age against the gate's band.
+        private bool PregnancyEligible() =>
+            _file != null && _file.Identity.Sex == Tables.Gate.Sex && _file.Identity.Age >= Tables.Gate.MinAge && _file.Identity.Age <= Tables.Gate.MaxAge;
+
+        // Known once the pregnancy question has been asked or a pregnancy test has resulted.
+        private bool PregnancyKnown() =>
+            Clinical.IsRevealed("pregnancy") || Clinical.Investigations.Any(x => x.Test == "pregnancy" && (x.State == "RESULT_AVAILABLE" || x.State == "VIEWED" || x.State == "ACKNOWLEDGED"));
+
+        // The flags the blockers and goals read: pregnancy status still needed, every needed test ordered, every needed result opened.
+        private void Refresh()
+        {
+            if (PregnancyEligible() && !PregnancyKnown()) Clinical.SetFlag(PregnancyFlag); else Clinical.ClearFlag(PregnancyFlag);
+            var needed = NeededTests();
+            if (needed.Count > 0 && needed.All(t => Latest(t) != null)) Clinical.SetFlag(TestsOrderedFlag); else Clinical.ClearFlag(TestsOrderedFlag);
+            if (needed.Count > 0 && needed.All(t => { var l = Latest(t); return l != null && (l.State == "VIEWED" || l.State == "ACKNOWLEDGED"); })) Clinical.SetFlag(ResultsReviewedFlag); else Clinical.ClearFlag(ResultsReviewedFlag);
         }
 
         private bool TestFrom(SimAction a, ActionOutcome o, out InvestigationDef def)
@@ -125,6 +147,7 @@ namespace ProcSense.Core.Workflow.Steps
             if (!TestFrom(a, o, out var def)) return;
             var last = Latest(def.Id);
             if (last != null && last.State != "RESULT_AVAILABLE" && last.State != "VIEWED" && last.State != "ACKNOWLEDGED" && last.State != "REJECTED") { o.Reject(OrderPending); return; }
+            if (Tables.Gate.Blocks.Contains(def.Id) && PregnancyEligible() && !PregnancyKnown()) { o.Reject(PregnancyStatusRequired); return; }
             // an imaging test can ask for the transfer in the same request (mode, escort, monitoring, accompany): the patient then goes to the scan room
             if (def.Kind == "imaging" && a.Params.ContainsKey("mode") && Clinical.Location != def.Location)
             {
@@ -148,7 +171,8 @@ namespace ProcSense.Core.Workflow.Steps
                 Urgency = a.Params.TryGetValue("urgency", out var urgency) ? urgency : "",
             };
             Clinical.Investigations.Add(order);
-            Note(order, "REQUESTED", verdict.Verdict == "NOT_INDICATED" ? new[] { "unnecessary.test_ordered" } : Array.Empty<string>());
+            o.Effects.Add("order_id:" + order.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            Note(order, "REQUESTED", verdict.Verdict == "NOT_INDICATED" ? new[] { "unnecessary.test_ordered" } : verdict.Needed ? new[] { "credit.test_appropriate" } : Array.Empty<string>());
             o.Effects.Add("ordered:" + def.Id);
             o.Effects.Add("indication:" + verdict.Verdict.ToLowerInvariant());
             if (verdict.Verdict == "NOT_INDICATED") _history.Add(new GraphEvent("test_not_indicated", def.Id, _s.Clock.Steps, new[] { "unnecessary.test_ordered" }));

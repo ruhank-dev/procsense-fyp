@@ -3,7 +3,7 @@
   "seed": "42",
   "mode": "practice",
   "log_hash": "86d5e02fb8fe24d31759b5301c98811b12228b51f891573c535522d446a31704",
-  "state_hash": "fe0a78f7b92e5bdc480888f55b08fad80cc1b3158d28538af10af44568313f18",
+  "state_hash": "50dae0930f61827db316227f2e2b26464402f6207c554fdaec93b5ac2a2c741c",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": false,
@@ -11,7 +11,7 @@
     "allergy_band": false,
     "disclosed_topics": ["identity"],
     "vitals": {},
-    "flags": ["identity_asked_open"],
+    "flags": ["identity_asked_open", "pregnancy.status_required"],
     "rejections": [{ "verb": "order_blood_test", "reason": "IDENTITY_NOT_CONFIRMED" }],
     "trust": 0,
     "anxiety": 0,

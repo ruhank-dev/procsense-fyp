@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "9733deb544bf6e7b1053a303e32a37043ae05ae23fdc40d7e921e67fdbd9c7f8",
+ "content_hash": "438da4767599b78b73268ecd1695717c118ee286d217eaec8f55c7cbdc7b3f37",
  "files": 340,
- "bytes": 16577856,
+ "bytes": 16579157,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -990,8 +990,8 @@
    "sha256": "ed7dee31fcfffcc4f2729df318cd6072978c283fee9f29ef5d756c5d3333c8ee"
   },
   "investigations/investigations.json": {
-   "bytes": 6193,
-   "sha256": "9027666bbb5d01655bf2d9deff20c4d5b8e9125d43d950df69366842a754151f"
+   "bytes": 6368,
+   "sha256": "a3a463dcdca61753bdf48c2b27b5c474036e95028b34905b6fa5321ddb3be298"
   },
   "investigations/normal_results.json": {
    "bytes": 1765,
@@ -1146,8 +1146,8 @@
    "sha256": "aed4bdaaafd158774b2f4867d75f53c9ed38d3f2dc85f8deb3fc3fd55edfa3d0"
   },
   "workflow/workflow.json": {
-   "bytes": 7844,
-   "sha256": "8c9d2115cb5bd0b17e2b03f092536e430bf6c560352003e345df363853f30242"
+   "bytes": 8970,
+   "sha256": "33d415fdb3c7cae593103d18fece129c22461390fc9cd98adfe6f7524aeea9cb"
   },
   "xsec/CT-AB-00/ct-ab-00-r0.png": {
    "bytes": 102569,

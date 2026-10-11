@@ -3,7 +3,7 @@
   "seed": "42",
   "mode": "practice",
   "log_hash": "3da1db41c16aae5c4241527d043d820ac2375d2ca22ba4b1a93b096732725ca8",
-  "state_hash": "86929dbf09408e576a7e1aada39dc37c29c43cb8ae1902c4a69357423c6880c7",
+  "state_hash": "ddecd8bd134c585082c708fb24f53c7c619ffd4af400a31cd50bb3dfcdd93078",
   "facts": {
     "identity_confirmed": false,
     "allergies_known": false,
@@ -11,7 +11,7 @@
     "allergy_band": false,
     "disclosed_topics": ["identity"],
     "vitals": {},
-    "flags": ["identity_asked_open", "introduced"],
+    "flags": ["identity_asked_open", "introduced", "pregnancy.status_required"],
     "rejections": [{ "verb": "ask_identity", "reason": "SESSION_PAUSED" }],
     "trust": 1,
     "anxiety": -1,
