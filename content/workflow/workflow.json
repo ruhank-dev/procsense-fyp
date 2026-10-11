@@ -236,6 +236,13 @@
       "blocked_if": { "in": [ "pregnancy.status_required", { "var": "flags" } ] },
       "message": "Pregnancy status required: ask the patient privately, or offer a pregnancy test with consent.",
       "refs": [ "SR-0087" ]
+    },
+    {
+      "id": "B-WARD",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "!": [ { "in": [ "ward.checklist_signed", { "var": "flags" } ] } ] },
+      "message": "The ward checklist is not signed: complete and sign it before the transfer.",
+      "refs": [ "SR-2830" ]
     }
   ]
 }

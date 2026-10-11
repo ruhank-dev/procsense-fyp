@@ -8,7 +8,7 @@ import csv
 import sys
 from pathlib import Path
 
-from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems, workflow_rule_problems, engine_rule_keys
+from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems, workflow_rule_problems, ward_rule_problems, engine_rule_keys
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -87,6 +87,11 @@ def main() -> int:
     intents_doc = load_json(CONTENT / "npc" / "anaesthetist_intents.json")
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
+
+    ward_doc = load_json(CONTENT / "ward" / "ward_checklist.json")
+    wrefs = set(ward_doc["refs"]) | {i["ref"] for i in ward_doc["items"]}
+    ward_problems = [f"ward_checklist.json: ref {r} not in register" for r in sorted(wrefs) if r not in register] + ward_rule_problems(ward_doc, engine_rule_keys(ROOT / "src" / "ProcSense.Core" / "Workflow" / "CaseGraphSubsystem.cs"))
+    failed |= _report("ward checklist", ward_problems, f"{len(ward_doc['items'])} items, {len(wrefs)} refs ok, every rule compiles")
 
     det_doc = load_json(CONTENT / "physiology" / "deterioration.json")
     detrefs = set(det_doc["refs"]) | {det_doc["clock"]["ref"]} | {p["ref"] for t in det_doc["timelines"].values() for p in t["points"]} | {t["treated"]["ref"] for t in det_doc["timelines"].values()}

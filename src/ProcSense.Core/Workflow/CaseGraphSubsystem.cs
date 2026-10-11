@@ -57,6 +57,7 @@ namespace ProcSense.Core.Workflow
                 ["measured"] = measured,
                 ["findings"] = findings,
                 ["fasting"] = c.Fasting?.Status ?? "unknown",
+                ["temperature_c"] = s.Patient.Physiological.Measured.TryGetValue("temperature_c", out var tm) && double.TryParse(tm.Value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double tempC) ? (object?)tempC : null,
                 ["airway"] = airway,
                 ["exam_total"] = (long)c.ExamTotal,
                 ["exam_done"] = (long)c.Findings.Count(f => !f.Region.StartsWith(AirwayRegion, StringComparison.Ordinal)),

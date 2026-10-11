@@ -78,6 +78,7 @@ def main(argv: list[str]) -> int:
         ("flow maps up to date (S1 and S2, 20 stages each)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_flow_maps.py", "--check"])),
         ("score tables up to date (AIR, AAS, Alvarado, TG18, ASGE, STOP-Bang, AKI)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_scores.py", "--check"])),
         ("imaging reports and categories up to date (51 findings, approved reports, 35 cases)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_imaging.py", "--check"])),
+        ("ward checklist up to date (13 items, verify rules)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_ward.py", "--check"])),
         ("deterioration clock and Usman timeline up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_deterioration.py", "--check"])),
         ("decision outcomes and checks up to date (5 outcomes, 6 ordered checks, emergency signs)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_decision.py", "--check"])),
         ("clash table and medicine plans up to date (18 clashes, factors, plans)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_clashes.py", "--check"])),

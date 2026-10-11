@@ -73,6 +73,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.SepsisSubsystem? SepsisStep { get; set; }
         internal Workflow.Steps.ClashSubsystem? ClashStep { get; set; }
         internal Workflow.Steps.DecisionSubsystem? DecisionStep { get; set; }
+        internal Workflow.Steps.WardChecklistSubsystem? WardStep { get; set; }
+
+        /// <summary>The ward checklist: what is ticked, whether it is signed (null when the session has no ward step).</summary>
+        public Workflow.Steps.WardChecklistSubsystem? Ward => WardStep;
 
         /// <summary>The outcome the engine expects for the master decision now, for the score only (null when the session has no decision step). Never shown to the trainee.</summary>
         public Workflow.Steps.DecisionSubsystem? Decision => DecisionStep;

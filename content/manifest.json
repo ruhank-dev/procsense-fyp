@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "5d0e02a526877a9ae47c29551071f48c534c6a84aefc3051244e35649c762363",
- "files": 346,
- "bytes": 16623066,
+ "content_hash": "19dbd7ed985796040bbb6a41c2cf90a8b4db1be9ea095a6dc3fbef9c462ba040",
+ "files": 347,
+ "bytes": 16629105,
  "per_folder": {
   "(root)": 61,
   "case_files": 53,
@@ -26,6 +26,7 @@
   "schema": 4,
   "scores": 1,
   "sepsis": 1,
+  "ward": 1,
   "workflow": 1,
   "xsec": 57
  },
@@ -283,8 +284,8 @@
    "sha256": "33d58886fc8e3951bd1942065ad9b64ef6996cdb31cafefb43647485338a1785"
   },
   "clashes/clashes.json": {
-   "bytes": 14610,
-   "sha256": "4cc4892ff80385da8b404fd0b1273b187556eea786f368a21fa1b224bfb1a63b"
+   "bytes": 14691,
+   "sha256": "c29336956951d353796127d71237593742669d99078249568eb09ff08f7bad3a"
   },
   "critical_results.csv": {
    "bytes": 1486,
@@ -1162,6 +1163,10 @@
    "bytes": 29674,
    "sha256": "4141f7667fe9d1f00648a61df30eb2ee5b4a6ef602d2486285413381dac83fd8"
   },
+  "ward/ward_checklist.json": {
+   "bytes": 5662,
+   "sha256": "092cb2ce3e077bb5f47e6f76069c38fb6862ef322a770f5dd66e81c85873838e"
+  },
   "whatif_imaging.csv": {
    "bytes": 6151,
    "sha256": "d74eb0aedefdcfb45b526150d3cd6deb8c67d3832a216380fe6751166589cae0"
@@ -1175,8 +1180,8 @@
    "sha256": "aed4bdaaafd158774b2f4867d75f53c9ed38d3f2dc85f8deb3fc3fd55edfa3d0"
   },
   "workflow/workflow.json": {
-   "bytes": 8970,
-   "sha256": "33d415fdb3c7cae593103d18fece129c22461390fc9cd98adfe6f7524aeea9cb"
+   "bytes": 9266,
+   "sha256": "9631f84bbf96219b38874f30817f5cefd6f072bb1bfb86bb690f009333e10e3e"
   },
   "xsec/CT-AB-00/ct-ab-00-r0.png": {
    "bytes": 102569,

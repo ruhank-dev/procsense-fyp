@@ -1,0 +1,339 @@
+{
+ "items": [
+  {
+   "id": "fasting",
+   "order": 1,
+   "label": "Fasting times re-confirmed (a breach must be passed to the anaesthetist)",
+   "verify_if": {
+    "and": [
+     {
+      "!=": [
+       {
+        "var": "fasting"
+       },
+       "unknown"
+      ]
+     },
+     {
+      "or": [
+       {
+        "!=": [
+         {
+          "var": "fasting"
+         },
+         "breach"
+        ]
+       },
+       {
+        "in": [
+         "anaesthetist.told.fasting",
+         {
+          "var": "flags"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": null,
+   "ref": "SR-2830"
+  },
+  {
+   "id": "gown",
+   "order": 2,
+   "label": "Hospital gown on",
+   "verify_if": {
+    "in": [
+     "ward.gown.worn",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "worn"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "jewellery",
+   "order": 3,
+   "label": "Jewellery removed or taped, make-up and nail polish off",
+   "verify_if": {
+    "or": [
+     {
+      "in": [
+       "ward.jewellery.removed",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     {
+      "in": [
+       "ward.jewellery.taped",
+       {
+        "var": "flags"
+       }
+      ]
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "removed",
+    "taped",
+    "left_on"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "aids",
+   "order": 4,
+   "label": "Dentures, hearing aids, contact lenses and implants noted",
+   "verify_if": {
+    "in": [
+     "ward.aids.noted",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "noted"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "hair",
+   "order": 5,
+   "label": "Hair removal only if needed, with clippers (never a razor)",
+   "verify_if": {
+    "!": [
+     {
+      "in": [
+       "ward.hair.razor",
+       {
+        "var": "flags"
+       }
+      ]
+     }
+    ]
+   },
+   "required": false,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "clippers",
+    "razor",
+    "not_needed"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "site_marking",
+   "order": 6,
+   "label": "Site marking per policy (usually not applicable for midline keyhole surgery)",
+   "verify_if": {
+    "or": [
+     {
+      "in": [
+       "ward.site_marking.marked",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     {
+      "in": [
+       "ward.site_marking.not_applicable",
+       {
+        "var": "flags"
+       }
+      ]
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "marked",
+    "not_applicable"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "stockings",
+   "order": 7,
+   "label": "Stockings if prescribed",
+   "verify_if": {
+    "in": [
+     "ward.stockings.applied",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required": false,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "applied"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "pregnancy",
+   "order": 8,
+   "label": "Pregnancy status recorded",
+   "verify_if": {
+    "!": [
+     {
+      "in": [
+       "pregnancy.status_required",
+       {
+        "var": "flags"
+       }
+      ]
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": true,
+   "action": null,
+   "ref": "SR-2830"
+  },
+  {
+   "id": "consent",
+   "order": 9,
+   "label": "Consent present and correct",
+   "verify_if": {
+    "in": [
+     "consent.signed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": true,
+   "action": null,
+   "ref": "SR-2830"
+  },
+  {
+   "id": "bands",
+   "order": 10,
+   "label": "Identity band on",
+   "verify_if": {
+    "and": [
+     {
+      "var": "identity_confirmed"
+     },
+     {
+      "var": "wristband_read"
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": true,
+   "action": null,
+   "ref": "SR-2830"
+  },
+  {
+   "id": "cbg",
+   "order": 11,
+   "label": "Diabetic: finger-prick sugar recorded",
+   "verify_if": {
+    "in": [
+     "ward.cbg.recorded",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required": false,
+   "required_if": {
+    "in": [
+     "condition.diabetes",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "critical": false,
+   "action": [
+    "recorded"
+   ],
+   "ref": "SR-2830"
+  },
+  {
+   "id": "temperature",
+   "order": 12,
+   "label": "Temperature at least 36.0 C (warm the patient if not)",
+   "verify_if": {
+    ">=": [
+     {
+      "var": "temperature_c"
+     },
+     36.0
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": null,
+   "ref": "SR-0911"
+  },
+  {
+   "id": "documents",
+   "order": 13,
+   "label": "All documents together: notes, consent, results, drug chart, scans",
+   "verify_if": {
+    "in": [
+     "ward.documents.together",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required": true,
+   "required_if": null,
+   "critical": false,
+   "action": [
+    "together"
+   ],
+   "ref": "SR-2830"
+  }
+ ],
+ "items_scored": {
+  "tick_unverified": "minor.ward_tick_unverified",
+  "tick_false_critical": "critical.ward_tick_false",
+  "razor": "minor.razor_used",
+  "late_fasting_not_passed": "major.late_fasting_not_passed",
+  "signed_with_gaps": "major.ward_signed_with_gaps",
+  "signed_complete": "credit.ward_checklist_complete",
+  "anaesthetist_told": "credit.late_fasting_passed"
+ },
+ "discrepancy_event": "E-WARD-DISCREPANCY",
+ "signed_flag": "ward.checklist_signed",
+ "refs": [
+  "SR-2830",
+  "SR-2831"
+ ]
+}

@@ -38,7 +38,7 @@ namespace ProcSense.Core.Tests
         public void The_content_has_every_clash_row_the_factors_and_the_plans()
         {
             Assert.Equal(18, Tables.Clashes.Count);
-            Assert.Equal(17, Tables.Factors.Count);
+            Assert.Equal(18, Tables.Factors.Count);
             Assert.Equal(19, Tables.Plans.Count);
             Assert.All(Tables.Clashes, c => Assert.NotEmpty(c.When));
             Assert.Contains("pain_kidney", Tables.Clashes.Select(c => c.Id));

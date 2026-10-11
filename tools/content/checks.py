@@ -113,6 +113,27 @@ def workflow_rule_problems(doc: dict, known_keys: set[str]) -> list[str]:
     return problems
 
 
+def ward_rule_problems(doc: dict, known_keys: set[str]) -> list[str]:
+    """Every ward checklist rule compiles in the subset (Python twin of the evaluator) and reads only keys the engine provides."""
+    problems = []
+    for it in doc.get("items", []):
+        for field in ("verify_if", "required_if"):
+            rule = it.get(field)
+            if rule is None:
+                continue
+            where = f"ward item {it.get('id')} {field}"
+            try:
+                jsonlogic.compile_rule(rule, where)
+            except jsonlogic.RuleError as err:
+                problems.append(str(err))
+                continue
+            keys: set[str] = set()
+            if not jsonlogic.reads(rule, keys):
+                problems.append(f"{where}: reads a variable the engine cannot know in advance")
+            problems += [f"{where}: reads '{k}', which the engine does not provide" for k in sorted(keys - known_keys)]
+    return problems
+
+
 def workflow_problems(doc: dict, register: dict[str, dict]) -> list[str]:
     """Every goal, decision point and blocker must cite register ids that exist (the C# loader checks cycles, options and the rest)."""
     problems = []

@@ -41,6 +41,7 @@ FACTORS = {
     "co2_retainer": ["copd", "co2 retain", "long-term lung disease"],
     "penicillin_allergy": ["penicillin"],
     "dye_allergy": ["contrast allergy", "dye allergy"],
+    "diabetes": ["diabetes", "diabetic"],
     "insulin_user": ["insulin"],
     "sglt2_user": ["dapagliflozin", "empagliflozin", "canagliflozin", "sglt2"],
     "steroid_user": ["prednisolone", "hydrocortisone", "long-term steroid", "steroid tablets"],
