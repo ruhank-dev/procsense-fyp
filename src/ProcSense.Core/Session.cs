@@ -77,6 +77,10 @@ namespace ProcSense.Core
         internal Workflow.OrReadinessSubsystem? OrStep { get; set; }
         internal Workflow.Steps.HandoverSubsystem? HandoverStep { get; set; }
         internal Workflow.Steps.SafetyChecklistSubsystem? SafetyStep { get; set; }
+        internal Workflow.EndStateSubsystem? EndStateStep { get; set; }
+
+        /// <summary>How the case ended, worked out from everything that happened (null when the session has no end-state step).</summary>
+        public Workflow.EndStateSubsystem? EndStates => EndStateStep;
 
         /// <summary>The WHO safety checklist: phases, answers and what was contradicted (null when the session has no checklist step).</summary>
         public Workflow.Steps.SafetyChecklistSubsystem? Safety => SafetyStep;

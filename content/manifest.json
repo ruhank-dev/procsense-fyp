@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "92cdc6954d0b2e3dff1e5fc70d0132bbedcaddb51e76371fd8368308d83a54ba",
- "files": 350,
- "bytes": 16648961,
+ "content_hash": "b854e70f20ce48e24edeabd7e360a2724b18fc74a340415b045b9e4367afada2",
+ "files": 351,
+ "bytes": 16650677,
  "per_folder": {
   "(root)": 61,
   "case_files": 53,
@@ -12,6 +12,7 @@
   "cxr": 33,
   "decision": 1,
   "ecg": 41,
+  "endstate": 1,
   "fasting": 1,
   "flow": 1,
   "handover": 1,
@@ -653,6 +654,10 @@
   "end_states.csv": {
    "bytes": 1030,
    "sha256": "9598c9334bfb0dcff6bbbc15771cd85a87bad9979cf5c37fdefab5d1d704b5cc"
+  },
+  "endstate/end_states.json": {
+   "bytes": 1716,
+   "sha256": "e127d1732379b022b03391f54e4dd0b1ec655464dfdd85549cfb686b04295539"
   },
   "fasting/fasting.json": {
    "bytes": 351,

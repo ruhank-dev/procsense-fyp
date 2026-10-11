@@ -131,6 +131,9 @@ jobs:
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
 
+      - name: End states are up to date (5 states, delay items, surface-later facts)
+        run: uv run --project tools tools/content/build_end_states.py --check
+
       - name: Safety checklist is up to date (24 items, expected-answer rules)
         run: uv run --project tools tools/content/build_checklist.py --check
 

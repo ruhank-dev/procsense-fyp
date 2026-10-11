@@ -1,0 +1,71 @@
+{
+ "states": [
+  {
+   "id": "ready",
+   "code": "READY_SAFE",
+   "label": "Ready for incision — safe",
+   "meaning": "All blockers resolved; correct pathway",
+   "ref": "SR-0810"
+  },
+  {
+   "id": "postponed",
+   "code": "POSTPONED_APPROPRIATELY",
+   "label": "Appropriately postponed (S1)",
+   "meaning": "Correct reason found and communicated — counts as SUCCESS",
+   "ref": "SR-0811"
+  },
+  {
+   "id": "redirected",
+   "code": "REDIRECTED_APPROPRIATELY",
+   "label": "Appropriately redirected",
+   "meaning": "Diagnostic diversion",
+   "ref": "SR-0812"
+  },
+  {
+   "id": "delayed",
+   "code": "SAFE_BUT_DELAYED",
+   "label": "Safe but delayed",
+   "meaning": "Right outcome with avoidable delays",
+   "ref": "SR-0813"
+  },
+  {
+   "id": "failure",
+   "code": "SAFETY_FAILURE",
+   "label": "Safety failure",
+   "meaning": "A blocker was violated or a life-threatening event missed",
+   "ref": "SR-0814"
+  }
+ ],
+ "delay_items": [
+  "major.or_declared_ready_not_ready",
+  "major.or_fault_ignored",
+  "major.postponed_unnecessarily",
+  "major.redirected_unnecessarily",
+  "major.late_fasting_not_passed",
+  "major.handover_repeat_omission",
+  "major.hidden_fact_surfaced_late",
+  "major.ward_signed_with_gaps",
+  "major.checklist_item_skipped"
+ ],
+ "failure_prefix": "critical.",
+ "surface_later": [
+  {
+   "id": "s1d.apixaban_this_morning",
+   "case": "VAR-S1-D",
+   "variant": "D2",
+   "topic": "medicines",
+   "fact": "He took his apixaban this morning, although he was told to stop it three days ago",
+   "moment": "sign_in",
+   "by": "anaesthetist",
+   "effect": "stop",
+   "ref": "SR-2839"
+  }
+ ],
+ "items": {
+  "surfaced_late": "major.hidden_fact_surfaced_late"
+ },
+ "refs": [
+  "SR-2838",
+  "SR-2839"
+ ]
+}
