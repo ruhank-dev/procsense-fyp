@@ -32,6 +32,11 @@ namespace ProcSense.Core.Time
             return n;
         }
 
+        // The session runs the subsystems once per step, so each sees the clock at that step and not at the end of a long tick.
+        internal void Rewind(int steps) => Steps -= steps;
+
+        internal void StepOnce() => Steps++;
+
         /// <summary>Jumps forward (e.g. "wait 10 minutes"). Same rounding as Advance; the caller decides which subsystems run for the skipped steps.</summary>
         public int TimeSkip(double seconds) => Advance(seconds);
     }

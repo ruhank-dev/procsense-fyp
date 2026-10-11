@@ -86,7 +86,7 @@ namespace ProcSense.Core.Tests
             s.Tick(30);
             s.Tick(700);
             Assert.False(s.Director!.IsActive("E-HYPERSENSITIVITY"));
-            var missed = s.Director.History.Single(h => h.Kind == "event_missed");
+            var missed = s.Director.History.Single(h => h.Kind == "event_missed" && h.Id == "E-HYPERSENSITIVITY");
             Assert.Contains("critical.reaction_not_treated", missed.ScoreItems);
             Assert.True(s.Patient.Clinical.HasFlag("event.hypersensitivity.missed"));
         }

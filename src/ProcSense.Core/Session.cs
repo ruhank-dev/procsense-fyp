@@ -212,7 +212,8 @@ namespace ProcSense.Core
         {
             if (Paused) return;
             int steps = Clock.Advance(dt);
-            for (int n = 0; n < steps; n++) RunStep();
+            Clock.Rewind(steps);                                   // each step is run with the clock at that step, so a long tick behaves exactly like many short ones
+            for (int n = 0; n < steps; n++) { Clock.StepOnce(); RunStep(); }
         }
 
         private void RunStep()

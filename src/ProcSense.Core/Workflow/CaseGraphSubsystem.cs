@@ -68,7 +68,7 @@ namespace ProcSense.Core.Workflow
                 ["antibiotic_given_minutes_ago"] = (object?)s.SepsisStep?.GivenMinutesAgo("antibiotics"),
                 ["viewed_tests"] = c.Investigations.Where(x => x.State == "VIEWED" || x.State == "ACKNOWLEDGED").Select(x => (object?)x.Test).Distinct().ToList(),
                 ["sepsis_tier"] = s.SepsisStep?.Tier ?? "none",
-                ["imaging_viewed"] = c.Investigations.Any(x => x.Report != null && (x.State == "VIEWED" || x.State == "ACKNOWLEDGED")),
+                ["imaging_viewed"] = c.Investigations.Any(x => x.Kind == "imaging" && x.Report != null && (x.State == "VIEWED" || x.State == "ACKNOWLEDGED")),
             };
         }
     }

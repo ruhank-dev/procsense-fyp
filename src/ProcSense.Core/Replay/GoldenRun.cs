@@ -67,6 +67,8 @@ namespace ProcSense.Core.Replay
             sb.Append(",\"anxiety\":").Append(b.Anxiety.ToString(CultureInfo.InvariantCulture));
             sb.Append(",\"understanding\":").Append(b.Understanding.ToString(CultureInfo.InvariantCulture));
             sb.Append(",\"last_rejection\":"); JsonText.Quote(sb, o.LastRejection);
+            string end = s.EndStates?.Resolved ?? "";
+            if (end.Length > 0) { sb.Append(",\"end_state\":"); JsonText.Quote(sb, end); }       // only once the case has ended, so the earlier golden runs keep their files
             return sb.Append("}}").ToString();
         }
 

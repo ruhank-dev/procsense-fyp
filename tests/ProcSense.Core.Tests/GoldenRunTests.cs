@@ -18,15 +18,17 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void The_expected_golden_runs_exist()
         {
-            Assert.Equal(
-                new[] { "pause_and_time_skip", "skeleton1_bloods_first", "skeleton1_closed_question", "skeleton1_correct", "wristband_mismatch_resolved", "wristband_missing_allergy", "wristband_missing_applied" },
-                Names());
+            var names = Names();
+            foreach (var n in new[] { "pause_and_time_skip", "skeleton1_bloods_first", "skeleton1_closed_question", "skeleton1_correct", "wristband_mismatch_resolved", "wristband_missing_allergy", "wristband_missing_applied" })
+                Assert.Contains(n, names);
+            Assert.Equal(24, names.Length);                                           // the 7 above and one correct path for each of the 17 P0 cases (P0CaseTests)
         }
 
         [Fact]
         public void Every_golden_run_passes()
         {
-            var content = TestCase.Package();
+            var ids = Directory.GetFiles(Path.Combine(TestCase.ContentRoot, "case_files"), "*.json").Select(Path.GetFileNameWithoutExtension).OrderBy(x => x, System.StringComparer.Ordinal).Select(x => x!).ToArray();
+            var content = ContentLoader.Load(new CompositeContentReader(new FileContentReader(TestCase.ContentRoot), new FileContentReader(Path.Combine(TestCase.Repo, "tests", "fixtures"))), ids.Concat(new[] { "TEST-ID-MISMATCH", "TEST-ID-MISSING-BAND", "TEST-ID-MISSING-BAND-ALLERGY" }).ToArray(), ids);
             foreach (var name in Names())
                 Assert.True(GoldenRun.Check(Script(name), Expected(name), content).Count == 0,
                     name + ": " + string.Join(" | ", GoldenRun.Check(Script(name), Expected(name), content)));

@@ -1,0 +1,29 @@
+{
+  "case": "VAR-S1-E",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "cf30c1a2036c2f1cfd190149f075513c43b256fb36dcb6099900d54232072e33",
+  "state_hash": "b83b229d018ef6f33aa6cc972e1cfade4b70bfa104b8f6bc771bf7615aa45b92",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced",
+      "pregnancy.status_required"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "REDIRECTED_APPROPRIATELY"
+  }
+}

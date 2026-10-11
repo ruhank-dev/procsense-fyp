@@ -152,6 +152,9 @@ jobs:
       - name: Scoring content is up to date (22 behaviours, rubric, debrief sentences)
         run: uv run --project tools tools/content/build_scoring.py --check
 
+      - name: P0 correct-path scripts are what the generator writes (17 cases)
+        run: uv run --project tools tools/golden/p0_scripts.py --stale
+
       - name: What-if bindings are up to date (P0 cases, derived from the case content)
         run: uv run --project tools tools/content/build_bindings.py --check
 
