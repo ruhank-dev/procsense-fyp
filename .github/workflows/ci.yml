@@ -144,6 +144,9 @@ jobs:
       - name: Behaviour model is up to date (attributes, transitions, modes, disclosure)
         run: uv run --project tools tools/content/build_behaviour.py --check
 
+      - name: Events and what-if coverage are up to date (7 events, 47 what-ifs)
+        run: uv run --project tools tools/content/build_events.py --check
+
       - name: Physiology effect plots are up to date (for the review pack)
         run: uv run --project tools tools/physio/plot_effects.py --check
 

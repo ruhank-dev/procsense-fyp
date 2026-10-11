@@ -68,7 +68,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null, ObservedChecklist? Checklist = null, string? BehaviourMode = null)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null, ObservedChecklist? Checklist = null, string? BehaviourMode = null, IReadOnlyList<Events.ObservedCue>? Cues = null)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -309,6 +309,18 @@ namespace ProcSense.Core.Observation
                 }
                 sb.Append("]}");
             }
+            if (Cues != null && Cues.Count > 0)   // only while an event is on, so a session without one keeps the hash it always had
+            {
+                sb.Append(",\"cues\":[");
+                for (int i = 0; i < Cues.Count; i++)
+                {
+                    if (i > 0) sb.Append(',');
+                    sb.Append("{\"event\":"); JsonText.Quote(sb, Cues[i].Event);
+                    sb.Append(",\"text\":"); JsonText.Quote(sb, Cues[i].Text);
+                    sb.Append('}');
+                }
+                sb.Append(']');
+            }
             if (BehaviourMode != null) { sb.Append(",\"behaviour\":{\"mode\":"); JsonText.Quote(sb, BehaviourMode); sb.Append('}'); }
             return sb.Append('}').ToString();
         }
@@ -452,7 +464,7 @@ namespace ProcSense.Core.Observation
                 c.Orders.Select(o => new ObservedOrder(o.Id, o.Treatment, o.Label, o.State, o.Device, o.State == "REQUESTED" ? "" : o.DoseText, o.Lines.ToList())).ToList(),
                 c.OrStations.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(),
                 new ObservedChecklist(c.ChecklistPhases.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(), c.ChecklistItems.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList()),
-                s.BehaviourStep?.Mode);
+                s.BehaviourStep?.Mode, s.Director?.Cues.ToList());
         }
     }
 }

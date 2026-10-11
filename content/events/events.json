@@ -1,0 +1,489 @@
+{
+ "evaluate_every_steps": 20,
+ "warmup_seconds": 180,
+ "global_cooldown_seconds": 90,
+ "max_clinical": 1,
+ "max_other": 1,
+ "events": [
+  {
+   "id": "E-HYPERSENSITIVITY",
+   "whatif": "w29",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "in": [
+     "allergy.reaction_eligible",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "allergy.reaction_eligible",
+   "watch": {
+    "vital": "",
+    "op": "",
+    "value": 0
+   },
+   "base_probability": 1.0,
+   "severity": "critical",
+   "difficulty_tier": "advanced",
+   "cooldown_seconds": 0,
+   "cues": [
+    "rash and flushing",
+    "swollen lips",
+    "wheeze"
+   ],
+   "physio_effects": [
+    "EFF-ANAPHYLAXIS"
+   ],
+   "set_flags": [
+    "event.hypersensitivity"
+   ],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call for help and the emergency team"
+    },
+    {
+     "id": "adrenaline",
+     "verb": "request_medication",
+     "params": {
+      "treatment": "TR-ADRENALINE"
+     },
+     "within_seconds": 600,
+     "label": "Ask the clinician for intramuscular adrenaline"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.reaction_handled"
+     ],
+     "flag": "event.hypersensitivity.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "critical.reaction_not_treated"
+     ],
+     "flag": "event.hypersensitivity.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [
+    "patient_distress"
+   ],
+   "sources": [
+    "SR-0973",
+    "SR-4108",
+    "SR-2860",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-LOW-BP",
+   "whatif": "w01",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "<=": [
+     {
+      "var": "vitals.sbp"
+     },
+     90
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "sbp",
+    "op": "<=",
+    "value": 90
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the senior surgeon and the anaesthetist"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_low_bp_escalated"
+     ],
+     "flag": "event.e-low-bp.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_low_bp_not_escalated"
+     ],
+     "flag": "event.e-low-bp.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-0109",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-HIGH-HR",
+   "whatif": "w03",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    ">": [
+     {
+      "var": "vitals.hr"
+     },
+     130
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "hr",
+    "op": ">",
+    "value": 130
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the senior and the anaesthetist"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_high_hr_escalated"
+     ],
+     "flag": "event.e-high-hr.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_high_hr_not_escalated"
+     ],
+     "flag": "event.e-high-hr.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-0104",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-LOW-HR",
+   "whatif": "w04",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "<=": [
+     {
+      "var": "vitals.hr"
+     },
+     40
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "hr",
+    "op": "<=",
+    "value": 40
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the senior, the anaesthetist and the medical team"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_low_hr_escalated"
+     ],
+     "flag": "event.e-low-hr.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_low_hr_not_escalated"
+     ],
+     "flag": "event.e-low-hr.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-0105",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-LOW-OXYGEN",
+   "whatif": "w07",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "<=": [
+     {
+      "var": "vitals.spo2"
+     },
+     91
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "spo2",
+    "op": "<=",
+    "value": 91
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the anaesthetist or senior urgently"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_low_oxygen_escalated"
+     ],
+     "flag": "event.e-low-oxygen.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_low_oxygen_not_escalated"
+     ],
+     "flag": "event.e-low-oxygen.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-0124",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-FAST-BREATHING",
+   "whatif": "w08",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    ">=": [
+     {
+      "var": "vitals.rr"
+     },
+     25
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "rr",
+    "op": ">=",
+    "value": 25
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the senior urgently"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_fast_breathing_escalated"
+     ],
+     "flag": "event.e-fast-breathing.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_fast_breathing_not_escalated"
+     ],
+     "flag": "event.e-fast-breathing.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-0119",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-SLOW-BREATHING",
+   "whatif": "w09",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "<=": [
+     {
+      "var": "vitals.rr"
+     },
+     8
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "rr",
+    "op": "<=",
+    "value": 8
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the emergency team and the anaesthetist immediately"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_slow_breathing_escalated"
+     ],
+     "flag": "event.e-slow-breathing.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_slow_breathing_not_escalated"
+     ],
+     "flag": "event.e-slow-breathing.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-0120",
+    "SR-2863"
+   ]
+  }
+ ],
+ "modifiers": [],
+ "refs": [
+  "SR-2863"
+ ]
+}

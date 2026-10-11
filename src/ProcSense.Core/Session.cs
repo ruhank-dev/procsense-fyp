@@ -74,6 +74,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.ClashSubsystem? ClashStep { get; set; }
         internal Workflow.Steps.DecisionSubsystem? DecisionStep { get; set; }
         internal Workflow.Steps.WardChecklistSubsystem? WardStep { get; set; }
+        internal Events.EventDirector? DirectorStep { get; set; }
+
+        /// <summary>The Event Director: what has fired, what is active and the cues on show (null when the session runs without one).</summary>
+        public Events.EventDirector? Director => DirectorStep;
         internal Workflow.OrReadinessSubsystem? OrStep { get; set; }
         internal Workflow.Steps.HandoverSubsystem? HandoverStep { get; set; }
         internal Workflow.Steps.SafetyChecklistSubsystem? SafetyStep { get; set; }
