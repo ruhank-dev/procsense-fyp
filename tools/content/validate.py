@@ -88,6 +88,10 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    det_doc = load_json(CONTENT / "physiology" / "deterioration.json")
+    detrefs = set(det_doc["refs"]) | {det_doc["clock"]["ref"]} | {p["ref"] for t in det_doc["timelines"].values() for p in t["points"]} | {t["treated"]["ref"] for t in det_doc["timelines"].values()}
+    failed |= _report("deterioration clock", [f"deterioration.json: ref {r} not in register" for r in sorted(detrefs) if r not in register], f"{len(detrefs)} refs ok")
+
     dec_doc = load_json(CONTENT / "decision" / "decision.json")
     drefs = set(dec_doc["refs"]) | {o["ref"] for o in dec_doc["outcomes"]} | {c["ref"] for c in dec_doc["checks"]} | {dec_doc["emergency_signs"]["ref"]}
     failed |= _report("decision outcomes and checks", [f"decision.json: ref {r} not in register" for r in sorted(drefs) if r not in register], f"{len(drefs)} refs ok")

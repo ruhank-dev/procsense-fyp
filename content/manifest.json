@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "f167ba133388209e9833a4cdd442de3927e3011f6bdd825c193312f7e7993174",
- "files": 345,
- "bytes": 16620784,
+ "content_hash": "4a37532f5142e1c42547ba429d51fc5a3fd3f6f6af11f8a42d7c4f77f5b9ec7b",
+ "files": 346,
+ "bytes": 16622063,
  "per_folder": {
   "(root)": 61,
   "case_files": 53,
@@ -19,6 +19,7 @@
   "locations": 1,
   "news2": 1,
   "npc": 1,
+  "physiology": 1,
   "problems": 1,
   "risk": 1,
   "rules": 1,
@@ -1048,6 +1049,10 @@
   "physio_noise.csv": {
    "bytes": 559,
    "sha256": "aef9de534e1c0bf7c390606a21019d9a05ce729d5e09be70e58c98ccfbc3fbaa"
+  },
+  "physiology/deterioration.json": {
+   "bytes": 1279,
+   "sha256": "5482963917a81a9c9dbc39e49d1e753867eb88210110e2e15f988883cbb1ed34"
   },
   "player_view.csv": {
    "bytes": 16186,

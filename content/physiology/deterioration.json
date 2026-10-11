@@ -1,0 +1,82 @@
+{
+ "clock": {
+  "hr_step_min": 5,
+  "hr_step_max": 10,
+  "news2_step": 1,
+  "interval_minutes": 30,
+  "ref": "SR-0916"
+ },
+ "treated_by_effects": [
+  "EFF-FLUID-BOLUS",
+  "EFF-ANTIBIOTIC"
+ ],
+ "recovery_minutes": 30,
+ "timelines": {
+  "VAR-S2-PD": {
+   "points": [
+    {
+     "minutes": 0,
+     "time": "14:00",
+     "hr": 102,
+     "sbp": 124,
+     "dbp": 78,
+     "rr": 20,
+     "spo2": 97,
+     "temp": 38.3,
+     "acvpu": "A",
+     "news2_book": 2,
+     "ref": "SR-2500"
+    },
+    {
+     "minutes": 45,
+     "time": "14:45",
+     "hr": 116,
+     "sbp": 112,
+     "dbp": 70,
+     "rr": 22,
+     "spo2": 96,
+     "temp": 38.9,
+     "acvpu": "A",
+     "news2_book": 5,
+     "ref": "SR-2501"
+    },
+    {
+     "minutes": 75,
+     "time": "15:15",
+     "hr": 128,
+     "sbp": 92,
+     "dbp": 58,
+     "rr": 26,
+     "spo2": 94,
+     "temp": 39.2,
+     "acvpu": "A",
+     "news2_book": 10,
+     "ref": "SR-2502"
+    },
+    {
+     "minutes": 105,
+     "time": "15:45",
+     "hr": 138,
+     "sbp": 82,
+     "dbp": 48,
+     "rr": 30,
+     "spo2": 91,
+     "temp": 39.4,
+     "acvpu": "C",
+     "news2_book": 16,
+     "ref": "SR-2503"
+    }
+   ],
+   "treated": {
+    "sbp": 108,
+    "dbp": 64,
+    "hr": 112,
+    "ref": "SR-0097"
+   }
+  }
+ },
+ "refs": [
+  "SR-0096",
+  "SR-0097"
+ ]
+}

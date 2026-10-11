@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null, ProcSense.Core.Clinical.DecisionTables? decision = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null, ProcSense.Core.Clinical.DecisionTables? decision = null, ProcSense.Core.Physiology.DeteriorationTables? deterioration = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -68,6 +68,7 @@ namespace ProcSense.Core.Content
             Sepsis = sepsis ?? ProcSense.Core.Clinical.SepsisTables.Empty;
             Clashes = clashes ?? ProcSense.Core.Clinical.ClashTables.Empty;
             Decision = decision ?? ProcSense.Core.Clinical.DecisionTables.Empty;
+            Deterioration = deterioration ?? ProcSense.Core.Physiology.DeteriorationTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -103,6 +104,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Clinical.ClashTables Clashes { get; }
         /// <summary>The five outcomes and the ordered checks of the master decision (content/decision/decision.json).</summary>
         public ProcSense.Core.Clinical.DecisionTables Decision { get; }
+        /// <summary>The deterioration clock and the timelines of cases that have one (content/physiology/deterioration.json).</summary>
+        public ProcSense.Core.Physiology.DeteriorationTables Deterioration { get; }
         /// <summary>The treatment library: each treatment with its required checks, prerequisites, restrictions and effect ids (content/treatments.json).</summary>
         public ProcSense.Core.Clinical.TreatmentTables Treatments { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>

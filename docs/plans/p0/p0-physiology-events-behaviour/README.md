@@ -34,3 +34,11 @@ Developer: all + plots. Medical professional: trajectory review.
 
 ## Sources
 Walkthrough Parts 4.11, 12–14, 17; Implementation Guide B-R13, B-R14, B-R6.
+
+## Experiment log
+
+### EXP-PHY-2: does the deterioration clock reproduce the Usman timeline? (11 Oct 2026)
+- **Method:** headless, `DeteriorationTests` (T-P6, T-P7): the clock's vitals at 14:00, 14:45, 15:15 and 15:45 are scored with the NEWS2 chart (`News2`) and compared with the walkthrough's printed totals.
+- **Result:** NEWS2 2, 5, 10 and 17 against the book's 2, 5, 10 and 16: every point is within the plan's one-point limit; the last differs by one because the book's 16 is itself a mis-total (ISS-0016). Treated at 14:45, blood pressure reaches 108/64 and heart rate 112 (the walkthrough's values after the correct action) 30 minutes later, against 92 and 128 untreated.
+- **How it works and what is a design value:** a case with a timeline follows it (straight lines between the readings), so the match is by construction at the four reading times and the lines between them are a design choice; every other emergency case with a life-threatening or time-critical problem drifts its heart rate 5 to 10 every 30 minutes until a fluid bolus or an antibiotic is given (SR-0096, provisional). The repeat lactate of 2.4 is not applied yet (DT-074).
+- **Decision:** accepted for the walking skeleton; the clinician reviews the plots under EXP-PHY-1.
