@@ -344,7 +344,7 @@ Status vocabulary: Planned; Historically approved / needs baseline verification;
 | SAN-SCENES | Persistent scene lifecycle/input | Editor foundations accepted and committed | Closeout 3cbea3f; 53/53 PlayMode, 3/3 EditMode and 27/27 CI passed. Earlier foundation/room/comfort/input work is committed. Physical headset acceptance and final equipment integration remain separate. |
 | SAN-DIAG | Records/diagnostics skeleton | Presentation preview in progress; runtime integration blocked | Stage 2 Editor-only fixture and contract handoff in section 20. Investigation/result/transport runtime contracts and case integration still required. |
 | SAN-OT | Greybox theatre/WHO skeleton | Blocked | Readiness/checklist/consent/transport runtime contracts required |
-| SAN-BLENDER | Procedural pipeline and pilot assets | Planned | Stage 4; Blender/tool setup and pilot reference review |
+| SAN-BLENDER | Procedural pipeline and pilot assets | Pilot batch implemented; review pending | Pinned Blender, three generated/imported pilots, validator/previews and import preservation. See section 21; fitted wristband and Quest quality/performance gates remain open. |
 | SAN-ASSETS | Full equipment roster | Blocked | Validated pilot/import pipeline and accepted quality bar |
 | SAN-ROOMS | Final shells/layout | Blocked | Supervisor assets/access not verified; keep greybox usable |
 | SAN-CHAR | Characters and nurse sequence | Planned | Prototype can use stand-ins; human sources/animation approval required |
@@ -4309,3 +4309,43 @@ Batch roadmap proposal (11 October 2026, Asia/Karachi; requested by Sannan):
 These are proposed future batches, not implementation begun in this commit-only turn. Each batch gets continuous self-checks and one final manual-review/commit-message handoff. No mass production before pilot acceptance; headset gates remain pending device access.
 
 SAN-DIAGNOSTICS-PREVIEW commit approval (11 October 2026, Asia/Karachi): Sannan requested just committing the reviewed preview and outlining the next batches. Accepted for commit with approved subject feat(unity): add diagnostics development preview, no body. Required task ci passed 27/27, exit 0; Unity evidence is 56/56 PlayMode and 3/3 EditMode plus corrected menu/lifecycle visual checks. Scope: seven preview/menu/test/Markdown files including its Editor-generated metadata. Branch sannan47/unity-layout; author Sannan <sannanshakeel04@gmail.com>. Commit identity is the approved-subject commit containing this entry. Existing temporary Test Runner scene/metadata excluded. No push authorized; next batches remain proposed.
+
+## 21. SAN-BLENDER — first pipeline and pilot batch (12 October 2026)
+
+Started 11 October 2026; updated 12 October 2026 00:01 Asia/Karachi. Sannan's “just get to work buddy” authorized the previously proposed pipeline + monitor/stand + IV pole/pump + wristband batch, including `tools/blender/`, Taskfile commands and output ignore rules. Original steps: blender-equipment s01–s05; this is the first Editor-verifiable pilot implementation, not accepted completion of every source-step criterion.
+
+Branch: `sannan47/unity-layout`. Baseline HEAD `261afd4` was already committed; the unrelated old `InitTestScenebf31bc10-a0a4-4081-bbdd-c1a42989b4ad` scene/meta remain untouched. No commit or push in this batch. Proposed exact subject: `feat(unity): add procedural equipment pilots`; no body. Implementation acceptance and exact-message approval are pending. Eventual identity remains Sannan <sannanshakeel04@gmail.com>.
+
+Implemented:
+
+- Downloaded official portable Blender 4.5.14 LTS to ignored build output and verified the official SHA-256. Added exact version check, factory-startup runner, Task commands, reusable geometry/material/anchor/export helpers and per-asset scripts. No SDK/package upgrades or clinical/shared-interface changes.
+- Built monitor/roll stand (3,768 triangles), IV pole/pump (2,452) and flat adult wristband (324), with shared materials and separate moving parts. Main-body monitor/pump dimensions match sourced sheets. Stand/pole dimensions and wristband thickness/fit are provisional; wristband is flat stock, not a fitted wearable.
+- Validator checks applied transforms, names, UVs, manifold mesh edges, triangle/material budgets, required anchors and body dimensions. Positive and five independent deliberately invalid cases pass; one-metre hello cube generated. Four orthographic/perspective review angles plus human-scale images rendered for each asset.
+- Unity AssetDatabase import creates shared URP materials, nested model prefabs, compound colliders, grab points, isolated bag-hook sockets and observable-state screen/identity surfaces. Reimport preserves existing prefab settings/GUIDs. Wristband grab uses existing `read_wristband`; monitor movement does not invent sensor readings; pump has no clinical rate/dose interaction.
+- Separate `EquipmentPilotReview` scene and menu; no PatientBay edits or scene rebuild. Review is offset away from the bay for safe additive capture. Fixed the imported screen-facing direction during visual verification.
+
+Evidence:
+
+- Blender 4.5.14 LTS, Unity 6000.5.10f1. `task blender-build-all`, individual rebuild/preview, validator selftest and hello_cube build ran through the runner. Validation JSON/logs in ignored `build/blender/`; 1024px renders and Unity capture in `build/previews/`.
+- Inspected the 15-view contact sheet and corrected wristband preview contrast; inspected the Unity pilot render after isolating it from the existing bay. No headset readability/performance claim.
+- Unity compilation passed. Live EditMode tests 7/7 passed, including three dimension/material/socket checks and actual reimport after modifying mass, with original value restored. Repository `task ci`: 27/27 passed. PlayMode verification is recorded below after completion.
+
+Known limits and next work:
+
+- Patient wrist socket/curved fit, working pump door, sensor/cable attachment actions, final button layouts and constraint-aware stand rolling are not implemented. `SOCKET_Wrist`, door pivot and cable endpoints are markers; only bag-hook sockets are active, on reserved interaction-layer bit 8.
+- Runtime screen reset/readings need the active Core host; standalone review scene is an appearance preview. Full physical bedside action batch follows pilot review, using the existing real clinical contracts.
+- Production LOD policy, curved cable helper, full roster, reference-confirmed stand dimensions and EXP-BL-1 headset approval/EXP-BL-2 shared-vs-baked Quest comparison remain open. Quest 3 is still unavailable. Do not interpret these pilot meshes as the final accepted quality bar.
+
+Manual review:
+
+1. Open **ProcSense → Equipment → Open Pilot Review**; use Scene view to inspect the monitor body/handle/basket/castors, four pump hooks, door/buttons and flat band on its plinth. Expected: correctly scaled solids, shared materials, visible screens, no changes to PatientBay.
+2. In a temporary PatientBay placement, add pilot prefabs and enter Play with the existing rig/services. Move/grab the monitor and pump; ordinary props must not snap to the bag hooks. Monitor starts with unavailable readings and updates only after the existing accepted observation actions.
+3. Grab the band: one existing read action should reveal permitted identity; a new session must clear identity/readings. Inspect fitted-wrist/readability needs separately; fit is still pending.
+4. Discard temporary bay placements. Review the Blender previews and provisional quality bar in `tools/blender/README.md`. Confirm appearance or request changes before roster expansion.
+
+Changed areas awaiting review: `tools/blender/`, `.gitignore`, `Taskfile.yml`, Unity import/review scripts, equipment FBX/metadata/materials/prefabs, surface view, tests, review scene and Markdown docs. All batch work remains uncommitted; old unrelated test scene/meta remain untracked.
+
+Final verification, 12 October 2026 00:04 Asia/Karachi: live PlayMode **57/57 passed** (48 seconds), including the new equipment permitted-state/reset regression. Final exports include named per-asset collections; rebuild and validator selftest passed. Reimported all three via AssetDatabase. Imported the generated hello cube, measured **1 metre on all three Unity axes**, then removed only that temporary smoke asset via AssetDatabase. Final import checks are repeated after this refresh. No clinical case/content changes; test scenario VAR-S1-A, seed 42, Practice. All work remains awaiting Sannan's visual/manual acceptance and exact-message approval.
+Final refreshed-import EditMode run: **7/7 passed** (1.03 seconds). Git scope checked; no additional test-scene artifacts beyond the original unrelated pair.
+
+12 October 2026 (Asia/Karachi): Sannan explicitly accepted the batch and approved the exact subject `feat(unity): add procedural equipment pilots` (no body) with 'commit that, push that.' Authorized destination: origin/sannan47/unity-layout. Commit identity: Sannan <sannanshakeel04@gmail.com>. Required CI rerun before commit; unrelated old test scene/meta excluded.

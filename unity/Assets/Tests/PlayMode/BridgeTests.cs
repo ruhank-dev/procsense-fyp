@@ -58,6 +58,32 @@ namespace ProcSense.Tests.PlayMode
 
         // T-B1: one press, one action
         [Test]
+        public void Equipment_surfaces_show_only_observed_values_and_reset_with_session()
+        {
+            var monitor = Make<EquipmentSurfaceView>("pilot monitor");
+            var monitorText = Make<TMPro.TextMeshPro>("monitor text");
+            monitor.Configure(EquipmentSurfaceView.Surface.Monitor, monitorText);
+            var identity = Make<EquipmentSurfaceView>("pilot identity");
+            var identityText = Make<TMPro.TextMeshPro>("identity text");
+            identity.Configure(EquipmentSurfaceView.Surface.Identity, identityText);
+            monitor.RenderNow();
+            identity.RenderNow();
+            Assert.That(monitor.DisplayText, Does.Contain("SpO2   --"));
+            Assert.That(identity.DisplayText, Is.EqualTo("READ WRISTBAND"));
+            _host.Apply(Vr("read_wristband"));
+            _host.Apply(Vr("attach_sensor", ("sensor", "spo2")));
+            monitor.RenderNow();
+            identity.RenderNow();
+            Assert.That(identity.DisplayText, Does.Contain(_host.Observable.Wristband.NameText));
+            Assert.That(monitor.DisplayText, Does.Not.Contain("SpO2   --"));
+            _host.StartSession("VAR-S1-A", 42, SessionMode.Practice);
+            monitor.RenderNow();
+            identity.RenderNow();
+            Assert.That(monitor.DisplayText, Does.Contain("SpO2   --"));
+            Assert.That(identity.DisplayText, Is.EqualTo("READ WRISTBAND"));
+        }
+
+        [Test]
         public void An_emitter_sends_exactly_one_action_per_press()
         {
             var button = Make<Image>("button");

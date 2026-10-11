@@ -1,0 +1,5 @@
+{
+  "vital_signs_monitor": {"script": "monitoring/vital_signs_monitor.py", "body": [0.327, 0.182, 0.288], "triangles": 20000, "materials": 8, "points": ["GRAB_Handle", "SCREEN_Main", "ATTACH_ECG", "ATTACH_SpO2", "ATTACH_NIBP", "ATTACH_Temp"]},
+  "iv_pole_pump": {"script": "iv/iv_pole_pump.py", "body": [0.214, 0.124, 0.068], "triangles": 20000, "materials": 8, "points": ["GRAB_Pole", "SCREEN_Pump", "PIVOT_Door", "SOCKET_Bag_1", "SOCKET_Bag_2", "SOCKET_Bag_3", "SOCKET_Bag_4"]},
+  "wristband": {"script": "identity/wristband.py", "body": [0.279, 0.025, 0.001], "triangles": 5000, "materials": 3, "points": ["GRAB_Band", "LABEL_Identity", "SOCKET_Wrist"]}
+}

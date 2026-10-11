@@ -13,6 +13,8 @@ The **Scene** tab shows the editable room. The **Game** tab shows the running ca
 
 ## Asset folders
 
+Procedural equipment pilots are under `Assets/Models/Equipment`, `Assets/Materials/Equipment` and `Assets/Prefabs/Equipment`. Use **ProcSense → Equipment → Open Pilot Review** for the separate review scene. Build/import instructions, provisional dimensions and remaining interaction limits are in [the Blender pipeline README](../tools/blender/README.md).
+
 | Folder | Contents |
 |---|---|
 | `Assets/Scenes` | Boot, Sys_Core, PatientBay, Corridor, OT and DevOnly |

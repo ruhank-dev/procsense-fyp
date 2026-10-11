@@ -1,7 +1,7 @@
 {
   "name": "ProcSense.Tests.EditMode",
   "rootNamespace": "ProcSense.Tests.EditMode",
-  "references": ["ProcSense.Core", "ProcSense.VR", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+  "references": ["ProcSense.Core", "ProcSense.VR", "ProcSense.Editor", "Unity.XR.Interaction.Toolkit", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
   "includePlatforms": ["Editor"],
   "overrideReferences": true,
   "precompiledReferences": ["nunit.framework.dll"],
