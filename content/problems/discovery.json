@@ -1,0 +1,413 @@
+{
+ "discovery": [
+  {
+   "case": "VAR-S1-B",
+   "problem": "b.bp",
+   "trigger": {
+    "in": [
+     "systolic_bp",
+     {
+      "var": "measured"
+     }
+    ]
+   },
+   "how": "the trainee takes a blood pressure and sees it is raised but below 180/110",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-B",
+   "problem": "b.bp2",
+   "trigger": {
+    "in": [
+     "systolic_bp",
+     {
+      "var": "measured"
+     }
+    ]
+   },
+   "how": "the trainee takes the blood pressure and sees 188/114 (variant B2 only)",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-C",
+   "problem": "c.diabetes",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns of the diabetes tablets",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-D",
+   "problem": "d.anticoag",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns of the apixaban",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-E",
+   "problem": "e.cholecystitis",
+   "trigger": {
+    "in": [
+     "ultrasound",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ultrasound report that shows the inflamed gallbladder",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-G",
+   "problem": "g.fasting",
+   "trigger": {
+    "in": [
+     "fasting.breach",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "how": "the fasting rule is found broken (a light meal 2 hours before)",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-H",
+   "problem": "h.preg",
+   "trigger": {
+    "in": [
+     "pregnancy",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the positive pregnancy test",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-J",
+   "problem": "j.k",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the urea and electrolytes and sees the potassium",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-PB",
+   "problem": "pb.stone",
+   "trigger": {
+    "in": [
+     "lft",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the liver tests that point to a stone in the duct",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-PB",
+   "problem": "pb.cholangitis",
+   "trigger": {
+    "in": [
+     "lft",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the same liver tests: watch for infection of the duct",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-D",
+   "problem": "s1d.sepsis",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-D",
+   "problem": "s1d.duct",
+   "trigger": {
+    "in": [
+     "lft",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the liver tests",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-D",
+   "problem": "s1d.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the kidney tests",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-D",
+   "problem": "s1d.chole",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the planned cholecystectomy is known from the start",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-B",
+   "problem": "sb.bleed",
+   "trigger": {
+    "in": [
+     "pregnancy",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the positive pregnancy test in a patient in pain and pale",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-B",
+   "problem": "sb.blocker",
+   "trigger": {
+    "in": [
+     "pregnancy",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the pregnancy status is positive",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-D",
+   "problem": "sd.unknown",
+   "trigger": {
+    "in": [
+     "ultrasound",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the scan report that did not answer the question",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-F",
+   "problem": "sf.stomach",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about the last meal and learns of the biryani 2 hours ago",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-G",
+   "problem": "sg.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the kidney tests",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-G",
+   "problem": "sg.surgery",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the blood count that shows the infection",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-PC",
+   "problem": "pc.pain",
+   "trigger": {
+    "in": [
+     "pain_score",
+     {
+      "var": "measured"
+     }
+    ]
+   },
+   "how": "the trainee asks for the pain score and hears 8 out of 10",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-PC",
+   "problem": "pc.appendicitis",
+   "trigger": {
+    "in": [
+     "crp",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the inflammatory markers",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-PC",
+   "problem": "pc.aspiration",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about the last meal",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-PD",
+   "problem": "pd.sepsis",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-PD",
+   "problem": "pd.clock",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the same tier starts the one-hour clock",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-PD",
+   "problem": "pd.source",
+   "trigger": {
+    "in": [
+     "lactate_cultures",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the lactate that shows poor circulation from a source",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-B",
+   "problem": "s2b.sepsis",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-B",
+   "problem": "s2b.allergy",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-B",
+   "problem": "s2b.source",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines the abdomen and finds it rigid",
+   "ref": "SR-2867"
+  }
+ ],
+ "refs": [
+  "SR-2867"
+ ]
+}

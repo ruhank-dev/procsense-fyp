@@ -10,19 +10,23 @@ namespace ProcSense.Core.Clinical
 
     public sealed record LadderRung(int Rank, string Question, string Action, string Ref);
 
+    /// <summary>When a problem of a case joins the registry: the rule over what the engine knows (a result opened, a finding, a topic asked, a flag), in words, and the register id (content/problems/discovery.json).</summary>
+    public sealed record ProblemDiscovery(string Case, string Problem, Rules.Logic Trigger, string How, string Ref);
+
     /// <summary>The six problem types, the seven ladder rungs and the four priorities (content/problems/problems.json, built from the verified tables).</summary>
     public sealed class ProblemTables
     {
-        public static readonly ProblemTables Empty = new ProblemTables(new List<ProblemType>(), new List<LadderRung>());
+        public static readonly ProblemTables Empty = new ProblemTables(new List<ProblemType>(), new List<LadderRung>(), new List<ProblemDiscovery>());
 
-        public ProblemTables(IReadOnlyList<ProblemType> types, IReadOnlyList<LadderRung> ladder) { Types = types; Ladder = ladder; }
+        public ProblemTables(IReadOnlyList<ProblemType> types, IReadOnlyList<LadderRung> ladder, IReadOnlyList<ProblemDiscovery> discovery) { Types = types; Ladder = ladder; Discovery = discovery; }
 
         public IReadOnlyList<ProblemType> Types { get; }
         public IReadOnlyList<LadderRung> Ladder { get; }
+        public IReadOnlyList<ProblemDiscovery> Discovery { get; }
 
         public ProblemType? Find(string type) => Types.FirstOrDefault(t => t.Id == type);
 
-        public static ProblemTables Parse(string json, string source = "problems")
+        public static ProblemTables Parse(string json, string source = "problems", string? discoveryJson = null)
         {
             var root = new JsonObj(MiniJson.Parse(json), source);
             var types = new List<ProblemType>();
@@ -52,7 +56,21 @@ namespace ProcSense.Core.Clinical
             if (rawPriorities.Count != 4) throw new ContentException(root.Sub("priorities") + ": needs P1 to P4");
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
             root.Finish();
-            return new ProblemTables(types, ladder);
+            var discovery = new List<ProblemDiscovery>();
+            if (discoveryJson != null)
+            {
+                var dj = new JsonObj(MiniJson.Parse(discoveryJson), "problems/discovery");
+                var rawD = dj.Arr("discovery");
+                for (int i = 0; i < rawD.Count; i++)
+                {
+                    var o = new JsonObj(rawD[i], JsonObj.Index(dj.Sub("discovery"), i));
+                    discovery.Add(new ProblemDiscovery(o.Str("case"), o.Str("problem"), Rules.Logic.Compile(o.Any("trigger"), o.Sub("trigger")), o.Str("how"), o.Str("ref")));
+                    o.Finish();
+                }
+                foreach (var r in dj.Arr("refs")) if (!(r is string)) throw new ContentException(dj.Sub("refs") + ": expected register ids");
+                dj.Finish();
+            }
+            return new ProblemTables(types, ladder, discovery);
         }
     }
 

@@ -152,6 +152,9 @@ jobs:
       - name: Scoring content is up to date (22 behaviours, rubric, debrief sentences)
         run: uv run --project tools tools/content/build_scoring.py --check
 
+      - name: Problem discovery rules are up to date (29 rules for the 17 P0 cases)
+        run: uv run --project tools tools/content/build_discovery.py --check
+
       - name: Difficulty settings are up to date (8 dimensions, K 16, 3 sessions)
         run: uv run --project tools tools/content/build_difficulty.py --check
 

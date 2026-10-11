@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "bd49c8c9e17a7f858167cec169240216d9037d9b5c1ec1cf2891a5a92fddbd09",
- "files": 368,
- "bytes": 16712750,
+ "content_hash": "207adff519d6c3ca9073435f271e095b860e29caa2f6fdb0b1abadc3118b2be1",
+ "files": 369,
+ "bytes": 16719890,
  "per_folder": {
   "(root)": 62,
   "assessment": 1,
@@ -31,7 +31,7 @@
   "or": 1,
   "physio": 6,
   "physiology": 1,
-  "problems": 1,
+  "problems": 2,
   "risk": 1,
   "rules": 1,
   "schema": 5,
@@ -1158,6 +1158,10 @@
   "problem_types.csv": {
    "bytes": 1676,
    "sha256": "8b0f51bb5936fcef5a1523395204a631e0a6238e79c15d3a15cb9eee626dc453"
+  },
+  "problems/discovery.json": {
+   "bytes": 7140,
+   "sha256": "b21e04eedbcc5ea81cb95ad1640d644abea9b16cb364a022bfa4a4a23e896eda"
   },
   "problems/problems.json": {
    "bytes": 3539,

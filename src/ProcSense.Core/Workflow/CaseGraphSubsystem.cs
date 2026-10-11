@@ -66,6 +66,8 @@ namespace ProcSense.Core.Workflow
                 ["or_stations"] = c.OrStations.ToDictionary(kv => kv.Key, kv => (object?)kv.Value, StringComparer.Ordinal),
                 ["has_allergy"] = s.Patient.Profile.Allergies.Count > 0,
                 ["antibiotic_given_minutes_ago"] = (object?)s.SepsisStep?.GivenMinutesAgo("antibiotics"),
+                ["viewed_tests"] = c.Investigations.Where(x => x.State == "VIEWED" || x.State == "ACKNOWLEDGED").Select(x => (object?)x.Test).Distinct().ToList(),
+                ["sepsis_tier"] = s.SepsisStep?.Tier ?? "none",
                 ["imaging_viewed"] = c.Investigations.Any(x => x.Report != null && (x.State == "VIEWED" || x.State == "ACKNOWLEDGED")),
             };
         }

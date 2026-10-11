@@ -26,6 +26,8 @@ namespace ProcSense.Core.Workflow.Steps
         public int Order => PipelineOrder.Events - 1;
 
         public ProblemRegistry Registry { get; private set; } = null!;
+        private System.Collections.Generic.List<ProblemDiscovery> _waiting = new System.Collections.Generic.List<ProblemDiscovery>();
+        private long _ticks;
 
         public void Init(Session session)
         {
@@ -33,13 +35,15 @@ namespace ProcSense.Core.Workflow.Steps
             session.ProblemsStep = this;
             _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
             Registry = new ProblemRegistry(_content.Problems, session.Case.Scenario);
+            string caseId = _file?.Id ?? session.Case.Id;
+            foreach (var d in _content.Problems.Discovery) if (d.Case == caseId) _waiting.Add(d);
         }
 
         /// <summary>The trainee has found this problem of the case. Returns it (null when the case has no such problem). A life threat starts emergency mode.</summary>
         public Problem? Detect(string problemId)
         {
             var listed = _file?.Problems.FirstOrDefault(p => p.Id == problemId);
-            if (listed == null) return null;
+            if (listed == null || !AppliesToVariant(listed)) return null;
             bool wasEmergency = Registry.Emergency;
             var problem = Registry.Register(listed.Id, listed.Type, listed.Label, (int)listed.Rank);
             if (!wasEmergency && Registry.Emergency)
@@ -61,8 +65,36 @@ namespace ProcSense.Core.Workflow.Steps
             return changed;
         }
 
-        public void OnAction(SimAction action, ActionOutcome outcome) { }
+        // a problem tied to a variant exists only there; "base" belongs to the case when no variant of it is being played (the session's variant, or a variant flag set by a test)
+        private bool AppliesToVariant(CaseFileProblem p)
+        {
+            if (p.Variant == null) return true;
+            var clinical = _s.Patient.Clinical;
+            if (p.Variant == "base") return _file == null || !_file.VariantEndStates.Keys.Any(v => clinical.HasFlag(DecisionSubsystem.VariantPrefix + v));
+            return clinical.HasFlag(DecisionSubsystem.VariantPrefix + p.Variant);
+        }
 
-        public void OnTick() { }
+        public void OnAction(SimAction action, ActionOutcome outcome)
+        {
+            if (_waiting.Count > 0 && outcome.Accepted) Discover();
+        }
+
+        // the sepsis tier moves with time, so the waiting rules are also asked every ten seconds of play
+        public void OnTick()
+        {
+            if (_waiting.Count > 0 && ++_ticks % 20 == 0) Discover();
+        }
+
+        private void Discover()
+        {
+            var state = RuleState.Build(_s);
+            for (int i = _waiting.Count - 1; i >= 0; i--)
+            {
+                if (!_waiting[i].Trigger.Test(state)) continue;
+                var found = Detect(_waiting[i].Problem);
+                _waiting.RemoveAt(i);
+                if (found != null) state = RuleState.Build(_s);
+            }
+        }
     }
 }
