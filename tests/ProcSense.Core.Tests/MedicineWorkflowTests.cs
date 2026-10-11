@@ -483,5 +483,23 @@ namespace ProcSense.Core.Tests
 
             Assert.Equal(Run(), Run());
         }
+
+        // The five real case files that record an allergy: a severe immediate reaction is challenged, a mild old rash is not
+        [Theory]
+        [InlineData("SC-1", "CHALLENGED")]
+        [InlineData("SC-15", "CHALLENGED")]
+        [InlineData("STK-S2-B", "CHALLENGED")]
+        [InlineData("VAR-S1-I", "CHALLENGED")]
+        [InlineData("VAR-S2-K", "ADMINISTERED")]
+        public void The_allergies_the_real_case_files_record_are_judged_correctly(string caseId, string expected)
+        {
+            var file = ContentLoader.LoadCaseFile(new FileContentReader(TestCase.ContentRoot), caseId);
+            var allergy = file.Allergies.Single();
+            var s = Start(SessionMode.Practice, CardWithAllergy(allergy.Substance, allergy.Reaction));
+            Do(s, "check_treatment_timing", ("treatment", "TR-ABX-S2"));
+            Do(s, "request_medication", Treat("TR-ABX-S2"), ("indication", "appendicitis"));
+            Wait(s, 150);
+            Assert.Equal(expected, Order(s).State);
+        }
     }
 }
