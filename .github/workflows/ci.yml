@@ -128,6 +128,9 @@ jobs:
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
 
+      - name: Problem types and ladder are up to date (6 types, 7 rungs, P1 to P4)
+        run: uv run --project tools tools/content/build_problems.py --check
+
       - name: Critical result limits are up to date (16 limits, conditions, actions)
         run: uv run --project tools tools/content/build_critical.py --check
 

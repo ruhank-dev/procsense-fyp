@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "438da4767599b78b73268ecd1695717c118ee286d217eaec8f55c7cbdc7b3f37",
- "files": 340,
- "bytes": 16579157,
+ "content_hash": "fb850c8180de1bb241af5da7bea599731405dfe2903f6dccba6b8e971b4132e3",
+ "files": 341,
+ "bytes": 16582696,
  "per_folder": {
   "(root)": 60,
   "case_files": 53,
@@ -17,6 +17,7 @@
   "locations": 1,
   "news2": 1,
   "npc": 1,
+  "problems": 1,
   "risk": 1,
   "rules": 1,
   "schema": 4,
@@ -1052,6 +1053,10 @@
   "problem_types.csv": {
    "bytes": 1676,
    "sha256": "8b0f51bb5936fcef5a1523395204a631e0a6238e79c15d3a15cb9eee626dc453"
+  },
+  "problems/problems.json": {
+   "bytes": 3539,
+   "sha256": "210c9af84fdcfb62cf360013ad0c48b7c9c701dec6ba92570531700d91e040da"
   },
   "risk/risk.json": {
    "bytes": 3891,

@@ -1,0 +1,122 @@
+{
+ "types": [
+  {
+   "id": "life_threat",
+   "ladder_rank": 1,
+   "priority": 1,
+   "effect": "Stops everything; emergency mode",
+   "examples": "Shock, low oxygen, anaphylaxis, low sugar, K 6.5+, NEWS2 7+",
+   "ref": "SR-0950"
+  },
+  {
+   "id": "safety_blocker",
+   "ladder_rank": 2,
+   "priority": 2,
+   "effect": "Cannot pass checkpoints until resolved",
+   "examples": "Identity doubt, unknown allergy, invalid consent, unknown pregnancy status, unacknowledged critical result, incomplete checklist",
+   "ref": "SR-0951"
+  },
+  {
+   "id": "time_critical",
+   "ladder_rank": 3,
+   "priority": 2,
+   "effect": "Must be done within a clock",
+   "examples": "Sepsis antibiotics, analgesia, fluids for dehydration",
+   "ref": "SR-0952"
+  },
+  {
+   "id": "pathway_changing",
+   "ladder_rank": 4,
+   "priority": 2,
+   "effect": "Switches to a different branch/team",
+   "examples": "Ectopic, cholangitis, perforation, duct stone, new AF, MI",
+   "ref": "SR-0953"
+  },
+  {
+   "id": "optimisable",
+   "ladder_rank": 6,
+   "priority": 3,
+   "effect": "S1 usually deferred after review/re-time; S2 correct in parallel",
+   "examples": "BP 180/110+, HbA1c above 69, anaemia, salts, anticoagulant timing, fasting",
+   "ref": "SR-0954"
+  },
+  {
+   "id": "information_only",
+   "ladder_rank": 7,
+   "priority": 4,
+   "effect": "Recorded and handed over",
+   "examples": "Smoker, mild obesity, controlled AF",
+   "ref": "SR-0955"
+  }
+ ],
+ "ladder": [
+  {
+   "rank": 1,
+   "question": "Is anything immediately life-threatening? (Airway, Breathing, Circulation, low sugar, anaphylaxis, NEWS2 7+)",
+   "action": "Fix that FIRST using ABCDE and call for help — everything else waits",
+   "ref": "SR-0940"
+  },
+  {
+   "rank": 2,
+   "question": "Is there a hard safety blocker? (identity doubt, allergy unknown before a drug, consent invalid, positive pregnancy test with pain)",
+   "action": "Resolve before any non-emergency treatment or transfer",
+   "ref": "SR-0941"
+  },
+  {
+   "rank": 3,
+   "question": "Is there a time-critical treatment? (antibiotics within 1 h in sepsis, pain relief, fluids for shock, potassium 6.5+)",
+   "action": "Do it now — in parallel with the remaining work",
+   "ref": "SR-0942"
+  },
+  {
+   "rank": 4,
+   "question": "Does any finding change the diagnosis or pathway? (ectopic, cholangitis, burst appendix, duct stone)",
+   "action": "Senior/specialist; change pathway",
+   "ref": "SR-0943"
+  },
+  {
+   "rank": 5,
+   "question": "Do treatments conflict? (e.g. fluids vs heart failure; best antibiotic vs allergy; painkiller vs kidneys)",
+   "action": "Choose the safest alternative (table 14B.3); ask senior/anaesthetist",
+   "ref": "SR-0944"
+  },
+  {
+   "rank": 6,
+   "question": "Is it S1 with any fixable problem left?",
+   "action": "Senior/anaesthetic review → usually optimise first (defer / re-time / rebook)",
+   "ref": "SR-0945"
+  },
+  {
+   "rank": 7,
+   "question": "Prepare, consent, hand over",
+   "action": "listing EVERY problem and its plan in the SBAR",
+   "ref": "SR-0946"
+  }
+ ],
+ "priorities": [
+  {
+   "priority": 1,
+   "meaning": "immediate threat to airway, breathing or circulation (or brain: glucose)",
+   "ref": "SR-0960"
+  },
+  {
+   "priority": 2,
+   "meaning": "potentially serious physiological abnormality",
+   "ref": "SR-0961"
+  },
+  {
+   "priority": 3,
+   "meaning": "condition needing optimisation before proceeding",
+   "ref": "SR-0962"
+  },
+  {
+   "priority": 4,
+   "meaning": "important but non-urgent finding",
+   "ref": "SR-0963"
+  }
+ ],
+ "refs": [
+  "SR-0088",
+  "SR-0089"
+ ]
+}

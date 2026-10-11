@@ -88,6 +88,10 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    prob_doc = load_json(CONTENT / "problems" / "problems.json")
+    prefs = set(prob_doc["refs"]) | {t["ref"] for t in prob_doc["types"]} | {x["ref"] for x in prob_doc["ladder"]} | {x["ref"] for x in prob_doc["priorities"]}
+    failed |= _report("problem types and ladder", [f"problems.json: ref {r} not in register" for r in sorted(prefs) if r not in register], f"{len(prefs)} refs ok")
+
     fasting = load_json(CONTENT / "fasting" / "fasting.json")
     frefs = {c["ref"] for c in fasting["classes"].values()} | set(fasting["refs"])
     failed |= _report("fasting", [f"fasting.json: ref {r} not in register" for r in sorted(frefs) if r not in register], f"{len(frefs)} refs ok")

@@ -21,6 +21,7 @@ namespace ProcSense.Core.Workflow
             new InvestigationsSubsystem(content),
             new ResultReviewSubsystem(content),
             new News2Subsystem(content),
+            new ProblemsSubsystem(content),
             new CaseGraphSubsystem(content.Workflow),
             new FlowSubsystem(content.FlowMaps),
         };

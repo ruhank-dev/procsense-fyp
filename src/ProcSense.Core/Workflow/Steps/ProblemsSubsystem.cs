@@ -1,0 +1,65 @@
+using System.Linq;
+using ProcSense.Core.Actions;
+using ProcSense.Core.Clinical;
+using ProcSense.Core.Content;
+using ProcSense.Core.Pipeline;
+
+namespace ProcSense.Core.Workflow.Steps
+{
+    /// <summary>
+    /// Holds the problem registry. Other subsystems call Detect(id) when the trainee finds a problem the case lists (an abnormal number, an unsafe fact); the problem then joins the registry, and a life threat
+    /// switches the case to emergency mode (the flag <see cref="EmergencyFlag"/> and a WorkflowEvent for the NPCs and the flow to react to).
+    /// </summary>
+    public sealed class ProblemsSubsystem : ISubsystem
+    {
+        public const string EmergencyFlag = "mode.emergency";
+        public const string EmergencyEvent = "E-EMERGENCY-MODE";
+
+        private readonly ContentPackage _content;
+        private readonly CaseFile? _fixed;
+        private CaseFile? _file;
+        private Session _s = null!;
+
+        /// <param name="caseFile">Test hook: use this case file instead of the one named like the case card.</param>
+        public ProblemsSubsystem(ContentPackage content, CaseFile? caseFile = null) { _content = content; _fixed = caseFile; }
+
+        public int Order => PipelineOrder.Events - 1;
+
+        public ProblemRegistry Registry { get; private set; } = null!;
+
+        public void Init(Session session)
+        {
+            _s = session;
+            session.ProblemsStep = this;
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            Registry = new ProblemRegistry(_content.Problems, session.Case.Scenario);
+        }
+
+        /// <summary>The trainee has found this problem of the case. Returns it (null when the case has no such problem). A life threat starts emergency mode.</summary>
+        public Problem? Detect(string problemId)
+        {
+            var listed = _file?.Problems.FirstOrDefault(p => p.Id == problemId);
+            if (listed == null) return null;
+            bool wasEmergency = Registry.Emergency;
+            var problem = Registry.Register(listed.Id, listed.Type, listed.Label, (int)listed.Rank);
+            if (!wasEmergency && Registry.Emergency)
+            {
+                _s.Patient.Clinical.SetFlag(EmergencyFlag);
+                _s.Events.Publish(new WorkflowEvent(EmergencyEvent, problem.Id));
+            }
+            return problem;
+        }
+
+        /// <summary>The trainee has dealt with the problem. Emergency mode ends when no life threat is left.</summary>
+        public bool Resolve(string problemId)
+        {
+            bool changed = Registry.Resolve(problemId);
+            if (changed && !Registry.Emergency) _s.Patient.Clinical.ClearFlag(EmergencyFlag);
+            return changed;
+        }
+
+        public void OnAction(SimAction action, ActionOutcome outcome) { }
+
+        public void OnTick() { }
+    }
+}
