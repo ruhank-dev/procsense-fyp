@@ -15,8 +15,7 @@
   "note": "Ultrasound finding codes (12) and the 26 picture + report pairs for the EMR viewer (ultrasound_findings.csv, content/images; all DRAFT until the clinician approves); the decision wording comes with p0-clinical-logic-s09"
  },
  "10": {
-  "status": "planned",
-  "step": "p0-simulation-workflow-s11"
+  "note": "The capacity causes (low oxygen, low sugar) are in the physiology flag rules (SR-2841); the consent conversation, risks, teach-back and signing come with p0-simulation-workflow-s11"
  },
  "11": {
   "note": "All 15 steps, question by question (270 answers), in steps_21_questions.csv"

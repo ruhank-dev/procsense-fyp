@@ -78,6 +78,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.HandoverSubsystem? HandoverStep { get; set; }
         internal Workflow.Steps.SafetyChecklistSubsystem? SafetyStep { get; set; }
         internal Workflow.EndStateSubsystem? EndStateStep { get; set; }
+        internal Physiology.PhysiologySubsystem? PhysiologyStep { get; set; }
+
+        /// <summary>The physiology engine of the session, for the steps that nudge the patient (null when the session has none).</summary>
+        public Physiology.PhysiologySubsystem? Physiology => PhysiologyStep;
 
         /// <summary>How the case ended, worked out from everything that happened (null when the session has no end-state step).</summary>
         public Workflow.EndStateSubsystem? EndStates => EndStateStep;

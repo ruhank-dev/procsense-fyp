@@ -1,0 +1,70 @@
+{
+ "couplings": [
+  {
+   "id": "volume_hr",
+   "source": "volume_deficit",
+   "target": "HR",
+   "gain": 0.01,
+   "note": "a fluid deficit makes the heart beat faster"
+  },
+  {
+   "id": "volume_sbp",
+   "source": "volume_deficit",
+   "target": "SBP",
+   "gain": -0.008,
+   "note": "and lowers the blood pressure"
+  },
+  {
+   "id": "pain_hr",
+   "source": "pain",
+   "target": "HR",
+   "gain": 1.5,
+   "note": "pain raises the heart rate"
+  },
+  {
+   "id": "pain_sbp",
+   "source": "pain",
+   "target": "SBP",
+   "gain": 2.0,
+   "note": "the blood pressure"
+  },
+  {
+   "id": "pain_rr",
+   "source": "pain",
+   "target": "RR",
+   "gain": 0.5,
+   "note": "and the breathing rate"
+  }
+ ],
+ "flags": [
+  {
+   "id": "confusion",
+   "when": {
+    "<=": [
+     {
+      "var": "SpO2"
+     },
+     91
+    ]
+   },
+   "why": "low oxygen (91% or less, the emergency sign)",
+   "ref": "SR-0094"
+  },
+  {
+   "id": "confusion",
+   "when": {
+    "<": [
+     {
+      "var": "glucose"
+     },
+     4.0
+    ]
+   },
+   "why": "low sugar (below 4.0 mmol/L)",
+   "ref": "SR-0556"
+  }
+ ],
+ "refs": [
+  "SR-2841"
+ ]
+}

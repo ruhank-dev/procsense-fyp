@@ -80,21 +80,21 @@ class TraceTests(unittest.TestCase):
 
     def test_a_part_that_is_nowhere_fails_and_is_named(self):
         status = json.loads(self.original.read_text(encoding="utf-8"))
-        status.pop("10")
+        status.pop("B")
         self.use(status)
         _, problems = trace.build()
-        self.assertTrue(any(p.startswith("part 10 ") and "not mapped, planned or marked" in p for p in problems), problems)
+        self.assertTrue(any(p.startswith("part B ") and "not mapped, planned or marked" in p for p in problems), problems)
 
     def test_a_planned_part_must_point_at_a_real_step(self):
         status = json.loads(self.original.read_text(encoding="utf-8"))
-        status["10"] = {"status": "planned", "step": "p0-nonsense-s99"}
+        status["B"] = {"status": "planned", "step": "p0-nonsense-s99"}
         self.use(status)
         _, problems = trace.build()
         self.assertTrue(any("p0-nonsense-s99" in p for p in problems), problems)
 
     def test_not_used_needs_a_reason(self):
         status = json.loads(self.original.read_text(encoding="utf-8"))
-        status["10"] = {"status": "not used"}
+        status["B"] = {"status": "not used"}
         self.use(status)
         _, problems = trace.build()
         self.assertTrue(any("needs a reason" in p for p in problems), problems)

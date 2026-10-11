@@ -88,6 +88,12 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    ph_model = load_json(CONTENT / "physio" / "model.json")
+    ph_coup = load_json(CONTENT / "physio" / "couplings.json")
+    ph_noise = load_json(CONTENT / "physio" / "noise.json")
+    phrefs = set(ph_model["refs"]) | {v["ref"] for v in ph_model["variables"]} | set(ph_coup["refs"]) | {f["ref"] for f in ph_coup["flags"]} | set(ph_noise["refs"]) | {n["ref"] for n in ph_noise["noise"]} | {n["cap_ref"] for n in ph_noise["noise"]}
+    failed |= _report("physiology model", [f"physio: ref {r} not in register" for r in sorted(phrefs) if r not in register], f"{len(ph_model['variables'])} variables, {len(ph_coup['couplings'])} couplings, {len(ph_noise['noise'])} noise rows, {len(phrefs)} refs ok")
+
     es_doc = load_json(CONTENT / "endstate" / "end_states.json")
     esrefs = set(es_doc["refs"]) | {s["ref"] for s in es_doc["states"]} | {e["ref"] for e in es_doc["surface_later"]}
     failed |= _report("end states", [f"end_states.json: ref {r} not in register" for r in sorted(esrefs) if r not in register], f"{len(es_doc['states'])} states, {len(es_doc['surface_later'])} surface-later facts, {len(esrefs)} refs ok")

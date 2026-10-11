@@ -1,0 +1,61 @@
+{
+ "noise": [
+  {
+   "variable": "HR",
+   "sigma": 2.196,
+   "phi": 0.786,
+   "uncaused_band": 17.225,
+   "cap": 6.588,
+   "ref": "SR-2600",
+   "cap_ref": "SR-2842"
+  },
+  {
+   "variable": "SBP",
+   "sigma": 11.062,
+   "phi": 0.107,
+   "uncaused_band": 10.7,
+   "cap": 5.35,
+   "ref": "SR-2602",
+   "cap_ref": "SR-2842"
+  },
+  {
+   "variable": "DBP",
+   "sigma": 7.178,
+   "phi": 0.12,
+   "uncaused_band": 10.75,
+   "cap": 5.375,
+   "ref": "SR-2603",
+   "cap_ref": "SR-2842"
+  },
+  {
+   "variable": "RR",
+   "sigma": 4.891,
+   "phi": 0.746,
+   "uncaused_band": 3.375,
+   "cap": 1.688,
+   "ref": "SR-2604",
+   "cap_ref": "SR-2842"
+  },
+  {
+   "variable": "SpO2",
+   "sigma": 0.454,
+   "phi": 0.76,
+   "uncaused_band": 1.0,
+   "cap": 0.5,
+   "ref": "SR-2601",
+   "cap_ref": "SR-2842"
+  },
+  {
+   "variable": "Temp",
+   "sigma": 0.057,
+   "phi": 0.78,
+   "uncaused_band": 0.845,
+   "cap": 0.171,
+   "ref": "SR-2605",
+   "cap_ref": "SR-2842"
+  }
+ ],
+ "refs": [
+  "SR-2842"
+ ]
+}

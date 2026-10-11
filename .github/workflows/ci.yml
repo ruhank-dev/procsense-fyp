@@ -131,6 +131,9 @@ jobs:
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
 
+      - name: Physiology model is up to date (variables, couplings, noise)
+        run: uv run --project tools tools/content/build_physio.py --check
+
       - name: End states are up to date (5 states, delay items, surface-later facts)
         run: uv run --project tools tools/content/build_end_states.py --check
 

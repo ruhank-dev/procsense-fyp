@@ -1,0 +1,108 @@
+{
+ "variables": [
+  {
+   "id": "HR",
+   "unit": "/min",
+   "min": 30,
+   "max": 200,
+   "tau_seconds": 60,
+   "source": "guide",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "SBP",
+   "unit": "mmHg",
+   "min": 50,
+   "max": 220,
+   "tau_seconds": 90,
+   "source": "guide",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "DBP",
+   "unit": "mmHg",
+   "min": 30,
+   "max": 130,
+   "tau_seconds": 90,
+   "source": "design",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "RR",
+   "unit": "/min",
+   "min": 4,
+   "max": 45,
+   "tau_seconds": 30,
+   "source": "guide bounds, design tau",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "SpO2",
+   "unit": "%",
+   "min": 60,
+   "max": 100,
+   "tau_seconds": 30,
+   "source": "guide",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "Temp",
+   "unit": "C",
+   "min": 34,
+   "max": 41,
+   "tau_seconds": 300,
+   "source": "guide bounds, design tau",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "glucose",
+   "unit": "mmol/L",
+   "min": 1.0,
+   "max": 30.0,
+   "tau_seconds": 300,
+   "source": "design",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "pain",
+   "unit": "0-10",
+   "min": 0,
+   "max": 10,
+   "tau_seconds": 60,
+   "source": "design",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "nausea",
+   "unit": "0-10",
+   "min": 0,
+   "max": 10,
+   "tau_seconds": 120,
+   "source": "design",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "sedation",
+   "unit": "0-3",
+   "min": 0,
+   "max": 3,
+   "tau_seconds": 120,
+   "source": "design",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "volume_deficit",
+   "unit": "mL",
+   "min": 0,
+   "max": 3000,
+   "tau_seconds": 600,
+   "source": "design",
+   "ref": "SR-2840"
+  }
+ ],
+ "noise_enabled": false,
+ "noise_step_seconds": 1,
+ "refs": [
+  "SR-2840"
+ ]
+}
