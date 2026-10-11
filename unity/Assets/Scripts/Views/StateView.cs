@@ -27,11 +27,14 @@ namespace ProcSense.VR.Views
         {
             if (_host != null) _host.Changed -= OnChanged;
             _host = null;
+            _pending = null;
         }
 
         private void Bind()
         {
+            if (_host != null) _host.Changed -= OnChanged;
             _host = SimulationHost.Instance;
+            _pending = null;
             if (_host == null) return;
             _host.Changed += OnChanged;
             if (_host.Observable != null) _pending = _host.Observable;
@@ -41,7 +44,7 @@ namespace ProcSense.VR.Views
 
         protected virtual void Update()
         {
-            if (_host == null) Bind();   // the host may be created after this view is enabled
+            if (!ReferenceEquals(_host, SimulationHost.Instance)) Bind();
             if (_pending != null && Time.unscaledTime - _lastRender >= minInterval) RenderNow();
         }
 

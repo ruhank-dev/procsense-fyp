@@ -41,7 +41,6 @@ namespace ProcSense.VR.Views
         private TMP_Text _clock, _hint, _subtitle, _note;
         private int _factCount;
         private int _fallbackRevision = -1;
-        private string _hintFromHost = "";
 
         public Canvas Canvas { get; private set; }
 
@@ -76,22 +75,10 @@ namespace ProcSense.VR.Views
         protected override void Update()
         {
             base.Update();
+            if (SimulationHost.Instance != null && SimulationHost.Instance.Paused)
+                SetText(_hint, HintTexts.For("SESSION_PAUSED"));
             SyncFallbacks(); // Registry changes also matter while Core is paused/not ticking.
         }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            if (SimulationHost.Instance != null) SimulationHost.Instance.SessionPaused += OnPaused;
-        }
-
-        protected override void OnDisable()
-        {
-            if (SimulationHost.Instance != null) SimulationHost.Instance.SessionPaused -= OnPaused;
-            base.OnDisable();
-        }
-
-        private void OnPaused(string reason) => _hintFromHost = HintTexts.For("SESSION_PAUSED");
 
         public void Build()
         {
@@ -182,7 +169,8 @@ namespace ProcSense.VR.Views
         protected override void Render(ObservableState s)
         {
             SetText(_clock, s.ClockTime);
-            SetText(_hint, !string.IsNullOrEmpty(_hintFromHost) ? _hintFromHost : HintTexts.For(s.LastRejection));
+            SetText(_hint, SimulationHost.Instance != null && SimulationHost.Instance.Paused
+                ? HintTexts.For("SESSION_PAUSED") : HintTexts.For(s.LastRejection));
 
             if (s.DisclosedFacts.Count != _factCount)
             {

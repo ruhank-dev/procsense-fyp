@@ -15,6 +15,9 @@ using ProcSense.VR.Views;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace ProcSense.Tests.PlayMode
 {
@@ -458,5 +461,105 @@ namespace ProcSense.Tests.PlayMode
 
         private static ProcSense.VR.Content.UnityContentReader UnityContentReader() =>
             new ProcSense.VR.Content.UnityContentReader(Path.Combine(Repo, "content"));
+
+        [TestCase(XRSelectEmitter.SelectionRoute.Grab)]
+        [TestCase(XRSelectEmitter.SelectionRoute.Socket)]
+        [TestCase(XRSelectEmitter.SelectionRoute.Poke)]
+        public void Xri_manager_routes_real_interactors_once_with_core_equivalence(XRSelectEmitter.SelectionRoute route)
+        {
+            var manager = Make<XRInteractionManager>("manager");
+            var collider = Make<BoxCollider>("prop");
+            XRBaseInteractable target = route == XRSelectEmitter.SelectionRoute.Poke
+                ? (XRBaseInteractable)collider.gameObject.AddComponent<XRSimpleInteractable>()
+                : collider.gameObject.AddComponent<XRGrabInteractable>();
+            target.interactionManager = manager;
+            var emitter = collider.gameObject.AddComponent<XRSelectEmitter>();
+            emitter.Route = route;
+            emitter.Configure("read_wristband", fallbackLabel: "Read wristband");
+            Assert.AreEqual(1, collider.GetComponents<XRBaseInteractable>().Length);
+            XRBaseInteractor source;
+            if (route == XRSelectEmitter.SelectionRoute.Socket)
+            {
+                var socket = Make<XRSocketInteractor>("socket");
+                emitter.RequiredSocket = socket;
+                source = socket;
+            }
+            else if (route == XRSelectEmitter.SelectionRoute.Poke)
+            {
+                var pokeObject = new GameObject("poke");
+                _made.Add(pokeObject);
+                pokeObject.SetActive(false);
+                var poke = pokeObject.AddComponent<XRPokeInteractor>();
+                // This fixture tests world-object selection, not UI. Avoid XRI creating
+                // an unowned persistent EventSystem which leaks into later scene tests.
+                poke.enableUIInteraction = false;
+                pokeObject.SetActive(true);
+                source = poke;
+            }
+            else source = Make<XRDirectInteractor>("hand");
+            source.interactionManager = manager;
+            for (int i = 0; i < 3; i++) { emitter.enabled = false; emitter.enabled = true; }
+            emitter.DebounceSeconds = 0f; // Expose duplicate listeners.
+            manager.SelectEnter((IXRSelectInteractor)source, (IXRSelectInteractable)target);
+            Assert.IsTrue(target.isSelected, "XRI must actually select the prop");
+            Assert.AreEqual(1, _host.Session.Log.Count);
+            manager.SelectExit((IXRSelectInteractor)source, (IXRSelectInteractable)target);
+            Assert.AreEqual(1, _host.Session.Log.Count, "release is not a second clinical action");
+            var content = ContentLoader.Load(UnityContentReader(), "VAR-S1-A");
+            var reference = new Session(content.Cases["VAR-S1-A"], 42, SessionMode.Practice, Subsystems.Default(content));
+            reference.Apply(emitter.BuildAction());
+            Assert.AreEqual(reference.Log.Hash(), _host.Session.Log.Hash());
+            Assert.AreEqual(reference.Observable.Hash(), _host.Observable.Hash());
+            emitter.enabled = false;
+            manager.SelectEnter((IXRSelectInteractor)source, (IXRSelectInteractable)target);
+            Assert.AreEqual(1, _host.Session.Log.Count);
+            manager.SelectExit((IXRSelectInteractor)source, (IXRSelectInteractable)target);
+        }
+
+        [Test]
+        public void Socket_route_rejects_unassigned_wrong_socket_and_hand_selections()
+        {
+            var emitter = Make<XRSelectEmitter>("sensor");
+            emitter.Configure("attach_sensor", "patient", "sensor", "spo2", "Attach SpO2 probe");
+            emitter.Route = XRSelectEmitter.SelectionRoute.Socket;
+            var socket = Make<XRSocketInteractor>("correct socket");
+            var wrong = Make<XRSocketInteractor>("wrong socket");
+            var hand = Make<XRDirectInteractor>("hand");
+            var target = emitter.GetComponent<XRSimpleInteractable>();
+            target.selectEntered.Invoke(new SelectEnterEventArgs { interactorObject = socket });
+            Assert.AreEqual(0, _host.Session.Log.Count, "socket destination must be configured");
+            emitter.RequiredSocket = socket;
+            foreach (var source in new IXRSelectInteractor[] { hand, wrong })
+                target.selectEntered.Invoke(new SelectEnterEventArgs { interactorObject = source });
+            Assert.AreEqual(0, _host.Session.Log.Count);
+            target.selectEntered.Invoke(new SelectEnterEventArgs { interactorObject = socket });
+            Assert.AreEqual(1, _host.Session.Log.Count);
+            Assert.IsNull(TabletFallbackRegistry.Fire(emitter.BuildAction()), "fallback shares cooldown");
+        }
+
+        [UnityTest]
+        public System.Collections.IEnumerator Views_rebind_after_host_replacement_and_clear_a_previous_pause_hint()
+        {
+            var tablet = Make<TabletView>("surviving tablet");
+            tablet.MinInterval = 0f;
+            _host.SubsystemFactory = content => new ProcSense.Core.Pipeline.ISubsystem[] { new Boom() };
+            _host.StartSession("VAR-S1-A", 42, SessionMode.Practice);
+            LogAssert.Expect(LogType.Error, new System.Text.RegularExpressions.Regex("Core threw, session paused"));
+            _host.Apply(Vr("boom"));
+            yield return null;
+            Assert.AreEqual(HintTexts.For("SESSION_PAUSED"), tablet.HintText);
+            Object.DestroyImmediate(_host.gameObject);
+            _host = Make<SimulationHost>("replacement host");
+            _host.AutoTick = false;
+            _host.SaveLogOnDestroy = false;
+            _host.StartSession("VAR-S1-A", 42, SessionMode.Practice);
+            yield return null;
+            Assert.AreNotEqual(HintTexts.For("SESSION_PAUSED"), tablet.HintText);
+            for (int i = 0; i < 3; i++) { tablet.enabled = false; tablet.enabled = true; }
+            _host.Apply(Vr("ask_identity"));
+            yield return null;
+            Assert.IsNotEmpty(tablet.SubtitleText);
+            Assert.AreEqual(1, _host.Session.Log.Count);
+        }
     }
 }

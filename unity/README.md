@@ -60,7 +60,16 @@ World selections and UI clicks use a 0.35-second debounce by default. Input befo
 
 The tablet's **More** tab follows currently enabled emitters with fallback labels. Disabling, destroying or unloading an emitter removes its extra button; re-enabling it restores the button. Reconfiguring its label/action updates the tab. Equivalent actions share one extra button while at least one source remains, using the complete verb, target, channel and parameters for comparison. Built-in Identity/History/Observe controls stay available through room changes and are not duplicated in More.
 
-Dynamic fallback clicks resolve a live source at click time and use that source's debounce. A stale button cannot send an old action after its source is removed or reconfigured. The `TabletView.Press` helper is deterministic test/desktop dispatch; it temporarily bypasses a built-in button's cooldown and restores it afterward. Normal pointer/controller clicks retain UI gating and debounce. Current world objects use XRSimpleInteractable selection proxies; dedicated grab/socket/poke equipment adapters and physical headset acceptance remain separate work.
+Dynamic fallback clicks resolve a live source at click time and use that source's debounce. A stale button cannot send an old action after its source is removed or reconfigured. The `TabletView.Press` helper is deterministic test/desktop dispatch; it temporarily bypasses a built-in button's cooldown and restores it afterward. Normal pointer/controller clicks retain UI gating and debounce.
+
+`XRSelectEmitter` supports an existing XRSimpleInteractable or XRGrabInteractable without adding a second interactable. Its **Route** selects the input:
+
+- **Any** preserves existing bay selection proxies.
+- **Grab** accepts hand/ray selection of a grabbable prop, excluding socket and poke sources.
+- **Socket** accepts only the assigned **Required Socket**. A missing or different socket emits nothing.
+- **Poke** accepts XRPokeInteractor world-object selection. XRI poke filters/colliders and physical reach still need to be configured on the final equipment.
+
+Add/configure the XRI interactable before adding the emitter. Configure the existing Core verb, target and parameters on the emitter and a fallback label as needed. Selection sends one debounced request; release alone sends no clinical action. Equipment-specific detach/administration behavior must be wired explicitly through Core rather than inferred from dropping or animating a prop. The current saved bay remains greybox selection proxies; adapter tests use real XRI manager selection with grab/socket/poke types. Final equipment integration and physical headset acceptance remain later work.
 
 ## Validation and work log
 
