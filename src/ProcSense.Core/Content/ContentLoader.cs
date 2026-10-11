@@ -86,7 +86,8 @@ namespace ProcSense.Core.Content
                 Clinical.ProblemTables.Parse(reader.ReadText("problems/problems.json")),
                 Clinical.TreatmentTables.Parse(reader.ReadText("treatments.json"), "treatments"),
                 Clinical.SepsisTables.Parse(reader.ReadText("sepsis/sepsis.json")),
-                Clinical.ClashTables.Parse(reader.ReadText("clashes/clashes.json")));
+                Clinical.ClashTables.Parse(reader.ReadText("clashes/clashes.json")),
+                Clinical.DecisionTables.Parse(reader.ReadText("decision/decision.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

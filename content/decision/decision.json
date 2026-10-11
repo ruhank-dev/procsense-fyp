@@ -1,0 +1,97 @@
+{
+ "outcomes": [
+  {
+   "id": "safe",
+   "code": "SAFE",
+   "label": "Safe to continue",
+   "meaning": "Everything fits and is within acceptable limits",
+   "ref": "SR-0800"
+  },
+  {
+   "id": "investigate",
+   "code": "INVESTIGATE",
+   "label": "Needs more investigation",
+   "meaning": "We don't yet know enough to decide",
+   "ref": "SR-0801"
+  },
+  {
+   "id": "optimise",
+   "code": "OPTIMISE",
+   "label": "Needs treatment / optimisation",
+   "meaning": "A problem can be fixed (now in S2, or before a re-booked date in S1)",
+   "ref": "SR-0802"
+  },
+  {
+   "id": "review",
+   "code": "REVIEW",
+   "label": "Needs senior or anaesthetic review",
+   "meaning": "Decision is beyond the trainee or affects anaesthesia",
+   "ref": "SR-0803"
+  },
+  {
+   "id": "emergency",
+   "code": "EMERGENCY",
+   "label": "Emergency",
+   "meaning": "The patient may be in danger now",
+   "ref": "SR-0804"
+  }
+ ],
+ "checks": [
+  {
+   "id": "emergency",
+   "outcome": "EMERGENCY",
+   "text": "Any emergency sign, or a life-threatening problem still open?",
+   "ref": "SR-0094"
+  },
+  {
+   "id": "information_missing",
+   "outcome": "INVESTIGATE",
+   "text": "Is a result the case needs still unopened?",
+   "ref": "SR-0095"
+  },
+  {
+   "id": "diagnosis_changed",
+   "outcome": "REVIEW",
+   "text": "Does the diagnosis look different or complicated (a problem that changes the pathway)?",
+   "ref": "SR-0095"
+  },
+  {
+   "id": "fixable_problem",
+   "outcome": "OPTIMISE",
+   "text": "Is there a fixable problem still open (safety blocker, time-critical or optimisable)?",
+   "ref": "SR-0095"
+  },
+  {
+   "id": "affects_anaesthesia",
+   "outcome": "REVIEW",
+   "text": "Is anything affecting the anaesthetic (a fasting breach, ASA 3 or more)?",
+   "ref": "SR-0095"
+  },
+  {
+   "id": "safe",
+   "outcome": "SAFE",
+   "text": "Nothing left: safe to continue to consent and preparation",
+   "ref": "SR-0095"
+  }
+ ],
+ "emergency_signs": {
+  "news2_min": 7,
+  "sbp_max": 90,
+  "spo2_max": 91,
+  "not_alert": true,
+  "flags": [
+   "event.anaphylaxis",
+   "symptom.chest_pain"
+  ],
+  "positive_pregnancy_with_shock": true,
+  "ref": "SR-0094"
+ },
+ "pace": {
+  "S1": "postpone",
+  "S2": "parallel"
+ },
+ "refs": [
+  "SR-0094",
+  "SR-0095"
+ ]
+}

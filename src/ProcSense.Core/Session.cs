@@ -72,6 +72,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.ProblemsSubsystem? ProblemsStep { get; set; }
         internal Workflow.Steps.SepsisSubsystem? SepsisStep { get; set; }
         internal Workflow.Steps.ClashSubsystem? ClashStep { get; set; }
+        internal Workflow.Steps.DecisionSubsystem? DecisionStep { get; set; }
+
+        /// <summary>The outcome the engine expects for the master decision now, for the score only (null when the session has no decision step). Never shown to the trainee.</summary>
+        public Workflow.Steps.DecisionSubsystem? Decision => DecisionStep;
 
         /// <summary>Clashes raised so far and the medicine plans for the patient (null when the session has no clash step).</summary>
         public Workflow.Steps.ClashSubsystem? Clashes => ClashStep;

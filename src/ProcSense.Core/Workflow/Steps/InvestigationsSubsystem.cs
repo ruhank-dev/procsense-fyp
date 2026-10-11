@@ -121,6 +121,16 @@ namespace ProcSense.Core.Workflow.Steps
         private bool PregnancyKnown() =>
             Clinical.IsRevealed("pregnancy") || Clinical.Investigations.Any(x => x.Test == "pregnancy" && (x.State == "RESULT_AVAILABLE" || x.State == "VIEWED" || x.State == "ACKNOWLEDGED"));
 
+        /// <summary>True while the case needs a result nobody has opened yet (the master decision cannot be made: more information is needed).</summary>
+        public bool NeededResultsUnopened
+        {
+            get
+            {
+                var needed = NeededTests();
+                return needed.Count > 0 && !needed.All(t => { var l = Latest(t); return l != null && (l.State == "VIEWED" || l.State == "ACKNOWLEDGED"); });
+            }
+        }
+
         // The flags the blockers and goals read: pregnancy status still needed, every needed test ordered, every needed result opened.
         private void Refresh()
         {
