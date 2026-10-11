@@ -90,8 +90,56 @@
   "S1": "postpone",
   "S2": "parallel"
  },
+ "roles": [
+  {
+   "id": "senior",
+   "label": "Senior doctor"
+  },
+  {
+   "id": "anaesthetist",
+   "label": "Anaesthetist"
+  }
+ ],
+ "expected_roles": {
+  "emergency": [
+   "senior",
+   "anaesthetist"
+  ],
+  "information_missing": [],
+  "diagnosis_changed": [
+   "senior"
+  ],
+  "fixable_problem": [
+   "senior"
+  ],
+  "affects_anaesthesia": [
+   "anaesthetist"
+  ],
+  "safe": []
+ },
+ "sbar": [
+  "s",
+  "b",
+  "a",
+  "r"
+ ],
+ "items": {
+  "correct": "credit.decision_correct",
+  "wrong": "major.decision_wrong",
+  "emergency_missed": "critical.emergency_not_declared",
+  "sbar_complete": "credit.sbar_complete",
+  "sbar_incomplete": "minor.sbar_incomplete",
+  "right_role": "credit.right_role",
+  "postpone_right": "credit.postponed_appropriately",
+  "postpone_wrong": "major.postponed_unnecessarily",
+  "postpone_in_emergency": "critical.postponed_in_emergency",
+  "redirect_right": "credit.redirected_appropriately",
+  "redirect_wrong": "major.redirected_unnecessarily"
+ },
  "refs": [
   "SR-0094",
-  "SR-0095"
+  "SR-0095",
+  "SR-0098",
+  "SR-0099"
  ]
 }

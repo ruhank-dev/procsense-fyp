@@ -12,6 +12,8 @@ namespace ProcSense.Core.Clinical
     /// <summary>The master decision's emergency signs (walkthrough Step 8 diagram).</summary>
     public sealed record EmergencySigns(int News2Min, int SbpMax, int Spo2Max, bool NotAlert, IReadOnlyList<string> Flags, bool PositivePregnancyWithShock, string Ref);
 
+    public sealed record RoleDef(string Id, string Label);
+
     /// <summary>What the engine looks at: the scenario, the problems still open, and the signs of the patient now.</summary>
     public sealed record DecisionInput(string Scenario, IReadOnlyList<Problem> OpenProblems, int? News2Total, double SystolicBp, double Spo2, string Acvpu, IReadOnlyCollection<string> Flags,
         bool PregnancyPositive, bool InformationMissing, bool FastingBreach, int AsaMax);
@@ -22,12 +24,23 @@ namespace ProcSense.Core.Clinical
     /// <summary>The five outcomes and the ordered checks (content/decision/decision.json, built from the verified outcome table and the walkthrough's Step 8 diagram).</summary>
     public sealed class DecisionTables
     {
-        public static readonly DecisionTables Empty = new DecisionTables(new List<DecisionOutcomeDef>(), new List<DecisionCheckDef>(), new EmergencySigns(0, 0, 0, false, new List<string>(), false, ""), new Dictionary<string, string>());
+        public static readonly DecisionTables Empty = new DecisionTables(new List<DecisionOutcomeDef>(), new List<DecisionCheckDef>(), new EmergencySigns(0, 0, 0, false, new List<string>(), false, ""), new Dictionary<string, string>(),
+            new List<RoleDef>(), new Dictionary<string, IReadOnlyList<string>>(), new List<string>(), new Dictionary<string, string>());
 
-        public DecisionTables(IReadOnlyList<DecisionOutcomeDef> outcomes, IReadOnlyList<DecisionCheckDef> checks, EmergencySigns signs, IReadOnlyDictionary<string, string> pace)
+        public DecisionTables(IReadOnlyList<DecisionOutcomeDef> outcomes, IReadOnlyList<DecisionCheckDef> checks, EmergencySigns signs, IReadOnlyDictionary<string, string> pace,
+            IReadOnlyList<RoleDef> roles, IReadOnlyDictionary<string, IReadOnlyList<string>> expectedRoles, IReadOnlyList<string> sbar, IReadOnlyDictionary<string, string> items)
         {
-            Outcomes = outcomes; Checks = checks; Signs = signs; Pace = pace;
+            Outcomes = outcomes; Checks = checks; Signs = signs; Pace = pace; Roles = roles; ExpectedRoles = expectedRoles; Sbar = sbar; Items = items;
         }
+
+        /// <summary>Who the trainee can call.</summary>
+        public IReadOnlyList<RoleDef> Roles { get; }
+        /// <summary>Check id to the roles that check calls for.</summary>
+        public IReadOnlyDictionary<string, IReadOnlyList<string>> ExpectedRoles { get; }
+        /// <summary>The parts of an SBAR (s, b, a, r).</summary>
+        public IReadOnlyList<string> Sbar { get; }
+        /// <summary>Score item ids by meaning (correct, wrong, emergency_missed, sbar_complete and so on).</summary>
+        public IReadOnlyDictionary<string, string> Items { get; }
 
         public IReadOnlyList<DecisionOutcomeDef> Outcomes { get; }
         public IReadOnlyList<DecisionCheckDef> Checks { get; }
@@ -68,9 +81,32 @@ namespace ProcSense.Core.Clinical
             var signs = new EmergencySigns((int)s.Int("news2_min"), (int)s.Int("sbp_max"), (int)s.Int("spo2_max"), s.Bool("not_alert"), flags, s.Bool("positive_pregnancy_with_shock"), s.Str("ref"));
             s.Finish();
             var pace = new SortedDictionary<string, string>(root.StringMap("pace"), StringComparer.Ordinal);
+            var roles = new List<RoleDef>();
+            var rawRoles = root.Arr("roles");
+            for (int i = 0; i < rawRoles.Count; i++) { var o = new JsonObj(rawRoles[i], JsonObj.Index(root.Sub("roles"), i)); roles.Add(new RoleDef(o.Str("id"), o.Str("label"))); o.Finish(); }
+            var expected = new SortedDictionary<string, IReadOnlyList<string>>(StringComparer.Ordinal);
+            var rawExpected = root.Any("expected_roles") as Dictionary<string, object?> ?? throw new ContentException(root.Sub("expected_roles") + ": expected an object");
+            foreach (var kv in rawExpected)
+            {
+                if (checks.All(c => c.Id != kv.Key)) throw new ContentException(root.Sub("expected_roles") + "." + kv.Key + ": not a check");
+                var list = new List<string>();
+                foreach (var r in kv.Value as List<object?> ?? throw new ContentException(root.Sub("expected_roles") + "." + kv.Key + ": expected a list"))
+                {
+                    string id = r as string ?? throw new ContentException(root.Sub("expected_roles") + "." + kv.Key + ": expected role ids");
+                    if (roles.All(x => x.Id != id)) throw new ContentException(root.Sub("expected_roles") + "." + kv.Key + ": '" + id + "' is not a role");
+                    list.Add(id);
+                }
+                expected[kv.Key] = list;
+            }
+            var sbar = new List<string>();
+            foreach (var p in root.Arr("sbar")) sbar.Add(p as string ?? throw new ContentException(root.Sub("sbar") + ": expected text"));
+            if (sbar.Count != 4) throw new ContentException(root.Sub("sbar") + ": an SBAR has four parts");
+            var items = new SortedDictionary<string, string>(root.StringMap("items"), StringComparer.Ordinal);
+            foreach (var need in new[] { "correct", "wrong", "emergency_missed", "sbar_complete", "sbar_incomplete", "right_role", "postpone_right", "postpone_wrong", "postpone_in_emergency", "redirect_right", "redirect_wrong" })
+                if (!items.ContainsKey(need)) throw new ContentException(root.Sub("items") + ": '" + need + "' is missing");
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
             root.Finish();
-            return new DecisionTables(outcomes, checks, signs, pace);
+            return new DecisionTables(outcomes, checks, signs, pace, roles, expected, sbar, items);
         }
     }
 
