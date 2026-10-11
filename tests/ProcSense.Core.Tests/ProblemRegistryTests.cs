@@ -27,12 +27,12 @@ namespace ProcSense.Core.Tests
             Assert.Contains("life-threatening", t.Ladder[0].Question);
         }
 
-        // T-DE1: the guide's worked example, ranked as the walkthrough's Part D (the types of the last two differ from the guide's example: ISS-0020)
+        // T-DE1: the guide's worked example, ranked as the walkthrough's Part D (the types now match the guide's example: ISS-0020, closed by the 12 Oct 2026 evidence review)
         [Fact]
         public void T_DE1_STK_S1_A_ranks_P1_to_P4_as_the_walkthrough()
         {
             var reg = ProblemRegistry.FromCase(File_("STK-S1-A"), Content.Problems);
-            Assert.Equal(new[] { ("stka.hypo", "life_threat", 1), ("stka.sglt2", "safety_blocker", 2), ("stka.hba1c", "pathway_changing", 3), ("stka.bp", "optimisable", 4) },
+            Assert.Equal(new[] { ("stka.hypo", "life_threat", 1), ("stka.sglt2", "safety_blocker", 2), ("stka.hba1c", "optimisable", 3), ("stka.bp", "information_only", 4) },
                 reg.Ordered.Select(p => (p.Id, p.Type, p.Priority)));
         }
 
@@ -126,12 +126,12 @@ namespace ProcSense.Core.Tests
         public void Information_only_problems_are_hidden_while_working_but_the_handover_lists_every_problem()
         {
             var reg = ProblemRegistry.FromCase(File_("STK-S1-A"), Content.Problems);
-            Assert.Equal(4, reg.Visible.Count);
+            Assert.Equal(3, reg.Visible.Count);                                          // the blood pressure is information only: kept for the handover, not shown while working
             reg.Register("smoker", "information_only", "ex-smoker");
             Assert.DoesNotContain(reg.Visible, p => p.Id == "smoker");
             reg.Resolve("stka.hypo");
             Assert.Equal(5, reg.Handover.Count);                                       // resolved and information-only problems are still handed over
-            Assert.Equal(4, reg.Open.Count);
+            Assert.Equal(4, reg.Open.Count);   // 3 left of the case plus the smoker
         }
 
         // ---------------------------------------------------------------- the subsystem

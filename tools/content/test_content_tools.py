@@ -4,6 +4,7 @@
 Standard-library unittest; CI runs it as "content tools tests".
 """
 import copy
+import csv
 import json
 import sys
 import tempfile
@@ -216,6 +217,64 @@ class TreatmentChecks(unittest.TestCase):
         doc = copy.deepcopy(self.doc)
         self.treatment(doc, "TR-NSAID")["restricted_by"] = []
         self.assertTrue(any("go together" in p for p in self.problems(doc)))
+
+
+class RegisterAuditTests(unittest.TestCase):
+    """The register audit (12 Oct 2026): ids, blocks and provenance."""
+
+    def setUp(self):
+        import register_audit
+        self.audit = register_audit
+        self.tmp = tempfile.TemporaryDirectory()
+        self.original = register_audit.REGISTER
+
+    def tearDown(self):
+        self.audit.REGISTER = self.original
+        self.tmp.cleanup()
+
+    def plant(self, edit):
+        rows = list(csv.reader(open(self.original, encoding="utf-8", newline="")))
+        edit(rows)
+        path = Path(self.tmp.name) / "register.csv"
+        with open(path, "w", encoding="utf-8", newline="") as f:
+            csv.writer(f, lineterminator=chr(10)).writerows(rows)
+        self.audit.REGISTER = path
+        return self.audit.problems()
+
+    def test_the_real_register_has_no_problem_and_the_document_is_current(self):
+        self.assertEqual(self.audit.problems(), [])
+        self.assertEqual(self.audit.OUT.read_text(encoding="utf-8").replace(chr(13) + chr(10), chr(10)), self.audit.render())
+
+    def test_a_duplicate_id_is_found(self):
+        found = self.plant(lambda rows: rows.append(list(rows[1])))
+        self.assertTrue(any("duplicate id" in p for p in found), found)
+
+    def test_a_hand_written_row_outside_every_documented_range_is_found(self):
+        def add(rows):
+            row = list(rows[-1]); row[0] = "SR-3650"; rows.append(row)
+        found = self.plant(add)
+        self.assertTrue(any("SR-3650" in p and "documented range" in p for p in found), found)
+
+    def test_a_verified_A_row_without_a_source_or_a_claim_is_found(self):
+        def weaken(rows):
+            for r in rows:
+                if r[0] == "SR-2850":
+                    r[7] = ""
+                    r[13] = "Looked at it."
+        found = self.plant(weaken)
+        self.assertTrue(any("SR-2850" in p and "https" in p for p in found), found)
+        self.assertTrue(any("SR-2850" in p and "claim id" in p for p in found), found)
+
+    def test_an_unknown_status_and_an_unlisted_awaiting_row_are_found(self):
+        def edit(rows):
+            for r in rows:
+                if r[0] == "SR-2854":
+                    r[9] = "MAYBE"
+                if r[0] == "SR-2850":
+                    r[9] = "AWAITING_CLINICIAN"; r[13] = "A clinician is asked."
+        found = self.plant(edit)
+        self.assertTrue(any("SR-2854" in p and "unknown status" in p for p in found), found)
+        self.assertTrue(any("SR-2850" in p and "clinician_signoff" in p for p in found), found)
 
 
 if __name__ == "__main__":

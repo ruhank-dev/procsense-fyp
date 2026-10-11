@@ -1,0 +1,35 @@
+{
+ "schema": 1,
+ "note": "Cases changed after the owner's last attestation and not re-attested: they stay DRAFT (so practice and assessment refuse them) until the owner or the named clinician signs them off. See docs/research/clinician_signoff.md.",
+ "pending": {
+  "SC-4": {
+   "changed": "2026-10-12",
+   "what": "HbA1c 78 retyped pathway_changing -> optimisable; BP 176/104 retyped optimisable -> information_only",
+   "question": "Do you agree with the problem types after the 12 Oct 2026 evidence review: HbA1c above 69 mmol/mol is a fixable pre-operative risk (CPOC 2021, Grant and Chowdhury 2022); a clinic BP below 180/110 does not stop elective surgery (AAGBI/BHS, Hartle 2016)?",
+   "evidence": [
+    "V-07",
+    "V-73",
+    "V-74"
+   ]
+  },
+  "STK-S1-A": {
+   "changed": "2026-10-12",
+   "what": "HbA1c 76 retyped pathway_changing -> optimisable; BP 174/102 retyped optimisable -> information_only",
+   "question": "Do you agree with the problem types after the 12 Oct 2026 evidence review: same two rules as SC-4?",
+   "evidence": [
+    "V-07",
+    "V-73",
+    "V-74"
+   ]
+  },
+  "VAR-S1-B": {
+   "changed": "2026-10-12",
+   "what": "the BP problem is now variant-specific: variant base 168/102 is information_only, variant B2 188/114 is optimisable",
+   "question": "Do you agree with the problem types after the 12 Oct 2026 evidence review: below 180/110 proceeds, 180/110 or more postpones and refers back for control?",
+   "evidence": [
+    "V-07",
+    "V-74"
+   ]
+  }
+ }
+}

@@ -163,7 +163,7 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void STK_S1_A_goes_from_EMERGENCY_to_REVIEW_to_OPTIMISE_to_SAFE_as_each_problem_is_dealt_with()
+        public void STK_S1_A_goes_from_EMERGENCY_to_OPTIMISE_to_SAFE_as_each_problem_is_dealt_with()
         {
             var reg = ProblemRegistry.FromCase(File_("STK-S1-A"), Content.Problems);
             var seen = new List<string> { Engine.Evaluate(Calm(open: reg.Open)).Outcome };
@@ -172,7 +172,7 @@ namespace ProcSense.Core.Tests
                 reg.Resolve(id);
                 seen.Add(Engine.Evaluate(Calm(open: reg.Open)).Outcome);
             }
-            Assert.Equal(new[] { "EMERGENCY", "REVIEW", "OPTIMISE", "OPTIMISE", "SAFE" }, seen);
+            Assert.Equal(new[] { "EMERGENCY", "OPTIMISE", "OPTIMISE", "SAFE", "SAFE" }, seen);                // HbA1c and the SGLT2 inhibitor are fixable; the blood pressure below 180/110 is information only
         }
 
         [Fact]

@@ -27,7 +27,7 @@ S1 = [
     el("operation", "We remove your gallbladder through 3-4 small cuts using a camera; we fill your tummy with gas to see.", "SR-2854"),
     el("benefits", "No more attacks; prevents complications (inflammation, jaundice, pancreatitis).", "SR-2854"),
     el("risks", "Wound infection (roughly 1-5%); bleeding; bile leak (about 0.5%, pooled 0.46%); major injury to the main bile duct (about 0.3%, pooled 0.28%, may need major repair); stone left in duct; conversion to open "
-                "(about 2-5% planned operations, up to about 20% in emergency or inflamed cases); shoulder-tip pain from the gas; hernia at cut; ongoing symptoms; clots; bowel injury (rare); death (very rare, under about 0.1%).", "SR-2850 SR-2853"),
+                "(about 5% overall: 4.2-6.2% in pooled series; more often when the gallbladder is inflamed or the operation is an emergency); shoulder-tip pain from the gas; hernia at cut; ongoing symptoms; clots; bowel injury (rare); death (very rare, under about 0.1%).", "SR-2850 SR-2853 SR-2856"),
     el("alternatives", "Watch and wait, low-fat diet (attacks often return; complications possible).", "SR-2854"),
     el("no_treatment", "More attacks, possible inflammation, jaundice, pancreatitis.", "SR-2854"),
     el("matters", "Ask what matters most to the patient and answer questions honestly.", "SR-2854"),

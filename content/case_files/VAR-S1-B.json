@@ -5,7 +5,7 @@
  "scenario": "S1",
  "tier": "P0",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -297,16 +297,30 @@
  "problems": [
   {
    "id": "b.bp",
-   "type": "optimisable",
+   "type": "information_only",
    "label": "Blood pressure high but below 180/110 and no organ-damage symptoms",
    "rank": 1,
-   "why": "Rule (AAGBI/BHS, V-07): below 180/110 in clinic, surgery proceeds; the GP reviews afterwards.",
+   "why": "Rule (AAGBI/BHS, V-07; Hartle 2016): below 180/110 in clinic, surgery proceeds; the GP reviews afterwards. It is recorded and handed over, not a reason to stop.",
    "expected_actions": [
     "Repeat the reading properly (rest, right cuff)",
     "Ask about headache, chest pain, breathlessness, vision",
     "Compare with 180/110",
     "Tell the anaesthetist"
-   ]
+   ],
+   "variant": "base"
+  },
+  {
+   "id": "b.bp2",
+   "type": "optimisable",
+   "label": "Blood pressure 188/114 and 186/112 on repeat: above the 180/110 limit",
+   "rank": 2,
+   "why": "Rule (AAGBI/BHS, V-07; Hartle 2016): a clinic reading of 180/110 or more is unsuitable for elective surgery: postpone and refer back for control; do not try to lower it quickly.",
+   "expected_actions": [
+    "Repeat after rest with the right cuff",
+    "Postpone the planned surgery",
+    "Refer to the GP for control"
+   ],
+   "variant": "B2"
   }
  ],
  "decisions": [
@@ -419,10 +433,5 @@
    "origin": "authored"
   },
   "plan": "standard_ga"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

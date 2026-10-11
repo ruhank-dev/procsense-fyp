@@ -32,7 +32,10 @@ namespace ProcSense.Core.Tests
             Assert.Equal(16, files.Values.Count(f => f.Tier == "P1"));
             Assert.Equal(20, files.Values.Count(f => f.Tier == "P2"));
             Assert.All(files, kv => Assert.Equal(kv.Key, kv.Value.Id));
-            Assert.All(files.Values, f => Assert.Equal("APPROVED_FOR_TRAINING", f.Status));
+            var pending = System.Text.Json.Nodes.JsonNode.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(TestCase.ContentRoot, "case_signoff_pending.json")))!["pending"]!.AsObject().Select(kv => kv.Key).ToList();
+            Assert.All(files.Values.Where(f => !pending.Contains(f.Id)), f => Assert.Equal("APPROVED_FOR_TRAINING", f.Status));
+            Assert.All(files.Values.Where(f => pending.Contains(f.Id)), f => Assert.Equal("DRAFT", f.Status));       // changed after the last attestation: awaiting clinician sign-off
+            Assert.Equal(new[] { "SC-4", "STK-S1-A", "VAR-S1-B" }, pending.OrderBy(x => x));
         }
 
         [Fact]

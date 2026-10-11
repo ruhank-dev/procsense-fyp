@@ -668,6 +668,9 @@
           "why": {
             "type": "string"
           },
+          "variant": {
+            "type": "string"
+          },
           "expected_actions": {
             "type": "array",
             "minItems": 1,

@@ -33,6 +33,18 @@ def replay_round_trip() -> tuple[bool, str]:
         return run(CLI + ["replay", "--log", str(Path(tmp) / "run.session.jsonl")])
 
 
+def gate_refuses() -> tuple[bool, str]:
+    """The review-status gate: assessment on a training-only case and practice on a DRAFT case must be refused (exit 1, STATUS_TOO_LOW)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        for case, mode in (("VAR-S1-A", "assessment"),):
+            p = subprocess.run(CLI + ["run", "--case", case, "--seed", "42", "--mode", mode, "--actions", "tests/golden/skeleton1_correct.actions.json", "--out", str(Path(tmp) / "x.json")],
+                               cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
+            out = (p.stdout or "") + (p.stderr or "")
+            if p.returncode == 0 or "STATUS_TOO_LOW" not in out:
+                return False, f"{case} in {mode} mode was not refused: {out}"
+    return True, "refused as required"
+
+
 def preflight(quick: bool) -> list[str]:
     """Tools the checks need. A missing one is an error with an install command, never a silent skip."""
     need = {"uv": "winget install --id astral-sh.uv -e", "git": "winget install --id Git.Git -e"}
@@ -55,6 +67,7 @@ def main(argv: list[str]) -> int:
             ("build (warnings are errors)", lambda: run(["dotnet", "build", "ProcSense.sln", "-c", "Release", "-warnaserror"])),
             ("unit tests", lambda: run(["dotnet", "test", "ProcSense.sln", "--no-build", "-c", "Release"])),
             ("golden runs", lambda: run(CLI + ["golden", "--dir", "tests/golden"])),
+            ("review-status gate refuses an under-approved case (assessment on a training-only case)", gate_refuses),
             ("replay round trip", replay_round_trip),
         ]
         if os.name != "nt":  # Windows checkouts use CRLF; CI (Linux, LF) is the authority for formatting
@@ -78,6 +91,7 @@ def main(argv: list[str]) -> int:
         ("flow maps up to date (S1 and S2, 20 stages each)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_flow_maps.py", "--check"])),
         ("score tables up to date (AIR, AAS, Alvarado, TG18, ASGE, STOP-Bang, AKI)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_scores.py", "--check"])),
         ("imaging reports and categories up to date (51 findings, approved reports, 35 cases)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_imaging.py", "--check"])),
+        ("register ids, blocks and provenance consistent (and the allocation document current)", lambda: run(["uv", "run", "--project", "tools", "tools/content/register_audit.py", "--check"])),
         ("consent content up to date (elements, questions, rules)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_consent.py", "--check"])),
         ("behaviour model up to date (attributes, transitions, modes, disclosure)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_behaviour.py", "--check"])),
         ("behaviour magnitude plots up to date (for the review pack)", lambda: run(["uv", "run", "--project", "tools", "tools/behaviour/plot.py", "--check"])),

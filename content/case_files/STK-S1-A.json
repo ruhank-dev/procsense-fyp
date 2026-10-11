@@ -5,7 +5,7 @@
  "scenario": "S1",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -341,7 +341,7 @@
   },
   {
    "id": "stka.hba1c",
-   "type": "pathway_changing",
+   "type": "optimisable",
    "label": "HbA1c 76 above the limit of 69 for planned surgery",
    "rank": 3,
    "why": "Optimisation is recommended before elective surgery; with a hypoglycaemic event on the day, the list is usually postponed.",
@@ -351,7 +351,7 @@
   },
   {
    "id": "stka.bp",
-   "type": "optimisable",
+   "type": "information_only",
    "label": "Blood pressure 174/102 (below 180/110)",
    "rank": 4,
    "why": "Raised but not severe; on its own it would allow surgery, with the GP reviewing afterwards.",
@@ -487,10 +487,5 @@
    "origin": "book"
   },
   "plan": "standard_ga"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

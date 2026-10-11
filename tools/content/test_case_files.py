@@ -107,16 +107,25 @@ class TheFiftyThreeCases(unittest.TestCase):
             self.assertEqual(chk.problems(c, CTX, list(CASES.values())), [], cid)
 
     def test_every_case_is_synthetic_and_approved_on_the_owners_statement(self):
+        pending = set(json.loads((ROOT / "content/case_signoff_pending.json").read_text(encoding="utf-8"))["pending"])
         for c in CASES.values():
             self.assertTrue(c["synthetic"])
-            self.assertEqual(c["status"], "APPROVED_FOR_TRAINING")
+            if c["id"] in pending:                     # changed after the last attestation: stays DRAFT until signed off (docs/research/clinician_signoff.md)
+                self.assertEqual(c["status"], "DRAFT", c["id"])
+                continue
+            self.assertEqual(c["status"], "APPROVED_FOR_TRAINING", c["id"])
             self.assertIn("Owner", c["approval"]["by"])
+        self.assertTrue(pending <= set(CASES))
 
     def test_the_approval_is_tied_to_the_exact_content(self):
         import build_case_files as b
         approvals = json.loads((ROOT / "content/case_approvals.json").read_text(encoding="utf-8"))["approvals"]
+        pending = set(json.loads((ROOT / "content/case_signoff_pending.json").read_text(encoding="utf-8"))["pending"])
         for cid, c in CASES.items():
-            self.assertEqual(approvals[cid]["sha256"], b.content_hash(c), cid)
+            if cid in pending:                        # changed since the attestation, so the old approval no longer matches and the case is DRAFT
+                self.assertNotEqual(approvals[cid]["sha256"], b.content_hash(c), cid)
+            else:
+                self.assertEqual(approvals[cid]["sha256"], b.content_hash(c), cid)
 
     def test_the_usman_timeline_uses_17_not_the_books_16(self):
         usman = {o["time"]: o["news2"] for o in CASES["VAR-S2-PD"]["observations"] if o["condition"] != "after_correct_action"}

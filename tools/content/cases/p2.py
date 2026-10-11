@@ -71,8 +71,8 @@ sc(4, "S1", "High BP + poorly controlled diabetes", person("Mr", "Tahir Mehmood"
    [E("ex.general", "general", "Well, overweight.", False), E("ex.abdomen", "abdomen", "Mild tenderness under the right ribs.", False)],
    [R("lab.hba1c", "HbA1c", 78, "mmol/mol", "below 48", "high", "Above 69: poor control", None, 120, origin="book"), R("lab.glu", "Capillary glucose", 11.2, "mmol/L", "6-10", "high", "Above target", None, 2, origin="book")],
    [S("NEWS2", "0", "Well", "authored")],
-   [P("sc4.dm", "pathway_changing", "HbA1c 78 above the planned-surgery limit of 69", 1, "Optimisation is recommended; one clear reason to postpone.", ["Postpone", "Refer to the GP and diabetes team"]),
-    P("sc4.bp", "optimisable", "BP 176/104 (below 180/110)", 2, "On its own BP would allow surgery; the GP reviews.", ["Repeat BP", "Refer the GP"])],
+   [P("sc4.dm", "optimisable", "HbA1c 78 above the planned-surgery limit of 69", 1, "Optimisation is recommended; one clear reason to postpone.", ["Postpone", "Refer to the GP and diabetes team"]),
+    P("sc4.bp", "information_only", "BP 176/104 (below 180/110)", 2, "On its own BP would allow surgery; the GP reviews.", ["Repeat BP", "Refer the GP"])],
    [D("sc4.d1", "HbA1c 78. What now?", [("Postpone for optimisation; refer to the GP for diabetes and BP", True, "Matches the HbA1c limit."), ("Proceed because the BP is below 180/110", False, "Diabetes is the reason.")], rule="s1_diabetes_postpone")],
    "postponed", ["HbA1c checked", "Postponed appropriately"], [("Proceeds", "Anaesthetist stops it", "Poor outcome", "Postpone")], ["HbA1c missed"], ["Check it"], "One clear reason is enough to postpone.", ["V-07"])
 

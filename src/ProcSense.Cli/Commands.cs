@@ -11,7 +11,7 @@ internal static class Commands
 {
     private const string Usage =
         "usage:\n" +
-        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--content dir]\n" +
+        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--content dir] [--allow-draft] [--skip-integrity]\n" +
         "  procsense-sim replay --log session.jsonl [--content dir]\n" +
         "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]";
 
@@ -44,6 +44,7 @@ internal static class Commands
         string logPath = o.GetValueOrDefault("log", Path.ChangeExtension(outPath, ".session.jsonl"));
 
         var content = ContentLoader.Load(Reader(o), caseId);
+        if (Guard(o, content, caseId, mode) is { } refused) return refused;
         var script = ActionScript.Parse(File.ReadAllText(Need(o, "actions")));
         var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content));
         SessionFile.Play(session, script);
@@ -62,6 +63,7 @@ internal static class Commands
         string text = File.ReadAllText(Need(o, "log"));
         string caseId = SessionFile.CaseIdOf(text);
         var content = ContentLoader.Load(Reader(o), caseId);
+        if (Integrity(o) is { } refused) return refused;
         var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
         if (r.Match) { Console.WriteLine($"replay OK, hash match ({r.ActualHash})"); return 0; }
         return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}");
@@ -138,6 +140,26 @@ internal static class Commands
 
     private static string Need(Dictionary<string, string> o, string key) =>
         o.TryGetValue(key, out var v) ? v : throw new ArgumentException($"missing --{key}\n{Usage}");
+
+    // The review-status gate (a DRAFT case is never played; assessment needs APPROVED_FOR_ASSESSMENT) and the content integrity check. --allow-draft and --skip-integrity are for developers and say so.
+    private static int? Guard(Dictionary<string, string> o, ContentPackage content, string caseId, SessionMode mode)
+    {
+        if (content.CaseFiles.TryGetValue(caseId, out var file))
+        {
+            if (o.ContainsKey("allow-draft")) Console.WriteLine("warning: --allow-draft: the review-status gate is off for " + caseId + " (" + file.Status + ")");
+            else
+                try { ContentGate.Require(file, mode); }
+                catch (ContentException e) { return Fail(e.Message + " (a developer can pass --allow-draft)"); }
+        }
+        return Integrity(o);
+    }
+
+    private static int? Integrity(Dictionary<string, string> o)
+    {
+        if (o.ContainsKey("skip-integrity")) { Console.WriteLine("warning: --skip-integrity: the content was not checked against content/manifest.json"); return null; }
+        var bad = ContentManifestCheck.Verify(Reader(o));
+        return bad.Count == 0 ? (int?)null : Fail("content does not match content/manifest.json: " + string.Join(", ", bad.Take(5)) + (bad.Count > 5 ? " and " + (bad.Count - 5).ToString(CultureInfo.InvariantCulture) + " more" : "") + " (rebuild the manifest, or pass --skip-integrity)");
+    }
 
     private static int Fail(string message) { Console.Error.WriteLine(message); return 1; }
 }

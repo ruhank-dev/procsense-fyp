@@ -102,10 +102,17 @@ namespace ProcSense.Core.Clinical
         }
 
         /// <summary>Registers every problem a case file lists, with the priority the case states (its rank, at most 4).</summary>
-        public static ProblemRegistry FromCase(CaseFile file, ProblemTables tables)
+        public static ProblemRegistry FromCase(CaseFile file, ProblemTables tables, IEnumerable<string>? activeVariants = null)
         {
             var reg = new ProblemRegistry(tables, file.Scenario);
-            foreach (var p in file.Problems) reg.Register(p.Id, p.Type, p.Label, (int)p.Rank);
+            var active = new HashSet<string>(activeVariants ?? Array.Empty<string>(), StringComparer.Ordinal);
+            bool playingAVariant = active.Any(v => file.VariantEndStates.ContainsKey(v));
+            foreach (var p in file.Problems)
+            {
+                // a problem tied to a variant exists only there; 'base' belongs to the case when no other variant is being played
+                bool applies = p.Variant == null || active.Contains(p.Variant) || (p.Variant == "base" && !playingAVariant);
+                if (applies) reg.Register(p.Id, p.Type, p.Label, (int)p.Rank);
+            }
             return reg;
         }
 

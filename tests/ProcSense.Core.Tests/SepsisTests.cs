@@ -180,6 +180,17 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void The_moderate_three_hours_run_from_the_first_NEWS2_of_the_episode_not_from_when_the_tier_was_reached()
+        {
+            var (s, _) = Usman();
+            Chart(s, 0, 2, false); Chart(s, 45, 5, false);                       // low at 14:00, moderate at 14:45
+            Give(s, "EFF-ANTIBIOTIC", 100);
+            var abx = s.Sepsis!.Timers.Single(t => t.Kind == "antibiotics");
+            Assert.Equal("moderate", abx.Tier);
+            Assert.Equal(180 * 60, abx.DeadlineSeconds);                         // NG253: within 3 hours of the first NEWS2 score
+        }
+
+        [Fact]
         public void A_case_without_an_infection_never_gets_a_tier()
         {
             var file = File_("VAR-S1-A");

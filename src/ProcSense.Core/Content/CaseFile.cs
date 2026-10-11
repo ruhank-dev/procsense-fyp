@@ -25,7 +25,7 @@ namespace ProcSense.Core.Content
         string Origin, string? SourceRow, string? Variant);
 
     public sealed record CaseFileScore(string Name, string Value, string Note, string Origin);
-    public sealed record CaseFileProblem(string Id, string Type, string Label, long Rank, string Why, IReadOnlyList<string> ExpectedActions);
+    public sealed record CaseFileProblem(string Id, string Type, string Label, long Rank, string Why, IReadOnlyList<string> ExpectedActions, string? Variant = null);
     public sealed record CaseFileOption(string Id, string Text, bool Correct, string Consequence);
     public sealed record CaseFileDecision(string Id, string Prompt, string? Rule, IReadOnlyList<CaseFileOption> Options, string? Variant);
     public sealed record IncorrectPath(string Mistake, string Shows, string Risk, string Recovery);

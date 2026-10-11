@@ -172,7 +172,7 @@ namespace ProcSense.Core.Content
             for (int k = 0; k < probList.Count; k++)
             {
                 var q = new JsonObj(probList[k], JsonObj.Index("problems", k));
-                problems.Add(new CaseFileProblem(q.Str("id"), q.Enum("type", ProblemTypes), q.Str("label"), q.Int("rank"), q.Str("why"), Strings(q, "expected_actions")));
+                problems.Add(new CaseFileProblem(q.Str("id"), q.Enum("type", ProblemTypes), q.Str("label"), q.Int("rank"), q.Str("why"), Strings(q, "expected_actions"), q.Has("variant") ? q.Str("variant") : null));
                 q.Finish();
             }
 

@@ -92,8 +92,11 @@ def S(name, value, note="", origin="book"):
     return {"name": name, "value": str(value), "note": note, "origin": origin}
 
 
-def P(id, type_, label, rank, why, actions):
-    return {"id": id, "type": type_, "label": label, "rank": rank, "why": why, "expected_actions": list(actions)}
+def P(id, type_, label, rank, why, actions, variant=None):
+    p = {"id": id, "type": type_, "label": label, "rank": rank, "why": why, "expected_actions": list(actions)}
+    if variant:
+        p["variant"] = variant     # the problem exists only in this variant of the case
+    return p
 
 
 def D(id, prompt, options, rule=None, variant=None):

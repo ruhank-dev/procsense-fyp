@@ -165,7 +165,7 @@ namespace ProcSense.Core.Tests
             var s = Start("VAR-S1-B", out var problems);
             s.Patient.Clinical.SetFlag("variant.B2");
             OpenNeededResults(s);
-            problems.Detect(File_("VAR-S1-B").Problems.Single().Id);
+            problems.Detect("b.bp2");                                                            // the B2 readings are 188/114 and 186/112: above the limit
             Assert.Contains("decision:correct", Do(s, "declare_outcome", ("outcome", "OPTIMISE"), ("reason", "BP 188/114 on repeat")).Effects);
             var o = Do(s, "postpone", ("reason", "BP above 180/110: refer for control"));
             Assert.Contains("end_state:POSTPONED_APPROPRIATELY", o.Effects);

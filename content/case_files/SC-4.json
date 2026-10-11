@@ -5,7 +5,7 @@
  "scenario": "S1",
  "tier": "P2",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -254,7 +254,7 @@
  "problems": [
   {
    "id": "sc4.dm",
-   "type": "pathway_changing",
+   "type": "optimisable",
    "label": "HbA1c 78 above the planned-surgery limit of 69",
    "rank": 1,
    "why": "Optimisation is recommended; one clear reason to postpone.",
@@ -265,7 +265,7 @@
   },
   {
    "id": "sc4.bp",
-   "type": "optimisable",
+   "type": "information_only",
    "label": "BP 176/104 (below 180/110)",
    "rank": 2,
    "why": "On its own BP would allow surgery; the GP reviews.",
@@ -349,10 +349,5 @@
    "origin": "book"
   },
   "plan": "standard_ga"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

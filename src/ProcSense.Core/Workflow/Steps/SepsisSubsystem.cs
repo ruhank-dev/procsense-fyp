@@ -152,8 +152,10 @@ namespace ProcSense.Core.Workflow.Steps
                     if (!h.HasValue) continue;
                     var reached = _tiers.Where(t => Rank(t.Tier) >= def.Rank).Select(t => t.Seconds).DefaultIfEmpty(double.NaN).First();
                     if (double.IsNaN(reached)) continue;
-                    double deadline = reached + h.Value * 3600;
-                    if (deadline < bestDeadline) { bestDeadline = deadline; bestStart = reached; bestTier = def.Id; }
+                    // NICE NG253: the high-risk hour runs from the NEWS2 that showed high risk; the moderate three hours and the low six hours run from the first NEWS2 score of the episode
+                    double start = def.Rank == Tables.Tiers.Max(t => t.Rank) ? reached : _tiers[0].Seconds;
+                    double deadline = start + h.Value * 3600;
+                    if (deadline < bestDeadline) { bestDeadline = deadline; bestStart = start; bestTier = def.Id; }
                 }
                 if (bestTier.Length == 0) continue;
                 double? given = _firstGiven.TryGetValue(kind, out var g) ? g : (double?)null;
