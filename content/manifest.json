@@ -1,10 +1,11 @@
 {
  "schema": 1,
- "content_hash": "5db26dd98b2e819a1c468064ae0012d683b9d13daa8439ea8ca763b7b9f17f48",
- "files": 371,
- "bytes": 16724963,
+ "content_hash": "42455bf00f59de97171fbf1a0366387b612ee19f182d9edba380154aa07168c2",
+ "files": 373,
+ "bytes": 16729748,
  "per_folder": {
   "(root)": 64,
+  "ai": 2,
   "assessment": 1,
   "behaviour": 3,
   "case_files": 53,
@@ -46,6 +47,14 @@
   "README.md": {
    "bytes": 1130,
    "sha256": "5facc82a956e9a80e09b9f04e2ade7aef9b44cb66bee8a3f251c06776d23d264"
+  },
+  "ai/intents.json": {
+   "bytes": 925,
+   "sha256": "621050725724fb924f9c22975c5e197beffc630ec07a480d9bb03a7acabdd877"
+  },
+  "ai/lexicon.json": {
+   "bytes": 3860,
+   "sha256": "7ebfd2e9150fad0f2646141358e5c9ea0cd51806ec1989ea9f20293b90453986"
   },
   "assessment/mapping.json": {
    "bytes": 7669,

@@ -37,6 +37,7 @@ HAND_RANGES = [
     (1, 99, "Early hand-written rows: the first skeleton steps, then the clinical-logic and workflow design rules (SR-0085 to SR-0099: pregnancy gate, sepsis, clashes, decision, deterioration, escalation); type D design rules with the owner's approval text"),
     (2830, 2849, "Workflow design rules for the ward checklist, theatre readiness, handover, safety checklist, end states, LitePhysio and behaviour (type D)"),
     (2850, 2869, "Consent and the 12 Oct 2026 evidence review: verified figures (type A), institutional figures (type C) and the HbA1c, blood pressure and NG253 rules (type A)"),
+    (2870, 2879, "AI safety: the grounding validator's word lists and the intents each AI-voiced character may use (type D and B)"),
     (4100, 4109, "Treatment library and medicine workflow rows written by Abdul Moiz's builder (tools/content/build_treatments.py)"),
 ]
 STATUSES = {"VERIFIED", "UNVERIFIED", "AWAITING_CLINICIAN"}

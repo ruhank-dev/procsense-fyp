@@ -152,6 +152,15 @@ jobs:
       - name: Scoring content is up to date (22 behaviours, rubric, debrief sentences)
         run: uv run --project tools tools/content/build_scoring.py --check
 
+      - name: AI lexicon, intents and shared validator vectors are up to date
+        run: |
+          uv run --project tools tools/content/build_ai_lexicon.py --check
+          uv run --project tools tools/content/build_ai_intents.py --check
+          uv run --project tools python server/validation/make_vectors.py --check
+
+      - name: Grounding validator tests (disclosure probes, off-card drugs, false rejects, debrief mutations)
+        run: uv run --project tools python server/validation/test_validator.py
+
       - name: P0 correct-path scripts are what the generator writes (17 cases)
         run: uv run --project tools tools/golden/p0_scripts.py --stale
 

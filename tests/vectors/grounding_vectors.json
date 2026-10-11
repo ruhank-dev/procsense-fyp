@@ -1,0 +1,847 @@
+{
+ "lexicon": "content/ai/lexicon.json",
+ "contexts": {
+  "patient": {
+   "allowed_intents": [
+    "answer_question",
+    "express_symptom",
+    "ask_clarification"
+   ],
+   "facts": [
+    {
+     "id": "f.complaint",
+     "value": "Attacks under my right ribs after oily food, settle in an hour or two.",
+     "disclosed": true,
+     "disclosable_now": false
+    },
+    {
+     "id": "f.medicines",
+     "value": "Metformin and gliclazide. She has not taken them this morning.",
+     "disclosed": false,
+     "disclosable_now": false
+    },
+    {
+     "id": "f.sugar",
+     "value": "My sugar was 13.4 last night.",
+     "disclosed": false,
+     "disclosable_now": false
+    },
+    {
+     "id": "f.allergy",
+     "value": "Penicillin gave me a rash as a child.",
+     "disclosed": false,
+     "disclosable_now": true
+    }
+   ],
+   "allowed_entities": [
+    "gallstones",
+    "diabetes",
+    "metformin",
+    "gliclazide",
+    "penicillin",
+    "ecg",
+    "paracetamol"
+   ],
+   "numbers": [
+    "42",
+    "98",
+    "13.4",
+    "1",
+    "15"
+   ],
+   "dose_text": [
+    "IV paracetamol (SmPC): 1 g as a 15-minute infusion"
+   ]
+  },
+  "debrief": {
+   "debrief_facts": [
+    {
+     "id": "d.1",
+     "verdict": "credit",
+     "numbers": []
+    },
+    {
+     "id": "d.2",
+     "verdict": "penalty",
+     "numbers": [
+      "70"
+     ]
+    },
+    {
+     "id": "d.3",
+     "verdict": "critical",
+     "numbers": []
+    }
+   ],
+   "allowed_entities": [
+    "sepsis",
+    "antibiotics"
+   ],
+   "numbers": [
+    "15"
+   ],
+   "log_events": [
+    "E-LOW-BP"
+   ]
+  }
+ },
+ "vectors": [
+  {
+   "name": "a plain approved answer",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "It hurts under my ribs after I eat oily food.",
+    "fact_ids": [
+     "f.complaint"
+    ]
+   },
+   "expect": []
+  },
+  {
+   "name": "a disclosable fact told",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I had a rash from penicillin when I was little.",
+    "fact_ids": [
+     "f.allergy"
+    ]
+   },
+   "expect": []
+  },
+  {
+   "name": "a number of the context",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I am 42 and my oxygen was 98.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "a drug the case mentions",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I take metformin for my diabetes.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "an exact approved dose example",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "The sheet says IV paracetamol (SmPC): 1 g as a 15-minute infusion",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "a hidden number mentioned alone still leaks it",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "It was 13.4 once but I was ill.",
+    "fact_ids": []
+   },
+   "expect": [
+    "DISCLOSURE_LEAK"
+   ]
+  },
+  {
+   "name": "not an object",
+   "context": "patient",
+   "output": "hello",
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "an extra key",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Hello.",
+    "fact_ids": [],
+    "extra": 1
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "a missing key",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Hi"
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "an empty text",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "",
+    "fact_ids": []
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "a text that is too long",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a ",
+    "fact_ids": []
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "fact ids that are not text",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Hi.",
+    "fact_ids": [
+     1
+    ]
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "an unknown kind",
+   "context": "patient",
+   "output": {
+    "kind": "poem",
+    "text": "x"
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  },
+  {
+   "name": "an intent the character may not use",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "diagnose",
+    "text": "Hello.",
+    "fact_ids": []
+   },
+   "expect": [
+    "UNKNOWN_INTENT"
+   ]
+  },
+  {
+   "name": "a fact id that does not exist",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Hello.",
+    "fact_ids": [
+     "f.nope"
+    ]
+   },
+   "expect": [
+    "UNKNOWN_FACT"
+   ]
+  },
+  {
+   "name": "a drug the case does not mention",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I take warfarin every day.",
+    "fact_ids": []
+   },
+   "expect": [
+    "OFF_CARD_ENTITY"
+   ]
+  },
+  {
+   "name": "a plural drug",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I take two apixabans.",
+    "fact_ids": []
+   },
+   "expect": [
+    "OFF_CARD_ENTITY"
+   ]
+  },
+  {
+   "name": "a condition the case does not mention",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "My doctor said I might have pancreatitis.",
+    "fact_ids": []
+   },
+   "expect": [
+    "OFF_CARD_ENTITY"
+   ]
+  },
+  {
+   "name": "a test the case does not mention",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "They did my lactate yesterday.",
+    "fact_ids": []
+   },
+   "expect": [
+    "OFF_CARD_ENTITY"
+   ]
+  },
+  {
+   "name": "equipment the case does not mention",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "They used a defibrillator on me.",
+    "fact_ids": []
+   },
+   "expect": [
+    "OFF_CARD_ENTITY"
+   ]
+  },
+  {
+   "name": "a word that only contains a lexicon word",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Insulinoma is a long word.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "an allowed entity in capitals",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "METFORMIN is my tablet.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "a number not in the context",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I weigh 81 and I am 42.",
+    "fact_ids": []
+   },
+   "expect": [
+    "UNGROUNDED_NUMBER"
+   ]
+  },
+  {
+   "name": "a time is a number too",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "It started at 14:30.",
+    "fact_ids": []
+   },
+   "expect": [
+    "UNGROUNDED_NUMBER"
+   ]
+  },
+  {
+   "name": "a hidden fact told in its own words",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "She has not taken metformin and gliclazide this morning.",
+    "fact_ids": []
+   },
+   "expect": [
+    "DISCLOSURE_LEAK"
+   ]
+  },
+  {
+   "name": "a hidden number told",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "My sugar was 13.4 last night.",
+    "fact_ids": []
+   },
+   "expect": [
+    "DISCLOSURE_LEAK"
+   ]
+  },
+  {
+   "name": "a paraphrase of a hidden fact (the known limit of a word check: the model is never given hidden facts)",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I have not had my tablets today, metformin and gliclazide.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "a hint that is not the fact",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "I take some tablets for my diabetes.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "a dose that is not the approved text",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Take 500 mg of it.",
+    "fact_ids": []
+   },
+   "expect": [
+    "DOSE_STATEMENT",
+    "UNGROUNDED_NUMBER"
+   ]
+  },
+  {
+   "name": "a dose in micrograms",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "About 500 micrograms I think.",
+    "fact_ids": []
+   },
+   "expect": [
+    "DOSE_STATEMENT",
+    "UNGROUNDED_NUMBER"
+   ]
+  },
+  {
+   "name": "a volume of fluid",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "They gave me 500 ml.",
+    "fact_ids": []
+   },
+   "expect": [
+    "DOSE_STATEMENT",
+    "UNGROUNDED_NUMBER"
+   ]
+  },
+  {
+   "name": "grams per litre is a result not a dose",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "The number was 98 g/L.",
+    "fact_ids": []
+   },
+   "expect": []
+  },
+  {
+   "name": "telling the trainee to give",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "You should give me something for the pain.",
+    "fact_ids": []
+   },
+   "expect": [
+    "PRESCRIBE_PHRASING"
+   ]
+  },
+  {
+   "name": "telling the trainee to prescribe",
+   "context": "patient",
+   "output": {
+    "kind": "utterance",
+    "role": "patient",
+    "intent": "answer_question",
+    "text": "Please prescribe me something.",
+    "fact_ids": []
+   },
+   "expect": [
+    "PRESCRIBE_PHRASING"
+   ]
+  },
+  {
+   "name": "a faithful debrief",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": []
+  },
+  {
+   "name": "a debrief that drops a fact",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "DEBRIEF_MISSING_FACT"
+   ]
+  },
+  {
+   "name": "a debrief that changes a number",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 60 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "DEBRIEF_NUMBER_CHANGED",
+    "UNGROUNDED_NUMBER"
+   ]
+  },
+  {
+   "name": "a debrief that praises a missed item",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "Well done on the antibiotics at 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "DEBRIEF_VERDICT_CHANGED"
+   ]
+  },
+  {
+   "name": "a debrief that blames a credited item",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You missed the identity check.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "DEBRIEF_VERDICT_CHANGED"
+   ]
+  },
+  {
+   "name": "a debrief that invents an event",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well and handled the allergic reaction.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "DEBRIEF_NEW_EVENT"
+   ]
+  },
+  {
+   "name": "a debrief that mentions a logged event",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well and called about the low blood pressure.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": []
+  },
+  {
+   "name": "a debrief that names a new drug",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well.",
+      "fact_ids": [
+       "d.1"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics or morphine for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "OFF_CARD_ENTITY"
+   ]
+  },
+  {
+   "name": "a debrief with an unknown fact",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": [
+     {
+      "title": "Done well",
+      "text": "You confirmed the identity well.",
+      "fact_ids": [
+       "d.1",
+       "d.9"
+      ]
+     },
+     {
+      "title": "Missed",
+      "text": "You did not give the antibiotics for 70 minutes.",
+      "fact_ids": [
+       "d.2"
+      ]
+     },
+     {
+      "title": "Critical",
+      "text": "The handover omitted the allergy.",
+      "fact_ids": [
+       "d.3"
+      ]
+     }
+    ]
+   },
+   "expect": [
+    "UNKNOWN_FACT"
+   ]
+  },
+  {
+   "name": "a debrief with no sections",
+   "context": "debrief",
+   "output": {
+    "kind": "debrief",
+    "sections": []
+   },
+   "expect": [
+    "SCHEMA"
+   ]
+  }
+ ]
+}

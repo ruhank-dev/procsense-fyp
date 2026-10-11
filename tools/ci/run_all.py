@@ -96,6 +96,8 @@ def main(argv: list[str]) -> int:
         ("consent content up to date (elements, questions, rules)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_consent.py", "--check"])),
         ("behaviour model up to date (attributes, transitions, modes, disclosure)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_behaviour.py", "--check"])),
         ("scoring content up to date (22 behaviours, rubric, debrief sentences)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_scoring.py", "--check"])),
+        ("AI lexicon, intents and shared validator vectors up to date", lambda: run(["uv", "run", "--project", "tools", "python", "-c", "import subprocess,sys; r=[subprocess.run(['uv','run','--project','tools',*c]).returncode for c in (['tools/content/build_ai_lexicon.py','--check'],['tools/content/build_ai_intents.py','--check'],['python','server/validation/make_vectors.py','--check'])]; sys.exit(1 if any(r) else 0)"])),
+        ("grounding validator tests (disclosure probes, off-card drugs, false rejects, debrief mutations)", lambda: run(["uv", "run", "--project", "tools", "python", "server/validation/test_validator.py"])),
         ("P0 correct-path scripts are what the generator writes (17 cases)", lambda: run(["uv", "run", "--project", "tools", "tools/golden/p0_scripts.py", "--stale"])),
         ("what-if bindings up to date (P0 cases, derived from the case content)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_bindings.py", "--check"])),
         ("Stage B validator passes all 53 case files", lambda: run(["uv", "run", "--project", "tools", "tools/composer/stage_b.py", "--all"])),

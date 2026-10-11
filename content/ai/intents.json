@@ -1,0 +1,55 @@
+{
+ "roles": {
+  "patient": [
+   "answer_question",
+   "express_symptom",
+   "ask_question",
+   "express_anxiety",
+   "express_pain",
+   "thank",
+   "refuse"
+  ],
+  "nurse": [
+   "ask_clarification",
+   "confirm_order",
+   "report_observation",
+   "ask_prep_status",
+   "report_patient_request"
+  ],
+  "anaesthesia": [
+   "ask_fasting_allergy_airway",
+   "raise_approved_concern",
+   "respond_to_escalation",
+   "sign_in_answer"
+  ],
+  "surgeon": [
+   "request_update",
+   "decision_response",
+   "time_out_answer",
+   "approved_intraop_issue"
+  ],
+  "porter": [
+   "confirm_transfer",
+   "report_delay",
+   "ask_monitoring"
+  ],
+  "lab": [
+   "report_approved_result",
+   "report_sample_rejected",
+   "report_delay"
+  ],
+  "scrub": [
+   "report_missing_item",
+   "report_fault",
+   "confirm_ready",
+   "count_status"
+  ],
+  "ward": [
+   "confirm_admission_details",
+   "report_bed_status"
+  ]
+ },
+ "refs": [
+  "SR-2871"
+ ]
+}

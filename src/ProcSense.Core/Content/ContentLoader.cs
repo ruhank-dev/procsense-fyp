@@ -109,7 +109,8 @@ namespace ProcSense.Core.Content
                 Workflow.Steps.ConsentTables.Parse(reader.ReadText("consent/consent.json")),
                 Events.EventTables.Parse(reader.ReadText("events/events.json")),
                 Scoring.ScoreTables.Parse(reader.ReadText("scoring/rubric.json"), reader.ReadText("assessment/mapping.json"), reader.ReadText("debrief/templates.json")),
-                Difficulty.DifficultyTables.Parse(reader.ReadText("difficulty/dimensions.json")));
+                Difficulty.DifficultyTables.Parse(reader.ReadText("difficulty/dimensions.json")),
+                AIContext.AiTables.Parse(reader.ReadText("ai/intents.json"), reader.ReadText("ai/lexicon.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>
