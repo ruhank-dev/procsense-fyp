@@ -1,0 +1,13 @@
+{
+ "hr_rise_min": 10,
+ "hr_rise_max": 20,
+ "hr_rise_used": 15,
+ "news2_used": false,
+ "maternity_score": "placeholder: the hospital chooses the maternity early-warning score",
+ "wbc": {
+  "number": null,
+  "note": "the book says pregnancy raises the white cell count normally but gives no figure, so none is applied"
+ },
+ "note": "Walkthrough S2-D: pregnancy raises the heart rate by about 10 to 20 a minute (design midpoint 15 for a generated patient); blood pressure is often lower in mid-pregnancy (no figure given). Authored case files already include pregnancy in their values.",
+ "ref": "SR-2862"
+}

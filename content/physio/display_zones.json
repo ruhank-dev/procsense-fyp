@@ -1,0 +1,251 @@
+{
+ "parameters": {
+  "heart_rate": {
+   "digits": 0,
+   "rows": [
+    {
+     "zone": "emergency",
+     "low": null,
+     "high": 40,
+     "high_exclusive": false,
+     "ref": "SR-0105"
+    },
+    {
+     "zone": "emergency",
+     "low": 131,
+     "high": null,
+     "high_exclusive": false,
+     "ref": "SR-0104"
+    },
+    {
+     "zone": "worry",
+     "low": 111,
+     "high": 130,
+     "high_exclusive": false,
+     "ref": "SR-0103"
+    },
+    {
+     "zone": "watch",
+     "low": 41,
+     "high": 50,
+     "high_exclusive": false,
+     "ref": "SR-0102"
+    },
+    {
+     "zone": "watch",
+     "low": 91,
+     "high": 110,
+     "high_exclusive": false,
+     "ref": "SR-0101"
+    },
+    {
+     "zone": "normal",
+     "low": 51,
+     "high": 90,
+     "high_exclusive": false,
+     "ref": "SR-0100"
+    }
+   ]
+  },
+  "systolic_bp_low": {
+   "digits": 0,
+   "rows": [
+    {
+     "zone": "emergency",
+     "low": null,
+     "high": 90,
+     "high_exclusive": false,
+     "ref": "SR-0109"
+    },
+    {
+     "zone": "worry",
+     "low": 91,
+     "high": 100,
+     "high_exclusive": false,
+     "ref": "SR-0108"
+    },
+    {
+     "zone": "watch",
+     "low": 101,
+     "high": 110,
+     "high_exclusive": false,
+     "ref": "SR-0107"
+    },
+    {
+     "zone": "normal",
+     "low": 111,
+     "high": 219,
+     "high_exclusive": false,
+     "ref": "SR-0106"
+    }
+   ]
+  },
+  "respiratory_rate": {
+   "digits": 0,
+   "rows": [
+    {
+     "zone": "emergency",
+     "low": null,
+     "high": 8,
+     "high_exclusive": false,
+     "ref": "SR-0120"
+    },
+    {
+     "zone": "emergency",
+     "low": 25,
+     "high": null,
+     "high_exclusive": false,
+     "ref": "SR-0119"
+    },
+    {
+     "zone": "watch",
+     "low": 9,
+     "high": 11,
+     "high_exclusive": false,
+     "ref": "SR-0116"
+    },
+    {
+     "zone": "watch",
+     "low": 21,
+     "high": 24,
+     "high_exclusive": false,
+     "ref": "SR-0117"
+    },
+    {
+     "zone": "normal",
+     "low": 12,
+     "high": 20,
+     "high_exclusive": false,
+     "ref": "SR-0115"
+    }
+   ]
+  },
+  "spo2": {
+   "digits": 0,
+   "rows": [
+    {
+     "zone": "critical",
+     "low": null,
+     "high": 88,
+     "high_exclusive": true,
+     "ref": "SR-0125"
+    },
+    {
+     "zone": "emergency",
+     "low": null,
+     "high": 91,
+     "high_exclusive": false,
+     "ref": "SR-0124"
+    },
+    {
+     "zone": "worry",
+     "low": 92,
+     "high": 93,
+     "high_exclusive": false,
+     "ref": "SR-0123"
+    },
+    {
+     "zone": "watch",
+     "low": 94,
+     "high": 95,
+     "high_exclusive": false,
+     "ref": "SR-0122"
+    },
+    {
+     "zone": "normal",
+     "low": 96,
+     "high": null,
+     "high_exclusive": false,
+     "ref": "SR-0121"
+    }
+   ]
+  },
+  "temperature_c": {
+   "digits": 1,
+   "rows": [
+    {
+     "zone": "emergency",
+     "low": null,
+     "high": 35.0,
+     "high_exclusive": false,
+     "ref": "SR-0130"
+    },
+    {
+     "zone": "worry",
+     "low": 39.1,
+     "high": null,
+     "high_exclusive": false,
+     "ref": "SR-0129"
+    },
+    {
+     "zone": "watch",
+     "low": 35.1,
+     "high": 36.0,
+     "high_exclusive": false,
+     "ref": "SR-0127"
+    },
+    {
+     "zone": "watch",
+     "low": 38.0,
+     "high": 39.0,
+     "high_exclusive": false,
+     "ref": "SR-0128"
+    },
+    {
+     "zone": "normal",
+     "low": 36.1,
+     "high": 37.9,
+     "high_exclusive": false,
+     "ref": "SR-0126"
+    }
+   ]
+  },
+  "pain_score": {
+   "digits": 0,
+   "rows": [
+    {
+     "zone": "worry",
+     "low": 7,
+     "high": 10,
+     "high_exclusive": false,
+     "ref": "SR-0136"
+    },
+    {
+     "zone": "watch",
+     "low": 4,
+     "high": 6,
+     "high_exclusive": false,
+     "ref": "SR-0135"
+    },
+    {
+     "zone": "normal",
+     "low": 0,
+     "high": 3,
+     "high_exclusive": false,
+     "ref": "SR-0134"
+    }
+   ]
+  }
+ },
+ "artefacts": {
+  "spo2_probe": {
+   "problems": [
+    "cold_fingers",
+    "nail_polish",
+    "movement"
+   ],
+   "reading_drop": 6,
+   "quality": "poor_pleth",
+   "ref": "SR-2862",
+   "note": "The book says finger probes read falsely low with cold fingers, nail polish or movement; the size of the drop (6 points) is a design value, and re-siting the probe clears it"
+  }
+ },
+ "left_out": [
+  "breathing 22 or more with infection (context)",
+  "pain uncontrolled (no number)",
+  "capillary refill, urine, shock index, alertness (not vital-sign variables here)"
+ ],
+ "refs": [
+  "SR-2862"
+ ]
+}

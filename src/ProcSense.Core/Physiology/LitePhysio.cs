@@ -40,6 +40,12 @@ namespace ProcSense.Core.Physiology
     /// <summary>A treatment or event nudging variables: the change each variable is pulled toward at full effect, and the time profile.</summary>
     public sealed record PhysioEffect(string Id, IReadOnlyDictionary<string, double> Targets, PhysioProfile Profile, string Source);
 
+    /// <summary>A variable that keeps moving by itself (per hour) until one of the named effects is given, which also takes one dose off it.</summary>
+    public sealed record PhysioDriver(string Id, string Variable, double RatePerHour, IReadOnlyList<string> StoppedBy, double ReliefPerDose, string Ref);
+
+    /// <summary>One effect row of content/physio/effects.json. A row with no targets acts somewhere else (the deterioration clock) or on a value the model does not carry yet; the note says which.</summary>
+    public sealed record PhysioEffectDef(PhysioEffect Effect, string Note, string Ref);
+
     /// <summary>What the engine shows at one moment: each variable's value, MAP worked out from them, and the flags that are on.</summary>
     public sealed record PhysioSnapshot(IReadOnlyDictionary<string, double> Values, IReadOnlyList<string> Flags);
 
@@ -54,11 +60,12 @@ namespace ProcSense.Core.Physiology
     /// <summary>The LitePhysio model (content/physio/model.json, couplings.json and noise.json).</summary>
     public sealed class PhysioTables
     {
-        public static readonly PhysioTables Empty = new PhysioTables(new List<PhysioVariable>(), false, 1, new List<PhysioCoupling>(), new List<PhysioFlagRule>(), new List<PhysioNoise>());
+        public static readonly PhysioTables Empty = new PhysioTables(new List<PhysioVariable>(), false, 1, new List<PhysioCoupling>(), new List<PhysioFlagRule>(), new List<PhysioNoise>(), new List<PhysioEffectDef>(), new List<PhysioDriver>(), DisplayZoneTable.Empty, PregnancyModifiers.Empty);
 
-        public PhysioTables(IReadOnlyList<PhysioVariable> variables, bool noiseEnabled, int noiseStepSeconds, IReadOnlyList<PhysioCoupling> couplings, IReadOnlyList<PhysioFlagRule> flags, IReadOnlyList<PhysioNoise> noise)
+        public PhysioTables(IReadOnlyList<PhysioVariable> variables, bool noiseEnabled, int noiseStepSeconds, IReadOnlyList<PhysioCoupling> couplings, IReadOnlyList<PhysioFlagRule> flags, IReadOnlyList<PhysioNoise> noise, IReadOnlyList<PhysioEffectDef> effects, IReadOnlyList<PhysioDriver> drivers, DisplayZoneTable display, PregnancyModifiers pregnancy)
         {
-            Variables = variables; NoiseEnabled = noiseEnabled; NoiseStepSeconds = noiseStepSeconds; Couplings = couplings; Flags = flags; Noise = noise;
+            Drivers = drivers; Display = display; Pregnancy = pregnancy;
+            Variables = variables; NoiseEnabled = noiseEnabled; NoiseStepSeconds = noiseStepSeconds; Couplings = couplings; Flags = flags; Noise = noise; Effects = effects;
         }
 
         public IReadOnlyList<PhysioVariable> Variables { get; }
@@ -67,10 +74,18 @@ namespace ProcSense.Core.Physiology
         public IReadOnlyList<PhysioCoupling> Couplings { get; }
         public IReadOnlyList<PhysioFlagRule> Flags { get; }
         public IReadOnlyList<PhysioNoise> Noise { get; }
+        public IReadOnlyList<PhysioEffectDef> Effects { get; }
+        public IReadOnlyList<PhysioDriver> Drivers { get; }
+        public DisplayZoneTable Display { get; }
+        public PregnancyModifiers Pregnancy { get; }
+
+        public PhysioDriver? FindDriver(string id) { foreach (var d in Drivers) if (d.Id == id) return d; return null; }
+
+        public PhysioEffect? FindEffect(string id) { foreach (var e in Effects) if (e.Effect.Id == id) return e.Effect; return null; }
 
         public PhysioVariable? Find(string id) => Variables.FirstOrDefault(v => v.Id == id);
 
-        public static PhysioTables Parse(string modelJson, string couplingsJson, string noiseJson)
+        public static PhysioTables Parse(string modelJson, string couplingsJson, string noiseJson, string? effectsJson = null, string? displayJson = null, string? pregnancyJson = null)
         {
             var model = new JsonObj(MiniJson.Parse(modelJson), "physio/model");
             var vars = new List<PhysioVariable>();
@@ -127,7 +142,51 @@ namespace ProcSense.Core.Physiology
             }
             foreach (var r in nj.Arr("refs")) if (!(r is string)) throw new ContentException(nj.Sub("refs") + ": expected register ids");
             nj.Finish();
-            return new PhysioTables(vars, noiseOn, step, couplings, flags, noise);
+            var effects = new List<PhysioEffectDef>();
+            var drivers = new List<PhysioDriver>();
+            if (effectsJson != null)
+            {
+                var ej = new JsonObj(MiniJson.Parse(effectsJson), "physio/effects");
+                var rawE = ej.Arr("effects");
+                for (int i = 0; i < rawE.Count; i++)
+                {
+                    var o = new JsonObj(rawE[i], JsonObj.Index(ej.Sub("effects"), i));
+                    string id = o.Str("id");
+                    if (effects.Any(x => x.Effect.Id == id)) throw new ContentException(o.Sub("id") + ": duplicate effect '" + id + "'");
+                    var targets = new Dictionary<string, double>(StringComparer.Ordinal);
+                    var rawT = o.Any("targets") as Dictionary<string, object?> ?? throw new ContentException(o.Sub("targets") + ": expected an object");
+                    foreach (var kv in rawT)
+                    {
+                        if (vars.All(v => v.Id != kv.Key)) throw new ContentException(o.Sub("targets") + ": '" + kv.Key + "' is not a variable");
+                        targets[kv.Key] = kv.Value is long l ? l : kv.Value is double d ? d : throw new ContentException(o.Sub("targets") + "." + kv.Key + ": expected a number");
+                    }
+                    var p = new JsonObj(o.Any("profile"), o.Sub("profile"));
+                    var profile = new PhysioProfile(p.Num("onset_seconds"), p.Num("peak_seconds"), p.Num("plateau_seconds"), p.Num("offset_seconds"));
+                    p.Finish();
+                    if (profile.OnsetSeconds < 0 || profile.PeakSeconds <= 0 || profile.PlateauSeconds < 0 || profile.OffsetSeconds < 0) throw new ContentException(o.Sub("profile") + ": needs onset, plateau and offset of 0 or more and a peak above 0");
+                    effects.Add(new PhysioEffectDef(new PhysioEffect(id, targets, profile, o.Str("source")), o.Str("note"), o.Str("ref")));
+                    o.Finish();
+                }
+                var rawD = ej.Arr("drivers");
+                for (int i = 0; i < rawD.Count; i++)
+                {
+                    var o = new JsonObj(rawD[i], JsonObj.Index(ej.Sub("drivers"), i));
+                    string variable = o.Str("variable");
+                    if (vars.All(v => v.Id != variable)) throw new ContentException(o.Sub("variable") + ": '" + variable + "' is not a variable");
+                    var stoppers = new List<string>();
+                    foreach (var s in o.Arr("stopped_by"))
+                    {
+                        string sid = s as string ?? throw new ContentException(o.Sub("stopped_by") + ": expected effect ids");
+                        if (effects.All(x => x.Effect.Id != sid)) throw new ContentException(o.Sub("stopped_by") + ": '" + sid + "' is not an effect");
+                        stoppers.Add(sid);
+                    }
+                    drivers.Add(new PhysioDriver(o.Str("id"), variable, o.Num("rate_per_hour"), stoppers, o.Num("relief_per_dose"), o.Str("ref")));
+                    o.Str("note"); o.Finish();
+                }
+                foreach (var r in ej.Arr("refs")) if (!(r is string)) throw new ContentException(ej.Sub("refs") + ": expected register ids");
+                ej.Finish();
+            }
+            return new PhysioTables(vars, noiseOn, step, couplings, flags, noise, effects, drivers, displayJson == null ? DisplayZoneTable.Empty : DisplayZoneTable.Parse(displayJson), pregnancyJson == null ? PregnancyModifiers.Empty : PregnancyModifiers.Parse(pregnancyJson));
         }
     }
 
@@ -165,6 +224,8 @@ namespace ProcSense.Core.Physiology
                 _noise[v.Id] = 0;
             }
         }
+
+        public double GetBaseline(string id) => _baseline[id];
 
         /// <summary>Changes a variable's baseline (what it would settle at with nothing acting on it).</summary>
         public void SetBaseline(string id, double value)

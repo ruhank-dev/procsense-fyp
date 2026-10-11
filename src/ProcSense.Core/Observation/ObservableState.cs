@@ -10,7 +10,7 @@ namespace ProcSense.Core.Observation
     public sealed record DisclosedFact(string Topic, string Answer);
 
     /// <summary>One value on the monitor or chart, with the clock time it was read.</summary>
-    public sealed record ObservedVital(string Name, string Value, string At);
+    public sealed record ObservedVital(string Name, string Value, string At, string Zone = "", string Quality = "");
 
     /// <summary>One goal as the trainee's "known / pending" panel shows it. State is pending, complete or missed; At is the clock time it finished ("" while pending).</summary>
     public sealed record GoalStatus(string Id, string Label, string State, string At);
@@ -111,6 +111,8 @@ namespace ProcSense.Core.Observation
                 sb.Append("{\"name\":"); JsonText.Quote(sb, Vitals[i].Name);
                 sb.Append(",\"value\":"); JsonText.Quote(sb, Vitals[i].Value);
                 sb.Append(",\"at\":"); JsonText.Quote(sb, Vitals[i].At);
+                sb.Append(",\"zone\":"); JsonText.Quote(sb, Vitals[i].Zone);
+                if (Vitals[i].Quality.Length > 0) { sb.Append(",\"quality\":"); JsonText.Quote(sb, Vitals[i].Quality); }
                 sb.Append('}');
             }
             sb.Append("],\"nurse\":"); JsonText.Quote(sb, Nurse);
@@ -337,19 +339,30 @@ namespace ProcSense.Core.Observation
             var v = p.Vitals;
             string now = At(s, s.Clock.Steps);
             var live = new Dictionary<string, string>();
+            var display = s.Physiology?.Display ?? Physiology.DisplayZoneTable.Empty;
+            string quality = "";
+            double spo2Shown = v.Spo2;
             if (p.IsAttached(Workflow.Steps.ObservationsSubsystem.Spo2Probe))
             {
-                live["spo2"] = Num(v.Spo2);
+                if (p.ProbeProblem.Length > 0 && display.Artefacts.TryGetValue("spo2_probe", out var artefact)) { spo2Shown = System.Math.Max(0, v.Spo2 - artefact.ReadingDrop); quality = artefact.Quality; }
+                live["spo2"] = Num(spo2Shown);
                 live["oxygen"] = v.Oxygen;
                 live["heart_rate"] = Num(v.HeartRate);
             }
             var list = new List<ObservedVital>();
             foreach (var name in VitalOrder)
             {
-                if (live.TryGetValue(name, out var value)) list.Add(new ObservedVital(name, value, now));
-                else if (p.Measured.TryGetValue(name, out var m)) list.Add(new ObservedVital(name, m.Value, At(s, m.AtStep)));
+                if (live.TryGetValue(name, out var value)) list.Add(new ObservedVital(name, value, now, ZoneOf(display, name, value), name == "spo2" ? quality : ""));
+                else if (p.Measured.TryGetValue(name, out var m)) list.Add(new ObservedVital(name, m.Value, At(s, m.AtStep), ZoneOf(display, name, m.Value)));
             }
             return list;
+        }
+
+        // the monitor's display zone for a shown value (NEWS2 does not use this: it scores the true state with its own bands, WT-I04)
+        private static string ZoneOf(Physiology.DisplayZoneTable display, string vital, string value)
+        {
+            string parameter = vital == "systolic_bp" ? "systolic_bp_low" : vital;
+            return double.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var x) ? display.Zone(parameter, x) : "";
         }
 
         private static string At(Session s, long step) => Hms(s.Clock.Start + System.TimeSpan.FromSeconds(step * Time.SimClock.Step));

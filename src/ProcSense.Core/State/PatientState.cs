@@ -253,6 +253,9 @@ namespace ProcSense.Core.State
 
         public Vitals Vitals { get; set; }
 
+        /// <summary>What is wrong with the SpO2 probe's signal (cold_fingers, nail_polish, movement), or empty. While it is set the monitor shows a falsely low reading with a poor waveform until the probe is re-sited.</summary>
+        public string ProbeProblem { get; set; } = "";
+
         /// <summary>Sensors currently on the patient. A live sensor (the SpO2 probe) shows values only while attached.</summary>
         public IReadOnlyCollection<string> AttachedSensors => _attached;
 

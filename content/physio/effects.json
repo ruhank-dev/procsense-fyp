@@ -1,0 +1,331 @@
+{
+ "effects": [
+  {
+   "id": "EFF-ANALGESIA",
+   "targets": {
+    "pain": -3
+   },
+   "profile": {
+    "onset_seconds": 300,
+    "peak_seconds": 600,
+    "plateau_seconds": 3600,
+    "offset_seconds": 3600
+   },
+   "source": "design",
+   "note": "Pain falls (and, through the pain couplings, so do heart rate and blood pressure a little)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-ANTIEMETIC",
+   "targets": {
+    "nausea": -4
+   },
+   "profile": {
+    "onset_seconds": 300,
+    "peak_seconds": 600,
+    "plateau_seconds": 7200,
+    "offset_seconds": 3600
+   },
+   "source": "design",
+   "note": "Nausea settles",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-FLUID-BOLUS",
+   "targets": {
+    "SBP": 10,
+    "DBP": 5,
+    "HR": -6
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 600,
+    "plateau_seconds": 1800,
+    "offset_seconds": 3600
+   },
+   "source": "design",
+   "note": "Circulating volume rises: blood pressure up, heart rate down",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-OXYGEN",
+   "targets": {
+    "SpO2": 4
+   },
+   "profile": {
+    "onset_seconds": 30,
+    "peak_seconds": 120,
+    "plateau_seconds": 7200,
+    "offset_seconds": 300
+   },
+   "source": "design",
+   "note": "Oxygen saturation rises",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-ANTIBIOTIC",
+   "targets": {},
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 1,
+    "plateau_seconds": 0,
+    "offset_seconds": 0
+   },
+   "source": "design",
+   "note": "Acts on the deterioration clock (DeteriorationSubsystem), not on a vital sign",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-ADRENALINE",
+   "targets": {
+    "SBP": 25,
+    "HR": 20,
+    "SpO2": 4,
+    "RR": -4
+   },
+   "profile": {
+    "onset_seconds": 30,
+    "peak_seconds": 120,
+    "plateau_seconds": 600,
+    "offset_seconds": 900
+   },
+   "source": "design",
+   "note": "Allergic reaction reverses: pressure and oxygen recover, breathing eases",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-GLUCOSE-RISE",
+   "targets": {
+    "glucose": 4
+   },
+   "profile": {
+    "onset_seconds": 60,
+    "peak_seconds": 600,
+    "plateau_seconds": 1800,
+    "offset_seconds": 3600
+   },
+   "source": "design",
+   "note": "Low blood sugar corrects",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-POTASSIUM-LOWER",
+   "targets": {},
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 1,
+    "plateau_seconds": 0,
+    "offset_seconds": 0
+   },
+   "source": "design",
+   "note": "Potassium is a result value, not a vital sign: the model carries no variable for it yet, so a repeat result is not generated (DT-074)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-OPIOID-REVERSAL",
+   "targets": {
+    "RR": 6,
+    "SpO2": 3,
+    "sedation": -2
+   },
+   "profile": {
+    "onset_seconds": 60,
+    "peak_seconds": 180,
+    "plateau_seconds": 1800,
+    "offset_seconds": 1800
+   },
+   "source": "design",
+   "note": "Slow breathing and drowsiness from an opioid reverse",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "EFF-ANAPHYLAXIS",
+   "targets": {
+    "SBP": -40,
+    "DBP": -25,
+    "HR": 35,
+    "RR": 8,
+    "SpO2": -8
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 120,
+    "plateau_seconds": 3600,
+    "offset_seconds": 1800
+   },
+   "source": "design",
+   "note": "An allergen given: the walkthrough 14.4 pattern (pressure falls, pulse and breathing rise, oxygen falls), improving after adrenaline",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-NORMAL",
+   "targets": {},
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "All normal, calm: Stable: continue",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-PAIN",
+   "targets": {
+    "HR": 16.0,
+    "SBP": 6.0,
+    "DBP": 10,
+    "RR": 2.0,
+    "Temp": 0.3,
+    "pain": 8
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Pain pattern: Pain is driving the numbers: pain relief, then re-measure",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-INFECTION",
+   "targets": {
+    "HR": 32,
+    "Temp": 1.9,
+    "RR": 6
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Infection pattern: Infection or inflammation: find the source, bloods, antibiotics per plan (blood pressure stays normal)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-DEHYDRATION",
+   "targets": {
+    "HR": 36,
+    "SBP": -20,
+    "DBP": -12
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Dehydration pattern: Not enough fluid: drip and fluids, kidney blood tests, re-measure (dry mouth, little urine and vomiting are history and examination, not vital signs)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-SEPSIS",
+   "targets": {
+    "HR": 52,
+    "SBP": -32,
+    "DBP": -20,
+    "RR": 12,
+    "Temp": 2.5
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Sepsis pattern: Sepsis with poor circulation: sepsis bundle, emergency call (lactate 3.8 is a result, not a vital sign)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-BLEEDING",
+   "targets": {
+    "HR": 46,
+    "SBP": -28,
+    "DBP": -18
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Bleeding pattern: Blood loss (for example ectopic pregnancy): emergency, two drips, blood ready, senior and gynaecology (pale, cold and falling Hb are examination and results)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-ALLERGY",
+   "targets": {
+    "SBP": -40,
+    "DBP": -28
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Allergy pattern: Anaphylaxis: stop the drug, adrenaline, call for help (rash, swollen lips and wheeze are examination findings; only the pressure is numeric in the book)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-OPIOID",
+   "targets": {
+    "RR": -6,
+    "SpO2": -9,
+    "sedation": 3
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Too-much-painkiller pattern: Opioid overdose: stimulate, oxygen, call for help, antidote by a clinician (very sleepy is the design value sedation 3 of 3; small pupils are examination)",
+   "ref": "SR-2860"
+  },
+  {
+   "id": "PAT-AF",
+   "targets": {
+    "HR": 52,
+    "SBP": 8,
+    "DBP": 6
+   },
+   "profile": {
+    "onset_seconds": 0,
+    "peak_seconds": 300,
+    "plateau_seconds": 86400,
+    "offset_seconds": 600
+   },
+   "source": "design",
+   "note": "Rhythm pattern: Atrial fibrillation: ECG, senior or medical review (the irregular pulse is shown by the pulse examination and ECG, not by a vital-sign variable)",
+   "ref": "SR-2860"
+  }
+ ],
+ "drivers": [
+  {
+   "id": "DRV-DEHYDRATION",
+   "variable": "volume_deficit",
+   "rate_per_hour": 150,
+   "stopped_by": [
+    "EFF-FLUID-BOLUS"
+   ],
+   "relief_per_dose": 500,
+   "note": "Fluid is lost steadily (vomiting, poor intake) until a bolus is given; the deficit then falls by one bolus",
+   "ref": "SR-2861"
+  }
+ ],
+ "refs": [
+  "SR-2860",
+  "SR-2861"
+ ]
+}

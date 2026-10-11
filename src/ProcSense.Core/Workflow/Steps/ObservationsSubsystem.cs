@@ -23,6 +23,7 @@ namespace ProcSense.Core.Workflow.Steps
 
         public const string MissingSensor = "MISSING_SENSOR";
         public const string UnknownSensor = "UNKNOWN_SENSOR";
+        public const string ProbeNotAttached = "PROBE_NOT_ATTACHED";
         public const string CuffNotAttached = "CUFF_NOT_ATTACHED";
         public const string CycleInProgress = "CYCLE_IN_PROGRESS";
 
@@ -41,7 +42,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             _s = session;
             _devices = session.Random.Stream("devices");
-            foreach (var v in new[] { "attach_sensor", "detach_sensor", "measure_nibp", "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score", "wait" })
+            foreach (var v in new[] { "attach_sensor", "detach_sensor", "measure_nibp", "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score", "resite_probe", "wait" })
                 session.Verbs.Register(v, requiresPatient: v != "wait");
         }
 
@@ -51,6 +52,7 @@ namespace ProcSense.Core.Workflow.Steps
             {
                 case "attach_sensor": Attach(a, o); break;
                 case "detach_sensor": Detach(a, o); break;
+                case "resite_probe": Resite(o); break;
                 case "measure_nibp": MeasureNibp(o); break;
                 case "measure_temperature": Record("temperature_c", ObservableBuilder.Num(Physio.Vitals.TemperatureC), o); break;
                 case "count_rr": Record("respiratory_rate", ObservableBuilder.Num(Physio.Vitals.RespiratoryRate), o); break;
@@ -82,6 +84,15 @@ namespace ProcSense.Core.Workflow.Steps
         {
             if (!TryGetSensor(a, o, out var sensor)) return;
             o.Effects.Add(Physio.Attach(sensor) ? "attached:" + sensor : "already_attached:" + sensor);
+        }
+
+        // Checking the probe (warm finger, no nail polish, no movement) and re-siting it clears a poor signal; with nothing wrong it just moves the probe.
+        private void Resite(ActionOutcome o)
+        {
+            if (!Physio.IsAttached(Spo2Probe)) { o.Reject(ProbeNotAttached); return; }
+            bool fixedSignal = Physio.ProbeProblem.Length > 0;
+            Physio.ProbeProblem = "";
+            o.Effects.Add(fixedSignal ? "probe_resited:signal_restored" : "probe_resited");
         }
 
         private void Detach(SimAction a, ActionOutcome o)
