@@ -23,6 +23,7 @@ namespace ProcSense.Core.Workflow
             new Clinical.MedicineWorkflowSubsystem(content),
             new News2Subsystem(content),
             new SepsisSubsystem(content),
+            new ClashSubsystem(content),
             new ProblemsSubsystem(content),
             new CaseGraphSubsystem(content.Workflow),
             new FlowSubsystem(content.FlowMaps),

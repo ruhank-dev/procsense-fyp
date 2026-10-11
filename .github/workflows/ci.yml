@@ -131,6 +131,9 @@ jobs:
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
 
+      - name: Clash table and medicine plans are up to date (18 clashes, factors, plans)
+        run: uv run --project tools tools/content/build_clashes.py --check
+
       - name: Sepsis tiers and timers are up to date (NG253 criteria, timers, infection cases)
         run: uv run --project tools tools/content/build_sepsis.py --check
 

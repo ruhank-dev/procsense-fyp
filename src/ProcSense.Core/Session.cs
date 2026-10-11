@@ -71,6 +71,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.ResultReviewSubsystem? ResultReview { get; set; }
         internal Workflow.Steps.ProblemsSubsystem? ProblemsStep { get; set; }
         internal Workflow.Steps.SepsisSubsystem? SepsisStep { get; set; }
+        internal Workflow.Steps.ClashSubsystem? ClashStep { get; set; }
+
+        /// <summary>Clashes raised so far and the medicine plans for the patient (null when the session has no clash step).</summary>
+        public Workflow.Steps.ClashSubsystem? Clashes => ClashStep;
 
         /// <summary>Sepsis tiers, timers and lateness for the debrief (null when the session has no sepsis step).</summary>
         public Workflow.Steps.SepsisReport? Sepsis => SepsisStep?.Report();

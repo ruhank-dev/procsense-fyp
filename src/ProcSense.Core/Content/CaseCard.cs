@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -66,6 +66,7 @@ namespace ProcSense.Core.Content
             Problems = problems ?? ProcSense.Core.Clinical.ProblemTables.Empty;
             Treatments = treatments ?? ProcSense.Core.Clinical.TreatmentTables.Empty;
             Sepsis = sepsis ?? ProcSense.Core.Clinical.SepsisTables.Empty;
+            Clashes = clashes ?? ProcSense.Core.Clinical.ClashTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -97,6 +98,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Clinical.ProblemTables Problems { get; }
         /// <summary>NICE NG253 sepsis tiers, their timers and the cases with an infection (content/sepsis/sepsis.json).</summary>
         public ProcSense.Core.Clinical.SepsisTables Sepsis { get; }
+        /// <summary>The treatment clash table, how a case's factors are read and the perioperative medicine plans (content/clashes/clashes.json).</summary>
+        public ProcSense.Core.Clinical.ClashTables Clashes { get; }
         /// <summary>The treatment library: each treatment with its required checks, prerequisites, restrictions and effect ids (content/treatments.json).</summary>
         public ProcSense.Core.Clinical.TreatmentTables Treatments { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>

@@ -1,0 +1,711 @@
+{
+ "checks": [
+  {
+   "id": "allergy",
+   "text": "allergy?",
+   "ref": "SR-1400"
+  },
+  {
+   "id": "kidneys_liver",
+   "text": "kidneys/liver?",
+   "ref": "SR-1401"
+  },
+  {
+   "id": "pregnancy",
+   "text": "pregnancy?",
+   "ref": "SR-1402"
+  },
+  {
+   "id": "blood_thinner",
+   "text": "blood thinner?",
+   "ref": "SR-1403"
+  }
+ ],
+ "needs": {
+  "TR-PARACETAMOL": [
+   "need_pain_relief"
+  ],
+  "TR-NSAID": [
+   "need_pain_relief"
+  ],
+  "TR-OPIOID": [
+   "need_pain_relief"
+  ],
+  "TR-IV-FLUIDS": [
+   "need_fluid"
+  ],
+  "TR-SEPSIS-BUNDLE": [
+   "need_fluid",
+   "need_antibiotic"
+  ],
+  "TR-ABX-PROPHYLAXIS": [
+   "need_antibiotic"
+  ],
+  "TR-ABX-S2": [
+   "need_antibiotic"
+  ],
+  "TR-ANTIEMETIC": [
+   "need_antiemetic"
+  ],
+  "ct": [
+   "need_ct",
+   "need_ct_dye"
+  ]
+ },
+ "factors": [
+  {
+   "tag": "kidney_injury",
+   "words": [
+    "acute kidney injury",
+    "kidney injury"
+   ]
+  },
+  {
+   "tag": "kidney_failure",
+   "words": [
+    "kidney failure",
+    "renal failure",
+    "known_kidney_failure"
+   ]
+  },
+  {
+   "tag": "heart_failure",
+   "words": [
+    "heart failure"
+   ]
+  },
+  {
+   "tag": "severe_liver_disease",
+   "words": [
+    "cirrhosis",
+    "severe liver disease",
+    "liver failure"
+   ]
+  },
+  {
+   "tag": "dehydration",
+   "words": [
+    "dehydrat"
+   ]
+  },
+  {
+   "tag": "peptic_ulcer_bleeding",
+   "words": [
+    "ulcer"
+   ]
+  },
+  {
+   "tag": "asthma",
+   "words": [
+    "asthma"
+   ]
+  },
+  {
+   "tag": "blood_thinner",
+   "words": [
+    "warfarin",
+    "apixaban",
+    "rivaroxaban",
+    "dabigatran",
+    "edoxaban",
+    "clopidogrel",
+    "ticagrelor",
+    "prasugrel",
+    "aspirin",
+    "heparin",
+    "blood thinner"
+   ]
+  },
+  {
+   "tag": "long_qtc",
+   "words": [
+    "long qtc",
+    "prolonged qtc"
+   ]
+  },
+  {
+   "tag": "bowel_obstruction",
+   "words": [
+    "bowel obstruction"
+   ]
+  },
+  {
+   "tag": "co2_retainer",
+   "words": [
+    "copd",
+    "co2 retain",
+    "long-term lung disease"
+   ]
+  },
+  {
+   "tag": "penicillin_allergy",
+   "words": [
+    "penicillin"
+   ]
+  },
+  {
+   "tag": "dye_allergy",
+   "words": [
+    "contrast allergy",
+    "dye allergy"
+   ]
+  },
+  {
+   "tag": "insulin_user",
+   "words": [
+    "insulin"
+   ]
+  },
+  {
+   "tag": "sglt2_user",
+   "words": [
+    "dapagliflozin",
+    "empagliflozin",
+    "canagliflozin",
+    "sglt2"
+   ]
+  },
+  {
+   "tag": "steroid_user",
+   "words": [
+    "prednisolone",
+    "hydrocortisone",
+    "long-term steroid",
+    "steroid tablets"
+   ]
+  },
+  {
+   "tag": "recent_stent",
+   "words": [
+    "stent"
+   ]
+  }
+ ],
+ "context": [
+  "urgent_surgery",
+  "sepsis"
+ ],
+ "pending_tags": [
+  "nil_by_mouth",
+  "high_potassium",
+  "need_suxamethonium",
+  "full_stomach",
+  "low_oxygen",
+  "confused",
+  "consent_needed"
+ ],
+ "clashes": [
+  {
+   "id": "fluid_heart_kidney",
+   "when": [
+    [
+     "need_fluid",
+     "heart_failure"
+    ],
+    [
+     "need_fluid",
+     "kidney_failure"
+    ]
+   ],
+   "clash": "Needs fluid (sepsis/dehydration) + has heart failure or severe kidney failure",
+   "why": "Fluid may flood the lungs",
+   "safer": "Smaller boluses (e.g. 250 mL) with re-check of breathing/oxygen after each; earlier senior/critical care",
+   "decided_by": "Senior/anaesthetist",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0970"
+  },
+  {
+   "id": "pain_kidney",
+   "when": [
+    [
+     "need_pain_relief",
+     "kidney_injury"
+    ]
+   ],
+   "clash": "Needs pain relief + kidney injury",
+   "why": "NSAIDs (ibuprofen) worsen kidneys; morphine builds up",
+   "safer": "Paracetamol + carefully titrated opioid (often not morphine in severe kidney injury); no NSAIDs",
+   "decided_by": "",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0971"
+  },
+  {
+   "id": "pain_pregnancy",
+   "when": [
+    [
+     "need_pain_relief",
+     "pregnancy"
+    ]
+   ],
+   "clash": "Needs pain relief + pregnancy",
+   "why": "NSAIDs avoided in pregnancy",
+   "safer": "Paracetamol; opioid if needed per senior",
+   "decided_by": "",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0972"
+  },
+  {
+   "id": "antibiotic_penicillin_allergy",
+   "when": [
+    [
+     "need_antibiotic",
+     "penicillin_allergy"
+    ]
+   ],
+   "clash": "Needs antibiotic + penicillin allergy",
+   "why": "Usual drug may be unsafe",
+   "safer": "Use hospital allergy-alternative rule",
+   "decided_by": "Microbiology/policy",
+   "tag": "CONTEXT-DEPENDENT — INSTITUTIONAL PROTOCOL / CLINICIAN CONFIRMATION",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0973"
+  },
+  {
+   "id": "ct_pregnancy",
+   "when": [
+    [
+     "need_ct",
+     "pregnancy"
+    ]
+   ],
+   "clash": "Needs CT + pregnancy",
+   "why": "Radiation",
+   "safer": "Ultrasound → MRI; CT only if senior decides benefit outweighs risk",
+   "decided_by": "Senior/radiology",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0974"
+  },
+  {
+   "id": "ct_dye_kidney",
+   "when": [
+    [
+     "need_ct_dye",
+     "kidney_injury"
+    ],
+    [
+     "need_ct_dye",
+     "kidney_failure"
+    ]
+   ],
+   "clash": "Needs CT with dye + kidney injury",
+   "why": "Dye can worsen kidneys",
+   "safer": "Fluids first; senior weighs benefit; non-contrast or ultrasound alternatives",
+   "decided_by": "Senior/radiology",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0975"
+  },
+  {
+   "id": "ct_dye_allergy",
+   "when": [
+    [
+     "need_ct_dye",
+     "dye_allergy"
+    ]
+   ],
+   "clash": "Needs CT with dye + dye allergy",
+   "why": "Allergic reaction",
+   "safer": "Alternative imaging or pre-medication per radiology policy",
+   "decided_by": "Radiology",
+   "tag": "CONTEXT-DEPENDENT — INSTITUTIONAL PROTOCOL / CLINICIAN CONFIRMATION",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0976"
+  },
+  {
+   "id": "antiemetic_qtc",
+   "when": [
+    [
+     "need_antiemetic",
+     "long_qtc"
+    ]
+   ],
+   "clash": "Needs anti-sickness + long QTc on ECG",
+   "why": "Ondansetron can worsen QT",
+   "safer": "Alternative antiemetic; fix potassium/magnesium",
+   "decided_by": "Anaesthetist",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0977"
+  },
+  {
+   "id": "metoclopramide_obstruction",
+   "when": [
+    [
+     "need_antiemetic",
+     "bowel_obstruction"
+    ]
+   ],
+   "clash": "Needs metoclopramide + bowel obstruction",
+   "why": "Can worsen obstruction",
+   "safer": "Different antiemetic; NG tube per senior",
+   "decided_by": "",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0978"
+  },
+  {
+   "id": "blood_thinner_urgent_surgery",
+   "when": [
+    [
+     "blood_thinner",
+     "urgent_surgery"
+    ]
+   ],
+   "clash": "On blood thinner + needs urgent surgery",
+   "why": "Bleeding vs clot risk",
+   "safer": "Senior/haematology decide reversal; blood products ready",
+   "decided_by": "",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0979"
+  },
+  {
+   "id": "antiplatelet_stent",
+   "when": [
+    [
+     "blood_thinner",
+     "recent_stent"
+    ]
+   ],
+   "clash": "On antiplatelets after a recent heart stent + needs surgery",
+   "why": "Stopping risks stent clot (heart attack)",
+   "safer": "S1 usually deferred after review; S2 operate on antiplatelets with heart-team advice",
+   "decided_by": "Cardiology + senior",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0980"
+  },
+  {
+   "id": "insulin_nbm",
+   "when": [
+    [
+     "insulin_user",
+     "nil_by_mouth"
+    ]
+   ],
+   "clash": "Diabetic on insulin + nil by mouth",
+   "why": "Low sugar risk",
+   "safer": "Insulin adjusted, sugar hourly, glucose-containing fluid or VRIII per protocol",
+   "decided_by": "",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0981"
+  },
+  {
+   "id": "sglt2_sepsis",
+   "when": [
+    [
+     "sglt2_user",
+     "sepsis"
+    ]
+   ],
+   "clash": "SGLT2 user + sepsis/vomiting",
+   "why": "Euglycaemic DKA",
+   "safer": "Check ketones even if sugar near normal; diabetes team",
+   "decided_by": "Diabetes team",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0982"
+  },
+  {
+   "id": "steroid_sepsis",
+   "when": [
+    [
+     "steroid_user",
+     "sepsis"
+    ]
+   ],
+   "clash": "Steroid user + sepsis/surgery",
+   "why": "Adrenal crisis (collapse)",
+   "safer": "Extra steroid cover per anaesthetist",
+   "decided_by": "",
+   "tag": "PATIENT-SPECIFIC DOSE — CLINICIAN CONTROLLED",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0983"
+  },
+  {
+   "id": "high_potassium_suxamethonium",
+   "when": [
+    [
+     "high_potassium",
+     "need_suxamethonium"
+    ]
+   ],
+   "clash": "High potassium + needs suxamethonium (an anaesthetic relaxant)",
+   "why": "Raises potassium further",
+   "safer": "Anaesthetist chooses a different drug; correct potassium first",
+   "decided_by": "Anaesthetist",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0984"
+  },
+  {
+   "id": "full_stomach_emergency",
+   "when": [
+    [
+     "full_stomach",
+     "urgent_surgery"
+    ]
+   ],
+   "clash": "Full stomach + emergency surgery",
+   "why": "Aspiration vs delay of surgery",
+   "safer": "RSI; don't wait unless safe to",
+   "decided_by": "Anaesthetist + surgeon",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0985"
+  },
+  {
+   "id": "low_oxygen_copd",
+   "when": [
+    [
+     "low_oxygen",
+     "co2_retainer"
+    ]
+   ],
+   "clash": "Low oxygen + long-term lung disease (CO2 retainer)",
+   "why": "Too much oxygen can be harmful",
+   "safer": "Target 88–92%; blood gas",
+   "decided_by": "Senior",
+   "tag": "",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0986"
+  },
+  {
+   "id": "confused_consent_emergency",
+   "when": [
+    [
+     "confused",
+     "consent_needed",
+     "urgent_surgery"
+    ]
+   ],
+   "clash": "Confused patient + consent needed + emergency",
+   "why": "No capacity",
+   "safer": "Treat cause; if still lacking and urgent → emergency/best-interests route",
+   "decided_by": "Senior",
+   "tag": "CONTEXT-DEPENDENT — INSTITUTIONAL PROTOCOL / CLINICIAN CONFIRMATION",
+   "problem_type": "safety_blocker",
+   "ref": "SR-0987"
+  }
+ ],
+ "plans": [
+  {
+   "id": "warfarin",
+   "words": [
+    "warfarin"
+   ],
+   "plan": "5 days; check INR the day before (aim 1.5 or less)",
+   "care": "",
+   "ref": "SR-1313"
+  },
+  {
+   "id": "doacs",
+   "words": [
+    "apixaban",
+    "rivaroxaban",
+    "edoxaban"
+   ],
+   "plan": "1 day (low-moderate bleeding risk surgery) or 2 days (high bleeding risk), if kidneys OK",
+   "care": "",
+   "ref": "SR-1314"
+  },
+  {
+   "id": "dabigatran",
+   "words": [
+    "dabigatran"
+   ],
+   "plan": "1–2 days with good kidneys; 2–4 days if kidneys weaker",
+   "care": "",
+   "ref": "SR-1315"
+  },
+  {
+   "id": "aspirin",
+   "words": [
+    "aspirin"
+   ],
+   "plan": "Usually continue if for heart/stroke protection; may stop 7 days if only 'just in case'",
+   "care": "",
+   "ref": "SR-1316"
+  },
+  {
+   "id": "p2y12",
+   "words": [
+    "clopidogrel",
+    "ticagrelor",
+    "prasugrel"
+   ],
+   "plan": "5 / 3–5 / 7 days",
+   "care": "do not stop without the heart team",
+   "ref": "SR-1317"
+  },
+  {
+   "id": "metformin",
+   "words": [
+    "metformin"
+   ],
+   "plan": "Normal if only one meal missed",
+   "care": "",
+   "ref": "SR-1319"
+  },
+  {
+   "id": "sulfonylureas",
+   "words": [
+    "gliclazide",
+    "glimepiride",
+    "glipizide"
+   ],
+   "plan": "Omit",
+   "care": "Cause low sugar when fasting",
+   "ref": "SR-1320"
+  },
+  {
+   "id": "sglt2",
+   "words": [
+    "dapagliflozin",
+    "empagliflozin",
+    "canagliflozin"
+   ],
+   "plan": "Omit; check ketones if unwell",
+   "care": "Can cause DKA even with normal sugar",
+   "ref": "SR-1321"
+  },
+  {
+   "id": "glp1",
+   "words": [
+    "semaglutide",
+    "liraglutide",
+    "dulaglutide"
+   ],
+   "plan": "See fasting Part 9",
+   "care": "Slow stomach emptying → aspiration risk",
+   "ref": "SR-1322"
+  },
+  {
+   "id": "dpp4",
+   "words": [
+    "sitagliptin",
+    "linagliptin",
+    "vildagliptin"
+   ],
+   "plan": "Omit or take per local",
+   "care": "",
+   "ref": "SR-1323"
+  },
+  {
+   "id": "insulin_long",
+   "words": [
+    "glargine",
+    "detemir",
+    "degludec",
+    "basal insulin"
+   ],
+   "plan": "",
+   "care": "Avoid low sugar while fasting",
+   "ref": "SR-1324"
+  },
+  {
+   "id": "ace_arb",
+   "words": [
+    "ramipril",
+    "lisinopril",
+    "losartan",
+    "candesartan",
+    "enalapril"
+   ],
+   "plan": "Often omit for 24 h before surgery",
+   "care": "Can cause low BP when going to sleep",
+   "ref": "SR-1326"
+  },
+  {
+   "id": "beta_blockers",
+   "words": [
+    "bisoprolol",
+    "atenolol",
+    "metoprolol",
+    "propranolol"
+   ],
+   "plan": "Usually continued; avoid stopping suddenly; not usually started on the day",
+   "care": "Stopping suddenly can cause fast heart/heart attack",
+   "ref": "SR-1327"
+  },
+  {
+   "id": "diuretics",
+   "words": [
+    "furosemide",
+    "bendroflumethiazide",
+    "indapamide",
+    "water tablet"
+   ],
+   "plan": "Usually omit on the morning",
+   "care": "Dehydration, low potassium",
+   "ref": "SR-1328"
+  },
+  {
+   "id": "statins_ccb",
+   "words": [
+    "atorvastatin",
+    "simvastatin",
+    "amlodipine"
+   ],
+   "plan": "Continue",
+   "care": "",
+   "ref": "SR-1329"
+  },
+  {
+   "id": "steroids",
+   "words": [
+    "prednisolone",
+    "hydrocortisone"
+   ],
+   "plan": "Continue + extra steroid cover if the patient has adrenal insufficiency or long-term glucocorticoid use",
+   "care": "The body can't make its own stress steroids → collapse risk ('adrenal crisis')",
+   "ref": "SR-1330"
+  },
+  {
+   "id": "cocp_hrt",
+   "words": [
+    "combined pill",
+    "hrt",
+    "contraceptive pill"
+   ],
+   "plan": "for major surgery may stop 4 weeks before (NICE NG89); lap chole usually continue with clot prevention",
+   "care": "Oestrogen raises clot risk",
+   "ref": "SR-1331"
+  },
+  {
+   "id": "herbal",
+   "words": [
+    "herbal",
+    "ginkgo",
+    "garlic",
+    "ginseng"
+   ],
+   "plan": "Often stop 1–2 weeks before",
+   "care": "Bleeding risk",
+   "ref": "SR-1332"
+  },
+  {
+   "id": "epilepsy_parkinsons",
+   "words": [
+    "levodopa",
+    "carbamazepine",
+    "phenytoin",
+    "lamotrigine",
+    "levetiracetam",
+    "valproate"
+   ],
+   "plan": "Usually continued on time; specialist advice if any dose will be missed",
+   "care": "Fits / severe stiffness",
+   "ref": "SR-1333"
+  }
+ ],
+ "refs": [
+  "SR-0092",
+  "SR-0093"
+ ]
+}

@@ -88,6 +88,10 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    clash_doc = load_json(CONTENT / "clashes" / "clashes.json")
+    clrefs = set(clash_doc["refs"]) | {c["ref"] for c in clash_doc["clashes"]} | {c["ref"] for c in clash_doc["checks"]} | {p["ref"] for p in clash_doc["plans"]}
+    failed |= _report("clashes and medicine plans", [f"clashes.json: ref {r} not in register" for r in sorted(clrefs) if r not in register], f"{len(clrefs)} refs ok")
+
     sep_doc = load_json(CONTENT / "sepsis" / "sepsis.json")
     srefs = set(sep_doc["refs"]) | {c["ref"] for c in sep_doc["criteria"]} | {t["ref"] for t in sep_doc["timers"].values()}
     failed |= _report("sepsis tiers", [f"sepsis.json: ref {r} not in register" for r in sorted(srefs) if r not in register], f"{len(srefs)} refs ok")

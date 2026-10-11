@@ -50,6 +50,9 @@ namespace ProcSense.Core.Workflow.Steps
             return problem;
         }
 
+        /// <summary>A problem the engine found by itself (for example a treatment clash), not one the case lists.</summary>
+        public Problem AddProblem(string id, string type, string label) => Registry.Register(id, type, label);
+
         /// <summary>The trainee has dealt with the problem. Emergency mode ends when no life threat is left.</summary>
         public bool Resolve(string problemId)
         {
