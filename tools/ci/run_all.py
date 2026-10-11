@@ -83,6 +83,7 @@ def main(argv: list[str]) -> int:
         ("investigation indications up to date (17 tests, planned and emergency)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_indications.py", "--check"])),
         ("NEWS2 chart up to date (scale 1 and 2, response bands)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_news2.py", "--check"])),
         ("fasting table up to date (clear 2 h, milk 6 h, light meal 6 h, heavy meal 8 h)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_fasting.py", "--check"])),
+        ("treatment library up to date (17 treatments, checks, doses only with a reviewer)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_treatments.py", "--check"])),
         ("case file tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_case_files.py"])),
         ("EXP-DATA-2: generated lab values stay in their band (10,000 seeds)", lambda: run(["uv", "run", "--project", "tools", "tools/content/exp_data2.py"])),
         ("equipment sheets up to date (53 items)", lambda: run(["uv", "run", "--project", "tools", "tools/content/equipment_sheets.py", "--check"])),

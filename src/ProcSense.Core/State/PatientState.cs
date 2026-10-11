@@ -104,6 +104,30 @@ namespace ProcSense.Core.State
         public string Interpretation { get; set; } = "";
     }
 
+    /// <summary>
+    /// One treatment the trainee asked for (the Nth time for that treatment): REQUESTED (waiting for the clinician), CONFIRMED (the clinician confirmed it, waiting for the nurse), ADMINISTERED (the nurse gave it)
+    /// or CHALLENGED (the nurse refused it and said why). The trainee only ever requests; the clinician and the nurse are the engine. Lines are what they said; Items are the checks that failed
+    /// (kept for the scorer, never shown); DoseText is shown strictly by the treatment's dose policy.
+    /// </summary>
+    public sealed class MedicineOrder
+    {
+        public int Id { get; set; }
+        public string Treatment { get; set; } = "";
+        public string Label { get; set; } = "";
+        public string Kind { get; set; } = "";
+        public string State { get; set; } = "";
+        /// <summary>The reason the trainee gave (free text), or "" when none was given.</summary>
+        public string Indication { get; set; } = "";
+        /// <summary>The oxygen device asked for, or "".</summary>
+        public string Device { get; set; } = "";
+        public long RequestedStep { get; set; }
+        public long ConfirmAtStep { get; set; }
+        public long AdministerAtStep { get; set; }
+        public string DoseText { get; set; } = "";
+        public List<string> Lines { get; } = new List<string>();
+        public List<ProcSense.Core.Clinical.CheckItem> Items { get; } = new List<ProcSense.Core.Clinical.CheckItem>();
+    }
+
     /// <summary>What the trainee has found out and where the patient is.</summary>
     public sealed class ClinicalLayer
     {
@@ -198,6 +222,9 @@ namespace ProcSense.Core.State
 
         /// <summary>Every test ordered, oldest first.</summary>
         public List<InvestigationOrder> Investigations { get; } = new List<InvestigationOrder>();
+
+        /// <summary>Treatments requested, oldest first (the Treat tab's pending orders list).</summary>
+        public List<MedicineOrder> Orders { get; } = new List<MedicineOrder>();
 
         /// <summary>The NEWS2 scores so far, oldest first (clinical.news2[]).</summary>
         public List<News2Record> News2 { get; } = new List<News2Record>();

@@ -115,5 +115,51 @@ def ref_problems(doc: dict, register: dict[str, dict], name: str) -> list[str]:
     return problems
 
 
+def treatment_problems(doc: dict, register: dict[str, dict], medicine_ids: set[str]) -> list[str]:
+    """content/treatments.json: every register id exists, every medicine treatment names a medicines.csv row, a dose text always has its source and reviewer
+    (rule DOSE_REQUIRES_REVIEWER) and only an EDUCATIONAL_EXAMPLE row may have one, every treatment names the checks it needs and no check is implied."""
+    problems: list[str] = []
+    check_ids = [c["id"] for c in doc["checks"]]
+    effect_ids = {e["id"] for e in doc["effects"]}
+    prerequisite_ids = {p["id"] for p in doc["prerequisites"]}
+    section_refs = list(doc.get("refs", [])) + [doc["workflow"]["ref"]] + [v["ref"] for v in doc["dose_labels"].values()] + list(doc["allergy"]["refs"])
+    for rid in section_refs:
+        if rid not in register:
+            problems.append(f"treatments: ref {rid} not in register")
+    if doc["workflow"]["confirm_seconds"] <= 0 or doc["workflow"]["administer_seconds"] <= 0:
+        problems.append("treatments: the workflow delays must be more than 0 seconds")
+    groups = {g["id"] for g in doc["allergy"]["groups"]}
+    seen: set[str] = set()
+    for t in doc["treatments"]:
+        where = f"treatments:{t['id']}"
+        if t["id"] in seen:
+            problems.append(f"{where}: duplicate id")
+        seen.add(t["id"])
+        refs = list(t["refs"]) + [r["ref"] for r in t["restricted_by"]] + ([t["medicine"]["ref"]] if t.get("medicine") else []) + ([t["label_row"]["ref"]] if t.get("label_row") else [])
+        problems += [f"{where}: ref {r} not in register" for r in sorted(set(refs)) if r not in register]
+        if t["kind"] in ("medicine", "fluid") and (not t.get("medicine") or t["medicine"]["id"] not in medicine_ids):
+            problems.append(f"{where}: names no row of medicines.csv")
+        dose = t.get("dose_display")
+        if dose is not None:
+            if not str(dose.get("reviewer", "")).strip():
+                problems.append(f"{where}: DOSE_REQUIRES_REVIEWER: a dose text needs a reviewer")
+            if not str(dose.get("source", "")).strip():
+                problems.append(f"{where}: DOSE_REQUIRES_REVIEWER: a dose text needs a source")
+            if t["dose_policy"] != "EDUCATIONAL_EXAMPLE":
+                problems.append(f"{where}: only an EDUCATIONAL_EXAMPLE treatment may show a dose")
+        elif t["dose_policy"] == "EDUCATIONAL_EXAMPLE":
+            problems.append(f"{where}: an EDUCATIONAL_EXAMPLE treatment needs its dose text")
+        if not t["required_checks"]:
+            problems.append(f"{where}: lists no checks (none are implied)")
+        problems += [f"{where}: unknown check {c}" for c in t["required_checks"] if c not in check_ids]
+        problems += [f"{where}: unknown effect {e}" for e in t["effects"] if e not in effect_ids]
+        problems += [f"{where}: unknown prerequisite {r}" for r in t["requires"] if r not in prerequisite_ids]
+        if t.get("allergen_group") and t["allergen_group"] not in groups:
+            problems.append(f"{where}: allergy group {t['allergen_group']} is not defined")
+        if ("restriction" in t["required_checks"]) != bool(t["restricted_by"]):
+            problems.append(f"{where}: the restriction check and the restriction list must go together")
+    return problems
+
+
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))

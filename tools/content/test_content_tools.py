@@ -151,5 +151,72 @@ class ExistingChecksStillCatchMissingRefs(unittest.TestCase):
         self.assertEqual(checks.case_problems(doc, REGISTER), [])
 
 
+class TreatmentChecks(unittest.TestCase):
+    """content/treatments.json: the dose policy (DOSE_REQUIRES_REVIEWER) and the explicit checks (p0-clinical-logic-s10)."""
+
+    @classmethod
+    def setUpClass(cls):
+        root = Path(__file__).resolve().parents[2]
+        cls.doc = checks.load_json(root / "content" / "treatments.json")
+        cls.register = checks.load_register(root / "docs" / "research" / "source_register.csv")
+        import csv
+        with open(root / "content" / "medicines.csv", encoding="utf-8", newline="") as f:
+            cls.medicines = {r["id"] for r in csv.DictReader(f)}
+
+    def problems(self, doc):
+        return checks.treatment_problems(doc, self.register, self.medicines)
+
+    def treatment(self, doc, tid):
+        return next(t for t in doc["treatments"] if t["id"] == tid)
+
+    def test_the_real_library_is_clean(self):
+        self.assertEqual(self.problems(self.doc), [])
+
+    def test_a_dose_without_a_reviewer_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-PARACETAMOL")["dose_display"]["reviewer"] = ""
+        self.assertTrue(any("DOSE_REQUIRES_REVIEWER" in p for p in self.problems(doc)))
+
+    def test_a_dose_on_a_patient_specific_treatment_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-OPIOID")["dose_display"] = {"text": "a number", "source": "x", "reviewer": "y"}
+        self.assertTrue(any("only an EDUCATIONAL_EXAMPLE" in p for p in self.problems(doc)))
+
+    def test_a_treatment_with_no_listed_checks_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-OXYGEN")["required_checks"] = []
+        self.assertTrue(any("none are implied" in p for p in self.problems(doc)))
+
+    def test_an_unknown_check_effect_or_prerequisite_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        t = self.treatment(doc, "TR-OPIOID")
+        t["required_checks"].append("vibes"); t["effects"].append("EFF-MAGIC"); t["requires"].append("central_line")
+        found = " ".join(self.problems(doc))
+        self.assertIn("unknown check vibes", found)
+        self.assertIn("unknown effect EFF-MAGIC", found)
+        self.assertIn("unknown prerequisite central_line", found)
+
+    def test_a_missing_register_row_or_medicine_row_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-NSAID")["refs"].append("SR-9999")
+        self.treatment(doc, "TR-NSAID")["medicine"]["id"] = "not_a_medicine"
+        found = " ".join(self.problems(doc))
+        self.assertIn("SR-9999", found)
+        self.assertIn("names no row of medicines.csv", found)
+
+    def test_an_undefined_allergy_group_or_a_missing_workflow_register_row_is_an_error(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-ABX-S2")["allergen_group"] = "latex"
+        doc["workflow"]["ref"] = "SR-9998"
+        found = " ".join(self.problems(doc))
+        self.assertIn("allergy group latex is not defined", found)
+        self.assertIn("SR-9998", found)
+
+    def test_the_restriction_check_and_the_restriction_list_go_together(self):
+        doc = copy.deepcopy(self.doc)
+        self.treatment(doc, "TR-NSAID")["restricted_by"] = []
+        self.assertTrue(any("go together" in p for p in self.problems(doc)))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -64,6 +64,7 @@ namespace ProcSense.Core.Content
             Investigations = investigations ?? ProcSense.Core.Clinical.InvestigationTables.Empty;
             Imaging = imaging ?? ProcSense.Core.Clinical.ImagingTables.Empty;
             Problems = problems ?? ProcSense.Core.Clinical.ProblemTables.Empty;
+            Treatments = treatments ?? ProcSense.Core.Clinical.TreatmentTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -93,6 +94,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Clinical.ImagingTables Imaging { get; }
         /// <summary>The six problem types, the 7-step ladder and the priorities (content/problems/problems.json).</summary>
         public ProcSense.Core.Clinical.ProblemTables Problems { get; }
+        /// <summary>The treatment library: each treatment with its required checks, prerequisites, restrictions and effect ids (content/treatments.json).</summary>
+        public ProcSense.Core.Clinical.TreatmentTables Treatments { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>
         public IReadOnlyDictionary<string, CaseFile> CaseFiles { get; }
     }

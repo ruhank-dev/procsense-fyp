@@ -146,6 +146,9 @@ jobs:
       - name: Fasting table is up to date (clear 2 h, milk 6 h, light meal 6 h, heavy meal 8 h)
         run: uv run --project tools tools/content/build_fasting.py --check
 
+      - name: Treatment library is up to date (17 treatments, checks, doses only with a reviewer)
+        run: uv run --project tools tools/content/build_treatments.py --check
+
       - name: Case file tests
         run: uv run --project tools tools/content/test_case_files.py
 
