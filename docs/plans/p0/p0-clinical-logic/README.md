@@ -37,3 +37,11 @@ Developer: all.
 
 ## Sources
 Walkthrough Parts 4–10, 14B, 17; Implementation Guide B-M12, B-M13, B-M14, B-M20, B-R17, B-R18.
+
+## Experiment log
+
+### EXP-CL-3: is the Python rule-evaluator twin worth it? (11 Oct 2026)
+- **Built:** `tools/content/jsonlogic.py` (about 250 lines, no `eval()`), run against the same `content/rules/vectors.json` as the C# evaluator: 156 vectors and 14 error vectors agree in both (T-JL1, `tools/content/test_jsonlogic.py`, CI row 7ad). The first run agreed everywhere.
+- **Used:** `validate.py` compiles every workflow rule with the twin and refuses a rule that reads a variable the engine does not provide (the list is read from `CaseGraphSubsystem.cs`, so it cannot go stale), an unknown operator, a wrong argument count or a computed variable name. The schema checks none of these.
+- **Evidence so far:** 0 real content errors caught (all 20 workflow and fixture rules were already correct); 4 injected errors of the kinds above are all caught by the tests.
+- **Decision:** keep, provisionally. It costs one file and one CI row, the scenario composer (P1) will need to evaluate rules in Python, and the variable-name check is something the C# loader cannot do at content time. Review again after the two-week mark of content work: if it has still caught no real error and the composer calls the C# CLI instead, delete `jsonlogic.py`, its test and the validate hook, and note it here.

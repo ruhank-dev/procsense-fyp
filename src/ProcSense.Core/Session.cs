@@ -70,6 +70,10 @@ namespace ProcSense.Core
         /// <summary>The result review system (critical calls, interpretation), or null when the session runs without one.</summary>
         internal Workflow.Steps.ResultReviewSubsystem? ResultReview { get; set; }
         internal Workflow.Steps.ProblemsSubsystem? ProblemsStep { get; set; }
+        internal Workflow.Steps.SepsisSubsystem? SepsisStep { get; set; }
+
+        /// <summary>Sepsis tiers, timers and lateness for the debrief (null when the session has no sepsis step).</summary>
+        public Workflow.Steps.SepsisReport? Sepsis => SepsisStep?.Report();
 
         /// <summary>The problems found so far in this case, in the order to deal with them (null when the session has no problems step).</summary>
         public Clinical.ProblemRegistry? Problems => ProblemsStep?.Registry;

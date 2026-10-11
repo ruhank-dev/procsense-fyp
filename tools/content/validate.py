@@ -8,7 +8,7 @@ import csv
 import sys
 from pathlib import Path
 
-from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems
+from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems, workflow_rule_problems, engine_rule_keys
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -42,7 +42,7 @@ def main() -> int:
     workflow_files = sorted((CONTENT / "workflow").glob("*.json")) + sorted((ROOT / "tests" / "fixtures" / "workflow").glob("*.json"))
     for path in workflow_files:
         doc = load_json(path)
-        problems = schema_errors(doc, workflow_schema) + workflow_problems(doc, register)
+        problems = schema_errors(doc, workflow_schema) + workflow_problems(doc, register) + workflow_rule_problems(doc, engine_rule_keys(ROOT / "src" / "ProcSense.Core" / "Workflow" / "CaseGraphSubsystem.cs"))
         failed |= _report("workflow " + path.stem, problems, f"{len(doc.get('goals', []))} goals, {len(doc.get('decision_points', []))} decisions, {len(doc.get('blockers', []))} blockers")
 
     flow = load_json(CONTENT / "flow" / "flow_maps.json")
@@ -87,6 +87,10 @@ def main() -> int:
     intents_doc = load_json(CONTENT / "npc" / "anaesthetist_intents.json")
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
+
+    sep_doc = load_json(CONTENT / "sepsis" / "sepsis.json")
+    srefs = set(sep_doc["refs"]) | {c["ref"] for c in sep_doc["criteria"]} | {t["ref"] for t in sep_doc["timers"].values()}
+    failed |= _report("sepsis tiers", [f"sepsis.json: ref {r} not in register" for r in sorted(srefs) if r not in register], f"{len(srefs)} refs ok")
 
     prob_doc = load_json(CONTENT / "problems" / "problems.json")
     prefs = set(prob_doc["refs"]) | {t["ref"] for t in prob_doc["types"]} | {x["ref"] for x in prob_doc["ladder"]} | {x["ref"] for x in prob_doc["priorities"]}

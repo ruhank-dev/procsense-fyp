@@ -1,9 +1,12 @@
 """Proof-of-truth checks for content files: schema validity, register references, and ref coverage."""
 import csv
 import json
+import re
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
+
+import jsonlogic
 
 # Keys that describe structure, not clinical facts — they don't need a source reference.
 NON_CLINICAL_KEYS = {"id", "scenario", "refs", "topic", "wording", "volunteered"}
@@ -75,6 +78,38 @@ def csv_problems(path: Path, register: dict[str, dict]) -> list[str]:
             if not ids:
                 problems.append(f"{path.name} line {n}: no source reference")
             problems += [f"{path.name} line {n}: ref {rid} not in register" for rid in ids if rid not in register]
+    return problems
+
+
+RULE_FIELDS = ("applies_if", "complete_if", "active_if", "blocked_if", "trigger")
+
+
+def engine_rule_keys(source: Path) -> set[str]:
+    """The data keys the engine gives every workflow rule: the string keys set in RuleData.Build in CaseGraphSubsystem.cs."""
+    text = source.read_text(encoding="utf-8")
+    build = text[text.index("Dictionary<string, object?> Build(Session s)"):]
+    build = build[:build.index("ReadinessSubsystem")]
+    return set(re.findall(r'\["(\w+)"\] =', build))
+
+
+def workflow_rule_problems(doc: dict, known_keys: set[str]) -> list[str]:
+    """Evaluated by the Python twin of the rule evaluator (p0-clinical-logic-s02): every rule must compile in the subset and may only read keys the engine provides."""
+    problems = []
+    for kind in ("goals", "decision_points", "blockers"):
+        for e in doc.get(kind, []):
+            for field in RULE_FIELDS:
+                if field not in e or isinstance(e[field], bool):
+                    continue
+                where = f"{kind} {e.get('id')} {field}"
+                try:
+                    jsonlogic.compile_rule(e[field], where)
+                except jsonlogic.RuleError as err:
+                    problems.append(str(err))
+                    continue
+                keys: set[str] = set()
+                if not jsonlogic.reads(e[field], keys):
+                    problems.append(f"{where}: reads a variable the engine cannot know in advance")
+                problems += [f"{where}: reads '{k}', which the engine does not provide (it provides {', '.join(sorted(known_keys))})" for k in sorted(keys - known_keys)]
     return problems
 
 

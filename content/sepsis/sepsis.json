@@ -1,0 +1,123 @@
+{
+ "tiers": [
+  {
+   "id": "high",
+   "rank": 3
+  },
+  {
+   "id": "moderate",
+   "rank": 2
+  },
+  {
+   "id": "low",
+   "rank": 1
+  },
+  {
+   "id": "very_low",
+   "rank": 0
+  }
+ ],
+ "criteria": [
+  {
+   "id": "high.criteria",
+   "tier": "high",
+   "news2_min": 7,
+   "news2_max": null,
+   "single3": false,
+   "ref": "SR-0400"
+  },
+  {
+   "id": "high.single3",
+   "tier": "high",
+   "news2_min": 5,
+   "news2_max": 6,
+   "single3": true,
+   "ref": "SR-0401"
+  },
+  {
+   "id": "moderate.criteria",
+   "tier": "moderate",
+   "news2_min": 5,
+   "news2_max": 6,
+   "single3": false,
+   "ref": "SR-0402"
+  },
+  {
+   "id": "moderate.single3",
+   "tier": "moderate",
+   "news2_min": 3,
+   "news2_max": 4,
+   "single3": true,
+   "ref": "SR-0403"
+  },
+  {
+   "id": "low.criteria",
+   "tier": "low",
+   "news2_min": 1,
+   "news2_max": 4,
+   "single3": false,
+   "ref": "SR-0404"
+  },
+  {
+   "id": "very_low.criteria",
+   "tier": "very_low",
+   "news2_min": 0,
+   "news2_max": 0,
+   "single3": false,
+   "ref": "SR-0405"
+  }
+ ],
+ "timers": {
+  "high": {
+   "ref": "SR-0406",
+   "reassess_minutes_min": 30,
+   "reassess_minutes_max": 30,
+   "antibiotics_hours": 1,
+   "review_hours": 1,
+   "fluids_hours": 1
+  },
+  "low": {
+   "ref": "SR-0408",
+   "reassess_minutes_min": 240,
+   "reassess_minutes_max": 360,
+   "antibiotics_hours": 6
+  },
+  "moderate": {
+   "ref": "SR-0407",
+   "reassess_minutes_min": 60,
+   "reassess_minutes_max": 60,
+   "antibiotics_hours": 3,
+   "review_hours": 1,
+   "lactate": true
+  },
+  "very_low": {
+   "ref": "SR-0409"
+  }
+ },
+ "concern_raises_by": 1,
+ "infection_cases": {
+  "SC-1": "perforated appendix with sepsis",
+  "SC-11": "sepsis from appendicitis",
+  "SC-14": "appendicitis",
+  "SC-19": "sepsis",
+  "SC-3": "appendicitis in pregnancy with fever",
+  "SC-8": "septic shock",
+  "SC-9": "cholangitis with sepsis",
+  "STK-S1-D": "high-risk sepsis from an infected bile duct",
+  "STK-S2-A": "appendicitis needing source control",
+  "STK-S2-B": "sepsis with a perforated appendix",
+  "STK-S2-D": "appendicitis in pregnancy",
+  "VAR-S1-E": "acute cholecystitis",
+  "VAR-S2-G": "appendicitis with dehydration",
+  "VAR-S2-H": "appendicitis in pregnancy",
+  "VAR-S2-I": "appendicitis in a minor",
+  "VAR-S2-J": "appendicitis behind a urine-infection story",
+  "VAR-S2-L": "appendicitis (antibiotics-only is an option)",
+  "VAR-S2-PC": "probable appendicitis",
+  "VAR-S2-PD": "perforated appendix with sepsis (Mr Usman)"
+ },
+ "refs": [
+  "SR-0090",
+  "SR-0091"
+ ]
+}

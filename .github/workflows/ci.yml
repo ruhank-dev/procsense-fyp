@@ -101,6 +101,9 @@ jobs:
       - name: Traceability is up to date and every walkthrough part is accounted for
         run: uv run --project tools tools/content/trace.py --check
 
+      - name: Rule evaluator twin tests (same vectors as the C# evaluator)
+        run: uv run --project tools tools/content/test_jsonlogic.py
+
       - name: Content tools tests
         run: uv run --project tools tools/content/test_content_tools.py
 
@@ -127,6 +130,9 @@ jobs:
 
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
+
+      - name: Sepsis tiers and timers are up to date (NG253 criteria, timers, infection cases)
+        run: uv run --project tools tools/content/build_sepsis.py --check
 
       - name: Problem types and ladder are up to date (6 types, 7 rungs, P1 to P4)
         run: uv run --project tools tools/content/build_problems.py --check
