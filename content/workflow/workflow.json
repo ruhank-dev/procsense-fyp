@@ -243,6 +243,13 @@
       "blocked_if": { "!": [ { "in": [ "ward.checklist_signed", { "var": "flags" } ] } ] },
       "message": "The ward checklist is not signed: complete and sign it before the transfer.",
       "refs": [ "SR-2830" ]
+    },
+    {
+      "id": "B-OR",
+      "check_at": [ "complete_time_out" ],
+      "blocked_if": { "!": [ { "in": [ "or.ready", { "var": "flags" } ] } ] },
+      "message": "The theatre is not ready: check every station, report and replace any fault, then declare the theatre ready.",
+      "refs": [ "SR-2832" ]
     }
   ]
 }

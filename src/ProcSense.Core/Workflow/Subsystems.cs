@@ -26,6 +26,7 @@ namespace ProcSense.Core.Workflow
             new ClashSubsystem(content),
             new DecisionSubsystem(content),
             new WardChecklistSubsystem(content),
+            new OrReadinessSubsystem(content),
             new Physiology.DeteriorationSubsystem(content),
             new ProblemsSubsystem(content),
             new CaseGraphSubsystem(content.Workflow),

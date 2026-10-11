@@ -74,6 +74,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.ClashSubsystem? ClashStep { get; set; }
         internal Workflow.Steps.DecisionSubsystem? DecisionStep { get; set; }
         internal Workflow.Steps.WardChecklistSubsystem? WardStep { get; set; }
+        internal Workflow.OrReadinessSubsystem? OrStep { get; set; }
+
+        /// <summary>The theatre stations and the readiness of the theatre (null when the session has no theatre step).</summary>
+        public Workflow.OrReadinessSubsystem? Or => OrStep;
 
         /// <summary>The ward checklist: what is ticked, whether it is signed (null when the session has no ward step).</summary>
         public Workflow.Steps.WardChecklistSubsystem? Ward => WardStep;

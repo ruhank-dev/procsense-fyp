@@ -1,0 +1,201 @@
+{
+ "stations": [
+  {
+   "id": "anaesthetic_machine",
+   "order": 1,
+   "label": "Anaesthetic machine check done and logged",
+   "items": [
+    "machine check",
+    "check log signed"
+   ],
+   "owner": "trainee",
+   "critical": true,
+   "call": "anaesthetist",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "monitors",
+   "order": 2,
+   "label": "Monitors ready: oxygen (oximeter), blood pressure, ECG, carbon dioxide, temperature",
+   "items": [
+    "oximeter",
+    "blood pressure",
+    "ECG",
+    "carbon dioxide",
+    "temperature"
+   ],
+   "owner": "trainee",
+   "critical": true,
+   "call": "anaesthetist",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "suction",
+   "order": 3,
+   "label": "Suction working",
+   "items": [
+    "suction"
+   ],
+   "owner": "trainee",
+   "critical": true,
+   "call": "anaesthetist",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "oxygen_airway",
+   "order": 4,
+   "label": "Oxygen and airway equipment; difficult-airway trolley known",
+   "items": [
+    "oxygen",
+    "airway equipment",
+    "difficult-airway trolley"
+   ],
+   "owner": "trainee",
+   "critical": false,
+   "call": "anaesthetist",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "table",
+   "order": 5,
+   "label": "Operating table and padding",
+   "items": [
+    "table",
+    "padding"
+   ],
+   "owner": "npc_verified",
+   "critical": false,
+   "call": "senior",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "lap_tower",
+   "order": 6,
+   "label": "Keyhole tower: camera, light and gas pump (insufflator)",
+   "items": [
+    "camera",
+    "light",
+    "gas pump"
+   ],
+   "owner": "trainee",
+   "critical": false,
+   "call": "senior",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "co2_cylinder",
+   "order": 7,
+   "label": "CO2 gas cylinder with a spare; instruments and an open set in case of conversion",
+   "items": [
+    "CO2 cylinder",
+    "spare cylinder",
+    "instruments",
+    "open set"
+   ],
+   "owner": "trainee",
+   "critical": false,
+   "call": "senior",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "diathermy",
+   "order": 8,
+   "label": "Diathermy with its sticky return pad",
+   "items": [
+    "diathermy",
+    "return pad"
+   ],
+   "owner": "trainee",
+   "critical": false,
+   "call": "senior",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "warming",
+   "order": 9,
+   "label": "Warming device",
+   "items": [
+    "warming device"
+   ],
+   "owner": "trainee",
+   "critical": false,
+   "call": "anaesthetist",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "emergency_trolley",
+   "order": 10,
+   "label": "Emergency trolley and defibrillator checked",
+   "items": [
+    "emergency trolley",
+    "defibrillator"
+   ],
+   "owner": "npc_verified",
+   "critical": false,
+   "call": "anaesthetist",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "specimens_counts",
+   "order": 11,
+   "label": "Specimen pots and labels; count sheets",
+   "items": [
+    "specimen pots",
+    "labels",
+    "count sheets"
+   ],
+   "owner": "npc_verified",
+   "critical": false,
+   "call": "senior",
+   "required": true,
+   "ref": "SR-2832"
+  },
+  {
+   "id": "team_brief",
+   "order": 12,
+   "label": "Team brief if used locally",
+   "items": [
+    "team brief"
+   ],
+   "owner": "npc_verified",
+   "critical": false,
+   "call": "senior",
+   "required": false,
+   "ref": "SR-2832"
+  }
+ ],
+ "faults": {
+  "SC-18": {
+   "station": "lap_tower",
+   "what": "insufflator fault"
+  }
+ },
+ "replacement_delay_minutes": 15,
+ "substitute_theatre_in": [
+  "S2"
+ ],
+ "items": {
+  "ready": "credit.or_ready",
+  "declared_not_ready": "major.or_declared_ready_not_ready",
+  "fault_ignored": "major.or_fault_ignored",
+  "fault_reported": "credit.or_fault_reported",
+  "critical_unchecked": "major.or_critical_station_unchecked",
+  "substitute": "info.substitute_theatre_used"
+ },
+ "ready_flag": "or.ready",
+ "fault_event": "E-OR-FAULT",
+ "refs": [
+  "SR-2832",
+  "SR-2833"
+ ]
+}

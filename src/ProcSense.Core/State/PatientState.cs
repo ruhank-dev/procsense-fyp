@@ -229,6 +229,9 @@ namespace ProcSense.Core.State
         /// <summary>The NEWS2 scores so far, oldest first (clinical.news2[]).</summary>
         public List<News2Record> News2 { get; } = new List<News2Record>();
 
+        /// <summary>The state of each theatre station (unchecked, ready, fault, replacing). Empty until the theatre step first runs, so a session that never reaches theatre keeps the hash it always had.</summary>
+        public SortedDictionary<string, string> OrStations { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
+
         /// <summary>Step 5: the risk assessment, anaesthetic review and readiness decision.</summary>
         public RiskState Risk { get; } = new RiskState();
     }

@@ -88,6 +88,10 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    or_doc = load_json(CONTENT / "or" / "or_requirements.json")
+    orrefs = set(or_doc["refs"]) | {s["ref"] for s in or_doc["stations"]}
+    failed |= _report("theatre readiness", [f"or_requirements.json: ref {r} not in register" for r in sorted(orrefs) if r not in register], f"{len(or_doc['stations'])} stations, {len(orrefs)} refs ok")
+
     ward_doc = load_json(CONTENT / "ward" / "ward_checklist.json")
     wrefs = set(ward_doc["refs"]) | {i["ref"] for i in ward_doc["items"]}
     ward_problems = [f"ward_checklist.json: ref {r} not in register" for r in sorted(wrefs) if r not in register] + ward_rule_problems(ward_doc, engine_rule_keys(ROOT / "src" / "ProcSense.Core" / "Workflow" / "CaseGraphSubsystem.cs"))

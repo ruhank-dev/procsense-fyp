@@ -45,6 +45,8 @@ namespace ProcSense.Core.Observation
     public sealed record ObservedPhone(string State, string Message);
 
     /// <summary>A treatment the trainee asked for: its state (REQUESTED, CONFIRMED, ADMINISTERED, CHALLENGED), what the clinician and the nurse said, and the dose line once the clinician has confirmed (only under its dose policy).</summary>
+    public sealed record ObservedOrStation(string Id, string State);
+
     public sealed record ObservedOrder(int Id, string Treatment, string Label, string State, string Device, string Dose, IReadOnlyList<string> Lines);
 
     public sealed record ObservedNews2(string At, int Total, bool Single3, string Tier, string Frequency, string Responder, string Note);
@@ -64,7 +66,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -271,6 +273,18 @@ namespace ProcSense.Core.Observation
                 }
                 sb.Append(']');
             }
+            if (OrStations != null && OrStations.Count > 0)   // only once the theatre step has run
+            {
+                sb.Append(",\"or\":[");
+                for (int i = 0; i < OrStations.Count; i++)
+                {
+                    if (i > 0) sb.Append(',');
+                    sb.Append("{\"id\":"); JsonText.Quote(sb, OrStations[i].Id);
+                    sb.Append(",\"state\":"); JsonText.Quote(sb, OrStations[i].State);
+                    sb.Append('}');
+                }
+                sb.Append(']');
+            }
             return sb.Append('}').ToString();
         }
 
@@ -399,7 +413,8 @@ namespace ProcSense.Core.Observation
                 practice ? c.News2.Select(n => new ObservedNews2(At(s, n.Step), n.Total, n.Single3, n.Tier, n.Frequency, n.Responder, n.Note)).ToList() : new List<ObservedNews2>(),
                 c.TraineeLocation, c.Transport == null ? null : new ObservedTransport(c.Transport.State, c.Transport.To, c.Transport.Mode, c.Transport.Escort, c.Transport.Monitoring, c.Transport.Oxygen, c.Transport.Arrives, c.Transport.Message),
                 BuildInvestigations(s, practice), BuildPhone(s.Patient.Clinical),
-                c.Orders.Select(o => new ObservedOrder(o.Id, o.Treatment, o.Label, o.State, o.Device, o.State == "REQUESTED" ? "" : o.DoseText, o.Lines.ToList())).ToList());
+                c.Orders.Select(o => new ObservedOrder(o.Id, o.Treatment, o.Label, o.State, o.Device, o.State == "REQUESTED" ? "" : o.DoseText, o.Lines.ToList())).ToList(),
+                c.OrStations.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList());
         }
     }
 }
