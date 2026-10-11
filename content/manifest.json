@@ -1,10 +1,11 @@
 {
  "schema": 1,
- "content_hash": "f185f5452cb1ada9e8c022abc5d5280f3bdb4bf50794f48505d2b76e54aebd11",
- "files": 354,
- "bytes": 16654410,
+ "content_hash": "cb438c5d9744affb42affb990c6c30dafbf3f609bf608e9f4b3038e64b5ac8bf",
+ "files": 357,
+ "bytes": 16662434,
  "per_folder": {
   "(root)": 61,
+  "behaviour": 3,
   "case_files": 53,
   "cases": 1,
   "checklist": 1,
@@ -47,6 +48,18 @@
   "behaviour.json": {
    "bytes": 1242,
    "sha256": "2e1b851836e74f29d0ef0e0ca014c257fdf72eddc3ffb06a52c3cc1878e45909"
+  },
+  "behaviour/disclosure.json": {
+   "bytes": 114,
+   "sha256": "fc970e121cd577fa22e0ce3540373c3bf0997c0168fe217b2e5873830fa33220"
+  },
+  "behaviour/modes.json": {
+   "bytes": 1197,
+   "sha256": "24190d36d121c704b94c3c22ba735ee849ba530a469de3e64e8f51130cbb68a4"
+  },
+  "behaviour/transitions.json": {
+   "bytes": 6713,
+   "sha256": "2a5d743b9602b83002575f45f481b65b2b42df07309b585f7cae75e66838cea5"
   },
   "case_approvals.json": {
    "bytes": 25357,

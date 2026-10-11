@@ -88,6 +88,12 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    bh_t = load_json(CONTENT / "behaviour" / "transitions.json")
+    bh_m = load_json(CONTENT / "behaviour" / "modes.json")
+    bh_d = load_json(CONTENT / "behaviour" / "disclosure.json")
+    bhrefs = set(bh_t["refs"]) | {r["ref"] for r in bh_t["rules"]} | set(bh_m["refs"]) | set(bh_d["refs"])
+    failed |= _report("behaviour model", [f"behaviour: ref {r} not in register" for r in sorted(bhrefs) if r not in register], f"{len(bh_t['attributes'])} attributes, {len(bh_t['rules'])} transitions, {len(bh_m['modes'])} mode rules, {len(bhrefs)} refs ok")
+
     ph_model = load_json(CONTENT / "physio" / "model.json")
     ph_coup = load_json(CONTENT / "physio" / "couplings.json")
     ph_noise = load_json(CONTENT / "physio" / "noise.json")

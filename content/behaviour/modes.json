@@ -1,0 +1,80 @@
+{
+ "modes": [
+  {
+   "mode": "CONFUSED",
+   "attribute": "confusion",
+   "op": ">=",
+   "limit": 1,
+   "hysteresis": 0
+  },
+  {
+   "mode": "DROWSY",
+   "attribute": "sedation",
+   "op": ">=",
+   "limit": 2,
+   "hysteresis": 0
+  },
+  {
+   "mode": "IN_PAIN",
+   "attribute": "pain",
+   "op": ">=",
+   "limit": 6,
+   "hysteresis": 0.5
+  },
+  {
+   "mode": "NAUSEATED",
+   "attribute": "nausea",
+   "op": ">=",
+   "limit": 5,
+   "hysteresis": 0.5
+  },
+  {
+   "mode": "DISTRESSED",
+   "attribute": "fear",
+   "op": ">=",
+   "limit": 7,
+   "hysteresis": 0.5
+  },
+  {
+   "mode": "DISTRESSED",
+   "attribute": "anxiety",
+   "op": ">=",
+   "limit": 8,
+   "hysteresis": 0.5
+  },
+  {
+   "mode": "UNCOOPERATIVE",
+   "attribute": "cooperation",
+   "op": "<=",
+   "limit": 2,
+   "hysteresis": 0.5
+  },
+  {
+   "mode": "ANXIOUS",
+   "attribute": "anxiety",
+   "op": ">=",
+   "limit": 5,
+   "hysteresis": 0.5
+  }
+ ],
+ "default": "CALM",
+ "capacity": {
+  "confusion_at": 1,
+  "severe_pain_at": 8,
+  "strong_painkiller_minutes": 120,
+  "sodium_below": 125,
+  "sepsis_tiers": [
+   "moderate",
+   "high"
+  ],
+  "physio_flags": [
+   "confusion"
+  ]
+ },
+ "refs": [
+  "SR-2845",
+  "SR-2846",
+  "SR-0094",
+  "SR-0530"
+ ]
+}

@@ -1,0 +1,329 @@
+{
+ "attributes": [
+  {
+   "id": "anxiety",
+   "min": 0,
+   "max": 10,
+   "start": 3,
+   "driven_by": "explanation and reassurance lower it; unexplained actions and waits raise it"
+  },
+  {
+   "id": "trust",
+   "min": 0,
+   "max": 10,
+   "start": 5,
+   "driven_by": "introduction and honesty raise it; a dismissive reply or ignoring questions lowers it"
+  },
+  {
+   "id": "cooperation",
+   "min": 0,
+   "max": 10,
+   "start": 5,
+   "driven_by": "trust and understanding raise it; a dismissive reply lowers it"
+  },
+  {
+   "id": "understanding",
+   "min": 0,
+   "max": 10,
+   "start": 3,
+   "driven_by": "plain language and teach-back raise it; jargon lowers it"
+  },
+  {
+   "id": "pain",
+   "min": 0,
+   "max": 10,
+   "start": 0,
+   "driven_by": "read from the physiology (the pain score) and lowered by analgesia"
+  },
+  {
+   "id": "fear",
+   "min": 0,
+   "max": 10,
+   "start": 2,
+   "driven_by": "risks discussed without support raise it; reassurance lowers it; an approved event raises it"
+  },
+  {
+   "id": "frustration",
+   "min": 0,
+   "max": 10,
+   "start": 0,
+   "driven_by": "repeated questions and long waits raise it; analgesia lowers it"
+  },
+  {
+   "id": "confusion",
+   "min": 0,
+   "max": 3,
+   "start": 0,
+   "driven_by": "driven by the physiology (low oxygen, low sugar, sepsis) and by jargon"
+  },
+  {
+   "id": "willingness",
+   "min": 0,
+   "max": 10,
+   "start": 5,
+   "driven_by": "follows trust; gates the disclosure of sensitive facts"
+  }
+ ],
+ "persona": {
+  "communication_style": "talkative",
+  "question_frequency": 0.5,
+  "need_for_reassurance": 1.0,
+  "communication_difficulty": "none"
+ },
+ "persona_styles": [
+  "talkative",
+  "terse",
+  "anxious_questioning",
+  "stoic"
+ ],
+ "persona_difficulties": [
+  "none",
+  "language",
+  "hearing"
+ ],
+ "wait_minutes": 10,
+ "rules": [
+  {
+   "id": "introduce_self",
+   "trigger": "introduce_self",
+   "deltas": {
+    "trust": 1,
+    "anxiety": -1,
+    "willingness": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-0035",
+   "note": "introducing yourself first builds trust (rule L1-03)",
+   "question": ""
+  },
+  {
+   "id": "summarise",
+   "trigger": "summarise",
+   "deltas": {
+    "trust": 1,
+    "understanding": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-0036",
+   "note": "summarising builds trust and understanding (rule L2-05)",
+   "question": ""
+  },
+  {
+   "id": "explain_before_action",
+   "trigger": "explain_before_action",
+   "deltas": {
+    "understanding": 1,
+    "trust": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "appropriate explanation before an action",
+   "question": ""
+  },
+  {
+   "id": "jargon_understanding",
+   "trigger": "jargon",
+   "deltas": {
+    "understanding": -1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "poor communication or jargon lowers understanding",
+   "question": ""
+  },
+  {
+   "id": "jargon_confusion",
+   "trigger": "jargon",
+   "deltas": {
+    "confusion": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": {
+    "<=": [
+     {
+      "var": "understanding"
+     },
+     3
+    ]
+   },
+   "ref": "SR-2844",
+   "note": "and adds to confusion if understanding is already low",
+   "question": ""
+  },
+  {
+   "id": "unexplained_action",
+   "trigger": "unexplained_action",
+   "deltas": {
+    "anxiety": 1
+   },
+   "diminishing": 1.0,
+   "every": 2,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "every second unexplained action raises anxiety and the patient asks",
+   "question": "What are you doing?"
+  },
+  {
+   "id": "dismissive_reply",
+   "trigger": "dismissive_reply",
+   "deltas": {
+    "trust": -2,
+    "cooperation": -1,
+    "willingness": -1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "a dismissive reply to a question (T-BM5: trust -2, cooperation -1)",
+   "question": ""
+  },
+  {
+   "id": "reassure",
+   "trigger": "reassure",
+   "deltas": {
+    "anxiety": -1,
+    "fear": -1
+   },
+   "diminishing": 0.7,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "reassurance with a clear explanation, diminishing (anxiety 7, 6, 5.3, 4.8)",
+   "question": ""
+  },
+  {
+   "id": "long_wait",
+   "trigger": "long_wait",
+   "deltas": {
+    "anxiety": 1,
+    "frustration": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "a long unexplained wait, per interval",
+   "question": ""
+  },
+  {
+   "id": "approved_event",
+   "trigger": "approved_event",
+   "deltas": {
+    "fear": 2
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "an approved event fires (for example anaphylaxis)",
+   "question": ""
+  },
+  {
+   "id": "analgesia_given",
+   "trigger": "analgesia_given",
+   "deltas": {
+    "frustration": -1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "analgesia lowers irritability (the pain itself follows the physiology)",
+   "question": ""
+  },
+  {
+   "id": "answer_approved",
+   "trigger": "answer_approved",
+   "deltas": {
+    "trust": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "an approved answer to the patient's question (L9-03)",
+   "question": ""
+  },
+  {
+   "id": "answer_wrong",
+   "trigger": "answer_wrong",
+   "deltas": {
+    "trust": -1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "a wrong answer, or none (L9-03)",
+   "question": ""
+  },
+  {
+   "id": "teach_back_done",
+   "trigger": "teach_back",
+   "deltas": {
+    "understanding": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "teach-back checks and builds understanding",
+   "question": ""
+  },
+  {
+   "id": "false_reassurance",
+   "trigger": "false_reassurance",
+   "deltas": {
+    "anxiety": -1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "false reassurance: the patient relaxes (E9-B); honesty is scored by the consent step",
+   "question": ""
+  },
+  {
+   "id": "pressure",
+   "trigger": "pressure",
+   "deltas": {
+    "cooperation": -2,
+    "trust": -2,
+    "willingness": -2
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "pressure to consent is a professionalism failure",
+   "question": ""
+  },
+  {
+   "id": "risks_unsupported",
+   "trigger": "risks_unsupported",
+   "deltas": {
+    "fear": 1
+   },
+   "diminishing": 1.0,
+   "every": 1,
+   "when": null,
+   "ref": "SR-2844",
+   "note": "risks discussed without support raise fear",
+   "question": ""
+  }
+ ],
+ "refs": [
+  "SR-2843",
+  "SR-2844"
+ ]
+}

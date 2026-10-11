@@ -131,6 +131,12 @@ jobs:
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
 
+      - name: Behaviour model is up to date (attributes, transitions, modes, disclosure)
+        run: uv run --project tools tools/content/build_behaviour.py --check
+
+      - name: Behaviour magnitude plots are up to date (for the review pack)
+        run: uv run --project tools tools/behaviour/plot.py --check
+
       - name: Physiology model is up to date (variables, couplings, noise)
         run: uv run --project tools tools/content/build_physio.py --check
 

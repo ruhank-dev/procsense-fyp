@@ -79,6 +79,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.SafetyChecklistSubsystem? SafetyStep { get; set; }
         internal Workflow.EndStateSubsystem? EndStateStep { get; set; }
         internal Physiology.PhysiologySubsystem? PhysiologyStep { get; set; }
+        internal Behaviour.BehaviourSubsystem? BehaviourStep { get; set; }
+
+        /// <summary>The patient's behaviour: attributes, mode and capacity (null when the session has no behaviour step).</summary>
+        public Behaviour.BehaviourSubsystem? Behaviour => BehaviourStep;
 
         /// <summary>The physiology engine of the session, for the steps that nudge the patient (null when the session has none).</summary>
         public Physiology.PhysiologySubsystem? Physiology => PhysiologyStep;

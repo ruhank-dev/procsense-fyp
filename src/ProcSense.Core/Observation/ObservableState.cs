@@ -68,7 +68,7 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null, ObservedChecklist? Checklist = null)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null, ObservedChecklist? Checklist = null, string? BehaviourMode = null)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -307,6 +307,7 @@ namespace ProcSense.Core.Observation
                 }
                 sb.Append("]}");
             }
+            if (BehaviourMode != null) { sb.Append(",\"behaviour\":{\"mode\":"); JsonText.Quote(sb, BehaviourMode); sb.Append('}'); }
             return sb.Append('}').ToString();
         }
 
@@ -437,7 +438,8 @@ namespace ProcSense.Core.Observation
                 BuildInvestigations(s, practice), BuildPhone(s.Patient.Clinical),
                 c.Orders.Select(o => new ObservedOrder(o.Id, o.Treatment, o.Label, o.State, o.Device, o.State == "REQUESTED" ? "" : o.DoseText, o.Lines.ToList())).ToList(),
                 c.OrStations.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(),
-                new ObservedChecklist(c.ChecklistPhases.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(), c.ChecklistItems.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList()));
+                new ObservedChecklist(c.ChecklistPhases.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(), c.ChecklistItems.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList()),
+                s.BehaviourStep?.Mode);
         }
     }
 }

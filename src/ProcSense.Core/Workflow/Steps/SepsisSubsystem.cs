@@ -165,6 +165,9 @@ namespace ProcSense.Core.Workflow.Steps
             return result;
         }
 
+        /// <summary>The tier the patient is in now (none, very_low, low, moderate or high); reading it allocates nothing.</summary>
+        public string Tier => _tiers.Count == 0 ? SepsisTables.None : _tiers[_tiers.Count - 1].Tier;
+
         /// <summary>Minutes since the first treatment of this kind (antibiotics or fluids) was given, or null when none has been.</summary>
         public double? GivenMinutesAgo(string kind) => _firstGiven.TryGetValue(kind, out var at) ? (_s.Clock.SimSeconds - at) / 60.0 : (double?)null;
 
