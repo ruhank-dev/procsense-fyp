@@ -32,6 +32,8 @@ namespace ProcSense.Core.Replay
             JsonText.Quote(sb, s.Case.Id);
             sb.Append(",\"seed\":"); JsonText.Quote(sb, s.Seed.ToString(CultureInfo.InvariantCulture)); // text: a ulong can exceed JSON-safe integers
             sb.Append(",\"mode\":"); JsonText.Quote(sb, s.Mode.ToString().ToLowerInvariant());
+            if (s.Level != TrainingLevel.Beginner) { sb.Append(",\"level\":"); JsonText.Quote(sb, s.Level.ToString().ToLowerInvariant()); }      // only when not the default, so older logs read the same
+            if (s.Variant.Length > 0) { sb.Append(",\"variant\":"); JsonText.Quote(sb, s.Variant); }
             sb.Append(",\"log_hash\":"); JsonText.Quote(sb, s.Log.Hash());
             sb.Append("}}\n").Append(s.Log.ToJsonl());
             return sb.ToString();
@@ -48,10 +50,11 @@ namespace ProcSense.Core.Replay
             string caseId = header.Str("case");
             ulong seed = ulong.Parse(header.Str("seed"), CultureInfo.InvariantCulture);
             var mode = (SessionMode)Enum.Parse(typeof(SessionMode), header.Str("mode"), true);
+            var options = new SessionOptions(header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner, header.Has("variant") ? header.Str("variant") : "");
             string expected = header.Str("log_hash");
 
             if (!content.Cases.TryGetValue(caseId, out var card)) throw new ContentException("case '" + caseId + "' is not loaded");
-            var session = new Session(card, seed, mode, subsystems());
+            var session = new Session(card, seed, mode, subsystems(), options);
 
             var actions = new List<TimedAction>();
             for (int i = 1; i < lines.Length; i++)

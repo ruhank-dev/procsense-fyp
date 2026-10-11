@@ -108,7 +108,8 @@ namespace ProcSense.Core.Content
                 Behaviour.BehaviourTables.Parse(reader.ReadText("behaviour/transitions.json"), reader.ReadText("behaviour/modes.json"), reader.ReadText("behaviour/disclosure.json")),
                 Workflow.Steps.ConsentTables.Parse(reader.ReadText("consent/consent.json")),
                 Events.EventTables.Parse(reader.ReadText("events/events.json")),
-                Scoring.ScoreTables.Parse(reader.ReadText("scoring/rubric.json"), reader.ReadText("assessment/mapping.json"), reader.ReadText("debrief/templates.json")));
+                Scoring.ScoreTables.Parse(reader.ReadText("scoring/rubric.json"), reader.ReadText("assessment/mapping.json"), reader.ReadText("debrief/templates.json")),
+                Difficulty.DifficultyTables.Parse(reader.ReadText("difficulty/dimensions.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

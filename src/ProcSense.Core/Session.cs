@@ -15,6 +15,12 @@ namespace ProcSense.Core
 {
     public enum SessionMode { Practice, Assessment }
 
+    /// <summary>Practice level: a beginner has safety nets (the nurse challenges an unsafe request); an advanced trainee sees the consequence. Assessment mode ignores it.</summary>
+    public enum TrainingLevel { Beginner, Advanced }
+
+    /// <summary>Optional settings of a session that are part of what is replayed: the training level and which variant of the case is played (for example B2 of VAR-S1-B).</summary>
+    public sealed record SessionOptions(TrainingLevel Level = TrainingLevel.Beginner, string Variant = "");
+
     /// <summary>Verbs and rejection codes the Session itself owns (pause, resume, time-skip). They are logged like any action, so a replay reproduces them.</summary>
     public static class SessionControl
     {
@@ -36,14 +42,17 @@ namespace ProcSense.Core
     {
         private readonly List<ISubsystem> _pipeline;
 
-        public Session(CaseCard card, ulong seed, SessionMode mode, IEnumerable<ISubsystem> subsystems)
+        public Session(CaseCard card, ulong seed, SessionMode mode, IEnumerable<ISubsystem> subsystems, SessionOptions? options = null)
         {
             Case = card;
+            Level = options?.Level ?? TrainingLevel.Beginner;
+            Variant = options?.Variant ?? "";
             Seed = seed;
             Mode = mode;
             Patient = PatientFactory.Create(card);
             Clock = new SimClock(card.Timing.TimeNow);
             Random = new SimRandom(seed);
+            if (Variant.Length > 0) Patient.Clinical.SetFlag("variant." + Variant);      // the decision step reads this flag to know which variant's end state applies
             _pipeline = subsystems.OrderBy(s => s.Order).ToList(); // OrderBy is stable
             Verbs.Register(SessionControl.Pause);
             Verbs.Register(SessionControl.Resume);
@@ -54,6 +63,8 @@ namespace ProcSense.Core
         public CaseCard Case { get; }
         public ulong Seed { get; }
         public SessionMode Mode { get; }
+        public TrainingLevel Level { get; }
+        public string Variant { get; }
         public PatientState Patient { get; }
         public SimClock Clock { get; }
         public SimRandom Random { get; }

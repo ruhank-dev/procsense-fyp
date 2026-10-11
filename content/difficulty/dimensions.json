@@ -1,0 +1,114 @@
+{
+ "k_factor": 16,
+ "min_sessions": 3,
+ "start_rating": 1000,
+ "tier_offsets": {
+  "P0": 0,
+  "P1": 100,
+  "P2": 200
+ },
+ "curriculum_first": [
+  "VAR-S1-A"
+ ],
+ "curriculum_tier_order": [
+  "P0",
+  "P1",
+  "P2"
+ ],
+ "dimensions": [
+  {
+   "id": "more_complex_history",
+   "label": "More complex history",
+   "realised_by": "More comorbidity and medication blocks (approved combinations)",
+   "weak_behaviours": [
+    "b01",
+    "b02",
+    "b03",
+    "b09"
+   ],
+   "tag": "history_complex"
+  },
+  {
+   "id": "communication_challenges",
+   "label": "More communication challenges",
+   "realised_by": "Personas with low literacy, high anxiety or a terse style (no case carries a persona yet)",
+   "weak_behaviours": [
+    "b04",
+    "b05",
+    "b06",
+    "b07",
+    "b08"
+   ],
+   "tag": "communication_challenge"
+  },
+  {
+   "id": "competing_priorities",
+   "label": "More competing priorities",
+   "realised_by": "Parallel tasks and several problems at once",
+   "weak_behaviours": [
+    "b17",
+    "b21",
+    "b22"
+   ],
+   "tag": "multiple_problems"
+  },
+  {
+   "id": "environmental_interruptions",
+   "label": "More environmental interruptions",
+   "realised_by": "Phone calls, theatre calls, faults (no case carries them yet)",
+   "weak_behaviours": [
+    "b18"
+   ],
+   "tag": "environment"
+  },
+  {
+   "id": "information_to_clarify",
+   "label": "More information requiring clarification",
+   "realised_by": "More hidden facts, a chart that disagrees with the patient",
+   "weak_behaviours": [
+    "b16",
+    "b19"
+   ],
+   "tag": "hidden_facts"
+  },
+  {
+   "id": "unexpected_events",
+   "label": "Approved unexpected events",
+   "realised_by": "A higher event count or tier",
+   "weak_behaviours": [
+    "b15",
+    "b20"
+   ],
+   "tag": "unexpected_events"
+  },
+  {
+   "id": "complex_handover",
+   "label": "More complex handover",
+   "realised_by": "More required elements, abnormal results, uncertainty",
+   "weak_behaviours": [
+    "b10",
+    "b11"
+   ],
+   "tag": "complex_handover"
+  },
+  {
+   "id": "cognitive_workload",
+   "label": "Higher cognitive workload",
+   "realised_by": "Emergency pace",
+   "weak_behaviours": [
+    "b12",
+    "b13",
+    "b14"
+   ],
+   "tag": "emergency_pace"
+  }
+ ],
+ "explanations": {
+  "default": "Next case: {case}. It is the next one in the standard order; adapting starts after {min_sessions} sessions.",
+  "adapted": "Next case: {case}. Your weakest behaviour so far is '{behaviour}' (rating {rating}), so this case practises '{dimension}'.",
+  "assessment": "Next case: {case}. Assessment mode follows the fixed order and never adapts."
+ },
+ "refs": [
+  "SR-2866"
+ ]
+}

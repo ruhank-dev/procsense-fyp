@@ -152,6 +152,9 @@ jobs:
       - name: Scoring content is up to date (22 behaviours, rubric, debrief sentences)
         run: uv run --project tools tools/content/build_scoring.py --check
 
+      - name: Difficulty settings are up to date (8 dimensions, K 16, 3 sessions)
+        run: uv run --project tools tools/content/build_difficulty.py --check
+
       - name: Events and what-if coverage are up to date (7 events, 47 what-ifs)
         run: uv run --project tools tools/content/build_events.py --check
 

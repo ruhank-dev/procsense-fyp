@@ -96,6 +96,7 @@ def main(argv: list[str]) -> int:
         ("consent content up to date (elements, questions, rules)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_consent.py", "--check"])),
         ("behaviour model up to date (attributes, transitions, modes, disclosure)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_behaviour.py", "--check"])),
         ("scoring content up to date (22 behaviours, rubric, debrief sentences)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_scoring.py", "--check"])),
+        ("difficulty settings up to date (8 dimensions, K 16, 3 sessions)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_difficulty.py", "--check"])),
         ("events and what-if coverage up to date (7 events, 47 what-ifs)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_events.py", "--check"])),
         ("physiology effect plots up to date (for the review pack)", lambda: run(["uv", "run", "--project", "tools", "tools/physio/plot_effects.py", "--check"])),
         ("behaviour magnitude plots up to date (for the review pack)", lambda: run(["uv", "run", "--project", "tools", "tools/behaviour/plot.py", "--check"])),

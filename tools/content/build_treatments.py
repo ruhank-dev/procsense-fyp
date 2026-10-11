@@ -58,7 +58,7 @@ OXYGEN_SHEET = ROOT / "docs" / "research" / "equipment" / "28-oxygen-supply-and-
 ALLERGY_GROUPS = {"antibiotic": ["penicillin", "antibiotic"]}
 SEVERE_REACTION_WORDS = ["throat swelling", "collapse", "anaphylaxis"]
 # What the nurse does about a critical problem: practice mode (the beginner) challenges and does not give; assessment mode gives it, marks it critical and, for an allergen, makes the reaction eligible.
-ALLERGY_OUTCOME = {"practice": "challenge", "assessment": "reaction"}
+ALLERGY_OUTCOME = {"practice": "challenge", "advanced": "reaction", "assessment": "reaction"}
 HYPERSENSITIVITY_EVENT = "E-HYPERSENSITIVITY"
 
 # The approved lines the clinician and the nurse say (the trainee never sees a line that is not here).
@@ -247,7 +247,7 @@ def register_rows(doc: dict) -> list[list[str]]:
             "Each treatment lists its checks explicitly (no implicit checks in code). Timing is listed only where the medicines.csv row states timing wording; restriction only where the care column names a condition; emergency treatments keep identity, allergy, order and documentation."),
         row(4107, "Medicine workflow: confirmation and administration delays", f"clinician confirms after {WORKFLOW['confirm_seconds']} s; nurse gives {WORKFLOW['administer_seconds']} s later", "D",
             "Simulator design values (p0-clinical-logic-s11): how long the clinician and the nurse take. No source gives them; they are tuned with testers and kept in content, never in code."),
-        row(4108, "Medicine workflow: what happens at an allergen or another critical problem", f"practice: {ALLERGY_OUTCOME['practice']}; assessment: {ALLERGY_OUTCOME['assessment']} ({HYPERSENSITIVITY_EVENT} eligible)", "D",
+        row(4108, "Medicine workflow: what happens at an allergen or another critical problem", f"practice (beginner): {ALLERGY_OUTCOME['practice']}; practice (advanced): {ALLERGY_OUTCOME['advanced']}; assessment: {ALLERGY_OUTCOME['assessment']} ({HYPERSENSITIVITY_EVENT} eligible)", "D",
             "Walkthrough 14.4 and Implementation Guide test T-TR3: a beginner has the nurse challenge the request, an advanced trainee has it given and the reaction happens. Until the difficulty setting exists (DT-056) practice mode is the beginner and assessment mode the advanced setting. The allergy group words come from the antibiotic-allergy rows (SR-0973, SR-1311); the severe-reaction words are those of the book's severe row (throat swelling, collapse, anaphylaxis)."),
         row(4109, "Medicine workflow: approved lines and dose labels", "; ".join(f"{i}" for i, _ in LINES.items()), "D",
             "The clinician's and the nurse's lines are wording the project team wrote; they state no clinical fact and no dose. A dose is shown only under the label of its dose policy (SR-1406, SR-1407, SR-1408): an educational example with its source, or the words 'the clinician decides'."),

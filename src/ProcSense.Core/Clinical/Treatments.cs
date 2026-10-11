@@ -38,7 +38,7 @@ namespace ProcSense.Core.Clinical
     /// How an allergy conflict is judged and what happens: the group words, the words that mean an immediate severe reaction, and the outcome per mode ("challenge" = the nurse refuses and says so,
     /// "reaction" = it is given, marked critical and the hypersensitivity event becomes eligible), plus the event name.
     /// </summary>
-    public sealed record AllergyRules(IReadOnlyList<AllergyGroup> Groups, IReadOnlyList<string> SevereWords, string PracticeOutcome, string AssessmentOutcome, string Event);
+    public sealed record AllergyRules(IReadOnlyList<AllergyGroup> Groups, IReadOnlyList<string> SevereWords, string PracticeOutcome, string AdvancedOutcome, string AssessmentOutcome, string Event);
 
     /// <summary>The treatment library (content/treatments.json, built from the verified medicine table).</summary>
     public sealed class TreatmentTables
@@ -57,7 +57,7 @@ namespace ProcSense.Core.Clinical
             ById = treatments.ToDictionary(t => t.Id, StringComparer.Ordinal);
             Timing = timing ?? new WorkflowTiming(0, 0);
             OxygenDevices = oxygenDevices ?? new List<string>();
-            Allergy = allergy ?? new AllergyRules(new List<AllergyGroup>(), new List<string>(), "challenge", "reaction", "");
+            Allergy = allergy ?? new AllergyRules(new List<AllergyGroup>(), new List<string>(), "challenge", "reaction", "reaction", "");
             DoseLabels = doseLabels ?? new Dictionary<string, string>();
             Lines = lines ?? new Dictionary<string, string>();
         }
@@ -189,12 +189,12 @@ namespace ProcSense.Core.Clinical
             var severe = Strings(o, "severe_reaction_words").Select(w => w.ToLowerInvariant()).ToList();
             if (severe.Count == 0) throw new ContentException(o.Sub("severe_reaction_words") + ": needs at least one word");
             var outcome = o.Obj("outcome");
-            string practice = outcome.Enum("practice", "challenge", "reaction"), assessment = outcome.Enum("assessment", "challenge", "reaction");
+            string practice = outcome.Enum("practice", "challenge", "reaction"), advanced = outcome.Enum("advanced", "challenge", "reaction"), assessment = outcome.Enum("assessment", "challenge", "reaction");
             outcome.Finish();
             string ev = o.Str("event");
             foreach (var r in o.Arr("refs")) CheckRef(r as string ?? "", o.Sub("refs"));
             o.Finish();
-            return new AllergyRules(groups, severe, practice, assessment, ev);
+            return new AllergyRules(groups, severe, practice, advanced, assessment, ev);
         }
 
         private static TreatmentDef ParseTreatment(JsonObj o, List<CheckKind> checks, List<Prerequisite> prerequisites, List<string> effects)

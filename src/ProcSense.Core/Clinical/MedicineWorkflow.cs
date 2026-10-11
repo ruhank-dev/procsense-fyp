@@ -202,7 +202,7 @@ namespace ProcSense.Core.Clinical
         {
             var def = Tables.ById[order.Treatment];
             bool practice = _s.Mode == SessionMode.Practice;
-            string outcome = practice ? Tables.Allergy.PracticeOutcome : Tables.Allergy.AssessmentOutcome;
+            string outcome = !practice ? Tables.Allergy.AssessmentOutcome : _s.Level == TrainingLevel.Advanced ? Tables.Allergy.AdvancedOutcome : Tables.Allergy.PracticeOutcome;       // beginner: the nurse challenges; advanced: the consequence plays out (walkthrough Step 8)
 
             var report = RequiredChecks.Evaluate(Tables, def, Context(def, order), "before");
             var items = new List<CheckItem>(report.Items);

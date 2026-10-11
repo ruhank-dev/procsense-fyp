@@ -33,9 +33,9 @@ namespace ProcSense.Core.Tests
         }
 
         /// <summary>A session with the patient's identity confirmed. <paramref name="askAllergies"/> establishes the allergies, as the walkthrough's Step 1 does.</summary>
-        private static Session Start(SessionMode mode = SessionMode.Practice, CaseCard? card = null, bool askAllergies = true)
+        private static Session Start(SessionMode mode = SessionMode.Practice, CaseCard? card = null, bool askAllergies = true, SessionOptions? options = null)
         {
-            var s = new Session(card ?? Content.Cases["VAR-S1-A"], 42, mode, Subsystems.Default(Content));
+            var s = new Session(card ?? Content.Cases["VAR-S1-A"], 42, mode, Subsystems.Default(Content), options);
             foreach (var verb in new[] { "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(Do(s, verb).Accepted, verb);
             if (askAllergies) Assert.True(Do(s, "ask_allergies").Accepted);
             return s;
@@ -368,6 +368,17 @@ namespace ProcSense.Core.Tests
             Assert.Empty(given);
             Assert.Empty(events);
             Assert.DoesNotContain("allergy.reaction_eligible", s.Patient.Clinical.Flags);
+        }
+
+        [Fact] // T-TR3 (advanced level in practice mode, case-library s06: the consequence plays out)
+        public void An_advanced_trainee_in_practice_mode_gets_the_consequence_not_the_nurses_challenge()
+        {
+            var s = Start(SessionMode.Practice, Anaphylaxis(), options: new SessionOptions(TrainingLevel.Advanced));
+            Do(s, "check_treatment_timing", ("treatment", "TR-ABX-S2"));
+            Do(s, "request_medication", Treat("TR-ABX-S2"), ("indication", "appendicitis"));
+            Wait(s, 150);
+            Assert.Equal("ADMINISTERED", Order(s).State);
+            Assert.Contains("allergy.reaction_eligible", s.Patient.Clinical.Flags);
         }
 
         [Fact] // T-TR3 (advanced)

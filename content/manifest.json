@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "ce3504c6ad230181114354c562be02da1622f94f3f21741d4ffbae29ade5c0ae",
- "files": 367,
- "bytes": 16710105,
+ "content_hash": "bd49c8c9e17a7f858167cec169240216d9037d9b5c1ec1cf2891a5a92fddbd09",
+ "files": 368,
+ "bytes": 16712750,
  "per_folder": {
   "(root)": 62,
   "assessment": 1,
@@ -15,6 +15,7 @@
   "cxr": 33,
   "debrief": 1,
   "decision": 1,
+  "difficulty": 1,
   "ecg": 41,
   "endstate": 1,
   "events": 1,
@@ -489,6 +490,10 @@
   "devices.json": {
    "bytes": 296,
    "sha256": "ece055c104caf06860d1e9af9625b57d56d27f195b8aeedaca4d8841200a1ba9"
+  },
+  "difficulty/dimensions.json": {
+   "bytes": 2618,
+   "sha256": "f99054c4cd3f7c9242b4211bd3d7dad237fb0bcbd618b91cf7ae2f7fbd060e50"
   },
   "drug_checks.csv": {
    "bytes": 2077,
@@ -1235,8 +1240,8 @@
    "sha256": "95d801fa7a176e93f5331a4942c751e4159a7658ef76a8e87040ebbad3aaf5de"
   },
   "treatments.json": {
-   "bytes": 18784,
-   "sha256": "4c8958df180e8668239edf805f6a7fb2e538fe08f81006aff0f3b5b72bcb3af3"
+   "bytes": 18811,
+   "sha256": "4bc4bfe752402ce1a7d047ee5ce9b3865d8818a122594a330f529a2975becd99"
   },
   "turnaround.csv": {
    "bytes": 429,

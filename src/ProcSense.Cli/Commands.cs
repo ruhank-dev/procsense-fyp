@@ -11,9 +11,11 @@ internal static class Commands
 {
     private const string Usage =
         "usage:\n" +
-        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--content dir] [--allow-draft] [--skip-integrity]\n" +
+        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--content dir] [--allow-draft] [--skip-integrity]\n" +
         "  procsense-sim replay --log session.jsonl [--content dir]\n" +
         "  procsense-sim report --log session.jsonl --out report.html [--json report.json] [--content dir] [--skip-integrity]\n" +
+        "  procsense-sim next-case --history dir --trainee pseudonym [--mode practice|assessment] [--content dir]\n" +
+        "  procsense-sim record-session --history dir --trainee pseudonym --facts report.json\n" +
         "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]";
 
     public static int Run(string[] args)
@@ -27,6 +29,8 @@ internal static class Commands
                 "run" => RunCase(opts),
                 "replay" => ReplayLog(opts),
                 "report" => Report(opts),
+                "next-case" => NextCase(opts),
+                "record-session" => RecordSession(opts),
                 "golden" => Golden(opts),
                 _ => Fail($"unknown command '{args[0]}'\n{Usage}"),
             };
@@ -48,7 +52,8 @@ internal static class Commands
         var content = ContentLoader.Load(Reader(o), caseId);
         if (Guard(o, content, caseId, mode) is { } refused) return refused;
         var script = ActionScript.Parse(File.ReadAllText(Need(o, "actions")));
-        var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content));
+        var options = new SessionOptions(Enum.Parse<TrainingLevel>(o.GetValueOrDefault("level", "beginner"), true), o.GetValueOrDefault("variant", ""));
+        var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content), options);
         SessionFile.Play(session, script);
 
         File.WriteAllText(logPath, SessionFile.Write(session));
@@ -69,6 +74,90 @@ internal static class Commands
         var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
         if (r.Match) { Console.WriteLine($"replay OK, hash match ({r.ActualHash})"); return 0; }
         return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}");
+    }
+
+    // The trainee is a pseudonym (letters, digits, dash, underscore): never a name. The history is one small JSON file per trainee.
+    private static string HistoryPath(Dictionary<string, string> o)
+    {
+        string trainee = Need(o, "trainee");
+        if (!System.Text.RegularExpressions.Regex.IsMatch(trainee, "^[A-Za-z0-9_-]{1,40}$")) throw new ArgumentException("the trainee must be a pseudonym of letters, digits, dash and underscore (no names)");
+        return Path.Combine(Need(o, "history"), trainee + ".json");
+    }
+
+    private static List<ProcSense.Core.Difficulty.SessionRecord> ReadHistory(string path)
+    {
+        var list = new List<ProcSense.Core.Difficulty.SessionRecord>();
+        if (!File.Exists(path)) return list;
+        var root = (Dictionary<string, object?>)MiniJson.Parse(File.ReadAllText(path))!;
+        foreach (var s in (List<object?>)root["sessions"]!)
+        {
+            var d = (Dictionary<string, object?>)s!;
+            var by = new Dictionary<string, (int, int)>(StringComparer.Ordinal);
+            foreach (var kv in (Dictionary<string, object?>)d["behaviours"]!)
+            {
+                var v = (Dictionary<string, object?>)kv.Value!;
+                by[kv.Key] = ((int)(long)v["credits"]!, (int)(long)v["penalties"]!);
+            }
+            list.Add(new ProcSense.Core.Difficulty.SessionRecord((string)d["case"]!, by));
+        }
+        return list;
+    }
+
+    private static void WriteHistory(string path, string trainee, List<ProcSense.Core.Difficulty.SessionRecord> sessions)
+    {
+        var sb = new System.Text.StringBuilder("{\"trainee\":");
+        ProcSense.Core.Logging.JsonText.Quote(sb, trainee);
+        sb.Append(",\"sessions\":[");
+        for (int i = 0; i < sessions.Count; i++)
+        {
+            if (i > 0) sb.Append(',');
+            sb.Append("{\"case\":"); ProcSense.Core.Logging.JsonText.Quote(sb, sessions[i].Case); sb.Append(",\"behaviours\":{");
+            bool first = true;
+            foreach (var kv in sessions[i].Behaviours.OrderBy(k => k.Key, StringComparer.Ordinal))
+            {
+                if (!first) sb.Append(',');
+                first = false;
+                ProcSense.Core.Logging.JsonText.Quote(sb, kv.Key);
+                sb.Append(":{\"credits\":").Append(kv.Value.Credits.ToString(CultureInfo.InvariantCulture)).Append(",\"penalties\":").Append(kv.Value.Penalties.ToString(CultureInfo.InvariantCulture)).Append('}');
+            }
+            sb.Append("}}");
+        }
+        sb.Append("]}"); sb.Append('\n');
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        File.WriteAllText(path, sb.ToString());
+    }
+
+    // Says which case to play next. Practice adapts to the weakest behaviour after three sessions; assessment follows the fixed order.
+    private static int NextCase(Dictionary<string, string> o)
+    {
+        string path = HistoryPath(o);
+        var mode = Enum.Parse<SessionMode>(o.GetValueOrDefault("mode", "practice"), true);
+        var reader = Reader(o);
+        var ids = Directory.GetFiles(Path.Combine(ContentDir(o), "case_files"), "*.json").Select(Path.GetFileNameWithoutExtension).OrderBy(x => x, StringComparer.Ordinal).Select(x => x!).ToArray();
+        var content = ContentLoader.Load(reader, Array.Empty<string>(), ids);
+        var history = ReadHistory(path);
+        var ratings = ProcSense.Core.Difficulty.Ratings.From(history, content.Difficulty, id => content.CaseFiles.TryGetValue(id, out var f) ? f.Tier : "P0");
+        var pick = ProcSense.Core.Difficulty.Selector.Next(ratings, history.Select(h => h.Case).ToList(), content.CaseFiles, mode, id => content.Scoring.Find(id)?.Label ?? id);
+        Console.WriteLine($"case: {pick.CaseId}\ntier: {pick.Tier}\nwhy: {pick.Reason}\n{pick.Explanation}");
+        return pick.CaseId.Length == 0 ? 1 : 0;
+    }
+
+    // Adds a finished session (the credits and penalties per behaviour from a report's JSON) to the trainee's history.
+    private static int RecordSession(Dictionary<string, string> o)
+    {
+        string path = HistoryPath(o);
+        var facts = (Dictionary<string, object?>)MiniJson.Parse(File.ReadAllText(Need(o, "facts")))!;
+        var by = new Dictionary<string, (int, int)>(StringComparer.Ordinal);
+        foreach (var c in (List<object?>)facts["competencies"]!)
+        {
+            var d = (Dictionary<string, object?>)c!;
+            if ((long)d["items"]! > 0) by[(string)d["behaviour"]!] = ((int)(long)d["credits"]!, (int)(long)d["penalties"]!);
+        }
+        var history = ReadHistory(path);
+        history.Add(new ProcSense.Core.Difficulty.SessionRecord((string)facts["case"]!, by));
+        WriteHistory(path, Need(o, "trainee"), history);
+        Console.WriteLine($"recorded session {history.Count} for {Need(o, "trainee")}");
+        return 0;
     }
 
     // Replays a session log and writes what happened as a single readable page (inline CSS, no scripts) and the same facts as JSON.
