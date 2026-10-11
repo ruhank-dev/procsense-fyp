@@ -219,7 +219,7 @@ namespace ProcSense.Core.Tests
             var s = Ready();
             var o = Do(s, "compute_score", AirS2A.Where(p => p.Item1 != "wbc").ToArray());
             Assert.Contains("missing:wbc", o.Effects);
-            Assert.Contains("prompt_order:FBC", o.Effects);
+            Assert.Contains("prompt_order:fbc", o.Effects);
             Assert.Contains("air: incomplete: 6 so far", s.Observable.Risk.Scores);
             Assert.Equal(new[] { "Order a full blood count: the white cell count is missing." }, s.Observable.Risk.Prompts);
             Assert.False(s.Patient.Clinical.HasFlag("score.air.computed"));
@@ -266,7 +266,7 @@ namespace ProcSense.Core.Tests
             Assert.True(o.Accepted);
             Assert.Contains("critical:proceed_despite_fasting_breach", o.Effects);
             Assert.Contains("blocked:fasting_breach_unresolved", o.Effects);
-            Assert.Contains("score:CRITICAL.proceed_despite_fasting_breach", o.Effects);
+            Assert.Contains("score:critical.proceed_despite_fasting_breach", o.Effects);
             Assert.True(s.Observable.Risk.Blocked);
             Assert.True(s.Patient.Clinical.HasFlag(RiskSubsystem.BlockedFlag));
             Assert.Equal(new[] { "I have not agreed to go ahead while the fasting breach is unresolved." }, s.Observable.Risk.AnaesthetistLines);
@@ -408,6 +408,14 @@ namespace ProcSense.Core.Tests
             Assert.Contains("both a clot and a bleeding", Assert.Throws<ContentException>(() => RiskTables.Parse(Edit("risk/risk.json", n => n["vte"]!["bleeding_factors"]![0]!["id"] = "cancer"), Intents())).Message);
             Assert.Contains("empty", Assert.Throws<ContentException>(() => RiskTables.Parse(Risk(), Edit("npc/anaesthetist_intents.json", n => n["intents"]![0]!["line"] = " "))).Message);
             Assert.Contains("unknown field", Assert.Throws<ContentException>(() => RiskTables.Parse(Edit("risk/risk.json", n => n["colour"] = 1), Intents())).Message);
+        }
+
+        [Fact]
+        public void Every_missing_score_prompt_names_a_test_the_trainee_can_order()
+        {
+            var ids = Content.Investigations.Tests.Select(t => t.Id).ToList();
+            Assert.NotEmpty(Content.Risk.MissingPrompts);
+            foreach (var kv in Content.Risk.MissingPrompts) Assert.Contains(kv.Value.Test, ids);
         }
     }
 }

@@ -201,8 +201,8 @@
       "label": "The fasting time has not been reached",
       "trigger": { "in": [ "fasting.breach", { "var": "flags" } ] },
       "options": [
-        { "id": "proceed", "label": "Carry on as planned", "set_flags": [ "fasting.proceeded_despite_breach" ], "events_enable": [], "score_item": "CRITICAL.proceed_despite_fasting_breach" },
-        { "id": "inform_and_delay", "label": "Tell the anaesthetist and delay the operation until the fasting time is met", "set_flags": [ "fasting.anaesthetist_informed" ], "events_enable": [ "E-OT-DELAY" ], "score_item": "fasting.informed_and_delayed" }
+        { "id": "proceed", "label": "Carry on as planned", "set_flags": [ "fasting.proceeded_despite_breach" ], "events_enable": [], "score_item": "critical.proceed_despite_fasting_breach" },
+        { "id": "inform_and_delay", "label": "Tell the anaesthetist and delay the operation until the fasting time is met", "set_flags": [ "fasting.anaesthetist_informed" ], "events_enable": [ "E-OT-DELAY" ], "score_item": "credit.fasting_informed_and_delayed" }
       ],
       "expected": [ "inform_and_delay" ],
       "refs": [ "SR-0051" ]

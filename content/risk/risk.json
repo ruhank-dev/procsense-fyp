@@ -118,59 +118,59 @@
  ],
  "missing_prompts": {
   "wbc": {
-   "test": "FBC",
+   "test": "fbc",
    "text": "Order a full blood count: the white cell count is missing."
   },
   "neutrophils_pct": {
-   "test": "FBC",
+   "test": "fbc",
    "text": "Order a full blood count: the neutrophil percentage is missing."
   },
   "crp": {
-   "test": "CRP",
+   "test": "crp",
    "text": "Order a CRP: it is missing."
   },
   "crp_pain_under_24h": {
-   "test": "CRP",
+   "test": "crp",
    "text": "Order a CRP: it is missing."
   },
   "bilirubin_umol": {
-   "test": "LFT",
+   "test": "lft",
    "text": "Order liver tests: the bilirubin is missing."
   },
   "liver_tests_x_uln": {
-   "test": "LFT",
+   "test": "lft",
    "text": "Order liver tests: they are missing."
   },
   "creatinine_umol": {
-   "test": "UE",
+   "test": "u_and_e",
    "text": "Order urea and electrolytes: the creatinine is missing."
   },
   "inr": {
-   "test": "COAG",
+   "test": "clotting",
    "text": "Order a clotting screen: the INR is missing."
   },
   "platelets": {
-   "test": "FBC",
+   "test": "fbc",
    "text": "Order a full blood count: the platelet count is missing."
   },
   "raised_wbc": {
-   "test": "FBC",
+   "test": "fbc",
    "text": "Order a full blood count: the white cell count is missing."
   },
   "raised_crp": {
-   "test": "CRP",
+   "test": "crp",
    "text": "Order a CRP: it is missing."
   },
   "imaging_inflamed": {
-   "test": "US",
+   "test": "ultrasound",
    "text": "Request an ultrasound: the scan finding is missing."
   },
   "duct_mm": {
-   "test": "US",
+   "test": "ultrasound",
    "text": "Request an ultrasound: the bile duct width is missing."
   },
   "stone_on_scan": {
-   "test": "US",
+   "test": "ultrasound",
    "text": "Request an ultrasound: whether a stone is seen is missing."
   }
  },

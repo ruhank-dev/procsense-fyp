@@ -120,16 +120,19 @@ namespace ProcSense.Core.Workflow
             return (_s.DecisionStep?.EndState.Length ?? 0) > 0 || _s.SafetyStep?.ReadyForIncision == true || clinical.HasFlag(StopFlag) || clinical.HasFlag(SafetyChecklistSubsystem.StoppedFlag);
         }
 
-        /// <summary>Every score item recorded so far, by every step.</summary>
-        public IEnumerable<string> AllItems()
+        /// <summary>Every score-bearing event recorded so far, by every step (the end state, the scorer and the debrief all read this one list).</summary>
+        public IEnumerable<GraphEvent> AllEvents()
         {
             IEnumerable<IReadOnlyList<GraphEvent>> sources = new IReadOnlyList<GraphEvent>?[]
             {
                 _s.ResultReviewHistory, _s.InvestigationHistory, _s.MedicineHistory, _s.TransportHistory, _s.GraphHistory, _s.SepsisStep?.History, _s.DecisionStep?.History, _s.WardStep?.History, _s.OrStep?.History,
-                _s.HandoverStep?.History, _s.SafetyStep?.History, _s.ClashStep?.History, _history,
+                _s.HandoverStep?.History, _s.SafetyStep?.History, _s.ClashStep?.History, _s.ConsentStep?.History, _s.DirectorStep?.History, _s.BehaviourStep?.History, _s.Flow?.History, _history,
             }.Where(x => x != null)!;
-            return sources.SelectMany(h => h).SelectMany(e => e.ScoreItems);
+            return sources.SelectMany(h => h);
         }
+
+        /// <summary>Every score item recorded so far, by every step.</summary>
+        public IEnumerable<string> AllItems() => AllEvents().SelectMany(e => e.ScoreItems);
 
         // ---------------------------------------------------------------- hidden facts that surface later
 

@@ -69,6 +69,7 @@ def main(argv: list[str]) -> int:
             ("golden runs", lambda: run(CLI + ["golden", "--dir", "tests/golden"])),
             ("review-status gate refuses an under-approved case (assessment on a training-only case)", gate_refuses),
             ("replay round trip", replay_round_trip),
+            ("session report made from the golden run and valid against its schema", lambda: run(["uv", "run", "--project", "tools", "tools/ci/check_report.py"])),
         ]
         if os.name != "nt":  # Windows checkouts use CRLF; CI (Linux, LF) is the authority for formatting
             steps.append(("code format", lambda: run(["dotnet", "format", "ProcSense.sln", "--verify-no-changes"])))
@@ -94,6 +95,7 @@ def main(argv: list[str]) -> int:
         ("register ids, blocks and provenance consistent (and the allocation document current)", lambda: run(["uv", "run", "--project", "tools", "tools/content/register_audit.py", "--check"])),
         ("consent content up to date (elements, questions, rules)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_consent.py", "--check"])),
         ("behaviour model up to date (attributes, transitions, modes, disclosure)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_behaviour.py", "--check"])),
+        ("scoring content up to date (22 behaviours, rubric, debrief sentences)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_scoring.py", "--check"])),
         ("events and what-if coverage up to date (7 events, 47 what-ifs)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_events.py", "--check"])),
         ("physiology effect plots up to date (for the review pack)", lambda: run(["uv", "run", "--project", "tools", "tools/physio/plot_effects.py", "--check"])),
         ("behaviour magnitude plots up to date (for the review pack)", lambda: run(["uv", "run", "--project", "tools", "tools/behaviour/plot.py", "--check"])),

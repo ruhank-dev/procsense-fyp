@@ -299,7 +299,7 @@ namespace ProcSense.Core.Tests
             var s = Ringing();
             var proceed = Do(s, "decide_ready", ("option", "proceed"));
             Assert.Contains("critical:proceed_with_unacknowledged_result", proceed.Effects);
-            Assert.Contains("score:CRITICAL.ignored_critical_result", proceed.Effects);
+            Assert.Contains("score:critical.ignored_critical_result", proceed.Effects);
             Assert.Contains(s.ResultReviewHistory, h => h.Kind == "proceeded_with_unacknowledged_critical");
             var other = NewSessionRinging();
             Assert.DoesNotContain(Do(other, "decide_ready", ("option", "review")).Effects, e => e.StartsWith("critical:"));

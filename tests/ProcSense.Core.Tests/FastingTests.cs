@@ -187,7 +187,7 @@ namespace ProcSense.Core.Tests
             var proceed = NewSession(File_("VAR-S1-G"));
             Ask(proceed, "last_food"); Ask(proceed, "last_drink");
             var bad = proceed.Apply(Act("decide", ("dp", "DP-S1-FAST"), ("option", "proceed")));
-            Assert.Contains("score:CRITICAL.proceed_despite_fasting_breach", bad.Effects);
+            Assert.Contains("score:critical.proceed_despite_fasting_breach", bad.Effects);
             Assert.Contains(bad.Effects, e => e.EndsWith("not_expected"));
             Assert.True(proceed.Patient.Clinical.HasFlag("fasting.proceeded_despite_breach"));
 

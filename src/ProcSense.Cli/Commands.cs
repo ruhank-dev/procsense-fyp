@@ -13,6 +13,7 @@ internal static class Commands
         "usage:\n" +
         "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--content dir] [--allow-draft] [--skip-integrity]\n" +
         "  procsense-sim replay --log session.jsonl [--content dir]\n" +
+        "  procsense-sim report --log session.jsonl --out report.html [--json report.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]";
 
     public static int Run(string[] args)
@@ -25,6 +26,7 @@ internal static class Commands
             {
                 "run" => RunCase(opts),
                 "replay" => ReplayLog(opts),
+                "report" => Report(opts),
                 "golden" => Golden(opts),
                 _ => Fail($"unknown command '{args[0]}'\n{Usage}"),
             };
@@ -67,6 +69,25 @@ internal static class Commands
         var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
         if (r.Match) { Console.WriteLine($"replay OK, hash match ({r.ActualHash})"); return 0; }
         return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}");
+    }
+
+    // Replays a session log and writes what happened as a single readable page (inline CSS, no scripts) and the same facts as JSON.
+    private static int Report(Dictionary<string, string> o)
+    {
+        string text = File.ReadAllText(Need(o, "log"));
+        string outPath = Need(o, "out");
+        string caseId = SessionFile.CaseIdOf(text);
+        var content = ContentLoader.Load(Reader(o), caseId);
+        if (Integrity(o) is { } refused) return refused;
+        var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
+        if (!r.Match) return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}; no report is made from a log that does not replay");
+        var facts = ProcSense.Core.Scoring.DebriefFacts.Build(r.Session, content);
+        string jsonPath = o.GetValueOrDefault("json", Path.ChangeExtension(outPath, ".json"));
+        File.WriteAllText(outPath, facts.ToHtml());
+        File.WriteAllText(jsonPath, facts.ToJson() + "\n");
+        Console.WriteLine($"result: {facts.Result}; end state: {(facts.EndState.Length == 0 ? "not reached" : facts.EndState)}; {facts.Lines.Count} items");
+        Console.WriteLine($"wrote {outPath} and {jsonPath}");
+        return 0;
     }
 
     // Runs every *.actions.json that has a matching *.expected.json and compares. --update rewrites the expected files (review the change before committing).

@@ -1,0 +1,251 @@
+{
+ "provisional": true,
+ "severity_points": {
+  "credit": 1,
+  "info": 0,
+  "minor": -1,
+  "major": -3,
+  "critical": 0
+ },
+ "fail_severity": "critical",
+ "types": [
+  "REQUIRED",
+  "CONTRAINDICATED",
+  "TIMING",
+  "ORDER",
+  "RESPONSE",
+  "APPROPRIATENESS",
+  "INTERPRETATION",
+  "COMMUNICATION",
+  "CRITICAL"
+ ],
+ "rules": [
+  {
+   "match": "^consent_signed_without_capacity$",
+   "behaviour": "b13",
+   "type": "CRITICAL",
+   "teaching": false
+  },
+  {
+   "match": "^(capacity_checked|consent_capacity_not_checked|consent_untrained_interpreter|consent_minor_without_senior)$",
+   "behaviour": "b13",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(consent_element|consent_valid|consent_emergency_route|consent_risks_skipped|consent_alternatives_skipped)$",
+   "behaviour": "b05",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(teach_back|consent_signed_low_understanding)$",
+   "behaviour": "b07",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(consent_pressure|question_answered|question_dismissed|question_unanswered)$",
+   "behaviour": "b04",
+   "type": "COMMUNICATION",
+   "teaching": false
+  },
+  {
+   "match": "^false_reassurance$",
+   "behaviour": "b08",
+   "type": "COMMUNICATION",
+   "teaching": false
+  },
+  {
+   "match": "^(readback_wrong)$",
+   "behaviour": "b10",
+   "type": "COMMUNICATION",
+   "teaching": false
+  },
+  {
+   "match": "^(handover_complete|handover_omitted|handover_repeat_omission|sbar_complete|sbar_incomplete)$",
+   "behaviour": "b11",
+   "type": "COMMUNICATION",
+   "teaching": false
+  },
+  {
+   "match": "^(transfer_escort_inadequate|unsafe_transport_mode)$",
+   "behaviour": "b11",
+   "type": "APPROPRIATENESS",
+   "teaching": false
+  },
+  {
+   "match": "^(asa_correct)$",
+   "behaviour": "b21",
+   "type": "APPROPRIATENESS",
+   "teaching": false
+  },
+  {
+   "match": "^(asa_close|asa_far)$",
+   "behaviour": "b21",
+   "type": "APPROPRIATENESS",
+   "teaching": true
+  },
+  {
+   "match": "^(ignored_critical_result|anaesthetist_not_called|vte_not_assessed)$",
+   "behaviour": "b21",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^right_role$",
+   "behaviour": "b20",
+   "type": "APPROPRIATENESS",
+   "teaching": false
+  },
+  {
+   "match": "^e_[a-z_]+_(not_)?escalated$",
+   "behaviour": "b15",
+   "type": "RESPONSE",
+   "teaching": false
+  },
+  {
+   "match": "^(reaction_handled|reaction_not_treated)$",
+   "behaviour": "b15",
+   "type": "RESPONSE",
+   "teaching": false
+  },
+  {
+   "match": "^treatment_allergy_conflict$",
+   "behaviour": "b13",
+   "type": "CONTRAINDICATED",
+   "teaching": false
+  },
+  {
+   "match": "^sepsis_recognised$",
+   "behaviour": "b14",
+   "type": "INTERPRETATION",
+   "teaching": false
+  },
+  {
+   "match": "^sepsis_",
+   "behaviour": "b15",
+   "type": "TIMING",
+   "teaching": false
+  },
+  {
+   "match": "^(interpretation|imaging_interpretation|interpretation_wrong|not_visualised_taken_as_negative)$",
+   "behaviour": "b14",
+   "type": "INTERPRETATION",
+   "teaching": false
+  },
+  {
+   "match": "^(critical_acknowledged|unacknowledged|result_not_reviewed)$",
+   "behaviour": "b14",
+   "type": "RESPONSE",
+   "teaching": false
+  },
+  {
+   "match": "^test_appropriate$",
+   "behaviour": "b16",
+   "type": "APPROPRIATENESS",
+   "teaching": false
+  },
+  {
+   "match": "^(decision_correct|decision_wrong|postponed_appropriately|redirected_appropriately|postponed_unnecessarily|redirected_unnecessarily|postponed_in_emergency|emergency_not_declared)$",
+   "behaviour": "b14",
+   "type": "APPROPRIATENESS",
+   "teaching": false
+  },
+  {
+   "match": "^(late_fasting_passed|late_fasting_not_passed|hidden_fact_surfaced_late)$",
+   "behaviour": "b02",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(fasting_informed_and_delayed|proceed_despite_fasting_breach)$",
+   "behaviour": "b13",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(or_fault_reported|or_fault_ignored|checklist_stopped_honestly|substitute_theatre_used)$",
+   "behaviour": "b18",
+   "type": "RESPONSE",
+   "teaching": true
+  },
+  {
+   "match": "^(or_ready|or_declared_ready_not_ready|or_critical_station_unchecked)$",
+   "behaviour": "b21",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(checklist_contradiction|checklist_skipped_repeatedly|checklist_item_skipped|sign_in_complete|time_out_complete)$",
+   "behaviour": "b21",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(ward_checklist_complete|ward_signed_with_gaps|ward_tick_false|ward_tick_unverified|razor_used)$",
+   "behaviour": "b21",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^(emergency_not_declared|handover_omitted)$",
+   "behaviour": "b11",
+   "type": "COMMUNICATION",
+   "teaching": false
+  }
+ ],
+ "weights": {
+  "S1": {
+   "b01": 1.0,
+   "b02": 1.0,
+   "b03": 1.0,
+   "b04": 1.0,
+   "b05": 1.0,
+   "b06": 1.0,
+   "b07": 1.0,
+   "b08": 1.0,
+   "b09": 1.0,
+   "b10": 1.0,
+   "b11": 1.0,
+   "b12": 1.0,
+   "b13": 1.0,
+   "b14": 1.0,
+   "b15": 1.0,
+   "b16": 1.0,
+   "b17": 1.0,
+   "b18": 1.0,
+   "b19": 1.0,
+   "b20": 1.0,
+   "b21": 1.0,
+   "b22": 1.0
+  },
+  "S2": {
+   "b01": 1.0,
+   "b02": 1.0,
+   "b03": 1.0,
+   "b04": 1.0,
+   "b05": 1.0,
+   "b06": 1.0,
+   "b07": 1.0,
+   "b08": 1.0,
+   "b09": 1.0,
+   "b10": 1.0,
+   "b11": 1.0,
+   "b12": 1.0,
+   "b13": 1.0,
+   "b14": 1.0,
+   "b15": 1.0,
+   "b16": 1.0,
+   "b17": 1.0,
+   "b18": 1.0,
+   "b19": 1.0,
+   "b20": 1.0,
+   "b21": 1.0,
+   "b22": 1.0
+  }
+ },
+ "refs": [
+  "SR-2865"
+ ]
+}

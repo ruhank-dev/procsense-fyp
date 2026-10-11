@@ -1,0 +1,17 @@
+{
+ "sentences": {
+  "credit": "Credit: {label}. Rule {rule_id} [{source}].",
+  "info": "For your information: {label}. Rule {rule_id} [{source}].",
+  "minor": "Small slip: {label}. Rule {rule_id} [{source}].",
+  "major": "Important miss: {label}. Rule {rule_id} [{source}].",
+  "critical": "Critical error (fails the case): {label}. Rule {rule_id} [{source}]."
+ },
+ "placeholders": [
+  "label",
+  "rule_id",
+  "source"
+ ],
+ "refs": [
+  "SR-2865"
+ ]
+}

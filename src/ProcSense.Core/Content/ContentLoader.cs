@@ -69,9 +69,19 @@ namespace ProcSense.Core.Content
         public static ContentPackage Load(IContentReader reader, IReadOnlyList<string> caseIds, IReadOnlyList<string> caseFileIds)
         {
             var cases = new SortedDictionary<string, CaseCard>(StringComparer.Ordinal);
-            foreach (var id in caseIds) cases[id] = LoadCase(reader.ReadText("cases/" + id + ".json"), id);
             var files = new SortedDictionary<string, CaseFile>(StringComparer.Ordinal);
             foreach (var id in caseFileIds) files[id] = LoadCaseFile(reader, id);
+            var topics = LoadHistoryTopics(reader.ReadText("history_topics.json"));
+            foreach (var id in caseIds)
+            {
+                string? cardText = null;
+                try { cardText = reader.ReadText("cases/" + id + ".json"); }
+                catch (FileNotFoundException) { }
+                catch (DirectoryNotFoundException) { }
+                if (cardText != null) cases[id] = LoadCase(cardText, id);
+                else if (files.TryGetValue(id, out var file)) cases[id] = CaseFileCard.From(file, topics.Ids);   // no hand-made card: the case file is the patient
+                else throw new FileNotFoundException("not found in any content folder: cases/" + id + ".json");
+            }
             var behaviour = LoadBehaviour(reader.ReadText("behaviour.json"));
             return new ContentPackage(cases, LoadNibp(reader.ReadText("devices.json")), behaviour.Item1, behaviour.Item2, LoadHistoryTopics(reader.ReadText("history_topics.json")),
                 Workflow.CaseGraph.Parse(reader.ReadText("workflow/workflow.json"), "workflow"), files,
@@ -97,7 +107,8 @@ namespace ProcSense.Core.Content
                 Physiology.PhysioTables.Parse(reader.ReadText("physio/model.json"), reader.ReadText("physio/couplings.json"), reader.ReadText("physio/noise.json"), reader.ReadText("physio/effects.json"), reader.ReadText("physio/display_zones.json"), reader.ReadText("physio/pregnancy.json")),
                 Behaviour.BehaviourTables.Parse(reader.ReadText("behaviour/transitions.json"), reader.ReadText("behaviour/modes.json"), reader.ReadText("behaviour/disclosure.json")),
                 Workflow.Steps.ConsentTables.Parse(reader.ReadText("consent/consent.json")),
-                Events.EventTables.Parse(reader.ReadText("events/events.json")));
+                Events.EventTables.Parse(reader.ReadText("events/events.json")),
+                Scoring.ScoreTables.Parse(reader.ReadText("scoring/rubric.json"), reader.ReadText("assessment/mapping.json"), reader.ReadText("debrief/templates.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

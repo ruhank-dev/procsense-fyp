@@ -110,7 +110,7 @@ namespace ProcSense.Core.Workflow.Steps
             Risk.AsaClass = cls;
             o.Effects.Add("asa_proposed:" + Grade(grade, emergency));
             o.Effects.Add("asa:" + cls);
-            o.Effects.Add("score:risk.asa_" + cls);
+            o.Effects.Add("score:" + (cls == "credit" ? "credit.asa_correct" : cls == "minor" ? "minor.asa_close" : "major.asa_far"));      // a teaching moment: the anaesthetist corrects it, so the rubric gives it no penalty
         }
 
         // ---------------------------------------------------------------- clot and bleeding form (L5-02)
@@ -269,7 +269,7 @@ namespace ProcSense.Core.Workflow.Steps
             bool breach = Clinical.HasFlag(FastingSubsystem.BreachFlag) && !Clinical.HasFlag("fasting.anaesthetist_informed");
             if (id == "proceed" && breach)
             {
-                if (!Clinical.HasFlag("fasting.proceeded_despite_breach")) { Clinical.SetFlag("fasting.proceeded_despite_breach"); o.Effects.Add("score:CRITICAL.proceed_despite_fasting_breach"); }
+                if (!Clinical.HasFlag("fasting.proceeded_despite_breach")) { Clinical.SetFlag("fasting.proceeded_despite_breach"); o.Effects.Add("score:critical.proceed_despite_fasting_breach"); }
                 Clinical.SetFlag(BlockedFlag);
                 Risk.Blocked = true;
                 o.Effects.Add("critical:proceed_despite_fasting_breach");

@@ -252,8 +252,8 @@ namespace ProcSense.Core.Workflow.Steps
             if (Current() != null && option == "proceed")
             {
                 o.Effects.Add("critical:proceed_with_unacknowledged_result");
-                o.Effects.Add("score:CRITICAL.ignored_critical_result");
-                _history.Add(new GraphEvent("proceeded_with_unacknowledged_critical", "", _s.Clock.Steps, new[] { "CRITICAL.ignored_critical_result" }));
+                o.Effects.Add("score:critical.ignored_critical_result");
+                _history.Add(new GraphEvent("proceeded_with_unacknowledged_critical", "", _s.Clock.Steps, new[] { "critical.ignored_critical_result" }));
             }
             var needed = _s.Investigations?.NeededTests() ?? new List<string>();
             foreach (var order in Clinical.Investigations)

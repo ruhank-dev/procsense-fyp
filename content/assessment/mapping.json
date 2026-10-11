@@ -1,0 +1,450 @@
+{
+ "behaviours": [
+  {
+   "id": "b01",
+   "label": "Asks relevant questions",
+   "steps": [
+    2
+   ],
+   "actions": [
+    "ask"
+   ],
+   "ai_acts": [
+    "ASK_TOPIC"
+   ],
+   "critical": false,
+   "rule": "Required-topic rules per patient",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b02",
+   "label": "Identifies important patient information",
+   "steps": [
+    2,
+    7
+   ],
+   "actions": [
+    "open_notes",
+    "read_wristband",
+    "ask_identity",
+    "ask_allergies",
+    "ask_allergy_reaction",
+    "acknowledge_result"
+   ],
+   "ai_acts": [],
+   "critical": false,
+   "rule": "Fact-acknowledged rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b03",
+   "label": "Clarifies unclear information",
+   "steps": [
+    2,
+    7
+   ],
+   "actions": [],
+   "ai_acts": [
+    "CLARIFY"
+   ],
+   "critical": false,
+   "rule": "Vague-answer follow-up rule (no P0 action: needs the classifier)",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b04",
+   "label": "Responds to patient concerns and questions",
+   "steps": [
+    2,
+    9
+   ],
+   "actions": [
+    "answer_question"
+   ],
+   "ai_acts": [
+    "ANSWER_QUESTION"
+   ],
+   "critical": false,
+   "rule": "A pending question must be answered within its window",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b05",
+   "label": "Explains procedures and tests",
+   "steps": [
+    6,
+    9
+   ],
+   "actions": [
+    "consent_discussion",
+    "explain_delay"
+   ],
+   "ai_acts": [
+    "EXPLAIN_PROCEDURE",
+    "EXPLAIN_TEST"
+   ],
+   "critical": false,
+   "rule": "Explain-before-action rule and the consent elements",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b06",
+   "label": "Explains before performing an interaction",
+   "steps": [
+    3,
+    4,
+    6,
+    8
+   ],
+   "actions": [],
+   "ai_acts": [
+    "EXPLAIN_ACTION"
+   ],
+   "critical": false,
+   "rule": "Order rule: the explanation comes before the action (needs spoken evidence)",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b07",
+   "label": "Checks understanding",
+   "steps": [
+    9
+   ],
+   "actions": [
+    "teach_back"
+   ],
+   "ai_acts": [
+    "CHECK_UNDERSTANDING"
+   ],
+   "critical": false,
+   "rule": "Consent rule element: teach-back",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b08",
+   "label": "Responds appropriately to anxiety",
+   "steps": [
+    2,
+    8,
+    9
+   ],
+   "actions": [],
+   "ai_acts": [
+    "ACKNOWLEDGE_EMOTION",
+    "REASSURE"
+   ],
+   "critical": false,
+   "rule": "Response-window rule on an anxiety cue; false reassurance is a minor error",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b09",
+   "label": "Notices clinically relevant information from the patient",
+   "steps": [
+    2,
+    3,
+    4
+   ],
+   "actions": [
+    "tell_anaesthetist"
+   ],
+   "ai_acts": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "critical": false,
+   "rule": "Disclosed-fact follow-up rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b10",
+   "label": "Communicates with nurses and staff",
+   "steps": [
+    6,
+    8,
+    11
+   ],
+   "actions": [
+    "read_back"
+   ],
+   "ai_acts": [
+    "CLOSED_LOOP"
+   ],
+   "critical": false,
+   "rule": "Read-back rule",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b11",
+   "label": "Communicates during handover and transfer",
+   "steps": [
+    12,
+    15
+   ],
+   "actions": [
+    "handover",
+    "finish_handover",
+    "request_transport",
+    "cancel_transport"
+   ],
+   "ai_acts": [
+    "SBAR_ELEMENT"
+   ],
+   "critical": true,
+   "rule": "Required-element and critical-omission rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b12",
+   "label": "Gives appropriate instructions",
+   "steps": [
+    8,
+    10,
+    12
+   ],
+   "actions": [
+    "request_medication",
+    "request_fluids",
+    "request_oxygen",
+    "request_iv_access",
+    "order_investigation"
+   ],
+   "ai_acts": [
+    "VOICE_ORDER"
+   ],
+   "critical": false,
+   "rule": "Instruction-validity rules (formulary and state)",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b13",
+   "label": "Performs required checks",
+   "steps": [
+    1,
+    8,
+    10,
+    13,
+    14
+   ],
+   "actions": [
+    "confirm_identity",
+    "check_capacity",
+    "check_station",
+    "checklist_item",
+    "tick_ward_item",
+    "check_treatment_timing",
+    "document_treatment",
+    "request_interpreter"
+   ],
+   "ai_acts": [],
+   "critical": true,
+   "rule": "Required-check rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b14",
+   "label": "Responds to abnormal findings",
+   "steps": [
+    3,
+    4,
+    7
+   ],
+   "actions": [
+    "interpret_result",
+    "interpret_imaging",
+    "decide",
+    "declare_outcome",
+    "postpone",
+    "redirect"
+   ],
+   "ai_acts": [],
+   "critical": false,
+   "rule": "Finding-to-action rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b15",
+   "label": "Responds to unexpected events",
+   "steps": [
+    3,
+    4,
+    6,
+    8,
+    11,
+    12
+   ],
+   "actions": [
+    "escalate",
+    "answer_phone"
+   ],
+   "ai_acts": [
+    "ESCALATE_SPEECH"
+   ],
+   "critical": false,
+   "rule": "Event response rules (response windows)",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b16",
+   "label": "Recognises the need for more information",
+   "steps": [
+    5,
+    7
+   ],
+   "actions": [
+    "order_investigation",
+    "take_sample",
+    "perform_bedside_test",
+    "view_result",
+    "assess_risk",
+    "assess_vte",
+    "compute_score"
+   ],
+   "ai_acts": [],
+   "critical": false,
+   "rule": "Missing-information rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b17",
+   "label": "Follows the workflow and sequence",
+   "steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ],
+   "actions": [],
+   "ai_acts": [],
+   "critical": false,
+   "rule": "Order and hard-edge rules (readiness blockers)",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b18",
+   "label": "Notices environmental and safety problems",
+   "steps": [
+    11,
+    13
+   ],
+   "actions": [
+    "report_fault",
+    "use_substitute_theatre",
+    "confirm_patient_on_call"
+   ],
+   "ai_acts": [
+    "REPORT_FAULT"
+   ],
+   "critical": false,
+   "rule": "Fault-response rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b19",
+   "label": "Responds when information is missing",
+   "steps": [
+    2,
+    6,
+    10
+   ],
+   "actions": [
+    "request_anaesthetic_review"
+   ],
+   "ai_acts": [
+    "CLARIFY"
+   ],
+   "critical": false,
+   "rule": "Missing-information rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b20",
+   "label": "Escalates or seeks assistance",
+   "steps": [
+    3,
+    4,
+    7,
+    8
+   ],
+   "actions": [
+    "escalate",
+    "say_concern",
+    "tell_anaesthetist"
+   ],
+   "ai_acts": [
+    "ESCALATE_SPEECH"
+   ],
+   "critical": false,
+   "rule": "Escalation-trigger rules",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b21",
+   "label": "Completes preparation and safety checks",
+   "steps": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ],
+   "actions": [
+    "sign_ward_checklist",
+    "declare_or_ready",
+    "complete_time_out",
+    "decide_ready",
+    "sign_consent",
+    "prepare"
+   ],
+   "ai_acts": [],
+   "critical": false,
+   "rule": "Readiness blockers",
+   "ref": "SR-2864"
+  },
+  {
+   "id": "b22",
+   "label": "Responds to changing patient and environment state",
+   "steps": [
+    3,
+    4,
+    8,
+    12
+   ],
+   "actions": [
+    "request_oxygen",
+    "request_fluids",
+    "escalate"
+   ],
+   "ai_acts": [],
+   "critical": false,
+   "rule": "Time-window rules",
+   "ref": "SR-2864"
+  }
+ ],
+ "thresholds": {
+  "default": 0.8,
+  "per_act": {},
+  "note": "no classifier exists in P0; the default is the guide's example and is replaced by the calibration export when one exists"
+ },
+ "critical_acts": [
+  "CONFIRM_IDENTITY",
+  "STATE_ALLERGY",
+  "CONSENT_SIGN",
+  "HANDOVER_CRITICAL_ELEMENT"
+ ],
+ "refs": [
+  "SR-2864",
+  "SR-2865"
+ ]
+}

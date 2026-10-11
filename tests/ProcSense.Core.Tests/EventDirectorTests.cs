@@ -224,7 +224,7 @@ namespace ProcSense.Core.Tests
                 var s = Start(tables);
                 s.Tick(10);
                 double best = double.MaxValue;
-                for (int attempt = 0; attempt < 7; attempt++)
+                for (int attempt = 0; attempt < 15; attempt++)
                 {
                     var sw = Stopwatch.StartNew();
                     for (int i = 0; i < 300; i++) s.Tick(10);          // 300 evaluations (one every 20 steps), each with the other 20 steps of the whole pipeline

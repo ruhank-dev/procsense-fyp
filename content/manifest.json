@@ -1,10 +1,11 @@
 {
  "schema": 1,
- "content_hash": "e80b2d46517c176df8294a2515c2ef96f885052390b03cafc0710ed83ca3c63e",
- "files": 363,
- "bytes": 16693008,
+ "content_hash": "ce3504c6ad230181114354c562be02da1622f94f3f21741d4ffbae29ade5c0ae",
+ "files": 367,
+ "bytes": 16710105,
  "per_folder": {
   "(root)": 62,
+  "assessment": 1,
   "behaviour": 3,
   "case_files": 53,
   "cases": 1,
@@ -12,6 +13,7 @@
   "clashes": 1,
   "consent": 1,
   "cxr": 33,
+  "debrief": 1,
   "decision": 1,
   "ecg": 41,
   "endstate": 1,
@@ -31,8 +33,9 @@
   "problems": 1,
   "risk": 1,
   "rules": 1,
-  "schema": 4,
+  "schema": 5,
   "scores": 1,
+  "scoring": 1,
   "sepsis": 1,
   "ward": 1,
   "workflow": 1,
@@ -42,6 +45,10 @@
   "README.md": {
    "bytes": 1130,
    "sha256": "5facc82a956e9a80e09b9f04e2ade7aef9b44cb66bee8a3f251c06776d23d264"
+  },
+  "assessment/mapping.json": {
+   "bytes": 7669,
+   "sha256": "f8850e8eb396897dd82029a2d5eb3208b89f2843601450b5035155e8855c680c"
   },
   "bedside_results.csv": {
    "bytes": 2032,
@@ -462,6 +469,10 @@
   "cxr_reports.json": {
    "bytes": 25978,
    "sha256": "5191b598dd9d774a7507a88d4e2e3dc1d10c2471b4312f674c79838f189362fd"
+  },
+  "debrief/templates.json": {
+   "bytes": 451,
+   "sha256": "59fee7b549d272191f7ebf0531c5952ed6bb7df71b959754d6cf1e33af6b3cdb"
   },
   "decision/decision.json": {
    "bytes": 3218,
@@ -1148,8 +1159,8 @@
    "sha256": "210c9af84fdcfb62cf360013ad0c48b7c9c701dec6ba92570531700d91e040da"
   },
   "risk/risk.json": {
-   "bytes": 3891,
-   "sha256": "94505564dd8aa744bbe6bc4752cc7c4572871a764dc0762db23d7b51f2dd448f"
+   "bytes": 3924,
+   "sha256": "355bca4a01bf6b6a999efade714fa501d2e87113978ad688e7019568073bca31"
   },
   "rules/vectors.json": {
    "bytes": 39708,
@@ -1166,6 +1177,10 @@
   "schema/case_file.schema.json": {
    "bytes": 21739,
    "sha256": "f2f2c0845dabccdfcfe407b45ac857dd9ce28fc01d9aec199c4472162f77c2b9"
+  },
+  "schema/debrief_facts.schema.json": {
+   "bytes": 3428,
+   "sha256": "14e6cfdc4e3e31f074c9c79c519e55286576ade11dfa6e6f035ac5ce2d634971"
   },
   "schema/rule.schema.json": {
    "bytes": 2127,
@@ -1194,6 +1209,10 @@
   "scores/scores.json": {
    "bytes": 10611,
    "sha256": "c25dab209685d8f9adacfd80a601d5e38df1db54d2aa023f2a0087fd796ca3e1"
+  },
+  "scoring/rubric.json": {
+   "bytes": 5509,
+   "sha256": "6961dc6ba633d7a2f66cf2b3549efdc4dbf1bfce7d6eb523c3cb9cd2e7c2d669"
   },
   "sepsis/sepsis.json": {
    "bytes": 2479,
@@ -1252,8 +1271,8 @@
    "sha256": "aed4bdaaafd158774b2f4867d75f53c9ed38d3f2dc85f8deb3fc3fd55edfa3d0"
   },
   "workflow/workflow.json": {
-   "bytes": 9879,
-   "sha256": "1baa5535a7b831e58110f3729ae7db97208b7d9b0c601d59cf1c09ff85b5b096"
+   "bytes": 9886,
+   "sha256": "734e06fae19158ab29f8d75348077ccec5f94b7ff37f3e6abccdc9f241e70918"
   },
   "xsec/CT-AB-00/ct-ab-00-r0.png": {
    "bytes": 102569,
