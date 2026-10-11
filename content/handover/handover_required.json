@@ -1,0 +1,263 @@
+{
+ "sections": [
+  "s",
+  "b",
+  "a",
+  "r"
+ ],
+ "items": [
+  {
+   "id": "identity",
+   "section": "s",
+   "label": "Who the patient is: name, age and date of birth",
+   "known_if": {
+    "var": "identity_confirmed"
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "reason",
+   "section": "s",
+   "label": "Why the patient is here and the operation planned",
+   "known_if": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "required_in": [],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "allergies",
+   "section": "b",
+   "label": "Allergies (and the reaction)",
+   "known_if": {
+    "var": "allergies_known"
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "critical",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "history",
+   "section": "b",
+   "label": "Relevant medical history",
+   "known_if": {
+    "in": [
+     "past_history",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "required_in": [
+    "S1"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "blood_thinner",
+   "section": "b",
+   "label": "Medicines, especially any blood thinner and when it was last taken",
+   "known_if": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "required_in": [],
+   "severity": "major",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "observations",
+   "section": "a",
+   "label": "Latest observations and NEWS2",
+   "known_if": {
+    "in": [
+     "news2.computed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "fasting",
+   "section": "a",
+   "label": "Fasting times (or that they are uncertain)",
+   "known_if": {
+    "!=": [
+     {
+      "var": "fasting"
+     },
+     "unknown"
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "critical",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "results",
+   "section": "a",
+   "label": "Results: blood tests, lactate, kidney status and the scan",
+   "known_if": {
+    "in": [
+     "results.any_viewed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "pregnancy",
+   "section": "a",
+   "label": "Pregnancy status",
+   "known_if": {
+    "!": [
+     {
+      "in": [
+       "pregnancy.status_required",
+       {
+        "var": "flags"
+       }
+      ]
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "consent",
+   "section": "a",
+   "label": "Consent signed",
+   "known_if": {
+    "in": [
+     "consent.signed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "aspiration_risk",
+   "section": "a",
+   "label": "Aspiration risk (full stomach, uncertain fasting)",
+   "known_if": {
+    "!=": [
+     {
+      "var": "fasting"
+     },
+     "unknown"
+    ]
+   },
+   "required_in": [
+    "S2"
+   ],
+   "severity": "critical",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "antibiotic",
+   "section": "a",
+   "label": "Antibiotic given: name and time",
+   "known_if": {
+    "in": [
+     "treatment.antibiotic_given",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "fluids",
+   "section": "a",
+   "label": "Fluids given",
+   "known_if": {
+    "in": [
+     "treatment.fluids_given",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  },
+  {
+   "id": "recommendation",
+   "section": "r",
+   "label": "What you need or the plan: ready for theatre, antibiotic per protocol",
+   "known_if": true,
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-2834"
+  }
+ ],
+ "scored": {
+  "complete": "credit.handover_complete",
+  "critical": "critical.handover_omitted",
+  "major": "major.handover_omitted",
+  "minor": "minor.handover_omitted",
+  "repeat": "major.handover_repeat_omission"
+ },
+ "refs": [
+  "SR-2834",
+  "SR-2835"
+ ]
+}

@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "72f651d62ad749ea3b3bded3d704b407787887b0bb0ff31a048c7b08d3c3e28f",
- "files": 348,
- "bytes": 16633408,
+ "content_hash": "74c6fbf4e683347c409c12149609f1b9c3710f1b95c25398b85499a4c2ebc884",
+ "files": 349,
+ "bytes": 16637629,
  "per_folder": {
   "(root)": 61,
   "case_files": 53,
@@ -13,6 +13,7 @@
   "ecg": 41,
   "fasting": 1,
   "flow": 1,
+  "handover": 1,
   "images": 77,
   "imaging": 1,
   "investigations": 4,
@@ -667,6 +668,10 @@
   "glossary.csv": {
    "bytes": 15141,
    "sha256": "16deff6c67db69737b8b0cb3cccc953ef6f18031515ddcc9052da293f28dc3e4"
+  },
+  "handover/handover_required.json": {
+   "bytes": 4221,
+   "sha256": "22345ed9cd7c6fcfc3384fc53fb413f9ac56c6d19ebde2f6ee6db856e6e90459"
   },
   "history_topics.json": {
    "bytes": 453,

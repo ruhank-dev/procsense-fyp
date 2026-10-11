@@ -8,7 +8,7 @@ import csv
 import sys
 from pathlib import Path
 
-from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems, workflow_rule_problems, ward_rule_problems, engine_rule_keys
+from checks import treatment_problems, case_problems, csv_problems, load_json, load_register, ref_problems, flow_map_problems, rule_problems, schema_errors, workflow_problems, workflow_rule_problems, ward_rule_problems, handover_rule_problems, engine_rule_keys
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
@@ -87,6 +87,11 @@ def main() -> int:
     intents_doc = load_json(CONTENT / "npc" / "anaesthetist_intents.json")
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
+
+    ho_doc = load_json(CONTENT / "handover" / "handover_required.json")
+    horefs = set(ho_doc["refs"]) | {i["ref"] for i in ho_doc["items"]}
+    ho_problems = [f"handover_required.json: ref {r} not in register" for r in sorted(horefs) if r not in register] + handover_rule_problems(ho_doc, engine_rule_keys(ROOT / "src" / "ProcSense.Core" / "Workflow" / "CaseGraphSubsystem.cs"))
+    failed |= _report("handover items", ho_problems, f"{len(ho_doc['items'])} items, {len(horefs)} refs ok, every rule compiles")
 
     or_doc = load_json(CONTENT / "or" / "or_requirements.json")
     orrefs = set(or_doc["refs"]) | {s["ref"] for s in or_doc["stations"]}

@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null, ProcSense.Core.Clinical.DecisionTables? decision = null, ProcSense.Core.Physiology.DeteriorationTables? deterioration = null, ProcSense.Core.Workflow.Steps.WardTables? ward = null, ProcSense.Core.Workflow.OrTables? orRequirements = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null, ProcSense.Core.Clinical.DecisionTables? decision = null, ProcSense.Core.Physiology.DeteriorationTables? deterioration = null, ProcSense.Core.Workflow.Steps.WardTables? ward = null, ProcSense.Core.Workflow.OrTables? orRequirements = null, ProcSense.Core.Workflow.Steps.HandoverTables? handover = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -71,6 +71,7 @@ namespace ProcSense.Core.Content
             Deterioration = deterioration ?? ProcSense.Core.Physiology.DeteriorationTables.Empty;
             Ward = ward ?? ProcSense.Core.Workflow.Steps.WardTables.Empty;
             Or = orRequirements ?? ProcSense.Core.Workflow.OrTables.Empty;
+            Handover = handover ?? ProcSense.Core.Workflow.Steps.HandoverTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -112,6 +113,8 @@ namespace ProcSense.Core.Content
         public ProcSense.Core.Workflow.Steps.WardTables Ward { get; }
         /// <summary>The theatre stations of Step 11, who checks them and the cases with a fault (content/or/or_requirements.json).</summary>
         public ProcSense.Core.Workflow.OrTables Or { get; }
+        /// <summary>The SBAR items, which each scenario must include and how an omission is scored (content/handover/handover_required.json).</summary>
+        public ProcSense.Core.Workflow.Steps.HandoverTables Handover { get; }
         /// <summary>The treatment library: each treatment with its required checks, prerequisites, restrictions and effect ids (content/treatments.json).</summary>
         public ProcSense.Core.Clinical.TreatmentTables Treatments { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>

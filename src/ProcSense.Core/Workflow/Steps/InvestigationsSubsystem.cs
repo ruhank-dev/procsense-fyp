@@ -48,6 +48,7 @@ namespace ProcSense.Core.Workflow.Steps
         public const string PregnancyFlag = "pregnancy.status_required";
         public const string TestsOrderedFlag = "tests.needed_ordered";
         public const string ResultsReviewedFlag = "tests.needed_reviewed";
+        public const string AnyViewedFlag = "results.any_viewed";
 
         private readonly ContentPackage _content;
         private readonly CaseFile? _fixed;
@@ -135,6 +136,7 @@ namespace ProcSense.Core.Workflow.Steps
         private void Refresh()
         {
             if (PregnancyEligible() && !PregnancyKnown()) Clinical.SetFlag(PregnancyFlag); else Clinical.ClearFlag(PregnancyFlag);
+            if (Clinical.Investigations.Any(x => x.State == "VIEWED" || x.State == "ACKNOWLEDGED")) Clinical.SetFlag(AnyViewedFlag); else Clinical.ClearFlag(AnyViewedFlag);
             var needed = NeededTests();
             if (needed.Count > 0 && needed.All(t => Latest(t) != null)) Clinical.SetFlag(TestsOrderedFlag); else Clinical.ClearFlag(TestsOrderedFlag);
             if (needed.Count > 0 && needed.All(t => { var l = Latest(t); return l != null && (l.State == "VIEWED" || l.State == "ACKNOWLEDGED"); })) Clinical.SetFlag(ResultsReviewedFlag); else Clinical.ClearFlag(ResultsReviewedFlag);

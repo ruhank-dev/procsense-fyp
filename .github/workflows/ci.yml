@@ -131,6 +131,9 @@ jobs:
       - name: Imaging reports and categories are up to date (51 findings, approved reports, 35 cases)
         run: uv run --project tools tools/content/build_imaging.py --check
 
+      - name: Handover items are up to date (14 items, planned and emergency sets)
+        run: uv run --project tools tools/content/build_handover.py --check
+
       - name: Theatre readiness stations are up to date (12 stations, faults)
         run: uv run --project tools tools/content/build_or.py --check
 

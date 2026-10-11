@@ -75,6 +75,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.DecisionSubsystem? DecisionStep { get; set; }
         internal Workflow.Steps.WardChecklistSubsystem? WardStep { get; set; }
         internal Workflow.OrReadinessSubsystem? OrStep { get; set; }
+        internal Workflow.Steps.HandoverSubsystem? HandoverStep { get; set; }
+
+        /// <summary>The SBAR handover: what was handed over and what was missing (null when the session has no handover step).</summary>
+        public Workflow.Steps.HandoverSubsystem? Handover => HandoverStep;
 
         /// <summary>The theatre stations and the readiness of the theatre (null when the session has no theatre step).</summary>
         public Workflow.OrReadinessSubsystem? Or => OrStep;

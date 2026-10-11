@@ -113,6 +113,26 @@ def workflow_rule_problems(doc: dict, known_keys: set[str]) -> list[str]:
     return problems
 
 
+def handover_rule_problems(doc: dict, known_keys: set[str]) -> list[str]:
+    """Every handover item's known_if rule compiles in the subset and reads only keys the engine provides."""
+    problems = []
+    for it in doc.get("items", []):
+        rule = it.get("known_if")
+        if rule is None or isinstance(rule, bool):
+            continue
+        where = f"handover item {it.get('id')} known_if"
+        try:
+            jsonlogic.compile_rule(rule, where)
+        except jsonlogic.RuleError as err:
+            problems.append(str(err))
+            continue
+        keys: set[str] = set()
+        if not jsonlogic.reads(rule, keys):
+            problems.append(f"{where}: reads a variable the engine cannot know in advance")
+        problems += [f"{where}: reads '{k}', which the engine does not provide" for k in sorted(keys - known_keys)]
+    return problems
+
+
 def ward_rule_problems(doc: dict, known_keys: set[str]) -> list[str]:
     """Every ward checklist rule compiles in the subset (Python twin of the evaluator) and reads only keys the engine provides."""
     problems = []

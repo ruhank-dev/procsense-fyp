@@ -124,6 +124,7 @@ namespace ProcSense.Core.Workflow.Steps
                 string effect = kind == "antibiotics" ? "EFF-ANTIBIOTIC" : "EFF-FLUID-BOLUS";
                 if (!e.Effects.Contains(effect) || _firstGiven.ContainsKey(kind)) continue;
                 _firstGiven[kind] = now;
+                _s.Patient.Clinical.SetFlag("treatment." + (kind == "antibiotics" ? "antibiotic" : "fluids") + "_given");
                 var timer = Timers().FirstOrDefault(t => t.Kind == kind);
                 if (timer == null) continue;                                    // no tier asks for it (yet): nothing to judge
                 var items = timer.LateMinutes > 0 ? new[] { "major.sepsis_" + kind + "_late" } : new[] { "credit.sepsis_" + kind + "_on_time" };
