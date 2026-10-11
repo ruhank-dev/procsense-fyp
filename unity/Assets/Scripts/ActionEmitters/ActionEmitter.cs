@@ -71,8 +71,9 @@ namespace ProcSense.VR.ActionEmitters
         /// <summary>Lets the tablet offer the same action as a button (plan tests T01-5, T03-5).</summary>
         protected void RegisterFallback()
         {
-            if (!string.IsNullOrEmpty(fallbackLabel) && !string.IsNullOrEmpty(verb))
-                Fallback.TabletFallbackRegistry.Register(fallbackLabel, BuildAction());
+            Fallback.TabletFallbackRegistry.Register(this, fallbackLabel, BuildAction());
         }
+
+        protected void UnregisterFallback() => Fallback.TabletFallbackRegistry.Unregister(this);
     }
 }

@@ -15,7 +15,11 @@ namespace ProcSense.VR.ActionEmitters
             RegisterFallback();
         }
 
-        private void OnDisable() => _interactable.selectEntered.RemoveListener(OnSelect);
+        private void OnDisable()
+        {
+            if (_interactable != null) _interactable.selectEntered.RemoveListener(OnSelect);
+            UnregisterFallback();
+        }
 
         private void OnSelect(UnityEngine.XR.Interaction.Toolkit.SelectEnterEventArgs _) => Fire();
     }

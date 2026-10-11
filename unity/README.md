@@ -54,6 +54,14 @@ Ordinary Inspector and Scene edits work normally. Save scene edits with Ctrl+S. 
 
 **ProcSense → Tools → Rebuild Prototype Scenes** is a separate, destructive regeneration command with a confirmation dialog: it replaces the four prototype scenes from `Assets/Data/room_manifest_bay.json`. It is not needed to open or run the project. Put layout changes in the manifest if they must survive regeneration, or keep them as saved scene edits and do not regenerate those scenes. Prototype UI panels are constructed by runtime view scripts, so they appear during Play rather than as fully authored Canvas hierarchies in Edit mode.
 
+## Interaction input and tablet fallbacks
+
+World selections and UI clicks use a 0.35-second debounce by default. Input before a Session exists does not consume that cooldown, and a replacement Session starts fresh. Core still decides whether an action is accepted.
+
+The tablet's **More** tab follows currently enabled emitters with fallback labels. Disabling, destroying or unloading an emitter removes its extra button; re-enabling it restores the button. Reconfiguring its label/action updates the tab. Equivalent actions share one extra button while at least one source remains, using the complete verb, target, channel and parameters for comparison. Built-in Identity/History/Observe controls stay available through room changes and are not duplicated in More.
+
+Dynamic fallback clicks resolve a live source at click time and use that source's debounce. A stale button cannot send an old action after its source is removed or reconfigured. The `TabletView.Press` helper is deterministic test/desktop dispatch; it temporarily bypasses a built-in button's cooldown and restores it afterward. Normal pointer/controller clicks retain UI gating and debounce. Current world objects use XRSimpleInteractable selection proxies; dedicated grab/socket/poke equipment adapters and physical headset acceptance remain separate work.
+
 ## Validation and work log
 
 Run `task unity-test` from the repository root with this project's Editor closed (or use the live Editor Test Runner). `task unity-build` builds the Quest APK when Android modules are installed.

@@ -87,7 +87,6 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual("{\"seq\":0,\"step\":0,\"verb\":\"introduce_self\",\"target\":\"patient\",\"channel\":\"vr\",\"params\":{},\"accepted\":true,\"reject\":\"\",\"effects\":[\"trust+1\",\"anxiety-1\"]}\n", _host.Session.Log.ToJsonl());
         }
 
-        // T-B2: a refused action shows a hint and changes nothing
         [Test]
         public void Input_before_session_start_does_not_swallow_the_first_valid_press()
         {
@@ -288,6 +287,151 @@ namespace ProcSense.Tests.PlayMode
         }
 
         // The skeleton-1 golden script, driven through the tablet buttons, must give the same log as Core run directly (VR channel).
+        [Test]
+        public void Fallbacks_follow_enable_reconfigure_and_destroy_without_removing_builtin_controls()
+        {
+            var emitter = Make<UIButtonEmitter>("world fallback");
+            emitter.Configure("wait", fallbackLabel: "Wait here");
+            var tablet = Make<TabletView>("tablet");
+            tablet.RenderNow();
+            var original = tablet.Buttons.Single(b => b.label == "Wait here").button;
+            emitter.Configure("wait", fallbackLabel: "Wait briefly");
+            tablet.RenderNow();
+            Assert.AreSame(original, tablet.Buttons.Single(b => b.label == "Wait briefly").button);
+            emitter.enabled = false;
+            tablet.RenderNow();
+            Assert.IsFalse(tablet.Buttons.Any(b => b.label == "Wait briefly"));
+            emitter.Configure("wait", fallbackLabel: "New wait");
+            Assert.IsEmpty(TabletFallbackRegistry.All, "disabled configuration cannot register an active fallback");
+            emitter.enabled = true;
+            tablet.RenderNow();
+            Assert.IsTrue(tablet.Buttons.Any(b => b.label == "New wait"));
+            emitter.Configure("read_wristband", fallbackLabel: "Duplicate wristband");
+            tablet.RenderNow();
+            Assert.IsFalse(tablet.Buttons.Any(b => b.label == "New wait" || b.label == "Duplicate wristband"));
+            Object.DestroyImmediate(emitter.gameObject);
+            tablet.RenderNow();
+            Assert.IsEmpty(TabletFallbackRegistry.All);
+            Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Read wristband"));
+        }
+
+        [Test]
+        public void Identical_fallback_actions_share_one_button_until_the_last_owner_leaves()
+        {
+            var first = Make<UIButtonEmitter>("first");
+            var second = Make<UIButtonEmitter>("second");
+            first.Configure("wait", fallbackLabel: "First wait");
+            second.Configure("wait", fallbackLabel: "Second wait");
+            var tablet = Make<TabletView>("tablet");
+            tablet.RenderNow();
+            Assert.AreEqual(1, tablet.Buttons.Count(b => b.label.EndsWith("wait")));
+            first.enabled = false;
+            tablet.RenderNow();
+            Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Second wait"));
+            second.enabled = false;
+            tablet.RenderNow();
+            Assert.IsFalse(tablet.Buttons.Any(b => b.label.EndsWith("wait")));
+        }
+
+        [Test]
+        public void Equal_labels_do_not_merge_different_targets_or_parameters()
+        {
+            var first = Make<UIButtonEmitter>("first");
+            var second = Make<UIButtonEmitter>("second");
+            var third = Make<UIButtonEmitter>("third");
+            first.Configure("wait", "patient", "reason", "a", "Wait");
+            second.Configure("wait", "equipment", "reason", "a", "Wait");
+            third.Configure("wait", "equipment", "reason", "b", "Wait");
+            var tablet = Make<TabletView>("tablet");
+            tablet.RenderNow();
+            var buttons = tablet.Buttons.Where(b => b.label == "Wait").ToArray();
+            Assert.AreEqual(3, buttons.Length);
+            foreach (var button in buttons) button.button.onClick.Invoke();
+            var content = ContentLoader.Load(UnityContentReader(), "VAR-S1-A");
+            var reference = new Session(content.Cases["VAR-S1-A"], 42, SessionMode.Practice, Subsystems.Default(content));
+            foreach (var emitter in new[] { first, second, third }) reference.Apply(emitter.BuildAction());
+            Assert.AreEqual(reference.Log.Hash(), _host.Session.Log.Hash(), "fallback must preserve target, channel and parameters");
+            Assert.AreEqual(reference.Observable.Hash(), _host.Observable.Hash());
+        }
+
+        [Test]
+        public void Stale_fallback_clicks_cannot_fire_removed_or_reconfigured_actions()
+        {
+            var emitter = Make<UIButtonEmitter>("source");
+            emitter.Configure("wait", fallbackLabel: "Wait");
+            var tablet = Make<TabletView>("tablet");
+            tablet.RenderNow();
+            var oldButton = tablet.Buttons.Single(b => b.label == "Wait").button;
+            emitter.Configure("introduce_self", fallbackLabel: "Introduction");
+            oldButton.onClick.Invoke(); // Registry changed before next UI update.
+            Assert.AreEqual(0, _host.Session.Log.Count);
+            emitter.Configure("wait", fallbackLabel: "Wait");
+            emitter.enabled = false;
+            oldButton.onClick.Invoke();
+            Assert.AreEqual(0, _host.Session.Log.Count);
+        }
+
+        [Test]
+        public void World_and_dynamic_fallback_share_cooldown_and_core_rejection()
+        {
+            var emitter = Make<UIButtonEmitter>("source");
+            emitter.Configure("not_a_registered_verb", fallbackLabel: "Rejected fixture");
+            var tablet = Make<TabletView>("tablet");
+            tablet.RenderNow();
+            var button = tablet.Buttons.Single(b => b.label == "Rejected fixture").button;
+            var rejected = emitter.Fire();
+            Assert.IsFalse(rejected.Accepted);
+            button.onClick.Invoke();
+            button.onClick.Invoke();
+            Assert.AreEqual(1, _host.Session.Log.Count);
+            Assert.IsFalse(_host.Observable.IdentityConfirmed);
+        }
+
+        [UnityTest]
+        public System.Collections.IEnumerator Fallback_buttons_refresh_without_core_ticks_and_after_scene_unload()
+        {
+            var tablet = Make<TabletView>("persistent tablet");
+            tablet.RenderNow();
+            var room = UnityEngine.SceneManagement.SceneManager.CreateScene("FallbackLifecycleFixture");
+            var emitter = Make<XRSelectEmitter>("room emitter");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(emitter.gameObject, room);
+            emitter.Configure("wait", fallbackLabel: "Room wait");
+            yield return null;
+            Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Room wait"));
+            yield return UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(room);
+            yield return null;
+            Assert.IsEmpty(TabletFallbackRegistry.All);
+            Assert.IsFalse(tablet.Buttons.Any(b => b.label == "Room wait"));
+            Assert.AreEqual(0, _host.Session.Log.Count);
+        }
+
+        [Test]
+        public void Clearing_registry_invalidates_buttons_and_reenabled_owners_can_register_again()
+        {
+            var emitter = Make<UIButtonEmitter>("source");
+            emitter.Configure("wait", fallbackLabel: "Wait");
+            var tablet = Make<TabletView>("tablet");
+            tablet.RenderNow();
+            TabletFallbackRegistry.Clear();
+            tablet.RenderNow();
+            Assert.IsFalse(tablet.Buttons.Any(b => b.label == "Wait"));
+            emitter.enabled = false;
+            emitter.enabled = true;
+            tablet.RenderNow();
+            Assert.AreEqual(1, tablet.Buttons.Count(b => b.label == "Wait"));
+        }
+
+        [Test]
+        public void Programmatic_tablet_dispatch_preserves_physical_button_debounce()
+        {
+            var tablet = Make<TabletView>("tablet");
+            var button = tablet.Buttons.Single(b => b.label == "Introduce yourself").button;
+            Assert.IsTrue(tablet.Press("introduce_self"));
+            Assert.AreEqual(0.35f, button.GetComponent<UIButtonEmitter>().DebounceSeconds);
+            button.onClick.Invoke();
+            Assert.AreEqual(1, _host.Session.Log.Count);
+        }
+
         [Test]
         public void The_golden_script_through_the_tablet_gives_the_same_log_hash_as_core_alone()
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProcSense.Core.Actions;
 using ProcSense.Core.Observation;
 using ProcSense.VR.ActionEmitters;
 using ProcSense.VR.Bridge;
@@ -23,6 +24,7 @@ namespace ProcSense.VR.Views
             public string Label, Verb, Key = "", Value = "";
             public Func<ObservableState, bool> Enabled;
             public Button Button;
+            public SimAction FallbackAction;
         }
 
         private static readonly (string label, string topic)[] HistoryTopics =
@@ -36,10 +38,9 @@ namespace ProcSense.VR.Views
 
         private readonly List<Item>[] _tabs = { new List<Item>(), new List<Item>(), new List<Item>(), new List<Item>() };
         private readonly List<GameObject> _tabRoots = new List<GameObject>();
-        private readonly HashSet<string> _builtInKeys = new HashSet<string>();
         private TMP_Text _clock, _hint, _subtitle, _note;
         private int _factCount;
-        private int _fallbackBuilt;
+        private int _fallbackRevision = -1;
         private string _hintFromHost = "";
 
         public Canvas Canvas { get; private set; }
@@ -49,14 +50,21 @@ namespace ProcSense.VR.Views
         public string SubtitleText => _subtitle.text;
         public string NoteText => _note.text;
 
-        /// <summary>Presses the tablet button for an action (what a trigger pull on the button does). Used by tests and the headset-free rig.</summary>
+        /// <summary>Deterministic test/desktop dispatch, including inactive tabs and rejected actions. Physical clicks use normal UI gating/debounce.</summary>
         public bool Press(string verb, string key = "", string value = "")
         {
+            SyncFallbacks();
             var item = _tabs.SelectMany(t => t).FirstOrDefault(i => i.Verb == verb && i.Key == key && i.Value == value);
             if (item == null) return false;
+            if (item.FallbackAction != null)
+            {
+                TabletFallbackRegistry.Fire(item.FallbackAction);
+                return true;
+            }
             var emitter = item.Button.GetComponent<UIButtonEmitter>();
-            emitter.DebounceSeconds = 0f;
-            emitter.Fire();
+            float debounce = emitter.DebounceSeconds;
+            try { emitter.DebounceSeconds = 0f; emitter.Fire(); }
+            finally { emitter.DebounceSeconds = debounce; }
             return true;
         }
 
@@ -64,6 +72,12 @@ namespace ProcSense.VR.Views
         public IEnumerable<(string label, Button button)> Buttons => _tabs.SelectMany(t => t).Select(i => (i.Label, i.Button));
 
         private void Awake() => Build();
+
+        protected override void Update()
+        {
+            base.Update();
+            SyncFallbacks(); // Registry changes also matter while Core is paused/not ticking.
+        }
 
         protected override void OnEnable()
         {
@@ -142,15 +156,20 @@ namespace ProcSense.VR.Views
             t2.Add(new Item { Label = "Remove SpO2 probe", Verb = "detach_sensor", Key = "sensor", Value = "spo2", Enabled = always });
             t2.Add(new Item { Label = "Remove BP cuff", Verb = "detach_sensor", Key = "sensor", Value = "nibp_cuff", Enabled = always });
 
-            foreach (var item in _tabs.SelectMany(t => t)) _builtInKeys.Add(KeyOf(item.Verb, item.Key, item.Value));
         }
 
-        private static string KeyOf(string verb, string key, string value) => verb + "|" + key + "=" + value;
+        private static SimAction ActionOf(Item item) => new SimAction(item.Verb, "patient", Channel.Vr,
+            string.IsNullOrEmpty(item.Key) ? null : new Dictionary<string, string> { [item.Key] = item.Value });
 
         private void MakeItemButton(Transform tabRoot, Item item, int index)
         {
             int col = index % 2, row = index / 2;
             item.Button = UiKit.MakeButton(tabRoot, item.Label, new Vector2(10 + col * 296, 192 + row * 58), new Vector2(288, 50), 22);
+            if (item.FallbackAction != null)
+            {
+                item.Button.onClick.AddListener(() => TabletFallbackRegistry.Fire(item.FallbackAction));
+                return;
+            }
             var emitter = item.Button.gameObject.AddComponent<UIButtonEmitter>();
             emitter.Configure(item.Verb, "patient", item.Key, item.Value);
         }
@@ -176,21 +195,44 @@ namespace ProcSense.VR.Views
                 foreach (var item in tab)
                     if (item.Button != null) item.Button.interactable = item.Enabled(s);
 
-            AddMissingFallbacks();
+            SyncFallbacks();
         }
 
         // Any emitter in the world registers its action; if the tablet has no matching button yet, it gets one on the "More" tab.
-        private void AddMissingFallbacks()
+        private void SyncFallbacks()
         {
-            var entries = TabletFallbackRegistry.All;
-            for (; _fallbackBuilt < entries.Count; _fallbackBuilt++)
+            if (_tabRoots.Count != TabNames.Length || _fallbackRevision == TabletFallbackRegistry.Revision) return;
+            _fallbackRevision = TabletFallbackRegistry.Revision;
+            var desired = new List<TabletFallbackRegistry.Entry>();
+            foreach (var entry in TabletFallbackRegistry.All)
+                if (!_tabs.Take(3).SelectMany(t => t).Any(i => TabletFallbackRegistry.SameAction(ActionOf(i), entry.Action)) &&
+                    !desired.Any(e => TabletFallbackRegistry.SameAction(e.Action, entry.Action))) desired.Add(entry);
+
+            // Remove obsolete dynamic buttons only; keep the canvas, tabs and surviving buttons intact.
+            foreach (var item in _tabs[3].ToArray())
             {
-                var action = entries[_fallbackBuilt].Action;
+                if (desired.Any(e => TabletFallbackRegistry.SameAction(e.Action, item.FallbackAction))) continue;
+                _tabs[3].Remove(item);
+                item.Button.onClick.RemoveAllListeners();
+                item.Button.gameObject.SetActive(false);
+                Destroy(item.Button.gameObject);
+            }
+            for (int index = 0; index < desired.Count; index++)
+            {
+                var entry = desired[index];
+                var action = entry.Action;
+                var item = _tabs[3].FirstOrDefault(i => TabletFallbackRegistry.SameAction(i.FallbackAction, action));
                 var first = action.Params.FirstOrDefault();
-                if (_builtInKeys.Contains(KeyOf(action.Verb, first.Key ?? "", first.Value ?? ""))) continue;
-                var item = new Item { Label = entries[_fallbackBuilt].Label, Verb = action.Verb, Key = first.Key ?? "", Value = first.Value ?? "", Enabled = s => true };
-                _tabs[3].Add(item);
-                MakeItemButton(_tabRoots[3].transform, item, _tabs[3].Count - 1);
+                if (item == null)
+                {
+                    item = new Item { Label = entry.Label, Verb = action.Verb, Key = first.Key ?? "", Value = first.Value ?? "", FallbackAction = action, Enabled = s => true };
+                    _tabs[3].Add(item);
+                    MakeItemButton(_tabRoots[3].transform, item, index);
+                }
+                item.Label = entry.Label;
+                item.Button.name = "Button - " + entry.Label;
+                SetText(item.Button.GetComponentInChildren<TMP_Text>(), entry.Label);
+                ((RectTransform)item.Button.transform).anchoredPosition = new Vector2(10 + index % 2 * 296, -(192 + index / 2 * 58));
             }
         }
     }

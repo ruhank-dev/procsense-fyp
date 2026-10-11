@@ -13,7 +13,11 @@ namespace ProcSense.VR.ActionEmitters
             RegisterFallback();
         }
 
-        private void OnDisable() => GetComponent<Button>().onClick.RemoveListener(OnClick);
+        private void OnDisable()
+        {
+            GetComponent<Button>().onClick.RemoveListener(OnClick);
+            UnregisterFallback();
+        }
 
         private void OnClick() => Fire();
     }
