@@ -165,6 +165,9 @@ namespace ProcSense.Core.Workflow.Steps
             return result;
         }
 
+        /// <summary>Minutes since the first treatment of this kind (antibiotics or fluids) was given, or null when none has been.</summary>
+        public double? GivenMinutesAgo(string kind) => _firstGiven.TryGetValue(kind, out var at) ? (_s.Clock.SimSeconds - at) / 60.0 : (double?)null;
+
         /// <summary>Where things stand now: the tier, when the criteria were first met, the timers and how late they are.</summary>
         public SepsisReport Report()
         {

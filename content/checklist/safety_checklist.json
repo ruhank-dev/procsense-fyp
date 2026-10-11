@@ -1,0 +1,595 @@
+{
+ "phases": [
+  "sign_in",
+  "time_out",
+  "sign_out",
+  "extension"
+ ],
+ "items": [
+  {
+   "id": "sign_in.01",
+   "phase": "sign_in",
+   "order": 1,
+   "prompt": "Has the patient confirmed his/her identity, site, procedure and consent?",
+   "extension": false,
+   "critical": true,
+   "if_no": "STOP — resolve",
+   "no_stops": true,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "and": [
+       {
+        "var": "identity_confirmed"
+       },
+       {
+        "in": [
+         "consent.signed",
+         {
+          "var": "flags"
+         }
+        ]
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2150"
+  },
+  {
+   "id": "sign_in.02",
+   "phase": "sign_in",
+   "order": 2,
+   "prompt": "Is the site marked? (Yes / Not applicable)",
+   "extension": false,
+   "critical": false,
+   "if_no": "Ask surgeon",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "ward.site_marking.marked",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "na"
+    ]
+   },
+   "ref": "SR-2151"
+  },
+  {
+   "id": "sign_in.03",
+   "phase": "sign_in",
+   "order": 3,
+   "prompt": "Is the anaesthesia machine and medication check complete?",
+   "extension": false,
+   "critical": true,
+   "if_no": "STOP — complete check",
+   "no_stops": true,
+   "answered_by": "npc",
+   "expected_if": {
+    "if": [
+     {
+      "==": [
+       {
+        "var": "or_stations.anaesthetic_machine"
+       },
+       "ready"
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2152"
+  },
+  {
+   "id": "sign_in.04",
+   "phase": "sign_in",
+   "order": 4,
+   "prompt": "Is the pulse oximeter on the patient and functioning?",
+   "extension": false,
+   "critical": true,
+   "if_no": "STOP — replace",
+   "no_stops": true,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "spo2",
+       {
+        "var": "sensors"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2153"
+  },
+  {
+   "id": "sign_in.05",
+   "phase": "sign_in",
+   "order": 5,
+   "prompt": "Does the patient have a known allergy? (No / Yes)",
+   "extension": false,
+   "critical": false,
+   "if_no": "Prepare alternatives",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "var": "has_allergy"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2154"
+  },
+  {
+   "id": "sign_in.06",
+   "phase": "sign_in",
+   "order": 6,
+   "prompt": "Difficult airway or aspiration risk? (No / Yes, and equipment/assistance available)",
+   "extension": false,
+   "critical": false,
+   "if_no": "Plan, don't stop",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "or": [
+       {
+        "==": [
+         {
+          "var": "scenario"
+         },
+         "S2"
+        ]
+       },
+       {
+        "==": [
+         {
+          "var": "fasting"
+         },
+         "breach"
+        ]
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2155"
+  },
+  {
+   "id": "sign_in.07",
+   "phase": "sign_in",
+   "order": 7,
+   "prompt": "Risk of >500 mL blood loss (7 mL/kg in children)? (No / Yes, and two IVs/central access and fluids planned)",
+   "extension": false,
+   "critical": false,
+   "if_no": "Two IVs + fluids/blood planned",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "risk.blood_loss",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2156"
+  },
+  {
+   "id": "time_out.01",
+   "phase": "time_out",
+   "order": 1,
+   "prompt": "Confirm all team members have introduced themselves by name and role",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2157"
+  },
+  {
+   "id": "time_out.02",
+   "phase": "time_out",
+   "order": 2,
+   "prompt": "Confirm the patient's name, procedure, and where the incision will be made",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "var": "identity_confirmed"
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2158"
+  },
+  {
+   "id": "time_out.03",
+   "phase": "time_out",
+   "order": 3,
+   "prompt": "Has antibiotic prophylaxis been given within the last 60 minutes? (Yes / Not applicable)",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "and": [
+       {
+        "!=": [
+         {
+          "var": "antibiotic_given_minutes_ago"
+         },
+         null
+        ]
+       },
+       {
+        "<=": [
+         {
+          "var": "antibiotic_given_minutes_ago"
+         },
+         60
+        ]
+       }
+      ]
+     },
+     "yes",
+     {
+      "if": [
+       {
+        "==": [
+         {
+          "var": "scenario"
+         },
+         "S2"
+        ]
+       },
+       "no",
+       "na"
+      ]
+     }
+    ]
+   },
+   "ref": "SR-2159"
+  },
+  {
+   "id": "time_out.04",
+   "phase": "time_out",
+   "order": 4,
+   "prompt": "Anticipated critical events — To surgeon: What are the critical or non-routine steps? How long will the case take? What is the anticipated blood loss?",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2160"
+  },
+  {
+   "id": "time_out.05",
+   "phase": "time_out",
+   "order": 5,
+   "prompt": "To anaesthetist: Are there any patient-specific concerns?",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2161"
+  },
+  {
+   "id": "time_out.06",
+   "phase": "time_out",
+   "order": 6,
+   "prompt": "To nursing team: Has sterility (including indicator results) been confirmed? Are there equipment issues or any concerns?",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": true,
+   "answered_by": "npc",
+   "expected_if": {
+    "if": [
+     {
+      "==": [
+       {
+        "var": "or_stations.lap_tower"
+       },
+       "ready"
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2162"
+  },
+  {
+   "id": "time_out.07",
+   "phase": "time_out",
+   "order": 7,
+   "prompt": "Is essential imaging displayed? (Yes / Not applicable)",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "var": "imaging_viewed"
+     },
+     "yes",
+     "na"
+    ]
+   },
+   "ref": "SR-2163"
+  },
+  {
+   "id": "sign_out.01",
+   "phase": "sign_out",
+   "order": 1,
+   "prompt": "Nurse verbally confirms: the name of the procedure",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2164"
+  },
+  {
+   "id": "sign_out.02",
+   "phase": "sign_out",
+   "order": 2,
+   "prompt": "Nurse verbally confirms: completion of instrument, sponge and needle counts",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2165"
+  },
+  {
+   "id": "sign_out.03",
+   "phase": "sign_out",
+   "order": 3,
+   "prompt": "Nurse verbally confirms: specimen labelling (read specimen labels aloud, including patient name)",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2166"
+  },
+  {
+   "id": "sign_out.04",
+   "phase": "sign_out",
+   "order": 4,
+   "prompt": "Nurse verbally confirms: whether there are any equipment problems to be addressed",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2167"
+  },
+  {
+   "id": "sign_out.05",
+   "phase": "sign_out",
+   "order": 5,
+   "prompt": "To surgeon, anaesthetist and nurse: What are the key concerns for recovery and management of this patient?",
+   "extension": false,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "npc",
+   "expected_if": "yes",
+   "ref": "SR-2168"
+  },
+  {
+   "id": "extension.01",
+   "phase": "extension",
+   "order": 1,
+   "prompt": "VTE prophylaxis confirmed",
+   "extension": true,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "vte.done",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2169"
+  },
+  {
+   "id": "extension.02",
+   "phase": "extension",
+   "order": 2,
+   "prompt": "Capillary glucose recorded for patients with diabetes",
+   "extension": true,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "or": [
+       {
+        "!": [
+         {
+          "in": [
+           "condition.diabetes",
+           {
+            "var": "flags"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "in": [
+         "ward.cbg.recorded",
+         {
+          "var": "flags"
+         }
+        ]
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2170"
+  },
+  {
+   "id": "extension.03",
+   "phase": "extension",
+   "order": 3,
+   "prompt": "Patient temperature ≥36.0 °C before induction",
+   "extension": true,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      ">=": [
+       {
+        "var": "temperature_c"
+       },
+       36.0
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2171"
+  },
+  {
+   "id": "extension.04",
+   "phase": "extension",
+   "order": 4,
+   "prompt": "Pregnancy status documented where relevant",
+   "extension": true,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "!": [
+       {
+        "in": [
+         "pregnancy.status_required",
+         {
+          "var": "flags"
+         }
+        ]
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2172"
+  },
+  {
+   "id": "extension.05",
+   "phase": "extension",
+   "order": 5,
+   "prompt": "Team brief before the list / debrief after",
+   "extension": true,
+   "critical": false,
+   "if_no": "",
+   "no_stops": false,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "==": [
+       {
+        "var": "or_stations.team_brief"
+       },
+       "ready"
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
+   "ref": "SR-2173"
+  }
+ ],
+ "npc_delay_seconds": 4,
+ "skips_before_stop": 2,
+ "scored": {
+  "contradiction": "critical.checklist_contradiction",
+  "skipped": "major.checklist_item_skipped",
+  "skipped_repeat": "critical.checklist_skipped_repeatedly",
+  "sign_in_complete": "credit.sign_in_complete",
+  "time_out_complete": "credit.time_out_complete",
+  "stopped_honestly": "info.checklist_stopped_honestly"
+ },
+ "ready_flag": "checklist.ready_for_incision",
+ "rsi_flag": "plan.rsi",
+ "refs": [
+  "SR-2836",
+  "SR-2837"
+ ]
+}

@@ -1,12 +1,13 @@
 {
  "schema": 1,
- "content_hash": "74c6fbf4e683347c409c12149609f1b9c3710f1b95c25398b85499a4c2ebc884",
- "files": 349,
- "bytes": 16637629,
+ "content_hash": "92cdc6954d0b2e3dff1e5fc70d0132bbedcaddb51e76371fd8368308d83a54ba",
+ "files": 350,
+ "bytes": 16648961,
  "per_folder": {
   "(root)": 61,
   "case_files": 53,
   "cases": 1,
+  "checklist": 1,
   "clashes": 1,
   "cxr": 33,
   "decision": 1,
@@ -284,6 +285,10 @@
   "cases/VAR-S1-A.json": {
    "bytes": 4162,
    "sha256": "33d58886fc8e3951bd1942065ad9b64ef6996cdb31cafefb43647485338a1785"
+  },
+  "checklist/safety_checklist.json": {
+   "bytes": 11332,
+   "sha256": "a32bbd132dde81be7462ecd5d8652914636eb427ad75f8f86113d4e35bea282d"
   },
   "clashes/clashes.json": {
    "bytes": 14691,

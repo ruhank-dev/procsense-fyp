@@ -63,6 +63,10 @@ namespace ProcSense.Core.Workflow
                 ["exam_done"] = (long)c.Findings.Count(f => !f.Region.StartsWith(AirwayRegion, StringComparison.Ordinal)),
                 ["airway_total"] = (long)c.AirwayTotal,
                 ["airway_done"] = (long)c.Airway.Count,
+                ["or_stations"] = c.OrStations.ToDictionary(kv => kv.Key, kv => (object?)kv.Value, StringComparer.Ordinal),
+                ["has_allergy"] = s.Patient.Profile.Allergies.Count > 0,
+                ["antibiotic_given_minutes_ago"] = (object?)s.SepsisStep?.GivenMinutesAgo("antibiotics"),
+                ["imaging_viewed"] = c.Investigations.Any(x => x.Report != null && (x.State == "VIEWED" || x.State == "ACKNOWLEDGED")),
             };
         }
     }

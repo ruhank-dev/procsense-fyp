@@ -76,6 +76,10 @@ namespace ProcSense.Core
         internal Workflow.Steps.WardChecklistSubsystem? WardStep { get; set; }
         internal Workflow.OrReadinessSubsystem? OrStep { get; set; }
         internal Workflow.Steps.HandoverSubsystem? HandoverStep { get; set; }
+        internal Workflow.Steps.SafetyChecklistSubsystem? SafetyStep { get; set; }
+
+        /// <summary>The WHO safety checklist: phases, answers and what was contradicted (null when the session has no checklist step).</summary>
+        public Workflow.Steps.SafetyChecklistSubsystem? Safety => SafetyStep;
 
         /// <summary>The SBAR handover: what was handed over and what was missing (null when the session has no handover step).</summary>
         public Workflow.Steps.HandoverSubsystem? Handover => HandoverStep;

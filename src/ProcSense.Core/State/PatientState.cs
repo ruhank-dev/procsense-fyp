@@ -232,6 +232,10 @@ namespace ProcSense.Core.State
         /// <summary>The state of each theatre station (unchecked, ready, fault, replacing). Empty until the theatre step first runs, so a session that never reaches theatre keeps the hash it always had.</summary>
         public SortedDictionary<string, string> OrStations { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
 
+        /// <summary>The state of each safety checklist item (confirmed, stopped, contradicted) and phase (IN_PROGRESS, STOPPED, ITEMS_DONE, COMPLETE). Empty until the checklist is first used.</summary>
+        public SortedDictionary<string, string> ChecklistItems { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
+        public SortedDictionary<string, string> ChecklistPhases { get; } = new SortedDictionary<string, string>(StringComparer.Ordinal);
+
         /// <summary>Step 5: the risk assessment, anaesthetic review and readiness decision.</summary>
         public RiskState Risk { get; } = new RiskState();
     }

@@ -28,6 +28,7 @@ namespace ProcSense.Core.Workflow
             new WardChecklistSubsystem(content),
             new OrReadinessSubsystem(content),
             new HandoverSubsystem(content),
+            new SafetyChecklistSubsystem(content),
             new Physiology.DeteriorationSubsystem(content),
             new ProblemsSubsystem(content),
             new CaseGraphSubsystem(content.Workflow),

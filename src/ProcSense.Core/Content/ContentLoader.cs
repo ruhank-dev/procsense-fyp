@@ -91,7 +91,8 @@ namespace ProcSense.Core.Content
                 Physiology.DeteriorationTables.Parse(reader.ReadText("physiology/deterioration.json")),
                 Workflow.Steps.WardTables.Parse(reader.ReadText("ward/ward_checklist.json")),
                 Workflow.OrTables.Parse(reader.ReadText("or/or_requirements.json")),
-                Workflow.Steps.HandoverTables.Parse(reader.ReadText("handover/handover_required.json")));
+                Workflow.Steps.HandoverTables.Parse(reader.ReadText("handover/handover_required.json")),
+                Workflow.Steps.SafetyChecklistTables.Parse(reader.ReadText("checklist/safety_checklist.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>
