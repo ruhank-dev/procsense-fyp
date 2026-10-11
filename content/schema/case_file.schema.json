@@ -63,9 +63,16 @@
     "synthetic": {
       "const": true
     },
+    "created_by": {
+      "enum": [
+        "human",
+        "ai_draft"
+      ]
+    },
     "status": {
       "enum": [
         "DRAFT",
+        "CLINICAL_REVIEW",
         "APPROVED_FOR_TRAINING",
         "APPROVED_FOR_ASSESSMENT"
       ]

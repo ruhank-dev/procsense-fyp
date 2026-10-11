@@ -1,0 +1,17 @@
+{
+ "contradictions": [
+  { "code": "IDENTITY_MISMATCH", "check": 4, "meaning": "The age does not agree with the date of birth, the wristband text does not agree with the identity, the spoken answer lacks the name, or a name or number repeats another case", "source": "SR-2868 (project rule)" },
+  { "code": "NEWS2_MISMATCH", "check": 4, "meaning": "An observation states a NEWS2 total that the verified NEWS2 table does not give for its numbers", "source": "SR-2868 (NEWS2 table, SR-0200 onward)" },
+  { "code": "RESULT_FLAG_MISMATCH", "check": 4, "meaning": "A result is flagged normal outside its range, flagged abnormal inside it, a critical potassium or sodium is not flagged critical, or a book result differs from the walkthrough row", "source": "SR-2868 (project rule)" },
+  { "code": "TIME_IMPOSSIBLE", "check": 4, "meaning": "The last meal or drink is said to be today at a time later than the case's own now", "source": "SR-2868 (project rule)" },
+  { "code": "DECISION_OPTIONS_INVALID", "check": 4, "meaning": "A decision has no correct option, or every option is correct", "source": "SR-2868 (project rule)" },
+  { "code": "PREGNANT_MALE", "check": 4, "meaning": "A male patient is marked pregnant", "source": "SR-2868 (project rule)" },
+  { "code": "RESULTS_VS_STATE", "check": 4, "meaning": "The case has a sepsis problem but every white cell count, CRP and lactate in it is normal (the guide's own example)", "source": "Guide B-M2 worked example; SR-2868" },
+  { "code": "MEDICATION_WITHOUT_INDICATION", "check": 4, "meaning": "A chronic-disease medicine is named but nothing in the case gives a reason for it (the guide's own example)", "source": "Guide B-M2 worked example; SR-2868" },
+  { "code": "ALLERGY_VS_MEDICINE", "check": 4, "meaning": "The patient has a penicillin allergy that is not a mild old rash and takes a penicillin-group medicine", "source": "SR-2868 (project rule; the mild old rash is not a conflict, as in the medicine workflow)" },
+  { "code": "FASTING_VS_STATE", "check": 4, "meaning": "A planned case expected to go ahead has a last meal that will not meet the fasting rule at the time of surgery", "source": "SR-0820 to SR-0828 (fasting rule); SR-2868" },
+  { "code": "PROBLEM_WITHOUT_EVIDENCE", "check": 4, "meaning": "A P0 case lists a problem that no discovery rule reveals, so the trainee could never find it", "source": "SR-2867; SR-2868" },
+  { "code": "RESULT_UNORDERABLE", "check": 8, "meaning": "A result is of a test that no orderable investigation gives", "source": "SR-2868 (project rule)" }
+ ],
+ "refs": ["SR-2868"]
+}

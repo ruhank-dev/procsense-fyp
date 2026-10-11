@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "content_hash": "207adff519d6c3ca9073435f271e095b860e29caa2f6fdb0b1abadc3118b2be1",
- "files": 369,
- "bytes": 16719890,
+ "content_hash": "5db26dd98b2e819a1c468064ae0012d683b9d13daa8439ea8ca763b7b9f17f48",
+ "files": 371,
+ "bytes": 16724963,
  "per_folder": {
-  "(root)": 62,
+  "(root)": 64,
   "assessment": 1,
   "behaviour": 3,
   "case_files": 53,
@@ -326,6 +326,10 @@
   "consent/consent.json": {
    "bytes": 7394,
    "sha256": "a4d38778f786aac29ef91aab0da61a400d1182e411a1f9623974c5bbf83ab74d"
+  },
+  "contradictions.json": {
+   "bytes": 2573,
+   "sha256": "f98428423b34239d73e37097b67c7267f3dcbd0a9ca94a772431dc5ade4c9f37"
   },
   "critical_results.csv": {
    "bytes": 1486,
@@ -1184,8 +1188,8 @@
    "sha256": "918eb2e3a23e9397dd9e6f274189fc68bd9976be067daccf5fb138b3d753d00f"
   },
   "schema/case_file.schema.json": {
-   "bytes": 21739,
-   "sha256": "f2f2c0845dabccdfcfe407b45ac857dd9ce28fc01d9aec199c4472162f77c2b9"
+   "bytes": 21853,
+   "sha256": "8e92edf19020cc23063a4c1781e00a338d58689b2cbfda8a84020fac617f536a"
   },
   "schema/debrief_facts.schema.json": {
    "bytes": 3428,
@@ -1266,6 +1270,10 @@
   "ward/ward_checklist.json": {
    "bytes": 5662,
    "sha256": "092cb2ce3e077bb5f47e6f76069c38fb6862ef322a770f5dd66e81c85873838e"
+  },
+  "whatif_bindings.csv": {
+   "bytes": 2386,
+   "sha256": "a035f203e0118a94abaf7d4a0d7d1803f5b15b3d0ec0736c32f0cb4479a0d7b9"
   },
   "whatif_imaging.csv": {
    "bytes": 6151,

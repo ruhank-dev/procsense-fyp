@@ -1,0 +1,26 @@
+case,whatif,event,test,how,ref
+VAR-S1-C,w31,,ClashTests.cs,the medicines answer names a diabetes medicine,SR-2869
+VAR-S1-D,w30,,ClashTests.cs,the medicines answer names a blood thinner,SR-2869
+VAR-S1-G,w33,,FastingTests.cs,the fasting rule is not met,SR-2869
+VAR-S1-H,w26,,DecisionEngineTests.cs,the pregnancy test is positive,SR-2869
+STK-S1-D,w01,E-LOW-BP,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+STK-S1-D,w08,E-FAST-BREATHING,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+STK-S1-D,w40,,SepsisTests.cs,the case has a sepsis problem,SR-2869
+STK-S1-D,w39,,DeteriorationTests.cs,without action the NEWS2 reaches 7 or more,SR-2869
+VAR-S2-F,w33,,FastingTests.cs,the fasting rule is not met,SR-2869
+VAR-S2-PD,w01,E-LOW-BP,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+VAR-S2-PD,w03,E-HIGH-HR,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+VAR-S2-PD,w07,E-LOW-OXYGEN,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+VAR-S2-PD,w08,E-FAST-BREATHING,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+VAR-S2-PD,w40,,SepsisTests.cs,the case has a sepsis problem,SR-2869
+VAR-S2-PD,w39,,DeteriorationTests.cs,without action the NEWS2 reaches 7 or more,SR-2869
+VAR-S2-PD,w42,,ConsentTests.cs,"the patient is confused or has a low sugar, so cannot give valid consent",SR-2869
+STK-S2-B,w28,,MedicineWorkflowTests.cs,"the case lists a penicillin allergy, so an antibiotic request is challenged or reacts",SR-2869
+STK-S2-B,w29,E-HYPERSENSITIVITY,EventDirectorTests.cs,the allergen can be given and the reaction fires,SR-2869
+STK-S2-B,w01,E-LOW-BP,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+STK-S2-B,w03,E-HIGH-HR,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+STK-S2-B,w07,E-LOW-OXYGEN,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+STK-S2-B,w08,E-FAST-BREATHING,EventDirectorTests.cs,an observation of the case crosses the threshold,SR-2869
+STK-S2-B,w40,,SepsisTests.cs,the case has a sepsis problem,SR-2869
+STK-S2-B,w39,,DeteriorationTests.cs,without action the NEWS2 reaches 7 or more,SR-2869
+STK-S2-B,w42,,ConsentTests.cs,"the patient is confused or has a low sugar, so cannot give valid consent",SR-2869

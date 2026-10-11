@@ -16,7 +16,7 @@ namespace ProcSense.Core.Content
     {
         private static readonly string[] Origins = { "book", "authored" };
         private static readonly string[] Tiers = { "P0", "P1", "P2" };
-        private static readonly string[] Statuses = { "DRAFT", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT" };
+        private static readonly string[] Statuses = { "DRAFT", "CLINICAL_REVIEW", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT" };
         private static readonly string[] Conditions = { "initial", "after_correct_action", "if_no_action", "variant" };
         private static readonly string[] EndStates = { "ready", "postponed", "redirected", "delayed", "failure" };
         private static readonly string[] Flags = { "normal", "high", "low", "critical_high", "critical_low", "abnormal", "positive", "negative" };
@@ -257,9 +257,10 @@ namespace ProcSense.Core.Content
                     facts.Add(fact);
                 }
 
+            string createdBy = c.Has("created_by") ? c.Enum("created_by", "human", "ai_draft") : "human";
             c.Finish();
             return new CaseFile(id, label, scenario, tier, status, approval, referenceDate, baseCard, identity, spoken, wristband, allergies, allergyAnswer, reason, presentation, history, observations,
-                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts);
+                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts, createdBy);
         }
 
         // The checks that need no table: they hold for any case file.
@@ -303,6 +304,7 @@ namespace ProcSense.Core.Content
                 if (!d.Options.Any(o => o.Correct) || d.Options.All(o => o.Correct)) throw new ContentException("decisions." + d.Id + ": needs at least one correct and one wrong option");
                 Unique("decisions." + d.Id + ".options", d.Options.Select(o => o.Id));
             }
+            if (f.CreatedBy == "ai_draft" && f.Status.StartsWith("APPROVED", StringComparison.Ordinal)) throw new ContentException("status: a case drafted by AI stops at CLINICAL_REVIEW until a person approves it");
             if (f.Status == "APPROVED_FOR_ASSESSMENT" && f.Tier != "P0") throw new ContentException("status: only a P0 case can be approved for assessment");
         }
 

@@ -152,6 +152,18 @@ jobs:
       - name: Scoring content is up to date (22 behaviours, rubric, debrief sentences)
         run: uv run --project tools tools/content/build_scoring.py --check
 
+      - name: What-if bindings are up to date (P0 cases, derived from the case content)
+        run: uv run --project tools tools/content/build_bindings.py --check
+
+      - name: Stage B validator passes all 53 case files
+        run: uv run --project tools tools/composer/stage_b.py --all
+
+      - name: Stage B rejects all 60 mutated cases (12 contradiction types x 5)
+        run: uv run --project tools tools/composer/mutate.py --type ALL --n 5
+
+      - name: Composer tests
+        run: uv run --project tools python tools/composer/test_composer.py
+
       - name: Problem discovery rules are up to date (29 rules for the 17 P0 cases)
         run: uv run --project tools tools/content/build_discovery.py --check
 
