@@ -462,6 +462,58 @@ namespace ProcSense.Tests.PlayMode
         private static ProcSense.VR.Content.UnityContentReader UnityContentReader() =>
             new ProcSense.VR.Content.UnityContentReader(Path.Combine(Repo, "content"));
 
+#if UNITY_EDITOR
+        [TestCase(false)]
+        [TestCase(true)]
+        public void Diagnostics_preview_gates_reports_and_never_changes_core(bool sample)
+        {
+            var preview = Make<DiagnosticsPreview>("diagnostics fixture");
+            string state = _host.Observable.Hash(), log = _host.Session.Log.Hash();
+            double time = _host.Session.Clock.SimSeconds;
+            preview.SelectRoute(sample);
+            Assert.IsFalse(preview.Interrupt());
+            for (int i = 0; i < 3; i++)
+            {
+                StringAssert.DoesNotContain("SYNTHETIC REPORT", preview.ReportText);
+                Assert.IsTrue(preview.Advance());
+            }
+            Assert.IsTrue(preview.Interrupt());
+            Assert.IsFalse(preview.Interrupt());
+            Assert.IsFalse(preview.Advance());
+            StringAssert.DoesNotContain("SYNTHETIC REPORT", preview.ReportText);
+            Assert.IsTrue(preview.Resume());
+            Assert.IsFalse(preview.Resume());
+            Assert.IsTrue(preview.Advance());
+            StringAssert.Contains("SYNTHETIC REPORT", preview.ReportText);
+            if (sample) StringAssert.Contains("bedside throughout", preview.LocationText);
+            Assert.IsTrue(preview.Advance());
+            Assert.IsFalse(preview.Advance());
+            preview.SelectRoute(!sample);
+            Assert.AreEqual(DiagnosticsPreview.Phase.Idle, preview.Current);
+            StringAssert.DoesNotContain("SYNTHETIC REPORT", preview.ReportText);
+            Assert.AreEqual(state, _host.Observable.Hash());
+            Assert.AreEqual(log, _host.Session.Log.Hash());
+            Assert.AreEqual(time, _host.Session.Clock.SimSeconds);
+        }
+
+        [Test]
+        public void Diagnostics_preview_buttons_enforce_interrupted_and_reset_states()
+        {
+            var preview = Make<DiagnosticsPreview>("diagnostics fixture");
+            var buttons = preview.GetComponentsInChildren<UnityEngine.UI.Button>();
+            var advance = buttons.Single(b => b.GetComponentInChildren<TMPro.TMP_Text>().text == "Inject request");
+            advance.onClick.Invoke(); advance.onClick.Invoke(); advance.onClick.Invoke();
+            buttons.Single(b => b.GetComponentInChildren<TMPro.TMP_Text>().text == "Inject attention stop").onClick.Invoke();
+            Assert.IsFalse(advance.interactable);
+            advance.onClick.Invoke(); // Even a direct callback must not bypass the interruption.
+            Assert.AreEqual(DiagnosticsPreview.Phase.Processing, preview.Current);
+            buttons.Single(b => b.GetComponentInChildren<TMPro.TMP_Text>().text == "Reset fixture").onClick.Invoke();
+            Assert.IsTrue(advance.interactable);
+            Assert.IsFalse(preview.Interrupted);
+            Assert.AreEqual(0, _host.Session.Log.Count);
+        }
+
+#endif
         [TestCase(XRSelectEmitter.SelectionRoute.Grab)]
         [TestCase(XRSelectEmitter.SelectionRoute.Socket)]
         [TestCase(XRSelectEmitter.SelectionRoute.Poke)]

@@ -6,8 +6,23 @@ using UnityEngine.SceneManagement;
 namespace ProcSense.EditorTools
 {
     /// <summary>Opens the editable room and its supporting scenes for ordinary Unity editing and Play.</summary>
+    [InitializeOnLoad]
     public static class WorkspaceMenu
     {
+        static WorkspaceMenu()
+        {
+            EditorApplication.playModeStateChanged += state =>
+            {
+                if (state == PlayModeStateChange.ExitingPlayMode) ClearDiagnosticsPreviews();
+            };
+            AssemblyReloadEvents.beforeAssemblyReload += ClearDiagnosticsPreviews;
+        }
+
+        private static void ClearDiagnosticsPreviews()
+        {
+            foreach (var preview in Resources.FindObjectsOfTypeAll<ProcSense.VR.Views.DiagnosticsPreview>())
+                if (!EditorUtility.IsPersistent(preview)) Object.DestroyImmediate(preview.gameObject);
+        }
         public const string BootPath = "Assets/Scenes/Boot.unity";
         public const string BayPath = "Assets/Scenes/PatientBay.unity";
 
@@ -33,5 +48,26 @@ namespace ProcSense.EditorTools
 
         [MenuItem("ProcSense/Open Patient Bay", true)]
         private static bool CanOpenPatientBay() => !EditorApplication.isPlayingOrWillChangePlaymode;
+
+        [MenuItem("ProcSense/Development/Diagnostics Preview (Play Mode)")]
+        public static void OpenDiagnosticsPreview()
+        {
+            if (!EditorApplication.isPlaying) return;
+            var camera = Camera.main;
+            if (camera == null) return;
+            // FindAnyObjectByType excludes DontSave objects, including this preview.
+            var preview = System.Array.Find(Resources.FindObjectsOfTypeAll<ProcSense.VR.Views.DiagnosticsPreview>(),
+                p => p.gameObject.scene.IsValid());
+            if (preview == null)
+            {
+                var go = new GameObject("Diagnostics development preview")
+                { hideFlags = HideFlags.DontSaveInEditor | HideFlags.DontSaveInBuild };
+                preview = go.AddComponent<ProcSense.VR.Views.DiagnosticsPreview>();
+            }
+            preview.transform.SetPositionAndRotation(camera.transform.position + camera.transform.forward * 0.9f, camera.transform.rotation);
+        }
+
+        [MenuItem("ProcSense/Development/Diagnostics Preview (Play Mode)", true)]
+        private static bool CanPreviewDiagnostics() => EditorApplication.isPlaying;
     }
 }
