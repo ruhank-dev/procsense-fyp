@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "cb438c5d9744affb42affb990c6c30dafbf3f609bf608e9f4b3038e64b5ac8bf",
- "files": 357,
- "bytes": 16662434,
+ "content_hash": "af8730b31ec6b674af6d32c452cccf766a3537c411334d75c9866c8a23d2e7e1",
+ "files": 358,
+ "bytes": 16670077,
  "per_folder": {
   "(root)": 61,
   "behaviour": 3,
@@ -10,6 +10,7 @@
   "cases": 1,
   "checklist": 1,
   "clashes": 1,
+  "consent": 1,
   "cxr": 33,
   "decision": 1,
   "ecg": 41,
@@ -308,6 +309,10 @@
   "clashes/clashes.json": {
    "bytes": 14691,
    "sha256": "c29336956951d353796127d71237593742669d99078249568eb09ff08f7bad3a"
+  },
+  "consent/consent.json": {
+   "bytes": 7342,
+   "sha256": "50161afec3c6306a10d2d04d95ff16c77fce6b73107c81d5bfd880be56aed8c1"
   },
   "critical_results.csv": {
    "bytes": 1486,
@@ -1226,8 +1231,8 @@
    "sha256": "aed4bdaaafd158774b2f4867d75f53c9ed38d3f2dc85f8deb3fc3fd55edfa3d0"
   },
   "workflow/workflow.json": {
-   "bytes": 9578,
-   "sha256": "db2d8a62783861646f9259b5dd56f02aaf45147722e259e90c634229675106b4"
+   "bytes": 9879,
+   "sha256": "1baa5535a7b831e58110f3729ae7db97208b7d9b0c601d59cf1c09ff85b5b096"
   },
   "xsec/CT-AB-00/ct-ab-00-r0.png": {
    "bytes": 102569,

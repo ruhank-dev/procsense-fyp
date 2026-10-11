@@ -88,6 +88,10 @@ def main() -> int:
     rrefs = set(risk_doc["refs"]) | {risk_doc["asa_difference"]["ref"], risk_doc["delay_unexplained"]["ref"]} | set(risk_doc["vte"]["refs"]) | set(intents_doc["refs"]) | {i["ref"] for i in intents_doc["intents"]}
     failed |= _report("risk and anaesthetist lines", [f"risk content: ref {r} not in register" for r in sorted(rrefs) if r not in register], f"{len(rrefs)} refs ok")
 
+    cs_doc = load_json(CONTENT / "consent" / "consent.json")
+    csrefs = set(cs_doc["refs"]) | {x for p in cs_doc["procedures"].values() for e in p["elements"] for x in e["ref"].split()} | {q["ref"] for q in cs_doc["questions"]}
+    failed |= _report("consent", [f"consent.json: ref {r} not in register" for r in sorted(csrefs) if r not in register], f"{len(cs_doc['questions'])} questions, {len(csrefs)} refs ok")
+
     bh_t = load_json(CONTENT / "behaviour" / "transitions.json")
     bh_m = load_json(CONTENT / "behaviour" / "modes.json")
     bh_d = load_json(CONTENT / "behaviour" / "disclosure.json")

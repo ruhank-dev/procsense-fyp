@@ -182,7 +182,7 @@ namespace ProcSense.Core.Tests
             var transfer = new[] { ("mode", "trolley"), ("escort", "porter,nurse"), ("accompany", "true") };
             Do(s, "ask", ("topic", "pregnancy"));
             Assert.Equal("BLOCKED:B-WARD", Reject(Do(s, "transfer_to_theatre", transfer)));
-            s.Patient.Clinical.SetFlag("ward.checklist_signed");
+            s.Patient.Clinical.SetFlag("ward.checklist_signed"); s.Patient.Clinical.SetFlag("consent.signed");
             Assert.True(Do(s, "transfer_to_theatre", transfer).Accepted);
             for (int i = 0; i < 600 && s.Patient.Clinical.TraineeLocation != "theatre_reception"; i++) s.Tick(30);
             Assert.Equal("theatre_reception", s.Patient.Clinical.TraineeLocation);

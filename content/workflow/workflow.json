@@ -250,6 +250,13 @@
       "blocked_if": { "!": [ { "in": [ "or.ready", { "var": "flags" } ] } ] },
       "message": "The theatre is not ready: check every station, report and replace any fault, then declare the theatre ready.",
       "refs": [ "SR-2832" ]
+    },
+    {
+      "id": "B-CONSENT",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "!": [ { "in": [ "consent.signed", { "var": "flags" } ] } ] },
+      "message": "There is no valid consent: do the consent conversation and sign before the transfer.",
+      "refs": [ "SR-2855" ]
     }
   ]
 }

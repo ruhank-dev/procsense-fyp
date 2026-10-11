@@ -1,0 +1,273 @@
+{
+ "topics": [
+  "diagnosis",
+  "operation",
+  "benefits",
+  "risks",
+  "alternatives",
+  "no_treatment",
+  "matters"
+ ],
+ "procedures": {
+  "S1": {
+   "label": "keyhole gallbladder removal",
+   "elements": [
+    {
+     "topic": "diagnosis",
+     "text": "You have gallstones which are causing attacks of pain.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "operation",
+     "text": "We remove your gallbladder through 3-4 small cuts using a camera; we fill your tummy with gas to see.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "benefits",
+     "text": "No more attacks; prevents complications (inflammation, jaundice, pancreatitis).",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "risks",
+     "text": "Wound infection (roughly 1-5%); bleeding; bile leak (about 0.5%, pooled 0.46%); major injury to the main bile duct (about 0.3%, pooled 0.28%, may need major repair); stone left in duct; conversion to open (about 2-5% planned operations, up to about 20% in emergency or inflamed cases); shoulder-tip pain from the gas; hernia at cut; ongoing symptoms; clots; bowel injury (rare); death (very rare, under about 0.1%).",
+     "ref": "SR-2850 SR-2853"
+    },
+    {
+     "topic": "alternatives",
+     "text": "Watch and wait, low-fat diet (attacks often return; complications possible).",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "no_treatment",
+     "text": "More attacks, possible inflammation, jaundice, pancreatitis.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "matters",
+     "text": "Ask what matters most to the patient and answer questions honestly.",
+     "ref": "SR-2854"
+    }
+   ]
+  },
+  "S2": {
+   "label": "appendix removal",
+   "elements": [
+    {
+     "topic": "diagnosis",
+     "text": "Your appendix is inflamed: appendicitis.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "operation",
+     "text": "We remove your appendix through 3 small cuts, or sometimes one larger cut.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "benefits",
+     "text": "Removes the infection; prevents bursting, abscess and sepsis.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "risks",
+     "text": "Wound infection (more in open or burst cases); pus collection inside (about 2-5% simple, more if burst); bleeding; injury to bowel or bladder (rare); conversion to open; appendix turns out normal; bowel slow to restart; clots.",
+     "ref": "SR-2853"
+    },
+    {
+     "topic": "alternatives",
+     "text": "For simple appendicitis without a stone inside: antibiotics only. 29% needed appendectomy by 90 days (25% without and 41% with an appendicolith) in the CODA trial (NEJM 2020); 39.1% had recurrence within 5 years in the APPAC trial (JAMA 2018).",
+     "ref": "SR-2851 SR-2852"
+    },
+    {
+     "topic": "no_treatment",
+     "text": "Bursting, abscess, peritonitis, sepsis, possibly death.",
+     "ref": "SR-2854"
+    },
+    {
+     "topic": "matters",
+     "text": "Ask what matters most to the patient and answer questions honestly.",
+     "ref": "SR-2854"
+    }
+   ]
+  }
+ },
+ "questions": [
+  {
+   "id": "s1.home",
+   "scenario": "S1",
+   "text": "Can I go home today?",
+   "answers": [
+    {
+     "id": "approved",
+     "text": "Often yes.",
+     "kind": "approved"
+    },
+    {
+     "id": "false_reassurance",
+     "text": "Don't worry, nothing can go wrong.",
+     "kind": "false_reassurance"
+    },
+    {
+     "id": "dismissive",
+     "text": "I will tell you later, we are busy.",
+     "kind": "dismissive"
+    }
+   ],
+   "ref": "SR-2854"
+  },
+  {
+   "id": "s1.scars",
+   "scenario": "S1",
+   "text": "Scars?",
+   "answers": [
+    {
+     "id": "approved",
+     "text": "3-4 small.",
+     "kind": "approved"
+    },
+    {
+     "id": "false_reassurance",
+     "text": "Don't worry, nothing can go wrong.",
+     "kind": "false_reassurance"
+    },
+    {
+     "id": "dismissive",
+     "text": "I will tell you later, we are busy.",
+     "kind": "dismissive"
+    }
+   ],
+   "ref": "SR-2854"
+  },
+  {
+   "id": "s1.diet",
+   "scenario": "S1",
+   "text": "Diet after?",
+   "answers": [
+    {
+     "id": "approved",
+     "text": "Normal; some find fatty food upsets them.",
+     "kind": "approved"
+    },
+    {
+     "id": "false_reassurance",
+     "text": "Don't worry, nothing can go wrong.",
+     "kind": "false_reassurance"
+    },
+    {
+     "id": "dismissive",
+     "text": "I will tell you later, we are busy.",
+     "kind": "dismissive"
+    }
+   ],
+   "ref": "SR-2854"
+  },
+  {
+   "id": "s1.work",
+   "scenario": "S1",
+   "text": "Work?",
+   "answers": [
+    {
+     "id": "approved",
+     "text": "1-2 weeks.",
+     "kind": "approved"
+    },
+    {
+     "id": "false_reassurance",
+     "text": "Don't worry, nothing can go wrong.",
+     "kind": "false_reassurance"
+    },
+    {
+     "id": "dismissive",
+     "text": "I will tell you later, we are busy.",
+     "kind": "dismissive"
+    }
+   ],
+   "ref": "SR-2854"
+  },
+  {
+   "id": "s2.children",
+   "scenario": "S2",
+   "text": "Will I be able to have children?",
+   "answers": [
+    {
+     "id": "approved",
+     "text": "Removing the appendix does not reduce fertility; a burst appendix with pelvic infection may slightly increase tube problems (the surgeon approves the wording).",
+     "kind": "approved"
+    },
+    {
+     "id": "false_reassurance",
+     "text": "Don't worry, nothing can go wrong.",
+     "kind": "false_reassurance"
+    },
+    {
+     "id": "dismissive",
+     "text": "I will tell you later, we are busy.",
+     "kind": "dismissive"
+    }
+   ],
+   "ref": "SR-2854"
+  },
+  {
+   "id": "s2.tablets",
+   "scenario": "S2",
+   "text": "Can't I just take tablets?",
+   "answers": [
+    {
+     "id": "approved",
+     "text": "For simple appendicitis without a stone, antibiotics only is possible: 29% needed an appendectomy by 90 days (CODA); the surgeon discusses it.",
+     "kind": "approved"
+    },
+    {
+     "id": "false_reassurance",
+     "text": "Don't worry, nothing can go wrong.",
+     "kind": "false_reassurance"
+    },
+    {
+     "id": "dismissive",
+     "text": "I will tell you later, we are busy.",
+     "kind": "dismissive"
+    }
+   ],
+   "ref": "SR-2854"
+  }
+ ],
+ "ask_after": [
+  "benefits",
+  "alternatives"
+ ],
+ "understanding_needed": 6,
+ "minor_age": 18,
+ "interpreters": {
+  "trained": true,
+  "family": false,
+  "child": false
+ },
+ "refuses_at_cooperation": 2,
+ "items": {
+  "element": "credit.consent_element",
+  "complete": "credit.consent_valid",
+  "risks_skipped": "major.consent_risks_skipped",
+  "alternatives_skipped": "major.consent_alternatives_skipped",
+  "no_capacity_signed": "critical.consent_signed_without_capacity",
+  "capacity_not_checked": "major.consent_capacity_not_checked",
+  "capacity_checked": "credit.capacity_checked",
+  "low_understanding": "major.consent_signed_low_understanding",
+  "teach_back_ok": "credit.teach_back",
+  "false_reassurance": "minor.false_reassurance",
+  "answer_approved": "credit.question_answered",
+  "answer_dismissive": "minor.question_dismissed",
+  "untrained_interpreter": "major.consent_untrained_interpreter",
+  "pressure": "major.consent_pressure",
+  "minor_no_senior": "major.consent_minor_without_senior",
+  "emergency_route": "credit.consent_emergency_route",
+  "question_unanswered": "minor.question_unanswered"
+ },
+ "signed_flag": "consent.signed",
+ "refs": [
+  "SR-2850",
+  "SR-2851",
+  "SR-2852",
+  "SR-2853",
+  "SR-2854",
+  "SR-2855"
+ ]
+}

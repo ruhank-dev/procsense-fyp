@@ -80,6 +80,10 @@ namespace ProcSense.Core
         internal Workflow.EndStateSubsystem? EndStateStep { get; set; }
         internal Physiology.PhysiologySubsystem? PhysiologyStep { get; set; }
         internal Behaviour.BehaviourSubsystem? BehaviourStep { get; set; }
+        internal Workflow.Steps.ConsentSubsystem? ConsentStep { get; set; }
+
+        /// <summary>The consent conversation: elements explained, questions, capacity and whether consent is signed (null when the session has no consent step).</summary>
+        public Workflow.Steps.ConsentSubsystem? Consent => ConsentStep;
 
         /// <summary>The patient's behaviour: attributes, mode and capacity (null when the session has no behaviour step).</summary>
         public Behaviour.BehaviourSubsystem? Behaviour => BehaviourStep;
