@@ -89,6 +89,99 @@ namespace ProcSense.Tests.PlayMode
 
         // T-B2: a refused action shows a hint and changes nothing
         [Test]
+        public void Input_before_session_start_does_not_swallow_the_first_valid_press()
+        {
+            Object.DestroyImmediate(_host.gameObject);
+            _host = Make<SimulationHost>("uninitialized host");
+            _host.AutoTick = false;
+            _host.SaveLogOnDestroy = false;
+            var emitter = Make<UIButtonEmitter>("early button");
+            emitter.Configure("introduce_self");
+            Assert.IsNull(emitter.Fire());
+            _host.StartSession("VAR-S1-A", 42, SessionMode.Practice);
+            Assert.IsNotNull(emitter.Fire());
+            Assert.AreEqual(1, _host.Session.Log.Count);
+        }
+
+        [Test]
+        public void A_new_session_does_not_inherit_the_previous_sessions_cooldown()
+        {
+            var emitter = Make<UIButtonEmitter>("button");
+            emitter.Configure("introduce_self");
+            emitter.Fire();
+            _host.StartSession("VAR-S1-A", 42, SessionMode.Practice);
+            Assert.IsNotNull(emitter.Fire());
+            Assert.AreEqual(1, _host.Session.Log.Count);
+        }
+
+        [Test]
+        public void Button_callbacks_unsubscribe_and_reenable_without_duplicates()
+        {
+            var emitter = Make<UIButtonEmitter>("button");
+            emitter.Configure("introduce_self");
+            emitter.DebounceSeconds = 0f; // Do not let debounce conceal duplicate listeners.
+            var button = emitter.GetComponent<Button>();
+            for (int i = 0; i < 3; i++) { emitter.enabled = false; emitter.enabled = true; }
+            button.onClick.Invoke();
+            Assert.AreEqual(1, _host.Session.Log.Count);
+            emitter.enabled = false;
+            button.onClick.Invoke();
+            Assert.AreEqual(1, _host.Session.Log.Count);
+        }
+
+        [Test]
+        public void Xr_selection_debounces_and_unsubscribes_without_duplicate_listeners()
+        {
+            var emitter = Make<XRSelectEmitter>("wristband");
+            emitter.Configure("read_wristband");
+            var interactable = emitter.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
+            var selection = new UnityEngine.XR.Interaction.Toolkit.SelectEnterEventArgs();
+            interactable.selectEntered.Invoke(selection);
+            interactable.selectEntered.Invoke(selection);
+            Assert.AreEqual(1, _host.Session.Log.Count);
+            emitter.DebounceSeconds = 0f;
+            for (int i = 0; i < 3; i++) { emitter.enabled = false; emitter.enabled = true; }
+            interactable.selectEntered.Invoke(selection);
+            Assert.AreEqual(2, _host.Session.Log.Count);
+            emitter.enabled = false;
+            interactable.selectEntered.Invoke(selection);
+            Assert.AreEqual(2, _host.Session.Log.Count);
+        }
+
+        [UnityTest]
+        public System.Collections.IEnumerator Debounce_expires_during_unity_pause_and_rejections_remain_logged_once()
+        {
+            var emitter = Make<UIButtonEmitter>("button");
+            emitter.Configure("confirm_identity");
+            emitter.DebounceSeconds = 0.05f;
+            float previousScale = Time.timeScale;
+            try
+            {
+                Time.timeScale = 0f;
+                Assert.IsNotNull(emitter.Fire());
+                Assert.IsNull(emitter.Fire());
+                Assert.IsFalse(_host.Observable.IdentityConfirmed);
+                yield return new WaitForSecondsRealtime(0.08f);
+                Assert.IsNotNull(emitter.Fire());
+                Assert.AreEqual(2, _host.Session.Log.Count);
+                Assert.IsFalse(_host.Observable.IdentityConfirmed);
+            }
+            finally { Time.timeScale = previousScale; }
+        }
+
+        [TestCase(float.NaN)]
+        [TestCase(float.PositiveInfinity)]
+        [TestCase(float.NegativeInfinity)]
+        public void Invalid_debounce_values_do_not_disable_duplicate_protection(float value)
+        {
+            var emitter = Make<UIButtonEmitter>("button");
+            emitter.Configure("introduce_self");
+            emitter.DebounceSeconds = value;
+            Assert.IsNotNull(emitter.Fire());
+            Assert.IsNull(emitter.Fire());
+        }
+
+        [Test]
         public void A_refused_action_shows_a_hint_and_changes_nothing_visible()
         {
             var tablet = Make<TabletView>("tablet");
