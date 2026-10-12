@@ -5,6 +5,8 @@ Milestone: **M11 P1 content — theatre extension, extended cases, composer, Pul
 ## What
 Produce at least 8 S1 and 6 S2 composed cases that pass Stage B, send them to the medical professional in ≤ 45-minute review packs, and add approved ones to the practice pool (never assessment until separately approved).
 
+> **Revised 12 October 2026 (ADR-0008):** medical review packs are optional research input, not a gate. Cases that pass Stage B and the automated checks enter the practice pool labelled GENERATED_PRACTICE_ONLY; assessment use still needs separate approval. The original wording above is kept for history.
+
 ## Why
 This is the Master Plan's Definition-of-Done target for the composer and proves it can extend practice variety safely.
 

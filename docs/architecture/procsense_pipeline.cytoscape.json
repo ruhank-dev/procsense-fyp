@@ -1,0 +1,6640 @@
+{
+ "format_version": "1.0",
+ "generated_from": "procsense_full_pipeline.json",
+ "elements": [
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_entry",
+    "label": "Entry points",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_offline",
+    "label": "Offline preparation",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_live",
+    "label": "Live generation pipeline",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_live_plan",
+    "label": "Plan the scenario (LG-01 to LG-05)",
+    "kind": "group",
+    "parent": "g_live"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_live_compose",
+    "label": "Compose content (LG-06 to LG-08)",
+    "kind": "group",
+    "parent": "g_live"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_live_validate",
+    "label": "Validate, repair, novelty (LG-09 to LG-13)",
+    "kind": "group",
+    "parent": "g_live"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_live_deliver",
+    "label": "Deliver and simulate (LG-14 to LG-18)",
+    "kind": "group",
+    "parent": "g_live"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_post",
+    "label": "Debrief, history, feedback (LG-19 to LG-21)",
+    "kind": "group",
+    "parent": "g_live"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_components",
+    "label": "Existing and planned components",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_stores",
+    "label": "Content stores",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_datasets",
+    "label": "External datasets",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_models",
+    "label": "Model catalogue",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_features",
+    "label": "AI feature inventory",
+    "kind": "group"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_feat_A",
+    "label": "A. Scenario generation and composition",
+    "kind": "group",
+    "parent": "g_features"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_feat_B",
+    "label": "B. Data, media and investigations",
+    "kind": "group",
+    "parent": "g_features"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_feat_C",
+    "label": "C. Dialogue, voice and communication",
+    "kind": "group",
+    "parent": "g_features"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_feat_D",
+    "label": "D. Assessment, feedback and learning",
+    "kind": "group",
+    "parent": "g_features"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "g_feat_E",
+    "label": "E. Platform, evaluation and advanced research",
+    "kind": "group",
+    "parent": "g_features"
+   }
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ENTRY-TRAINEE",
+    "label": "ENTRY-TRAINEE Trainee starts a practice session",
+    "type": "entry",
+    "status": "Partially implemented",
+    "parent": "g_entry"
+   },
+   "classes": "entry"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ENTRY-AUTHOR",
+    "label": "ENTRY-AUTHOR Offline batch run by a content author",
+    "type": "entry",
+    "status": "Planned",
+    "parent": "g_entry"
+   },
+   "classes": "entry"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "EXIT-SESSION-REPORT",
+    "label": "EXIT-SESSION-REPORT Session report and history saved",
+    "type": "exit",
+    "status": "Partially implemented",
+    "parent": "g_post"
+   },
+   "classes": "exit"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "FALLBACK-POOL-LIBRARY",
+    "label": "FALLBACK-POOL-LIBRARY Fallback: pooled or library case",
+    "type": "fallback",
+    "status": "Planned",
+    "parent": "g_live_validate"
+   },
+   "classes": "fallback"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "EXIT-OFFLINE-RELEASE",
+    "label": "EXIT-OFFLINE-RELEASE Reviewed offline release of packs, prompts and thresholds",
+    "type": "exit",
+    "status": "Planned",
+    "parent": "g_post"
+   },
+   "classes": "exit"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-01",
+    "label": "OFF-01 Dataset inventory and licence check",
+    "type": "offline_step",
+    "status": "Partially implemented",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-02",
+    "label": "OFF-02 Normal versus abnormal profiling per modality",
+    "type": "offline_step",
+    "status": "Partially implemented",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-03",
+    "label": "OFF-03 Generator parameter packs (versioned)",
+    "type": "offline_step",
+    "status": "Planned",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-04",
+    "label": "OFF-04 Component (block) library with requires and excludes",
+    "type": "offline_step",
+    "status": "Planned",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-05",
+    "label": "OFF-05 Retrieval index over approved content",
+    "type": "offline_step",
+    "status": "Planned",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-06",
+    "label": "OFF-06 Media asset index (images and ECG strips)",
+    "type": "offline_step",
+    "status": "Partially implemented",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-07",
+    "label": "OFF-07 Evaluation reference sets",
+    "type": "offline_step",
+    "status": "Partially implemented",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-08",
+    "label": "OFF-08 Model preparation: pull, quantise, benchmark (no training)",
+    "type": "offline_step",
+    "status": "Blocked",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-09",
+    "label": "OFF-09 Prompt and schema registry",
+    "type": "offline_step",
+    "status": "Planned",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-01",
+    "label": "LG-01 Session request",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_plan"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-02",
+    "label": "LG-02 Learning objectives and difficulty target",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_plan"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-03",
+    "label": "LG-03 Context retrieval",
+    "type": "stage",
+    "status": "Planned",
+    "parent": "g_live_plan"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-04",
+    "label": "LG-04 AI scenario plan composition and constraint solving",
+    "type": "stage",
+    "status": "Planned",
+    "parent": "g_live_plan"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-05",
+    "label": "LG-05 Scenario skeleton",
+    "type": "stage",
+    "status": "Planned",
+    "parent": "g_live_plan"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-06",
+    "label": "LG-06 AI composition (narrative, patient profile, persona)",
+    "type": "stage",
+    "status": "Blocked",
+    "parent": "g_live_compose"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-07",
+    "label": "LG-07 Numeric generation (labs, vitals, trends)",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_compose"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-08",
+    "label": "LG-08 Image and waveform handling (ECG, ultrasound, X-ray, CT)",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_compose"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-09",
+    "label": "LG-09 Cross-modal consistency",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_validate"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-10",
+    "label": "LG-10 Constraint and clinical-safety validation (Stage B)",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_validate"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-11",
+    "label": "LG-11 Quality evaluation",
+    "type": "stage",
+    "status": "Proposed new feature",
+    "parent": "g_live_validate"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-12",
+    "label": "LG-12 Repair, regeneration or rejection",
+    "type": "stage",
+    "status": "Proposed new feature",
+    "parent": "g_live_validate"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-13",
+    "label": "LG-13 Novelty check (fingerprint)",
+    "type": "stage",
+    "status": "Proposed new feature",
+    "parent": "g_live_validate"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-14",
+    "label": "LG-14 Packaging with provenance",
+    "type": "stage",
+    "status": "Proposed new feature",
+    "parent": "g_live_deliver"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-15",
+    "label": "LG-15 Unity integration",
+    "type": "stage",
+    "status": "Planned",
+    "parent": "g_live_deliver"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-16",
+    "label": "LG-16 Live simulation",
+    "type": "stage",
+    "status": "Implemented and tested",
+    "parent": "g_live_deliver"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-17",
+    "label": "LG-17 Action interpretation",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_live_deliver"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-18",
+    "label": "LG-18 Deterministic state update and scoring",
+    "type": "stage",
+    "status": "Implemented and tested",
+    "parent": "g_live_deliver"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-19",
+    "label": "LG-19 Grounded debrief",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_post"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-20",
+    "label": "LG-20 Session history",
+    "type": "stage",
+    "status": "Partially implemented",
+    "parent": "g_post"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LG-21",
+    "label": "LG-21 Evaluation feedback loop (offline only)",
+    "type": "stage",
+    "status": "Proposed new feature",
+    "parent": "g_post"
+   },
+   "classes": "stage"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "OFF-10",
+    "label": "OFF-10 Scenario knowledge base construction (A66)",
+    "type": "offline_step",
+    "status": "Proposed new feature",
+    "parent": "g_offline"
+   },
+   "classes": "offline_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LP-01",
+    "label": "LP-01 Learner profile retrieval (session start)",
+    "type": "runtime_step",
+    "status": "Proposed new feature",
+    "parent": "g_live_plan"
+   },
+   "classes": "runtime_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LP-03",
+    "label": "LP-03 Personalised targeting policy",
+    "type": "runtime_step",
+    "status": "Proposed new feature",
+    "parent": "g_live_plan"
+   },
+   "classes": "runtime_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "LP-02",
+    "label": "LP-02 Learner profile update (post-session, cheap)",
+    "type": "runtime_step",
+    "status": "Proposed new feature",
+    "parent": "g_post"
+   },
+   "classes": "runtime_step"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-ENGINE",
+    "label": "CMP-ENGINE Core engine (Session, ISubsystem pipeline, SimClock, replay)",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-PHYSIO",
+    "label": "CMP-PHYSIO LitePhysio and display zones",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-EVENTS",
+    "label": "CMP-EVENTS EventDirector (7 events) and what-if bindings",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-DISCOVERY",
+    "label": "CMP-DISCOVERY Discovery rules (29, P0 cases)",
+    "type": "component",
+    "status": "Partially implemented",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-SCORER",
+    "label": "CMP-SCORER Scorer, EvidenceStore, DebriefFacts, template debrief",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-ELO",
+    "label": "CMP-ELO Difficulty ratings and case Selector",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-STAGEB",
+    "label": "CMP-STAGEB Stage B validator and mutation set",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-GROUNDING",
+    "label": "CMP-GROUNDING Grounding validator (Python and C# twin)",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-CONTEXT",
+    "label": "CMP-CONTEXT ContextBuilder and ReactionQueue",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-CONTENTGATE",
+    "label": "CMP-CONTENTGATE ContentGate, review status and content manifest",
+    "type": "component",
+    "status": "Implemented and tested",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-UNITY",
+    "label": "CMP-UNITY Unity bridge (SimulationHost, SessionConfig, ActionEmitters)",
+    "type": "component",
+    "status": "Partially implemented",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-BACKEND",
+    "label": "CMP-BACKEND Backend and AI gateway (FastAPI)",
+    "type": "component",
+    "status": "Planned",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-LLM",
+    "label": "CMP-LLM Served LLM runtime (Ollama)",
+    "type": "component",
+    "status": "Blocked",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-ASR",
+    "label": "CMP-ASR Speech recognition runtime (faster-whisper)",
+    "type": "component",
+    "status": "Planned",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "CMP-TTS",
+    "label": "CMP-TTS Speech output (pre-rendered and live)",
+    "type": "component",
+    "status": "Planned",
+    "parent": "g_components"
+   },
+   "classes": "component"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-CASES",
+    "label": "ST-CASES Case files (53, 17 P0)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-BANDS",
+    "label": "ST-BANDS Lab bands (104) and vitals bands (52)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-CRITICAL",
+    "label": "ST-CRITICAL Critical results (16)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-MEASURE",
+    "label": "ST-MEASURE Case measurements (45)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-IMAGING",
+    "label": "ST-IMAGING Imaging library (60 results, 204 pictures)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-WHATIF",
+    "label": "ST-WHATIF What-if library (47) and bindings (25)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-EMR",
+    "label": "ST-EMR EMR case records (98) and distractors",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-MEDS",
+    "label": "ST-MEDS Medicines (41) and drug label safety",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-DERIVED",
+    "label": "ST-DERIVED Derived dataset aggregates",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-AI",
+    "label": "ST-AI AI lexicon and intents",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-RUBRIC",
+    "label": "ST-RUBRIC Rubric, mapping, debrief templates",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-SOURCES",
+    "label": "ST-SOURCES Source register (SR ids)",
+    "type": "store",
+    "status": "Implemented and tested",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-PACKS",
+    "label": "ST-PACKS Generator parameter packs (planned)",
+    "type": "store",
+    "status": "Planned",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-BLOCKS",
+    "label": "ST-BLOCKS Block library (planned)",
+    "type": "store",
+    "status": "Planned",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-POOL",
+    "label": "ST-POOL Pre-generated validated package pool (planned)",
+    "type": "store",
+    "status": "Planned",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-HISTORY",
+    "label": "ST-HISTORY Trainee history (pseudonymised)",
+    "type": "store",
+    "status": "Planned",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-KB",
+    "label": "ST-KB Scenario knowledge base (planned)",
+    "type": "store",
+    "status": "Planned",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "ST-LEARNER",
+    "label": "ST-LEARNER Learner profiles (planned)",
+    "type": "store",
+    "status": "Planned",
+    "parent": "g_stores"
+   },
+   "classes": "store"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0001",
+    "label": "DS-0001 DS-0001 VitalDB",
+    "type": "dataset",
+    "status": "IN USE (aggregates)",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0002",
+    "label": "DS-0002 DS-0002 PTB-XL",
+    "type": "dataset",
+    "status": "IN USE",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0003",
+    "label": "DS-0003 DS-0003 MIMIC-IV Clinical Database Demo",
+    "type": "dataset",
+    "status": "REFERENCE AND TESTS ONLY",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0004",
+    "label": "DS-0004 DS-0004 MIMIC-IV-ED Demo",
+    "type": "dataset",
+    "status": "IN USE (aggregates)",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0005",
+    "label": "DS-0005 DS-0005 UIdataGB gallbladder ultrasound",
+    "type": "dataset",
+    "status": "IN USE",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0006",
+    "label": "DS-0006 DS-0006 NIH ChestX-ray14",
+    "type": "dataset",
+    "status": "IN USE",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0007",
+    "label": "DS-0007 DS-0007 openFDA Drug Label API",
+    "type": "dataset",
+    "status": "IN USE",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0008",
+    "label": "DS-0008 DS-0008 Regensburg Pediatric Appendicitis",
+    "type": "dataset",
+    "status": "NOT USED",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0009",
+    "label": "DS-0009 DS-0009 PriMock57",
+    "type": "dataset",
+    "status": "NOT NEEDED",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0010",
+    "label": "DS-0010 DS-0010 Mozilla Common Voice",
+    "type": "dataset",
+    "status": "NOT NEEDED",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0011",
+    "label": "DS-0011 DS-0011 ProcSense labelled synthetic images",
+    "type": "dataset",
+    "status": "IN USE (DRAFT)",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0012",
+    "label": "DS-0012 DS-0012 ProcSense authored EMR distractor identities",
+    "type": "dataset",
+    "status": "DRAFT",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0013",
+    "label": "DS-0013 DS-0013 Indiana University Chest X-ray (Open-i)",
+    "type": "dataset",
+    "status": "REJECTED",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "DS-0014",
+    "label": "DS-0014 DS-0014 AMOS 2022",
+    "type": "dataset",
+    "status": "IN USE",
+    "parent": "g_datasets"
+   },
+   "classes": "dataset"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-01",
+    "label": "MC-01 MC-01 Scenario composition narrative and Stage A proposals",
+    "type": "model",
+    "status": "Blocked",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-02",
+    "label": "MC-02 MC-02 Character dialogue",
+    "type": "model",
+    "status": "Blocked",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-03",
+    "label": "MC-03 MC-03 Communication act classification",
+    "type": "model",
+    "status": "Blocked",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-04",
+    "label": "MC-04 MC-04 Debrief rewrite, coaching, explanations",
+    "type": "model",
+    "status": "Blocked",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-05",
+    "label": "MC-05 MC-05 Speech recognition",
+    "type": "model",
+    "status": "Planned",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-06",
+    "label": "MC-06 MC-06 Text-to-speech",
+    "type": "model",
+    "status": "Planned",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-07",
+    "label": "MC-07 MC-07 Retrieval",
+    "type": "model",
+    "status": "Planned",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-08",
+    "label": "MC-08 MC-08 Numeric generation",
+    "type": "model",
+    "status": "Partially implemented",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-09",
+    "label": "MC-09 MC-09 ECG traces and strips",
+    "type": "model",
+    "status": "Partially implemented",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-10",
+    "label": "MC-10 MC-10 Medical image selection",
+    "type": "model",
+    "status": "Partially implemented",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-11",
+    "label": "MC-11 MC-11 Novelty fingerprints",
+    "type": "model",
+    "status": "Proposed new feature",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-12",
+    "label": "MC-12 MC-12 Scenario quality judge",
+    "type": "model",
+    "status": "Proposed new feature",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "MC-13",
+    "label": "MC-13 MC-13 Medical LLM benchmark",
+    "type": "model",
+    "status": "Deferred",
+    "parent": "g_models"
+   },
+   "classes": "model"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A1",
+    "label": "A1 AI Scenario Composer (block library, solver, Stage A proposals)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A2",
+    "label": "A2 Live dataset-driven scenario generation",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A3",
+    "label": "A3 Patient profile generation",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A4",
+    "label": "A4 Mixed (multi-problem) case generation",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A5",
+    "label": "A5 Dynamic events (selection and generated variants)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A6",
+    "label": "A6 Novelty control and scenario fingerprinting",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A7",
+    "label": "A7 Adversarial (trap) scenario generation for trainees",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A8",
+    "label": "A8 Branching scenario paths",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A9",
+    "label": "A9 Scenario quality evaluation (per scenario, in the pipeline)",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A10",
+    "label": "A10 Validation, repair and rejection",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A11",
+    "label": "A11 Difficulty control in generation",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A12",
+    "label": "A12 Recombination of case components",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A13",
+    "label": "A13 Provenance and reproducibility of generated scenarios",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B14",
+    "label": "B14 Dataset-driven numeric generation (labs, vitals, trends)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B15",
+    "label": "B15 ECG generation and variation",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B16",
+    "label": "B16 Ultrasound image selection and labelled synthesis",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B17",
+    "label": "B17 Chest X-ray, CT and MRI selection",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B18",
+    "label": "B18 Cross-modal consistency",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B19",
+    "label": "B19 Synthetic evaluation datasets (sessions, utterances, scenarios)",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B20",
+    "label": "B20 Anomalies and artefacts (deliberate and realistic)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B21",
+    "label": "B21 Result variation (repeats, trends, timing)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B22",
+    "label": "B22 Investigation Interpreter (teaching aid)",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "B23",
+    "label": "B23 Investigation discovery",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_B"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C24",
+    "label": "C24 Patient dialogue",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C25",
+    "label": "C25 Nurse dialogue",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C26",
+    "label": "C26 Anaesthetist dialogue",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C27",
+    "label": "C27 Surgeon dialogue",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C28",
+    "label": "C28 Porter dialogue",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C29",
+    "label": "C29 Persona system",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C30",
+    "label": "C30 Context-aware and reactive dialogue",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C31",
+    "label": "C31 Voice interaction (end to end)",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C32",
+    "label": "C32 Voice commands",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C33",
+    "label": "C33 Speech-to-text",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C34",
+    "label": "C34 Text-to-speech",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C35",
+    "label": "C35 Voice orders and read-back",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C36",
+    "label": "C36 Communication acts (taxonomy and evidence mapping)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "C37",
+    "label": "C37 Communication classifier",
+    "type": "feature",
+    "status": "Blocked",
+    "parent": "g_feat_C"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D38",
+    "label": "D38 AI debrief",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D39",
+    "label": "D39 Coaching (in-session hints and between-session advice)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D40",
+    "label": "D40 Performance pattern analysis",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D41",
+    "label": "D41 Confidence calibration coach",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D42",
+    "label": "D42 Clinical Reasoning Fingerprint",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D43",
+    "label": "D43 Adaptive difficulty (deterministic Elo ratings and Selector)",
+    "type": "feature",
+    "status": "Implemented and tested",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D44",
+    "label": "D44 AI enhancement to adaptive difficulty",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D45",
+    "label": "D45 Progression tracking",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D46",
+    "label": "D46 Missed-step explanation",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D47",
+    "label": "D47 Evidence-based feedback",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E48",
+    "label": "E48 Patient Digital Twin",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E49",
+    "label": "E49 Multi-Agent Clinical Simulation Lab",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E50",
+    "label": "E50 Adversarial generator (red-team for validators and dialogue)",
+    "type": "feature",
+    "status": "Partially implemented",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E51",
+    "label": "E51 Scenario Quality Evaluator (offline batch)",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E52",
+    "label": "E52 Investigation analytics",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E53",
+    "label": "E53 Grounding validator",
+    "type": "feature",
+    "status": "Implemented and tested",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E54",
+    "label": "E54 Context builder and reaction queue",
+    "type": "feature",
+    "status": "Implemented and tested",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E55",
+    "label": "E55 AI evaluation harness and switch-off gate",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E56",
+    "label": "E56 Difficulty explanation to the trainee",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E57",
+    "label": "E57 LLM serving and benchmark",
+    "type": "feature",
+    "status": "Blocked",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E58",
+    "label": "E58 Retrieval over approved content (RAG)",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E59",
+    "label": "E59 Urdu and multilingual language",
+    "type": "feature",
+    "status": "Deferred",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E60",
+    "label": "E60 P2 small trained classifier",
+    "type": "feature",
+    "status": "Blocked",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E61",
+    "label": "E61 Medical LLM benchmark (for example MedGemma)",
+    "type": "feature",
+    "status": "Deferred",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E62",
+    "label": "E62 Backend and AI gateway",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E63",
+    "label": "E63 On-device speech recognition",
+    "type": "feature",
+    "status": "Planned",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E64",
+    "label": "E64 Generative image synthesis (diffusion or GAN) for medical images",
+    "type": "feature",
+    "status": "Deferred",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E65",
+    "label": "E65 Fine-tuning an LLM on clinical text",
+    "type": "feature",
+    "status": "Deferred",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "A66",
+    "label": "A66 Scenario knowledge base (relationships learned from cases, walkthrough and datasets)",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_A"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D67",
+    "label": "D67 Trainee learning profile (Bayesian learner model and performance interpreter)",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "D68",
+    "label": "D68 Personalised scenario targeting (policy, objectives for the composer, explanation)",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_D"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "nodes",
+   "data": {
+    "id": "E69",
+    "label": "E69 AI inference infrastructure and dual-GPU deployment",
+    "type": "feature",
+    "status": "Proposed new feature",
+    "parent": "g_feat_E"
+   },
+   "classes": "feature"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E001",
+    "source": "ENTRY-TRAINEE",
+    "target": "LG-01",
+    "type": "data_flow",
+    "label": "session request",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E002",
+    "source": "LG-01",
+    "target": "LG-02",
+    "type": "data_flow",
+    "label": "SessionRequest",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E003",
+    "source": "LG-02",
+    "target": "LG-03",
+    "type": "data_flow",
+    "label": "Objectives",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E004",
+    "source": "LG-03",
+    "target": "LG-04",
+    "type": "data_flow",
+    "label": "RetrievedContext",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E005",
+    "source": "LG-04",
+    "target": "LG-05",
+    "type": "data_flow",
+    "label": "ComponentSet",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E006",
+    "source": "LG-05",
+    "target": "LG-06",
+    "type": "data_flow",
+    "label": "ScenarioSkeleton",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E007",
+    "source": "LG-06",
+    "target": "LG-07",
+    "type": "data_flow",
+    "label": "skeleton + narrative",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E008",
+    "source": "LG-07",
+    "target": "LG-08",
+    "type": "data_flow",
+    "label": "numeric slots filled",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E009",
+    "source": "LG-08",
+    "target": "LG-09",
+    "type": "data_flow",
+    "label": "filled scenario",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E010",
+    "source": "LG-09",
+    "target": "LG-10",
+    "type": "data_flow",
+    "label": "consistent scenario",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E011",
+    "source": "LG-10",
+    "target": "LG-11",
+    "type": "data_flow",
+    "label": "valid scenario",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E012",
+    "source": "LG-11",
+    "target": "LG-13",
+    "type": "data_flow",
+    "label": "good scenario",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E013",
+    "source": "LG-13",
+    "target": "LG-14",
+    "type": "data_flow",
+    "label": "novel scenario",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E014",
+    "source": "LG-14",
+    "target": "LG-15",
+    "type": "data_flow",
+    "label": "ScenarioPackage",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E015",
+    "source": "LG-15",
+    "target": "LG-16",
+    "type": "data_flow",
+    "label": "loaded session",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E016",
+    "source": "LG-16",
+    "target": "LG-17",
+    "type": "data_flow",
+    "label": "observable state",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E017",
+    "source": "LG-17",
+    "target": "LG-18",
+    "type": "data_flow",
+    "label": "SimAction or CommAct",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E018",
+    "source": "LG-19",
+    "target": "LG-20",
+    "type": "data_flow",
+    "label": "debrief",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E019",
+    "source": "LG-20",
+    "target": "EXIT-SESSION-REPORT",
+    "type": "data_flow",
+    "label": "report + history entry",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E020",
+    "source": "LG-21",
+    "target": "EXIT-OFFLINE-RELEASE",
+    "type": "data_flow",
+    "label": "evaluation report",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E021",
+    "source": "LG-18",
+    "target": "LG-16",
+    "type": "data_flow",
+    "label": "next step",
+    "cycle": true
+   },
+   "classes": "data_flow cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E022",
+    "source": "LG-18",
+    "target": "LG-19",
+    "type": "data_flow",
+    "label": "session ended",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E023",
+    "source": "LG-20",
+    "target": "LG-21",
+    "type": "feedback",
+    "label": "async, offline aggregation",
+    "cycle": false
+   },
+   "classes": "feedback"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E024",
+    "source": "LG-21",
+    "target": "OFF-03",
+    "type": "feedback",
+    "label": "proposed pack changes (reviewed release)",
+    "cycle": true
+   },
+   "classes": "feedback cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E025",
+    "source": "LG-21",
+    "target": "OFF-09",
+    "type": "feedback",
+    "label": "proposed prompt changes (reviewed release)",
+    "cycle": true
+   },
+   "classes": "feedback cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E026",
+    "source": "LG-09",
+    "target": "LG-12",
+    "type": "control",
+    "label": "defects",
+    "cycle": false
+   },
+   "classes": "control"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E027",
+    "source": "LG-10",
+    "target": "LG-12",
+    "type": "control",
+    "label": "defects",
+    "cycle": false
+   },
+   "classes": "control"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E028",
+    "source": "LG-11",
+    "target": "LG-12",
+    "type": "control",
+    "label": "defects",
+    "cycle": false
+   },
+   "classes": "control"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E029",
+    "source": "LG-13",
+    "target": "LG-12",
+    "type": "control",
+    "label": "defects",
+    "cycle": false
+   },
+   "classes": "control"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E030",
+    "source": "LG-12",
+    "target": "LG-04",
+    "type": "repair",
+    "label": "swap block",
+    "cycle": true
+   },
+   "classes": "repair cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E031",
+    "source": "LG-12",
+    "target": "LG-06",
+    "type": "repair",
+    "label": "re-ask with avoid-hint",
+    "cycle": true
+   },
+   "classes": "repair cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E032",
+    "source": "LG-12",
+    "target": "LG-07",
+    "type": "repair",
+    "label": "redraw slot",
+    "cycle": true
+   },
+   "classes": "repair cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E033",
+    "source": "LG-12",
+    "target": "LG-08",
+    "type": "repair",
+    "label": "swap asset",
+    "cycle": true
+   },
+   "classes": "repair cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E034",
+    "source": "LG-12",
+    "target": "FALLBACK-POOL-LIBRARY",
+    "type": "fallback",
+    "label": "budget exhausted",
+    "cycle": false
+   },
+   "classes": "fallback"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E035",
+    "source": "LG-04",
+    "target": "FALLBACK-POOL-LIBRARY",
+    "type": "fallback",
+    "label": "unsatisfiable",
+    "cycle": false
+   },
+   "classes": "fallback"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E036",
+    "source": "LG-15",
+    "target": "FALLBACK-POOL-LIBRARY",
+    "type": "fallback",
+    "label": "download or hash failure",
+    "cycle": false
+   },
+   "classes": "fallback"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E037",
+    "source": "FALLBACK-POOL-LIBRARY",
+    "target": "LG-16",
+    "type": "data_flow",
+    "label": "load pooled or library case",
+    "cycle": true
+   },
+   "classes": "data_flow cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E038",
+    "source": "LG-06",
+    "target": "LG-07",
+    "type": "fallback",
+    "label": "template narrative (FB-01)",
+    "cycle": false
+   },
+   "classes": "fallback"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E039",
+    "source": "ENTRY-AUTHOR",
+    "target": "OFF-01",
+    "type": "data_flow",
+    "label": "batch run",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E040",
+    "source": "ENTRY-AUTHOR",
+    "target": "OFF-04",
+    "type": "data_flow",
+    "label": "build blocks",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E041",
+    "source": "ENTRY-AUTHOR",
+    "target": "OFF-07",
+    "type": "data_flow",
+    "label": "build evaluation sets",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E042",
+    "source": "ENTRY-AUTHOR",
+    "target": "OFF-08",
+    "type": "data_flow",
+    "label": "prepare models",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E043",
+    "source": "ENTRY-AUTHOR",
+    "target": "OFF-09",
+    "type": "data_flow",
+    "label": "write prompts and schemas",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E044",
+    "source": "ENTRY-AUTHOR",
+    "target": "LG-01",
+    "type": "data_flow",
+    "label": "batch pre-generation (mode=batch)",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E045",
+    "source": "OFF-01",
+    "target": "OFF-02",
+    "type": "produces",
+    "label": "licensed datasets",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E046",
+    "source": "OFF-02",
+    "target": "OFF-03",
+    "type": "produces",
+    "label": "profiles",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E047",
+    "source": "OFF-02",
+    "target": "OFF-06",
+    "type": "produces",
+    "label": "image and ECG profiles",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E048",
+    "source": "OFF-03",
+    "target": "ST-PACKS",
+    "type": "produces",
+    "label": "packs",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E049",
+    "source": "OFF-04",
+    "target": "ST-BLOCKS",
+    "type": "produces",
+    "label": "blocks",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E050",
+    "source": "OFF-04",
+    "target": "OFF-05",
+    "type": "produces",
+    "label": "blocks to index",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E051",
+    "source": "OFF-08",
+    "target": "CMP-LLM",
+    "type": "produces",
+    "label": "pinned models",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E052",
+    "source": "LG-14",
+    "target": "ST-POOL",
+    "type": "produces",
+    "label": "batch packages",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E053",
+    "source": "ST-PACKS",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E054",
+    "source": "ST-BLOCKS",
+    "target": "LG-04",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E055",
+    "source": "OFF-05",
+    "target": "LG-03",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E056",
+    "source": "OFF-06",
+    "target": "LG-08",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E057",
+    "source": "OFF-09",
+    "target": "LG-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E058",
+    "source": "ST-POOL",
+    "target": "FALLBACK-POOL-LIBRARY",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E059",
+    "source": "ST-CASES",
+    "target": "FALLBACK-POOL-LIBRARY",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E060",
+    "source": "ST-BANDS",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E061",
+    "source": "ST-CRITICAL",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E062",
+    "source": "ST-MEASURE",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E063",
+    "source": "ST-IMAGING",
+    "target": "OFF-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E064",
+    "source": "ST-CASES",
+    "target": "OFF-04",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E065",
+    "source": "ST-WHATIF",
+    "target": "OFF-04",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E066",
+    "source": "ST-EMR",
+    "target": "LG-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E067",
+    "source": "ST-MEDS",
+    "target": "LG-09",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E068",
+    "source": "ST-DERIVED",
+    "target": "OFF-02",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E069",
+    "source": "ST-AI",
+    "target": "LG-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E070",
+    "source": "ST-RUBRIC",
+    "target": "LG-18",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E071",
+    "source": "ST-SOURCES",
+    "target": "OFF-05",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E072",
+    "source": "OFF-07",
+    "target": "LG-11",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E073",
+    "source": "LG-20",
+    "target": "ST-HISTORY",
+    "type": "produces",
+    "label": "history entry",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E074",
+    "source": "ENTRY-TRAINEE",
+    "target": "LP-01",
+    "type": "data_flow",
+    "label": "load learner profile",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E075",
+    "source": "LP-01",
+    "target": "LP-03",
+    "type": "data_flow",
+    "label": "LearnerProfile v1",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E076",
+    "source": "LP-03",
+    "target": "LG-02",
+    "type": "data_flow",
+    "label": "Objectives v1 (personalised)",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E077",
+    "source": "LG-20",
+    "target": "LP-02",
+    "type": "data_flow",
+    "label": "SessionEvidence v1",
+    "cycle": false
+   },
+   "classes": "data_flow"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E078",
+    "source": "LP-02",
+    "target": "ST-LEARNER",
+    "type": "produces",
+    "label": "updated profile",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E079",
+    "source": "ST-LEARNER",
+    "target": "LP-01",
+    "type": "uses_data",
+    "label": "next session's profile",
+    "cycle": true
+   },
+   "classes": "uses_data cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E080",
+    "source": "OFF-02",
+    "target": "OFF-10",
+    "type": "produces",
+    "label": "profiles to relations",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E081",
+    "source": "ST-CASES",
+    "target": "OFF-10",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E082",
+    "source": "OFF-10",
+    "target": "ST-KB",
+    "type": "produces",
+    "label": "knowledge base",
+    "cycle": false
+   },
+   "classes": "produces"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E083",
+    "source": "ST-KB",
+    "target": "LG-03",
+    "type": "uses_data",
+    "label": "relations",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E084",
+    "source": "ST-KB",
+    "target": "LG-04",
+    "type": "uses_data",
+    "label": "relations",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E085",
+    "source": "ST-KB",
+    "target": "LG-09",
+    "type": "uses_data",
+    "label": "relations",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E086",
+    "source": "MC-01",
+    "target": "LG-04",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E087",
+    "source": "ST-HISTORY",
+    "target": "LG-02",
+    "type": "uses_data",
+    "label": "next session's objectives",
+    "cycle": true
+   },
+   "classes": "uses_data cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E088",
+    "source": "ST-HISTORY",
+    "target": "LG-13",
+    "type": "uses_data",
+    "label": "next session's novelty check",
+    "cycle": true
+   },
+   "classes": "uses_data cycle"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E089",
+    "source": "CMP-STAGEB",
+    "target": "LG-10",
+    "type": "component_of",
+    "label": "validates",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E090",
+    "source": "CMP-GROUNDING",
+    "target": "LG-06",
+    "type": "component_of",
+    "label": "validates",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E091",
+    "source": "CMP-GROUNDING",
+    "target": "LG-19",
+    "type": "component_of",
+    "label": "validates",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E092",
+    "source": "CMP-CONTEXT",
+    "target": "LG-17",
+    "type": "component_of",
+    "label": "context for characters",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E093",
+    "source": "CMP-ENGINE",
+    "target": "LG-16",
+    "type": "component_of",
+    "label": "runs",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E094",
+    "source": "CMP-PHYSIO",
+    "target": "LG-16",
+    "type": "component_of",
+    "label": "physiology",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E095",
+    "source": "CMP-EVENTS",
+    "target": "LG-16",
+    "type": "component_of",
+    "label": "events",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E096",
+    "source": "CMP-SCORER",
+    "target": "LG-18",
+    "type": "component_of",
+    "label": "scores",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E097",
+    "source": "CMP-SCORER",
+    "target": "LG-19",
+    "type": "component_of",
+    "label": "DebriefFacts",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E098",
+    "source": "CMP-ELO",
+    "target": "LG-02",
+    "type": "component_of",
+    "label": "ratings",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E099",
+    "source": "CMP-DISCOVERY",
+    "target": "LG-05",
+    "type": "component_of",
+    "label": "discovery rules",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E100",
+    "source": "CMP-CONTENTGATE",
+    "target": "LG-15",
+    "type": "component_of",
+    "label": "load gate",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E101",
+    "source": "CMP-UNITY",
+    "target": "LG-15",
+    "type": "component_of",
+    "label": "loads package",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E102",
+    "source": "CMP-UNITY",
+    "target": "LG-17",
+    "type": "component_of",
+    "label": "VR actions",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E103",
+    "source": "CMP-BACKEND",
+    "target": "LG-01",
+    "type": "component_of",
+    "label": "API",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E104",
+    "source": "CMP-BACKEND",
+    "target": "LG-14",
+    "type": "component_of",
+    "label": "serves packages",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E105",
+    "source": "CMP-LLM",
+    "target": "LG-06",
+    "type": "component_of",
+    "label": "serves",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E106",
+    "source": "CMP-LLM",
+    "target": "LG-11",
+    "type": "component_of",
+    "label": "serves judge",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E107",
+    "source": "CMP-LLM",
+    "target": "LG-17",
+    "type": "component_of",
+    "label": "serves classifier",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E108",
+    "source": "CMP-LLM",
+    "target": "LG-19",
+    "type": "component_of",
+    "label": "serves debrief",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E109",
+    "source": "CMP-ASR",
+    "target": "LG-17",
+    "type": "component_of",
+    "label": "speech to text",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E110",
+    "source": "CMP-TTS",
+    "target": "LG-16",
+    "type": "component_of",
+    "label": "speech out",
+    "cycle": false
+   },
+   "classes": "component_of"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E111",
+    "source": "DS-0001",
+    "target": "OFF-02",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E112",
+    "source": "DS-0001",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E113",
+    "source": "DS-0002",
+    "target": "OFF-02",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E114",
+    "source": "DS-0002",
+    "target": "OFF-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E115",
+    "source": "DS-0002",
+    "target": "LG-08",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E116",
+    "source": "DS-0003",
+    "target": "OFF-02",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E117",
+    "source": "DS-0003",
+    "target": "OFF-03",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E118",
+    "source": "DS-0003",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E119",
+    "source": "DS-0004",
+    "target": "OFF-02",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E120",
+    "source": "DS-0004",
+    "target": "LG-07",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E121",
+    "source": "DS-0005",
+    "target": "OFF-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E122",
+    "source": "DS-0005",
+    "target": "LG-08",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E123",
+    "source": "DS-0006",
+    "target": "OFF-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E124",
+    "source": "DS-0006",
+    "target": "LG-08",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E125",
+    "source": "DS-0007",
+    "target": "ST-MEDS",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E126",
+    "source": "DS-0008",
+    "target": "OFF-01",
+    "type": "uses_data",
+    "label": "not used",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E127",
+    "source": "DS-0009",
+    "target": "OFF-01",
+    "type": "uses_data",
+    "label": "not needed",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E128",
+    "source": "DS-0010",
+    "target": "OFF-01",
+    "type": "uses_data",
+    "label": "not needed",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E129",
+    "source": "DS-0011",
+    "target": "OFF-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E130",
+    "source": "DS-0011",
+    "target": "LG-08",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E131",
+    "source": "DS-0012",
+    "target": "ST-EMR",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E132",
+    "source": "DS-0013",
+    "target": "OFF-01",
+    "type": "uses_data",
+    "label": "rejected",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E133",
+    "source": "DS-0014",
+    "target": "OFF-06",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E134",
+    "source": "DS-0014",
+    "target": "LG-08",
+    "type": "uses_data",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_data"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E135",
+    "source": "MC-01",
+    "target": "LG-06",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E136",
+    "source": "MC-12",
+    "target": "LG-11",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E137",
+    "source": "MC-03",
+    "target": "LG-17",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E138",
+    "source": "MC-05",
+    "target": "LG-17",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E139",
+    "source": "MC-04",
+    "target": "LG-19",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E140",
+    "source": "MC-07",
+    "target": "LG-03",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E141",
+    "source": "MC-08",
+    "target": "LG-07",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E142",
+    "source": "MC-09",
+    "target": "LG-08",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E143",
+    "source": "MC-10",
+    "target": "LG-08",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E144",
+    "source": "MC-11",
+    "target": "LG-13",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E145",
+    "source": "MC-02",
+    "target": "CMP-CONTEXT",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E146",
+    "source": "MC-06",
+    "target": "CMP-TTS",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E147",
+    "source": "MC-13",
+    "target": "OFF-08",
+    "type": "uses_model",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "uses_model"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E148",
+    "source": "A1",
+    "target": "OFF-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E149",
+    "source": "A1",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E150",
+    "source": "A1",
+    "target": "LG-05",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E151",
+    "source": "A1",
+    "target": "LG-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E152",
+    "source": "A1",
+    "target": "LG-10",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E153",
+    "source": "A1",
+    "target": "A10",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E154",
+    "source": "A1",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E155",
+    "source": "A2",
+    "target": "LG-01",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E156",
+    "source": "A2",
+    "target": "LG-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E157",
+    "source": "A2",
+    "target": "LG-03",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E158",
+    "source": "A2",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E159",
+    "source": "A2",
+    "target": "LG-05",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E160",
+    "source": "A2",
+    "target": "LG-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E161",
+    "source": "A2",
+    "target": "LG-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E162",
+    "source": "A2",
+    "target": "LG-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E163",
+    "source": "A2",
+    "target": "LG-09",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E164",
+    "source": "A2",
+    "target": "LG-10",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E165",
+    "source": "A2",
+    "target": "LG-11",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E166",
+    "source": "A2",
+    "target": "LG-12",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E167",
+    "source": "A2",
+    "target": "LG-13",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E168",
+    "source": "A2",
+    "target": "LG-14",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E169",
+    "source": "A2",
+    "target": "LG-15",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E170",
+    "source": "A2",
+    "target": "LG-16",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E171",
+    "source": "A2",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E172",
+    "source": "A2",
+    "target": "LG-18",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E173",
+    "source": "A2",
+    "target": "LG-19",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E174",
+    "source": "A2",
+    "target": "LG-20",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E175",
+    "source": "A2",
+    "target": "LG-21",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E176",
+    "source": "A2",
+    "target": "ENTRY-TRAINEE",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E177",
+    "source": "A2",
+    "target": "ENTRY-AUTHOR",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E178",
+    "source": "A2",
+    "target": "EXIT-SESSION-REPORT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E179",
+    "source": "A2",
+    "target": "FALLBACK-POOL-LIBRARY",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E180",
+    "source": "A2",
+    "target": "CMP-UNITY",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E181",
+    "source": "A2",
+    "target": "ST-POOL",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E182",
+    "source": "A2",
+    "target": "A1",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E183",
+    "source": "A2",
+    "target": "A10",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E184",
+    "source": "A2",
+    "target": "A6",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E185",
+    "source": "A2",
+    "target": "A13",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E186",
+    "source": "A2",
+    "target": "B14",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E187",
+    "source": "A2",
+    "target": "B15",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E188",
+    "source": "A2",
+    "target": "B16",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E189",
+    "source": "A2",
+    "target": "B18",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E190",
+    "source": "A3",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E191",
+    "source": "A3",
+    "target": "LG-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E192",
+    "source": "A3",
+    "target": "ST-MEDS",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E193",
+    "source": "A3",
+    "target": "A2",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E194",
+    "source": "A3",
+    "target": "C29",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E195",
+    "source": "A4",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E196",
+    "source": "A4",
+    "target": "LG-09",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E197",
+    "source": "A4",
+    "target": "LG-10",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E198",
+    "source": "A4",
+    "target": "A1",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E199",
+    "source": "A4",
+    "target": "A2",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E200",
+    "source": "A5",
+    "target": "CMP-EVENTS",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E201",
+    "source": "A5",
+    "target": "LG-16",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E202",
+    "source": "A5",
+    "target": "A2",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E203",
+    "source": "A6",
+    "target": "LG-13",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E204",
+    "source": "A6",
+    "target": "A13",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E205",
+    "source": "A7",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E206",
+    "source": "A7",
+    "target": "LG-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E207",
+    "source": "A7",
+    "target": "LG-11",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E208",
+    "source": "A7",
+    "target": "A2",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E209",
+    "source": "A7",
+    "target": "D40",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E210",
+    "source": "A8",
+    "target": "CMP-EVENTS",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E211",
+    "source": "A8",
+    "target": "LG-16",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E212",
+    "source": "A8",
+    "target": "LG-18",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E213",
+    "source": "A8",
+    "target": "A2",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E214",
+    "source": "A9",
+    "target": "LG-11",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E215",
+    "source": "A9",
+    "target": "A10",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E216",
+    "source": "A9",
+    "target": "OFF-07",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E217",
+    "source": "A10",
+    "target": "LG-09",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E218",
+    "source": "A10",
+    "target": "LG-10",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E219",
+    "source": "A10",
+    "target": "LG-12",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E220",
+    "source": "A10",
+    "target": "CMP-STAGEB",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E221",
+    "source": "A11",
+    "target": "LG-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E222",
+    "source": "A11",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E223",
+    "source": "A11",
+    "target": "D43",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E224",
+    "source": "A12",
+    "target": "OFF-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E225",
+    "source": "A12",
+    "target": "LG-04",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E226",
+    "source": "A12",
+    "target": "A1",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E227",
+    "source": "A13",
+    "target": "LG-14",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E228",
+    "source": "A13",
+    "target": "CMP-ENGINE",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E229",
+    "source": "A13",
+    "target": "CMP-CONTENTGATE",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E230",
+    "source": "B14",
+    "target": "OFF-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E231",
+    "source": "B14",
+    "target": "OFF-03",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E232",
+    "source": "B14",
+    "target": "LG-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E233",
+    "source": "B14",
+    "target": "ST-PACKS",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E234",
+    "source": "B14",
+    "target": "ST-MEASURE",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E235",
+    "source": "B14",
+    "target": "ST-DERIVED",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E236",
+    "source": "B14",
+    "target": "OFF-02",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E237",
+    "source": "B15",
+    "target": "OFF-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E238",
+    "source": "B15",
+    "target": "LG-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E239",
+    "source": "B15",
+    "target": "OFF-06",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E240",
+    "source": "B16",
+    "target": "OFF-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E241",
+    "source": "B16",
+    "target": "LG-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E242",
+    "source": "B16",
+    "target": "OFF-06",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E243",
+    "source": "B17",
+    "target": "OFF-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E244",
+    "source": "B17",
+    "target": "LG-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E245",
+    "source": "B17",
+    "target": "OFF-06",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E246",
+    "source": "B18",
+    "target": "LG-09",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E247",
+    "source": "B18",
+    "target": "A10",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E248",
+    "source": "B19",
+    "target": "OFF-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E249",
+    "source": "B19",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E250",
+    "source": "B20",
+    "target": "LG-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E251",
+    "source": "B20",
+    "target": "LG-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E252",
+    "source": "B20",
+    "target": "B14",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E253",
+    "source": "B21",
+    "target": "LG-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E254",
+    "source": "B21",
+    "target": "B14",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E255",
+    "source": "B22",
+    "target": "LG-19",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E256",
+    "source": "B22",
+    "target": "E53",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E257",
+    "source": "B22",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E258",
+    "source": "B23",
+    "target": "CMP-DISCOVERY",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E259",
+    "source": "B23",
+    "target": "LG-05",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E260",
+    "source": "C24",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E261",
+    "source": "C24",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E262",
+    "source": "C24",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E263",
+    "source": "C24",
+    "target": "E53",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E264",
+    "source": "C24",
+    "target": "E54",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E265",
+    "source": "C24",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E266",
+    "source": "C24",
+    "target": "C29",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E267",
+    "source": "C25",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E268",
+    "source": "C25",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E269",
+    "source": "C25",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E270",
+    "source": "C26",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E271",
+    "source": "C26",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E272",
+    "source": "C26",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E273",
+    "source": "C27",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E274",
+    "source": "C27",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E275",
+    "source": "C27",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E276",
+    "source": "C28",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E277",
+    "source": "C28",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E278",
+    "source": "C28",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E279",
+    "source": "C29",
+    "target": "LG-06",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E280",
+    "source": "C29",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E281",
+    "source": "C29",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E282",
+    "source": "C30",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E283",
+    "source": "C30",
+    "target": "E54",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E284",
+    "source": "C30",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E285",
+    "source": "C31",
+    "target": "CMP-ASR",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E286",
+    "source": "C31",
+    "target": "CMP-TTS",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E287",
+    "source": "C31",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E288",
+    "source": "C31",
+    "target": "C33",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E289",
+    "source": "C31",
+    "target": "C34",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E290",
+    "source": "C31",
+    "target": "C24",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E291",
+    "source": "C32",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E292",
+    "source": "C32",
+    "target": "C33",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E293",
+    "source": "C33",
+    "target": "CMP-ASR",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E294",
+    "source": "C33",
+    "target": "E62",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E295",
+    "source": "C34",
+    "target": "CMP-TTS",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E296",
+    "source": "C35",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E297",
+    "source": "C35",
+    "target": "LG-18",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E298",
+    "source": "C35",
+    "target": "C33",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E299",
+    "source": "C35",
+    "target": "C36",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E300",
+    "source": "C36",
+    "target": "CMP-SCORER",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E301",
+    "source": "C36",
+    "target": "LG-18",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E302",
+    "source": "C37",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E303",
+    "source": "C37",
+    "target": "C36",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E304",
+    "source": "C37",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E305",
+    "source": "C37",
+    "target": "B19",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E306",
+    "source": "D38",
+    "target": "LG-19",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E307",
+    "source": "D38",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E308",
+    "source": "D38",
+    "target": "E53",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E309",
+    "source": "D38",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E310",
+    "source": "D39",
+    "target": "LG-19",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E311",
+    "source": "D39",
+    "target": "D38",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E312",
+    "source": "D39",
+    "target": "D40",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E313",
+    "source": "D40",
+    "target": "LG-20",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E314",
+    "source": "D40",
+    "target": "LG-21",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E315",
+    "source": "D40",
+    "target": "LG-20",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E316",
+    "source": "D41",
+    "target": "LG-18",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E317",
+    "source": "D41",
+    "target": "LG-20",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E318",
+    "source": "D41",
+    "target": "D40",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E319",
+    "source": "D42",
+    "target": "LG-20",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E320",
+    "source": "D42",
+    "target": "D40",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E321",
+    "source": "D43",
+    "target": "CMP-ELO",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E322",
+    "source": "D43",
+    "target": "LG-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E323",
+    "source": "D44",
+    "target": "LG-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E324",
+    "source": "D44",
+    "target": "D43",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E325",
+    "source": "D44",
+    "target": "D40",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E326",
+    "source": "D45",
+    "target": "LG-20",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E327",
+    "source": "D45",
+    "target": "D43",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E328",
+    "source": "D46",
+    "target": "LG-19",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E329",
+    "source": "D46",
+    "target": "D38",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E330",
+    "source": "D47",
+    "target": "LG-19",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E331",
+    "source": "D47",
+    "target": "D38",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E332",
+    "source": "E48",
+    "target": "CMP-PHYSIO",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E333",
+    "source": "E48",
+    "target": "LG-16",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E334",
+    "source": "E48",
+    "target": "A3",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E335",
+    "source": "E48",
+    "target": "B14",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E336",
+    "source": "E49",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E337",
+    "source": "E49",
+    "target": "C25",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E338",
+    "source": "E49",
+    "target": "C26",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E339",
+    "source": "E49",
+    "target": "C27",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E340",
+    "source": "E49",
+    "target": "C30",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E341",
+    "source": "E50",
+    "target": "OFF-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E342",
+    "source": "E50",
+    "target": "E53",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E343",
+    "source": "E51",
+    "target": "LG-21",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E344",
+    "source": "E51",
+    "target": "OFF-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E345",
+    "source": "E51",
+    "target": "EXIT-OFFLINE-RELEASE",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E346",
+    "source": "E51",
+    "target": "A9",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E347",
+    "source": "E52",
+    "target": "LG-20",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E348",
+    "source": "E52",
+    "target": "LG-20",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E349",
+    "source": "E53",
+    "target": "CMP-GROUNDING",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E350",
+    "source": "E54",
+    "target": "CMP-CONTEXT",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E351",
+    "source": "E55",
+    "target": "OFF-07",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E352",
+    "source": "E55",
+    "target": "LG-21",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E353",
+    "source": "E55",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E354",
+    "source": "E56",
+    "target": "LG-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E355",
+    "source": "E56",
+    "target": "D43",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E356",
+    "source": "E57",
+    "target": "OFF-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E357",
+    "source": "E57",
+    "target": "CMP-LLM",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E358",
+    "source": "E58",
+    "target": "OFF-05",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E359",
+    "source": "E58",
+    "target": "LG-03",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E360",
+    "source": "E58",
+    "target": "OFF-04",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E361",
+    "source": "E59",
+    "target": "CMP-ASR",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E362",
+    "source": "E59",
+    "target": "C33",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E363",
+    "source": "E59",
+    "target": "C24",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E364",
+    "source": "E60",
+    "target": "LG-17",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E365",
+    "source": "E60",
+    "target": "C37",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E366",
+    "source": "E60",
+    "target": "B19",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E367",
+    "source": "E61",
+    "target": "OFF-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E368",
+    "source": "E61",
+    "target": "E57",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E369",
+    "source": "E62",
+    "target": "CMP-BACKEND",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E370",
+    "source": "E63",
+    "target": "CMP-ASR",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E371",
+    "source": "E63",
+    "target": "C33",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E372",
+    "source": "E64",
+    "target": "LG-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E373",
+    "source": "E65",
+    "target": "OFF-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E374",
+    "source": "A66",
+    "target": "OFF-10",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E375",
+    "source": "A66",
+    "target": "ST-KB",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E376",
+    "source": "A66",
+    "target": "OFF-02",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E377",
+    "source": "D67",
+    "target": "LP-01",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E378",
+    "source": "D67",
+    "target": "LP-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E379",
+    "source": "D67",
+    "target": "ST-LEARNER",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E380",
+    "source": "D67",
+    "target": "D43",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E381",
+    "source": "D68",
+    "target": "LP-03",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E382",
+    "source": "D68",
+    "target": "LG-02",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E383",
+    "source": "D68",
+    "target": "D67",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E384",
+    "source": "E69",
+    "target": "OFF-08",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E385",
+    "source": "E69",
+    "target": "CMP-LLM",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E386",
+    "source": "E69",
+    "target": "CMP-ASR",
+    "type": "realised_by",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "realised_by"
+  }
+ ]
+}

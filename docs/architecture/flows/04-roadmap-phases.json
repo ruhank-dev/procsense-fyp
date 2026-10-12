@@ -1,0 +1,367 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Roadmap: phases PH-01..PH-24",
+  "subtitle": "Dependency order. Critical path: PH-01 → PH-02 → PH-03 → PH-05 → PH-09 → PH-10 → PH-11 → PH-12",
+  "columns": 6,
+  "nodes": [
+    {
+      "id": "PH-01",
+      "actor": "calendar",
+      "label": "PH-01 critical path",
+      "title": "Planning baseline and governance",
+      "text": "Built. Feature inventory, pipeline JSON, policies, registers (this update). Existing built foundation counts here. 4 tasks, 3 features.",
+      "tone": "mint"
+    },
+    {
+      "id": "PH-02",
+      "actor": "calendar",
+      "label": "PH-02 critical path",
+      "title": "Dataset analysis and profiling",
+      "text": "Planned. Profile every modality for normal, abnormal, borderline, missing and artefact patterns before designing generators. 4 tasks, 0 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-03",
+      "actor": "calendar",
+      "label": "PH-03 critical path",
+      "title": "Generator parameter packs, media index and eval…",
+      "text": "Planned. Turn profiles into versioned packs; tag the media library; build evaluation sets. 1 tasks, 0 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-04",
+      "actor": "calendar",
+      "label": "PH-04",
+      "title": "Block library and composer foundation",
+      "text": "Planned. Blocks with requires/excludes, templates, discovery coverage; composer lineage s01, s02. 5 tasks, 3 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-05",
+      "actor": "calendar",
+      "label": "PH-05 critical path",
+      "title": "Live generation skeleton (deterministic path fi…",
+      "text": "Planned. Request, objectives, retrieval, solver selection, skeleton. A fresh case can be produced with no LLM at all. 3 tasks, 4 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-06",
+      "actor": "calendar",
+      "label": "PH-06",
+      "title": "Backend and AI gateway",
+      "text": "Planned. FastAPI skeleton, sessions, gateway (only path to a model). 3 tasks, 1 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-07",
+      "actor": "calendar",
+      "label": "PH-07",
+      "title": "LLM serving and benchmark",
+      "text": "Blocked. Install the runtime, pull candidates, benchmark latency, VRAM, schema validity; no training. 1 tasks, 1 features.",
+      "tone": "coral"
+    },
+    {
+      "id": "PH-08",
+      "actor": "calendar",
+      "label": "PH-08",
+      "title": "AI composition, profiles and personas",
+      "text": "Blocked. LLM fills narrative, patient profile wording and persona; Stage A proposals. 2 tasks, 1 features.",
+      "tone": "coral"
+    },
+    {
+      "id": "PH-09",
+      "actor": "calendar",
+      "label": "PH-09 critical path",
+      "title": "Numeric, waveform and image generation",
+      "text": "Planned. Conditioned numbers, trends, anomalies; ECG variants; media selection. 2 tasks, 6 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-10",
+      "actor": "calendar",
+      "label": "PH-10 critical path",
+      "title": "Cross-modal consistency, validation and live lo…",
+      "text": "Planned. Cross-modal rules, Stage B on generated packages, events and branches on generated cases. 2 tasks, 4 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-11",
+      "actor": "calendar",
+      "label": "PH-11 critical path",
+      "title": "Quality, repair, novelty and provenance",
+      "text": "Planned. Quality gate, repair budget, fingerprints, package provenance. 2 tasks, 4 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-12",
+      "actor": "calendar",
+      "label": "PH-12 critical path",
+      "title": "Packaging, pool and Unity integration",
+      "text": "Planned. Package format, pre-generated pool, Unity loading (Unity work begins only when implementation is approved). The backend (PH-06) is optional… 1 tasks, 0 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-13",
+      "actor": "calendar",
+      "label": "PH-13",
+      "title": "Dialogue and personas",
+      "text": "Blocked. Patient and staff dialogue, persona, reactive lines. 2 tasks, 7 features.",
+      "tone": "coral"
+    },
+    {
+      "id": "PH-14",
+      "actor": "calendar",
+      "label": "PH-14",
+      "title": "Voice",
+      "text": "Planned. ASR, voice commands, voice orders with read-back, TTS. 5 tasks, 5 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-15",
+      "actor": "calendar",
+      "label": "PH-15",
+      "title": "Communication acts and classifier",
+      "text": "Blocked. Taxonomy, labelled set, LLM classifier. 2 tasks, 2 features.",
+      "tone": "coral"
+    },
+    {
+      "id": "PH-16",
+      "actor": "calendar",
+      "label": "PH-16",
+      "title": "AI debrief and grounded feedback",
+      "text": "Blocked. AI rewrite of the template debrief, missed-step explanations, difficulty explanation. 3 tasks, 4 features.",
+      "tone": "coral"
+    },
+    {
+      "id": "PH-17",
+      "actor": "calendar",
+      "label": "PH-17",
+      "title": "Evaluation harness, adversarial testing and swi…",
+      "text": "Planned. Harness, red-team generator, synthetic sets, batch quality evaluator. 6 tasks, 4 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-18",
+      "actor": "calendar",
+      "label": "PH-18",
+      "title": "Learning analytics and adaptive enhancements",
+      "text": "Proposed. Patterns, coaching, calibration, reasoning fingerprint, progression, investigation analytics and interpreter. 6 tasks, 8 features.",
+      "tone": "aqua"
+    },
+    {
+      "id": "PH-19",
+      "actor": "calendar",
+      "label": "PH-19",
+      "title": "Advanced research features",
+      "text": "Proposed. Digital twin, multi-agent lab, retrieval extensions, Urdu, trained classifier, medical LLM benchmark, on-device ASR. 7 tasks, 6 features.",
+      "tone": "aqua"
+    },
+    {
+      "id": "PH-20",
+      "actor": "calendar",
+      "label": "PH-20",
+      "title": "AI infrastructure and dual-GPU benchmark",
+      "text": "Planned. Install and pin runtimes on both machines, benchmark every model on the GTX 1660 SUPER and RTX 4050 with Unity running, choose topology and… 4 tasks, 1 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-21",
+      "actor": "calendar",
+      "label": "PH-21",
+      "title": "Labelling programme",
+      "text": "Planned. Human-labelled evaluation and training sets with agreement checks. 1 tasks, 0 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-22",
+      "actor": "calendar",
+      "label": "PH-22",
+      "title": "Scenario knowledge base and AI composer",
+      "text": "Planned. Learn relations from evidence; the AI scenario plan composer; learned conditional generation; text consistency critic. 4 tasks, 1 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-23",
+      "actor": "calendar",
+      "label": "PH-23",
+      "title": "Personalisation",
+      "text": "Planned. Evidence record, Bayesian learner model, targeting policy, performance interpreter, explanations and evaluation. 5 tasks, 2 features.",
+      "tone": "blue"
+    },
+    {
+      "id": "PH-24",
+      "actor": "calendar",
+      "label": "PH-24",
+      "title": "Generative research (revived rejected features)",
+      "text": "Deferred. Offline generative image and waveform synthesis; conditional LLM adaptation. 2 tasks, 2 features.",
+      "tone": "grey"
+    }
+  ],
+  "edges": [
+    {
+      "from": "PH-01",
+      "to": "PH-02"
+    },
+    {
+      "from": "PH-02",
+      "to": "PH-03"
+    },
+    {
+      "from": "PH-01",
+      "to": "PH-04"
+    },
+    {
+      "from": "PH-03",
+      "to": "PH-05"
+    },
+    {
+      "from": "PH-04",
+      "to": "PH-05"
+    },
+    {
+      "from": "PH-01",
+      "to": "PH-06"
+    },
+    {
+      "from": "PH-01",
+      "to": "PH-07"
+    },
+    {
+      "from": "PH-20",
+      "to": "PH-07"
+    },
+    {
+      "from": "PH-05",
+      "to": "PH-08"
+    },
+    {
+      "from": "PH-06",
+      "to": "PH-08"
+    },
+    {
+      "from": "PH-07",
+      "to": "PH-08"
+    },
+    {
+      "from": "PH-22",
+      "to": "PH-08"
+    },
+    {
+      "from": "PH-03",
+      "to": "PH-09"
+    },
+    {
+      "from": "PH-05",
+      "to": "PH-09"
+    },
+    {
+      "from": "PH-09",
+      "to": "PH-10"
+    },
+    {
+      "from": "PH-10",
+      "to": "PH-11"
+    },
+    {
+      "from": "PH-11",
+      "to": "PH-12"
+    },
+    {
+      "from": "PH-07",
+      "to": "PH-13"
+    },
+    {
+      "from": "PH-06",
+      "to": "PH-13"
+    },
+    {
+      "from": "PH-20",
+      "to": "PH-13"
+    },
+    {
+      "from": "PH-06",
+      "to": "PH-14"
+    },
+    {
+      "from": "PH-07",
+      "to": "PH-15"
+    },
+    {
+      "from": "PH-21",
+      "to": "PH-15"
+    },
+    {
+      "from": "PH-07",
+      "to": "PH-16"
+    },
+    {
+      "from": "PH-07",
+      "to": "PH-17"
+    },
+    {
+      "from": "PH-16",
+      "to": "PH-18"
+    },
+    {
+      "from": "PH-12",
+      "to": "PH-18"
+    },
+    {
+      "from": "PH-23",
+      "to": "PH-18"
+    },
+    {
+      "from": "PH-13",
+      "to": "PH-19"
+    },
+    {
+      "from": "PH-15",
+      "to": "PH-19"
+    },
+    {
+      "from": "PH-17",
+      "to": "PH-19"
+    },
+    {
+      "from": "PH-01",
+      "to": "PH-20"
+    },
+    {
+      "from": "PH-01",
+      "to": "PH-21"
+    },
+    {
+      "from": "PH-03",
+      "to": "PH-22"
+    },
+    {
+      "from": "PH-05",
+      "to": "PH-22"
+    },
+    {
+      "from": "PH-20",
+      "to": "PH-22"
+    },
+    {
+      "from": "PH-06",
+      "to": "PH-23"
+    },
+    {
+      "from": "PH-05",
+      "to": "PH-23"
+    },
+    {
+      "from": "PH-20",
+      "to": "PH-24"
+    },
+    {
+      "from": "PH-03",
+      "to": "PH-24"
+    }
+  ],
+  "notes": [
+    "AI critical path: PH-20 → PH-07 → PH-22 → PH-08 → PH-23. Phase tasks are step files under docs/plans.",
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

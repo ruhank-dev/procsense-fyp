@@ -1,0 +1,271 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Models and the stages that use them",
+  "subtitle": "Model catalogue MC-01..13 (candidates, hardware, licence: docs/architecture/model_technology_register.md).",
+  "columns": 5,
+  "nodes": [
+    {
+      "id": "MC-01",
+      "actor": "model",
+      "label": "MC-01",
+      "title": "Scenario composition narrative and Stage A prop…",
+      "text": "Blocked. Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50)",
+      "tone": "coral"
+    },
+    {
+      "id": "MC-02",
+      "actor": "model",
+      "label": "MC-02",
+      "title": "Character dialogue",
+      "text": "Blocked. Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49)",
+      "tone": "coral"
+    },
+    {
+      "id": "MC-03",
+      "actor": "model",
+      "label": "MC-03",
+      "title": "Communication act classification",
+      "text": "Blocked. Communication act classification (C35, C37, E60)",
+      "tone": "coral"
+    },
+    {
+      "id": "MC-04",
+      "actor": "model",
+      "label": "MC-04",
+      "title": "Debrief rewrite, coaching, explanations",
+      "text": "Blocked. Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56)",
+      "tone": "coral"
+    },
+    {
+      "id": "MC-05",
+      "actor": "model",
+      "label": "MC-05",
+      "title": "Speech recognition",
+      "text": "Planned. Speech recognition (C31 to C35, E59, E63)",
+      "tone": "blue"
+    },
+    {
+      "id": "MC-06",
+      "actor": "model",
+      "label": "MC-06",
+      "title": "Text-to-speech",
+      "text": "Planned. Text-to-speech (C31, C34)",
+      "tone": "blue"
+    },
+    {
+      "id": "MC-07",
+      "actor": "model",
+      "label": "MC-07",
+      "title": "Retrieval",
+      "text": "Planned. Retrieval (E58, LG-03)",
+      "tone": "blue"
+    },
+    {
+      "id": "MC-08",
+      "actor": "model",
+      "label": "MC-08",
+      "title": "Numeric generation",
+      "text": "Partly built. Numeric generation (B14, B20, B21)",
+      "tone": "sun"
+    },
+    {
+      "id": "MC-09",
+      "actor": "model",
+      "label": "MC-09",
+      "title": "ECG traces and strips",
+      "text": "Partly built. ECG traces and strips (B15)",
+      "tone": "sun"
+    },
+    {
+      "id": "MC-10",
+      "actor": "model",
+      "label": "MC-10",
+      "title": "Medical image selection",
+      "text": "Partly built. Medical image selection (B16, B17)",
+      "tone": "sun"
+    },
+    {
+      "id": "MC-11",
+      "actor": "model",
+      "label": "MC-11",
+      "title": "Novelty fingerprints",
+      "text": "Proposed. Novelty fingerprints (A6, LG-13)",
+      "tone": "aqua"
+    },
+    {
+      "id": "MC-12",
+      "actor": "model",
+      "label": "MC-12",
+      "title": "Scenario quality judge",
+      "text": "Proposed. Scenario quality judge (A9, E51)",
+      "tone": "aqua"
+    },
+    {
+      "id": "MC-13",
+      "actor": "model",
+      "label": "MC-13",
+      "title": "Medical LLM benchmark",
+      "text": "Deferred. Medical LLM benchmark (E61)",
+      "tone": "grey"
+    },
+    {
+      "id": "CMP-CONTEXT",
+      "actor": "code",
+      "label": "CMP-CONTEXT",
+      "title": "ContextBuilder and ReactionQueue",
+      "text": "Built. ContextBuilder and ReactionQueue. Plans: C24, C25, C26, C27.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-TTS",
+      "actor": "code",
+      "label": "CMP-TTS",
+      "title": "Speech output (pre-rendered and live)",
+      "text": "Planned. Speech output (pre-rendered and live). Plans: C31, C34.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-03",
+      "actor": "search",
+      "label": "LG-03",
+      "title": "Context retrieval",
+      "text": "Planned. Retrieve the evidence the scenario may draw on: candidate blocks matching the objectives, reference cases with similar structure, bands and critical limit… Plans: A2, E58.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-04",
+      "actor": "agent",
+      "label": "LG-04",
+      "title": "AI scenario plan composition and constraint sol…",
+      "text": "Planned. The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases, schema-constrained to approved ids) proposes a ScenarioPla… Plans: A1, A2, A3, A4.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-06",
+      "actor": "model",
+      "label": "LG-06",
+      "title": "AI composition (narrative, patient profile, per…",
+      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording, distr… Plans: A1, A2, A3, A7.",
+      "tone": "coral"
+    },
+    {
+      "id": "LG-07",
+      "actor": "chart",
+      "label": "LG-07",
+      "title": "Numeric generation (labs, vitals, trends)",
+      "text": "Partly built. Fill every numeric slot: lab results per analyte conditioned on the case's conditions, vital-sign baselines and trajectories, repeat result… Plans: A2, B14, B20, B21.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-08",
+      "actor": "image",
+      "label": "LG-08",
+      "title": "Image and waveform handling (ECG, ultrasound, X…",
+      "text": "Partly built. Pick, for every imaging and ECG slot, an asset whose finding tags match the skeleton (real first, labelled synthetic where no real image ex… Plans: A2, B15, B16, B17.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-11",
+      "actor": "eye",
+      "label": "LG-11",
+      "title": "Quality evaluation",
+      "text": "Proposed. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness, narrative co… Plans: A2, A7, A9.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-13",
+      "actor": "star",
+      "label": "LG-13",
+      "title": "Novelty check (fingerprint)",
+      "text": "Proposed. Build the structured fingerprint (structural, clinical and surface levels) and compare it with this trainee's recent sessions and the library. Plans: A2, A6.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-17",
+      "actor": "chat",
+      "label": "LG-17",
+      "title": "Action interpretation",
+      "text": "Partly built. Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR then the co… Plans: A2, C24, C31, C32.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-19",
+      "actor": "book",
+      "label": "LG-19",
+      "title": "Grounded debrief",
+      "text": "Partly built. Template debrief from DebriefFacts is always produced first (built). Plans: A2, B22, D38, D39.",
+      "tone": "sun"
+    },
+    {
+      "id": "OFF-08",
+      "actor": "folder",
+      "label": "OFF-08",
+      "title": "Model preparation: pull, quantise, benchmark (n…",
+      "text": "Blocked. Download the candidate served models, record their digests and licences, and benchmark latency, VRAM and structured-output validity on this har… Plans: E57, E61, E65, E69.",
+      "tone": "coral"
+    }
+  ],
+  "edges": [
+    {
+      "from": "MC-01",
+      "to": "LG-04"
+    },
+    {
+      "from": "MC-01",
+      "to": "LG-06"
+    },
+    {
+      "from": "MC-12",
+      "to": "LG-11"
+    },
+    {
+      "from": "MC-03",
+      "to": "LG-17"
+    },
+    {
+      "from": "MC-05",
+      "to": "LG-17"
+    },
+    {
+      "from": "MC-04",
+      "to": "LG-19"
+    },
+    {
+      "from": "MC-07",
+      "to": "LG-03"
+    },
+    {
+      "from": "MC-08",
+      "to": "LG-07"
+    },
+    {
+      "from": "MC-09",
+      "to": "LG-08"
+    },
+    {
+      "from": "MC-10",
+      "to": "LG-08"
+    },
+    {
+      "from": "MC-11",
+      "to": "LG-13"
+    },
+    {
+      "from": "MC-02",
+      "to": "CMP-CONTEXT"
+    },
+    {
+      "from": "MC-06",
+      "to": "CMP-TTS"
+    },
+    {
+      "from": "MC-13",
+      "to": "OFF-08"
+    }
+  ],
+  "notes": [
+    "Hardware: desktop GTX 1660 SUPER and laptop RTX 4050 (6 GB each), benchmarked with Unity running in p1-ai-infrastructure-s02.",
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

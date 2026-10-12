@@ -2,12 +2,25 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0. Planning update of 12 October 2026 (read this first)
+
+This audit is now the short summary. The full, authoritative planning set is in [architecture/](architecture/README.md):
+
+* **Every AI feature, one entry each (69: A1 to E65 plus A66, D67, D68, E69)** with status, the AI part's status, evidence and a complete implementation plan per feature: [feature_registry.md](architecture/feature_registry.md), `architecture/feature_plans/`, [coverage audit](architecture/feature_coverage_audit.md). Status counts: 3 implemented and tested, 28 partially implemented, 14 planned, 3 blocked, 4 deferred, 17 proposed. The two features rejected in the first pass (generative images, LLM fine-tuning) were reassessed and kept as deferred research tracks. 105 capability plans, 65 of them AI, each with a baseline it must beat.
+* **AI composer and personalisation:** the scenario composer is an LLM with retrieval over a scenario knowledge base, enforced by the solver and validators; a Bayesian learner model and a targeting policy shape each next case: [ai_scenario_generation_architecture.md](architecture/ai_scenario_generation_architecture.md).
+* **Fresh scenarios every session:** a 21-stage live generation pipeline (LG-01 to LG-21) that uses the cases and datasets as templates, evidence and evaluation material: [live_generation_spec.md](architecture/live_generation_spec.md). The first fresh scenario needs **no language model**: dataset profiles, parameter packs, blocks, the solver, statistical numbers, tagged images, validation and packaging.
+* **Roadmap:** 24 phases (PH-01 to PH-24) with a critical path that avoids the current blockers: [master_roadmap.md](architecture/master_roadmap.md). New plan modules: `p1-dataset-analysis`, `p1-live-scenario-generation`, `p2-ai-learning-analytics`, `p2-ai-advanced-simulation`.
+* **Policy changes** (ADR-0008, INSTRUCTIONS 8i revised and 8j): clinician sign-off is no longer a development gate; licensing is checked and recorded, not a blanket blocker; served or pretrained models are preferred over training; datasets are analysed before generators are designed; rules still decide (ADR-0005).
+* **Canonical graph:** `architecture/procsense_full_pipeline.json`, checked by `tools/plans/validate_pipeline.py` in CI.
+
+Nothing in the planning update was implemented; sections 1 to 6 below are the audit as written earlier the same day, with blockers revised where the policy changed.
+
 ## 1. The short answers
 
 | Question | Answer |
 |---|---|
 | Does P0 contain any trained model or LLM? | **No.** P0 is deterministic rules and tables only. Nothing in P0 is called AI, and no rule is dressed up as a model. |
-| Where does AI start? | **P1** (milestones M10 to M12): a locally served language model (Ollama on the laptop GPU) for patient and staff lines, a communication classifier and a debrief rewrite; speech recognition on the desktop GPU; a FastAPI backend. |
+| Where does AI start? | **P1** (milestones M10 to M12): a locally served language model (Ollama on a 6 GB GPU: the desktop GTX 1660 SUPER or the laptop RTX 4050, chosen by the dual-GPU benchmark in `p1-ai-infrastructure-s02`) for patient and staff lines, a communication classifier and a debrief rewrite; speech recognition on the desktop GPU; a FastAPI backend. |
 | Where are models *trained*? | **Only in P2** (`p2-ai-extensions-s03`): a small classifier trained on the human-labelled set. The P1 classifier, dialogue and debrief use a served model with prompts, **not** training. Speech recognition is an off-the-shelf model, not trained here. |
 | Who decides what is correct? | **Always the rules.** An AI only (a) turns a trainee's words into a structured act for the evidence mapper, (b) voices a line the rules have already decided, or (c) rewrites the template debrief from facts. It never sets state, never credits a critical item and never reaches the trainee unchecked (ADR-0005). |
 | What is built today? | The whole **deterministic foundation** that the AI stages stand on, plus the **safety gate** that makes AI output safe to show. See section 3. |
@@ -26,10 +39,10 @@ Status words: **Built** (code and tests exist), **Built, rules only** (works, bu
 | Beginner versus advanced behaviour | `p0-case-library` s06 | P0 | **Built** | `SessionOptions.Level`: the nurse challenges (beginner) or the consequence plays out (advanced); saved in the log header | none |
 | Validation of any case, hand-made or AI-drafted | `p0-case-library` s04, s05 | P0 | **Built** | Stage B: 11 ordered checks, 12 contradiction types, HTML report per case, 60 of 60 deliberately broken cases rejected, an AI draft can never reach an approved status | Checks 9 and 10 need a golden run per case (17 P0 cases have one) |
 | Unexpected events | `p0-physiology-events-behaviour` s08, s09 | P0 | **Built** | `EventDirector` (seeded draw in practice, fixed schedule in assessment), 7 approved events, what-if coverage and bindings | 7 what-ifs have no state to run on (DT-087); events are approved for training only (Q7) |
-| **AI-generated clinical scenarios and problems** | `p1-scenario-composer-difficulty` s01 to s05 | P1 | **Planned** | Only the gate they must pass (Stage B) and the context they need (case tags, discovery rules) | Block library with requires/excludes (clinician-reviewed), the deterministic solver, the LLM proposal step, clinician approval of every composed case. The solver is **not AI** and comes first; the LLM only proposes block combinations and a narrative |
+| **AI-generated clinical scenarios and problems** | `p1-scenario-composer-difficulty` s01 to s05 | P1 | **Planned** | Only the gate they must pass (Stage B) and the context they need (case tags, discovery rules) | Block library with requires/excludes, the deterministic solver, the LLM proposal step (clinician review and approval of composed cases were required here; since 12 Oct 2026 they are not a gate: generated cases are practice-only and gated by automated validation, ADR-0008). The solver is **not AI** and comes first; the LLM only proposes block combinations and a narrative |
 | **Grounding validator** (no AI line reaches a trainee unchecked) | `p1-ai-language` s01 | P1 | **Built** | `server/validation/validator.py` and its C# twin, 44 shared vectors, 100+ disclosure probes, every lexicon drug rejected when off-card, debrief mutation tests | The FastAPI server around it (`p1-backend-s01`) |
 | **Read-only context for AI characters** and who speaks next | `p1-ai-language` s03 | P1 | **Built** | `ContextBuilder` per role, hidden facts never in what the model is sent, 900-token budget, `ReactionQueue` (priority, debounce, one spontaneous remark per 8 s) | The Unity assembly split (`AIClient` asmdef) is Unity work |
-| LLM serving benchmark | `p1-ai-language` s02 | P1 | **Blocked** | none | The laptop GPU, Ollama, the candidate models and their licences (MedGemma terms); a benchmark run |
+| LLM serving benchmark | `p1-ai-language` s02 | P1 | **Blocked** | none | Ollama and the candidate models installed on both machines (now roadmap task `p1-ai-infrastructure-s01`, DT-113) and a benchmark on the GTX 1660 SUPER and RTX 4050; model licences (MedGemma terms); a benchmark run |
 | **Patient dialogue** (free questions answered in the patient's voice) | `p1-ai-language` s04 | P1 | **Planned, blocked** | The rules that decide disclosure (history step, behaviour gate), the context, the validator, the approved quoted answers | A served model; the persona tags in the case files (DT-085); the adversarial question set |
 | **Staff AI** (nurse, anaesthetist, porter, lab) | `p1-ai-language` s05 | P1 | **Planned, blocked** | Approved intents per role (`content/ai/intents.json`), the existing fixed lines | A served model; pre-rendered fallback lines per intent; voices |
 | **Communication taxonomy and labelled set** | `p1-ai-language` s06 | P1 | **Blocked** | The 22 behaviours and their AI-reportable acts (`content/assessment/mapping.json`) are the start of the taxonomy | At least 300 utterances labelled by two people (kappa 0.6 or more), consented role-play recordings, a clinician's list of critical acts |
@@ -72,11 +85,11 @@ Known limits of the checks that are built:
 
 | Need | Unblocks | Who |
 |---|---|---|
-| The laptop with the 6 GB GPU, Ollama installed, the candidate models downloaded (MedGemma terms accepted) | `p1-ai-language` s02, s04, s05, s07, s08, composer s03 | Owner |
+| (task DT-113) Ollama installed on the desktop GTX 1660 SUPER and the laptop RTX 4050 (6 GB each), the candidate models downloaded (MedGemma terms accepted) | `p1-ai-language` s02, s04, s05, s07, s08, composer s03 | Owner |
 | The desktop with the GTX 1660 Super and faster-whisper | `p1-voice-input` s01 to s04 | Owner |
 | Two people to label at least 300 utterances, consented role-play recordings, a clinician's list of critical acts | `p1-ai-language` s06, s07, and the P2 trained classifier | Owner, a clinician |
 | A decision on the backend hosting and login | `p1-backend` s01 to s06 | Owner |
-| A clinician to review the 21 block types and their requires/excludes | `p1-scenario-composer-difficulty` s01 to s05 | A clinician |
+| ~~A clinician to review the 21 block types~~ no longer a gate (12 Oct 2026, ADR-0008); the block library itself is the need | `p1-scenario-composer-difficulty` s01 to s05 | Case authors |
 | The persona tags in the case files (each case edit resets its approval) | patient dialogue style (DT-085) | Case authors |
 
 When any of these arrives, the next step is already planned and the gate it must pass already exists.
@@ -85,4 +98,6 @@ When any of these arrives, the next step is already planned and the gate it must
 
 `P0 scoring and evidence` (built) → `grounding validator and context` (built) → `backend skeleton (s01)` → `LLM serving benchmark (s02)` → `dialogue and staff AI (s04, s05)` and `debrief rewrite (s08)` → `labelled set (s06)` → `classifier (s07)` → `evaluation harness and switch-off gate (s09)` → `P2 small classifier (the first trained model)`.
 
-Decision record: `docs/decisions/ADR-0005-ai-boundaries-and-staging.md`. Open items: `docs/deferred-tasks.md` DT-096 to DT-100. Clinician questions: `docs/research/clinician_signoff.md` Q8, Q9, Q13.
+Live generation runs alongside this order and does not wait for it: `dataset analysis` → `parameter packs and media tags` → `block library and solver` → `skeleton` → `numbers and media` → `validation, repair, novelty` → `package and pool` (see the master roadmap).
+
+Decision records: `docs/decisions/ADR-0005-ai-boundaries-and-staging.md`, `docs/decisions/ADR-0008-live-generation-and-planning-policies.md`. Open items: `docs/deferred-tasks.md` DT-096 to DT-112. Clinician questions (research items, not gates since 12 Oct 2026): `docs/research/clinician_signoff.md` Q8, Q9, Q13.

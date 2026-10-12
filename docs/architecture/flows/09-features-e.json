@@ -1,0 +1,178 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Features E: Platform, evaluation and research",
+  "subtitle": "Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/architecture/feature_plans/<ID>.md",
+  "columns": 5,
+  "nodes": [
+    {
+      "id": "E48",
+      "actor": "agent",
+      "label": "E48 P2 PH-19",
+      "title": "Patient Digital Twin",
+      "text": "Proposed. A patient model whose physiology, history and responses persist and evolve across the session and repeat sessions.2 capability plans. Needs A3, B14.",
+      "tone": "aqua"
+    },
+    {
+      "id": "E49",
+      "actor": "model",
+      "label": "E49 P2 PH-19",
+      "title": "Multi-Agent Clinical Simulation Lab",
+      "text": "Proposed. Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-taking, all reading the same deterministic state.1 capability plans. Needs C25, C26, C27…",
+      "tone": "aqua"
+    },
+    {
+      "id": "E50",
+      "actor": "agent",
+      "label": "E50 P1 PH-17",
+      "title": "Adversarial generator (red-team for validators…",
+      "text": "Partly built. Generate attacks on the system: jailbreak questions, disclosure probes, broken scenarios.1 capability plans.",
+      "tone": "sun"
+    },
+    {
+      "id": "E51",
+      "actor": "agent",
+      "label": "E51 P1 PH-17",
+      "title": "Scenario Quality Evaluator (offline batch)",
+      "text": "Proposed. Run quality metrics and the judge over batches of generated scenarios to tune packs, prompts and thresholds.1 capability plans. Needs A9.",
+      "tone": "aqua"
+    },
+    {
+      "id": "E52",
+      "actor": "gear",
+      "label": "E52 P2 PH-18",
+      "title": "Investigation analytics",
+      "text": "Proposed. Which tests trainees order, when, how often unnecessarily, and yield per test.2 capability plans.",
+      "tone": "aqua"
+    },
+    {
+      "id": "E53",
+      "actor": "gear",
+      "label": "E53 P1 PH-01",
+      "title": "Grounding validator",
+      "text": "Built. Checks every AI line: no hidden fact, no off-card drug, no changed number, no flipped verdict.2 capability plans.",
+      "tone": "mint"
+    },
+    {
+      "id": "E54",
+      "actor": "gear",
+      "label": "E54 P1 PH-01",
+      "title": "Context builder and reaction queue",
+      "text": "Built. Per-role read-only context (900-token budget, hidden facts excluded) and who speaks next.2 capability plans.",
+      "tone": "mint"
+    },
+    {
+      "id": "E55",
+      "actor": "gear",
+      "label": "E55 P1 PH-17",
+      "title": "AI evaluation harness and switch-off gate",
+      "text": "Planned. Weekly evaluation runs; any AI feature below its threshold is switched off in ai_features.yaml.1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "E56",
+      "actor": "agent",
+      "label": "E56 P1 PH-16",
+      "title": "Difficulty explanation to the trainee",
+      "text": "Planned. Why this case was chosen, from the selector's facts; template first, LLM variant behind the validator.1 capability plans. Needs D43.",
+      "tone": "blue"
+    },
+    {
+      "id": "E57",
+      "actor": "model",
+      "label": "E57 P1 PH-07",
+      "title": "LLM serving and benchmark",
+      "text": "Blocked. Serve candidate models locally, measure latency, VRAM and schema validity, choose defaults.1 capability plans.",
+      "tone": "coral"
+    },
+    {
+      "id": "E58",
+      "actor": "agent",
+      "label": "E58 P1 PH-05",
+      "title": "Retrieval over approved content (RAG)",
+      "text": "Planned. Retrieval for generation context (LG-03) and, later, grounded explanations.1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "E59",
+      "actor": "model",
+      "label": "E59 P2 PH-19",
+      "title": "Urdu and multilingual language",
+      "text": "Deferred. Urdu speech and language tables for spoken identity and dialogue.1 capability plans. Needs C33, C24.",
+      "tone": "grey"
+    },
+    {
+      "id": "E60",
+      "actor": "model",
+      "label": "E60 P2 PH-19",
+      "title": "P2 small trained classifier",
+      "text": "Blocked. The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split, critical-act guard.1 capability plans. Needs C37, B19.",
+      "tone": "coral"
+    },
+    {
+      "id": "E61",
+      "actor": "model",
+      "label": "E61 P2 PH-19",
+      "title": "Medical LLM benchmark (for example MedGemma)",
+      "text": "Deferred. Compare a medical model with the general default.1 capability plans.",
+      "tone": "grey"
+    },
+    {
+      "id": "E62",
+      "actor": "gear",
+      "label": "E62 P1 PH-06",
+      "title": "Backend and AI gateway",
+      "text": "Planned. FastAPI: sessions, upload, reports, audit log, AI gateway (the only path to a model).1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "E63",
+      "actor": "model",
+      "label": "E63 P2 PH-19",
+      "title": "On-device speech recognition",
+      "text": "Planned. ASR on the headset for latency and offline use.1 capability plans. Needs C33.",
+      "tone": "blue"
+    },
+    {
+      "id": "E64",
+      "actor": "model",
+      "label": "E64 P2 PH-24",
+      "title": "Generative image synthesis (diffusion or GAN) f…",
+      "text": "Deferred. Offline generative synthesis of labelled medical images for library gaps.1 capability plans.",
+      "tone": "grey"
+    },
+    {
+      "id": "E65",
+      "actor": "model",
+      "label": "E65 P2 PH-24",
+      "title": "Fine-tuning an LLM on clinical text",
+      "text": "Deferred. Parameter-efficient adaptation (QLoRA) of a small served model.1 capability plans.",
+      "tone": "grey"
+    },
+    {
+      "id": "E69",
+      "actor": "gear",
+      "label": "E69 P1 PH-20",
+      "title": "AI inference infrastructure and dual-GPU deploy…",
+      "text": "Proposed. Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.1 capability plans.",
+      "tone": "aqua"
+    }
+  ],
+  "edges": [
+    {
+      "from": "E53",
+      "to": "E50"
+    },
+    {
+      "from": "E57",
+      "to": "E55"
+    },
+    {
+      "from": "E57",
+      "to": "E61"
+    }
+  ],
+  "notes": [
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

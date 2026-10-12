@@ -1,0 +1,158 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Features C: Dialogue, voice and communication",
+  "subtitle": "Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/architecture/feature_plans/<ID>.md",
+  "columns": 5,
+  "nodes": [
+    {
+      "id": "C24",
+      "actor": "agent",
+      "label": "C24 P1 PH-13",
+      "title": "Patient dialogue",
+      "text": "Partly built. Free questions answered in the patient's voice.2 capability plans. Needs E53, E54, E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "C25",
+      "actor": "agent",
+      "label": "C25 P1 PH-13",
+      "title": "Nurse dialogue",
+      "text": "Partly built. Built: nurse wristband engine and fixed lines.1 capability plans. Needs E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "C26",
+      "actor": "agent",
+      "label": "C26 P1 PH-13",
+      "title": "Anaesthetist dialogue",
+      "text": "Partly built. Approved intents exist for anaesthesia; AI replies planned.1 capability plans. Needs E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "C27",
+      "actor": "agent",
+      "label": "C27 P1 PH-13",
+      "title": "Surgeon dialogue",
+      "text": "Partly built. Approved intents exist for the surgeon; AI replies planned.1 capability plans. Needs E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "C28",
+      "actor": "agent",
+      "label": "C28 P1 PH-13",
+      "title": "Porter dialogue",
+      "text": "Partly built. Approved intents exist for the porter; AI replies planned.1 capability plans. Needs E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "C29",
+      "actor": "agent",
+      "label": "C29 P1 PH-13",
+      "title": "Persona system",
+      "text": "Planned. Persona tags per character (anxiety, health literacy, talkativeness, language) that shape wording, never facts.2 capability plans. Needs E57.",
+      "tone": "blue"
+    },
+    {
+      "id": "C30",
+      "actor": "agent",
+      "label": "C30 P1 PH-13",
+      "title": "Context-aware and reactive dialogue",
+      "text": "Partly built. Characters react to what is happening (a falling saturation, a wrong drug) through the reaction queue.1 capability plans. Needs E54, E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "C31",
+      "actor": "model",
+      "label": "C31 P1 PH-14",
+      "title": "Voice interaction (end to end)",
+      "text": "Planned. Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "C32",
+      "actor": "agent",
+      "label": "C32 P1 PH-14",
+      "title": "Voice commands",
+      "text": "Planned. Short spoken commands mapped to verbs (open results, call nurse).1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "C33",
+      "actor": "model",
+      "label": "C33 P1 PH-14",
+      "title": "Speech-to-text",
+      "text": "Planned. faster-whisper on the desktop GPU with a vocabulary prompt built from content.1 capability plans. Needs E62.",
+      "tone": "blue"
+    },
+    {
+      "id": "C34",
+      "actor": "model",
+      "label": "C34 P1 PH-14",
+      "title": "Text-to-speech",
+      "text": "Planned. Pre-rendered lines offline (P0) and live TTS for generated lines (P1).1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "C35",
+      "actor": "agent",
+      "label": "C35 P1 PH-14",
+      "title": "Voice orders and read-back",
+      "text": "Planned. Spoken orders (drug, dose, route) read back by the nurse before acting; closed-loop communication is assessed.1 capability plans.",
+      "tone": "blue"
+    },
+    {
+      "id": "C36",
+      "actor": "gear",
+      "label": "C36 P1 PH-15",
+      "title": "Communication acts (taxonomy and evidence mappi…",
+      "text": "Partly built. The acts the classifier reports and how the evidence store weighs them.1 capability plans.",
+      "tone": "sun"
+    },
+    {
+      "id": "C37",
+      "actor": "model",
+      "label": "C37 P1 PH-15",
+      "title": "Communication classifier",
+      "text": "Blocked. Classify trainee utterances into acts.1 capability plans. Needs E57, B19.",
+      "tone": "coral"
+    }
+  ],
+  "edges": [
+    {
+      "from": "C29",
+      "to": "C24"
+    },
+    {
+      "from": "C33",
+      "to": "C31"
+    },
+    {
+      "from": "C34",
+      "to": "C31"
+    },
+    {
+      "from": "C24",
+      "to": "C31"
+    },
+    {
+      "from": "C33",
+      "to": "C32"
+    },
+    {
+      "from": "C33",
+      "to": "C35"
+    },
+    {
+      "from": "C36",
+      "to": "C35"
+    },
+    {
+      "from": "C36",
+      "to": "C37"
+    }
+  ],
+  "notes": [
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

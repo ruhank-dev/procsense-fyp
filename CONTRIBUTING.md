@@ -39,6 +39,10 @@ feat(core): add wristband resolution
 
 Describe only what this commit changes.
 
+## Changing the AI plans
+
+The plan for every AI feature lives in [docs/architecture/](docs/architecture/README.md). Edit the pipeline JSON, regenerate, and follow the sync checklist at the bottom of that README; `task ci` fails if the JSON, the plan files or the documents disagree.
+
 ## If something goes red
 
 Read the failing `FAIL` block from `task ci`, or the failed job in the GitHub Actions tab. If `main` itself goes red, an issue is opened automatically and assigned to the author: tell the team, pause pushes to `main`, fix it (guide, section E).

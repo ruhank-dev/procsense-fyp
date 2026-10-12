@@ -1,0 +1,331 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Offline preparation and datasets",
+  "subtitle": "Which dataset feeds which preparation step. Nothing here runs inside a session.",
+  "columns": 6,
+  "nodes": [
+    {
+      "id": "DS-0001",
+      "actor": "book",
+      "label": "DS-0001",
+      "title": "VitalDB",
+      "text": "IN USE (aggregates). Vital-sign noise: spread and AR(1) autocorrelation per channel for the monitor and LitePhysio.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0002",
+      "actor": "book",
+      "label": "DS-0002",
+      "title": "PTB-XL",
+      "text": "IN USE. Lead II beat templates (sinus, sinus tachycardia, AF) and real strips with reports.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0003",
+      "actor": "book",
+      "label": "DS-0003",
+      "title": "MIMIC-IV Clinical Database Demo",
+      "text": "REFERENCE AND TESTS ONLY. Plausibility check of lab bands and generated results; lab percentiles p5 to p95 per analyte.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0004",
+      "actor": "book",
+      "label": "DS-0004",
+      "title": "MIMIC-IV-ED Demo",
+      "text": "IN USE (aggregates). Triage vitals of ED patients with abdominal complaints (S2 arrival realism).",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0005",
+      "actor": "book",
+      "label": "DS-0005",
+      "title": "UIdataGB gallbladder ultrasound",
+      "text": "IN USE. Real gallbladder ultrasound pictures for the EMR viewer.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0006",
+      "actor": "book",
+      "label": "DS-0006",
+      "title": "NIH ChestX-ray14",
+      "text": "IN USE. Real chest X-rays (consolidation, effusion, pneumothorax, cardiomegaly, oedema, atelectasis, no finding) and the base of the free-air film.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0007",
+      "actor": "book",
+      "label": "DS-0007",
+      "title": "openFDA Drug Label API",
+      "text": "IN USE. Contraindication and boxed-warning wording for medicine groups (never doses).",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0008",
+      "actor": "book",
+      "label": "DS-0008",
+      "title": "Regensburg Pediatric Appendicitis",
+      "text": "NOT USED. None (licence not confirmed; paediatric).",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0009",
+      "actor": "book",
+      "label": "DS-0009",
+      "title": "PriMock57",
+      "text": "NOT NEEDED. Considered for ASR evaluation; decided not needed (10 Oct 2026).",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0010",
+      "actor": "book",
+      "label": "DS-0010",
+      "title": "Mozilla Common Voice",
+      "text": "NOT NEEDED. Considered for accent robustness; decided not needed.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0011",
+      "actor": "book",
+      "label": "DS-0011",
+      "title": "ProcSense labelled synthetic images",
+      "text": "IN USE (DRAFT). Labelled stand-ins where no real image exists (ADR-0003).",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0012",
+      "actor": "book",
+      "label": "DS-0012",
+      "title": "ProcSense authored EMR distractor identities",
+      "text": "DRAFT. Search-the-right-patient task.",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0013",
+      "actor": "book",
+      "label": "DS-0013",
+      "title": "Indiana University Chest X-ray (Open-i)",
+      "text": "REJECTED. None (no-derivatives licence conflicts with cropping and annotation).",
+      "tone": "paper"
+    },
+    {
+      "id": "DS-0014",
+      "actor": "book",
+      "label": "DS-0014",
+      "title": "AMOS 2022",
+      "text": "IN USE. Clean CT and MRI slices and the base for labelled painted findings.",
+      "tone": "paper"
+    },
+    {
+      "id": "OFF-01",
+      "actor": "folder",
+      "label": "OFF-01",
+      "title": "Dataset inventory and licence check",
+      "text": "Partly built. Keep the dataset register complete: source, version, licence, access date, what is used and how.",
+      "tone": "sun"
+    },
+    {
+      "id": "OFF-02",
+      "actor": "folder",
+      "label": "OFF-02",
+      "title": "Normal versus abnormal profiling per modality",
+      "text": "Partly built. Describe each modality before any generator is designed: distribution of normal values, abnormal patterns per condition, borderline zones, miss… Plans: A66, B14, B15.",
+      "tone": "sun"
+    },
+    {
+      "id": "OFF-03",
+      "actor": "folder",
+      "label": "OFF-03",
+      "title": "Generator parameter packs (versioned)",
+      "text": "Planned. Turn the profiles into small versioned JSON packs the live generators read: per analyte and condition a distribution (band, centre, spread, skew, truncation)… Plans: B14.",
+      "tone": "blue"
+    },
+    {
+      "id": "OFF-04",
+      "actor": "folder",
+      "label": "OFF-04",
+      "title": "Component (block) library with requires and exc…",
+      "text": "Planned. The 21 block types of the composer (DEM, PRES, CMB, MED, ALG, PSH, SOC, OBS, FND, RSK, LAB, IMG, CON, PER, PAIN, DIFF, EVT, ENV, STAFF, TIME...) deri… Plans: A1, A12, E58.",
+      "tone": "blue"
+    },
+    {
+      "id": "OFF-05",
+      "actor": "folder",
+      "label": "OFF-05",
+      "title": "Retrieval index over approved content",
+      "text": "Planned. Tag index plus lexical (BM25) index over case files, blocks, bands, critical results, what-ifs and source-register snippets, each entry carrying its SR id. Plans: E58.",
+      "tone": "blue"
+    },
+    {
+      "id": "OFF-06",
+      "actor": "folder",
+      "label": "OFF-06",
+      "title": "Media asset index (images and ECG strips)",
+      "text": "Partly built. Every picture and strip with its finding tags, modality, view, quality grade, real or synthetic flag, dataset id and licence. Plans: B15, B16, B17.",
+      "tone": "sun"
+    },
+    {
+      "id": "OFF-07",
+      "actor": "folder",
+      "label": "OFF-07",
+      "title": "Evaluation reference sets",
+      "text": "Partly built. Gold scenarios, deliberately broken scenarios, adversarial questions, labelled utterances and expected debrief facts used to measure every… Plans: A9, B19, E50, E51.",
+      "tone": "sun"
+    },
+    {
+      "id": "OFF-08",
+      "actor": "folder",
+      "label": "OFF-08",
+      "title": "Model preparation: pull, quantise, benchmark (n…",
+      "text": "Blocked. Download the candidate served models, record their digests and licences, and benchmark latency, VRAM and structured-output validity on this har… Plans: E57, E61, E65, E69.",
+      "tone": "coral"
+    },
+    {
+      "id": "OFF-09",
+      "actor": "folder",
+      "label": "OFF-09",
+      "title": "Prompt and schema registry",
+      "text": "Planned. Versioned prompts and JSON schemas for every model call (composition, dialogue, debrief, classifier, judge).",
+      "tone": "blue"
+    },
+    {
+      "id": "OFF-10",
+      "actor": "folder",
+      "label": "OFF-10",
+      "title": "Scenario knowledge base construction (A66)",
+      "text": "Proposed. Typed relations (condition-finding, test-finding, decision-consequence, interactions) imported from verified tables, extracted by an LLM from case files and… Plans: A66.",
+      "tone": "aqua"
+    },
+    {
+      "id": "ST-PACKS",
+      "actor": "database",
+      "label": "ST-PACKS",
+      "title": "Generator parameter packs (planned)",
+      "text": "Planned. Generator parameter packs (planned) (content/generation/packs/ (planned)). Plans: B14.",
+      "tone": "blue"
+    },
+    {
+      "id": "ST-BLOCKS",
+      "actor": "database",
+      "label": "ST-BLOCKS",
+      "title": "Block library (planned)",
+      "text": "Planned. Block library (planned) (content/blocks/ (planned)). Plans: A1, A2, A4.",
+      "tone": "blue"
+    },
+    {
+      "id": "ST-KB",
+      "actor": "database",
+      "label": "ST-KB",
+      "title": "Scenario knowledge base (planned)",
+      "text": "Planned. Scenario knowledge base (planned) (content/kb (planned)). Plans: A1, A2, A4, A8.",
+      "tone": "blue"
+    }
+  ],
+  "edges": [
+    {
+      "from": "OFF-01",
+      "to": "OFF-02",
+      "label": "licensed datasets"
+    },
+    {
+      "from": "OFF-02",
+      "to": "OFF-03",
+      "label": "profiles"
+    },
+    {
+      "from": "OFF-02",
+      "to": "OFF-06",
+      "label": "image and ECG profiles"
+    },
+    {
+      "from": "OFF-03",
+      "to": "ST-PACKS",
+      "label": "packs"
+    },
+    {
+      "from": "OFF-04",
+      "to": "ST-BLOCKS",
+      "label": "blocks"
+    },
+    {
+      "from": "OFF-04",
+      "to": "OFF-05",
+      "label": "blocks to index"
+    },
+    {
+      "from": "OFF-02",
+      "to": "OFF-10",
+      "label": "profiles to relations"
+    },
+    {
+      "from": "OFF-10",
+      "to": "ST-KB",
+      "label": "knowledge base"
+    },
+    {
+      "from": "DS-0001",
+      "to": "OFF-02"
+    },
+    {
+      "from": "DS-0002",
+      "to": "OFF-02"
+    },
+    {
+      "from": "DS-0002",
+      "to": "OFF-06"
+    },
+    {
+      "from": "DS-0003",
+      "to": "OFF-02"
+    },
+    {
+      "from": "DS-0003",
+      "to": "OFF-03"
+    },
+    {
+      "from": "DS-0004",
+      "to": "OFF-02"
+    },
+    {
+      "from": "DS-0005",
+      "to": "OFF-06"
+    },
+    {
+      "from": "DS-0006",
+      "to": "OFF-06"
+    },
+    {
+      "from": "DS-0008",
+      "to": "OFF-01",
+      "label": "not used"
+    },
+    {
+      "from": "DS-0009",
+      "to": "OFF-01",
+      "label": "not needed"
+    },
+    {
+      "from": "DS-0010",
+      "to": "OFF-01",
+      "label": "not needed"
+    },
+    {
+      "from": "DS-0011",
+      "to": "OFF-06"
+    },
+    {
+      "from": "DS-0013",
+      "to": "OFF-01",
+      "label": "rejected"
+    },
+    {
+      "from": "DS-0014",
+      "to": "OFF-06"
+    }
+  ],
+  "notes": [
+    "DS-0008 (licence unconfirmed) and DS-0013 (no-derivatives) are not used; DS-0009/10 only considered. Licences: docs/research/licence_provenance_register.md.",
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

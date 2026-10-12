@@ -3,7 +3,7 @@
 Milestone: **M10 P1 platform — backend, AI, voice input**
 
 ## What
-faster-whisper (`large-v3-turbo`, int8) on the GTX 1660 Super desktop: `/asr` accepts push-to-talk clips ≤ 15 s (16 kHz mono), returns text + word timings + avg_logprob; medical vocabulary initial prompt built from content (tests, equipment, drug classes, roles; ≤ 224 tokens); VAD on, beam 3, temperature 0; low confidence → 'Say again'.
+faster-whisper (`large-v3-turbo`, int8) on the GTX 1660 Super desktop (planning update 12 Oct 2026: also benchmarked on the RTX 4050 laptop and on CPU in `p1-ai-infrastructure-s02`): `/asr` accepts push-to-talk clips ≤ 15 s (16 kHz mono), returns text + word timings + avg_logprob; medical vocabulary initial prompt built from content (tests, equipment, drug classes, roles; ≤ 224 tokens); VAD on, beam 3, temperature 0; low confidence → 'Say again'.
 
 ## Why
 Voice lets trainees practise the real communication of the job (asking, ordering, handover) — but only if recognition is accurate on accented English and medical terms.

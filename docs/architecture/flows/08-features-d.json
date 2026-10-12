@@ -1,0 +1,154 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Features D: Assessment, feedback and learning",
+  "subtitle": "Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/architecture/feature_plans/<ID>.md",
+  "columns": 5,
+  "nodes": [
+    {
+      "id": "D38",
+      "actor": "agent",
+      "label": "D38 P1 PH-16",
+      "title": "AI debrief",
+      "text": "Partly built. Template debrief built; AI rewrite planned behind the validator (LG-19).1 capability plans. Needs E53, E57.",
+      "tone": "sun"
+    },
+    {
+      "id": "D39",
+      "actor": "agent",
+      "label": "D39 P2 PH-18",
+      "title": "Coaching (in-session hints and between-session…",
+      "text": "Partly built. Built: deterministic hints (HintTexts, simulation-workflow s05).1 capability plans.",
+      "tone": "sun"
+    },
+    {
+      "id": "D40",
+      "actor": "agent",
+      "label": "D40 P2 PH-18",
+      "title": "Performance pattern analysis",
+      "text": "Proposed. Across sessions, find recurring errors (always late to check fasting, misses allergy in old notes).2 capability plans.",
+      "tone": "aqua"
+    },
+    {
+      "id": "D41",
+      "actor": "agent",
+      "label": "D41 P2 PH-18",
+      "title": "Confidence calibration coach",
+      "text": "Proposed. Ask the trainee how confident they are at decision points; compare with correctness over time (Brier score, calibration curve); c…2 capability plans.",
+      "tone": "aqua"
+    },
+    {
+      "id": "D42",
+      "actor": "agent",
+      "label": "D42 P2 PH-18",
+      "title": "Clinical Reasoning Fingerprint",
+      "text": "Proposed. A profile of how the trainee reasons: order of information gathering, time to key checks, premature closure, investigation yield.2 capability plans.",
+      "tone": "aqua"
+    },
+    {
+      "id": "D43",
+      "actor": "gear",
+      "label": "D43 P0 PH-01",
+      "title": "Adaptive difficulty (deterministic Elo ratings…",
+      "text": "Built. Elo-style rating per behaviour (K 16, 3 sessions before adapting), 8 dimensions, case tags, Selector; `next-case` and `record-sessio…1 capability plans.",
+      "tone": "mint"
+    },
+    {
+      "id": "D44",
+      "actor": "model",
+      "label": "D44 P2 PH-18",
+      "title": "AI enhancement to adaptive difficulty",
+      "text": "Proposed. Separate from D43: suggest which competencies to target next using patterns (D40) and explain the choice.1 capability plans.",
+      "tone": "aqua"
+    },
+    {
+      "id": "D45",
+      "actor": "gear",
+      "label": "D45 P2 PH-18",
+      "title": "Progression tracking",
+      "text": "Partly built. Built: pseudonymised history and ratings.1 capability plans.",
+      "tone": "sun"
+    },
+    {
+      "id": "D46",
+      "actor": "agent",
+      "label": "D46 P1 PH-16",
+      "title": "Missed-step explanation",
+      "text": "Partly built. Built: template debrief lists missed items with log references.1 capability plans.",
+      "tone": "sun"
+    },
+    {
+      "id": "D47",
+      "actor": "agent",
+      "label": "D47 P1 PH-16",
+      "title": "Evidence-based feedback",
+      "text": "Partly built. Every feedback line cites the log event and the source (SR id).1 capability plans.",
+      "tone": "sun"
+    },
+    {
+      "id": "D67",
+      "actor": "agent",
+      "label": "D67 P1 PH-23",
+      "title": "Trainee learning profile (Bayesian learner mode…",
+      "text": "Proposed. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty; AI interpretations stored as…3 capability plans.",
+      "tone": "aqua"
+    },
+    {
+      "id": "D68",
+      "actor": "agent",
+      "label": "D68 P1 PH-23",
+      "title": "Personalised scenario targeting (policy, object…",
+      "text": "Proposed. Uses the learning profile to choose objectives and scenario features that change the substance of the next case, and explains the…3 capability plans.",
+      "tone": "aqua"
+    }
+  ],
+  "edges": [
+    {
+      "from": "D38",
+      "to": "D39"
+    },
+    {
+      "from": "D40",
+      "to": "D39"
+    },
+    {
+      "from": "D40",
+      "to": "D41"
+    },
+    {
+      "from": "D40",
+      "to": "D42"
+    },
+    {
+      "from": "D43",
+      "to": "D44"
+    },
+    {
+      "from": "D40",
+      "to": "D44"
+    },
+    {
+      "from": "D43",
+      "to": "D45"
+    },
+    {
+      "from": "D38",
+      "to": "D46"
+    },
+    {
+      "from": "D38",
+      "to": "D47"
+    },
+    {
+      "from": "D43",
+      "to": "D67"
+    },
+    {
+      "from": "D67",
+      "to": "D68"
+    }
+  ],
+  "notes": [
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

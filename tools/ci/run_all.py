@@ -136,6 +136,10 @@ def main(argv: list[str]) -> int:
         ("content manifest up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/content_manifest.py", "--check"])),
         ("medical review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/review_pack.py", "--check"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),
+        ("AI planning graph valid (pipeline JSON rules VR-G-*)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/validate_pipeline.py", "--quiet"])),
+        ("pipeline validator catches broken graphs (15 mutations)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/test_validate_pipeline.py"])),
+        ("planning documents agree with the pipeline JSON (plans, exports, steps, ids, registers)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/check_planning_sync.py"])),
+        ("AI planning documents up to date (generated from the pipeline JSON)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/pipeline_docs.py", "--check"])),
         ("project rules", lambda: run(["uv", "run", "--project", "tools", "tools/ci/repo_checks.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
     ]

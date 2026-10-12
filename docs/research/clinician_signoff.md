@@ -1,5 +1,7 @@
 # Awaiting clinician sign-off
 
+> **Policy change, 12 October 2026 (owner; INSTRUCTIONS 8i revised, ADR-0008):** these questions **no longer gate development**. They are research items: an answer may improve or correct content, and is recorded here when it arrives, but no step, phase or generated practice case waits for one. Items stay labelled "not clinically approved" until answered; that label is information, not a block.
+
 Everything here was decided on the evidence by the project team on 12 October 2026 and is **not clinically approved**. Each item says exactly what the clinician (or the owner, for an attested approval) is asked. Nothing below may be described as clinician-approved until the answer is recorded in this file with a name and a date.
 
 | # | Question | What was decided and why | Evidence | Rows and files | Answer |

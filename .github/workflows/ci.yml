@@ -275,6 +275,13 @@ jobs:
       - name: Plan index is up to date and step references resolve
         run: uv run --project tools tools/plans/milestones.py --check
 
+      - name: AI planning graph is valid and its generated documents are up to date
+        run: |
+          uv run --project tools tools/plans/validate_pipeline.py
+          uv run --project tools tools/plans/test_validate_pipeline.py
+          uv run --project tools tools/plans/pipeline_docs.py --check
+          uv run --project tools tools/plans/check_planning_sync.py
+
       - name: Project rules (determinism rules, hygiene, doc links, registers)
         run: uv run --project tools tools/ci/repo_checks.py
 

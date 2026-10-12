@@ -1,0 +1,501 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "ProcSense: whole live pipeline",
+  "subtitle": "Learner profile → AI scenario plan → numbers and media → validation and repair → package → simulation → debrief → history → offline feedback. Planning only.",
+  "columns": 6,
+  "nodes": [
+    {
+      "id": "LG-01",
+      "actor": "link",
+      "label": "LG-01",
+      "title": "Session request",
+      "text": "Partly built. Unity or the CLI asks for a session: trainee pseudonym, mode (practice only for generated cases), scenario family (S1 or S2), optional focus competencies… Plans: A2.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-02",
+      "actor": "idea",
+      "label": "LG-02",
+      "title": "Learning objectives and difficulty target",
+      "text": "Partly built. Turn the trainee's history into objectives: the weakest behaviours and dimensions from the Elo ratings, the target difficulty, the competen… Plans: A2, A11, D43, D44.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-03",
+      "actor": "search",
+      "label": "LG-03",
+      "title": "Context retrieval",
+      "text": "Planned. Retrieve the evidence the scenario may draw on: candidate blocks matching the objectives, reference cases with similar structure, bands and critical limit… Plans: A2, E58.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-04",
+      "actor": "agent",
+      "label": "LG-04",
+      "title": "AI scenario plan composition and constraint sol…",
+      "text": "Planned. The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases, schema-constrained to approved ids) proposes a ScenarioPla… Plans: A1, A2, A3, A4.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-05",
+      "actor": "file",
+      "label": "LG-05",
+      "title": "Scenario skeleton",
+      "text": "Planned. Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, problems with their discovery rules, investigation orders that must exist… Plans: A1, A2, B23.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-06",
+      "actor": "model",
+      "label": "LG-06",
+      "title": "AI composition (narrative, patient profile, per…",
+      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording, distr… Plans: A1, A2, A3, A7.",
+      "tone": "coral"
+    },
+    {
+      "id": "LG-07",
+      "actor": "chart",
+      "label": "LG-07",
+      "title": "Numeric generation (labs, vitals, trends)",
+      "text": "Partly built. Fill every numeric slot: lab results per analyte conditioned on the case's conditions, vital-sign baselines and trajectories, repeat result… Plans: A2, B14, B20, B21.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-08",
+      "actor": "image",
+      "label": "LG-08",
+      "title": "Image and waveform handling (ECG, ultrasound, X…",
+      "text": "Partly built. Pick, for every imaging and ECG slot, an asset whose finding tags match the skeleton (real first, labelled synthetic where no real image ex… Plans: A2, B15, B16, B17.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-09",
+      "actor": "check",
+      "label": "LG-09",
+      "title": "Cross-modal consistency",
+      "text": "Partly built. Check that every modality tells the same story: ECG rhythm against pulse and monitor; ultrasound findings against inflammatory markers and e… Plans: A2, A4, A10, B18.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-10",
+      "actor": "security",
+      "label": "LG-10",
+      "title": "Constraint and clinical-safety validation (Stag…",
+      "text": "Partly built. Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and the Core ContentGate on the full package. Plans: A1, A2, A4, A10.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-11",
+      "actor": "eye",
+      "label": "LG-11",
+      "title": "Quality evaluation",
+      "text": "Proposed. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness, narrative co… Plans: A2, A7, A9.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-12",
+      "actor": "hammer",
+      "label": "LG-12",
+      "title": "Repair, regeneration or rejection",
+      "text": "Proposed. Fix defects at the cheapest level: redraw a numeric slot, swap an asset, swap a block, re-ask the LLM with the defect as an avoid-hint. Plans: A2, A10.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-13",
+      "actor": "star",
+      "label": "LG-13",
+      "title": "Novelty check (fingerprint)",
+      "text": "Proposed. Build the structured fingerprint (structural, clinical and surface levels) and compare it with this trainee's recent sessions and the library. Plans: A2, A6.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-14",
+      "actor": "package",
+      "label": "LG-14",
+      "title": "Packaging with provenance",
+      "text": "Proposed. Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed, pack… Plans: A2, A13.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-15",
+      "actor": "rocket",
+      "label": "LG-15",
+      "title": "Unity integration",
+      "text": "Planned. Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status, then starts a Core Sessio… Plans: A2.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-16",
+      "actor": "chip",
+      "label": "LG-16",
+      "title": "Live simulation",
+      "text": "Built. The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LitePhysio, EventDirector (seeded draw in practice), discovery, sepsis, c… Plans: A2, A5, A8, E48.",
+      "tone": "mint"
+    },
+    {
+      "id": "LG-17",
+      "actor": "chat",
+      "label": "LG-17",
+      "title": "Action interpretation",
+      "text": "Partly built. Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR then the co… Plans: A2, C24, C31, C32.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-18",
+      "actor": "test",
+      "label": "LG-18",
+      "title": "Deterministic state update and scoring",
+      "text": "Built. Rules decide every state change, every credit and penalty, the outcome and the fail gate (ADR-0005). Plans: A2, A8, C35, C36.",
+      "tone": "mint"
+    },
+    {
+      "id": "LG-19",
+      "actor": "book",
+      "label": "LG-19",
+      "title": "Grounded debrief",
+      "text": "Partly built. Template debrief from DebriefFacts is always produced first (built). Plans: A2, B22, D38, D39.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-20",
+      "actor": "database",
+      "label": "LG-20",
+      "title": "Session history",
+      "text": "Partly built. Store the pseudonymised session record: scores, ratings update, fingerprint of the generated case, package hash, debrief facts. Plans: A2, D40, D41, D42.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-21",
+      "actor": "sync",
+      "label": "LG-21",
+      "title": "Evaluation feedback loop (offline only)",
+      "text": "Proposed. Aggregate rejection reasons, repair rates, novelty, quality scores, trainee outcomes and validator escapes across sessions. Plans: A2, D40, E51, E55.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LP-01",
+      "actor": "eye",
+      "label": "LP-01",
+      "title": "Learner profile retrieval (session start)",
+      "text": "Proposed. Load the trainee's LearnerProfile v1 (posteriors, demonstrated weaknesses, hypotheses, trends, recent fingerprints). Plans: D67.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LP-02",
+      "actor": "sync",
+      "label": "LP-02",
+      "title": "Learner profile update (post-session, cheap)",
+      "text": "Proposed. Extract SessionEvidence v1, update posteriors and pattern status; the LLM interpreter adds hypotheses offline. Plans: D67.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LP-03",
+      "actor": "idea",
+      "label": "LP-03",
+      "title": "Personalised targeting policy",
+      "text": "Proposed. Turn the profile into Objectives v1 (rules, later a contextual bandit adopted after off-policy evaluation) and the why-this-case facts. Plans: D68.",
+      "tone": "aqua"
+    },
+    {
+      "id": "ENTRY-TRAINEE",
+      "actor": "person",
+      "label": "ENTRY-TRAINEE",
+      "title": "Trainee starts a practice session",
+      "text": "Partly built. The trainee (or the trainer) asks for a session in Unity or the CLI. Plans: A2.",
+      "tone": "sun"
+    },
+    {
+      "id": "ENTRY-AUTHOR",
+      "actor": "team",
+      "label": "ENTRY-AUTHOR",
+      "title": "Offline batch run by a content author",
+      "text": "Planned. An author runs the offline preparation and the batch evaluator (no trainee present). Plans: A2.",
+      "tone": "blue"
+    },
+    {
+      "id": "EXIT-SESSION-REPORT",
+      "actor": "flag",
+      "label": "EXIT-SESSION-REPORT",
+      "title": "Session report and history saved",
+      "text": "Partly built. The JSON and HTML report plus the pseudonymised history entry. Plans: A2.",
+      "tone": "sun"
+    },
+    {
+      "id": "EXIT-OFFLINE-RELEASE",
+      "actor": "flag",
+      "label": "EXIT-OFFLINE-RELEASE",
+      "title": "Reviewed offline release of packs, prompts and…",
+      "text": "Planned. Output of the evaluation loop: a normal content change through the builders, --check and CI. Plans: E51.",
+      "tone": "blue"
+    },
+    {
+      "id": "FALLBACK-POOL-LIBRARY",
+      "actor": "warning",
+      "label": "FALLBACK-POOL-LIBRARY",
+      "title": "Fallback: pooled or library case",
+      "text": "Planned. When generation cannot deliver a valid, novel case in budget, a validated package from the pre-generated pool or a case from the existing library is loaded ins… Plans: A2.",
+      "tone": "blue"
+    },
+    {
+      "id": "OFFLINE",
+      "actor": "folder",
+      "label": "OFF-01..10",
+      "title": "Offline preparation",
+      "tone": "blue",
+      "text": "Dataset analysis, knowledge base, blocks, packs, retrieval and media indices, prompts, model preparation. Runs before sessions; never inside one."
+    }
+  ],
+  "edges": [
+    {
+      "from": "ENTRY-TRAINEE",
+      "to": "LG-01",
+      "label": "session request"
+    },
+    {
+      "from": "LG-01",
+      "to": "LG-02",
+      "label": "SessionRequest"
+    },
+    {
+      "from": "LG-02",
+      "to": "LG-03",
+      "label": "Objectives"
+    },
+    {
+      "from": "LG-03",
+      "to": "LG-04",
+      "label": "RetrievedContext"
+    },
+    {
+      "from": "LG-04",
+      "to": "LG-05",
+      "label": "ComponentSet"
+    },
+    {
+      "from": "LG-05",
+      "to": "LG-06",
+      "label": "ScenarioSkeleton"
+    },
+    {
+      "from": "LG-06",
+      "to": "LG-07",
+      "label": "skeleton + narrative"
+    },
+    {
+      "from": "LG-07",
+      "to": "LG-08",
+      "label": "numeric slots filled"
+    },
+    {
+      "from": "LG-08",
+      "to": "LG-09",
+      "label": "filled scenario"
+    },
+    {
+      "from": "LG-09",
+      "to": "LG-10",
+      "label": "consistent scenario"
+    },
+    {
+      "from": "LG-10",
+      "to": "LG-11",
+      "label": "valid scenario"
+    },
+    {
+      "from": "LG-11",
+      "to": "LG-13",
+      "label": "good scenario"
+    },
+    {
+      "from": "LG-13",
+      "to": "LG-14",
+      "label": "novel scenario"
+    },
+    {
+      "from": "LG-14",
+      "to": "LG-15",
+      "label": "ScenarioPackage"
+    },
+    {
+      "from": "LG-15",
+      "to": "LG-16",
+      "label": "loaded session"
+    },
+    {
+      "from": "LG-16",
+      "to": "LG-17",
+      "label": "observable state"
+    },
+    {
+      "from": "LG-17",
+      "to": "LG-18",
+      "label": "SimAction or CommAct"
+    },
+    {
+      "from": "LG-19",
+      "to": "LG-20",
+      "label": "debrief"
+    },
+    {
+      "from": "LG-20",
+      "to": "EXIT-SESSION-REPORT",
+      "label": "report + history entry"
+    },
+    {
+      "from": "LG-21",
+      "to": "EXIT-OFFLINE-RELEASE",
+      "label": "evaluation report"
+    },
+    {
+      "from": "LG-18",
+      "to": "LG-16",
+      "label": "next step"
+    },
+    {
+      "from": "LG-18",
+      "to": "LG-19",
+      "label": "session ended"
+    },
+    {
+      "from": "LG-20",
+      "to": "LG-21",
+      "label": "async, offline aggregation"
+    },
+    {
+      "from": "LG-09",
+      "to": "LG-12",
+      "label": "defects"
+    },
+    {
+      "from": "LG-10",
+      "to": "LG-12",
+      "label": "defects"
+    },
+    {
+      "from": "LG-11",
+      "to": "LG-12",
+      "label": "defects"
+    },
+    {
+      "from": "LG-13",
+      "to": "LG-12",
+      "label": "defects"
+    },
+    {
+      "from": "LG-12",
+      "to": "LG-04",
+      "label": "swap block"
+    },
+    {
+      "from": "LG-12",
+      "to": "LG-06",
+      "label": "re-ask with avoid-hint"
+    },
+    {
+      "from": "LG-12",
+      "to": "LG-07",
+      "label": "redraw slot"
+    },
+    {
+      "from": "LG-12",
+      "to": "LG-08",
+      "label": "swap asset"
+    },
+    {
+      "from": "LG-12",
+      "to": "FALLBACK-POOL-LIBRARY",
+      "label": "budget exhausted"
+    },
+    {
+      "from": "LG-04",
+      "to": "FALLBACK-POOL-LIBRARY",
+      "label": "unsatisfiable"
+    },
+    {
+      "from": "LG-15",
+      "to": "FALLBACK-POOL-LIBRARY",
+      "label": "download or hash failure"
+    },
+    {
+      "from": "FALLBACK-POOL-LIBRARY",
+      "to": "LG-16",
+      "label": "load pooled or library case"
+    },
+    {
+      "from": "ENTRY-AUTHOR",
+      "to": "LG-01",
+      "label": "batch pre-generation (mode=…"
+    },
+    {
+      "from": "ENTRY-TRAINEE",
+      "to": "LP-01",
+      "label": "load learner profile"
+    },
+    {
+      "from": "LP-01",
+      "to": "LP-03",
+      "label": "LearnerProfile v1"
+    },
+    {
+      "from": "LP-03",
+      "to": "LG-02",
+      "label": "Objectives v1 (personalised)"
+    },
+    {
+      "from": "LG-20",
+      "to": "LP-02",
+      "label": "SessionEvidence v1"
+    },
+    {
+      "from": "LG-21",
+      "to": "OFFLINE",
+      "label": "reviewed release"
+    },
+    {
+      "from": "ENTRY-AUTHOR",
+      "to": "OFFLINE",
+      "label": "batch run"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-07",
+      "label": "prepared artefacts"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-04",
+      "label": "prepared artefacts"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-03",
+      "label": "prepared artefacts"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-08",
+      "label": "prepared artefacts"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-06",
+      "label": "prepared artefacts"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-11",
+      "label": "prepared artefacts"
+    },
+    {
+      "from": "OFFLINE",
+      "to": "LG-09",
+      "label": "prepared artefacts"
+    }
+  ],
+  "notes": [
+    "AI composes, rules enforce: LG-04 proposes the plan (LLM + knowledge-base retrieval); solver, Stage B and cross-modal rules decide validity. Solver-only is the baseline and fallback.",
+    "Rules decide state, critical scoring and action acceptance (ADR-0005). Sessions never retrain; the learner profile is updated cheaply afterwards (LP-02).",
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

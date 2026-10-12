@@ -1,0 +1,32 @@
+# p1-ai-infrastructure-s04 — Labelling programme for evaluation and training sets
+
+Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, dual-GPU benchmark, labelling, learner model**
+
+> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
+
+## What
+A labelling tool and guidelines for utterances (communication acts), free questions (topics), scenario quality ratings, persona consistency and relation review; a consented role-play recording protocol; two labellers with inter-rater agreement (kappa at least 0.6); frozen test splits.
+
+## Why
+Classifiers, judges and evaluations need human labels; this creates them.
+
+## How to implement
+1. Guidelines from the C36 taxonomy.
+2. Simple local labelling tool (CSV or web form).
+3. Recording consent form and storage rules.
+4. Kappa computation and adjudication.
+
+## Verification
+At least 300 utterances, 100 rated scenarios and 100 relation labels with kappa at least 0.6; splits frozen.
+
+## Files changed
+`tools/labelling/`, `tests/labelled/`
+
+## Dependencies
+p1-ai-language-s06
+
+## Common issues
+Labeller drift: weekly agreement checks.
+
+## Sources
+Features C37, A9, A66, C24, B19.

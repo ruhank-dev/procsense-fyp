@@ -5,6 +5,8 @@ Milestone: **M11 P1 content — theatre extension, extended cases, composer, Pul
 ## What
 LLM proposes cases using only approved block IDs (enum schema), targeting difficulty/competencies; Stage B defects fed back as 'avoid' hints; passing cases get a validated narrative; each proposal lists problems, types, ladder order, checks, end state, clock and handover items (14B.5 recipe); status stays IMPLEMENTED until clinician approval.
 
+> **Revised 12 October 2026 (ADR-0008):** "until clinician approval" no longer applies to practice use; passing cases are practice-only and gated by automated validation. Reused live as stage LG-06 (`p1-live-scenario-generation-s04`).
+
 ## Why
 An LLM can suggest varied, plausible block combinations faster than a person — but it may only propose: Stage B validates, and only a clinician approves.
 

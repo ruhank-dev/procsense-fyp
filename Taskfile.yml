@@ -45,6 +45,10 @@ tasks:
     desc: Fail if docs/plans/milestones.md is out of date (what CI runs)
     cmds:
       - uv run --project tools tools/plans/milestones.py --check
+      - uv run --project tools tools/plans/validate_pipeline.py --quiet
+      - uv run --project tools tools/plans/test_validate_pipeline.py
+      - uv run --project tools tools/plans/pipeline_docs.py --check
+      - uv run --project tools tools/plans/check_planning_sync.py
 
   format:
     desc: Verify code format (CI is the authority; Windows checkouts report line-ending errors)
@@ -132,6 +136,7 @@ tasks:
     desc: Rebuild docs/plans/milestones.md from the step files and check step references
     cmds:
       - uv run --project tools tools/plans/milestones.py
+      - uv run --project tools tools/plans/pipeline_docs.py
 
   clean:
     desc: Remove build outputs

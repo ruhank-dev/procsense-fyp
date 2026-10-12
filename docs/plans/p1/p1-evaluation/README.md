@@ -19,6 +19,9 @@ Evaluate everything P1 adds: AI eval suite results, voice accuracy, P1 golden ru
 | EXP-EVAL-3 | Does practice improve outcomes? | Same users, repeated cases | Change reported without over-claiming |
 | EXP-EVAL-4 | Does AI dialogue improve perceived realism without hurting safety? | A/B: menu vs AI dialogue | Realism up, 0 safety violations |
 
+## Planning update (12 Oct 2026)
+The evaluation of live scenario generation (band, profile, cross-modal, reproducibility, novelty, quality-judge calibration, latency) and of every AI feature is specified in `docs/architecture/testing_evaluation_plan.md`. s01 also produces the evaluation sets of `p1-dataset-analysis-s05`; s02 reports include the offline feedback loop LG-21; s03 can compare generated against library practice. Planning only.
+
 ## Exit
 All P1 evaluation results recorded.
 

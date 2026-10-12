@@ -1,0 +1,340 @@
+{
+  "$schema": "/api/flows/schema",
+  "title": "Existing and planned components",
+  "subtitle": "Which code serves which stage. Mint boxes exist and are tested.",
+  "columns": 5,
+  "nodes": [
+    {
+      "id": "CMP-ENGINE",
+      "actor": "code",
+      "label": "CMP-ENGINE",
+      "title": "Core engine (Session, ISubsystem pipeline, SimC…",
+      "text": "Built. Core engine (Session, ISubsystem pipeline, SimClock, replay). Plans: A13.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-PHYSIO",
+      "actor": "code",
+      "label": "CMP-PHYSIO",
+      "title": "LitePhysio and display zones",
+      "text": "Built. LitePhysio and display zones. Plans: E48.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-EVENTS",
+      "actor": "code",
+      "label": "CMP-EVENTS",
+      "title": "EventDirector (7 events) and what-if bindings",
+      "text": "Built. EventDirector (7 events) and what-if bindings. Plans: A5, A8.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-DISCOVERY",
+      "actor": "code",
+      "label": "CMP-DISCOVERY",
+      "title": "Discovery rules (29, P0 cases)",
+      "text": "Partly built. Discovery rules (29, P0 cases). Plans: B23.",
+      "tone": "sun"
+    },
+    {
+      "id": "CMP-SCORER",
+      "actor": "code",
+      "label": "CMP-SCORER",
+      "title": "Scorer, EvidenceStore, DebriefFacts, template d…",
+      "text": "Built. Scorer, EvidenceStore, DebriefFacts, template debrief. Plans: C36.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-ELO",
+      "actor": "code",
+      "label": "CMP-ELO",
+      "title": "Difficulty ratings and case Selector",
+      "text": "Built. Difficulty ratings and case Selector. Plans: D43.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-STAGEB",
+      "actor": "code",
+      "label": "CMP-STAGEB",
+      "title": "Stage B validator and mutation set",
+      "text": "Built. Stage B validator and mutation set. Plans: A10.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-GROUNDING",
+      "actor": "code",
+      "label": "CMP-GROUNDING",
+      "title": "Grounding validator (Python and C# twin)",
+      "text": "Built. Grounding validator (Python and C# twin). Plans: C24, C25, C26, C27.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-CONTEXT",
+      "actor": "code",
+      "label": "CMP-CONTEXT",
+      "title": "ContextBuilder and ReactionQueue",
+      "text": "Built. ContextBuilder and ReactionQueue. Plans: C24, C25, C26, C27.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-CONTENTGATE",
+      "actor": "code",
+      "label": "CMP-CONTENTGATE",
+      "title": "ContentGate, review status and content manifest",
+      "text": "Built. ContentGate, review status and content manifest. Plans: A13.",
+      "tone": "mint"
+    },
+    {
+      "id": "CMP-UNITY",
+      "actor": "code",
+      "label": "CMP-UNITY",
+      "title": "Unity bridge (SimulationHost, SessionConfig, Ac…",
+      "text": "Partly built. Unity bridge (SimulationHost, SessionConfig, ActionEmitters). Plans: A2.",
+      "tone": "sun"
+    },
+    {
+      "id": "CMP-BACKEND",
+      "actor": "code",
+      "label": "CMP-BACKEND",
+      "title": "Backend and AI gateway (FastAPI)",
+      "text": "Planned. Backend and AI gateway (FastAPI). Plans: E62.",
+      "tone": "blue"
+    },
+    {
+      "id": "CMP-LLM",
+      "actor": "code",
+      "label": "CMP-LLM",
+      "title": "Served LLM runtime (Ollama)",
+      "text": "Blocked. Served LLM runtime (Ollama). Plans: E57, E69.",
+      "tone": "coral"
+    },
+    {
+      "id": "CMP-ASR",
+      "actor": "code",
+      "label": "CMP-ASR",
+      "title": "Speech recognition runtime (faster-whisper)",
+      "text": "Planned. Speech recognition runtime (faster-whisper). Plans: C31, C33, E59, E63.",
+      "tone": "blue"
+    },
+    {
+      "id": "CMP-TTS",
+      "actor": "code",
+      "label": "CMP-TTS",
+      "title": "Speech output (pre-rendered and live)",
+      "text": "Planned. Speech output (pre-rendered and live). Plans: C31, C34.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-01",
+      "actor": "link",
+      "label": "LG-01",
+      "title": "Session request",
+      "text": "Partly built. Unity or the CLI asks for a session: trainee pseudonym, mode (practice only for generated cases), scenario family (S1 or S2), optional focus competencies… Plans: A2.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-02",
+      "actor": "idea",
+      "label": "LG-02",
+      "title": "Learning objectives and difficulty target",
+      "text": "Partly built. Turn the trainee's history into objectives: the weakest behaviours and dimensions from the Elo ratings, the target difficulty, the competen… Plans: A2, A11, D43, D44.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-05",
+      "actor": "file",
+      "label": "LG-05",
+      "title": "Scenario skeleton",
+      "text": "Planned. Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, problems with their discovery rules, investigation orders that must exist… Plans: A1, A2, B23.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-06",
+      "actor": "model",
+      "label": "LG-06",
+      "title": "AI composition (narrative, patient profile, per…",
+      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording, distr… Plans: A1, A2, A3, A7.",
+      "tone": "coral"
+    },
+    {
+      "id": "LG-10",
+      "actor": "security",
+      "label": "LG-10",
+      "title": "Constraint and clinical-safety validation (Stag…",
+      "text": "Partly built. Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and the Core ContentGate on the full package. Plans: A1, A2, A4, A10.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-11",
+      "actor": "eye",
+      "label": "LG-11",
+      "title": "Quality evaluation",
+      "text": "Proposed. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness, narrative co… Plans: A2, A7, A9.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-14",
+      "actor": "package",
+      "label": "LG-14",
+      "title": "Packaging with provenance",
+      "text": "Proposed. Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed, pack… Plans: A2, A13.",
+      "tone": "aqua"
+    },
+    {
+      "id": "LG-15",
+      "actor": "rocket",
+      "label": "LG-15",
+      "title": "Unity integration",
+      "text": "Planned. Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status, then starts a Core Sessio… Plans: A2.",
+      "tone": "blue"
+    },
+    {
+      "id": "LG-16",
+      "actor": "chip",
+      "label": "LG-16",
+      "title": "Live simulation",
+      "text": "Built. The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LitePhysio, EventDirector (seeded draw in practice), discovery, sepsis, c… Plans: A2, A5, A8, E48.",
+      "tone": "mint"
+    },
+    {
+      "id": "LG-17",
+      "actor": "chat",
+      "label": "LG-17",
+      "title": "Action interpretation",
+      "text": "Partly built. Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR then the co… Plans: A2, C24, C31, C32.",
+      "tone": "sun"
+    },
+    {
+      "id": "LG-18",
+      "actor": "test",
+      "label": "LG-18",
+      "title": "Deterministic state update and scoring",
+      "text": "Built. Rules decide every state change, every credit and penalty, the outcome and the fail gate (ADR-0005). Plans: A2, A8, C35, C36.",
+      "tone": "mint"
+    },
+    {
+      "id": "LG-19",
+      "actor": "book",
+      "label": "LG-19",
+      "title": "Grounded debrief",
+      "text": "Partly built. Template debrief from DebriefFacts is always produced first (built). Plans: A2, B22, D38, D39.",
+      "tone": "sun"
+    }
+  ],
+  "edges": [
+    {
+      "from": "CMP-STAGEB",
+      "to": "LG-10",
+      "label": "validates"
+    },
+    {
+      "from": "CMP-GROUNDING",
+      "to": "LG-06",
+      "label": "validates"
+    },
+    {
+      "from": "CMP-GROUNDING",
+      "to": "LG-19",
+      "label": "validates"
+    },
+    {
+      "from": "CMP-CONTEXT",
+      "to": "LG-17",
+      "label": "context for characters"
+    },
+    {
+      "from": "CMP-ENGINE",
+      "to": "LG-16",
+      "label": "runs"
+    },
+    {
+      "from": "CMP-PHYSIO",
+      "to": "LG-16",
+      "label": "physiology"
+    },
+    {
+      "from": "CMP-EVENTS",
+      "to": "LG-16",
+      "label": "events"
+    },
+    {
+      "from": "CMP-SCORER",
+      "to": "LG-18",
+      "label": "scores"
+    },
+    {
+      "from": "CMP-SCORER",
+      "to": "LG-19",
+      "label": "DebriefFacts"
+    },
+    {
+      "from": "CMP-ELO",
+      "to": "LG-02",
+      "label": "ratings"
+    },
+    {
+      "from": "CMP-DISCOVERY",
+      "to": "LG-05",
+      "label": "discovery rules"
+    },
+    {
+      "from": "CMP-CONTENTGATE",
+      "to": "LG-15",
+      "label": "load gate"
+    },
+    {
+      "from": "CMP-UNITY",
+      "to": "LG-15",
+      "label": "loads package"
+    },
+    {
+      "from": "CMP-UNITY",
+      "to": "LG-17",
+      "label": "VR actions"
+    },
+    {
+      "from": "CMP-BACKEND",
+      "to": "LG-01",
+      "label": "API"
+    },
+    {
+      "from": "CMP-BACKEND",
+      "to": "LG-14",
+      "label": "serves packages"
+    },
+    {
+      "from": "CMP-LLM",
+      "to": "LG-06",
+      "label": "serves"
+    },
+    {
+      "from": "CMP-LLM",
+      "to": "LG-11",
+      "label": "serves judge"
+    },
+    {
+      "from": "CMP-LLM",
+      "to": "LG-17",
+      "label": "serves classifier"
+    },
+    {
+      "from": "CMP-LLM",
+      "to": "LG-19",
+      "label": "serves debrief"
+    },
+    {
+      "from": "CMP-ASR",
+      "to": "LG-17",
+      "label": "speech to text"
+    },
+    {
+      "from": "CMP-TTS",
+      "to": "LG-16",
+      "label": "speech out"
+    }
+  ],
+  "notes": [
+    "Colour = status: mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred. Planning only (12 Oct 2026): nothing blue, aqua, coral or grey is built.",
+    "Generated from docs/architecture/procsense_full_pipeline.json by tools/plans/pipeline_docs.py; edit the JSON, never this file. Each box's label is its id in that file."
+  ]
+}

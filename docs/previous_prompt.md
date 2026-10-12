@@ -1292,3 +1292,1288 @@ _Session: 0485f3e4_
 ``````text
 continue
 ``````
+
+## 118. 12 October 2026, 10:40 AM UTC
+_Session: 0485f3e4_
+
+``````text
+Update the plans for all the ai features and ProcSense: Complete AI Feature Audit, End-to-End Planning, Dataset-Driven Live Scenario Generation, and Visual Pipeline JSON
+
+1. Mission and execution rules
+
+You are working on ProcSense, a Unity-based VR pre-operative medical preparation training simulator built by a three-person university FYP team.
+
+Your task is to conduct a complete audit of the existing repository and produce a comprehensive, dependency-ordered, end-to-end implementation plan for every AI feature, scenario-generation capability, dataset integration, simulation capability, and supporting system discussed or discovered in this project.
+
+You must also create a detailed, machine-readable JSON representation of the complete project pipeline that can be imported into a suitable visualization tool to display the full system visually.
+
+Critical restrictions
+
+THIS IS A PLANNING AND DOCUMENTATION TASK. DO NOT IMPLEMENT THE NEWLY PLANNED FEATURES OR THEIR CODE UNTIL I TELL U TO(We are updating the plans).
+
+You may inspect existing code, configuration, datasets, tests, CI workflows, documentation, and repository history. You may run appropriate existing read-only checks where safe.
+
+You must not begin implementing new features, write their application logic, train new models, deploy services, modify the Unity application, or build the planned generation pipeline during this task.
+
+You may create and update documentation, plans, Markdown registries, schemas, architecture specifications, JSON pipeline files, and planning diagrams. Any JSON schema or pipeline representation you create is a planning artifact, not an implemented runtime system.
+
+Preserve existing user work. Do not overwrite or discard unrelated changes. Inspect Git status before making changes. Do not commit, push, or make destructive changes.
+
+Required model and effort
+
+1. At the beginning, inspect the available model and effort controls.
+2. Switch to [AI tool] at Medium effort, if that exact model and setting are available.
+3. Perform the complete audit and planning task using that configuration.
+4. At the end, switch back to [AI tool] at Medium effort, if supported.
+5. Verify the final active configuration if possible. Do not claim to have switched models unless the tool confirms it.
+6. If the exact model or effort setting is unavailable, report the actual available configuration and proceed without pretending otherwise.
+
+Do not ask me to approve each feature, phase, technical choice, or research decision. Make reasonable decisions based on the repository, evidence, project constraints, and the instructions below. Record material assumptions and alternatives.
+
+---
+
+2. Establish the actual project state first
+
+Before rewriting any plan:
+
+1. Inspect the repository structure and Git status.
+2. Read all relevant project instructions, including "AGENTS.md", "INSTRUCTIONS.md", "INSTRUCTION.md", "[AI tool].md", or equivalent files if present.
+3. Read the entire relevant context/documentation folder, including architecture decisions, project plans, task registers, deferred tasks, research logs, implementation logs, dataset inventories, and AI audit documents.
+4. Inspect the current medical walkthrough and the project's existing case library and structured clinical data.
+5. Inspect the existing source code, interfaces, tests, schemas, configuration, and CI workflows to distinguish real implementation from documentation-only plans.
+6. Inspect available datasets and existing dataset-validation results. Identify what can be established from existing metadata, documentation, previews, or current validation outputs without modifying the data.
+7. Read the existing AI audit report titled AI in ProcSense: what exists, what is missing and what is planned, if available.
+8. Examine the existing task identifiers and preserve their continuity.
+
+Do not assume that a feature exists merely because a plan mentions it. Do not assume a feature is missing merely because it is not mentioned in one document.
+
+Assign every discovered feature a verified status:
+
+- Implemented and tested
+- Implemented but incompletely tested
+- Partially implemented
+- Planned
+- Blocked
+- Deferred
+- Proposed new feature
+- Superseded or rejected, with a documented reason
+
+Distinguish deterministic functionality from AI functionality. A deterministic adaptive-difficulty system is not an AI model simply because it adapts. A rule-based speech-action mapper is not the same as a trained communication classifier. An LLM being planned is not an LLM already running in ProcSense.
+
+Do not modify existing feature code to complete this audit.
+
+---
+
+3. Non-negotiable product goal: fresh, live-generated scenarios
+
+The central objective is to make ProcSense produce fresh, meaningful training scenarios during gameplay instead of repeatedly presenting a fixed collection of scripted cases.
+
+The existing cases, medical walkthrough, abnormal findings, reference tables, and downloaded datasets should form the knowledge and evidence base from which the future system generates new scenario combinations.
+
+The system must be planned around this principle:
+
+Existing cases and datasets are references, templates, evidence, and evaluation material. They must not be the only scenarios the trainee can experience.
+
+The planned system should be capable of producing different combinations of:
+
+- Patient profiles and relevant medical histories.
+- Normal and abnormal investigation findings.
+- Numerical results and clinically meaningful patterns.
+- Imaging findings, waveforms, and other supported investigation artefacts.
+- Pre-operative preparation requirements.
+- Findings discovered during the patient's journey.
+- Patient questions, concerns, and dialogue.
+- Staff interactions and communication requirements.
+- Missing information and conflicting information where educationally appropriate.
+- Unexpected events and changes in patient condition.
+- Complications, escalation decisions, and recovery branches.
+- Different levels of difficulty.
+- Different combinations of otherwise familiar findings.
+- Different trainee decision opportunities and consequences.
+- Follow-up investigations and changing results.
+- Different scenario outcomes based on trainee actions.
+
+Freshness must not mean arbitrary randomness. It must mean new combinations of coherent, evidence-informed components that preserve the learning objective and remain internally consistent.
+
+The trainee should experience a scenario that feels newly generated, not a fixed script with a changed name or a few randomized numbers.
+
+---
+
+4. Dataset-first discovery and learning strategy
+
+This is one of the highest-priority requirements.
+
+Before selecting an AI architecture, establish what the project's actual datasets and contextual materials contain.
+
+4.1 Discover the data
+
+Inventory all relevant:
+
+- Downloaded datasets.
+- Clinical images.
+- ECG images or waveforms.
+- Ultrasound images.
+- Other medical images or waveforms.
+- Numerical investigation results.
+- Laboratory values and reference ranges.
+- Normal examples.
+- Abnormal examples.
+- Labels, annotations, and metadata.
+- Existing synthetic cases.
+- Hand-authored abnormal case values.
+- Medical walkthrough examples.
+- Structured clinical tables and rules.
+- Patient histories and case definitions.
+- Existing data-validation reports.
+- Existing ontologies and hand-maintained overrides.
+
+Use the actual repository and context documents to establish dataset names, identifiers, locations, formats, versions, contents, labels, and current validation status.
+
+Do not invent datasets or claim to have inspected files that were inaccessible.
+
+4.2 Understand normal and abnormal patterns
+
+The future implementation plan must specify how each relevant dataset will be analysed to determine what real normal and abnormal data look like.
+
+Depending on the modality, plan to examine:
+
+- Value distributions and ranges.
+- Units and reference intervals.
+- Missing values and data quality.
+- Normal versus abnormal examples.
+- Outliers and meaningful anomalies.
+- Relationships between different values.
+- Correlations and dependencies.
+- Relationships between findings, diagnoses, histories, and outcomes where supported.
+- Image characteristics and visual patterns.
+- Waveform shapes, intervals, amplitudes, and other relevant measurable features.
+- Label quality and class imbalance.
+- Patient-level grouping and data leakage risks.
+- Differences between training, validation, and evaluation data.
+- Whether a finding is a genuine abnormality, a data-quality problem, or an artefact.
+
+Use the project's existing clinical reference materials and reliable external research to interpret findings. Do not treat every statistical outlier as a medically meaningful abnormality.
+
+For each modality, document what the data can and cannot support.
+
+4.3 Choose the best generation method per data type
+
+Do not decide in advance that everything must use an LLM or that everything must be trained from scratch.
+
+Evaluate the following options:
+
+- Existing LLMs.
+- Pretrained models.
+- LLMs with retrieval from project references.
+- Statistical generation based on observed distributions.
+- Rule-based and constraint-based generation.
+- Generative models already suitable for the modality.
+- Small task-specific models trained only when necessary.
+- Hybrid pipelines combining several approaches.
+- Retrieval and recombination of existing examples, with appropriate safeguards.
+- Deterministic templates and fallback scenarios.
+
+Prefer LLMs where they provide a genuine advantage, particularly for dialogue, narrative, scenario composition, explanation, and structured proposals.
+
+Use deterministic constraints, validated transformations, statistical methods, and suitable pretrained models where they are more reliable or efficient.
+
+Avoid unnecessary model training. If training is justified, specify why an LLM or existing pretrained model is insufficient, what dataset and labels are required, the expected compute requirements, and how the model would be evaluated.
+
+For every modality, document the recommended method, alternatives considered, rationale, limitations, dependencies, and fallback.
+
+4.4 Separate data learning from live generation
+
+The plan must distinguish two different activities:
+
+Offline preparation and analysis
+
+- Inventory and inspect datasets.
+- Analyse distributions and patterns.
+- Establish validated reference information.
+- Identify reusable scenario components.
+- Create validation constraints and test fixtures.
+- Evaluate candidate models and generation strategies.
+- Prepare any necessary model artefacts, indexes, or structured representations.
+
+Live gameplay generation
+
+- Receive the session's learning objectives and difficulty.
+- Select compatible scenario components.
+- Generate a new scenario proposal.
+- Generate or select compatible investigation results and artefacts.
+- Validate the complete scenario.
+- Repair or regenerate rejected proposals.
+- Check novelty against previous scenarios.
+- Present the resulting scenario in Unity.
+- Respond to trainee actions through the simulation.
+- Produce evidence-grounded scoring and feedback.
+
+The live system must not need to retrain a model every time a trainee starts a session.
+
+Where expensive generation or validation is unsuitable for real-time use, specify precomputation, caching, asynchronous generation, or a validated fallback. Preserve the experience of fresh scenarios without making gameplay unreliable.
+
+---
+
+5. Required end-to-end live scenario-generation architecture
+
+Create a complete plan for the following logical pipeline. Refine the stages based on repository evidence, but do not omit any required responsibility.
+
+1. Session request: Receive scenario objectives, target difficulty, session settings, and constraints.
+2. Learning-objective selection: Determine what the trainee should practise and what required assessment opportunities must occur.
+3. Context retrieval: Retrieve relevant project references, existing cases, abnormal examples, normal patterns, investigation definitions, and applicable constraints.
+4. Dataset-informed component selection: Select compatible patient, history, investigation, event, and outcome components.
+5. Scenario skeleton: Create a structured scenario outline with dependencies, prerequisites, intended findings, required trainee decisions, and possible branches.
+6. AI composition: Use an appropriate LLM or alternative to propose a new coherent combination.
+7. Numerical data generation: Generate or select suitable values using the method recommended for each data type.
+8. Image and waveform handling: Select compatible real reference artefacts or generate new artefacts only through a technically justified, suitable method. Distinguish original data, transformations, and synthetic outputs.
+9. Cross-modal consistency: Ensure reports, numerical values, images, waveforms, histories, and narrative descriptions agree.
+10. Constraint validation: Validate schema, units, ranges, dependencies, required fields, contraindications or conflicts represented in project rules, and intended normal or abnormal patterns.
+11. Scenario-quality evaluation: Check educational usefulness, completeness, plausibility, diversity, difficulty, and testability.
+12. Repair or regeneration: Reject or repair invalid proposals. Do not silently accept a failed validation.
+13. Novelty checking: Compare the candidate against prior sessions and the case library to reduce repetitive combinations.
+14. Final scenario packaging: Produce a versioned, structured scenario with all data, branches, provenance, and expected assessment evidence.
+15. Unity integration: Deliver the scenario to the existing or planned Unity interfaces.
+16. Live simulation: Drive patient and staff interactions, investigation discovery, events, and branching consequences.
+17. Trainee action interpretation: Convert speech and interactions into structured proposed actions where supported.
+18. Deterministic state and scoring: Apply validated simulation rules and assessment criteria.
+19. Grounded debrief: Explain observed actions and outcomes using actual event logs and assessment evidence.
+20. Session history: Record scenario identifiers, novelty information, generation metadata, and evaluation outcomes without unnecessarily storing sensitive information.
+21. Evaluation feedback loop: Use approved evaluation metrics and reviewed test data to improve the generator without automatically treating every trainee interaction as reliable medical ground truth.
+
+For each stage, specify:
+
+- Inputs and outputs.
+- Responsible component.
+- Whether it uses an LLM, pretrained model, deterministic rules, statistics, or a hybrid.
+- Data dependencies.
+- API or interface.
+- Error handling.
+- Validation.
+- Tests.
+- Acceptance criteria.
+- Current status.
+- Dependencies and blockers.
+
+These are planning requirements, not permission to implement the pipeline now.
+
+---
+
+6. Complete AI feature inventory — nothing omitted
+
+Audit the repository, earlier project documentation, existing AI audit, and relevant task registers. Include every feature below and any additional feature discovered in the actual project records.
+
+Do not mark every item as new. Determine whether it is already implemented, already planned, blocked, partially implemented, or genuinely new.
+
+A. Scenario generation and variation
+
+1. AI Scenario Composer.
+2. Live dynamic scenario generation.
+3. Patient profile generation.
+4. Mixed-case generation and compatible case combinations.
+5. Unexpected-event and complication generation.
+6. Scenario variation and freshness tracking.
+7. Novelty checking and repeat prevention.
+8. AI adversarial scenario generation, extending the composer where appropriate.
+9. Scenario branch and outcome generation.
+10. Scenario quality evaluation.
+11. Scenario validation, repair, and rejection.
+12. Scenario difficulty and complexity control.
+13. Generation of new combinations from existing case components.
+14. Scenario provenance and reproducibility.
+
+The AI Scenario Composer already appears on the original roadmap. Preserve its existing task lineage and verify its actual status. Do not present it as an entirely new idea.
+
+B. Dataset-driven investigations and results
+
+15. Dataset-driven numerical investigation generation.
+16. Normal-value and abnormal-value pattern analysis.
+17. Dataset-informed laboratory and other numerical results.
+18. Dataset-informed ECG or waveform interpretation and artefact handling.
+19. Dataset-informed ultrasound and other image-based investigation support.
+20. Consistent reports, images, waveforms, histories, and numerical values.
+21. Synthetic medical data generation where justified.
+22. Generation of realistic abnormal patterns and meaningful anomalies.
+23. Investigation result variation across sessions.
+24. AI Investigation Interpreter, if supported by the audit and project goals.
+25. Investigation discovery and result delivery through the VR patient journey.
+
+Distinguish generation of a narrative description from generation of an actual image or waveform. An LLM-generated description is not an image generator.
+
+C. AI patient and staff interactions
+
+26. AI patient dialogue.
+27. Patient persona and behavioural variation.
+28. AI nurse dialogue.
+29. AI anaesthetist dialogue.
+30. AI surgeon dialogue.
+31. Porter or other relevant staff dialogue.
+32. Context-aware dialogue grounded in the active case.
+33. Dialogue that reacts to trainee actions and current simulation state.
+34. Voice-based patient and staff interactions.
+35. Voice-command interpretation.
+36. Speech-to-text.
+37. Text-to-speech, including offline and live options.
+38. Voice orders and read-back.
+39. Communication-act interpretation.
+40. Communication classifier, including its dataset and evaluation requirements.
+
+Preserve the existing safety boundary: AI may interpret and propose a structured action, but deterministic simulation logic decides whether that action is valid, whether it changes state, and whether it receives assessment credit.
+
+D. Feedback, coaching, and learning
+
+41. AI-generated debrief rewriting grounded in deterministic assessment facts.
+42. Personalised coaching and next-step recommendations.
+43. Performance pattern discovery.
+44. Confidence calibration coach.
+45. AI Clinical Reasoning Fingerprint: a proposed way to analyse sequences of trainee actions and decisions.
+46. Adaptive difficulty, distinguishing the existing deterministic Elo-style or rating-based mechanism from any future AI enhancement.
+47. Personalised learning progression.
+48. Explanation of missed steps and decision opportunities.
+49. Scenario-specific feedback based on evidence recorded during gameplay.
+
+E. Advanced proposed features
+
+50. AI Patient Digital Twin: assess a hybrid of stateful patient simulation, an LLM, deterministic physiology or event rules, and potentially a suitable trained model.
+51. Multi-Agent Clinical Simulation Lab: assess coordinated patient and staff agents with explicit role and state boundaries.
+52. AI adversarial scenario generator, if distinct enough from the existing composer to warrant separate tasks.
+53. AI Scenario Quality Evaluator, if not already included in the original roadmap.
+54. AI investigation interpretation and performance analytics, if not already represented in existing plans.
+55. Any other previously discussed or newly discovered AI feature in the project context.
+
+For every feature, document:
+
+- Feature ID and name.
+- Description and intended user experience.
+- Whether it is original, previously discussed, or newly proposed.
+- Current verified status.
+- Existing code and documentation evidence.
+- User-facing behaviour.
+- AI approach.
+- Dataset or reference dependencies.
+- Runtime location and Unity integration.
+- Backend/API requirements.
+- Validation and safety boundaries.
+- Evaluation metrics and tests.
+- Implementation phases and task dependencies.
+- Acceptance criteria.
+- Hardware and infrastructure requirements.
+- Fallback behaviour.
+- Open questions and decisions.
+
+If two features overlap, preserve both original concepts in the inventory and document whether they should share one implementation. Do not silently delete or merge ideas.
+
+---
+
+7. LLM-first, model-aware architecture
+
+Use LLMs wherever they are practical and useful, but do not force them into tasks better handled by deterministic logic or specialist models.
+
+The plan must classify each AI responsibility as one of:
+
+- LLM inference.
+- Retrieval-augmented LLM inference.
+- Existing pretrained model.
+- Fine-tuned or newly trained model.
+- Statistical or probabilistic generation.
+- Deterministic constraints or rules.
+- Hybrid architecture.
+
+Prefer existing models and services before proposing custom training.
+
+For each proposed model or service, document:
+
+- Purpose.
+- Candidate model or service.
+- Why it fits the task.
+- Hardware and memory requirements.
+- Latency and throughput considerations.
+- Local versus remote operation.
+- Internet dependency.
+- Privacy and data handling.
+- Licence and usage terms.
+- Structured-output support.
+- Reliability and evaluation requirements.
+- Cost implications where relevant.
+- Fallback if unavailable.
+- Why a simpler alternative is insufficient.
+
+Evaluate the project's actual hardware constraints and existing Ollama or other model setup where relevant. Do not assume a model is available, compatible, sufficiently capable, or free to use without checking.
+
+Avoid training models merely to call the project AI-powered. Use training only when the task has a defensible reason for requiring it.
+
+---
+
+8. Clinical research and licensing policy
+
+These rules must be written into the actual persistent project instruction file and reflected in the plans.
+
+8.1 Clinical research policy
+
+For this university FYP prototype, do not make additional clinical approval or clinician sign-off a development gate.
+
+When a clinical or technical question is unclear:
+
+1. Research it online using relevant, reliable sources.
+2. Prefer authoritative guidelines, reputable medical references, primary research, and dataset documentation where appropriate.
+3. Record the source URL, publication or update date when available, access date, relevant finding, and how the information affects the implementation plan.
+4. Compare sources when they disagree.
+5. Document uncertainty and assumptions.
+6. Choose the most defensible practical approach supported by available evidence.
+7. Continue the planning process without waiting for further clinical approval.
+
+Do not invent clinical references, pretend that a source says something it does not, or hide unresolved uncertainty.
+
+The project is an educational simulation prototype, not a substitute for real clinical judgment. Do not claim independent clinical validation solely because research was conducted or because project documentation says approval has been obtained.
+
+Do not allow a lack of additional clinical sign-off to block the planning task.
+
+8.2 Licensing and provenance policy
+
+Do not make licensing clearance a blanket blocker for developing the university prototype.
+
+Research and record the relevant information for datasets, models, libraries, images, waveforms, and assets:
+
+- Resource name and version.
+- Source URL.
+- Actual stated licence or terms, if identifiable.
+- Attribution requirements.
+- Modification and redistribution restrictions.
+- Commercial-use restrictions.
+- Privacy or access restrictions.
+- Whether the resource is used for reference, local experimentation, training, runtime, or redistribution.
+- Any unresolved uncertainty.
+
+Do not falsely claim that an unknown licence is permissive, that attribution is unnecessary, or that all uses are automatically lawful. Do not upload restricted material to public repositories without checking the applicable terms.
+
+The required outcome is to document provenance and make informed choices while continuing the prototype planning. If a resource cannot reasonably be used in a particular way, document a practical alternative without stopping the entire project.
+
+Create or update a dedicated licence and data-provenance register in Markdown.
+
+8.3 Update the persistent instructions
+
+Find the actual instruction file used by the coding agent. It may be "INSTRUCTIONS.md", "INSTRUCTION.md", "AGENTS.md", or another existing file.
+
+Do not create competing instruction files unnecessarily.
+
+Add concise, enforceable project rules covering:
+
+- No additional clinical sign-off as a development gate.
+- Research uncertain medical and technical information online.
+- Record evidence, assumptions, uncertainty, and provenance.
+- Do not make licensing clearance a blanket prototype blocker.
+- Maintain a licence and dataset-provenance register.
+- Prefer LLMs or suitable pretrained models where practical.
+- Avoid unnecessary training.
+- Use datasets to understand real patterns before designing generators.
+- Generate new scenarios from coherent, validated combinations.
+- Never equate randomness with realism.
+- Keep state changes, critical-step scoring, and acceptance of trainee actions under deterministic validated rules.
+- Keep all project plans and context documents synchronised.
+- Never claim code, tests, datasets, models, or features exist without verifying them.
+- Do not implement features during a planning-only task.
+
+---
+
+9. Medical values, generated data, and consistency
+
+Plan explicit validation mechanisms for every generated data type.
+
+The system must distinguish:
+
+- Normal findings.
+- Abnormal findings.
+- Borderline or uncertain findings.
+- Missing measurements.
+- Measurement artefacts.
+- Conflicting observations.
+- Impossible or invalid data.
+- Deliberately designed educational anomalies.
+
+Use relevant project reference material, dataset observations, and reliable online research to establish defensible constraints.
+
+Do not treat an LLM's output as medical ground truth.
+
+For numerical results, specify validation of units, plausible ranges, relationships between values, and consistency with the case.
+
+For images and waveforms, specify how generated or selected artefacts will be matched to the intended finding, how provenance is tracked, and how the corresponding report and numerical results are checked.
+
+For example, if a scenario states that an investigation has a particular abnormality, the associated numerical values, image or waveform, report, patient history, and subsequent events must not contradict that finding without an explicit educational reason.
+
+If an image-generation method is unsuitable, expensive, unreliable, or unsupported, specify a feasible alternative using real reference artefacts, validated transformations, or another appropriate method.
+
+Do not fabricate precise medical values or claim statistical fidelity unless the planned evaluation supports that claim.
+
+---
+
+10. Novelty, repeat prevention, and session freshness
+
+The project must plan a system that produces meaningfully different sessions while maintaining learning objectives.
+
+Specify how the system will:
+
+- Represent a scenario as structured components and relationships.
+- Generate compatible combinations.
+- Track prior scenario fingerprints or equivalent representations.
+- Compare new candidates with prior sessions and existing cases.
+- Detect exact duplicates and overly similar combinations.
+- Avoid repeatedly choosing the same patient, finding, event, or branch combination.
+- Preserve mandatory learning objectives.
+- Control difficulty without breaking case coherence.
+- Guarantee that important assessment opportunities remain present.
+- Use alternative combinations when generation fails.
+- Provide a validated fallback rather than starting a broken session.
+
+Define novelty at multiple levels where useful: scenario structure, investigation combinations, event sequences, dialogue, and branching outcomes.
+
+Do not promise mathematically unlimited unique scenarios. Specify measurable novelty criteria, practical limits, and evaluation methods.
+
+The implementation plan should include repeatability controls for debugging: a generated scenario should be reproducible when its seed and relevant versioned inputs are supplied, even though ordinary sessions should feel fresh.
+
+---
+
+11. Rewrite the complete end-to-end project roadmap
+
+Produce a dependency-first roadmap that covers the entire ProcSense project, not just its voice feature.
+
+Include AI features, dataset integration, scenario generation, simulation logic, investigation presentation, staff and patient interaction, backend infrastructure, scoring, debriefing, testing, evaluation, and Unity integration.
+
+Do not assume every component needs rebuilding. Mark existing components as reusable, partially reusable, or needing changes, supported by repository evidence.
+
+Organise work into clear phases. The exact phase sequence must follow the discovered dependencies, but should consider:
+
+1. Repository and feature audit.
+2. Data and reference inventory.
+3. Dataset inspection and quality analysis.
+4. Clinical-data constraints and structured representations.
+5. Generation-method and model selection.
+6. Scenario components, compatibility rules, and deterministic validation.
+7. Scenario composition and live generation.
+8. Dataset-informed numerical and multimodal investigation generation.
+9. Novelty and repeat prevention.
+10. Scenario quality evaluation and failure recovery.
+11. AI patient and staff dialogue.
+12. Speech, voice commands, and read-back.
+13. Communication-act interpretation and assessment.
+14. Adaptive difficulty and personalised coaching.
+15. AI debriefing and performance analysis.
+16. Advanced proposed AI features.
+17. Backend and Unity integration.
+18. System-wide tests, benchmarking, and evaluation.
+19. Reliability, fallback, observability, and documentation.
+
+These are candidate areas, not an instruction to follow an arbitrary order. Merge or reorder phases when dependencies justify it, but account for every feature.
+
+For each phase, include:
+
+- Phase ID and title.
+- Purpose.
+- Starting state and prerequisites.
+- Tasks with unique IDs.
+- Features covered.
+- Exact deliverables and expected files.
+- Existing modules to inspect or reuse.
+- Planned modules, interfaces, schemas, and Unity components.
+- Dataset and model dependencies.
+- Required research.
+- API contracts and data flow.
+- Acceptance criteria.
+- Unit, integration, and end-to-end tests.
+- Performance and quality metrics.
+- Hardware or environment requirements.
+- Risks and fallback strategies.
+- Dependencies on other phases.
+- Estimated effort in relative terms, where useful.
+- Clear completion criteria.
+- Current status versus future planned status.
+
+Identify the critical path and the work that can proceed in parallel.
+
+Ensure every feature in the AI registry maps to at least one phase and task. Every task must have a clear parent phase, dependencies, and a verifiable outcome.
+
+Preserve existing task IDs and add new IDs consistently. Do not create duplicate or contradictory tasks.
+
+---
+
+12. Synchronise all project documentation
+
+Update all relevant existing project plans and context documents so that they agree with one another.
+
+At minimum, inspect and update where applicable:
+
+- The main project roadmap.
+- AI feature inventory.
+- Dataset inventory and dataset-to-feature mapping.
+- Scenario-generation plan.
+- Model-selection and serving plan.
+- System architecture.
+- API and integration plans.
+- Testing and evaluation plans.
+- Task and issue registers.
+- Deferred-task lists.
+- Architecture Decision Records.
+- Research decision log.
+- Implementation status log.
+- Licence and provenance register.
+- Persistent agent instructions.
+- Context-folder Markdown files.
+- Existing contributor or development instructions, where relevant.
+
+Do not blindly rewrite every file. Update all relevant files, preserve useful existing material, and avoid duplicating the same source of truth in multiple competing documents.
+
+If multiple files contain related information, clearly establish which file is authoritative for each topic and link to it from the others.
+
+Every decision made during this task and every documentation change must be reflected in the appropriate context documents and logs.
+
+Maintain a clear distinction between:
+
+- What exists now.
+- What has been tested.
+- What is planned.
+- What is blocked.
+- What is newly proposed.
+- What decisions were made during this planning task.
+
+Do not mark future tasks as completed simply because their plans have been written.
+
+---
+
+13. Create the full visual pipeline as structured JSON
+
+This is a mandatory deliverable, not an optional diagram.
+
+Create a valid JSON file representing the entire ProcSense system end to end, including current functionality, planned functionality, dataset flows, AI components, deterministic simulation logic, Unity integration, scoring, debriefing, and future evaluation.
+
+Use a clear filename such as "docs/architecture/procsense_full_pipeline.json", adjusted to the repository's existing documentation structure.
+
+13.1 Requirements for the JSON
+
+The JSON must be:
+
+- Valid, parseable JSON with no comments or trailing commas.
+- Structured and documented through a companion Markdown schema or explanation.
+- Detailed enough to import into a compatible graph, flowchart, or pipeline visualization tool.
+- Able to represent the entire system, not merely the AI portion.
+- Able to distinguish current, partially implemented, planned, blocked, and proposed components.
+- Able to represent branches, dependencies, loops, and alternative paths.
+- Able to show datasets and their downstream consumers.
+- Able to show which components use LLMs, pretrained models, trained models, deterministic rules, or statistical methods.
+- Able to represent error paths, validation failures, retries, and fallbacks.
+- Able to show the Unity user journey and the relationship between trainee actions and simulation state.
+- Able to show the relationship between scenario generation, investigation results, events, scoring, and debriefing.
+- Consistent with the master roadmap and feature registry.
+
+Do not put the whole pipeline into one enormous node. Represent distinct components and meaningful sub-processes as separate nodes.
+
+13.2 Required top-level structure
+
+Use a schema along these lines, improving it if necessary:
+
+{
+"schema_version": "1.0.0",
+"project": {
+"name": "ProcSense",
+"description": "Unity-based VR pre-operative medical preparation training simulator",
+"pipeline_scope": "Complete end-to-end project",
+"document_status": "Planning artifact"
+},
+"metadata": {
+"created_date": "YYYY-MM-DD",
+"source_documents": [],
+"notes": []
+},
+"legend": {
+"status_values": [
+"implemented_tested",
+"implemented_untested",
+"partially_implemented",
+"planned",
+"blocked",
+"deferred",
+"proposed"
+],
+"component_types": [],
+"technology_types": []
+},
+"groups": [],
+"nodes": [],
+"edges": [],
+"external_dependencies": [],
+"datasets": [],
+"model_catalog": [],
+"phases": [],
+"validation_rules": [],
+"fallback_paths": [],
+"open_questions": []
+}
+
+This is an illustrative schema, not permission to leave arrays empty. Populate it with the actual discovered system and complete planned pipeline.
+
+13.3 Node requirements
+
+Every node should have a stable unique ID and, where applicable:
+
+- Name.
+- Description.
+- Component type.
+- Current status.
+- Technology or processing method.
+- Phase and task IDs.
+- Input data.
+- Output data.
+- Dependencies.
+- Related dataset IDs.
+- Related model IDs.
+- Validation responsibilities.
+- Error-handling behaviour.
+- Fallback node or path.
+- Related Unity component or API.
+- Source-document references.
+- Whether it exists now or is planned.
+
+Avoid adding meaningless placeholder nodes solely to make the graph look large.
+
+13.4 Edge requirements
+
+Every edge should identify:
+
+- Unique edge ID.
+- Source node ID.
+- Target node ID.
+- Relationship type.
+- Data or event being transferred.
+- Optional condition or branch label.
+- Whether the connection exists now or is planned.
+- Relevant dependencies or constraints.
+
+Represent both data flow and control flow. Include alternate branches for valid scenarios, invalid generated scenarios, repair attempts, regeneration, fallback cases, trainee decisions, unexpected events, and session completion.
+
+All referenced node IDs must exist. Do not create dangling edges.
+
+13.5 Dataset and model requirements
+
+Give every dataset and model a stable ID. Map each dataset to the features and components that consume it.
+
+Distinguish datasets used for:
+
+- Reference and knowledge retrieval.
+- Statistical analysis.
+- Candidate model evaluation.
+- Model training or fine-tuning, if justified.
+- Numerical generation.
+- Image or waveform generation.
+- Scenario validation.
+- Testing and benchmarking.
+
+Do not claim a dataset is used by runtime generation simply because it exists in the repository.
+
+For every model, identify its planned purpose, approach, status, inputs, outputs, dependencies, and fallback.
+
+13.6 Make the JSON visualization-friendly
+
+Include a companion document explaining the JSON structure and how to import or map it into a suitable visualization tool.
+
+Research compatible visualization tools and their supported input formats. Recommend the most practical option for this graph and its complexity.
+
+If a tool requires a different schema, specify an explicit transformation from the canonical JSON to the tool's import format.
+
+Where practical, include enough layout or grouping metadata to display readable subgraphs such as:
+
+- Dataset and knowledge preparation.
+- Live scenario generation.
+- Investigation generation.
+- Patient and staff interaction.
+- Speech processing.
+- Simulation state and events.
+- Assessment and debrief.
+- Backend and model serving.
+- Testing, monitoring, and evaluation.
+
+The JSON must remain the canonical structured representation. Do not replace it with a screenshot or a hand-drawn diagram.
+
+If useful, also generate a Mermaid overview or separate diagrams, but the full structured JSON is mandatory.
+
+13.7 Validate the JSON
+
+As part of the planning task, validate the JSON's syntax and internal references without implementing application features.
+
+Check:
+
+- JSON parses successfully.
+- All node IDs are unique.
+- All edge endpoints exist.
+- All referenced dataset, model, phase, and task IDs exist where required.
+- No required feature is missing from the pipeline.
+- The graph has sensible entry points and end points.
+- Cycles are intentional and documented.
+- Planned nodes are not incorrectly labelled implemented.
+- The complete pipeline is consistent with the written roadmap.
+
+Report the validation results.
+
+---
+
+14. Research requirements
+
+Research online whenever the repository does not sufficiently answer a material clinical, technical, dataset, model, or visualization question.
+
+Prioritise reliable sources and primary documentation.
+
+Research should cover, where applicable:
+
+- Dataset structure and intended use.
+- Normal and abnormal data characteristics.
+- Clinical terminology and relevant reference information.
+- Suitable pretrained models.
+- Local model-serving options.
+- Structured generation and validation methods.
+- Image and waveform generation alternatives.
+- Suitable novelty-detection approaches.
+- Runtime and hardware constraints.
+- Existing Unity and backend integration options.
+- Visualization tools that accept structured pipeline data.
+- Actual licence and provenance details.
+
+Record sources, dates, key findings, decisions, and uncertainty.
+
+Clearly distinguish verified repository facts, external research findings, and architectural recommendations.
+
+Do not spend the entire task researching every possible technology. Make a defensible selection for each feature and document alternatives when material.
+
+Do not block the planning process while seeking perfect certainty.
+
+---
+
+15. Testing and evaluation plans
+
+Do not implement new feature code, but specify how each future feature will be evaluated.
+
+Include plans for:
+
+Data quality
+
+- Dataset integrity and schema validation.
+- Unit and range checks.
+- Label quality.
+- Data leakage prevention.
+- Normal versus abnormal pattern checks.
+- Provenance and reproducibility.
+
+Scenario generation
+
+- Structural completeness.
+- Compatibility of components.
+- Learning-objective coverage.
+- Normal and abnormal case validity.
+- Numerical and cross-modal consistency.
+- Scenario novelty and duplication.
+- Difficulty consistency.
+- Repair and rejection behaviour.
+- Valid fallback behaviour.
+
+AI interactions
+
+- Persona and context grounding.
+- Unsupported claims and contradictions.
+- Voice recognition errors.
+- Structured action extraction.
+- Critical communication-act coverage.
+- Wrong-stage or invalid action handling.
+- LLM outages and latency.
+- Deterministic fallback.
+
+Scoring and debrief
+
+- Scoring correctness.
+- Traceability to actual events.
+- No invented trainee actions.
+- No AI override of deterministic assessment.
+- Correct identification of missed steps.
+- Appropriate feedback grounding.
+
+Whole-system evaluation
+
+- End-to-end scenario completion.
+- Freshness across repeated sessions.
+- Variety of patient profiles and findings.
+- Runtime latency and memory.
+- Unity integration.
+- Regression tests.
+- Model quality and reliability.
+- Comparison against existing reference cases.
+
+Specify measurable acceptance criteria and realistic evaluation datasets for every major phase.
+
+Do not claim that a model is accurate merely because it produces plausible-looking output.
+
+---
+
+16. Required final deliverables
+
+Create or update the following, adapting paths to the repository's existing structure:
+
+1. Complete AI feature registry: Every discovered and previously discussed feature, with verified status and evidence.
+2. Master end-to-end roadmap: Dependency-ordered phases and tasks covering all features.
+3. Live scenario-generation specification: The complete dataset-informed generation, validation, novelty, and fallback pipeline.
+4. Dataset-to-feature matrix: Every relevant dataset mapped to its intended analysis, model, generator, validator, and Unity consumers.
+5. Model and technology decision register: LLM-first recommendations, alternatives, hardware requirements, and rationale.
+6. Architecture and integration plan: Components, schemas, APIs, Unity interfaces, backend, state management, and data flow.
+7. Testing and evaluation plan: Metrics, acceptance criteria, test fixtures, and validation strategy.
+8. Licence and provenance register: Actual known terms, source URLs, attribution, restrictions, and uncertainties.
+9. Clinical and technical research log: Sources, dates, findings, assumptions, and decisions.
+10. Updated persistent project instructions: All rules in this prompt incorporated into the appropriate existing instruction file.
+11. Full pipeline JSON: Complete, structured, valid, visualization-friendly, and internally consistent.
+12. Pipeline JSON guide: Schema explanation and practical instructions for visualizing it.
+13. Optional high-level diagram: Mermaid or another suitable overview, without replacing the JSON.
+14. Updated task, issue, deferred-task, ADR, and context documents: Synchronized with the roadmap.
+15. Final audit report: What exists, what is missing, what is blocked, what is newly proposed, what was changed, and what remains to be done.
+
+Do not create duplicate documents when a suitable existing document already serves the purpose. Update it and link it from the master roadmap.
+
+---
+
+17. Definition of done
+
+This task is complete only when all of the following are satisfied:
+
+- Every previously discussed and discovered AI feature has been inventoried.
+- Each feature has an evidence-based current status.
+- Existing deterministic functionality is distinguished from actual AI.
+- The AI Scenario Composer's existing roadmap history is preserved.
+- Every feature is mapped to implementation phases and tasks.
+- The live scenario-generation pipeline is documented end to end.
+- Dataset inspection and normal/abnormal pattern analysis are explicit prerequisites.
+- Numerical, image, and waveform generation strategies are defined separately where needed.
+- Fresh combinations, novelty checking, and repetition reduction are addressed.
+- LLMs are preferred where appropriate without forcing them into unsuitable tasks.
+- Training is proposed only when justified.
+- Validation, repair, rejection, and fallback are planned.
+- Scoring and critical simulation state remain under deterministic control.
+- Clinical research and licensing are documented without becoming blanket development blockers.
+- The persistent instruction file reflects these policies.
+- All relevant context documents and task registers are synchronised.
+- The complete JSON pipeline exists and passes syntax and reference-integrity checks.
+- The pipeline can be mapped to a practical visualization tool.
+- The roadmap includes dependencies, deliverables, tests, acceptance criteria, and blockers.
+- No new feature code has been implemented as part of this task.
+- No unverified implementation or test result is reported as successful.
+- The final report identifies exactly what changed and what should happen next.
+
+If any requirement cannot be completed, document the precise reason, the work completed, and the next concrete step. Do not silently omit it.
+
+---
+
+18. Final response format
+
+When finished, provide a concise but complete report with these headings:
+
+1. Repository audit: What was inspected and the actual project state.
+2. AI feature inventory: Counts by verified status and the most important findings.
+3. Fresh scenario generation: The planned end-to-end approach and how datasets inform it.
+4. Roadmap: The phases, dependencies, and critical path.
+5. Pipeline JSON: Exact file path, structure, validation results, and recommended visualization tool.
+6. Documentation changes: Every important file created or updated.
+7. Research and decisions: Important sources and technical choices.
+8. Tests and validation: What was actually run and its exact result.
+9. Outstanding blockers: Specific issues, not vague statements.
+10. Next implementation step: The first task to execute when I later authorize implementation.
+11. Model configuration: The actual model and effort used, plus whether the final switch back to [AI tool] Medium was verified.
+12. Scope confirmation: Explicitly confirm that no new feature code was implemented during this planning task.
+
+Begin by inspecting the repository and the active model settings. Complete the audit and planning work before producing the final report. Do not stop after writing a proposal: update the actual planning documents and create the pipeline JSON, while keeping all new feature implementation out of scope.
+``````
+
+## 119. 12 October 2026, 11:28 AM UTC
+_Session: 0485f3e4_
+
+``````text
+6A. Mandatory expansion: Complete implementation plans for EVERY feature and its AI components
+
+This section adds non-negotiable requirements to the entire prompt. It does not replace any previous requirements.
+
+1. Every feature must have a complete end-to-end implementation plan
+
+I want a complete plan for every feature in the registry, including all previously discussed, partially implemented, blocked, deferred, proposed, superseded, and rejected features.
+
+Do not provide detailed plans for only the currently active features while giving the rest a one-line explanation.
+
+For every feature, include:
+
+- The complete intended user experience and behaviour.
+- What already exists in the repository and what is missing.
+- The existing deterministic foundation, if any.
+- The complete AI component that still needs to be built.
+- The recommended architecture and model or algorithm.
+- Required datasets, research, dependencies, and infrastructure.
+- Input and output schemas.
+- The complete processing flow, from input to final result.
+- How the feature integrates with Unity, the backend, the simulation state, and other features.
+- How its outputs will be validated.
+- How it will handle errors, hallucinations, inconsistent results, unavailable models, and invalid inputs.
+- Testing strategy, measurable acceptance criteria, and evaluation metrics.
+- Hardware, memory, latency, and deployment requirements.
+- Its implementation phases, task IDs, dependencies, and deliverables.
+- What must be completed before it can be considered implemented and tested.
+
+For every partially implemented feature, explicitly separate its existing functionality from its missing AI functionality. The missing AI functionality must have its own implementation plan, tasks, dependencies, tests, and acceptance criteria. Do not assume that an existing deterministic foundation satisfies the AI requirement.
+
+If a feature requires several distinct AI capabilities, plan each capability separately and explain how they work together.
+
+2. Do not discard features because they are currently blocked, deferred, or unavailable
+
+The categories below are statuses, not permission to omit implementation planning:
+
+- Blocked.
+- Deferred.
+- Proposed new feature.
+- Superseded or rejected.
+
+Create a complete implementation plan for every feature in these categories too.
+
+For blocked features, identify what must be installed, acquired, labelled, configured, researched, or decided before implementation. Add the required prerequisite tasks to the roadmap.
+
+For deferred features, explain why they were deferred, what dependencies they have, and the exact phase in which they should be implemented.
+
+For proposed features, develop them into complete, actionable implementation plans rather than leaving them as ideas.
+
+For superseded or rejected features, preserve the original feature and its history, explain the original rationale, and reassess whether it should be restored, revised, or replaced in the complete architecture.
+
+Do not permanently reject a feature simply because:
+
+- A model is not currently installed.
+- A dataset has not yet been acquired.
+- Labels have not yet been created.
+- A package or dependency has not yet been installed.
+- The current machine has not been benchmarked.
+- A service or backend has not yet been configured.
+- A licence or technical detail has not yet been fully researched.
+- An implementation prerequisite has not yet been completed.
+
+We can install tools, acquire appropriate datasets, create labelled evaluation sets, configure services, and obtain the necessary dependencies when their roadmap phases arrive.
+
+Distinguish between "not available yet" and "technically unsuitable." Only recommend permanently rejecting a feature when there is a documented technical, architectural, safety, or project-scope reason. Even then, preserve the feature's record and evaluate alternatives.
+
+Where a feature is not currently feasible, create a staged plan with prerequisites, a practical initial version, and a more capable future version.
+
+3. AI must be explicitly planned wherever the intended feature requires it
+
+Do not label a feature AI-powered merely because it uses rules, changes values, or behaves differently based on trainee actions.
+
+For every feature, explicitly answer:
+
+1. What is the AI supposed to do?
+2. Why is AI useful for this particular feature?
+3. Which parts should use an LLM, pretrained model, trained model, statistical method, retrieval, or a hybrid approach?
+4. What deterministic components are still necessary?
+5. What AI functionality is already implemented and what is missing?
+6. What exactly must we build to deliver the intended AI behaviour?
+7. How will we verify that the AI performs meaningfully better than a simple baseline?
+
+Where AI is appropriate, the plan must include the actual AI component and its integration, not merely a rule-based substitute.
+
+Where deterministic logic is preferable, retain it and explain why. Do not force an LLM into every low-level operation, and do not remove a useful AI capability merely because deterministic logic could approximate part of its behaviour.
+
+A hybrid architecture is encouraged where the LLM or specialist model proposes, interprets, generates, or explains something and validated deterministic components enforce constraints and control simulation state.
+
+4. Live scenario generation must use AI meaningfully, not just random selection
+
+The objective is not to randomly combine existing case fragments and call the result AI-generated.
+
+I want ProcSense to create fresh, coherent scenarios using the knowledge contained in our existing cases, medical walkthrough, datasets, numerical findings, images, waveforms, and structured references.
+
+Develop a complete plan for an AI-driven scenario-generation system that can learn from the available evidence and generate new scenarios while preserving the relationships between patient history, investigations, findings, decisions, complications, and outcomes.
+
+The plan must explain how the following responsibilities work together:
+
+A. Learning from existing evidence
+
+- Analyse available datasets and case material.
+- Learn or estimate normal and abnormal patterns appropriate to each data modality.
+- Extract meaningful relationships and dependencies between findings, histories, investigation results, and events where supported by the data.
+- Build structured reference knowledge, retrieval indexes, statistical profiles, or suitable model representations.
+- Identify the limitations of each source.
+- Avoid treating every observed combination as valid or every statistical outlier as a genuine clinical abnormality.
+
+B. AI scenario composition
+
+Plan an appropriate AI composer that receives the learning objectives, difficulty, prior session history, available evidence, and scenario constraints.
+
+It should propose coherent patient cases, investigation combinations, decision opportunities, unexpected events, branches, and outcomes.
+
+Evaluate whether this should use an LLM with retrieval, structured generation, specialist models, learned representations, constraint solving, or a hybrid. Make the selection based on actual project data and technical requirements.
+
+The composer must understand the intended relationships between scenario components rather than simply drawing independent random values.
+
+C. Dataset-informed numerical and multimodal generation
+
+Explain how each type of output will be produced:
+
+- Numerical investigation results.
+- Patient history and associated findings.
+- ECGs and other waveforms.
+- Ultrasound and other images.
+- Written investigation reports.
+- Patient and staff dialogue.
+- Event sequences and branching outcomes.
+
+Distinguish between genuinely generated content, statistically generated values, validated transformations, and artefacts retrieved from existing datasets.
+
+If a modality requires a suitable generative model, include its selection, installation, preparation, evaluation, and integration in the relevant roadmap phase. Do not claim that an LLM can generate actual medically consistent images or waveforms merely by writing a description.
+
+D. Consistency and validation
+
+Plan how the system checks that all generated or selected components describe the same scenario.
+
+For example, the patient's history, numerical results, investigation artefacts, reports, dialogue, expected decisions, and subsequent events must be mutually consistent unless a deliberate, documented discrepancy is part of the learning objective.
+
+Invalid scenarios must be rejected, repaired, or regenerated. The system must not silently pass contradictory or structurally broken cases to Unity.
+
+E. Meaningful novelty
+
+Plan a novelty system that measures more than changes to names, dialogue, or a few numbers.
+
+It should consider differences in the underlying case structure, findings, investigation combinations, decision opportunities, event sequences, and outcome branches.
+
+Use prior session history to reduce repetition while preserving learning objectives and difficulty. Maintain reproducibility through versioned inputs and seeds.
+
+F. Genuine personalisation and learning from the trainee
+
+I want the system to learn from the user's performance and create more personalised future sessions.
+
+Develop a complete plan for collecting and analysing appropriate session evidence, including:
+
+- Missed and completed steps.
+- Repeated errors.
+- Decision sequences.
+- Communication performance.
+- Investigation interpretation.
+- Response to unexpected events.
+- Difficulty and assistance requirements.
+- Areas of strength and areas needing practice.
+- Performance trends across multiple sessions.
+
+Use this evidence to build a trainee learning profile and select or generate future scenarios that address demonstrated learning needs.
+
+Evaluate suitable approaches such as deterministic performance tracking, Bayesian or statistical learner models, contextual bandits where appropriate, an LLM that interprets structured performance summaries, or hybrid methods.
+
+Explain which information should be stored, how it should be updated, how confidence and limited evidence should be handled, and how recommendations will be evaluated.
+
+The system must distinguish an actual demonstrated weakness from a single mistake or uncertain observation. It must not automatically treat every AI interpretation as ground truth.
+
+Personalisation must change the substance of future practice, not merely change the dialogue or difficulty label. It should be possible to explain why a particular scenario was selected for the trainee.
+
+G. Offline preparation and live execution
+
+Plan separately for:
+
+- Offline dataset analysis and model preparation.
+- Session-level learner-profile retrieval.
+- Live AI scenario composition.
+- Numerical and multimodal generation.
+- Validation, repair, and fallback.
+- Runtime interaction and state management.
+- Post-session analysis and future personalisation.
+
+Do not retrain a model from scratch for every gameplay session. Identify which information can be updated cheaply after a session and which model training or recalibration, if justified, belongs in a separate offline phase.
+
+5. Hardware is not a reason to exclude a feature
+
+The available hardware includes:
+
+- An NVIDIA GTX 1660 SUPER desktop GPU with 6 GB VRAM.
+- An NVIDIA RTX 4050 laptop GPU with 6 GB VRAM.
+
+Assess the two GPUs separately and consider the complete system, including system RAM, model quantisation, context length, inference latency, Unity's GPU usage, and competition for VRAM.
+
+Do not assume that every candidate model will fit or perform acceptably. Equally, do not reject a useful model or feature before evaluating realistic deployment options.
+
+For each AI component, plan suitable alternatives where necessary, such as:
+
+- Quantised local models.
+- Smaller specialist models.
+- CPU-compatible processing where practical.
+- Asynchronous generation.
+- Precomputed model artefacts.
+- A separate inference service.
+- Remote inference where justified and appropriate.
+- Caching and validated fallbacks.
+
+Include a model benchmark phase that measures actual memory usage, latency, throughput, output quality, and Unity coexistence on the available hardware.
+
+If a model requires more memory than either GPU can provide, document the limitation and provide a staged alternative. Do not treat that as a reason to remove the overall feature from the roadmap.
+
+6. Full plans for the previously excluded categories
+
+The final feature registry and roadmap must include all currently blocked, deferred, proposed, superseded, and rejected features identified during the audit.
+
+For each of them:
+
+- Preserve its original ID and lineage.
+- Document why it received its current status.
+- Reassess the original decision against the complete product objective.
+- Define the desired final capability.
+- Specify its AI architecture where applicable.
+- Identify prerequisites and how to satisfy them.
+- Add implementation tasks and dependencies.
+- Include testing and acceptance criteria.
+- Place it in a specific roadmap phase or explain a genuine, evidence-based exclusion.
+- Cross-reference any overlapping features without silently deleting either concept.
+
+Produce a coverage matrix demonstrating that every feature ID has a complete plan and maps to concrete implementation tasks.
+
+A feature may remain marked blocked until its prerequisites are met, but its implementation plan must already be complete enough to execute when those prerequisites are satisfied.
+
+7. Definition of done for this additional requirement
+
+This planning task is not complete until:
+
+- Every feature in the original and current registries has a full plan.
+- Every partially implemented feature has a separate plan for its missing AI components.
+- Every blocked and deferred feature has prerequisites, implementation tasks, and a destination phase.
+- Every proposed feature has a complete actionable plan.
+- Every superseded or rejected feature has a preserved record and documented reassessment.
+- No feature has been discarded solely because a dependency, dataset, model, label set, or benchmark is currently unavailable.
+- The live scenario composer has an explicit AI architecture.
+- Dataset learning, coherent composition, cross-modal validation, meaningful novelty, and trainee personalisation are separately planned and integrated.
+- Personalisation uses recorded performance evidence to affect future scenario content.
+- Both available GPUs are included in the model evaluation strategy.
+- The complete pipeline JSON and roadmap cover all these components.
+- Every feature ID maps to at least one concrete implementation task with acceptance criteria.
+- No new runtime feature code is implemented during this planning task.
+
+Before declaring completion, generate a feature-coverage audit showing the total number of features, the number with complete implementation plans, the number with mapped tasks, and any remaining gaps. Do not report 100% coverage unless the audit verifies it.
+``````
+
+## 120. 12 October 2026, 11:36 AM UTC
+_Session: 0485f3e4_
+
+``````text
+do we instructions and agents.md for instructions how to create the plans
+``````
+
+## 121. 12 October 2026, 11:36 AM UTC
+_Session: 0485f3e4_
+
+``````text
+i meant do see instructions and agents.md for instructions how to create the plans
+``````
+
+## 122. 12 October 2026, 12:00 PM UTC
+_Session: 0485f3e4_
+
+``````text
+Audit the changes from the planning task we just completed. Do not implement any features.
+
+I need you to verify that ALL relevant context files have been updated, not just the architecture documents.
+
+1. Inspect the entire context folder, including all relevant Markdown files, decision logs, change logs, project instructions, AGENTS.md, INSTRUCTIONS.md, and `.memory/`.
+2. Verify that the new 69-feature registry, all feature implementation plans, AI scenario-generation architecture, trainee personalisation, blocked/deferred/proposed/rejected feature reassessments, hardware strategy, roadmap phases PH-20–PH-24, and 263-step plan are reflected wherever relevant.
+3. Check that the canonical `docs/architecture/procsense_full_pipeline.json`, generated registry, feature coverage audit, diagrams/exports, and documentation are mutually consistent and up to date.
+4. Identify any context files that were not updated, contain outdated decisions, contradict the new architecture, or reference missing paths. Update them where appropriate.
+5. Explicitly inspect Git-ignored files and determine which important instructions or decisions would be lost to other team members if I commit and push.
+6. Ensure persistent project instructions tell future sessions to update all relevant context Markdown files, decision logs, change logs, the pipeline JSON, feature plans, roadmap, and generated outputs whenever decisions or implementation changes occur.
+7. Run the relevant validators and report actual results.
+
+Do not assume coverage merely because the validator passes. Report the exact files inspected and changed, any remaining inconsistencies, which changes are tracked versus Git-ignored, and whether the canonical pipeline and all derived documents agree.
+
+No feature implementation, model training, installation, commit, or push.
+``````
