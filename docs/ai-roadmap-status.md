@@ -11,7 +11,7 @@ This audit is now the short summary. The full, authoritative planning set is in 
 * **Fresh scenarios every session:** a 21-stage live generation pipeline (LG-01 to LG-21) that uses the cases and datasets as templates, evidence and evaluation material: [live_generation_spec.md](architecture/live_generation_spec.md). The first fresh scenario needs **no language model**: dataset profiles, parameter packs, blocks, the solver, statistical numbers, tagged images, validation and packaging.
 * **Roadmap:** 24 phases (PH-01 to PH-24) with a critical path that avoids the current blockers: [master_roadmap.md](architecture/master_roadmap.md). New plan modules: `p1-dataset-analysis`, `p1-live-scenario-generation`, `p2-ai-learning-analytics`, `p2-ai-advanced-simulation`.
 * **Policy changes** (ADR-0008, INSTRUCTIONS 8i revised and 8j): clinician sign-off is no longer a development gate; licensing is checked and recorded, not a blanket blocker; served or pretrained models are preferred over training; datasets are analysed before generators are designed; rules still decide (ADR-0005).
-* **Canonical graph:** `architecture/procsense_full_pipeline.json`, checked by `tools/plans/validate_pipeline.py` in CI.
+* **Canonical graph:** `architecture/procsense_full_pipeline.json`, checked by `tools/plans/validate_pipeline.py` in CI. It is also exported as 10 Synverk flow diagrams in `architecture/flows/` (start with `00-live-pipeline.json`).
 
 Nothing in the planning update was implemented; sections 1 to 6 below are the audit as written earlier the same day, with blockers revised where the policy changed.
 

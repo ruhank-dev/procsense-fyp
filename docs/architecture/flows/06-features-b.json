@@ -8,8 +8,8 @@
       "id": "B14",
       "actor": "gear",
       "label": "B14 P1 PH-09",
-      "title": "Dataset-driven numeric generation (labs, vitals…",
-      "text": "Partly built. Lab values and vital signs that are realistic for the condition: conditioned distributions, linked analytes, trends and repea…2 capability plans.",
+      "title": "Dataset-driven numeric generation",
+      "text": "Partly built. Lab values and vital signs that are realistic for the condition: conditioned distributions, linked analytes, trends…2 capability plans.",
       "tone": "sun"
     },
     {
@@ -24,7 +24,7 @@
       "id": "B16",
       "actor": "gear",
       "label": "B16 P1 PH-09",
-      "title": "Ultrasound image selection and labelled synthes…",
+      "title": "Ultrasound selection and synthesis",
       "text": "Partly built. Ultrasound pictures that match the findings.3 capability plans.",
       "tone": "sun"
     },
@@ -48,7 +48,7 @@
       "id": "B19",
       "actor": "agent",
       "label": "B19 P1 PH-17",
-      "title": "Synthetic evaluation datasets (sessions, uttera…",
+      "title": "Synthetic evaluation datasets",
       "text": "Planned. Labelled synthetic sets with data cards for evaluating classifiers, dialogue and generation.1 capability plans. Needs E57.",
       "tone": "blue"
     },
@@ -56,8 +56,8 @@
       "id": "B20",
       "actor": "gear",
       "label": "B20 P1 PH-09",
-      "title": "Anomalies and artefacts (deliberate and realist…",
-      "text": "Partly built. Haemolysed samples, motion artefact on the monitor, a missing result, a mislabelled sample, as both realistic noise and delib…2 capability plans.",
+      "title": "Anomalies and artefacts",
+      "text": "Partly built. Haemolysed samples, motion artefact on the monitor, a missing result, a mislabelled sample, as both realistic noise…2 capability plans.",
       "tone": "sun"
     },
     {
@@ -73,7 +73,7 @@
       "actor": "model",
       "label": "B22 P2 PH-18",
       "title": "Investigation Interpreter (teaching aid)",
-      "text": "Proposed. After a result is viewed (practice mode, or in the debrief), explain what it shows and why it matters, grounded only in the resul…1 capability plans. Needs E53, E57.",
+      "text": "Proposed. After a result is viewed (practice mode, or in the debrief), explain what it shows and why it matters…1 capability plans. Needs E53, E57.",
       "tone": "aqua"
     },
     {

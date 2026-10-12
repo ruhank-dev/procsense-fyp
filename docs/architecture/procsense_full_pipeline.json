@@ -1371,7 +1371,7 @@
         "asset references with dataset id, licence, finding tags, report text"
       ],
       "component": "tools/data/ultrasound.py, ecg_images.py, cxr_images.py (offline, exist); server/generation/media.py (planned)",
-      "method": "Retrieval from the labelled library (deterministic, seeded tie-break) plus seeded parametric ECG variation. No diffusion or GAN image generation (E64 rejected).",
+      "method": "Retrieval from the labelled library (deterministic, seeded tie-break) plus seeded parametric ECG variation. No diffusion or GAN image generation at runtime (E64 is a deferred offline research track, PH-24).",
       "api": "internal",
       "validation": "Finding tags of the asset equal the skeleton's findings; report numbers equal the numeric slots; licence allows the use.",
       "tests": [
@@ -7045,7 +7045,7 @@
       "acceptance": "Zero tag mismatches.",
       "blockers": [],
       "risks": [
-        "library gaps for some findings (written-only results; E64 stays rejected)"
+        "library gaps for some findings (written-only results; E64 is a deferred research track)"
       ],
       "tasks": [
         "p1-dataset-analysis-s04",

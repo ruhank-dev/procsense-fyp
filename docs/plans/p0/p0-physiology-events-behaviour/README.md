@@ -2,7 +2,7 @@
 
 **Tier:** P0 (Pulse engine option in p1-pulse-physiology) · **Builds on:** p0-clinical-logic · **Feeds:** scenarios, vr-interaction-ui, characters (behaviour → animation)
 
-> **Progress, 12 Oct 2026:** s01 to s10 are built and tested (s01, s02, s04 and s10 approved; s03, s05 to s09 awaiting approval): effects and patterns, display zones and the probe artefact, the plots for the review pack, the Event Director and the what-if coverage list. Magnitudes are provisional design values (Q4, Q7).
+> **Progress, 12 Oct 2026:** s01 to s10 are built and tested (s01, s02, s04 and s10 approved; s03, s05 to s09 approved 12 Oct 2026): effects and patterns, display zones and the probe artefact, the plots for the review pack, the Event Director and the what-if coverage list. Magnitudes are provisional design values (Q4, Q7).
 
 ## Goal
 A living patient: vitals that drift and respond to treatment, deterioration clocks for untreated problems, all 47 what-if branches

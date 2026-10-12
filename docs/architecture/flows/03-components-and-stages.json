@@ -8,7 +8,7 @@
       "id": "CMP-ENGINE",
       "actor": "code",
       "label": "CMP-ENGINE",
-      "title": "Core engine (Session, ISubsystem pipeline, SimC…",
+      "title": "Core engine",
       "text": "Built. Core engine (Session, ISubsystem pipeline, SimClock, replay). Plans: A13.",
       "tone": "mint"
     },
@@ -40,7 +40,7 @@
       "id": "CMP-SCORER",
       "actor": "code",
       "label": "CMP-SCORER",
-      "title": "Scorer, EvidenceStore, DebriefFacts, template d…",
+      "title": "Scorer, evidence, debrief facts",
       "text": "Built. Scorer, EvidenceStore, DebriefFacts, template debrief. Plans: C36.",
       "tone": "mint"
     },
@@ -88,7 +88,7 @@
       "id": "CMP-UNITY",
       "actor": "code",
       "label": "CMP-UNITY",
-      "title": "Unity bridge (SimulationHost, SessionConfig, Ac…",
+      "title": "Unity bridge",
       "text": "Partly built. Unity bridge (SimulationHost, SessionConfig, ActionEmitters). Plans: A2.",
       "tone": "sun"
     },
@@ -129,7 +129,7 @@
       "actor": "link",
       "label": "LG-01",
       "title": "Session request",
-      "text": "Partly built. Unity or the CLI asks for a session: trainee pseudonym, mode (practice only for generated cases), scenario family (S1 or S2), optional focus competencies… Plans: A2.",
+      "text": "Partly built. Unity or the CLI asks for a session: trainee pseudonym, mode (practice only for generated cases), scenario family (S1 or S2)… Plans: A2.",
       "tone": "sun"
     },
     {
@@ -137,7 +137,7 @@
       "actor": "idea",
       "label": "LG-02",
       "title": "Learning objectives and difficulty target",
-      "text": "Partly built. Turn the trainee's history into objectives: the weakest behaviours and dimensions from the Elo ratings, the target difficulty, the competen… Plans: A2, A11, D43, D44.",
+      "text": "Partly built. Turn the trainee's history into objectives: the weakest behaviours and dimensions from the Elo ratings, the target difficulty… Plans: A2, A11, D43, D44.",
       "tone": "sun"
     },
     {
@@ -145,22 +145,22 @@
       "actor": "file",
       "label": "LG-05",
       "title": "Scenario skeleton",
-      "text": "Planned. Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, problems with their discovery rules, investigation orders that must exist… Plans: A1, A2, B23.",
+      "text": "Planned. Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, problems with their discovery rules… Plans: A1, A2, B23.",
       "tone": "blue"
     },
     {
       "id": "LG-06",
       "actor": "model",
       "label": "LG-06",
-      "title": "AI composition (narrative, patient profile, per…",
-      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording, distr… Plans: A1, A2, A3, A7.",
+      "title": "AI narrative, profile and persona",
+      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
       "tone": "coral"
     },
     {
       "id": "LG-10",
       "actor": "security",
       "label": "LG-10",
-      "title": "Constraint and clinical-safety validation (Stag…",
+      "title": "Stage B validation (clinical safety)",
       "text": "Partly built. Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and the Core ContentGate on the full package. Plans: A1, A2, A4, A10.",
       "tone": "sun"
     },
@@ -169,7 +169,7 @@
       "actor": "eye",
       "label": "LG-11",
       "title": "Quality evaluation",
-      "text": "Proposed. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness, narrative co… Plans: A2, A7, A9.",
+      "text": "Proposed. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness… Plans: A2, A7, A9.",
       "tone": "aqua"
     },
     {
@@ -177,7 +177,7 @@
       "actor": "package",
       "label": "LG-14",
       "title": "Packaging with provenance",
-      "text": "Proposed. Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed, pack… Plans: A2, A13.",
+      "text": "Proposed. Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed… Plans: A2, A13.",
       "tone": "aqua"
     },
     {
@@ -185,7 +185,7 @@
       "actor": "rocket",
       "label": "LG-15",
       "title": "Unity integration",
-      "text": "Planned. Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status, then starts a Core Sessio… Plans: A2.",
+      "text": "Planned. Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status… Plans: A2.",
       "tone": "blue"
     },
     {
@@ -193,7 +193,7 @@
       "actor": "chip",
       "label": "LG-16",
       "title": "Live simulation",
-      "text": "Built. The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LitePhysio, EventDirector (seeded draw in practice), discovery, sepsis, c… Plans: A2, A5, A8, E48.",
+      "text": "Built. The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LitePhysio, EventDirector (seeded draw in practice), discovery, sepsis… Plans: A2, A5, A8, E48.",
       "tone": "mint"
     },
     {
@@ -201,7 +201,7 @@
       "actor": "chat",
       "label": "LG-17",
       "title": "Action interpretation",
-      "text": "Partly built. Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR then the co… Plans: A2, C24, C31, C32.",
+      "text": "Partly built. Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically… Plans: A2, C24, C31, C32.",
       "tone": "sun"
     },
     {

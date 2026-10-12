@@ -2,6 +2,8 @@
 
 Planning set of 12 October 2026 for every AI feature and for dataset-driven live scenario generation. **Planning only:** nothing marked Planned, Proposed, Blocked or Deferred is built; implementation starts only when the owner says so (INSTRUCTIONS.md section 8j).
 
+The map of the whole repository is [../index.md](../index.md); this README covers the AI and generation planning set only.
+
 ## Which file is authoritative for what
 
 | Topic | Authoritative file | Kind |
@@ -9,6 +11,7 @@ Planning set of 12 October 2026 for every AI feature and for dataset-driven live
 | Whole plan as a graph (stages, features, datasets, models, phases, rules) | [procsense_full_pipeline.json](procsense_full_pipeline.json) | canonical source |
 | Feature inventory (69 features: A1 to E65 plus A66, D67, D68, E69) with status and evidence | [feature_registry.md](feature_registry.md) | generated |
 | Complete implementation plan for every feature (separate capability plans, seven AI questions, schemas, failure handling, both-GPU hardware, tasks, acceptance) | `feature_plans/<ID>.md` (69 files) | generated |
+| Synverk flow diagrams of the pipeline (10 linked files, each under 64 KB; schema `/api/flows/schema`) | `flows/*.json` (start with `00-live-pipeline.json`) | generated |
 | Feature coverage audit (computed, not asserted) | [feature_coverage_audit.md](feature_coverage_audit.md) | generated |
 | AI scenario generation and personalisation architecture (learning from evidence, AI composer, modalities, consistency, novelty, learner model, offline versus live) | [ai_scenario_generation_architecture.md](ai_scenario_generation_architecture.md) | hand-written |
 | Live generation stages LG-01 to LG-21, validation, novelty | [live_generation_spec.md](live_generation_spec.md) | generated |

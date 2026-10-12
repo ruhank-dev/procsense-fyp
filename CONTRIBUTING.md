@@ -39,6 +39,10 @@ feat(core): add wristband resolution
 
 Describe only what this commit changes.
 
+## Where things are
+
+Read [docs/index.md](docs/index.md) first: it maps the repository, names the source of truth for each topic and lists the rules every change follows (people and assistants alike). Add a row to it when you add a file or folder to `docs/`; `task ci` fails if you forget.
+
 ## Changing the AI plans
 
 The plan for every AI feature lives in [docs/architecture/](docs/architecture/README.md). Edit the pipeline JSON, regenerate, and follow the sync checklist at the bottom of that README; `task ci` fails if the JSON, the plan files or the documents disagree.

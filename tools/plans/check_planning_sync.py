@@ -7,6 +7,7 @@ Checks:
   steps     the step files on disk, milestones.md and the JSON phase tasks agree; no new-module step file is outside a phase
   trace     plan documents and step files cite only ids that exist in the JSON (reverse of VR-G-TRACE)
   registers every DT id cited anywhere exists in docs/deferred-tasks.md; the register is in order
+  index     docs/index.md lists every top-level entry of docs/ and every top-level code folder, and its links resolve
   stale     counts or wording from earlier planning passes do not survive in the living documents
 Standard library only.
 """
@@ -21,7 +22,7 @@ ARCH = ROOT / "docs" / "architecture"
 NEW_MODULES = ("p1-dataset-analysis", "p1-live-scenario-generation", "p1-ai-infrastructure", "p1-personalisation", "p2-ai-learning-analytics", "p2-ai-advanced-simulation")
 # living documents that must not quote counts from an earlier pass
 STALE_PATTERNS = ["65 features", "19 phases", "158 nodes", "10 ways", "13 ways", "11 of 11", "14 of 14", "DT-101 to DT-112", "247 steps"]
-STALE_ARCH = ["one 6 GB GPU", "narrative only", "rejected for now", "Rejected for now", "(rejected, E64)"]
+STALE_ARCH = ["one 6 GB GPU", "narrative only", "rejected for now", "Rejected for now", "(rejected, E64)", "E64 stays rejected", "E64 rejected"]
 ID_PATTERNS = [r"\bLG-\d\d\b", r"\bOFF-\d\d\b", r"\bLP-\d\d\b", r"\bCMP-[A-Z]+\b", r"\bMC-\d\d\b", r"\bDS-\d{4}\b", r"\bPH-\d\d\b", r"\bFB-\d\d\b", r"\bOQ-\d\d\b",
                r"\bEXT-[A-Z0-9]+\b", r"\bVR-(?:D|CM|G)-[A-Z0-9-]*[A-Z0-9]\b"]
 
@@ -55,6 +56,21 @@ def main() -> int:
     for n in nodes.values():
         if n["type"] in ("entry", "exit", "fallback", "stage", "offline_step") and n["id"].replace("-", "_") not in mm:
             problems.append(f"files: Mermaid overview lacks node {n['id']}")
+
+    # Synverk flow exports
+    flow_dir = ARCH / "flows"
+    flow_files = sorted(flow_dir.glob("*.json")) if flow_dir.exists() else []
+    if len(flow_files) < 10:
+        problems.append(f"files: expected the 10 Synverk flow files in docs/architecture/flows, found {len(flow_files)}")
+    for ff in flow_files:
+        if ff.stat().st_size >= 64 * 1024:
+            problems.append(f"files: {ff.name} is {ff.stat().st_size} bytes (limit 65536)")
+        fl = json.loads(read(ff))
+        if len(fl["nodes"]) > 30 or len(fl.get("edges", [])) > 60 or len(fl.get("notes", [])) > 6:
+            problems.append(f"files: {ff.name} exceeds the flowchart limits (30 nodes, 60 edges, 6 notes)")
+        for fn in fl["nodes"]:
+            if fn["id"] != "OFFLINE" and fn["id"] not in nodes and fn["id"] not in {p["id"] for p in doc["phases"]}:
+                problems.append(f"trace: {ff.name} node {fn['id']} is not in the pipeline JSON")
 
     # steps
     steps = {}
@@ -109,6 +125,28 @@ def main() -> int:
             cited |= set(re.findall(r"DT-\d{3}", read(p)))
     for d in sorted(cited - have):
         problems.append(f"registers: {d} is cited but missing from docs/deferred-tasks.md")
+
+    # index: docs/index.md must list every top-level entry of docs/ and every top-level code folder
+    idx_path = ROOT / "docs" / "index.md"
+    if not idx_path.exists():
+        problems.append("index: docs/index.md is missing")
+    else:
+        idx = read(idx_path)
+        for e in sorted((ROOT / "docs").iterdir()):
+            if not re.search(r"^\| \[" + re.escape(e.name) + r"/?\]", idx, re.M):
+                problems.append(f"index: docs/{e.name} has no row in section 3 of docs/index.md")
+        for name in ("src", "tests", "content", "tools", "server", "unity", ".github", "Taskfile.yml"):
+            if name not in idx:
+                problems.append(f"index: top-level {name} is not described in docs/index.md")
+        for link in re.findall(r"(?<!\!)\[[^\]\n]*\]\(([^)\s]+)\)", idx):
+            if not re.match(r"^(https?:|mailto:|#)", link) and not (ROOT / "docs" / link.split("#", 1)[0]).exists():
+                problems.append(f"index: docs/index.md links to missing {link}")
+        plan_readme = read(ROOT / "docs" / "plans" / "README.md")
+        for mod in NEW_MODULES:
+            if mod not in plan_readme:
+                problems.append(f"index: docs/plans/README.md phase map lacks {mod}")
+        if re.search(r"\b\d+ steps, M0", plan_readme):
+            problems.append("stale: docs/plans/README.md quotes a fixed step count")
 
     # stale
     living = [ROOT / "docs/ai-roadmap-status.md", ROOT / "docs/context/ProcSense_Team_Board.md", ARCH / "README.md", ARCH / "pipeline_json_guide.md", ROOT / "docs/CI.md",

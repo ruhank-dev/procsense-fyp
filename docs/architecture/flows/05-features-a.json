@@ -8,8 +8,8 @@
       "id": "A1",
       "actor": "agent",
       "label": "A1 P1 PH-04",
-      "title": "AI Scenario Composer (block library, solver, St…",
-      "text": "Partly built. Compose complete cases from approved building blocks: a deterministic solver assembles blocks under requires/excludes and dif…2 capability plans. Needs E57.",
+      "title": "AI Scenario Composer",
+      "text": "Partly built. Compose complete cases from approved building blocks: a deterministic solver assembles blocks under requires/excludes…2 capability plans. Needs E57.",
       "tone": "sun"
     },
     {
@@ -17,7 +17,7 @@
       "actor": "agent",
       "label": "A2 P1 PH-05",
       "title": "Live dataset-driven scenario generation",
-      "text": "Proposed. Generate a fresh, coherent, validated scenario for each practice session from the trainee's objectives, using the existing cases…3 capability plans. Needs B14, B15, B16…",
+      "text": "Proposed. Generate a fresh, coherent, validated scenario for each practice session from the trainee's objectives…3 capability plans. Needs B14, B15, B16…",
       "tone": "aqua"
     },
     {
@@ -33,14 +33,14 @@
       "actor": "agent",
       "label": "A4 P1 PH-05",
       "title": "Mixed (multi-problem) case generation",
-      "text": "Planned. Combine two or more problems (for example sepsis with a penicillin allergy) under the stacked-case rules, keeping the priority lad…2 capability plans.",
+      "text": "Planned. Combine two or more problems (for example sepsis with a penicillin allergy) under the stacked-case rules…2 capability plans.",
       "tone": "blue"
     },
     {
       "id": "A5",
       "actor": "agent",
       "label": "A5 P1 PH-10",
-      "title": "Dynamic events (selection and generated variant…",
+      "title": "Dynamic events",
       "text": "Partly built. Unexpected events during the session.2 capability plans.",
       "tone": "sun"
     },
@@ -49,15 +49,15 @@
       "actor": "gear",
       "label": "A6 P1 PH-11",
       "title": "Novelty control and scenario fingerprinting",
-      "text": "Proposed. Measure how new a scenario is for this trainee at three levels (structural, clinical, surface) and steer the solver away from rec…2 capability plans.",
+      "text": "Proposed. Measure how new a scenario is for this trainee at three levels (structural, clinical, surface)…2 capability plans.",
       "tone": "aqua"
     },
     {
       "id": "A7",
       "actor": "agent",
       "label": "A7 P1 PH-11",
-      "title": "Adversarial (trap) scenario generation for trai…",
-      "text": "Partly built. Scenarios built to tempt a known error: look-alike patients, haemolysed potassium, a misleading handover, an allergy hidden i…2 capability plans. Needs D40.",
+      "title": "Adversarial trap scenarios",
+      "text": "Partly built. Scenarios built to tempt a known error: look-alike patients, haemolysed potassium, a misleading handover…2 capability plans. Needs D40.",
       "tone": "sun"
     },
     {
@@ -72,7 +72,7 @@
       "id": "A9",
       "actor": "agent",
       "label": "A9 P1 PH-11",
-      "title": "Scenario quality evaluation (per scenario, in t…",
+      "title": "Scenario quality evaluation",
       "text": "Proposed. Score each valid scenario for teaching quality before it is served (LG-11).2 capability plans.",
       "tone": "aqua"
     },
@@ -81,7 +81,7 @@
       "actor": "gear",
       "label": "A10 P1 PH-10",
       "title": "Validation, repair and rejection",
-      "text": "Partly built. Every generated or hand-made case passes Stage B; generated cases also pass cross-modal and quality checks; defects are repai…2 capability plans.",
+      "text": "Partly built. Every generated or hand-made case passes Stage B; generated cases also pass cross-modal and quality checks…2 capability plans.",
       "tone": "sun"
     },
     {
@@ -104,16 +104,16 @@
       "id": "A13",
       "actor": "gear",
       "label": "A13 P1 PH-11",
-      "title": "Provenance and reproducibility of generated sce…",
-      "text": "Partly built. Every generated package records seed, pack versions, prompt versions, model digests, content manifest hash, repair log and SH…1 capability plans.",
+      "title": "Provenance and reproducibility",
+      "text": "Partly built. Every generated package records seed, pack versions, prompt versions, model digests, content manifest hash, repair log…1 capability plans.",
       "tone": "sun"
     },
     {
       "id": "A66",
       "actor": "agent",
       "label": "A66 P1 PH-22",
-      "title": "Scenario knowledge base (relationships learned…",
-      "text": "Proposed. A typed graph of condition-finding, test-finding and decision-consequence relations with sources, strengths and confidence, built…3 capability plans.",
+      "title": "Scenario knowledge base",
+      "text": "Proposed. A typed graph of condition-finding, test-finding and decision-consequence relations with sources, strengths and confidence…3 capability plans.",
       "tone": "aqua"
     }
   ],

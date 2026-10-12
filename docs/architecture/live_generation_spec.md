@@ -225,7 +225,7 @@ Pick, for every imaging and ECG slot, an asset whose finding tags match the skel
 | Inputs | ScenarioSkeleton imaging and ECG slots; OFF-06 media index; ECG parameter pack |
 | Outputs | asset references with dataset id, licence, finding tags, report text |
 | Component | tools/data/ultrasound.py, ecg_images.py, cxr_images.py (offline, exist); server/generation/media.py (planned) |
-| Method | Retrieval from the labelled library (deterministic, seeded tie-break) plus seeded parametric ECG variation. No diffusion or GAN image generation (E64 rejected). |
+| Method | Retrieval from the labelled library (deterministic, seeded tie-break) plus seeded parametric ECG variation. No diffusion or GAN image generation at runtime (E64 is a deferred offline research track, PH-24). |
 | Method class | hybrid |
 | Data dependencies | DS-0002; DS-0005; DS-0006; DS-0011; DS-0014; content/imaging_library.csv |
 | API | internal |

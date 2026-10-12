@@ -2577,3 +2577,168 @@ Do not assume coverage merely because the validator passes. Report the exact fil
 
 No feature implementation, model training, installation, commit, or push.
 ``````
+
+## 123. 12 October 2026, 12:10 PM UTC
+_Session: 0485f3e4_
+
+``````text
+[AI tool] mcp add --transport http synverk https://synverk.abdulhaque.dev/mcp
+``````
+
+
+## 124. 12 October 2026, 12:25 PM UTC
+_Session: 0485f3e4_
+
+``````text
+I want you to add the Synverk MCP server to my [AI tool] configuration.
+
+Server URL: `https://synverk.abdulhaque.dev/mcp`
+Server name: `synverk`
+Transport: HTTP
+
+Run this command using the appropriate terminal/environment where [AI tool] is installed:
+
+`[AI tool] mcp add --transport http synverk https://synverk.abdulhaque.dev/mcp`
+
+Instructions:
+1. First, check whether the [AI tool] CLI is available in your current terminal. If it isn't, locate the existing installation and determine the correct way to access its CLI. Do not reinstall [AI tool] unnecessarily.
+2. Add the MCP server using the command above, ensuring it is registered in the appropriate [AI tool] configuration.
+3. Verify the registration with `[AI tool] mcp list` and, if possible
+``````
+
+
+## 125. 12 October 2026, 12:52 PM UTC
+_Session: 0485f3e4_
+
+``````text
+i need the json structure in this 
+
+
+{
+  "$schema": "/api/flows/schema",
+  "title": "Ordering a coffee",
+  "subtitle": "A tiny example. Leave out col and row to lay boxes out automatically, and edges to join them in order.",
+  "columns": 3,
+  "nodes": [
+    {
+      "id": "ask",
+      "actor": "person",
+      "title": "You order",
+      "text": "A flat white, to take away."
+    },
+    {
+      "id": "pay",
+      "actor": "lock",
+      "title": "Pay",
+      "text": "Card or phone. Nothing is made before this."
+    },
+    {
+      "id": "make",
+      "actor": "synverk",
+      "label": "Barista",
+      "title": "It is made",
+      "text": "Ground, pulled, steamed."
+    },
+    {
+      "id": "check",
+      "actor": "check",
+      "title": "Right order?",
+      "text": "Name and drink match the ticket."
+    },
+    {
+      "id": "told",
+      "actor": "mail",
+      "title": "Name called",
+      "text": "You pick it up at the counter.",
+      "tone": "mint"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ask",
+      "to": "pay"
+    },
+    {
+      "from": "pay",
+      "to": "make",
+      "label": "paid"
+    },
+    {
+      "from": "make",
+      "to": "check"
+    },
+    {
+      "from": "check",
+      "to": "make",
+      "label": "no"
+    },
+    {
+      "from": "check",
+      "to": "told",
+      "label": "yes"
+    }
+  ],
+  "notes": [
+    "Every box is the same size, whatever its text."
+  ]
+}
+
+
+ this schema and i want it less than 64kb but without losing too much detail go the full pipeline thing
+``````
+
+## 126. 12 October 2026, 1:10 PM UTC
+_Session: 0485f3e4_
+
+``````text
+create tasks in the synverk server for the procsense projects all the tasks and everything and put them them in the appropriate columns go
+``````
+
+
+## 127. 12 October 2026, 1:23 PM UTC
+_Session: 0485f3e4_
+
+``````text
+Diagnose why Synverk is reported as Connected in my setup but its tools aren't available in this [AI tool] session.
+
+Do not read, print, extract, or transmit authentication tokens, passwords, cookies, or other secrets.
+
+Please:
+1. Identify whether Synverk is configured as a [AI tool] MCP server and whether it is available to the current session.
+2. Check the relevant MCP server status and non-sensitive error logs using the tools available to you.
+3. Explain whether a session restart or MCP reconnect is needed.
+4. Do not create tasks or modify the ProcSense project or Synverk board during diagnosis.
+
+If you cannot inspect the configuration through available tools, tell me which VS Code UI screen I should open next.
+``````
+
+
+## 128. 12 October 2026, 1:51 PM UTC
+_Session: 0485f3e4_
+
+``````text
+i want u to create this index.md in the docs folder that says where everything is: the project assistant and your MCP agents read it first, the way agents read AGENTS.md in a repository.
+``````
+
+## 129. 12 October 2026, 2:34 PM UTC
+_Session: 0485f3e4_
+
+``````text
+i want only the plan steps leave em unassigned go create the tasks thing again
+``````
+
+
+## 130. 12 October 2026, 4:02 PM UTC
+_Session: 0485f3e4_
+
+``````text
+also the the tasks or steps that are already done and approved and stuff ya know move them into theirrr appropriate columns like place those tasks in the apprroved sections and stuff
+``````
+
+## 131. 12 October 2026, 4:02 PM UTC
+_Session: 0485f3e4_
+
+``````text
+those that are approved in repo put them in approved those who are in  The other 19 are built and tested but not yet approved (case library, physiology and events, scoring and debrief, p1-ai-language s01 and s03, p0-foundation-s02). i approved them put them in approve too if they are complete and yes fix the files and then give me the commands to do the final push go
+``````
+

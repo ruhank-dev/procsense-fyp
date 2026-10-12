@@ -1,6 +1,6 @@
 # ProcSense — Plan (tiers → phases → steps)
 
-**Status:** Phases approved (07 October 2026). **All steps written:** [milestones.md](milestones.md) (216 steps, M0–M13; regenerate with `task plans-index`). **Current work:** [p0/walking-skeleton-1.md](p0/walking-skeleton-1.md). **Postponed / outstanding work:** [../deferred-tasks.md](../deferred-tasks.md). **Prompt history:** [../previous_prompt.md](../previous_prompt.md).
+**Status:** Phases approved (07 October 2026). **All steps written:** [milestones.md](milestones.md) (the current step and milestone counts are at the top of that file; regenerate with `task plans-index`). **Current work:** [p0/walking-skeleton-1.md](p0/walking-skeleton-1.md). **Postponed / outstanding work:** [../deferred-tasks.md](../deferred-tasks.md). **Prompt history:** [../previous_prompt.md](../previous_prompt.md).
 
 **Work order (10 Oct 2026): data first.** All data work (walkthrough extraction, clinical tables, decision rules, flow maps, cases, datasets, synthetic data, ultrasound images with reports, review pack) is done before the remaining engine and VR work: [p0/data-first-order.md](p0/data-first-order.md), [ADR-0002](../decisions/ADR-0002-data-first-order.md).
 
@@ -63,8 +63,14 @@ docs/plans/
 | P1 | [p1-scenario-composer-difficulty](p1/p1-scenario-composer-difficulty/) | Composer solver, AI Stage A proposals, difficulty explanations | p0-case-library, p1-ai-language |
 | P1 | [p1-pulse-physiology](p1/p1-pulse-physiology/) | Pulse Physiology Engine option alongside LitePhysio | p0-physiology |
 | P1 | [p1-evaluation](p1/p1-evaluation/) | AI eval suite, learning-effect study, P1 golden runs | P1 phases |
+| P1 | [p1-dataset-analysis](p1/p1-dataset-analysis/) | Profile every dataset, build the scenario knowledge base, parameter packs, media tags and evaluation sets (added 12 Oct 2026, planning only) | p0-medical-research-data |
+| P1 | [p1-live-scenario-generation](p1/p1-live-scenario-generation/) | Fresh validated practice scenario per session: the 21-stage pipeline with the AI scenario plan composer (added 12 Oct 2026, planning only) | p1-dataset-analysis, p1-scenario-composer-difficulty |
+| P1 | [p1-ai-infrastructure](p1/p1-ai-infrastructure/) | Inference hosts, dual-GPU benchmark, topology, labelling programme, Unity AI hook specification (added 12 Oct 2026, planning only) | p1-backend |
+| P1 | [p1-personalisation](p1/p1-personalisation/) | Session evidence, Bayesian learner model, targeting policy, performance interpreter, explanations (added 12 Oct 2026, planning only) | p0-scoring-debrief, p1-backend |
 | P2 | [p2-content-extensions](p2/p2-content-extensions/) | SC-1..SC-20, new combinations (14B.5 recipe), terminology codes | P1 |
 | P2 | [p2-ai-extensions](p2/p2-ai-extensions/) | On-device ASR, retrieval, small classifier, Urdu/Urdu-English speech | p1-ai-language, p1-voice-input |
+| P2 | [p2-ai-learning-analytics](p2/p2-ai-learning-analytics/) | Patterns, coaching, confidence calibration, reasoning fingerprint, progression, investigation interpreter (added 12 Oct 2026, planning only) | p1-live-scenario-generation, p1-personalisation |
+| P2 | [p2-ai-advanced-simulation](p2/p2-ai-advanced-simulation/) | Red-team generator, digital twin, multi-agent lab, generative image and LLM adaptation research (added 12 Oct 2026, planning only) | p1-ai-language, p1-live-scenario-generation |
 
 ## Environment principle
 

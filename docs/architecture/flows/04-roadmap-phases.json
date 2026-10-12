@@ -40,7 +40,7 @@
       "id": "PH-05",
       "actor": "calendar",
       "label": "PH-05 critical path",
-      "title": "Live generation skeleton (deterministic path fi…",
+      "title": "Live generation skeleton",
       "text": "Planned. Request, objectives, retrieval, solver selection, skeleton. A fresh case can be produced with no LLM at all. 3 tasks, 4 features.",
       "tone": "blue"
     },
@@ -97,7 +97,7 @@
       "actor": "calendar",
       "label": "PH-12 critical path",
       "title": "Packaging, pool and Unity integration",
-      "text": "Planned. Package format, pre-generated pool, Unity loading (Unity work begins only when implementation is approved). The backend (PH-06) is optional… 1 tasks, 0 features.",
+      "text": "Planned. Package format, pre-generated pool, Unity loading (Unity work begins only when implementation is approved). The backend… 1 tasks, 0 features.",
       "tone": "blue"
     },
     {
@@ -161,7 +161,7 @@
       "actor": "calendar",
       "label": "PH-20",
       "title": "AI infrastructure and dual-GPU benchmark",
-      "text": "Planned. Install and pin runtimes on both machines, benchmark every model on the GTX 1660 SUPER and RTX 4050 with Unity running, choose topology and… 4 tasks, 1 features.",
+      "text": "Planned. Install and pin runtimes on both machines, benchmark every model on the GTX 1660 SUPER and RTX 4050 with Unity running, choose topology… 4 tasks, 1 features.",
       "tone": "blue"
     },
     {

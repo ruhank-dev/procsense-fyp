@@ -34,6 +34,34 @@ def trunc(s: str, n: int) -> str:
     return s if len(s) <= n else s[: n - 1].rstrip(" ,;:.") + "…"
 
 
+TITLES = {"EXIT-OFFLINE-RELEASE": "Reviewed offline release", "OFF-04": "Block library (requires/excludes)", "OFF-08": "Model preparation (no training)", "LG-04": "AI plan composer + constraint solver",
+          "LG-06": "AI narrative, profile and persona", "LG-08": "Image and waveform handling", "LG-10": "Stage B validation (clinical safety)", "CMP-SCORER": "Scorer, evidence, debrief facts",
+          "MC-01": "Scenario composition (narrative, Stage A)", "E64": "Generative medical image synthesis", "A7": "Adversarial trap scenarios", "A13": "Provenance and reproducibility",
+          "B16": "Ultrasound selection and synthesis", "E69": "AI inference and dual-GPU deployment"}
+
+
+def short_title(i: str, label: str) -> str:
+    import re
+    if i in TITLES:
+        return TITLES[i]
+    t = label.split(" ", 1)[-1] if i[:3] in ("DS-", "MC-") else label
+    if len(t) > 48:
+        t = re.sub(r"\s*\([^()]*\)\s*$", "", t)
+    return trunc(t, 48)
+
+
+def clip(s: str, n: int) -> str:
+    """Shorten at a clause boundary where possible so the text reads whole, not cut mid-phrase."""
+    s = " ".join(str(s).split())
+    if len(s) <= n:
+        return s
+    cut = s[: n - 1]
+    best = max(cut.rfind(", "), cut.rfind("; "), cut.rfind(": "), cut.rfind(" ("), cut.rfind(" and "), cut.rfind(" with "))
+    if best >= int(n * 0.55):
+        return cut[:best].rstrip(" ,;:(") + "…"
+    return cut[: cut.rfind(" ")].rstrip(" ,;:(") + "…"
+
+
 def first_sentence(s: str) -> str:
     s = " ".join(str(s).split())
     i = s.find(". ")
@@ -83,7 +111,7 @@ def node_text(n) -> str:
     if n["type"] not in ("feature", "dataset", "model"):
         fs = feature_ids(n)
         tail = f" Plans: {fs}." if fs else ""
-    return trunc(f"{status}. {first_sentence(n.get('description', ''))}", 180 - len(tail)) + tail
+    return clip(f"{status}. {first_sentence(n.get('description', ''))}", 180 - len(tail)) + tail
 
 
 def make(nodes_by_id, ids, extra_nodes=()):
@@ -93,7 +121,7 @@ def make(nodes_by_id, ids, extra_nodes=()):
         t = n["type"]
         actor = STAGE_ACTOR.get(i) or (FEATURE_ACTOR[n["kind"]] if t == "feature" else KIND_ACTOR.get(t, "gear"))
         label = i if t != "feature" else f"{i} {n['tier']} {n['phase']}"
-        out.append(dict(id=i, actor=actor, label=trunc(label, 28), title=trunc(n["label"].split(" ", 1)[-1] if t in ("dataset", "model") else n["label"], 48), text=node_text(n), tone=TONE.get(n.get("status"), "paper")))
+        out.append(dict(id=i, actor=actor, label=trunc(label, 28), title=short_title(i, n["label"]), text=node_text(n), tone=TONE.get(n.get("status"), "paper")))
     out.extend(extra_nodes)
     return out
 
@@ -179,8 +207,8 @@ def build(doc: dict) -> dict:
     ph = doc["phases"]
     pn = []
     for p in ph:
-        pn.append(dict(id=p["id"], actor=KIND_ACTOR["phase"], label=trunc(p["id"] + (" critical path" if p["on_critical_path"] else ""), 28), title=trunc(p["name"], 48),
-                       text=trunc(f"{SHORT.get(p['status'], p['status'])}. {p['objective']}", 150) + f" {len(p['tasks'])} tasks, {len(p['features'])} features.", tone=TONE.get(p["status"], "paper")))
+        pn.append(dict(id=p["id"], actor=KIND_ACTOR["phase"], label=trunc(p["id"] + (" critical path" if p["on_critical_path"] else ""), 28), title=short_title(p["id"], p["name"]),
+                       text=clip(f"{SHORT.get(p['status'], p['status'])}. {p['objective']}", 150) + f" {len(p['tasks'])} tasks, {len(p['features'])} features.", tone=TONE.get(p["status"], "paper")))
     pe = [{"from": d, "to": p["id"]} for p in ph for d in p["depends_on"]]
     flows["04-roadmap-phases.json"] = dict(**{"$schema": SCHEMA}, title="Roadmap: phases PH-01..PH-24", subtitle="Dependency order. Critical path: " + " → ".join(doc["metadata"]["critical_path"]), columns=6,
         nodes=pn, edges=pe, notes=notes_for(doc, [trunc("AI critical path: " + " → ".join(doc["metadata"]["ai_critical_path"]) + ". Phase tasks are step files under docs/plans.", 220)]))
@@ -193,7 +221,7 @@ def build(doc: dict) -> dict:
             f = nodes[i]
             outside = [d for d in f["depends_on"] if d not in fs and d in nodes and nodes[d]["type"] == "feature"]
             caps = len(f["plan"]["capabilities"])
-            n["text"] = trunc(f"{SHORT[f['status']]}. {first_sentence(f['description'])}", 180 - 40) + trunc(f" {caps} capability plans." + (f" Needs {', '.join(outside)}." if outside else ""), 40)
+            n["text"] = clip(f"{SHORT[f['status']]}. {first_sentence(f['description'])}", 180 - 40) + trunc(f" {caps} capability plans." + (f" Needs {', '.join(outside)}." if outside else ""), 40)
         fe = [{"from": d, "to": i} for i in fs for d in nodes[i]["depends_on"] if d in fs]
         flows[f"0{5 + 'ABCDE'.index(letter)}-features-{letter.lower()}.json"] = dict(**{"$schema": SCHEMA}, title=f"Features {letter}: {name}"[:80], subtitle="Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/architecture/feature_plans/<ID>.md", columns=5,
             nodes=fn, edges=fe, notes=notes_for(doc))

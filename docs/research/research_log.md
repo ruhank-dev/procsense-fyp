@@ -19,6 +19,8 @@ One row per question researched online: what was asked, where the answer came fr
 
 | R-011 | What hardware does the development desktop have? | Measured on the machine (Windows CIM query) | 2026-10-12 | 16 GB RAM; AMD Ryzen 5 2600 (6 cores, 12 threads); NVIDIA GeForce GTX 1660 SUPER. | High (measured). The laptop (RTX 4050 Laptop, 6 GB) was not available; its RAM, CPU and power limit are DT-118. That the GTX 16 series has no tensor cores is general hardware knowledge, not re-checked online today. |
 
+| R-012 | What does the Synverk flow format allow? | https://synverk.abdulhaque.dev/api/flows/schema (read through a page summariser, twice) | 2026-10-12 | Flowchart: title, 1 to 30 nodes, up to 60 edges, up to 6 notes (220 characters each); node id up to 24 characters (letters, digits, `_`, `-`), title 48, text 180, label 28; `columns` 1 to 6; actor icons (about 70 names) and eight tones (blue, aqua, mint, sun, coral, pink, grey, paper); other layouts exist (swimlane, dataflow, graph, mermaid and more). | Medium: the values were reported by a summariser, not copied from the raw schema, so the generator's limits could be slightly off; the files were not rendered in Synverk. |
+
 ## Not researched in this update (stated so nobody assumes otherwise)
 
 | Topic | Why it matters | Where it is tracked |

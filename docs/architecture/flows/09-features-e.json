@@ -24,7 +24,7 @@
       "id": "E50",
       "actor": "agent",
       "label": "E50 P1 PH-17",
-      "title": "Adversarial generator (red-team for validators…",
+      "title": "Adversarial generator",
       "text": "Partly built. Generate attacks on the system: jailbreak questions, disclosure probes, broken scenarios.1 capability plans.",
       "tone": "sun"
     },
@@ -136,7 +136,7 @@
       "id": "E64",
       "actor": "model",
       "label": "E64 P2 PH-24",
-      "title": "Generative image synthesis (diffusion or GAN) f…",
+      "title": "Generative medical image synthesis",
       "text": "Deferred. Offline generative synthesis of labelled medical images for library gaps.1 capability plans.",
       "tone": "grey"
     },
@@ -152,7 +152,7 @@
       "id": "E69",
       "actor": "gear",
       "label": "E69 P1 PH-20",
-      "title": "AI inference infrastructure and dual-GPU deploy…",
+      "title": "AI inference and dual-GPU deployment",
       "text": "Proposed. Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.1 capability plans.",
       "tone": "aqua"
     }

@@ -16,7 +16,7 @@
       "id": "D39",
       "actor": "agent",
       "label": "D39 P2 PH-18",
-      "title": "Coaching (in-session hints and between-session…",
+      "title": "Coaching",
       "text": "Partly built. Built: deterministic hints (HintTexts, simulation-workflow s05).1 capability plans.",
       "tone": "sun"
     },
@@ -33,7 +33,7 @@
       "actor": "agent",
       "label": "D41 P2 PH-18",
       "title": "Confidence calibration coach",
-      "text": "Proposed. Ask the trainee how confident they are at decision points; compare with correctness over time (Brier score, calibration curve); c…2 capability plans.",
+      "text": "Proposed. Ask the trainee how confident they are at decision points; compare with correctness over time (Brier score, calibration curve)…2 capability plans.",
       "tone": "aqua"
     },
     {
@@ -48,8 +48,8 @@
       "id": "D43",
       "actor": "gear",
       "label": "D43 P0 PH-01",
-      "title": "Adaptive difficulty (deterministic Elo ratings…",
-      "text": "Built. Elo-style rating per behaviour (K 16, 3 sessions before adapting), 8 dimensions, case tags, Selector; `next-case` and `record-sessio…1 capability plans.",
+      "title": "Adaptive difficulty",
+      "text": "Built. Elo-style rating per behaviour (K 16, 3 sessions before adapting), 8 dimensions, case tags, Selector; `next-case`…1 capability plans.",
       "tone": "mint"
     },
     {
@@ -88,16 +88,16 @@
       "id": "D67",
       "actor": "agent",
       "label": "D67 P1 PH-23",
-      "title": "Trainee learning profile (Bayesian learner mode…",
-      "text": "Proposed. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty; AI interpretations stored as…3 capability plans.",
+      "title": "Trainee learning profile",
+      "text": "Proposed. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty…3 capability plans.",
       "tone": "aqua"
     },
     {
       "id": "D68",
       "actor": "agent",
       "label": "D68 P1 PH-23",
-      "title": "Personalised scenario targeting (policy, object…",
-      "text": "Proposed. Uses the learning profile to choose objectives and scenario features that change the substance of the next case, and explains the…3 capability plans.",
+      "title": "Personalised scenario targeting",
+      "text": "Proposed. Uses the learning profile to choose objectives and scenario features that change the substance of the next case…3 capability plans.",
       "tone": "aqua"
     }
   ],

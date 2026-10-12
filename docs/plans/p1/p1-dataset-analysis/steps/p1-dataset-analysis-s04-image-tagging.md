@@ -13,7 +13,7 @@ Live generation picks images by tags; untagged images cannot be matched safely.
 ## How to implement
 1. Finding tag vocabulary `content/imaging/finding_tags.json` aligned with case findings.
 2. Extend `content/imaging_library.csv` columns (tags, quality) and its builder's `--check`.
-3. Gap list: findings needed by blocks with no real or synthetic image (E64 stays rejected; gaps get written-only results or labelled synthesis).
+3. Gap list: findings needed by blocks with no real or synthetic image (E64 is a deferred offline research track, not used at runtime; gaps get written-only results or labelled synthesis).
 
 ## Verification
 Every picture has tags and a quality grade; gap list written.

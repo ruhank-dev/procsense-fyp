@@ -2,7 +2,7 @@
 
 **Tier:** P0 (AI-worded debrief in p1-ai-language) · **Builds on:** p0-simulation-workflow, p0-clinical-logic · **Feeds:** vr-interaction-ui (debrief screen), p1-ai-language, evaluation
 
-> **Progress, 12 Oct 2026:** s01 to s05 are built and tested, awaiting approval: 22 assessed behaviours with a rubric, the evidence mapper with its critical guard, the outcome and fail gate, debrief facts with template sentences, and the `report` command. Weights and points are provisional (Q8).
+> **Progress, 12 Oct 2026:** s01 to s05 are built and tested and approved by the owner (12 Oct 2026): 22 assessed behaviours with a rubric, the evidence mapper with its critical guard, the outcome and fail gate, debrief facts with template sentences, and the `report` command. Weights and points are provisional (Q8).
 
 ## Goal
 Fair, explainable judgement: score items with evidence references, five end states (appropriate postponement = success),

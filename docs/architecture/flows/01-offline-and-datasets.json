@@ -129,7 +129,7 @@
       "actor": "folder",
       "label": "OFF-02",
       "title": "Normal versus abnormal profiling per modality",
-      "text": "Partly built. Describe each modality before any generator is designed: distribution of normal values, abnormal patterns per condition, borderline zones, miss… Plans: A66, B14, B15.",
+      "text": "Partly built. Describe each modality before any generator is designed: distribution of normal values, abnormal patterns per condition, borderline zones… Plans: A66, B14, B15.",
       "tone": "sun"
     },
     {
@@ -137,15 +137,15 @@
       "actor": "folder",
       "label": "OFF-03",
       "title": "Generator parameter packs (versioned)",
-      "text": "Planned. Turn the profiles into small versioned JSON packs the live generators read: per analyte and condition a distribution (band, centre, spread, skew, truncation)… Plans: B14.",
+      "text": "Planned. Turn the profiles into small versioned JSON packs the live generators read: per analyte and condition a distribution (band, centre, spread, skew… Plans: B14.",
       "tone": "blue"
     },
     {
       "id": "OFF-04",
       "actor": "folder",
       "label": "OFF-04",
-      "title": "Component (block) library with requires and exc…",
-      "text": "Planned. The 21 block types of the composer (DEM, PRES, CMB, MED, ALG, PSH, SOC, OBS, FND, RSK, LAB, IMG, CON, PER, PAIN, DIFF, EVT, ENV, STAFF, TIME...) deri… Plans: A1, A12, E58.",
+      "title": "Block library (requires/excludes)",
+      "text": "Planned. The 21 block types of the composer (DEM, PRES, CMB, MED, ALG, PSH, SOC, OBS, FND, RSK, LAB, IMG, CON, PER, PAIN, DIFF, EVT, ENV, STAFF… Plans: A1, A12, E58.",
       "tone": "blue"
     },
     {
@@ -169,15 +169,15 @@
       "actor": "folder",
       "label": "OFF-07",
       "title": "Evaluation reference sets",
-      "text": "Partly built. Gold scenarios, deliberately broken scenarios, adversarial questions, labelled utterances and expected debrief facts used to measure every… Plans: A9, B19, E50, E51.",
+      "text": "Partly built. Gold scenarios, deliberately broken scenarios, adversarial questions, labelled utterances… Plans: A9, B19, E50, E51.",
       "tone": "sun"
     },
     {
       "id": "OFF-08",
       "actor": "folder",
       "label": "OFF-08",
-      "title": "Model preparation: pull, quantise, benchmark (n…",
-      "text": "Blocked. Download the candidate served models, record their digests and licences, and benchmark latency, VRAM and structured-output validity on this har… Plans: E57, E61, E65, E69.",
+      "title": "Model preparation (no training)",
+      "text": "Blocked. Download the candidate served models, record their digests and licences, and benchmark latency, VRAM… Plans: E57, E61, E65, E69.",
       "tone": "coral"
     },
     {
@@ -193,7 +193,7 @@
       "actor": "folder",
       "label": "OFF-10",
       "title": "Scenario knowledge base construction (A66)",
-      "text": "Proposed. Typed relations (condition-finding, test-finding, decision-consequence, interactions) imported from verified tables, extracted by an LLM from case files and… Plans: A66.",
+      "text": "Proposed. Typed relations (condition-finding, test-finding, decision-consequence, interactions) imported from verified tables, extracted by an LLM from case files… Plans: A66.",
       "tone": "aqua"
     },
     {

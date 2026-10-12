@@ -568,7 +568,7 @@ Ultrasound pictures that match the findings. Built: 16 real UIdataGB images plus
 | Tests planned | tag-match tests |
 | Acceptance | Zero tag mismatches. |
 | Blockers | — |
-| Risks | library gaps for some findings (written-only results; E64 stays rejected) |
+| Risks | library gaps for some findings (written-only results; E64 is a deferred research track) |
 | Tasks | p1-dataset-analysis-s04; p1-live-scenario-generation-s06 |
 | Phase | PH-09 Numeric, waveform and image generation |
 | Tier | P1 |

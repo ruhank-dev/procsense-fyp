@@ -15,6 +15,8 @@ Working in a team? Read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/TEAM_GIT_WO
 
 The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch `main`; history restarted on 07 Oct 2026 — the earlier prototype was deliberately overwritten). `AGENTS.md` and `INSTRUCTIONS.md` stay local (git-ignored).
 
+**Start with [docs/index.md](docs/index.md)**: it says where everything is, which file is the source of truth for what, and the rules every change follows.
+
 ## Repo layout
 
 | Folder | What lives there |
