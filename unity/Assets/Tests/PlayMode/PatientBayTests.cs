@@ -27,10 +27,52 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsNotNull(SimulationHost.Instance);
             Assert.IsNotNull(SimulationHost.Instance.Session);
             Assert.IsNotNull(Object.FindFirstObjectByType<TabletView>());
-            Assert.IsNotNull(Object.FindFirstObjectByType<MonitorView>());
+            var monitor = Object.FindObjectsByType<EquipmentSurfaceView>(FindObjectsSortMode.None).Single(v => v.Kind == EquipmentSurfaceView.Surface.Monitor);
+            monitor.RenderNow();
+            Assert.That(monitor.DisplayText, Does.Contain("SpO2   --"));
             Assert.IsNotNull(Object.FindFirstObjectByType<IdentityCardView>());
             Assert.IsNotNull(Object.FindFirstObjectByType<NotesPanelView>());
             Assert.AreEqual(1, Camera.allCamerasCount, "exactly one camera (the XR rig's) must draw, or head movement shows nothing");
+        }
+
+        [UnityTest]
+        public IEnumerator One_tablet_remove_stays_detached_across_physics_frames()
+        {
+            yield return LoadBoot();
+            var tablet = Object.FindFirstObjectByType<TabletView>();
+            var host = SimulationHost.Instance;
+            host.AutoTick = false;
+            foreach (string sensor in new[] { "spo2", "nibp_cuff" })
+            {
+                var binding = Object.FindObjectsByType<ProcSense.VR.ActionEmitters.SensorAttachment>(FindObjectsSortMode.None)
+                    .Single(s => s.BuildAction().Params["sensor"] == sensor);
+                for (int repeat = 0; repeat < 2; repeat++)
+                {
+                    tablet.Press("attach_sensor", "sensor", sensor);
+                    for (int i = 0; i < 5; i++) yield return new WaitForFixedUpdate();
+                    Assert.IsTrue(binding.Attached);
+                    int before = host.Session.Log.Count;
+                    tablet.Press("detach_sensor", "sensor", sensor);
+                    for (int i = 0; i < 15; i++) yield return new WaitForFixedUpdate();
+                    Assert.IsFalse(binding.Attached, sensor + " snapped back after one remove");
+                    Assert.AreEqual(before + 1, host.Session.Log.Count, "No automatic reattach action");
+                    Assert.IsFalse(binding.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().isSelected);
+                }
+                // Returning the actual prop to the socket must still work without a tablet action.
+                var grab = binding.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+                var target = binding.Destination.attachTransform;
+                binding.transform.position += target.position - grab.attachTransform.position;
+                var pose = new Pose(binding.transform.position, binding.transform.rotation);
+                grab.SetTargetPose(pose);
+                var body = binding.GetComponent<Rigidbody>();
+                body.position = pose.position;
+                body.rotation = pose.rotation;
+                Physics.SyncTransforms();
+                int actions = host.Session.Log.Count;
+                for (int i = 0; i < 15; i++) yield return new WaitForFixedUpdate();
+                Assert.IsTrue(binding.Attached, sensor + " must reattach when returned physically");
+                Assert.AreEqual(actions + 1, host.Session.Log.Count);
+            }
         }
 
         [UnityTest]

@@ -14,6 +14,7 @@ namespace ProcSense.EditorTools
     public static class EquipmentPrefabBuilder
     {
         public static readonly string[] Pilots = { "vital_signs_monitor", "iv_pole_pump", "wristband" };
+        public static readonly string[] Sensors = { "spo2_probe", "bp_cuff" };
         [Serializable] private class Anchor { public string name; public Vector3 size; }
         [Serializable] private class Metadata { public Anchor[] anchors; }
 
@@ -28,8 +29,16 @@ namespace ProcSense.EditorTools
         [MenuItem("ProcSense/Equipment/Import Pilot Assets")]
         public static void ImportPilots()
         {
+            ImportAssets(Pilots);
+        }
+
+        [MenuItem("ProcSense/Equipment/Import Bedside Sensors")]
+        public static void ImportSensors() => ImportAssets(Sensors);
+
+        private static void ImportAssets(string[] ids)
+        {
             string source = Path.GetFullPath(Path.Combine(Application.dataPath, "../../build/blender"));
-            foreach (string id in Pilots)
+            foreach (string id in ids)
                 foreach (string suffix in new[] { ".fbx", ".equipment.json" })
                     if (!File.Exists(Path.Combine(source, id + suffix))) throw new FileNotFoundException("Run task blender-build-all first", id + suffix);
             Folder("Assets/Models/Equipment");
@@ -42,7 +51,8 @@ namespace ProcSense.EditorTools
             MakeMaterial("RubberBlack", new Color(.018f, .025f, .028f), 0, .75f);
             MakeMaterial("ScreenOff", new Color(.009f, .023f, .029f), .05f, .24f);
             MakeMaterial("AccentBlue", new Color(.025f, .25f, .35f), .15f, .35f);
-            foreach (string id in Pilots)
+            MakeMaterial("FabricNavy", new Color(.014f, .04f, .085f), 0, .9f);
+            foreach (string id in ids)
             {
                 string path = EquipmentPostprocessor.ModelFolder + id;
                 File.Copy(Path.Combine(source, id + ".equipment.json"), path + ".equipment.json", true);
@@ -68,7 +78,7 @@ namespace ProcSense.EditorTools
         public static void CreateIfMissing(string modelPath)
         {
             string id = Path.GetFileNameWithoutExtension(modelPath);
-            if (!Pilots.Contains(id)) return;
+            if (!Pilots.Contains(id) && !Sensors.Contains(id)) return;
             string prefabPath = "Assets/Prefabs/Equipment/" + id + ".prefab";
             // Nested model instances refresh on reimport. Never overwrite authored component overrides.
             if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) != null) return;
@@ -82,6 +92,7 @@ namespace ProcSense.EditorTools
                 var model = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(modelPath));
                 model.transform.SetParent(root.transform, false);
                 var transforms = model.GetComponentsInChildren<Transform>(true);
+                foreach (var part in transforms.Where(t => t.name.EndsWith("_Wrapped", StringComparison.Ordinal))) part.gameObject.SetActive(false);
                 foreach (var item in metadata.anchors.Where(a => a.name.StartsWith("COL_", StringComparison.Ordinal)))
                 {
                     var anchor = transforms.Single(t => t.name == item.name);
@@ -90,7 +101,7 @@ namespace ProcSense.EditorTools
                     collider.size = item.size;
                 }
                 var body = root.AddComponent<Rigidbody>();
-                body.mass = id == "wristband" ? .01f : 8;
+                body.mass = id == "wristband" ? .01f : Sensors.Contains(id) ? .1f : 8;
                 body.isKinematic = true;
                 body.useGravity = false;
                 var grab = root.AddComponent<XRGrabInteractable>();

@@ -86,7 +86,9 @@ namespace ProcSense.Tests.PlayMode
                 }
                 foreach (var view in Object.FindObjectsByType<StateView>()) view.RenderNow();
                 Assert.IsTrue(host.Observable.IdentityConfirmed);
-                Assert.AreNotEqual("--", Object.FindAnyObjectByType<MonitorView>().ValueText("SpO2"));
+                var monitor = Object.FindObjectsByType<EquipmentSurfaceView>().Single(v => v.Kind == EquipmentSurfaceView.Surface.Monitor);
+                Assert.That(monitor.DisplayText, Does.Contain("SpO2   " + host.Observable.Vitals.Single(v => v.Name == "spo2").Value + "%"));
+                Assert.IsTrue(Object.FindObjectsByType<ProcSense.VR.ActionEmitters.SensorAttachment>().Single(s => s.BuildAction().Params["sensor"] == "spo2").Attached);
             }
         }
 

@@ -37,6 +37,16 @@ Current pilots are already below budget without LOD reduction; a production LOD 
 
 ## Unity behaviour and review
 
+### Bedside sensor extension
+
+`spo2_probe` and `bp_cuff` each contain 600 triangles. Generate either with `task blender-build -- <id>` (or build all), then use **ProcSense → Equipment → Import Bedside Sensors**. **Install Bedside Sensors** adds the physical monitoring group to a saved, open PatientBay, leaves existing room edits intact and disables the three old monitor objects rather than deleting them. Repeated installation is a no-op.
+
+The probe is a generic cabled clip based on the nominal envelope in [the probe sheet](../../docs/research/equipment/11-pulse-oximeter-probe.md), not a replica or a verified interchangeable medical component. The upper shell's 8 mm thickness, hinge and 16 mm placeholder-finger clearance are modelling choices. The cuff uses the sheet's 160 × 300 mm adult bladder reference as a simplified visual envelope; outer textile length, 3 mm thickness and wrapped circumference are provisional. It switches between separate loose/wrapped meshes; it does not simulate cloth, cuff pressure or sizing errors. The extra `_wrapped.png` preview shows that state separately. Hoses/cables are visual curves following the monitor and props; their length is illustrative.
+
+Grab the probe/cuff from the tray, move it to its matching finger/arm socket and release. Interaction bits 9 (probe) and 10 (cuff) isolate the destinations while bit 0 retains controller grabbing. Physical placement/removal emits `attach_sensor` / `detach_sensor`. The monitor's **START BP** key emits `measure_nibp`; Core owns cycle timing, cancellation, rejections and values. Tablet attach/remove controls remain available and synchronize the same physical poses without adding duplicate actions. Public accepted action logs restore attachment presentation on scene return; neither the binding nor cable renderer reads hidden patient state.
+
+The added arm/finger are explicit greybox placeholders pending character work. Sensor variants, waveform/signal quality, cuff-size scoring, cloth, cable collision and headset reach/readability remain open. This extension does not complete the entire bedside-equipment specification.
+
 **ProcSense → Equipment → Open Pilot Review** opens the independent review scene, prompting to save modified scenes. Inspect the monitor face, pump hooks and wristband on the plinth. The existing PatientBay is untouched. To exercise XR interaction, drag a pilot prefab into a temporary bay instance with the current rig/services and enter Play; discard that placement after review.
 
 The import pipeline creates shared URP materials, compound box colliders and grabbable prefabs. Bag hook sockets use interaction layer bit 8; normal layer-0 props must not snap into them. This bit is reserved locally for future compatible bag props. `SOCKET_Wrist` is an alignment marker, **not a functional wrist socket**: patient attachment/fit is not yet implemented. Cable points and door pivot remain named attachment markers.

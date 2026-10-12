@@ -79,6 +79,9 @@ def export(asset):
 
 
 def preview(asset):
+    wrapped = bpy.data.objects.get(f"EQ_{asset}_Wrapped")
+    if wrapped:
+        wrapped.hide_render = True
     scene = bpy.context.scene
     scene.render.engine = "BLENDER_EEVEE_NEXT"
     scene.render.resolution_x = scene.render.resolution_y = 1024
@@ -110,6 +113,16 @@ def preview(asset):
         camera.rotation_euler = (centre-camera.location).to_track_quat("-Z","Y").to_euler()
         scene.render.filepath = str(PREVIEWS / f"{asset}_{name}.png")
         bpy.ops.render.render(write_still=True)
+    if wrapped:
+        for obj in meshes:
+            obj.hide_render = obj != wrapped
+        floor = bpy.data.objects[f"EQ_{asset}_StudioFloor"]
+        floor.location.z = -.06
+        scene.render.filepath = str(PREVIEWS / f"{asset}_wrapped.png")
+        bpy.ops.render.render(write_still=True)
+        floor.location.z = -.006
+        for obj in meshes:
+            obj.hide_render = obj == wrapped
     # Separate human-scale view keeps wristband close-ups readable.
     x = -.7
     geo.box("ScaleTorso", (.34,.17,.56), (x,.13,1.18), "PlasticGrey", .04)

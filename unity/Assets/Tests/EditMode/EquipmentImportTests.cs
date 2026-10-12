@@ -14,6 +14,8 @@ namespace ProcSense.Tests.EditMode
         [TestCase("vital_signs_monitor", .327f, .288f, .182f, 0)]
         [TestCase("iv_pole_pump", .214f, .068f, .124f, 4)]
         [TestCase("wristband", .279f, .001f, .025f, 0)]
+        [TestCase("spo2_probe", .033f, .008f, .056f, 0)]
+        [TestCase("bp_cuff", .300f, .003f, .160f, 0)]
         public void PilotsHaveMetreScaleMaterialsAndIsolatedSockets(string id, float x, float y, float z, int sockets)
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Equipment/" + id + ".prefab");
@@ -24,7 +26,7 @@ namespace ProcSense.Tests.EditMode
             Assert.That(prefab.transform.localScale, Is.EqualTo(Vector3.one));
             Assert.That(prefab.GetComponent<XRGrabInteractable>().attachTransform, Is.Not.Null);
             Assert.That(prefab.GetComponents<BoxCollider>().All(c => c.size.x > 0 && c.size.y > 0 && c.size.z > 0), Is.True);
-            Assert.That(prefab.GetComponentsInChildren<EquipmentSurfaceView>().Length, Is.EqualTo(1));
+            Assert.That(prefab.GetComponentsInChildren<EquipmentSurfaceView>().Length, Is.EqualTo(EquipmentPrefabBuilder.Sensors.Contains(id) ? 0 : 1));
             Assert.That(renderers.SelectMany(r => r.sharedMaterials).All(m => m != null && m.shader.name == "Universal Render Pipeline/Lit"), Is.True);
             var hooks = prefab.GetComponentsInChildren<XRSocketInteractor>();
             Assert.That(hooks.Length, Is.EqualTo(sockets));

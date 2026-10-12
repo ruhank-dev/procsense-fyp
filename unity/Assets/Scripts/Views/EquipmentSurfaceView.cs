@@ -12,6 +12,7 @@ namespace ProcSense.VR.Views
         [SerializeField] private Surface surface;
         [SerializeField] private TMP_Text label;
         public string DisplayText => label != null ? label.text : "";
+        public Surface Kind => surface;
 
         public void Configure(Surface value, TMP_Text text)
         {

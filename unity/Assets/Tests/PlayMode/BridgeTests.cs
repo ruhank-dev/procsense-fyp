@@ -57,6 +57,125 @@ namespace ProcSense.Tests.PlayMode
             new SimAction(verb, "patient", Channel.Vr, parameters.ToDictionary(p => p.key, p => p.value));
 
         // T-B1: one press, one action
+        private SensorAttachment MakeSensor(string sensor, out XRSocketInteractor socket, out XRGrabInteractable grab, out XRInteractionManager manager)
+        {
+            manager = Make<XRInteractionManager>("sensor manager");
+            socket = Make<XRSocketInteractor>("patient socket");
+            socket.interactionManager = manager;
+            grab = Make<XRGrabInteractable>("physical sensor");
+            grab.interactionManager = manager;
+            var home = Make<BoxCollider>("tray pose").transform;
+            home.position = new Vector3(1,1,1);
+            var binding = grab.gameObject.AddComponent<SensorAttachment>();
+            binding.ConfigureSensor(sensor,socket,home);
+            binding.SyncNow();
+            binding.SyncNow(); // Observe the prop clear of the socket after its initial tray reset.
+            if (!binding.Attached) grab.transform.position = socket.transform.position;
+            return binding;
+        }
+
+        [Test]
+        public void Physical_probe_attach_and_immediate_removal_match_core_actions()
+        {
+            var binding=MakeSensor("spo2",out var socket,out var grab,out var manager);
+            manager.SelectEnter((IXRSelectInteractor)socket,(IXRSelectInteractable)grab);
+            binding.SyncNow();
+            Assert.That(_host.Observable.Vitals.Any(v=>v.Name=="spo2"),Is.True);
+            Assert.That(_host.Session.Log.Count,Is.EqualTo(1));
+            manager.SelectExit((IXRSelectInteractor)socket,(IXRSelectInteractable)grab);
+            binding.SyncNow();
+            Assert.That(_host.Observable.Vitals.Any(v=>v.Name=="spo2"),Is.False);
+            Assert.That(_host.Session.Log.Count,Is.EqualTo(2),"Rapid removal cannot be swallowed by cooldown");
+            var content=ContentLoader.Load(UnityContentReader(),"VAR-S1-A");
+            var reference=new Session(content.Cases["VAR-S1-A"],42,SessionMode.Practice,Subsystems.Default(content));
+            reference.Apply(Vr("attach_sensor",("sensor","spo2")));
+            reference.Apply(Vr("detach_sensor",("sensor","spo2")));
+            Assert.That(_host.Session.Log.Hash(),Is.EqualTo(reference.Log.Hash()));
+            Assert.That(_host.Observable.Hash(),Is.EqualTo(reference.Observable.Hash()));
+        }
+
+        [Test]
+        public void Tablet_sensor_actions_restore_pose_without_duplicate_actions_and_reset_clears_it()
+        {
+            var binding=MakeSensor("nibp_cuff",out var socket,out var grab,out var manager);
+            _host.Apply(Vr("attach_sensor",("sensor","nibp_cuff")));
+            binding.SyncNow();
+            Assert.That(grab.interactorsSelecting.Contains(socket),Is.True);
+            Assert.That(_host.Session.Log.Count,Is.EqualTo(1));
+            binding.enabled=false;
+            binding.enabled=true;
+            binding.SyncNow();
+            Assert.That(_host.Session.Log.Count,Is.EqualTo(1));
+            _host.Apply(Vr("detach_sensor",("sensor","nibp_cuff")));
+            binding.SyncNow();
+            Assert.That(grab.isSelected,Is.False);
+            Assert.That(grab.transform.position,Is.EqualTo(new Vector3(1,1,1)));
+            _host.Apply(Vr("attach_sensor",("sensor","nibp_cuff")));
+            binding.SyncNow();
+            _host.StartSession("VAR-S1-A",42,SessionMode.Practice);
+            binding.SyncNow();
+            Assert.That(grab.isSelected,Is.False);
+            Assert.That(binding.Attached,Is.False);
+            Assert.That(_host.Session.Log.Count,Is.Zero);
+        }
+
+        [Test]
+        public void Sensor_hand_and_wrong_socket_do_not_attach_and_rejected_attachment_is_undone()
+        {
+            var binding=MakeSensor("invalid_sensor",out var socket,out var grab,out var manager);
+            var wrong=Make<XRSocketInteractor>("wrong destination");
+            wrong.interactionManager=manager;
+            var hand=Make<XRDirectInteractor>("sensor hand");
+            hand.interactionManager=manager;
+            manager.SelectEnter((IXRSelectInteractor)hand,(IXRSelectInteractable)grab);
+            manager.SelectExit((IXRSelectInteractor)hand,(IXRSelectInteractable)grab);
+            manager.SelectEnter((IXRSelectInteractor)wrong,(IXRSelectInteractable)grab);
+            Assert.That(grab.isSelected, Is.False, "Wrong socket is filtered before selection");
+            Assert.That(_host.Session.Log.Count,Is.Zero);
+            manager.SelectEnter((IXRSelectInteractor)socket,(IXRSelectInteractable)grab);
+            binding.SyncNow();
+            Assert.That(binding.Attached,Is.False);
+            Assert.That(grab.isSelected,Is.False);
+            Assert.That(_host.Observable.LastRejection,Is.EqualTo("UNKNOWN_SENSOR"));
+            Assert.That(_host.Session.Log.Count,Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Physical_cuff_cycle_rejects_missing_cuff_and_uses_core_time()
+        {
+            var measure=Make<XRSelectEmitter>("monitor BP key");
+            measure.Configure("measure_nibp");
+            measure.DebounceSeconds=0;
+            Assert.That(measure.Fire().RejectReason,Is.EqualTo("CUFF_NOT_ATTACHED"));
+            var binding=MakeSensor("nibp_cuff",out var socket,out var grab,out var manager);
+            manager.SelectEnter((IXRSelectInteractor)socket,(IXRSelectInteractable)grab);
+            Assert.That(measure.Fire().Accepted,Is.True);
+            Assert.That(measure.Fire().RejectReason,Is.EqualTo("CYCLE_IN_PROGRESS"));
+            Assert.That(_host.Observable.Vitals.Any(v=>v.Name=="systolic_bp"),Is.False);
+            _host.Tick(45);
+            Assert.That(_host.Observable.Vitals.Any(v=>v.Name=="systolic_bp"),Is.True);
+        }
+
+        [Test]
+        public void Removing_cuff_cancels_pending_cycle_and_reentering_scene_restores_from_accepted_log()
+        {
+            var binding=MakeSensor("nibp_cuff",out var socket,out var grab,out var manager);
+            manager.SelectEnter((IXRSelectInteractor)socket,(IXRSelectInteractable)grab);
+            _host.Apply(Vr("measure_nibp"));
+            manager.SelectExit((IXRSelectInteractor)socket,(IXRSelectInteractable)grab);
+            _host.Tick(45);
+            Assert.That(_host.Observable.Vitals.Any(v=>v.Name=="systolic_bp"),Is.False);
+            _host.Apply(Vr("attach_sensor",("sensor","nibp_cuff")));
+            binding.SyncNow();
+            int count=_host.Session.Log.Count;
+            Object.DestroyImmediate(binding.gameObject);
+            var restored=MakeSensor("nibp_cuff",out var restoredSocket,out var restoredGrab,out var restoredManager);
+            restored.SyncNow();
+            Assert.That(restored.Attached,Is.True);
+            Assert.That(restoredGrab.interactorsSelecting.Contains(restoredSocket),Is.True);
+            Assert.That(_host.Session.Log.Count,Is.EqualTo(count),"Scene removal/restore must not send detach or duplicate attach");
+        }
+
         [Test]
         public void Equipment_surfaces_show_only_observed_values_and_reset_with_session()
         {
