@@ -1,0 +1,4 @@
+# The repository ignores downloaded AI model directories named models/.
+# Unity's own model assets (including imported XR sample meshes) must be versioned.
+!Assets/**/[Mm]odels/
+!Assets/**/[Mm]odels/**

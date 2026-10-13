@@ -3,6 +3,36 @@ version: "3"
 # Run `task --list` to see everything. Install Task: winget install Task.Task
 
 tasks:
+  blender-doctor:
+    desc: Check the exact Blender pilot pipeline version
+    cmds:
+      - uv run --project tools tools/blender/run.py doctor
+
+  blender-build:
+    desc: Build procedural equipment (pass -- asset_id or all)
+    cmds:
+      - uv run --project tools tools/blender/run.py build {{.CLI_ARGS}}
+
+  blender-validate:
+    desc: Validate saved equipment geometry and interaction anchors
+    cmds:
+      - uv run --project tools tools/blender/run.py validate {{.CLI_ARGS}}
+
+  blender-preview:
+    desc: Render the four equipment review views
+    cmds:
+      - uv run --project tools tools/blender/run.py preview {{.CLI_ARGS}}
+
+  blender-build-all:
+    desc: Build, validate, export and render all pilot equipment
+    cmds:
+      - uv run --project tools tools/blender/run.py all
+
+  blender-selftest:
+    desc: Exercise pipeline positive and deliberately invalid geometry
+    cmds:
+      - uv run --project tools tools/blender/run.py selftest
+
   build:
     desc: Build the whole .NET solution (Core, CLI, tests)
     cmds:

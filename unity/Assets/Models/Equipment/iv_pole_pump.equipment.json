@@ -1,0 +1,157 @@
+{
+  "asset": "iv_pole_pump",
+  "anchors": [
+    {
+      "name": "COL_Base",
+      "size": {
+        "x": 0.57,
+        "y": 0.14,
+        "z": 0.57
+      }
+    },
+    {
+      "name": "COL_Pole",
+      "size": {
+        "x": 0.05,
+        "y": 1.9,
+        "z": 0.05
+      }
+    },
+    {
+      "name": "SOCKET_Bag_1",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "SOCKET_Bag_2",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "SOCKET_Bag_3",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "SOCKET_Bag_4",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "SCREEN_Pump",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "PIVOT_Door",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "GRAB_Pole",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "COL_Body",
+      "size": {
+        "x": 0.214,
+        "y": 0.068,
+        "z": 0.124
+      }
+    }
+  ],
+  "materials": {
+    "M_PlasticWhite": {
+      "color": [
+        0.72,
+        0.76,
+        0.78,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.34
+    },
+    "M_PlasticGrey": {
+      "color": [
+        0.055,
+        0.075,
+        0.085,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.38
+    },
+    "M_SteelBrushed": {
+      "color": [
+        0.38,
+        0.43,
+        0.47,
+        1
+      ],
+      "metallic": 0.8,
+      "roughness": 0.3
+    },
+    "M_Chrome": {
+      "color": [
+        0.62,
+        0.67,
+        0.7,
+        1
+      ],
+      "metallic": 0.95,
+      "roughness": 0.18
+    },
+    "M_RubberBlack": {
+      "color": [
+        0.018,
+        0.025,
+        0.028,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.75
+    },
+    "M_ScreenOff": {
+      "color": [
+        0.009,
+        0.023,
+        0.029,
+        1
+      ],
+      "metallic": 0.05,
+      "roughness": 0.24
+    },
+    "M_AccentBlue": {
+      "color": [
+        0.025,
+        0.25,
+        0.35,
+        1
+      ],
+      "metallic": 0.15,
+      "roughness": 0.35
+    }
+  }
+}

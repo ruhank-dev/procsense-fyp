@@ -1,0 +1,127 @@
+{
+  "asset": "spo2_probe",
+  "anchors": [
+    {
+      "name": "GRAB_Probe",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "SOCKET_Finger",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "PIVOT_Jaw",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "ATTACH_Cable",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "COL_Body",
+      "size": {
+        "x": 0.05,
+        "y": 0.04,
+        "z": 0.07
+      }
+    }
+  ],
+  "materials": {
+    "M_PlasticWhite": {
+      "color": [
+        0.72,
+        0.76,
+        0.78,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.34
+    },
+    "M_PlasticGrey": {
+      "color": [
+        0.055,
+        0.075,
+        0.085,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.38
+    },
+    "M_SteelBrushed": {
+      "color": [
+        0.38,
+        0.43,
+        0.47,
+        1
+      ],
+      "metallic": 0.8,
+      "roughness": 0.3
+    },
+    "M_Chrome": {
+      "color": [
+        0.62,
+        0.67,
+        0.7,
+        1
+      ],
+      "metallic": 0.95,
+      "roughness": 0.18
+    },
+    "M_RubberBlack": {
+      "color": [
+        0.018,
+        0.025,
+        0.028,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.75
+    },
+    "M_ScreenOff": {
+      "color": [
+        0.009,
+        0.023,
+        0.029,
+        1
+      ],
+      "metallic": 0.05,
+      "roughness": 0.24
+    },
+    "M_AccentBlue": {
+      "color": [
+        0.025,
+        0.25,
+        0.35,
+        1
+      ],
+      "metallic": 0.15,
+      "roughness": 0.35
+    },
+    "M_FabricNavy": {
+      "color": [
+        0.014,
+        0.04,
+        0.085,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.9
+    }
+  }
+}
