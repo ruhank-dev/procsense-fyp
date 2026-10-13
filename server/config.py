@@ -56,6 +56,14 @@ class Settings(BaseSettings):
     verify_on_upload: bool = True
     internal_key: SecretStr = SecretStr("")   # lets a scheduled job call /internal/verify-pending; empty = that route is closed
     upload_rate_per_hour: int = 120
+    # headset sign-in with a code (p1-backend-s10)
+    device_verification_uri: str = ""      # where a person enters the code (the web dashboard's /device page); empty = this service's own /device address
+    device_login_minutes: int = 10
+    device_poll_seconds: int = 5
+    device_access_minutes: int = 15
+    device_refresh_days: int = 30          # a headset not used for this long must sign in again
+    device_start_per_hour: int = 30        # per caller address, kept in memory
+    device_decide_per_hour: int = 30       # tries to approve a code, per person: guessing a code is not possible in practice, and this makes it slower still
     supported_engine_versions: Annotated[list[str], NoDecode] = []
     supported_content_versions: Annotated[list[str], NoDecode] = []
 
@@ -114,6 +122,13 @@ class Settings(BaseSettings):
     def _verify_batch(cls, value: int) -> int:
         if not 1 <= value <= 50:
             raise ValueError("verify_batch must be between 1 and 50")
+        return value
+
+    @field_validator("device_login_minutes", "device_poll_seconds", "device_access_minutes", "device_refresh_days", "device_start_per_hour", "device_decide_per_hour")
+    @classmethod
+    def _device_limits(cls, value: int) -> int:
+        if not 1 <= value <= 100000:
+            raise ValueError("a device sign-in setting must be between 1 and 100000")
         return value
 
     @field_validator("upload_rate_per_hour")

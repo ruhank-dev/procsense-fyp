@@ -187,11 +187,15 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-139 | Run the engine and server contract check on GitHub too (the engine job writes a session, the server reads it) and turn it to header version 2 when p1-backend-s09 adds the version 2 fields; today it runs in `task ci` only | Pending | p1-backend-s02 | p1-backend-s09 | The published schema and a recorded engine file are already checked in CI |
 | DT-140 | Give the engine a version that changes whenever its behaviour changes (CoreInfo.Version is never bumped), for example by requiring a bump whenever a golden hash changes, so a mismatch caused by an old headset is reported as ENGINE_VERSION_UNSUPPORTED and not as HASH_MISMATCH | Pending | p1-backend-s09 | Ruhan (engine owner) | Today a headset on an older engine looks like a tampered session |
 | DT-141 | Run the verification image check on GitHub (the Linux engine publish, the content per version, the container verifying a session): it was written but could not be run on the author's laptop | Pending | p1-backend-s09 | First run of the `server` job on GitHub | The same steps pass locally with the Windows engine and the stand-in |
+| DT-142 | Delete expired device login requests and long-revoked headset sign-ins (a scheduled clean-up, with the retention work) | Pending | p1-backend-s10 | p1-backend-s12 retention | They hold no secrets (only hashes) and are few |
+| DT-143 | An organisation administrator's button to sign out all headsets of one member, and a list of an organisation's headsets | Pending | p1-backend-s10 | p1-backend-s11 (web dashboard) | Deactivating the member already stops their headsets reaching the organisation |
+| DT-144 | Build the headset half of s10: the sign-in screen, the code view, the token store in the keystore, offline rules (DT-126), the Play Mode tests and EXP-BE-4 | Pending | p1-backend-s10 | Sannan (Unity) | The server half is built and tested; the headset side needs a Quest |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (p1-backend-s10) | Server half of p1-backend-s10 built by Abdul Moiz (headset sign-in with a code, headset tokens, revoking); DT-142 to DT-144 added. |
 | 13 October 2026 (p1-backend-s09) | p1-backend-s09 built by Abdul Moiz: the verify command and the version 2 header on a separate engine branch for review, and the server's verification worker; DT-140 and DT-141 added. |
 | 13 October 2026 (p1-backend-s02) | p1-backend-s02 built by Abdul Moiz (session tables and upload, generated scenario packages, the session-file schema and the engine and server contract); DT-139 added. |
 | 13 October 2026 (p1-backend-s08) | p1-backend-s08 built by Abdul Moiz (accounts, organisations, roles, login-token checks, invitations, cohorts, row-level security, platform-administration script); DT-138 added. |

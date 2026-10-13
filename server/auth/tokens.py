@@ -28,6 +28,7 @@ class Principal:
     user_id: uuid.UUID
     email: str
     claims: dict = field(repr=False)
+    device_session_id: uuid.UUID | None = None   # set when the caller is a headset signed in with a device code (p1-backend-s10); None for a Supabase login
 
 
 def fetch_jwks(url: str, timeout: float = 5.0) -> dict:

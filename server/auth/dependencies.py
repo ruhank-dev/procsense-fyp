@@ -15,10 +15,12 @@ from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 
+from server.auth import device_tokens
 from server.auth.supabase_admin import SupabaseAdmin
 from server.auth.tokens import Principal, TokenError, TokenVerifier
 from server.config import Settings, get_settings
 from server.database import get_session
+from server.repositories import devices
 from server.models.accounts import Membership, Organisation, Profile
 from server.repositories import accounts
 
@@ -45,14 +47,41 @@ def db_session() -> Iterator[Session]:
         raise HTTPException(status_code=503, detail="database_not_configured") from None
 
 
+def _device_principal(token: str) -> Principal:
+    """A headset signed in with a device code (p1-backend-s10): its access token is looked up (by hash) in the database, so a revoked headset is refused on its very next call."""
+    try:
+        gen = get_session()
+        session = next(gen)
+    except RuntimeError:
+        raise HTTPException(status_code=503, detail="database_not_configured") from None
+    try:
+        row = devices.device_for_access_token(session, token)
+        if row is None:
+            log.info("device token refused")
+            raise HTTPException(status_code=401, detail="not_signed_in", headers={"WWW-Authenticate": "Bearer"})
+        return Principal(user_id=row.user_id, email="", claims={}, device_session_id=row.id)
+    finally:
+        gen.close()
+
+
 def current_principal(credentials: HTTPAuthorizationCredentials | None = Depends(_bearer), verifier: TokenVerifier = Depends(get_verifier)) -> Principal:
+    """Either kind of login: the account system's token (the web) or a headset's own token (prefix psd_). The rest of the service does not care which."""
     if credentials is None or credentials.scheme.lower() != "bearer":
         raise HTTPException(status_code=401, detail="not_signed_in", headers={"WWW-Authenticate": "Bearer"})
+    if credentials.credentials.startswith(device_tokens.ACCESS_PREFIX):
+        return _device_principal(credentials.credentials)
     try:
         return verifier.verify(credentials.credentials)
     except TokenError as e:
         log.info("token refused: %s", e)   # the reason goes to the log; the caller only learns that it was refused
         raise HTTPException(status_code=401, detail="not_signed_in", headers={"WWW-Authenticate": "Bearer"}) from None
+
+
+def web_principal(principal: Principal = Depends(current_principal)) -> Principal:
+    """Only a person signed in on the web (the account system's token). A headset's token cannot approve another headset, list devices or change the account."""
+    if principal.device_session_id is not None:
+        raise HTTPException(status_code=403, detail="web_sign_in_required")
+    return principal
 
 
 @dataclass
@@ -76,7 +105,7 @@ def current_user(principal: Principal = Depends(current_principal), session: Ses
 
 
 def require_platform_admin(user: CurrentUser = Depends(current_user)) -> CurrentUser:
-    if not user.profile.is_platform_admin:
+    if not user.profile.is_platform_admin or user.principal.device_session_id is not None:
         raise HTTPException(status_code=403, detail="platform_admin_only")
     return user
 
@@ -93,6 +122,8 @@ def _org_context(minimum: str):
         organisation = accounts.get_organisation(session, organisation_id)
         if organisation is None or not organisation.active:
             raise HTTPException(status_code=404, detail="not_found")
+        if minimum != "trainee" and user.principal.device_session_id is not None:
+            raise HTTPException(status_code=403, detail="web_sign_in_required")   # a headset signs a trainee in to train; administering needs the web
         if user.profile.is_platform_admin:
             return OrgContext(user, organisation, "org_admin")
         membership = user.membership_for(organisation_id)

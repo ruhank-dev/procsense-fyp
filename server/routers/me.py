@@ -4,7 +4,7 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from server.auth.dependencies import CurrentUser, current_user, db_session
+from server.auth.dependencies import CurrentUser, current_user, db_session, web_principal
 from server.repositories import accounts
 from server.schemas.accounts import MeOut, MembershipOut, MePatch
 
@@ -23,7 +23,7 @@ def read_me(user: CurrentUser = Depends(current_user), session: Session = Depend
 
 
 @router.patch("/me", response_model=MeOut)
-def update_me(body: MePatch, user: CurrentUser = Depends(current_user), session: Session = Depends(db_session)) -> MeOut:
+def update_me(body: MePatch, user: CurrentUser = Depends(current_user), _web=Depends(web_principal), session: Session = Depends(db_session)) -> MeOut:
     """The display name is what supervisors and admins of the same organisation see; exports and session data carry only the pseudonymous id."""
     user.profile.display_name = body.display_name.strip()
     session.commit()

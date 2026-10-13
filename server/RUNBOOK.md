@@ -63,6 +63,13 @@ Every uploaded session is replayed by the engine before it counts (p1-backend-s0
 - **When a new headset release uses new content or a new engine,** its sessions are `unverifiable` until the service has that content version (rebuild the image) and, if `SUPPORTED_ENGINE_VERSIONS` is set, that engine version listed.
 - The engine runs with a time limit and without any secret in its environment.
 
+## Headsets signed in with a code
+A headset asks `POST /auth/device/start`, shows the code, and a person signed in on the web approves it (`POST /auth/device/decision`, which the dashboard's `/device` page calls). The headset then receives its own access token (15 minutes) and refresh token (30 days of not being used). Only the SHA-256 of each is in the database.
+- **Sign a headset out:** the person does it from the web (`DELETE /me/devices/{id}`), or the headset signs itself out (`POST /auth/device/logout`). It is refused on its next request. Deactivating a member in an organisation also stops the headset reaching that organisation.
+- **A refresh token used twice** (a copy was made) revokes that headset's sign-in; the headset has to sign in with a code again. The security log line is `procsense.security`; the database row says `refresh_token_reused`.
+- A headset's token works for training (sessions, `/me`). Administering an organisation, approving other headsets and changing the account need a web sign-in.
+- Expired login requests are not deleted yet (DT-142).
+
 ## Rotating a key
 1. **Supabase secret key:** Project Settings > API Keys > New secret key; put the new one everywhere in the table above; check the service works; delete the old one.
 2. **Database password:** Project Settings > Database > reset the password; update both pooler addresses everywhere; redeploy.
