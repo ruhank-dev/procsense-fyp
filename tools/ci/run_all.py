@@ -33,6 +33,30 @@ def replay_round_trip() -> tuple[bool, str]:
         return run(CLI + ["replay", "--log", str(Path(tmp) / "run.session.jsonl")])
 
 
+def verify_session() -> tuple[bool, str]:
+    """A session the engine just wrote has a version 2 header and verifies; the same file with one effect changed (and the header hash made to match) does not (p1-backend-s09)."""
+    import hashlib
+    import json
+    with tempfile.TemporaryDirectory() as tmp:
+        out = str(Path(tmp) / "run.json")
+        ok, text = run(CLI + ["run", "--case", "VAR-S1-A", "--seed", "42", "--actions", "tests/golden/skeleton1_correct.actions.json", "--out", out])
+        if not ok:
+            return False, text
+        log = Path(tmp) / "run.session.jsonl"
+        ok, text = run(CLI + ["verify", "--log", str(log)])
+        verdict = json.loads(next(l for l in text.splitlines() if l.startswith("{")))
+        if not ok or not verdict["ok"] or verdict["header_version"] != 2 or not verdict["facts"]:
+            return False, "the engine's own session did not verify as version 2: " + text[-300:]
+        head, _, body = log.read_text(encoding="utf-8").partition("\n")
+        edited = body.replace('"score:', '"info:', 1) if '"score:' in body else body.replace('"accepted":true', '"accepted":false', 1)
+        old = json.loads(head)["header"]["log_hash"]
+        (Path(tmp) / "edited.session.jsonl").write_text(head.replace(old, hashlib.sha256(edited.encode("utf-8")).hexdigest()) + "\n" + edited, encoding="utf-8", newline="")
+        ok, text = run(CLI + ["verify", "--log", str(Path(tmp) / "edited.session.jsonl")])
+        if ok or '"reason":"HASH_MISMATCH"' not in text:
+            return False, "an edited session was not refused with HASH_MISMATCH: " + text[-300:]
+        return True, "verified the engine's own session and refused an edited one"
+
+
 def package_modes() -> tuple[bool, str]:
     text = ""
     for mode in ("dev", "practice", "assessment"):
@@ -90,6 +114,7 @@ def main(argv: list[str]) -> int:
             ("review-status gate refuses an under-approved case (assessment on a training-only case)", gate_refuses),
             ("replay round trip", replay_round_trip),
             ("a session file the engine just wrote is read by the server (the engine and server contract)", session_file_contract),
+            ("verify command: a session the engine wrote verifies (header version 2); an edited one is refused", verify_session),
             ("session report made from the golden run and valid against its schema", lambda: run(["uv", "run", "--project", "tools", "tools/ci/check_report.py"])),
         ]
         if os.name != "nt":  # Windows checkouts use CRLF; CI (Linux, LF) is the authority for formatting

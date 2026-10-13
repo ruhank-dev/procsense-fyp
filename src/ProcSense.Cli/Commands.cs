@@ -11,8 +11,9 @@ internal static class Commands
 {
     private const string Usage =
         "usage:\n" +
-        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--noise] [--content dir] [--allow-draft] [--skip-integrity]\n" +
+        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--noise] [--session-id guid] [--package-hash sha256] [--content dir] [--allow-draft] [--skip-integrity]\n" +
         "  procsense-sim replay --log session.jsonl [--content dir]\n" +
+        "  procsense-sim verify --log session.jsonl [--out verdict.json] [--html report.html] [--package package.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim report --log session.jsonl --out report.html [--json report.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim next-case --history dir --trainee pseudonym [--mode practice|assessment] [--content dir]\n" +
         "  procsense-sim record-session --history dir --trainee pseudonym --facts report.json\n" +
@@ -28,6 +29,7 @@ internal static class Commands
             {
                 "run" => RunCase(opts),
                 "replay" => ReplayLog(opts),
+                "verify" => Verify(opts),
                 "report" => Report(opts),
                 "next-case" => NextCase(opts),
                 "record-session" => RecordSession(opts),
@@ -56,7 +58,12 @@ internal static class Commands
         var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content), options);
         SessionFile.Play(session, script);
 
-        File.WriteAllText(logPath, SessionFile.Write(session));
+        // header version 2: the host gives the session an id and says which content it was played with, so a server can check it (p1-backend-s09)
+        string sessionId = o.TryGetValue("session-id", out var given) ? Guid.Parse(given).ToString() : Guid.NewGuid().ToString();
+        string contentVersion;
+        try { contentVersion = ContentManifestCheck.Version(Reader(o)); }
+        catch (Exception e) when (e is IOException or ContentException) { contentVersion = "unversioned"; }
+        File.WriteAllText(logPath, SessionFile.Write(session, new SessionMeta(sessionId, contentVersion, o.GetValueOrDefault("package-hash", ""))));
         File.WriteAllText(outPath, $"{{\"case\":\"{caseId}\",\"seed\":\"{seed}\",\"log_hash\":\"{session.Log.Hash()}\",\"state_hash\":\"{session.Observable.Hash()}\",\"observable\":{session.Observable.ToJson()}}}\n");
         Console.WriteLine($"actions applied: {session.Log.Count}");
         Console.WriteLine($"log hash:   {session.Log.Hash()}");
@@ -158,6 +165,22 @@ internal static class Commands
         WriteHistory(path, Need(o, "trainee"), history);
         Console.WriteLine($"recorded session {history.Count} for {Need(o, "trainee")}");
         return 0;
+    }
+
+    // Says whether a saved session replays to its own hash with this engine and this content, and what it scored. Prints one line of JSON (the verdict); exit code 0 only when the session is verified.
+    private static int Verify(Dictionary<string, string> o)
+    {
+        string text = File.ReadAllText(Need(o, "log"));
+        byte[]? package = o.TryGetValue("package", out var packagePath) ? File.ReadAllBytes(packagePath) : null;
+        var result = SessionVerifier.Verify(text, Reader(o), package, checkIntegrity: !o.ContainsKey("skip-integrity"));
+        int headerVersion;
+        try { headerVersion = SessionFile.HeaderOf(text).IsVersion2 ? 2 : 1; } catch (Exception e) when (e is ContentException or ArgumentException or FormatException or InvalidCastException or KeyNotFoundException) { headerVersion = 0; }
+        string json = result.ToJson(headerVersion);
+        if (o.TryGetValue("out", out var outPath)) File.WriteAllText(outPath, json + "\n");
+        if (o.TryGetValue("html", out var htmlPath) && result.Facts != null) File.WriteAllText(htmlPath, result.Facts.ToHtml());
+        Console.WriteLine(json);
+        Console.Error.WriteLine(result.Ok ? $"verified: {result.Result}, end state {(result.EndState.Length == 0 ? "not reached" : result.EndState)}" : $"not verified: {result.Reason}: {result.Detail}");
+        return result.Ok ? 0 : 1;
     }
 
     // Replays a session log and writes what happened as a single readable page (inline CSS, no scripts) and the same facts as JSON.
