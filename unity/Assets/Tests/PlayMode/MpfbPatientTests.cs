@@ -51,6 +51,22 @@ namespace ProcSense.Tests.PlayMode
                 Assert.That(Vector3.Distance(position, band.position), Is.GreaterThan(.005f));
                 Assert.That(before.vertices.Zip(after.vertices, Vector3.Distance).Max(), Is.GreaterThan(.000001f));
                 Assert.AreEqual(actions, SimulationHost.Instance.Session.Log.Count);
+                var gown = GameObject.Find("Draped patient gown").GetComponent<SkinnedMeshRenderer>();
+                Assert.IsTrue(gown.enabled);
+                Assert.AreEqual(body.bones.Length, gown.bones.Length);
+                Assert.IsTrue(gown.sharedMesh.boneWeights.All(w => Mathf.Abs(w.weight0 + w.weight1 + w.weight2 + w.weight3 - 1) < .001f));
+                var upperarm = forearm.parent;
+                var upperRotation = upperarm.localRotation;
+                try
+                {
+                    gown.BakeMesh(before);
+                    upperarm.localRotation = upperRotation * Quaternion.Euler(5, 0, 0);
+                    yield return null;
+                    gown.BakeMesh(after);
+                    Assert.That(before.vertices.Zip(after.vertices, Vector3.Distance).Max(), Is.GreaterThan(.001f));
+                    Assert.AreEqual(actions, SimulationHost.Instance.Session.Log.Count);
+                }
+                finally { upperarm.localRotation = upperRotation; }
             }
             finally
             {
