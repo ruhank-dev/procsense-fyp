@@ -61,7 +61,7 @@ What each dataset and content table is, what is known about its normal and abnor
 | ST-PACKS | Generator parameter packs (planned) | Planned | content/generation/packs/ (planned) | LG-07 | — |
 | ST-BLOCKS | Block library (planned) | Planned | content/blocks/ (planned) | LG-04 | A1; A4 |
 | ST-POOL | Pre-generated validated package pool (planned) | Planned | local pool folder (planned) | FALLBACK-POOL-LIBRARY | — |
-| ST-HISTORY | Trainee history (pseudonymised) | Planned | record-session store; backend store planned | LG-02; LG-13 | D67 |
+| ST-HISTORY | Trainee history (pseudonymised) | Planned | record-session store on the device; hosted database planned (p1-backend-s02) | LG-02; LG-13 | D67 |
 | ST-KB | Scenario knowledge base (planned) | Planned | content/kb (planned) | LG-03; LG-04; LG-09 | — |
 | ST-LEARNER | Learner profiles (planned) | Planned | backend store (planned) | LP-01 | D67; D68 |
 

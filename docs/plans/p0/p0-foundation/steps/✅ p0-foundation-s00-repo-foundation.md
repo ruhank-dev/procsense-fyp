@@ -24,7 +24,7 @@ ProcSense/
 │  └─ ProcSense.Core.Tests/  xUnit tests for Core
 ├─ content/                medical content package (CSV/JSON) — every value traced to docs/research
 ├─ unity/                  Unity 6 URP project (created from Unity Hub in a later step)
-├─ server/                 FastAPI + SQLite backend (P1, later step)
+├─ server/                 FastAPI + PostgreSQL (Supabase) backend (P1, M17)
 ├─ tools/                  Python tools: content pipeline, validators (uv, later step)
 ├─ docs/
 │  ├─ context/             original project docs (read-only reference)

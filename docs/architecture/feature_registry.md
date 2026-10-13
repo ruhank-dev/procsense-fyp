@@ -1897,7 +1897,7 @@ Compare a medical model with the general default. MedGemma is gated under Health
 
 ### E62 — Backend and AI gateway
 
-FastAPI: sessions, upload, reports, audit log, AI gateway (the only path to a model).
+FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard, audit log, AI gateway (the only path to a model).
 
 | Field | Value |
 |---|---|
@@ -1905,7 +1905,7 @@ FastAPI: sessions, upload, reports, audit log, AI gateway (the only path to a mo
 | Status | Planned |
 | AI status | Not applicable (deterministic feature) |
 | Evidence (what exists) | — |
-| Lineage (existing ids) | p1-backend s01 to s06; DT-100 |
+| Lineage (existing ids) | p1-backend s01 to s13; DT-100; ADR-0009 |
 | Method | FastAPI. |
 | LLM-first classification | Not AI. |
 | Models | — |
@@ -1914,12 +1914,12 @@ FastAPI: sessions, upload, reports, audit log, AI gateway (the only path to a mo
 | Depends on | — |
 | Overlaps | — |
 | Deterministic guard | Fully deterministic. |
-| Fallback | Offline mode (CLI, pool). |
+| Fallback | Offline mode on the headset (sessions queue and upload later); command line and pool. |
 | Tests planned | API contract tests |
 | Acceptance | Contract tests pass. |
-| Blockers | hosting and login decision |
+| Blockers | Supabase and hosting accounts (p1-backend-s07); where the AI models run for a sold product (OQ-07) |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
-| Tasks | p1-backend-s01; p1-backend-s02; p1-backend-s06 |
+| Tasks | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 |
 | Phase | PH-06 Backend and AI gateway |
 | Tier | P1 |
 

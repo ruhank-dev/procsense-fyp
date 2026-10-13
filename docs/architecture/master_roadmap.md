@@ -124,17 +124,17 @@ Request, objectives, retrieval, solver selection, skeleton. A fresh case can be 
 
 ### PH-06 — Backend and AI gateway
 
-FastAPI skeleton, sessions, gateway (only path to a model).
+Hosted FastAPI service on PostgreSQL (Supabase): accounts, sessions and verification, gateway (only path to a model).
 
 | Field | Value |
 |---|---|
 | Status | Planned |
 | Depends on | PH-01 |
-| Tasks (plan steps) | p1-backend-s01; p1-backend-s02; p1-backend-s06 |
+| Tasks (plan steps) | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 |
 | Features | E62 |
-| Deliverables | server app; API contract |
+| Deliverables | server app; API contract; hosted environments |
 | Acceptance | contract tests |
-| Blockers | hosting and login decision |
+| Blockers | Supabase and hosting accounts (p1-backend-s07); where the AI models run for a sold product (OQ-07) |
 
 ### PH-07 — LLM serving and benchmark
 
@@ -456,7 +456,7 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | E59 | Urdu and multilingual language | PH-19 | p2-ai-extensions-s04 |
 | E60 | P2 small trained classifier | PH-19 | p2-ai-extensions-s03 |
 | E61 | Medical LLM benchmark (for example MedGemma) | PH-19 | p2-ai-extensions-s05 |
-| E62 | Backend and AI gateway | PH-06 | p1-backend-s01; p1-backend-s02; p1-backend-s06 |
+| E62 | Backend and AI gateway | PH-06 | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 |
 | E63 | On-device speech recognition | PH-19 | p2-ai-extensions-s01 |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | PH-24 | p2-ai-advanced-simulation-s04 |
 | E65 | Fine-tuning an LLM on clinical text | PH-24 | p2-ai-advanced-simulation-s05 |
@@ -471,6 +471,6 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | OQ-03 | Which Piper voices have licences allowing redistribution in the build? | no | licence register per voice |
 | OQ-04 | What novelty thresholds feel fresh to trainees without hurting learning (repetition can help)? | no | pilot study in p1-evaluation-s03 |
 | OQ-05 | Can the PTB-XL class coverage produce hyperkalaemia ECGs, or are parametric T-wave variants needed? | no | p1-dataset-analysis-s03 |
-| OQ-06 | Hosting and login for the backend (local laptop server versus lab server). | no | owner decision; offline-first design does not wait for it |
+| OQ-06 | Hosting and login for the backend. DECIDED 13 October 2026 (ADR-0009): Supabase (PostgreSQL and Auth) with a free container host; revisit before real customers (DT-123). | no | decided; paid plans before real customers |
 | OQ-07 | The clinician questions Q1 to Q13 in clinician_signoff.md: answers improve accuracy but no longer gate development (policy of 12 Oct 2026). | no | research items |
 | OQ-08 | Does Llama 3.2 3B's licence suit this project better or worse than Qwen3 (Apache-2.0)? | no | research before benchmark |

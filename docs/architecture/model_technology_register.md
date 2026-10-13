@@ -316,3 +316,4 @@ Every number above that is not marked measured is an expectation to be confirmed
 | EXT-UNITY | Unity | game engine | Unity terms | project exists | https://unity.com | CMP-UNITY; LG-15 |
 | EXT-CYTOSCAPE | Cytoscape.js | graph visualisation | MIT | documentation only | https://js.cytoscape.org | visualisation |
 | EXT-MERMAID | Mermaid | diagram syntax | MIT | documentation only | https://mermaid.js.org | visualisation |
+| EXT-SUPABASE | Supabase (PostgreSQL and Auth) | hosted database and accounts | Apache-2.0 (open source); hosted service under its terms and plan limits | not set up | https://supabase.com/docs | CMP-BACKEND; ST-HISTORY |

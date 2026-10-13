@@ -2569,7 +2569,7 @@
       "label": "Backend and AI gateway (FastAPI)",
       "group": "g_components",
       "status": "Planned",
-      "description": "Backend and AI gateway (FastAPI). Where: server/ (planned modules). Tests: p1-backend s01 to s06.",
+      "description": "Backend and AI gateway (FastAPI on PostgreSQL, Supabase). Where: server/ (planned modules). Tests: p1-backend s01 to s13.",
       "evidence": [],
       "location": "server/ (planned modules)",
       "traced_to": {
@@ -3013,9 +3013,9 @@
       "label": "Trainee history (pseudonymised)",
       "group": "g_stores",
       "status": "Planned",
-      "description": "Trainee history (pseudonymised) (record-session store; backend store planned).",
+      "description": "Trainee history (pseudonymised) (record-session store on the device; the hosted database holds it per organisation, planned).",
       "evidence": [],
-      "location": "record-session store; backend store planned",
+      "location": "record-session store on the device; hosted database planned (p1-backend-s02)",
       "traced_to": {
         "kind": "direct",
         "features": [
@@ -14697,11 +14697,12 @@
       "kind": "deterministic",
       "status": "Planned",
       "ai_status": "Not applicable (deterministic feature)",
-      "description": "FastAPI: sessions, upload, reports, audit log, AI gateway (the only path to a model).",
+      "description": "FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard, audit log, AI gateway (the only path to a model).",
       "evidence": [],
       "lineage": [
-        "p1-backend s01 to s06",
-        "DT-100"
+        "p1-backend s01 to s13",
+        "DT-100",
+        "ADR-0009"
       ],
       "method": "FastAPI.",
       "llm_first_classification": "Not AI.",
@@ -14715,13 +14716,14 @@
       "inputs": [],
       "outputs": [],
       "deterministic_guard": "Fully deterministic.",
-      "fallback": "Offline mode (CLI, pool).",
+      "fallback": "Offline mode on the headset (sessions queue and upload later); command line and pool.",
       "tests_planned": [
         "API contract tests"
       ],
       "acceptance": "Contract tests pass.",
       "blockers": [
-        "hosting and login decision"
+        "Supabase and hosting accounts (p1-backend-s07)",
+        "where the AI models run for a sold product (OQ-07)"
       ],
       "risks": [
         "rule or table drift from content (mitigated by --check builders and tests)"
@@ -14729,7 +14731,10 @@
       "tasks": [
         "p1-backend-s01",
         "p1-backend-s02",
-        "p1-backend-s06"
+        "p1-backend-s06",
+        "p1-backend-s07",
+        "p1-backend-s08",
+        "p1-backend-s09"
       ],
       "phase": "PH-06",
       "tier": "P1",
@@ -14740,7 +14745,10 @@
           "validator"
         ],
         "missing": [
-          "FastAPI app"
+          "FastAPI app",
+          "accounts and organisations",
+          "session verification",
+          "web dashboard"
         ],
         "deterministic_foundation": "Contracts.",
         "ai_questions": {
@@ -14796,7 +14804,10 @@
             "tasks": [
               "p1-backend-s01",
               "p1-backend-s02",
-              "p1-backend-s06"
+              "p1-backend-s06",
+              "p1-backend-s07",
+              "p1-backend-s08",
+              "p1-backend-s09"
             ]
           }
         ],
@@ -14807,13 +14818,13 @@
           "other_features": "All."
         },
         "prerequisites": [
-          "hosting decision (OQ-06)"
+          "Supabase and free container host set up (p1-backend-s07)"
         ],
         "status_rationale": "Planned.",
         "reassessment": "Keep.",
         "staged_versions": {
-          "initial": "Local.",
-          "future": "Lab server."
+          "initial": "Hosted on free plans: Supabase (PostgreSQL and Auth) and a free container host.",
+          "future": "Paid plans; AI models hosted per OQ-07."
         },
         "deliverables": [
           "server"
@@ -14831,7 +14842,10 @@
         "steps": [
           "p1-backend-s01",
           "p1-backend-s02",
-          "p1-backend-s06"
+          "p1-backend-s06",
+          "p1-backend-s07",
+          "p1-backend-s08",
+          "p1-backend-s09"
         ],
         "plans": [
           "docs/architecture/feature_plans/E62.md"
@@ -23550,6 +23564,18 @@
       "used_by": [
         "visualisation"
       ]
+    },
+    {
+      "id": "EXT-SUPABASE",
+      "name": "Supabase (PostgreSQL and Auth)",
+      "kind": "hosted database and accounts",
+      "licence": "Apache-2.0 (open source); hosted service under its terms and plan limits",
+      "url": "https://supabase.com/docs",
+      "status": "not set up",
+      "used_by": [
+        "CMP-BACKEND",
+        "ST-HISTORY"
+      ]
     }
   ],
   "datasets": [
@@ -24255,14 +24281,15 @@
     {
       "id": "PH-06",
       "name": "Backend and AI gateway",
-      "objective": "FastAPI skeleton, sessions, gateway (only path to a model).",
+      "objective": "Hosted FastAPI service on PostgreSQL (Supabase): accounts, sessions and verification, gateway (only path to a model).",
       "depends_on": [
         "PH-01"
       ],
       "status": "Planned",
       "deliverables": [
         "server app",
-        "API contract"
+        "API contract",
+        "hosted environments"
       ],
       "acceptance": [
         "contract tests"
@@ -24270,7 +24297,10 @@
       "tasks": [
         "p1-backend-s01",
         "p1-backend-s02",
-        "p1-backend-s06"
+        "p1-backend-s06",
+        "p1-backend-s07",
+        "p1-backend-s08",
+        "p1-backend-s09"
       ],
       "features": [
         "E62"
@@ -25066,9 +25096,9 @@
     },
     {
       "id": "OQ-06",
-      "question": "Hosting and login for the backend (local laptop server versus lab server).",
+      "question": "Hosting and login for the backend. DECIDED 13 October 2026 (ADR-0009): Supabase (PostgreSQL and Auth) with a free container host; revisit before real customers (DT-123).",
       "blocking": false,
-      "resolve_by": "owner decision; offline-first design does not wait for it"
+      "resolve_by": "decided; paid plans before real customers"
     },
     {
       "id": "OQ-07",

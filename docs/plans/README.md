@@ -4,6 +4,8 @@
 
 **Work order (10 Oct 2026): data first.** All data work (walkthrough extraction, clinical tables, decision rules, flow maps, cases, datasets, synthetic data, ultrasound images with reports, review pack) is done before the remaining engine and VR work: [p0/data-first-order.md](p0/data-first-order.md), [ADR-0002](../decisions/ADR-0002-data-first-order.md).
 
+**Backend moved forward (13 Oct 2026).** The product will be sold as software as a service, so the hosted backend (accounts, organisations, session upload, dashboard; milestone M17) is built alongside the VR work instead of after the P0 release: [ADR-0009](../decisions/ADR-0009-supabase-postgres-cloud-backend.md), [p1/p1-backend](p1/p1-backend/README.md).
+
 **Full scope, no deadlines.** Nothing is cut. P0 / P1 / P2 is the **build order** (what the next layer stands on),
 not a list of optional features.
 
@@ -57,7 +59,7 @@ docs/plans/
 | P0 | [p0-evaluation-performance](p0/p0-evaluation-performance/) | Golden runs, CI, profiling, clinical playthrough review, usability, release | everything P0 |
 | P1 | [p1-theatre-extension](p1/p1-theatre-extension/) | Step 15 Sign Out, intra-op events, recovery handover (+ its equipment) | P0 |
 | P1 | [p1-case-library-extended](p1/p1-case-library-extended/) | Remaining 10 variants + 6 stacked cases | p0-case-library |
-| P1 | [p1-backend](p1/p1-backend/) | Optional FastAPI + SQLite server: session sync, reports, AI gateway | p0-core-engine |
+| P1 | [p1-backend](p1/p1-backend/) | Hosted FastAPI service on PostgreSQL (Supabase): accounts and organisations, session upload with server-side verification, dashboard, privacy, operations on free hosting; then audit log and AI gateway. Built early, in milestone M17 ([ADR-0009](../decisions/ADR-0009-supabase-postgres-cloud-backend.md)) | p0-core-engine, p0-scoring-debrief, p0-case-library |
 | P1 | [p1-ai-language](p1/p1-ai-language/) | Grounding validator, LLM dialogue, staff AI, classifier, AI debrief | p1-backend |
 | P1 | [p1-voice-input](p1/p1-voice-input/) | Speech recognition, voice orders + read-back, live TTS | p1-backend, p0-voice-audio |
 | P1 | [p1-scenario-composer-difficulty](p1/p1-scenario-composer-difficulty/) | Composer solver, AI Stage A proposals, difficulty explanations | p0-case-library, p1-ai-language |

@@ -49,7 +49,7 @@
       "actor": "calendar",
       "label": "PH-06",
       "title": "Backend and AI gateway",
-      "text": "Planned. FastAPI skeleton, sessions, gateway (only path to a model). 3 tasks, 1 features.",
+      "text": "Planned. Hosted FastAPI service on PostgreSQL (Supabase): accounts, sessions and verification, gateway (only path to a model). 6 tasks, 1 features.",
       "tone": "blue"
     },
     {

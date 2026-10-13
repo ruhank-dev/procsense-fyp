@@ -26,7 +26,7 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `tests/` | xUnit tests; `tests/golden` golden runs; `tests/fixtures` test-only cases; `tests/samples` example action scripts |
 | `content/` | Medical content package (every value traced in `docs/research/`) |
 | `unity/` | Unity VR project (later) |
-| `server/` | FastAPI + SQLite backend (later, P1) |
+| `server/` | FastAPI + PostgreSQL (Supabase) backend (P1, milestone M17) |
 | `tools/` | Python content/validation tools; `tools/blender/` procedural equipment scripts (later) |
 | `docs/plans/` | Plan: tiers `p0/ p1/ p2/` → phases → steps — start at `docs/plans/README.md` |
 | `docs/research/` | Proof of truth: source register, dataset register, open medical issues |

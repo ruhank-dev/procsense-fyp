@@ -87,7 +87,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | E59 | Urdu and multilingual language | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s04 | PH-19 | [E59](feature_plans/E59.md) |
 | E60 | P2 small trained classifier | Blocked | ai | 1 (1) | yes | p2-ai-extensions-s03 | PH-19 | [E60](feature_plans/E60.md) |
 | E61 | Medical LLM benchmark (for example MedGemma) | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s05 | PH-19 | [E61](feature_plans/E61.md) |
-| E62 | Backend and AI gateway | Planned | deterministic | 1 (0) | yes | p1-backend-s01; p1-backend-s02; p1-backend-s06 | PH-06 | [E62](feature_plans/E62.md) |
+| E62 | Backend and AI gateway | Planned | deterministic | 1 (0) | yes | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 | PH-06 | [E62](feature_plans/E62.md) |
 | E63 | On-device speech recognition | Planned | ai | 1 (1) | yes | p2-ai-extensions-s01 | PH-19 | [E63](feature_plans/E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | Deferred | ai | 1 (1) | yes | p2-ai-advanced-simulation-s04 | PH-24 | [E64](feature_plans/E64.md) |
 | E65 | Fine-tuning an LLM on clinical text | Deferred | ai | 1 (1) | yes | p2-ai-advanced-simulation-s05 | PH-24 | [E65](feature_plans/E65.md) |

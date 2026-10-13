@@ -2,7 +2,7 @@
 
 ## Where the developer is strong
 - **Pure C# engine** (Core): write, test, replay, profile — fully verifiable from the terminal.
-- **Backend** (FastAPI, SQLite, tests, Docker).
+- **Backend** (FastAPI, PostgreSQL on Supabase, tests, Docker).
 - **Medical research and data**: guidelines, cross-checks, datasets, licences, synthetic data, source register.
 - **Unity C# scripts**: MonoBehaviours, editor scripts, Play Mode/Edit Mode tests, build scripts, shaders as text.
 - **Blender Python (`bpy`) scripts** for all equipment and props — and the developer can run Blender **headless**, render
@@ -35,7 +35,7 @@
 - Greybox first (rooms + simple stand-ins), then swap in the Blender assets as they are ready.
 
 ## Backend approach (decided)
-- The developer leads; INSTRUCTIONS §4b/§5/§5b. Optional server (P1) — the headset works without it.
+- The developer leads; INSTRUCTIONS §4b/§5/§5b. Hosted service on PostgreSQL (Supabase) with accounts and organisations (ADR-0009); the engine runs on the headset, so play works without a connection and results upload when one is available.
 
 ## Feedback loop
 

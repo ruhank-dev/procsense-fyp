@@ -121,7 +121,7 @@
       "actor": "gear",
       "label": "E62 P1 PH-06",
       "title": "Backend and AI gateway",
-      "text": "Planned. FastAPI: sessions, upload, reports, audit log, AI gateway (the only path to a model).1 capability plans.",
+      "text": "Planned. FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard…1 capability plans.",
       "tone": "blue"
     },
     {
