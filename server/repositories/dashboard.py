@@ -106,12 +106,15 @@ def report_row(db: DbSession, organisation_id: uuid.UUID, session_id: uuid.UUID)
     return (found[0], found[1]) if found else None
 
 
-def export_rows(db: DbSession, organisation_id: uuid.UUID | None, f: Filters) -> Iterator[tuple]:
+def export_rows(db: DbSession, organisation_id: uuid.UUID | None, f: Filters, research_only: bool = False) -> Iterator[tuple]:
     """One row per verified session, pseudonymous: no names, no emails. `organisation_id` None = every organisation (the platform administrator's export, which the caller relabels)."""
     critical = (select(func.count()).select_from(SessionScoreItem).where(SessionScoreItem.session_id == Session.id, SessionScoreItem.status == "critical").correlate(Session).scalar_subquery())
     credits = (select(func.coalesce(func.sum(SessionBehaviour.credits), 0)).where(SessionBehaviour.session_id == Session.id).correlate(Session).scalar_subquery())
     penalties = (select(func.coalesce(func.sum(SessionBehaviour.penalties), 0)).where(SessionBehaviour.session_id == Session.id).correlate(Session).scalar_subquery())
     conds = _conditions(organisation_id, f)
+    if research_only:
+        from server.repositories import privacy
+        conds.append(Session.user_id.in_(privacy.research_consenting_users()))   # a person who did not agree to research use is not in a research export (T-PR4)
     stmt = (select(Session.id, Session.organisation_id, Profile.pseudonym, Session.case_id, Session.mode, Session.result, Session.end_state, Session.process_score, credits, penalties, critical,
                    Session.content_version, Session.engine_version, Session.received_at, Session.verified_at)
             .join(Profile, Profile.user_id == Session.user_id).where(and_(*conds)).order_by(Session.received_at, Session.id).limit(MAX_EXPORT_ROWS))

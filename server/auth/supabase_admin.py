@@ -16,6 +16,10 @@ class InviteError(Exception):
     pass
 
 
+class DeleteUserError(Exception):
+    pass
+
+
 class SupabaseAdmin:
     def __init__(self, base_url: str, secret_key: str, transport: httpx.BaseTransport | None = None, timeout: float = 10.0):
         self._base = base_url.rstrip("/")
@@ -47,3 +51,14 @@ class SupabaseAdmin:
         if response.status_code in (400, 409, 422) and ("already" in text and ("registered" in text or "exists" in text)):
             return ALREADY_REGISTERED
         raise InviteError(f"supabase_refused_{response.status_code}")
+
+    def delete_user(self, user_id: str) -> None:
+        """Removes the person's account (and with it their email address and password) from Supabase Auth (p1-backend-s12). A person who is already gone counts as deleted."""
+        if not self.configured:
+            raise DeleteUserError("supabase_not_configured")
+        try:
+            response = self._client.delete(f"{self._base}/auth/v1/admin/users/{user_id}", headers={"apikey": self._key})
+        except httpx.HTTPError as e:
+            raise DeleteUserError("supabase_unreachable") from e
+        if response.status_code not in (200, 204, 404):
+            raise DeleteUserError(f"supabase_refused_{response.status_code}")

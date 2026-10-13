@@ -38,6 +38,8 @@ class SigningKey:
 class FakeAdmin:
     """Stands in for Supabase's invitation call; remembers what it was asked to send."""
     sent: list[str] = field(default_factory=list)
+    deleted: list[str] = field(default_factory=list)
+    delete_fails: bool = False
     result: str = "sent"
     configured: bool = True
 
@@ -47,3 +49,9 @@ class FakeAdmin:
             from server.auth.supabase_admin import InviteError
             raise InviteError("supabase_unreachable")
         return self.result
+
+    def delete_user(self, user_id: str) -> None:
+        if self.delete_fails:
+            from server.auth.supabase_admin import DeleteUserError
+            raise DeleteUserError("supabase_unreachable")
+        self.deleted.append(str(user_id))

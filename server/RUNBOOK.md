@@ -63,6 +63,13 @@ Every uploaded session is replayed by the engine before it counts (p1-backend-s0
 - **When a new headset release uses new content or a new engine,** its sessions are `unverifiable` until the service has that content version (rebuild the image) and, if `SUPPORTED_ENGINE_VERSIONS` is set, that engine version listed.
 - The engine runs with a time limit and without any secret in its environment.
 
+## Privacy and retention
+`server/PRIVACY.md` is the data map (what is held, where, who reads it, how long). Operating it:
+- **Daily clean-up:** `python -m server.jobs.retention` or `POST /internal/retention` with the internal key (p1-backend-s13 schedules it). It removes the stored recording and report page of sessions older than the organisation's period (24 months unless an administrator chose 6 to 60 on the Privacy page), rejects pending sessions that were purged, deletes access-log rows older than 24 months and clears the email of invitations nobody accepted a month after they expired. Results and totals are never touched.
+- **A person asks to be deleted:** they do it themselves on the Privacy page. If they cannot sign in, a platform administrator deletes the sign-in account in the Supabase dashboard and the person's sessions stay linked to a profile with no name; a command for that is DT-156.
+- **A new consent text:** change `CONSENT_VERSION` in `server/privacy.py`; everyone is asked again at their next sign-in and uploads from people who have not agreed to the new text are refused (`403 consent_required`) until they do.
+- Never put an email, name or token in a log line on purpose; the cleaner (`server/logging_setup.py`) is a safety net, not permission.
+
 ## The web pages
 The service also serves the web pages (`server/static/`, one small page with plain JavaScript, no build step): `/` (sign in and the dashboard), `/device` (approve a headset code; the code in the address `?code=` is filled in), `/reset` (password reset). `/config.json` gives the page the Supabase project address and the publishable key.
 - **Try them on a laptop** with sample data and a pretend sign-in (never in production): `TEST_DATABASE_URL=... uv run --project server python -m server.tests.browser_stack --port 8765`, then open http://127.0.0.1:8765/ and sign in as `admin@alpha.test`, `supervisor@alpha.test`, `trainee@alpha.test` or `supervisor@beta.test` with the password the command prints when it starts.

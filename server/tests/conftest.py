@@ -24,6 +24,7 @@ from server.auth import dependencies
 from server.database import make_engine
 from server.main import create_app
 from server.repositories import accounts
+from server.repositories import privacy as privacy_repository
 from server.routers import sessions as sessions_router
 from server.verification import worker
 from server.tests.support import SUPABASE_URL, FakeAdmin, SigningKey
@@ -117,10 +118,12 @@ class Api:
             session.commit()
             return result
 
-    def person(self, session: Session, *, platform_admin: bool = False) -> uuid.UUID:
+    def person(self, session: Session, *, platform_admin: bool = False, consent: bool = True) -> uuid.UUID:
         user_id = uuid.uuid4()
         profile = accounts.ensure_profile(session, user_id)
         profile.is_platform_admin = platform_admin
+        if consent:
+            privacy_repository.record_consent(session, user_id, "results", True)   # test people have agreed to the storing of their results (p1-backend-s12); tests of the refusal use `person(..., consent=False)`
         return user_id
 
 

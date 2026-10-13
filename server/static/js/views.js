@@ -1,5 +1,5 @@
 // The pages. Each view gets a context { org, me, say(text, kind), go(route) } and returns an element to show. Everything shown from the database goes in as text (see dom.js).
-import { api, ApiError, requestPasswordReset, setNewPassword, signIn } from './api.js';
+import { api, ApiError, requestPasswordReset, setNewPassword, signIn, signOut } from './api.js';
 import { barChart, lineChart } from './charts.js';
 import { h, number, table, when } from './dom.js';
 
@@ -110,7 +110,8 @@ export async function sessionsView(ctx, state = { offset: 0, mode: '', status: '
 }
 
 export async function reportView(ctx, sessionId) {
-  const [report, page] = await Promise.all([api.get(`${base(ctx)}/sessions/${sessionId}/report`), api.getText(`${base(ctx)}/sessions/${sessionId}/report.html`).catch(() => null)]);
+  const report = await api.get(`${base(ctx)}/sessions/${sessionId}/report`);
+  const page = await api.getText(`${base(ctx)}/sessions/${sessionId}/report.html`).catch(() => null);   // one after the other: the access log records one look, not two at once
   const frame = page === null ? h('p', { class: 'muted', text: 'The full report page is not available for this session.' })
     : h('iframe', { class: 'report', title: 'Session report', sandbox: '', srcdoc: page });   // sandbox with no permissions: the report cannot run script or reach the rest of the page
   return h('section', {}, h('p', {}, h('a', { href: '#/sessions', text: '← Back to sessions' })),
@@ -187,4 +188,65 @@ export function deviceView(ctx) {
     h('p', { text: 'Type the code the headset shows. Approve it only if you are the person who is putting the headset on, and you started this sign-in yourself.' }),
     h('div', { class: 'form-narrow' }, field('Code from the headset', code), h('p', { id: 'code-help', class: 'muted', text: 'Like BCDF-GHJK. Capitals or small letters both work.' }),
       h('div', { class: 'row' }, h('button', { text: 'Approve', onclick: decide(true) }), h('button', { class: 'danger', text: 'Deny', onclick: decide(false) }))), result);
+}
+
+// ---- consent and privacy ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export function consentView(ctx, state, after) {
+  const boxes = {};
+  const blocks = state.kinds.map((k) => {
+    boxes[k.kind] = h('input', { id: `consent-${k.kind}`, type: 'checkbox', checked: k.granted === true && k.current });
+    return h('div', { class: 'card' }, h('h2', { text: k.title }), h('p', { text: k.text }),
+      h('label', { class: 'inline' }, boxes[k.kind], k.required ? ' I agree (needed to store my sessions)' : ' I agree (optional)'));
+  });
+  return h('section', {}, h('h1', { text: 'Your data and your choices' }),
+    h('p', { text: 'Please read this before you continue. You can change your choices later on the Privacy page.' }), ...blocks,
+    h('div', { class: 'row' }, h('button', { text: 'Save my choices', onclick: guard(ctx, async () => {
+      for (const k of state.kinds) {
+        const now = boxes[k.kind].checked;
+        if (k.required && !now) { ctx.say('You can use ProcSense only if you agree to the first one: otherwise your sessions cannot be stored.', 'error'); return; }
+        if (now !== (k.granted === true && k.current) || (k.required && !k.current)) await api.post('/privacy/consent', { kind: k.kind, granted: now });
+      }
+      ctx.say('Your choices are saved.', 'ok');
+      await after();
+    }) })));
+}
+
+async function downloadMyData(ctx) {
+  const text = await api.getText('/privacy/export');
+  const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+  const link = h('a', { href: url, download: 'my-procsense-data.json' });
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  ctx.say('Your data was downloaded.', 'ok');
+}
+
+const WHAT = { view_report: 'Opened a session report', view_progress: 'Opened my progress', view_sessions: 'Opened my session list', export: 'Exported results that include me' };
+
+export async function privacyView(ctx, consentState) {
+  const [entries, retention] = await Promise.all([api.get('/privacy/access-log'), ctx.org.role === 'org_admin' ? api.get(`${base(ctx)}/retention`) : Promise.resolve(null)]);
+  const confirm = h('input', { id: 'delete-confirm', autocomplete: 'off', 'aria-describedby': 'delete-help' });
+  const months = retention ? h('input', { id: 'retention', type: 'number', min: 6, max: 60, value: retention.retention_months ?? '', placeholder: String(retention.default_months) }) : null;
+  const change = () => ctx.show(() => consentView(ctx, consentState, async () => { await ctx.refreshConsent(); ctx.go('#/privacy'); }));
+  return h('section', {}, h('h1', { text: 'Privacy' }),
+    h('h2', { text: 'My choices' }), table(['Question', 'My answer'], consentState.kinds.map((k) => [k.title, k.granted === null ? 'Not answered' : (k.granted ? 'Yes' : 'No')])),
+    h('div', { class: 'row' }, h('button', { class: 'secondary', text: 'Change my choices', onclick: change })),
+    h('h2', { text: 'Who looked at my data' }),
+    entries.length ? table(['When', 'Who', 'Role', 'What', 'Organisation'], entries.map((e) => [when(e.at), e.viewer, e.viewer_role.replace('_', ' '), WHAT[e.action] || e.action, e.organisation]),
+      'Supervisors and administrators of my organisations. Totals over many people are not listed.') : h('p', { class: 'muted', text: 'Nobody has opened your results one by one.' }),
+    h('h2', { text: 'Download my data' }), h('p', { text: 'Everything ProcSense holds about you, in one file. The stored recordings of your sessions are not in it; ask your administrator if you need them.' }),
+    h('div', { class: 'row' }, h('button', { text: 'Download my data', onclick: guard(ctx, () => downloadMyData(ctx)) })),
+    retention ? [h('h2', { text: 'How long this organisation keeps session recordings' }),
+      h('p', { class: 'muted', text: `After this time the stored recording and report page of a session are removed; the results and totals stay. Empty means the platform's ${retention.default_months} months. Allowed: 6 to 60.` }),
+      h('div', { class: 'row' }, field('Months', months), h('button', { text: 'Save', onclick: guard(ctx, async () => { await api.put(`${base(ctx)}/retention`, { retention_months: months.value === '' ? null : Number(months.value) }); ctx.say('Saved.', 'ok'); }) }))] : null,
+    h('h2', { text: 'Delete my data' }),
+    h('p', { text: "This deletes your sign-in account and cuts every link between you and your sessions. Your name, your email address and your id are gone. Your sessions stay in your organisation's totals without any link to you, so the numbers do not change. It cannot be undone." }),
+    h('p', { id: 'delete-help', class: 'muted', text: 'If you are the only administrator of an organisation, hand that over first.' }),
+    h('div', { class: 'row' }, field('Type DELETE to confirm', confirm), h('button', { class: 'danger', text: 'Delete my data', onclick: guard(ctx, async () => {
+      await api.post('/privacy/delete-my-data', { confirm: confirm.value });
+      signOut();
+      ctx.say('Your data was deleted and you were signed out. Thank you for using ProcSense.', 'ok');
+    }) })));
 }

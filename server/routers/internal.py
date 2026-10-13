@@ -5,7 +5,11 @@ import hmac
 
 from fastapi import APIRouter, Depends, Header, HTTPException
 
+from sqlalchemy.orm import Session as DbSession
+
+from server.auth.dependencies import db_session
 from server.config import Settings, get_settings
+from server.jobs import retention
 from server.verification.worker import get_runner, verify_pending
 
 router = APIRouter(prefix="/internal", tags=["internal"], include_in_schema=False)
@@ -25,3 +29,9 @@ def run_verification_sweep(_: None = Depends(internal_key), settings: Settings =
     if get_runner() is None:
         return {"processed": 0, "configured": False}
     return verify_pending(settings.verify_batch)
+
+
+@router.post("/retention")
+def run_retention(_: None = Depends(internal_key), db: DbSession = Depends(db_session), settings: Settings = Depends(get_settings)) -> dict:
+    """Removes what has passed its retention period (p1-backend-s12). A scheduled job calls this daily."""
+    return retention.run(db, settings)

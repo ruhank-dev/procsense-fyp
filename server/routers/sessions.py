@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session as DbSession
 from server.auth.dependencies import OrgContext, db_session, require_member
 from server.config import Settings, get_settings
 from server.ratelimit import RateLimiter
+from server.repositories import privacy as privacy_repository
 from server.repositories import sessions as repository
 from server.schemas.sessions import SessionStatus, UploadReply
 from server.sessionfile import SessionFileError, parse_session_file
@@ -66,6 +67,8 @@ async def _read_body(request: Request, limit: int) -> bytes:
 async def upload_session(request: Request, response: Response, background: BackgroundTasks, ctx: OrgContext = Depends(require_member), db: DbSession = Depends(db_session),
                          settings: Settings = Depends(get_settings)) -> UploadReply:
     user_id = ctx.user.profile.user_id
+    if settings.consent_required_for_upload and not privacy_repository.has_current(db, user_id, "results"):
+        raise HTTPException(status_code=403, detail={"code": "consent_required"})   # the person has not agreed (to the current text) to their results being stored: the web page asks
     if not _limiter().allow(user_id):
         raise HTTPException(status_code=429, detail="too_many_uploads", headers={"Retry-After": "600"})
     data = await _read_body(request, settings.max_upload_bytes)

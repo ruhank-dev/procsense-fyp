@@ -90,7 +90,7 @@ def test_the_pages_work_in_a_real_browser(stack, browser):
     # a trainee: own pages only, and asking for the overview by address shows their own progress
     sign_in(page, base, "trainee@alpha.test")
     page.get_by_role("heading", name="My progress").wait_for()
-    assert links(page) == ["My progress", "Sessions", "Sign in a headset"]
+    assert links(page) == ["My progress", "Sessions", "Sign in a headset", "Privacy"]
     page.goto(base + "/")      # a reload signs a person out: the token lives in memory only
     page.get_by_role("heading", name="Sign in").wait_for()
     sign_in(page, base, "trainee@alpha.test")
@@ -106,7 +106,7 @@ def test_the_pages_work_in_a_real_browser(stack, browser):
     page.get_by_role("heading", name="Sign in").wait_for()
     sign_in(page, base, "supervisor@alpha.test")
     page.get_by_role("heading", name="My progress").wait_for()
-    assert links(page) == ["My progress", "Sessions", "Overview", "Sign in a headset"]
+    assert links(page) == ["My progress", "Sessions", "Overview", "Sign in a headset", "Privacy"]
     page.get_by_role("link", name="Overview").click()
     page.get_by_role("heading", name="Overview of Alpha Hospital").wait_for()
     assert page.locator(".tile .n").first.inner_text() == "9"   # the nine of this organisation; the two of the other one are not counted
@@ -123,7 +123,7 @@ def test_the_pages_work_in_a_real_browser(stack, browser):
     # an organisation administrator also sees People
     sign_in(page, base, "admin@alpha.test")
     page.get_by_role("heading", name="My progress").wait_for()
-    assert links(page) == ["My progress", "Sessions", "Overview", "People", "Sign in a headset"]
+    assert links(page) == ["My progress", "Sessions", "Overview", "People", "Sign in a headset", "Privacy"]
     page.get_by_role("link", name="People").click()
     page.get_by_role("heading", name="People").wait_for()
     assert page.locator("main img").count() == 0
@@ -136,6 +136,32 @@ def test_the_pages_work_in_a_real_browser(stack, browser):
     page.get_by_role("heading", name="Overview of Beta Clinic").wait_for()
     assert page.locator(".tile .n").first.inner_text() == "2"
     page.get_by_role("button", name="Sign out").click()
+
+    # a person sees who opened their report (the supervisor above did)
+    sign_in(page, base, "trainee@alpha.test")
+    page.get_by_role("heading", name="My progress").wait_for()
+    page.get_by_role("link", name="Privacy").click()
+    page.get_by_role("heading", name="Privacy").wait_for()
+    page.get_by_text("Opened a session report").wait_for()
+    page.get_by_role("button", name="Sign out").click()
+
+    # a person who has not agreed yet is asked first and cannot skip the required question; then download and delete their data
+    sign_in(page, base, "colleague@alpha.test")
+    page.get_by_role("heading", name="Your data and your choices").wait_for()
+    page.get_by_role("button", name="Save my choices").click()
+    page.get_by_text("You can use ProcSense only if you agree").wait_for()
+    page.get_by_label("needed to store my sessions").check()
+    page.get_by_role("button", name="Save my choices").click()
+    page.get_by_role("heading", name="My progress").wait_for()
+    page.get_by_role("link", name="Privacy").click()
+    page.get_by_role("heading", name="Privacy").wait_for()
+    with page.expect_download() as download:
+        page.get_by_role("button", name="Download my data").click()
+    assert download.value.suggested_filename == "my-procsense-data.json"
+    page.get_by_label("Type DELETE to confirm").fill("DELETE")
+    page.get_by_role("button", name="Delete my data").click()
+    page.get_by_text("Your data was deleted and you were signed out.").wait_for()
+    page.get_by_role("heading", name="Sign in").wait_for()
 
     # a headset code approved on the web is collected by the headset
     started = page.request.post(base + "/auth/device/start", data={"device_name": "Quest test"}).json()

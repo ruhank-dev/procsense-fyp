@@ -27,6 +27,8 @@ th { background: #eef2f7; font-weight: 600; }
 .scroll { overflow-x: auto; }
 form.row, .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: end; margin: .5rem 0 1rem; }
 label { display: grid; gap: .2rem; font-size: .9rem; color: var(--muted); }
+label.inline { display: flex; gap: .5rem; align-items: center; color: var(--ink); font-size: 1rem; }
+input[type=checkbox] { width: 1.2rem; height: 1.2rem; }
 input, select, button { font: inherit; padding: .45rem .6rem; border: 1px solid var(--line); border-radius: .4rem; background: #fff; color: var(--ink); }
 button { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); cursor: pointer; }
 button.secondary { background: #fff; color: var(--accent); }

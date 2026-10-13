@@ -19,6 +19,7 @@ from sqlalchemy.orm import Session as DbSession
 from server.auth.dependencies import CurrentUser, OrgContext, db_session, require_platform_admin, require_supervisor
 from server.repositories import accounts
 from server.repositories import dashboard as repository
+from server.repositories import privacy as privacy_repository
 from server.repositories.dashboard import Filters
 from server.routers.dashboard import _check_cohort, _filters
 from server.schemas.dashboard import WEIGHTS_PROVISIONAL
@@ -43,12 +44,12 @@ def _safe(value) -> str:
     return "'" + text if text[:1] in ("=", "+", "-", "@", "\t", "\r") else text
 
 
-def _stream(db: DbSession, organisation_id: uuid.UUID | None, f: Filters, label) -> Iterator[str]:
+def _stream(db: DbSession, organisation_id: uuid.UUID | None, f: Filters, label, research_only: bool = False) -> Iterator[str]:
     buffer = io.StringIO()
     writer = csv.writer(buffer, lineterminator="\n")
     writer.writerow(COLUMNS)
     yield buffer.getvalue()
-    for (sid, org, pseudonym, case_id, mode, result, end_state, score, credits, penalties, critical, content, engine, received, verified) in repository.export_rows(db, organisation_id, f):
+    for (sid, org, pseudonym, case_id, mode, result, end_state, score, credits, penalties, critical, content, engine, received, verified) in repository.export_rows(db, organisation_id, f, research_only):
         buffer.seek(0)
         buffer.truncate()
         writer.writerow([_safe(v) for v in (sid, label(org), pseudonym, case_id, mode, result, end_state, f"{float(score):.2f}" if score is not None else None,
@@ -63,14 +64,16 @@ def _response(chunks: Iterator[str], name: str) -> StreamingResponse:
 @router.get("/organisations/{organisation_id}/export.csv")
 def export_organisation(ctx: OrgContext = Depends(require_supervisor), db: DbSession = Depends(db_session), f: Filters = Depends(_filters)) -> StreamingResponse:
     _check_cohort(db, ctx, f)
-    access_log.info("export: viewer=%s role=%s organisation=%s", ctx.user.profile.user_id, ctx.role, ctx.organisation.id)
+    privacy_repository.log_access(db, organisation_id=ctx.organisation.id, viewer=ctx.user.profile, viewer_role=ctx.role, subject_id=f.user_id, action="export",
+                                  detail="cohort " + str(f.cohort_id) if f.cohort_id else "whole organisation")
+    db.commit()
     return _response(_stream(db, ctx.organisation.id, f, lambda org: ctx.organisation.slug), f"procsense-{ctx.organisation.slug}.csv")
 
 
 @router.get("/export.csv")
 def export_platform(user: CurrentUser = Depends(require_platform_admin), db: DbSession = Depends(db_session), f: Filters = Depends(_filters)) -> StreamingResponse:
-    """Every organisation, with the organisation as a stable code (the evaluation study's data)."""
+    """Every organisation, with the organisation as a stable code (the evaluation study's data). Only people whose latest answer to the research question is yes are in it."""
     if f.cohort_id is not None:
         raise HTTPException(status_code=422, detail="cohort_filter_needs_an_organisation")
-    access_log.info("export: platform administrator=%s", user.profile.user_id)
-    return _response(_stream(db, None, f, organisation_code), "procsense-platform.csv")
+    access_log.info("research export by platform administrator %s", user.profile.user_id)   # one line, not a row per person: the export holds only people who agreed to research and has no names
+    return _response(_stream(db, None, f, organisation_code, research_only=True), "procsense-platform.csv")

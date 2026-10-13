@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import datetime as dt
 import gzip
-import logging
 import uuid
 from typing import Literal
 
@@ -17,11 +16,11 @@ from sqlalchemy.orm import Session as DbSession
 from server.auth.dependencies import OrgContext, db_session, require_member, require_supervisor
 from server.repositories import accounts
 from server.repositories import dashboard as repository
+from server.repositories import privacy as privacy_repository
 from server.repositories.dashboard import Filters
 from server.schemas.dashboard import Progress, SessionPage, SessionReport, Summary
 
 router = APIRouter(tags=["reports and dashboard"])
-access_log = logging.getLogger("procsense.access")
 HTML_HEADERS = {
     "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
     "X-Content-Type-Options": "nosniff", "Referrer-Policy": "no-referrer", "Cache-Control": "no-store",
@@ -60,6 +59,9 @@ def _scope(ctx: OrgContext, f: Filters) -> Filters:
 def list_sessions(ctx: OrgContext = Depends(require_member), db: DbSession = Depends(db_session), f: Filters = Depends(_filters),
                   status: Literal["verified", "pending", "rejected", "unverifiable", "any"] = "verified", limit: int = Query(50, ge=1, le=200), offset: int = Query(0, ge=0)) -> SessionPage:
     _check_cohort(db, ctx, f)
+    if _is_supervisor(ctx) and f.user_id is not None:
+        privacy_repository.log_access(db, organisation_id=ctx.organisation.id, viewer=ctx.user.profile, viewer_role=ctx.role, subject_id=f.user_id, action="view_sessions")
+        db.commit()
     total, items = repository.list_sessions(db, ctx.organisation.id, _scope(ctx, f), None if status == "any" else status, limit, offset, show_names=_is_supervisor(ctx))
     return SessionPage(total=total, limit=limit, offset=offset, items=items)
 
@@ -73,7 +75,8 @@ def _owned_or_supervised(ctx: OrgContext, db: DbSession, session_id: uuid.UUID):
     if not mine and not _is_supervisor(ctx):
         raise HTTPException(status_code=404, detail="not_found")
     if not mine:
-        access_log.info("report opened: viewer=%s role=%s organisation=%s session=%s", ctx.user.profile.user_id, ctx.role, ctx.organisation.id, session_id)
+        privacy_repository.log_access(db, organisation_id=ctx.organisation.id, viewer=ctx.user.profile, viewer_role=ctx.role, subject_id=row.user_id, action="view_report", session_id=session_id)
+        db.commit()   # the look happened whatever the answer
     if row.status != "verified":
         raise HTTPException(status_code=409, detail={"code": "not_verified", "status": row.status})
     return row, pseudonym
@@ -115,7 +118,8 @@ def member_progress(user_id: uuid.UUID, ctx: OrgContext = Depends(require_superv
     if membership is None or profile is None:
         raise HTTPException(status_code=404, detail="not_found")
     if user_id != ctx.user.profile.user_id:
-        access_log.info("progress opened: viewer=%s role=%s organisation=%s trainee=%s", ctx.user.profile.user_id, ctx.role, ctx.organisation.id, user_id)
+        privacy_repository.log_access(db, organisation_id=ctx.organisation.id, viewer=ctx.user.profile, viewer_role=ctx.role, subject_id=user_id, action="view_progress")
+        db.commit()
     return _progress(db, ctx, user_id, profile.pseudonym, f)
 
 
@@ -123,6 +127,9 @@ def member_progress(user_id: uuid.UUID, ctx: OrgContext = Depends(require_superv
 def organisation_overview(ctx: OrgContext = Depends(require_supervisor), db: DbSession = Depends(db_session), f: Filters = Depends(_filters)) -> Summary:
     """The organisation (or one cohort, with ?cohort_id=, or one person, with ?trainee_id=): sessions per week, results, the most common critical items, the behaviours that need work."""
     _check_cohort(db, ctx, f)
+    if f.user_id is not None:
+        privacy_repository.log_access(db, organisation_id=ctx.organisation.id, viewer=ctx.user.profile, viewer_role=ctx.role, subject_id=f.user_id, action="view_progress")
+        db.commit()
     return Summary(**repository.summary(db, ctx.organisation.id, f))
 
 
@@ -130,4 +137,7 @@ def organisation_overview(ctx: OrgContext = Depends(require_supervisor), db: DbS
 def cohort_overview(cohort_id: uuid.UUID, ctx: OrgContext = Depends(require_supervisor), db: DbSession = Depends(db_session), f: Filters = Depends(_filters_in_cohort)) -> Summary:
     f = Filters(f.user_id, cohort_id, f.case_id, f.mode, f.result, f.since, f.until)
     _check_cohort(db, ctx, f)
+    if f.user_id is not None:
+        privacy_repository.log_access(db, organisation_id=ctx.organisation.id, viewer=ctx.user.profile, viewer_role=ctx.role, subject_id=f.user_id, action="view_progress")
+        db.commit()
     return Summary(**repository.summary(db, ctx.organisation.id, f))

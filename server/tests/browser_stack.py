@@ -36,6 +36,7 @@ def build(port: int, database_url: str):
     from server.main import create_app
     from server.models.sessions import Session, SessionBehaviour, SessionScoreItem
     from server.repositories import accounts
+    from server.repositories import privacy as privacy_repository
     from server.tests.support import FakeAdmin, SigningKey
 
     config.get_settings.cache_clear()
@@ -56,6 +57,8 @@ def build(port: int, database_url: str):
             uid = uuid.uuid4()
             people[email] = uid
             accounts.ensure_profile(s, uid).display_name = name
+            if email != "colleague@alpha.test":   # this one has not agreed yet: the consent page comes first for them
+                privacy_repository.record_consent(s, uid, "results", True)
             accounts.add_membership(s, uid, org.id, role)
         cohort = accounts.create_cohort(s, a.id, "Cohort 1")
         accounts.set_cohort_member(s, cohort.id, people["trainee@alpha.test"], "trainee")

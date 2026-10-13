@@ -273,6 +273,8 @@ def test_a_cell_a_spreadsheet_would_run_as_a_formula_is_made_harmless(world):
 
 
 def test_the_platform_export_covers_every_organisation_with_a_code_instead_of_the_name(world):
+    from server.repositories import privacy
+    world.api.seed(lambda s: [privacy.record_consent(s, u, "research", True) for u in (world.trainee, world.trainee_b)])   # the research export holds only people who agreed (T-PR4 is in test_privacy)
     add_session(world, world.org_a, world.trainee)
     add_session(world, world.org_b, world.trainee_b)
     r = world.get("/export.csv", world.platform)

@@ -56,6 +56,10 @@ class Settings(BaseSettings):
     verify_on_upload: bool = True
     internal_key: SecretStr = SecretStr("")   # lets a scheduled job call /internal/verify-pending; empty = that route is closed
     upload_rate_per_hour: int = 120
+    # privacy (p1-backend-s12): design values to be confirmed with a qualified person (DT-127)
+    consent_required_for_upload: bool = True   # a session is accepted only from a person who agreed to the processing of their results (the current text)
+    retention_session_months: int = 24         # after this the stored log and report page of a session are removed (the results stay); an organisation may choose 6 to 60
+    retention_access_log_months: int = 24
     # headset sign-in with a code (p1-backend-s10)
     device_verification_uri: str = ""      # where a person enters the code (the web dashboard's /device page); empty = this service's own /device address
     device_login_minutes: int = 10
@@ -129,6 +133,13 @@ class Settings(BaseSettings):
     def _device_limits(cls, value: int) -> int:
         if not 1 <= value <= 100000:
             raise ValueError("a device sign-in setting must be between 1 and 100000")
+        return value
+
+    @field_validator("retention_session_months", "retention_access_log_months")
+    @classmethod
+    def _retention(cls, value: int) -> int:
+        if not 6 <= value <= 60:
+            raise ValueError("a retention period must be between 6 and 60 months")
         return value
 
     @field_validator("upload_rate_per_hour")
