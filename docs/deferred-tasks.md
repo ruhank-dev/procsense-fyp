@@ -178,7 +178,7 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-130 | Recovery of accounts if the Supabase project is lost (the free plan has no backup of the account system; people would be re-invited and sessions restored from our dump) | Pending | p1-backend-s13 | Paid plan (DT-123) | Documented in the runbook |
 | DT-131 | Serve approved content packages (and updates) to the headset from the service, using the content version and the per-mode packages | Pending | p1-backend-s09 | p0-vr-platform; content versioning in use | Packages per mode exist (p0-case-library-s01) |
 | DT-132 | Send sign-in emails from the team's own domain through a transactional email provider with SPF and DKIM (development uses Gmail SMTP, which can land in spam and is limited) | Pending | p1-backend-s07 | A domain; before real customers | Supabase's built-in email only reaches team members |
-| DT-133 | Create the production Supabase project (the free plan allows a person two active projects across all organisations, and Moiz already has two); until then procsense-dev is the only project and holds no real trainee data | Pending | p1-backend-s07 | Paid plan (DT-123), or a free slot | Pausing the older project would free a slot but it is in use |
+| DT-133 | Create the production Supabase project (the free plan allows a person two active projects across all organisations, and Moiz already has two); until then procsense-dev is the only project and may hold real trainee data (owner's decision), once a tested backup (p1-backend-s13) and consent and the data map (p1-backend-s12) exist | Pending | p1-backend-s07 | Paid plan (DT-123), or a free slot | Pausing the older project would free a slot but it is in use |
 
 ## Change log
 
