@@ -63,6 +63,12 @@ Every uploaded session is replayed by the engine before it counts (p1-backend-s0
 - **When a new headset release uses new content or a new engine,** its sessions are `unverifiable` until the service has that content version (rebuild the image) and, if `SUPPORTED_ENGINE_VERSIONS` is set, that engine version listed.
 - The engine runs with a time limit and without any secret in its environment.
 
+## Reports, dashboard and export
+`GET /organisations/{id}/sessions` (a list with filters), `/sessions/{id}/report` and `/report.html`, `/progress` (the signed-in person), `/members/{user}/progress`, `/overview`, `/cohorts/{id}/overview` and `/export.csv` serve a web dashboard (p1-backend-s11). Only **verified** sessions are counted. A trainee sees their own sessions; a supervisor or administrator sees the whole organisation.
+- The columns of the CSV are in `server/DATA_DICTIONARY.md`. The platform administrator's `GET /export.csv` covers every organisation with a stable code in place of the name.
+- A supervisor opening another person's report, progress or an export is written to the log named `procsense.access` (a table with the privacy work, p1-backend-s12).
+- Every process score is marked provisional while the scorer's weights are (they are today).
+
 ## Headsets signed in with a code
 A headset asks `POST /auth/device/start`, shows the code, and a person signed in on the web approves it (`POST /auth/device/decision`, which the dashboard's `/device` page calls). The headset then receives its own access token (15 minutes) and refresh token (30 days of not being used). Only the SHA-256 of each is in the database.
 - **Sign a headset out:** the person does it from the web (`DELETE /me/devices/{id}`), or the headset signs itself out (`POST /auth/device/logout`). It is refused on its next request. Deactivating a member in an organisation also stops the headset reaching that organisation.

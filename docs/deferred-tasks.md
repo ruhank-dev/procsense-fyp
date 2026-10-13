@@ -190,11 +190,16 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-142 | Delete expired device login requests and long-revoked headset sign-ins (a scheduled clean-up, with the retention work) | Pending | p1-backend-s10 | p1-backend-s12 retention | They hold no secrets (only hashes) and are few |
 | DT-143 | An organisation administrator's button to sign out all headsets of one member, and a list of an organisation's headsets | Pending | p1-backend-s10 | p1-backend-s11 (web dashboard) | Deactivating the member already stops their headsets reaching the organisation |
 | DT-144 | Build the headset half of s10: the sign-in screen, the code view, the token store in the keystore, offline rules (DT-126), the Play Mode tests and EXP-BE-4 | Pending | p1-backend-s10 | Sannan (Unity) | The server half is built and tested; the headset side needs a Quest |
+| DT-145 | Let an organisation limit a supervisor to the cohorts they supervise (today a supervisor sees the whole organisation, like the session status route) | Pending | p1-backend-s04 | Owner decision, then p1-backend-s12 | Cohort supervisors already exist in the data (cohort_member.role) |
+| DT-146 | Write views of another person's report, progress and exports into an access-log table that the person can read | Pending | p1-backend-s04 | p1-backend-s12 (privacy) | Today they are log lines named procsense.access |
+| DT-147 | Read the provisional-weights flag from the scoring tables instead of a constant, and drop it when the weights are approved | Pending | p1-backend-s04 | Ruhan (scoring owner) | Every process score says provisional until then |
+| DT-148 | Run EXP-BE-3 (dashboard speed on a year of realistic data) and page the export past 200,000 rows if needed | Pending | p1-backend-s04 | p1-backend-s13 | The unit test uses 4,000 sessions |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (p1-backend-s04) | p1-backend-s04 built by Abdul Moiz (reports, dashboard figures, CSV export, data dictionary); DT-145 to DT-148 added. |
 | 14 October 2026 (p1-backend-s10) | Server half of p1-backend-s10 built by Abdul Moiz (headset sign-in with a code, headset tokens, revoking); DT-142 to DT-144 added. |
 | 13 October 2026 (p1-backend-s09) | p1-backend-s09 built by Abdul Moiz: the verify command and the version 2 header on a separate engine branch for review, and the server's verification worker; DT-140 and DT-141 added. |
 | 13 October 2026 (p1-backend-s02) | p1-backend-s02 built by Abdul Moiz (session tables and upload, generated scenario packages, the session-file schema and the engine and server contract); DT-139 added. |

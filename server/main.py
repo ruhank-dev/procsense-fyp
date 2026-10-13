@@ -9,7 +9,7 @@ from fastapi import FastAPI
 
 from server import database
 from server.config import get_settings
-from server.routers import device_auth, health, internal, me, organisations, scenario_packages, sessions
+from server.routers import dashboard, device_auth, export, health, internal, me, organisations, scenario_packages, sessions
 
 
 def _sweep_on_start() -> None:
@@ -39,6 +39,8 @@ def create_app() -> FastAPI:
     app.include_router(device_auth.router)
     app.include_router(organisations.router)
     app.include_router(sessions.router)
+    app.include_router(dashboard.router)
+    app.include_router(export.router)
     app.include_router(scenario_packages.router)
     app.include_router(internal.router)
     return app
