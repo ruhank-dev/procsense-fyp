@@ -2,7 +2,7 @@
 
     TEST_DATABASE_URL=postgresql://postgres:postgres@localhost:54329/procsense_test uv run --project server python -m server.tests.browser_stack --port 8765
 
-It empties that database, applies the migrations, adds two organisations with people (all passwords are `test-password-1`), some verified sessions and a few hostile display names, and serves the app on http://127.0.0.1:<port>/.
+It empties that database, applies the migrations, adds two organisations with people (everyone gets the same password, made up fresh each time the stack starts and printed once; nothing is stored in the repository), some verified sessions and a few hostile display names, and serves the app on http://127.0.0.1:<port>/.
 People: trainee@alpha.test, colleague@alpha.test, supervisor@alpha.test, admin@alpha.test, supervisor@beta.test.
 """
 from __future__ import annotations
@@ -11,6 +11,7 @@ import argparse
 import datetime as dt
 import gzip
 import os
+import secrets
 import uuid
 from pathlib import Path
 
@@ -22,7 +23,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import text
 from sqlalchemy.orm import Session as DbSession
 
-PASSWORD = "test-password-1"
+PASSWORD = os.environ.get("BROWSER_STACK_PW") or secrets.token_urlsafe(12)
 HOSTILE = '<img src=x onerror="alert(1)"> & "quotes"'
 
 
@@ -116,4 +117,5 @@ if __name__ == "__main__":
     if not url:
         raise SystemExit("set TEST_DATABASE_URL (see task server-db-up)")
     from server import config
+    print(f"Open http://127.0.0.1:{args.port}/ and sign in as one of the people above with the password:  {PASSWORD}", flush=True)
     uvicorn.run(build(args.port, config._psycopg_url(url, "TEST_DATABASE_URL")), host="127.0.0.1", port=args.port, log_level="warning")
