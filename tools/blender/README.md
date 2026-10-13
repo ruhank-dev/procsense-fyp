@@ -54,3 +54,9 @@ The import pipeline creates shared URP materials, compound box colliders and gra
 Monitor/identity surfaces render permitted observable state; no patient facts are baked in. Grabbing the wristband submits the existing `read_wristband` action. Monitor grabbing only moves equipment; it never attaches a sensor or invents values. Pump reads STANDBY and has no dose/rate action. Bag hooks have no clinical effect. Screen controls and physical sensor attachment belong to the next bedside batch.
 
 Nested model instances refresh on FBX reimport. Existing prefab component settings and material assets are preserved; the builder only creates missing prefabs. Changes to the interaction schema require an explicit migration; reimport intentionally does not overwrite authored settings. Import tests check dimensions, materials, socket isolation and preservation of an edited mass/GUID. Run Unity tests in the live Test Runner while the Editor is open.
+
+## Physical notes folder
+
+`patient_folder` is a 564-triangle procedural A4 folder using shared materials. Page area is 210 × 297 mm; cover allowance, 10 mm total thickness and binder details are provisional visual choices. Generate with `uv run --project tools tools/blender/run.py all patient_folder`, then **Import Notes Folder** and **Install Notes Folder** in the Equipment menu. The installer preserves the existing table and disables the old notes proxy/view without rebuilding the scene.
+
+Grip to pick up; activate/trigger while held opens or closes the cover. Pickup alone does not read notes. The live page displays only the existing Core-permitted identifiers after `open_notes` is accepted. Tablet fallback opens the same folder. This first interaction does not implement page flipping, report insertion, signing, historical records or the complete identity/documents roster; those need the later records contracts and asset work. No patient facts are baked into the model.

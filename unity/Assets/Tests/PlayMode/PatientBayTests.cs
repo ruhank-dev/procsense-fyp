@@ -7,6 +7,8 @@ using ProcSense.VR.Views;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 namespace ProcSense.Tests.PlayMode
 {
@@ -31,8 +33,51 @@ namespace ProcSense.Tests.PlayMode
             monitor.RenderNow();
             Assert.That(monitor.DisplayText, Does.Contain("SpO2   --"));
             Assert.IsNotNull(Object.FindFirstObjectByType<IdentityCardView>());
-            Assert.IsNotNull(Object.FindFirstObjectByType<NotesPanelView>());
+            Assert.IsNotNull(Object.FindFirstObjectByType<NotesPanelView>(FindObjectsInactive.Include));
             Assert.AreEqual(1, Camera.allCamerasCount, "exactly one camera (the XR rig's) must draw, or head movement shows nothing");
+        }
+
+        [UnityTest]
+        public IEnumerator Folder_requires_held_open_preserves_privacy_and_syncs_fallback_reset()
+        {
+            yield return LoadBoot();
+            var host = SimulationHost.Instance;
+            host.AutoTick = false;
+            var folder = Object.FindFirstObjectByType<ProcSense.VR.ActionEmitters.NotesFolderInteraction>();
+            Assert.IsNotNull(folder);
+            Assert.IsFalse(folder.IsOpen);
+            Assert.IsNull(host.Observable.Notes);
+            Assert.IsFalse(folder.ToggleHeld(), "Unheld activation cannot open notes");
+            int before = host.Session.Log.Count;
+            var grab = folder.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            var handObject = new GameObject("Folder test hand");
+            var hand = handObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor>();
+            hand.interactionManager = grab.interactionManager;
+            try
+            {
+                grab.interactionManager.SelectEnter((IXRSelectInteractor)hand, (IXRSelectInteractable)grab);
+                Assert.IsNull(host.Observable.Notes, "Picking up alone is not opening");
+                grab.activated.Invoke(new UnityEngine.XR.Interaction.Toolkit.ActivateEventArgs { interactorObject = hand, interactableObject = grab });
+                Assert.IsTrue(folder.IsOpen);
+                Assert.AreEqual(before + 1, host.Session.Log.Count);
+                var view = folder.GetComponentInChildren<NotesPanelView>();
+                view.RenderNow();
+                Assert.That(view.BodyText, Does.Contain(host.Observable.Notes.FullName));
+                Assert.IsTrue(folder.ToggleHeld());
+                Assert.IsFalse(folder.IsOpen);
+                Assert.IsTrue(folder.ToggleHeld());
+                Assert.AreEqual(before + 1, host.Session.Log.Count, "Reopening known pages creates no extra read action");
+                grab.interactionManager.SelectExit((IXRSelectInteractor)hand, (IXRSelectInteractable)grab);
+                host.StartSession("VAR-S1-A", 42, ProcSense.Core.SessionMode.Practice);
+                folder.SyncNow();
+                Assert.IsFalse(folder.IsOpen);
+                Assert.IsNull(host.Observable.Notes);
+                Object.FindFirstObjectByType<TabletView>().Press("open_notes");
+                folder.SyncNow();
+                Assert.IsTrue(folder.IsOpen, "Tablet fallback opens the same physical folder");
+                Assert.AreEqual(1, host.Session.Log.Count);
+            }
+            finally { Object.DestroyImmediate(handObject); }
         }
 
         [UnityTest]

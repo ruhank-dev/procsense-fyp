@@ -15,6 +15,7 @@ namespace ProcSense.EditorTools
     {
         public static readonly string[] Pilots = { "vital_signs_monitor", "iv_pole_pump", "wristband" };
         public static readonly string[] Sensors = { "spo2_probe", "bp_cuff" };
+        public static readonly string[] Documents = { "patient_folder" };
         [Serializable] private class Anchor { public string name; public Vector3 size; }
         [Serializable] private class Metadata { public Anchor[] anchors; }
 
@@ -34,6 +35,9 @@ namespace ProcSense.EditorTools
 
         [MenuItem("ProcSense/Equipment/Import Bedside Sensors")]
         public static void ImportSensors() => ImportAssets(Sensors);
+
+        [MenuItem("ProcSense/Equipment/Import Notes Folder")]
+        public static void ImportDocuments() => ImportAssets(Documents);
 
         private static void ImportAssets(string[] ids)
         {
@@ -78,7 +82,7 @@ namespace ProcSense.EditorTools
         public static void CreateIfMissing(string modelPath)
         {
             string id = Path.GetFileNameWithoutExtension(modelPath);
-            if (!Pilots.Contains(id) && !Sensors.Contains(id)) return;
+            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id)) return;
             string prefabPath = "Assets/Prefabs/Equipment/" + id + ".prefab";
             // Nested model instances refresh on reimport. Never overwrite authored component overrides.
             if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) != null) return;
@@ -101,14 +105,14 @@ namespace ProcSense.EditorTools
                     collider.size = item.size;
                 }
                 var body = root.AddComponent<Rigidbody>();
-                body.mass = id == "wristband" ? .01f : Sensors.Contains(id) ? .1f : 8;
+                body.mass = id == "wristband" ? .01f : Documents.Contains(id) ? .4f : Sensors.Contains(id) ? .1f : 8;
                 body.isKinematic = true;
                 body.useGravity = false;
                 var grab = root.AddComponent<XRGrabInteractable>();
                 grab.attachTransform = transforms.First(t => t.name.StartsWith("GRAB_", StringComparison.Ordinal));
                 grab.movementType = XRBaseInteractable.MovementType.Kinematic;
                 grab.throwOnDetach = false;
-                foreach (var anchor in transforms.Where(t => t.name.StartsWith("SCREEN_", StringComparison.Ordinal) || t.name == "LABEL_Identity"))
+                foreach (var anchor in transforms.Where(t => t.name == "SCREEN_Main" || t.name == "SCREEN_Pump" || t.name == "LABEL_Identity"))
                 {
                     bool identity = anchor.name == "LABEL_Identity";
                     bool pump = anchor.name == "SCREEN_Pump";
@@ -131,6 +135,7 @@ namespace ProcSense.EditorTools
                     emitter.Route = XRSelectEmitter.SelectionRoute.Grab;
                     emitter.Configure("read_wristband", "patient", fallbackLabel: "Read wristband");
                 }
+                if (id == "patient_folder") CreateNotes(root, transforms);
                 foreach (var anchor in transforms.Where(t => t.name.StartsWith("SOCKET_Bag_", StringComparison.Ordinal)))
                 {
                     var socket = anchor.gameObject.AddComponent<XRSocketInteractor>();
@@ -145,6 +150,26 @@ namespace ProcSense.EditorTools
                 PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
             }
             finally { UnityEngine.Object.DestroyImmediate(root); }
+        }
+
+        private static void CreateNotes(GameObject root, Transform[] transforms)
+        {
+            var page = UiKit.WorldCanvas("Notes page", root.transform, new Vector2(630, 900), .0003f);
+            page.transform.localPosition = new Vector3(.003f, .0088f, 0);
+            page.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            page.GetComponentInChildren<UnityEngine.UI.Image>().color = new Color(.96f,.96f,.93f);
+            UiKit.Label(page.transform,"Title","PATIENT NOTES",new Vector2(35,35),new Vector2(560,70),40,TextAlignmentOptions.TopLeft,Color.black);
+            var body = UiKit.Label(page.transform,"Identity","",new Vector2(35,140),new Vector2(560,540),38,TextAlignmentOptions.TopLeft,Color.black);
+            page.gameObject.AddComponent<NotesPanelView>().Configure(body);
+            UiKit.Label(page.transform,"Hint","Grab folder • Trigger: close",new Vector2(35,800),new Vector2(560,70),25,TextAlignmentOptions.TopLeft,Color.black);
+            var cover = transforms.Single(t=>t.name == "EQ_patient_folder_Cover");
+            var label = UiKit.WorldCanvas("Folder cover label",root.transform,new Vector2(560,220),.0003f);
+            label.transform.localPosition = new Vector3(0,.0108f,0);
+            label.transform.localRotation = Quaternion.Euler(90,0,0);
+            label.GetComponentInChildren<UnityEngine.UI.Image>().color=Color.white;
+            UiKit.Label(label.transform,"Title","PATIENT NOTES\nGrab • Trigger to open",new Vector2(20,20),new Vector2(520,180),38,TextAlignmentOptions.Center,Color.black);
+            label.transform.SetParent(cover,true);
+            root.AddComponent<NotesFolderInteraction>().ConfigureFolder(cover,page.gameObject);
         }
     }
 }

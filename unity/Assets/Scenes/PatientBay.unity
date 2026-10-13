@@ -1241,6 +1241,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444008932}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &485043073
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1320263660}
+    m_Modifications:
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228127864415920023, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+      propertyPath: m_Name
+      value: Physical notes folder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+--- !u!4 &485043074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 705054909152009939, guid: b48ae3266ca13a144af101f31cbf71bb, type: 3}
+  m_PrefabInstance: {fileID: 485043073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &591150967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,6 +2623,7 @@ Transform:
   - {fileID: 1411848968}
   - {fileID: 1988854304}
   - {fileID: 596715455}
+  - {fileID: 485043074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1382946485
@@ -4756,7 +4819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2054075983
 Transform:
   m_ObjectHideFlags: 0
@@ -4785,6 +4848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Views.NotesPanelView
   minInterval: 0.1
+  _body: {fileID: 0}
 --- !u!1 &2061508439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,7 +4983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2112987728
 Transform:
   m_ObjectHideFlags: 0
