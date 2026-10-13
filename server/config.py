@@ -35,6 +35,10 @@ class Settings(BaseSettings):
     supabase_url: str = ""
     supabase_publishable_key: str = ""
     supabase_secret_key: SecretStr = SecretStr("")
+    supabase_jwt_audience: str = "authenticated"   # the audience Supabase puts in a signed-in person's access token
+    jwks_cache_seconds: int = 600                  # Supabase's own edge caches the key set for 10 minutes
+    clock_leeway_seconds: int = 10                 # a few seconds of clock difference is tolerated when checking a token's expiry
+    invitation_days: int = 14
 
     # the application uses the transaction pooler; migrations use the session pooler
     database_url: SecretStr = SecretStr("")
@@ -68,6 +72,13 @@ class Settings(BaseSettings):
             raise ValueError("db_pool_size must be between 0 (no pool) and 10: the free database allows few connections")
         return value
 
+    @field_validator("jwks_cache_seconds", "clock_leeway_seconds", "invitation_days")
+    @classmethod
+    def _positive_small(cls, value: int) -> int:
+        if not 0 <= value <= 3600 * 24 * 60:
+            raise ValueError("this limit is out of range")
+        return value
+
     @field_validator("db_connect_timeout")
     @classmethod
     def _timeout(cls, value: int) -> int:
@@ -81,6 +92,16 @@ class Settings(BaseSettings):
         if not 1024 <= value <= 20 * 1024 * 1024:
             raise ValueError("max_upload_bytes must be between 1 KB and 20 MB")
         return value
+
+
+    @property
+    def jwt_issuer(self) -> str:
+        """The issuer Supabase Auth puts in its tokens: the project address plus /auth/v1."""
+        return self.supabase_url.rstrip("/") + "/auth/v1"
+
+    @property
+    def jwks_url(self) -> str:
+        return self.jwt_issuer + "/.well-known/jwks.json"
 
 
 @lru_cache

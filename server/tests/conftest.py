@@ -6,14 +6,25 @@ Without it the database tests are skipped with a reason, unless REQUIRE_DB=1 (CI
 from __future__ import annotations
 
 import os
+import uuid
+from dataclasses import dataclass
 
 import pytest
+from alembic import command
+from alembic.config import Config
 from fastapi.testclient import TestClient
 from sqlalchemy import text
 
+from pathlib import Path
+
+from sqlalchemy.orm import Session
+
 from server import config, database
+from server.auth import dependencies
 from server.database import make_engine
 from server.main import create_app
+from server.repositories import accounts
+from server.tests.support import SUPABASE_URL, FakeAdmin, SigningKey
 
 
 def _test_url() -> str:
@@ -72,3 +83,60 @@ def app_without_database(monkeypatch):
         yield client
     config.get_settings.cache_clear()
     database.get_engine.cache_clear()
+
+
+def _alembic(url: str) -> Config:
+    cfg = Config(str(Path(__file__).resolve().parents[1] / "alembic.ini"))
+    cfg.set_main_option("sqlalchemy.url", url.replace("%", "%%"))
+    return cfg
+
+
+@pytest.fixture
+def migrated(clean_database, db_url):
+    """An empty database with every migration applied."""
+    command.upgrade(_alembic(db_url), "head")
+    return clean_database
+
+
+@dataclass
+class Api:
+    client: TestClient
+    key: SigningKey
+    admin: FakeAdmin
+    engine: object
+
+    def headers(self, user_id: uuid.UUID, email: str = "", **token_options) -> dict:
+        return {"Authorization": "Bearer " + self.key.token(user_id, email, **token_options)}
+
+    def seed(self, fn):
+        """Runs fn(session) against the database and commits (for setting up people and organisations without going through the API)."""
+        with Session(self.engine) as session:
+            result = fn(session)
+            session.commit()
+            return result
+
+    def person(self, session: Session, *, platform_admin: bool = False) -> uuid.UUID:
+        user_id = uuid.uuid4()
+        profile = accounts.ensure_profile(session, user_id)
+        profile.is_platform_admin = platform_admin
+        return user_id
+
+
+@pytest.fixture
+def api(monkeypatch, migrated, db_url):
+    """The application on a migrated test database, with test tokens trusted and invitations captured instead of emailed."""
+    monkeypatch.setenv("DATABASE_URL", db_url)
+    monkeypatch.setenv("SUPABASE_URL", SUPABASE_URL)
+    monkeypatch.setenv("SUPABASE_SECRET_KEY", "test-only-not-a-real-key")
+    for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin):
+        cache.cache_clear()
+    key, admin = SigningKey(), FakeAdmin()
+    from server.auth.tokens import TokenVerifier
+    verifier = TokenVerifier(config.get_settings().jwt_issuer, "authenticated", config.get_settings().jwks_url, fetcher=lambda url: key.jwks())
+    app = create_app()
+    app.dependency_overrides[dependencies.get_verifier] = lambda: verifier
+    app.dependency_overrides[dependencies.get_admin] = lambda: admin
+    with TestClient(app) as client:
+        yield Api(client, key, admin, database.get_engine())
+    for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin):
+        cache.cache_clear()

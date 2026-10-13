@@ -49,6 +49,13 @@ The one project holds real trainee data, so before the first real trainee signs 
 | Prepared statement errors from the database | The app is connected through the transaction pooler with prepared statements on | Switch them off for that connection (s01). |
 | Everything under `procsense-dev` is lost | The free plan has no automatic backups | The nightly dump of the application tables (`p1-backend-s13`) is the only copy. Accounts are not in it (DT-130): people are re-invited. This is why the backup must exist before real trainees use the project. |
 
+## Making the first organisation and the first platform administrator
+There is no screen for this (DT-129). From a laptop with `server/.env` filled in:
+1. Sign in once with the email address that should become the platform administrator (the profile is created on first sign-in), and copy the person's id from Supabase's Authentication > Users page.
+2. `task server-admin -- grant-platform-admin --user-id <that id>`
+3. `task server-admin -- create-organisation --name "Alpha Hospital" --slug alpha-hospital --admin-email boss@example.com --send` creates the organisation and invites its first administrator (`--send` also asks Supabase to email the invitation; without it the invitation still applies when that address signs in).
+Invitations hold the invited address only until they are accepted, revoked or expired.
+
 ## Rotating a key
 1. **Supabase secret key:** Project Settings > API Keys > New secret key; put the new one everywhere in the table above; check the service works; delete the old one.
 2. **Database password:** Project Settings > Database > reset the password; update both pooler addresses everywhere; redeploy.

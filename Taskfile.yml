@@ -125,6 +125,11 @@ tasks:
     cmds:
       - uv run --project server alembic -c server/alembic.ini upgrade head
 
+  server-admin:
+    desc: Platform administration by the team, e.g. task server-admin -- create-organisation --name "Alpha" --slug alpha --admin-email a@b.com (see server/RUNBOOK.md)
+    cmds:
+      - uv run --project server python -m server.scripts.admin {{.CLI_ARGS}}
+
   server-db-up:
     desc: Start a throwaway PostgreSQL 17 in Docker for the backend tests and print its address
     cmds:

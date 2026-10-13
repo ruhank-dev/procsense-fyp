@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from server import database
-from server.routers import health
+from server.routers import health, me, organisations
 
 
 @asynccontextmanager
@@ -20,6 +20,8 @@ async def lifespan(app: FastAPI):
 def create_app() -> FastAPI:
     app = FastAPI(title="ProcSense service", version="0.1.0", lifespan=lifespan)
     app.include_router(health.router)
+    app.include_router(me.router)
+    app.include_router(organisations.router)
     return app
 
 
