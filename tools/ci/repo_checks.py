@@ -61,7 +61,7 @@ SECRET_PATTERNS = [
     (r"(?i)\b(password|passwd|api[_-]?key|secret)\b\s*[:=]\s*[\"'][^\"'\s]{6,}[\"']", "hard-coded credential"),
     # the hosted backend (p1-backend-s07): a Supabase secret key, a database address with a real password, a signed token (such as the old service-role key)
     (r"\bsb_secret_[A-Za-z0-9_-]{16,}", "Supabase secret key"),
-    (r"\bpostgres(?:ql)?(?:\+\w+)?://[^:@/\s]+:(?!\[|<|\$|\{|YOUR|PASSWORD|REPLACE|changeme|xxx)[^@\s/]{6,}@", "database address with a password in it"),
+    (r"\bpostgres(?:ql)?(?:\+\w+)?://[^:@/\s]+:(?!\[|<|\$|\{|YOUR|PASSWORD|REPLACE|changeme|xxx)[^@\s/]{6,}@(?!localhost|127\.0\.0\.1|\[::1\])", "database address with a password in it"),
     (r"\beyJ[A-Za-z0-9_-]{15,}\.eyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{10,}", "signed token (JWT)"),
 ]
 FORBIDDEN_PATHS = [

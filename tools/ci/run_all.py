@@ -76,6 +76,7 @@ def main(argv: list[str]) -> int:
         steps += [
             ("build (warnings are errors)", lambda: run(["dotnet", "build", "ProcSense.sln", "-c", "Release", "-warnaserror"])),
             ("unit tests", lambda: run(["dotnet", "test", "ProcSense.sln", "--no-build", "-c", "Release"])),
+            ("backend tests (FastAPI on a real PostgreSQL; skipped with a notice when there is no Docker)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/server_tests.py"])),
             ("golden runs", lambda: run(CLI + ["golden", "--dir", "tests/golden"])),
             ("review-status gate refuses an under-approved case (assessment on a training-only case)", gate_refuses),
             ("replay round trip", replay_round_trip),

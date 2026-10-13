@@ -12,6 +12,12 @@ This phase moves ahead of the rest of P1. Its accounts, upload, verification, da
 - **In:** FastAPI (routers / repositories / schemas, INSTRUCTIONS §4b), PostgreSQL on Supabase through SQLAlchemy 2 (ORM only) and Alembic, Supabase Auth for accounts, organisations with roles and cohorts, session upload with an offline queue on the headset, server-side verification by engine replay, JSON reports, a dashboard and CSV export for supervisors, privacy handling (consent, retention, delete my data), free-tier operations (backups, keep-alive), the audit log, the AI gateway, two-stage Docker, uv.
 - **Out:** payments and billing (DT-125); model logic (p1-ai-language); single sign-on (DT-124); a platform-admin screen (DT-129); where the AI models run for customers (DT-122).
 
+## Fit with the scenario composer and personalisation (Ruhan's plans)
+The scenario composer generates a fresh scenario each time from what normal and abnormal data look like (it does not replay a dataset), and the personalisation plans use each person's recorded mistakes to choose what to generate next. This phase does not change those plans; it provides what they need:
+- **A place for the evidence and the profile:** `session_evidence` and `learner_profile` in the hosted database, per person and organisation, under the access, retention and delete rules of `s12` (created in `s02`; their content is defined by `p1-personalisation-s01` and `s02`).
+- **Generated scenarios stay verifiable:** each generated package is stored by its SHA-256 hash and a session names it in its header, so the server can replay the session (`s02`, `s09`). Generated scenarios are practice only (ADR-0008), so assessment never depends on them.
+- **Where generation runs** is the AI-hosting question (OQ-07, DT-122); the backend only needs the gateway contract (`s06`).
+
 ## Architecture
 ```
 Quest application (engine on the device, works offline)
@@ -32,7 +38,7 @@ Supabase: PostgreSQL (our tables) + Auth (accounts)      only the service talks 
 | Who reaches the database | Only the FastAPI service; row-level security switched on with no open policies as a second lock | The headset or web page using Supabase's data API directly | Every rule (role, organisation, verification) lives in one tested place | — |
 | Tenancy | Organisation, membership with a role, cohort, from the first table | Single tenant first | Adding it later rewrites every table and query | — |
 | Headset login | Email and password first; then a device code approved on a phone or computer | Password only | Typing in VR is painful | Quest users find the code flow worse (EXP-BE-4) |
-| Score integrity | The server replays each log through the engine and refuses a score that does not reproduce | Trust the headset | A modified headset must not be able to send a better score | — |
+| Score integrity | The server replays each log through the engine and refuses a score that does not reproduce; a generated scenario is replayed from its stored package, found by hash | Trust the headset | A modified headset must not be able to send a better score | The generation loader is not ready (such sessions are `unverifiable` meanwhile, DT-134) |
 | Sync | The headset keeps its session log and uploads when reachable | Always online | Offline-first | — |
 | Dashboard | Static pages and JSON served by the same FastAPI app; Chart.js for charts | React single-page application; Supabase UI | One free deployment, small scope | Supervisors want interactive analysis (DT-128) |
 | Hosting (free, student project) | Supabase free plan (one project, `procsense-dev`, for now, which may hold real trainee data once the backup and privacy steps are done; prod after the move to a paid plan) + Render free web service, deployed from an image built in CI; replaceable | Neon, Oracle Always Free VM, Google Cloud Run, Azure for Students | Free, no server to administer, Docker keeps it portable | Before real customers (DT-123) |

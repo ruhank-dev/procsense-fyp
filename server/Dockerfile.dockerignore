@@ -1,0 +1,12 @@
+# The build context is the whole repository (about 3 GB of datasets and the Unity project among it); only the server folder is sent.
+*
+!server/
+!server/**
+# never into an image: secrets, local environments, tests, caches
+server/.env
+server/.env.*
+!server/.env.example
+server/.venv
+server/tests
+**/__pycache__
+**/*.pyc

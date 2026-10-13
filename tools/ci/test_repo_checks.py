@@ -32,6 +32,10 @@ class SecretPatterns(unittest.TestCase):
             url = "postgresql://postgres.PROJECT-REF:" + pw + "@HOST:6543/postgres"
             self.assertEqual(caught(url), [], pw)
 
+    def test_a_throwaway_database_on_this_computer_is_fine(self):
+        for host in ("localhost:54329", "127.0.0.1:5432"):
+            self.assertEqual(caught("postgresql+psycopg://postgres:" + "postgres" + "@" + host + "/procsense_test"), [], host)
+
     def test_a_signed_token_is_caught(self):
         token = "ey" + "JhbGciOiJIUzI1NiJ9" + "." + "ey" + "Jyb2xlIjoic2VydmljZV9yb2xlIn0" + "." + "abcdefghij1234567890"
         self.assertIn("signed token (JWT)", caught(token))

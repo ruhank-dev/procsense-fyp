@@ -110,6 +110,32 @@ tasks:
     cmds:
       - uv run --project tools tools/content/package.py {{.CLI_ARGS}}
 
+  server-dev:
+    desc: Run the backend on this computer (needs server/.env, copied from server/.env.example)
+    cmds:
+      - uv run --project server uvicorn server.main:app --reload --port 8000
+
+  server-test:
+    desc: Run the backend tests against a real PostgreSQL (TEST_DATABASE_URL, or a throwaway one in Docker)
+    cmds:
+      - uv run --project tools tools/ci/server_tests.py
+
+  server-migrate:
+    desc: Apply the database migrations to the database in MIGRATION_DATABASE_URL (the session pooler, port 5432)
+    cmds:
+      - uv run --project server alembic -c server/alembic.ini upgrade head
+
+  server-db-up:
+    desc: Start a throwaway PostgreSQL 17 in Docker for the backend tests and print its address
+    cmds:
+      - uv run --project tools tools/ci/server_tests.py --db-only
+
+  server-db-down:
+    desc: Remove the throwaway PostgreSQL started by server-db-up
+    cmds:
+      - cmd: docker rm -f procsense-test-pg
+        ignore_error: true
+
   content-extract:
     desc: Parse the walkthrough into content/_extract/walkthrough_extract.json and check the counts (a drafting aid, git-ignored)
     cmds:

@@ -179,11 +179,14 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-131 | Serve approved content packages (and updates) to the headset from the service, using the content version and the per-mode packages | Pending | p1-backend-s09 | p0-vr-platform; content versioning in use | Packages per mode exist (p0-case-library-s01) |
 | DT-132 | Send sign-in emails from the team's own domain through a transactional email provider with SPF and DKIM (development uses Gmail SMTP, which can land in spam and is limited) | Pending | p1-backend-s07 | A domain; before real customers | Supabase's built-in email only reaches team members |
 | DT-133 | Create the production Supabase project (the free plan allows a person two active projects across all organisations, and Moiz already has two); until then procsense-dev is the only project and may hold real trainee data (owner's decision), once a tested backup (p1-backend-s13) and consent and the data map (p1-backend-s12) exist | Pending | p1-backend-s07 | Paid plan (DT-123), or a free slot | Pausing the older project would free a slot but it is in use |
+| DT-134 | Verify sessions of generated scenarios: the engine must load a generated scenario package (the loader extension of p1-live-scenario-generation-s10); until then such sessions are stored as unverifiable and kept out of totals | Pending | p1-backend-s09 | p1-live-scenario-generation-s10 | Generated scenarios are practice only |
+| DT-135 | Size of generated scenario packages and evidence records on the free database (500 MB): measure, compress, deduplicate by hash and set a retention period | Pending | p1-backend-s02 | First generated packages; EXP-BE-3 | Packages are stored once by hash |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 13 October 2026 (backend and the scenario composer) | p1-backend s02 and s09 and the README amended to store the session evidence, the learner profile and generated scenario packages and to replay generated sessions; decision log row 67; DT-134 and DT-135 added. Ruhan's plans are unchanged. |
 | 13 October 2026 (p1-backend-s07) | Supabase organisation and development project set up; `server/RUNBOOK.md`, `server/.env.example` and the extended secret scan added; decision log row 66; DT-132 and DT-133 added. |
 | 13 October 2026 (hosted backend plan) | ADR-0009 and the replanned p1-backend (PostgreSQL on Supabase, accounts and organisations, server-side verification, dashboard, privacy, free-tier operations; s01 to s04 and s07 to s13 in the new milestone M17); decision log row 65; DT-122 to DT-131 added; OQ-06 decided and OQ-07 added in the pipeline JSON. |
 | 13 October 2026 (case-library s01) | p0-case-library-s01 built by Abdul Moiz on top of main (content packages per mode, loader by mode, shared schema); decision log row 64; DT-119 to DT-121 added. |

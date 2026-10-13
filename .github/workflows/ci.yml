@@ -89,6 +89,45 @@ jobs:
           path: TestResults
           if-no-files-found: ignore
 
+  server:
+    name: Backend (FastAPI on PostgreSQL)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: procsense_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/procsense_test
+      REQUIRE_DB: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: server/uv.lock
+
+      - name: Install the locked dependencies
+        run: uv sync --project server --frozen
+
+      - name: Backend tests on PostgreSQL 17 (never SQLite)
+        run: uv run --project server pytest server/tests -q -rs
+
+      - name: The image builds and answers /health and /health/db
+        run: |
+          docker build -f server/Dockerfile -t procsense-server .
+          docker run -d --name svc --network host -e PORT=8000 -e DATABASE_URL=postgresql://postgres:postgres@localhost:5432/procsense_test procsense-server
+          for i in $(seq 1 20); do curl -fsS http://localhost:8000/health && break || sleep 2; done
+          curl -fsS http://localhost:8000/health/db
+          docker logs svc
+
   repo-checks:
     name: Content, plans and project rules
     runs-on: ubuntu-latest

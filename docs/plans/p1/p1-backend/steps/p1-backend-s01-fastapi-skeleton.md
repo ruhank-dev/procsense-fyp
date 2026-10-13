@@ -32,3 +32,13 @@ Prepared statements fail through the transaction pooler ("prepared statement doe
 
 ## Sources
 Implementation Guide B-M16; INSTRUCTIONS §4b, §5, §5b, §6, §7; ADR-0009.
+
+## Implementation notes (13 Oct 2026)
+- **Service:** `server/` is a FastAPI package (`server.main:app`) with its own locked uv project (`server/pyproject.toml`, `server/uv.lock`, Python 3.12). `config.py` (settings from the environment and a git-ignored `server/.env`; the address must be PostgreSQL, a Supabase address is rewritten to the psycopg 3 driver, migrations refuse the transaction pooler port 6543, secrets never print), `database.py` (SQLAlchemy 2 engine: prepared statements off, small pool or none, a connect timeout), `routers/health.py`, `repositories/health.py`, `schemas/health.py`. `GET /health` does not touch the database; `GET /health/db` does one timed round trip and on failure answers 503 with a short reason and never the address or the error text.
+- **A real bug found by the tests:** with the database unreachable a request hung for about two minutes on Windows (no connect timeout). The engine now has `DB_CONNECT_TIMEOUT` (default 10 s, limits 1 to 60); a paused free database fails fast.
+- **Migrations:** Alembic in `server/migrations` with a constraint naming convention and an empty baseline `0001`; `env.py` reads `MIGRATION_DATABASE_URL`. Tests run upgrade, downgrade, a second upgrade and `alembic check` against a real PostgreSQL.
+- **Tests:** 22 pytest tests (`server/tests`) on a real PostgreSQL 17, never SQLite. `tools/ci/server_tests.py` finds the database (`TEST_DATABASE_URL`, else a throwaway Docker container `procsense-test-pg`, else it skips the database tests with a notice; `REQUIRE_DB=1` makes that a failure, and CI sets it). `task server-test`, `server-dev`, `server-migrate`, `server-db-up`, `server-db-down`. CI has a `server` job with a PostgreSQL 17 service container, and it builds the image and checks `/health` and `/health/db` in the running container.
+- **Image:** `server/Dockerfile` (two stages, locked dependencies, runs as an ordinary user, health check on `/health`) and `server/Dockerfile.dockerignore` (only `server/` enters the build; no `.env`, no tests).
+- **Secret scan:** a throwaway database address on this computer (`localhost`, `127.0.0.1`) is no longer reported as a leaked password.
+- **Not in this step:** the Render service (it is created from the image CI builds; waits for the container-registry publishing of `p1-backend-s13`, and the Render team), accounts (s08), sessions (s02), Jinja templates (added with the dashboard, s11).
+
