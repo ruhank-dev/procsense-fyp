@@ -8,9 +8,9 @@ namespace ProcSense.EditorTools
 {
     public static class MpfbPatientReviewMenu
     {
-        public const string ScenePath = "Assets/Scenes/MPFBPatientReview.unity";
+        public const string ScenePath = "Assets/Scenes/PatientBay.unity";
 
-        [MenuItem("ProcSense/Characters/Open MPFB Patient Review")]
+        [MenuItem("ProcSense/Characters/Open MPFB Patient")]
         public static void Open()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
@@ -24,7 +24,7 @@ namespace ProcSense.EditorTools
                 return;
             }
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
-            EditorSceneManager.OpenScene(ScenePath);
+            WorkspaceMenu.OpenPatientBay();
         }
     }
 }

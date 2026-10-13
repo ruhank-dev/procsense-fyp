@@ -95,7 +95,9 @@ namespace ProcSense.EditorTools
         {
             var scene = NewScene();
             // No camera here: the XR rig in the patient bay owns the only camera (a second one would draw over it).
-            new GameObject("BootLoader").AddComponent<BootLoader>();
+            var boot = new GameObject("BootLoader").AddComponent<BootLoader>();
+            var settings = AssetDatabase.LoadAssetAtPath<ProcSense.VR.Login.DemoLoginSettings>(LoginScreenSetup.SettingsPath);
+            if (settings != null) boot.ConfigureLogin(settings, AssetDatabase.LoadAssetAtPath<GameObject>(LoginScreenSetup.PrefabPath), AssetDatabase.LoadAssetAtPath<GameObject>(PlayerRigPath));
             Save(scene, "Boot");
         }
 
@@ -107,6 +109,7 @@ namespace ProcSense.EditorTools
             {
                 var instance = (GameObject)PrefabUtility.InstantiatePrefab(sim);
                 instance.AddComponent<ProcSense.VR.XR.SimulatorLocomotion>();
+                instance.AddComponent<ProcSense.VR.XR.SimulatorHapticGuard>();
             }
             else Debug.LogWarning("[SceneBuilder] XR Device Simulator sample missing; run ProcSense/Project setup first");
             Save(scene, "DevOnly");

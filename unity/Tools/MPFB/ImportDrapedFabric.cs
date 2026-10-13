@@ -65,8 +65,8 @@ public static class ImportDrapedFabric
     public static object Main()
     {
         var scene = SceneManager.GetActiveScene();
-        if (EditorApplication.isPlaying || scene.name != "MPFBPatientReview" || scene.isDirty)
-            throw new InvalidOperationException("Open the saved MPFB review in Edit Mode first.");
+        if (EditorApplication.isPlaying || scene.name != "PatientBay" || scene.isDirty)
+            throw new InvalidOperationException("Open the saved PatientBay in Edit Mode first.");
         var bay = GameObject.Find("PatientBay").transform;
         var source = GameObject.Find("MPFB patient").GetComponentsInChildren<SkinnedMeshRenderer>().Single(r => r.name == "PatientGown");
         var data = Newtonsoft.Json.JsonConvert.DeserializeObject<Fabric>(File.ReadAllText("../build/mpfb/output/draped-gown.json"));

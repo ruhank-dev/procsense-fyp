@@ -16,6 +16,8 @@ namespace ProcSense.Tests.PlayMode
 {
     public class FoundationTests
     {
+        [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
+        [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
         private static IEnumerator Boot()
         {
             yield return SceneManager.LoadSceneAsync("Boot");

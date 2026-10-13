@@ -10,8 +10,8 @@ public static class PoseFabricReview
     public static object Main()
     {
         var scene = SceneManager.GetActiveScene();
-        if (EditorApplication.isPlaying || scene.name != "MPFBPatientReview" || scene.isDirty)
-            throw new InvalidOperationException("Open the saved MPFB review in Edit Mode first.");
+        if (EditorApplication.isPlaying || scene.name != "PatientBay" || scene.isDirty)
+            throw new InvalidOperationException("Open the saved PatientBay in Edit Mode first.");
         var bones = GameObject.Find("MPFB patient").GetComponentsInChildren<Transform>().GroupBy(t => t.name).ToDictionary(g => g.Key, g => g.First());
         foreach (string side in new[] { "l", "r" })
         {

@@ -152,6 +152,9 @@ MonoBehaviour:
   - Sys_Core
   - PatientBay
   editorOnlyScene: DevOnly
+  loginSettings: {fileID: 11400000, guid: 8dd0fd856e2aaea41a15cee1815a2226, type: 2}
+  loginPrefab: {fileID: 7103480403676363521, guid: f7be24e4d0fe4094fb1d0466a772e236, type: 3}
+  loginRigPrefab: {fileID: 6899650914584273580, guid: 3d13509a65fe4c2478f567acd3d902e4, type: 3}
 --- !u!4 &1209759847
 Transform:
   m_ObjectHideFlags: 0

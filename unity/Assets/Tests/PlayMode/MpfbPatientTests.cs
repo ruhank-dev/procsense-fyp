@@ -17,7 +17,7 @@ namespace ProcSense.Tests.PlayMode
     {
         private IEnumerator LoadReview()
         {
-            yield return EditorSceneManager.LoadSceneAsyncInPlayMode("Assets/Scenes/MPFBPatientReview.unity", new LoadSceneParameters(LoadSceneMode.Single));
+            yield return EditorSceneManager.LoadSceneAsyncInPlayMode("Assets/Scenes/PatientBay.unity", new LoadSceneParameters(LoadSceneMode.Single));
             for (int i = 0; i < 50; i++) yield return null;
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.AutoTick = false;

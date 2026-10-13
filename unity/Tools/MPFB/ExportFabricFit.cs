@@ -32,8 +32,8 @@ public static class ExportFabricFit
 
     public static object Main()
     {
-        if (EditorApplication.isPlaying || SceneManager.GetActiveScene().name != "MPFBPatientReview" || SceneManager.GetActiveScene().isDirty)
-            throw new InvalidOperationException("Open the saved MPFB review in Edit Mode first.");
+        if (EditorApplication.isPlaying || SceneManager.GetActiveScene().name != "PatientBay" || SceneManager.GetActiveScene().isDirty)
+            throw new InvalidOperationException("Open the saved PatientBay in Edit Mode first.");
         const string path = "Assets/Models/Characters/MPFBPatient/mpfb_patient.fbx";
         var importer = (ModelImporter)AssetImporter.GetAtPath(path);
         bool readable = importer.isReadable;

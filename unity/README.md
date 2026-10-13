@@ -89,10 +89,23 @@ Sannan's assignments, verification evidence and approval rules are in [sannan-ex
 
 In PatientBay, grab the folder on the notes table and press the held object's Activate/trigger to open or close it. Pickup alone reveals nothing. Accepted opening shows the current permitted name, DOB and MRN on the page; reopening adds no duplicate read action. Tablet Open notes remains an accessibility fallback and opens this same folder. A new session closes it and clears the visible facts. Multi-page records/report insertion and physical hand-driven cover dragging remain later work.
 
-## Fixed-pose patient demo
+## Permanent MPFB patient
 
-PatientBay preserves the original static patient pose with a fitted BP cuff, finger probe and live wristband. The attempted arm deformation was removed after visual review. Select the wristband with a controller to read it; identifiers remain hidden until Core accepts the read. Grip and release each sensor onto its matching arm/finger point, then press START BP on the monitor and wait for the Core-controlled cycle. Removing the cuff during an unfinished cycle cancels it. Tablet fallbacks remain synchronized. The patient has no physics-driven body or animation rig; fingers remain curled and the visual model is temporary. The procedural pose/fitting sources and limitations are documented in Assets/Models/Characters/PatientTrial/README.md.
+PatientBay now contains the MPFB patient for ordinary app launch, corridor return and builds. Use **ProcSense -> Open Application**, then Play, to sign in and enter this bay. **ProcSense -> Open Patient Bay** and **Characters -> Open MPFB Patient** open the editable main bay directly for development.
 
-## MPFB patient candidate
+The CGTrader model, texture and material are retired from Unity. Its procedural wristband was moved into MPFBPatient with its GUID preserved. The fitted gown, blanket, pillow, mattress, rig and native facial shapes are the permanent patient setup. Sensor sockets/wristband remain bone mounted; clinical animation, audio and demographic binding remain separate work. The old MPFBPatientReview scene is retained only as a development snapshot and is not the app destination or a build scene. Recipes and provenance are recorded in [the MPFB recipe README](Tools/MPFB/README.md).
 
-Use **ProcSense → Characters → Open MPFB Patient Review** to inspect the rigged candidate in a separate bay. Press Play normally; physical wristband/sensor interactions and tablet fallbacks use the existing Core contracts. The current PatientBay remains the committed fallback and is opened by the usual workspace menu. The review scene has disabled room exits and is excluded from build settings. The candidate has a body/finger rig and native facial/speech blendshapes; clinical animation and audio are separate integration work. Build, provenance and limitations are recorded in [the MPFB recipe README](Tools/MPFB/README.md).
+## Demo launch login
+
+The app's Boot scene shows a demo sign-in screen before loading the clinical workspace. Backend authentication remains a teammate TODO; this gate verifies only the displayed fixed demo account:
+
+- Email: `demo@procsense.app`
+- Password: `ProcSenseDemo!`
+
+Use **ProcSense -> Development -> Preview login** to run the screen once. **ProcSense -> Development -> Bypass login in Editor** is unchecked by default, so normal Boot launches require signing in. Check it when you want to skip login during development. This preference is local to your Editor. Directly opening PatientBay still uses normal room Play behavior for development.
+
+`Assets/Settings/DemoLoginSettings.asset` controls Show On Launch and the optional Development Build bypass. Regular builds show login when enabled; the Editor bypass does not disable login in a player build. Login creates one temporary rig/input system and destroys it before loading Sys_Core and the permanent MPFB PatientBay. No clinical session runs behind the form. Invalid/empty inputs stay on the form; the entered password is cleared on success and never logged or saved. The form supports mouse/keyboard and is presented as a tracked world-space panel when XR is active; Quest keyboard/reach acceptance needs device testing.
+
+The authored Canvas/TMP prefab is `Assets/Prefabs/UI/LoginScreen.prefab`. The builder preserves existing UI and refuses to replace an authored login prefab. The backend owner's integration point is `Assets/Scripts/Login/DemoLoginView.cs` Submit; replace the explicit demo credential check with the real authentication service and complete the launch only after service acceptance.
+
+The old floating wristband card is disabled in the main bay and retained MPFB snapshot. Read identity from the fitted physical band; controller selection still issues Core's read_wristband action. DevOnly suppresses vibration feedback only while virtual controllers exist, while real-device haptic settings remain unchanged. The monitor grab and START BP control own separate collider lists.

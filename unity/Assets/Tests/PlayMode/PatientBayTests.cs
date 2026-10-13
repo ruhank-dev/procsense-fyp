@@ -15,6 +15,8 @@ namespace ProcSense.Tests.PlayMode
     /// <summary>The generated greybox patient bay: it boots, holds the views and lets a trainee finish the identity check on the tablet.</summary>
     public class PatientBayTests
     {
+        [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
+        [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
         private IEnumerator LoadBoot()
         {
             yield return SceneManager.LoadSceneAsync("Boot");
@@ -32,7 +34,8 @@ namespace ProcSense.Tests.PlayMode
             var monitor = Object.FindObjectsByType<EquipmentSurfaceView>(FindObjectsSortMode.None).Single(v => v.Kind == EquipmentSurfaceView.Surface.Monitor);
             monitor.RenderNow();
             Assert.That(monitor.DisplayText, Does.Contain("SpO2   --"));
-            Assert.IsNotNull(Object.FindFirstObjectByType<IdentityCardView>());
+            Assert.IsNull(Object.FindFirstObjectByType<IdentityCardView>(), "The physical band replaces the floating card");
+            Assert.IsTrue(Object.FindObjectsByType<EquipmentSurfaceView>().Any(v => v.Kind == EquipmentSurfaceView.Surface.Identity));
             Assert.IsNotNull(Object.FindFirstObjectByType<NotesPanelView>(FindObjectsInactive.Include));
             Assert.AreEqual(1, Camera.allCamerasCount, "exactly one camera (the XR rig's) must draw, or head movement shows nothing");
         }

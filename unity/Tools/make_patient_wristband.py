@@ -21,4 +21,5 @@ bpy.context.collection.objects.link(ring)
 bpy.ops.object.select_all(action='DESELECT')
 ring.select_set(True)
 bpy.context.view_layer.objects.active = ring
-bpy.ops.wm.obj_export(filepath=str(root/'unity/Logs/patient-review/patient_wristband.obj'), export_selected_objects=True, forward_axis='NEGATIVE_Z', up_axis='Y', export_materials=False)
+(root/'build/mpfb/output').mkdir(parents=True, exist_ok=True)
+bpy.ops.wm.obj_export(filepath=str(root/'build/mpfb/output/patient_wristband.obj'), export_selected_objects=True, forward_axis='NEGATIVE_Z', up_axis='Y', export_materials=False)

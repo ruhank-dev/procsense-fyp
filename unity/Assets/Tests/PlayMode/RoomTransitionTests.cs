@@ -15,6 +15,8 @@ namespace ProcSense.Tests.PlayMode
 {
     public class RoomTransitionTests
     {
+        [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
+        [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
         [UnityTest]
         public IEnumerator Direct_room_play_loads_one_camera_session_and_simulator_and_can_navigate()
         {
