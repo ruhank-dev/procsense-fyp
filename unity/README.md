@@ -92,3 +92,7 @@ In PatientBay, grab the folder on the notes table and press the held object's Ac
 ## Fixed-pose patient demo
 
 PatientBay preserves the original static patient pose with a fitted BP cuff, finger probe and live wristband. The attempted arm deformation was removed after visual review. Select the wristband with a controller to read it; identifiers remain hidden until Core accepts the read. Grip and release each sensor onto its matching arm/finger point, then press START BP on the monitor and wait for the Core-controlled cycle. Removing the cuff during an unfinished cycle cancels it. Tablet fallbacks remain synchronized. The patient has no physics-driven body or animation rig; fingers remain curled and the visual model is temporary. The procedural pose/fitting sources and limitations are documented in Assets/Models/Characters/PatientTrial/README.md.
+
+## MPFB patient candidate
+
+Use **ProcSense → Characters → Open MPFB Patient Review** to inspect the rigged candidate in a separate bay. Press Play normally; physical wristband/sensor interactions and tablet fallbacks use the existing Core contracts. The current PatientBay remains the committed fallback and is opened by the usual workspace menu. The review scene has disabled room exits and is excluded from build settings. The candidate has a body/finger rig and native facial/speech blendshapes; clinical animation and audio are separate integration work. Build, provenance and limitations are recorded in [the MPFB recipe README](Tools/MPFB/README.md).

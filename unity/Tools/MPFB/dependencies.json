@@ -1,0 +1,12 @@
+{
+  "blender": "4.5.14",
+  "mpfb": "2.0.18",
+  "source_tag": "v2.0.18",
+  "source_commit_prefix": "d0a32e5",
+  "downloads": [
+    {"file":"mpfb-v2.0.18.zip","url":"https://api.github.com/repos/makehumancommunity/mpfb2/zipball/v2.0.18","sha256":"A19A314F22B41BBA9CEAA182EDAF2CA50C0593E39E86F81497EC8434B657A930"},
+    {"file":"system-assets.zip","url":"https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip","sha256":"B542127A8E25547C7C29C19F2D1D2ADB9A664C80396ECD694095DBC8028A0107"},
+    {"file":"faceunits01.zip","url":"https://files.makehumancommunity.org/functional/faceunits01.zip","sha256":"D113107BD7EB59F3AF4DF6FC0EC29BFCC593F496D0B336AEC14F086A80CE7146"},
+    {"file":"visemes02.zip","url":"https://files.makehumancommunity.org/functional/visemes02.zip","sha256":"A69AB6FB95DDD5F56F70ACC7E859F5F9C6AE613C527D577EA1571EFF2183D29E"}
+  ]
+}

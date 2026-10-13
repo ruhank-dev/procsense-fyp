@@ -1,0 +1,38 @@
+{
+  "name": "ProcSensePatient",
+  "phenotype": {
+    "age": 0.5,
+    "gender": 1.0,
+    "height": 0.5,
+    "muscle": 0.4,
+    "weight": 0.5,
+    "proportions": 0.5,
+    "cupsize": 0.5,
+    "firmness": 0.5,
+    "race": {
+      "asian": 0.5,
+      "caucasian": 0.5,
+      "african": 0.0
+    }
+  },
+  "targets": [],
+  "rig": "game_engine",
+  "skin_mhmat": "middleage_asian_male/middleage_asian_male.mhmat",
+  "skin_material_type": "GAMEENGINE",
+  "skin_material_settings": {},
+  "eyes": "high-poly/high-poly.mhclo",
+  "eyes_material_type": "GAMEENGINE",
+  "eyes_material_settings": {},
+  "eyebrows": "eyebrow001/eyebrow001.mhclo",
+  "eyelashes": "eyelashes01/eyelashes01.mhclo",
+  "hair": "short02/short02.mhclo",
+  "teeth": "teeth_base/teeth_base.mhclo",
+  "tongue": "tongue01/tongue01.mhclo",
+  "clothes": [
+    "male_casualsuit04/male_casualsuit04.mhclo"
+  ],
+  "proxy": "",
+  "color_adjustments": {},
+  "material_instances": "NEVER",
+  "alternative_materials": {}
+}

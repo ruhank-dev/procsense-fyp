@@ -1,0 +1,17 @@
+# MPFB patient build and review
+
+The baseline remains in PatientBay. Open the candidate with ProcSense > Characters > Open MPFB Patient Review. This scene is deliberately absent from production build settings; its exits are disabled so review does not silently navigate into the fallback bay. Press Play normally to use the existing simulator/tablet/physical sensor routes.
+
+The character uses MPFB 2.0.18 with the GameEngine rig, CC0 system assets, Faceunits 01 and Visemes 02. It has a valid Unity Humanoid avatar, 53 bones, 67 body facial/speech shapes and separate skin, eyes, eyelashes, brows, teeth, tongue, hair and a derived short-sleeve patient gown. Both arms are posed through the rig. No automatic breathing, clinical signs, speech playback or ragdoll is supplied. The Animator is disabled in this fixed review pose; its valid Avatar remains available for later animation integration. Facial shapes are native SkinnedMeshRenderer controls and are tested independently from Core.
+
+## Local setup and reproducibility
+
+All third-party source, packs, preferences and native Blender working files are in locally ignored build/mpfb, not in Blender's global configuration. dependencies.json records the exact tag and downloaded archive SHA-256 values. Graphical core/system and facial packs are CC0; the MPFB software itself is GPL-3.0-or-later and is not redistributed with the Unity model.
+
+From repository root, set BLENDER_USER_RESOURCES to the absolute build/mpfb/blender-user path for the Blender command only. Run the pinned executable with -b --factory-startup --python-exit-code 1 -P unity/Tools/MPFB/build_patient.py. It registers a local source extension repo in that isolated process, loads asset-library, reads patient-preset.json and emits FBX, native .blend, texture bundle and validation report under build/mpfb/output. It never saves over the earlier CGTrader files or edits the fallback scene.
+
+In the connected Unity Editor, run ImportMpfbPatient.Main with the labelled unity-cli run_script command targeting this checkout. This imports through AssetDatabase, preserves existing GUIDs, remaps to URP Lit and configures Android ASTC 6x6. Mesh readability is enabled during editor calibration. CreateMpfbReview.Main creates the separate review only when absent and rejects unsaved scene edits; it never rebuilds PatientBay. It uses actual bone-weighted body vertices to normalize a provisional 1.75m visual height and place the body on the mattress. Refit is an explicit authoring operation, not an automatic overwrite during normal opening.
+
+SampleMpfbCover.Main writes a temporary geometric leg-surface snapshot, excluding arm/finger triangles. Run build_linens.py to produce the pillow and fitted cover OBJ files, then AddMpfbLinens.Main to import them and dress the review bed. Set the FBX importer isReadable=false and reimport once editing is finished. Preserve metadata on subsequent imports. The initial skin-bound scale and gown-intersection issues were corrected during development; do not replace this process with coordinate-based body stretching.
+
+Current limitations: this is one visual adult male preset, not case demographic binding. Stock skin/hair can be refined after visual review; skin does not yet reflect authoritative clinical signs. Facial capabilities do not establish lip-sync/audio integration. No headset performance/readability or medical appearance acceptance is claimed. Keep the original committed fallback until Sannan accepts the candidate.
