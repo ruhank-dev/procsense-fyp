@@ -288,6 +288,9 @@ jobs:
           uv run --project tools tools/plans/pipeline_docs.py --check
           uv run --project tools tools/plans/check_planning_sync.py
 
+      - name: Secret scan catches pasted keys and passwords
+        run: uv run --project tools tools/ci/test_repo_checks.py
+
       - name: Project rules (determinism rules, hygiene, doc links, registers)
         run: uv run --project tools tools/ci/repo_checks.py
 

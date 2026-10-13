@@ -152,6 +152,7 @@ def main(argv: list[str]) -> int:
         ("planning documents agree with the pipeline JSON (plans, exports, steps, ids, registers)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/check_planning_sync.py"])),
         ("AI planning documents up to date (generated from the pipeline JSON)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/pipeline_docs.py", "--check"])),
         ("project rules", lambda: run(["uv", "run", "--project", "tools", "tools/ci/repo_checks.py"])),
+        ("secret scan catches pasted keys and passwords (Supabase key, database address, token)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_repo_checks.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
     ]
     results = []

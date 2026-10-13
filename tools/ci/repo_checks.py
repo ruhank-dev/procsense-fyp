@@ -59,6 +59,10 @@ SECRET_PATTERNS = [
     (r"\bAKIA[0-9A-Z]{16}\b", "AWS access key"),
     (r"\bxox[baprs]-[A-Za-z0-9-]{10,}\b", "Slack token"),
     (r"(?i)\b(password|passwd|api[_-]?key|secret)\b\s*[:=]\s*[\"'][^\"'\s]{6,}[\"']", "hard-coded credential"),
+    # the hosted backend (p1-backend-s07): a Supabase secret key, a database address with a real password, a signed token (such as the old service-role key)
+    (r"\bsb_secret_[A-Za-z0-9_-]{16,}", "Supabase secret key"),
+    (r"\bpostgres(?:ql)?(?:\+\w+)?://[^:@/\s]+:(?!\[|<|\$|\{|YOUR|PASSWORD|REPLACE|changeme|xxx)[^@\s/]{6,}@", "database address with a password in it"),
+    (r"\beyJ[A-Za-z0-9_-]{15,}\.eyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{10,}", "signed token (JWT)"),
 ]
 FORBIDDEN_PATHS = [
     (r"(^|/)(bin|obj)/", "build output"),
@@ -79,7 +83,9 @@ def check_hygiene() -> list[str]:
                 problems.append(f"{rel}: {why} must not be committed")
         if p.stat().st_size > 5_000_000 and p.suffix.lower() not in {".png", ".jpg", ".fbx", ".blend", ".wav", ".ogg", ".pdf"}:
             problems.append(f"{rel}: larger than 5 MB (use Git LFS or rebuild it from a script)")
-        if p.suffix in TEXT_SUFFIXES and not rel.startswith(("tools/uv.lock", "tools/ci/")):
+        # the server folder's notes and its .env.example are scanned too: that is where a pasted key would most likely end up
+        scanned = p.suffix in TEXT_SUFFIXES or (rel.startswith("server/") and p.suffix in {".md", ".example"})
+        if scanned and not rel.startswith(("tools/uv.lock", "tools/ci/")):
             text = read(p)
             for pattern, why in SECRET_PATTERNS:
                 if re.search(pattern, text):

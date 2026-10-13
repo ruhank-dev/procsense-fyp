@@ -177,11 +177,14 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-129 | A platform-administrator screen (today the team creates organisations with a script and edits the database directly) | Pending | p1-backend-s08 | More than a handful of organisations |  |
 | DT-130 | Recovery of accounts if the Supabase project is lost (the free plan has no backup of the account system; people would be re-invited and sessions restored from our dump) | Pending | p1-backend-s13 | Paid plan (DT-123) | Documented in the runbook |
 | DT-131 | Serve approved content packages (and updates) to the headset from the service, using the content version and the per-mode packages | Pending | p1-backend-s09 | p0-vr-platform; content versioning in use | Packages per mode exist (p0-case-library-s01) |
+| DT-132 | Send sign-in emails from the team's own domain through a transactional email provider with SPF and DKIM (development uses Gmail SMTP, which can land in spam and is limited) | Pending | p1-backend-s07 | A domain; before real customers | Supabase's built-in email only reaches team members |
+| DT-133 | Create the production Supabase project (the free plan allows a person two active projects across all organisations, and Moiz already has two); until then procsense-dev is the only project and holds no real trainee data | Pending | p1-backend-s07 | Paid plan (DT-123), or a free slot | Pausing the older project would free a slot but it is in use |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 13 October 2026 (p1-backend-s07) | Supabase organisation and development project set up; `server/RUNBOOK.md`, `server/.env.example` and the extended secret scan added; decision log row 66; DT-132 and DT-133 added. |
 | 13 October 2026 (hosted backend plan) | ADR-0009 and the replanned p1-backend (PostgreSQL on Supabase, accounts and organisations, server-side verification, dashboard, privacy, free-tier operations; s01 to s04 and s07 to s13 in the new milestone M17); decision log row 65; DT-122 to DT-131 added; OQ-06 decided and OQ-07 added in the pipeline JSON. |
 | 13 October 2026 (case-library s01) | p0-case-library-s01 built by Abdul Moiz on top of main (content packages per mode, loader by mode, shared schema); decision log row 64; DT-119 to DT-121 added. |
 | 12 October 2026 (AI planning, second pass) | Complete implementation plan for every feature (69, coverage audited 69 of 69), AI composer and personalisation architecture, revived E64 and E65 as research tracks, both GPUs in the benchmark; DT-113 to DT-118 added; plan checks now include VR-G-PLANS. |
