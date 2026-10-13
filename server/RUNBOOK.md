@@ -5,10 +5,10 @@ Written 13 October 2026. Free plans change their limits, so recheck the numbers 
 ## What is running today
 | Part | State |
 |---|---|
-| Supabase organisation `Procsense` (Free plan) | Created. Owner: Moiz. Invitations sent to Ruhan (to be administrator) and Sannan; not yet accepted. |
+| Supabase organisation `Procsense` (Free plan) | Created. Owner: Moiz. Invitations sent to Ruhan (to be administrator) and Sannan; they will accept later. |
 | Supabase project `procsense-dev` | Created. Reference `qgnirvxfknyacwovkugt`, region Southeast Asia (Singapore, `ap-southeast-1`), PostgreSQL 17.11. |
 | Supabase project `procsense-prod` | **Not created.** A person may have at most 2 active free projects across all organisations they administer, and Moiz already has 2 (this one and an older one). Created when the team moves to a paid plan (DT-123, DT-133). Until then `procsense-dev` is the only project and **may hold real trainee data** (owner's decision, 13 October 2026). Because it is then the only copy on a plan with no automatic backups, the conditions in "Before real trainees use it" apply. |
-| Container host (Render, free web service) | Account to be created; the service is created at the end of `p1-backend-s01`, when the Dockerfile exists. The way Render receives the code (image from GitHub's container registry, or Render's GitHub app) is decided with Ruhan: the plan prefers CI-built images (the tested image is the one that runs, and no Render build minutes are used). |
+| Container host (Render, free web service) | Account exists (Moiz's, from an earlier web application). The 750 free hours a month are shared by every free service in a workspace, so ProcSense gets its own workspace (a Render team named `Procsense`) rather than sharing the old project's hours. The service is created at the end of `p1-backend-s01`, when the Dockerfile exists. The way Render receives the code (image from GitHub's container registry, or Render's GitHub app) is decided with Ruhan: the plan prefers CI-built images (the tested image is the one that runs, and no Render build minutes are used). |
 | Email for sign-in messages | Supabase's built-in email is for testing only (2 messages an hour, team members only), so invitations and sign-up need a custom sender. Today: Gmail SMTP with an app password (about 500 messages a day, rate limit in Supabase 30 an hour). Development only: it can land in spam. Before real customers, a sender on our own domain (DT-132). |
 
 ## Before real trainees use it
@@ -64,5 +64,5 @@ The one project holds real trainee data, so before the first real trainee signs 
 
 ## Open items
 - Ruhan and Sannan accept the Supabase invitation; Ruhan becomes administrator and a second owner of every account.
-- Render account and the service (end of s01); the way Render receives the code (with Ruhan).
-- A calendar reminder to open `procsense-dev` every few days until the keep-alive exists.
+- A Render workspace for ProcSense and the service (end of s01); the way Render receives the code is decided with Ruhan (CI-built image preferred).
+- Done: the calendar reminder to open `procsense-dev` every few days until the keep-alive exists (Moiz).
