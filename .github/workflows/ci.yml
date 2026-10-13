@@ -68,6 +68,11 @@ jobs:
           dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-A --seed 42 --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/run.json"
           dotnet run --no-build -c Release --project src/ProcSense.Cli -- replay --log "$RUNNER_TEMP/run.session.jsonl"
 
+      - name: Verify command accepts the engine's own session (header version 2)
+        run: |
+          dotnet run --no-build -c Release --project src/ProcSense.Cli -- verify --log "$RUNNER_TEMP/run.session.jsonl" > "$RUNNER_TEMP/verdict.json"
+          grep -q '"ok":true' "$RUNNER_TEMP/verdict.json" && grep -q '"header_version":2' "$RUNNER_TEMP/verdict.json"
+
       - name: Review-status gate refuses an under-approved case
         run: |
           ! dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-A --seed 42 --mode assessment --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/g1.json"
