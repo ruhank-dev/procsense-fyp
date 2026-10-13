@@ -68,12 +68,12 @@ def package_modes() -> tuple[bool, str]:
 
 
 def session_file_contract() -> tuple[bool, str]:
-    """The engine writes a session file with the CLI; the server's reader must accept it (version 1 header until p1-backend-s09 adds version 2)."""
+    """The engine writes a session file with the CLI; the server's reader must accept it as header version 2."""
     with tempfile.TemporaryDirectory() as tmp:
         ok, text = run(CLI + ["run", "--case", "VAR-S1-A", "--seed", "42", "--actions", "tests/golden/skeleton1_correct.actions.json", "--out", str(Path(tmp) / "run.json")])
         if not ok:
             return False, text
-        return run(["uv", "run", "--project", "server", "python", "-m", "server.scripts.check_session_file", str(Path(tmp) / "run.session.jsonl"), "--v1"])
+        return run(["uv", "run", "--project", "server", "python", "-m", "server.scripts.check_session_file", str(Path(tmp) / "run.session.jsonl")])
 
 
 def gate_refuses() -> tuple[bool, str]:

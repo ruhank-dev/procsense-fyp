@@ -55,3 +55,19 @@ def test_limits_are_checked():
     for bad in ({"db_pool_size": 50}, {"db_pool_size": -1}, {"db_connect_timeout": 0}, {"db_connect_timeout": 600}, {"max_upload_bytes": 10}, {"max_upload_bytes": 100 * 1024 * 1024}):
         with pytest.raises(ValidationError):
             make(**bad)
+
+
+def test_the_engine_command_is_a_path_or_a_json_list_and_empty_means_verification_is_off():
+    assert make().engine_command() == []
+    assert make(engine_cli="/opt/engine/procsense-sim").engine_command() == []   # no content root: still off
+    assert make(engine_cli="/opt/engine/procsense-sim", engine_content_root="/opt/content").engine_command() == ["/opt/engine/procsense-sim"]
+    assert make(engine_cli='["dotnet", "C:/x/procsense-sim.dll"]', engine_content_root="/c").engine_command() == ["dotnet", "C:/x/procsense-sim.dll"]
+    with pytest.raises(ValueError):
+        make(engine_cli='["dotnet", 5]', engine_content_root="/c").engine_command()
+
+
+def test_the_verification_limits_are_checked():
+    for bad in ({"verify_timeout_seconds": 1}, {"verify_timeout_seconds": 9999}, {"verify_batch": 0}, {"verify_batch": 500}):
+        with pytest.raises(ValidationError):
+            make(**bad)
+    assert make().internal_key.get_secret_value() == ""   # closed by default

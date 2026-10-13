@@ -21,7 +21,7 @@ def insert_session(db: DbSession, parsed: ParsedSession, organisation_id: uuid.U
     h = parsed.header
     values = dict(
         id=h.session_id, organisation_id=organisation_id, user_id=user_id, case_id=h.case, mode=h.mode, seed=h.seed, content_version=h.content_version, engine_version=h.engine_version,
-        scenario_package_hash=h.scenario_package_hash or "", log_hash=h.log_hash, log_entries=len(parsed.entries), ended_step=parsed.entries[-1].step,
+        scenario_package_hash=h.scenario_package_hash or "", log_hash=h.log_hash, header_line=parsed.header_line, log_entries=len(parsed.entries), ended_step=parsed.entries[-1].step,
         log_gz=gzip.compress(parsed.log_text.encode("utf-8"), compresslevel=6, mtime=0),
     )
     # RETURNING tells us whether this statement inserted the row (an ORM-level insert does not report a row count)

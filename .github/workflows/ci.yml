@@ -119,18 +119,36 @@ jobs:
           enable-cache: true
           cache-dependency-glob: server/uv.lock
 
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
       - name: Install the locked dependencies
         run: uv sync --project server --frozen
 
-      - name: Backend tests on PostgreSQL 17 (never SQLite)
-        run: uv run --project server pytest server/tests -q -rs
+      - name: Build the engine (the verification tests run it)
+        run: dotnet build src/ProcSense.Cli -c Release
 
-      - name: The image builds and answers /health and /health/db
+      - name: Backend tests on PostgreSQL 17 (never SQLite), with the real engine
+        run: |
+          export ENGINE_CLI="[\"dotnet\", \"$GITHUB_WORKSPACE/artifacts/bin/ProcSense.Cli/Release/net9.0/procsense-sim.dll\"]"
+          uv run --project server pytest server/tests -q -rs
+
+      - name: Prepare the engine for Linux and the content of each version for the image
+        run: |
+          dotnet publish src/ProcSense.Cli -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true -o server/engine/bin
+          uv run --project tools tools/content/package_versions.py --out server/engine/content
+
+      - name: The image builds, answers /health and /health/db, and its engine verifies a session with its content
         run: |
           docker build -f server/Dockerfile -t procsense-server .
           docker run -d --name svc --network host -e PORT=8000 -e DATABASE_URL=postgresql://postgres:postgres@localhost:5432/procsense_test procsense-server
           for i in $(seq 1 20); do curl -fsS http://localhost:8000/health && break || sleep 2; done
           curl -fsS http://localhost:8000/health/db
+          VERSION=$(docker exec svc ls /opt/engine/content | grep -- -practice)
+          docker cp tests/golden/skeleton1_correct.actions.json svc:/tmp/actions.json
+          docker exec svc /opt/engine/bin/procsense-sim run --case VAR-S1-A --seed 42 --actions /tmp/actions.json --out /tmp/run.json --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION
+          docker exec svc /opt/engine/bin/procsense-sim verify --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION | grep -q '"ok":true'
           docker logs svc
 
   repo-checks:

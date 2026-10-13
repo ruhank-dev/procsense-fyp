@@ -368,6 +368,16 @@ class SessionLogSchemaChecks(unittest.TestCase):
         for entry in self.entries:
             self.assertEqual(list(self.entry.iter_errors(entry)), [], entry)
 
+    def test_the_header_the_engine_writes_now_is_version_2_and_validates(self):
+        root = Path(__file__).resolve().parents[2]
+        lines = (root / "server" / "tests" / "fixtures" / "golden_session_v2.ndjson").read_text(encoding="utf-8").split("\n")
+        head = json.loads(lines[0])["header"]
+        self.assertEqual(list(self.header.iter_errors(head)), [])
+        self.assertTrue(head["session_id"] and head["content_version"] and head["engine_version"] and "scenario_package_hash" in head)
+        for line in lines[1:]:
+            if line:
+                self.assertEqual(list(self.entry.iter_errors(json.loads(line))), [])
+
     def test_a_header_with_the_version_2_fields_validates_too(self):
         v2 = dict(self.head, session_id="5b1d4a52-8a3e-4c2f-9c53-1c0f1f6e9d11", content_version="0123456789ab-practice", engine_version="0.1.0", scenario_package_hash="")
         self.assertEqual(list(self.header.iter_errors(v2)), [])
@@ -376,6 +386,24 @@ class SessionLogSchemaChecks(unittest.TestCase):
         self.assertTrue(list(self.entry.iter_errors(dict(self.entries[0], surprise=1))))
         self.assertTrue(list(self.entry.iter_errors(dict(self.entries[0], channel="telepathy"))))
         self.assertTrue(list(self.header.iter_errors(dict(self.head, mode="exam"))))
+
+
+class VerificationContentChecks(unittest.TestCase):
+    """The content the service verifies with: one folder per version, for practice and assessment (p1-backend-s09)."""
+
+    def test_each_mode_gets_a_folder_named_by_its_version_and_each_folder_verifies(self):
+        import package
+        import package_versions
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "content"
+            versions = package_versions.build(out)
+            self.assertEqual(len(versions), 2)
+            self.assertTrue(versions[0].endswith("-practice") and versions[1].endswith("-assessment"))
+            for version in versions:
+                self.assertRegex(version, r"^[0-9a-f]{12}-[a-z]+$")
+                self.assertEqual(package.verify(out / version, version.split("-")[1]), [])
+                self.assertEqual(json.loads((out / version / "manifest.json").read_text(encoding="utf-8"))["content_version"], version)
+            self.assertEqual(json.loads((out / "versions.json").read_text(encoding="utf-8"))["versions"], versions)
 
 
 if __name__ == "__main__":

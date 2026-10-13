@@ -14,6 +14,9 @@ RUN useradd --create-home --uid 10001 app
 WORKDIR /app
 COPY --from=builder /opt/venv /opt/venv
 COPY server ./server
+# the engine and the content it verifies with, prepared by `task server-engine-prepare` (CI does it before the image is built)
+COPY server/engine /opt/engine
+ENV ENGINE_CLI=/opt/engine/bin/procsense-sim ENGINE_CONTENT_ROOT=/opt/engine/content DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/dotnet-bundle DOTNET_CLI_TELEMETRY_OPTOUT=1
 USER app
 EXPOSE 8000
 # a plain request to /health (it does not touch the database, so a sleeping database never makes the container look dead)

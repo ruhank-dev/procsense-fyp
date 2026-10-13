@@ -48,6 +48,13 @@ class Settings(BaseSettings):
 
     max_upload_bytes: int = 2 * 1024 * 1024
     max_package_bytes: int = 1024 * 1024
+    # verification (p1-backend-s09): the engine's command line and the content packages, one folder per content version (practice and assessment each have their own version)
+    engine_cli: str = ""                   # the command that runs `procsense-sim`, e.g. /opt/engine/procsense-sim, or "dotnet /path/ProcSense.Cli.dll"; empty = verification is off and sessions wait as pending
+    engine_content_root: str = ""          # a folder holding one subfolder per content version the service can verify
+    verify_timeout_seconds: int = 60
+    verify_batch: int = 5
+    verify_on_upload: bool = True
+    internal_key: SecretStr = SecretStr("")   # lets a scheduled job call /internal/verify-pending; empty = that route is closed
     upload_rate_per_hour: int = 120
     supported_engine_versions: Annotated[list[str], NoDecode] = []
     supported_content_versions: Annotated[list[str], NoDecode] = []
@@ -95,6 +102,20 @@ class Settings(BaseSettings):
             raise ValueError("an upload limit must be between 1 KB and 20 MB")
         return value
 
+    @field_validator("verify_timeout_seconds")
+    @classmethod
+    def _verify_timeout(cls, value: int) -> int:
+        if not 5 <= value <= 600:
+            raise ValueError("verify_timeout_seconds must be between 5 and 600")
+        return value
+
+    @field_validator("verify_batch")
+    @classmethod
+    def _verify_batch(cls, value: int) -> int:
+        if not 1 <= value <= 50:
+            raise ValueError("verify_batch must be between 1 and 50")
+        return value
+
     @field_validator("upload_rate_per_hour")
     @classmethod
     def _rate(cls, value: int) -> int:
@@ -102,6 +123,19 @@ class Settings(BaseSettings):
             raise ValueError("upload_rate_per_hour must be between 1 and 100000")
         return value
 
+
+    def engine_command(self) -> list[str]:
+        """The engine's command line as a list: a JSON array (["dotnet", "/path/ProcSense.Cli.dll"]) or a plain path to the executable. Empty when verification is not configured."""
+        text = self.engine_cli.strip()
+        if not text or not self.engine_content_root.strip():
+            return []
+        if text.startswith("["):
+            import json
+            parts = json.loads(text)
+            if not (isinstance(parts, list) and parts and all(isinstance(p, str) and p for p in parts)):
+                raise ValueError("engine_cli must be a path or a JSON list of strings")
+            return parts
+        return [text]
 
     @property
     def jwt_issuer(self) -> str:

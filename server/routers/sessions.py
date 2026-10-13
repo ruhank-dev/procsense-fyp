@@ -11,7 +11,7 @@ import uuid
 import zlib
 from functools import lru_cache
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, Response
 from sqlalchemy.orm import Session as DbSession
 
 from server.auth.dependencies import OrgContext, db_session, require_member
@@ -20,6 +20,7 @@ from server.ratelimit import RateLimiter
 from server.repositories import sessions as repository
 from server.schemas.sessions import SessionStatus, UploadReply
 from server.sessionfile import SessionFileError, parse_session_file
+from server.verification.worker import verify_in_background
 
 router = APIRouter(tags=["sessions"])
 security_log = logging.getLogger("procsense.security")
@@ -62,7 +63,7 @@ async def _read_body(request: Request, limit: int) -> bytes:
 
 
 @router.post("/organisations/{organisation_id}/sessions", response_model=UploadReply, status_code=202)
-async def upload_session(request: Request, response: Response, ctx: OrgContext = Depends(require_member), db: DbSession = Depends(db_session),
+async def upload_session(request: Request, response: Response, background: BackgroundTasks, ctx: OrgContext = Depends(require_member), db: DbSession = Depends(db_session),
                          settings: Settings = Depends(get_settings)) -> UploadReply:
     user_id = ctx.user.profile.user_id
     if not _limiter().allow(user_id):
@@ -97,6 +98,8 @@ async def upload_session(request: Request, response: Response, ctx: OrgContext =
         response.status_code = 200
         return UploadReply(outcome="already_stored", session=_status(existing), status_url=f"/organisations/{ctx.organisation.id}/sessions/{existing.id}")
     db.commit()
+    if settings.verify_on_upload:
+        background.add_task(verify_in_background, header.session_id)   # best effort; the sweeper finds anything left pending
     row = repository.get_session_row(db, header.session_id)
     return UploadReply(outcome="accepted", session=_status(row), status_url=f"/organisations/{ctx.organisation.id}/sessions/{row.id}")
 

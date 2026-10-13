@@ -30,6 +30,48 @@
           "title": "Log Hash",
           "type": "string"
         },
+        "level": {
+          "anyOf": [
+            {
+              "enum": [
+                "beginner",
+                "advanced"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Level"
+        },
+        "variant": {
+          "anyOf": [
+            {
+              "maxLength": 16,
+              "pattern": "^[A-Za-z0-9._-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variant"
+        },
+        "noise": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Noise"
+        },
         "session_id": {
           "anyOf": [
             {

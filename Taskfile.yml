@@ -125,6 +125,12 @@ tasks:
     cmds:
       - uv run --project server alembic -c server/alembic.ini upgrade head
 
+  server-engine-prepare:
+    desc: Build what the service needs to verify sessions into server/engine (the engine for Linux and the content of each version); the image build copies it
+    cmds:
+      - dotnet publish src/ProcSense.Cli -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true -o server/engine/bin
+      - uv run --project tools tools/content/package_versions.py --out server/engine/content
+
   server-admin:
     desc: Platform administration by the team, e.g. task server-admin -- create-organisation --name "Alpha" --slug alpha --admin-email a@b.com (see server/RUNBOOK.md)
     cmds:

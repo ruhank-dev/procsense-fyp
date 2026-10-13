@@ -25,6 +25,7 @@ from server.database import make_engine
 from server.main import create_app
 from server.repositories import accounts
 from server.routers import sessions as sessions_router
+from server.verification import worker
 from server.tests.support import SUPABASE_URL, FakeAdmin, SigningKey
 
 
@@ -129,7 +130,7 @@ def api(monkeypatch, migrated, db_url):
     monkeypatch.setenv("DATABASE_URL", db_url)
     monkeypatch.setenv("SUPABASE_URL", SUPABASE_URL)
     monkeypatch.setenv("SUPABASE_SECRET_KEY", "test-only-not-a-real-key")
-    for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin, sessions_router._limiter):
+    for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin, sessions_router._limiter, worker.get_runner):
         cache.cache_clear()
     key, admin = SigningKey(), FakeAdmin()
     from server.auth.tokens import TokenVerifier
@@ -139,5 +140,5 @@ def api(monkeypatch, migrated, db_url):
     app.dependency_overrides[dependencies.get_admin] = lambda: admin
     with TestClient(app) as client:
         yield Api(client, key, admin, database.get_engine())
-    for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin, sessions_router._limiter):
+    for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin, sessions_router._limiter, worker.get_runner):
         cache.cache_clear()

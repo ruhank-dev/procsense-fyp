@@ -6,7 +6,8 @@ import json
 import uuid
 from pathlib import Path
 
-GOLDEN = Path(__file__).resolve().parent / "fixtures" / "golden_session_v1.ndjson"
+GOLDEN = Path(__file__).resolve().parent / "fixtures" / "golden_session_v1.ndjson"          # an older engine: header without the version 2 fields
+GOLDEN_V2 = Path(__file__).resolve().parent / "fixtures" / "golden_session_v2.ndjson"       # what the engine writes now
 
 
 def golden_text() -> str:

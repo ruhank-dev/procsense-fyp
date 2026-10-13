@@ -56,6 +56,13 @@ There is no screen for this (DT-129). From a laptop with `server/.env` filled in
 3. `task server-admin -- create-organisation --name "Alpha Hospital" --slug alpha-hospital --admin-email boss@example.com --send` creates the organisation and invites its first administrator (`--send` also asks Supabase to email the invitation; without it the invitation still applies when that address signs in).
 Invitations hold the invited address only until they are accepted, revoked or expired.
 
+## Verification of uploaded sessions
+Every uploaded session is replayed by the engine before it counts (p1-backend-s09). The image holds the engine (`/opt/engine/bin/procsense-sim`, a Linux program) and the content of each version it can verify (`/opt/engine/content/<version>/`, one for practice and one for assessment). `task server-engine-prepare` builds both into `server/engine/`, and CI does it before the image is built.
+- A session waits as `pending` until verified. It is judged in the background right after the upload, by a sweep when the service wakes, and by `POST /internal/verify-pending` with the header `X-Internal-Key` (the secret `INTERNAL_KEY`; a scheduled job calls it, p1-backend-s13).
+- Outcomes: `verified` (counts), `rejected` (the log is not what its header says, or the case is not allowed for its mode), `unverifiable` (this service cannot judge it: another engine or content version, a generated scenario; kept, never counted). After 3 attempts without a verdict from the engine a session becomes `unverifiable` with `VERIFIER_ERROR`.
+- **When a new headset release uses new content or a new engine,** its sessions are `unverifiable` until the service has that content version (rebuild the image) and, if `SUPPORTED_ENGINE_VERSIONS` is set, that engine version listed.
+- The engine runs with a time limit and without any secret in its environment.
+
 ## Rotating a key
 1. **Supabase secret key:** Project Settings > API Keys > New secret key; put the new one everywhere in the table above; check the service works; delete the old one.
 2. **Database password:** Project Settings > Database > reset the password; update both pooler addresses everywhere; redeploy.

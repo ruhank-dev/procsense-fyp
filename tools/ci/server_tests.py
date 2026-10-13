@@ -10,6 +10,7 @@ Standard library only.
 """
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -68,6 +69,9 @@ def main() -> int:
                 print("FAIL  no PostgreSQL for the backend tests and REQUIRE_DB=1")
                 return 1
             print("NOTICE  no PostgreSQL available (no TEST_DATABASE_URL and no Docker): the database tests are SKIPPED. CI runs them; start Docker to run them here.")
+    dll = ROOT / "artifacts" / "bin" / "ProcSense.Cli" / "Release" / "net9.0" / "procsense-sim.dll"
+    if not env.get("ENGINE_CLI") and dll.exists():
+        env["ENGINE_CLI"] = json.dumps(["dotnet", str(dll).replace("\\", "/")])   # the engine just built by this run: the verification tests use it as well as the stand-in
     cmd = ["uv", "run", "--project", "server", "pytest", "server/tests", "-q", "-rs", "-p", "no:cacheprovider"]
     return subprocess.run(cmd, cwd=ROOT, env=env).returncode
 

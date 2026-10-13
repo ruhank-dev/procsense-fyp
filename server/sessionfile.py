@@ -12,7 +12,7 @@ import uuid
 from dataclasses import dataclass
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, ValidationError
 
 MAX_ENTRIES = 20000
 HEX64 = r"^[0-9a-f]{64}$"
@@ -31,6 +31,10 @@ class Header(BaseModel):
     seed: str = Field(pattern=r"^[0-9]{1,20}$")
     mode: Literal["practice", "assessment"]
     log_hash: str = Field(pattern=HEX64)
+    # written only when they are not the default (training level, case variant, noise on the vitals): they change how the session replays, so the verifier needs them
+    level: Literal["beginner", "advanced"] | None = None
+    variant: str | None = Field(default=None, max_length=16, pattern=r"^[A-Za-z0-9._-]*$")
+    noise: StrictBool | None = None
     # version 2 (p1-backend-s09): given by the host, outside the replay hash
     session_id: uuid.UUID | None = None
     content_version: str | None = Field(default=None, min_length=1, max_length=64)
@@ -54,6 +58,7 @@ class Entry(BaseModel):
 @dataclass(frozen=True)
 class ParsedSession:
     header: Header
+    header_line: str   # the first line as it arrived, kept so the session can be replayed later
     entries: list[Entry]
     log_text: str   # exactly what the hash covers
     is_v2: bool
@@ -113,4 +118,4 @@ def parse_session_file(text: str, require_v2: bool = True) -> ParsedSession:
         entries.append(entry)
     if not entries:
         raise SessionFileError("NO_ENTRIES")
-    return ParsedSession(header, entries, log_text, is_v2)
+    return ParsedSession(header, head_line, entries, log_text, is_v2)

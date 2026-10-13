@@ -93,3 +93,23 @@ def test_too_many_actions_are_refused():
     with pytest.raises(SessionFileError) as e:
         parse_session_file(make_file(lines=lines))
     assert e.value.code == "TOO_MANY_ENTRIES"
+
+
+def test_the_options_the_engine_writes_when_they_are_not_the_default_are_accepted_and_the_header_line_is_kept():
+    text = make_file(header_extra={"level": "advanced", "variant": "B2", "noise": True})
+    parsed = parse_session_file(text)
+    assert (parsed.header.level, parsed.header.variant, parsed.header.noise) == ("advanced", "B2", True)
+    assert parsed.header_line == text.split("\n", 1)[0]   # kept exactly as it arrived, so the session can be replayed later
+
+
+@pytest.mark.parametrize("extra", [{"level": "expert"}, {"variant": "not a variant!"}, {"noise": "yes"}])
+def test_a_bad_option_is_refused(extra):
+    with pytest.raises(SessionFileError) as e:
+        parse_session_file(make_file(header_extra=extra))
+    assert e.value.code == "HEADER_INVALID"
+
+
+def test_what_the_engine_writes_now_is_read_as_version_2():
+    from server.tests.files import GOLDEN_V2
+    parsed = parse_session_file(GOLDEN_V2.read_text(encoding="utf-8"))
+    assert parsed.is_v2 and parsed.header.engine_version and parsed.header.content_version and len(parsed.entries) == 78

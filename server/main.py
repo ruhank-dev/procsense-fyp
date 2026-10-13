@@ -1,16 +1,31 @@
 """The ProcSense service. This file only creates the app and includes the routers (INSTRUCTIONS §4b)."""
 from __future__ import annotations
 
+import logging
+import threading
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
 from server import database
-from server.routers import health, me, organisations, scenario_packages, sessions
+from server.config import get_settings
+from server.routers import health, internal, me, organisations, scenario_packages, sessions
+
+
+def _sweep_on_start() -> None:
+    """When the service wakes (the free host sleeps), anything left pending is picked up in the background."""
+    from server.verification.worker import get_runner, verify_pending
+    if get_runner() is None:
+        return
+    try:
+        verify_pending(get_settings().verify_batch)
+    except Exception:
+        logging.getLogger("procsense.verification").exception("the sweep at start failed")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    threading.Thread(target=_sweep_on_start, name="verify-sweep", daemon=True).start()
     yield
     engine = database.get_engine()
     if engine is not None:
@@ -24,6 +39,7 @@ def create_app() -> FastAPI:
     app.include_router(organisations.router)
     app.include_router(sessions.router)
     app.include_router(scenario_packages.router)
+    app.include_router(internal.router)
     return app
 
 

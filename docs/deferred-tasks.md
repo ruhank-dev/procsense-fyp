@@ -185,11 +185,14 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-137 | Move the backend tests to httpx2 when FastAPI's test client requires it (a deprecation warning today) | Pending | p1-backend-s01 | FastAPI or Starlette release | Cosmetic |
 | DT-138 | Prove Supabase's invitation call with the new secret key style against the real project (the fake sender is tested; if Supabase refuses the key on the invitation call, use the legacy service-role key until it is retired, planned for the end of 2026) | Pending | p1-backend-s08 | The first real invitation from the service | Invitations still apply when the address signs in even if the email is not sent |
 | DT-139 | Run the engine and server contract check on GitHub too (the engine job writes a session, the server reads it) and turn it to header version 2 when p1-backend-s09 adds the version 2 fields; today it runs in `task ci` only | Pending | p1-backend-s02 | p1-backend-s09 | The published schema and a recorded engine file are already checked in CI |
+| DT-140 | Give the engine a version that changes whenever its behaviour changes (CoreInfo.Version is never bumped), for example by requiring a bump whenever a golden hash changes, so a mismatch caused by an old headset is reported as ENGINE_VERSION_UNSUPPORTED and not as HASH_MISMATCH | Pending | p1-backend-s09 | Ruhan (engine owner) | Today a headset on an older engine looks like a tampered session |
+| DT-141 | Run the verification image check on GitHub (the Linux engine publish, the content per version, the container verifying a session): it was written but could not be run on the author's laptop | Pending | p1-backend-s09 | First run of the `server` job on GitHub | The same steps pass locally with the Windows engine and the stand-in |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 13 October 2026 (p1-backend-s09) | p1-backend-s09 built by Abdul Moiz: the verify command and the version 2 header on a separate engine branch for review, and the server's verification worker; DT-140 and DT-141 added. |
 | 13 October 2026 (p1-backend-s02) | p1-backend-s02 built by Abdul Moiz (session tables and upload, generated scenario packages, the session-file schema and the engine and server contract); DT-139 added. |
 | 13 October 2026 (p1-backend-s08) | p1-backend-s08 built by Abdul Moiz (accounts, organisations, roles, login-token checks, invitations, cohorts, row-level security, platform-administration script); DT-138 added. |
 | 13 October 2026 (p1-backend-s01) | p1-backend-s01 built by Abdul Moiz (FastAPI skeleton on PostgreSQL, Alembic, tests on a real database, Docker image, CI job); decision log row 68; DT-136 and DT-137 added. |
