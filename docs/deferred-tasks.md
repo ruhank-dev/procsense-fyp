@@ -194,11 +194,16 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-146 | Write views of another person's report, progress and exports into an access-log table that the person can read | Pending | p1-backend-s04 | p1-backend-s12 (privacy) | Today they are log lines named procsense.access |
 | DT-147 | Read the provisional-weights flag from the scoring tables instead of a constant, and drop it when the weights are approved | Pending | p1-backend-s04 | Ruhan (scoring owner) | Every process score says provisional until then |
 | DT-148 | Run EXP-BE-3 (dashboard speed on a year of realistic data) and page the export past 200,000 rows if needed | Pending | p1-backend-s04 | p1-backend-s13 | The unit test uses 4,000 sessions |
+| DT-149 | Keep a signed-in person signed in across a page reload: the server keeps the refresh token in a secure same-site cookie, the page asks for a new access token (today a reload signs out) | Pending | p1-backend-s11 | Owner decision (convenience against a longer-lived credential) | Strict policy keeps token theft hard; this trades a little of that |
+| DT-150 | Set Supabase's Site URL and redirect addresses to the deployed service so invitation and reset emails open the right pages | Pending | p1-backend-s11 | p1-backend-s13 (deployment) | Until then the emails open Supabase's default address |
+| DT-151 | Have a person who uses a screen reader and a phone go through the web pages with the manual checklist in server/RUNBOOK.md and fix what they find | Pending | p1-backend-s11 | Team (usability study, p0-evaluation s05 can include it) | The automated tests cannot judge reading order or comfort |
+| DT-152 | Consent page and its use at first sign-in | Pending | p1-backend-s11 | p1-backend-s12 | The page is built together with the consent rules |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (p1-backend-s11) | p1-backend-s11 built by Abdul Moiz (web pages: sign in, progress, sessions, report, overview, people, headset approval; security headers; browser test); DT-149 to DT-152 added. |
 | 14 October 2026 (p1-backend-s04) | p1-backend-s04 built by Abdul Moiz (reports, dashboard figures, CSV export, data dictionary); DT-145 to DT-148 added. |
 | 14 October 2026 (p1-backend-s10) | Server half of p1-backend-s10 built by Abdul Moiz (headset sign-in with a code, headset tokens, revoking); DT-142 to DT-144 added. |
 | 13 October 2026 (p1-backend-s09) | p1-backend-s09 built by Abdul Moiz: the verify command and the version 2 header on a separate engine branch for review, and the server's verification worker; DT-140 and DT-141 added. |

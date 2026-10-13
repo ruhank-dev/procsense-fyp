@@ -129,8 +129,12 @@ jobs:
       - name: Build the engine (the verification tests run it)
         run: dotnet build src/ProcSense.Cli -c Release
 
-      - name: Backend tests on PostgreSQL 17 (never SQLite), with the real engine
+      - name: Install the browser the web page test drives
+        run: uv run --project server playwright install --with-deps chromium
+
+      - name: Backend tests on PostgreSQL 17 (never SQLite), with the real engine and a real browser
         run: |
+          export REQUIRE_BROWSER=1
           export ENGINE_CLI="[\"dotnet\", \"$GITHUB_WORKSPACE/artifacts/bin/ProcSense.Cli/Release/net9.0/procsense-sim.dll\"]"
           uv run --project server pytest server/tests -q -rs
 

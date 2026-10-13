@@ -1,0 +1,53 @@
+:root { --ink: #1b2430; --muted: #4a5668; --line: #c9d1dc; --bg: #f6f8fb; --card: #ffffff; --accent: #0b5cad; --accent-ink: #ffffff; --bad: #a4262c; --good: #1e6b3a; --warn: #7a4b00; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+.skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: .5rem 1rem; z-index: 10; }
+.skip:focus { left: 0; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; padding: .6rem 1rem; background: var(--card); border-bottom: 1px solid var(--line); }
+.brand { font-weight: 700; letter-spacing: .02em; }
+nav { display: flex; flex-wrap: wrap; gap: .25rem; flex: 1; }
+nav a { padding: .35rem .7rem; border-radius: .4rem; color: var(--ink); text-decoration: none; }
+nav a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); }
+nav a:hover { text-decoration: underline; }
+.who { color: var(--muted); font-size: .9rem; display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+main { max-width: 68rem; margin: 0 auto; padding: 1rem; outline: none; }
+h1 { font-size: 1.5rem; margin: .5rem 0 1rem; }
+h2 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+.status { max-width: 68rem; margin: 0 auto; padding: 0 1rem; min-height: 1.5rem; }
+.status .msg { margin: .5rem 0; padding: .5rem .75rem; border-radius: .4rem; border: 1px solid var(--line); background: var(--card); }
+.status .msg.error { border-color: var(--bad); color: var(--bad); }
+.status .msg.ok { border-color: var(--good); color: var(--good); }
+.card, .tile { background: var(--card); border: 1px solid var(--line); border-radius: .6rem; padding: 1rem; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .75rem; margin-bottom: 1rem; }
+.tile .n { font-size: 1.7rem; font-weight: 700; overflow-wrap: anywhere; }
+.tile .l { color: var(--muted); font-size: .9rem; }
+table { border-collapse: collapse; width: 100%; background: var(--card); }
+th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: #eef2f7; font-weight: 600; }
+.scroll { overflow-x: auto; }
+form.row, .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: end; margin: .5rem 0 1rem; }
+label { display: grid; gap: .2rem; font-size: .9rem; color: var(--muted); }
+input, select, button { font: inherit; padding: .45rem .6rem; border: 1px solid var(--line); border-radius: .4rem; background: #fff; color: var(--ink); }
+button { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); cursor: pointer; }
+button.secondary { background: #fff; color: var(--accent); }
+button.danger { background: #fff; color: var(--bad); border-color: var(--bad); }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #f2a900; outline-offset: 2px; }
+.form-narrow { max-width: 24rem; }
+.form-narrow label { margin-bottom: .75rem; }
+.muted { color: var(--muted); }
+.notice { background: #fff8e1; border: 1px solid #e3c55a; color: var(--warn); border-radius: .4rem; padding: .6rem .8rem; }
+.code { font: 700 2rem/1.2 ui-monospace, Consolas, monospace; letter-spacing: .15em; }
+.pill { display: inline-block; padding: 0 .5rem; border-radius: 1rem; border: 1px solid var(--line); font-size: .85rem; }
+.pill.bad { border-color: var(--bad); color: var(--bad); }
+.pill.good { border-color: var(--good); color: var(--good); }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
+svg.chart { width: 100%; max-width: 32rem; height: auto; background: var(--card); border: 1px solid var(--line); border-radius: .6rem; }
+svg.chart text { font: 11px system-ui, sans-serif; fill: var(--muted); }
+svg.chart .bar { fill: var(--accent); }
+svg.chart .line { fill: none; stroke: var(--accent); stroke-width: 2; }
+svg.chart .dot { fill: var(--accent); }
+svg.chart .axis { stroke: var(--line); }
+iframe.report { width: 100%; height: 70vh; border: 1px solid var(--line); border-radius: .4rem; background: #fff; }
+details { margin: .5rem 0; }
+@media (max-width: 40rem) { .bar { padding: .5rem; } main { padding: .5rem; } }

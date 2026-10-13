@@ -63,6 +63,13 @@ Every uploaded session is replayed by the engine before it counts (p1-backend-s0
 - **When a new headset release uses new content or a new engine,** its sessions are `unverifiable` until the service has that content version (rebuild the image) and, if `SUPPORTED_ENGINE_VERSIONS` is set, that engine version listed.
 - The engine runs with a time limit and without any secret in its environment.
 
+## The web pages
+The service also serves the web pages (`server/static/`, one small page with plain JavaScript, no build step): `/` (sign in and the dashboard), `/device` (approve a headset code; the code in the address `?code=` is filled in), `/reset` (password reset). `/config.json` gives the page the Supabase project address and the publishable key.
+- **Try them on a laptop** with sample data and a pretend sign-in (never in production): `TEST_DATABASE_URL=... uv run --project server python -m server.tests.browser_stack --port 8765`, then open http://127.0.0.1:8765/ and sign in as `admin@alpha.test`, `supervisor@alpha.test`, `trainee@alpha.test` or `supervisor@beta.test` with the password in that file.
+- The access token stays in the page's memory: a reload signs the person out (DT-149).
+- **Before the first real use,** in the Supabase dashboard set the Site URL and the redirect addresses (Authentication, URL configuration) to the service's address, so invitation and password-reset emails open `/reset` and the sign-in page here and not the default address (DT-150).
+- **By hand, once per release** (the browser test cannot judge these): on a phone-sized window every page is readable and nothing scrolls sideways except the tables; every page works with the keyboard only (Tab, Enter, Space) and the focus is always visible; a screen reader (NVDA or VoiceOver) announces the headings, the form labels and the messages; text and button colours are readable at 200% zoom; the report frame is readable.
+
 ## Reports, dashboard and export
 `GET /organisations/{id}/sessions` (a list with filters), `/sessions/{id}/report` and `/report.html`, `/progress` (the signed-in person), `/members/{user}/progress`, `/overview`, `/cohorts/{id}/overview` and `/export.csv` serve a web dashboard (p1-backend-s11). Only **verified** sessions are counted. A trainee sees their own sessions; a supervisor or administrator sees the whole organisation.
 - The columns of the CSV are in `server/DATA_DICTIONARY.md`. The platform administrator's `GET /export.csv` covers every organisation with a stable code in place of the name.

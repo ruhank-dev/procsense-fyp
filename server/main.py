@@ -6,10 +6,12 @@ import threading
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from server import database
 from server.config import get_settings
-from server.routers import dashboard, device_auth, export, health, internal, me, organisations, scenario_packages, sessions
+from server.middleware.security_headers import SecurityHeaders
+from server.routers import dashboard, device_auth, export, health, internal, me, organisations, pages, scenario_packages, sessions
 
 
 def _sweep_on_start() -> None:
@@ -43,6 +45,9 @@ def create_app() -> FastAPI:
     app.include_router(export.router)
     app.include_router(scenario_packages.router)
     app.include_router(internal.router)
+    app.include_router(pages.router)
+    app.mount("/static", StaticFiles(directory=pages.STATIC), name="static")
+    app.add_middleware(SecurityHeaders)
     return app
 
 

@@ -72,6 +72,8 @@ def main() -> int:
     dll = ROOT / "artifacts" / "bin" / "ProcSense.Cli" / "Release" / "net9.0" / "procsense-sim.dll"
     if not env.get("ENGINE_CLI") and dll.exists():
         env["ENGINE_CLI"] = json.dumps(["dotnet", str(dll).replace("\\", "/")])   # the engine just built by this run: the verification tests use it as well as the stand-in
+    if os.name == "nt" and not env.get("BROWSER_CHANNEL"):
+        env["BROWSER_CHANNEL"] = "msedge"   # the web page test drives the Edge that Windows already has; elsewhere it uses Playwright's own Chromium or is skipped
     cmd = ["uv", "run", "--project", "server", "pytest", "server/tests", "-q", "-rs", "-p", "no:cacheprovider"]
     return subprocess.run(cmd, cwd=ROOT, env=env).returncode
 
