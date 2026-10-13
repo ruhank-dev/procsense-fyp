@@ -47,6 +47,8 @@ class Settings(BaseSettings):
     db_connect_timeout: int = 10   # seconds; a paused or unreachable free database must fail fast, not hang a request for minutes
 
     max_upload_bytes: int = 2 * 1024 * 1024
+    max_package_bytes: int = 1024 * 1024
+    upload_rate_per_hour: int = 120
     supported_engine_versions: Annotated[list[str], NoDecode] = []
     supported_content_versions: Annotated[list[str], NoDecode] = []
 
@@ -86,11 +88,18 @@ class Settings(BaseSettings):
             raise ValueError("db_connect_timeout must be between 1 and 60 seconds")
         return value
 
-    @field_validator("max_upload_bytes")
+    @field_validator("max_upload_bytes", "max_package_bytes")
     @classmethod
     def _upload(cls, value: int) -> int:
         if not 1024 <= value <= 20 * 1024 * 1024:
-            raise ValueError("max_upload_bytes must be between 1 KB and 20 MB")
+            raise ValueError("an upload limit must be between 1 KB and 20 MB")
+        return value
+
+    @field_validator("upload_rate_per_hour")
+    @classmethod
+    def _rate(cls, value: int) -> int:
+        if not 1 <= value <= 100000:
+            raise ValueError("upload_rate_per_hour must be between 1 and 100000")
         return value
 
 

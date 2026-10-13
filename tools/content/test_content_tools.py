@@ -348,5 +348,35 @@ class ContentLibraryChecks(unittest.TestCase):
             self.assertIn("a case file this mode may not ship", found)
 
 
+class SessionLogSchemaChecks(unittest.TestCase):
+    """The published session-file schema against a file the engine really wrote (p1-backend-s02), with a validator that is not the server's own."""
+
+    @classmethod
+    def setUpClass(cls):
+        from jsonschema import Draft202012Validator
+        root = Path(__file__).resolve().parents[2]
+        schema = checks.load_json(root / "content" / "schema" / "session_log.schema.json")
+        cls.header = Draft202012Validator({"$ref": "#/$defs/header", "$defs": schema["$defs"]})
+        cls.entry = Draft202012Validator({"$ref": "#/$defs/entry", "$defs": schema["$defs"]})
+        lines = (root / "server" / "tests" / "fixtures" / "golden_session_v1.ndjson").read_text(encoding="utf-8").split("\n")
+        cls.head = json.loads(lines[0])["header"]
+        cls.entries = [json.loads(line) for line in lines[1:] if line]
+
+    def test_the_engines_header_and_every_action_validate(self):
+        self.assertEqual(list(self.header.iter_errors(self.head)), [])
+        self.assertEqual(len(self.entries), 78)
+        for entry in self.entries:
+            self.assertEqual(list(self.entry.iter_errors(entry)), [], entry)
+
+    def test_a_header_with_the_version_2_fields_validates_too(self):
+        v2 = dict(self.head, session_id="5b1d4a52-8a3e-4c2f-9c53-1c0f1f6e9d11", content_version="0123456789ab-practice", engine_version="0.1.0", scenario_package_hash="")
+        self.assertEqual(list(self.header.iter_errors(v2)), [])
+
+    def test_unknown_fields_and_wrong_values_are_refused(self):
+        self.assertTrue(list(self.entry.iter_errors(dict(self.entries[0], surprise=1))))
+        self.assertTrue(list(self.entry.iter_errors(dict(self.entries[0], channel="telepathy"))))
+        self.assertTrue(list(self.header.iter_errors(dict(self.head, mode="exam"))))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

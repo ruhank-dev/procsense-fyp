@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from server import database
-from server.routers import health, me, organisations
+from server.routers import health, me, organisations, scenario_packages, sessions
 
 
 @asynccontextmanager
@@ -22,6 +22,8 @@ def create_app() -> FastAPI:
     app.include_router(health.router)
     app.include_router(me.router)
     app.include_router(organisations.router)
+    app.include_router(sessions.router)
+    app.include_router(scenario_packages.router)
     return app
 
 

@@ -43,6 +43,15 @@ def package_modes() -> tuple[bool, str]:
     return True, text
 
 
+def session_file_contract() -> tuple[bool, str]:
+    """The engine writes a session file with the CLI; the server's reader must accept it (version 1 header until p1-backend-s09 adds version 2)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        ok, text = run(CLI + ["run", "--case", "VAR-S1-A", "--seed", "42", "--actions", "tests/golden/skeleton1_correct.actions.json", "--out", str(Path(tmp) / "run.json")])
+        if not ok:
+            return False, text
+        return run(["uv", "run", "--project", "server", "python", "-m", "server.scripts.check_session_file", str(Path(tmp) / "run.session.jsonl"), "--v1"])
+
+
 def gate_refuses() -> tuple[bool, str]:
     """The review-status gate: assessment on a training-only case and practice on a DRAFT case must be refused (exit 1, STATUS_TOO_LOW)."""
     with tempfile.TemporaryDirectory() as tmp:
@@ -80,6 +89,7 @@ def main(argv: list[str]) -> int:
             ("golden runs", lambda: run(CLI + ["golden", "--dir", "tests/golden"])),
             ("review-status gate refuses an under-approved case (assessment on a training-only case)", gate_refuses),
             ("replay round trip", replay_round_trip),
+            ("a session file the engine just wrote is read by the server (the engine and server contract)", session_file_contract),
             ("session report made from the golden run and valid against its schema", lambda: run(["uv", "run", "--project", "tools", "tools/ci/check_report.py"])),
         ]
         if os.name != "nt":  # Windows checkouts use CRLF; CI (Linux, LF) is the authority for formatting

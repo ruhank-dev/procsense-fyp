@@ -75,3 +75,22 @@ def test_every_account_table_has_the_lock_switched_on(migrated):
 
 def test_the_models_know_the_same_tables_as_the_lock_list():
     assert set(ACCOUNT_TABLES) <= set(Base.metadata.tables)
+
+
+SESSION_TABLES = ["session", "session_score_item", "session_behaviour", "session_evidence", "learner_profile", "scenario_package"]
+
+
+def test_every_session_table_has_the_lock_switched_on_and_a_public_role_would_see_nothing(migrated, public_role):
+    with migrated.begin() as conn:
+        for table in SESSION_TABLES:
+            conn.execute(text(f"grant select on {table} to {public_role}"))
+    with migrated.connect() as conn:
+        rows = conn.execute(text("select relname, relrowsecurity from pg_class where relname = any(:names) and relkind = 'r'"), {"names": SESSION_TABLES}).all()
+        assert {r[0] for r in rows} == set(SESSION_TABLES) and all(r[1] for r in rows)
+        conn.execute(text(f"set role {public_role}"))
+        for table in SESSION_TABLES:
+            assert conn.execute(text(f"select count(*) from {table}")).scalar_one() == 0
+        conn.execute(text("reset role"))
+    with migrated.begin() as conn:
+        for table in SESSION_TABLES:
+            conn.execute(text(f"revoke all on {table} from {public_role}"))

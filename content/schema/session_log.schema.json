@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schema/session_log.schema.json",
+  "title": "ProcSense session file",
+  "description": "The first line of a session file is {\"header\": <header>}; every other line is one <entry>, one per logged action, with seq counting up from 0 and step never going back. header.log_hash is the SHA-256 of all the lines after the first. Header version 2 (the session id, content version, engine version and scenario package hash) is what the service requires. Generated from server/sessionfile.py by server/scripts/export_schemas.py; do not edit by hand.",
+  "$defs": {
+    "header": {
+      "additionalProperties": false,
+      "properties": {
+        "case": {
+          "pattern": "^[A-Za-z0-9._-]{1,40}$",
+          "title": "Case",
+          "type": "string"
+        },
+        "seed": {
+          "pattern": "^[0-9]{1,20}$",
+          "title": "Seed",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "practice",
+            "assessment"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "log_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Log Hash",
+          "type": "string"
+        },
+        "session_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Session Id"
+        },
+        "content_version": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Content Version"
+        },
+        "engine_version": {
+          "anyOf": [
+            {
+              "maxLength": 40,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engine Version"
+        },
+        "scenario_package_hash": {
+          "anyOf": [
+            {
+              "pattern": "^$|^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scenario Package Hash"
+        }
+      },
+      "required": [
+        "case",
+        "seed",
+        "mode",
+        "log_hash"
+      ],
+      "title": "Header",
+      "type": "object"
+    },
+    "entry": {
+      "additionalProperties": false,
+      "properties": {
+        "seq": {
+          "minimum": 0,
+          "title": "Seq",
+          "type": "integer"
+        },
+        "step": {
+          "minimum": 0,
+          "title": "Step",
+          "type": "integer"
+        },
+        "verb": {
+          "pattern": "^[a-z][a-z0-9_]{0,63}$",
+          "title": "Verb",
+          "type": "string"
+        },
+        "target": {
+          "maxLength": 64,
+          "title": "Target",
+          "type": "string"
+        },
+        "channel": {
+          "enum": [
+            "vr",
+            "tablet",
+            "cli",
+            "system"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "maxProperties": 24,
+          "title": "Params",
+          "type": "object"
+        },
+        "accepted": {
+          "title": "Accepted",
+          "type": "boolean"
+        },
+        "reject": {
+          "maxLength": 64,
+          "title": "Reject",
+          "type": "string"
+        },
+        "effects": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Effects",
+          "type": "array"
+        }
+      },
+      "required": [
+        "seq",
+        "step",
+        "verb",
+        "target",
+        "channel",
+        "params",
+        "accepted",
+        "reject",
+        "effects"
+      ],
+      "title": "Entry",
+      "type": "object"
+    }
+  }
+}
