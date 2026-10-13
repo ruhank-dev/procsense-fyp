@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "0306610132b5df2f41347ac49b0500360b0e26723c13cf572eeb4e1d97484af4",
- "files": 373,
- "bytes": 16729860,
+ "content_hash": "82509b391530ddc4bcbcb7b3eb937450b37fad6600da40d9723d844b3347896d",
+ "files": 374,
+ "bytes": 16731493,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -35,7 +35,7 @@
   "problems": 2,
   "risk": 1,
   "rules": 1,
-  "schema": 5,
+  "schema": 6,
   "scores": 1,
   "scoring": 1,
   "sepsis": 1,
@@ -1197,8 +1197,12 @@
    "sha256": "918eb2e3a23e9397dd9e6f274189fc68bd9976be067daccf5fb138b3d753d00f"
   },
   "schema/case_file.schema.json": {
-   "bytes": 21853,
-   "sha256": "8e92edf19020cc23063a4c1781e00a338d58689b2cbfda8a84020fac617f536a"
+   "bytes": 21774,
+   "sha256": "1e08fe56702a05353a3dedef36a825e112003b1ea3336f320a46399737a31b25"
+  },
+  "schema/common.schema.json": {
+   "bytes": 1712,
+   "sha256": "e1d9ab6f72bb51e3f79ac26b1fc64e472b9f10c6ba194e74b7faba3184833bf9"
   },
   "schema/debrief_facts.schema.json": {
    "bytes": 3428,

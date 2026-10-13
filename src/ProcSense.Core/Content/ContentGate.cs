@@ -34,6 +34,14 @@ namespace ProcSense.Core.Content
     /// </summary>
     public static class ContentManifestCheck
     {
+        /// <summary>The version of the content the manifest describes: the packaged content_version when the manifest has one, otherwise the first 12 characters of the content hash.</summary>
+        public static string Version(IContentReader reader)
+        {
+            var root = new JsonObj(MiniJson.Parse(reader.ReadText("manifest.json")), "manifest");
+            if (root.Has("content_version") && root.Any("content_version") is string v) return v;
+            return (root.Any("content_hash") as string ?? "").Substring(0, 12);
+        }
+
         /// <summary>The paths whose content differs from the manifest, or that the manifest lists but cannot be read. Empty means the content is what the manifest describes.</summary>
         public static IReadOnlyList<string> Verify(IContentReader reader)
         {

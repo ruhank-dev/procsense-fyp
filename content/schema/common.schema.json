@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schema/common.schema.json",
+  "title": "Definitions shared by the content schemas",
+  "description": "The words every content schema uses the same way: the review status of an item, the evidence type of a value, the kind of a number and the shape of a register reference. Other schemas point here with $ref so the lists exist once. The source register (docs/research/source_register.csv) is where each value's evidence type, walkthrough reference and review state are recorded; a content file points at it with refs.",
+  "$defs": {
+    "review_status": {
+      "description": "How far an item has been reviewed. A session in practice mode may use APPROVED_FOR_TRAINING or above; assessment mode only APPROVED_FOR_ASSESSMENT; a DRAFT or CLINICAL_REVIEW item is never played (the content gate, T-CL-2).",
+      "enum": ["DRAFT", "CLINICAL_REVIEW", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT"]
+    },
+    "evidence_type": {
+      "description": "A source-backed, B interpretation of a source, C institution-dependent (a placeholder), D simulator design value.",
+      "enum": ["A", "B", "C", "D"]
+    },
+    "number_kind": {
+      "description": "REFERENCE generally expected, ABNORMAL outside the usual range, CONCERN triggers more assessment, CRITICAL potentially immediate danger, SIM_TRIGGER chosen by the simulator to create a scenario (Implementation Guide, number kinds).",
+      "enum": ["REFERENCE", "ABNORMAL", "CONCERN", "CRITICAL", "SIM_TRIGGER"]
+    },
+    "register_ref": {
+      "description": "A row of the source register.",
+      "type": "string",
+      "pattern": "^SR-[0-9]{4}$"
+    }
+  }
+}

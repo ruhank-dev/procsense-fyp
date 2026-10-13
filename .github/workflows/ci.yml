@@ -242,6 +242,12 @@ jobs:
       - name: Treatment library is up to date (17 treatments, checks, doses only with a reviewer)
         run: uv run --project tools tools/content/build_treatments.py --check
 
+      - name: Content packages per mode are what their manifests say (no case below the mode)
+        run: |
+          uv run --project tools tools/content/package.py --mode dev --check
+          uv run --project tools tools/content/package.py --mode practice --check
+          uv run --project tools tools/content/package.py --mode assessment --check
+
       - name: Case file tests
         run: uv run --project tools tools/content/test_case_files.py
 

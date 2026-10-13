@@ -1,7 +1,8 @@
 """Validate every file in content/ against its schema and the source register.
 
 Usage (from repo root):  task content-validate
-                    or:  uv run --project tools tools/content/validate.py
+                    or:  uv run --project tools tools/content/validate.py [--mode dev|practice|assessment]
+--mode also says which case files that mode may play (a DRAFT one never, practice needs APPROVED_FOR_TRAINING, assessment APPROVED_FOR_ASSESSMENT).
 Exit code 0 = all valid, 1 = problems found.
 """
 import csv
@@ -15,7 +16,8 @@ CONTENT = ROOT / "content"
 REGISTER = ROOT / "docs" / "research" / "source_register.csv"
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
     register = load_register(REGISTER)
     case_schema = load_json(CONTENT / "schema" / "case.schema.json")
     failed = False
@@ -166,7 +168,25 @@ def main() -> int:
             failed |= _report(name, ref_problems(load_json(path), register, name), "refs ok")
 
     print(f"register: {len(register)} rows")
+    if "--mode" in argv:
+        mode = argv[argv.index("--mode") + 1]
+        failed |= _mode_report(mode)
     return 1 if failed else 0
+
+
+def _mode_report(mode: str) -> bool:
+    import package
+    if mode not in package.MODES:
+        print(f"unknown mode {mode}")
+        return True
+    shipped, left_out = package.plan(mode)
+    playable = sum(1 for p in shipped if p.relative_to(CONTENT).as_posix().startswith("case_files/") and p.suffix == ".json")
+    print(f"mode {mode}: {playable} case files may be played; {len(left_out)} left out ({package.NEEDS[mode]} needed)")
+    for item in left_out[:5]:
+        print(f"  - {item['id']} is {item['status']}")
+    if len(left_out) > 5:
+        print(f"  - and {len(left_out) - 5} more")
+    return False
 
 
 def _report(name: str, problems: list[str], ok_detail: str) -> bool:

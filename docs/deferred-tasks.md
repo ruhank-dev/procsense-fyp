@@ -164,11 +164,15 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-116 | Personalisation: evidence record, Bayesian learner model, targeting policy (rules then bandit), LLM performance interpreter, explanations and evaluation (p1-personalisation s01 to s05) | Pending | p1-personalisation | History store (p1-backend-s02); DT-113 for the interpreter | Changes the substance of future practice (PH-23) |
 | DT-117 | Revived research tracks: offline generative image and waveform synthesis (E64) and conditional LLM adaptation (E65) (p2-ai-advanced-simulation s04, s05) | Pending | p2-ai-advanced-simulation | DT-113 benchmark; GPU time; for E65 a measured quality gap | Previously rejected; history kept in the feature plans (PH-24) |
 | DT-118 | Record the laptop's RAM, CPU and power limits (only the desktop was measured: 16 GB RAM, Ryzen 5 2600, GTX 1660 SUPER) | Pending | p1-ai-infrastructure-s02 | Access to the laptop | Needed before the topology decision |
+| DT-119 | Record the number kind (reference, abnormal, concern, critical, simulator trigger) of each clinical value, for example as a column of the source register | Pending | p0-case-library-s01 | Owner (changes the register columns and the tools that read them) | evidence type, walkthrough reference and review state are already in the register |
+| DT-120 | Make the command line and the Unity host load content through ContentMode.Load (hash check and mode gate in one place) instead of their own gate | Pending | p0-case-library-s01 | p0-vr-platform-s02 (Unity loader) | The command line keeps its own gate and its --allow-draft developer override today |
+| DT-121 | Give a case the final APPROVED_FOR_ASSESSMENT approval (none has it, so the assessment package holds no case file) | Pending | p0-case-library-s01 | A named clinician | Practice mode already works with the 50 APPROVED_FOR_TRAINING case files |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 13 October 2026 (case-library s01) | p0-case-library-s01 built by Abdul Moiz on top of main (content packages per mode, loader by mode, shared schema); decision log row 64; DT-119 to DT-121 added. |
 | 12 October 2026 (AI planning, second pass) | Complete implementation plan for every feature (69, coverage audited 69 of 69), AI composer and personalisation architecture, revived E64 and E65 as research tracks, both GPUs in the benchmark; DT-113 to DT-118 added; plan checks now include VR-G-PLANS. |
 | 12 October 2026 (AI planning update) | Planning set for every AI feature and dataset-driven live generation (`docs/architecture/`, ADR-0008); DT-101 to DT-112 added (DT-110 completed: planning checks in CI); DT-099 no longer waits for clinician review (INSTRUCTIONS 8i revised). |
 | 10 October 2026 (review pack) | Review pack, content manifest (content hash) and 24-claim clinical verification log built; 12 open issues closed by decision (owner's rule: most clinically accurate, verified); openFDA label extract added; CI rows 7o. |

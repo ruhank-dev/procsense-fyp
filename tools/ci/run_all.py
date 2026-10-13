@@ -33,6 +33,16 @@ def replay_round_trip() -> tuple[bool, str]:
         return run(CLI + ["replay", "--log", str(Path(tmp) / "run.session.jsonl")])
 
 
+def package_modes() -> tuple[bool, str]:
+    text = ""
+    for mode in ("dev", "practice", "assessment"):
+        ok, out = run(["uv", "run", "--project", "tools", "tools/content/package.py", "--mode", mode, "--check"])
+        text += out
+        if not ok:
+            return False, text
+    return True, text
+
+
 def gate_refuses() -> tuple[bool, str]:
     """The review-status gate: assessment on a training-only case and practice on a DRAFT case must be refused (exit 1, STATUS_TOO_LOW)."""
     with tempfile.TemporaryDirectory() as tmp:
@@ -125,6 +135,7 @@ def main(argv: list[str]) -> int:
         ("NEWS2 chart up to date (scale 1 and 2, response bands)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_news2.py", "--check"])),
         ("fasting table up to date (clear 2 h, milk 6 h, light meal 6 h, heavy meal 8 h)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_fasting.py", "--check"])),
         ("treatment library up to date (17 treatments, checks, doses only with a reviewer)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_treatments.py", "--check"])),
+        ("content packages per mode (dev, practice, assessment): hashes, no case below the mode", package_modes),
         ("case file tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_case_files.py"])),
         ("EXP-DATA-2: generated lab values stay in their band (10,000 seeds)", lambda: run(["uv", "run", "--project", "tools", "tools/content/exp_data2.py"])),
         ("equipment sheets up to date (53 items)", lambda: run(["uv", "run", "--project", "tools", "tools/content/equipment_sheets.py", "--check"])),

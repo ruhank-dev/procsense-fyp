@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
+from referencing import Registry, Resource
 
 import jsonlogic
 
@@ -22,8 +23,18 @@ def load_register(path: Path) -> dict[str, dict]:
     return {r["id"]: r for r in rows}
 
 
+def schema_registry() -> Registry:
+    """Every schema in content/schema by its $id, so one schema can point at another (common.schema.json)."""
+    registry = Registry()
+    for path in sorted((Path(__file__).resolve().parents[2] / "content" / "schema").glob("*.schema.json")):
+        schema = json.loads(path.read_text(encoding="utf-8"))
+        if "$id" in schema:
+            registry = registry.with_resource(schema["$id"], Resource.from_contents(schema))
+    return registry
+
+
 def schema_errors(doc: dict, schema: dict) -> list[str]:
-    validator = Draft202012Validator(schema, format_checker=FormatChecker())
+    validator = Draft202012Validator(schema, format_checker=FormatChecker(), registry=schema_registry())
     return [f"{'/'.join(map(str, e.absolute_path)) or '<root>'}: {e.message}" for e in validator.iter_errors(doc)]
 
 

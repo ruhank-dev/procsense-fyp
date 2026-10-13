@@ -70,12 +70,7 @@
       ]
     },
     "status": {
-      "enum": [
-        "DRAFT",
-        "CLINICAL_REVIEW",
-        "APPROVED_FOR_TRAINING",
-        "APPROVED_FOR_ASSESSMENT"
-      ]
+      "$ref": "common.schema.json#/$defs/review_status"
     },
     "approval": {
       "type": "object",

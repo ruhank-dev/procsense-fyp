@@ -277,5 +277,76 @@ class RegisterAuditTests(unittest.TestCase):
         self.assertTrue(any("SR-2850" in p and "clinician_signoff" in p for p in found), found)
 
 
+class ContentLibraryChecks(unittest.TestCase):
+    """The shared schema, the content packages per mode and the plan tests T-CL-1, T-CL-4 and T-CL-5 (p0-case-library-s01)."""
+
+    @classmethod
+    def setUpClass(cls):
+        import package
+        cls.package = package
+        cls.root = Path(__file__).resolve().parents[2]
+        cls.case_schema = checks.load_json(cls.root / "content" / "schema" / "case_file.schema.json")
+        cls.case = checks.load_json(cls.root / "content" / "case_files" / "VAR-S1-A.json")
+
+    def test_T_CL_4_a_schema_violation_is_reported_with_its_path(self):
+        doc = copy.deepcopy(self.case)
+        doc["identity"]["age"] = "forty"
+        found = checks.schema_errors(doc, self.case_schema)
+        self.assertTrue(any(p.startswith("identity/age") for p in found), found)
+
+    def test_the_status_list_comes_from_the_shared_schema(self):
+        doc = copy.deepcopy(self.case)
+        doc["status"] = "NEARLY_APPROVED"
+        found = checks.schema_errors(doc, self.case_schema)
+        self.assertTrue(any(p.startswith("status") and "NEARLY_APPROVED" in p for p in found), found)
+
+    def test_T_CL_1_a_dangling_reference_is_an_error(self):
+        card = checks.load_json(self.root / "content" / "cases" / "VAR-S1-A.json")
+        card["refs"]["history[0].answer"] = "SR-9999"
+        register = checks.load_register(self.root / "docs" / "research" / "source_register.csv")
+        self.assertTrue(any("SR-9999" in p for p in checks.case_problems(card, register)))
+
+    def test_the_assessment_package_holds_no_case_file_that_is_not_approved_for_assessment(self):
+        shipped, left_out = self.package.plan("assessment")
+        self.assertEqual([p.name for p in shipped if p.parent.name == "case_files"], [])
+        self.assertEqual(len(left_out), 53)
+
+    def test_the_practice_package_leaves_out_exactly_the_case_files_not_yet_approved(self):
+        _, left_out = self.package.plan("practice")
+        self.assertTrue(left_out)
+        self.assertTrue(all(item["status"] in ("DRAFT", "CLINICAL_REVIEW") for item in left_out))
+        _, dev_left_out = self.package.plan("dev")
+        self.assertEqual(dev_left_out, [])
+
+    def test_the_package_manifest_has_the_entries_of_the_repo_manifest_and_a_version(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            m = self.package.write("practice", Path(tmp) / "c")
+            repo = checks.load_json(self.root / "content" / "manifest.json")
+            some = next(iter(m["entries"]))
+            self.assertEqual(sorted(m["entries"][some]), sorted(repo["entries"][some]))
+            self.assertRegex(m["content_version"], r"^[0-9a-f]{12}-practice$")
+            self.assertEqual(self.package.verify(Path(tmp) / "c", "practice"), [])
+
+    def test_T_CL_5_a_changed_or_stray_file_in_a_package_is_found(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "c"
+            self.package.write("assessment", out)
+            (out / "fasting" / "fasting.json").write_text("{}", encoding="utf-8")
+            (out / "stray.json").write_text("{}", encoding="utf-8")
+            found = " ".join(self.package.verify(out, "assessment"))
+            self.assertIn("fasting/fasting.json: does not match its hash", found)
+            self.assertIn("stray.json: in the folder but not in the manifest", found)
+
+    def test_a_draft_case_file_slipped_into_a_practice_package_is_found(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "c"
+            self.package.write("practice", out)
+            draft = checks.load_json(self.root / "content" / "case_files" / "VAR-S1-B.json")
+            self.assertEqual(draft["status"], "DRAFT")
+            (out / "case_files" / "VAR-S1-B.json").write_text(json.dumps(draft), encoding="utf-8")
+            found = " ".join(self.package.verify(out, "practice"))
+            self.assertIn("a case file this mode may not ship", found)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

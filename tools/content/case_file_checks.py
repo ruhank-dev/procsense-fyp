@@ -20,6 +20,7 @@ import jsonschema
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
+import checks  # noqa: E402
 import news2  # noqa: E402
 
 CONTENT = ROOT / "content"
@@ -69,7 +70,7 @@ CRITICAL = {"Potassium": (2.5, 6.5), "Sodium": (120, 160)}
 def problems(c: dict, ctx: dict, others: list[dict] | None = None) -> list[str]:
     out: list[str] = []
     w = c.get("id", "?")
-    errs = sorted(jsonschema.Draft202012Validator(ctx["schema"]).iter_errors(c), key=lambda e: list(e.path))
+    errs = sorted(jsonschema.Draft202012Validator(ctx["schema"], registry=checks.schema_registry()).iter_errors(c), key=lambda e: list(e.path))
     out += [f"{w}: schema: {'/'.join(str(p) for p in e.path)}: {e.message[:140]}" for e in errs]
     if errs:
         return out

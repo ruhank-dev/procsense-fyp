@@ -75,6 +75,11 @@ tasks:
     cmds:
       - uv run --project tools tools/content/validate.py
 
+  content-package:
+    desc: Package content for one mode (dev, practice or assessment) with a manifest that proves it, e.g. task content-package -- --mode practice --out build/content-practice
+    cmds:
+      - uv run --project tools tools/content/package.py {{.CLI_ARGS}}
+
   content-extract:
     desc: Parse the walkthrough into content/_extract/walkthrough_extract.json and check the counts (a drafting aid, git-ignored)
     cmds:
