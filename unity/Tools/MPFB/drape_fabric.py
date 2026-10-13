@@ -54,39 +54,75 @@ cover_surface=BVHTree.FromPolygons(fit_vertices,fit_faces)
 # Conservative envelope spans both legs instead of tracing the leg valley.
 def body_height(length):
  heights=[]
- for x in [-.20,-.15,-.10,-.05,0,.05,.10,.15,.20]:
+ for x in [-.27,-.24,-.20,-.15,-.10,-.05,0,.05,.10,.15,.20,.24,.27]:
   hit,_,_,_=cover_surface.ray_cast(Vector((x,length,2)),Vector((0,0,-1)),2)
   if hit:heights.append(hit.z)
- return max(heights,default=.77)+.035
-samples=[body_height(-.08+j*1.26/72) for j in range(73)]
+ return max(heights,default=.77)+.023
+def cover_height(x,length):
+ # Small neighboring footprint prevents triangles cutting through steep gown sides.
+ heights=[]
+ for dx in (-.025,0,.025):
+  for dz in (-.018,0,.018):
+   hit,_,_,_=cover_surface.ray_cast(Vector((x+dx,length+dz,2)),Vector((0,0,-1)),2)
+   if hit:heights.append(hit.z)
+ return max(heights) if heights else None
+foot_points=[v.co for v in body.data.vertices if v.co.y<.36 and abs(v.co.x)<.32]
+foot_roof=max(p.z for p in foot_points)+.030
+foot_turn=min(p.y for p in foot_points)-.045
+start=min(-.08,foot_turn-.15)
+samples=[body_height(start+j*(1.18-start)/72) for j in range(73)]
 for _ in range(4):
  old=samples[:]
  for j in range(1,72):samples[j]=max(old[j],(old[j-1]+2*old[j]+old[j+1])/4)
 vertices=[];nx,ny=60,72
 for j in range(ny+1):
- length=-.08+j*1.26/ny;top=samples[j]
- if length<.17:top=max(top,.91)
+ length=start+j*(1.18-start)/ny;top=samples[j]
+ # The foot turn starts beyond the toes, not at a fixed coordinate through them.
+ foot_blend=max(0,min(1,(.44-length)/.16));foot_blend=foot_blend*foot_blend*(3-2*foot_blend)
+ top=max(top,top*(1-foot_blend)+foot_roof*foot_blend)
  for i in range(nx+1):
   x=-.60+i*1.20/nx;a=abs(x)
-  if a<=.20:height=top-.004*(a/.20)**2
+  plateau=.20+.10*foot_blend
+  if a<=plateau:height=top-.004*(a/plateau)**2
   elif a<=.44:
-   t=(a-.20)/.24;height=.715+(top-.719)*(1-t*t)
+   t=(a-plateau)/(.44-plateau);height=.715+(top-.719)*(1-t*t)
   else:
    t=(a-.44)/.16;height=.715-.18*math.sin(t*math.pi/2)
-  if length<.06:
-   t=(.06-length)/.14;height-=.20*t*t
-  # Let the side fabric fall under the exposed hands, keeping sensor access clear.
-  height-=.07*math.exp(-((a-.35)/.065)**2-((length-.88)/.22)**2)
-  hit,_,_,_=cover_surface.ray_cast(Vector((x,length,2)),Vector((0,0,-1)),2)
-  if hit and a<.38 and length>.06:height=max(height,hit.z+.032)
+  if length<foot_turn:
+   # Smoothly carry the foot-height envelope forward before dropping at the end.
+   top_at_feet=foot_roof
+   height+=max(0,top_at_feet-top)*max(0,1-(a/.48)**4)
+   t=max(0,min(1,(foot_turn-length)/(foot_turn-start)));height-=.26*t*t
+  # Hands now rest outside the cover; no artificial side notch is needed.
+  hit=cover_height(x,length)
+  if hit is not None and a<.38:height=max(height,hit+.023)
+  # Last 18 cm rests down onto the actual gown/mattress contour.
+  # A flat maximum-height section made the old waist edge stand up like a wall.
+  upper=max(0,min(1,(length-1.00)/.18));upper=upper*upper*(3-2*upper)
+  if hit is not None and a<.38:edge=hit+.025
+  elif a<=.44:edge=.708
+  else:edge=.708-.18*math.sin((a-.44)/.16*math.pi/2)
+  height=height*(1-upper)+edge*upper
+  if hit is not None and a<.38:height=max(height,hit+.023)
   fold=.005*math.sin(x*32+length*5)+.003*math.sin(length*29+x*7)
-  vertices.append((x,length,height+fold))
+  vertices.append((x,length,height+fold*(1-.7*upper)))
 faces=[]
 for j in range(ny):
  for i in range(nx):
   a=j*(nx+1)+i;faces.append((a,a+1,a+nx+2,a+nx+1))
 blanket=mesh_object('Draped bed blanket',vertices,faces)
 for polygon in blanket.data.polygons:polygon.use_smooth=True
+# Check the actual triangulated surface over every skin vertex in the foot region.
+# Checking just the ankle bone omitted the toe/ball skin in the earlier fit.
+blanket.data.calc_loop_triangles()
+cover_tree=BVHTree.FromPolygons([v.co for v in blanket.data.vertices],[t.vertices[:] for t in blanket.data.loop_triangles])
+clearances=[]
+for point in foot_points:
+ hit,_,_,_=cover_tree.ray_cast(Vector((point.x,point.y,2)),Vector((0,0,-1)),3)
+ if hit is None:raise RuntimeError('Foot skin falls outside the blanket footprint')
+ clearances.append(hit.z-point.z)
+if min(clearances)<.008:raise RuntimeError('Foot skin penetrates the triangulated blanket')
+(output/'fabric-coverage.json').write_text(json.dumps({'footVertices':len(foot_points),'minimumFootClearanceMetres':min(clearances),'blanketStart':start,'footTurn':foot_turn},indent=2))
 def write_mesh(obj,path,bone_names=None):
  mesh=obj.data;mesh.calc_loop_triangles()
  payload={'vertices':[[v.co.x,v.co.z,v.co.y] for v in mesh.vertices],

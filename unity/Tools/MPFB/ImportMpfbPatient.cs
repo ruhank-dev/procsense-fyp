@@ -34,7 +34,8 @@ public static class ImportMpfbPatient
    if(e.texture!=null)mat.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(folder+"/Textures/"+e.texture));
    mat.SetFloat("_Smoothness",e.mesh.Contains("high-poly")?.6f:e.mesh.Contains("body")?.22f:.15f);
    mat.SetFloat("_Metallic",0);
-   if(e.cutout){mat.SetFloat("_AlphaClip",1);mat.SetFloat("_Cutoff",.35f);mat.SetFloat("_Cull",0);mat.EnableKeyword("_ALPHATEST_ON");mat.renderQueue=2450;}
+   // The eye atlas has an alpha-zero cornea patch; opaque import obscures the irises.
+   if(e.cutout || e.mesh.Contains("high-poly")){mat.SetFloat("_AlphaClip",1);mat.SetFloat("_Cutoff",.35f);mat.SetFloat("_Cull",0);mat.EnableKeyword("_ALPHATEST_ON");mat.SetOverrideTag("RenderType","TransparentCutout");mat.renderQueue=2450;}
    EditorUtility.SetDirty(mat);
    importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material),e.name),mat);
   }
