@@ -88,3 +88,7 @@ Sannan's assignments, verification evidence and approval rules are in [sannan-ex
 ## Physical notes folder
 
 In PatientBay, grab the folder on the notes table and press the held object's Activate/trigger to open or close it. Pickup alone reveals nothing. Accepted opening shows the current permitted name, DOB and MRN on the page; reopening adds no duplicate read action. Tablet Open notes remains an accessibility fallback and opens this same folder. A new session closes it and clears the visible facts. Multi-page records/report insertion and physical hand-driven cover dragging remain later work.
+
+## Fixed-pose patient demo
+
+PatientBay preserves the original static patient pose with a fitted BP cuff, finger probe and live wristband. The attempted arm deformation was removed after visual review. Select the wristband with a controller to read it; identifiers remain hidden until Core accepts the read. Grip and release each sensor onto its matching arm/finger point, then press START BP on the monitor and wait for the Core-controlled cycle. Removing the cuff during an unfinished cycle cancels it. Tablet fallbacks remain synchronized. The patient has no physics-driven body or animation rig; fingers remain curled and the visual model is temporary. The procedural pose/fitting sources and limitations are documented in Assets/Models/Characters/PatientTrial/README.md.

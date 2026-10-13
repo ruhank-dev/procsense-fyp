@@ -38,6 +38,39 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Fitted_wristband_reads_through_XRI_and_clears_between_sessions()
+        {
+            yield return LoadBoot();
+            var host = SimulationHost.Instance;
+            host.AutoTick = false;
+            var band = GameObject.Find("Patient wristband");
+            Assert.IsNotNull(band);
+            var view = band.GetComponentInChildren<EquipmentSurfaceView>();
+            view.RenderNow();
+            Assert.IsNull(host.Observable.Wristband);
+            Assert.That(view.DisplayText, Is.EqualTo("READ WRISTBAND"));
+            var interactable = band.GetComponent<XRSimpleInteractable>();
+            var handObject = new GameObject("Wristband test hand");
+            var hand = handObject.AddComponent<XRDirectInteractor>();
+            hand.interactionManager = interactable.interactionManager;
+            int before = host.Session.Log.Count;
+            try
+            {
+                hand.interactionManager.SelectEnter((IXRSelectInteractor)hand, (IXRSelectInteractable)interactable);
+                Assert.IsNotNull(host.Observable.Wristband);
+                Assert.AreEqual(before + 1, host.Session.Log.Count);
+                view.RenderNow();
+                Assert.That(view.DisplayText, Does.Contain(host.Observable.Wristband.MrnText));
+                hand.interactionManager.SelectExit((IXRSelectInteractor)hand, (IXRSelectInteractable)interactable);
+                host.StartSession("VAR-S1-A", 42, ProcSense.Core.SessionMode.Practice);
+                view.RenderNow();
+                Assert.That(view.DisplayText, Is.EqualTo("READ WRISTBAND"));
+                Assert.AreEqual(0, host.Session.Log.Count);
+            }
+            finally { Object.DestroyImmediate(handObject); }
+        }
+
+        [UnityTest]
         public IEnumerator Folder_requires_held_open_preserves_privacy_and_syncs_fallback_reset()
         {
             yield return LoadBoot();
