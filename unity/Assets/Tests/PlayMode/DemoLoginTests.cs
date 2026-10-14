@@ -26,10 +26,11 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual(1, Camera.allCamerasCount);
             Assert.AreEqual(1, Object.FindObjectsByType<EventSystem>().Length);
             view.Submit();
-            Assert.IsFalse(view.Completed); StringAssert.Contains("email", view.Status);
+            Assert.IsFalse(view.Completed); StringAssert.Contains("email", view.EmailError);
+            StringAssert.Contains("password", view.PasswordError);
             view.Email.text = DemoLoginSettings.DemoEmail;
             view.Submit();
-            StringAssert.Contains("password", view.Status);
+            StringAssert.Contains("password", view.PasswordError);
             view.Password.text = "wrong-password";
             view.Submit();
             Assert.IsFalse(view.Completed);
@@ -54,6 +55,60 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsTrue(SceneManager.GetSceneByName("PatientBay").isLoaded);
             Assert.IsNotNull(GameObject.Find("MPFB patient"), "Sign-in must open the permanent rigged patient");
             Assert.IsNull(GameObject.Find("Patient model trial"));
+        }
+
+        [UnityTest]
+        public IEnumerator Field_errors_clear_on_correction_and_password_spaces_are_not_trimmed()
+        {
+            DemoLoginSettings.LoginRequiredOverride = true;
+            yield return SceneManager.LoadSceneAsync("Boot");
+            for (int i = 0; i < 20; i++) yield return null;
+            var view = Object.FindFirstObjectByType<DemoLoginView>();
+            view.Email.text = "bad-address";
+            view.Password.text = "   ";
+            view.Submit();
+            StringAssert.Contains("valid email", view.EmailError);
+            StringAssert.Contains("password", view.PasswordError);
+            Assert.IsFalse(view.Completed);
+            Assert.IsNull(SimulationHost.Instance);
+            view.Email.text = "  DEMO@PROCSENSE.APP  ";
+            Assert.AreEqual("", view.EmailError);
+            view.Password.text = " " + DemoLoginSettings.DemoPassword + " ";
+            view.Submit();
+            Assert.AreEqual("", view.PasswordError);
+            StringAssert.Contains("Incorrect", view.Status);
+            Assert.IsFalse(view.Completed, "Do not silently change a entered password");
+            view.Password.text = DemoLoginSettings.DemoPassword;
+            Assert.AreEqual("", view.Status);
+            view.Submit();
+            Assert.IsTrue(view.Completed);
+            for (int i = 0; i < 60; i++) yield return null;
+            Assert.IsNotNull(SimulationHost.Instance);
+            SimulationHost.Instance.SaveLogOnDestroy = false;
+        }
+
+        [UnityTest]
+        public IEnumerator Incomplete_form_configuration_stays_locked_without_null_exceptions()
+        {
+            DemoLoginSettings.LoginRequiredOverride = true;
+            yield return SceneManager.LoadSceneAsync("Boot");
+            for (int i = 0; i < 20; i++) yield return null;
+            var container = new GameObject("Incomplete login fixture");
+            container.SetActive(false);
+            var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/UI/LoginScreen.prefab");
+            var clone = Object.Instantiate(prefab, container.transform).GetComponent<DemoLoginView>();
+            clone.ConfigureValidation(null, null);
+            LogAssert.Expect(LogType.Error, "Login UI references are incomplete; workspace remains locked.");
+            container.SetActive(true);
+            yield return null;
+            Assert.IsFalse(clone.IsReady);
+            clone.Submit();
+            clone.TogglePassword();
+            Assert.IsFalse(clone.Completed);
+            StringAssert.Contains("unavailable", clone.Status);
+            Assert.IsNull(SimulationHost.Instance);
+            Object.Destroy(container);
+            yield return null;
         }
 
         [UnityTest]
