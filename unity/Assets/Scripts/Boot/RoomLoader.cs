@@ -33,6 +33,8 @@ namespace ProcSense.VR.Boot
         private IEnumerator Start()
         {
             while (!SceneManager.GetSceneByName(CurrentRoom).isLoaded) yield return null;
+            // Boot is a service shell: the visible room owns ambient lighting and baked probes.
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentRoom));
             if (_rig == null) _rig = FindAnyObjectByType<XROrigin>();
             if (_rig != null)
             {

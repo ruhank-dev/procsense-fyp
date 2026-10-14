@@ -140,3 +140,9 @@ Use **ProcSense -> Development -> Preview login** to run the screen once. **Proc
 The authored Canvas/TMP prefab is `Assets/Prefabs/UI/LoginScreen.prefab`. The builder preserves existing UI and refuses to replace an authored login prefab. The backend owner's integration point is `Assets/Scripts/Login/DemoLoginView.cs` Submit; replace the explicit demo credential check with the real authentication service and complete the launch only after service acceptance.
 
 The old floating wristband card is disabled in the main bay and retained MPFB snapshot. Read identity from the fitted physical band; controller selection still issues Core's read_wristband action. DevOnly suppresses vibration feedback only while virtual controllers exist, while real-device haptic settings remain unchanged. The monitor grab and START BP control own separate collider lists.
+
+## Login validation and errors
+
+Email validation rejects missing/malformed addresses, internal whitespace/control characters, invalid domain labels and addresses longer than 254 characters. Surrounding email whitespace is normalized and the demo account comparison remains case-insensitive. Passwords must be present, contain no control characters and fit the 128-character input limit; they are never silently trimmed and login does not invent signup password-strength rules.
+
+Errors appear beneath the relevant field with a red border, focus moves to the first invalid input, and errors clear as the field is corrected. A syntactically valid but incorrect demo account shows a separate credentials message. Repeated successful submissions remain ignored; fields lock and the entered password clears before workspace entry. Incomplete login UI references show a safe unavailable message, disable the form and keep the workspace locked rather than throwing repeated null-reference errors. Real service/network failures remain part of the backend authentication TODO.

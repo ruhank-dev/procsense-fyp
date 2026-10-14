@@ -44,10 +44,27 @@ namespace ProcSense.VR.Boot
             events.transform.SetParent(shell.transform, false);
             var rig = Instantiate(loginRigPrefab, shell.transform);
             foreach (var comfort in rig.GetComponentsInChildren<ProcSense.VR.XR.ComfortPanel>(true)) comfort.enabled = false;
+            if (!UnityEngine.XR.XRSettings.isDeviceActive)
+            {
+                // Desktop text fields need mouse/keyboard focus without competing XR pointers.
+                events.GetComponent<XRUIInputModule>().enabled = false;
+                var desktopInput = events.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
+                desktopInput.AssignDefaultActions();
+            }
             var camera = rig.GetComponentInChildren<Camera>();
+            if (camera == null)
+            {
+                Debug.LogError("Login rig camera is missing; workspace remains locked.");
+                while (true) yield return null;
+            }
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = new Color(.035f, .07f, .095f);
             var view = Instantiate(loginPrefab, shell.transform).GetComponent<DemoLoginView>();
+            if (view == null || !view.IsReady)
+            {
+                if (view == null) Debug.LogError("Login prefab has no form; workspace remains locked.");
+                while (true) yield return null;
+            }
             var canvas = view.GetComponent<Canvas>();
             if (UnityEngine.XR.XRSettings.isDeviceActive)
             {

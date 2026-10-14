@@ -102,7 +102,7 @@ namespace ProcSense.EditorTools
             var field = border.gameObject.AddComponent<TMP_InputField>();
             field.textViewport = viewport; field.textComponent = (TextMeshProUGUI)label; field.placeholder = placeholder;
             field.targetGraphic = border; field.contentType = secret ? TMP_InputField.ContentType.Password : TMP_InputField.ContentType.EmailAddress;
-            field.characterLimit = secret ? 128 : 254; field.asteriskChar = '*'; field.caretColor = Teal; field.customCaretColor = true;
+            field.characterLimit = secret ? LoginInputValidation.PasswordLimit : LoginInputValidation.EmailLimit; field.asteriskChar = '*'; field.caretColor = Teal; field.customCaretColor = true;
             field.caretWidth = 2; field.selectionColor = new Color(.12f, .55f, .48f, .2f);
             var colors = field.colors;
             colors.normalColor = new Color(.79f, .83f, .82f); colors.highlightedColor = new Color(.56f, .69f, .66f);
@@ -152,7 +152,9 @@ namespace ProcSense.EditorTools
                 Text(card, "Password label", "Password", 44, 316, 410, 26, 18, Ink, true);
                 var password = Field(card, "Password", "Enter your password", 349, true);
                 var reveal = Button(password.transform, "Reveal password", "Show", 326, 7, 75, 48, new Color(.99f, .995f, .985f), Teal, 16);
-                var status = Text(card, "Status", "", 44, 426, 412, 36, 17, new Color(.66f, .20f, .20f));
+                var emailError = Text(card, "Email error", "", 44, 294, 412, 20, 14, new Color(.66f, .20f, .20f));
+                var passwordError = Text(card, "Password error", "", 44, 414, 412, 20, 14, new Color(.66f, .20f, .20f));
+                var status = Text(card, "Status", "", 44, 442, 412, 24, 14, new Color(.66f, .20f, .20f));
                 var signIn = Button(card, "Sign in", "Sign in", 44, 471, 412, 60, Teal, Color.white, 22);
                 var demo = Panel(card, "Demo account", 44, 553, 412, 85, new Color(.89f, .93f, .895f), 12);
                 Text(demo.transform, "Demo heading", "DEMO ACCESS", 16, 10, 380, 21, 12, Teal, true).characterSpacing = 1;
@@ -160,6 +162,7 @@ namespace ProcSense.EditorTools
                 var footer = Text(root.transform, "Footer", "Demo environment  /  ProcSense", 0, 0, 700, 34, 16, new Color(.52f, .65f, .67f)).rectTransform;
                 footer.anchorMin = footer.anchorMax = new Vector2(.07f, .04f); footer.pivot = Vector2.zero; footer.anchoredPosition = Vector2.zero;
                 root.AddComponent<DemoLoginView>().Configure(email, password, status, reveal.GetComponentInChildren<TMP_Text>(), signIn, reveal, card, introduction.gameObject, divider.gameObject);
+                root.GetComponent<DemoLoginView>().ConfigureValidation(emailError, passwordError);
                 PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
             }
             finally { UnityEngine.Object.DestroyImmediate(root); }
