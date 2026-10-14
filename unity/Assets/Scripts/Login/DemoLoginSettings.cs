@@ -7,6 +7,10 @@ namespace ProcSense.VR.Login
     {
         public bool ShowOnLaunch = true;
         public bool BypassInDevelopmentBuild;
+        [Tooltip("Keep the fixed demo account working without the service, for practising offline. Switch off for a release build.")]
+        public bool AllowOfflineDemoAccount = true;
+        /// <summary>Set by Boot from the asset before the login screen opens; read by the login screen.</summary>
+        public static bool OfflineDemoAllowed = true;
         public const string DemoEmail = "demo@procsense.app";
         public const string DemoPassword = "ProcSenseDemo!";
         public const string BypassPreference = "ProcSense.Login.BypassInEditor";

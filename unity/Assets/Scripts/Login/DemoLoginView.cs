@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using ProcSense.VR.Auth;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,6 +20,7 @@ namespace ProcSense.VR.Login
         [SerializeField] private GameObject introduction;
         [SerializeField] private GameObject divider;
         private bool _narrow;
+        private bool _busy;
         public bool Completed { get; private set; }
         public TMP_InputField Email => email;
         public TMP_InputField Password => password;
@@ -63,17 +66,44 @@ namespace ProcSense.VR.Login
 
         public void Submit()
         {
-            if (Completed) return;
+            if (Completed || _busy) return;
             string address = email.text.Trim();
             if (address.Length == 0) { status.text = "Enter your email address."; email.Select(); return; }
             if (password.text.Length == 0) { status.text = "Enter your password."; password.Select(); return; }
-            if (!string.Equals(address, DemoLoginSettings.DemoEmail, StringComparison.OrdinalIgnoreCase) || password.text != DemoLoginSettings.DemoPassword)
+            if (string.Equals(address, DemoLoginSettings.DemoEmail, StringComparison.OrdinalIgnoreCase))
             {
-                status.text = "Use the demo account shown below.";
+                // The fixed demo account never leaves the headset: it opens the workspace for practising offline, and nothing is sent to the service.
+                if (!DemoLoginSettings.OfflineDemoAllowed || password.text != DemoLoginSettings.DemoPassword)
+                {
+                    status.text = DemoLoginSettings.OfflineDemoAllowed ? "Use the demo account shown below." : "Sign in with your ProcSense account.";
+                    return;
+                }
+                AuthService.Current?.SignOut();
+                Finish();
                 return;
             }
-            // TODO (backend owner): replace this demo gate with the authentication service.
-            // No real credentials, tokens or account records are stored here.
+            StartCoroutine(SignInOnline(address, password.text));
+        }
+
+        // A real account: the service and the account system decide (p1-backend-s10). The password is passed on once and never stored, shown or logged.
+        private IEnumerator SignInOnline(string address, string typedPassword)
+        {
+            _busy = true;
+            submit.interactable = false;
+            status.text = "Connecting to the service. The first time it can take a minute to wake up...";
+            SignInResult result = null;
+            yield return AuthService.Factory().SignIn(address, typedPassword, r => result = r);
+            _busy = false;
+            if (result != null && result.Ok) { Finish(); yield break; }
+            submit.interactable = true;
+            string message = result != null ? result.Message : "Sign-in failed.";
+            if (result != null && result.Outcome == SignInOutcome.Unreachable)
+                message += DemoLoginSettings.OfflineDemoAllowed ? " Check the connection, or practise offline with the demo account shown below." : " Check the connection and try again.";
+            status.text = message;
+        }
+
+        private void Finish()
+        {
             Completed = true;
             password.SetTextWithoutNotify("");
             submit.interactable = false;
@@ -88,6 +118,6 @@ namespace ProcSense.VR.Login
             password.ForceLabelUpdate();
         }
 
-        private void ClearStatus() { if (!Completed) status.text = ""; }
+        private void ClearStatus() { if (!Completed && !_busy) status.text = ""; }
     }
 }

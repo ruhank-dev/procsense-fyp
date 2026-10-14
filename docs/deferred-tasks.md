@@ -189,7 +189,7 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-141 | Run the verification image check on GitHub (the Linux engine publish, the content per version, the container verifying a session): it was written but could not be run on the author's laptop | Pending | p1-backend-s09 | First run of the `server` job on GitHub | The same steps pass locally with the Windows engine and the stand-in |
 | DT-142 | Delete expired device login requests and long-revoked headset sign-ins (a scheduled clean-up, with the retention work) | Pending | p1-backend-s10 | p1-backend-s12 retention | They hold no secrets (only hashes) and are few |
 | DT-143 | An organisation administrator's button to sign out all headsets of one member, and a list of an organisation's headsets | Pending | p1-backend-s10 | p1-backend-s11 (web dashboard) | Deactivating the member already stops their headsets reaching the organisation |
-| DT-144 | Build the headset half of s10: the sign-in screen, the code view, the token store in the keystore, offline rules (DT-126), the Play Mode tests and EXP-BE-4 | Pending | p1-backend-s10 | Sannan (Unity) | The server half is built and tested; the headset side needs a Quest |
+| DT-144 | Finish the headset half of s10: the device-code view, the encrypted token store with a remembered login, the offline rules (DT-126), a Quest check of typing and reach, and EXP-BE-4 (email and password sign-in is built and tested in Unity batch mode) | Pending | p1-backend-s10 | Sannan (Unity) | Email and password sign-in against the live service was added on 14 Oct 2026 on Sannan's login screen |
 | DT-145 | Let an organisation limit a supervisor to the cohorts they supervise (today a supervisor sees the whole organisation, like the session status route) | Pending | p1-backend-s04 | Owner decision, then p1-backend-s12 | Cohort supervisors already exist in the data (cohort_member.role) |
 | DT-146 | Write views of another person's report, progress and exports into an access-log table that the person can read | **Completed** | p1-backend-s04 | p1-backend-s12 (privacy) | Completed 14 Oct 2026 in p1-backend-s12: `access_log` table written by the dashboard and export routes; the person reads it on the Privacy page |
 | DT-147 | Read the provisional-weights flag from the scoring tables instead of a constant, and drop it when the weights are approved | Pending | p1-backend-s04 | Ruhan (scoring owner) | Every process score says provisional until then |
@@ -212,6 +212,7 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (p1-backend-s10, headset half) | Email and password sign-in built into Sannan's login screen (unity/Assets/Scripts/Auth) with 17 tests; DT-144 narrowed. |
 | 14 October 2026 (p1-backend-s13) | server/models was never committed (an ignore rule hid it); fixed, and a check added; DT-161. |
 | 14 October 2026 (p1-backend-s13, deploy part) | Image publish and scheduled-job workflows, the headset stand-in, the demo session maker and the deploy steps written; DT-157 to DT-160 added. |
 | 14 October 2026 (p1-backend-s12 approved) | DT-146 and DT-152 completed. |

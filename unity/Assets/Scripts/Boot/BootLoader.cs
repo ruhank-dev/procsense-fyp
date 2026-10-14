@@ -31,6 +31,7 @@ namespace ProcSense.VR.Boot
 
         private IEnumerator Login()
         {
+            if (loginSettings != null) DemoLoginSettings.OfflineDemoAllowed = loginSettings.AllowOfflineDemoAccount;
             if (loginPrefab == null || loginRigPrefab == null)
             {
                 Debug.LogError("Login launch assets are missing; the workspace has not been started.");

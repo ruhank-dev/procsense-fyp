@@ -95,6 +95,15 @@ PatientBay now contains the MPFB patient for ordinary app launch, corridor retur
 
 The CGTrader model, texture and material are retired from Unity. Its procedural wristband was moved into MPFBPatient with its GUID preserved. The fitted gown, blanket, pillow, mattress, rig and native facial shapes are the permanent patient setup. Sensor sockets/wristband remain bone mounted; clinical animation, audio and demographic binding remain separate work. The old MPFBPatientReview scene is retained only as a development snapshot and is not the app destination or a build scene. Recipes and provenance are recorded in [the MPFB recipe README](Tools/MPFB/README.md).
 
+## Sign-in with the ProcSense service (14 October 2026)
+
+The login screen now signs in real accounts. Typing an email and password does this, in `Assets/Scripts/Auth/AuthService.cs`: it asks the service (`/config.json`, which also wakes the free host), sends the password once, straight to the account system (Supabase Auth), keeps the access token in memory only, reads the person and organisation (`/me`) and the privacy question (`/privacy/consent`), and only then opens the workspace. The password is cleared after sign-in and never stored or logged. Messages on the form: wrong password, no connection, no organisation, and "open the web page and accept the privacy choices first" (the headset cannot answer that question for anyone).
+
+- **The service address** is the build setting `Assets/Resources/ProcSenseService.asset` (**ProcSense -> Service settings (create or select)**). It is `https://procsense.onrender.com`; https only (http only for localhost). Nothing secret is in it.
+- **The fixed demo account still works**, offline, and sends nothing to the service (its sessions stay on the device). It is the setting `Allow Offline Demo Account` in `Assets/Settings/DemoLoginSettings.asset`: switch it off for a release build, and the demo account is then refused.
+- `AuthService.Current` holds the signed-in person (pseudonym, organisation, role) for the upload client and the results panel that come next; `AuthService.Authorized(...)` makes a call with the token, renews it on a 401 and signs the person out if renewing is refused.
+- Tests: 12 in `Assets/Tests/EditMode/AuthServiceTests.cs` (a scripted service, no network) and 5 in `Assets/Tests/PlayMode/LoginServiceTests.cs` (the screen), run in batch mode with Unity 6000.5.10f1; Sannan's two demo-login tests still pass. Not done: the device-code view, the encrypted token store in the Android keystore and a remembered login for offline starts, and a check of the keyboard and reach on a Quest.
+
 ## Demo launch login
 
 The app's Boot scene shows a demo sign-in screen before loading the clinical workspace. Backend authentication remains a teammate TODO; this gate verifies only the displayed fixed demo account:
