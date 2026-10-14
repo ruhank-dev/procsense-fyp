@@ -1,0 +1,109 @@
+name: Deploy
+
+# Continuous delivery (p1-backend-s13). Runs after the CI workflow has finished on main, and only goes on when CI was green:
+#   1. builds the service image for exactly that commit, checks it and moves the tag `latest` (publish-image.yml);
+#   2. applies the database migrations (if the repository secret MIGRATION_DATABASE_URL is set), before the new version starts: every migration must be additive, so the version still running keeps working while it happens;
+#   3. tells the host to deploy (the repository secret RENDER_DEPLOY_HOOK) and waits until the service runs this commit and its database answers (the secret SERVICE_URL);
+#   4. opens an issue if any of it fails, so a broken deploy is noticed. A failed deploy leaves the previous version running (the host only switches when the new one is healthy).
+# Without the secrets the image is still built and pushed and the deploy step says it was skipped. To go back to an earlier version: runbook, "Going back".
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  image:
+    name: Build and push the image
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/publish-image.yml
+    with:
+      sha: ${{ github.event.workflow_run.head_sha || github.sha }}
+      latest: true
+    permissions:
+      contents: read
+      packages: write
+    secrets: inherit
+
+  deploy:
+    name: Migrate, deploy and check
+    needs: image
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      issues: write
+    env:
+      SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      SERVICE_URL: ${{ secrets.SERVICE_URL }}
+      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      MIGRATION_DATABASE_URL: ${{ secrets.MIGRATION_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Is the deploy set up
+        id: setup
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK" ] || [ -z "$SERVICE_URL" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::The image for ${SHA} is built and pushed. The deploy was skipped because the repository secrets RENDER_DEPLOY_HOOK and SERVICE_URL are not both set."
+            echo "The image for ${SHA} is built and pushed. The deploy was skipped: set the repository secrets RENDER_DEPLOY_HOOK and SERVICE_URL." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: astral-sh/setup-uv@v5
+        if: steps.setup.outputs.ready == 'true'
+        with:
+          enable-cache: true
+          cache-dependency-glob: server/uv.lock
+
+      - name: Apply the database migrations
+        if: steps.setup.outputs.ready == 'true'
+        run: |
+          if [ -z "$MIGRATION_DATABASE_URL" ]; then
+            echo "::warning::MIGRATION_DATABASE_URL is not set: the migrations were not applied. If this commit adds one, the new version will fail until it is applied."
+            exit 0
+          fi
+          uv sync --project server --frozen --no-dev
+          uv run --project server alembic -c server/alembic.ini upgrade head
+          uv run --project server alembic -c server/alembic.ini current
+
+      - name: Tell the host to deploy
+        if: steps.setup.outputs.ready == 'true'
+        run: curl --fail --silent --show-error --max-time 60 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null
+
+      - name: Wait until the service runs this commit and its database answers
+        if: steps.setup.outputs.ready == 'true'
+        run: python3 tools/ci/wait_for_deploy.py --url "$SERVICE_URL" --sha "$SHA" --timeout 1200 --interval 15
+
+      - name: Say it is live
+        if: steps.setup.outputs.ready == 'true'
+        run: echo "${SERVICE_URL} runs ${SHA}." >> "$GITHUB_STEP_SUMMARY"
+
+  report:
+    name: Open an issue when something failed
+    needs: [image, deploy]
+    if: ${{ always() && (needs.image.result == 'failure' || needs.deploy.result == 'failure') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - name: Open the issue
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY"             --title "Deploy of ${SHA:0:7} failed"             --body "The deploy of commit ${SHA} did not finish. Open the run for the step that failed: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}. The previous version keeps running unless the host already switched. To go back to an earlier version see the runbook, section Going back."

@@ -1,12 +1,15 @@
 name: Publish the service image
 
 # Builds the service image on GitHub (the Linux engine and the content of each version are generated, not stored in git, so the host cannot build it from the repository)
-# and pushes it to GitHub's container registry, where the host pulls it (p1-backend-s13). It runs when a backend branch or main changes the service, the engine or the content.
-# The image holds no secret: the settings are given to the host as environment variables.
+# and pushes it to GitHub's container registry, where the host pulls it (p1-backend-s13). The image holds no secret: the settings are given to the host as environment variables.
+#
+# Two ways in:
+#   - a push to a backend branch builds an image tagged with the commit and the branch name, to try it; it never touches the tag `latest`, which is what the host runs;
+#   - the Deploy workflow (deploy.yml) calls this for a commit on main whose CI was green, with latest: true, and then deploys it.
 
 on:
   push:
-    branches: ['myt1x54/backend-*', main]
+    branches: ['myt1x54/backend-*']
     paths:
       - 'server/**'
       - 'src/**'
@@ -16,10 +19,20 @@ on:
       - 'global.json'
       - '.github/workflows/publish-image.yml'
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      sha:
+        description: 'The commit to build (default: the commit the workflow runs for)'
+        type: string
+        default: ''
+      latest:
+        description: 'Also move the tag latest, which is the image the host runs'
+        type: boolean
+        default: false
 
 concurrency:
-  group: publish-image-${{ github.ref }}
-  cancel-in-progress: true
+  group: publish-image-${{ inputs.sha || github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -31,9 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
-      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      SHA: ${{ inputs.sha || github.sha }}
+      MOVE_LATEST: ${{ inputs.latest && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha || github.sha }}
 
       - uses: astral-sh/setup-uv@v5
         with:
@@ -49,24 +65,26 @@ jobs:
           dotnet publish src/ProcSense.Cli -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true -o server/engine/bin
           uv run --project tools tools/content/package_versions.py --out server/engine/content
 
-      - name: Name the image
+      - name: Name the image and its tags
         run: |
           owner="${GITHUB_REPOSITORY_OWNER,,}"
           echo "IMAGE=ghcr.io/${owner}/procsense-server" >> "$GITHUB_ENV"
+          branch="$(echo "${GITHUB_REF_NAME}" | tr '[:upper:]/' '[:lower:]-' | tr -c 'a-z0-9._\n-' '-')"
+          echo "BRANCH_TAG=branch-${branch}" >> "$GITHUB_ENV"
 
       - name: Build the image
         run: |
           docker build -f server/Dockerfile \
-            --build-arg GIT_SHA="${GITHUB_SHA}" \
+            --build-arg GIT_SHA="${SHA}" \
             --label org.opencontainers.image.source="https://github.com/${GITHUB_REPOSITORY}" \
-            --label org.opencontainers.image.revision="${GITHUB_SHA}" \
-            -t "${IMAGE}:${GITHUB_SHA}" -t "${IMAGE}:latest" .
+            --label org.opencontainers.image.revision="${SHA}" \
+            -t "${IMAGE}:${SHA}" .
 
       - name: The image answers /health and its engine verifies a session with its own content
         run: |
-          docker run -d --name svc --network host -e PORT=8000 "${IMAGE}:latest"
+          docker run -d --name svc --network host -e PORT=8000 "${IMAGE}:${SHA}"
           for i in $(seq 1 30); do curl -fsS http://localhost:8000/health && break || sleep 2; done
-          curl -fsS http://localhost:8000/health | grep -q "${GITHUB_SHA}"
+          curl -fsS http://localhost:8000/health | grep -q "${SHA}"
           VERSION=$(docker exec svc ls /opt/engine/content | grep -- -practice)
           docker cp tests/golden/skeleton1_correct.actions.json svc:/tmp/actions.json
           docker exec svc /opt/engine/bin/procsense-sim run --case VAR-S1-A --seed 42 --actions /tmp/actions.json --out /tmp/run.json --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION
@@ -89,10 +107,14 @@ jobs:
 
       - name: Push the image
         run: |
-          docker push "${IMAGE}:${GITHUB_SHA}"
-          docker push "${IMAGE}:latest"
-          echo "Pushed ${IMAGE}:latest (${GITHUB_SHA})" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Tell the host there is a new image (only when a deploy hook is set)
-        if: env.RENDER_DEPLOY_HOOK != ''
-        run: curl --fail --silent --show-error --max-time 60 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null && echo "The host was told to deploy." >> "$GITHUB_STEP_SUMMARY"
+          docker push "${IMAGE}:${SHA}"
+          echo "Pushed ${IMAGE}:${SHA}" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${MOVE_LATEST}" = "true" ]; then
+            docker tag "${IMAGE}:${SHA}" "${IMAGE}:latest"
+            docker push "${IMAGE}:latest"
+            echo "Moved ${IMAGE}:latest to ${SHA}: this is the image the host runs." >> "$GITHUB_STEP_SUMMARY"
+          else
+            docker tag "${IMAGE}:${SHA}" "${IMAGE}:${BRANCH_TAG}"
+            docker push "${IMAGE}:${BRANCH_TAG}"
+            echo "Tagged ${IMAGE}:${BRANCH_TAG} (the tag latest was not moved)." >> "$GITHUB_STEP_SUMMARY"
+          fi

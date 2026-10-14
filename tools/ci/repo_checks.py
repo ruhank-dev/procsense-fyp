@@ -208,6 +208,15 @@ def check_team_guards() -> list[str]:
         for n, line in enumerate(read(wf).splitlines(), 1):
             if re.match(r"\s*- name: [^\"'].*: ", line):
                 problems.append(f"{wf.relative_to(ROOT).as_posix()}:{n}: step name contains ': ' and is not quoted (invalid YAML; GitHub will not run the workflow)")
+    import yaml   # every workflow file must be valid YAML as a whole (an unquoted ': ' in a description made publish-image.yml fail on GitHub)
+    for wf in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
+        try:
+            document = yaml.safe_load(read(wf))
+        except yaml.YAMLError as e:
+            problems.append(f"{wf.relative_to(ROOT).as_posix()}: not valid YAML ({str(e).splitlines()[0]} {getattr(e, 'problem_mark', '')})")
+            continue
+        if not isinstance(document, dict) or "jobs" not in document or not (True in document or "on" in document):
+            problems.append(f"{wf.relative_to(ROOT).as_posix()}: a workflow needs `on:` and `jobs:`")
     return problems
 
 
