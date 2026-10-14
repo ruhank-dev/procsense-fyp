@@ -29,6 +29,9 @@ from server.routers import sessions as sessions_router
 from server.verification import worker
 from server.tests.support import SUPABASE_URL, FakeAdmin, SigningKey
 
+# The tests never read a developer's server/.env: it holds real keys and the address of the live database, and any value in it (the internal key, the Supabase address) would change what a test sees.
+config.Settings.model_config["env_file"] = None
+
 
 def _test_url() -> str:
     url = os.environ.get("TEST_DATABASE_URL", "")

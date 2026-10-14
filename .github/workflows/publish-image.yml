@@ -71,6 +71,8 @@ jobs:
           docker cp tests/golden/skeleton1_correct.actions.json svc:/tmp/actions.json
           docker exec svc /opt/engine/bin/procsense-sim run --case VAR-S1-A --seed 42 --actions /tmp/actions.json --out /tmp/run.json --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION
           docker exec svc /opt/engine/bin/procsense-sim verify --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION | grep -q '"ok":true'
+          # the same again as the service starts the engine: as the app user, under the 64 MiB file-size limit (a first image failed here on the host, signal 25)
+          docker exec svc sh -c "ulimit -f 131072; /opt/engine/bin/procsense-sim verify --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION" | grep -q '"ok":true'
           docker logs svc
           docker rm -f svc
 

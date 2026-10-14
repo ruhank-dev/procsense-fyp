@@ -17,6 +17,8 @@ COPY server ./server
 # the engine and the content it verifies with, prepared by `task server-engine-prepare` (CI does it before the image is built)
 COPY server/engine /opt/engine
 ENV ENGINE_CLI=/opt/engine/bin/procsense-sim ENGINE_CONTENT_ROOT=/opt/engine/content DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/dotnet-bundle DOTNET_CLI_TELEMETRY_OPTOUT=1
+# The engine runs under a 64 MiB file-size limit (server/verification/runner.py). The .NET runtime's default memory layout (write-xor-execute) makes a very large shared-memory file and is killed by that limit (signal 25, found on Render on 14 Oct 2026); this setting turns the layout off, which is also faster to start.
+ENV DOTNET_EnableWriteXorExecute=0
 # which commit this image was built from, shown by /health (the publish workflow passes it)
 ARG GIT_SHA=unknown
 ENV GIT_SHA=${GIT_SHA}

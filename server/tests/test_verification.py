@@ -347,3 +347,14 @@ def test_the_real_engine_cannot_verify_a_session_played_with_other_content(real)
     with DbSession(real.api.engine) as s:
         row = s.get(Session, uuid.UUID(r.json()["session"]["session_id"]))
         assert (row.status, row.reject_reason) == ("unverifiable", "CONTENT_VERSION_UNKNOWN")
+
+
+def test_an_engine_that_the_system_stopped_is_named_by_its_signal_in_the_log():
+    import signal
+    from server.verification.runner import exit_text
+    assert exit_text(0) == "exit 0" and exit_text(2) == "exit 2"
+    assert exit_text(-200) == "killed by signal 200"
+    expected = {25: "SIGXFSZ ", 9: "SIGKILL "}          # the names exist on Linux, where the service runs; elsewhere the number alone is shown
+    for number, name in expected.items():
+        text = exit_text(-number)
+        assert text == (f"killed by signal {name}({number})" if hasattr(signal, name.strip()) else f"killed by signal {number}"), text   # 25 is the file-size limit: what happened on the host on 14 October 2026

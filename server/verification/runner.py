@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import signal
 import subprocess
 import tempfile
 from dataclasses import dataclass
@@ -30,6 +31,16 @@ class EngineVerdict:
     detail: str
     data: dict          # the whole verdict, including `facts` when ok
     report_html: bytes | None
+
+
+def exit_text(code: int) -> str:
+    """How an engine exit reads in the log: a negative code means the system stopped it with a signal, and the signal's name says why (for example SIGXFSZ: it wrote a file larger than the limit)."""
+    if code < 0:
+        try:
+            return f"killed by signal {signal.Signals(-code).name} ({-code})"
+        except ValueError:
+            return f"killed by signal {-code}"
+    return f"exit {code}"
 
 
 def clean_environment(environ: dict[str, str] | None = None) -> dict[str, str]:
@@ -71,7 +82,7 @@ class EngineRunner:
                 raise RunnerError("output too large")
             data = _read_verdict(done.stdout)
             if data is None or done.returncode not in (0, 1) or bool(data.get("ok")) != (done.returncode == 0):
-                raise RunnerError(f"no verdict (exit {done.returncode})")
+                raise RunnerError(f"no verdict ({exit_text(done.returncode)})")
             html = html_file.read_bytes() if html_file.exists() else None
             return EngineVerdict(bool(data["ok"]), str(data.get("reason", "")), str(data.get("detail", "")), data, html)
 
