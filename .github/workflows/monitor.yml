@@ -1,0 +1,50 @@
+name: Database monitor
+
+# Once a day: how full is the free database (500 MB limit) and how many connections are open (p1-backend-s13, DT-160).
+# It fails, and opens an issue, when the database passes 80% of the limit. That the service answers is checked by the Scheduled jobs workflow (it fails when /health or /health/db does not answer).
+# Needs the repository secret MIGRATION_DATABASE_URL (the session pooler address).
+
+on:
+  schedule:
+    - cron: '37 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  size:
+    name: Database size and connections
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BACKUP_DATABASE_URL: ${{ secrets.MIGRATION_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: server/uv.lock
+
+      - name: Measure
+        run: |
+          if [ -z "$BACKUP_DATABASE_URL" ]; then echo "::error::The repository secret MIGRATION_DATABASE_URL is not set."; exit 1; fi
+          uv sync --project server --frozen --no-dev
+          uv run --no-dev --project server python -m server.scripts.backup monitor | tee monitor.json
+          { echo "### Database"; echo '```'; cat monitor.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+  report:
+    name: Open an issue when the monitor failed
+    needs: size
+    if: ${{ always() && needs.size.result == 'failure' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Open the issue
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Database monitor: attention needed ($(date -u +%F))" --body "The daily database check failed: the free database is over 80% of its 500 MB limit, or it could not be reached. Open the run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}. See server/RUNBOOK.md, Backup and restore."

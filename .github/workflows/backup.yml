@@ -1,0 +1,94 @@
+name: Nightly backup
+
+# The free database plan keeps no backups, so this is the only copy (p1-backend-s13, DT-160).
+# Every night: one consistent dump of the application tables (schema public; accounts are Supabase's own), encrypted with the key in the repository secret BACKUP_KEY,
+# restored into a throwaway PostgreSQL to prove it can be restored (row counts must match), and kept as a private artifact for 14 days.
+# It fails (and opens an issue) when the dump is empty, much smaller than the last one, cannot be restored, or the secrets are missing.
+# Needs the repository secrets MIGRATION_DATABASE_URL (the session pooler address, the same one the Deploy workflow uses) and BACKUP_KEY. See server/RUNBOOK.md, Backup and restore.
+
+on:
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: nightly-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    name: Dump, encrypt, prove the restore
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BACKUP_DATABASE_URL: ${{ secrets.MIGRATION_DATABASE_URL }}
+      BACKUP_KEY: ${{ secrets.BACKUP_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: server/uv.lock
+
+      - name: The secrets are set
+        run: |
+          if [ -z "$BACKUP_KEY" ] || [ -z "$BACKUP_DATABASE_URL" ]; then
+            echo "::error::The repository secrets BACKUP_KEY and MIGRATION_DATABASE_URL must both be set (Settings > Secrets and variables > Actions). No backup was made."
+            exit 1
+          fi
+
+      - name: The last good backup, to compare the size with
+        run: |
+          mkdir -p previous
+          id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow backup.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId' || true)"
+          if [ -n "$id" ] && [ "$id" != "null" ]; then
+            gh run download "$id" --repo "$GITHUB_REPOSITORY" --name procsense-backup --dir previous || echo "the last backup's artifact is gone (expired): nothing to compare with"
+          else
+            echo "no earlier backup: nothing to compare with"
+          fi
+
+      - name: Dump and encrypt
+        run: |
+          uv sync --project server --frozen --no-dev
+          uv run --no-dev --project server python -m server.scripts.backup dump --out backups --previous previous | tee dump.json
+
+      - name: Prove it can be restored
+        run: |
+          file="$(ls backups/*.dump.enc | head -1)"
+          uv run --no-dev --project server python -m server.scripts.backup drill --file "$file" | tee drill.json
+
+      - name: Summary
+        run: |
+          {
+            echo "### Backup"
+            echo '```'; cat dump.json; echo; cat drill.json; echo '```'
+            echo "Kept for 14 days as the artifact procsense-backup. To restore: server/RUNBOOK.md, Backup and restore."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: procsense-backup
+          path: backups/
+          retention-days: 14
+          if-no-files-found: error
+
+  report:
+    name: Open an issue when the backup failed
+    needs: backup
+    if: ${{ always() && needs.backup.result == 'failure' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Open the issue
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "Nightly backup failed ($(date -u +%F))" --body "The nightly backup did not finish, so there may be no recent copy of the data. Open the run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}. Fix it and run the Nightly backup workflow by hand (Actions > Nightly backup > Run workflow). See server/RUNBOOK.md, Backup and restore."
