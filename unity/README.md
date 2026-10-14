@@ -120,6 +120,8 @@ The hand-held tablet has a fifth tab, **Session** (`Assets/Scripts/Views/Session
 
 The test `Assets/Tests/PlayMode/TabletSnapshotTests.cs` draws the tablet's tabs to `artifacts/unity/tablet-identity.png` and `tablet-session.png` (git-ignored), so the layout can be looked at without a headset or the Editor.
 
+**Trying it in the Editor without controllers:** while the application is playing, **ProcSense -> Development -> Show tablet Session tab (Play Mode)** switches the tablet to the Session tab and frames it in the Scene view, and **ProcSense -> Development -> Finish session and upload (Play Mode)** does what the tab's Finish button does. Walk to the tablet (the blue pad "TELEPORT_Tablet", or WASD) to see it in the Game view.
+
 A session can be finished once; to play again, restart the app. The scores shown are provisional (the weights are), and the tab says so.
 
 **Trying the whole chain from a laptop without a headset:** the test `Assets/Tests/PlayMode/LiveServiceTests.cs` signs in, plays a little, ends the session, uploads it, waits for the service's engine to verify it and reads the result back, over a real network connection with the real `UnityWebRequest`. Set `PROCSENSE_E2E_URL`, `PROCSENSE_E2E_EMAIL` and `PROCSENSE_E2E_PASSWORD` (a local copy of the service with sample people comes from `python -m server.tests.browser_stack`; the live service works with a real account that has agreed to the privacy choices) and run it from the Test Runner or in batch mode; without them it is skipped.
