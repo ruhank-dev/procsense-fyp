@@ -9,6 +9,7 @@ using ProcSense.Core.Pipeline;
 using ProcSense.Core.Replay;
 using ProcSense.Core.Workflow;
 using ProcSense.VR.Content;
+using ProcSense.VR.Sync;
 using UnityEngine;
 
 namespace ProcSense.VR.Bridge
@@ -42,6 +43,20 @@ namespace ProcSense.VR.Bridge
         public bool AutoTick { get => autoTick; set => autoTick = value; }
         public bool SaveLogOnDestroy { get; set; } = true;
 
+        /// <summary>The id the host gave this session when it started (written into the saved file's header, so the service stores it once however often it is sent).</summary>
+        public string SessionId { get; private set; } = "";
+
+        /// <summary>The version of the content this session was played with (written into the header; the service can only verify a version it holds).</summary>
+        public string ContentVersion { get; private set; } = "unversioned";
+
+        /// <summary>Test seam: where session files are saved (default: the application's data folder, `sessions`).</summary>
+        public static string SessionsDirectoryOverride { get; set; }
+
+        /// <summary>Raised once when the session has been saved and queued for upload.</summary>
+        public event Action<string> SessionEnded;
+
+        private bool _ended;
+
         /// <summary>Test seam: replaces the default subsystem chain (used to prove a Core exception pauses the session).</summary>
         public Func<ContentPackage, IEnumerable<ProcSense.Core.Pipeline.ISubsystem>> SubsystemFactory { get; set; }
 
@@ -60,7 +75,7 @@ namespace ProcSense.VR.Bridge
 
         private void OnDestroy()
         {
-            if (SaveLogOnDestroy) SaveSessionLog();
+            if (SaveLogOnDestroy) EndSession();
             if (Instance == this) Instance = null;
         }
 
@@ -71,8 +86,12 @@ namespace ProcSense.VR.Bridge
 
         public void StartSession(string caseId, ulong seed, SessionMode mode, IContentReader reader = null)
         {
-            var content = ContentLoader.Load(reader ?? UnityContentReader.ForThisPlatform(), caseId);
+            reader = reader ?? UnityContentReader.ForThisPlatform();
+            var content = ContentLoader.Load(reader, caseId);
             Session = new Session(content.Cases[caseId], seed, mode, (SubsystemFactory ?? Subsystems.Default)(content));
+            SessionId = Guid.NewGuid().ToString();
+            ContentVersion = VersionOf(reader);
+            _ended = false;
             Paused = false;
             PauseReason = "";
             Refresh();
@@ -110,14 +129,33 @@ namespace ProcSense.VR.Bridge
             }
         }
 
-        /// <summary>Writes the session as JSONL (header + log) to the persistent data folder; the CLI's replay command reads it.</summary>
+        private static string VersionOf(IContentReader reader)
+        {
+            try { return ContentManifestCheck.Version(reader); }
+            catch (Exception e) when (e is IOException || e is ContentException || e is ArgumentException) { return "unversioned"; }
+        }
+
+        /// <summary>Writes the session as JSONL (header + log) to the data folder; the CLI's replay and verify commands read it. The header carries the session id, the content version and the engine version.
+        /// The file name holds the session id, so saving again (the app is paused, then closed) replaces the same file.</summary>
         public string SaveSessionLog()
         {
             if (Session == null || Session.Log.Count == 0) return null;
-            string dir = Path.Combine(Application.persistentDataPath, "sessions");
+            string dir = SessionsDirectoryOverride ?? Path.Combine(Application.persistentDataPath, "sessions");
             Directory.CreateDirectory(dir);
-            string file = Path.Combine(dir, Session.Case.Id + "_" + Session.Seed + "_" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss") + ".jsonl");
-            File.WriteAllText(file, SessionFile.Write(Session));
+            string file = Path.Combine(dir, Session.Case.Id + "_" + Session.Seed + "_" + SessionId + ".jsonl");
+            File.WriteAllText(file, SessionFile.Write(Session, new SessionMeta(SessionId, ContentVersion)));
+            return file;
+        }
+
+        /// <summary>The session is over (the player finished or the app is closing): saves it and queues it for upload for the person who is signed in. Safe to call more than once; only the first call does anything.</summary>
+        public string EndSession()
+        {
+            if (_ended) return null;
+            string file = SaveSessionLog();
+            if (file == null) return null;
+            _ended = true;
+            SessionUploader.Enqueue(SessionId, file);
+            SessionEnded?.Invoke(SessionId);
             return file;
         }
 

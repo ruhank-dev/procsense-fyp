@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using ProcSense.VR.Auth;
+using ProcSense.VR.Sync;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -108,6 +109,7 @@ namespace ProcSense.VR.Login
             password.SetTextWithoutNotify("");
             submit.interactable = false;
             status.text = "Opening your workspace...";
+            SessionUploader.Instance?.Kick();   // sessions saved earlier by this person can go now
         }
 
         public void TogglePassword()

@@ -104,6 +104,16 @@ The login screen now signs in real accounts. Typing an email and password does t
 - `AuthService.Current` holds the signed-in person (pseudonym, organisation, role) for the upload client and the results panel that come next; `AuthService.Authorized(...)` makes a call with the token, renews it on a 401 and signs the person out if renewing is refused.
 - Tests: 12 in `Assets/Tests/EditMode/AuthServiceTests.cs` (a scripted service, no network) and 5 in `Assets/Tests/PlayMode/LoginServiceTests.cs` (the screen), run in batch mode with Unity 6000.5.10f1; Sannan's two demo-login tests still pass. Not done: the device-code view, the encrypted token store in the Android keystore and a remembered login for offline starts, and a check of the keyboard and reach on a Quest.
 
+## Upload to the service (14 October 2026)
+
+A finished session goes to the hosted service by itself (`Assets/Scripts/Sync/`). `SimulationHost` gives every session an id when it starts and saves it with the version 2 header (session id, content version, engine version): the file name holds the id, so saving again replaces the same file. `EndSession()` (called when the app closes, and callable from a "finish session" control) saves it, and queues it for the person who is signed in. A session ended while nobody is signed in stays on the device and is never queued (it has nobody to belong to), and a queued session is only ever sent as the person it was played under.
+
+`SessionUploader` (one object that lives for the whole run) tries the queue about every 30 seconds, and at once when a session ends or someone signs in; it never blocks a frame. The queue is the file `outbox.json` under the application's data folder, so it survives closing the app. An entry leaves it only after the service confirms (`GET /sessions/{id}`) that it has the session. Answers: 200 or 202 stored; no connection, 429 and 5xx retry after 15 s, 30 s, 1 min ... up to 10 min; `consent_required` retry later (the person agrees on the web page); 401 waits for sign-in; 409, 413 and 422 are set aside ("needs attention") and not retried. `SessionSync.Describe()` gives one line for a status panel.
+
+**Content version.** The service can only verify a session whose content version it holds. The Editor and the build script read the whole `content/` folder, whose version is the first 12 characters of its hash; the service's image holds that content too (as well as the practice and assessment packages), so these sessions verify. A case that is not approved for the session's mode is still refused. A release build that ships a packaged mode (`tools/content/package.py`) writes that package's version, which the image also holds.
+
+Tests: 17 in `Assets/Tests/EditMode/SessionSyncTests.cs` (the queue and the sender against a scripted service) and 5 in `Assets/Tests/PlayMode/SessionSaveTests.cs` (the saved header replays to its own hash in the engine's verifier, one file per session, queued once for the right person). Not done: a "finish session" control and the panel that shows the status and the person's last results; a check on a Quest.
+
 ## Demo launch login
 
 The app's Boot scene shows a demo sign-in screen before loading the clinical workspace. Backend authentication remains a teammate TODO; this gate verifies only the displayed fixed demo account:

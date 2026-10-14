@@ -397,13 +397,19 @@ class VerificationContentChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "content"
             versions = package_versions.build(out)
-            self.assertEqual(len(versions), 2)
+            self.assertEqual(len(versions), 3)
             self.assertTrue(versions[0].endswith("-practice") and versions[1].endswith("-assessment"))
+            dev = versions.pop()   # the whole content/ folder, named by the version the engine gives it: 12 characters of its hash, no mode
+            manifest = json.loads((package.CONTENT / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(dev, manifest["content_hash"][:12])
+            self.assertTrue((out / dev / "manifest.json").exists() and (out / dev / "case_files").is_dir())
+            self.assertEqual(sorted(p.relative_to(out / dev).as_posix() for p in (out / dev).rglob("*") if p.is_file()), sorted(list(manifest["entries"]) + ["manifest.json"]))
             for version in versions:
                 self.assertRegex(version, r"^[0-9a-f]{12}-[a-z]+$")
                 self.assertEqual(package.verify(out / version, version.split("-")[1]), [])
                 self.assertEqual(json.loads((out / version / "manifest.json").read_text(encoding="utf-8"))["content_version"], version)
-            self.assertEqual(json.loads((out / "versions.json").read_text(encoding="utf-8"))["versions"], versions)
+            self.assertEqual(json.loads((out / "versions.json").read_text(encoding="utf-8"))["versions"], versions + [dev])
+            self.assertEqual(len(package_versions.build(Path(tmp) / "release", with_dev=False)), 2)   # --no-dev: a release image holds only the packages
 
 
 if __name__ == "__main__":

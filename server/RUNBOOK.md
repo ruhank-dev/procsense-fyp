@@ -56,6 +56,9 @@ There is no screen for this (DT-129). From a laptop with `server/.env` filled in
 3. `task server-admin -- create-organisation --name "Alpha Hospital" --slug alpha-hospital --admin-email boss@example.com --send` creates the organisation and invites its first administrator (`--send` also asks Supabase to email the invitation; without it the invitation still applies when that address signs in).
 Invitations hold the invited address only until they are accepted, revoked or expired.
 
+## Which content versions the service can verify
+`tools/content/package_versions.py` puts three folders in the image: the practice package, the assessment package, and the whole `content/` folder named by the first 12 characters of its hash (what a development build or the Unity Editor writes as its version). The last is left out with `--no-dev` for a release image (DT-162). A case that is not approved for the session's mode is refused by the engine in every version. A new content commit means a new image: a session with a version the image does not hold is stored as `unverifiable`.
+
 ## Verification of uploaded sessions
 Every uploaded session is replayed by the engine before it counts (p1-backend-s09). The image holds the engine (`/opt/engine/bin/procsense-sim`, a Linux program) and the content of each version it can verify (`/opt/engine/content/<version>/`, one for practice and one for assessment). `task server-engine-prepare` builds both into `server/engine/`, and CI does it before the image is built.
 - A session waits as `pending` until verified. It is judged in the background right after the upload, by a sweep when the service wakes, and by `POST /internal/verify-pending` with the header `X-Internal-Key` (the secret `INTERNAL_KEY`; a scheduled job calls it, p1-backend-s13).
