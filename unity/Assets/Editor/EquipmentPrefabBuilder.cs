@@ -109,6 +109,8 @@ namespace ProcSense.EditorTools
                 body.isKinematic = true;
                 body.useGravity = false;
                 var grab = root.AddComponent<XRGrabInteractable>();
+                // Child controls own their colliders; do not auto-register those on the machine.
+                grab.colliders.AddRange(root.GetComponents<Collider>());
                 grab.attachTransform = transforms.First(t => t.name.StartsWith("GRAB_", StringComparison.Ordinal));
                 grab.movementType = XRBaseInteractable.MovementType.Kinematic;
                 grab.throwOnDetach = false;

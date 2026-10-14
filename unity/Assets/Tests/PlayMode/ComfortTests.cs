@@ -17,6 +17,8 @@ namespace ProcSense.Tests.PlayMode
 {
     public class ComfortTests
     {
+        [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
+        [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
         [UnityTest]
         public IEnumerator Rig_waits_for_floor_during_delayed_room_load()
         {

@@ -23,7 +23,7 @@ namespace ProcSense.VR.Views
         protected override void Render(ObservableState s)
         {
             string text = s.Wristband == null
-                ? "Point at her wrist to read the band"
+                ? "Select the wristband to read it"
                 : s.Wristband.NameText + "\n" + s.Wristband.DobText + "\n" + s.Wristband.MrnText;
             if (s.AllergyBand) text += "\nAllergy band on";
             if (s.Nurse == "DONE") text += "\nChecked by the nurse";
