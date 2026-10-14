@@ -74,6 +74,14 @@ jobs:
           docker logs svc
           docker rm -f svc
 
+      - name: What the container said (only when the check above failed)
+        if: failure()
+        run: |
+          docker ps -a
+          docker logs svc 2>&1 | tail -80 || true
+          docker inspect svc --format 'exit code {{.State.ExitCode}}, oom-killed {{.State.OOMKilled}}, error "{{.State.Error}}"' || true
+          ls -la server/engine/bin server/engine/content || true
+
       - name: Log in to the registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
