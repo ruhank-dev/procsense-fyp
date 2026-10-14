@@ -3,7 +3,7 @@ name: CI
 # What each job guards is listed in docs/CI.md — keep that file and this one in step (INSTRUCTIONS.md section 6b).
 on:
   push:
-    branches: [main]
+    branches: [main, 'myt1x54/**']   # the owner's branches too, so a change is checked on GitHub before it goes to main
   pull_request:
   workflow_call:
   workflow_dispatch:
@@ -166,6 +166,13 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: tools/uv.lock
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build the engine (the grounding validator tests run it)
+        run: dotnet build src/ProcSense.Cli -c Release
 
       - name: Content is valid and every value has a source
         run: uv run --project tools tools/content/validate.py

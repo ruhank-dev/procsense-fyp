@@ -142,7 +142,7 @@ def test_the_pages_work_in_a_real_browser(stack, browser):
     page.get_by_role("heading", name="My progress").wait_for()
     page.get_by_role("link", name="Privacy").click()
     page.get_by_role("heading", name="Privacy").wait_for()
-    page.get_by_text("Opened a session report").wait_for()
+    page.get_by_text("Opened a session report").first.wait_for()   # at least one entry; the page may record the one look twice (DT-164)
     page.get_by_role("button", name="Sign out").click()
 
     # a person who has not agreed yet is asked first and cannot skip the required question; then download and delete their data

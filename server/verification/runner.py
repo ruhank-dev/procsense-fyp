@@ -43,6 +43,14 @@ def exit_text(code: int) -> str:
     return f"exit {code}"
 
 
+def engine_environment(environ: dict[str, str] | None = None) -> dict[str, str]:
+    """What the engine is started with: the environment without any secret, plus the .NET setting that turns off its write-xor-execute memory layout. That layout makes one very large shared-memory file, which the
+    64 MiB file-size limit below kills (signal 25). The image sets it too; setting it here means the limit holds on any machine, with any way of starting the service (found by the first run on GitHub)."""
+    env = clean_environment(environ)
+    env["DOTNET_EnableWriteXorExecute"] = "0"
+    return env
+
+
 def clean_environment(environ: dict[str, str] | None = None) -> dict[str, str]:
     """The environment the engine gets: everything except anything that looks like a secret."""
     environ = os.environ if environ is None else environ
@@ -73,7 +81,7 @@ class EngineRunner:
                 package_file.write_bytes(package)
                 args += ["--package", str(package_file)]
             try:
-                done = subprocess.run(args, capture_output=True, timeout=self._timeout, cwd=tmp, env=clean_environment(), preexec_fn=_limits(self._timeout) if os.name == "posix" else None)
+                done = subprocess.run(args, capture_output=True, timeout=self._timeout, cwd=tmp, env=engine_environment(), preexec_fn=_limits(self._timeout) if os.name == "posix" else None)
             except subprocess.TimeoutExpired:
                 raise RunnerError("timeout") from None
             except OSError as e:

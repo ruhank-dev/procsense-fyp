@@ -358,3 +358,11 @@ def test_an_engine_that_the_system_stopped_is_named_by_its_signal_in_the_log():
     for number, name in expected.items():
         text = exit_text(-number)
         assert text == (f"killed by signal {name}({number})" if hasattr(signal, name.strip()) else f"killed by signal {number}"), text   # 25 is the file-size limit: what happened on the host on 14 October 2026
+
+
+def test_the_engine_is_started_without_secrets_and_with_the_setting_that_lets_it_run_under_the_file_size_limit():
+    from server.verification.runner import engine_environment
+    env = engine_environment({"PATH": "/bin", "SUPABASE_URL": "y", "MY_TOKEN": "z", "HOME": "/h"})
+    assert env == {"PATH": "/bin", "HOME": "/h", "DOTNET_EnableWriteXorExecute": "0"}
+    assert engine_environment({"DOTNET_EnableWriteXorExecute": "1"})["DOTNET_EnableWriteXorExecute"] == "0"   # the service decides, not whatever the host had
+

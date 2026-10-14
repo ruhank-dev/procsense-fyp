@@ -122,6 +122,7 @@ def main(argv: list[str]) -> int:
         else:  # on Windows only the indentation/spacing rules are checked (line endings are CRLF here), so a format failure shows up before the push, not in CI
             steps.append(("code format (whitespace rules only)", lambda: (lambda r: (r[0] or "error WHITESPACE" not in r[1], r[1]))(
                 run(["dotnet", "format", "whitespace", "ProcSense.sln", "--verify-no-changes"]))))
+            steps.append(("code style (imports order and the other style rules)", lambda: run(["dotnet", "format", "style", "ProcSense.sln", "--no-restore", "--verify-no-changes"])))
         steps.append(("no vulnerable packages", lambda: run(["dotnet", "list", "ProcSense.sln", "package", "--vulnerable", "--include-transitive"],
                                                           fail_if_in_output="has the following vulnerable packages")))
     steps += [

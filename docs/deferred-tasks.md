@@ -209,11 +209,13 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-161 | The backend branches s01 to s12 as pushed to GitHub lack `server/models/` (an ignore rule hid it); only `myt1x54/backend-s13-deploy` and later are complete. Merge the newest branch, never an earlier one alone | Pending | p1-backend-s13 | When the backend branches are merged to main | Fixed going forward; earlier commits cannot be rewritten (no force-push) |
 | DT-162 | Leave the whole-content version out of the release image (`package_versions.py --no-dev`) once headset builds ship a packaged mode, so only approved packages verify | Pending | p1-backend-s03 | Before a release build / first customer | It is in today's image so development builds and the Editor verify; the engine still refuses unapproved cases |
 | DT-163 | Tell Sannan and Ruhan: in Unity batch mode two EditMode tests (CoreInUnityTests: a stale pinned log hash, case STK-S1-D not loaded) and five PlayMode tests (locomotion, simulator input, wristband ray) fail on the branch without any recent change; check whether they are stale or only need a display and devices | Pending | p1-backend-s03 | Sannan (Unity) and Ruhan (engine) | Found 14 Oct 2026 running the Unity tests in batch mode |
+| DT-164 | The web page can load a report twice and record one look twice in the access log: for a link like #/report/ the browser fires both `hashchange` and `popstate`, and `popstate` should re-render only when the path changed (server/static/js/app.js); the browser test was loosened to accept it | Pending | p1-backend-s11 | After Sannan's changes to the web pages land (he is editing the front end) | The look is recorded once when the two requests are not at the same moment; harmless to the person, a little noise in their log |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (CI on GitHub) | First GitHub run of the CI found four failures (engine not built in the repo-checks job, an imports order, the engine under the file-size limit outside the image, a browser-test assumption); fixed on branch myt1x54/ci-fix; DT-164 added. |
 | 14 October 2026 (p1-backend-s03, panel) | The tablet's Session tab built (account, uploads, finish control, latest results) with tests and a real-network run; DT-159 narrowed to the headset check. |
 | 14 October 2026 (p1-backend-s03) | Upload client built in Unity (session id and header, persistent queue, sender, background uploader) with 22 tests; the image holds the whole-content version; DT-159 narrowed; DT-162 and DT-163 added. |
 | 14 October 2026 (p1-backend-s10, headset half) | Email and password sign-in built into Sannan's login screen (unity/Assets/Scripts/Auth) with 17 tests; DT-144 narrowed. |

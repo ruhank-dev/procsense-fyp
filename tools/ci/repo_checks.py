@@ -202,7 +202,7 @@ def check_team_guards() -> list[str]:
         if re.search(r"ALLOW_MAIN_PUSH|SKIP_CHECKS|PROCSENSE_SKIP", text):
             problems.append(".githooks/pre-push: contains a casual bypass variable (the only escape is the documented 'git push --no-verify')")
     ci = ROOT / ".github" / "workflows" / "ci.yml"
-    if ci.exists() and not re.search(r"push:\s*\n\s*branches:\s*\[main\]", read(ci)):
+    if ci.exists() and not re.search(r"push:\s*\n\s*branches:\s*\[\s*main\s*[,\]]", read(ci)):
         problems.append(".github/workflows/ci.yml: must run on pushes to main")
     for wf in sorted((ROOT / ".github" / "workflows").glob("*.yml")):  # an unquoted ': ' in a step name makes GitHub reject the whole workflow (it then fails in 0 s with no job)
         for n, line in enumerate(read(wf).splitlines(), 1):
