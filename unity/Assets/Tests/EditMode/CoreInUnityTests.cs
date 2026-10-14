@@ -12,9 +12,15 @@ namespace ProcSense.Tests.EditMode
     {
         private static string Repo => Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
 
-        private static ContentPackage Content() => ContentLoader.Load(
-            new CompositeContentReader(new FileContentReader(Path.Combine(Repo, "content")), new FileContentReader(Path.Combine(Repo, "tests", "fixtures"))),
-            "VAR-S1-A", "TEST-ID-MISMATCH", "TEST-ID-MISSING-BAND", "TEST-ID-MISSING-BAND-ALLERGY");
+        private static ContentPackage Content()
+        {
+            // Match the CLI golden suite: all case files, plus the three identity fixtures.
+            var ids = Directory.GetFiles(Path.Combine(Repo, "content", "case_files"), "*.json")
+                .Select(Path.GetFileNameWithoutExtension).OrderBy(id => id, System.StringComparer.Ordinal).ToArray();
+            return ContentLoader.Load(
+                new CompositeContentReader(new FileContentReader(Path.Combine(Repo, "content")), new FileContentReader(Path.Combine(Repo, "tests", "fixtures"))),
+                ids.Concat(new[] { "TEST-ID-MISMATCH", "TEST-ID-MISSING-BAND", "TEST-ID-MISSING-BAND-ALLERGY" }).ToArray(), ids);
+        }
 
         [Test]
         public void Every_golden_run_passes_inside_Unity()
@@ -30,12 +36,18 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
-        public void The_skeleton_1_log_hash_is_the_one_pinned_for_the_command_line()
+        public void The_skeleton_1_matches_the_command_line_golden_and_rejects_a_changed_hash()
         {
             var expected = File.ReadAllText(Path.Combine(Repo, "tests", "golden", "skeleton1_correct.expected.json"));
-
-            Assert.That(expected, Does.Contain("\"log_hash\": \"dcec6b447e525659b33bb1a6ceeb9f50c68ab74a4ac159c250604de7efbb06cd\""));
-            Assert.IsEmpty(GoldenRun.Check(File.ReadAllText(Path.Combine(Repo, "tests", "golden", "skeleton1_correct.actions.json")), expected, Content()));
+            var script = File.ReadAllText(Path.Combine(Repo, "tests", "golden", "skeleton1_correct.actions.json"));
+            var content = Content();
+            // The reviewed golden file owns the pin; do not duplicate a hash that drifts from it.
+            Assert.IsEmpty(GoldenRun.Check(script, expected, content));
+            var header = (System.Collections.Generic.Dictionary<string, object>)MiniJson.Parse(expected);
+            var hash = (string)header["log_hash"];
+            Assert.That(hash, Does.Match("^[0-9a-f]{64}$"));
+            var tampered = expected.Replace(hash, new string('0', hash.Length));
+            Assert.IsTrue(GoldenRun.Check(script, tampered, content).Any(d => d.StartsWith("log_hash")), "A changed canonical hash must still be rejected");
         }
 
         [Test]

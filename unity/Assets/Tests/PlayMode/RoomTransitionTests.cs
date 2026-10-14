@@ -17,12 +17,14 @@ namespace ProcSense.Tests.PlayMode
     {
         [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
         [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        [UnityTearDown] public IEnumerator CleanupSimulatedInput() => EditorXRTestEnvironment.Cleanup();
         [UnityTest]
         public IEnumerator Direct_room_play_loads_one_camera_session_and_simulator_and_can_navigate()
         {
             foreach (string room in new[] { "PatientBay", "Corridor", "OT" })
             {
                 yield return SceneManager.LoadSceneAsync(room, LoadSceneMode.Single);
+                yield return EditorXRTestEnvironment.EnsureSimulator();
                 float end = Time.realtimeSinceStartup + 10;
                 while ((!SceneManager.GetSceneByName("DevOnly").isLoaded || Camera.allCamerasCount == 0) && Time.realtimeSinceStartup < end) yield return null;
                 yield return null;
@@ -41,6 +43,7 @@ namespace ProcSense.Tests.PlayMode
         {
             yield return SceneManager.LoadSceneAsync("Boot");
             for (int i = 0; i < 30; i++) yield return null;
+            yield return EditorXRTestEnvironment.EnsureSimulator();
         }
 
         private static IEnumerator Travel(RoomLoader loader, string room)
@@ -91,6 +94,38 @@ namespace ProcSense.Tests.PlayMode
                 var monitor = Object.FindObjectsByType<EquipmentSurfaceView>().Single(v => v.Kind == EquipmentSurfaceView.Surface.Monitor);
                 Assert.That(monitor.DisplayText, Does.Contain("SpO2   " + host.Observable.Vitals.Single(v => v.Name == "spo2").Value + "%"));
                 Assert.IsTrue(Object.FindObjectsByType<ProcSense.VR.ActionEmitters.SensorAttachment>().Single(s => s.BuildAction().Params["sensor"] == "spo2").Attached);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Mounted_door_buttons_preserve_navigation_and_restricted_signs_have_no_button()
+        {
+            yield return Boot();
+            SimulationHost.Instance.AutoTick = false;
+            var session = SimulationHost.Instance.Session;
+            var log = session.Log.Hash();
+            var loader = Object.FindAnyObjectByType<RoomLoader>();
+            foreach (string destination in new[] { "Corridor", "OT", "Corridor", "PatientBay" })
+            {
+                foreach (var restricted in Object.FindObjectsByType<RoomDoor>().Where(d => d.Restricted))
+                {
+                    Assert.IsTrue(restricted.ArchitecturalSign);
+                    Assert.IsEmpty(restricted.GetComponentsInChildren<UnityEngine.UI.Button>());
+                    restricted.Enter();
+                    Assert.IsFalse(loader.Busy);
+                }
+                var door = Object.FindObjectsByType<RoomDoor>().Single(d => d.Destination == destination);
+                Assert.IsTrue(door.ArchitecturalSign);
+                var button = door.GetComponentsInChildren<UnityEngine.UI.Button>().Single();
+                Assert.IsTrue(button.interactable);
+                button.onClick.Invoke();
+                Assert.IsTrue(loader.Busy);
+                float end = Time.realtimeSinceStartup + 15;
+                while (loader.Busy && Time.realtimeSinceStartup < end) yield return null;
+                Assert.AreEqual(destination, loader.CurrentRoom, loader.LastError);
+                Assert.AreSame(session, SimulationHost.Instance.Session);
+                Assert.AreEqual(log, session.Log.Hash());
+                yield return null;
             }
         }
 

@@ -18,10 +18,12 @@ namespace ProcSense.Tests.PlayMode
     {
         [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
         [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        [UnityTearDown] public IEnumerator CleanupSimulatedInput() => EditorXRTestEnvironment.Cleanup();
         private static IEnumerator Boot()
         {
             yield return SceneManager.LoadSceneAsync("Boot");
             for (int i = 0; i < 30; i++) yield return null;
+            yield return EditorXRTestEnvironment.EnsureSimulator();
         }
 
         [UnityTest]

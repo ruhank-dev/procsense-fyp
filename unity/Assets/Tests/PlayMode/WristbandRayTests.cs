@@ -19,6 +19,7 @@ namespace ProcSense.Tests.PlayMode
     {
         [SetUp] public void BypassLoginForInteractionChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
         [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        [UnityTearDown] public IEnumerator CleanupSimulatedInput() => EditorXRTestEnvironment.Cleanup();
         [UnityTest] public IEnumerator App_band_reads_from_controller_without_feedback_errors() => Read(false);
         [UnityTest] public IEnumerator Direct_bay_band_reads_from_controller_without_feedback_errors() => Read(true);
 
@@ -35,13 +36,23 @@ namespace ProcSense.Tests.PlayMode
                 if (review) yield return EditorSceneManager.LoadSceneAsyncInPlayMode("Assets/Scenes/PatientBay.unity", new LoadSceneParameters(LoadSceneMode.Single));
                 else yield return SceneManager.LoadSceneAsync("Boot");
                 for (int i = 0; i < 60; i++) yield return null;
+                yield return EditorXRTestEnvironment.EnsureSimulator();
                 var host = SimulationHost.Instance;
                 Assert.IsNotNull(host);
                 host.AutoTick = false;
                 host.SaveLogOnDestroy = false;
                 Assert.IsNull(Object.FindFirstObjectByType<IdentityCardView>());
                 var band = GameObject.Find("Patient wristband").GetComponent<XRSimpleInteractable>();
-                var ray = Object.FindObjectsByType<XRBaseInteractor>().First(r => r.gameObject.activeInHierarchy && (r is NearFarInteractor || r is XRRayInteractor));
+                XRBaseInteractor ray = null;
+                float controllerDeadline = Time.realtimeSinceStartup + 3;
+                while (ray == null && Time.realtimeSinceStartup < controllerDeadline)
+                {
+                    ray = Object.FindObjectsByType<XRBaseInteractor>().FirstOrDefault(r => r.isActiveAndEnabled && (r is NearFarInteractor || r is XRRayInteractor));
+                    if (ray == null) yield return null;
+                }
+                Assert.IsNotNull(ray, "The simulated controller did not become ready within 3 seconds. Devices: " +
+                    string.Join("; ", UnityEngine.InputSystem.InputSystem.devices.Select(d => d.name + ":" + d.layout + ":enabled=" + d.enabled)) + ". Interactors: " +
+                    string.Join("; ", Object.FindObjectsByType<XRBaseInteractor>(FindObjectsInactive.Include, FindObjectsSortMode.None).Select(r => r.name + ":active=" + r.gameObject.activeInHierarchy + ":enabled=" + r.enabled)));
                 var manager = band.interactionManager;
                 var collider = band.GetComponent<Collider>();
                 Assert.IsTrue(manager.TryGetInteractableForCollider(collider, out var mapped));
