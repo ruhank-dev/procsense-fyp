@@ -1,0 +1,88 @@
+name: Publish the service image
+
+# Builds the service image on GitHub (the Linux engine and the content of each version are generated, not stored in git, so the host cannot build it from the repository)
+# and pushes it to GitHub's container registry, where the host pulls it (p1-backend-s13). It runs when a backend branch or main changes the service, the engine or the content.
+# The image holds no secret: the settings are given to the host as environment variables.
+
+on:
+  push:
+    branches: ['myt1x54/backend-*', main]
+    paths:
+      - 'server/**'
+      - 'src/**'
+      - 'content/**'
+      - 'tools/content/**'
+      - 'Directory.Build.props'
+      - 'global.json'
+      - '.github/workflows/publish-image.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: publish-image-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  image:
+    name: Build, check and push the image
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: tools/uv.lock
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Build the engine for Linux and the content of each version
+        run: |
+          dotnet publish src/ProcSense.Cli -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true -o server/engine/bin
+          uv run --project tools tools/content/package_versions.py --out server/engine/content
+
+      - name: Name the image
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          echo "IMAGE=ghcr.io/${owner}/procsense-server" >> "$GITHUB_ENV"
+
+      - name: Build the image
+        run: |
+          docker build -f server/Dockerfile \
+            --build-arg GIT_SHA="${GITHUB_SHA}" \
+            --label org.opencontainers.image.source="https://github.com/${GITHUB_REPOSITORY}" \
+            --label org.opencontainers.image.revision="${GITHUB_SHA}" \
+            -t "${IMAGE}:${GITHUB_SHA}" -t "${IMAGE}:latest" .
+
+      - name: The image answers /health and its engine verifies a session with its own content
+        run: |
+          docker run -d --name svc --network host -e PORT=8000 "${IMAGE}:latest"
+          for i in $(seq 1 30); do curl -fsS http://localhost:8000/health && break || sleep 2; done
+          curl -fsS http://localhost:8000/health | grep -q "${GITHUB_SHA}"
+          VERSION=$(docker exec svc ls /opt/engine/content | grep -- -practice)
+          docker cp tests/golden/skeleton1_correct.actions.json svc:/tmp/actions.json
+          docker exec svc /opt/engine/bin/procsense-sim run --case VAR-S1-A --seed 42 --actions /tmp/actions.json --out /tmp/run.json --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION
+          docker exec svc /opt/engine/bin/procsense-sim verify --log /tmp/run.session.jsonl --content /opt/engine/content/$VERSION | grep -q '"ok":true'
+          docker logs svc
+          docker rm -f svc
+
+      - name: Log in to the registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Push the image
+        run: |
+          docker push "${IMAGE}:${GITHUB_SHA}"
+          docker push "${IMAGE}:latest"
+          echo "Pushed ${IMAGE}:latest (${GITHUB_SHA})" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Tell the host there is a new image (only when a deploy hook is set)
+        if: env.RENDER_DEPLOY_HOOK != ''
+        run: curl --fail --silent --show-error --max-time 60 -X POST "$RENDER_DEPLOY_HOOK" > /dev/null && echo "The host was told to deploy." >> "$GITHUB_STEP_SUMMARY"

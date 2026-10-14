@@ -131,6 +131,16 @@ tasks:
       - dotnet publish src/ProcSense.Cli -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true -o server/engine/bin
       - uv run --project tools tools/content/package_versions.py --out server/engine/content
 
+  demo-session:
+    desc: Write a session file with the real engine and the header the hosted service verifies (task demo-session -- --out demo_session.jsonl)
+    cmds:
+      - uv run --project tools tools/demo/make_demo_session.py {{.CLI_ARGS}}
+
+  headset-sim:
+    desc: Stand in for the headset - sign in with a code, upload a session file, wait for the verdict, fetch progress (task headset-sim -- --url https://... --file demo_session.jsonl)
+    cmds:
+      - uv run --project server python -m server.scripts.headset_sim {{.CLI_ARGS}}
+
   server-admin:
     desc: Platform administration by the team, e.g. task server-admin -- create-organisation --name "Alpha" --slug alpha --admin-email a@b.com (see server/RUNBOOK.md)
     cmds:

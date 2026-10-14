@@ -63,6 +63,18 @@ Every uploaded session is replayed by the engine before it counts (p1-backend-s0
 - **When a new headset release uses new content or a new engine,** its sessions are `unverifiable` until the service has that content version (rebuild the image) and, if `SUPPORTED_ENGINE_VERSIONS` is set, that engine version listed.
 - The engine runs with a time limit and without any secret in its environment.
 
+## Putting the service on the host (Render) and keeping it alive
+The image is built on GitHub (`.github/workflows/publish-image.yml`: the Linux engine, the content of each version, the service) and pushed to `ghcr.io/<owner>/procsense-server`; Render pulls it. Nothing secret is in the image. Steps, once:
+1. **Tables:** with `server/.env` filled in (session pooler address in `MIGRATION_DATABASE_URL`), `task server-migrate`.
+2. **Image:** push a `myt1x54/backend-*` branch (or main); the Actions tab shows the run; the package appears under the repository's Packages. It is private. Make a classic personal access token with only `read:packages` (30 days) for Render to pull it.
+3. **Render:** workspace `Procsense` > New > Web Service > Existing Image > `ghcr.io/<owner>/procsense-server:latest`, the token as the registry credential, region Singapore, instance type Free, health check path `/health`. Environment variables (typed into Render, never into chat or git): `APP_ENV=prod`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, `DATABASE_URL` (the **transaction** pooler, port 6543), `INTERNAL_KEY` (a long random string), `DEVICE_VERIFICATION_URI=https://<the service>/device`. The engine settings are already in the image.
+4. **Check:** `/health` shows the commit the image was built from; `/health/db` says the database answers.
+5. **Supabase** > Authentication > URL Configuration: Site URL is the service's address; add `<address>/` and `<address>/reset` as redirect addresses (DT-150). Public sign-ups off.
+6. **First people:** sign in on the web page once, `task server-admin -- grant-platform-admin --user-id <id>`, `task server-admin -- create-organisation ...`, then add the others (People page, or `add-member`). Each person ticks the first consent box once.
+7. **Scheduled jobs:** GitHub > Settings > Secrets and variables > Actions: `SERVICE_URL` and `INTERNAL_KEY` (the same value as on Render); optional `RENDER_DEPLOY_HOOK` makes every new image deploy by itself. `.github/workflows/scheduled-jobs.yml` then wakes the service, touches the database and runs the verification sweep every 3 hours and the retention clean-up daily, and fails (and emails) when the service does not answer.
+8. **Prove it:** `task demo-session`, then `task headset-sim -- --url <address> --file demo_session.jsonl`; approve the code on the web page; the status should become `verified`. `server/DEMO.md` is the checklist for a demonstration.
+Not yet in place: the nightly backup and a rehearsed restore, the uptime and size monitor, and the 1,000-session load test (the rest of p1-backend-s13, DT-160). Until the backup exists, no real trainee data.
+
 ## Privacy and retention
 `server/PRIVACY.md` is the data map (what is held, where, who reads it, how long). Operating it:
 - **Daily clean-up:** `python -m server.jobs.retention` or `POST /internal/retention` with the internal key (p1-backend-s13 schedules it). It removes the stored recording and report page of sessions older than the organisation's period (24 months unless an administrator chose 6 to 60 on the Privacy page), rejects pending sessions that were purged, deletes access-log rows older than 24 months and clears the email of invitations nobody accepted a month after they expired. Results and totals are never touched.

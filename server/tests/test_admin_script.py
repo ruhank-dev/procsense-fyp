@@ -33,6 +33,22 @@ def test_granting_platform_admin_needs_a_profile_so_the_person_signs_in_once_fir
         assert accounts.get_profile(s, uid).is_platform_admin is True
 
 
+@pytest.mark.db
+def test_add_member_puts_a_person_who_has_signed_in_into_an_organisation_and_can_change_their_role(migrated):
+    uid = uuid.uuid4()
+    with Session(migrated) as s:
+        org, _ = admin.create_organisation_with_admin(s, "Alpha Hospital", "alpha-hospital", "boss@example.com")
+        with pytest.raises(SystemExit, match="sign in once first"):
+            admin.add_member(s, "alpha-hospital", uid, "trainee")
+        accounts.ensure_profile(s, uid)
+        s.commit()
+        with pytest.raises(SystemExit, match="no organisation"):
+            admin.add_member(s, "nowhere", uid, "trainee")
+        assert admin.add_member(s, "alpha-hospital", uid, "trainee") == "added to alpha-hospital as trainee"
+        assert "role is now supervisor" in admin.add_member(s, "alpha-hospital", uid, "supervisor")
+        assert accounts.get_membership(s, uid, org.id).role == "supervisor"
+
+
 @pytest.mark.skipif(not os.environ.get("LIVE_SUPABASE_URL"), reason="set LIVE_SUPABASE_URL (the project address, which is public) to check the real key set")
 def test_the_real_project_publishes_keys_the_verifier_can_use():
     import jwt

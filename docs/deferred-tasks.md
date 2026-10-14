@@ -202,11 +202,16 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-154 | Decide whether results kept as anonymous history should be removed or coarsened after some years (today kept until the whole organisation is closed) | Pending | p1-backend-s12 | Owner decision with the qualified reviewer (DT-127) | Totals need them; some customers will ask |
 | DT-155 | Check how long the hosting provider keeps request logs (they contain addresses) and state it in server/PRIVACY.md | Pending | p1-backend-s12 | p1-backend-s13 (deployment) | Outside the service's control |
 | DT-156 | An admin command to delete a person who cannot sign in (removes the sign-in account and cuts the links like the Privacy page does) | Pending | p1-backend-s12 | p1-backend-s13 | The code exists (repositories/privacy.delete_person); it needs a command and a written procedure |
+| DT-157 | First run on GitHub of the publish-image and scheduled-jobs workflows (written and checked locally, never run there): the image build, the registry push permission, the first deploy | Pending | p1-backend-s13 | First push of a myt1x54/backend-* branch | Same risk as DT-136 and DT-141 |
+| DT-158 | Create the Render service from the image with the runbook steps and check /health and /health/db there | Pending | p1-backend-s13 | Owner (Moiz) | The secrets are typed into Render by the owner |
+| DT-159 | Add the Unity side that uses the service: sign-in in the VR application, the upload client (p1-backend-s03) and a panel that shows the person's last results | Pending | p1-backend-s13 | Owner and Sannan (Unity) | The login screen exists as a fixed demo account only (DemoLoginView.Submit is the integration point) |
+| DT-160 | The rest of p1-backend-s13: the nightly backup and a rehearsed restore, the uptime and size monitor, the 1,000-session load test (EXP-BE-3), the free-plan exit list, and a check that the scheduled call keeps the free database from pausing | Pending | p1-backend-s13 | Before the first real trainee | The runbook says no real trainee data before the backup exists |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (p1-backend-s13, deploy part) | Image publish and scheduled-job workflows, the headset stand-in, the demo session maker and the deploy steps written; DT-157 to DT-160 added. |
 | 14 October 2026 (p1-backend-s12 approved) | DT-146 and DT-152 completed. |
 | 14 October 2026 (p1-backend-s12) | p1-backend-s12 built by Abdul Moiz (consent, access log, export my data, delete my data, retention job, log cleaning, data map); DT-153 to DT-156 added. |
 | 14 October 2026 (p1-backend-s11) | p1-backend-s11 built by Abdul Moiz (web pages: sign in, progress, sessions, report, overview, people, headset approval; security headers; browser test); DT-149 to DT-152 added. |
