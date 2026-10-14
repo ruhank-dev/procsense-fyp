@@ -206,11 +206,13 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-158 | Create the Render service from the image with the runbook steps and check /health and /health/db there | Pending | p1-backend-s13 | Owner (Moiz) | The secrets are typed into Render by the owner |
 | DT-159 | Add the Unity side that uses the service: sign-in in the VR application, the upload client (p1-backend-s03) and a panel that shows the person's last results | Pending | p1-backend-s13 | Owner and Sannan (Unity) | The login screen exists as a fixed demo account only (DemoLoginView.Submit is the integration point) |
 | DT-160 | The rest of p1-backend-s13: the nightly backup and a rehearsed restore, the uptime and size monitor, the 1,000-session load test (EXP-BE-3), the free-plan exit list, and a check that the scheduled call keeps the free database from pausing | Pending | p1-backend-s13 | Before the first real trainee | The runbook says no real trainee data before the backup exists |
+| DT-161 | The backend branches s01 to s12 as pushed to GitHub lack `server/models/` (an ignore rule hid it); only `myt1x54/backend-s13-deploy` and later are complete. Merge the newest branch, never an earlier one alone | Pending | p1-backend-s13 | When the backend branches are merged to main | Fixed going forward; earlier commits cannot be rewritten (no force-push) |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 14 October 2026 (p1-backend-s13) | server/models was never committed (an ignore rule hid it); fixed, and a check added; DT-161. |
 | 14 October 2026 (p1-backend-s13, deploy part) | Image publish and scheduled-job workflows, the headset stand-in, the demo session maker and the deploy steps written; DT-157 to DT-160 added. |
 | 14 October 2026 (p1-backend-s12 approved) | DT-146 and DT-152 completed. |
 | 14 October 2026 (p1-backend-s12) | p1-backend-s12 built by Abdul Moiz (consent, access log, export my data, delete my data, retention job, log cleaning, data map); DT-153 to DT-156 added. |

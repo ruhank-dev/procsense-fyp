@@ -90,6 +90,22 @@ def check_hygiene() -> list[str]:
             for pattern, why in SECRET_PATTERNS:
                 if re.search(pattern, text):
                     problems.append(f"{rel}: looks like a {why}")
+    problems += check_ignored_sources()
+    return problems
+
+
+IGNORED_SOURCE_SUFFIXES = {".py", ".cs", ".js", ".html", ".css"}
+IGNORED_OK = ("/.venv/", "/__pycache__/", "/.pytest_cache/", "server/engine/", "tools/data/", "/node_modules/", "/bin/", "/obj/")
+
+
+def check_ignored_sources() -> list[str]:
+    """A source file that exists on this machine but is ignored by git works here and is missing from every clone, from CI and from the image built on GitHub
+    (an ignore rule written for model files once hid the whole server/models package). Generated folders are expected to be ignored and are skipped."""
+    out = subprocess.run(["git", "ls-files", "--others", "--ignored", "--exclude-standard", "-z", "--", "server", "src", "tools"], cwd=ROOT, capture_output=True, check=True).stdout.decode("utf-8")
+    problems = []
+    for rel in (p for p in out.split("\0") if p):
+        if Path(rel).suffix in IGNORED_SOURCE_SUFFIXES and not any(ok in "/" + rel for ok in IGNORED_OK):
+            problems.append(f"{rel}: source file ignored by .gitignore (it would be missing from a clone and from the build)")
     return problems
 
 

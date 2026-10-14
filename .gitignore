@@ -51,6 +51,7 @@ node_modules/
 # --- Local data / models (large or licensed — see docs/research/dataset_register.csv) ---
 data/raw/
 models/
+!server/models/
 *.gguf
 *.onnx
 
