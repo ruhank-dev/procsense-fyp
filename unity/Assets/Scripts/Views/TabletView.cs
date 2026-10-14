@@ -39,10 +39,14 @@ namespace ProcSense.VR.Views
         private readonly List<Item>[] _tabs = { new List<Item>(), new List<Item>(), new List<Item>(), new List<Item>() };
         private readonly List<GameObject> _tabRoots = new List<GameObject>();
         private TMP_Text _clock, _hint, _subtitle, _note;
+        private GameObject _sessionRoot;
         private int _factCount;
         private int _fallbackRevision = -1;
 
         public Canvas Canvas { get; private set; }
+
+        /// <summary>The Session tab (account, uploads, latest results). It is not one of the four action tabs and holds no simulation buttons.</summary>
+        public SessionTabView SessionTab { get; private set; }
 
         public string ClockText => _clock.text;
         public string HintText => _hint.text;
@@ -108,6 +112,15 @@ namespace ProcSense.VR.Views
                 var tabButton = UiKit.MakeButton(root, TabNames[t], new Vector2(10 + t * 150, 138), new Vector2(142, 46), 22);
                 tabButton.onClick.AddListener(() => ShowTab(tab));
             }
+            _sessionRoot = new GameObject("Tab - Session", typeof(RectTransform));
+            _sessionRoot.transform.SetParent(root, false);
+            var sessionRect = (RectTransform)_sessionRoot.transform;
+            sessionRect.anchorMin = sessionRect.anchorMax = sessionRect.pivot = new Vector2(0, 1);
+            sessionRect.sizeDelta = Vector2.zero;
+            SessionTab = _sessionRoot.AddComponent<SessionTabView>();
+            SessionTab.Build(_sessionRoot.transform);
+            var sessionButton = UiKit.MakeButton(root, "Session", new Vector2(10 + TabNames.Length * 150, 138), new Vector2(142, 46), 22);
+            sessionButton.onClick.AddListener(() => ShowTab(TabNames.Length));
             ShowTab(0);
         }
 
@@ -164,6 +177,7 @@ namespace ProcSense.VR.Views
         public void ShowTab(int tab)
         {
             for (int i = 0; i < _tabRoots.Count; i++) _tabRoots[i].SetActive(i == tab);
+            if (_sessionRoot != null) _sessionRoot.SetActive(tab == TabNames.Length);
         }
 
         protected override void Render(ObservableState s)

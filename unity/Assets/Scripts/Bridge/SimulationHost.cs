@@ -57,6 +57,9 @@ namespace ProcSense.VR.Bridge
 
         private bool _ended;
 
+        /// <summary>True once the session has been ended (saved and queued).</summary>
+        public bool Ended => _ended;
+
         /// <summary>Test seam: replaces the default subsystem chain (used to prove a Core exception pauses the session).</summary>
         public Func<ContentPackage, IEnumerable<ProcSense.Core.Pipeline.ISubsystem>> SubsystemFactory { get; set; }
 
