@@ -17,12 +17,14 @@ namespace ProcSense.Tests.PlayMode
     {
         [SetUp] public void BypassLoginForClinicalChecks() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
         [TearDown] public void RestoreLogin() => ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        [UnityTearDown] public IEnumerator CleanupSimulatedInput() => EditorXRTestEnvironment.Cleanup();
         [UnityTest]
         public IEnumerator Direct_room_play_loads_one_camera_session_and_simulator_and_can_navigate()
         {
             foreach (string room in new[] { "PatientBay", "Corridor", "OT" })
             {
                 yield return SceneManager.LoadSceneAsync(room, LoadSceneMode.Single);
+                yield return EditorXRTestEnvironment.EnsureSimulator();
                 float end = Time.realtimeSinceStartup + 10;
                 while ((!SceneManager.GetSceneByName("DevOnly").isLoaded || Camera.allCamerasCount == 0) && Time.realtimeSinceStartup < end) yield return null;
                 yield return null;
@@ -41,6 +43,7 @@ namespace ProcSense.Tests.PlayMode
         {
             yield return SceneManager.LoadSceneAsync("Boot");
             for (int i = 0; i < 30; i++) yield return null;
+            yield return EditorXRTestEnvironment.EnsureSimulator();
         }
 
         private static IEnumerator Travel(RoomLoader loader, string room)

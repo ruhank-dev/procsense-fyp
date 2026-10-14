@@ -5,6 +5,16 @@ Add this `unity` directory in Unity Hub, keeping it inside the repository: the s
 
 Use the repository's pinned Editor and committed package manifest/lock file. Unity Pipeline is included for live Editor tooling; the application scripts do not require its APIs. Core package metadata is versioned to preserve Unity GUIDs across team checkouts. The setup commit also retains the sample-prefab serialization and URP settings used by the verified local Editor. A fresh-Library reproduction check has not yet been completed; Editor tests on the working checkout do not establish clean-machine or Quest acceptance.
 
+## Unity tests
+
+With the Editor open, use **Window > General > Test Runner** and run both tabs. Close the Editor before running `task unity-test` from the repository root: the batch runner needs exclusive access to this project and writes `artifacts/unity/EditMode.xml` and `PlayMode.xml` plus logs. It retains graphics support for snapshot tests; no headset is required.
+
+Normal batch startup excludes `DevOnly`. Simulator-dependent foundation, room-transition and wristband tests explicitly load it through `EditorXRTestEnvironment`, so the same input assertions run in batch and interactive Editor tests. This fixture is test-only; it does not enable developer simulation in application builds. These checks do not replace actual headset acceptance. The real-service PlayMode test requires its E2E environment credentials and is skipped when they are absent.
+
+`CoreInUnityTests` uses the same case-file/identity-fixture content set and checked-in golden expectations as the CLI. It never regenerates expected data during a test, and verifies that changing the canonical log hash is rejected.
+
+The batch simulator fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It uses a runtime settings clone; project input settings remain unchanged.
+
 ## Open and edit
 
 Use **ProcSense → Open Patient Bay**. It opens the visible `PatientBay` scene together with `Sys_Core` (simulation services) and `DevOnly` (Editor XR simulator), and positions the Scene view inside the room.
