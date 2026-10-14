@@ -1,0 +1,4 @@
+# Native baked lighting data must not use the repository's YAML .asset merge rule.
+Assets/Scenes/*/LightingData.asset filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/*/*.exr filter=lfs diff=lfs merge=lfs -text
+Assets/Settings/HospitalLighting/*.exr filter=lfs diff=lfs merge=lfs -text
