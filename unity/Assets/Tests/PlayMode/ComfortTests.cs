@@ -36,7 +36,7 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Snap_provider_input_and_comfort_panel_controls_work()
+        public IEnumerator Snap_provider_and_comfort_controls_work_without_room_panels()
         {
             yield return Boot();
             var rig = Object.FindAnyObjectByType<XROrigin>();
@@ -54,13 +54,10 @@ namespace ProcSense.Tests.PlayMode
                 reader.manualValue = Vector2.zero;
             }
             finally { reader.inputSourceMode = originalMode; }
-            var panel = Object.FindAnyObjectByType<ComfortPanel>();
-            Assert.IsNotNull(panel);
-            var buttons = panel.GetComponentsInChildren<UnityEngine.UI.Button>();
-            Assert.IsTrue(buttons.All(b => b.interactable));
-            buttons.First(b => b.name.Contains("Calibrate")).onClick.Invoke();
+            Assert.IsNull(Object.FindAnyObjectByType<ComfortPanel>());
+            rig.GetComponent<ComfortControls>().SetSeated(true);
             Assert.IsTrue(rig.GetComponent<ComfortControls>().Seated);
-            buttons.First(b => b.name.Contains("Snap turn")).onClick.Invoke();
+            rig.GetComponent<ComfortControls>().SetTurnAngle(30);
             Assert.AreEqual(30, rig.GetComponent<ComfortControls>().TurnAngle);
         }
 
@@ -213,6 +210,7 @@ namespace ProcSense.Tests.PlayMode
                 float end = Time.realtimeSinceStartup + 10;
                 while (rooms.Busy && Time.realtimeSinceStartup < end) yield return null;
                 Assert.AreEqual(room, rooms.CurrentRoom, rooms.LastError);
+                Assert.IsNull(Object.FindAnyObjectByType<ComfortPanel>(), room);
                 Assert.IsTrue(controls.Seated);
                 if (room == "Corridor")
                 {

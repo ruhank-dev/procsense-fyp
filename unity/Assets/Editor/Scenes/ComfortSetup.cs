@@ -60,7 +60,6 @@ namespace ProcSense.EditorTools
                 foreach (var anchor in existing.GetComponentsInChildren<SafeTeleportAnchor>())
                 { anchor.interactionLayers = 1 << 31; anchor.GetComponent<Collider>().isTrigger = true; }
                 foreach (var area in SceneManager.GetActiveScene().GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<SafeTeleportArea>())) area.interactionLayers = 1 << 31;
-                AddPanel(existing.transform, room);
                 return;
             }
             var root = new GameObject("TeleportTargets").transform;
@@ -82,16 +81,6 @@ namespace ProcSense.EditorTools
                 Pad(root, "TELEPORT_Station", new Vector3(-1.2f, 0.02f, 0.7f), 90);
                 Pad(root, "TELEPORT_Exit", new Vector3(0, 0.02f, -2.3f), 180);
             }
-            AddPanel(root, room);
-        }
-
-        private static void AddPanel(Transform root, string room)
-        {
-            if (root.Find("ComfortControls") != null) return;
-            var panel = new GameObject("ComfortControls", typeof(ComfortPanel)).transform;
-            panel.SetParent(root, false);
-            panel.localPosition = room == "PatientBay" ? new Vector3(-2.35f, 1.3f, -1.1f) : room == "Corridor" ? new Vector3(1.85f, 1.3f, -3) : new Vector3(-3.35f, 1.3f, -2.3f);
-            panel.localRotation = Quaternion.Euler(0, room == "Corridor" ? 90 : -90, 0);
         }
 
         private static void Pad(Transform parent, string name, Vector3 position, float yaw)

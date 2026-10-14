@@ -95,6 +95,38 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Mounted_door_buttons_preserve_navigation_and_restricted_signs_have_no_button()
+        {
+            yield return Boot();
+            SimulationHost.Instance.AutoTick = false;
+            var session = SimulationHost.Instance.Session;
+            var log = session.Log.Hash();
+            var loader = Object.FindAnyObjectByType<RoomLoader>();
+            foreach (string destination in new[] { "Corridor", "OT", "Corridor", "PatientBay" })
+            {
+                foreach (var restricted in Object.FindObjectsByType<RoomDoor>().Where(d => d.Restricted))
+                {
+                    Assert.IsTrue(restricted.ArchitecturalSign);
+                    Assert.IsEmpty(restricted.GetComponentsInChildren<UnityEngine.UI.Button>());
+                    restricted.Enter();
+                    Assert.IsFalse(loader.Busy);
+                }
+                var door = Object.FindObjectsByType<RoomDoor>().Single(d => d.Destination == destination);
+                Assert.IsTrue(door.ArchitecturalSign);
+                var button = door.GetComponentsInChildren<UnityEngine.UI.Button>().Single();
+                Assert.IsTrue(button.interactable);
+                button.onClick.Invoke();
+                Assert.IsTrue(loader.Busy);
+                float end = Time.realtimeSinceStartup + 15;
+                while (loader.Busy && Time.realtimeSinceStartup < end) yield return null;
+                Assert.AreEqual(destination, loader.CurrentRoom, loader.LastError);
+                Assert.AreSame(session, SimulationHost.Instance.Session);
+                Assert.AreEqual(log, session.Log.Hash());
+                yield return null;
+            }
+        }
+
+        [UnityTest]
         public IEnumerator Restricted_routes_are_rejected_and_diagnostic_doors_are_solid()
         {
             yield return Boot();
