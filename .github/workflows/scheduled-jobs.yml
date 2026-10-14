@@ -3,7 +3,9 @@ name: Scheduled jobs
 # Wakes the free service, touches the database so the free project is not left idle, and runs the two jobs the service cannot schedule for itself (p1-backend-s13):
 #   every 3 hours  verify the sessions that are still waiting (the service also does this on every upload and when it wakes)
 #   once a day     the retention clean-up (p1-backend-s12)
-# A call that still fails after its retries fails the run, and GitHub emails that to the repository's people. Needs the repository secrets SERVICE_URL and INTERNAL_KEY; without them it does nothing.
+# A sleeping free service answers its first requests with the host's "waking up" page (a web page, not our JSON), so this waits until /health answers with our own JSON before it does anything,
+# and checks that each job's answer is the service's JSON too. A job that still fails fails the run, and GitHub emails that to the repository's people.
+# Needs the repository secrets SERVICE_URL and INTERNAL_KEY; without them it does nothing.
 
 on:
   schedule:
@@ -18,7 +20,7 @@ jobs:
   call:
     name: Call the service
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     env:
       SERVICE_URL: ${{ secrets.SERVICE_URL }}
       INTERNAL_KEY: ${{ secrets.INTERNAL_KEY }}
@@ -30,14 +32,34 @@ jobs:
             echo "SERVICE_URL or INTERNAL_KEY is not set as a repository secret: nothing to do."
             exit 0
           fi
-          base="${SERVICE_URL%/}"
-          call() { curl --silent --show-error --fail --retry 6 --retry-delay 20 --retry-all-errors --max-time 100 "$@"; }
-          echo "waking the service (it can take a minute)"
-          call "$base/health" > /dev/null
-          call "$base/health/db" > /dev/null && echo "database reachable"
+          base="$(echo "${SERVICE_URL}" | tr -d '[:space:]')"
+          base="${base%/}"
+
+          echo "waking the service (a sleeping free service needs about a minute)"
+          awake=no
+          for attempt in $(seq 1 36); do
+            body="$(curl -sS --max-time 60 "$base/health" 2>/dev/null || true)"
+            if echo "$body" | grep -q '"status":"ok"'; then awake=yes; break; fi
+            echo "not awake yet (attempt $attempt of 36)"
+            sleep 10
+          done
+          if [ "$awake" != yes ]; then
+            echo "::error::The service did not answer /health with its own JSON within six minutes. Is SERVICE_URL right ($base)?"
+            exit 1
+          fi
+          echo "awake: $body"
+
+          db="$(curl -sS --max-time 60 "$base/health/db" 2>/dev/null || true)"
+          if echo "$db" | grep -q '"status":"ok"'; then echo "database reachable"; else echo "::error::The database did not answer: $db"; exit 1; fi
+
+          call() {   # a POST to an internal route; its answer must be the service's JSON containing the expected word
+            answer="$(curl -sS --max-time 120 -X POST -H "X-Internal-Key: $INTERNAL_KEY" "$base$1" 2>/dev/null || true)"
+            echo "$answer"
+            if ! echo "$answer" | grep -q "$2"; then echo "::error::Unexpected answer from $1 (wrong INTERNAL_KEY, or the route is closed)"; exit 1; fi
+          }
           if [ "$SCHEDULE" != '43 3 * * *' ]; then
-            echo "verification sweep:"; call -X POST -H "X-Internal-Key: $INTERNAL_KEY" "$base/internal/verify-pending"; echo
+            echo "verification sweep:"; call /internal/verify-pending '"processed"'
           fi
           if [ "$SCHEDULE" != '17 */3 * * *' ]; then
-            echo "retention clean-up:"; call -X POST -H "X-Internal-Key: $INTERNAL_KEY" "$base/internal/retention"; echo
+            echo "retention clean-up:"; call /internal/retention '"sessions_purged"'
           fi
