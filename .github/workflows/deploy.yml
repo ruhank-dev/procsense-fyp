@@ -76,9 +76,13 @@ jobs:
             echo "::warning::MIGRATION_DATABASE_URL is not set: the migrations were not applied. If this commit adds one, the new version will fail until it is applied."
             exit 0
           fi
+          case "$MIGRATION_DATABASE_URL" in
+            postgresql://*|postgres://*) ;;
+            *) echo "::error::The secret MIGRATION_DATABASE_URL does not start with postgresql:// (a copy often loses its first part). Paste the whole session-pooler address again."; exit 1 ;;
+          esac
           uv sync --project server --frozen --no-dev
-          uv run --project server alembic -c server/alembic.ini upgrade head
-          uv run --project server alembic -c server/alembic.ini current
+          uv run --no-dev --project server alembic -c server/alembic.ini upgrade head
+          uv run --no-dev --project server alembic -c server/alembic.ini current
 
       - name: Tell the host to deploy
         if: steps.setup.outputs.ready == 'true'
