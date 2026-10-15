@@ -66,6 +66,11 @@ tasks:
     cmds:
       - uv run --no-project tools/doctor.py
 
+  repo-backup:
+    desc: Write a verified git bundle of every branch and tag to a folder outside the repo (default Desktop/ProcSense_branch_backup), e.g. task repo-backup -- --out D:/backups --keep 10
+    cmds:
+      - uv run --no-project tools/repo_backup.py {{.CLI_ARGS}}
+
   protect-main:
     desc: DO NOT RUN on the free private plan (GitHub refuses it). Applies .github/branch-protection.json if the plan ever allows server-side protection (DT-042)
     cmds:

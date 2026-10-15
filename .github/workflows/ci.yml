@@ -370,6 +370,9 @@ jobs:
       - name: Task doctor reads the wanted versions from the repository and reports missing tools
         run: uv run --project tools tools/ci/test_doctor.py
 
+      - name: Repo backup bundles every branch and tag, restores by clone and prunes old copies
+        run: uv run --project tools tools/ci/test_repo_backup.py
+
       - name: Project rules (determinism rules, hygiene, doc links, registers)
         run: uv run --project tools tools/ci/repo_checks.py
 

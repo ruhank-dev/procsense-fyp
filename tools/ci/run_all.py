@@ -192,6 +192,7 @@ def main(argv: list[str]) -> int:
         ("secret scan catches pasted keys and passwords (Supabase key, database address, token)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_repo_checks.py"])),
         ("deploy checker waits for the new commit, tolerates a sleeping service and fails clearly", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_wait_for_deploy.py"])),
         ("task doctor reads the wanted versions from the repository and reports missing tools", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_doctor.py"])),
+        ("repo backup bundles every branch and tag, restores by clone and prunes old copies", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_repo_backup.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
     ]
     results = []

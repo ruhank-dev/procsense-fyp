@@ -31,3 +31,11 @@ LFS free quota is limited — scripts are the source of truth for generated 3D; 
 
 ## Sources
 p0-foundation README; Implementation Guide B-S6 Step 1 (LFS patterns).
+
+## Implementation notes (15 Oct 2026)
+- **Repository:** private, `github.com/ruhank-dev/procsense-fyp`, holds the project since 07 Oct 2026 (nothing to create).
+- **Git LFS (owner's decision, 15 Oct 2026: guard now, LFS later):** the repository is about 51 MB and its largest file is 3.6 MB, so LFS is not switched on: it would put every clone and CI checkout on GitHub's small free LFS quota and require git-lfs on every machine, for no gain yet. Instead the project rules refuse any tracked file over 10 MB that is not in LFS (`tools/ci/repo_checks.py`, with a test), `.gitattributes` gains the remaining binary hints (exr, tif, tga, psd, hdr, jpeg, mp3, glb) and says how to start LFS when an asset needs it.
+- **Protecting `main`:** server-side branch protection is refused on a private free-plan repository (DT-042, blocked). `main` is guarded by the pre-push hook, CI and the main-guard workflow; the README says so.
+- **Backup (owner's decision, 15 Oct 2026):** `task repo-backup` (`tools/repo_backup.py`, standard library) fetches, writes a verified bundle of every branch and tag outside the repository (default `Desktop/ProcSense_branch_backup`, newest 5 kept) and prints the restore command; 3 tests (`tools/ci/test_repo_backup.py`: restore by clone gives the same commits and tags, pruning, a folder inside the repository is refused) run with the other checks. First real run: 52.5 MB, 9 branches and tags.
+- **README:** "Cloning, large files and backups" (clone, why no `git lfs pull` is needed, how to start LFS, backups, how `main` is protected).
+- **Verification:** a fresh clone from GitHub into an empty folder on the owner's laptop (not a second machine) was clean (no changed files), and `task build` and `task test` passed (1,195 tests). A second machine is the remaining check; any teammate's clone counts.
