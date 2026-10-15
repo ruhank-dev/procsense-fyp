@@ -39,6 +39,7 @@ namespace ProcSense.Core.Workflow
             new FlowSubsystem(content.FlowMaps),
             new Events.EventDirector(content),
             new Diagnostics.DiagnosticsLoop(),
+            new Records.RecordsSubsystem(content),
         };
     }
 }

@@ -110,7 +110,8 @@ namespace ProcSense.Core.Content
                 Events.EventTables.Parse(reader.ReadText("events/events.json")),
                 Scoring.ScoreTables.Parse(reader.ReadText("scoring/rubric.json"), reader.ReadText("assessment/mapping.json"), reader.ReadText("debrief/templates.json")),
                 Difficulty.DifficultyTables.Parse(reader.ReadText("difficulty/dimensions.json")),
-                AIContext.AiTables.Parse(reader.ReadText("ai/intents.json"), reader.ReadText("ai/lexicon.json")));
+                AIContext.AiTables.Parse(reader.ReadText("ai/intents.json"), reader.ReadText("ai/lexicon.json")),
+                Records.RecordTables.Parse(reader.ReadText("records/records.json")));
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "837eb302abbc5f4646b5529a474f46557fe9d4c55238cc32b7ca55d7733a80a7",
- "files": 375,
- "bytes": 16736597,
+ "content_hash": "34f1c162e0be23443c23c21acce59aba03d3cc1d91d7a02d556136eb87f2df33",
+ "files": 376,
+ "bytes": 16776421,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -33,6 +33,7 @@
   "physio": 6,
   "physiology": 1,
   "problems": 2,
+  "records": 1,
   "risk": 1,
   "rules": 1,
   "schema": 7,
@@ -1179,6 +1180,10 @@
   "problems/problems.json": {
    "bytes": 3539,
    "sha256": "210c9af84fdcfb62cf360013ad0c48b7c9c701dec6ba92570531700d91e040da"
+  },
+  "records/records.json": {
+   "bytes": 39824,
+   "sha256": "9df2d30f6beac0882c3493fccec152c37f75ca1fd63fe6f5f282ff26d5a7ae5b"
   },
   "risk/risk.json": {
    "bytes": 3924,

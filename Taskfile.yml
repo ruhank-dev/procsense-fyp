@@ -181,6 +181,7 @@ tasks:
     desc: Build content/case_files (the 53 playable cases) from tools/content/cases and validate them
     cmds:
       - uv run --project tools tools/content/build_case_files.py
+      - uv run --project tools tools/content/build_records.py
 
   content-refresh:
     desc: Regenerate every generated content file and document in dependency order (tables, case files, imaging library, review packs, equipment sheets, traceability, manifest); run after any content change

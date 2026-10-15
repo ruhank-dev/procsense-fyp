@@ -101,6 +101,10 @@ namespace ProcSense.Core
         internal Behaviour.BehaviourSubsystem? BehaviourStep { get; set; }
         internal Workflow.Steps.ConsentSubsystem? ConsentStep { get; set; }
         internal Diagnostics.DiagnosticsLoop? DiagnosticsStep { get; set; }
+        internal Records.RecordsSubsystem? RecordsStep { get; set; }
+
+        /// <summary>The patient record: the folder (this admission's paperwork) and the EMR (everything), and what the trainee opened (null when the session has none).</summary>
+        public Records.RecordsSubsystem? Records => RecordsStep;
 
         /// <summary>The diagnostics loop: each test's trip (requested, patient away or sample sent, result ready, patient back, report delivered) for the views (null when the session has none).</summary>
         public Diagnostics.DiagnosticsLoop? Diagnostics => DiagnosticsStep;

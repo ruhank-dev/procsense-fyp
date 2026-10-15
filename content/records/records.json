@@ -1,0 +1,1240 @@
+{
+ "document_types": [
+  {
+   "id": "referral",
+   "label": "Referral letter",
+   "episode": "current"
+  },
+  {
+   "id": "clerking",
+   "label": "Clerking note",
+   "episode": "current"
+  },
+  {
+   "id": "obs_chart",
+   "label": "Observation chart",
+   "episode": "current"
+  },
+  {
+   "id": "consent",
+   "label": "Consent form",
+   "episode": "current"
+  },
+  {
+   "id": "ward_checklist",
+   "label": "Ward checklist",
+   "episode": "current"
+  },
+  {
+   "id": "lab_report",
+   "label": "Laboratory report",
+   "episode": "current"
+  },
+  {
+   "id": "imaging_report",
+   "label": "Imaging report",
+   "episode": "current"
+  },
+  {
+   "id": "bedside_result",
+   "label": "Bedside test result",
+   "episode": "current"
+  },
+  {
+   "id": "clinic_letter",
+   "label": "Clinic letter or summary",
+   "episode": "record"
+  },
+  {
+   "id": "lab_result",
+   "label": "Previous laboratory result",
+   "episode": "record"
+  },
+  {
+   "id": "previous_imaging",
+   "label": "Previous imaging report",
+   "episode": "record"
+  },
+  {
+   "id": "anaesthetic_history",
+   "label": "Previous anaesthetic record",
+   "episode": "record"
+  },
+  {
+   "id": "discharge_summary",
+   "label": "Discharge summary",
+   "episode": "record"
+  }
+ ],
+ "current": [
+  {
+   "id": "clerking",
+   "type": "clerking",
+   "title": "Clerking note",
+   "created": "start"
+  },
+  {
+   "id": "obs_chart",
+   "type": "obs_chart",
+   "title": "Observation chart",
+   "created": "start"
+  },
+  {
+   "id": "consent",
+   "type": "consent",
+   "title": "Consent form",
+   "created": "consent.signed"
+  },
+  {
+   "id": "ward_checklist",
+   "type": "ward_checklist",
+   "title": "Ward checklist",
+   "created": "ward.checklist_signed"
+  }
+ ],
+ "result_types": {
+  "blood": "lab_report",
+  "bedside": "bedside_result",
+  "imaging": "imaging_report"
+ },
+ "records": {
+  "SC-1": [
+   {
+    "id": "SC-1.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Danish Rehman, 38, MR 635001. Past history: Healthy. Medicines: None. Allergies: Penicillin: Throat swelling.",
+    "synthetic": true,
+    "ref": "SR-3900"
+   },
+   {
+    "id": "SC-1.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Creatinine 80 umol/L (usual).",
+    "synthetic": true,
+    "ref": "SR-3901"
+   }
+  ],
+  "SC-10": [
+   {
+    "id": "SC-10.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Master Shahzaib Gul, 17, MR 635010. Past history: Healthy. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3902"
+   }
+  ],
+  "SC-11": [
+   {
+    "id": "SC-11.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Kashif Ali, 41, MR 635011. Past history: Healthy. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3903"
+   }
+  ],
+  "SC-12": [
+   {
+    "id": "SC-12.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Parveen Akhtar, 66, MR 635012. Past history: High blood pressure; gallstones. Medicines: Bendroflumethiazide. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3904"
+   },
+   {
+    "id": "SC-12.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3905"
+   }
+  ],
+  "SC-13": [
+   {
+    "id": "SC-13.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Tasneem Bibi, 68, MR 635013. Past history: Atrial fibrillation (old mechanical valve is not present); gallstones. Medicines: Warfarin; I did not stop it. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3906"
+   },
+   {
+    "id": "SC-13.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3907"
+   }
+  ],
+  "SC-14": [
+   {
+    "id": "SC-14.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Ms Mahnoor Raza, 28, MR 635014. Past history: Healthy. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3908"
+   }
+  ],
+  "SC-15": [
+   {
+    "id": "SC-15.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Yasir Hameed, 35, MR 635015. Past history: Healthy. Medicines: None. Allergies: Antibiotic given today: Anaphylaxis, treated with adrenaline.",
+    "synthetic": true,
+    "ref": "SR-3909"
+   }
+  ],
+  "SC-16": [
+   {
+    "id": "SC-16.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Saima Tufail, 47, MR 635016. Past history: Type 2 diabetes; obesity; snoring. Medicines: Semaglutide weekly. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3910"
+   },
+   {
+    "id": "SC-16.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3911"
+   }
+  ],
+  "SC-17": [
+   {
+    "id": "SC-17.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Ms Iqra Saleem, 25, MR 635017. Past history: Thalassaemia trait. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3912"
+   },
+   {
+    "id": "SC-17.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Hb 110 g/L (last year).",
+    "synthetic": true,
+    "ref": "SR-3913"
+   }
+  ],
+  "SC-18": [
+   {
+    "id": "SC-18.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Bilal Hashmi, 52, MR 635018. Past history: Gallstones. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3914"
+   },
+   {
+    "id": "SC-18.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3915"
+   }
+  ],
+  "SC-19": [
+   {
+    "id": "SC-19.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Rashid Mahmood, 60, MR 635019. Past history: Type 2 diabetes. Medicines: An SGLT2 inhibitor and metformin. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3916"
+   }
+  ],
+  "SC-2": [
+   {
+    "id": "SC-2.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Ms Nimra Javed, 24, MR 635002. Past history: Healthy. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3917"
+   }
+  ],
+  "SC-20": [
+   {
+    "id": "SC-20.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Anwar Baig, 70, MR 635020. Past history: A minor stroke some years ago. Medicines: Aspirin. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3918"
+   }
+  ],
+  "SC-3": [
+   {
+    "id": "SC-3.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mrs Rabia Hussain, 32, MR 635003. Past history: Healthy. Medicines: Pregnancy vitamins. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3919"
+   }
+  ],
+  "SC-4": [
+   {
+    "id": "SC-4.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Tahir Mehmood, 55, MR 635004. Past history: Type 2 diabetes and high blood pressure. Medicines: Metformin and amlodipine. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3920"
+   },
+   {
+    "id": "SC-4.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3921"
+   }
+  ],
+  "SC-5": [
+   {
+    "id": "SC-5.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Sajid Mahmood, 72, MR 635005. Past history: Atrial fibrillation, high blood pressure. Medicines: Apixaban and bisoprolol. I took my apixaban this morning as I always do. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3922"
+   },
+   {
+    "id": "SC-5.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3923"
+   }
+  ],
+  "SC-6": [
+   {
+    "id": "SC-6.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Uzma Aziz, 49, MR 635006. Past history: Type 1 diabetes; gallstones. Medicines: Basal insulin. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3924"
+   },
+   {
+    "id": "SC-6.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3925"
+   }
+  ],
+  "SC-7": [
+   {
+    "id": "SC-7.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Adnan Qureshi, 27, MR 635007. Past history: Healthy. Medicines: The morphine just given. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3926"
+   }
+  ],
+  "SC-8": [
+   {
+    "id": "SC-8.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Waqas Nadeem, 63, MR 635008. Past history: Kidney disease. Medicines: Ramipril. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3927"
+   },
+   {
+    "id": "SC-8.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Creatinine 95 umol/L (usual).",
+    "synthetic": true,
+    "ref": "SR-3928"
+   }
+  ],
+  "SC-9": [
+   {
+    "id": "SC-9.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Zahid Latif, 73, MR 635009. Past history: A coronary stent two years ago; gallstones. Medicines: Clopidogrel and aspirin. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3929"
+   },
+   {
+    "id": "SC-9.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3930"
+   }
+  ],
+  "STK-S1-A": [
+   {
+    "id": "STK-S1-A.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Imran Siddiqui, 58, MR 614401. Past history: Type 2 diabetes for nine years; high blood pressure for six years; gallstones. Medicines: Metformin, gliclazide, dapagliflozin, amlodipine and ramipril. I took my gliclazide this morning with my usual breakfast tea but no breakfast. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3931"
+   },
+   {
+    "id": "STK-S1-A.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "HbA1c 70 mmol/mol (last year).",
+    "synthetic": true,
+    "ref": "SR-3932"
+   },
+   {
+    "id": "STK-S1-A.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3933"
+   }
+  ],
+  "STK-S1-B": [
+   {
+    "id": "STK-S1-B.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr George Mensah, 69, MR 614402. Past history: Atrial fibrillation, high blood pressure, early kidney disease (stage G3a). Medicines: Apixaban, bisoprolol, amlodipine. I took my apixaban at seven this morning as I always do. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3934"
+   },
+   {
+    "id": "STK-S1-B.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Hb 131 g/L (2 years ago); Creatinine 96 umol/L (last year).",
+    "synthetic": true,
+    "ref": "SR-3935"
+   },
+   {
+    "id": "STK-S1-B.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3936"
+   }
+  ],
+  "STK-S1-C": [
+   {
+    "id": "STK-S1-C.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Helena Novak, 71, MR 614403. Past history: Heart failure with a weak pumping function. Chronic kidney disease (G3b). Medicines: Ramipril, spironolactone, bisoprolol and furosemide. I am still taking all my tablets despite not eating. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3937"
+   },
+   {
+    "id": "STK-S1-C.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Potassium 4.6 mmol/L (3 months ago); Creatinine 112 umol/L (baseline).",
+    "synthetic": true,
+    "ref": "SR-3938"
+   },
+   {
+    "id": "STK-S1-C.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3939"
+   }
+  ],
+  "STK-S1-D": [
+   {
+    "id": "STK-S1-D.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Aisha Bello, 62, MR 551029. Past history: High blood pressure. Gallstones on an ultrasound; three episodes of colic. Medicines: Amlodipine. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3940"
+   },
+   {
+    "id": "STK-S1-D.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "WBC 6.9 x10^9/L (pre-assessment 2 months ago); CRP 6 mg/L (pre-assessment 2 months ago); Bilirubin 11 umol/L (pre-assessment 2 months ago); ALP 102 U/L (pre-assessment 2 months ago); GGT 30 U/L (pre-assessment 2 months ago); ALT 29 U/L (pre-assessment 2 months ago); Creatinine 70 umol/L (her baseline).",
+    "synthetic": true,
+    "ref": "SR-3941"
+   },
+   {
+    "id": "STK-S1-D.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3942"
+   }
+  ],
+  "STK-S2-A": [
+   {
+    "id": "STK-S2-A.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mrs Sofia Rossi, 45, MR 624501. Past history: Healthy. Medicines: Anti-inflammatory painkillers from the chemist for the pain. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3943"
+   },
+   {
+    "id": "STK-S2-A.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Creatinine 82 umol/L (GP baseline).",
+    "synthetic": true,
+    "ref": "SR-3944"
+   }
+  ],
+  "STK-S2-B": [
+   {
+    "id": "STK-S2-B.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Ravi Patel, 34, MR 662184. Past history: Healthy. Medicines: None. Allergies: Penicillin: Throat swelling and collapse in 2019 (anaphylaxis).",
+    "synthetic": true,
+    "ref": "SR-3945"
+   }
+  ],
+  "STK-S2-C": [
+   {
+    "id": "STK-S2-C.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Leo Chen, 22, MR 624502. Past history: Healthy. Medicines: Only the morphine just given. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3946"
+   }
+  ],
+  "STK-S2-D": [
+   {
+    "id": "STK-S2-D.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mrs Maria Santos, 29, MR 624503. Past history: One earlier pregnancy, normal. Medicines: Pregnancy vitamins. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3947"
+   }
+  ],
+  "VAR-S1-A": [
+   {
+    "id": "VAR-S1-A.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Ayesha Khan, 42, MR 102938. Past history: None. Medicines: None except paracetamol sometimes. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3948"
+   },
+   {
+    "id": "VAR-S1-A.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3949"
+   },
+   {
+    "id": "VAR-S1-A.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: Caesarean section 2012, no problems.",
+    "synthetic": true,
+    "ref": "SR-3950"
+   }
+  ],
+  "VAR-S1-B": [
+   {
+    "id": "VAR-S1-B.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Tariq Mahmood, 58, MR 412330. Past history: High blood pressure for six years. Medicines: A blood pressure tablet each morning; he took it today. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3951"
+   },
+   {
+    "id": "VAR-S1-B.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3952"
+   }
+  ],
+  "VAR-S1-C": [
+   {
+    "id": "VAR-S1-C.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Nasreen Akhtar, 55, MR 518842. Past history: Type 2 diabetes for eight years. Medicines: Metformin and gliclazide. She has not taken them this morning. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3953"
+   },
+   {
+    "id": "VAR-S1-C.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3954"
+   }
+  ],
+  "VAR-S1-D": [
+   {
+    "id": "VAR-S1-D.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Imran Sheikh, 67, MR 603155. Past history: Atrial fibrillation (irregular heartbeat), high blood pressure. Medicines: This morning. I forgot what the nurse said. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3955"
+   },
+   {
+    "id": "VAR-S1-D.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3956"
+   }
+  ],
+  "VAR-S1-E": [
+   {
+    "id": "VAR-S1-E.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Rabia Siddiqui, 48, MR 311207. Past history: Gallstones. Medicines: Paracetamol. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3957"
+   },
+   {
+    "id": "VAR-S1-E.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "WBC 6.8 x10^9/L (pre-assessment 6 weeks ago); CRP 4 mg/L (pre-assessment 6 weeks ago).",
+    "synthetic": true,
+    "ref": "SR-3958"
+   },
+   {
+    "id": "VAR-S1-E.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3959"
+   }
+  ],
+  "VAR-S1-G": [
+   {
+    "id": "VAR-S1-G.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Ms Sana Farooq, 39, MR 719420. Past history: None. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3960"
+   },
+   {
+    "id": "VAR-S1-G.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3961"
+   }
+  ],
+  "VAR-S1-H": [
+   {
+    "id": "VAR-S1-H.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Ms Hina Rauf, 29, MR 822371. Past history: None. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3962"
+   },
+   {
+    "id": "VAR-S1-H.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3963"
+   }
+  ],
+  "VAR-S1-I": [
+   {
+    "id": "VAR-S1-I.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Amna Hashmi, 45, MR 613204. Past history: Gallstones only. Medicines: None. Allergies: Penicillin: Throat swelling and collapse in 2015 (anaphylaxis).",
+    "synthetic": true,
+    "ref": "SR-3964"
+   },
+   {
+    "id": "VAR-S1-I.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3965"
+   },
+   {
+    "id": "VAR-S1-I.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: One caesarean section years ago, no problems with the anaesthetic.",
+    "synthetic": true,
+    "ref": "SR-3966"
+   }
+  ],
+  "VAR-S1-J": [
+   {
+    "id": "VAR-S1-J.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Kamran Javed, 50, MR 934018. Past history: None. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3967"
+   },
+   {
+    "id": "VAR-S1-J.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3968"
+   }
+  ],
+  "VAR-S1-K": [
+   {
+    "id": "VAR-S1-K.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Shazia Iqbal, 52, MR 613205. Past history: Gallstones. Heavy periods until a year ago. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3969"
+   },
+   {
+    "id": "VAR-S1-K.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Hb 118 g/L (pre-assessment 1 year ago).",
+    "synthetic": true,
+    "ref": "SR-3970"
+   },
+   {
+    "id": "VAR-S1-K.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3971"
+   }
+  ],
+  "VAR-S1-L": [
+   {
+    "id": "VAR-S1-L.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Aslam Chaudhry, 70, MR 613206. Past history: High blood pressure. Gallstones. Medicines: Amlodipine. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3972"
+   },
+   {
+    "id": "VAR-S1-L.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3973"
+   },
+   {
+    "id": "VAR-S1-L.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: Hernia repair years ago, no problems.",
+    "synthetic": true,
+    "ref": "SR-3974"
+   }
+  ],
+  "VAR-S1-M": [
+   {
+    "id": "VAR-S1-M.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mr Rizwan Anwar, 44, MR 613207. Past history: High blood pressure, no sleep study yet. Gallstones. Medicines: Ramipril. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3975"
+   },
+   {
+    "id": "VAR-S1-M.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3976"
+   }
+  ],
+  "VAR-S1-PB": [
+   {
+    "id": "VAR-S1-PB.preassessment",
+    "type": "clinic_letter",
+    "title": "Pre-assessment summary",
+    "date_offset": "2 months before today",
+    "body": "Patient: Mrs Farzana Ahmed, 61, MR 205814. Past history: Gallstones, found on a scan last year. Medicines: Paracetamol when the pain comes. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3977"
+   },
+   {
+    "id": "VAR-S1-PB.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Bilirubin 14 umol/L (pre-assessment 6 weeks ago); ALP 118 U/L (pre-assessment 6 weeks ago); GGT 35 U/L (pre-assessment 6 weeks ago); ALT 32 U/L (pre-assessment 6 weeks ago).",
+    "synthetic": true,
+    "ref": "SR-3978"
+   },
+   {
+    "id": "VAR-S1-PB.clinic_ultrasound",
+    "type": "previous_imaging",
+    "title": "Clinic ultrasound report (before booking)",
+    "date_offset": "before the booking",
+    "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3979"
+   }
+  ],
+  "VAR-S2-B": [
+   {
+    "id": "VAR-S2-B.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Ms Sadia Noor, 24, MR 845117. Past history: None. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3980"
+   },
+   {
+    "id": "VAR-S2-B.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Haemoglobin 128 g/L (booked at her GP 6 months ago).",
+    "synthetic": true,
+    "ref": "SR-3981"
+   }
+  ],
+  "VAR-S2-D": [
+   {
+    "id": "VAR-S2-D.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Ms Zainab Anwar, 28, MR 956208. Past history: None. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3982"
+   }
+  ],
+  "VAR-S2-E": [
+   {
+    "id": "VAR-S2-E.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Akbar Sheikh, 68, MR 623301. Past history: Diverticular disease, noted on a scan years ago. Medicines: Aspirin. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3983"
+   },
+   {
+    "id": "VAR-S2-E.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: Cataract surgery, local anaesthetic only.",
+    "synthetic": true,
+    "ref": "SR-3984"
+   }
+  ],
+  "VAR-S2-F": [
+   {
+    "id": "VAR-S2-F.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Bilal Raza, 22, MR 967330. Past history: None. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3985"
+   }
+  ],
+  "VAR-S2-G": [
+   {
+    "id": "VAR-S2-G.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mrs Rukhsana Begum, 45, MR 978441. Past history: None. Medicines: Ibuprofen for the pain. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3986"
+   },
+   {
+    "id": "VAR-S2-G.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Creatinine 85 umol/L (her usual value).",
+    "synthetic": true,
+    "ref": "SR-3987"
+   }
+  ],
+  "VAR-S2-H": [
+   {
+    "id": "VAR-S2-H.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mrs Mehwish Tariq, 30, MR 623302. Past history: One normal pregnancy before. Medicines: Pregnancy vitamins. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3988"
+   },
+   {
+    "id": "VAR-S2-H.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: Epidural in the last pregnancy.",
+    "synthetic": true,
+    "ref": "SR-3989"
+   }
+  ],
+  "VAR-S2-I": [
+   {
+    "id": "VAR-S2-I.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Master Hamid Khan, 16, MR 623303. Past history: Healthy. Asthma in childhood, none now. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3990"
+   },
+   {
+    "id": "VAR-S2-I.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: Tonsils out at seven, no problems.",
+    "synthetic": true,
+    "ref": "SR-3991"
+   }
+  ],
+  "VAR-S2-J": [
+   {
+    "id": "VAR-S2-J.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Ms Aqsa Mirza, 26, MR 623304. Past history: One urine infection two years ago. Medicines: The oral contraceptive pill. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3992"
+   }
+  ],
+  "VAR-S2-K": [
+   {
+    "id": "VAR-S2-K.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Faisal Dar, 21, MR 623305. Past history: Healthy. Medicines: None. Allergies: Penicillin: Mild rash as a child (delayed).",
+    "synthetic": true,
+    "ref": "SR-3993"
+   }
+  ],
+  "VAR-S2-L": [
+   {
+    "id": "VAR-S2-L.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Naveed Butt, 37, MR 623306. Past history: Healthy. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3994"
+   }
+  ],
+  "VAR-S2-PC": [
+   {
+    "id": "VAR-S2-PC.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Hamza Ali, 19, MR 910227. Past history: No illnesses. Medicines: None. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3995"
+   }
+  ],
+  "VAR-S2-PD": [
+   {
+    "id": "VAR-S2-PD.summary",
+    "type": "clinic_letter",
+    "title": "Registration summary",
+    "date_offset": "today (on arrival)",
+    "body": "Patient: Mr Usman Qadir, 34, MR 774902. Past history: None. Medicines: Ibuprofen from the shop for the pain. Allergies: none recorded.",
+    "synthetic": true,
+    "ref": "SR-3996"
+   },
+   {
+    "id": "VAR-S2-PD.previous_results",
+    "type": "lab_result",
+    "title": "Previous results",
+    "date_offset": "earlier (see each result)",
+    "body": "Creatinine 78 umol/L (usual value, 1 year ago).",
+    "synthetic": true,
+    "ref": "SR-3997"
+   }
+  ]
+ },
+ "distractors": [
+  {
+   "id": "DIST-01",
+   "name": "Hassan Raza",
+   "dob": "1971-08-02",
+   "mrn": "MR 204117",
+   "ref": "SR-3050"
+  },
+  {
+   "id": "DIST-02",
+   "name": "Mariam Siddiqui",
+   "dob": "1992-11-19",
+   "mrn": "MR 118842",
+   "ref": "SR-3051"
+  },
+  {
+   "id": "DIST-03",
+   "name": "Ayesha Khan Malik",
+   "dob": "1984-03-15",
+   "mrn": "MR 102983",
+   "ref": "SR-3052"
+  },
+  {
+   "id": "DIST-04",
+   "name": "Ayesha Kaan",
+   "dob": "1984-03-14",
+   "mrn": "MR 109238",
+   "ref": "SR-3053"
+  },
+  {
+   "id": "DIST-05",
+   "name": "Imran Qureshi",
+   "dob": "1957-05-30",
+   "mrn": "MR 187764",
+   "ref": "SR-3054"
+  },
+  {
+   "id": "DIST-06",
+   "name": "Sana Iqbal",
+   "dob": "1985-01-26",
+   "mrn": "MR 150731",
+   "ref": "SR-3055"
+  }
+ ],
+ "refs": [
+  "SR-3050",
+  "SR-3051",
+  "SR-3052",
+  "SR-3053",
+  "SR-3054",
+  "SR-3055",
+  "SR-3900",
+  "SR-3901",
+  "SR-3902",
+  "SR-3903",
+  "SR-3904",
+  "SR-3905",
+  "SR-3906",
+  "SR-3907",
+  "SR-3908",
+  "SR-3909",
+  "SR-3910",
+  "SR-3911",
+  "SR-3912",
+  "SR-3913",
+  "SR-3914",
+  "SR-3915",
+  "SR-3916",
+  "SR-3917",
+  "SR-3918",
+  "SR-3919",
+  "SR-3920",
+  "SR-3921",
+  "SR-3922",
+  "SR-3923",
+  "SR-3924",
+  "SR-3925",
+  "SR-3926",
+  "SR-3927",
+  "SR-3928",
+  "SR-3929",
+  "SR-3930",
+  "SR-3931",
+  "SR-3932",
+  "SR-3933",
+  "SR-3934",
+  "SR-3935",
+  "SR-3936",
+  "SR-3937",
+  "SR-3938",
+  "SR-3939",
+  "SR-3940",
+  "SR-3941",
+  "SR-3942",
+  "SR-3943",
+  "SR-3944",
+  "SR-3945",
+  "SR-3946",
+  "SR-3947",
+  "SR-3948",
+  "SR-3949",
+  "SR-3950",
+  "SR-3951",
+  "SR-3952",
+  "SR-3953",
+  "SR-3954",
+  "SR-3955",
+  "SR-3956",
+  "SR-3957",
+  "SR-3958",
+  "SR-3959",
+  "SR-3960",
+  "SR-3961",
+  "SR-3962",
+  "SR-3963",
+  "SR-3964",
+  "SR-3965",
+  "SR-3966",
+  "SR-3967",
+  "SR-3968",
+  "SR-3969",
+  "SR-3970",
+  "SR-3971",
+  "SR-3972",
+  "SR-3973",
+  "SR-3974",
+  "SR-3975",
+  "SR-3976",
+  "SR-3977",
+  "SR-3978",
+  "SR-3979",
+  "SR-3980",
+  "SR-3981",
+  "SR-3982",
+  "SR-3983",
+  "SR-3984",
+  "SR-3985",
+  "SR-3986",
+  "SR-3987",
+  "SR-3988",
+  "SR-3989",
+  "SR-3990",
+  "SR-3991",
+  "SR-3992",
+  "SR-3993",
+  "SR-3994",
+  "SR-3995",
+  "SR-3996",
+  "SR-3997"
+ ]
+}
