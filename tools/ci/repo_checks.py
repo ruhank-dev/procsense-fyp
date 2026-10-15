@@ -74,15 +74,35 @@ FORBIDDEN_PATHS = [
 TEXT_SUFFIXES = {".cs", ".py", ".yml", ".yaml", ".json", ".csproj", ".toml", ".sln", ".props", ".ps1", ".sh"}
 
 
+BINARY_SUFFIXES = {".png", ".jpg", ".jpeg", ".exr", ".tif", ".tiff", ".tga", ".psd", ".hdr", ".fbx", ".blend", ".wav", ".ogg", ".pdf"}
+LARGE_FILE_LIMIT = 10_000_000   # p0-foundation-s01: no file this large outside Git LFS (the repo uses no LFS yet; GitHub refuses files over 100 MB)
+
+
+def lfs_tracked(rels: list[str]) -> set[str]:
+    if not rels:
+        return set()
+    out = subprocess.run(["git", "check-attr", "filter", "--", *rels], cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    return {line.split(": filter: ")[0] for line in out.splitlines() if line.endswith(": filter: lfs")}
+
+
+def large_file_problems(large: list[tuple[str, int]], tracked_by_lfs: set[str]) -> list[str]:
+    """A large binary in plain git makes every clone and CI checkout slower, for ever (removing it later needs a history rewrite)."""
+    return [f"{rel}: {size / 1_000_000:.1f} MB is over the {LARGE_FILE_LIMIT // 1_000_000} MB limit for plain git: track it with Git LFS (README, Large files) or rebuild it from a script"
+            for rel, size in large if rel not in tracked_by_lfs]
+
+
 def check_hygiene() -> list[str]:
-    problems = []
+    problems, large = [], []
     for p in tracked_files():
         rel = p.relative_to(ROOT).as_posix()
         for pattern, why in FORBIDDEN_PATHS:
             if re.search(pattern, rel) and not rel.endswith(".env.example"):
                 problems.append(f"{rel}: {why} must not be committed")
-        if p.stat().st_size > 5_000_000 and p.suffix.lower() not in {".png", ".jpg", ".fbx", ".blend", ".wav", ".ogg", ".pdf"}:
+        size = p.stat().st_size
+        if size > 5_000_000 and p.suffix.lower() not in BINARY_SUFFIXES:
             problems.append(f"{rel}: larger than 5 MB (use Git LFS or rebuild it from a script)")
+        if size > LARGE_FILE_LIMIT:
+            large.append((rel, size))
         # the server folder's notes and its .env.example are scanned too: that is where a pasted key would most likely end up
         scanned = p.suffix in TEXT_SUFFIXES or (rel.startswith("server/") and p.suffix in {".md", ".example"})
         if scanned and not rel.startswith(("tools/uv.lock", "tools/ci/")):
@@ -90,6 +110,7 @@ def check_hygiene() -> list[str]:
             for pattern, why in SECRET_PATTERNS:
                 if re.search(pattern, text):
                     problems.append(f"{rel}: looks like a {why}")
+    problems += large_file_problems(large, lfs_tracked([rel for rel, _ in large]))
     problems += check_ignored_sources()
     return problems
 

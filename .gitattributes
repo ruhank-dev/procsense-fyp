@@ -18,3 +18,15 @@
 *.wav  binary
 *.ogg  binary
 *.pdf  binary
+*.jpeg binary
+*.exr  binary
+*.tif  binary
+*.tiff binary
+*.tga  binary
+*.psd  binary
+*.hdr  binary
+*.mp3  binary
+*.glb  binary
+
+# Git LFS is not used yet (p0-foundation-s01): the repository is small and CI refuses any file over 10 MB outside LFS.
+# When an asset needs it: git lfs track "<pattern>" (adds a filter=lfs line here), then git add --renormalize . and commit.

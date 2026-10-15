@@ -17,6 +17,13 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 
 **Start with [docs/index.md](docs/index.md)**: it says where everything is, which file is the source of truth for what, and the rules every change follows.
 
+## Cloning, large files and backups
+
+- **Clone:** `git clone https://github.com/ruhank-dev/procsense-fyp.git`, then `task setup`, `task doctor`, `task ci` (and `task build`, `task test`). Accept the collaborator invitation first; the repository is private.
+- **Large files:** the repository is small (about 50 MB) and holds no Git LFS files yet, so a plain clone is complete and `git lfs pull` is not needed. CI refuses any file over 10 MB that is not in Git LFS (project rules); when an asset needs it, run `git lfs track "<pattern>"`, `git add --renormalize .`, commit, and from then on everyone clones with Git LFS installed (it comes with Git for Windows; run `git lfs install` once). Generated Blender outputs are rebuilt from the scripts in `tools/blender` (EXP-FND-1).
+- **Backups:** GitHub and every clone hold the full history. `task repo-backup` also writes a verified bundle of every branch and tag to `Desktop/ProcSense_branch_backup` (keeps the newest 5); restore with `git clone <file>.bundle procsense-fyp`. The database has its own nightly encrypted backup (`server/RUNBOOK.md`, Backup and restore).
+- **Protecting `main`:** GitHub does not enforce branch protection on a private repository on the free plan (DT-042), so `main` is guarded by the pre-push hook (`task ci` before every push to `main`), CI on every push, and the main-guard workflow that opens an issue when `main` goes red.
+
 ## Repo layout
 
 | Folder | What lives there |

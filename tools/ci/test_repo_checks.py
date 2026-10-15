@@ -46,6 +46,14 @@ class SecretPatterns(unittest.TestCase):
         self.assertIn('rel.startswith("server/")', src)
         self.assertIn('".example"', src)
 
+    def test_a_large_file_outside_lfs_is_refused_and_inside_lfs_is_fine(self):
+        big = repo_checks.LARGE_FILE_LIMIT + 1
+        problems = repo_checks.large_file_problems([("unity/Assets/big.exr", big), ("unity/Assets/huge.fbx", big)], {"unity/Assets/huge.fbx"})
+        self.assertEqual(len(problems), 1)
+        self.assertIn("unity/Assets/big.exr", problems[0])
+        self.assertIn("Git LFS", problems[0])
+        self.assertEqual(repo_checks.lfs_tracked([]), set())
+
     def test_the_real_repository_is_clean(self):
         self.assertEqual(repo_checks.check_hygiene(), [])
 
