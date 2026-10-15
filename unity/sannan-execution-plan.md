@@ -2969,7 +2969,7 @@ Hash mismatch → check float formatting/culture, dictionary iteration, `Time.de
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-evaluation-performance/steps/p0-evaluation-performance-s02-golden-suite.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-evaluation-performance/steps/%E2%9C%85%20p0-evaluation-performance-s02-golden-suite.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
