@@ -1854,7 +1854,7 @@ p0-blender-equipment-s06 (wristband asset), p0-vr-platform-s06 (scene director).
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-diagnostic-transitions/steps/p0-diagnostic-transitions-s01-core-events.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-diagnostic-transitions/steps/%E2%9C%85%20p0-diagnostic-transitions-s01-core-events.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
