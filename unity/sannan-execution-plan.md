@@ -2061,7 +2061,7 @@ Too short a wait feels instant and unrealistic; too long is boring — keep it c
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-patient-records-emr/steps/p0-patient-records-emr-s01-records-data-model.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-patient-records-emr/steps/%E2%9C%85%20p0-patient-records-emr-s01-records-data-model.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
