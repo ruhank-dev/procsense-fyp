@@ -37,3 +37,4 @@ Master Plan §27 (loader refuses unapproved content in assessment); Implementati
 - **Golden run:** `VAR-S1-A_assessment`, the correct path in assessment mode (76 golden runs).
 - **Honest status:** no shipped case and no event is approved for assessment yet (50 case files are APPROVED_FOR_TRAINING, 3 DRAFT; all 7 events APPROVED_FOR_TRAINING), so assessment mode plays nothing until the clinician signs cases off (DT-177). That is the lock working as designed.
 - **Not built (the Unity half):** `ModeGate.cs` hiding the practice-only UI through `PracticeAids`, the mode chosen only from the main menu, the debrief showing the mode, and the VR check in the headset.
+- **Approved by the owner on 16 Oct 2026** (decision row 87); the step file stays unticked until the Unity half is done.
