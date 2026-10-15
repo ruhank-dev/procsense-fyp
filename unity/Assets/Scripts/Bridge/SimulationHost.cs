@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ProcSense.Core;
 using ProcSense.Core.Actions;
 using ProcSense.Core.Content;
@@ -90,7 +91,11 @@ namespace ProcSense.VR.Bridge
         public void StartSession(string caseId, ulong seed, SessionMode mode, IContentReader reader = null)
         {
             reader = reader ?? UnityContentReader.ForThisPlatform();
-            var content = ContentLoader.Load(reader, caseId);
+            // the mode decides what may be loaded: assessment plays only a case approved for assessment (p0-evaluation-performance-s04); the service refuses the rest too
+            var load = ContentMode.Load(reader, mode, false, caseId);
+            if (!load.Package.Cases.ContainsKey(caseId))
+                throw new ContentException("the case " + caseId + " cannot be played in " + mode.ToString().ToLowerInvariant() + " mode: " + string.Join("; ", load.Excluded.Select(e => e.Reason)));
+            var content = load.Package;
             Session = new Session(content.Cases[caseId], seed, mode, (SubsystemFactory ?? Subsystems.Default)(content));
             SessionId = Guid.NewGuid().ToString();
             ContentVersion = VersionOf(reader);

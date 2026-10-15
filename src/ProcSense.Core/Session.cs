@@ -64,6 +64,9 @@ namespace ProcSense.Core
         public CaseCard Case { get; }
         public ulong Seed { get; }
         public SessionMode Mode { get; }
+
+        /// <summary>The one check every view uses for practice-only help (hint chip, goal list, consent element tracker, nurse prompts): true in practice, false in assessment (p0-evaluation-performance-s04).</summary>
+        public bool PracticeAids => Mode == SessionMode.Practice;
         public TrainingLevel Level { get; }
         public string Variant { get; }
 

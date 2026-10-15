@@ -222,11 +222,13 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-174 | Engine version rule: raise CoreInfo.Version whenever a change can make an old log replay differently (p0-diagnostic-transitions-s01 changed time-skip without raising it), and decide how the service verifies logs from older headset builds (keep older engines in the image, or refuse with a clear message) | Pending | p0-diagnostic-transitions-s01 | Before the first release to real trainees | Today one version (0.0.1); headset builds and the service come from the same main |
 | DT-175 | Decide whether introducing oneself and summarising back to the patient should score (today they change only the patient's trust and anxiety; the golden suite's novice path loses no score item for them in 9 cases) | Pending | p0-evaluation-performance-s02 | Ruhan (scoring) with the clinician | Found 16 Oct 2026 by the golden suite |
 | DT-176 | Proceeding without opening any result: on the cases that proceed it costs only major.result_not_reviewed and ends READY_SAFE with SUCCESS, while the result-review step describes an unopened needed result as a blocker; check which is intended | Pending | p0-evaluation-performance-s02 | Ruhan (engine and scoring) | Found 16 Oct 2026 while writing the golden suite's dangerous path |
+| DT-177 | No case and no event is approved for assessment (cases APPROVED_FOR_TRAINING at most, events too), so assessment mode plays nothing: the clinician signs off the cases and events to assess, then their status is raised to APPROVED_FOR_ASSESSMENT | Pending | p0-evaluation-performance-s04 | Clinician with Ruhan | The lock works; the content is not signed off for assessment yet |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 16 October 2026 (p0-evaluation-performance-s04) | Assessment-mode lock tested end to end; the gated loader and the VR app's session start fixed; DT-177 added. |
 | 16 October 2026 (p0-evaluation-performance-s02) | Golden suite of 68 scripts with scores in the expected files and a check of each path; DT-175 and DT-176 added. |
 | 15 October 2026 (p0-diagnostic-transitions-s01) | Diagnostics loop in Core with events, trips and time-skip attention; EXP-DT-2 done; DT-174 added. |
 | 15 October 2026 (DT-172) | The engine package's Unity .meta files are committed (Sannan); DT-172 closed. |

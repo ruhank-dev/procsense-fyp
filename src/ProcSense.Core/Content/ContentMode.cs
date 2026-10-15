@@ -49,8 +49,8 @@ namespace ProcSense.Core.Content
                     continue;
                 }
                 if (file != null) files.Add(id);
-                if (Exists(reader, "cases/" + id + ".json")) cards.Add(id);
-                else if (file == null) throw new ContentException("the case '" + id + "' has neither a card nor a case file");
+                if (Exists(reader, "cases/" + id + ".json") || file != null) cards.Add(id);           // a case file with no hand-made card is the patient itself (p0-evaluation-performance-s04 fixed this: such cases were left out)
+                else throw new ContentException("the case '" + id + "' has neither a card nor a case file");
             }
             return new ModeLoad(ContentLoader.Load(reader, cards, files), excluded, version);
         }

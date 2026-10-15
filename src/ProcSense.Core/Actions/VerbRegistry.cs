@@ -14,6 +14,9 @@ namespace ProcSense.Core.Actions
 
         public bool IsKnown(string verb) => _verbs.ContainsKey(verb);
 
+        /// <summary>Every registered verb (for tests that prove a verb does not exist, for example one that would switch the mode).</summary>
+        public IReadOnlyCollection<string> Known => _verbs.Keys;
+
         public bool RequiresIdentity(string verb) => _verbs.TryGetValue(verb, out var r) && r.identity;
 
         public bool RequiresPatient(string verb) => _verbs.TryGetValue(verb, out var r) && r.patient;

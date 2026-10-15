@@ -28,3 +28,12 @@ Practice-only UI leaking into assessment through a missed view → one central m
 
 ## Sources
 Master Plan §27 (loader refuses unapproved content in assessment); Implementation Guide B-M11 mode minimums, T-CL-2; B-R14 T-E6; B-M7 T-DF3.
+
+## Implementation notes (16 Oct 2026)
+- **One integration test, `AssessmentModeTests` (7 tests):** with VAR-S1-A, VAR-S1-H and one event approved for assessment in the content it reads (what a clinician's sign-off would do): only those load (the draft VAR-S1-B and the training-only VAR-S1-C are named and refused; six of seven events are left out, T-E6); the next case is the fixed order whatever the ratings (T-DF3); the same play shows goals, hint, blocker message, flow and the NEWS2 helper in practice and none of them in assessment; the master decision's "expected" answer is given in practice only; a medicine given without the allergy check is given and logged as a critical item (no nurse challenge); the session file's header says `assessment`; no verb can change the mode.
+- **Fixed on the way (Core):** `ContentMode.Load`, the mode-gated loader, left out every case that has a case file but no hand-made card (16 of the 17 P0 cases), so a gated load could not play them; such a case is now its own card, as in the ordinary loader.
+- **Fixed on the way (Unity, `SimulationHost.StartSession`):** the VR app loaded content without the mode gate, so assessment mode would have played any case; it now loads through `ContentMode.Load` and refuses a case the mode may not play with the reason (the service's verifier also refuses it, CASE_NOT_ALLOWED_FOR_MODE). The menu that chooses the mode must show that message (Unity half).
+- **Central check:** `Session.PracticeAids` (true in practice, false in assessment) is the one property the views use for practice-only help.
+- **Golden run:** `VAR-S1-A_assessment`, the correct path in assessment mode (76 golden runs).
+- **Honest status:** no shipped case and no event is approved for assessment yet (50 case files are APPROVED_FOR_TRAINING, 3 DRAFT; all 7 events APPROVED_FOR_TRAINING), so assessment mode plays nothing until the clinician signs cases off (DT-177). That is the lock working as designed.
+- **Not built (the Unity half):** `ModeGate.cs` hiding the practice-only UI through `PracticeAids`, the mode chosen only from the main menu, the debrief showing the mode, and the VR check in the headset.
