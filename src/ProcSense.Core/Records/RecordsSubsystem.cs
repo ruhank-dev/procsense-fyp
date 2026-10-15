@@ -112,6 +112,9 @@ namespace ProcSense.Core.Records
         /// <summary>The EMR: the whole record, this admission and before.</summary>
         public IReadOnlyList<RecordDocument> Emr => _docs.Where(d => d.InEmr).ToList();
 
+        /// <summary>What each EMR section shows now (p0-patient-records-emr-s04), worked out from the record and the session on each call.</summary>
+        public EmrSections Sections() => EmrSections.Build(_s, _content.CaseFiles.TryGetValue(_caseId ?? _s.Case.Id, out var f) ? f : null, _docs);
+
         /// <summary>The EMR's new-document badges per tab (p0-patient-records-emr-s05).</summary>
         public Badges Badges => _badges;
 
