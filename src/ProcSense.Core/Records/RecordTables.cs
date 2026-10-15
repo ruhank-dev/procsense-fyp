@@ -6,7 +6,10 @@ using ProcSense.Core.Content;
 namespace ProcSense.Core.Records
 {
     /// <summary>A kind of document. Episode "current" is the paperwork of this admission (in the folder and the EMR); "record" is the hospital record (the EMR only).</summary>
-    public sealed record DocumentType(string Id, string Label, string Episode);
+    public sealed record DocumentType(string Id, string Label, string Episode, string Tab);
+
+    /// <summary>A tab of the EMR (p0-patient-records-emr README, "EMR screens").</summary>
+    public sealed record EmrTab(string Id, string Label);
 
     /// <summary>A current-episode document the session starts with ("start") or that a flag creates once it is set (for example "consent.signed").</summary>
     public sealed record CurrentDocument(string Id, string Type, string Title, string Created);
@@ -20,14 +23,17 @@ namespace ProcSense.Core.Records
     /// <summary>content/records/records.json (built by tools/content/build_records.py): document types, the current documents, the type a result becomes, each case's record and the distractor patients.</summary>
     public sealed class RecordTables
     {
-        public static readonly RecordTables Empty = new RecordTables(new List<DocumentType>(), new List<CurrentDocument>(), new Dictionary<string, string>(),
+        public static readonly RecordTables Empty = new RecordTables(new List<EmrTab>(), new List<DocumentType>(), new List<CurrentDocument>(), new Dictionary<string, string>(),
             new Dictionary<string, IReadOnlyList<RecordEntry>>(), new List<DistractorPatient>());
 
-        public RecordTables(IReadOnlyList<DocumentType> types, IReadOnlyList<CurrentDocument> current, IReadOnlyDictionary<string, string> resultTypes,
+        public RecordTables(IReadOnlyList<EmrTab> tabs, IReadOnlyList<DocumentType> types, IReadOnlyList<CurrentDocument> current, IReadOnlyDictionary<string, string> resultTypes,
             IReadOnlyDictionary<string, IReadOnlyList<RecordEntry>> records, IReadOnlyList<DistractorPatient> distractors)
         {
-            Types = types; Current = current; ResultTypes = resultTypes; Records = records; Distractors = distractors;
+            Tabs = tabs; Types = types; Current = current; ResultTypes = resultTypes; Records = records; Distractors = distractors;
         }
+
+        /// <summary>The EMR's tabs, in the order across the top.</summary>
+        public IReadOnlyList<EmrTab> Tabs { get; }
 
         public IReadOnlyList<DocumentType> Types { get; }
         public IReadOnlyList<CurrentDocument> Current { get; }
@@ -44,12 +50,23 @@ namespace ProcSense.Core.Records
         public static RecordTables Parse(string json, string source = "records")
         {
             var root = new JsonObj(MiniJson.Parse(json), source);
+            var tabs = new List<EmrTab>();
+            var rawTabs = root.Arr("tabs");
+            for (int i = 0; i < rawTabs.Count; i++)
+            {
+                var o = new JsonObj(rawTabs[i], JsonObj.Index(root.Sub("tabs"), i));
+                var t = new EmrTab(o.Str("id"), o.Str("label"));
+                if (tabs.Any(x => x.Id == t.Id)) throw new ContentException(o.Sub("id") + ": duplicate tab '" + t.Id + "'");
+                tabs.Add(t);
+                o.Finish();
+            }
             var types = new List<DocumentType>();
             var rawTypes = root.Arr("document_types");
             for (int i = 0; i < rawTypes.Count; i++)
             {
                 var o = new JsonObj(rawTypes[i], JsonObj.Index(root.Sub("document_types"), i));
-                var t = new DocumentType(o.Str("id"), o.Str("label"), o.Enum("episode", "current", "record"));
+                var t = new DocumentType(o.Str("id"), o.Str("label"), o.Enum("episode", "current", "record"), o.Str("tab"));
+                if (tabs.All(x => x.Id != t.Tab)) throw new ContentException(o.Sub("tab") + ": unknown tab '" + t.Tab + "'");
                 if (types.Any(x => x.Id == t.Id)) throw new ContentException(o.Sub("id") + ": duplicate document type '" + t.Id + "'");
                 types.Add(t);
                 o.Finish();
@@ -102,7 +119,7 @@ namespace ProcSense.Core.Records
             }
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
             root.Finish();
-            return new RecordTables(types, current, resultTypes, records, distractors);
+            return new RecordTables(tabs, types, current, resultTypes, records, distractors);
         }
     }
 }

@@ -1,69 +1,112 @@
 {
+ "tabs": [
+  {
+   "id": "profile",
+   "label": "Patient profile"
+  },
+  {
+   "id": "current_episode",
+   "label": "Current episode"
+  },
+  {
+   "id": "labs",
+   "label": "Lab results"
+  },
+  {
+   "id": "imaging",
+   "label": "Imaging"
+  },
+  {
+   "id": "reports",
+   "label": "Reports"
+  },
+  {
+   "id": "history",
+   "label": "Medical history"
+  },
+  {
+   "id": "medications",
+   "label": "Medications"
+  }
+ ],
  "document_types": [
   {
    "id": "referral",
    "label": "Referral letter",
-   "episode": "current"
+   "episode": "current",
+   "tab": "current_episode"
   },
   {
    "id": "clerking",
    "label": "Clerking note",
-   "episode": "current"
+   "episode": "current",
+   "tab": "current_episode"
   },
   {
    "id": "obs_chart",
    "label": "Observation chart",
-   "episode": "current"
+   "episode": "current",
+   "tab": "current_episode"
   },
   {
    "id": "consent",
    "label": "Consent form",
-   "episode": "current"
+   "episode": "current",
+   "tab": "current_episode"
   },
   {
    "id": "ward_checklist",
    "label": "Ward checklist",
-   "episode": "current"
+   "episode": "current",
+   "tab": "current_episode"
   },
   {
    "id": "lab_report",
    "label": "Laboratory report",
-   "episode": "current"
+   "episode": "current",
+   "tab": "labs"
   },
   {
    "id": "imaging_report",
    "label": "Imaging report",
-   "episode": "current"
+   "episode": "current",
+   "tab": "imaging"
   },
   {
    "id": "bedside_result",
    "label": "Bedside test result",
-   "episode": "current"
+   "episode": "current",
+   "tab": "labs"
   },
   {
    "id": "clinic_letter",
    "label": "Clinic letter or summary",
-   "episode": "record"
+   "episode": "record",
+   "tab": "reports"
   },
   {
    "id": "lab_result",
    "label": "Previous laboratory result",
-   "episode": "record"
+   "episode": "record",
+   "tab": "labs"
   },
   {
    "id": "previous_imaging",
    "label": "Previous imaging report",
-   "episode": "record"
+   "episode": "record",
+   "tab": "imaging"
   },
   {
    "id": "anaesthetic_history",
    "label": "Previous anaesthetic record",
-   "episode": "record"
+   "episode": "record",
+   "tab": "history"
   },
   {
    "id": "discharge_summary",
    "label": "Discharge summary",
-   "episode": "record"
+   "episode": "record",
+   "tab": "reports"
   }
  ],
  "current": [

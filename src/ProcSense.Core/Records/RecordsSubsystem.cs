@@ -49,6 +49,9 @@ namespace ProcSense.Core.Records
         public bool InEmr { get; internal set; }
 
         public int TimesOpened { get; internal set; }
+
+        /// <summary>The EMR tab it shows under.</summary>
+        public string Tab { get; internal set; } = "";
     }
 
     /// <summary>A patient on the EMR's ward list: the case patient or a distractor.</summary>
@@ -86,6 +89,7 @@ namespace ProcSense.Core.Records
         private readonly HashSet<string> _created = new HashSet<string>(StringComparer.Ordinal);
         private readonly List<RecordPatient> _patients = new List<RecordPatient>();
         private readonly List<GraphEvent> _history = new List<GraphEvent>();
+        private Badges _badges = null!;
         private Session _s = null!;
 
         /// <param name="caseId">Test hook: show the record of this case instead of the session's case.</param>
@@ -108,6 +112,9 @@ namespace ProcSense.Core.Records
         /// <summary>The EMR: the whole record, this admission and before.</summary>
         public IReadOnlyList<RecordDocument> Emr => _docs.Where(d => d.InEmr).ToList();
 
+        /// <summary>The EMR's new-document badges per tab (p0-patient-records-emr-s05).</summary>
+        public Badges Badges => _badges;
+
         /// <summary>The EMR's ward list (the case patient and the distractors), by name.</summary>
         public IReadOnlyList<RecordPatient> Patients => _patients;
 
@@ -118,11 +125,12 @@ namespace ProcSense.Core.Records
         {
             _s = session;
             session.RecordsStep = this;
+            _badges = new Badges(Tables.Tabs.Select(t => t.Id));
             string caseId = _caseId ?? session.Case.Id;
             foreach (var c in Tables.Current.Where(c => c.Created == "start")) AddCurrent(c);
             if (Tables.Records.TryGetValue(caseId, out var entries))
                 foreach (var e in entries)
-                    _docs.Add(new RecordDocument { Id = e.Id, Type = e.Type, Episode = Episode(e.Type), Title = e.Title, Body = e.Body, DateOffset = e.DateOffset, Synthetic = e.Synthetic, InEmr = true });
+                    _docs.Add(new RecordDocument { Id = e.Id, Type = e.Type, Episode = Episode(e.Type), Tab = TabOf(e.Type), Title = e.Title, Body = e.Body, DateOffset = e.DateOffset, Synthetic = e.Synthetic, InEmr = true });
             var patients = new List<RecordPatient>();
             if (_content.CaseFiles.TryGetValue(caseId, out var file))
                 patients.Add(new RecordPatient(caseId, file.Identity.Title + " " + file.Identity.FullName, file.Identity.Dob, file.Identity.Mrn, true));
@@ -138,10 +146,20 @@ namespace ProcSense.Core.Records
 
         private string Episode(string type) => Tables.Type(type)?.Episode ?? "record";
 
+        private string TabOf(string type) => Tables.Type(type)?.Tab ?? "";
+
+        // A document that arrives during the session puts a badge on its tab until it is opened (what the session starts with is not news).
+        private void Arrived(RecordDocument doc)
+        {
+            if (doc.CreatedStep > 0 || _s.Clock.Steps > 0) _badges.Add(doc.Tab, doc.Id);
+        }
+
         private void AddCurrent(CurrentDocument c)
         {
             if (!_created.Add(c.Id)) return;
-            _docs.Add(new RecordDocument { Id = c.Id, Type = c.Type, Episode = "current", Title = c.Title, CreatedStep = _s.Clock.Steps, InFolder = true, InEmr = true });
+            var doc = new RecordDocument { Id = c.Id, Type = c.Type, Episode = "current", Tab = TabOf(c.Type), Title = c.Title, CreatedStep = _s.Clock.Steps, InFolder = true, InEmr = true };
+            _docs.Add(doc);
+            if (c.Created != "start") Arrived(doc);
         }
 
         // ---------------------------------------------------------------- what creates documents
@@ -157,6 +175,7 @@ namespace ProcSense.Core.Records
                 Id = "result-" + order.Id.ToString(CultureInfo.InvariantCulture),
                 Type = type,
                 Episode = "current",
+                Tab = TabOf(type),
                 Title = order.Label + (order.Instance > 1 ? " (repeat " + order.Instance.ToString(CultureInfo.InvariantCulture) + ")" : ""),
                 Body = report != null ? report.Text : order.Results.Count > 0 ? string.Join("\n", order.Results.Select(Line)) : order.Note,   // no stated result: the reason instead
                 ImageId = report?.ImageId ?? "",
@@ -167,6 +186,7 @@ namespace ProcSense.Core.Records
                 OnDesk = _s.Diagnostics == null,            // without the diagnostics loop nothing delivers the printout, so it is on the desk at once
             };
             _docs.Add(doc);
+            _badges.Add(doc.Tab, doc.Id);                   // the EMR updates at once: a badge on the tab until the result is opened anywhere
             _history.Add(new GraphEvent("document_added:" + type, doc.Id, doc.CreatedStep, Array.Empty<string>()));
         }
 
@@ -231,6 +251,7 @@ namespace ProcSense.Core.Records
             if (view == FolderView && !(doc.Episode == "current" && (doc.InFolder || doc.OnDesk))) { o.Reject(NotInFolder); return; }   // a printout on the desk can be read before it is filed
             if (view == EmrView && !doc.InEmr) { o.Reject(UnknownDocument); return; }
             doc.TimesOpened++;
+            if (_badges.Seen(doc.Id)) o.Effects.Add("badge_cleared:" + doc.Tab);
             o.Effects.Add("opened:" + doc.Id);
             o.Effects.Add("document_type:" + doc.Type);
             _history.Add(new GraphEvent("document_opened:" + doc.Type, doc.Id, _s.Clock.Steps, Array.Empty<string>()));

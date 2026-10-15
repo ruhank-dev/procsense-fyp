@@ -4,7 +4,8 @@
     uv run --project tools tools/content/build_records.py --check    # fail if the file is out of date
 
 What is in it:
-- document types: the kinds of document, and whether each is current-episode paperwork (in the folder and the EMR) or part of the hospital record (the EMR only);
+- the EMR's tabs, and document types: the kinds of document, whether each is current-episode paperwork (in the folder and the EMR) or part of the hospital record (the EMR only),
+  and the tab it shows under (a new one badges its tab until opened, p0-patient-records-emr-s05);
 - the current-episode documents a session starts with (the clerking note, the observation chart) and the ones an event creates (consent signed, ward checklist signed);
 - the document type a result becomes, by kind of test;
 - each case's hospital record, from content/emr_case_records.csv (written from the case files, restating them and adding no clinical fact; every row has its register id);
@@ -22,21 +23,32 @@ ROOT = Path(__file__).resolve().parents[2]
 CONTENT = ROOT / "content"
 OUT = CONTENT / "records" / "records.json"
 
+# The EMR's tabs (p0-patient-records-emr README, "EMR screens"); a new document puts a badge on its tab until it is opened (p0-patient-records-emr-s05).
+TABS = [
+    ("profile", "Patient profile"),
+    ("current_episode", "Current episode"),
+    ("labs", "Lab results"),
+    ("imaging", "Imaging"),
+    ("reports", "Reports"),
+    ("history", "Medical history"),
+    ("medications", "Medications"),
+]
+
 TYPES = [
-    # id, label, episode (current: folder and EMR; record: EMR only)
-    ("referral", "Referral letter", "current"),
-    ("clerking", "Clerking note", "current"),
-    ("obs_chart", "Observation chart", "current"),
-    ("consent", "Consent form", "current"),
-    ("ward_checklist", "Ward checklist", "current"),
-    ("lab_report", "Laboratory report", "current"),
-    ("imaging_report", "Imaging report", "current"),
-    ("bedside_result", "Bedside test result", "current"),
-    ("clinic_letter", "Clinic letter or summary", "record"),
-    ("lab_result", "Previous laboratory result", "record"),
-    ("previous_imaging", "Previous imaging report", "record"),
-    ("anaesthetic_history", "Previous anaesthetic record", "record"),
-    ("discharge_summary", "Discharge summary", "record"),
+    # id, label, episode (current: folder and EMR; record: EMR only), EMR tab
+    ("referral", "Referral letter", "current", "current_episode"),
+    ("clerking", "Clerking note", "current", "current_episode"),
+    ("obs_chart", "Observation chart", "current", "current_episode"),
+    ("consent", "Consent form", "current", "current_episode"),
+    ("ward_checklist", "Ward checklist", "current", "current_episode"),
+    ("lab_report", "Laboratory report", "current", "labs"),
+    ("imaging_report", "Imaging report", "current", "imaging"),
+    ("bedside_result", "Bedside test result", "current", "labs"),
+    ("clinic_letter", "Clinic letter or summary", "record", "reports"),
+    ("lab_result", "Previous laboratory result", "record", "labs"),
+    ("previous_imaging", "Previous imaging report", "record", "imaging"),
+    ("anaesthetic_history", "Previous anaesthetic record", "record", "history"),
+    ("discharge_summary", "Discharge summary", "record", "reports"),
 ]
 
 CURRENT = [
@@ -60,6 +72,10 @@ def rows(name: str) -> list[dict]:
 
 def build() -> str:
     known = {t[0] for t in TYPES}
+    tabs = {t[0] for t in TABS}
+    for t in TYPES:
+        if t[3] not in tabs:
+            raise SystemExit(f"document type {t[0]}: unknown tab {t[3]}")
     records: dict[str, list[dict]] = {}
     for r in rows("emr_case_records.csv"):
         kind = RECORD_TYPE.get(r["doc_type"], r["doc_type"])
@@ -71,7 +87,8 @@ def build() -> str:
         })
     distractors = [{"id": r["patient_id"], "name": r["d_name"], "dob": r["d_dob"], "mrn": r["d_mrn"], "ref": r["ref"]} for r in rows("emr_distractors.csv")]
     doc = {
-        "document_types": [{"id": i, "label": label, "episode": ep} for i, label, ep in TYPES],
+        "tabs": [{"id": i, "label": label} for i, label in TABS],
+        "document_types": [{"id": i, "label": label, "episode": ep, "tab": tab} for i, label, ep, tab in TYPES],
         "current": [{"id": i, "type": t, "title": title, "created": c} for i, t, title, c in CURRENT],
         "result_types": RESULT_TYPES,
         "records": {k: records[k] for k in sorted(records)},
