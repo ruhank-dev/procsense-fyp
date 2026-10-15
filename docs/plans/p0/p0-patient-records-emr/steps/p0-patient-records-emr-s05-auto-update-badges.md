@@ -35,3 +35,4 @@ User direction (computer updates automatically after tests); p0-diagnostic-trans
 - **Critical results:** the laboratory still phones (p0-clinical-logic); the badge is in addition and never replaces the call (tested).
 - **Tests:** `BadgesTests` (6), including the step's own check headless (VAR-S1-A liver tests: after the turnaround the labs badge shows 1, opening the result clears it, the log has `open_document`). Engine tests 1,226 pass; the golden runs are unchanged.
 - **Not built (the Unity half, Sannan):** `TabBadge.cs` on the EMR's tab bar reading `Badges.Count(tab)`, and the Play Mode test. It also needs the EMR shell (p0-patient-records-emr-s03, Unity), on which this step depends. The step stays open until the Unity half is done.
+- **Core half approved by the owner on 15 Oct 2026** (decision row 85); the step file stays unticked until the Unity half is done.
