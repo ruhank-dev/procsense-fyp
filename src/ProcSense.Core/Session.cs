@@ -100,6 +100,10 @@ namespace ProcSense.Core
         internal Physiology.PhysiologySubsystem? PhysiologyStep { get; set; }
         internal Behaviour.BehaviourSubsystem? BehaviourStep { get; set; }
         internal Workflow.Steps.ConsentSubsystem? ConsentStep { get; set; }
+        internal Diagnostics.DiagnosticsLoop? DiagnosticsStep { get; set; }
+
+        /// <summary>The diagnostics loop: each test's trip (requested, patient away or sample sent, result ready, patient back, report delivered) for the views (null when the session has none).</summary>
+        public Diagnostics.DiagnosticsLoop? Diagnostics => DiagnosticsStep;
 
         /// <summary>The consent conversation: elements explained, questions, capacity and whether consent is signed (null when the session has no consent step).</summary>
         public Workflow.Steps.ConsentSubsystem? Consent => ConsentStep;

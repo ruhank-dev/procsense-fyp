@@ -38,6 +38,7 @@ namespace ProcSense.Core.Workflow
             new CaseGraphSubsystem(content.Workflow),
             new FlowSubsystem(content.FlowMaps),
             new Events.EventDirector(content),
+            new Diagnostics.DiagnosticsLoop(),
         };
     }
 }

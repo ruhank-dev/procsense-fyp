@@ -38,7 +38,7 @@ door prefabs with sign plates; NavMesh setup; wait overlay; report hand-off inte
 | ID | Question | Method | Success metric | Status |
 |---|---|---|---|---|
 | EXP-DT-1 | Do trainees understand where the patient went and when results are back? | Testers, no instructions | ≥ 4/5 understand | planned |
-| EXP-DT-2 | Does an untreated S2 patient deteriorate correctly during a CT trip? | Headless replay with time-skip | Matches deterioration clock | planned |
+| EXP-DT-2 | Does an untreated S2 patient deteriorate correctly during a CT trip? | Headless replay with time-skip | Matches deterioration clock | done (heart rate 103 to 111 over a 25-minute CT trip, untreated) |
 | EXP-DT-3 | NavMesh walking on Quest within budget? | Profile | Within EXP-VR-1 budget | planned |
 
 ## Exit

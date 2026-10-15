@@ -219,11 +219,13 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-171 | Check a fresh clone on a second machine (git clone, task setup, task doctor, task build, task test) and record the result in p0-foundation-s01 | Pending | p0-foundation-s01 | Any teammate's next clone | Verified on 15 Oct 2026 only with a fresh clone on the owner's laptop |
 | DT-172 | 68 Unity-generated .meta files under src/ProcSense.Core are not committed although ADR-0001 says they must be (otherwise each machine gives the engine files different GUIDs); confirm with Sannan and commit them from one machine | Completed | p0-foundation-s04 | Sannan (Unity) with the owner | Found 15 Oct 2026 in the owner's clone Sannan committed the 67 files on 15 Oct 2026 (895180b); Unity batch tests 149 of 149 pass with them and Unity changed none |
 | DT-173 | Decide whether DVC is worth it for the AI-phase data the project will create itself (labelled datasets, trained model weights), which cannot be fetched again from a public source like today's datasets | Pending | p0-foundation-s01 | Before p1-ai-language-s06 (labelled dataset) | Today's source datasets are fetched and checked by tools/data with a hash manifest; some licences forbid re-hosting them |
+| DT-174 | Engine version rule: raise CoreInfo.Version whenever a change can make an old log replay differently (p0-diagnostic-transitions-s01 changed time-skip without raising it), and decide how the service verifies logs from older headset builds (keep older engines in the image, or refuse with a clear message) | Pending | p0-diagnostic-transitions-s01 | Before the first release to real trainees | Today one version (0.0.1); headset builds and the service come from the same main |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 15 October 2026 (p0-diagnostic-transitions-s01) | Diagnostics loop in Core with events, trips and time-skip attention; EXP-DT-2 done; DT-174 added. |
 | 15 October 2026 (DT-172) | The engine package's Unity .meta files are committed (Sannan); DT-172 closed. |
 | 15 October 2026 (p0-foundation s01, s03, s04 approved) | Large-file guard and repository backup, templates and experiment Status column, task doctor; DT-171 to DT-173 added. |
 | 15 October 2026 (p1-backend-s03 approved) | Unity upload client and Session tab approved; DT-163 closed (Unity batch tests all pass after Sannan's fixtures); DT-168 closed. |
