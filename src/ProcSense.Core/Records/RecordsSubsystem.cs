@@ -36,8 +36,14 @@ namespace ProcSense.Core.Records
         /// <summary>The investigation it holds the result of (0 for other documents).</summary>
         public int OrderId { get; internal set; }
 
-        /// <summary>In the physical folder (current paperwork, and a printed result once it has been delivered).</summary>
+        /// <summary>In the physical folder (current paperwork, and a printed result once the trainee has filed it).</summary>
         public bool InFolder { get; internal set; }
+
+        /// <summary>A printed result that has been delivered (by the porter, with the patient, or from the bedside test) and lies on the desk until the trainee files it (p0-diagnostic-transitions-s05).</summary>
+        public bool OnDesk { get; internal set; }
+
+        /// <summary>Who brought the printout: "patient" (back from a scan), "laboratory" (the porter with a sample's report) or "bedside" ("" while not delivered).</summary>
+        public string DeliveredWith { get; internal set; } = "";
 
         /// <summary>On the EMR computer (every document, a result as soon as it is ready).</summary>
         public bool InEmr { get; internal set; }
@@ -50,7 +56,7 @@ namespace ProcSense.Core.Records
 
     /// <summary>
     /// The patient's record (p0-patient-records-emr-s01). The folder holds this admission's paperwork (clerking note, observation chart, consent and ward checklist once signed, printed results once
-    /// delivered); the EMR holds everything, including the hospital record from earlier (content/records/records.json). A result becomes a document the moment it is ready (in the EMR) and goes into the
+    /// filed: a delivered printout lies on the desk until the trainee files it, p0-diagnostic-transitions-s05); the EMR holds everything, including the hospital record from earlier (content/records/records.json). A result becomes a document the moment it is ready (in the EMR) and goes into the
     /// folder when its report is delivered (p0-diagnostic-transitions-s01). The trainee's looking is logged as actions, so it is evidence for the score and the debrief ("did the trainee look at the previous
     /// HbA1c?"): open_document, view_image and search_patient (the ward list holds distractor patients, so finding the right record is a real task). Nothing here changes the patient.
     /// </summary>
@@ -59,6 +65,7 @@ namespace ProcSense.Core.Records
         public const string OpenVerb = "open_document";
         public const string ImageVerb = "view_image";
         public const string SearchVerb = "search_patient";
+        public const string FileVerb = "file_document";
 
         public const string MissingDocument = "MISSING_DOCUMENT";
         public const string UnknownDocument = "UNKNOWN_DOCUMENT";
@@ -66,6 +73,9 @@ namespace ProcSense.Core.Records
         public const string UnknownView = "UNKNOWN_VIEW";
         public const string NoImage = "NO_IMAGE";
         public const string MissingQuery = "MISSING_QUERY";
+        public const string NotDelivered = "NOT_DELIVERED";
+        public const string AlreadyFiled = "ALREADY_FILED";
+        public const string NotPrintout = "NOT_A_PRINTOUT";
 
         public const string FolderView = "folder";
         public const string EmrView = "emr";
@@ -89,8 +99,11 @@ namespace ProcSense.Core.Records
         /// <summary>Every document, in the order it appeared.</summary>
         public IReadOnlyList<RecordDocument> Documents => _docs;
 
-        /// <summary>The physical folder: this admission's paperwork that is on the desk now.</summary>
+        /// <summary>The physical folder: this admission's paperwork and the printed results filed in it.</summary>
         public IReadOnlyList<RecordDocument> Folder => _docs.Where(d => d.Episode == "current" && d.InFolder).ToList();
+
+        /// <summary>Printed results delivered but not filed yet: they lie on the desk (nothing is lost if the trainee never files them; the EMR already has them).</summary>
+        public IReadOnlyList<RecordDocument> Desk => _docs.Where(d => d.OnDesk).ToList();
 
         /// <summary>The EMR: the whole record, this admission and before.</summary>
         public IReadOnlyList<RecordDocument> Emr => _docs.Where(d => d.InEmr).ToList();
@@ -118,6 +131,7 @@ namespace ProcSense.Core.Records
             session.Verbs.Register(OpenVerb);
             session.Verbs.Register(ImageVerb);
             session.Verbs.Register(SearchVerb);
+            session.Verbs.Register(FileVerb);
             session.Events.Subscribe<ResultReady>(OnResult);
             session.Events.Subscribe<ReportDelivered>(OnDelivered);
         }
@@ -150,7 +164,7 @@ namespace ProcSense.Core.Records
                 CreatedStep = _s.Clock.Steps,
                 OrderId = order.Id,
                 InEmr = true,
-                InFolder = _s.Diagnostics == null,          // without the diagnostics loop nothing delivers the printout, so it is there at once
+                OnDesk = _s.Diagnostics == null,            // without the diagnostics loop nothing delivers the printout, so it is on the desk at once
             };
             _docs.Add(doc);
             _history.Add(new GraphEvent("document_added:" + type, doc.Id, doc.CreatedStep, Array.Empty<string>()));
@@ -165,9 +179,10 @@ namespace ProcSense.Core.Records
         private void OnDelivered(ReportDelivered e)
         {
             var doc = _docs.FirstOrDefault(d => d.OrderId == e.OrderId);
-            if (doc == null || doc.InFolder) return;
-            doc.InFolder = true;
-            _history.Add(new GraphEvent("document_in_folder:" + doc.Type, doc.Id, _s.Clock.Steps, Array.Empty<string>()));
+            if (doc == null || doc.OnDesk || doc.InFolder) return;
+            doc.OnDesk = true;
+            doc.DeliveredWith = e.With;
+            _history.Add(new GraphEvent("document_delivered:" + doc.Type, doc.Id, _s.Clock.Steps, Array.Empty<string>()));
         }
 
         // Runs every step, so it allocates nothing until a document is actually created (the engine's no-allocation-per-tick rule, PerformanceTests).
@@ -194,6 +209,7 @@ namespace ProcSense.Core.Records
                 case OpenVerb: Open(a, o); break;
                 case ImageVerb: Image(a, o); break;
                 case SearchVerb: Search(a, o); break;
+                case FileVerb: File(a, o); break;
             }
             if (o.Accepted) Flags();
         }
@@ -212,12 +228,26 @@ namespace ProcSense.Core.Records
             if (view != FolderView && view != EmrView) { o.Reject(UnknownView); return; }
             var doc = Find(a, o);
             if (doc == null) return;
-            if (view == FolderView && !(doc.Episode == "current" && doc.InFolder)) { o.Reject(NotInFolder); return; }
+            if (view == FolderView && !(doc.Episode == "current" && (doc.InFolder || doc.OnDesk))) { o.Reject(NotInFolder); return; }   // a printout on the desk can be read before it is filed
             if (view == EmrView && !doc.InEmr) { o.Reject(UnknownDocument); return; }
             doc.TimesOpened++;
             o.Effects.Add("opened:" + doc.Id);
             o.Effects.Add("document_type:" + doc.Type);
             _history.Add(new GraphEvent("document_opened:" + doc.Type, doc.Id, _s.Clock.Steps, Array.Empty<string>()));
+        }
+
+        // The trainee puts a delivered printout into the patient's folder. The EMR had it from the moment the result was ready; this is the same document, now also in the folder.
+        private void File(SimAction a, ActionOutcome o)
+        {
+            var doc = Find(a, o);
+            if (doc == null) return;
+            if (doc.OrderId == 0) { o.Reject(NotPrintout); return; }
+            if (doc.InFolder) { o.Reject(AlreadyFiled); return; }
+            if (!doc.OnDesk) { o.Reject(NotDelivered); return; }
+            doc.OnDesk = false;
+            doc.InFolder = true;
+            o.Effects.Add("filed:" + doc.Id);
+            _history.Add(new GraphEvent("document_filed:" + doc.Type, doc.Id, _s.Clock.Steps, Array.Empty<string>()));
         }
 
         private void Image(SimAction a, ActionOutcome o)

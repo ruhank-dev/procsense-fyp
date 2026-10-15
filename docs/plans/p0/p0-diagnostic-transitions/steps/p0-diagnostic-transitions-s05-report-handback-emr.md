@@ -28,3 +28,9 @@ Report prop text must come from Core (same as EMR) — never a separate copy tha
 
 ## Sources
 User direction (physical folder + automatic EMR update); p0-patient-records-emr README; Implementation Guide B-M13 Step 5.
+
+## Implementation notes (15 Oct 2026): the Core half
+- **Built in Core (`RecordsSubsystem`):** the EMR has a result's document the moment the result is ready (unchanged from p0-patient-records-emr-s01); when the report is delivered (back with the patient from a scan, from the laboratory for a sample, or at the bedside) the printout lies on the desk (`OnDesk`, `DeliveredWith`, the `Desk` view); the new verb `file_document` puts it into the folder (`InFolder`). It is the same document object in the EMR, on the desk and in the folder, and the printout's text is the result's own text, so the two records can never disagree. A printout never filed stays on the desk and can still be read (nothing is lost; the EMR already has it). Refusals: NOT_DELIVERED (no paper yet, for example while the patient is still away), ALREADY_FILED, NOT_A_PRINTOUT (only a result's printout is filed).
+- **Changed from p0-patient-records-emr-s01:** a delivered printout used to go straight into the folder; it now waits on the desk until filed, as this step asks. Its tests were updated.
+- **Tests:** `ReportHandBackTests` (3): the step's verification headless (scan trip, printout back with the patient, filed, the EMR holds the same report text), a printout never filed, and the refusals. Engine tests pass; the golden runs are unchanged.
+- **Not built (the Unity half, Sannan):** `PrintedReport.cs` (the sheet prop showing the document's text, spawned in the returning patient's or porter's hand, with the porter's short line), the desk and folder sockets that call `file_document`, `EmrResultListener.cs`, and the Play Mode test. The EMR's new-result badge is p0-patient-records-emr-s05. The step stays open until the Unity half is done.

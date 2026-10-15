@@ -46,7 +46,7 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void A_result_becomes_one_document_seen_in_the_EMR_and_the_folder()
+        public void A_result_becomes_one_document_seen_in_the_EMR_and_once_filed_in_the_folder()
         {
             var s = Start();
             Do(s, "order_investigation", ("test", "lft"));
@@ -56,7 +56,9 @@ namespace ProcSense.Core.Tests
             var doc = r.Documents.Single(d => d.OrderId > 0);
             Assert.Equal("lab_report", doc.Type);
             Assert.Contains(r.Emr, d => ReferenceEquals(d, doc));
-            Assert.Contains(r.Folder, d => ReferenceEquals(d, doc));             // the same object: the two views cannot disagree
+            Assert.Contains(r.Desk, d => ReferenceEquals(d, doc));               // the printout has come back from the laboratory ...
+            Assert.True(Do(s, "file_document", ("id", doc.Id)).Accepted);
+            Assert.Contains(r.Folder, d => ReferenceEquals(d, doc));             // ... and once filed it is the same object in the folder: the views cannot disagree
             Assert.Contains("Bilirubin", doc.Body);
             Assert.True(Do(s, "open_document", ("id", doc.Id), ("view", "folder")).Accepted);
             Assert.True(Do(s, "open_document", ("id", doc.Id)).Accepted);
@@ -64,7 +66,7 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void A_scan_report_is_in_the_EMR_when_ready_and_in_the_folder_only_once_it_comes_back_with_the_patient()
+        public void A_scan_report_is_in_the_EMR_when_ready_and_comes_back_on_paper_only_with_the_patient()
         {
             var s = Start();
             Do(s, "ask", ("topic", "pregnancy"));
@@ -80,7 +82,7 @@ namespace ProcSense.Core.Tests
                 Assert.Equal(RecordsSubsystem.NotInFolder, Do(s, "open_document", ("id", doc.Id), ("view", "folder")).RejectReason);
             }
             for (int i = 0; i < 6 * 3600 && trip.DeliveredStep < 0; i++) s.Tick(1);
-            Assert.True(doc.InFolder);
+            Assert.Equal((true, "patient"), (doc.OnDesk, doc.DeliveredWith));
             if (doc.ImageId.Length > 0) Assert.Contains("image:" + doc.ImageId, Do(s, "view_image", ("id", doc.Id)).Effects);
         }
 
