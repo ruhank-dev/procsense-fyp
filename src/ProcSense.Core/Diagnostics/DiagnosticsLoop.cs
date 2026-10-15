@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProcSense.Core.Actions;
+using ProcSense.Core.Content;
 using ProcSense.Core.Location;
 using ProcSense.Core.Pipeline;
 using ProcSense.Core.State;
@@ -14,6 +15,7 @@ namespace ProcSense.Core.Diagnostics
     public sealed class DiagnosticTrip
     {
         public const string Requested = "REQUESTED";
+        public const string SampleWaiting = "SAMPLE_WAITING";
         public const string PatientAway = "PATIENT_AWAY";
         public const string SampleSent = "SAMPLE_SENT";
         public const string AtBedside = "AT_BEDSIDE";
@@ -34,6 +36,12 @@ namespace ProcSense.Core.Diagnostics
 
         public string Stage { get; internal set; } = Requested;
         public long RequestedStep { get; internal set; } = -1;
+
+        /// <summary>When a sample kept for the tube station or the porter was taken (-1 when it went at once).</summary>
+        public long TakenStep { get; internal set; } = -1;
+
+        /// <summary>True once the nurse has pointed out that this sample is still at the bedside.</summary>
+        public bool Prompted { get; internal set; }
         public long DepartedStep { get; internal set; } = -1;
         public long SentStep { get; internal set; } = -1;
         public long ResultStep { get; internal set; } = -1;
@@ -65,7 +73,10 @@ namespace ProcSense.Core.Diagnostics
         private readonly List<(DiagnosticTrip Trip, string With)> _toDeliver = new List<(DiagnosticTrip, string)>();
         private int _callsSeen;
         private bool _corridorSeen;
+        private readonly DiagnosticsTables _tables;
         private Session _s = null!;
+
+        public DiagnosticsLoop(ContentPackage? content = null) { _tables = content?.Diagnostics ?? DiagnosticsTables.Empty; }
 
         public int Order => PipelineOrder.Events + 5;
 
@@ -106,6 +117,23 @@ namespace ProcSense.Core.Diagnostics
                 _corridorSeen = true;
                 _s.RequestAttention("corridor_deterioration");
             }
+            Prompt();
+        }
+
+        // The beginner safety net (walkthrough Step 6): tubes left on the bed table are pointed out by the nurse after a while, in practice mode only, never in assessment.
+        private void Prompt()
+        {
+            if (_tables.PromptAfterMinutes <= 0 || _s.Mode != SessionMode.Practice || (_tables.PromptBeginnerOnly && _s.Level != TrainingLevel.Beginner)) return;
+            long wait = (long)Math.Round(_tables.PromptAfterMinutes * 60 / Time.SimClock.Step);
+            for (int i = 0; i < _trips.Count; i++)
+            {
+                var trip = _trips[i];
+                if (trip.Prompted || trip.Stage != DiagnosticTrip.SampleWaiting || _s.Clock.Steps - trip.TakenStep < wait) continue;
+                trip.Prompted = true;
+                _history.Add(new GraphEvent("diagnostics:" + trip.Test + ":NURSE_PROMPT", trip.Test, _s.Clock.Steps, Array.Empty<string>()));
+                _s.Events.Publish(new SamplesWaiting(trip.OrderId, trip.Test, _tables.PromptText, _s.Clock.Steps));
+                _s.RequestAttention("samples_waiting:" + trip.Test);
+            }
         }
 
         // New orders and state changes of the investigations: a request, a sample leaving for the laboratory, a bedside test being done, a rejected sample.
@@ -127,8 +155,17 @@ namespace ProcSense.Core.Diagnostics
                 if (trip == null) continue;
                 if (order.State == "PROCESSING" && before == "REQUESTED" && !trip.PatientTravels)
                 {
-                    if (order.Kind == "blood") Sent(trip);
+                    if (order.Kind == "blood") Sent(trip, Porter);
                     else if (order.Kind == "bedside") Stage(trip, DiagnosticTrip.AtBedside);
+                }
+                else if (order.State == "SAMPLE_TAKEN")
+                {
+                    trip.TakenStep = _s.Clock.Steps;
+                    Stage(trip, DiagnosticTrip.SampleWaiting);
+                }
+                else if (order.State == "SENT")
+                {
+                    Sent(trip, order.Sample.TryGetValue("via", out var via) ? via : Porter);
                 }
                 else if (order.State == "REJECTED")
                 {
@@ -152,9 +189,9 @@ namespace ProcSense.Core.Diagnostics
             _s.Events.Publish(new InvestigationRequested(order.Id, order.Test, order.Kind, trip.RequestedStep));
         }
 
-        private void Sent(DiagnosticTrip trip)
+        private void Sent(DiagnosticTrip trip, string via)
         {
-            trip.Via = Porter;
+            trip.Via = via;
             trip.SentStep = _s.Clock.Steps;
             Stage(trip, DiagnosticTrip.SampleSent);
             _s.Events.Publish(new SampleSent(trip.OrderId, trip.Test, trip.Via, trip.SentStep));

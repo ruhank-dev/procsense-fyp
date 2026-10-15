@@ -10,8 +10,11 @@ namespace ProcSense.Core.Diagnostics
     /// <summary>The patient left the bay for the place where the test is done (a scan room).</summary>
     public sealed record PatientDeparted(int OrderId, string Test, string To, long Step);
 
-    /// <summary>A sample left for the laboratory; the patient stays where they are. Via is how it went (the porter today; p0-diagnostic-transitions-s04 adds the tube station).</summary>
+    /// <summary>A sample left for the laboratory; the patient stays where they are. Via is how it went: the porter, or the tube station (p0-diagnostic-transitions-s04).</summary>
     public sealed record SampleSent(int OrderId, string Test, string Via, long Step);
+
+    /// <summary>The nurse points out a sample still at the bedside (practice mode, beginner level; p0-diagnostic-transitions-s04).</summary>
+    public sealed record SamplesWaiting(int OrderId, string Test, string Text, long Step);
 
     /// <summary>The patient is back where they left from after the test.</summary>
     public sealed record PatientReturned(int OrderId, string Test, long Step);

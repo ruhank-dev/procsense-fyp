@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
     /// <summary>Everything loaded from content/, immutable.</summary>
     public sealed class ContentPackage
     {
-        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null, ProcSense.Core.Clinical.DecisionTables? decision = null, ProcSense.Core.Physiology.DeteriorationTables? deterioration = null, ProcSense.Core.Workflow.Steps.WardTables? ward = null, ProcSense.Core.Workflow.OrTables? orRequirements = null, ProcSense.Core.Workflow.Steps.HandoverTables? handover = null, ProcSense.Core.Workflow.Steps.SafetyChecklistTables? checklist = null, ProcSense.Core.Workflow.EndStateTables? endStates = null, ProcSense.Core.Physiology.PhysioTables? physio = null, ProcSense.Core.Behaviour.BehaviourTables? behaviour = null, ProcSense.Core.Workflow.Steps.ConsentTables? consent = null, ProcSense.Core.Events.EventTables? events = null, ProcSense.Core.Scoring.ScoreTables? scoring = null, ProcSense.Core.Difficulty.DifficultyTables? difficulty = null, ProcSense.Core.AIContext.AiTables? ai = null, ProcSense.Core.Records.RecordTables? records = null)
+        public ContentPackage(IReadOnlyDictionary<string, CaseCard> cases, NibpTiming nibp, BehaviourEffect introduceSelf, SummariseEffect summarise, HistoryTopics historyTopics, Workflow.CaseGraph workflow, IReadOnlyDictionary<string, CaseFile>? caseFiles = null, ProcSense.Core.Workflow.FlowMaps? flowMaps = null, ExamEffects? exam = null, ProcSense.Core.Clinical.Scores.ScoreTables? scores = null, ProcSense.Core.Clinical.FastingRules? fasting = null, ProcSense.Core.Clinical.RiskTables? risk = null, ProcSense.Core.Clinical.News2Table? news2 = null, ProcSense.Core.Location.LocationTables? locations = null, ProcSense.Core.Clinical.InvestigationTables? investigations = null, ProcSense.Core.Clinical.ImagingTables? imaging = null, ProcSense.Core.Clinical.ProblemTables? problems = null, ProcSense.Core.Clinical.TreatmentTables? treatments = null, ProcSense.Core.Clinical.SepsisTables? sepsis = null, ProcSense.Core.Clinical.ClashTables? clashes = null, ProcSense.Core.Clinical.DecisionTables? decision = null, ProcSense.Core.Physiology.DeteriorationTables? deterioration = null, ProcSense.Core.Workflow.Steps.WardTables? ward = null, ProcSense.Core.Workflow.OrTables? orRequirements = null, ProcSense.Core.Workflow.Steps.HandoverTables? handover = null, ProcSense.Core.Workflow.Steps.SafetyChecklistTables? checklist = null, ProcSense.Core.Workflow.EndStateTables? endStates = null, ProcSense.Core.Physiology.PhysioTables? physio = null, ProcSense.Core.Behaviour.BehaviourTables? behaviour = null, ProcSense.Core.Workflow.Steps.ConsentTables? consent = null, ProcSense.Core.Events.EventTables? events = null, ProcSense.Core.Scoring.ScoreTables? scoring = null, ProcSense.Core.Difficulty.DifficultyTables? difficulty = null, ProcSense.Core.AIContext.AiTables? ai = null, ProcSense.Core.Records.RecordTables? records = null, ProcSense.Core.Diagnostics.DiagnosticsTables? diagnostics = null)
         {
             Cases = cases;
             Nibp = nibp;
@@ -82,6 +82,7 @@ namespace ProcSense.Core.Content
             Difficulty = difficulty ?? ProcSense.Core.Difficulty.DifficultyTables.Empty;
             Ai = ai ?? ProcSense.Core.AIContext.AiTables.Empty;
             Records = records ?? ProcSense.Core.Records.RecordTables.Empty;
+            Diagnostics = diagnostics ?? ProcSense.Core.Diagnostics.DiagnosticsTables.Empty;
         }
 
         public IReadOnlyDictionary<string, CaseCard> Cases { get; }
@@ -146,6 +147,9 @@ namespace ProcSense.Core.Content
 
         /// <summary>The patient record: document types, current documents, each case's hospital record and the distractor patients (content/records/records.json).</summary>
         public ProcSense.Core.Records.RecordTables Records { get; }
+
+        /// <summary>How samples go to the laboratory and the nurse's prompt about tubes left at the bedside (content/diagnostics/diagnostics.json).</summary>
+        public ProcSense.Core.Diagnostics.DiagnosticsTables Diagnostics { get; }
         /// <summary>The treatment library: each treatment with its required checks, prerequisites, restrictions and effect ids (content/treatments.json).</summary>
         public ProcSense.Core.Clinical.TreatmentTables Treatments { get; }
         /// <summary>The playable case files that were asked for (content/case_files), by id; empty when none were loaded.</summary>

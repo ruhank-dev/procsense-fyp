@@ -81,9 +81,18 @@ def build() -> str:
     return json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
 
 
+def registered() -> set[str]:
+    with open(ROOT / "docs" / "research" / "source_register.csv", encoding="utf-8", newline="") as f:
+        return {r["id"] for r in csv.DictReader(f)}
+
+
 def main(argv: list[str]) -> int:
     text = build()
     if "--check" in argv:
+        missing = sorted(set(json.loads(text)["refs"]) - registered())
+        if missing:
+            print(f"FAIL  {OUT.relative_to(ROOT).as_posix()} cites register rows that do not exist: {', '.join(missing)}")
+            return 1
         if not OUT.exists() or OUT.read_text(encoding="utf-8") != text:
             print("FAIL  content/records/records.json is out of date; run tools/content/build_records.py")
             return 1

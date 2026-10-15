@@ -1,0 +1,34 @@
+{
+ "dispatch": [
+  {
+   "id": "tube_station",
+   "label": "Pneumatic tube station",
+   "transit_minutes": 2,
+   "porter": false,
+   "ref": "SR-4120"
+  },
+  {
+   "id": "porter",
+   "label": "Hand to the porter",
+   "transit_minutes": 5,
+   "porter": true,
+   "ref": "SR-4120"
+  }
+ ],
+ "waiting_prompt": {
+  "after_minutes": 10,
+  "practice_beginner_only": true,
+  "text": "There are labelled tubes on the bed table that have not gone to the lab yet.",
+  "ref": "SR-4121"
+ },
+ "send_rule": {
+  "default": "now",
+  "later": "later",
+  "ref": "SR-4122"
+ },
+ "refs": [
+  "SR-4120",
+  "SR-4121",
+  "SR-4122"
+ ]
+}

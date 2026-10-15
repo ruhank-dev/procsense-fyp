@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "34f1c162e0be23443c23c21acce59aba03d3cc1d91d7a02d556136eb87f2df33",
- "files": 376,
- "bytes": 16776421,
+ "content_hash": "cbf3a56a5e1e62cf483c030de1eb8dc8ae3480ccc89fb7abd4d588c2427cc6a1",
+ "files": 377,
+ "bytes": 16777028,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -16,6 +16,7 @@
   "cxr": 33,
   "debrief": 1,
   "decision": 1,
+  "diagnostics": 1,
   "difficulty": 1,
   "ecg": 41,
   "endstate": 1,
@@ -504,6 +505,10 @@
   "devices.json": {
    "bytes": 296,
    "sha256": "ece055c104caf06860d1e9af9625b57d56d27f195b8aeedaca4d8841200a1ba9"
+  },
+  "diagnostics/diagnostics.json": {
+   "bytes": 607,
+   "sha256": "0656504ab2c04d91e7f74f3ac411e1b5df17b16a8b3f9962c7b2282fb08ee758"
   },
   "difficulty/dimensions.json": {
    "bytes": 2618,

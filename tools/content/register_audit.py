@@ -39,6 +39,7 @@ HAND_RANGES = [
     (2850, 2869, "Consent and the 12 Oct 2026 evidence review: verified figures (type A), institutional figures (type C) and the HbA1c, blood pressure and NG253 rules (type A)"),
     (2870, 2879, "AI safety: the grounding validator's word lists and the intents each AI-voiced character may use (type D and B)"),
     (4100, 4109, "Treatment library and medicine workflow rows written by Abdul Moiz's builder (tools/content/build_treatments.py)"),
+    (4120, 4139, "Diagnostics loop and patient record design rows written by Abdul Moiz's builders (tools/content/build_diagnostics.py, build_records.py)"),
 ]
 STATUSES = {"VERIFIED", "UNVERIFIED", "AWAITING_CLINICIAN"}
 

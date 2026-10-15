@@ -282,6 +282,9 @@ jobs:
       - name: Ward checklist is up to date (13 items, verify rules)
         run: uv run --project tools tools/content/build_ward.py --check
 
+      - name: Sample dispatch is up to date (tube station, porter, beginner prompt)
+        run: uv run --project tools tools/content/build_diagnostics.py --check
+
       - name: Patient record is up to date (document types, each case's record, distractor patients)
         run: uv run --project tools tools/content/build_records.py --check
 
