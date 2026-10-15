@@ -25,13 +25,13 @@ namespace ProcSense.Core.Replay
             var mode = (SessionMode)Enum.Parse(typeof(SessionMode), header.Str("mode"), true);
 
             var diffs = new List<string>();
-            Diff("", expected, MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content))), diffs);
+            Diff("", expected, MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content), content)), diffs);
             return diffs;
         }
 
         /// <summary>The expected file for a script as it runs today (used by "golden --update"; review the change before committing it).</summary>
         public static string Expected(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content) =>
-            Format(MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content))), 0) + "\n";
+            Format(MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content), content)), 0) + "\n";
 
         private static Session Run(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content)
         {
@@ -42,7 +42,7 @@ namespace ProcSense.Core.Replay
         }
 
         // The whole expected-file shape, in a fixed key order.
-        private static string Describe(Session s)
+        private static string Describe(Session s, ContentPackage content)
         {
             var o = s.Observable;
             var c = s.Patient.Clinical;
@@ -69,6 +69,17 @@ namespace ProcSense.Core.Replay
             sb.Append(",\"last_rejection\":"); JsonText.Quote(sb, o.LastRejection);
             string end = s.EndStates?.Resolved ?? "";
             if (end.Length > 0) { sb.Append(",\"end_state\":"); JsonText.Quote(sb, end); }       // only once the case has ended, so the earlier golden runs keep their files
+            sb.Append("}");
+            // the score the debrief shows (p0-evaluation-performance-s02, plan test T-SCO1): the result, how many credits, and every lost item by severity, so a score change shows in the diff
+            var facts = Scoring.DebriefFacts.Build(s, content);
+            sb.Append(",\"score\":{\"result\":"); JsonText.Quote(sb, facts.Result);
+            sb.Append(",\"credits\":").Append(facts.Lines.Count(l => l.Severity == "credit").ToString(CultureInfo.InvariantCulture));
+            foreach (var severity in new[] { "minor", "major", "critical" })
+            {
+                sb.Append(",\"").Append(severity).Append("\":[");
+                Join(sb, facts.Lines.Where(l => l.Severity == severity).Select(l => l.Item).OrderBy(i => i, StringComparer.Ordinal));
+                sb.Append(']');
+            }
             return sb.Append("}}").ToString();
         }
 

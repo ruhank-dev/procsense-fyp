@@ -237,6 +237,9 @@ jobs:
       - name: P0 correct-path scripts are what the generator writes (17 cases)
         run: uv run --project tools tools/golden/p0_scripts.py --stale
 
+      - name: Golden suite (17 cases x 4 paths) behaves as each path promises
+        run: uv run --project tools tools/golden/paths.py --check
+
       - name: What-if bindings are up to date (P0 cases, derived from the case content)
         run: uv run --project tools tools/content/build_bindings.py --check
 

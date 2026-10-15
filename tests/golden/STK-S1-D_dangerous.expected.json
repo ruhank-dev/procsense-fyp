@@ -1,0 +1,44 @@
+{
+  "case": "STK-S1-D",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "d90ec9961d3c04b713aac6088f27784b7aedd97469f586af86ec758b4da221d3",
+  "state_hash": "e1054838cecd2e855b74885dc06458e80e7cbfe74e444daa2271458d36e6fb8e",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [
+      "identity",
+      "allergies",
+      "reason_for_admission",
+      "responsible_adult",
+      "complaint"
+    ],
+    "vitals": { "spo2": "96", "oxygen": "room_air", "heart_rate": "112", "systolic_bp": "108", "diastolic_bp": "66", "respiratory_rate": "22", "temperature_c": "39.2", "acvpu": "A", "pain_score": "0" },
+    "flags": [
+      "allergy_reaction_asked",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced",
+      "mode.emergency",
+      "news2.computed",
+      "results.any_viewed"
+    ],
+    "rejections": [{ "verb": "order_investigation", "reason": "IDENTITY_NOT_CONFIRMED" }, { "verb": "take_sample", "reason": "IDENTITY_NOT_CONFIRMED" }],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "REDIRECTED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 4,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

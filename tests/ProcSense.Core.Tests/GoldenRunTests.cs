@@ -21,7 +21,7 @@ namespace ProcSense.Core.Tests
             var names = Names();
             foreach (var n in new[] { "pause_and_time_skip", "skeleton1_bloods_first", "skeleton1_closed_question", "skeleton1_correct", "wristband_mismatch_resolved", "wristband_missing_allergy", "wristband_missing_applied" })
                 Assert.Contains(n, names);
-            Assert.Equal(24, names.Length);                                           // the 7 above and one correct path for each of the 17 P0 cases (P0CaseTests)
+            Assert.Equal(75, names.Length);                                           // the 7 above and four paths (correct, novice, dangerous, edge) for each of the 17 P0 cases (p0-evaluation-performance-s02)
         }
 
         [Fact]

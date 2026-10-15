@@ -64,5 +64,12 @@
     "understanding": 1,
     "last_rejection": "",
     "end_state": "READY_SAFE"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 12,
+    "minor": [],
+    "major": ["major.e_fast_breathing_not_escalated", "major.e_high_hr_not_escalated"],
+    "critical": []
   }
 }

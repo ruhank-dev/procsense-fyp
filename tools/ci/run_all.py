@@ -111,6 +111,7 @@ def main(argv: list[str]) -> int:
             ("unit tests", lambda: run(["dotnet", "test", "ProcSense.sln", "--no-build", "-c", "Release"])),
             ("backend tests (FastAPI on a real PostgreSQL; skipped with a notice when there is no Docker)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/server_tests.py"])),
             ("golden runs", lambda: run(CLI + ["golden", "--dir", "tests/golden"])),
+            ("golden suite: 17 cases x 4 paths, each path behaves as it promises", lambda: run(["uv", "run", "--project", "tools", "tools/golden/paths.py", "--check"])),
             ("review-status gate refuses an under-approved case (assessment on a training-only case)", gate_refuses),
             ("replay round trip", replay_round_trip),
             ("a session file the engine just wrote is read by the server (the engine and server contract)", session_file_contract),

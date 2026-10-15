@@ -1,0 +1,21 @@
+[
+  {"t": 0.0, "verb": "introduce_self"},
+  {"t": 4.0, "verb": "ask_identity"},
+  {"t": 8.0, "verb": "read_wristband"},
+  {"t": 12.0, "verb": "open_notes"},
+  {"t": 16.0, "verb": "confirm_identity"},
+  {"t": 16.0, "verb": "pause"},
+  {"t": 16.0, "verb": "resume"},
+  {"t": 20.0, "verb": "ask_allergies"},
+  {"t": 24.0, "verb": "ask_allergy_reaction"},
+  {"t": 28.0, "verb": "ask_reason_for_admission"},
+  {"t": 32.0, "verb": "ask_responsible_adult"},
+  {"t": 36.0, "verb": "order_investigation", "params": {"test": "lft"}},
+  {"t": 38.0, "verb": "take_sample", "params": {"test": "lft", "tube": "serum_gold"}},
+  {"t": 40.0, "verb": "time_skip", "params": {"minutes": "30"}},
+  {"t": 1840.0, "verb": "time_skip", "params": {"minutes": "30"}},
+  {"t": 3641.0, "verb": "view_result", "params": {"test": "lft"}},
+  {"t": 3642.0, "verb": "declare_outcome", "params": {"outcome": "INVESTIGATE", "reason": "Probable stone in the main bile duct: not what she was booked for"}},
+  {"t": 3646.0, "verb": "postpone", "params": {"reason": "Probable stone in the main bile duct: not what she was booked for"}},
+  {"t": 3650.0, "verb": "wait"}
+]

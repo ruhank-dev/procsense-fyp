@@ -34,5 +34,12 @@
     "understanding": 0,
     "last_rejection": "",
     "end_state": "SAFE_BUT_DELAYED"
+  },
+  "score": {
+    "result": "SUCCESS_WITH_DELAY",
+    "credits": 1,
+    "minor": [],
+    "major": ["major.postponed_unnecessarily"],
+    "critical": []
   }
 }
