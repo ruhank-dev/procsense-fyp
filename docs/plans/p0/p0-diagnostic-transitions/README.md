@@ -35,11 +35,11 @@ door prefabs with sign plates; NavMesh setup; wait overlay; report hand-off inte
 | Trainee at the door | Can follow the patient along the corridor to the door, **can't go through**; message explains why | Trainee enters the room | User decision: B rooms are not modelled | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-DT-1 | Do trainees understand where the patient went and when results are back? | Testers, no instructions | ≥ 4/5 understand |
-| EXP-DT-2 | Does an untreated S2 patient deteriorate correctly during a CT trip? | Headless replay with time-skip | Matches deterioration clock |
-| EXP-DT-3 | NavMesh walking on Quest within budget? | Profile | Within EXP-VR-1 budget |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-DT-1 | Do trainees understand where the patient went and when results are back? | Testers, no instructions | ≥ 4/5 understand | planned |
+| EXP-DT-2 | Does an untreated S2 patient deteriorate correctly during a CT trip? | Headless replay with time-skip | Matches deterioration clock | planned |
+| EXP-DT-3 | NavMesh walking on Quest within budget? | Profile | Within EXP-VR-1 budget | planned |
 
 ## Exit
 Every investigation in the P0 cases has a working transition; transport choice is scored; EMR updates on return; critical calls still block.

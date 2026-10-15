@@ -61,11 +61,11 @@ EMR computer (`../p0-patient-records-emr/`) or tablet.
 | Room dressing | Only interaction-relevant objects (see equipment list) | Full decorative dressing | User direction | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-ENV-1 | Is the supplied model Quest-ready (tris, materials, scale)? | Import + profile on device | Within budget, else optimisation plan |
-| EXP-ENV-2 | Does the door transition feel believable? | Testers send a patient to CT | Understood without explanation |
-| EXP-ENV-3 | Which rooms does the supplied model include? | Inspect on arrival | Map shells → A/B locations |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-ENV-1 | Is the supplied model Quest-ready (tris, materials, scale)? | Import + profile on device | Within budget, else optimisation plan | planned |
+| EXP-ENV-2 | Does the door transition feel believable? | Testers send a patient to CT | Understood without explanation | planned |
+| EXP-ENV-3 | Which rooms does the supplied model include? | Inspect on arrival | Map shells → A/B locations | planned |
 
 ## Exit
 OT + patient bay + corridor load on Quest within budget with all anchors; every B location has a door + sign + transition that the trainee can't pass; no unneeded room is dressed.

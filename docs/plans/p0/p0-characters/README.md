@@ -31,11 +31,11 @@ a porter with an escort when unstable (p0-diagnostic-transitions).
 | Breathing / pain cues | Procedural (animation layer speed from RR, pain blend shape) | Fixed clips | Matches live vitals | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-CHR-1 | Are jaundice/pallor/rash recognisable in VR lighting? | Medical reviewers identify the sign | ≥ 80% correct |
-| EXP-CHR-2 | Characters on screen within budget (patient + 3 staff) | Quest profile | Within EXP-VR-1 budget |
-| EXP-CHR-3 | Does visible breathing rate match the monitor RR? | Count breaths vs value | Match |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-CHR-1 | Are jaundice/pallor/rash recognisable in VR lighting? | Medical reviewers identify the sign | ≥ 80% correct | planned |
+| EXP-CHR-2 | Characters on screen within budget (patient + 3 staff) | Quest profile | Within EXP-VR-1 budget | planned |
+| EXP-CHR-3 | Does visible breathing rate match the monitor RR? | Count breaths vs value | Match | planned |
 
 ## Exit
 All P0 cases have a patient; all P0 NPC roles have a character; signs recognised; budget met.

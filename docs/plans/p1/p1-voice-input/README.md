@@ -17,10 +17,10 @@ The trainee can speak: push-to-talk speech recognition, voice orders with read-b
 | Input | Push-to-talk | Always listening | Fewer errors, privacy | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-VOX-3 | Whisper size vs latency vs WER (accented English) | PriMock57 / Common Voice / consented team recordings | Targets met |
-| EXP-VOX-4 | Voice-order accuracy | Parse recorded orders | ≥ 95% (original target) |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-VOX-3 | Whisper size vs latency vs WER (accented English) | PriMock57 / Common Voice / consented team recordings | Targets met | planned |
+| EXP-VOX-4 | Voice-order accuracy | Parse recorded orders | ≥ 95% (original target) | planned |
 
 ## Exit
 Voice paths meet targets; menu fallback always works.

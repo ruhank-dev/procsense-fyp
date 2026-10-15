@@ -16,11 +16,11 @@
 | Urdu data | TTS augmentation + small consented set | Wait for public dataset | None suitable known (inventory D64) | Dataset found |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-P2AI-1 | On-device ASR latency/WER on Quest | Spike | Comparable to server path |
-| EXP-P2AI-2 | Small classifier vs LLM classifier | Same eval set | F1 within agreed margin |
-| EXP-P2AI-3 | Medical vs general LLM | EXP-AI-1 suite | Better grounding/quality → switch |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-P2AI-1 | On-device ASR latency/WER on Quest | Spike | Comparable to server path | planned |
+| EXP-P2AI-2 | Small classifier vs LLM classifier | Same eval set | F1 within agreed margin | planned |
+| EXP-P2AI-3 | Medical vs general LLM | EXP-AI-1 suite | Better grounding/quality → switch | planned |
 
 ## Exit
 Each extension meets its target or is documented as not viable (with evidence).

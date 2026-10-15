@@ -23,12 +23,12 @@ A Unity 6 project running on Meta Quest 2/3 with an XR rig, comfortable movement
 | The developer ↔ Editor | Editor scripts + screenshots; Unity MCP if EXP-VR-4 passes | Manual only | The developer can't see the Editor | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-VR-1 | Frame budget on Quest 2 with rooms + Core ticking | OVR Metrics Tool + Unity profiler | Stable at target refresh; budgets (draw calls, tris, texture memory) written down |
-| EXP-VR-2 | Controllers vs hand tracking for band reading + tube labelling | 3+ testers both ways | Success rate + preference |
-| EXP-VR-3 | Teleport vs smooth comfort | Comfort questionnaire | No sickness reports |
-| EXP-VR-4 | Unity MCP bridge (UNVERIFIED tool) usable for the developer? | Try 5 real tasks | ≥ 4/5 → adopt |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-VR-1 | Frame budget on Quest 2 with rooms + Core ticking | OVR Metrics Tool + Unity profiler | Stable at target refresh; budgets (draw calls, tris, texture memory) written down | planned |
+| EXP-VR-2 | Controllers vs hand tracking for band reading + tube labelling | 3+ testers both ways | Success rate + preference | planned |
+| EXP-VR-3 | Teleport vs smooth comfort | Comfort questionnaire | No sickness reports | planned |
+| EXP-VR-4 | Unity MCP bridge (UNVERIFIED tool) usable for the developer? | Try 5 real tasks | ≥ 4/5 → adopt | planned |
 
 ## Exit
 Quest build boots, Core runs on device (EXP-CORE-1 hash match), budgets recorded.

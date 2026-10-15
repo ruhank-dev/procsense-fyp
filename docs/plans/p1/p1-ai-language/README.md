@@ -22,12 +22,12 @@ a communication classifier producing evidence, and AI-worded debriefs that can't
 | Fallback | Pre-rendered lines, templates, menu | None | Works with server off | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-AI-1 | Best model for 6 GB (quality, latency, grounding) | Benchmark on dialogue eval set | Latency ≤ 2.5 s fallback threshold + 0 leaks |
-| EXP-AI-2 | Hidden-fact leak rate | 100 adversarial questions per case | 0 / 100 |
-| EXP-AI-3 | Classifier quality | Held-out F1 on human-labelled set | Threshold fixed before testing |
-| EXP-AI-4 | Debrief mutation rejection | Mutate facts/IDs/numbers | 100% rejected |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-AI-1 | Best model for 6 GB (quality, latency, grounding) | Benchmark on dialogue eval set | Latency ≤ 2.5 s fallback threshold + 0 leaks | planned |
+| EXP-AI-2 | Hidden-fact leak rate | 100 adversarial questions per case | 0 / 100 | planned |
+| EXP-AI-3 | Classifier quality | Held-out F1 on human-labelled set | Threshold fixed before testing | planned |
+| EXP-AI-4 | Debrief mutation rejection | Mutate facts/IDs/numbers | 100% rejected | planned |
 
 ## Planning update (12 Oct 2026)
 Model choices, latency targets and fallbacks for every step here are in `docs/architecture/model_technology_register.md` (MC-01 to MC-04, MC-12): Qwen3 4B served by Ollama with JSON-schema output as the default candidate (Apache-2.0), to be confirmed by the s02 benchmark on the 6 GB GPU (DT-112). The LLM also serves the live-generation narrative stage (LG-06) and the advisory quality judge (LG-11). Feature ids C24 to C30, C36, C37, D38, D46, D47, E53, E54, E55, E57 in `docs/architecture/feature_registry.md`. Planning only.

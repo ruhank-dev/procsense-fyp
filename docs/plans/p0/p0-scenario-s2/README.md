@@ -14,10 +14,10 @@ Cases: VAR-S2-PC, -PD (Usman deterioration), -B, -D, -F, -G and STK-S2-B.
 | Sepsis timers | Shown in debrief, not on screen (hints in beginner mode) | Visible countdown | Trainee must recognise, not be told | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-S2-1 | Fair clock speed for beginners? | Testers at 3 speeds | Chosen speed recorded (Type D) |
-| EXP-S2-2 | Do testers notice deterioration unprompted? | Observation | Recognition rate recorded |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-S2-1 | Fair clock speed for beginners? | Testers at 3 speeds | Chosen speed recorded (Type D) | planned |
+| EXP-S2-2 | Do testers notice deterioration unprompted? | Observation | Recognition rate recorded | planned |
 
 ## Exit
 All S2 P0 cases reach expected end states in VR + headless; Usman timeline matches walkthrough.

@@ -13,10 +13,10 @@ with LitePhysio remaining the default/fallback.
 | Licence | Verify current Pulse licence before use (inventory says Apache-2.0, re-confirm) | — | Proof of truth | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-PULSE-1 | Pulse vs LitePhysio parity on P0 golden runs | Same cases both engines | Same end states; medical reviewer prefers one |
-| EXP-PULSE-2 | Can Pulse run on Quest? | Native build test | Frame budget held |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-PULSE-1 | Pulse vs LitePhysio parity on P0 golden runs | Same cases both engines | Same end states; medical reviewer prefers one | planned |
+| EXP-PULSE-2 | Can Pulse run on Quest? | Native build test | Frame budget held | planned |
 
 ## Exit
 Pulse selectable; parity report written.

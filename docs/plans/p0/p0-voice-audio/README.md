@@ -19,10 +19,10 @@ and monitors alarm according to Core state.
 | Sounds | Licensed library sounds (Freesound per-sound licence) or recorded | Synthesised | Realism | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-VOX-1 | Piper vs Kokoro naturalness | Blind listening test | Preferred engine chosen |
-| EXP-VOX-2 | Alarm realism | Medical reviewer | Accepted |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-VOX-1 | Piper vs Kokoro naturalness | Blind listening test | Preferred engine chosen | planned |
+| EXP-VOX-2 | Alarm realism | Medical reviewer | Accepted | planned |
 
 ## Exit
 All P0 lines voiced + subtitled; alarms correct per state; every sound/voice licence recorded.

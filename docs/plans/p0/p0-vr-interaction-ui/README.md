@@ -25,11 +25,11 @@ OT equipment is **operational**, not decorative: lights switch on, screens are i
 | Monitor traces | Line renderer from Core samples (+ dataset-derived waveform templates) | Video loops | Reacts to real state | Performance |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-UI-1 | New users complete Step 1 (ID + allergy) unaided? | 5 testers, think-aloud | ≥ 4/5 |
-| EXP-UI-2 | Minimum readable text size on Quest 2 | Test sizes at arm's length | Size fixed in UI guidelines |
-| EXP-UI-3 | Monitor realism | Medical reviewer | Accepted or fix list |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-UI-1 | New users complete Step 1 (ID + allergy) unaided? | 5 testers, think-aloud | ≥ 4/5 | planned |
+| EXP-UI-2 | Minimum readable text size on Quest 2 | Test sizes at arm's length | Size fixed in UI guidelines | planned |
+| EXP-UI-3 | Monitor realism | Medical reviewer | Accepted or fix list | planned |
 
 ## Exit
 Every P0 step completable with controllers; usability tasks pass; UI never writes state directly.
