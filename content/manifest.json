@@ -1,12 +1,13 @@
 {
  "schema": 1,
- "content_hash": "33fb7bab03fd7b9188087489e1660e40dc5d92b2201a6f2ee204a08dd7d372d1",
- "files": 377,
- "bytes": 16777744,
+ "content_hash": "15f7b66ed0851a3a5c27bf0c0bcd46c287a8f7c126d094d994fc42c754dac5f4",
+ "files": 378,
+ "bytes": 16790599,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
   "assessment": 1,
+  "attributions": 1,
   "behaviour": 3,
   "case_files": 53,
   "cases": 1,
@@ -61,6 +62,10 @@
   "assessment/mapping.json": {
    "bytes": 7669,
    "sha256": "f8850e8eb396897dd82029a2d5eb3208b89f2843601450b5035155e8855c680c"
+  },
+  "attributions/attributions.json": {
+   "bytes": 12855,
+   "sha256": "7a315e6355588ebc2109c7e5c7a8f13b4f428f0234a197807ad175e3f65fb408"
   },
   "bedside_results.csv": {
    "bytes": 2032,

@@ -61,6 +61,11 @@ tasks:
         ignore_error: true
       - uv run --project tools tools/ci/setup_check.py
 
+  attributions:
+    desc: Regenerate docs/ATTRIBUTIONS.md and the in-app credits (content/attributions/attributions.json) from the registers
+    cmds:
+      - uv run --project tools tools/eval/attributions.py
+
   doctor:
     desc: List every tool the project uses with the version it wants and the version installed; exit code 1 if a required tool is missing
     cmds:
@@ -195,6 +200,7 @@ tasks:
       - uv run --project tools tools/content/equipment_sheets.py
       - uv run --project tools tools/content/case_gaps.py
       - uv run --project tools tools/content/trace.py
+      - uv run --project tools tools/eval/attributions.py
       - uv run --project tools tools/content/content_manifest.py
       - uv run --project tools tools/content/review_pack.py
 

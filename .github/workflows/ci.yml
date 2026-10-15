@@ -240,6 +240,9 @@ jobs:
       - name: Golden suite (17 cases x 4 paths) behaves as each path promises
         run: uv run --project tools tools/golden/paths.py --check
 
+      - name: Attributions are up to date and every register row has what a credit needs
+        run: uv run --project tools tools/eval/attributions.py --check
+
       - name: What-if bindings are up to date (P0 cases, derived from the case content)
         run: uv run --project tools tools/content/build_bindings.py --check
 

@@ -1,0 +1,25 @@
+id,name,version,ecosystem,licence,used_for,licence_source,checked
+PKG-001,FastAPI,0.143.0,PyPI,MIT,hosted service,installed package metadata (server/.venv),2026-10-16
+PKG-002,Starlette,1.8.0,PyPI,BSD-3-Clause,hosted service (under FastAPI),installed package metadata (server/.venv),2026-10-16
+PKG-003,Uvicorn,0.54.0,PyPI,BSD-3-Clause,hosted service (web server),installed package metadata (server/.venv),2026-10-16
+PKG-004,SQLAlchemy,2.1.4,PyPI,MIT,hosted service (database access),installed package metadata (server/.venv),2026-10-16
+PKG-005,psycopg,3.3.6,PyPI,LGPL-3.0-only,hosted service (PostgreSQL driver; used unmodified as a library),installed package metadata (server/.venv),2026-10-16
+PKG-006,Alembic,1.20.0,PyPI,MIT,hosted service (database migrations),installed package metadata (server/.venv),2026-10-16
+PKG-007,pydantic,2.14.1,PyPI,MIT,hosted service (settings and request checks),installed package metadata (server/.venv),2026-10-16
+PKG-008,pydantic-settings,2.15.0,PyPI,MIT,hosted service (settings),installed package metadata (server/.venv),2026-10-16
+PKG-009,PyJWT,2.15.1,PyPI,MIT,hosted service (sign-in tokens),installed package metadata (server/.venv),2026-10-16
+PKG-010,cryptography,50.0.2,PyPI,Apache-2.0 OR BSD-3-Clause,hosted service (token signatures; backup encryption),installed package metadata (server/.venv),2026-10-16
+PKG-011,HTTPX,0.28.1,PyPI,BSD-3-Clause,hosted service (calls to Supabase),installed package metadata (server/.venv),2026-10-16
+PKG-012,pytest,9.1.1,PyPI,MIT,tests only,installed package metadata (server/.venv),2026-10-16
+PKG-013,Playwright,1.63.0,PyPI,Apache-2.0,tests only (browser test),installed package metadata (server/.venv),2026-10-16
+PKG-014,jsonschema,4.26.0,PyPI,MIT,content tools (schema checks),installed package metadata (tools/.venv),2026-10-16
+PKG-015,NumPy,2.5.3,PyPI,BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0,content tools (images and data),installed package metadata (tools/.venv),2026-10-16
+PKG-016,Pillow,12.3.0,PyPI,MIT-CMU,content tools (images),installed package metadata (tools/.venv),2026-10-16
+PKG-017,PyArrow,26.0.0,PyPI,Apache-2.0,content tools (dataset files),installed package metadata (tools/.venv),2026-10-16
+PKG-018,NiBabel,5.4.2,PyPI,MIT,content tools (CT and MRI slices),installed package metadata (tools/.venv),2026-10-16
+PKG-019,PyYAML,6.0.3,PyPI,MIT,repository checks,installed package metadata (tools/.venv),2026-10-16
+PKG-020,xUnit,2.9.2,NuGet,Apache-2.0,engine tests only,general knowledge; re-check on nuget.org before a release,2026-10-16
+PKG-021,xunit.runner.visualstudio,2.8.2,NuGet,Apache-2.0,engine tests only,general knowledge; re-check on nuget.org before a release,2026-10-16
+PKG-022,Microsoft.NET.Test.Sdk,17.12.0,NuGet,MIT,engine tests only,general knowledge; re-check on nuget.org before a release,2026-10-16
+PKG-023,coverlet.collector,6.0.2,NuGet,MIT,engine tests only,general knowledge; re-check on nuget.org before a release,2026-10-16
+PKG-024,"Unity packages (Input System, XR Interaction Toolkit, OpenXR, XR Management, Universal Render Pipeline, uGUI, Test Framework)",see unity/Packages/manifest.json,Unity,Unity Companion License (Unity terms),VR application,general knowledge; re-check each package's licence file before a release,2026-10-16

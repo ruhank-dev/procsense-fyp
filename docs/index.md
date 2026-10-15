@@ -42,6 +42,8 @@ _Last reviewed 12 October 2026 (UTC). Hand-written; `tools/plans/check_planning_
 | [deferred-tasks.md](deferred-tasks.md) | Register of postponed, outstanding and blocked work (status: Pending, In progress, Completed, Blocked) | What is still open and what it waits for |
 | [ai-roadmap-status.md](ai-roadmap-status.md) | Short audit of what is AI, what is rules, what is built; points to `architecture/` | The short answer on AI status |
 | [CI.md](CI.md) | Every CI check, what it guards, the command to run it | What CI enforces |
+| [USER_GUIDE.md](USER_GUIDE.md) | Short guide for trainees and teachers: starting, controls, the case flow, end states, debrief, practice and assessment | How to use the app |
+| [ATTRIBUTIONS.md](ATTRIBUTIONS.md) | Credits and sources, generated from the registers (`task attributions`) | Who and what is credited |
 | [TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md) | Branch, merge, `task ci`, direct push to `main` | Team git practice |
 | [previous_prompt.md](previous_prompt.md) | Owner prompt history | What was asked, when |
 | [team/](team/) | Ready-to-send messages for teammates | Nothing (convenience copies) |
