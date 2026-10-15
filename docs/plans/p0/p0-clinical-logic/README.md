@@ -23,11 +23,11 @@ decision & priority engine.
 | Medicine roles | Trainee requests → clinician NPC confirms → nurse NPC administers | Trainee administers | Walkthrough Part 8.1 | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-CL-1 | Every walkthrough worked example reproduced? | Example-based tests | 100% (mismatch → issues.md, not a code tweak) |
-| EXP-CL-2 | JsonLogic subset expressive enough? | Encode all P0 rules | ≥ 95% without custom operators |
-| EXP-CL-3 | Is a Python rule-evaluator twin worth it? | Count content errors it catches | Keep only if it catches real errors |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-CL-1 | Every walkthrough worked example reproduced? | Example-based tests | 100% (mismatch → issues.md, not a code tweak) | planned |
+| EXP-CL-2 | JsonLogic subset expressive enough? | Encode all P0 rules | ≥ 95% without custom operators | planned |
+| EXP-CL-3 | Is a Python rule-evaluator twin worth it? | Count content errors it catches | Keep only if it catches real errors | running (twin in CI; the keep-or-delete count is due after two weeks of content work) |
 
 ## Exit
 All worked examples pass; every rule hit has provenance; trainee can never dose/administer (tested).

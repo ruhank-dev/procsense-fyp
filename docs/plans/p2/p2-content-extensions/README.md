@@ -15,9 +15,9 @@
 | Codes | Add as extra columns, not replacing our IDs | Replace IDs | Non-breaking | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-P2C-1 | Can each SC case be expanded without new engine features? | Attempt all 20 | Count needing changes |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-P2C-1 | Can each SC case be expanded without new engine features? | Attempt all 20 | Count needing changes | planned |
 
 ## Exit
 SC-1..SC-20 playable; codes mapped; licences (LOINC registration, ICD-11 terms) recorded.

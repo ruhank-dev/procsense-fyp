@@ -21,10 +21,10 @@ validator that rejects impossible cases, and deterministic difficulty selection.
 | Difficulty | Deterministic selection from approved pool | ML-based | Explainable, safe | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-CASE-1 | Validator rejects every contradiction type? | Mutation generator | 12/12 |
-| EXP-CASE-2 | New case = zero code? | Add a case as data only | No code change |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-CASE-1 | Validator rejects every contradiction type? | Mutation generator | 12/12 | done |
+| EXP-CASE-2 | New case = zero code? | Add a case as data only | No code change | planned |
 
 ## Exit
 17 cases valid + golden-tested.

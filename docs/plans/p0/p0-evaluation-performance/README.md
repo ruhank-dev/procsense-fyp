@@ -21,12 +21,12 @@ review, usability study, and a reproducible v1 release.
 | Report | Written continuously from phase READMEs + experiment logs | At the end | Results already recorded | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-EVAL-1 | Usability of S1 and S2 | Target users, SUS + tasks | Scores reported honestly |
-| EXP-EVAL-2 | Perceived clinical realism | Part I checklist section G | All OK or fix list |
-| EXP-REL-1 | Clean-machine reproducibility | Fresh machine, README only | Build + test + APK without help |
-| EXP-REL-2 | Stability | 10 full S1 + S2 runs on device | 0 crashes, budget held |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-EVAL-1 | Usability of S1 and S2 | Target users, SUS + tasks | Scores reported honestly | planned |
+| EXP-EVAL-2 | Perceived clinical realism | Part I checklist section G | All OK or fix list | planned |
+| EXP-REL-1 | Clean-machine reproducibility | Fresh machine, README only | Build + test + APK without help | planned |
+| EXP-REL-2 | Stability | 10 full S1 + S2 runs on device | 0 crashes, budget held | planned |
 
 ## Exit
 All P0 golden runs green; usability + realism results recorded; v1 APK reproducible from a clean machine.

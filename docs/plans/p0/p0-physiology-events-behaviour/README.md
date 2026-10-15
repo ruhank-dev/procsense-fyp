@@ -22,11 +22,11 @@ running from data, and a bounded behaviour model (pain, anxiety, trust, understa
 | Behaviour | Deterministic transition table | AI-driven emotion | Bounded + testable | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-PHY-1 | Is LitePhysio realistic enough? | VAR-S2-PD (Usman) timeline plots reviewed by medical professional | Accepted, or fix list |
-| EXP-PHY-2 | Deterioration clock reproduces the Usman timeline? | Headless run vs walkthrough | NEWS2 progression matches |
-| EXP-PHY-3 | Tick cost on Quest | Profile | < 0.5 ms |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-PHY-1 | Is LitePhysio realistic enough? | VAR-S2-PD (Usman) timeline plots reviewed by medical professional | Accepted, or fix list | running (plots built; the medical review is open, clinician question Q4) |
+| EXP-PHY-2 | Deterioration clock reproduces the Usman timeline? | Headless run vs walkthrough | NEWS2 progression matches | planned |
+| EXP-PHY-3 | Tick cost on Quest | Profile | < 0.5 ms | planned |
 
 ## Exit
 Usman timeline reproduced; all 47 what-ifs load and have a test; trajectories accepted.

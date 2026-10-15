@@ -60,12 +60,12 @@ Run inside Blender (Scripting tab → open script → Run) **or** headless: `ble
 | Free models | Visual references only; every asset scripted by us | Import good free models | User decision (07 Oct) | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-BL-1 | Can scripted assets meet the quality bar? | Pilot: vital-sign monitor, IV pole + infusion pump, patient wristband; previews + headset check | Team approves all 3 → quality bar locked |
-| EXP-BL-2 | Unity URP materials vs baked textures | Same asset both ways on Quest | Visual vs memory trade-off chosen |
-| EXP-BL-3 | Triangle budget per asset class | Profile a fully dressed theatre on Quest 2 | Budgets fixed in this README |
-| EXP-BL-4 | Is `build_all` fast enough to run in CI? | Time full build headless | Decides commit-outputs vs rebuild (EXP-FND-1) |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-BL-1 | Can scripted assets meet the quality bar? | Pilot: vital-sign monitor, IV pole + infusion pump, patient wristband; previews + headset check | Team approves all 3 → quality bar locked | planned |
+| EXP-BL-2 | Unity URP materials vs baked textures | Same asset both ways on Quest | Visual vs memory trade-off chosen | planned |
+| EXP-BL-3 | Triangle budget per asset class | Profile a fully dressed theatre on Quest 2 | Budgets fixed in this README | planned |
+| EXP-BL-4 | Is `build_all` fast enough to run in CI? | Time full build headless | Decides commit-outputs vs rebuild (EXP-FND-1) | planned |
 
 ## Exit
 Every P0 item in `equipment-list.md` has: spec sheet, script, validated export, approved preview, placed in its room manifest.

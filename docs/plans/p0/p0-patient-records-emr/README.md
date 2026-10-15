@@ -38,11 +38,11 @@ Images in the viewer: licensed real images (see p0-medical-research-data), other
 | Data source | Same Core state + content package (no separate database on device) | Separate EMR DB | One source of truth, deterministic replay | Backend (P1) adds history sync |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-REC-1 | Can trainees find a previous result quickly? | Task: "find last HbA1c" | ≤ 30 s for most testers |
-| EXP-REC-2 | EMR text readable in the headset? | Font sizes at desk distance | Size fixed in UI guidelines |
-| EXP-REC-3 | Page flipping feels natural with controllers? | Testers | No help needed |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-REC-1 | Can trainees find a previous result quickly? | Task: "find last HbA1c" | ≤ 30 s for most testers | planned |
+| EXP-REC-2 | EMR text readable in the headset? | Font sizes at desk distance | Size fixed in UI guidelines | planned |
+| EXP-REC-3 | Page flipping feels natural with controllers? | Testers | No help needed | planned |
 
 ## Exit
 For every P0 case: folder holds current paperwork, EMR shows full record, new results appear in both after each test, and what the trainee opened is logged.

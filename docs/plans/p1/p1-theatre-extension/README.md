@@ -18,9 +18,9 @@ Step 15 WHO Sign Out (counts, specimen labelling), recovery handover, and their 
 | Recovery bay | **Reuse the patient bay layout** (approved phase review P6) | New recovery room; fade-to-black | Handover is a conversation; little physical interaction | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-TX-1 | Does Sign Out count-discrepancy branch teach as intended? | Testers + debrief comprehension | Correct escalation recognised |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-TX-1 | Does Sign Out count-discrepancy branch teach as intended? | Testers + debrief comprehension | Correct escalation recognised | planned |
 
 ## Exit
 Step 15 + recovery handover playable for S1 and S2; specimen labelling checked.

@@ -26,9 +26,9 @@ A repo anyone can clone, build and test in one command, with conventions that ke
 | Branching | `main` + short feature branches + PR | Trunk-only; GitFlow | Simple for a small team | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-FND-1 | Should generated Blender outputs be committed or rebuilt in CI? | Measure output sizes + Blender headless time in CI | Pick cheaper option that keeps builds reproducible |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-FND-1 | Should generated Blender outputs be committed or rebuilt in CI? | Measure output sizes + Blender headless time in CI | Pick cheaper option that keeps builds reproducible | planned |
 
 ## Exit
 Fresh clone on a second machine → build + test green; CI green on `main`.

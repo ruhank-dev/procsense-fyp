@@ -28,3 +28,7 @@ Templates are checklists — keep each under one screen.
 
 ## Sources
 INSTRUCTIONS §8b; plans README 'How the plan changes as we learn'.
+
+## Implementation notes (15 Oct 2026)
+- **Built:** `docs/decisions/_template.md` (context, decision, alternatives, consequences, revisit if) and ADR-0001 brought in line with it (the two alternatives that lost, and a revisit-if trigger); `docs/plans/_experiment-template.md` (status planned, running or done; question, method, metric, result, decision changed); `docs/research/equipment/_template.md` rewritten to the shape of the 53 generated sheets (sources with a level, states, interaction, budget class, open points). The worked example is the generated `01-patient-wristband.md`, so no hand-written wristband sheet was added (the generator would refuse a second, ungenerated sheet). The plans README points to all three.
+- **Status column:** all 29 phase READMEs' Experiments tables got a Status column (78 rows). A row says done only with evidence: EXP-CASE-1 (the mutation set in CI). Five experiments whose step is approved but whose measurement is still open are marked running or planned with the reason (EXP-CL-3, EXP-PHY-1, EXP-BE-1, EXP-BE-3, EXP-BE-4). All others are planned.

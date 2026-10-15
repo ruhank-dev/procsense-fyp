@@ -18,9 +18,9 @@ The remaining walkthrough cases as data, each golden-tested:
 | Approach | Content-only where the engine already supports it; engine additions first where it doesn't | Mixed | Keeps engine changes visible | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-CASE-3 | How many P1 cases need engine changes? | Check each against current schema | Count + list of new features |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-CASE-3 | How many P1 cases need engine changes? | Check each against current schema | Count + list of new features | planned |
 
 ## Exit
 All 16 cases valid, golden-tested, playable in VR.

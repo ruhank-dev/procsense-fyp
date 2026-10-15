@@ -58,12 +58,12 @@ lab distributions and images make the patient believable.
 | Missing imaging | **Real licensed image first; else labelled synthetic image + matching report, clinician review before use; else text report** (owner, 10 Oct 2026, [ADR-0003](../../../decisions/ADR-0003-synthetic-medical-images.md)) | Text report only (the earlier choice: "never generate medical images") | Owner wants images next to reports; labelling and review keep it safe | A real image set is found for that finding |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-MED-1 | How much cited material can be verified from free sources? | Verify first 30 P0 values end to end | % VERIFIED + time per value |
-| EXP-MED-2 | Can `content/` be fully regenerated from the register? | Build script + diff check in CI | Zero manual edits |
-| EXP-DATA-1 | Do VitalDB-derived noise/waveforms look realistic? | Blind comparison by medical reviewer | Derived preferred |
-| EXP-DATA-2 | Generated lab values always within the case's band? | Property test, 10k seeds | 0 violations |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-MED-1 | How much cited material can be verified from free sources? | Verify first 30 P0 values end to end | % VERIFIED + time per value | planned |
+| EXP-MED-2 | Can `content/` be fully regenerated from the register? | Build script + diff check in CI | Zero manual edits | planned |
+| EXP-DATA-1 | Do VitalDB-derived noise/waveforms look realistic? | Blind comparison by medical reviewer | Derived preferred | planned |
+| EXP-DATA-2 | Generated lab values always within the case's band? | Property test, 10k seeds | 0 violations | planned |
 
 ## Exit
 100% of P0 content rows have register entries; 0 invented sources; every conflict has a recorded resolution; every dataset used is

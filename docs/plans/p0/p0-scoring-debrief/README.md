@@ -21,10 +21,10 @@ safety-failure detection, lateness, and a timeline debrief built only from logge
 | Weights | Initial weights from walkthrough priorities, tuned with playtest data | Fixed | Needs data | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-SC-1 | Golden runs (correct/novice/dangerous/edge) give expected results? | Golden suite | 100% |
-| EXP-SC-2 | Do trainees understand the debrief? | Usability session | Can name top mistake + why |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-SC-1 | Golden runs (correct/novice/dangerous/edge) give expected results? | Golden suite | 100% | planned |
+| EXP-SC-2 | Do trainees understand the debrief? | Usability session | Can name top mistake + why | planned |
 
 ## Exit
 All P0 golden runs pass; every debrief sentence links to a log entry.

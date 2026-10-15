@@ -93,6 +93,7 @@ Details: [p0-environment-rooms](p0/p0-environment-rooms/). Review of the phase l
    "alternatives" with why it lost), user informed.
 3. Every decision has a **"revisit if"** trigger.
 4. A decision with alternatives is always shown to the user with both options.
+5. Each record has the same shape (p0-foundation-s03): an ADR uses [decisions/_template.md](../decisions/_template.md), an experiment uses [_experiment-template.md](_experiment-template.md), and a new equipment item uses [research/equipment/_template.md](../research/equipment/_template.md) (worked example: the patient wristband sheet). Each phase README's Experiments table has a **Status** column (planned, running or done).
 
 ## Medical approval status (decision of 09 October 2026)
 

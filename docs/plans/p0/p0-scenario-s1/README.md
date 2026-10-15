@@ -14,10 +14,10 @@ VAR-S1-A, -PB, -B(+B2), -C(+C2), -D(a/b), -E, -G, -H, -J and STK-S1-D, with thei
 | Testing | Every VR session exportable and replayed headless | VR-only | Reproducible bugs | — |
 
 ## Experiments
-| ID | Question | Method | Success metric |
-|---|---|---|---|
-| EXP-S1-1 | How long is an S1 run? | Time testers | Recorded; informs session design |
-| EXP-S1-2 | Headless golden runs and VR playthroughs agree? | Replay exported VR sessions | Same end state + scores |
+| ID | Question | Method | Success metric | Status |
+|---|---|---|---|---|
+| EXP-S1-1 | How long is an S1 run? | Time testers | Recorded; informs session design | planned |
+| EXP-S1-2 | Headless golden runs and VR playthroughs agree? | Replay exported VR sessions | Same end state + scores | planned |
 
 ## Exit
 All S1 P0 cases reach expected end states in VR and headless; playthrough videos reviewed by the medical professional.
