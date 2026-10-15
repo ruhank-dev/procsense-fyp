@@ -217,13 +217,14 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-169 | Decide where a second copy of the backup lives (the artifact is kept 14 days on GitHub only): a private cloud drive or a bucket, and restore once from the downloaded artifact on a clean machine | Pending | p1-backend-s13 | Owner decision, before real customers | The restore was proved only on the machine that made the dump and in the nightly job |
 | DT-170 | Backups do not contain Supabase accounts: if the Supabase project is lost, people are invited again; decide whether to export accounts too (needs the project's service access) | Pending | p1-backend-s13 | Before real customers | Same limit as DT-130 |
 | DT-171 | Check a fresh clone on a second machine (git clone, task setup, task doctor, task build, task test) and record the result in p0-foundation-s01 | Pending | p0-foundation-s01 | Any teammate's next clone | Verified on 15 Oct 2026 only with a fresh clone on the owner's laptop |
-| DT-172 | 68 Unity-generated .meta files under src/ProcSense.Core are not committed although ADR-0001 says they must be (otherwise each machine gives the engine files different GUIDs); confirm with Sannan and commit them from one machine | Pending | p0-foundation-s04 | Sannan (Unity) with the owner | Found 15 Oct 2026 in the owner's clone |
+| DT-172 | 68 Unity-generated .meta files under src/ProcSense.Core are not committed although ADR-0001 says they must be (otherwise each machine gives the engine files different GUIDs); confirm with Sannan and commit them from one machine | Completed | p0-foundation-s04 | Sannan (Unity) with the owner | Found 15 Oct 2026 in the owner's clone Sannan committed the 67 files on 15 Oct 2026 (895180b); Unity batch tests 149 of 149 pass with them and Unity changed none |
 | DT-173 | Decide whether DVC is worth it for the AI-phase data the project will create itself (labelled datasets, trained model weights), which cannot be fetched again from a public source like today's datasets | Pending | p0-foundation-s01 | Before p1-ai-language-s06 (labelled dataset) | Today's source datasets are fetched and checked by tools/data with a hash manifest; some licences forbid re-hosting them |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 15 October 2026 (DT-172) | The engine package's Unity .meta files are committed (Sannan); DT-172 closed. |
 | 15 October 2026 (p0-foundation s01, s03, s04 approved) | Large-file guard and repository backup, templates and experiment Status column, task doctor; DT-171 to DT-173 added. |
 | 15 October 2026 (p1-backend-s03 approved) | Unity upload client and Session tab approved; DT-163 closed (Unity batch tests all pass after Sannan's fixtures); DT-168 closed. |
 | 14 October 2026 (p1-backend-s13, backup) | Nightly encrypted backup with a restore proof, daily size monitor, restore script and runbook section; DT-160 narrowed, DT-168 to DT-170 added. |
