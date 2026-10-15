@@ -28,3 +28,8 @@ Windows PATH isn't refreshed after winget installs → open a new terminal (seen
 
 ## Sources
 p0-foundation README.
+
+## Implementation notes (15 Oct 2026)
+- **Built:** `tools/doctor.py` (standard library only) and `task doctor`: one row per tool with what it is needed for, the wanted version, the version found and the install command when it is missing. Required (exit code 1 if missing or too old): Git, .NET SDK of the major version in `global.json`, uv, Task, the pre-push hook. Shown but never an error: Git LFS, Docker (and whether its engine is running), Unity of the version in `ProjectVersion.txt` and its Android Build Support module, Blender of the version in `tools/blender/VERSION`, adb and the number of connected headsets. The wanted versions are read from those files, so the guide and the check cannot drift apart. README section "Requirements" rewritten as a table with versions and install commands, including Quest developer mode.
+- **Tests:** `tools/ci/test_doctor.py` (4 tests: versions read from the repository and from tool output, a machine with nothing installed reports every tool missing with a fix and fails, an old .NET is flagged), run by `task ci` and on GitHub. `task doctor` itself is not run in CI: a runner has no Unity, Blender, adb or hook by design.
+- **Verified on the owner's laptop (15 Oct 2026):** every required tool OK; Docker installed but its engine stopped; Unity 6000.5.10f1 present but Android Build Support missing (needed for Quest builds on this laptop); Blender missing; adb present, no headset connected.

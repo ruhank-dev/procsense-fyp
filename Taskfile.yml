@@ -61,6 +61,11 @@ tasks:
         ignore_error: true
       - uv run --project tools tools/ci/setup_check.py
 
+  doctor:
+    desc: List every tool the project uses with the version it wants and the version installed; exit code 1 if a required tool is missing
+    cmds:
+      - uv run --no-project tools/doctor.py
+
   protect-main:
     desc: DO NOT RUN on the free private plan (GitHub refuses it). Applies .github/branch-protection.json if the plan ever allows server-side protection (DT-042)
     cmds:
