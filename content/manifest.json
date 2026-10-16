@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "cd73644ea7d57ff8a60285779de0b89e92e60f7efccac005f3ce691198a6d6f0",
+ "content_hash": "fda75abba3b2f6f0cabbf66692ddf5252198704953c7b6421e45b0027f9fb68e",
  "files": 381,
- "bytes": 16888775,
+ "bytes": 16887522,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -89,8 +89,8 @@
    "sha256": "2a5d743b9602b83002575f45f481b65b2b42df07309b585f7cae75e66838cea5"
   },
   "case_approvals.json": {
-   "bytes": 25357,
-   "sha256": "604e250d0caf56889c49c6fcf17f5b6453e4076675b52c7a3ee83807f05d71cb"
+   "bytes": 25411,
+   "sha256": "2c10ebd29e406082cb5a692f073e06f0df1a5c6e5d8204f8066da273577480ba"
   },
   "case_files/SC-1.json": {
    "bytes": 11070,
@@ -173,36 +173,36 @@
    "sha256": "bad6440ecf934b12b2c7fd420c1bf8dbcb60aa22e093d541a24d465ef387143e"
   },
   "case_files/STK-S1-A.json": {
-   "bytes": 16180,
-   "sha256": "b277eb2fbc4d700e3dda2dda5839586484fb628136f0550abcad8661c13d244b"
+   "bytes": 16561,
+   "sha256": "8643b59fa5986d8e9a7a72d47bda0fee50031e85ad522bfdd5e8c3399d650ba5"
   },
   "case_files/STK-S1-B.json": {
-   "bytes": 12535,
-   "sha256": "559e0487c91dfd5397dc6c1e6b47e26c9aa16cc88f44d190080d55e6428c1c23"
+   "bytes": 12916,
+   "sha256": "17ab9a93270280ac8c7fdb4167c4f72bdaa23c43ff98bd776470fcd281f663cf"
   },
   "case_files/STK-S1-C.json": {
-   "bytes": 13637,
-   "sha256": "a26c74c9a76c867803ee003725874cd110a8723ad59191e3d3a0817f9781cbbe"
+   "bytes": 14018,
+   "sha256": "0779ffd8fa7306e74e76daebefb5b8835d35fef7371b6b0150de1d2004f9d49e"
   },
   "case_files/STK-S1-D.json": {
    "bytes": 15869,
    "sha256": "b3391fe0329e958648b2dd926ec1240f1bb39dc9be0d5f85384a33c5e8184c31"
   },
   "case_files/STK-S2-A.json": {
-   "bytes": 15227,
-   "sha256": "64b4c4e1abee2ce7192a4d1bac63abb02b8d21489ea8d8293f9f916762c73d93"
+   "bytes": 15608,
+   "sha256": "aa1efc8a83934e170fed5030b344cdaf0d6774bc5dd6b48551756b816a7998d9"
   },
   "case_files/STK-S2-B.json": {
    "bytes": 12740,
    "sha256": "2b63276fbfdc51d060a366ca8d1990c747cc41377ddd6d743d5a35987d832273"
   },
   "case_files/STK-S2-C.json": {
-   "bytes": 11856,
-   "sha256": "d2bced5e844caa6bba716cd660e9ef5d4e3c7b4dcba471814d78abe9e18b973e"
+   "bytes": 12237,
+   "sha256": "636f84ece685eb4610e1b628390b78699a590e4090a07a2f400d090950d6c834"
   },
   "case_files/STK-S2-D.json": {
-   "bytes": 11236,
-   "sha256": "9a3b355b99fb1f38b15bffb35edc2026adc49d279c599be5b202c8e51c718114"
+   "bytes": 11617,
+   "sha256": "0c9933303123035fe60f0793c28fb8cbcaf84b7fd7d5e587e7a37e5dd2bbd0b0"
   },
   "case_files/VAR-S1-A.json": {
    "bytes": 12198,
@@ -321,8 +321,8 @@
    "sha256": "04e289807cd0c0f7eb6e4551c2ce65e80501f0bd588d97a8f0966ddd5f3093da"
   },
   "case_signoff_pending.json": {
-   "bytes": 4745,
-   "sha256": "b8f0a03e8b26b2aed3cbe01bfe064eba01792aaf402097bcfed23350a5e7fe15"
+   "bytes": 1152,
+   "sha256": "7b952f8be0c016545d782d2886aa68ece54007db1ef38005867d7c16583c971b"
   },
   "case_timelines.csv": {
    "bytes": 907,

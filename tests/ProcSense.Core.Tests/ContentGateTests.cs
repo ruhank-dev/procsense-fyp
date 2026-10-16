@@ -31,7 +31,7 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void Draft_cases_are_refused_in_both_modes_with_STATUS_TOO_LOW()
         {
-            foreach (var id in new[] { "SC-4", "STK-S1-A", "VAR-S1-B" })
+            foreach (var id in new[] { "SC-4", "VAR-S1-B" })
             {
                 var f = File_(id);
                 Assert.Equal("DRAFT", f.Status);

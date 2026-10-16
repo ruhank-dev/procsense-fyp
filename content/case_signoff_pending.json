@@ -12,18 +12,6 @@
     "V-74"
    ]
   },
-  "STK-S1-A": {
-   "changed": "2026-10-17",
-   "what": "Re-transcribed from Part D: ketones 0.9 (was 0.4), repeat glucose 5.8 (was 6.4), all morning tablets taken including dapagliflozin, dinner at 21:00, potassium 4.6, creatinine 88 and the ECG (LVH) added, no invented previous HbA1c; five decisions as the book's section 9 (was three); paths and debrief from sections 16 to 20. Still open from 12 Oct 2026: HbA1c 76 retyped pathway_changing -> optimisable; BP 174/102 retyped optimisable -> information_only (same two rules as SC-4)",
-   "question": "Do you agree with the case as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02)? And the two problem types from the 12 Oct 2026 evidence review?",
-   "evidence": [
-    "V-07",
-    "V-20",
-    "V-23",
-    "V-73",
-    "V-74"
-   ]
-  },
   "VAR-S1-B": {
    "changed": "2026-10-12",
    "what": "the BP problem is now variant-specific: variant base 168/102 is information_only, variant B2 188/114 is optimisable",
@@ -31,51 +19,6 @@
    "evidence": [
     "V-07",
     "V-74"
-   ]
-  },
-  "STK-S1-B": {
-   "changed": "2026-10-17",
-   "what": "Re-transcribed from Part D: creatinine 118, CKD G3a (was 98, normal); NEWS2 0 (was 1); four decisions as the book's section 9 (was two); paths and debrief from sections 16 to 20",
-   "question": "Do you agree with the case as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02)?",
-   "evidence": [
-    "V-08",
-    "V-18"
-   ]
-  },
-  "STK-S1-C": {
-   "changed": "2026-10-17",
-   "what": "Re-transcribed from Part D: creatinine 178 (was 168); repeat potassium 5.7 after 1 hour added; NEWS2 2 (was 1: SpO2 95 also scores); four decisions as the book's section 9 (was three); paths and debrief from sections 16 to 20",
-   "question": "Do you agree with the case as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02)?",
-   "evidence": [
-    "V-15",
-    "V-17"
-   ]
-  },
-  "STK-S2-A": {
-   "changed": "2026-10-17",
-   "what": "Re-transcribed from Part D: WBC 15.1 with neutrophils 86% (was 16.5), CRP 96 (was 112), lactate 1.8 normal (was 2.4 high), repeat potassium 3.5 and the ultrasound (non-compressible 9 mm appendix) added, HR 104 after the first bolus; five decisions as the book's section 9 (was three), including the pregnancy test; paths and debrief from sections 16 to 20",
-   "question": "Do you agree with the case as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02)?",
-   "evidence": [
-    "V-02",
-    "V-17"
-   ]
-  },
-  "STK-S2-C": {
-   "changed": "2026-10-17",
-   "what": "Re-transcribed from Part D: chest clear with no aspiration (was a chest X-ray with right lower zone shadowing and reduced air entry); RR 9 scores 1, so NEWS2 8 (was 9); opioid sedation added as the third problem as in the book's section 8; four decisions as section 9 (was three); paths and debrief from sections 16 to 20. Venous CO2 7.4 kPa not transcribed (no blood-gas test yet, DT-186)",
-   "question": "Do you agree with the case as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02)?",
-   "evidence": [
-    "V-09",
-    "V-01"
-   ]
-  },
-  "STK-S2-D": {
-   "changed": "2026-10-17",
-   "what": "Problems re-ranked as the book's section 8: maternal stability (ABC), timely diagnosis and surgery, obstetric and fetal assessment, anaesthetic adjustments (were: appendicitis in pregnancy, masked severity, imaging); MRI 'inflamed appendix'; decisions, paths and debrief from sections 9 and 16 to 20. Part D itself is inconsistent: section 20 names timely diagnosis as the highest priority (DT-185)",
-   "question": "Do you agree with the case as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02)? Which comes first: maternal stability (section 8) or timely diagnosis (section 20)?",
-   "evidence": [
-    "V-14",
-    "V-16"
    ]
   }
  }

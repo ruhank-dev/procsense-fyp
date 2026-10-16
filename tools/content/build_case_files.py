@@ -3,6 +3,9 @@
     uv run --project tools tools/content/build_case_files.py            # write
     uv run --project tools tools/content/build_case_files.py --check    # fail if a file is missing, out of date or invalid (CI)
     uv run --project tools tools/content/build_case_files.py --grant    # record the owner-attested approval for the cases as they are now
+    uv run --project tools tools/content/build_case_files.py --grant-cases STK-S1-A,STK-S1-B --by "Owner (Abdul Moiz)" --date 2026-10-17 --why "..."
+                                                                         # approve only these cases as they are now, leave every other approval as it is,
+                                                                         # and take them off content/case_signoff_pending.json
 
 Filled in here, never typed by hand: NEWS2 of every observation (content/news2_scoring.csv), the wristband text, the source rows (story, measurements, authoring row) and the approval status.
 An approval is tied to a hash of the case content, so editing a case drops its approval until it is granted again.
@@ -32,6 +35,7 @@ PREGNANT = {"VAR-S1-H", "VAR-S2-B", "SC-2", "SC-3", "STK-S2-D", "VAR-S2-H"}
 
 OUT = ROOT / "content" / "case_files"
 APPROVALS = ROOT / "content" / "case_approvals.json"
+PENDING = ROOT / "content" / "case_signoff_pending.json"
 BY = "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named"
 NOTE = "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
 
@@ -85,6 +89,30 @@ def build() -> dict[str, dict]:
     return dict(sorted(cases.items()))
 
 
+def _arg(argv: list[str], name: str) -> str:
+    i = argv.index(name)
+    if i + 1 >= len(argv):
+        raise SystemExit(f"{name} needs a value")
+    return argv[i + 1]
+
+
+def grant_cases(cases: dict[str, dict], ids: list[str], by: str, date: str, why: str) -> None:
+    """Approval of the named cases only, as they are now; the other approvals are kept, and the cases leave the sign-off list."""
+    unknown = [i for i in ids if i not in cases]
+    if unknown:
+        raise SystemExit(f"no such case: {', '.join(unknown)}")
+    data = json.loads(APPROVALS.read_text(encoding="utf-8"))
+    for i in ids:
+        data["approvals"][i] = {"sha256": content_hash(cases[i]), "level": "APPROVED_FOR_TRAINING", "by": by, "date": date, "note": why}
+    data["approvals"] = dict(sorted(data["approvals"].items()))
+    APPROVALS.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    pending = json.loads(PENDING.read_text(encoding="utf-8"))
+    for i in ids:
+        pending["pending"].pop(i, None)
+    PENDING.write_text(json.dumps(pending, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    print(f"recorded approval for {len(ids)} cases: {', '.join(ids)}")
+
+
 def text(c: dict) -> str:
     return json.dumps(c, indent=1, ensure_ascii=False) + "\n"
 
@@ -97,6 +125,9 @@ def main(argv: list[str]) -> int:
         data = {"schema": 1, "approvals": {k: {"sha256": content_hash(c), "level": "APPROVED_FOR_TRAINING", "by": BY, "date": "2026-10-10", "note": NOTE} for k, c in cases.items()}}
         APPROVALS.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"recorded approval for {len(cases)} cases")
+        cases = build()
+    if "--grant-cases" in argv:
+        grant_cases(cases, [i.strip() for i in _arg(argv, "--grant-cases").split(",") if i.strip()], _arg(argv, "--by"), _arg(argv, "--date"), _arg(argv, "--why"))
         cases = build()
     probs = []
     for k, c in cases.items():

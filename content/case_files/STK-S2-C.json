@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P1",
  "synthetic": true,
- "status": "DRAFT",
+ "status": "APPROVED_FOR_TRAINING",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -508,5 +508,10 @@
    "origin": "authored"
   },
   "plan": "rsi"
+ },
+ "approval": {
+  "by": "Owner (Abdul Moiz)",
+  "date": "2026-10-17",
+  "note": "Owner approval of the cases as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02), including the 12 Oct 2026 problem types of STK-S1-A; STK-S2-D's top priority to be settled by the clinician (DT-185); reconfirm with the named clinician before assessment use"
  }
 }
