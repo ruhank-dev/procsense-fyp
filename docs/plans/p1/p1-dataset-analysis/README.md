@@ -15,7 +15,7 @@ Understand every dataset and content table well enough to design generators that
 
 | Step | Title |
 |---|---|
-| [p1-dataset-analysis-s01](steps/p1-dataset-analysis-s01-dataset-inventory-licences.md) | Dataset inventory and licence refresh |
+| [p1-dataset-analysis-s01](steps/✅%20p1-dataset-analysis-s01-dataset-inventory-licences.md) | Dataset inventory and licence refresh |
 | [p1-dataset-analysis-s02](steps/p1-dataset-analysis-s02-numeric-profiles.md) | Numeric profiles: labs and vital signs |
 | [p1-dataset-analysis-s03](steps/p1-dataset-analysis-s03-waveform-profiles.md) | Waveform profiles: ECG and monitor signals |
 | [p1-dataset-analysis-s04](steps/p1-dataset-analysis-s04-image-tagging.md) | Image library tagging and quality grading |
