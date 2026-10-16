@@ -366,6 +366,12 @@ jobs:
       - name: Licence register check tests
         run: uv run --project tools tools/ci/test_licence_register.py
 
+      - name: P1 variant cases hold every fact the book gives them
+        run: uv run --project tools tools/content/variant_facts.py --check
+
+      - name: P1 variant check tests
+        run: uv run --project tools tools/ci/test_variant_facts.py
+
       - name: Image and dataset tests
         run: uv run --project tools tools/content/test_images.py
 
