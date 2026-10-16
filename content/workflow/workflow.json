@@ -231,6 +231,13 @@
       "refs": [ "SR-0079" ]
     },
     {
+      "id": "B-SAMPLE",
+      "check_at": [ "transfer_to_theatre" ],
+      "blocked_if": { "in": [ "results.unrepeated_fault", { "var": "flags" } ] },
+      "message": "A result came from a faulty sample (for example haemolysed): repeat the test and read the new result before going on.",
+      "refs": [ "SR-0700", "SR-2235" ]
+    },
+    {
       "id": "B-PREGNANCY",
       "check_at": [ "transfer_to_theatre" ],
       "blocked_if": { "in": [ "pregnancy.status_required", { "var": "flags" } ] },

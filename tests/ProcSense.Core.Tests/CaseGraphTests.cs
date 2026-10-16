@@ -306,6 +306,16 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void The_advanced_level_gets_goals_but_no_hint_in_practice_mode()   // DT-056: the hint is for the beginner level ("difficulty <= 2")
+        {
+            var content = TestCase.Package();
+            var s = new Session(content.Cases["VAR-S1-A"], 42, SessionMode.Practice, Subsystems.Default(content), new SessionOptions(TrainingLevel.Advanced));
+
+            Assert.NotEmpty(s.Observable.Goals);
+            Assert.Equal("", s.Observable.Hint);
+        }
+
+        [Fact]
         public void Assessment_mode_shows_no_goals_and_no_hints()
         {
             var s = RealSession(SessionMode.Assessment);

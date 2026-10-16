@@ -368,6 +368,18 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void A_faulty_sample_result_blocks_the_transfer_until_the_test_is_repeated_VAR_S1_J()   // DT-094
+        {
+            var s = NewSession("VAR-S1-J");
+            Get(s, "u_and_e");                                                       // potassium 6.4, haemolysed
+            Assert.True(s.Patient.Clinical.HasFlag(InvestigationsSubsystem.UnrepeatedFaultFlag));
+            Assert.Equal("BLOCKED:B-SAMPLE", Reject(Do(s, "transfer_to_theatre", Transfer)));
+            Get(s, "u_and_e");                                                       // the repeat is normal
+            Assert.False(s.Patient.Clinical.HasFlag(InvestigationsSubsystem.UnrepeatedFaultFlag));
+            Assert.NotEqual("BLOCKED:B-SAMPLE", Do(s, "transfer_to_theatre", Transfer).RejectReason);
+        }
+
+        [Fact]
         public void Taking_an_artefact_at_face_value_is_wrong_and_kept_for_the_debrief()
         {
             var s = NewSession("VAR-S1-J");

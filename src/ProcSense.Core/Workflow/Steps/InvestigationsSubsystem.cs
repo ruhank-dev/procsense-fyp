@@ -53,6 +53,8 @@ namespace ProcSense.Core.Workflow.Steps
         public const string PregnancyFlag = "pregnancy.status_required";
         public const string TestsOrderedFlag = "tests.needed_ordered";
         public const string ResultsReviewedFlag = "tests.needed_reviewed";
+        /// <summary>Set while the latest opened result of a test carries a sample-quality fault (haemolysed, drip arm, wrong tube, clotted...) and the test has not been repeated (DT-094).</summary>
+        public const string UnrepeatedFaultFlag = "results.unrepeated_fault";
         public const string AnyViewedFlag = "results.any_viewed";
 
         private readonly ContentPackage _content;
@@ -149,6 +151,7 @@ namespace ProcSense.Core.Workflow.Steps
             var needed = NeededTests();
             if (needed.Count > 0 && needed.All(t => Latest(t) != null)) Clinical.SetFlag(TestsOrderedFlag); else Clinical.ClearFlag(TestsOrderedFlag);
             if (needed.Count > 0 && needed.All(t => { var l = Latest(t); return l != null && (l.State == "VIEWED" || l.State == "ACKNOWLEDGED"); })) Clinical.SetFlag(ResultsReviewedFlag); else Clinical.ClearFlag(ResultsReviewedFlag);
+            if (Clinical.Investigations.Select(x => x.Test).Distinct().Any(test => { var l = Latest(test); return l != null && (l.State == "VIEWED" || l.State == "ACKNOWLEDGED") && l.Results.Any(r => r.Quality.Length > 0); })) Clinical.SetFlag(UnrepeatedFaultFlag); else Clinical.ClearFlag(UnrepeatedFaultFlag);
         }
 
         private bool TestFrom(SimAction a, ActionOutcome o, out InvestigationDef def)

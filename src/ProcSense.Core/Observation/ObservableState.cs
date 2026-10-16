@@ -454,7 +454,7 @@ namespace ProcSense.Core.Observation
                 facts, BuildVitals(s), c.NurseState, c.AllergyBand, s.LastRejection,
                 practice && s.Tracker != null ? s.Tracker.GoalStatuses() : System.Array.Empty<GoalStatus>(),
                 s.Tracker != null ? s.Tracker.OpenCards() : System.Array.Empty<DecisionCard>(),
-                practice && s.Tracker != null ? s.Tracker.Hint() : "",
+                practice && s.Level == TrainingLevel.Beginner && s.Tracker != null ? s.Tracker.Hint() : "",     // the practice hint is for the beginner level only (the guide's "difficulty <= 2", DT-056)
                 practice ? BlockMessage(s) : "",
                 practice && s.Flow != null ? s.Flow.Running() : System.Array.Empty<FlowStageStatus>(),
                 BuildFindings(c), BuildAirway(c), new FastingChip(c.Fasting?.Status ?? "unknown", c.FastingSafeFrom, c.Fasting?.Plan ?? ""), BuildRisk(c.Risk, practice),
