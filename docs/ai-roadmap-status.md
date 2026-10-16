@@ -15,6 +15,16 @@ This audit is now the short summary. The full, authoritative planning set is in 
 
 Nothing in the planning update was implemented; sections 1 to 6 below are the audit as written earlier the same day, with blockers revised where the policy changed.
 
+## 0b. Update of 16 October 2026 (local models installed, first measurements)
+
+Done with the owner's approval; **no AI feature is built on these models yet (no code calls a model)**. Decision and reasons: [ADR-0010](decisions/ADR-0010-local-models-qwen35-live-and-batch.md).
+
+* **Installed on the desktop (GTX 1660 SUPER):** Ollama 0.40.5; `qwen3.5:4b-q4_K_M` (live work, thinking off), `qwen3.5:9b-q4_K_M` (offline batch work), `qwen3:4b` (comparison baseline only). The laptop is not set up.
+* **Measured on the idle desktop** (`tools/ai/benchmark.py`, 4096 context, schema output, one machine and one prompt shape): the 4B is 100 percent on the GPU, about 59 tokens per second, p50 1.01 s and p95 1.15 s for a 50-token patient reply; the 9B is 57 percent on the GPU, about 12 tokens per second, about 5 s for the same reply, so it is batch only. Structured output was valid 100 of 100 (4B) and 40 of 40 (9B). Speech recognition and the Unity Editor were not loaded.
+* **What the numbers do not show:** quality. The validator reads text only; reading the replies found a few made-up denials ("I don't smoke") that it cannot catch (DT-190). A blind human rating is pending (DT-187).
+* **Still to do:** the laptop, co-residency with speech recognition and Unity, thinking-on runs, debrief, composition and judge tests (DT-188).
+* **Harness gap closed:** the patient now has an approved "cannot recall" intent (DT-189).
+
 ## 1. The short answers
 
 | Question | Answer |
@@ -42,7 +52,7 @@ Status words: **Built** (code and tests exist), **Built, rules only** (works, bu
 | **AI-generated clinical scenarios and problems** | `p1-scenario-composer-difficulty` s01 to s05 | P1 | **Planned** | Only the gate they must pass (Stage B) and the context they need (case tags, discovery rules) | Block library with requires/excludes, the deterministic solver, the LLM proposal step (clinician review and approval of composed cases were required here; since 12 Oct 2026 they are not a gate: generated cases are practice-only and gated by automated validation, ADR-0008). The solver is **not AI** and comes first; the LLM only proposes block combinations and a narrative |
 | **Grounding validator** (no AI line reaches a trainee unchecked) | `p1-ai-language` s01 | P1 | **Built** | `server/validation/validator.py` and its C# twin, 44 shared vectors, 100+ disclosure probes, every lexicon drug rejected when off-card, debrief mutation tests | The FastAPI server around it (`p1-backend-s01`) |
 | **Read-only context for AI characters** and who speaks next | `p1-ai-language` s03 | P1 | **Built** | `ContextBuilder` per role, hidden facts never in what the model is sent, 900-token budget, `ReactionQueue` (priority, debounce, one spontaneous remark per 8 s) | The Unity assembly split (`AIClient` asmdef) is Unity work |
-| LLM serving benchmark | `p1-ai-language` s02 | P1 | **Blocked** | none | Ollama and the candidate models installed on both machines (now roadmap task `p1-ai-infrastructure-s01`, DT-113) and a benchmark on the GTX 1660 SUPER and RTX 4050; model licences (MedGemma terms); a benchmark run |
+| LLM serving benchmark | `p1-ai-language` s02 | P1 | **Partly built** | Ollama 0.40.5, `qwen3.5:4b-q4_K_M`, `qwen3.5:9b-q4_K_M` and `qwen3:4b` on the desktop; `tools/ai/benchmark.py` (speed and GPU share, structured output, grounding, blind rating sheet) with 13 tests; first measurements on the idle desktop (16 Oct 2026) | The laptop RTX 4050; co-residency with speech recognition and Unity; thinking-on runs; the blind human rating (DT-187); debrief, composition and judge tests (DT-188); model licences for MedGemma if the medical benchmark is run |
 | **Patient dialogue** (free questions answered in the patient's voice) | `p1-ai-language` s04 | P1 | **Planned, blocked** | The rules that decide disclosure (history step, behaviour gate), the context, the validator, the approved quoted answers | A served model; the persona tags in the case files (DT-085); the adversarial question set |
 | **Staff AI** (nurse, anaesthetist, porter, lab) | `p1-ai-language` s05 | P1 | **Planned, blocked** | Approved intents per role (`content/ai/intents.json`), the existing fixed lines | A served model; pre-rendered fallback lines per intent; voices |
 | **Communication taxonomy and labelled set** | `p1-ai-language` s06 | P1 | **Blocked** | The 22 behaviours and their AI-reportable acts (`content/assessment/mapping.json`) are the start of the taxonomy | At least 300 utterances labelled by two people (kappa 0.6 or more), consented role-play recordings, a clinician's list of critical acts |
@@ -85,7 +95,7 @@ Known limits of the checks that are built:
 
 | Need | Unblocks | Who |
 |---|---|---|
-| (task DT-113) Ollama installed on the desktop GTX 1660 SUPER and the laptop RTX 4050 (6 GB each), the candidate models downloaded (MedGemma terms accepted) | `p1-ai-language` s02, s04, s05, s07, s08, composer s03 | Owner |
+| (task DT-113) ~~Ollama installed on the desktop~~ done 16 Oct 2026; still needed: Ollama and the models on the laptop RTX 4050 (6 GB), and MedGemma terms accepted only if the medical benchmark is run | `p1-ai-language` s02, s04, s05, s07, s08, composer s03 | Owner |
 | The desktop with the GTX 1660 Super and faster-whisper | `p1-voice-input` s01 to s04 | Owner |
 | Two people to label at least 300 utterances, consented role-play recordings, a clinician's list of critical acts | `p1-ai-language` s06, s07, and the P2 trained classifier | Owner, a clinician |
 | A decision on the backend hosting and login | `p1-backend` s01 to s06 | Owner |

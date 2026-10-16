@@ -4,7 +4,8 @@
     uv run --project tools tools/content/build_ai_intents.py --check    # fail if the file is out of date
 
 The staff intents are the guide's table of AI staff and environment interaction (section 84). The patient intents are the project's reading of the behaviour sections (82 and 83): a patient answers, tells a symptom, asks
-a question, shows worry or pain, thanks, or refuses. An AI suggests one of these ids; it never sets state (the behaviour model and the other steps do, by their own tables). SR-2871, provisional.
+a question, shows worry or pain, thanks, refuses, or says they do not know or cannot remember (cannot_recall, added 16 Oct 2026: the first model benchmark showed
+that without it a model that has no fact for a question picks express_anxiety or express_symptom to say "I am not sure"). An AI suggests one of these ids; it never sets state (the behaviour model and the other steps do, by their own tables). SR-2871, provisional.
 """
 from __future__ import annotations
 
@@ -17,7 +18,7 @@ OUT = ROOT / "content" / "ai" / "intents.json"
 REF = "SR-2871"
 
 INTENTS = {
-    "patient": ["answer_question", "express_symptom", "ask_question", "express_anxiety", "express_pain", "thank", "refuse"],
+    "patient": ["answer_question", "express_symptom", "ask_question", "express_anxiety", "express_pain", "thank", "refuse", "cannot_recall"],
     "nurse": ["ask_clarification", "confirm_order", "report_observation", "ask_prep_status", "report_patient_request"],
     "anaesthesia": ["ask_fasting_allergy_airway", "raise_approved_concern", "respond_to_escalation", "sign_in_answer"],
     "surgeon": ["request_update", "decision_response", "time_out_answer", "approved_intraop_issue"],

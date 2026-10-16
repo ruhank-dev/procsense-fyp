@@ -32,6 +32,8 @@ ProcSense is meant to be sold to organisations (p1-backend), so a **non-commerci
 | ID | Item | Licence | Decision | Held in repository | Conditions and notes | Checked |
 |---|---|---|---|---|---|---|
 | MC-01, MC-02, MC-04, MC-12 | Qwen3 (1.7B, 4B, 8B) | Apache-2.0 | ALLOWED WITH CONDITIONS | No (downloaded by the runtime) | Keep the licence notice; record the model digest in every package | 2026-10-16 (R-025) |
+| MC-01 to MC-04, MC-12 | Qwen3.5 4B (`qwen3.5:4b-q4_K_M`, digest d8b0f5e9760c) and 9B (`qwen3.5:9b-q4_K_M`, digest 56671c2ab938) | Apache-2.0 | ALLOWED WITH CONDITIONS | No (downloaded by the runtime) | Keep the licence notice; record the model digest in every package; installed on the desktop 16 Oct 2026 | 2026-10-16 (R-030, R-031) |
+| MC-02 (baseline only) | Qwen3 4B (`qwen3:4b`, digest 359d7dd4bcda; a thinking-2507 build) | Apache-2.0 | ALLOWED WITH CONDITIONS | No | Kept only as the benchmark comparison, then removed | 2026-10-16 (R-003, R-025) |
 | MC-03 | P2 small classifier base model | to choose (P1 uses the served model of MC-01) | VERIFY | No | Choose in p2-ai-extensions-s03 and read its licence then | — (not chosen) |
 | MC-05 | Whisper weights via faster-whisper | MIT (weights and code) | ALLOWED | No | Keep the licence notice | 2026-10-16 (R-024) |
 | MC-06 | Piper voices | per voice: see Voices below | ALLOWED WITH CONDITIONS | No | Only a voice marked ALLOWED below may be bundled or used to render lines | 2026-10-16 (R-026) |

@@ -294,7 +294,7 @@
     "id": "OFF-08",
     "label": "OFF-08 Model preparation: pull, quantise, benchmark (no training)",
     "type": "offline_step",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -723,7 +723,7 @@
     "id": "CMP-LLM",
     "label": "CMP-LLM Served LLM runtime (Ollama)",
     "type": "component",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_components"
    },
    "classes": "component"
@@ -1867,7 +1867,7 @@
     "id": "E57",
     "label": "E57 LLM serving and benchmark",
     "type": "feature",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"

@@ -17,7 +17,7 @@ a communication classifier producing evidence, and AI-worded debriefs that can't
 | Decision | Chosen | Alternatives | Why | Revisit if |
 |---|---|---|---|---|
 | Where models run | Local GPU over LAN (Ollama or llama.cpp server) | Cloud API (e.g. The developer API); on-Quest | Offline, private, no per-call cost | EXP-AI-1 quality too low → cloud API with same validator |
-| Model | Benchmark Qwen3-4B vs 8B (quantised) + a medical model | Pick now | 6 GB VRAM makes it empirical | Better small models appear |
+| Model | Benchmark Qwen3.5 4B vs 9B (Q4_K_M, ADR-0010) with Qwen3 4B as the baseline + a medical model | Pick now | 6 GB VRAM makes it empirical | Better small models appear |
 | Authority | AI reads DTOs, outputs JSON-schema text/intents; validator gates all | AI writes state | Master Plan §27 | — |
 | Fallback | Pre-rendered lines, templates, menu | None | Works with server off | — |
 
@@ -30,7 +30,7 @@ a communication classifier producing evidence, and AI-worded debriefs that can't
 | EXP-AI-4 | Debrief mutation rejection | Mutate facts/IDs/numbers | 100% rejected | planned |
 
 ## Planning update (12 Oct 2026)
-Model choices, latency targets and fallbacks for every step here are in `docs/architecture/model_technology_register.md` (MC-01 to MC-04, MC-12): Qwen3 4B served by Ollama with JSON-schema output as the default candidate (Apache-2.0), to be confirmed by the s02 benchmark on the 6 GB GPU (DT-112). The LLM also serves the live-generation narrative stage (LG-06) and the advisory quality judge (LG-11). Feature ids C24 to C30, C36, C37, D38, D46, D47, E53, E54, E55, E57 in `docs/architecture/feature_registry.md`. Planning only.
+Model choices, latency targets and fallbacks for every step here are in `docs/architecture/model_technology_register.md` (MC-01 to MC-04, MC-12): Qwen3.5 4B (`qwen3.5:4b-q4_K_M`, thinking off) served by Ollama with JSON-schema output for live work and Qwen3.5 9B (`qwen3.5:9b-q4_K_M`) for offline batch work (Apache-2.0; ADR-0010), to be confirmed by the s02 benchmark on the 6 GB GPU (DT-112, DT-187, DT-188). The LLM also serves the live-generation narrative stage (LG-06) and the advisory quality judge (LG-11). Feature ids C24 to C30, C36, C37, D38, D46, D47, E53, E54, E55, E57 in `docs/architecture/feature_registry.md`. Planning only.
 
 ## Exit
 Master Plan T-AI-01…13 pass; every AI call audited; full run works with server off.

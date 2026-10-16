@@ -81,11 +81,11 @@
       "laptop": "RTX 4050 Laptop 6 GB (Ada); RAM, CPU and power limit to be recorded in p1-ai-infrastructure-s02",
       "profiles": {
         "llm": {
-          "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+          "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
           "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
           "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
           "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-          "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+          "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
         },
         "llm_offline": {
           "gtx1660": "Runs as a batch job on the desktop; larger models (8B with offload) acceptable because time is not critical.",
@@ -855,14 +855,22 @@
     {
       "type": "offline_step",
       "group": "g_offline",
-      "evidence": [],
+      "evidence": [
+        "tools/ai/benchmark.py",
+        "tools/ai/test_benchmark.py",
+        "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026",
+        "BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored)"
+      ],
       "blockers": [
-        "Ollama is not installed on this machine (checked 12 Oct 2026)",
-        "no benchmark run yet"
+        "laptop RTX 4050 not benchmarked",
+        "speech recognition and the Unity Editor not loaded in the measurements",
+        "BT3 blind human rating of dialogue quality pending (DT-187)",
+        "thinking-on runs for the 4B not done",
+        "BT4 to BT6 (debrief, composition proxy, judge) not run"
       ],
       "id": "OFF-08",
       "label": "Model preparation: pull, quantise, benchmark (no training)",
-      "status": "Blocked",
+      "status": "Partially implemented",
       "method_class": "pretrained",
       "description": "Download the candidate served models, record their digests and licences, and benchmark latency, VRAM and structured-output validity on this hardware. Nothing is trained here.",
       "inputs": [
@@ -2588,10 +2596,14 @@
       "type": "component",
       "label": "Served LLM runtime (Ollama)",
       "group": "g_components",
-      "status": "Blocked",
-      "description": "Served LLM runtime (Ollama). Where: not installed. Tests: p1-ai-language-s02.",
-      "evidence": [],
-      "location": "not installed",
+      "status": "Partially implemented",
+      "description": "Served LLM runtime (Ollama). Where: installed on the desktop (16 Oct 2026); the laptop is not set up. Tests: tools/ai/test_benchmark.py (fake server), p1-ai-language-s02 (real).",
+      "evidence": [
+        "tools/ai/benchmark.py",
+        "tools/ai/test_benchmark.py",
+        "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026"
+      ],
+      "location": "desktop (Ollama 0.40.5); laptop not installed",
       "traced_to": {
         "kind": "direct",
         "features": [
@@ -3927,7 +3939,7 @@
             "kind": "AI (LLM + retrieval)",
             "status": "Blocked",
             "purpose": "Propose coherent case plans and narratives from objectives and evidence.",
-            "method": "Qwen3 served by Ollama, JSON-schema output with enums of approved ids, retrieval of KB subgraphs and exemplar cases, temperature 0.7 to 0.8, dedupe by block-set hash.",
+            "method": "Qwen3.5 9B served by Ollama, JSON-schema output with enums of approved ids, retrieval of KB subgraphs and exemplar cases, temperature 0.7 to 0.8, dedupe by block-set hash.",
             "models": [
               "MC-01"
             ],
@@ -4222,7 +4234,7 @@
             "kind": "AI (LLM + retrieval + solver)",
             "status": "Blocked",
             "purpose": "Propose the scenario plan (problems, investigations, decisions, traps, events, branches, outcomes) for this trainee.",
-            "method": "Qwen3-4B with JSON schema over KB concept ids; retrieval of KB subgraph and 3 exemplar cases; solver completion; rationale per choice.",
+            "method": "Qwen3.5 9B with JSON schema over KB concept ids; retrieval of KB subgraph and 3 exemplar cases; solver completion; rationale per choice.",
             "models": [
               "MC-01"
             ],
@@ -4264,11 +4276,11 @@
             "baseline_comparison": "Solver-only plan with random tie-breaks (A2.c1).",
             "acceptance": "Coherence and objective coverage higher than baseline (paired, p under 0.05) at equal Stage B pass rate; p95 under 25 s or served from pool.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s13",
@@ -4516,7 +4528,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural story and voice.",
-            "method": "Qwen3-4B, schema with text fields and persona tag enums.",
+            "method": "Qwen3.5 9B, schema with text fields and persona tag enums.",
             "models": [
               "MC-01"
             ],
@@ -4548,11 +4560,11 @@
             "baseline_comparison": "Template story.",
             "acceptance": "Realism rating higher than template; zero ungrounded facts delivered.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s04"
@@ -4759,11 +4771,11 @@
             "baseline_comparison": "Random valid stack.",
             "acceptance": "At least 80 percent of AI stacks contain a KB-confirmed interaction versus baseline rate.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s13"
@@ -4968,11 +4980,11 @@
             "baseline_comparison": "Random eligible event.",
             "acceptance": "Relevance higher than baseline; zero ineligible events.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s13"
@@ -5338,7 +5350,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Plausible misdirection.",
-            "method": "Qwen3-4B with trap and cue constraints.",
+            "method": "Qwen3.5 9B with trap and cue constraints.",
             "models": [
               "MC-01"
             ],
@@ -5369,11 +5381,11 @@
             "baseline_comparison": "Template trap text.",
             "acceptance": "Plausibility higher than template; zero traps missing their cue.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s13"
@@ -5573,11 +5585,11 @@
             "baseline_comparison": "Template branch set.",
             "acceptance": "Higher rating than template.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s13"
@@ -5737,7 +5749,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Catch incoherence.",
-            "method": "Qwen3-4B rubric scoring, JSON.",
+            "method": "Qwen3.5 9B rubric scoring, JSON.",
             "models": [
               "MC-12"
             ],
@@ -5768,11 +5780,11 @@
             "baseline_comparison": "Metrics only.",
             "acceptance": "Catches at least 50 percent of human-rated poor cases that metrics pass, with under 10 percent false alarms.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s08",
@@ -5941,7 +5953,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Fix wording; find unknown implausibility.",
-            "method": "Qwen3-4B; critic output is advisory.",
+            "method": "Qwen3.5 4B; critic output is advisory.",
             "models": [
               "MC-12"
             ],
@@ -5972,11 +5984,11 @@
             "baseline_comparison": "Template replacement.",
             "acceptance": "Repair success at least 70 percent; critic precision at least 0.5 on seeded set.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s08"
@@ -7570,7 +7582,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Catch free-text contradictions.",
-            "method": "Qwen3-4B, claims extracted from text compared with structured facts.",
+            "method": "Qwen3.5 4B, claims extracted from text compared with structured facts.",
             "models": [
               "MC-12"
             ],
@@ -7601,11 +7613,11 @@
             "baseline_comparison": "Rules plus lexical grounding validator.",
             "acceptance": "Recall higher than baseline by at least 20 points with false alarms under 10 percent.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-live-scenario-generation-s15"
@@ -7724,7 +7736,7 @@
             "kind": "AI (LLM, offline)",
             "status": "Blocked",
             "purpose": "Diverse test sets.",
-            "method": "Qwen3 paraphrase; label carried; 10 percent human audit.",
+            "method": "Qwen3.5 9B paraphrase; label carried; 10 percent human audit.",
             "models": [
               "MC-01"
             ],
@@ -8217,7 +8229,7 @@
             "kind": "AI (LLM + retrieval)",
             "status": "Proposed new feature",
             "purpose": "Explain results.",
-            "method": "Qwen3-4B with report and band facts.",
+            "method": "Qwen3.5 9B with report and band facts.",
             "models": [
               "MC-04"
             ],
@@ -8251,11 +8263,11 @@
             "baseline_comparison": "Report sentence.",
             "acceptance": "Helpfulness higher than baseline; zero escapes.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-learning-analytics-s05"
@@ -8413,7 +8425,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Understand phrasing.",
-            "method": "Qwen3 enum classification with confidence.",
+            "method": "Qwen3.5 4B enum classification with confidence.",
             "models": [
               "MC-03"
             ],
@@ -8442,11 +8454,11 @@
             "baseline_comparison": "Keyword matcher.",
             "acceptance": "Accuracy at least 10 points above keyword matcher and at least 90 percent.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s07"
@@ -8614,11 +8626,11 @@
             "baseline_comparison": "Keyword matcher.",
             "acceptance": "Accuracy at least 90 percent and above keyword baseline.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s04"
@@ -8630,7 +8642,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural answers.",
-            "method": "Qwen3-4B, persona prompt, released facts only, JSON {intent, text}.",
+            "method": "Qwen3.5 4B, persona prompt, released facts only, JSON {intent, text}.",
             "models": [
               "MC-02"
             ],
@@ -8667,11 +8679,11 @@
             "baseline_comparison": "Fixed quoted answers.",
             "acceptance": "Zero leaks; realism higher than baseline; p95 under 3 s.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s04"
@@ -8799,7 +8811,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural staff replies.",
-            "method": "Qwen3-4B with role prompt, JSON {intent_id, text}.",
+            "method": "Qwen3.5 4B with role prompt, JSON {intent_id, text}.",
             "models": [
               "MC-02"
             ],
@@ -8832,11 +8844,11 @@
             "baseline_comparison": "Fixed lines.",
             "acceptance": "100 percent compliance; naturalness higher than baseline.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s05"
@@ -8960,7 +8972,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural staff replies.",
-            "method": "Qwen3-4B with role prompt, JSON {intent_id, text}.",
+            "method": "Qwen3.5 4B with role prompt, JSON {intent_id, text}.",
             "models": [
               "MC-02"
             ],
@@ -8993,11 +9005,11 @@
             "baseline_comparison": "Fixed lines.",
             "acceptance": "100 percent compliance; naturalness higher than baseline.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s05"
@@ -9121,7 +9133,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural staff replies.",
-            "method": "Qwen3-4B with role prompt, JSON {intent_id, text}.",
+            "method": "Qwen3.5 4B with role prompt, JSON {intent_id, text}.",
             "models": [
               "MC-02"
             ],
@@ -9154,11 +9166,11 @@
             "baseline_comparison": "Fixed lines.",
             "acceptance": "100 percent compliance; naturalness higher than baseline.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s05"
@@ -9282,7 +9294,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural staff replies.",
-            "method": "Qwen3-4B with role prompt, JSON {intent_id, text}.",
+            "method": "Qwen3.5 4B with role prompt, JSON {intent_id, text}.",
             "models": [
               "MC-02"
             ],
@@ -9315,11 +9327,11 @@
             "baseline_comparison": "Fixed lines.",
             "acceptance": "100 percent compliance; naturalness higher than baseline.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s05"
@@ -9509,11 +9521,11 @@
             "baseline_comparison": "Neutral.",
             "acceptance": "90 percent consistency.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s04"
@@ -9634,7 +9646,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Natural reactions.",
-            "method": "Qwen3 short replies.",
+            "method": "Qwen3.5 4B short replies.",
             "models": [
               "MC-02"
             ],
@@ -9665,11 +9677,11 @@
             "baseline_comparison": "Fixed lines.",
             "acceptance": "Higher naturalness; fires on trigger step only.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s05"
@@ -10708,7 +10720,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Acts from speech.",
-            "method": "Qwen3 enum + confidence.",
+            "method": "Qwen3.5 4B enum + confidence.",
             "models": [
               "MC-03"
             ],
@@ -10737,11 +10749,11 @@
             "baseline_comparison": "Keyword rules.",
             "acceptance": "Macro-F1 at least 0.75 and above baseline, else off.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s06",
@@ -10869,7 +10881,7 @@
             "kind": "AI (LLM)",
             "status": "Blocked",
             "purpose": "Readable debrief.",
-            "method": "Qwen3-4B, JSON sections keyed to fact ids.",
+            "method": "Qwen3.5 4B, JSON sections keyed to fact ids.",
             "models": [
               "MC-04"
             ],
@@ -10901,11 +10913,11 @@
             "baseline_comparison": "Template.",
             "acceptance": "Zero escapes; preferred over template by at least 60 percent of pilot trainees.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s08"
@@ -11021,7 +11033,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Advice.",
-            "method": "Qwen3 from profile facts.",
+            "method": "Qwen3.5 4B from profile facts.",
             "models": [
               "MC-04"
             ],
@@ -11051,11 +11063,11 @@
             "baseline_comparison": "Generic advice.",
             "acceptance": "Greater improvement than generic advice in simulated and pilot data.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-learning-analytics-s01"
@@ -11216,7 +11228,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Words.",
-            "method": "Qwen3 from pattern facts.",
+            "method": "Qwen3.5 4B from pattern facts.",
             "models": [
               "MC-04"
             ],
@@ -11244,11 +11256,11 @@
             "baseline_comparison": "Table.",
             "acceptance": "Clearer than table; zero ungrounded claims.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-learning-analytics-s01"
@@ -11407,7 +11419,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Advice.",
-            "method": "Qwen3 from metrics.",
+            "method": "Qwen3.5 4B from metrics.",
             "models": [
               "MC-04"
             ],
@@ -11435,11 +11447,11 @@
             "baseline_comparison": "Chart only.",
             "acceptance": "Greater Brier improvement than chart only in pilot.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-learning-analytics-s02"
@@ -11625,11 +11637,11 @@
             "baseline_comparison": "Table.",
             "acceptance": "Trainers agree with 70 percent of narrations.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-learning-analytics-s03"
@@ -12175,7 +12187,7 @@
             "kind": "AI (LLM + retrieval)",
             "status": "Blocked",
             "purpose": "Why it matters.",
-            "method": "Qwen3 with rubric item and SR source text.",
+            "method": "Qwen3.5 4B with rubric item and SR source text.",
             "models": [
               "MC-04"
             ],
@@ -12208,11 +12220,11 @@
             "baseline_comparison": "Template.",
             "acceptance": "Higher quiz score; zero escapes.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s08"
@@ -12353,11 +12365,11 @@
             "baseline_comparison": "Template (100 percent).",
             "acceptance": "100 percent coverage.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s08"
@@ -12521,7 +12533,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Talk about state.",
-            "method": "Qwen3 with state facts.",
+            "method": "Qwen3.5 4B with state facts.",
             "models": [
               "MC-02"
             ],
@@ -12549,11 +12561,11 @@
             "baseline_comparison": "Fixed lines.",
             "acceptance": "Zero contradictions; higher realism.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-advanced-simulation-s02"
@@ -12673,7 +12685,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Team talk.",
-            "method": "Shared Qwen3-4B, role prompts, queue arbitration.",
+            "method": "Shared Qwen3.5 4B, role prompts, queue arbitration.",
             "models": [
               "MC-02"
             ],
@@ -12705,11 +12717,11 @@
             "baseline_comparison": "Single speaker.",
             "acceptance": "p95 under 4 s; overlap under 5 percent.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-advanced-simulation-s03"
@@ -12830,7 +12842,7 @@
             "kind": "AI (LLM, offline)",
             "status": "Proposed new feature",
             "purpose": "Find escapes.",
-            "method": "Qwen3 paraphrase of probes and jailbreak patterns.",
+            "method": "Qwen3.5 9B paraphrase of probes and jailbreak patterns.",
             "models": [
               "MC-01"
             ],
@@ -13197,11 +13209,11 @@
             "baseline_comparison": "Table.",
             "acceptance": "Zero ungrounded claims.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-learning-analytics-s04"
@@ -13544,7 +13556,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Fit budget.",
-            "method": "Qwen3 summary of past turns only.",
+            "method": "Qwen3.5 4B summary of past turns only.",
             "models": [
               "MC-02"
             ],
@@ -13572,11 +13584,11 @@
             "baseline_comparison": "Truncation.",
             "acceptance": "Higher coherence; zero new facts.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-language-s05"
@@ -13842,7 +13854,7 @@
             "kind": "AI (LLM)",
             "status": "Planned",
             "purpose": "Why.",
-            "method": "Template + Qwen3 variant (shared with D68.c3).",
+            "method": "Template + Qwen3.5 4B variant (shared with D68.c3).",
             "models": [
               "MC-04"
             ],
@@ -13871,11 +13883,11 @@
             "baseline_comparison": "Template.",
             "acceptance": "Zero ungrounded claims.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-scenario-composer-difficulty-s04"
@@ -13923,10 +13935,15 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "ai",
-      "status": "Blocked",
-      "ai_status": "Blocked",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Serve candidate models locally, measure latency, VRAM and schema validity, choose defaults.",
-      "evidence": [],
+      "evidence": [
+        "tools/ai/benchmark.py",
+        "tools/ai/test_benchmark.py",
+        "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026",
+        "BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored)"
+      ],
       "lineage": [
         "p1-ai-language-s02",
         "DT-096"
@@ -13956,8 +13973,11 @@
       ],
       "acceptance": "Benchmark report with chosen default per task.",
       "blockers": [
-        "Ollama not installed",
-        "models not downloaded"
+        "laptop RTX 4050 not benchmarked",
+        "speech recognition and the Unity Editor not loaded in the measurements",
+        "BT3 blind human rating of dialogue quality pending (DT-187)",
+        "thinking-on runs for the 4B not done",
+        "BT4 to BT6 (debrief, composition proxy, judge) not run"
       ],
       "risks": [
         "chosen model misses latency targets on this GPU (smaller tag fallback)"
@@ -13970,12 +13990,16 @@
       "plan": {
         "user_experience": "All language features have a reliable local model with known speed on our machines.",
         "exists": [
-          "nothing installed"
+          "Ollama 0.40.5 and the two Qwen3.5 Q4_K_M models on the desktop",
+          "benchmark harness tools/ai/benchmark.py with 13 tests (BT0 speed and GPU share, BT1 structured output, BT2 grounding, blind rating sheet)",
+          "measured results on the desktop for the live and batch models"
         ],
         "missing": [
-          "install",
-          "benchmark",
-          "defaults"
+          "laptop RTX 4050 not benchmarked",
+          "speech recognition and the Unity Editor not loaded in the measurements",
+          "BT3 blind human rating of dialogue quality pending (DT-187)",
+          "thinking-on runs for the 4B not done",
+          "BT4 to BT6 (debrief, composition proxy, judge) not run"
         ],
         "deterministic_foundation": "Gateway contract.",
         "ai_questions": {
@@ -13993,9 +14017,9 @@
             "id": "E57.c1",
             "name": "Served LLM runtime and benchmark",
             "kind": "AI (pretrained, infrastructure)",
-            "status": "Blocked",
+            "status": "Partially implemented",
             "purpose": "Serve.",
-            "method": "Ollama with Qwen3 tags; benchmark both GPUs.",
+            "method": "Ollama with Qwen3.5 Q4_K_M tags; BT0 to BT2 measured on the desktop, laptop and co-residency still to do.",
             "models": [
               "MC-01",
               "MC-02",
@@ -14030,11 +14054,11 @@
             "baseline_comparison": "—",
             "acceptance": "Report with a default per task and per machine.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-infrastructure-s01",
@@ -14052,8 +14076,8 @@
         "prerequisites": [
           "owner installs Ollama or approves install"
         ],
-        "status_rationale": "Blocked: not installed.",
-        "reassessment": "Keep; installation is a task, not a reason to drop.",
+        "status_rationale": "Partially implemented: the runtime and models are installed on the desktop and BT0 to BT2 are measured; the laptop, co-residency with speech recognition and Unity, thinking-on runs and BT3 to BT6 are not done.",
+        "reassessment": "Keep. First measurements (16 Oct 2026) support Qwen3.5 4B for live work and 9B as an offline batch model; both remain unconfirmed on quality until BT3 and BT4 to BT6 are done.",
         "staged_versions": {
           "initial": "Desktop only.",
           "future": "Split deployment."
@@ -14064,7 +14088,14 @@
         "definition_of_done": [
           "met"
         ],
-        "status_history": []
+        "status_history": [
+          {
+            "date": "2026-10-16",
+            "from": "Blocked",
+            "to": "Partially implemented",
+            "reason": "Owner approved installing the runtime and models and building the harness; BT0 to BT2 measured on the desktop."
+          }
+        ]
       },
       "traced_to": {
         "kind": "direct",
@@ -14306,7 +14337,7 @@
             "kind": "AI (pretrained)",
             "status": "Deferred",
             "purpose": "Urdu.",
-            "method": "Whisper multilingual + Qwen3 (multilingual).",
+            "method": "Whisper multilingual + Qwen3.5 (multilingual).",
             "models": [
               "MC-05",
               "MC-02"
@@ -14638,14 +14669,14 @@
               "quality",
               "speed"
             ],
-            "baseline_comparison": "Qwen3-4B.",
+            "baseline_comparison": "Qwen3.5 9B.",
             "acceptance": "Report; adopt only if better on validator-passing quality.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p2-ai-extensions-s05"
@@ -15436,7 +15467,7 @@
             "kind": "AI (LLM, offline)",
             "status": "Blocked",
             "purpose": "Candidate relations from prose.",
-            "method": "Qwen3 (8B acceptable offline) with relation schema.",
+            "method": "Qwen3.5 9B (offline batch) with relation schema.",
             "models": [
               "MC-01"
             ],
@@ -15743,7 +15774,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Hypotheses about needs.",
-            "method": "Qwen3 reads the profile summary; returns hypotheses with cited evidence ids and confidence.",
+            "method": "Qwen3.5 4B reads the profile summary; returns hypotheses with cited evidence ids and confidence.",
             "models": [
               "MC-04"
             ],
@@ -15996,7 +16027,7 @@
             "kind": "AI (LLM)",
             "status": "Proposed new feature",
             "purpose": "Explain.",
-            "method": "Qwen3 from objective facts.",
+            "method": "Qwen3.5 4B from objective facts.",
             "models": [
               "MC-04"
             ],
@@ -16024,11 +16055,11 @@
             "baseline_comparison": "Template.",
             "acceptance": "Zero ungrounded claims.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-personalisation-s05"
@@ -16083,7 +16114,8 @@
       "ai_status": "Not applicable (deterministic feature)",
       "description": "Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.",
       "evidence": [
-        "desktop hardware measured 12 Oct 2026"
+        "desktop hardware measured 12 Oct 2026",
+        "Ollama and models installed and measured on the desktop 16 Oct 2026"
       ],
       "lineage": [],
       "method": "Install, benchmark, decide topology.",
@@ -16124,7 +16156,8 @@
       "plan": {
         "user_experience": "AI features run smoothly beside VR rendering on our two machines, with known memory and speed, and degrade gracefully.",
         "exists": [
-          "hardware: desktop GTX 1660 SUPER 6 GB, 16 GB RAM, Ryzen 5 2600 (measured 12 Oct 2026); laptop RTX 4050 6 GB (owner)"
+          "hardware: desktop GTX 1660 SUPER 6 GB, 16 GB RAM, Ryzen 5 2600 (measured 12 Oct 2026); laptop RTX 4050 6 GB (owner)",
+          "Ollama 0.40.5, qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop (16 Oct 2026); measured: the 4B is 100 percent on the GPU at about 59 tokens per second, the 9B is 57 percent on the GPU at about 12 tokens per second"
         ],
         "missing": [
           "inference service",
@@ -16182,11 +16215,11 @@
             "baseline_comparison": "—",
             "acceptance": "Every AI capability has a chosen deployment with measured latency inside its budget or a documented staged alternative.",
             "hardware": {
-              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured.",
+              "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
               "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
               "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
               "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+              "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
             },
             "tasks": [
               "p1-ai-infrastructure-s01",
@@ -23445,7 +23478,7 @@
       "kind": "model runtime",
       "licence": "MIT",
       "url": "https://ollama.com/blog/structured-outputs",
-      "status": "not installed",
+      "status": "installed on the desktop (0.40.5, 16 Oct 2026)",
       "used_by": [
         "CMP-LLM",
         "OFF-08"
@@ -23856,63 +23889,66 @@
       "id": "MC-01",
       "purpose": "Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50)",
       "candidates": [
-        "Qwen3-4B (Ollama qwen3:4b, about 2.5 GB, Apache-2.0)",
-        "Qwen3-8B (qwen3:8b, about 5.2 GB, Apache-2.0; tight on 6 GB VRAM)",
-        "Llama 3.2 3B (licence to verify)"
+        "Qwen3.5 9B (qwen3.5:9b-q4_K_M, 6.6 GB, thinking on where the benchmark shows a gain)",
+        "Qwen3.5 4B (qwen3.5:4b-q4_K_M, 3.3 GB)",
+        "Qwen3 4B (qwen3:4b, a thinking-2507 build, kept only as the comparison baseline)",
+        "Optional alternative, not required: a hosted Qwen3.5 397B-A17B for offline composition only (about 0.30 USD in and 1.93 USD out per million tokens on third-party trackers, 16 Oct 2026)"
       ],
-      "default": "Qwen3-4B, thinking off, JSON-schema format",
+      "default": "Qwen3.5 9B (qwen3.5:9b-q4_K_M) on the desktop GPU with CPU offload, offline batch only, JSON-schema format, thinking on where the benchmark shows a gain",
       "method_class": "LLM",
       "hardware": "6 GB GPU (GTX 1660 SUPER here; RTX 4050 laptop in the plan)",
-      "latency": "target 25 s per composition, to be measured",
+      "latency": "offline batch, minutes per composition (measured 16 Oct 2026: about 12 tokens per second, and a 150-word planning answer in thinking mode used a whole 1800-token budget in 162 s); never run in a session",
       "local_remote": "local (Ollama); remote API optional and off by default",
       "internet": "not at run time",
       "privacy": "no real patient data is ever sent; synthetic content only",
-      "licence": "Apache-2.0 (Qwen3, model card read 12 Oct 2026)",
+      "licence": "Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026)",
       "structured_output": "Ollama `format` JSON schema (enums of approved block ids)",
       "evaluation": "schema-valid rate, grounding escapes, novelty, judge and human quality scores",
       "cost": "no licence fee; local electricity",
       "fallback": "template narrative (deterministic)",
       "why_not_simpler": "Templates alone give formulaic stories; the narrative is a language product. Values and decisions are not given to the LLM.",
-      "status": "Blocked"
+      "status": "Planned"
     },
     {
       "id": "MC-02",
       "purpose": "Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49)",
       "candidates": [
-        "Qwen3-4B",
-        "Qwen3-8B",
-        "Qwen3-1.7B for low-latency staff lines"
+        "Qwen3.5 4B (qwen3.5:4b-q4_K_M, 3.3 GB)",
+        "Qwen3.5 2B (qwen3.5:2b, 1.9 GB) if the p95 target is missed",
+        "Qwen3 4B (qwen3:4b, comparison baseline)",
+        "Qwen3.5 9B (qwen3.5:9b-q4_K_M; measured too slow for live dialogue)"
       ],
-      "default": "Qwen3-4B; 1.7B if p95 latency target missed",
+      "default": "Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off (think false), num_ctx 4096, kept loaded; Qwen3.5 2B if the p95 latency target is missed",
       "method_class": "LLM",
       "hardware": "6 GB GPU",
-      "latency": "p95 under 3 s for a short reply, to be measured",
+      "latency": "p95 under 3 s for a short reply; measured 16 Oct 2026 on the idle desktop with the patient case prompt and schema output: p50 1.01 s, p95 1.15 s, about 59 tokens per second, 100 percent on the GPU (speech recognition and Unity not loaded)",
       "local_remote": "local",
       "internet": "no",
       "privacy": "synthetic only",
-      "licence": "Apache-2.0",
+      "licence": "Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026)",
       "structured_output": "JSON with intent enum and text",
       "evaluation": "disclosure probes, intent compliance, persona rubric, latency",
       "cost": "none",
       "fallback": "pre-rendered line per intent or fixed menu",
       "why_not_simpler": "Free questions cannot be enumerated; menus are the fallback.",
-      "status": "Blocked"
+      "status": "Planned"
     },
     {
       "id": "MC-03",
       "purpose": "Communication act classification (C35, C37, E60)",
       "candidates": [
-        "served LLM with enum schema (P1)",
-        "small encoder fine-tuned (P2; model and licence chosen then)"
+        "Qwen3.5 4B (qwen3.5:4b-q4_K_M)",
+        "Qwen3.5 2B (qwen3.5:2b)",
+        "P2: a fine-tuned small encoder (E60)"
       ],
-      "default": "served LLM (P1)",
+      "default": "Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1)",
       "method_class": "LLM, then trained (P2 only)",
       "hardware": "6 GB GPU",
       "latency": "under 1.5 s",
       "local_remote": "local",
       "internet": "no",
       "privacy": "trainee speech text stays local",
-      "licence": "as MC-01; P2 model licence to verify",
+      "licence": "Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026)",
       "structured_output": "enum of acts plus confidence",
       "evaluation": "macro-F1 on frozen human-labelled split; critical-act guard",
       "cost": "none",
@@ -23924,17 +23960,17 @@
       "id": "MC-04",
       "purpose": "Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56)",
       "candidates": [
-        "Qwen3-4B",
-        "Qwen3-8B"
+        "Qwen3.5 4B (qwen3.5:4b-q4_K_M) for live rewrites after a session",
+        "Qwen3.5 9B (qwen3.5:9b-q4_K_M) for text written once offline and approved (hint variants, investigation explanations)"
       ],
-      "default": "Qwen3-4B",
+      "default": "Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off; texts that can be written once are pre-generated offline by Qwen3.5 9B and approved before use",
       "method_class": "LLM",
       "hardware": "6 GB GPU",
       "latency": "under 15 s (after the session)",
       "local_remote": "local",
       "internet": "no",
       "privacy": "pseudonymised facts only",
-      "licence": "Apache-2.0",
+      "licence": "Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026)",
       "structured_output": "JSON sections keyed to DebriefFacts ids",
       "evaluation": "grounding mutation run (50 sessions), readability",
       "cost": "none",
@@ -24101,16 +24137,17 @@
       "id": "MC-12",
       "purpose": "Scenario quality judge (A9, E51)",
       "candidates": [
-        "same served LLM with a fixed rubric (advisory)"
+        "Qwen3.5 9B (qwen3.5:9b-q4_K_M), thinking on, advisory",
+        "Qwen3.5 4B (qwen3.5:4b-q4_K_M) as the faster fallback"
       ],
-      "default": "Qwen3-4B judge, advisory",
+      "default": "Qwen3.5 9B judge (thinking on), advisory only, offline batch; it never approves a scenario",
       "method_class": "LLM",
       "hardware": "6 GB GPU",
-      "latency": "under 8 s",
+      "latency": "offline batch, minutes per case (not a session feature)",
       "local_remote": "local",
       "internet": "no",
       "privacy": "synthetic",
-      "licence": "Apache-2.0",
+      "licence": "Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026)",
       "structured_output": "rubric scores JSON",
       "evaluation": "Spearman with human ratings",
       "cost": "none",
@@ -24315,7 +24352,7 @@
         "PH-01",
         "PH-20"
       ],
-      "status": "Blocked",
+      "status": "Partially implemented",
       "deliverables": [
         "benchmark report",
         "pinned digests"
@@ -25066,7 +25103,7 @@
   "open_questions": [
     {
       "id": "OQ-01",
-      "question": "Which Qwen3 size meets the 25 s composition and 3 s dialogue targets on a 6 GB GPU with JSON schema output?",
+      "question": "Which Qwen3.5 size meets the 25 s composition and 3 s dialogue targets on a 6 GB GPU with JSON schema output? PARTLY ANSWERED 16 Oct 2026 on the desktop: the 4B meets the dialogue target (p95 1.15 s, 100 percent on the GPU); the 9B does not (about 5 s, 57 percent on the GPU) and is batch only. Not yet measured: the laptop, speech recognition and Unity running, composition quality.",
       "blocking": false,
       "resolve_by": "benchmark (p1-ai-language-s02)"
     },
@@ -25108,7 +25145,7 @@
     },
     {
       "id": "OQ-08",
-      "question": "Does Llama 3.2 3B's licence suit this project better or worse than Qwen3 (Apache-2.0)?",
+      "question": "Does Llama 3.2 3B's licence suit this project better or worse than Qwen3.5 (Apache-2.0)?",
       "blocking": false,
       "resolve_by": "research before benchmark"
     }

@@ -205,6 +205,7 @@ def main(argv: list[str]) -> int:
         ("deploy checker waits for the new commit, tolerates a sleeping service and fails clearly", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_wait_for_deploy.py"])),
         ("task doctor reads the wanted versions from the repository and reports missing tools", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_doctor.py"])),
         ("repo backup bundles every branch and tag, restores by clone and prunes old copies", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_repo_backup.py"])),
+        ("model benchmark harness works against a fake Ollama (contexts never hold unearned facts, scoring, reports)", lambda: run(["uv", "run", "--project", "tools", "tools/ai/test_benchmark.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
     ]
     results = []

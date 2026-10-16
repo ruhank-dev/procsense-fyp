@@ -4,6 +4,8 @@ Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, d
 
 > **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
+> **Status (16 October 2026).** `tools/ai/benchmark.py` exists (tests BT0 speed and GPU share, BT1 structured output, BT2 grounding, and a blind rating sheet for BT3) with 13 tests, and the desktop alone was measured idle. Not done: the laptop, desktop and laptop with Unity and speech recognition loaded, thinking-on runs, BT4 debrief, BT5 composition, BT6 judge, the report `docs/research/model_benchmarks.md` (DT-188, DT-187). This step stays open.
+
 ## What
 Measure for every candidate model on each GPU: VRAM, load time, time to first token, tokens per second, schema-valid rate on ProcSense schemas, ASR real-time factor and WER on a vocabulary set, and the Unity VR scene frame time while the model runs. Laptop RAM, CPU and power limits are recorded.
 

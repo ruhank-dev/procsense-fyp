@@ -12,9 +12,9 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 |---|---|
 | Implemented and tested | 3 |
 | Implemented but incompletely tested | 0 |
-| Partially implemented | 28 |
+| Partially implemented | 29 |
 | Planned | 14 |
-| Blocked | 3 |
+| Blocked | 2 |
 | Deferred | 4 |
 | Proposed new feature | 17 |
 | Superseded or rejected | 0 |
@@ -82,7 +82,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | E54 | Context builder and reaction queue | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](feature_plans/E54.md) |
 | E55 | AI evaluation harness and switch-off gate | deterministic | Planned | Not applicable (deterministic feature) | PH-17 | P1 | [plan](feature_plans/E55.md) |
 | E56 | Difficulty explanation to the trainee | hybrid | Planned | Planned | PH-16 | P1 | [plan](feature_plans/E56.md) |
-| E57 | LLM serving and benchmark | ai | Blocked | Blocked | PH-07 | P1 | [plan](feature_plans/E57.md) |
+| E57 | LLM serving and benchmark | ai | Partially implemented | Partially implemented | PH-07 | P1 | [plan](feature_plans/E57.md) |
 | E58 | Retrieval over approved content (RAG) | hybrid | Planned | Planned | PH-05 | P1 | [plan](feature_plans/E58.md) |
 | E59 | Urdu and multilingual language | ai | Deferred | Deferred | PH-19 | P2 | [plan](feature_plans/E59.md) |
 | E60 | P2 small trained classifier | ai | Blocked | Blocked | PH-19 | P2 | [plan](feature_plans/E60.md) |
@@ -1762,9 +1762,9 @@ Serve candidate models locally, measure latency, VRAM and schema validity, choos
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Blocked |
-| AI status | Blocked |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | tools/ai/benchmark.py; tools/ai/test_benchmark.py; Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026; BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored) |
 | Lineage (existing ids) | p1-ai-language-s02; DT-096 |
 | Method | Ollama with JSON-schema format. |
 | LLM-first classification | Infrastructure for every LLM feature. |
@@ -1777,7 +1777,7 @@ Serve candidate models locally, measure latency, VRAM and schema validity, choos
 | Fallback | All AI features fall back to templates. |
 | Tests planned | benchmark protocol |
 | Acceptance | Benchmark report with chosen default per task. |
-| Blockers | Ollama not installed; models not downloaded |
+| Blockers | laptop RTX 4050 not benchmarked; speech recognition and the Unity Editor not loaded in the measurements; BT3 blind human rating of dialogue quality pending (DT-187); thinking-on runs for the 4B not done; BT4 to BT6 (debrief, composition proxy, judge) not run |
 | Risks | chosen model misses latency targets on this GPU (smaller tag fallback) |
 | Tasks | p1-ai-language-s02 |
 | Phase | PH-07 LLM serving and benchmark |
@@ -2016,7 +2016,7 @@ Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop w
 | Kind (AI or deterministic) | deterministic |
 | Status | Proposed new feature |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | desktop hardware measured 12 Oct 2026 |
+| Evidence (what exists) | desktop hardware measured 12 Oct 2026; Ollama and models installed and measured on the desktop 16 Oct 2026 |
 | Lineage (existing ids) | — |
 | Method | Install, benchmark, decide topology. |
 | LLM-first classification | Infrastructure. |

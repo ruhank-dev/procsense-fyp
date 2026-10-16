@@ -82,7 +82,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | E54 | Context builder and reaction queue | Implemented and tested | deterministic | 2 (1) | yes | p1-ai-language-s03; p1-ai-language-s05 | PH-01 | [E54](feature_plans/E54.md) |
 | E55 | AI evaluation harness and switch-off gate | Planned | deterministic | 1 (0) | yes | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04 | PH-17 | [E55](feature_plans/E55.md) |
 | E56 | Difficulty explanation to the trainee | Planned | hybrid | 1 (1) | yes | p1-scenario-composer-difficulty-s04 | PH-16 | [E56](feature_plans/E56.md) |
-| E57 | LLM serving and benchmark | Blocked | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-language-s02 | PH-07 | [E57](feature_plans/E57.md) |
+| E57 | LLM serving and benchmark | Partially implemented | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-language-s02 | PH-07 | [E57](feature_plans/E57.md) |
 | E58 | Retrieval over approved content (RAG) | Planned | hybrid | 1 (1) | yes | p1-live-scenario-generation-s02; p2-ai-extensions-s02 | PH-05 | [E58](feature_plans/E58.md) |
 | E59 | Urdu and multilingual language | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s04 | PH-19 | [E59](feature_plans/E59.md) |
 | E60 | P2 small trained classifier | Blocked | ai | 1 (1) | yes | p2-ai-extensions-s03 | PH-19 | [E60](feature_plans/E60.md) |

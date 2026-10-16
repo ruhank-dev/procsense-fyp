@@ -409,6 +409,9 @@ jobs:
       - name: Repo backup bundles every branch and tag, restores by clone and prunes old copies
         run: uv run --project tools tools/ci/test_repo_backup.py
 
+      - name: Model benchmark harness works against a fake Ollama (contexts never hold unearned facts, scoring, reports)
+        run: uv run --project tools tools/ai/test_benchmark.py
+
       - name: Project rules (determinism rules, hygiene, doc links, registers)
         run: uv run --project tools tools/ci/repo_checks.py
 

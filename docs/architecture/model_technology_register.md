@@ -8,10 +8,10 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 
 | ID | Purpose | Class | Default | Status |
 |---|---|---|---|---|
-| MC-01 | Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50) | LLM | Qwen3-4B, thinking off, JSON-schema format | Blocked |
-| MC-02 | Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49) | LLM | Qwen3-4B; 1.7B if p95 latency target missed | Blocked |
-| MC-03 | Communication act classification (C35, C37, E60) | LLM, then trained (P2 only) | served LLM (P1) | Blocked |
-| MC-04 | Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56) | LLM | Qwen3-4B | Blocked |
+| MC-01 | Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50) | LLM | Qwen3.5 9B (qwen3.5:9b-q4_K_M) on the desktop GPU with CPU offload, offline batch only, JSON-schema format, thinking on where the benchmark shows a gain | Planned |
+| MC-02 | Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off (think false), num_ctx 4096, kept loaded; Qwen3.5 2B if the p95 latency target is missed | Planned |
+| MC-03 | Communication act classification (C35, C37, E60) | LLM, then trained (P2 only) | Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1) | Blocked |
+| MC-04 | Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off; texts that can be written once are pre-generated offline by Qwen3.5 9B and approved before use | Blocked |
 | MC-05 | Speech recognition (C31 to C35, E59, E63) | pretrained | faster-whisper medium.en int8 on the desktop GPU, vocabulary prompt from content | Planned |
 | MC-06 | Text-to-speech (C31, C34) | pretrained | pre-rendered lines for fixed lines; Piper archived MIT release for live lines, voice licence checked per voice | Planned |
 | MC-07 | Retrieval (E58, LG-03) | retrieval | BM25 + tag filter | Planned |
@@ -19,62 +19,62 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 | MC-09 | ECG traces and strips (B15) | statistical / parametric | real strips; NeuroKit2 for rate and noise variants | Partially implemented |
 | MC-10 | Medical image selection (B16, B17) | deterministic retrieval | tag retrieval | Partially implemented |
 | MC-11 | Novelty fingerprints (A6, LG-13) | deterministic | weighted Jaccard; datasketch when history exceeds a few thousand | Proposed new feature |
-| MC-12 | Scenario quality judge (A9, E51) | LLM | Qwen3-4B judge, advisory | Proposed new feature |
+| MC-12 | Scenario quality judge (A9, E51) | LLM | Qwen3.5 9B judge (thinking on), advisory only, offline batch; it never approves a scenario | Proposed new feature |
 | MC-13 | Medical LLM benchmark (E61) | LLM | none (benchmark only) | Deferred |
 
 ## MC-01 — Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50)
 
 | Field | Value |
 |---|---|
-| Candidates | Qwen3-4B (Ollama qwen3:4b, about 2.5 GB, Apache-2.0); Qwen3-8B (qwen3:8b, about 5.2 GB, Apache-2.0; tight on 6 GB VRAM); Llama 3.2 3B (licence to verify) |
-| Default | Qwen3-4B, thinking off, JSON-schema format |
+| Candidates | Qwen3.5 9B (qwen3.5:9b-q4_K_M, 6.6 GB, thinking on where the benchmark shows a gain); Qwen3.5 4B (qwen3.5:4b-q4_K_M, 3.3 GB); Qwen3 4B (qwen3:4b, a thinking-2507 build, kept only as the comparison baseline); Optional alternative, not required: a hosted Qwen3.5 397B-A17B for offline composition only (about 0.30 USD in and 1.93 USD out per million tokens on third-party trackers, 16 Oct 2026) |
+| Default | Qwen3.5 9B (qwen3.5:9b-q4_K_M) on the desktop GPU with CPU offload, offline batch only, JSON-schema format, thinking on where the benchmark shows a gain |
 | Method class | LLM |
 | Hardware | 6 GB GPU (GTX 1660 SUPER here; RTX 4050 laptop in the plan) |
-| Latency | target 25 s per composition, to be measured |
+| Latency | offline batch, minutes per composition (measured 16 Oct 2026: about 12 tokens per second, and a 150-word planning answer in thinking mode used a whole 1800-token budget in 162 s); never run in a session |
 | Local or remote | local (Ollama); remote API optional and off by default |
 | Internet | not at run time |
 | Privacy | no real patient data is ever sent; synthetic content only |
-| Licence | Apache-2.0 (Qwen3, model card read 12 Oct 2026) |
+| Licence | Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026) |
 | Structured output | Ollama `format` JSON schema (enums of approved block ids) |
 | Evaluation | schema-valid rate, grounding escapes, novelty, judge and human quality scores |
 | Cost | no licence fee; local electricity |
 | Fallback | template narrative (deterministic) |
 | Why not something simpler | Templates alone give formulaic stories; the narrative is a language product. Values and decisions are not given to the LLM. |
-| Status | Blocked |
+| Status | Planned |
 
 ## MC-02 — Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49)
 
 | Field | Value |
 |---|---|
-| Candidates | Qwen3-4B; Qwen3-8B; Qwen3-1.7B for low-latency staff lines |
-| Default | Qwen3-4B; 1.7B if p95 latency target missed |
+| Candidates | Qwen3.5 4B (qwen3.5:4b-q4_K_M, 3.3 GB); Qwen3.5 2B (qwen3.5:2b, 1.9 GB) if the p95 target is missed; Qwen3 4B (qwen3:4b, comparison baseline); Qwen3.5 9B (qwen3.5:9b-q4_K_M; measured too slow for live dialogue) |
+| Default | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off (think false), num_ctx 4096, kept loaded; Qwen3.5 2B if the p95 latency target is missed |
 | Method class | LLM |
 | Hardware | 6 GB GPU |
-| Latency | p95 under 3 s for a short reply, to be measured |
+| Latency | p95 under 3 s for a short reply; measured 16 Oct 2026 on the idle desktop with the patient case prompt and schema output: p50 1.01 s, p95 1.15 s, about 59 tokens per second, 100 percent on the GPU (speech recognition and Unity not loaded) |
 | Local or remote | local |
 | Internet | no |
 | Privacy | synthetic only |
-| Licence | Apache-2.0 |
+| Licence | Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026) |
 | Structured output | JSON with intent enum and text |
 | Evaluation | disclosure probes, intent compliance, persona rubric, latency |
 | Cost | none |
 | Fallback | pre-rendered line per intent or fixed menu |
 | Why not something simpler | Free questions cannot be enumerated; menus are the fallback. |
-| Status | Blocked |
+| Status | Planned |
 
 ## MC-03 — Communication act classification (C35, C37, E60)
 
 | Field | Value |
 |---|---|
-| Candidates | served LLM with enum schema (P1); small encoder fine-tuned (P2; model and licence chosen then) |
-| Default | served LLM (P1) |
+| Candidates | Qwen3.5 4B (qwen3.5:4b-q4_K_M); Qwen3.5 2B (qwen3.5:2b); P2: a fine-tuned small encoder (E60) |
+| Default | Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1) |
 | Method class | LLM, then trained (P2 only) |
 | Hardware | 6 GB GPU |
 | Latency | under 1.5 s |
 | Local or remote | local |
 | Internet | no |
 | Privacy | trainee speech text stays local |
-| Licence | as MC-01; P2 model licence to verify |
+| Licence | Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026) |
 | Structured output | enum of acts plus confidence |
 | Evaluation | macro-F1 on frozen human-labelled split; critical-act guard |
 | Cost | none |
@@ -86,15 +86,15 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 
 | Field | Value |
 |---|---|
-| Candidates | Qwen3-4B; Qwen3-8B |
-| Default | Qwen3-4B |
+| Candidates | Qwen3.5 4B (qwen3.5:4b-q4_K_M) for live rewrites after a session; Qwen3.5 9B (qwen3.5:9b-q4_K_M) for text written once offline and approved (hint variants, investigation explanations) |
+| Default | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off; texts that can be written once are pre-generated offline by Qwen3.5 9B and approved before use |
 | Method class | LLM |
 | Hardware | 6 GB GPU |
 | Latency | under 15 s (after the session) |
 | Local or remote | local |
 | Internet | no |
 | Privacy | pseudonymised facts only |
-| Licence | Apache-2.0 |
+| Licence | Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026) |
 | Structured output | JSON sections keyed to DebriefFacts ids |
 | Evaluation | grounding mutation run (50 sessions), readability |
 | Cost | none |
@@ -246,15 +246,15 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 
 | Field | Value |
 |---|---|
-| Candidates | same served LLM with a fixed rubric (advisory) |
-| Default | Qwen3-4B judge, advisory |
+| Candidates | Qwen3.5 9B (qwen3.5:9b-q4_K_M), thinking on, advisory; Qwen3.5 4B (qwen3.5:4b-q4_K_M) as the faster fallback |
+| Default | Qwen3.5 9B judge (thinking on), advisory only, offline batch; it never approves a scenario |
 | Method class | LLM |
 | Hardware | 6 GB GPU |
-| Latency | under 8 s |
+| Latency | offline batch, minutes per case (not a session feature) |
 | Local or remote | local |
 | Internet | no |
 | Privacy | synthetic |
-| Licence | Apache-2.0 |
+| Licence | Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026) |
 | Structured output | rubric scores JSON |
 | Evaluation | Spearman with human ratings |
 | Cost | none |
@@ -290,7 +290,7 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 
 | Profile | GTX 1660 SUPER (desktop) | RTX 4050 Laptop | Memory | Latency | Deployment |
 |---|---|---|---|---|---|
-| llm | Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores): Qwen3-4B Q4 (about 2.5 GB weights) plus a 4k-token KV cache is expected to fit with room for ASR; Qwen3-8B Q4 (about 5.2 GB) leaves almost no room for context and is expected to need partial CPU offload (slow). Throughput to be measured. | Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop. | 16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark. | Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit. | Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3-1.7B or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data. |
+| llm | Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured. | Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop. | 16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark. | Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit. | Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data. |
 | llm_offline | Runs as a batch job on the desktop; larger models (8B with offload) acceptable because time is not critical. | Batch job when Unity is not running. | CPU offload uses system RAM; keep batch size small on 16 GB. | Offline; minutes per batch acceptable. | Offline CLI on either machine; results stored and versioned; optional remote GPU for large batches. |
 | asr | faster-whisper small.en or medium.en with int8 is expected to fit beside a 4B LLM on the desktop (upstream lists large-v2 int8 at about 2.9 GB); exact VRAM to be measured. | Possible, but competes with Unity rendering; prefer the desktop or CPU int8 small.en. | CPU fallback with small.en int8 on the Ryzen 5 2600 (6 cores) is expected to be near real time; to be measured. | Under 1.5 s from end of speech to text. | Part of the inference service; push-to-talk audio streamed from Unity. |
 | tts | Not needed (CPU). | Not needed (CPU). | Under 500 MB per voice. | Under 0.5 s per sentence; fixed lines pre-rendered. | Pre-rendered files shipped with Unity; live TTS in the inference service or on the Unity machine's CPU. |
@@ -305,7 +305,7 @@ Every number above that is not marked measured is an expectation to be confirmed
 
 | ID | Name | Kind | Licence | Status | Source | Used by |
 |---|---|---|---|---|---|---|
-| EXT-OLLAMA | Ollama | model runtime | MIT | not installed | https://ollama.com/blog/structured-outputs | CMP-LLM; OFF-08 |
+| EXT-OLLAMA | Ollama | model runtime | MIT | installed on the desktop (0.40.5, 16 Oct 2026) | https://ollama.com/blog/structured-outputs | CMP-LLM; OFF-08 |
 | EXT-QWEN3 | Qwen3 models | model weights | Apache-2.0 | not downloaded | https://huggingface.co/Qwen/Qwen3-8B | MC-01; MC-02; MC-04; MC-12 |
 | EXT-FWHISPER | faster-whisper | ASR library | MIT | not installed | https://github.com/SYSTRAN/faster-whisper | CMP-ASR |
 | EXT-PIPER | Piper TTS | TTS engine | MIT (archived); successor GPL-3.0; each voice has its own licence (only en_GB-cori-high is allowed so far) | not installed | https://github.com/rhasspy/piper | CMP-TTS |

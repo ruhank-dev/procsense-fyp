@@ -33,7 +33,7 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-04 | Block library and composer foundation | Planned | PH-01 | — | A1; A12; B23 |
 | PH-05 | Live generation skeleton (deterministic path first) | Planned | PH-03; PH-04 | yes | A2; A4; A11; E58 |
 | PH-06 | Backend and AI gateway | Planned | PH-01 | — | E62 |
-| PH-07 | LLM serving and benchmark | Blocked | PH-01; PH-20 | — | E57 |
+| PH-07 | LLM serving and benchmark | Partially implemented | PH-01; PH-20 | — | E57 |
 | PH-08 | AI composition, profiles and personas | Blocked | PH-05; PH-06; PH-07; PH-22 | — | A3 |
 | PH-09 | Numeric, waveform and image generation | Planned | PH-03; PH-05 | yes | B14; B15; B16; B17; B20; B21 |
 | PH-10 | Cross-modal consistency, validation and live loop | Planned | PH-09 | yes | A5; A8; A10; B18 |
@@ -142,13 +142,13 @@ Install the runtime, pull candidates, benchmark latency, VRAM, schema validity; 
 
 | Field | Value |
 |---|---|
-| Status | Blocked |
+| Status | Partially implemented |
 | Depends on | PH-01; PH-20 |
 | Tasks (plan steps) | p1-ai-language-s02 |
 | Features | E57 |
 | Deliverables | benchmark report; pinned digests |
 | Acceptance | chosen default per task |
-| Blockers | Ollama not installed; models not downloaded |
+| Blockers | BT3 blind human rating of dialogue quality pending (DT-187); BT4 to BT6 (debrief, composition proxy, judge) not run; laptop RTX 4050 not benchmarked; speech recognition and the Unity Editor not loaded in the measurements; thinking-on runs for the 4B not done |
 
 ### PH-08 — AI composition, profiles and personas
 
@@ -466,11 +466,11 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 
 | ID | Question | Blocking | Resolve by |
 |---|---|---|---|
-| OQ-01 | Which Qwen3 size meets the 25 s composition and 3 s dialogue targets on a 6 GB GPU with JSON schema output? | no | benchmark (p1-ai-language-s02) |
+| OQ-01 | Which Qwen3.5 size meets the 25 s composition and 3 s dialogue targets on a 6 GB GPU with JSON schema output? PARTLY ANSWERED 16 Oct 2026 on the desktop: the 4B meets the dialogue target (p95 1.15 s, 100 percent on the GPU); the 9B does not (about 5 s, 57 percent on the GPU) and is batch only. Not yet measured: the laptop, speech recognition and Unity running, composition quality. | no | benchmark (p1-ai-language-s02) |
 | OQ-02 | Is the MIMIC-IV demo (100 patients) enough to estimate per-condition lab correlations, or should correlations come from published reference ranges and expert-set rules? | no | p1-dataset-analysis-s02 |
 | OQ-03 | Which Piper voices have licences allowing redistribution in the build? | no | licence register per voice |
 | OQ-04 | What novelty thresholds feel fresh to trainees without hurting learning (repetition can help)? | no | pilot study in p1-evaluation-s03 |
 | OQ-05 | Can the PTB-XL class coverage produce hyperkalaemia ECGs, or are parametric T-wave variants needed? | no | p1-dataset-analysis-s03 |
 | OQ-06 | Hosting and login for the backend. DECIDED 13 October 2026 (ADR-0009): Supabase (PostgreSQL and Auth) with a free container host; revisit before real customers (DT-123). | no | decided; paid plans before real customers |
 | OQ-07 | The clinician questions Q1 to Q13 in clinician_signoff.md: answers improve accuracy but no longer gate development (policy of 12 Oct 2026). | no | research items |
-| OQ-08 | Does Llama 3.2 3B's licence suit this project better or worse than Qwen3 (Apache-2.0)? | no | research before benchmark |
+| OQ-08 | Does Llama 3.2 3B's licence suit this project better or worse than Qwen3.5 (Apache-2.0)? | no | research before benchmark |
