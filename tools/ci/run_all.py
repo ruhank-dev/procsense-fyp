@@ -186,6 +186,8 @@ def main(argv: list[str]) -> int:
         ("imaging library complete and up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/imaging_library.py", "--check"])),
         ("image review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/image_review_pack.py", "--check"])),
         ("dataset register and cards up to date", lambda: run(["uv", "run", "--project", "tools", "tools/data/dataset_cards.py", "--check"])),
+        ("licence register covers every dataset, model and library id, with a decision and a date", lambda: run(["uv", "run", "--project", "tools", "tools/data/licence_register_check.py"])),
+        ("licence register check tests (a missing id, a bad decision word, a missing date, registers that disagree)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_licence_register.py"])),
         ("image and dataset tests", lambda: run(["uv", "run", "--project", "tools", "tools/content/test_images.py"])),
         ("content manifest up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/content_manifest.py", "--check"])),
         ("medical review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/review_pack.py", "--check"])),

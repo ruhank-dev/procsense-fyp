@@ -23480,7 +23480,7 @@
       "id": "EXT-PIPER",
       "name": "Piper TTS",
       "kind": "TTS engine",
-      "licence": "MIT (archived); successor GPL-3.0",
+      "licence": "MIT (archived); successor GPL-3.0; each voice has its own licence (only en_GB-cori-high is allowed so far)",
       "url": "https://github.com/rhasspy/piper",
       "status": "not installed",
       "used_by": [
@@ -23571,7 +23571,7 @@
       "kind": "hosted database and accounts",
       "licence": "Apache-2.0 (open source); hosted service under its terms and plan limits",
       "url": "https://supabase.com/docs",
-      "status": "not set up",
+      "status": "in use (project procsense-dev, free plan)",
       "used_by": [
         "CMP-BACKEND",
         "ST-HISTORY"
@@ -23583,7 +23583,7 @@
       "id": "DS-0001",
       "name": "VitalDB",
       "version": "open API",
-      "licence": "CC BY 4.0",
+      "licence": "CC BY 4.0 (PhysioNet release 1.0.0); the vitaldb.net open dataset and API are CC BY-NC-SA 4.0 under a data use agreement",
       "status": "IN USE (aggregates)",
       "modality": "vital-sign waveforms and numerics (intra-operative)",
       "use": "Vital-sign noise: spread and AR(1) autocorrelation per channel for the monitor and LitePhysio.",
@@ -23598,7 +23598,7 @@
         "B14",
         "B20"
       ],
-      "restrictions": "Attribution required."
+      "restrictions": "Attribution required. Take the data from the PhysioNet release: the vitaldb.net copy is non-commercial, research and development only (re-derive the aggregates: DT-183)."
     },
     {
       "id": "DS-0002",
@@ -23727,8 +23727,8 @@
       "id": "DS-0008",
       "name": "Regensburg Pediatric Appendicitis",
       "version": "UCI 938",
-      "licence": "not confirmed",
-      "status": "NOT USED",
+      "licence": "CC BY-NC 4.0",
+      "status": "REJECTED",
       "modality": "paediatric appendicitis scores",
       "use": "None (licence not confirmed; paediatric).",
       "derived": "none",
@@ -23736,13 +23736,13 @@
       "planned_analysis": "None; revisit only if a paediatric case is added.",
       "feeds": [],
       "features": [],
-      "restrictions": "Do not use until licence confirmed."
+      "restrictions": "Non-commercial licence; children only."
     },
     {
       "id": "DS-0009",
       "name": "PriMock57",
       "version": "n/a",
-      "licence": "not checked",
+      "licence": "CC BY 4.0",
       "status": "NOT NEEDED",
       "modality": "mock consultation audio",
       "use": "Considered for ASR evaluation; decided not needed (10 Oct 2026).",
@@ -23753,13 +23753,13 @@
       "features": [
         "C33"
       ],
-      "restrictions": "Check licence before any use."
+      "restrictions": "Attribution if ever used; audio not committed."
     },
     {
       "id": "DS-0010",
       "name": "Mozilla Common Voice",
       "version": "n/a",
-      "licence": "not read",
+      "licence": "not read (only through Mozilla Data Collective since October 2025)",
       "status": "NOT NEEDED",
       "modality": "crowd speech",
       "use": "Considered for accent robustness; decided not needed.",
@@ -23771,7 +23771,7 @@
         "C33",
         "E59"
       ],
-      "restrictions": "Check licence before any use."
+      "restrictions": "Read the Mozilla Data Collective terms before any use."
     },
     {
       "id": "DS-0011",

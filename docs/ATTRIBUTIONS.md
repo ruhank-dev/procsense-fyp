@@ -35,7 +35,7 @@ Datasets in use (from `docs/research/dataset_register.csv`; licences and conditi
 
 | Dataset | Licence | Used for | Link |
 |---|---|---|---|
-| VitalDB | CC BY 4.0 | Vital-sign noise (spread and AR(1) autocorrelation) for the monitor and LitePhysio | https://vitaldb.net/dataset |
+| VitalDB | Depends on the copy: CC BY 4.0 on PhysioNet (VitalDB 1.0.0); the vitaldb.net open dataset and its API, which our extract read, are CC BY-NC-SA 4.0 under the VitalDB data use agreement (research and development use) | Vital-sign noise (spread and AR(1) autocorrelation) for the monitor and LitePhysio | https://vitaldb.net/dataset |
 | PTB-XL 1.0.3 | CC BY 4.0 | Lead II beat templates for sinus rhythm, sinus tachycardia and atrial fibrillation (monitor trace) | https://physionet.org/content/ptb-xl/1.0.3/ |
 | MIMIC-IV Clinical Database Demo 2.2 | ODbL 1.0 | Plausibility check of lab bands and generated results (adult hospital patients) | https://physionet.org/content/mimic-iv-demo/2.2/ |
 | MIMIC-IV-ED Demo 2.2 | ODbL 1.0 | Triage vitals of ED patients with abdominal complaints (S2 arrival realism) | https://physionet.org/content/mimic-iv-ed-demo/2.2/ |

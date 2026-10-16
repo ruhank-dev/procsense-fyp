@@ -6,6 +6,8 @@
 The register says, for every dataset, where it is, its licence, how it is accessed, what was actually opened and checked, and whether it is used.
 `contents_checked` is "yes" only for what was opened on the date given. A dataset that was identified but not opened is listed as NOT VERIFIED, never as verified.
 Numbers on the cards come from tools/data/derived/*.json and content/images/index.json.
+`licence_checked` is the date the licence page was last re-read (p1-dataset-analysis-s01: the licence refresh; findings in docs/research/research_log.md and the decisions in
+docs/research/licence_provenance_register.md); `date_checked` stays the date the contents were opened.
 """
 from __future__ import annotations
 
@@ -20,7 +22,8 @@ DERIVED = Path(__file__).resolve().parent / "derived"
 CARDS = ROOT / "docs" / "research" / "datasets"
 REGISTER = ROOT / "docs" / "research" / "dataset_register.csv"
 TODAY = "2026-10-10"
-HEADER = ["id", "name", "purpose", "url", "licence", "access", "contents_checked", "synthetic", "status", "date_checked", "notes"]
+LICENCE_CHECKED = "2026-10-16"   # the licence refresh of p1-dataset-analysis-s01 (R-013 to R-028)
+HEADER = ["id", "name", "purpose", "url", "licence", "access", "contents_checked", "synthetic", "status", "date_checked", "notes", "licence_checked"]
 
 
 def j(name: str) -> dict:
@@ -38,9 +41,9 @@ def build() -> tuple[list[list[str]], dict[str, str]]:
     xs_real, xs_synth = [i for i in xs if not i["synthetic"]], [i for i in xs if i["synthetic"]]
     images_cxr = json.loads((ROOT / "content" / "cxr" / "index.json").read_text(encoding="utf-8"))["images"]
     rows = [
-        ["DS-0001", "VitalDB", "Vital-sign noise (spread and AR(1) autocorrelation) for the monitor and LitePhysio", "https://vitaldb.net/dataset (open API https://api.vitaldb.net)", "CC BY 4.0",
+        ["DS-0001", "VitalDB", "Vital-sign noise (spread and AR(1) autocorrelation) for the monitor and LitePhysio", "https://vitaldb.net/dataset (open API https://api.vitaldb.net); also https://physionet.org/content/vitaldb/1.0.0/", "Depends on the copy: CC BY 4.0 on PhysioNet (VitalDB 1.0.0); the vitaldb.net open dataset and its API, which our extract read, are CC BY-NC-SA 4.0 under the VitalDB data use agreement (research and development use)",
          "Open API, no account", f"yes: case table 6,388 cases and track list read; {vdb['cases_selected']} planned ASA 1-2 general-surgery cases sampled", "false", "USED (aggregates only)", TODAY,
-         "Intra-operative, so the values describe stable monitored patients, not an awake bay patient. Cite Lee et al., Sci Data 2022. Card: datasets/DS-0001-vitaldb.md"],
+         "Intra-operative, so the values describe stable monitored patients, not an awake bay patient. Cite Lee et al., Sci Data 2022. Licence refresh 16 Oct 2026: our aggregates were read through the vitaldb.net API (non-commercial terms); the same data is published on PhysioNet under CC BY 4.0, so the aggregates are to be re-derived from the PhysioNet release before any commercial use (DT-183). Card: datasets/DS-0001-vitaldb.md"],
         ["DS-0002", "PTB-XL 1.0.3", "Lead II beat templates for sinus rhythm, sinus tachycardia and atrial fibrillation (monitor trace)", "https://physionet.org/content/ptb-xl/1.0.3/", "CC BY 4.0",
          "Anyone (PhysioNet open access)", f"yes: ECG strips drawn from real recordings too (content/ecg); metadata file and {sum(c['records_used'] for c in ptb['classes'].values())} recordings read; licence page read", "false", "USED (aggregates only)", TODAY,
          "Cite Wagner et al., Sci Data 2020. Also the source of the 28 real ECG rhythm strips (sinus rhythm, tachycardia, bradycardia, atrial fibrillation, heart block, SVT, ST elevation) and the base of 12 edited ones, with reports, in content/ecg (approved for training on the owner's statement). Card: datasets/DS-0002-ptbxl.md"],
@@ -62,10 +65,10 @@ def build() -> tuple[list[list[str]], dict[str, str]]:
         ["DS-0007", "openFDA Drug Label API", "Contraindication and boxed-warning wording for the medicine groups (never doses)", "https://open.fda.gov/apis/drug/label/", "CC0 1.0 (terms page read)",
          "Open API, no account", f"yes: {len(label['medicines'])} labels queried and read (tools/data/extract_openfda.py); sentences with doses dropped", "false", f"USED ({len(label['medicines'])} medicine groups, wording only)", TODAY,
          "US labels as stand-ins for the UK product of the same group; aspirin and adrenaline returned no usable label. Card: datasets/DS-0007-openfda.md"],
-        ["DS-0008", "Regensburg Pediatric Appendicitis Dataset", "Reference for appendicitis score distributions", "https://archive.ics.uci.edu/dataset/938/regensburg+pediatric+appendicitis", "not confirmed (the UCI page says 'see linked dataset', Zenodo 7669442)",
-         "Open download", "partly: page read", "false", "NOT USED", TODAY, "Children only: not suitable for the adult S2 cases. Licence still to confirm if it is ever used."],
-        ["DS-0009", "PriMock57", "Medical conversation audio for the speech-recognition evaluation (P1)", "https://github.com/babylonhealth/primock57", "not checked", "not checked", "no", "false", "NOT NEEDED", TODAY, "Decision 10 Oct 2026: speech recognition uses an existing recogniser (for example Whisper or a cloud service), not a dataset we train on; a short authored phrase list recorded by the team is enough for the P0/P1 checks. Reconsider if accent robustness must be measured."],
-        ["DS-0010", "Mozilla Common Voice (accented English)", "Accent robustness for speech recognition (P1)", "https://commonvoice.mozilla.org/en/datasets", "not read (script-driven page)", "not checked", "no", "false", "NOT NEEDED", TODAY,
+        ["DS-0008", "Regensburg Pediatric Appendicitis Dataset", "Reference for appendicitis score distributions", "https://archive.ics.uci.edu/dataset/938/regensburg+pediatric+appendicitis", "CC BY-NC 4.0 (Zenodo record 7669442, v1.01; latest v1.03, record 7711412, same licence)",
+         "Open download", "partly: page read", "false", "REJECTED (licence: non-commercial)", TODAY, "Children only: not suitable for the adult S2 cases. The non-commercial licence also rules it out for a product that is sold."],
+        ["DS-0009", "PriMock57", "Medical conversation audio for the speech-recognition evaluation (P1)", "https://github.com/babylonhealth/primock57", "CC BY 4.0 (LICENSE.md of the repository)", "Open download (Git LFS for the audio)", "no", "false", "NOT NEEDED", TODAY, "Decision 10 Oct 2026: speech recognition uses an existing recogniser (for example Whisper or a cloud service), not a dataset we train on; a short authored phrase list recorded by the team is enough for the P0/P1 checks. Reconsider if accent robustness must be measured."],
+        ["DS-0010", "Mozilla Common Voice (accented English)", "Accent robustness for speech recognition (P1)", "https://commonvoice.mozilla.org/en/datasets", "not read: since October 2025 only distributed through Mozilla Data Collective under that site's terms; the dataset page there is script-driven and could not be read", "Mozilla Data Collective (account)", "no", "false", "NOT NEEDED", TODAY,
          "Decision 10 Oct 2026: not needed; existing speech recognisers already cover accents. Optional later for measuring accent robustness."],
         ["DS-0011", "ProcSense synthetic ultrasound set", "Labelled stand-in images where no real image exists (ADR-0003): ultrasound, ECG patterns, free-air chest film", "content/images (built by tools/data/ultrasound.py)", "ProcSense generated",
          "In the repository", f"yes: {len(synth) + len(xs_synth)} images rendered and looked at; mark read back from the pixels by CI", "true", "APPROVED_FOR_TRAINING (owner-attested)", TODAY,
@@ -84,7 +87,7 @@ def build() -> tuple[list[list[str]], dict[str, str]]:
     cards = {
         "DS-0001-vitaldb.md": f"""# DS-0001 VitalDB: vital-sign noise
 
-**Source:** {rows[0][3]} · **Licence:** CC BY 4.0 · **Cite:** {vdb['citation']}
+**Source:** {rows[0][3]} · **Licence:** CC BY 4.0 for the PhysioNet copy; CC BY-NC-SA 4.0 with a data use agreement for the vitaldb.net copy our extract read (re-derive from PhysioNet: DT-183) · **Cite:** {vdb['citation']}
 **Checked:** {TODAY}: the open API was opened; the case table ({vdb['eligible_cases']} eligible cases after the selection) and the track list were read.
 
 ## Purpose
@@ -244,7 +247,7 @@ def main(argv: list[str]) -> int:
     buf = io.StringIO()
     w = csv.writer(buf, lineterminator="\n")
     w.writerow(HEADER)
-    w.writerows(rows)
+    w.writerows(r + [LICENCE_CHECKED] for r in rows)
     files = {REGISTER: buf.getvalue(), **{CARDS / n: t.replace("\r\n", "\n") for n, t in cards.items()}}
     if "--check" in argv:
         stale = [str(p.relative_to(ROOT)) for p, t in files.items() if not p.exists() or p.read_text(encoding="utf-8").replace("\r\n", "\n") != t]

@@ -8,16 +8,16 @@ What each dataset and content table is, what is known about its normal and abnor
 
 | ID | Dataset | Licence | Status | Modality | Used for | Derived files | Feeds nodes | Features |
 |---|---|---|---|---|---|---|---|---|
-| DS-0001 | VitalDB open API | CC BY 4.0 | IN USE (aggregates) | vital-sign waveforms and numerics (intra-operative) | Vital-sign noise: spread and AR(1) autocorrelation per channel for the monitor and LitePhysio. | tools/data/derived/vitaldb_noise.json | OFF-02; LG-07 | B14; B20 |
+| DS-0001 | VitalDB open API | CC BY 4.0 (PhysioNet release 1.0.0); the vitaldb.net open dataset and API are CC BY-NC-SA 4.0 under a data use agreement | IN USE (aggregates) | vital-sign waveforms and numerics (intra-operative) | Vital-sign noise: spread and AR(1) autocorrelation per channel for the monitor and LitePhysio. | tools/data/derived/vitaldb_noise.json | OFF-02; LG-07 | B14; B20 |
 | DS-0002 | PTB-XL 1.0.3 | CC BY 4.0 | IN USE | 12-lead ECG, 10 s, with diagnostic statements | Lead II beat templates (sinus, sinus tachycardia, AF) and real strips with reports. | tools/data/derived/ptbxl_ecg_templates.json | OFF-02; OFF-06; LG-08 | B15 |
 | DS-0003 | MIMIC-IV Clinical Database Demo 2.2 | ODbL 1.0 | REFERENCE AND TESTS ONLY | hospital labs, vitals, medications (100 patients) | Plausibility check of lab bands and generated results; lab percentiles p5 to p95 per analyte. | tools/data/derived/mimic_lab_percentiles.json | OFF-02; OFF-03; LG-07 | B14; B21 |
 | DS-0004 | MIMIC-IV-ED Demo 2.2 | ODbL 1.0 | IN USE (aggregates) | ED triage vitals and chief complaints | Triage vitals of ED patients with abdominal complaints (S2 arrival realism). | tools/data/derived/mimic_ed_triage.json | OFF-02; LG-07 | B14; A3 |
 | DS-0005 | UIdataGB gallbladder ultrasound 2 | CC BY 4.0 | IN USE | gallbladder ultrasound images | Real gallbladder ultrasound pictures for the EMR viewer. | content/images (selected) | OFF-06; LG-08 | B16 |
 | DS-0006 | NIH ChestX-ray14 as downloaded | NIH terms with attribution (no restriction on use stated; cite) | IN USE | chest X-ray images with NLP-mined labels | Real chest X-rays (consolidation, effusion, pneumothorax, cardiomegaly, oedema, atelectasis, no finding) and the base of the free-air film. | content/images (selected) | OFF-06; LG-08 | B17 |
 | DS-0007 | openFDA Drug Label API live API | CC0 1.0 | IN USE | drug label text | Contraindication and boxed-warning wording for medicine groups (never doses). | tools/data/derived/openfda_label_safety.json | ST-MEDS | A3 |
-| DS-0008 | Regensburg Pediatric Appendicitis UCI 938 | not confirmed | NOT USED | paediatric appendicitis scores | None (licence not confirmed; paediatric). | none | — | — |
-| DS-0009 | PriMock57 n/a | not checked | NOT NEEDED | mock consultation audio | Considered for ASR evaluation; decided not needed (10 Oct 2026). | none | — | C33 |
-| DS-0010 | Mozilla Common Voice n/a | not read | NOT NEEDED | crowd speech | Considered for accent robustness; decided not needed. | none | — | C33; E59 |
+| DS-0008 | Regensburg Pediatric Appendicitis UCI 938 | CC BY-NC 4.0 | REJECTED | paediatric appendicitis scores | None (licence not confirmed; paediatric). | none | — | — |
+| DS-0009 | PriMock57 n/a | CC BY 4.0 | NOT NEEDED | mock consultation audio | Considered for ASR evaluation; decided not needed (10 Oct 2026). | none | — | C33 |
+| DS-0010 | Mozilla Common Voice n/a | not read (only through Mozilla Data Collective since October 2025) | NOT NEEDED | crowd speech | Considered for accent robustness; decided not needed. | none | — | C33; E59 |
 | DS-0011 | ProcSense labelled synthetic images repository | ProcSense generated | IN USE (DRAFT) | ultrasound, ECG pictures, free-air film | Labelled stand-ins where no real image exists (ADR-0003). | content/images | OFF-06; LG-08 | B15; B16; B17 |
 | DS-0012 | ProcSense authored EMR distractor identities repository | ProcSense authored | DRAFT | invented patient identities | Search-the-right-patient task. | content/emr_distractors.csv | ST-EMR | A3; A7 |
 | DS-0013 | Indiana University Chest X-ray (Open-i) n/a | CC BY-NC-ND 4.0 | REJECTED | chest X-ray with reports | None (no-derivatives licence conflicts with cropping and annotation). | none | — | — |
@@ -27,16 +27,16 @@ What each dataset and content table is, what is known about its normal and abnor
 
 | ID | What is known | Analysis planned | Restrictions |
 |---|---|---|---|
-| DS-0001 | Profiles intra-operative surgical patients; good for noise and short-term variability, not for pre-operative ward baselines or sepsis trajectories. Abnormal episodes (hypotension, desaturation) present but not yet profiled. | Episode profiling: hypotension and desaturation onset slopes, artefact rate (dropouts, motion) per channel (p1-dataset-analysis-s03). | Attribution required. |
+| DS-0001 | Profiles intra-operative surgical patients; good for noise and short-term variability, not for pre-operative ward baselines or sepsis trajectories. Abnormal episodes (hypotension, desaturation) present but not yet profiled. | Episode profiling: hypotension and desaturation onset slopes, artefact rate (dropouts, motion) per channel (p1-dataset-analysis-s03). | Attribution required. Take the data from the PhysioNet release: the vitaldb.net copy is non-commercial, research and development only (re-derive the aggregates: DT-183). |
 | DS-0002 | Normal and many abnormal classes with SCP statements; hyperkalaemia-specific labels are sparse, so peaked-T variants may need parametric variation. | Per-class rate and interval distributions (PR, QRS, QT), noise levels; class coverage against case needs (p1-dataset-analysis-s03). | Attribution required. |
 | DS-0003 | Demo subset is small (100 patients); percentiles are population-wide, not per condition. Correlations (for example WCC with CRP) can be estimated only roughly. | Per-analyte distributions by abnormal flag, pairwise correlations for linked analytes, missingness per analyte (p1-dataset-analysis-s02). Share-alike: derived databases must stay ODbL; only aggregates are committed. | ODbL share-alike on derived databases; aggregate statistics only in the repo. |
 | DS-0004 | Small demo sample; abdominal subset smaller still. Useful for arrival vitals ranges, not for trajectories. | Joint distribution of triage HR, BP, RR, SpO2, temperature for abdominal complaints (p1-dataset-analysis-s02). | As DS-0003. |
 | DS-0005 | Disease classes (stones, cholecystitis, others) present; normal class present; per-image quality varies. | Finding tags and quality grade per selected image (p1-dataset-analysis-s04). | Attribution required. |
 | DS-0006 | Labels are NLP-mined and noisy; every selected image was checked by eye and has a written report. | Finding tags per selected image; coverage gaps against case needs (p1-dataset-analysis-s04). | Attribution and citation. |
 | DS-0007 | Not a patient dataset. | None beyond the existing extract. | None. |
-| DS-0008 | n/a | None; revisit only if a paediatric case is added. | Do not use until licence confirmed. |
-| DS-0009 | n/a | Revisit for C33 accent and domain WER if own recordings are insufficient. | Check licence before any use. |
-| DS-0010 | n/a | Revisit for C33 and E59 (Urdu). | Check licence before any use. |
+| DS-0008 | n/a | None; revisit only if a paediatric case is added. | Non-commercial licence; children only. |
+| DS-0009 | n/a | Revisit for C33 accent and domain WER if own recordings are insufficient. | Attribution if ever used; audio not committed. |
+| DS-0010 | n/a | Revisit for C33 and E59 (Urdu). | Read the Mozilla Data Collective terms before any use. |
 | DS-0011 | Each picture labelled synthetic with its intended finding. | Quality grading alongside real images (p1-dataset-analysis-s04). | Must stay labelled synthetic. |
 | DS-0012 | n/a | Name pool for generated profiles (A3). | Invented names only. |
 | DS-0013 | n/a | None. | Do not use. |

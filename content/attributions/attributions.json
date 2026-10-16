@@ -95,7 +95,7 @@
   {
    "id": "DS-0001",
    "name": "VitalDB",
-   "licence": "CC BY 4.0",
+   "licence": "Depends on the copy: CC BY 4.0 on PhysioNet (VitalDB 1.0.0); the vitaldb.net open dataset and its API, which our extract read, are CC BY-NC-SA 4.0 under the VitalDB data use agreement (research and development use)",
    "url": "https://vitaldb.net/dataset",
    "use": "Vital-sign noise (spread and AR(1) autocorrelation) for the monitor and LitePhysio"
   },

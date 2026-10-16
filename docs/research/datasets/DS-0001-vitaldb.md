@@ -1,6 +1,6 @@
 # DS-0001 VitalDB: vital-sign noise
 
-**Source:** https://vitaldb.net/dataset (open API https://api.vitaldb.net) · **Licence:** CC BY 4.0 · **Cite:** Lee HC, Park Y, Yoon SB, et al. VitalDB, a high-fidelity multi-parameter vital signs database in surgical patients. Sci Data 2022.
+**Source:** https://vitaldb.net/dataset (open API https://api.vitaldb.net); also https://physionet.org/content/vitaldb/1.0.0/ · **Licence:** CC BY 4.0 for the PhysioNet copy; CC BY-NC-SA 4.0 with a data use agreement for the vitaldb.net copy our extract read (re-derive from PhysioNet: DT-183) · **Cite:** Lee HC, Park Y, Yoon SB, et al. VitalDB, a high-fidelity multi-parameter vital signs database in surgical patients. Sci Data 2022.
 **Checked:** 2026-10-10: the open API was opened; the case table (3131 eligible cases after the selection) and the track list were read.
 
 ## Purpose

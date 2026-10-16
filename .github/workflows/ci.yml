@@ -360,6 +360,12 @@ jobs:
       - name: Dataset register and cards are up to date
         run: uv run --project tools tools/data/dataset_cards.py --check
 
+      - name: Licence register covers every dataset, model and library id, with a decision and a date
+        run: uv run --project tools tools/data/licence_register_check.py
+
+      - name: Licence register check tests
+        run: uv run --project tools tools/ci/test_licence_register.py
+
       - name: Image and dataset tests
         run: uv run --project tools tools/content/test_images.py
 
