@@ -77,7 +77,7 @@ def test_the_models_know_the_same_tables_as_the_lock_list():
     assert set(ACCOUNT_TABLES) <= set(Base.metadata.tables)
 
 
-SESSION_TABLES = ["session", "session_score_item", "session_behaviour", "session_evidence", "learner_profile", "scenario_package"]
+SESSION_TABLES = ["session", "session_score_item", "session_behaviour", "session_evidence", "learner_profile", "scenario_package", "ai_call"]
 
 
 def test_every_session_table_has_the_lock_switched_on_and_a_public_role_would_see_nothing(migrated, public_role):
@@ -94,3 +94,12 @@ def test_every_session_table_has_the_lock_switched_on_and_a_public_role_would_se
     with migrated.begin() as conn:
         for table in SESSION_TABLES:
             conn.execute(text(f"revoke all on {table} from {public_role}"))
+
+
+def test_every_table_of_the_models_has_the_lock_switched_on(migrated):
+    """A table added later (as ai_call was in p1-backend-s05) cannot be forgotten."""
+    names = sorted(Base.metadata.tables)
+    with migrated.connect() as conn:
+        rows = dict(conn.execute(text("select relname, relrowsecurity from pg_class where relname = any(:names) and relkind = 'r'"), {"names": names}).all())
+    assert sorted(rows) == names
+    assert [n for n in names if not rows[n]] == []

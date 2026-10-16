@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI audit, week of $week_start</title>
+<style>
+body { font-family: system-ui, sans-serif; margin: 2rem; color: #1b1b1b; max-width: 72rem; }
+h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+h2 { font-size: 1.1rem; margin-top: 2rem; }
+p.meta { color: #555; margin-top: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { border-bottom: 1px solid #ddd; padding: 0.35rem 0.6rem; text-align: left; }
+th { background: #f3f3f3; }
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+.empty { color: #777; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>AI audit: $scope</h1>
+<p class="meta">Week $week_start to $week_end (UTC). Generated $generated from the ai_call rows. No text is stored: inputs are hashes, outputs are references.</p>
+
+<table>
+<tr><th>Calls</th><th>People</th><th>Organisations</th><th>Fallbacks</th><th>Fallback rate</th></tr>
+<tr><td class="n">$calls</td><td class="n">$people</td><td class="n">$organisations</td><td class="n">$fallbacks</td><td class="n">$fallback_rate</td></tr>
+</table>
+
+<h2>Per task</h2>
+<table>
+<tr><th>Task</th><th>Calls</th><th>Fallback rate</th><th>Server errors</th><th>p50 ms</th><th>p95 ms</th><th>p99 ms</th><th>Slowest ms</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Error</th><th>Not reported</th></tr>
+$task_rows
+</table>
+
+<h2>Why the validator failed a call</h2>
+<table>
+<tr><th>Task</th><th>Reason</th><th>Calls</th></tr>
+$reason_rows
+</table>
+
+<h2>Why the fallback was used</h2>
+<table>
+<tr><th>Task</th><th>Reason</th><th>Calls</th></tr>
+$fallback_rows
+</table>
+</body>
+</html>

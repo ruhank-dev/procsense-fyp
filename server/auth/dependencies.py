@@ -41,10 +41,16 @@ def get_admin() -> SupabaseAdmin:
 
 def db_session() -> Iterator[Session]:
     """A database session for one request; the service answers 503 when no database is configured."""
+    # only opening the session can mean "no database": an error raised later by the route is the route's own and must not be reported as a missing database
+    gen = get_session()
     try:
-        yield from get_session()
+        session = next(gen)
     except RuntimeError:
         raise HTTPException(status_code=503, detail="database_not_configured") from None
+    try:
+        yield session
+    finally:
+        gen.close()
 
 
 def _device_principal(token: str) -> Principal:

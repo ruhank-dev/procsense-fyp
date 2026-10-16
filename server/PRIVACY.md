@@ -21,7 +21,8 @@ The patients in every case are made up, so no patient data is involved. The peop
 | Learner profile | Reserved for the personalisation work (`p1-personalisation`) | `learner_profile` | The person; supervisors who may see them | Until the person deletes their data |
 | Application logs | Find faults | The hosting provider's log | The team | The hosting provider's own period (to check, DT-155). Log lines carry ids, never names, emails or tokens: every line is cleaned before it is written and a test checks it |
 | Backups | Recover from a mistake or a lost database | Planned (p1-backend-s13): copies of the application tables only | The team | To be stated when built (proposal: 30 days). A deleted person's data can remain in a backup until that backup expires |
-| AI prompts and audit rows | AI features (`p1-backend-s05`, `s06`, built with the AI work) | Not built yet | The team | Pseudonymous ids only, 12 months (proposal) |
+| AI audit rows: for every AI request, the task, model and prompt version, a hash of the input, a reference to the output, the validator's result and reason codes, whether the fallback was used, the time it took | So what the AI said to a trainee can be traced afterwards, and the AI can be evaluated (`p1-backend-s05`) | `ai_call`. **No text**: no words a trainee said and nothing the AI said, only hashes, references and codes (a test checks it); the text stays in the headset's own session log | The person (`/organisations/{id}/ai-calls`, and in their data export); supervisors and administrators of the organisation (opening one person's calls is in the access log); the platform administrators see weekly totals | 12 months, then removed by the daily clean-up. When the person deletes their data the rows move to the anonymous stand-in, like the sessions |
+| AI prompts | AI features (`p1-backend-s06`, built with the AI work) | Not built yet | The team | To be stated when built |
 
 ## Who may see an individual's data
 
@@ -34,7 +35,7 @@ The patients in every case are made up, so no patient data is involved. The peop
 
 - **Choose:** at first sign-in, and again whenever the text changes, a person answers two questions: storing their results (needed to store sessions; without it uploads are refused) and research use (optional, can be changed any time).
 - **Look:** the Privacy page lists who opened their data.
-- **Take it with them:** "Download my data" gives one JSON file with the profile, memberships, consent answers, every session's results, score items and report, devices, and the access log about them. The stored recordings of sessions are not in the file (DT-153).
+- **Take it with them:** "Download my data" gives one JSON file with the profile, memberships, consent answers, every session's results, score items and report, devices, the access log about them, and the AI audit rows of the calls made for them. The stored recordings of sessions are not in the file (DT-153).
 - **Leave:** "Delete my data" (after typing DELETE) removes the sign-in account (and with it the email and password), the profile and name, memberships, consent answers, headset sign-ins and learner profile, and **cuts the link to their sessions**: the sessions move to a new empty profile with a new random id and a new pseudonym, so no table holds the old id, the name or the old pseudonym, and every organisation's totals stay exactly as they were. The sessions' results remain as anonymous history. It is refused for the only administrator of an organisation, who must hand that over first.
 
 ## What deletion does not do (stated honestly)

@@ -254,7 +254,7 @@ def test_the_retention_job_removes_old_logs_and_keeps_every_result(world):
     recent = old_session(world, world.org_a, world.trainee, 3)
     before = world.get(f"/organisations/{world.org_a}/overview", world.supervisor).json()
     done = world.api.seed(lambda s: retention.run(s, config.get_settings(), now=dt.datetime(2026, 10, 14, 12, tzinfo=dt.timezone.utc)))
-    assert done == {"sessions_purged": 1, "pending_rejected": 0, "access_log_deleted": 0, "invitation_emails_cleared": 0}
+    assert done == {"sessions_purged": 1, "pending_rejected": 0, "access_log_deleted": 0, "invitation_emails_cleared": 0, "ai_calls_deleted": 0}
     with DbSession(world.api.engine) as s:
         a, b = s.get(Session, old), s.get(Session, recent)
         assert (a.log_gz, a.report_html_gz, a.header_line) == (b"", None, "") and a.log_purged_at is not None
@@ -292,7 +292,7 @@ def test_old_access_log_rows_and_purged_pending_sessions_are_cleaned_up(world):
     world.api.seed(lambda s: s.execute(update(AccessLog).values(at=dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=800))))
     world.get(f"/organisations/{world.org_a}/members/{world.trainee}/progress", world.admin)
     done = world.api.seed(lambda s: retention.run(s, config.get_settings()))
-    assert done == {"sessions_purged": 1, "pending_rejected": 1, "access_log_deleted": 1, "invitation_emails_cleared": 0}
+    assert done == {"sessions_purged": 1, "pending_rejected": 1, "access_log_deleted": 1, "invitation_emails_cleared": 0, "ai_calls_deleted": 0}
     with DbSession(world.api.engine) as s:
         assert s.get(Session, pending).status == "rejected" and s.get(Session, pending).reject_reason == "RETENTION_EXPIRED"
     assert len(world.get("/privacy/access-log", world.trainee).json()) == 1
@@ -324,7 +324,7 @@ def test_the_retention_route_is_for_the_scheduler_only(world, monkeypatch):
     assert world.api.client.post("/internal/retention").status_code == 403
     assert world.api.client.post("/internal/retention", headers={"X-Internal-Key": "wrong"}).status_code == 403
     r = world.api.client.post("/internal/retention", headers={"X-Internal-Key": "scheduler-key-for-tests"})
-    assert r.status_code == 200 and set(r.json()) == {"sessions_purged", "pending_rejected", "access_log_deleted", "invitation_emails_cleared"}
+    assert r.status_code == 200 and set(r.json()) == {"sessions_purged", "pending_rejected", "access_log_deleted", "invitation_emails_cleared", "ai_calls_deleted"}
     config.get_settings.cache_clear()
 
 

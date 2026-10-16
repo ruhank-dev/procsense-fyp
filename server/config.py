@@ -60,6 +60,8 @@ class Settings(BaseSettings):
     consent_required_for_upload: bool = True   # a session is accepted only from a person who agreed to the processing of their results (the current text)
     retention_session_months: int = 24         # after this the stored log and report page of a session are removed (the results stay); an organisation may choose 6 to 60
     retention_access_log_months: int = 24
+    retention_ai_call_months: int = 12         # the AI audit rows (p1-backend-s05): many small rows, so a shorter period than the sessions
+    audit_queue_size: int = 10_000             # AI audit rows waiting to be written; when full a row is dropped and the drop is logged (the reply is never held up)
     # headset sign-in with a code (p1-backend-s10)
     device_verification_uri: str = ""      # where a person enters the code (the web dashboard's /device page); empty = this service's own /device address
     device_login_minutes: int = 10
@@ -135,7 +137,7 @@ class Settings(BaseSettings):
             raise ValueError("a device sign-in setting must be between 1 and 100000")
         return value
 
-    @field_validator("retention_session_months", "retention_access_log_months")
+    @field_validator("retention_session_months", "retention_access_log_months", "retention_ai_call_months")
     @classmethod
     def _retention(cls, value: int) -> int:
         if not 6 <= value <= 60:

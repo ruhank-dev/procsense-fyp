@@ -12,7 +12,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from server.database import Base
 from server.models.accounts import _created, _in, _uuid_pk
 
-ACCESS_ACTIONS = ("view_report", "view_progress", "view_sessions", "export")
+ACCESS_ACTIONS = ("view_report", "view_progress", "view_sessions", "export", "view_ai_calls")
 
 
 class AccessLog(Base):

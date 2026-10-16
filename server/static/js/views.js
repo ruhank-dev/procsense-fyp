@@ -223,7 +223,7 @@ async function downloadMyData(ctx) {
   ctx.say('Your data was downloaded.', 'ok');
 }
 
-const WHAT = { view_report: 'Opened a session report', view_progress: 'Opened my progress', view_sessions: 'Opened my session list', export: 'Exported results that include me' };
+const WHAT = { view_report: 'Opened a session report', view_progress: 'Opened my progress', view_sessions: 'Opened my session list', export: 'Exported results that include me', view_ai_calls: 'Opened what the AI did for me' };
 
 export async function privacyView(ctx, consentState) {
   const [entries, retention] = await Promise.all([api.get('/privacy/access-log'), ctx.org.role === 'org_admin' ? api.get(`${base(ctx)}/retention`) : Promise.resolve(null)]);

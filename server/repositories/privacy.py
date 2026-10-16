@@ -16,7 +16,7 @@ from server.models.accounts import Cohort, CohortMember, ConsentRecord, Invitati
 from server.models.device_session import DeviceLogin, DeviceSession
 from server.models.privacy import AccessLog
 from server.models.sessions import LearnerProfile, Session, SessionBehaviour, SessionScoreItem
-from server.repositories import accounts
+from server.repositories import accounts, ai_audit
 
 
 def _now() -> dt.datetime:
@@ -92,7 +92,7 @@ def export_person(db: DbSession, profile: Profile) -> dict:
     devices = [dict(name=d.device_name, signed_in_at=d.created_at, last_used_at=d.last_used_at, revoked_at=d.revoked_at) for d in db.scalars(select(DeviceSession).where(DeviceSession.user_id == uid))]
     return dict(exported_at=_now(), notice="Everything ProcSense holds about you. Your email address is held by the sign-in service and is not part of this file.",
                 profile=dict(pseudonym=profile.pseudonym, display_name=profile.display_name, created_at=profile.created_at), memberships=memberships, cohorts=cohorts, consents=consents, sessions=sessions,
-                devices=devices, who_looked_at_my_data=access_log_about(db, uid, 1000))
+                devices=devices, who_looked_at_my_data=access_log_about(db, uid, 1000), ai_calls=ai_audit.calls_of_person(db, uid))
 
 
 # ---------------------------------------------------------------- deletion
@@ -112,6 +112,7 @@ def delete_person(db: DbSession, user_id: uuid.UUID) -> uuid.UUID:
     db.add(stand_in)
     db.flush()
     db.execute(update(Session).where(Session.user_id == user_id).values(user_id=stand_in.user_id))
+    ai_audit.move_to_stand_in(db, user_id, stand_in.user_id)
     db.execute(update(Invitation).where(Invitation.invited_by == user_id).values(invited_by=None))
     db.execute(update(AccessLog).where(AccessLog.viewer_id == user_id).values(viewer_id=None, viewer_pseudonym="deleted"))
     db.execute(delete(AccessLog).where(AccessLog.subject_id == user_id))
