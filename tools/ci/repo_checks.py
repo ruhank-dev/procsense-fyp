@@ -1,7 +1,7 @@
 """Project-rule checks that no compiler or unit test covers. Standard library only.
 
 Usage (from repo root):  task check     or     uv run --project tools tools/ci/repo_checks.py [check ...]
-Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards, no-tool-attributions
+Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards, no-tool-attributions, engine-version
 Exit code 0 = all pass, 1 = at least one failure. Add a new check here (and a row in docs/CI.md) whenever a new rule appears.
 """
 import re
@@ -265,6 +265,13 @@ def check_no_tool_attributions() -> list[str]:
     return problems
 
 
+# --- engine-version: CoreInfo.Version moves whenever the golden hashes move (DT-174); rule and fix in tools/ci/engine_version.py ---
+def check_engine_version() -> list[str]:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import engine_version
+    return engine_version.check(engine_version.core_version(), engine_version.golden_digest(), engine_version.read_lock())
+
+
 CHECKS = {
     "core-rules": check_core_rules,
     "hygiene": check_hygiene,
@@ -274,6 +281,7 @@ CHECKS = {
     "steps": check_steps,
     "team-guards": check_team_guards,
     "no-tool-attributions": check_no_tool_attributions,
+    "engine-version": check_engine_version,
 }
 
 

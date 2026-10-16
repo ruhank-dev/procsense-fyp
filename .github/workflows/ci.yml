@@ -400,6 +400,9 @@ jobs:
       - name: Secret scan catches pasted keys and passwords
         run: uv run --project tools tools/ci/test_repo_checks.py
 
+      - name: Engine version rule tests (changed golden hashes need a raised CoreInfo.Version)
+        run: uv run --project tools tools/ci/test_engine_version.py
+
       - name: Deploy checker waits for the new commit, tolerates a sleeping service and fails clearly
         run: uv run --project tools tools/ci/test_wait_for_deploy.py
 

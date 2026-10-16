@@ -1,8 +1,8 @@
 [
-  { "t": 0,  "verb": "order_blood_test" },
+  { "t": 0,  "verb": "order_investigation", "params": {"test": "fbc"} },
   { "t": 5,  "verb": "ask_identity" },
   { "t": 10, "verb": "read_wristband" },
   { "t": 14, "verb": "open_notes" },
   { "t": 18, "verb": "confirm_identity" },
-  { "t": 25, "verb": "order_blood_test" }
+  { "t": 25, "verb": "order_investigation", "params": {"test": "fbc"} }
 ]

@@ -46,9 +46,6 @@ namespace ProcSense.Core.Workflow.Steps
                 "report_mismatch", "request_wristband", "ask_allergies", "ask_allergy_reaction", "ask_reason_for_admission", "ask_responsible_adult",
             })
                 session.Verbs.Register(v, requiresPatient: v != "open_notes" && v != "confirm_identity" && v != "report_mismatch");   // the notes are the folder, and confirming or reporting is the trainee's own judgement
-
-            // PLACEHOLDER: stands in for the real blood-test request (clinical-logic phase) so the unlock rule can be tested now.
-            session.Verbs.Register("order_blood_test", requiresIdentity: true);
         }
 
         public void OnAction(SimAction a, ActionOutcome o)
@@ -73,7 +70,6 @@ namespace ProcSense.Core.Workflow.Steps
                 case "ask_allergy_reaction": Ask(PatientAnswers.AllergyReaction, o); Clinical.SetFlag(AllergyReactionAsked); break;
                 case "ask_reason_for_admission": Ask(PatientAnswers.ReasonForAdmission, o); break;
                 case "ask_responsible_adult": Ask(PatientAnswers.ResponsibleAdult, o); break;
-                case "order_blood_test": o.Effects.Add("PLACEHOLDER_ACCEPTED"); break;
             }
         }
 

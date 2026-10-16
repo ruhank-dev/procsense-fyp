@@ -3112,3 +3112,28 @@ _Session: e63f3c9c_
 ``````text
 Keep the b3 one noted and we will do the b3 one later sometime oka the other jobs are a yes from me
 ``````
+
+## 148. 17 October 2026, 9:25 PM UTC (approx.)
+_Session: 1f9a53f2_
+
+``````text
+cache "agents.md and instructions.md" and read em and read all the things and plans in the docs folder oka and  I’m Ruhan: specifically identify my remaining tasks, incomplete steps, and outstanding phases basically in p0 plans all the steps and phases i still have left list em
+``````
+
+## 149. 17 October 2026, 9:25 PM UTC (approx.)
+_Session: 1f9a53f2_
+
+``````text
+oka just this once
+
+ProcSense: Remote-First Audit, Complete Remaining P0 Work, Validate, Commit and Push. Work in the existing ProcSense FYP repository, end to end in one continuous workflow, with minimal unnecessary tool calls, repeated scans, token usage and interruptions.
+(1) Establish the latest repository state first: inspect branch, working tree, remotes; fetch; verify the remote HEAD and exactly how local and remote differ; review collaborators' commits; preserve all local and remote work with a recoverable checkpoint; integrate safely, resolving conflicts by understanding both sides; re-fetch if the remote advances. Never reset away local work, clean untracked files, replace the remote, force-push or rewrite shared history; normal Git operations only. Give a concise initial report (remote HEAD, divergence, collaborator changes, P0 status, execution order), then continue without waiting.
+(2) Audit before implementing: use the integrated repository as the source of truth; cross-check each outstanding P0 task against code, tests, history, pipeline definitions and documentation; classify as already complete, partially complete, not implemented, or blocked; a plan or registry entry alone does not prove implementation; update stale statuses.
+(3) Complete my remaining actionable P0 tasks, excluding tasks explicitly assigned to Sannan (including testing with the Meta Quest headset). Use the latest plans and pipeline JSONs as the specification; implement code, tests, configuration, integration and documentation; keep pipeline JSONs, registries, context files and trackers consistent; no placeholders, no false completion claims. Keep Sannan's tasks assigned to him, verify any evidence of his completed work, record exact outstanding actions and acceptance criteria; do the software-side preparation that does not need the headset.
+(4) Execute continuously with concise checkpoints after milestones (completed, files, checks and results, decisions, remaining); ask only when necessary.
+(5) Validate: focused tests per milestone; at the end unit, integration, regression, configuration, schema and pipeline validations; inspect the diff for deletions, conflict markers, duplication, secrets; distinguish automated tests from unperformed Quest testing and outstanding clinical validation; never fabricate results.
+(6) Commit and push during this run only: focused commits after validated milestones, explicit staging, no unrelated or collaborators' changes, fetch and integrate before every push, normal pushes only, never force-push, reset hard, discard untracked files, bypass protections, amend published commits; stop and ask if ownership or destruction is uncertain; no secrets or generated artifacts.
+(7) Persist these rules: append a clearly separated section titled `[AI tool] — Authorized Auto-Commit and Safe Push Rules` to INSTRUCTIONS.md (or its canonical equivalent), preserving all existing content, without overriding stricter policies, and not as permanent blanket authorization; commit and push it if allowed by repository policy.
+(8) Final handoff: original local state and verified latest remote commit; remote changes incorporated and collaborator work; P0 tasks already implemented, newly implemented, partially complete and blocked; Sannan's headset responsibilities and exact remaining actions; milestones, key files and validation results; each commit hash and push result; final synchronisation state; remaining work, decisions needed and limitations.
+(The prompt was pasted at full length; this entry keeps its eight numbered requirements in the owner's wording, shortened.)
+``````

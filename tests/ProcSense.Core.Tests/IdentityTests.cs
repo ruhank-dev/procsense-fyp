@@ -19,6 +19,10 @@ namespace ProcSense.Core.Tests
 
         private static ActionOutcome Do(Session s, string verb) => s.Apply(new SimAction(verb));
 
+        // The identity gate guards the real investigation request (a full blood count here).
+        private static ActionOutcome OrderBloods(Session s) =>
+            s.Apply(new SimAction("order_investigation", parameters: new System.Collections.Generic.Dictionary<string, string> { ["test"] = "fbc" }));
+
         private static void FullCheck(Session s)
         {
             Do(s, "introduce_self"); Do(s, "ask_identity"); Do(s, "read_wristband"); Do(s, "open_notes");
@@ -42,14 +46,14 @@ namespace ProcSense.Core.Tests
         {
             var s = New();
 
-            var early = Do(s, "order_blood_test");
+            var early = OrderBloods(s);
             Assert.False(early.Accepted);
             Assert.Equal("IDENTITY_NOT_CONFIRMED", early.RejectReason);
             Assert.Contains("\"reject\":\"IDENTITY_NOT_CONFIRMED\"", s.Log.ToJsonl());
 
             FullCheck(s);
             Do(s, "confirm_identity");
-            Assert.True(Do(s, "order_blood_test").Accepted);
+            Assert.True(OrderBloods(s).Accepted);
         }
 
         [Fact] // T01-3
@@ -64,7 +68,7 @@ namespace ProcSense.Core.Tests
             Assert.Equal("ST1_MISMATCH", confirm.RejectReason);
             Assert.Contains(confirm.Effects, e => e.Contains("wristband date of birth '15/03/1984'"));
             Assert.False(s.Patient.Clinical.IdentityVerified);
-            Assert.False(Do(s, "order_blood_test").Accepted);
+            Assert.False(OrderBloods(s).Accepted);
         }
 
         [Fact]
@@ -176,7 +180,7 @@ namespace ProcSense.Core.Tests
         public void A_whole_identity_session_replays_with_the_same_hash()
         {
             var s = New();
-            FullCheck(s); Do(s, "confirm_identity"); Do(s, "ask_allergies"); Do(s, "order_blood_test");
+            FullCheck(s); Do(s, "confirm_identity"); Do(s, "ask_allergies"); OrderBloods(s);
             var saved = ProcSense.Core.Replay.SessionFile.Write(s);
 
             var r = ProcSense.Core.Replay.SessionFile.Replay(saved, TestCase.Package(), () => Subsystems.Default(TestCase.Package()));

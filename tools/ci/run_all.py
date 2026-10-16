@@ -200,6 +200,7 @@ def main(argv: list[str]) -> int:
         ("pipeline validator catches broken graphs (15 mutations)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/test_validate_pipeline.py"])),
         ("planning documents agree with the pipeline JSON (plans, exports, steps, ids, registers)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/check_planning_sync.py"])),
         ("AI planning documents up to date (generated from the pipeline JSON)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/pipeline_docs.py", "--check"])),
+        ("engine version rule tests (changed golden hashes need a raised CoreInfo.Version)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_engine_version.py"])),
         ("project rules", lambda: run(["uv", "run", "--project", "tools", "tools/ci/repo_checks.py"])),
         ("secret scan catches pasted keys and passwords (Supabase key, database address, token)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_repo_checks.py"])),
         ("deploy checker waits for the new commit, tolerates a sleeping service and fails clearly", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_wait_for_deploy.py"])),

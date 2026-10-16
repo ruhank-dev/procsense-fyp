@@ -7,5 +7,5 @@
   { "t": 21, "verb": "report_mismatch" },
   { "t": 26, "verb": "read_wristband" },
   { "t": 30, "verb": "confirm_identity" },
-  { "t": 36, "verb": "order_blood_test" }
+  { "t": 36, "verb": "order_investigation", "params": {"test": "fbc"} }
 ]

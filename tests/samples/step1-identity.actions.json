@@ -7,5 +7,5 @@
   { "t": 20, "verb": "ask_allergies" },
   { "t": 24, "verb": "ask_reason_for_admission" },
   { "t": 28, "verb": "ask_responsible_adult" },
-  { "t": 32, "verb": "order_blood_test" }
+  { "t": 32, "verb": "order_investigation", "params": {"test": "fbc"} }
 ]
