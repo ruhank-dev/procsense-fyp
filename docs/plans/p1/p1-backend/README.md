@@ -48,7 +48,7 @@ Supabase: PostgreSQL (our tables) + Auth (accounts)      only the service talks 
 ## Experiments
 | ID | Question | Method | Success metric | Status |
 |---|---|---|---|---|
-| EXP-BE-1 | Upload reliability from the headset | 20 uploads with the network dropped mid-way, on university Wi-Fi and on a phone hotspot | 0 lost sessions, 0 duplicates | planned (needs the Quest headset; DT-159) |
+| EXP-BE-1 | Upload reliability from the headset | 20 uploads with the network dropped mid-way, on university Wi-Fi and on a phone hotspot | 0 lost sessions, 0 duplicates | planned (Sannan, on the Quest 3; DT-159) |
 | EXP-BE-2 | LLM + ASR on one 6 GB GPU? | Concurrent load test (in `s06`) | Both meet latency, else split across 2 machines | planned |
 | EXP-BE-3 | Does the free tier hold a realistic load? | 1,000 synthetic sessions across 5 organisations into the free plan; dashboard queries; a cold start of the free container; a pause-and-restore drill of the database | Database under 400 MB; every dashboard query under 1 s; wake-up under 60 s; restore from our backup works | running (backup restore proved; the 1,000-session load test is open, DT-160) |
 | EXP-BE-4 | Can a person sign in from the headset? | 5 people sign in with the form and with the device code | Median time under 60 s and no one needs help | planned (needs five people on the headset) |
