@@ -15,7 +15,8 @@ namespace ProcSense.VR.Boot
             yield return SceneManager.LoadSceneAsync("Sys_Core", LoadSceneMode.Additive);
             var loader = FindAnyObjectByType<RoomLoader>();
             if (loader != null) loader.InitializeOpenedRoom(room);
-            if (Application.isEditor && !Application.isBatchMode && !SceneManager.GetSceneByName("DevOnly").isLoaded)
+            if (Application.isEditor && !Application.isBatchMode && ProcSense.VR.XR.EditorInputSettings.ShouldUseSimulator
+                && !SceneManager.GetSceneByName("DevOnly").isLoaded)
                 yield return SceneManager.LoadSceneAsync("DevOnly", LoadSceneMode.Additive);
             SceneManager.SetActiveScene(room);
         }

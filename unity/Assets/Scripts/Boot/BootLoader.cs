@@ -26,7 +26,8 @@ namespace ProcSense.VR.Boot
         {
             if (loginSettings != null && loginSettings.ShouldShow()) yield return Login();
             foreach (var scene in scenes) yield return Load(scene);
-            if (Application.isEditor && !Application.isBatchMode && !string.IsNullOrEmpty(editorOnlyScene)) yield return Load(editorOnlyScene);
+            if (Application.isEditor && !Application.isBatchMode && ProcSense.VR.XR.EditorInputSettings.ShouldUseSimulator
+                && !string.IsNullOrEmpty(editorOnlyScene)) yield return Load(editorOnlyScene);
         }
 
         private IEnumerator Login()

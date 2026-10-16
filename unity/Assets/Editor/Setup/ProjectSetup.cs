@@ -101,6 +101,20 @@ namespace ProcSense.EditorTools
                 EditorUtility.SetDirty(manager);
             }
 
+            // Editor Play uses the desktop settings even when Android is the active build target.
+            var desktop = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Standalone);
+            if (desktop != null)
+            {
+                foreach (var feature in desktop.GetFeatures<OpenXRFeature>())
+                {
+                    if (!(feature is UnityEngine.XR.OpenXR.Features.Interactions.OculusTouchControllerProfile)
+                        && !(feature is UnityEngine.XR.OpenXR.Features.Interactions.MetaQuestTouchPlusControllerProfile)) continue;
+                    feature.enabled = true;
+                    EditorUtility.SetDirty(feature);
+                }
+                EditorUtility.SetDirty(desktop);
+            }
+
             var android = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
             if (android != null)
             {
