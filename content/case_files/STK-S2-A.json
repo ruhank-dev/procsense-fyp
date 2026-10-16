@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -29,7 +29,7 @@
  "presentation": {
   "setting": "emergency department",
   "time_now": "08:00",
-  "summary": "Mrs Sofia Rossi, 45, has had 48 hours of pain moving to the right lower tummy and vomiting 6 to 8 times a day. HR 118, BP 102/64, T 38.1. Creatinine 158 (baseline 82), potassium 3.0."
+  "summary": "Mrs Sofia Rossi, 45, has had 48 hours of pain moving to the right lower tummy and vomiting 6 to 8 times a day. Lying still, pale, dry lips, faint on standing. HR 118, BP 102/64, T 38.1, capillary refill 3 s. Creatinine 158 (baseline 82), potassium 3.0."
  },
  "history": [
   {
@@ -43,7 +43,7 @@
   {
    "id": "red_flags",
    "topic": "red_flags",
-   "answer": "Vomited 6 to 8 times a day for 2 days. Passing very little urine today. Feel faint when standing.",
+   "answer": "Vomited 6 to 8 times a day for 2 days. Passing very little urine today. I feel faint when I stand.",
    "volunteered": false,
    "disclose_on": [
     "ask:red flags",
@@ -51,7 +51,7 @@
     "ask:fever",
     "ask:urine colour"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "past_history",
@@ -63,19 +63,19 @@
     "ask:illnesses",
     "ask:operations"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "medicines",
    "topic": "medicines",
-   "answer": "Anti-inflammatory painkillers from the chemist for the pain.",
+   "answer": "Ibuprofen from the chemist for the pain for the last 2 days.",
    "volunteered": false,
    "disclose_on": [
     "ask:medicines",
     "ask:tablets",
     "ask:drugs"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "herbal",
@@ -139,7 +139,7 @@
     "ask:when did you eat",
     "ask:fasting"
    ],
-   "origin": "authored",
+   "origin": "book",
    "intake": {
     "kind": "unknown",
     "hours_before_now": 36.0
@@ -154,7 +154,7 @@
     "ask:last drink",
     "ask:fasting"
    ],
-   "origin": "authored",
+   "origin": "book",
    "intake": {
     "kind": "clear_liquids",
     "hours_before_now": 3.0
@@ -163,13 +163,13 @@
   {
    "id": "pregnancy",
    "topic": "pregnancy",
-   "answer": "Not using contraception; last period 2 weeks ago; test agreed.",
+   "answer": "Not using contraception; last period 2 weeks ago; I agree to a test.",
    "volunteered": false,
    "disclose_on": [
     "ask:pregnancy",
     "ask:last period"
    ],
-   "origin": "authored"
+   "origin": "book"
   }
  ],
  "observations": [
@@ -187,16 +187,16 @@
    "acvpu": "A",
    "pain_score": 7,
    "news2": 4,
-   "note": "NEWS2 4 as the book states; tachycardia and low BP: dehydration.",
+   "note": "BP 102/64 (usual about 125/80); capillary refill 3 s; NEWS2 4: low-risk tier by score (NG253) but clinical concern from the trend.",
    "origin": "book"
   },
   {
    "time": "13:30",
    "condition": "after_correct_action",
-   "heart_rate": 100,
+   "heart_rate": 104,
    "heart_rhythm": "regular",
-   "systolic_bp": 118,
-   "diastolic_bp": 72,
+   "systolic_bp": 112,
+   "diastolic_bp": 70,
    "respiratory_rate": 18,
    "spo2": 98,
    "oxygen": "room_air",
@@ -204,8 +204,8 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 1,
-   "note": "After fluids ordered by the clinician and reassessment: HR 100, BP 118/72.",
-   "origin": "authored"
+   "note": "After the first fluid bolus ordered by the clinician: HR 104; continue fluids.",
+   "origin": "book"
   },
   {
    "time": "13:30",
@@ -221,7 +221,7 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 9,
-   "note": "Untreated: worsening dehydration and sepsis.",
+   "note": "Untreated: the urine stops, the creatinine rises, the BP falls.",
    "origin": "authored"
   }
  ],
@@ -266,7 +266,7 @@
    "unit": "umol/L",
    "normal_range": "45-90",
    "flag": "high",
-   "comment": "Acute kidney injury stage 1 (1.9 times baseline)",
+   "comment": "Acute kidney injury stage 1 (1.93 times baseline)",
    "quality": null,
    "previous": {
     "value": "82",
@@ -299,46 +299,72 @@
    "quality": null,
    "previous": null,
    "minutes_to_result": 45,
-   "origin": "authored"
+   "origin": "book"
+  },
+  {
+   "id": "lab.k2",
+   "test": "Potassium (repeat after replacement)",
+   "value": "3.5",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "normal",
+   "comment": "Corrected: proceed when safe",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 120,
+   "origin": "book"
   },
   {
    "id": "lab.wbc",
    "test": "WBC",
-   "value": "16.5",
+   "value": "15.1",
    "unit": "x10^9/L",
    "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised: infection",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.neut",
+   "test": "Neutrophils",
+   "value": "86",
+   "unit": "%",
+   "normal_range": "40-75",
    "flag": "high",
    "comment": "Raised",
    "quality": null,
    "previous": null,
    "minutes_to_result": 45,
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "lab.crp",
    "test": "CRP",
-   "value": "112",
+   "value": "96",
    "unit": "mg/L",
    "normal_range": "below 5",
    "flag": "high",
-   "comment": "Raised",
+   "comment": "Raised (more than 24 hours of symptoms)",
    "quality": null,
    "previous": null,
    "minutes_to_result": 45,
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "lab.lactate",
    "test": "Lactate",
-   "value": "2.4",
+   "value": "1.8",
    "unit": "mmol/L",
    "normal_range": "below 2.0",
-   "flag": "high",
-   "comment": "Hypoperfusion",
+   "flag": "normal",
+   "comment": "Normal",
    "quality": null,
    "previous": null,
    "minutes_to_result": 30,
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "lab.preg",
@@ -347,11 +373,24 @@
    "unit": "",
    "normal_range": "negative",
    "flag": "negative",
-   "comment": "Not pregnant",
+   "comment": "Not pregnant (urine test with consent)",
    "quality": null,
    "previous": null,
    "minutes_to_result": 5,
-   "origin": "authored"
+   "origin": "book"
+  },
+  {
+   "id": "lab.us",
+   "test": "Ultrasound appendix",
+   "value": "Non-compressible 9 mm appendix",
+   "unit": "",
+   "normal_range": "6 mm or less",
+   "flag": "abnormal",
+   "comment": "Appendicitis (more than 6 mm, WSES) (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
   }
  ],
  "scores": [
@@ -366,13 +405,13 @@
   {
    "id": "stka2.fluids",
    "type": "time_critical",
-   "label": "Dehydration with tachycardia, low BP and slow capillary refill",
+   "label": "Hypovolaemia: tachycardia, low BP and slow capillary refill",
    "rank": 1,
-   "why": "Anaesthesia would drop the BP further; IV access, bloods and fluids (by the clinician's order) come first.",
+   "why": "Correct it before anaesthesia: anaesthesia on a dry patient causes hypotension.",
    "expected_actions": [
     "IV access and bloods",
-    "Fluid bolus by clinician order, then reassess",
-    "Hourly observations",
+    "Fluid bolus by the clinician's order, then reassess",
+    "Postural BP and urine",
     "Tell the senior"
    ]
   },
@@ -381,10 +420,10 @@
    "type": "pathway_changing",
    "label": "Acute kidney injury (stage 1), pre-renal, made worse by anti-inflammatory painkillers",
    "rank": 2,
-   "why": "Stop anti-inflammatories; drug choices change.",
+   "why": "It affects the drugs and the anaesthetic safety and is correctable within hours.",
    "expected_actions": [
-    "Stop anti-inflammatories",
-    "Strict urine output",
+    "Flag that the anti-inflammatories are stopped",
+    "Urine monitoring",
     "Repeat U&E"
    ]
   },
@@ -393,19 +432,22 @@
    "type": "safety_blocker",
    "label": "Low potassium (3.0)",
    "rank": 3,
-   "why": "Low potassium affects the heart rhythm; replace by the clinician's order and recheck.",
+   "why": "Together with the kidney injury it affects the drugs and the anaesthetic safety; replaced by the clinician's order and rechecked.",
    "expected_actions": [
-    "Tell the senior",
+    "ECG",
+    "Flag replacement",
+    "Tell the anaesthetist",
     "Repeat potassium"
    ]
   },
   {
    "id": "stka2.appx",
    "type": "pathway_changing",
-   "label": "Appendicitis needing urgent source control",
+   "label": "Appendicitis needing surgery",
    "rank": 4,
-   "why": "Surgery after the resuscitation is under way.",
+   "why": "Surgery is generally planned promptly (WSES 2025: within 24 hours of admission when indicated); resuscitation proceeds in parallel and the team does not wait for perfect numbers.",
    "expected_actions": [
+    "Antibiotics per WSES and local policy",
     "Surgeon and anaesthetist told",
     "Consent"
    ]
@@ -414,58 +456,96 @@
  "decisions": [
   {
    "id": "stka2.d1",
-   "prompt": "HR 118, BP 102/64, slow capillary refill. What now?",
+   "prompt": "HR 118 and capillary refill 3 seconds. What now?",
    "rule": "deterioration_clock",
    "options": [
     {
      "id": "stka2.d1.1",
-     "text": "Hypovolaemia: IV access, bloods, fluid bolus by the clinician's order and reassess; tell the senior",
+     "text": "Dehydrated: check the postural BP and urine; ask for IV access, bloods and a fluid bolus to be prescribed; tell the senior",
      "correct": true,
-     "consequence": "Matches the book and NICE CG174."
+     "consequence": "HR 104 after the first bolus: continue fluids."
     },
     {
      "id": "stka2.d1.2",
-     "text": "Give a painkiller and wait",
+     "text": "Send her to theatre before fluids",
      "correct": false,
-     "consequence": "Dehydration worsens."
+     "consequence": "BP 78/40 at induction; the anaesthetist stops."
     }
    ]
   },
   {
    "id": "stka2.d2",
-   "prompt": "Creatinine 158 (baseline 82), urea 13.2. What now?",
+   "prompt": "She could be pregnant. What now?",
    "rule": null,
    "options": [
     {
      "id": "stka2.d2.1",
-     "text": "Acute kidney injury stage 1: stop anti-inflammatories, watch urine output, tell the senior",
+     "text": "Offer a urine pregnancy test with her consent",
      "correct": true,
-     "consequence": "Matches KDIGO."
+     "consequence": "Negative: the appendicitis pathway continues."
     },
     {
      "id": "stka2.d2.2",
-     "text": "Ignore it because the sugar is normal",
+     "text": "Skip the pregnancy test",
      "correct": false,
-     "consequence": "Kidney injury changes drug choices."
+     "consequence": "A missed ectopic risk: a safety failure."
     }
    ]
   },
   {
    "id": "stka2.d3",
-   "prompt": "Potassium 3.0 after vomiting. What now?",
+   "prompt": "Creatinine 158 (baseline 82). What now?",
    "rule": null,
    "options": [
     {
      "id": "stka2.d3.1",
-     "text": "Tell the senior; replacement by the clinician's order and a repeat result; cardiac monitoring if needed",
+     "text": "Acute kidney injury stage 1: flag that the anti-inflammatories are stopped and monitor the urine; tell the senior and anaesthetist",
      "correct": true,
-     "consequence": "Safe."
+     "consequence": "Drug choices change."
     },
     {
      "id": "stka2.d3.2",
+     "text": "Continue ibuprofen for the pain",
+     "correct": false,
+     "consequence": "Creatinine rises to 210: acute kidney injury stage 2."
+    }
+   ]
+  },
+  {
+   "id": "stka2.d4",
+   "prompt": "Potassium 3.0. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stka2.d4.1",
+     "text": "Check an ECG; flag replacement; tell the anaesthetist",
+     "correct": true,
+     "consequence": "Recheck 3.5: proceed when safe."
+    },
+    {
+     "id": "stka2.d4.2",
      "text": "Do nothing",
      "correct": false,
      "consequence": "Arrhythmia risk."
+    }
+   ]
+  },
+  {
+   "id": "stka2.d5",
+   "prompt": "The score and the ultrasound point to appendicitis. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stka2.d5.1",
+     "text": "Flag antibiotics per WSES and local policy; tell the senior",
+     "correct": true,
+     "consequence": "Theatre the same day."
+    },
+    {
+     "id": "stka2.d5.2",
+     "text": "Wait for perfect numbers before surgery",
+     "correct": false,
+     "consequence": "Resuscitation proceeds in parallel; waiting delays source control."
     }
    ]
   }
@@ -473,48 +553,55 @@
  "expected_end_state": "ready",
  "paths": {
   "correct": [
-   "Hypovolaemia recognised",
-   "IV access and fluids",
-   "Anti-inflammatories stopped",
-   "Potassium replaced by the clinician",
-   "Appendicitis pathway continues"
+   "Recognise hypovolaemia",
+   "IV access, bloods and fluids through the senior",
+   "Pregnancy test with consent",
+   "Kidney injury and potassium flagged",
+   "Theatre the same day",
+   "Antibiotics per policy"
   ],
   "incorrect": [
    {
-    "mistake": "Gives a painkiller and waits",
-    "shows": "BP falls",
-    "risk": "Collapse at induction",
+    "mistake": "Continues ibuprofen for the pain",
+    "shows": "Creatinine rises to 210",
+    "risk": "Worse kidney injury (stage 2)",
+    "recovery": "Stop anti-inflammatories; renal review"
+   },
+   {
+    "mistake": "Sends her to theatre before fluids",
+    "shows": "BP 78/40 at induction; the anaesthetist stops",
+    "risk": "Hypotension",
     "recovery": "Resuscitate first"
    },
    {
-    "mistake": "Continues the anti-inflammatory",
-    "shows": "Creatinine rises",
-    "risk": "Worse kidney injury",
-    "recovery": "Stop it"
+    "mistake": "Skips the pregnancy test",
+    "shows": "Debrief",
+    "risk": "Missed ectopic risk: a safety failure",
+    "recovery": "Ask and test with consent"
    }
   ],
   "missed": [
-   "Kidney injury not recognised"
+   "Tachycardia ignored: the urine stops, the creatinine rises, hypotension, delayed surgery"
   ],
   "recovery": [
-   "Check U&E and escalate"
+   "Notices the trend; fluids through the senior; the urine returns; proceeds safely"
   ]
  },
  "debrief": {
   "recognised": [
-   "Dehydration with tachycardia, low BP and slow capillary refill",
-   "Acute kidney injury (stage 1), pre-renal, made worse by anti-inflammatory painkillers"
+   "The signs of dehydration"
   ],
   "missed": [
-   "Kidney injury not recognised"
+   "The anti-inflammatory history",
+   "Pregnancy"
   ],
-  "priority": "Dehydration with tachycardia, low BP and slow capillary refill",
-  "why_priority": "Anaesthesia would drop the BP further; IV access, bloods and fluids (by the clinician's order) come first.",
-  "related": "The findings in this case point to the same cause",
-  "independent": "None",
-  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
-  "if_ignored": "Harm from the missed problem or an unsafe operation",
-  "remember": "Dehydration, kidneys and potassium all come from the same two days of vomiting."
+  "priority": "Hypovolaemia",
+  "why_priority": "Anaesthesia on an empty circulation is dangerous.",
+  "related": "All three (the vomiting)",
+  "independent": "Appendicitis is the cause but a separate problem to fix",
+  "trigger_escalation": "HR over 110 with a capillary refill over 2 seconds",
+  "if_ignored": "Collapse at induction; the kidney injury progressing",
+  "remember": "Resuscitate, then operate: don't wait for perfection."
  },
  "verification": [
   "V-02",
@@ -536,10 +623,5 @@
    "origin": "authored"
   },
   "plan": "rsi"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

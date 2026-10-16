@@ -35,7 +35,8 @@ namespace ProcSense.Core.Tests
             var pending = System.Text.Json.Nodes.JsonNode.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(TestCase.ContentRoot, "case_signoff_pending.json")))!["pending"]!.AsObject().Select(kv => kv.Key).ToList();
             Assert.All(files.Values.Where(f => !pending.Contains(f.Id)), f => Assert.Equal("APPROVED_FOR_TRAINING", f.Status));
             Assert.All(files.Values.Where(f => pending.Contains(f.Id)), f => Assert.Equal("DRAFT", f.Status));       // changed after the last attestation: awaiting clinician sign-off
-            Assert.Equal(new[] { "SC-4", "STK-S1-A", "VAR-S1-B" }, pending.OrderBy(x => x));
+            // the six P1 stacked cases were re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02) and wait for the owner's sign-off
+            Assert.Equal(new[] { "SC-4", "STK-S1-A", "STK-S1-B", "STK-S1-C", "STK-S2-A", "STK-S2-C", "STK-S2-D", "VAR-S1-B" }, pending.OrderBy(x => x, System.StringComparer.Ordinal));
         }
 
         [Fact]

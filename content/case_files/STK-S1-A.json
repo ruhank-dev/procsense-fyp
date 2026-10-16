@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "id": "STK-S1-A",
- "walkthrough_label": "STACKED CASE S1-A - diabetes medicine mix-up: low sugar, an SGLT2 inhibitor and poor long-term control, with raised BP",
+ "walkthrough_label": "STACKED CASE S1-A - diabetes medicine mix-up: low sugar, an SGLT2 inhibitor taken today and poor long-term control, with raised BP",
  "scenario": "S1",
  "tier": "P1",
  "synthetic": true,
@@ -30,13 +30,13 @@
   "setting": "pre-assessment",
   "time_now": "08:05",
   "surgery_time": "10:00",
-  "summary": "Mr Imran Siddiqui, 58, is booked for keyhole gallbladder removal. He is shaky and sweaty and says he feels hungry. Glucose 3.6. BP 174/102."
+  "summary": "Mr Imran Siddiqui, 58, is booked for keyhole gallbladder removal. He is slightly pale and sweaty and says he feels a bit shaky and hungry. Glucose 3.6. BP 174/102, repeat 172/100."
  },
  "history": [
   {
    "id": "complaint",
    "topic": "complaint",
-   "answer": "I am here for my gallbladder, but I feel shaky and hungry.",
+   "answer": "I am here for my gallbladder, but I feel a bit shaky and hungry.",
    "volunteered": true,
    "disclose_on": [],
    "origin": "book"
@@ -44,7 +44,7 @@
   {
    "id": "red_flags",
    "topic": "red_flags",
-   "answer": "No chest pain, no fever. Sweaty and shaky since I got up.",
+   "answer": "No chest pain. Sweaty, shaky and hungry now. I walk 2 km.",
    "volunteered": false,
    "disclose_on": [
     "ask:red flags",
@@ -52,31 +52,31 @@
     "ask:fever",
     "ask:urine colour"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "past_history",
    "topic": "past_history",
-   "answer": "Type 2 diabetes for nine years; high blood pressure for six years; gallstones.",
+   "answer": "Type 2 diabetes for nine years; high blood pressure for six years; gallstones. My last HbA1c was about a year ago.",
    "volunteered": false,
    "disclose_on": [
     "ask:past history",
     "ask:illnesses",
     "ask:operations"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "medicines",
    "topic": "medicines",
-   "answer": "Metformin, gliclazide, dapagliflozin, amlodipine and ramipril. I took my gliclazide this morning with my usual breakfast tea but no breakfast.",
+   "answer": "Metformin, gliclazide, dapagliflozin, amlodipine and ramipril. I took all my morning tablets as usual - I forgot about the instructions.",
    "volunteered": false,
    "disclose_on": [
     "ask:medicines",
     "ask:tablets",
     "ask:drugs"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "herbal",
@@ -92,13 +92,13 @@
   {
    "id": "previous_anaesthetic",
    "topic": "previous_anaesthetic",
-   "answer": "No previous anaesthetics.",
+   "answer": "No problems with anaesthetics before.",
    "volunteered": false,
    "disclose_on": [
     "ask:previous anaesthetic",
     "ask:previous operations"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "family_anaesthetic",
@@ -113,12 +113,12 @@
   {
    "id": "smoking",
    "topic": "smoking",
-   "answer": "Stopped smoking ten years ago.",
+   "answer": "I stopped smoking years ago.",
    "volunteered": false,
    "disclose_on": [
     "ask:smoking"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "alcohol",
@@ -133,17 +133,17 @@
   {
    "id": "last_food",
    "topic": "last_food",
-   "answer": "Dinner at 20:00 yesterday; water at 06:30.",
+   "answer": "Dinner at 21:00 yesterday.",
    "volunteered": false,
    "disclose_on": [
     "ask:last food",
     "ask:when did you eat",
     "ask:fasting"
    ],
-   "origin": "authored",
+   "origin": "book",
    "intake": {
     "kind": "heavy_meal",
-    "hours_before_now": 12.0833
+    "hours_before_now": 11.0833
    }
   },
   {
@@ -155,7 +155,7 @@
     "ask:last drink",
     "ask:fasting"
    ],
-   "origin": "authored",
+   "origin": "book",
    "intake": {
     "kind": "clear_liquids",
     "hours_before_now": 1.5833
@@ -188,7 +188,7 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 1,
-   "note": "BP 174/102, repeat 172/100 (below 180/110); HR 96 scores 1; NEWS2 1.",
+   "note": "BP 174/102, repeat 172/100 (below 180/110); HR 96 scores 1; NEWS2 1, which does not detect low glucose.",
    "origin": "book"
   },
   {
@@ -196,8 +196,8 @@
    "condition": "after_correct_action",
    "heart_rate": 80,
    "heart_rhythm": "regular",
-   "systolic_bp": 160,
-   "diastolic_bp": 94,
+   "systolic_bp": 172,
+   "diastolic_bp": 100,
    "respiratory_rate": 16,
    "spo2": 98,
    "oxygen": "room_air",
@@ -205,15 +205,15 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 0,
-   "note": "After the low sugar is treated: calmer, BP 160/94.",
-   "origin": "authored"
+   "note": "After the low sugar is treated: glucose 5.8, symptoms gone; repeat BP 172/100.",
+   "origin": "book"
   }
  ],
  "examination": [
   {
    "id": "ex.general",
    "system": "general",
-   "finding": "Slightly pale and sweaty, alert, talking normally.",
+   "finding": "Slightly pale and sweaty, fully alert and orientated, talking normally.",
    "abnormal": true,
    "disclose_on": [
     "examine:general"
@@ -223,7 +223,7 @@
   {
    "id": "ex.chest",
    "system": "chest",
-   "finding": "Clear.",
+   "finding": "Breathing comfortable; chest clear.",
    "abnormal": false,
    "disclose_on": [
     "examine:chest"
@@ -259,15 +259,28 @@
   {
    "id": "lab.cbg2",
    "test": "Capillary glucose (repeat after treatment)",
-   "value": "6.4",
+   "value": "5.8",
    "unit": "mmol/L",
    "normal_range": "6-10",
-   "flag": "normal",
-   "comment": "Back in range",
+   "flag": "low",
+   "comment": "Hypoglycaemia corrected; recheck every 30 to 60 minutes while fasting",
    "quality": null,
    "previous": null,
-   "minutes_to_result": 20,
-   "origin": "authored"
+   "minutes_to_result": 15,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ket",
+   "test": "Capillary ketones",
+   "value": "0.9",
+   "unit": "mmol/L",
+   "normal_range": "below 0.6",
+   "flag": "high",
+   "comment": "Mildly raised (0.6 to 1.5): fasting plus the SGLT2 inhibitor; recheck, venous gas if 1.5 or more",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "book"
   },
   {
    "id": "lab.hba1c",
@@ -276,27 +289,50 @@
    "unit": "mmol/mol",
    "normal_range": "below 48",
    "flag": "high",
-   "comment": "Above 69: poor long-term control",
+   "comment": "Above 69 (9.1%): optimise before planned surgery",
    "quality": null,
-   "previous": {
-    "value": "70",
-    "when": "last year"
-   },
+   "previous": null,
    "minutes_to_result": 120,
    "origin": "book"
   },
   {
-   "id": "lab.ket",
-   "test": "Capillary ketones",
-   "value": "0.4",
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "4.6",
    "unit": "mmol/L",
-   "normal_range": "below 0.6",
+   "normal_range": "3.5-5.3",
    "flag": "normal",
-   "comment": "No ketosis now",
+   "comment": "Normal",
    "quality": null,
    "previous": null,
-   "minutes_to_result": 2,
-   "origin": "authored"
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "88",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "normal",
+   "comment": "Normal (eGFR 82)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "book"
+  },
+  {
+   "id": "lab.ecg",
+   "test": "ECG",
+   "value": "Sinus rhythm 92 with LVH voltage",
+   "unit": "",
+   "normal_range": "sinus rhythm",
+   "flag": "abnormal",
+   "comment": "Long-standing high blood pressure; note (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 10,
+   "origin": "book"
   }
  ],
  "scores": [
@@ -319,24 +355,24 @@
    "type": "life_threat",
    "label": "Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting",
    "rank": 1,
-   "why": "The scariest number (BP 172/100) is not the most urgent; the glucose of 3.6 is. Treat now, recheck, and tell the anaesthetist.",
+   "why": "Disability (D in ABCDE): it can deteriorate within minutes to confusion or a seizure, and is quick and simple to treat. The scariest-looking number (BP 172/100) is not the most urgent; the glucose of 3.6 is.",
    "expected_actions": [
-    "Treat and recheck the glucose",
-    "Ask what he took this morning",
-    "Tell the senior and the anaesthetist",
-    "Diabetes team to correct the plan"
+    "Hypoglycaemia protocol by the nurse now, recheck at 10 to 15 minutes",
+    "Ask exactly what he took this morning",
+    "Tell the anaesthetist: oral glucose changes the fasting",
+    "Tell the senior surgeon"
    ]
   },
   {
    "id": "stka.sglt2",
    "type": "safety_blocker",
-   "label": "SGLT2 inhibitor and fasting: risk of ketoacidosis even with a normal sugar",
+   "label": "SGLT2 inhibitor taken today; ketones 0.9: risk of ketoacidosis even with a normal sugar",
    "rank": 2,
-   "why": "UK 2025 consensus: omit the day before and the day of surgery; check ketones if unsure.",
+   "why": "Risk of euglycaemic DKA during fasting and surgery; it needs monitoring, and surgery today is unlikely to proceed (the anaesthetist decides). UK 2025 consensus: omit it the day before and the day of surgery.",
    "expected_actions": [
-    "Ask when he last took it",
-    "Check ketones",
-    "Tell the anaesthetist"
+    "Check the exact drugs and times",
+    "Check capillary ketones",
+    "Tell the anaesthetist and the senior"
    ]
   },
   {
@@ -344,78 +380,123 @@
    "type": "optimisable",
    "label": "HbA1c 76 above the limit of 69 for planned surgery",
    "rank": 3,
-   "why": "Optimisation is recommended before elective surgery; with a hypoglycaemic event on the day, the list is usually postponed.",
+   "why": "Not dangerous today, but a recognised reason to optimise before planned surgery (CPOC).",
    "expected_actions": [
-    "Refer back for diabetes optimisation"
+    "Send an HbA1c (none in the last 3 months)",
+    "Refer for diabetes optimisation before rebooking"
    ]
   },
   {
    "id": "stka.bp",
    "type": "information_only",
-   "label": "Blood pressure 174/102 (below 180/110)",
+   "label": "Blood pressure 174/102, repeat 172/100 (below 180/110)",
    "rank": 4,
-   "why": "Raised but not severe; on its own it would allow surgery, with the GP reviewing afterwards.",
+   "why": "Below the AAGBI/BHS 180/110 threshold: on its own it would not stop surgery; it needs GP follow-up.",
    "expected_actions": [
     "Repeat after rest",
-    "Tell the GP letter"
+    "Document; GP letter"
    ]
   }
  ],
  "decisions": [
   {
    "id": "stka.d1",
-   "prompt": "Glucose 3.6, shaky and sweaty. What now?",
+   "prompt": "Sweaty, shaky, glucose 3.6. What now?",
    "rule": "periop_glucose_target",
    "options": [
     {
      "id": "stka.d1.1",
-     "text": "Treat the low glucose now by the hospital hypoglycaemia protocol, recheck, and tell the senior and anaesthetist",
+     "text": "Hypoglycaemia: ask the nurse to start the hypoglycaemia protocol now, recheck at 10 to 15 minutes, and tell the anaesthetist",
      "correct": true,
-     "consequence": "Matches the book and JBDS."
+     "consequence": "Recheck 5.8, symptoms resolve; the fasting status changes (oral glucose), so the anaesthetist must decide."
     },
     {
      "id": "stka.d1.2",
      "text": "Focus on the BP of 172/100 first",
      "correct": false,
-     "consequence": "The glucose is the urgent problem."
+     "consequence": "Nurse: \"His sugar is 3.6.\" Treatment is delayed and he becomes confused at 15 minutes (glucose 2.9)."
+    },
+    {
+     "id": "stka.d1.3",
+     "text": "Give him a glucose drink and tell nobody",
+     "correct": false,
+     "consequence": "The anaesthetist discovers it later: an undeclared fasting breach, so the list is re-timed or cancelled."
     }
    ]
   },
   {
    "id": "stka.d2",
-   "prompt": "He also takes an SGLT2 inhibitor. What now?",
+   "prompt": "\"I took all my tablets\": gliclazide and dapagliflozin this morning. What now?",
    "rule": null,
    "options": [
     {
      "id": "stka.d2.1",
-     "text": "Ask when he last took it and check ketones; tell the anaesthetist",
+     "text": "Check the exact drugs and times and the capillary ketones; tell the anaesthetist",
      "correct": true,
-     "consequence": "Matches the UK 2025 consensus."
+     "consequence": "Ketones 0.9: surgery today is not appropriate per guidance."
     },
     {
      "id": "stka.d2.2",
-     "text": "Ignore it because the glucose is low",
+     "text": "Treat the low sugar but send him to theatre",
      "correct": false,
-     "consequence": "Ketoacidosis can occur with a normal sugar."
+     "consequence": "The anaesthetist asks about medicines at Sign In: SGLT2 inhibitor and fasting, ketoacidosis risk. The case is stopped at Sign In."
     }
    ]
   },
   {
    "id": "stka.d3",
-   "prompt": "HbA1c 76 and a hypoglycaemic event. What now?",
-   "rule": "s1_diabetes_postpone",
+   "prompt": "BP 174/102. What now?",
+   "rule": null,
    "options": [
     {
      "id": "stka.d3.1",
-     "text": "The list is usually postponed; refer back to the diabetes team for optimisation",
+     "text": "Raised but below 180/110: repeat after rest, document, and tell the anaesthetist in the same call; not a reason by itself to cancel",
      "correct": true,
-     "consequence": "Matches the HbA1c limit of 69."
+     "consequence": "Repeat 172/100: nothing changes today; GP follow-up."
     },
     {
      "id": "stka.d3.2",
+     "text": "Cancel the operation for the BP alone and ignore the glucose",
+     "correct": false,
+     "consequence": "Wrong reasoning: the low sugar is not recognised and the glucose falls further."
+    }
+   ]
+  },
+  {
+   "id": "stka.d4",
+   "prompt": "No HbA1c in the last 3 months. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stka.d4.1",
+     "text": "Send an HbA1c and wait for the result",
+     "correct": true,
+     "consequence": "76 mmol/mol: optimise before rebooking."
+    },
+    {
+     "id": "stka.d4.2",
+     "text": "Skip it because the operation is booked",
+     "correct": false,
+     "consequence": "Whether his diabetes is fit for planned surgery stays unknown."
+    }
+   ]
+  },
+  {
+   "id": "stka.d5",
+   "prompt": "The overall picture. What now?",
+   "rule": "s1_diabetes_postpone",
+   "options": [
+    {
+     "id": "stka.d5.1",
+     "text": "SBAR to the senior and the anaesthetist proposing deferral",
+     "correct": true,
+     "consequence": "The team defers surgery and rewrites the diabetes plan: rebook after optimisation."
+    },
+    {
+     "id": "stka.d5.2",
      "text": "Proceed because the BP is below 180/110",
      "correct": false,
-     "consequence": "Diabetes control is the reason to postpone."
+     "consequence": "The diabetes problems are the reason to defer."
     }
    ]
   }
@@ -423,48 +504,63 @@
  "expected_end_state": "postponed",
  "paths": {
   "correct": [
-   "Treat the low sugar first",
-   "Ask about the morning medicines",
-   "SGLT2 inhibitor and ketones",
-   "HbA1c above 69: postpone",
-   "Do not chase the BP first"
+   "Notice the sweaty patient",
+   "Check the glucose: 3.6",
+   "Hypoglycaemia protocol by the nurse",
+   "Medication history",
+   "Ketones and HbA1c",
+   "SBAR to the anaesthetist and senior",
+   "Deferral, diabetes plan and GP letter"
   ],
   "incorrect": [
    {
-    "mistake": "Chases the blood pressure first",
-    "shows": "Glucose falls further",
-    "risk": "Fit or collapse",
-    "recovery": "Treat the glucose now"
+    "mistake": "Focuses on BP 172/100 first",
+    "shows": "Nurse: \"His sugar is 3.6.\"; he becomes confused at 15 min (glucose 2.9)",
+    "risk": "Delayed hypoglycaemia treatment",
+    "recovery": "Treat the hypo now; re-prioritise using ABCDE"
    },
    {
-    "mistake": "Lets him go to theatre without checking ketones",
-    "shows": "Ketones are 3 or more",
-    "risk": "Ketoacidosis under anaesthetic",
-    "recovery": "Check and tell the anaesthetist"
+    "mistake": "Treats the hypo but sends him to theatre",
+    "shows": "The anaesthetist at Sign In asks about medicines; the case is stopped at Sign In",
+    "risk": "SGLT2 and fasting: ketoacidosis risk",
+    "recovery": "Disclose the medication history; defer"
+   },
+   {
+    "mistake": "Cancels for the BP alone and ignores the glucose",
+    "shows": "Debrief: wrong reasoning, unrecognised hypo",
+    "risk": "Glucose falls further",
+    "recovery": "Use the AAGBI/BHS rule; treat the glucose"
+   },
+   {
+    "mistake": "Orders a glucose drink without telling the anaesthetist",
+    "shows": "The anaesthetist discovers it later; re-timing or cancellation",
+    "risk": "Undeclared fasting breach",
+    "recovery": "Report honestly"
    }
   ],
   "missed": [
-   "Glucose not checked"
+   "Glucose 3.6 not noticed: he becomes quieter; nurse: \"He's not making sense\"; glucose 2.4, confused; emergency hypo treatment"
   ],
   "recovery": [
-   "Check it, treat it, escalate"
+   "Recognises the miss, calls for help; the nurse starts the protocol; glucose recovers; full medication review; correct deferral and plan"
   ]
  },
  "debrief": {
   "recognised": [
-   "Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting",
-   "SGLT2 inhibitor and fasting: risk of ketoacidosis even with a normal sugar"
+   "Hypoglycaemia",
+   "A BP below 180/110 is not itself a reason to cancel"
   ],
   "missed": [
-   "Glucose not checked"
+   "The medication history (what was taken today)",
+   "The HbA1c timing"
   ],
-  "priority": "Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting",
-  "why_priority": "The scariest number (BP 172/100) is not the most urgent; the glucose of 3.6 is. Treat now, recheck, and tell the anaesthetist.",
-  "related": "The findings in this case point to the same cause",
-  "independent": "None",
-  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
-  "if_ignored": "Harm from the missed problem or an unsafe operation",
-  "remember": "The most worrying-looking number is not always the most urgent one."
+  "priority": "Hypoglycaemia",
+  "why_priority": "It threatens brain function within minutes and is easily reversed.",
+  "related": "Hypoglycaemia, the SGLT2 inhibitor and the HbA1c: all diabetes-management problems",
+  "independent": "The BP (related only by shared risk factors)",
+  "trigger_escalation": "Any glucose below 4.0 and any SGLT2 inhibitor taken on the day",
+  "if_ignored": "A seizure or coma from hypoglycaemia; ketoacidosis during or after surgery",
+  "remember": "Check the glucose in every diabetic patient and ask exactly which tablets were taken today."
  },
  "verification": [
   "V-07",

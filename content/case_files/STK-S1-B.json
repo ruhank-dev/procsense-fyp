@@ -5,7 +5,7 @@
  "scenario": "S1",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -30,7 +30,7 @@
   "setting": "pre-assessment",
   "time_now": "08:00",
   "surgery_time": "10:00",
-  "summary": "Mr George Mensah, 69, is booked for keyhole gallbladder removal. Known atrial fibrillation on a blood thinner that should have been stopped. He is pale and tired; Hb 104, MCV 74, ferritin 9."
+  "summary": "Mr George Mensah, 69, is booked for keyhole gallbladder removal. Known atrial fibrillation on apixaban, which the plan said to stop two days before. He is calm, well-looking and slightly pale; Hb 104, MCV 74, ferritin 9."
  },
  "history": [
   {
@@ -52,31 +52,31 @@
     "ask:fever",
     "ask:urine colour"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "past_history",
    "topic": "past_history",
-   "answer": "Atrial fibrillation, high blood pressure, early kidney disease (stage G3a).",
+   "answer": "Atrial fibrillation, high blood pressure, chronic kidney disease (stage G3a).",
    "volunteered": false,
    "disclose_on": [
     "ask:past history",
     "ask:illnesses",
     "ask:operations"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "medicines",
    "topic": "medicines",
-   "answer": "Apixaban, bisoprolol, amlodipine. I took my apixaban at seven this morning as I always do.",
+   "answer": "Apixaban, bisoprolol, amlodipine. I took my apixaban at 7 this morning - I always do.",
    "volunteered": false,
    "disclose_on": [
     "ask:medicines",
     "ask:tablets",
     "ask:drugs"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "herbal",
@@ -140,7 +140,7 @@
     "ask:when did you eat",
     "ask:fasting"
    ],
-   "origin": "authored",
+   "origin": "book",
    "intake": {
     "kind": "heavy_meal",
     "hours_before_now": 12.0
@@ -155,7 +155,7 @@
     "ask:last drink",
     "ask:fasting"
    ],
-   "origin": "authored",
+   "origin": "book",
    "intake": {
     "kind": "clear_liquids",
     "hours_before_now": 2.0
@@ -188,7 +188,7 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 0,
-   "note": "Known AF, rate controlled; NEWS2 1.",
+   "note": "Irregularly irregular 84: known AF, rate controlled; NEWS2 0.",
    "origin": "book"
   }
  ],
@@ -196,7 +196,7 @@
   {
    "id": "ex.general",
    "system": "general",
-   "finding": "Calm, slightly pale, talking normally.",
+   "finding": "Calm, well-looking, slightly pale, talking normally.",
    "abnormal": true,
    "disclose_on": [
     "examine:general"
@@ -206,7 +206,7 @@
   {
    "id": "ex.eyes",
    "system": "eyes",
-   "finding": "Pale inner eyelids.",
+   "finding": "Pale inner eyelids (conjunctival pallor).",
    "abnormal": true,
    "disclose_on": [
     "examine:eyes"
@@ -261,7 +261,7 @@
    "unit": "ug/L",
    "normal_range": "30-300",
    "flag": "low",
-   "comment": "Iron deficiency",
+   "comment": "Iron deficient: blood loss likely",
    "quality": null,
    "previous": null,
    "minutes_to_result": 120,
@@ -270,18 +270,15 @@
   {
    "id": "lab.creat",
    "test": "Creatinine",
-   "value": "98",
+   "value": "118",
    "unit": "umol/L",
    "normal_range": "60-110",
-   "flag": "normal",
-   "comment": "Early kidney disease, stable",
+   "flag": "high",
+   "comment": "Chronic kidney disease G3a (creatinine clearance about 55): matters for the apixaban timing",
    "quality": null,
-   "previous": {
-    "value": "96",
-    "when": "last year"
-   },
+   "previous": null,
    "minutes_to_result": 45,
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "lab.ecg",
@@ -290,18 +287,18 @@
    "unit": "",
    "normal_range": "sinus rhythm",
    "flag": "abnormal",
-   "comment": "Known rhythm, not new (picture result)",
+   "comment": "Known rhythm, rate controlled, not new (picture result)",
    "quality": null,
    "previous": null,
    "minutes_to_result": 10,
-   "origin": "authored"
+   "origin": "book"
   }
  ],
  "scores": [
   {
    "name": "NEWS2",
-   "value": "1",
-   "note": "Heart rate 84 irregular; SpO2 97",
+   "value": "0",
+   "note": "Every observation in range; the rhythm is irregular",
    "origin": "authored"
   },
   {
@@ -315,26 +312,26 @@
   {
    "id": "stkb.dose",
    "type": "safety_blocker",
-   "label": "Blood thinner taken this morning although the plan was to stop it two days before",
+   "label": "Apixaban taken at 07:00 today although the plan was to stop it two days before",
    "rank": 1,
-   "why": "Bleeding risk at surgery; the anaesthetist and surgeon decide timing. The PAUSE plan (stop 2 days before for a moderate-bleeding-risk operation, no bridging) was not followed.",
+   "why": "It directly determines whether surgery can safely happen today: still active at the time of surgery, so the bleeding risk rises; a blood thinner is not reversed simply to allow elective surgery.",
    "expected_actions": [
     "Confirm exactly when the last dose was taken",
-    "Tell the anaesthetist and the surgeon",
-    "Re-plan the list with a proper stop time",
+    "Check the creatinine (clearance)",
+    "Tell the anaesthetist and the senior surgeon",
     "Do not stop or restart on your own"
    ]
   },
   {
    "id": "stkb.anaemia",
    "type": "pathway_changing",
-   "label": "Iron-deficiency anaemia in an older man on a blood thinner (darker stools): a bleeding source must be looked for",
+   "label": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
    "rank": 2,
-   "why": "WHO 2024: anaemia is below 130 in men. Unexplained iron deficiency is a red flag for gut bleeding.",
+   "why": "It may mean gut bleeding or a cancer, which could change whether this operation is the priority at all. WHO 2024: anaemia is below 130 in men.",
    "expected_actions": [
-    "Iron studies and group and save",
+    "FBC and ferritin",
     "Ask about dark stools",
-    "Refer for investigation of the cause"
+    "Refer for investigation of the cause (GI)"
    ]
   },
   {
@@ -342,7 +339,7 @@
    "type": "information_only",
    "label": "Known atrial fibrillation, rate controlled",
    "rank": 3,
-   "why": "Confirm with an ECG that it is the known rhythm.",
+   "why": "It needs an anticoagulation stop and restart plan, not urgent action; confirm with an ECG that it is the known rhythm.",
    "expected_actions": [
     "12-lead ECG",
     "Note for the anaesthetist"
@@ -352,39 +349,77 @@
  "decisions": [
   {
    "id": "stkb.d1",
-   "prompt": "He took his blood thinner at seven this morning. What now?",
+   "prompt": "Irregular pulse. What now?",
    "rule": null,
    "options": [
     {
      "id": "stkb.d1.1",
-     "text": "Tell the anaesthetist and surgeon; the list cannot simply continue; plan a proper stop time",
+     "text": "Request a 12-lead ECG to confirm it is the known AF",
      "correct": true,
-     "consequence": "Matches the book."
+     "consequence": "AF 84: known, so nothing changes."
     },
     {
      "id": "stkb.d1.2",
-     "text": "Say nothing as the surgery is only keyhole",
+     "text": "Ignore the irregular pulse",
      "correct": false,
-     "consequence": "Bleeding risk."
+     "consequence": "A new rhythm could be missed."
     }
    ]
   },
   {
    "id": "stkb.d2",
-   "prompt": "Hb 104, MCV 74, ferritin 9 and darker stools. What now?",
+   "prompt": "He is pale and his stools have been darker. What now?",
    "rule": null,
    "options": [
     {
      "id": "stkb.d2.1",
-     "text": "Moderate iron-deficiency anaemia: group and save, iron studies, refer to find the source; tell the senior",
+     "text": "Send an FBC and ferritin; tell the senior when the results are back",
      "correct": true,
-     "consequence": "Matches WHO bands."
+     "consequence": "Hb 104, ferritin 9: the cause needs investigating."
     },
     {
      "id": "stkb.d2.2",
-     "text": "Treat it as chronic kidney disease only",
+     "text": "Treat the anaemia as 'just mild'",
      "correct": false,
-     "consequence": "A bleeding source could be missed."
+     "consequence": "A gut cancer is missed; he returns later with a bleed."
+    }
+   ]
+  },
+  {
+   "id": "stkb.d3",
+   "prompt": "He took his apixaban at 07:00 today. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkb.d3.1",
+     "text": "Check the time and the creatinine, stop the pathway, document, and tell the anaesthetist and senior",
+     "correct": true,
+     "consequence": "The team defers: no reversal for elective surgery."
+    },
+    {
+     "id": "stkb.d3.2",
+     "text": "Suggest just giving a reversal agent",
+     "correct": false,
+     "consequence": "The senior declines: an unjustified reversal and a thrombosis risk."
+    }
+   ]
+  },
+  {
+   "id": "stkb.d4",
+   "prompt": "Two independent reasons to defer. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkb.d4.1",
+     "text": "SBAR to the senior with a plan: defer, GI referral, iron and a new apixaban plan",
+     "correct": true,
+     "consequence": "Deferral; rebook later."
+    },
+    {
+     "id": "stkb.d4.2",
+     "text": "Let the list continue",
+     "correct": false,
+     "consequence": "The anaesthetist stops it at Sign In."
     }
    ]
   }
@@ -392,48 +427,55 @@
  "expected_end_state": "postponed",
  "paths": {
   "correct": [
-   "Last dose time confirmed",
-   "Anaesthetist and surgeon told",
-   "Iron deficiency recognised",
-   "Group and save",
-   "Postponed with a plan"
+   "Ask about the blood-thinner timing",
+   "ECG, FBC and ferritin",
+   "Recognise the unexplained anaemia",
+   "SBAR to the senior and anaesthetist",
+   "Defer, refer, re-plan"
   ],
   "incorrect": [
    {
-    "mistake": "Lets the list continue",
-    "shows": "The anaesthetist stops it",
-    "risk": "Bleeding at surgery",
-    "recovery": "Stop and escalate"
+    "mistake": "Doesn't ask when apixaban was last taken",
+    "shows": "The anaesthetist asks at Sign In; the case is stopped",
+    "risk": "Bleeding risk",
+    "recovery": "Take a full drug-timing history"
    },
    {
-    "mistake": "Ignores the dark stools",
-    "shows": "The anaemia stays unexplained",
-    "risk": "Gut source missed",
-    "recovery": "Ask and refer"
+    "mistake": "Suggests 'just give a reversal agent'",
+    "shows": "The senior declines (a teaching moment)",
+    "risk": "Unjustified reversal and thrombosis risk",
+    "recovery": "Learn: no reversal for elective surgery"
+   },
+   {
+    "mistake": "Treats the anaemia as 'just mild'",
+    "shows": "Debrief; he returns later with a bleed",
+    "risk": "Missed gut cancer",
+    "recovery": "Investigate unexplained iron deficiency"
    }
   ],
   "missed": [
-   "Anticoagulant timing not asked"
+   "Apixaban timing never asked: proceeds to theatre; the anaesthetist asks; the case is cancelled at Sign In"
   ],
   "recovery": [
-   "Ask again; escalate"
+   "Asks belatedly, informs the anaesthetist, documents the deferral and makes the anaemia referral"
   ]
  },
  "debrief": {
   "recognised": [
-   "Blood thinner taken this morning although the plan was to stop it two days before",
-   "Iron-deficiency anaemia in an older man on a blood thinner (darker stools): a bleeding source must be looked for"
+   "Known AF",
+   "The anaemia pattern"
   ],
   "missed": [
-   "Anticoagulant timing not asked"
+   "The drug timing",
+   "The stool history"
   ],
-  "priority": "Blood thinner taken this morning although the plan was to stop it two days before",
-  "why_priority": "Bleeding risk at surgery; the anaesthetist and surgeon decide timing. The PAUSE plan (stop 2 days before for a moderate-bleeding-risk operation, no bridging) was not followed.",
-  "related": "The findings in this case point to the same cause",
-  "independent": "None",
-  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
-  "if_ignored": "Harm from the missed problem or an unsafe operation",
-  "remember": "Two independent problems can each be a reason to postpone."
+  "priority": "Active anticoagulant today",
+  "why_priority": "It makes today's surgery unsafe.",
+  "related": "The apixaban and the anaemia (bleeding)",
+  "independent": "AF itself is stable and independent",
+  "trigger_escalation": "Any anticoagulant dose inside the stop window; unexplained anaemia",
+  "if_ignored": "Surgical bleeding; a missed gut cancer",
+  "remember": "Ask the exact time of the last dose of every blood thinner."
  },
  "verification": [
   "V-08",
@@ -455,10 +497,5 @@
    "origin": "book"
   },
   "plan": "standard_ga"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

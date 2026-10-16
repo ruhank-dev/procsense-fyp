@@ -153,6 +153,8 @@ def main(argv: list[str]) -> int:
         ("what-if bindings up to date (P0 cases, derived from the case content)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_bindings.py", "--check"])),
         ("P1 variant cases hold every fact the book gives them (47 facts, report up to date)", lambda: run(["uv", "run", "--project", "tools", "tools/content/variant_facts.py", "--check"])),
         ("P1 variant check tests (a changed value and a phrase that is not the book's are caught)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_variant_facts.py"])),
+        ("stacked cases follow Part D: priority ranks, one decision per book decision, results (report up to date)", lambda: run(["uv", "run", "--project", "tools", "tools/content/stacked_partd.py", "--check"])),
+        ("stacked-case check tests (a rank out of order, a missing decision, a changed result are caught)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_stacked_partd.py"])),
         ("Stage B validator passes all 53 case files", lambda: run(["uv", "run", "--project", "tools", "tools/composer/stage_b.py", "--all"])),
         ("Stage B rejects all 60 mutated cases (12 contradiction types x 5)", lambda: run(["uv", "run", "--project", "tools", "tools/composer/mutate.py", "--type", "ALL", "--n", "5"])),
         ("composer tests", lambda: run(["uv", "run", "--project", "tools", "python", "tools/composer/test_composer.py"])),

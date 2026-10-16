@@ -5,7 +5,7 @@
  "scenario": "S1",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -30,7 +30,7 @@
   "setting": "pre-assessment",
   "time_now": "08:00",
   "surgery_time": "10:00",
-  "summary": "Mrs Helena Novak, 71, is booked for keyhole gallbladder removal. She has heart failure and kidney disease, three days of diarrhoea last week, a slow pulse (52) and BP 104/62. Potassium 6.6, not haemolysed, with peaked T waves."
+  "summary": "Mrs Helena Novak, 71, is booked for keyhole gallbladder removal. She has heart failure and kidney disease and had three days of diarrhoea last week. Tired, a little dizzy on standing, dry mouth, slow pulse (52), BP 104/62 (usual about 130/80). Potassium 6.6 with peaked T waves."
  },
  "history": [
   {
@@ -44,7 +44,7 @@
   {
    "id": "red_flags",
    "topic": "red_flags",
-   "answer": "Diarrhoea for three days last week, not eating or drinking much. Passing little urine today. No chest pain.",
+   "answer": "Diarrhoea for three days last week, not eating or drinking much. Passing little urine today. Dizzy on standing. No chest pain.",
    "volunteered": false,
    "disclose_on": [
     "ask:red flags",
@@ -52,31 +52,31 @@
     "ask:fever",
     "ask:urine colour"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "past_history",
    "topic": "past_history",
-   "answer": "Heart failure with a weak pumping function. Chronic kidney disease (G3b).",
+   "answer": "Heart failure with a weak pumping function. Chronic kidney disease (G3b); my usual creatinine is 112.",
    "volunteered": false,
    "disclose_on": [
     "ask:past history",
     "ask:illnesses",
     "ask:operations"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "medicines",
    "topic": "medicines",
-   "answer": "Ramipril, spironolactone, bisoprolol and furosemide. I am still taking all my tablets despite not eating.",
+   "answer": "Ramipril, spironolactone, bisoprolol and furosemide. I am still taking all my tablets even though I am not eating much.",
    "volunteered": false,
    "disclose_on": [
     "ask:medicines",
     "ask:tablets",
     "ask:drugs"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "herbal",
@@ -188,7 +188,7 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 2,
-   "note": "HR 52 (scores 3 for 40 or less only; 41 to 50 scores 1, 51 to 90 scores 0); BP 104/62 (usual about 130/80).",
+   "note": "HR 52 regular (51 to 90 scores 0); BP 104/62, usual about 130/80 (101 to 110 scores 1); SpO2 95 (94 to 95 scores 1); little urine today.",
    "origin": "book"
   },
   {
@@ -205,7 +205,7 @@
    "acvpu": "A",
    "pain_score": 0,
    "news2": 0,
-   "note": "After the emergency pathway is started by the clinician: rhythm improving.",
+   "note": "After the emergency treatment by the team: rhythm improving.",
    "origin": "authored"
   },
   {
@@ -222,8 +222,8 @@
    "acvpu": "V",
    "pain_score": 0,
    "news2": 10,
-   "note": "Untreated hyperkalaemia: bradycardia, low BP, drowsy: risk of cardiac arrest.",
-   "origin": "authored"
+   "note": "Untreated hyperkalaemia: the heart rate drops to 38, low BP, drowsy: risk of cardiac arrest.",
+   "origin": "book"
   }
  ],
  "examination": [
@@ -286,13 +286,26 @@
    "origin": "book"
   },
   {
+   "id": "lab.k2",
+   "test": "Potassium (repeat after 1 hour)",
+   "value": "5.7",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "high",
+   "comment": "Improving with the team's treatment",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "book"
+  },
+  {
    "id": "lab.creat",
    "test": "Creatinine",
-   "value": "168",
+   "value": "178",
    "unit": "umol/L",
    "normal_range": "45-90",
    "flag": "high",
-   "comment": "Acute kidney injury on chronic kidney disease (baseline 112)",
+   "comment": "Acute kidney injury stage 1 (1.5 times baseline or more) on chronic kidney disease",
    "quality": null,
    "previous": {
     "value": "112",
@@ -304,11 +317,11 @@
   {
    "id": "lab.ecg",
    "test": "ECG",
-   "value": "Tall peaked T waves with a slow rate",
+   "value": "Tall peaked T waves, HR 52",
    "unit": "",
    "normal_range": "normal",
    "flag": "abnormal",
-   "comment": "ECG changes make this an emergency (picture result)",
+   "comment": "Hyperkalaemic changes make this an emergency (picture result)",
    "quality": null,
    "previous": null,
    "minutes_to_result": 10,
@@ -318,15 +331,15 @@
  "scores": [
   {
    "name": "NEWS2",
-   "value": "1",
-   "note": "Systolic 104 scores 1; heart rate 52 scores 0",
+   "value": "2",
+   "note": "Systolic 104 and SpO2 95 score 1 each; heart rate 52 scores 0",
    "origin": "authored"
   },
   {
    "name": "AKI stage",
    "value": "1",
-   "note": "Creatinine 1.5 times baseline",
-   "origin": "authored"
+   "note": "Creatinine 178 against a baseline of 112",
+   "origin": "book"
   }
  ],
  "problems": [
@@ -335,24 +348,24 @@
    "type": "life_threat",
    "label": "Severe hyperkalaemia (6.6) with ECG changes",
    "rank": 1,
-   "why": "UKKA: 6.5 or more is severe and any ECG change makes it an emergency; risk of fatal arrhythmia at induction.",
+   "why": "Immediate threat (circulation): it can cause cardiac arrest within minutes; UKKA emergency.",
    "expected_actions": [
-    "Call the senior and the emergency team now",
-    "Cardiac monitor and repeat ECG",
-    "Treat without waiting for a repeat sample (ECG already abnormal)",
-    "Stop the potassium-raising medicines (clinician)"
+    "Read back the critical result",
+    "Call for help: senior and the medical or emergency team",
+    "Cardiac monitor and IV access",
+    "Treat without waiting for a repeat sample (ECG already abnormal)"
    ]
   },
   {
    "id": "stkc.aki",
    "type": "time_critical",
-   "label": "Acute kidney injury after diarrhoea (ramipril and spironolactone still taken)",
+   "label": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
    "rank": 2,
-   "why": "Reduces potassium excretion; the medicines are reviewed by the clinician.",
+   "why": "It is driving the hyperkalaemia; it needs careful fluids (heart failure) and a drug review.",
    "expected_actions": [
     "Fluid status and urine output",
-    "Repeat U&E",
-    "Medicines review"
+    "Flag the medicines to hold",
+    "Fluid plan with heart-failure caution"
    ]
   },
   {
@@ -360,7 +373,7 @@
    "type": "safety_blocker",
    "label": "Slow heart and low BP",
    "rank": 3,
-   "why": "Beta-blocker and hyperkalaemia both slow the heart; risk of collapse at induction.",
+   "why": "Mostly a consequence of the potassium and the kidney injury plus the beta-blocker; it improves as they are treated.",
    "expected_actions": [
     "Manual pulse and repeat BP",
     "Tell the anaesthetist"
@@ -371,67 +384,87 @@
    "type": "pathway_changing",
    "label": "The planned operation is cancelled",
    "rank": 4,
-   "why": "Not an elective patient any more.",
+   "why": "Cancelled today; medical admission.",
    "expected_actions": [
-    "Cancel and re-list after recovery"
+    "Cancel; medical admission",
+    "Re-list after recovery"
    ]
   }
  ],
  "decisions": [
   {
    "id": "stkc.d1",
-   "prompt": "Pulse 52 and BP 104/62. What now?",
+   "prompt": "HR 52 and BP 104/62. What now?",
    "rule": null,
    "options": [
     {
      "id": "stkc.d1.1",
-     "text": "Check pulse and BP again, request an urgent 12-lead ECG and potassium, and tell the senior",
+     "text": "Possible drug or electrolyte effect: urgent 12-lead ECG and bloods (U&E); tell the nurse and the senior",
      "correct": true,
-     "consequence": "Matches the book."
+     "consequence": "The ECG shows peaked T waves: an emergency."
     },
     {
      "id": "stkc.d1.2",
      "text": "Record it and proceed to the anaesthetic room",
      "correct": false,
-     "consequence": "Risk of collapse."
+     "consequence": "No ECG, the potassium result unseen: collapse at induction."
     }
    ]
   },
   {
    "id": "stkc.d2",
-   "prompt": "Potassium 6.6, not haemolysed, with peaked T waves. What now?",
+   "prompt": "The laboratory phones a critical potassium of 6.6. What now?",
    "rule": null,
    "options": [
     {
      "id": "stkc.d2.1",
-     "text": "Emergency: senior and emergency team now, cardiac monitor; do not wait for a repeat",
+     "text": "Read it back and check the ECG; call for help, cardiac monitor and IV access; tell the senior and the medical or emergency team",
      "correct": true,
-     "consequence": "UKKA: any ECG change is an emergency."
+     "consequence": "The team gives the emergency treatment; the planned surgery is cancelled."
     },
     {
      "id": "stkc.d2.2",
-     "text": "Ask for a repeat sample first",
+     "text": "Assume it is haemolysed and wait for a repeat",
      "correct": false,
-     "consequence": "The ECG is already abnormal."
+     "consequence": "The ECG shows peaked T waves and the heart rate drops to 38: arrhythmia."
     }
    ]
   },
   {
    "id": "stkc.d3",
-   "prompt": "What about the planned operation?",
+   "prompt": "Creatinine 178 (baseline 112). What now?",
    "rule": null,
    "options": [
     {
      "id": "stkc.d3.1",
-     "text": "Cancel it; treat the potassium and the kidney injury first; re-list after recovery",
+     "text": "Acute kidney injury: flag the medicines to hold and a fluid plan with heart-failure caution; tell the medical team",
      "correct": true,
-     "consequence": "Matches the book."
+     "consequence": "She is admitted."
     },
     {
      "id": "stkc.d3.2",
-     "text": "Operate anyway",
+     "text": "Give fluids rapidly",
      "correct": false,
-     "consequence": "Fatal arrhythmia risk."
+     "consequence": "SpO2 falls and crackles appear: pulmonary oedema (heart failure)."
+    }
+   ]
+  },
+  {
+   "id": "stkc.d4",
+   "prompt": "Repeat potassium after 1 hour. What now?",
+   "rule": null,
+   "options": [
+    {
+     "id": "stkc.d4.1",
+     "text": "Recheck it, with glucose monitoring while insulin is given; tell the team",
+     "correct": true,
+     "consequence": "Potassium 5.7: continue medical care."
+    },
+    {
+     "id": "stkc.d4.2",
+     "text": "Stop monitoring once the first treatment is given",
+     "correct": false,
+     "consequence": "A rebound or a low glucose could be missed."
     }
    ]
   }
@@ -439,48 +472,48 @@
  "expected_end_state": "redirected",
  "paths": {
   "correct": [
-   "Slow pulse and low BP noticed",
-   "ECG and potassium",
-   "Emergency pathway",
-   "Operation cancelled",
-   "Medicines reviewed"
+   "Notice the slow heart rate",
+   "ECG and bloods",
+   "Read back the critical potassium",
+   "Call for help",
+   "Cancel; medical admission",
+   "The team treats; monitor"
   ],
   "incorrect": [
    {
-    "mistake": "Proceeds to theatre",
-    "shows": "Cardiac arrest risk",
-    "risk": "Potassium 6.6 at induction",
-    "recovery": "Stop; emergency"
+    "mistake": "Assumes the potassium is haemolysed and waits",
+    "shows": "The ECG shows peaked T waves; HR drops to 38",
+    "risk": "Arrhythmia",
+    "recovery": "Act on the ECG changes"
    },
    {
-    "mistake": "Waits for a repeat sample",
-    "shows": "Rhythm worsens",
-    "risk": "Delay",
-    "recovery": "Treat now"
+    "mistake": "Gives fluids rapidly",
+    "shows": "SpO2 falls; crackles",
+    "risk": "Pulmonary oedema (heart failure)",
+    "recovery": "Cautious fluids with the senior"
    }
   ],
   "missed": [
-   "Potassium result not acted on"
+   "Bradycardia ignored: no ECG, the potassium result unseen, collapse at induction"
   ],
   "recovery": [
-   "Call for help and start the pathway"
+   "Opens the result late, calls for help; emergency treatment; stabilised"
   ]
  },
  "debrief": {
   "recognised": [
-   "Severe hyperkalaemia (6.6) with ECG changes",
-   "Acute kidney injury after diarrhoea (ramipril and spironolactone still taken)"
+   "The need for an ECG"
   ],
   "missed": [
-   "Potassium result not acted on"
+   "Linking the slow heart to the potassium"
   ],
-  "priority": "Severe hyperkalaemia (6.6) with ECG changes",
-  "why_priority": "UKKA: 6.5 or more is severe and any ECG change makes it an emergency; risk of fatal arrhythmia at induction.",
-  "related": "The findings in this case point to the same cause",
-  "independent": "None",
-  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
-  "if_ignored": "Harm from the missed problem or an unsafe operation",
-  "remember": "Treat what the ECG shows; do not wait for a repeat."
+  "priority": "Hyperkalaemia with ECG change",
+  "why_priority": "Immediate arrhythmia risk.",
+  "related": "All three",
+  "independent": "None really independent",
+  "trigger_escalation": "Any potassium of 6.5 or more or any ECG change; the drug combination",
+  "if_ignored": "Cardiac arrest",
+  "remember": "A slow heart plus kidney or heart-failure drugs: think potassium."
  },
  "verification": [
   "V-15",
@@ -502,10 +535,5 @@
    "origin": "authored"
   },
   "plan": "standard_ga"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

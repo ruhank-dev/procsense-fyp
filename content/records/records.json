@@ -466,18 +466,9 @@
     "type": "clinic_letter",
     "title": "Pre-assessment summary",
     "date_offset": "2 months before today",
-    "body": "Patient: Mr Imran Siddiqui, 58, MR 614401. Past history: Type 2 diabetes for nine years; high blood pressure for six years; gallstones. Medicines: Metformin, gliclazide, dapagliflozin, amlodipine and ramipril. I took my gliclazide this morning with my usual breakfast tea but no breakfast. Allergies: none recorded.",
+    "body": "Patient: Mr Imran Siddiqui, 58, MR 614401. Past history: Type 2 diabetes for nine years; high blood pressure for six years; gallstones. My last HbA1c was about a year ago. Medicines: Metformin, gliclazide, dapagliflozin, amlodipine and ramipril. I took all my morning tablets as usual - I forgot about the instructions. Allergies: none recorded.",
     "synthetic": true,
     "ref": "SR-3931"
-   },
-   {
-    "id": "STK-S1-A.previous_results",
-    "type": "lab_result",
-    "title": "Previous results",
-    "date_offset": "earlier (see each result)",
-    "body": "HbA1c 70 mmol/mol (last year).",
-    "synthetic": true,
-    "ref": "SR-3932"
    },
    {
     "id": "STK-S1-A.clinic_ultrasound",
@@ -485,6 +476,15 @@
     "title": "Clinic ultrasound report (before booking)",
     "date_offset": "before the booking",
     "body": "Ultrasound gallbladder: Gallstones; thin gallbladder wall (3 mm or less); no fluid; bile duct 6 mm or less. Impression: Simple gallstones. (Finding code US-GB-01.)",
+    "synthetic": true,
+    "ref": "SR-3932"
+   },
+   {
+    "id": "STK-S1-A.previous_anaesthetic",
+    "type": "anaesthetic_history",
+    "title": "Previous anaesthetic record",
+    "date_offset": "see the operation date",
+    "body": "Previous anaesthetic: No problems with anaesthetics before.",
     "synthetic": true,
     "ref": "SR-3933"
    }
@@ -495,7 +495,7 @@
     "type": "clinic_letter",
     "title": "Pre-assessment summary",
     "date_offset": "2 months before today",
-    "body": "Patient: Mr George Mensah, 69, MR 614402. Past history: Atrial fibrillation, high blood pressure, early kidney disease (stage G3a). Medicines: Apixaban, bisoprolol, amlodipine. I took my apixaban at seven this morning as I always do. Allergies: none recorded.",
+    "body": "Patient: Mr George Mensah, 69, MR 614402. Past history: Atrial fibrillation, high blood pressure, chronic kidney disease (stage G3a). Medicines: Apixaban, bisoprolol, amlodipine. I took my apixaban at 7 this morning - I always do. Allergies: none recorded.",
     "synthetic": true,
     "ref": "SR-3934"
    },
@@ -504,7 +504,7 @@
     "type": "lab_result",
     "title": "Previous results",
     "date_offset": "earlier (see each result)",
-    "body": "Hb 131 g/L (2 years ago); Creatinine 96 umol/L (last year).",
+    "body": "Hb 131 g/L (2 years ago).",
     "synthetic": true,
     "ref": "SR-3935"
    },
@@ -524,7 +524,7 @@
     "type": "clinic_letter",
     "title": "Pre-assessment summary",
     "date_offset": "2 months before today",
-    "body": "Patient: Mrs Helena Novak, 71, MR 614403. Past history: Heart failure with a weak pumping function. Chronic kidney disease (G3b). Medicines: Ramipril, spironolactone, bisoprolol and furosemide. I am still taking all my tablets despite not eating. Allergies: none recorded.",
+    "body": "Patient: Mrs Helena Novak, 71, MR 614403. Past history: Heart failure with a weak pumping function. Chronic kidney disease (G3b); my usual creatinine is 112. Medicines: Ramipril, spironolactone, bisoprolol and furosemide. I am still taking all my tablets even though I am not eating much. Allergies: none recorded.",
     "synthetic": true,
     "ref": "SR-3937"
    },
@@ -582,7 +582,7 @@
     "type": "clinic_letter",
     "title": "Registration summary",
     "date_offset": "today (on arrival)",
-    "body": "Patient: Mrs Sofia Rossi, 45, MR 624501. Past history: Healthy. Medicines: Anti-inflammatory painkillers from the chemist for the pain. Allergies: none recorded.",
+    "body": "Patient: Mrs Sofia Rossi, 45, MR 624501. Past history: Healthy. Medicines: Ibuprofen from the chemist for the pain for the last 2 days. Allergies: none recorded.",
     "synthetic": true,
     "ref": "SR-3943"
    },

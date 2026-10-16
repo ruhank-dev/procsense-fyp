@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -29,7 +29,7 @@
  "presentation": {
   "setting": "emergency department",
   "time_now": "08:00",
-  "summary": "Mrs Maria Santos, 29, is 18 weeks pregnant. 20 hours of right-sided pain and nausea. HR 108, BP 112/68, T 37.9. WBC 15.8, CRP 64. Ultrasound did not see the appendix."
+  "summary": "Mrs Maria Santos, 29, is 18 weeks pregnant (second pregnancy). 20 hours of right-sided pain and nausea; tenderness slightly higher than usual for appendicitis. HR 108, BP 112/68, T 37.9. WBC 15.8, CRP 64. Ultrasound did not see the appendix."
  },
  "history": [
   {
@@ -51,7 +51,7 @@
     "ask:fever",
     "ask:urine colour"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "past_history",
@@ -169,7 +169,7 @@
     "ask:pregnancy",
     "ask:last period"
    ],
-   "origin": "authored"
+   "origin": "book"
   }
  ],
  "observations": [
@@ -187,7 +187,7 @@
    "acvpu": "A",
    "pain_score": 6,
    "news2": 1,
-   "note": "Pregnancy raises the heart rate by about 10 to 20; 108 is higher than pregnancy explains. Maternity early-warning score is used; NEWS2 shown for reference.",
+   "note": "Pregnancy raises the heart rate by about 10 to 20; 108 is higher than pregnancy explains. BP often lower in mid-pregnancy. Maternity early-warning score, not NEWS2 (not validated in pregnancy).",
    "origin": "book"
   }
  ],
@@ -200,12 +200,12 @@
    "disclose_on": [
     "examine:general"
    ],
-   "origin": "authored"
+   "origin": "book"
   },
   {
    "id": "ex.abdomen",
    "system": "abdomen",
-   "finding": "Tender on the right, higher than usual for appendicitis.",
+   "finding": "Tender on the right, slightly higher than usual for appendicitis.",
    "abnormal": true,
    "disclose_on": [
     "examine:abdomen"
@@ -232,7 +232,7 @@
    "unit": "x10^9/L",
    "normal_range": "4.0-11.0",
    "flag": "high",
-   "comment": "Partly raised by pregnancy; still supports inflammation",
+   "comment": "Mildly raised; pregnancy can raise the WBC",
    "quality": null,
    "previous": null,
    "minutes_to_result": 45,
@@ -245,7 +245,7 @@
    "unit": "mg/L",
    "normal_range": "below 5",
    "flag": "high",
-   "comment": "Raised",
+   "comment": "Raised: inflammation",
    "quality": null,
    "previous": null,
    "minutes_to_result": 45,
@@ -258,7 +258,7 @@
    "unit": "",
    "normal_range": "normal",
    "flag": "abnormal",
-   "comment": "Non-diagnostic (picture result)",
+   "comment": "Not negative (picture result)",
    "quality": null,
    "previous": null,
    "minutes_to_result": 45,
@@ -267,11 +267,11 @@
   {
    "id": "lab.mri",
    "test": "MRI appendix",
-   "value": "Findings of appendicitis",
+   "value": "Inflamed appendix",
    "unit": "",
    "normal_range": "normal",
    "flag": "abnormal",
-   "comment": "No ionising radiation (picture result)",
+   "comment": "Appendicitis; no ionising radiation (picture result)",
    "quality": null,
    "previous": null,
    "minutes_to_result": 90,
@@ -288,37 +288,48 @@
  ],
  "problems": [
   {
+   "id": "stkd.maternal",
+   "type": "time_critical",
+   "label": "Maternal stability first (ABC)",
+   "rank": 1,
+   "why": "The mother's health protects the fetus; HR 108 and fever are higher than pregnancy explains, so pregnancy can mask how ill she is.",
+   "expected_actions": [
+    "Maternity early-warning score",
+    "Repeat observations and trend them",
+    "Call the senior"
+   ]
+  },
+  {
    "id": "stkd.preg",
    "type": "pathway_changing",
-   "label": "Appendicitis in pregnancy (18 weeks)",
-   "rank": 1,
-   "why": "The commonest non-obstetric surgical emergency in pregnancy; delay increases perforation and fetal loss.",
-   "expected_actions": [
-    "Senior and obstetric team now",
-    "Maternity early-warning score",
-    "Left-side tilt"
-   ]
-  },
-  {
-   "id": "stkd.mask",
-   "type": "time_critical",
-   "label": "Pregnancy masks severity: tachycardia and white cell count are partly physiological",
+   "label": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)",
    "rank": 2,
-   "why": "Heart rate 108 and fever are higher than pregnancy explains; trend them.",
+   "why": "Perforation increases maternal and fetal risk; the ultrasound did not see the appendix, which is not negative, so the MRI (no ionising radiation) decides.",
    "expected_actions": [
-    "Repeat observations",
-    "Trend the results"
+    "Request an MRI after the non-diagnostic ultrasound; avoid CT as a first choice",
+    "Laparoscopic appendectomy is acceptable in pregnancy (SAGES)",
+    "Consent including the fetal risks"
    ]
   },
   {
-   "id": "stkd.imaging",
+   "id": "stkd.obstetric",
    "type": "pathway_changing",
-   "label": "Ultrasound did not see the appendix: not negative",
+   "label": "Obstetric and fetal assessment",
    "rank": 3,
-   "why": "MRI (no ionising radiation) decides; CT is avoided where possible.",
+   "why": "Team input: the obstetric team is involved early and decides the fetal monitoring.",
    "expected_actions": [
-    "Request MRI",
-    "Radiology and senior told"
+    "Senior and obstetric team early",
+    "Fetal monitoring per obstetrics"
+   ]
+  },
+  {
+   "id": "stkd.anaesthetic",
+   "type": "information_only",
+   "label": "Anaesthetic adjustments: aspiration risk and positioning",
+   "rank": 4,
+   "why": "Aspiration risk is increased in pregnancy (RSI); left lateral tilt from about 20 weeks; pregnancy-safe drugs.",
+   "expected_actions": [
+    "Tell the anaesthetist"
    ]
   }
  ],
@@ -330,53 +341,53 @@
    "options": [
     {
      "id": "stkd.d1.1",
-     "text": "Higher than pregnancy alone explains: senior and obstetric team now, repeat observations and urine",
+     "text": "Possible appendicitis: examine, check the urine and bloods; call the senior and the obstetric team",
      "correct": true,
-     "consequence": "Matches the book."
+     "consequence": "Joint review."
     },
     {
      "id": "stkd.d1.2",
-     "text": "Put it down to pregnancy",
+     "text": "Put the heart rate down to pregnancy and wait",
      "correct": false,
-     "consequence": "Masks infection."
+     "consequence": "The pain worsens and the fever reaches 39: perforation."
     }
    ]
   },
   {
    "id": "stkd.d2",
-   "prompt": "Ultrasound did not see the appendix. What now?",
+   "prompt": "The ultrasound did not see the appendix. What now?",
    "rule": null,
    "options": [
     {
      "id": "stkd.d2.1",
-     "text": "Not negative: request MRI; avoid CT as a first choice",
+     "text": "Not negative: request an MRI through radiology",
      "correct": true,
-     "consequence": "Matches the book and SAGES."
+     "consequence": "Appendicitis: surgery."
     },
     {
      "id": "stkd.d2.2",
-     "text": "Send her home",
+     "text": "Order a CT first",
      "correct": false,
-     "consequence": "Delay risks perforation."
+     "consequence": "The radiologist queries it: radiation exposure and delay."
     }
    ]
   },
   {
    "id": "stkd.d3",
-   "prompt": "MRI shows appendicitis.",
+   "prompt": "The MRI shows appendicitis: the plan.",
    "rule": "appendectomy_timing",
    "options": [
     {
      "id": "stkd.d3.1",
-     "text": "Keyhole appendicectomy with obstetric support; the senior decides the timing",
+     "text": "Laparoscopic appendectomy is acceptable in pregnancy: consent including the fetal risks; tell the senior, the obstetric team and the anaesthetist",
      "correct": true,
-     "consequence": "Matches WSES 2025."
+     "consequence": "Theatre."
     },
     {
      "id": "stkd.d3.2",
      "text": "Wait several days",
      "correct": false,
-     "consequence": "Perforation risk."
+     "consequence": "Delay increases perforation and fetal loss."
     }
    ]
   }
@@ -384,47 +395,46 @@
  "expected_end_state": "ready",
  "paths": {
   "correct": [
-   "Obstetric team early",
-   "Pregnancy physiology considered",
-   "MRI after ultrasound",
-   "Keyhole surgery with obstetric support"
+   "Recognise the pregnancy context",
+   "Obstetrics and the senior early",
+   "Ultrasound, then MRI",
+   "Laparoscopic appendectomy"
   ],
   "incorrect": [
    {
-    "mistake": "Attributes tachycardia to pregnancy",
-    "shows": "She worsens",
-    "risk": "Missed infection",
-    "recovery": "Repeat observations"
+    "mistake": "Orders CT first",
+    "shows": "The radiologist queries it; delay",
+    "risk": "Radiation exposure",
+    "recovery": "Use MRI"
    },
    {
-    "mistake": "Requests CT",
-    "shows": "Radiology challenges",
-    "risk": "Avoidable radiation",
-    "recovery": "Use MRI"
+    "mistake": "Attributes the heart rate to pregnancy and waits",
+    "shows": "Pain worsens; fever 39",
+    "risk": "Perforation",
+    "recovery": "Reassess"
    }
   ],
   "missed": [
-   "Obstetric team called late"
+   "Tachycardia dismissed: delay, perforation"
   ],
   "recovery": [
-   "Call obstetrics"
+   "Reassesses, escalates, MRI, surgery"
   ]
  },
  "debrief": {
   "recognised": [
-   "Appendicitis in pregnancy (18 weeks)",
-   "Pregnancy masks severity: tachycardia and white cell count are partly physiological"
+   "The need for obstetrics"
   ],
   "missed": [
-   "Obstetric team called late"
+   "Interpreting the vital signs in pregnancy"
   ],
-  "priority": "Appendicitis in pregnancy (18 weeks)",
-  "why_priority": "The commonest non-obstetric surgical emergency in pregnancy; delay increases perforation and fetal loss.",
-  "related": "The findings in this case point to the same cause",
+  "priority": "Timely diagnosis",
+  "why_priority": "Delay harms both.",
+  "related": "The heart rate and the WBC with pregnancy",
   "independent": "None",
-  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
-  "if_ignored": "Harm from the missed problem or an unsafe operation",
-  "remember": "In pregnancy a normal-looking number can hide a problem, and the scan choice changes."
+  "trigger_escalation": "HR over 100 with fever",
+  "if_ignored": "Perforation, fetal loss",
+  "remember": "Pregnancy changes ranges, imaging, drugs and team."
  },
  "verification": [
   "V-14",
@@ -447,10 +457,5 @@
    "origin": "authored"
   },
   "plan": "rsi"
- },
- "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
  }
 }

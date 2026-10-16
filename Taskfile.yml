@@ -205,6 +205,8 @@ tasks:
     cmds:
       - uv run --project tools tools/content/build_tables.py
       - uv run --project tools tools/content/build_case_files.py
+      - uv run --project tools tools/content/build_records.py
+      - uv run --project tools tools/content/build_diagnostics.py
       - uv run --project tools tools/content/imaging_library.py
       - uv run --project tools tools/content/image_review_pack.py
       - uv run --project tools tools/data/dataset_cards.py
@@ -214,6 +216,7 @@ tasks:
       - uv run --project tools tools/eval/attributions.py
       - uv run --project tools tools/voice/catalogue.py
       - uv run --project tools tools/content/variant_facts.py
+      - uv run --project tools tools/content/stacked_partd.py
       - uv run --project tools tools/content/content_manifest.py
       - uv run --project tools tools/content/review_pack.py
 
