@@ -46,8 +46,12 @@ def patient_lines(case: str) -> list[dict]:
     where = f"content/cases/{case}.json" if card_path.exists() else f"content/case_files/{case}.json"
     lines = []
 
-    def add(topic: str, text: str | None, event: dict):
-        lines.append({"id": f"PAT-{case}-{topic.upper()}", "speaker": "patient", "case": case, "text": text or "", "event": event, "source": where})
+    def add(topic: str, text: str | None, event: dict, variant: str | None = None):
+        # a fact that belongs to one variant of the case (VAR-S1-D's last-dose answers) is its own line, so it never shares an id with the base answer
+        line = {"id": f"PAT-{case}-{topic.upper()}" + (f"-{variant}" if variant else ""), "speaker": "patient", "case": case, "text": text or "", "event": event, "source": where}
+        if variant:
+            line["variant"] = variant
+        lines.append(line)
 
     add("identity", src.get("spoken_identity_answer"), {"verb": "ask_identity"})
     add("allergies", src.get("allergy_answer"), {"verb": "ask_allergies"})
@@ -57,7 +61,7 @@ def patient_lines(case: str) -> list[dict]:
     ra = src.get("responsible_adult")
     add("responsible_adult", ra["text"] if ra else None, {"verb": "ask_responsible_adult"})
     for h in src.get("history", []):
-        add(h["topic"], h["answer"], {"verb": "ask", "topic": h["topic"]})
+        add(h["topic"], h["answer"], {"verb": "ask", "topic": h["topic"]}, h.get("variant"))
     return lines
 
 

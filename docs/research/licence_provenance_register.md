@@ -68,6 +68,7 @@ The Piper voices that speak British English (the cases are set in a UK hospital)
 | EXT-OLLAMA | Ollama | MIT | ALLOWED | Local runtime; keep the licence notice if it is shipped | 2026-10-16 (R-024) |
 | EXT-QWEN3 | Qwen3 model weights | Apache-2.0 | ALLOWED WITH CONDITIONS | As MC-01 | 2026-10-16 (R-025) |
 | EXT-FWHISPER | faster-whisper | MIT | ALLOWED | — | 2026-10-16 (R-024) |
+| EXT-FFMPEG | ffmpeg (Gyan.dev "full" Windows build) | LGPL 2.1 or later; this build is GPLv3 | ALLOWED WITH CONDITIONS | Developer tool only: shapes and encodes rendered voice lines; never linked into or shipped with the app. If it is ever bundled, use an LGPL build and offer the source | 2026-10-17 (R-037) |
 | EXT-PIPER | Piper | MIT (archived rhasspy/piper) or GPL-3.0 (successor OHF-Voice/piper1-gpl) | ALLOWED WITH CONDITIONS | Prefer the archived MIT release or pre-rendered audio; if the GPL successor is used, keep it a separate program, not linked into the build; each voice under Voices | 2026-10-16 (R-024) |
 | EXT-NEUROKIT2 | NeuroKit2 | MIT | ALLOWED | — | 2026-10-16 (R-024) |
 | EXT-DATASKETCH | datasketch | MIT | ALLOWED | — | 2026-10-16 (R-024) |

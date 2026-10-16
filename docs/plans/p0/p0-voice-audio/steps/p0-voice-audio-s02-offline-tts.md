@@ -14,6 +14,12 @@ Pre-rendered voices make the simulator fully usable offline (no laptop needed), 
 3. EXP-VOX-1 blind listening test (Piper vs Kokoro); record choice per role.
 4. Output `unity/Assets/_Project/Audio/Voice/*.ogg` (LFS) + `catalogue.json` paths.
 
+## Status (17 October 2026)
+
+- **Built:** `tools/voice/render.py` (`task voice-render`, `task voice-check`), `voices.json`, `pronunciations.json`, `tools/voice/README.md` (setup), tests `tools/ci/test_voice_render.py` in CI. Piper (archived MIT release, run as a separate program) speaks each line once (cached by its words), ffmpeg shapes the pitch and pace per role, applies the exact gain to -16 LUFS with a -1.5 dB limiter and writes Ogg Vorbis. 282 plain lines (280 distinct ids after fixing a duplicate id in the catalogue), 669 seconds of speech, all within 1.5 LU of -16 LUFS (T-VP2 by machine). Output is in `build/voice` (git-ignored); copying it into the Unity project is the playback step (s03) and the question of committing audio or rebuilding it follows EXP-FND-1.
+- **Not built / not claimed:** EXP-VOX-1 (Piper against Kokoro, a blind listening test by people; DT-194); a second voice (DT-184, licence); 9 template lines (their value is only known in a session, DT-195); 19 lines with no words yet (DT-178 to DT-180). Nobody has listened to the rendered audio, so naturalness, the pitch-shifted "male" patient voices and the respelling dictionary are unchecked.
+- **Catalogue fix found here:** VAR-S1-D's two variant answers shared the id of its base medicines answer; each variant line now has its own id (`PAT-VAR-S1-D-MEDICINES-D1`, `-D2`), and a test keeps the ids unique.
+
 ## Verification
 T-VP2 all lines rendered; T-VP3 voice terms recorded; EXP-VOX-1 result recorded.
 

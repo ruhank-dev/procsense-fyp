@@ -1,0 +1,19 @@
+{
+  "_note": "Who speaks with which settings (p0-voice-audio-s02). Only one voice is allowed by its licence so far (en_GB-cori-high: LibriVox recordings, public domain, trained from scratch; DT-184 blocks the other British voices). The roles are told apart by pitch and pace made from that one voice; a second voice replaces this when the licence question is answered.",
+  "engine": "piper",
+  "model": "en_GB-cori-high",
+  "licence": "public domain (LibriVox), model trained from scratch; Piper runs as a separate program",
+  "target_lufs": -16,
+  "true_peak_db": -1.5,
+  "roles": {
+    "patient_female": {"pitch": 1.00, "pace": 1.00},
+    "patient_male": {"pitch": 0.84, "pace": 1.04},
+    "nurse": {"pitch": 1.00, "pace": 0.98},
+    "anaesthetist": {"pitch": 0.90, "pace": 0.98},
+    "surgeon": {"pitch": 0.85, "pace": 1.00},
+    "clinician": {"pitch": 0.93, "pace": 0.98},
+    "porter": {"pitch": 0.86, "pace": 1.02},
+    "laboratory": {"pitch": 1.04, "pace": 0.96},
+    "team": {"pitch": 0.95, "pace": 1.00}
+  }
+}

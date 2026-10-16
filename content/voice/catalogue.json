@@ -1092,7 +1092,7 @@
    "review": "awaiting_review"
   },
   {
-   "id": "PAT-VAR-S1-D-MEDICINES",
+   "id": "PAT-VAR-S1-D-MEDICINES-D1",
    "speaker": "patient",
    "case": "VAR-S1-D",
    "text": "Three days ago, as the pre-op nurse told me.",
@@ -1100,10 +1100,11 @@
     "verb": "ask",
     "topic": "medicines"
    },
-   "source": "content/case_files/VAR-S1-D.json"
+   "source": "content/case_files/VAR-S1-D.json",
+   "variant": "D1"
   },
   {
-   "id": "PAT-VAR-S1-D-MEDICINES",
+   "id": "PAT-VAR-S1-D-MEDICINES-D2",
    "speaker": "patient",
    "case": "VAR-S1-D",
    "text": "This morning. I forgot what the nurse said.",
@@ -1111,7 +1112,8 @@
     "verb": "ask",
     "topic": "medicines"
    },
-   "source": "content/case_files/VAR-S1-D.json"
+   "source": "content/case_files/VAR-S1-D.json",
+   "variant": "D2"
   },
   {
    "id": "PAT-VAR-S1-E-IDENTITY",

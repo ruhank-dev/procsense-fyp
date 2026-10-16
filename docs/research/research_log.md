@@ -61,6 +61,13 @@ Every licence page of the register was re-read; each result is in `docs/research
 
 Measurements made on this machine (not web research): `tools/ai/benchmark.py`, desktop GTX 1660 SUPER, 16 Oct 2026, idle, context 4096, schema output, thinking off: qwen3.5:4b-q4_K_M p50 1.01 s and p95 1.15 s, about 59 tokens per second, 100 percent on the GPU (3.14 GB); qwen3:4b p50 0.75 s, about 72 tokens per second, 100 percent on the GPU; qwen3.5:9b-q4_K_M p50 5.05 s, about 11.7 tokens per second, 57 percent on the GPU (6.26 GB). From Python on this Windows machine `localhost` added a flat 2 s per request; the harness uses `127.0.0.1`. Raw results are in the git-ignored `artifacts/ai-bench/`.
 
+## 17 October 2026: offline voice rendering (p0-voice-audio-s02)
+
+| # | Question | Source (URL) | Accessed | Finding | Certainty and open points |
+|---|---|---|---|---|---|
+| R-037 | May ffmpeg be used to shape and encode the voice lines? | https://ffmpeg.org/legal.html and https://www.gyan.dev/ffmpeg/builds/ | 2026-10-17 | FFmpeg is LGPL 2.1 or later, and GPL if the optional GPL parts are built in; the Windows "full" build used here (Gyan, installed with winget) is GPLv3. Used only as a separate program on the developer's computer; it is not linked into or shipped with the app, and the audio it writes is not a derived work of the program. | High for the licence texts; whether to ship rendered audio made with a GPL build is no issue (output), but if ffmpeg were ever bundled it would need the LGPL build and the source offer. |
+| R-038 | Download hashes of the Piper release and the voice | https://github.com/rhasspy/piper/releases/tag/2023.11.14-2 and https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_GB/cori/high | 2026-10-17 | `piper_windows_amd64.zip` SHA-256 f3c58906402b24f3a96d92145f58acba6d86c9b5db896d207f78dc80811efcea (GitHub shows no checksum; recorded as downloaded); `en_GB-cori-high.onnx` SHA-256 470b4dd634c98f8a4850d7626ffc3dfc90774628eeef6605a6dd8f88f30a5903, equal to the file's Hugging Face LFS object id. The model card: single speaker, LibriVox recordings, public domain, trained from scratch. | High for the voice (hash matches the host's own id); medium for the Piper archive (no published checksum). |
+
 ## Not researched in this update (stated so nobody assumes otherwise)
 
 | Topic | Why it matters | Where it is tracked |

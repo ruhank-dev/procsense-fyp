@@ -66,6 +66,16 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/catalogue.py
 
+  voice-render:
+    desc: Render the voice-line catalogue to audio (build/voice, git-ignored) with the offline voice; only new or changed lines are rendered. Needs Piper, the voice model and ffmpeg (see tools/voice/README.md)
+    cmds:
+      - uv run --project tools tools/voice/render.py {{.CLI_ARGS}}
+
+  voice-check:
+    desc: Check every plain line of the catalogue has a rendered file of sane length at the target loudness (-16 LUFS)
+    cmds:
+      - uv run --project tools tools/voice/render.py --check
+
   attributions:
     desc: Regenerate docs/ATTRIBUTIONS.md and the in-app credits (content/attributions/attributions.json) from the registers
     cmds:

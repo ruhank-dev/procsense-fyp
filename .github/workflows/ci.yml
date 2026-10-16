@@ -249,6 +249,9 @@ jobs:
       - name: Voice catalogue tests (sources, the nurse covers every wristband step, a missing line is reported)
         run: uv run --project tools tools/ci/test_voice_catalogue.py
 
+      - name: Voice renderer tests (respelling, change hash, pitch filter, roles, plan, unique line ids)
+        run: uv run --project tools tools/ci/test_voice_render.py
+
       - name: What-if bindings are up to date (P0 cases, derived from the case content)
         run: uv run --project tools tools/content/build_bindings.py --check
 
