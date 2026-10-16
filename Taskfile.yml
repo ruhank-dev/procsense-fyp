@@ -166,6 +166,12 @@ tasks:
     cmds:
       - uv run --project server python -m server.scripts.admin {{.CLI_ARGS}}
 
+  server-load-test:
+    desc: EXP-BE-3 - load 1,000 synthetic sessions across 5 organisations into a database on this computer and time every dashboard query (task server-load-test -- --database-url postgresql://...; --cleanup removes them)
+    cmds:
+      - dotnet build src/ProcSense.Cli -c Release -nologo -v q
+      - uv run --project server python -m server.scripts.load_synthetic_sessions --engine '["dotnet", "artifacts/bin/ProcSense.Cli/Release/net9.0/procsense-sim.dll"]' {{.CLI_ARGS}}
+
   server-db-up:
     desc: Start a throwaway PostgreSQL 17 in Docker for the backend tests and print its address
     cmds:

@@ -76,7 +76,7 @@ The image is built on GitHub (`.github/workflows/publish-image.yml`: the Linux e
 6. **First people:** sign in on the web page once, `task server-admin -- grant-platform-admin --user-id <id>`, `task server-admin -- create-organisation ...`, then add the others (People page, or `add-member`). Each person ticks the first consent box once.
 7. **Scheduled jobs:** GitHub > Settings > Secrets and variables > Actions: `SERVICE_URL` and `INTERNAL_KEY` (the same value as on Render); optional `RENDER_DEPLOY_HOOK` makes every new image deploy by itself. `.github/workflows/scheduled-jobs.yml` then wakes the service, touches the database and runs the verification sweep every 3 hours and the retention clean-up daily, and fails (and emails) when the service does not answer.
 8. **Prove it:** `task demo-session`, then `task headset-sim -- --url <address> --file demo_session.jsonl`; approve the code on the web page; the status should become `verified`. `server/DEMO.md` is the checklist for a demonstration.
-Not yet in place: the 1,000-session load test and the free-plan exit list (the rest of p1-backend-s13, DT-160). The nightly backup and the size monitor exist: see Backup and restore.
+Not yet in place: the free-plan exit list (the rest of p1-backend-s13, DT-160). The 1,000-session load test passed on 16 Oct 2026 (EXP-BE-3 in docs/plans/p1/p1-backend/README.md; rerun with `task server-load-test -- --database-url <a local database>`). The nightly backup and the size monitor exist: see Backup and restore.
 
 ## Backup and restore
 The free plan keeps no backups, so the nightly job is the only copy of the data.
