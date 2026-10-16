@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "15f7b66ed0851a3a5c27bf0c0bcd46c287a8f7c126d094d994fc42c754dac5f4",
- "files": 378,
- "bytes": 16790599,
+ "content_hash": "79d53a7addca39010073eb452aad606d308fc2fd8ff895f7522b51b98dfee474",
+ "files": 380,
+ "bytes": 16870368,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -42,6 +42,7 @@
   "scores": 1,
   "scoring": 1,
   "sepsis": 1,
+  "voice": 2,
   "ward": 1,
   "workflow": 1,
   "xsec": 57
@@ -1294,6 +1295,14 @@
   "vitals_bands.csv": {
    "bytes": 7001,
    "sha256": "0415239feaf451d22878d3b05fd044f03fc94cf13deb5159744dee926eb8aa3b"
+  },
+  "voice/catalogue.json": {
+   "bytes": 76891,
+   "sha256": "06da3d919a4d1ac085db863058d7c4caa228333a11c69327798968c4956492b3"
+  },
+  "voice/spoken_variants.json": {
+   "bytes": 2878,
+   "sha256": "bf41fb3bd7e98d2986c6e199aef96676e22d79bcae65e3662a89c5f37d96bbbd"
   },
   "vr_cards.csv": {
    "bytes": 29674,

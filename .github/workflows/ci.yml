@@ -243,6 +243,9 @@ jobs:
       - name: Attributions are up to date and every register row has what a credit needs
         run: uv run --project tools tools/eval/attributions.py --check
 
+      - name: Voice catalogue is up to date (every line has a source; gaps and drafts listed)
+        run: uv run --project tools tools/voice/catalogue.py --check
+
       - name: What-if bindings are up to date (P0 cases, derived from the case content)
         run: uv run --project tools tools/content/build_bindings.py --check
 

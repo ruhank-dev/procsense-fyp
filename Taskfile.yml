@@ -61,6 +61,11 @@ tasks:
         ignore_error: true
       - uv run --project tools tools/ci/setup_check.py
 
+  voice-catalogue:
+    desc: Build content/voice/catalogue.json (every spoken line of the P0 cases with its speaker, event and source) and list the events without a line and the drafts awaiting review
+    cmds:
+      - uv run --project tools tools/voice/catalogue.py
+
   attributions:
     desc: Regenerate docs/ATTRIBUTIONS.md and the in-app credits (content/attributions/attributions.json) from the registers
     cmds:
@@ -201,6 +206,7 @@ tasks:
       - uv run --project tools tools/content/case_gaps.py
       - uv run --project tools tools/content/trace.py
       - uv run --project tools tools/eval/attributions.py
+      - uv run --project tools tools/voice/catalogue.py
       - uv run --project tools tools/content/content_manifest.py
       - uv run --project tools tools/content/review_pack.py
 
