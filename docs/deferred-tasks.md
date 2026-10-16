@@ -226,12 +226,13 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | DT-178 | 16 P0 case files do not state who takes the patient home (responsible adult), so the patient has no answer to that question (the engine says 'Not stated in this case.'); the clinical content owner adds the fact per case | Pending | p0-voice-audio-s01 | Ruhan (content) with the clinician | Listed by task voice-catalogue |
 | DT-179 | The surgeon's and anaesthetist's WHO Time Out answers (critical steps, duration, blood loss; patient-specific concerns) are case-specific clinical content that no case file holds | Pending | p0-voice-audio-s01 | Ruhan with the clinician | Listed by task voice-catalogue |
 | DT-180 | The laboratory's critical-result call is worded in the engine's code (ResultReviewSubsystem); move the wording into content so the voice catalogue can carry it | Pending | p0-voice-audio-s01 | Ruhan (engine) | Listed by task voice-catalogue |
-| DT-181 | Review the 14 spoken first-person variants in content/voice/spoken_variants.json (status awaiting_review) and mark each approved or reword it | Pending | p0-voice-audio-s01 | Team; the clinician for the allergy reaction | Drafted 16 Oct 2026 |
+| DT-181 | Review the 24 authored lines awaiting review: the 14 spoken first-person variants in content/voice/spoken_variants.json and the 10 nurse wristband lines in content/voice/nurse_wristband.json; mark each approved or reword it | Pending | p0-voice-audio-s01 | Team; the clinician for the allergy reaction | Drafted 16 Oct 2026 |
 
 ## Change log
 
 | Date | Change |
 |---|---|
+| 16 October 2026 (p0-voice-audio-s06) | The nurse's 10 wristband lines with a missing-line check; DT-181 widened to 24 drafts. |
 | 16 October 2026 (p0-voice-audio-s01) | Voice-line catalogue of 300 lines from the content, 14 authored drafts; DT-178 to DT-181 added. |
 | 16 October 2026 (p0-evaluation-performance-s04) | Assessment-mode lock tested end to end; the gated loader and the VR app's session start fixed; DT-177 added. |
 | 16 October 2026 (p0-evaluation-performance-s02) | Golden suite of 68 scripts with scores in the expected files and a check of each path; DT-175 and DT-176 added. |

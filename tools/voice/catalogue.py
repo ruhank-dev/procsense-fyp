@@ -8,6 +8,7 @@ Nothing is typed twice: the lines come from the content only.
   is one, else the case file, as the engine does: ProcSense.Core.Workflow.PatientAnswers);
 - the staff: the anaesthetist's approved intents (content/npc/anaesthetist_intents.json), the clinician's and nurse's medicine lines (content/treatments.json), the nurse's prompt about tubes
   at the bedside (content/diagnostics/diagnostics.json), the porter's delay message (content/locations/locations.json), and the team's answers to the WHO checklist items they answer;
+- content/voice/nurse_wristband.json: the nurse's lines during a wristband mismatch or a missing band (p0-voice-audio-s06), authored, procedural only;
 - content/voice/spoken_variants.json: first-person variants drafted by the developer where the content holds a narration ("Not applicable.") or no answer text at all; each is marked
   awaiting_review and keeps its source text.
 A line with {placeholders} is a template: it is rendered per value (offline) or by live speech later (p1-voice-input). An event of a P0 case with no line is a warning (plan test T-VP1).
@@ -75,6 +76,9 @@ def staff_lines() -> list[dict]:
     # the laboratory's critical-result call is put together in the engine's code from the case (ResultReviewSubsystem), not in the content: no line until it moves to content
     lines.append({"id": "LAB-CRITICAL_CALL", "speaker": "laboratory", "text": "", "event": {"core_event": "critical_call_rings"},
                   "source": "src/ProcSense.Core/Workflow/Steps/ResultReviewSubsystem.cs (the words are built in code, not content)"})
+    for l in load("voice/nurse_wristband.json")["lines"]:
+        lines.append({"id": l["id"], "speaker": "nurse", "text": l["text"], "event": l["trigger"], "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+                      "spoken_variant": "authored", "review": l["status"]})
     items = {i["id"]: i for i in load("checklist/safety_checklist.json")["items"]}
     for item_id, speaker in CHECKLIST_SPEAKER.items():
         lines.append({"id": "NPC-" + item_id.upper().replace(".", "-"), "speaker": speaker, "text": "", "event": {"checklist_item": item_id},
@@ -82,13 +86,28 @@ def staff_lines() -> list[dict]:
     return lines
 
 
+def nurse_coverage(lines: list[dict]) -> list[str]:
+    """T-VP1 for the wristband nurse (p0-voice-audio-s06): every nurse step the engine publishes, and every outcome the step lists, has a line. The steps are read from the engine's code, so a new one cannot be missed."""
+    code = (ROOT / "src" / "ProcSense.Core" / "Workflow" / "Steps" / "WristbandResolution.cs").read_text(encoding="utf-8")
+    states = re.findall(r'public const string \w+ = "([A-Z_]+)";', code)
+    events = [l["event"] for l in lines if l["speaker"] == "nurse"]
+    out = [f"nurse step {st}: no line" for st in states if not any(e.get("nurse_state") == st for e in events)]
+    for need in ({"verb": "request_wristband", "accepted": True}, {"verb": "request_wristband", "rejection": "VERIFY_IDENTITY_FIRST"}, {"effect": "allergy_band_applied"}, {"effect": "nothing_to_resolve"},
+                 {"nurse_state": "REPLACING", "effect": "wristband_applied"}):
+        if not any(all(e.get(k) == v for k, v in need.items()) for e in events):
+            out.append(f"nurse: no line for {json.dumps(need)}")
+    return out
+
+
 def build() -> tuple[str, list[str], list[str]]:
     variants = {v["id"]: v for v in json.loads(VARIANTS.read_text(encoding="utf-8"))["variants"]}
     lines = [l for c in p0_cases() for l in patient_lines(c)] + staff_lines()
     known = {l["id"] for l in lines}
     stray = sorted(set(variants) - known)
-    missing, review = [], []
+    missing, review = nurse_coverage(lines), []
     for l in lines:
+        if l.get("spoken_variant") == "authored" and l["id"] not in variants and l.get("review") != "approved":
+            review.append(f"{l['id']}: \"{l['text']}\"")
         v = variants.get(l["id"])
         if v:
             l["source_text"] = l["text"]

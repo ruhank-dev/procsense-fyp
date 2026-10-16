@@ -3220,6 +3220,122 @@
    "source": "src/ProcSense.Core/Workflow/Steps/ResultReviewSubsystem.cs (the words are built in code, not content)"
   },
   {
+   "id": "NUR-WRISTBAND-CALLED",
+   "speaker": "nurse",
+   "text": "Thanks for telling me. Let me check.",
+   "event": {
+    "nurse_state": "CALLED"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-AT_BEDSIDE-1",
+   "speaker": "nurse",
+   "text": "Excuse me, I'm just coming in to the bedside.",
+   "event": {
+    "nurse_state": "AT_BEDSIDE",
+    "order": 1
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-AT_BEDSIDE-2",
+   "speaker": "nurse",
+   "text": "I'm checking the band against the patient's records now.",
+   "event": {
+    "nurse_state": "AT_BEDSIDE",
+    "order": 2
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-REPLACING",
+   "speaker": "nurse",
+   "text": "The details on the band did not match the records, so I'm replacing it with a correct one.",
+   "event": {
+    "nurse_state": "REPLACING",
+    "effect": "wristband_replaced"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-APPLYING",
+   "speaker": "nurse",
+   "text": "There's no band on, so I'm putting one on now.",
+   "event": {
+    "nurse_state": "REPLACING",
+    "effect": "wristband_applied"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-DONE",
+   "speaker": "nurse",
+   "text": "The new band is on. Please read it again before you go on.",
+   "event": {
+    "nurse_state": "DONE"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-MISSING_ACK",
+   "speaker": "nurse",
+   "text": "Of course, I'll bring a band and put it on.",
+   "event": {
+    "verb": "request_wristband",
+    "accepted": true
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-VERIFY_FIRST",
+   "speaker": "nurse",
+   "text": "Before I put a band on, please confirm who the patient is.",
+   "event": {
+    "verb": "request_wristband",
+    "rejection": "VERIFY_IDENTITY_FIRST"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-ALLERGY_BAND",
+   "speaker": "nurse",
+   "text": "I've put an allergy band on as well, for the allergy the patient has told us about.",
+   "event": {
+    "effect": "allergy_band_applied"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
+   "id": "NUR-WRISTBAND-NOTHING_TO_FIX",
+   "speaker": "nurse",
+   "text": "The band is on and it matches. There's nothing to change.",
+   "event": {
+    "effect": "nothing_to_resolve"
+   },
+   "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
+   "spoken_variant": "authored",
+   "review": "awaiting_review"
+  },
+  {
    "id": "NPC-SIGN_IN-03",
    "speaker": "anaesthetist",
    "text": "Yes, the anaesthesia machine and medication check is complete.",
@@ -3275,9 +3391,9 @@
   }
  ],
  "summary": {
-  "lines": 300,
+  "lines": 310,
   "templates": 9,
-  "authored_variants": 14,
+  "authored_variants": 24,
   "events_without_a_line": 19
  }
 }

@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "79d53a7addca39010073eb452aad606d308fc2fd8ff895f7522b51b98dfee474",
- "files": 380,
- "bytes": 16870368,
+ "content_hash": "207f4da6517089aff3f829ca7d26837924268cba62585911dea329079d757b86",
+ "files": 381,
+ "bytes": 16876251,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -42,7 +42,7 @@
   "scores": 1,
   "scoring": 1,
   "sepsis": 1,
-  "voice": 2,
+  "voice": 3,
   "ward": 1,
   "workflow": 1,
   "xsec": 57
@@ -1297,8 +1297,12 @@
    "sha256": "0415239feaf451d22878d3b05fd044f03fc94cf13deb5159744dee926eb8aa3b"
   },
   "voice/catalogue.json": {
-   "bytes": 76891,
-   "sha256": "06da3d919a4d1ac085db863058d7c4caa228333a11c69327798968c4956492b3"
+   "bytes": 80446,
+   "sha256": "e51ea95bd69ffd515b6f7b32b0e182d418155dec6593cf7849f67be0b7356cd8"
+  },
+  "voice/nurse_wristband.json": {
+   "bytes": 2328,
+   "sha256": "ae5f92d208497380595eb5d83726b5c1da5d169f42394e9fc36b19ef36ded237"
   },
   "voice/spoken_variants.json": {
    "bytes": 2878,

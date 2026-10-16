@@ -42,3 +42,8 @@ Do not put clinical facts in nurse lines (what she "found" must be generic — "
 
 ## Sources
 Guide L1-04 feedback column ("Nurse line"); Walkthrough Part 11 Step 1; owner instruction 09 October 2026.
+
+## Implementation notes (16 Oct 2026)
+- **Built:** `content/voice/nurse_wristband.json` with the nurse's 10 lines, each with an id, its trigger (the engine's nurse step CALLED, AT_BEDSIDE twice, REPLACING for a wrong band and for a missing one, DONE; `request_wristband` accepted; the rejection VERIFY_IDENTITY_FIRST; the effects `allergy_band_applied` and `nothing_to_resolve`) and its words, written procedural only ("the details on the band did not match the records"), with no clinical fact and nothing patient-specific; each `awaiting_review`. The voice catalogue (p0-voice-audio-s01) takes them in as nurse lines marked authored (310 lines now).
+- **Missing-line check (T-VP1):** the catalogue reads the nurse's steps from the engine's code (`WristbandResolution`) and the outcomes this step lists, and reports any without a line, so a new nurse step cannot go silent. `tools/ci/test_voice_catalogue.py` (5 tests, in CI): every line has a source and an event, every P0 case has its patient lines, the nurse covers every step and outcome, a removed line is reported, and no nurse line holds a number or a placeholder.
+- **Not built:** the review of the 10 lines (DT-181 now covers 24 drafts), and the rest of the step's plan that depends on later voice steps: rendering with the offline voice (p0-voice-audio-s02), subtitles and playback (s03), lip sync (s04) and the Play Mode scenario in which each nurse state plays its line. The step stays open until those exist.

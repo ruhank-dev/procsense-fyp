@@ -1,0 +1,15 @@
+{
+ "note": "The nurse's lines during a wristband mismatch or a missing band (p0-voice-audio-s06, DT-008). Written by the developer: procedural only, no clinical fact and nothing patient-specific (that comes from the Core state), each awaiting review. The trigger is the engine's nurse step (WristbandResolution) or the action outcome that plays the line; subtitles show exactly this text.",
+ "lines": [
+  {"id": "NUR-WRISTBAND-CALLED", "trigger": {"nurse_state": "CALLED"}, "text": "Thanks for telling me. Let me check.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-AT_BEDSIDE-1", "trigger": {"nurse_state": "AT_BEDSIDE", "order": 1}, "text": "Excuse me, I'm just coming in to the bedside.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-AT_BEDSIDE-2", "trigger": {"nurse_state": "AT_BEDSIDE", "order": 2}, "text": "I'm checking the band against the patient's records now.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-REPLACING", "trigger": {"nurse_state": "REPLACING", "effect": "wristband_replaced"}, "text": "The details on the band did not match the records, so I'm replacing it with a correct one.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-APPLYING", "trigger": {"nurse_state": "REPLACING", "effect": "wristband_applied"}, "text": "There's no band on, so I'm putting one on now.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-DONE", "trigger": {"nurse_state": "DONE"}, "text": "The new band is on. Please read it again before you go on.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-MISSING_ACK", "trigger": {"verb": "request_wristband", "accepted": true}, "text": "Of course, I'll bring a band and put it on.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-VERIFY_FIRST", "trigger": {"verb": "request_wristband", "rejection": "VERIFY_IDENTITY_FIRST"}, "text": "Before I put a band on, please confirm who the patient is.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-ALLERGY_BAND", "trigger": {"effect": "allergy_band_applied"}, "text": "I've put an allergy band on as well, for the allergy the patient has told us about.", "status": "awaiting_review"},
+  {"id": "NUR-WRISTBAND-NOTHING_TO_FIX", "trigger": {"effect": "nothing_to_resolve"}, "text": "The band is on and it matches. There's nothing to change.", "status": "awaiting_review"}
+ ]
+}
