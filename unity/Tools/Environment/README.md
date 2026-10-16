@@ -28,3 +28,45 @@ z=1.40. The rear cap rail has a 1.05-metre gap behind the headboard to avoid
 surface overlap. The old notes-stand collider retains its footprint at the new position;
 three simple box colliders replace the old tablet post. The reading light is baked
 and adds no realtime light. Quest performance still requires device profiling.
+
+## Full room dressing
+
+Use the repository's pinned Blender 4.5.14 from the repo root:
+
+```powershell
+& ./build/blender/blender-4.5.14-windows-x64/blender.exe -b --factory-startup --python-exit-code 1 -P unity/Tools/Environment/build_room_dressing.py
+```
+
+The generator reads the shared geometry library without changing it. It creates
+11 metre-based presentation models and checks closed geometry, UVs and triangle
+budgets. Reproducible `.blend` sources, FBXs and `validation.json` are written
+under ignored `unity/Logs/RoomDressing`. Dimensions are illustrative furniture
+envelopes, not manufacturer or clinical specifications.
+
+`HospitalRoomDressing.Import()` creates the imported models, shared materials and
+nested prefabs through the connected Unity Editor. `Apply("PatientBay")`,
+`Apply("Corridor")` and `Apply("OT")` place them in the existing saved rooms.
+These are guarded initial-install operations: they reject Play, baking, dirty
+scenes and existing dressing. They do not regenerate room shells. For later art
+corrections, reimport an existing FBX through AssetDatabase with its `.meta`
+preserved, or edit an existing prefab/scene through the Editor.
+
+Bay furniture keeps the MPFB pose, mattress, bedding, sensor targets, tablet,
+notes folder and existing solid bed footprint. Legacy visible bed geometry is
+hidden. The lowered foot rails preserve access to the arms. The static privacy
+curtain is parked on the left side; no cloth or curtain interaction is added.
+Corridor seating and a linen trolley occupy the right wall. The OT gains a
+segmented table, overhead surgical light, anaesthesia presentation unit, Mayo
+stand, trolley, cupboard and hygiene fixtures. Equipment added by this batch is
+static presentation furniture; screens remain inactive and no clinical action
+or readiness state is implied.
+
+Floor furniture has simple BoxColliders. Ceiling fixtures and the parked curtain
+are visual dressing. Reuse shared hospital materials and lightmap UVs; bake each
+room separately using its existing lighting configuration. Do not add overlapping
+room shells for a bake. Review the bay from both sides and foot/head ends, the
+corridor in both directions and the OT around its table before acceptance.
+
+The earlier `build_bedside.py` creates the headwall, cabinet and tablet table;
+`HospitalBedside` performs their initial import. Preserve their existing GUIDs
+and interaction transforms when editing the surrounding furniture.

@@ -68,7 +68,7 @@ These are Editor-verified foundations. The headset comfort comparison and questi
 
 `Sys_Core` owns the one Session, EventSystem, PlayerRig and RoomLoader. It remains loaded while room scenes are loaded/unloaded additively. `DevOnly` remains available in the Editor. A fresh Boot load starts a new session; room navigation preserves it. The bay has a framed door on its right wall marked **CORRIDOR**. In the corridor, **PATIENT BAY** is on the left near the arrival end and **OPERATING THEATRE** is on the right at the far end. The OT return door is on its front wall. Click the door's smaller **Enter** control with the mouse or controller UI ray. Use WASD to approach doors. Door leaves, frames, frosted observation insets, hardware and fixed signs are visual dressing over the existing solid shells; room travel still uses the fade transition.
 
-Each transition fades to black over 0.3 seconds, validates a room arrival anchor, places the same rig and unloads the previous room, then fades back in. Movement and repeated requests are held during the transition. Missing/blocked arrivals keep the previous room and show a message on its panels. CT/MRI and ultrasound doors show **No trainee access** and stay blocked by solid walls. These are trainee navigation controls; they issue no clinical action and do not transfer the patient. The OT table is a greybox placeholder.
+Each transition fades to black over 0.3 seconds, validates a room arrival anchor, places the same rig and unloads the previous room, then fades back in. Movement and repeated requests are held during the transition. Missing/blocked arrivals keep the previous room and show a message on its panels. CT/MRI and ultrasound doors show **No trainee access** and stay blocked by solid walls. These are trainee navigation controls; they issue no clinical action and do not transfer the patient. The OT has a segmented padded table, overhead lamp, anaesthesia presentation unit, Mayo stand, trolley and supply cupboard. These new furniture props are static presentation assets; clinical controls/readiness remain separate work.
 
 ## Editing and regeneration
 
@@ -176,3 +176,25 @@ Use ProcSense > Equipment > Configure Sensor Placement Guides to reapply the gui
 Grabbable equipment now uses gravity when released outside a patient/tray target. XRI keeps held and socketed items stable, then restores dynamic physics on release. Speculative continuous collision detection supports both states. Release does not add a throw impulse; items fall naturally and collide with room surfaces. Returning a sensor to its tray clears old velocity before placing it, so it settles rather than drifting away. Attached sensors remain on the patient and retain the same clinical action flow.
 
 The loose cuff is now a curved, padded fabric piece with bound edges, a fastening patch, retaining loop and hose connector. Its fitted wrapped state and original patient anchors are retained. Generate/import instructions are in Tools/Equipment/README.md. This is a rigid presentation model, not cloth or inflation simulation.
+
+## Room furniture and privacy
+
+PatientBay now has a wheeled bed frame, head/foot boards and lowered foot rails
+around the existing MPFB patient, soft mattress and bedding. A gathered privacy
+curtain is parked along the left side of an overhead L track, leaving the patient
+and bedside sensor access visible. Handrub and pedal-bin fixtures dress the bay
+and OT. The corridor has a waiting bench and linen trolley along the right wall,
+with the centre route, room arrival points and teleport destinations preserved.
+The curtain and new theatre equipment are static presentation props.
+
+All three rooms reuse the existing baked lighting and one real-time key each.
+Simple furniture colliders block walking and support dropped items where
+appropriate. The original bed/table collision identities remain. The sensor
+cables have empty initial geometry in Edit mode and receive their normal thin
+17-point shapes during Play. See [environment reproduction notes](Tools/Environment/README.md).
+
+Review in Play: walk around both sides of the bed and inspect the feet/headboard;
+grab and return the cuff/probe, including their patient targets. Travel through
+the corridor to OT and back; test the teleport pads and Enter controls. Expect
+clear destinations and solid furniture, with diagnostic doors still blocked.
+Actual Quest reach, appearance and frame timing require headset review.
