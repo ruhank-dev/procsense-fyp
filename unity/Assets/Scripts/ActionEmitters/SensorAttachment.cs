@@ -18,14 +18,19 @@ namespace ProcSense.VR.ActionEmitters
         [SerializeField] private Transform restingPlace;
         [SerializeField] private GameObject[] looseVisuals;
         [SerializeField] private GameObject wrappedVisual;
+        [SerializeField] private Material placementHighlight;
         private XRGrabInteractable _grab;
         private Session _session;
         private int _count = -1;
         private bool _attached, _syncing, _returnHome;
         private bool _awaitSocketExit;
+        private SensorPlacementGuide _guide;
         public bool canProcess => isActiveAndEnabled;
         public bool Attached => _attached;
         public XRSocketInteractor Destination => destination;
+        public bool PlacementGuidesVisible => _guide != null && _guide.Visible;
+        public float ReturnRadius => paramValue == "spo2" ? .065f : .09f;
+        public void ConfigurePlacementHighlight(Material material) => placementHighlight = material;
 
         [Serializable] private class Parameters { public string sensor; }
         [Serializable] private class Entry { public string verb; public bool accepted; public Parameters @params; }
@@ -55,8 +60,11 @@ namespace ProcSense.VR.ActionEmitters
             _grab.selectEntered.RemoveListener(Entered);
             _grab.selectFilters.Remove(this);
             _grab.selectExited.RemoveListener(Exited);
+            _guide?.Hide();
             UnregisterFallback();
         }
+
+        private void OnDestroy() => _guide?.Dispose();
 
         private void Entered(SelectEnterEventArgs args)
         {
@@ -68,6 +76,9 @@ namespace ProcSense.VR.ActionEmitters
 
         private void Exited(SelectExitEventArgs args)
         {
+            if (!_syncing && !args.isCanceled && !(args.interactorObject is XRSocketInteractor)
+                && !_attached && restingPlace != null && Vector3.Distance(transform.position, restingPlace.position) <= ReturnRadius)
+                _returnHome = true;
             if (_syncing || args.isCanceled || !ReferenceEquals(args.interactorObject, destination) || !_attached) return;
             var answer = Fire("detach_sensor");
             if (answer != null && answer.Accepted)
@@ -158,6 +169,12 @@ namespace ProcSense.VR.ActionEmitters
                 }
             }
             finally { _syncing = false; }
+            if (placementHighlight != null)
+            {
+                if (_guide == null) _guide = new SensorPlacementGuide(destination, restingPlace, placementHighlight, ReturnRadius);
+                bool held = _grab.interactorsSelecting.Any(i => !(i is XRSocketInteractor));
+                _guide.Refresh(held, !_awaitSocketExit && NearSocket(), Vector3.Distance(transform.position, restingPlace.position) <= ReturnRadius);
+            }
         }
     }
 }

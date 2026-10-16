@@ -75,6 +75,49 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [Test]
+        public void Held_sensor_shows_guides_and_snaps_home_without_a_clinical_action()
+        {
+            foreach (string sensor in new[] { "spo2", "nibp_cuff" })
+            {
+                var binding = MakeSensor(sensor, out var socket, out var grab, out var manager);
+                var material = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+                try
+                {
+                    binding.ConfigurePlacementHighlight(material);
+                    binding.SyncNow();
+                    Assert.IsFalse(binding.PlacementGuidesVisible, "Idle targets should not clutter the bay");
+                    var hand = Make<XRDirectInteractor>("returning sensor hand");
+                    hand.interactionManager = manager;
+                    manager.SelectEnter((IXRSelectInteractor)hand, (IXRSelectInteractable)grab);
+                    binding.SyncNow();
+                    Assert.IsTrue(binding.PlacementGuidesVisible);
+                    grab.transform.position = new Vector3(1.03f, 1, 1);
+                    manager.SelectExit((IXRSelectInteractor)hand, (IXRSelectInteractable)grab);
+                    binding.SyncNow();
+                    Assert.IsFalse(binding.PlacementGuidesVisible);
+                    Assert.AreEqual(new Vector3(1, 1, 1), grab.transform.position, "Release inside the return target must dock exactly");
+                    Assert.IsFalse(binding.Attached);
+                    Assert.AreEqual(0, _host.Session.Log.Count, "Tray placement must never emit attach/detach actions");
+                }
+                finally { Object.DestroyImmediate(material); }
+            }
+        }
+
+        [Test]
+        public void Sensor_released_away_from_tray_does_not_teleport_home()
+        {
+            var binding = MakeSensor("spo2", out var socket, out var grab, out var manager);
+            var hand = Make<XRDirectInteractor>("off-target hand");
+            hand.interactionManager = manager;
+            manager.SelectEnter((IXRSelectInteractor)hand, (IXRSelectInteractable)grab);
+            grab.transform.position = new Vector3(2, 1, 1);
+            manager.SelectExit((IXRSelectInteractor)hand, (IXRSelectInteractable)grab);
+            binding.SyncNow();
+            Assert.AreEqual(new Vector3(2, 1, 1), grab.transform.position);
+            Assert.AreEqual(0, _host.Session.Log.Count);
+        }
+
+        [Test]
         public void Physical_probe_attach_and_immediate_removal_match_core_actions()
         {
             var binding=MakeSensor("spo2",out var socket,out var grab,out var manager);
