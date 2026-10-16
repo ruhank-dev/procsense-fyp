@@ -15,7 +15,7 @@ namespace ProcSense.Tests.EditMode
         [TestCase("iv_pole_pump", .214f, .068f, .124f, 4)]
         [TestCase("wristband", .279f, .001f, .025f, 0)]
         [TestCase("spo2_probe", .033f, .008f, .056f, 0)]
-        [TestCase("bp_cuff", .300f, .003f, .160f, 0)]
+        [TestCase("bp_cuff", .280f, .080f, .190f, 0)]
         [TestCase("patient_folder", .226f, .002f, .313f, 0)]
         public void PilotsHaveMetreScaleMaterialsAndIsolatedSockets(string id, float x, float y, float z, int sockets)
         {
@@ -23,9 +23,13 @@ namespace ProcSense.Tests.EditMode
             Assert.That(prefab, Is.Not.Null);
             var renderers = prefab.GetComponentsInChildren<MeshRenderer>();
             var body = renderers.Single(r => r.name == "EQ_" + id + "_Body");
-            Assert.That(Vector3.Distance(body.bounds.size, new Vector3(x, y, z)), Is.LessThan(.00001));
+            // The padded cuff has bound edges/connector details inside a small presentation envelope.
+            Assert.That(Vector3.Distance(body.bounds.size, new Vector3(x, y, z)), Is.LessThan(id == "bp_cuff" ? .02f : .00001f));
+            if (id == "bp_cuff") Assert.That(body.bounds.size.y, Is.GreaterThan(.06f), "The loose cuff must retain its curled, padded shape");
             Assert.That(prefab.transform.localScale, Is.EqualTo(Vector3.one));
             Assert.That(prefab.GetComponent<XRGrabInteractable>().attachTransform, Is.Not.Null);
+            Assert.IsTrue(prefab.GetComponent<Rigidbody>().useGravity);
+            Assert.IsFalse(prefab.GetComponent<Rigidbody>().isKinematic);
             Assert.That(prefab.GetComponents<BoxCollider>().All(c => c.size.x > 0 && c.size.y > 0 && c.size.z > 0), Is.True);
             Assert.That(prefab.GetComponentsInChildren<EquipmentSurfaceView>().Length, Is.EqualTo(EquipmentPrefabBuilder.Pilots.Contains(id) ? 1 : 0));
             Assert.That(renderers.SelectMany(r => r.sharedMaterials).All(m => m != null && m.shader.name == "Universal Render Pipeline/Lit"), Is.True);

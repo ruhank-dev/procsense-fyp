@@ -153,6 +153,11 @@ namespace ProcSense.VR.ActionEmitters
                     var body = GetComponent<Rigidbody>();
                     if (body != null)
                     {
+                        if (!body.isKinematic)
+                        {
+                            body.linearVelocity = Vector3.zero;
+                            body.angularVelocity = Vector3.zero;
+                        }
                         body.position = restingPlace.position;
                         body.rotation = restingPlace.rotation;
                     }
@@ -165,7 +170,13 @@ namespace ProcSense.VR.ActionEmitters
                     wrappedVisual.SetActive(_attached);
                     foreach (var visual in looseVisuals ?? Array.Empty<GameObject>()) if (visual != null) visual.SetActive(!_attached);
                     var collider = GetComponent<BoxCollider>();
-                    if (collider != null) collider.size = _attached ? new Vector3(.105f, .105f, .16f) : new Vector3(.30f, .015f, .16f);
+                    if (collider != null)
+                    {
+                        var size = _attached ? new Vector3(.105f, .105f, .16f) : new Vector3(.28f, .08f, .16f);
+                        var center = _attached ? Vector3.zero : new Vector3(0, .04f, 0);
+                        if (collider.size != size) collider.size = size;
+                        if (collider.center != center) collider.center = center;
+                    }
                 }
             }
             finally { _syncing = false; }
