@@ -31,7 +31,7 @@ def core_version(text: str | None = None) -> str:
 def golden_digest(golden: Path = GOLDEN) -> str:
     """One digest over every golden's name, log hash and state hash (sorted by name)."""
     lines = []
-    for p in sorted(golden.glob("*.expected.json")):
+    for p in sorted(golden.glob("*.expected.json"), key=lambda f: f.name):   # by name as text: Path order differs between Windows and Linux
         doc = json.loads(p.read_text(encoding="utf-8"))
         lines.append(f"{p.name}:{doc.get('log_hash', '')}:{doc.get('state_hash', '')}")
     return hashlib.sha256("\n".join(lines).encode("utf-8")).hexdigest()

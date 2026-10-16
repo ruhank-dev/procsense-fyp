@@ -25,18 +25,25 @@ namespace ProcSense.Core.Replay
             var mode = (SessionMode)Enum.Parse(typeof(SessionMode), header.Str("mode"), true);
 
             var diffs = new List<string>();
-            Diff("", expected, MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content), content)), diffs);
+            Diff("", expected, MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content, Options(header)), content)), diffs);
             return diffs;
         }
 
         /// <summary>The expected file for a script as it runs today (used by "golden --update"; review the change before committing it).</summary>
-        public static string Expected(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content) =>
-            Format(MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content), content)), 0) + "\n";
+        public static string Expected(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content, SessionOptions? options = null) =>
+            Format(MiniJson.Parse(Describe(Run(scriptJson, caseId, seed, mode, content, options), content)), 0) + "\n";
 
-        private static Session Run(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content)
+        /// <summary>The optional "variant" and "level" keys of an expected file (DT-093). A file without them plays the case's base path at the beginner level, as before.</summary>
+        public static SessionOptions Options(string expectedJson) => Options(new JsonObj(MiniJson.Parse(expectedJson), "expected file"));
+
+        private static SessionOptions Options(JsonObj header) => new SessionOptions(
+            header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner,
+            header.Has("variant") ? header.Str("variant") : "");
+
+        private static Session Run(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content, SessionOptions? options)
         {
             if (!content.Cases.TryGetValue(caseId, out var card)) throw new ContentException("case '" + caseId + "' is not loaded");
-            var session = new Session(card, seed, mode, Subsystems.Default(content));
+            var session = new Session(card, seed, mode, Subsystems.Default(content), options);
             SessionFile.Play(session, ActionScript.Parse(scriptJson));
             return session;
         }
@@ -51,6 +58,8 @@ namespace ProcSense.Core.Replay
             JsonText.Quote(sb, s.Case.Id);
             sb.Append(",\"seed\":"); JsonText.Quote(sb, s.Seed.ToString(CultureInfo.InvariantCulture));
             sb.Append(",\"mode\":"); JsonText.Quote(sb, s.Mode.ToString().ToLowerInvariant());
+            if (s.Variant.Length > 0) { sb.Append(",\"variant\":"); JsonText.Quote(sb, s.Variant); }                                   // only when the run plays a variant or the advanced level, so the earlier golden files keep their shape
+            if (s.Level != TrainingLevel.Beginner) { sb.Append(",\"level\":"); JsonText.Quote(sb, s.Level.ToString().ToLowerInvariant()); }
             sb.Append(",\"log_hash\":"); JsonText.Quote(sb, s.Log.Hash());
             sb.Append(",\"state_hash\":"); JsonText.Quote(sb, o.Hash());
             sb.Append(",\"facts\":{\"identity_confirmed\":").Append(o.IdentityConfirmed ? "true" : "false");

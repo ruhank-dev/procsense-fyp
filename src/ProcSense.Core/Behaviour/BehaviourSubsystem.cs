@@ -60,7 +60,7 @@ namespace ProcSense.Core.Behaviour
         {
             _s = session;
             session.BehaviourStep = this;
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             State = new BehaviouralState(Tables);
             _engine = new TransitionEngine(Tables);
             _resolver = new ModeResolver(Tables);

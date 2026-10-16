@@ -72,7 +72,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             _s = session;
             session.DecisionStep = this;
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             session.Verbs.Register(DeclareVerb, requiresIdentity: true);
             session.Verbs.Register(EscalateVerb);
             session.Verbs.Register(PostponeVerb, requiresIdentity: true);

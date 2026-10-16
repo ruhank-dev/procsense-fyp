@@ -87,7 +87,7 @@ namespace ProcSense.Core.Workflow.Steps
             session.Investigations = this;
             _rng = session.Random.Stream("investigations");
             _samplesRng = session.Random.Stream("samples");     // its own stream: the porter's time for samples never changes another draw
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             if (_file != null)
                 foreach (var r in _file.Results)
                 {

@@ -223,7 +223,7 @@ internal static class Commands
             {
                 var h = (Dictionary<string, object?>)MiniJson.Parse(expectedText)!;
                 var fresh = GoldenRun.Expected(scriptText, (string)h["case"]!, ulong.Parse((string)h["seed"]!, CultureInfo.InvariantCulture),
-                    Enum.Parse<SessionMode>((string)h["mode"]!, true), content);
+                    Enum.Parse<SessionMode>((string)h["mode"]!, true), content, GoldenRun.Options(expectedText));
                 File.WriteAllText(expectedPath, fresh);
                 Console.WriteLine($"UPDATED {name}");
                 pass++;

@@ -49,7 +49,7 @@ namespace ProcSense.Core.Physiology
         {
             _s = session;
             session.PhysiologyStep = this;
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             var v = session.Patient.Physiological.Vitals;
             var baseline = new Dictionary<string, double>(StringComparer.Ordinal)
             {

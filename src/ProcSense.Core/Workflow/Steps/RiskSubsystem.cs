@@ -66,7 +66,7 @@ namespace ProcSense.Core.Workflow.Steps
         public void Init(Session session)
         {
             _s = session;
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             foreach (var verb in new[] { AssessRiskVerb, AssessVteVerb, ComputeScoreVerb, ReviewVerb, DecideReadyVerb, ExplainDelayVerb }) session.Verbs.Register(verb, requiresIdentity: true, requiresPatient: verb == ExplainDelayVerb);
         }
 

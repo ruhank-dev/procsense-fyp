@@ -49,7 +49,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             _s = session;
             session.ClashStep = this;
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             if (_file == null) return;
             var factors = PatientFactors.From(_file, Tables);
             Factors = factors.ToList();

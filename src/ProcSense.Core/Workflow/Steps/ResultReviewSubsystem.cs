@@ -68,7 +68,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             _s = session;
             session.ResultReview = this;
-            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f : null);
+            _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             if (_file != null) _facts = new HashSet<string>(_file.Facts, StringComparer.Ordinal);
             foreach (var verb in new[] { AnswerVerb, ConfirmVerb, ReadBackVerb }) session.Verbs.Register(verb);
             session.Verbs.Register(InterpretVerb, requiresIdentity: true);

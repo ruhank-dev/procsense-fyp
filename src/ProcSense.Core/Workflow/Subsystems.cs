@@ -10,6 +10,7 @@ namespace ProcSense.Core.Workflow
     {
         public static IEnumerable<ISubsystem> Default(ContentPackage content) => new List<ISubsystem>
         {
+            new VariantSubsystem(content),
             new ReadinessSubsystem(content.Workflow),
             new Location.TransportSubsystem(content),
             new IdentitySubsystem(content),
