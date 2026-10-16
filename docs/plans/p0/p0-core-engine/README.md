@@ -30,6 +30,7 @@ and replays any session exactly (same seed + same actions = same result).
 | EXP-CORE-2 | Is 0.5 s smooth enough for the monitor? | Unity-side interpolation at headset refresh | No visible stepping | planned |
 | EXP-CORE-3 | Allocation per Tick | Profiler/BenchmarkDotNet | 0 bytes after warm-up | planned |
 | EXP-CORE-3 result (09 Oct 2026, s05, Release, skeleton 1 case, 3 subsystems) | `PerformanceTests` | `GC.GetAllocatedBytesForCurrentThread` over 1000 ticks after 200 warm-up ticks | **0 bytes**; 0.0002 ms per tick; 0.0047 ms per action. Re-check as physiology and events are added | planned |
+| EXP-CORE-3 re-check (17 Oct 2026, Release, every subsystem, three busiest cases, 1000 ticks after 400 warm-up) | `PerformanceTests` | `GC.GetAllocatedBytesForCurrentThread` | **Not zero any more**: about 380 bytes a tick with monitor noise on (887 before the physiology step reuse of its working dictionary and list), about 190 without noise. Most of it is the problem-discovery rules building their state every 20 ticks and the noise model; the quiet VAR-S1-A session stays at exactly 0. At 2 ticks a second that is under 1 KB a second; the test now holds a budget of 600 bytes a tick. The observable costs about 1 ms to build (budget 5 ms, asked once a frame). | done |
 
 ## Exit
 Replay determinism proven; rejects (unknown verb, wrong location, identity not confirmed) tested; perf targets met; no Unity reference.

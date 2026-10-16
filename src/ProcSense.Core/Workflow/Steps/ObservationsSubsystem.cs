@@ -26,11 +26,17 @@ namespace ProcSense.Core.Workflow.Steps
         public const string ProbeNotAttached = "PROBE_NOT_ATTACHED";
         public const string CuffNotAttached = "CUFF_NOT_ATTACHED";
         public const string CycleInProgress = "CYCLE_IN_PROGRESS";
+        public const string PulseSecondsOutOfRange = "PULSE_SECONDS_OUT_OF_RANGE";
+        public const string PulseInProgress = "PULSE_IN_PROGRESS";
+        public const string PalpatePulseVerb = "palpate_pulse";
+        /// <summary>The walkthrough (Part E, heart rate): feel the radial pulse for 30 to 60 seconds; irregularity needs palpation or an ECG.</summary>
+        public const int PulseMinSeconds = 30, PulseMaxSeconds = 60;
 
         private readonly ContentPackage _content;
         private Session _s = null!;
         private SimRandom _devices = null!;
         private long? _nibpEndStep; // sim step at which the running cuff cycle finishes
+        private long? _pulseEndStep; // sim step at which the pulse being felt is read
 
         public ObservationsSubsystem(ContentPackage content) { _content = content; }
 
@@ -42,7 +48,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             _s = session;
             _devices = session.Random.Stream("devices");
-            foreach (var v in new[] { "attach_sensor", "detach_sensor", "measure_nibp", "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score", "resite_probe", "wait" })
+            foreach (var v in new[] { "attach_sensor", "detach_sensor", "measure_nibp", "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score", "resite_probe", PalpatePulseVerb, "wait" })
                 session.Verbs.Register(v, requiresPatient: v != "wait");
         }
 
@@ -54,6 +60,7 @@ namespace ProcSense.Core.Workflow.Steps
                 case "detach_sensor": Detach(a, o); break;
                 case "resite_probe": Resite(o); break;
                 case "measure_nibp": MeasureNibp(o); break;
+                case PalpatePulseVerb: PalpatePulse(a, o); break;
                 case "measure_temperature": Record("temperature_c", ObservableBuilder.Num(Physio.Vitals.TemperatureC), o); break;
                 case "count_rr": Record("respiratory_rate", ObservableBuilder.Num(Physio.Vitals.RespiratoryRate), o); break;
                 case "assess_acvpu": Record("acvpu", Physio.Vitals.Acvpu, o); break;
@@ -65,6 +72,12 @@ namespace ProcSense.Core.Workflow.Steps
         // The cuff cycle finishes on the sim clock, so a replayed session finishes it at exactly the same step.
         public void OnTick()
         {
+            if (_pulseEndStep is long pulseEnd && _s.Clock.Steps >= pulseEnd)
+            {
+                Physio.Record("heart_rate", ObservableBuilder.Num(Physio.Vitals.HeartRate), pulseEnd);
+                Physio.Record("heart_rhythm", Physio.Vitals.HeartRhythm, pulseEnd);
+                _pulseEndStep = null;
+            }
             if (_nibpEndStep is long end && _s.Clock.Steps >= end)
             {
                 Physio.Record("systolic_bp", ObservableBuilder.Num(Physio.Vitals.SystolicBp), end);
@@ -113,6 +126,17 @@ namespace ProcSense.Core.Workflow.Steps
             long steps = (long)Math.Round(seconds / SimClock.Step);
             _nibpEndStep = _s.Clock.Steps + steps;
             o.Effects.Add("nibp_cycle_started:" + steps.ToString(CultureInfo.InvariantCulture) + "_steps");
+        }
+
+        // Feeling the wrist pulse takes the seconds the trainee chooses (30 to 60, the walkthrough's range); it shows the rate and, unlike the finger clip, whether the rhythm is regular (DT-040).
+        private void PalpatePulse(SimAction a, ActionOutcome o)
+        {
+            int seconds = PulseMinSeconds;
+            if (a.Params.TryGetValue("seconds", out var text) && !int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out seconds)) { o.Reject(PulseSecondsOutOfRange); return; }
+            if (seconds < PulseMinSeconds || seconds > PulseMaxSeconds) { o.Reject(PulseSecondsOutOfRange); return; }
+            if (_pulseEndStep != null) { o.Reject(PulseInProgress); return; }
+            _pulseEndStep = _s.Clock.Steps + (long)Math.Round(seconds / SimClock.Step);
+            o.Effects.Add("pulse_started:" + seconds.ToString(CultureInfo.InvariantCulture) + "_s");
         }
 
         private void Record(string name, string value, ActionOutcome o)

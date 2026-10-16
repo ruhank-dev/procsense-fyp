@@ -242,12 +242,17 @@ namespace ProcSense.Core.Physiology
             _effects.Add((effect, _time));
         }
 
+        private readonly Dictionary<string, double> _targets = new Dictionary<string, double>(StringComparer.Ordinal);   // reused every step
+
         public void Advance(double seconds)
         {
             if (seconds <= 0) return;
             _time += seconds;
-            _effects.RemoveAll(e => _time - e.Start >= e.Effect.Profile.Length);
-            var targets = new Dictionary<string, double>(_baseline, StringComparer.Ordinal);
+            for (int i = _effects.Count - 1; i >= 0; i--)                                   // by hand: a lambda here would allocate on every step (DT-022)
+                if (_time - _effects[i].Start >= _effects[i].Effect.Profile.Length) _effects.RemoveAt(i);
+            var targets = _targets;
+            targets.Clear();
+            foreach (var kv in _baseline) targets[kv.Key] = kv.Value;
             foreach (var (effect, start) in _effects)
             {
                 double f = effect.Profile.Factor(_time - start);

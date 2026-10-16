@@ -342,7 +342,7 @@ namespace ProcSense.Core.Observation
     public static class ObservableBuilder
     {
         private static readonly string[] VitalOrder =
-            { "spo2", "oxygen", "heart_rate", "systolic_bp", "diastolic_bp", "respiratory_rate", "temperature_c", "acvpu", "pain_score" };
+            { "spo2", "oxygen", "heart_rate", "heart_rhythm", "systolic_bp", "diastolic_bp", "respiratory_rate", "temperature_c", "acvpu", "pain_score" };
 
         // Only what the trainee has gathered: live values while the SpO2 probe is on, and the readings taken so far.
         private static List<ObservedVital> BuildVitals(Session s)

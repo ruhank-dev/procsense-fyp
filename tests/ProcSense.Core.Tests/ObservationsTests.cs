@@ -8,6 +8,8 @@ using ProcSense.Core.Workflow;
 
 namespace ProcSense.Core.Tests
 {
+    internal static class ObservationsSubsystem_Codes { public const string OutOfRange = "PULSE_SECONDS_OUT_OF_RANGE"; }
+
     public class ObservationsTests
     {
         private static Session New(ulong seed = 42) =>
@@ -19,6 +21,46 @@ namespace ProcSense.Core.Tests
         private static string Num(double x) => x.ToString("0.#", CultureInfo.InvariantCulture);
 
         private static Dictionary<string, string> Vitals(Session s) => s.Observable.Vitals.ToDictionary(v => v.Name, v => v.Value);
+
+        private static ActionOutcome Palpate(Session s, string? seconds = null) =>
+            s.Apply(new SimAction("palpate_pulse", "patient", Channel.Cli, seconds == null ? null : new Dictionary<string, string> { ["seconds"] = seconds }));
+
+        [Fact]
+        public void Feeling_the_pulse_takes_the_seconds_chosen_and_then_shows_the_rate_and_the_rhythm()   // DT-040
+        {
+            var s = New();
+            Assert.Equal("pulse_started:30_s", Palpate(s).Effects.Single());
+            Assert.Empty(s.Observable.Vitals);                                       // nothing is known until the time has passed
+            s.Tick(31);
+            var v = Vitals(s);
+            Assert.Equal(Num(s.Case.BaselineVitals.HeartRate), v["heart_rate"]);
+            Assert.Equal(s.Case.BaselineVitals.HeartRhythm, v["heart_rhythm"]);
+        }
+
+        [Fact]
+        public void The_finger_clip_shows_the_rate_but_not_the_rhythm()
+        {
+            var s = New();
+            Do(s, "attach_sensor", "spo2");
+            var v = Vitals(s);
+            Assert.Contains("heart_rate", v.Keys);
+            Assert.DoesNotContain("heart_rhythm", v.Keys);
+        }
+
+        [Fact]
+        public void The_pulse_is_felt_for_30_to_60_seconds_and_one_count_runs_at_a_time()
+        {
+            var s = New();
+            Assert.Equal(ObservationsSubsystem_Codes.OutOfRange, Palpate(s, "10").RejectReason);
+            Assert.Equal(ObservationsSubsystem_Codes.OutOfRange, Palpate(s, "90").RejectReason);
+            Assert.Equal(ObservationsSubsystem_Codes.OutOfRange, Palpate(s, "soon").RejectReason);
+            Assert.True(Palpate(s, "60").Accepted);
+            Assert.Equal("PULSE_IN_PROGRESS", Palpate(s, "30").RejectReason);
+            s.Tick(59);
+            Assert.DoesNotContain("heart_rhythm", Vitals(s).Keys);
+            s.Tick(2);
+            Assert.Contains("heart_rhythm", Vitals(s).Keys);
+        }
 
         [Fact]
         public void The_monitor_is_blank_until_a_sensor_is_attached()
