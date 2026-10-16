@@ -23,6 +23,14 @@ namespace ProcSense.VR.XR
         public bool Suspended { get; set; }
         private ProcSense.VR.Boot.RoomLoader _rooms;
 
+        private void Awake()
+        {
+            // Also covers Play from the editable bay, where DevOnly is already open.
+            // Run before the sample creates virtual HMD/controllers so they cannot steal tracking.
+            if (Application.isEditor && !EditorInputSettings.ShouldUseSimulator)
+                gameObject.SetActive(false);
+        }
+
         private void OnEnable()
         {
             if (!Application.isEditor) { enabled = false; return; }
