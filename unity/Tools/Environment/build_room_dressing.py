@@ -237,10 +237,11 @@ def export(name, build):
 
 assert bpy.app.version[:3] == (4, 5, 14)
 OUT.mkdir(parents=True, exist_ok=True)
-results = [export(n, f) for n, f in [
-    ("hospital_bed", bed), ("privacy_curtain", privacy), ("handrub", handrub),
-    ("pedal_bin", wastebin), ("waiting_bench", bench), ("clinical_trolley", trolley),
-    ("operating_table", operating_table), ("anaesthesia_unit", anaesthesia),
-    ("mayo_stand", mayo), ("supply_cupboard", cupboard), ("surgical_light", surgical_light)]]
-(OUT / "validation.json").write_text(json.dumps(results, indent=2)+"\n")
-print("ROOM DRESSING VALIDATION", json.dumps(results))
+if __name__ == "__main__":
+    results = [export(n, f) for n, f in [
+        ("hospital_bed", bed), ("privacy_curtain", privacy), ("handrub", handrub),
+        ("pedal_bin", wastebin), ("waiting_bench", bench), ("clinical_trolley", trolley),
+        ("operating_table", operating_table), ("anaesthesia_unit", anaesthesia),
+        ("mayo_stand", mayo), ("supply_cupboard", cupboard), ("surgical_light", surgical_light)]]
+    (OUT / "validation.json").write_text(json.dumps(results, indent=2)+"\n")
+    print("ROOM DRESSING VALIDATION", json.dumps(results))

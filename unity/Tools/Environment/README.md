@@ -70,3 +70,27 @@ corridor in both directions and the OT around its table before acceptance.
 The earlier `build_bedside.py` creates the headwall, cabinet and tablet table;
 `HospitalBedside` performs their initial import. Preserve their existing GUIDs
 and interaction transforms when editing the surrounding furniture.
+
+## Clinical bay detail pass
+
+`build_clinical_details.py` imports the validated exporter from the now
+import-safe `build_room_dressing.py`. Run it with the same pinned Blender command
+above, changing the script filename. Eight models are generated under ignored
+`unity/Logs/ClinicalDetails`: sink cabinet and recessed bowl, glove and towel
+dispensers, sharps container, charting counter, visitor chair, clock and bumper.
+All pass the exporter's closed-geometry/UV/5000-triangle checks.
+
+Use `ProcSense.EditorTools.ClinicalBayDetails.Import()` through the connected
+Editor for initial import, then `Apply()` for the existing bay and
+`ApplyCorridor()` for the existing corridor. These reject Play, baking, dirty
+scenes and duplicate dressing. Later corrections must preserve existing GUIDs.
+The bay's sage lower panels, muted floor and woven fabric are local material
+clones; the OT and its shared materials are preserved. A procedural 256px normal
+map uses mipmaps and Android ASTC 6x6. Bay chair/sink compound box colliders leave
+the seat and basin recess open; fixtures and the computer are static props.
+The analogue clock is decorative and does not represent Core simulation time.
+The existing tablet, patient and monitoring targets retain their workflow.
+
+After placement, rebake only Bay and Corridor, inspect front/reverse views and
+verify arrivals, teleport pads, dropped items and sensor access. Device profiling
+requires an attached Quest; mesh counts and Editor tests do not establish FPS.

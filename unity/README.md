@@ -198,3 +198,19 @@ grab and return the cuff/probe, including their patient targets. Travel through
 the corridor to OT and back; test the teleport pads and Enter controls. Expect
 clear destinations and solid furniture, with diagnostic doors still blocked.
 Actual Quest reach, appearance and frame timing require headset review.
+
+## Clinical room fixtures and finishes
+
+The bay has a handwashing cabinet and basin, glove/towel dispensers, wall sharps
+container, standing charting counter with inactive computer, visitor chair,
+wall protection and a decorative clock. Sage washable lower panels, a muted
+wood-effect floor and subtle woven fabric normals refine the existing room.
+The corridor reuses the clock/protective rails and muted flooring. OT is
+unchanged. These are static presentation fixtures; the tablet remains the
+interactive client and the clock is not a simulation timer.
+
+The chair uses separate seat/back/leg colliders and the sink retains a recessed
+basin collision shape. Review dropped-item contact, walking clearance, bedside
+cuff/probe access and room navigation in Play. The new 256px fabric normal is
+mipmapped with an Android ASTC override. Actual Quest appearance, comfort and
+frame timing remain device-review work.
