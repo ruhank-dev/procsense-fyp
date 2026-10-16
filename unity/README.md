@@ -13,7 +13,7 @@ Normal batch startup excludes `DevOnly`. Simulator-dependent foundation, room-tr
 
 `CoreInUnityTests` uses the same case-file/identity-fixture content set and checked-in golden expectations as the CLI. It never regenerates expected data during a test, and verifies that changing the canonical log hash is rejected.
 
-The batch simulator fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It uses a runtime settings clone; project input settings remain unchanged.
+The simulator test fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus in batch and interactive tests. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It uses a runtime settings clone; project input settings remain unchanged.
 
 ## Open and edit
 
@@ -164,3 +164,9 @@ The old floating wristband card is disabled in the main bay and retained MPFB sn
 Email validation rejects missing/malformed addresses, internal whitespace/control characters, invalid domain labels and addresses longer than 254 characters. Surrounding email whitespace is normalized and the demo account comparison remains case-insensitive. Passwords must be present, contain no control characters and fit the 128-character input limit; they are never silently trimmed and login does not invent signup password-strength rules.
 
 Errors appear beneath the relevant field with a red border, focus moves to the first invalid input, and errors clear as the field is corrected. A syntactically valid but incorrect demo account shows a separate credentials message. Repeated successful submissions remain ignored; fields lock and the entered password clears before workspace entry. Incomplete login UI references show a safe unavailable message, disable the form and keep the workspace locked rather than throwing repeated null-reference errors. Real service/network failures remain part of the backend authentication TODO.
+
+## Sensor placement guides
+
+Picking up the O2 probe or BP cuff shows a translucent bubble at its matching patient target and a blue return bubble on the sensor tray. The target turns green when the held item is close enough to place. Release at the patient target to attach; lift away to remove. Release near the tray bubble to snap the item back to its original resting pose. The guides disappear when the item is released. Returning equipment to the tray sends no clinical action. Existing tablet attach/remove controls remain available.
+
+Use ProcSense > Equipment > Configure Sensor Placement Guides to reapply the guide material and capture radii to the existing saved PatientBay; it does not rebuild the room. Current capture radii are 5.5 cm for the finger target and 8.5 cm for the cuff target; tray returns use 6.5 cm and 9 cm respectively. Headset reach/readability still requires a physical check.

@@ -85,7 +85,9 @@ namespace ProcSense.EditorTools
             var wrapped = transforms.FirstOrDefault(t=>t.name.EndsWith("_Wrapped",StringComparison.Ordinal));
             var loose = transforms.Where(t=>t.name.EndsWith("_Body",StringComparison.Ordinal)||t.name.EndsWith("_Closure",StringComparison.Ordinal)).Select(t=>t.gameObject).ToArray();
             if(wrapped != null) wrapped.gameObject.SetActive(false);
-            prop.AddComponent<SensorAttachment>().ConfigureSensor(sensor,socket,rest,loose,wrapped != null ? wrapped.gameObject : null);
+            var attachment = prop.AddComponent<SensorAttachment>();
+            attachment.ConfigureSensor(sensor,socket,rest,loose,wrapped != null ? wrapped.gameObject : null);
+            attachment.ConfigurePlacementHighlight(AssetDatabase.LoadAssetAtPath<Material>(SensorPlacementSetup.MaterialPath));
             var cable = new GameObject(id + " cable");
             cable.transform.SetParent(root,false);
             var line = cable.AddComponent<LineRenderer>();

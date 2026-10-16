@@ -4052,7 +4052,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.065
+  m_Radius: 0.085
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &591150970
 Transform:
@@ -5213,6 +5213,7 @@ MonoBehaviour:
   - {fileID: 785288435}
   - {fileID: 785288434}
   wrappedVisual: {fileID: 785288433}
+  placementHighlight: {fileID: 2100000, guid: 8b7d65bc3f57ce849971b23ba8bc13b8, type: 2}
 --- !u!4 &803324078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4414175018698668288, guid: 2e6293a237251fd4392bf75cdacbf51a, type: 3}
@@ -7525,7 +7526,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.045
+  m_Radius: 0.055
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1307428086
 Transform:
@@ -10264,6 +10265,7 @@ MonoBehaviour:
   - {fileID: 1790119464}
   - {fileID: 1790119463}
   wrappedVisual: {fileID: 0}
+  placementHighlight: {fileID: 2100000, guid: 8b7d65bc3f57ce849971b23ba8bc13b8, type: 2}
 --- !u!1 &1817162089
 GameObject:
   m_ObjectHideFlags: 0

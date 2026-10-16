@@ -25,7 +25,8 @@ namespace ProcSense.Tests.PlayMode
                 yield return null;
             Assert.IsNotNull(rooms, "The room-loading service must exist before loading simulated input");
             Assert.IsFalse(rooms.Busy, "The initial room did not finish loading");
-            if (Application.isBatchMode)
+            // Interactive automation can lose Game-view focus too; keep test input deterministic.
+            if (Application.isEditor || Application.isBatchMode)
             {
                 if (_testSettings == null)
                 {
