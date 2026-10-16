@@ -170,3 +170,9 @@ Errors appear beneath the relevant field with a red border, focus moves to the f
 Picking up the O2 probe or BP cuff shows a translucent bubble at its matching patient target and a blue return bubble on the sensor tray. The target turns green when the held item is close enough to place. Release at the patient target to attach; lift away to remove. Release near the tray bubble to snap the item back to its original resting pose. The guides disappear when the item is released. Returning equipment to the tray sends no clinical action. Existing tablet attach/remove controls remain available.
 
 Use ProcSense > Equipment > Configure Sensor Placement Guides to reapply the guide material and capture radii to the existing saved PatientBay; it does not rebuild the room. Current capture radii are 5.5 cm for the finger target and 8.5 cm for the cuff target; tray returns use 6.5 cm and 9 cm respectively. Headset reach/readability still requires a physical check.
+
+## Dropping equipment and padded BP cuff
+
+Grabbable equipment now uses gravity when released outside a patient/tray target. XRI keeps held and socketed items stable, then restores dynamic physics on release. Speculative continuous collision detection supports both states. Release does not add a throw impulse; items fall naturally and collide with room surfaces. Returning a sensor to its tray clears old velocity before placing it, so it settles rather than drifting away. Attached sensors remain on the patient and retain the same clinical action flow.
+
+The loose cuff is now a curved, padded fabric piece with bound edges, a fastening patch, retaining loop and hose connector. Its fitted wrapped state and original patient anchors are retained. Generate/import instructions are in Tools/Equipment/README.md. This is a rigid presentation model, not cloth or inflation simulation.

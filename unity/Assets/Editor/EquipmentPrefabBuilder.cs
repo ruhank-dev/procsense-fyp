@@ -106,8 +106,10 @@ namespace ProcSense.EditorTools
                 }
                 var body = root.AddComponent<Rigidbody>();
                 body.mass = id == "wristband" ? .01f : Documents.Contains(id) ? .4f : Sensors.Contains(id) ? .1f : 8;
-                body.isKinematic = true;
-                body.useGravity = false;
+                body.isKinematic = false;
+                body.useGravity = true;
+                body.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+                body.interpolation = RigidbodyInterpolation.Interpolate;
                 var grab = root.AddComponent<XRGrabInteractable>();
                 // Child controls own their colliders; do not auto-register those on the machine.
                 grab.colliders.AddRange(root.GetComponents<Collider>());
