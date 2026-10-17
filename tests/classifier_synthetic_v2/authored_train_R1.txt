@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G1|Any meds? Names and doses pls.
+ASK_TOPIC|p|G2|When did the pain start, and where first?
+ASK_TOPIC|p|G3|Last drink and last food, what time each?
+ASK_TOPIC|n|G4|Not on warfarin or any blood thinner, are you?
+ASK_TOPIC|c|G1|Smoker? Sorry, how many a day, if you do?
+ASK_TOPIC|i|G2|And the vomiting, how many times since...
+ASK_TOPIC|s|G3|ever had a an anaesthetic before any problems with it
+CLARIFY|p|G1|Say again? Missed that.
+CLARIFY|p|G2|Which side did you mean, left or right?
+CLARIFY|p|G3|Sorry, what do you mean, funny feeling?
+CLARIFY|n|G4|I didn't get that, can you go over it once more?
+CLARIFY|c|G1|What do you mean by, no wait, can you repeat the last bit?
+CLARIFY|i|G2|Hang on, you said it started after, after what exactly?
+CLARIFY|s|G3|sorry could you say that again i miss the last part
+ANSWER_QUESTION|p|G1|Yes, asleep throughout. You won't feel it.
+ANSWER_QUESTION|p|G2|Roughly an hour on the table.
+ANSWER_QUESTION|p|G3|Home same day, if recovery is fine.
+ANSWER_QUESTION|n|G4|No, you won't need a drip for long.
+ANSWER_QUESTION|c|G1|About two hours. No, sorry, nearer one.
+ANSWER_QUESTION|i|G2|Short answer is it depends on what the surgeon finds, usually...
+ANSWER_QUESTION|s|G3|yes you can have water up until the time of the nurse tell you
+EXPLAIN_PROCEDURE|p|G1|Surgeon takes the gallbladder out via keyhole, 4 small cuts.
+EXPLAIN_PROCEDURE|p|G2|Appendix comes out, laparoscopic if possible, open if not.
+EXPLAIN_PROCEDURE|p|G3|GA means you're fully asleep, airway supported by a tube.
+EXPLAIN_PROCEDURE|n|G4|It's not a big open operation, just keyhole.
+EXPLAIN_PROCEDURE|c|G1|They cut here, no, they go in through the belly button first.
+EXPLAIN_PROCEDURE|i|G2|So the operation involves removing the inflamed bit and then...
+EXPLAIN_PROCEDURE|s|G3|the surgeon make small cuts and take out the gall blather
+EXPLAIN_TEST|p|G1|Bloods for infection markers and kidney function.
+EXPLAIN_TEST|p|G2|Ultrasound shows stones in the gallbladder, no radiation.
+EXPLAIN_TEST|p|G3|ECG traces the heart rhythm, takes a minute.
+EXPLAIN_TEST|n|G4|The scan isn't painful, no needles, just gel on your tummy.
+EXPLAIN_TEST|c|G1|CT checks for, sorry, ultrasound checks for stones.
+EXPLAIN_TEST|i|G2|We're sending the urine to look for...
+EXPLAIN_TEST|s|G3|the blood test it check if your kidney is working okay
+EXPLAIN_ACTION|p|G1|Cuff going on your arm now. Bit tight.
+EXPLAIN_ACTION|p|G2|Pressing your tummy. Tell me when it hurts.
+EXPLAIN_ACTION|p|G3|Putting a cannula in the back of your hand, sharp scratch.
+EXPLAIN_ACTION|n|G4|I'm not going to hurt you, just listening to your chest.
+EXPLAIN_ACTION|c|G1|Right arm, no, left arm for the cuff.
+EXPLAIN_ACTION|i|G2|Going to feel your tummy now, so if you...
+EXPLAIN_ACTION|s|G3|i am going to put the clip on your finger now for the oxygen
+CHECK_UNDERSTANDING|p|G1|Tell me back what happens tomorrow morning.
+CHECK_UNDERSTANDING|p|G2|Clear? Explain it back in your words.
+CHECK_UNDERSTANDING|p|G3|What are you not allowed to do before theatre?
+CHECK_UNDERSTANDING|n|G4|You don't have any questions about the plan, is that right?
+CHECK_UNDERSTANDING|c|G1|Does that make, no, can you say what I just said?
+CHECK_UNDERSTANDING|i|G2|Just so I know it landed, what will you...
+CHECK_UNDERSTANDING|s|G3|can you tell me what i just said to you in your own word
+ACKNOWLEDGE_EMOTION|p|G1|You look scared. Fair enough.
+ACKNOWLEDGE_EMOTION|p|G2|Pain's making you miserable, I can see that.
+ACKNOWLEDGE_EMOTION|p|G3|Nervous? Most people are the night before.
+ACKNOWLEDGE_EMOTION|n|G4|Not surprised you're anxious, it's a lot to take in.
+ACKNOWLEDGE_EMOTION|c|G1|You seem calm, no, actually you seem quite tense.
+ACKNOWLEDGE_EMOTION|i|G2|I can tell this has been a really hard few days for...
+ACKNOWLEDGE_EMOTION|s|G3|i can see you are very worried about this
+REASSURE|p|G1|You're in good hands. Done hundreds.
+REASSURE|p|G2|We'll keep you comfortable, pain relief is ready.
+REASSURE|p|G3|Anaesthetist stays with you throughout.
+REASSURE|n|G4|Nothing to be afraid of. You won't be left alone.
+REASSURE|c|G1|It's a risky, sorry, it's a very routine operation.
+REASSURE|i|G2|Try not to worry, the team will make sure that...
+REASSURE|s|G3|dont worry we will take good care of you here
+ACKNOWLEDGE_FACT|p|G1|OK, noted, appendix out in 2009, nothing else.
+ACKNOWLEDGE_FACT|p|G2|Right, pain started Tuesday night. Got it.
+ACKNOWLEDGE_FACT|p|G3|Ate at 6, so fasted since then. Thanks.
+ACKNOWLEDGE_FACT|n|G4|OK, so no chest pain, noted.
+ACKNOWLEDGE_FACT|c|G1|Two tablets, no, three tablets a day. Thanks for correcting.
+ACKNOWLEDGE_FACT|i|G2|So you've had this on and off since...
+ACKNOWLEDGE_FACT|s|G3|ok so you take blood pressure tablets every morning thank you
+CLOSED_LOOP|p|G1|Cef 1.5 g IV, giving now, will shout when in.
+CLOSED_LOOP|p|G2|Repeating: K 5.2, repeat sample sent.
+CLOSED_LOOP|p|G3|Understood, theatre 3 at 10, patient to go at 9:40.
+CLOSED_LOOP|n|G4|Not giving it yet, wait for your word. Okay, got it.
+CLOSED_LOOP|c|G1|Paracetamol 1 g, sorry 500 mg, read back, 500 mg.
+CLOSED_LOOP|i|G2|So the order is bloods, ECG then...
+CLOSED_LOOP|s|G3|ok i read that back to you fluids at one hundred mils per hour
+ESCALATE_SPEECH|p|G1|Reg needs to come see this pt now.
+ESCALATE_SPEECH|p|G2|Can the consultant review? Not sure about this one.
+ESCALATE_SPEECH|p|G3|Need senior input before I go ahead.
+ESCALATE_SPEECH|n|G4|I can't decide this alone, need a second opinion.
+ESCALATE_SPEECH|c|G1|Call the nurse, no, call the registrar please.
+ESCALATE_SPEECH|i|G2|I'd like someone more senior to...
+ESCALATE_SPEECH|s|G3|i need help from the doctor who is in charge please come
+REPORT_FAULT|p|G1|Monitor's dead on bay 2.
+REPORT_FAULT|p|G2|Suction not pulling, hose cracked.
+REPORT_FAULT|p|G3|Bed brake's stuck, bed won't lock.
+REPORT_FAULT|n|G4|The light isn't working over bed 6, needs fixing.
+REPORT_FAULT|c|G1|Oxygen's fine, no, flowmeter's actually broken.
+REPORT_FAULT|i|G2|Pump keeps alarming, I think the line is...
+REPORT_FAULT|s|G3|the drip machine is not working it keep beeping
+SBAR_ELEMENT|p|G1|S: Mr Ali, 52, cholecystitis, for lap chole today.
+SBAR_ELEMENT|p|G2|B: T2DM, hypertension, nil else significant.
+SBAR_ELEMENT|p|G3|A: Obs stable, abdomen soft, likely biliary colic.
+SBAR_ELEMENT|n|G4|R: Not for theatre till bloods back, please review.
+SBAR_ELEMENT|c|G1|Situation, no, Background first: previous appendectomy, nil else.
+SBAR_ELEMENT|i|G2|Assessment is that she's septic, probably, and I'd...
+SBAR_ELEMENT|s|G3|situation mister ali fifty two for a gall bladder operation this morning
+VOICE_ORDER|p|G1|FBC, U&E, CRP and group and save please.
+VOICE_ORDER|p|G2|Can we get a CT abdo requested urgently?
+VOICE_ORDER|p|G3|Porter to take her to theatre at 9.
+VOICE_ORDER|n|G4|Don't give the metformin tonight, hold it please.
+VOICE_ORDER|c|G1|Give 10 mg, no 5 mg morphine IV.
+VOICE_ORDER|i|G2|Can someone page the surgeons and ask them to...
+VOICE_ORDER|s|G3|please can you bleep radiology and ask for ultrasound now
+CONFIRM_IDENTITY|p|G1|Full name and DOB?
+CONFIRM_IDENTITY|p|G2|Wristband says Ali Hamza, 03/04/1971, that right?
+CONFIRM_IDENTITY|p|G3|Need to check who you are first. Name, birth date.
+CONFIRM_IDENTITY|n|G4|You're not Mrs Khan, are you? What's your name?
+CONFIRM_IDENTITY|c|G1|Name and, sorry, date of birth and address please.
+CONFIRM_IDENTITY|i|G2|Can you confirm your date of...
+CONFIRM_IDENTITY|s|G3|can you say your full name and your day of birth for me
+STATE_ALLERGY|p|G1|Allergic to anything? Drugs, latex, food?
+STATE_ALLERGY|p|G2|Penicillin allergy, rash, got it.
+STATE_ALLERGY|p|G3|Any reaction to antibiotics before?
+STATE_ALLERGY|n|G4|No known allergies, correct?
+STATE_ALLERGY|c|G1|Allergic to codeine? No, sorry, to penicillin?
+STATE_ALLERGY|i|G2|Anything you react to, like tablets or...
+STATE_ALLERGY|s|G3|are you allergic to pen a sillin or any other medicine
+CONSENT_SIGN|p|G1|Happy to go ahead? Sign here then.
+CONSENT_SIGN|p|G2|You consent to the surgery? Sign at the bottom.
+CONSENT_SIGN|p|G3|Is it OK with you if we proceed?
+CONSENT_SIGN|n|G4|You don't have to agree. Do you want to go ahead?
+CONSENT_SIGN|c|G1|Agree to the op, sorry, agree to the anaesthetic and op?
+CONSENT_SIGN|i|G2|If you're happy for us to proceed, just sign...
+CONSENT_SIGN|s|G3|are you happy for the operation to go ahead please sign the form
+HANDOVER_CRITICAL_ELEMENT|p|G1|Heads up, she's pen allergic, anaphylaxis last time.
+HANDOVER_CRITICAL_ELEMENT|p|G2|Not fasted, had a sandwich at 11.
+HANDOVER_CRITICAL_ELEMENT|p|G3|Wristband name doesn't match the notes, check ID.
+HANDOVER_CRITICAL_ELEMENT|n|G4|Not fasted, he ate toast at 7 this morning.
+HANDOVER_CRITICAL_ELEMENT|c|G1|Sats 94, no, sats 88 and falling, getting worse.
+HANDOVER_CRITICAL_ELEMENT|i|G2|Be aware he's allergic to latex, last time he...
+HANDOVER_CRITICAL_ELEMENT|s|G3|just so you know she has an allergy to pen a sillin
+NONE|p|G1|Right, coffee time.
+NONE|p|G2|Busy day, huh.
+NONE|p|G3|Hmm, where did I put my pen.
+NONE|n|G4|I haven't asked about allergies yet.
+NONE|c|G1|It's Tuesday, no, Wednesday. Whatever.
+NONE|i|G2|I wonder if the car park is...
+NONE|s|G3|ok let me thing for a moment

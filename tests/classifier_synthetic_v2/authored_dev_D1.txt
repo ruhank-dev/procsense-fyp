@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G5|Pain score? Zero to ten, now.
+ASK_TOPIC|p|G6|Any nausea since you came round?
+ASK_TOPIC|n|G5|No dizziness when you sat up, was there?
+ASK_TOPIC|c|G6|Passed water yet, no, sorry, bowels open today?
+ASK_TOPIC|i|G5|Can you wiggle your toes, and the numbness, where is...
+ASK_TOPIC|a|G6|Can you remind me what you take for your stomach?
+ASK_TOPIC|s|G5|did you have any trouble breathing in the night
+CLARIFY|p|G5|Eh? Say again?
+CLARIFY|p|G6|Sorry, which wound, the left one?
+CLARIFY|n|G5|Didn't catch that. Slower?
+CLARIFY|c|G6|The what, no, which bag are you pointing at?
+CLARIFY|i|G5|You mean it burns when you...
+CLARIFY|a|G6|What do you mean you've been off colour?
+CLARIFY|s|G5|come again i could not hear you
+ANSWER_QUESTION|p|G5|Drain stays in till tomorrow.
+ANSWER_QUESTION|p|G6|Pain should ease in a couple of days.
+ANSWER_QUESTION|n|G5|No, can't eat yet, not till the doctor says.
+ANSWER_QUESTION|c|G6|Back to the ward at six, no, seven, ish.
+ANSWER_QUESTION|i|G5|Sore throat's from the tube, it settles in...
+ANSWER_QUESTION|a|G6|The soreness afterwards is common and wears off within a few days.
+ANSWER_QUESTION|s|G5|yes the sickness is from the anaesthetic it will pass
+EXPLAIN_PROCEDURE|p|G5|Surgeon opened a small gap and fixed the hernia with mesh.
+EXPLAIN_PROCEDURE|p|G6|Tomorrow, spinal. Needle in the back, legs go numb.
+EXPLAIN_PROCEDURE|n|G5|Not a full open op. Keyhole, three little cuts.
+EXPLAIN_PROCEDURE|c|G6|They'll cut the, hang on, they'll first scope the knee.
+EXPLAIN_PROCEDURE|i|G5|The operation is to replace the valve, and after...
+EXPLAIN_PROCEDURE|a|G6|The anaesthetic will put you to sleep, so you needn't worry, it's safe.
+EXPLAIN_PROCEDURE|s|G5|the surgery is to take out the lump from your breast
+EXPLAIN_TEST|p|G5|Chest film, checking lungs for fluid.
+EXPLAIN_TEST|p|G6|Echo shows how well your heart pumps.
+EXPLAIN_TEST|n|G5|Sugar test isn't a needle, just a finger prick.
+EXPLAIN_TEST|c|G6|Gas test is from the vein, no, from the artery at the wrist.
+EXPLAIN_TEST|i|G5|The reason for the troponin is that if it's raised...
+EXPLAIN_TEST|a|G6|We're doing a scan to look at the stones, nothing to fear.
+EXPLAIN_TEST|s|G5|the blood test is to see if you lose too much blood
+EXPLAIN_ACTION|p|G5|Checking your dressing now.
+EXPLAIN_ACTION|p|G6|Lifting your arm to check the line.
+EXPLAIN_ACTION|n|G5|Not touching the wound, only the drip.
+EXPLAIN_ACTION|c|G6|Right leg, no, left leg up for the pulse.
+EXPLAIN_ACTION|i|G5|Taking your sats now, so keep still...
+EXPLAIN_ACTION|a|G6|I'm putting the cuff on now, that's your blood pressure check.
+EXPLAIN_ACTION|s|G5|i am going to take out the cannula now
+CHECK_UNDERSTANDING|p|G5|Tell me how you'll manage the drain at home.
+CHECK_UNDERSTANDING|p|G6|Say back what I said about the painkillers.
+CHECK_UNDERSTANDING|n|G5|No confusion about the tablets? Show me which ones.
+CHECK_UNDERSTANDING|c|G6|Got it? No, tell me, what do you do if it bleeds?
+CHECK_UNDERSTANDING|i|G5|And you know to ring if the wound...
+CHECK_UNDERSTANDING|a|G6|Does that make sense, or shall I go over the scan again?
+CHECK_UNDERSTANDING|s|G5|what will you do if you feel chest pain at home
+ACKNOWLEDGE_EMOTION|p|G5|Rough night. I can tell.
+ACKNOWLEDGE_EMOTION|p|G6|You're upset. It's okay.
+ACKNOWLEDGE_EMOTION|n|G5|Don't apologise for crying. Not a problem.
+ACKNOWLEDGE_EMOTION|c|G6|You look fine, no, you look really tired and low.
+ACKNOWLEDGE_EMOTION|i|G5|Must be frightening waking up and...
+ACKNOWLEDGE_EMOTION|a|G6|I can see you're scared, and we'll look after you.
+ACKNOWLEDGE_EMOTION|s|G5|you are very upset about the result i see
+REASSURE|p|G5|You're doing great. Nearly there.
+REASSURE|p|G6|I'm here. Won't leave you.
+REASSURE|n|G5|No need to panic. Just breathe.
+REASSURE|c|G6|It's serious, no, it's routine, you're fine.
+REASSURE|i|G5|Everything's under control, we'll make sure...
+REASSURE|a|G6|We'll look after you, I know it's scary.
+REASSURE|s|G5|it is all fine you are safe here
+ACKNOWLEDGE_FACT|p|G5|OK, you got up and walked at noon.
+ACKNOWLEDGE_FACT|p|G6|Right, left shoulder pain since the op. Noted.
+ACKNOWLEDGE_FACT|n|G5|OK so no pain when you cough. Got it.
+ACKNOWLEDGE_FACT|c|G6|Three nights, no, four nights bad sleep. Fixed.
+ACKNOWLEDGE_FACT|i|G5|Okay, so you started feeling dizzy after the...
+ACKNOWLEDGE_FACT|a|G6|So you're on warfarin, thank you for telling me.
+ACKNOWLEDGE_FACT|s|G5|ok you tell me you have not passed urine yet
+CLOSED_LOOP|p|G5|Morphine 2.5 IV, giving now.
+CLOSED_LOOP|p|G6|Read back: bed 9, theatre 4, at two.
+CLOSED_LOOP|n|G5|No more fluids till you say. Got it.
+CLOSED_LOOP|c|G6|Oxygen at four, no, six litres. Six. Done.
+CLOSED_LOOP|i|G5|So repeat the gas in an hour, then...
+CLOSED_LOOP|a|G6|Okay, so I'm to start the antibiotic now, yes?
+CLOSED_LOOP|s|G5|confirm hold the warfarin tonight and check the inr in the morning
+ESCALATE_SPEECH|p|G5|Need the reg. Now.
+ESCALATE_SPEECH|p|G6|Get the anaesthetist, I'm not happy with his airway.
+ESCALATE_SPEECH|n|G5|Not my decision. Fetch the consultant.
+ESCALATE_SPEECH|c|G6|Call the nurse, no, the surgeon, to this bed.
+ESCALATE_SPEECH|i|G5|Somebody senior please come and see...
+ESCALATE_SPEECH|a|G6|Could someone bring the registrar, I'd like him to decide about this wound.
+ESCALATE_SPEECH|s|G5|can you get the doctor in charge to come now
+REPORT_FAULT|p|G5|Pump's alarming, line occluded, won't clear.
+REPORT_FAULT|p|G6|Gas outlet at bay 3 is dead.
+REPORT_FAULT|n|G5|Trolley brake won't hold.
+REPORT_FAULT|c|G6|Light's out, no, the whole socket's dead.
+REPORT_FAULT|i|G5|Suction's gurgling and the canister seems to...
+REPORT_FAULT|a|G6|The suction isn't working, can someone sort it?
+REPORT_FAULT|s|G5|the heater in recovery has broken down
+SBAR_ELEMENT|p|G5|S: Mr Reid, day one hernia repair, bleeding from wound.
+SBAR_ELEMENT|p|G6|B: on aspirin, otherwise fit.
+SBAR_ELEMENT|n|G5|A: Not shocked, not tachycardic, wound oozing.
+SBAR_ELEMENT|c|G6|R, no, B first: previous cardiac stent, 2019.
+SBAR_ELEMENT|i|G5|R: I want the surgeon to look at it before...
+SBAR_ELEMENT|a|G6|Recommendation: I'd like the surgeon to review her.
+SBAR_ELEMENT|s|G5|assessment is that she is comfortable and eating
+VOICE_ORDER|p|G5|Bloods now: FBC, coag, group and save.
+VOICE_ORDER|p|G6|Page the porter, patient to ward.
+VOICE_ORDER|n|G5|Don't remove the drain yet.
+VOICE_ORDER|c|G6|Get a chest film, no, a CT head.
+VOICE_ORDER|i|G5|Can someone ring the lab and ask them to...
+VOICE_ORDER|a|G6|Could we get the porter, and tell the anaesthetist when he's ready?
+VOICE_ORDER|s|G5|please send the sample to the lab urgently
+CONFIRM_IDENTITY|p|G5|Name and DOB. Quick.
+CONFIRM_IDENTITY|p|G6|Band says Reid, 14 Feb 1966, correct?
+CONFIRM_IDENTITY|n|G5|You're not the Reid in bed 8, are you? Name?
+CONFIRM_IDENTITY|c|G6|Your name, no, your date of birth first.
+CONFIRM_IDENTITY|i|G5|Just confirm your date of...
+CONFIRM_IDENTITY|a|G6|Are you Mr Ahmed, and any allergies?
+CONFIRM_IDENTITY|s|G5|please say your full name and birthday for me
+STATE_ALLERGY|p|G5|Allergies? Anything?
+STATE_ALLERGY|p|G6|Latex? Plasters? Reaction to either?
+STATE_ALLERGY|n|G5|No allergies at all, is that right?
+STATE_ALLERGY|c|G6|Allergic to iodine, no, to morphine?
+STATE_ALLERGY|i|G5|Ever had a rash from...
+STATE_ALLERGY|a|G6|Any allergies, and are you happy to go ahead?
+STATE_ALLERGY|s|G5|are you allergic to anything like medicine or food
+CONSENT_SIGN|p|G5|OK to proceed? Sign here.
+CONSENT_SIGN|p|G6|Agree to the transfusion?
+CONSENT_SIGN|n|G5|Not forcing you. Do you consent?
+CONSENT_SIGN|c|G6|Sign, no, first, do you agree to the op?
+CONSENT_SIGN|i|G5|If you're happy to go ahead, just sign...
+CONSENT_SIGN|a|G6|Are you happy for us to proceed with the operation, and do you have questions?
+CONSENT_SIGN|s|G5|will you consent to this treatment signature below
+HANDOVER_CRITICAL_ELEMENT|p|G5|Careful, anaphylaxis to penicillin, charted.
+HANDOVER_CRITICAL_ELEMENT|p|G6|Not fasted. Biscuits at ten.
+HANDOVER_CRITICAL_ELEMENT|n|G5|Wrong name on the band, not Reid, check.
+HANDOVER_CRITICAL_ELEMENT|c|G6|Pulse 90, no, 130, and he's grey.
+HANDOVER_CRITICAL_ELEMENT|i|G5|Heads up, she's got a latex allergy and...
+HANDOVER_CRITICAL_ELEMENT|a|G6|Situation: Mr Reid for theatre, and he's not fasted.
+HANDOVER_CRITICAL_ELEMENT|s|G5|just to say she is allergic to penicillin
+NONE|p|G5|Ugh, six more hours.
+NONE|p|G6|Cold in here, isn't it.
+NONE|n|G5|Haven't asked about allergies. Not yet.
+NONE|c|G6|Wednesday, no, Thursday. Who cares.
+NONE|i|G5|Might nip for a coffee and then...
+NONE|a|G6|Hmm, I wonder if she's allergic to anything.
+NONE|s|G5|yeah um let me just see

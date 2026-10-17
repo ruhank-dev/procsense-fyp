@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G5|Um, sorry, would it be okay to ask if you've had any sickness since you got back from theatre?
+ASK_TOPIC|p|G6|I was wondering, and tell me if I'm being nosy, whether you've been up to the toilet since the operation?
+ASK_TOPIC|n|G5|You haven't, er, felt any numbness or tingling in your legs, have you, sorry to ask?
+ASK_TOPIC|c|G6|Do you cough a lot, no, sorry, I meant do you bring up any phlegm when you do?
+ASK_TOPIC|i|G5|Sorry, could I just ask how well you slept, and if the pain stopped you from...
+ASK_TOPIC|a|G6|I'm sorry, can you tell me again what the tablets for your stomach are called?
+ASK_TOPIC|s|G5|um do you get dizzy when you stand up from the bed
+CLARIFY|p|G5|I'm so sorry, I didn't quite catch that, would you mind saying it again?
+CLARIFY|p|G6|Sorry, what do you mean by a pulling feeling, is it sharp or more like a tightness?
+CLARIFY|n|G5|Oh gosh, I don't think I understood that, could you explain it a different way?
+CLARIFY|c|G6|When you say the left, no sorry, I mean which part of the leg do you mean exactly?
+CLARIFY|i|G5|I'm really sorry, but I'm not sure what you mean by it feeling strange in the...
+CLARIFY|a|G6|Sorry, what do you mean when you say you've been feeling a bit rough?
+CLARIFY|s|G5|sorry could you repeat what you just said
+ANSWER_QUESTION|p|G5|Um, yes, the nurse said you can have a little tea now, that should be fine.
+ANSWER_QUESTION|p|G6|I think the scar is going to be quite small, probably only a few centimetres long.
+ANSWER_QUESTION|n|G5|No, I'm fairly sure you don't have to stay in bed all day, you can sit in the chair.
+ANSWER_QUESTION|c|G6|Your results should be back by lunchtime, well, actually, more likely this afternoon.
+ANSWER_QUESTION|i|G5|The sore throat is normal after a breathing tube, it usually goes within...
+ANSWER_QUESTION|a|G6|The bruising around the cut is quite common and tends to fade over a couple of weeks.
+ANSWER_QUESTION|s|G5|yes your wife is allowed to visit this afternoon
+EXPLAIN_PROCEDURE|p|G5|So the surgeon took away the part of the bowel that was diseased and joined the ends together.
+EXPLAIN_PROCEDURE|p|G6|With the knee operation they put a camera in through a tiny cut to look at the joint and tidy it up.
+EXPLAIN_PROCEDURE|n|G5|It's not a very big operation, um, they don't have to open up the whole chest.
+EXPLAIN_PROCEDURE|c|G6|They go in at the groin, sorry, no, they go in at the wrist to reach the heart arteries.
+EXPLAIN_PROCEDURE|i|G5|So what the operation does is it opens up the narrowed artery and then...
+EXPLAIN_PROCEDURE|a|G6|The anaesthetic will make you sleep, but, um, please don't worry, it's very safe.
+EXPLAIN_PROCEDURE|s|G5|the spinal injection makes your legs go numb during the operation
+EXPLAIN_TEST|p|G5|Um, the blood test is to see whether you've lost any blood during the operation.
+EXPLAIN_TEST|p|G6|The scan is a type of X-ray that gives lots of pictures of your insides, which is helpful for the surgeon.
+EXPLAIN_TEST|n|G5|The ECG doesn't hurt, it's just stickers on your chest and it records your heart.
+EXPLAIN_TEST|c|G6|The test is for your sugar, no, sorry, your kidneys, it tells us how well they're working.
+EXPLAIN_TEST|i|G5|I think we do the iron blood test because if it's too low you might need...
+EXPLAIN_TEST|a|G6|We're booking a scan to look at your gallbladder, so, um, there's nothing to fear.
+EXPLAIN_TEST|s|G5|the test is to check if there is infection in the wound
+EXPLAIN_ACTION|p|G5|I'm just going to, um, take your blood pressure now, if that's all right.
+EXPLAIN_ACTION|p|G6|I'm going to have a gentle look at your wound, so I'll lift the dressing, sorry if it stings.
+EXPLAIN_ACTION|n|G5|I'm not going to do anything painful, I'm only going to check your temperature.
+EXPLAIN_ACTION|c|G6|I'll take blood from your arm, no, sorry, from the back of your hand.
+EXPLAIN_ACTION|i|G5|I'm going to help you swing your legs round, and then we can...
+EXPLAIN_ACTION|a|G6|Um, I'm putting the monitor lead on your chest, that's the heart trace being started.
+EXPLAIN_ACTION|s|G5|i am going to listen to your lungs now with this
+CHECK_UNDERSTANDING|p|G5|I hope that made sense, would you mind telling me what you've understood so far?
+CHECK_UNDERSTANDING|p|G6|Sorry if I rushed, could you say back to me how you'll use the inhaler?
+CHECK_UNDERSTANDING|n|G5|I'm sure you've understood, but you wouldn't mind telling me what happens next, would you?
+CHECK_UNDERSTANDING|c|G6|Is that clear? Oh, actually, could you explain it to me so I know I said it right?
+CHECK_UNDERSTANDING|i|G5|Um, can I just check that you know what to do if the pain gets...
+CHECK_UNDERSTANDING|a|G6|Does that make sense, or shall I run through the tests again?
+CHECK_UNDERSTANDING|s|G5|can you tell me what you have taken in from our chat
+ACKNOWLEDGE_EMOTION|p|G5|I can see you're really upset, and I'm sorry you're going through this.
+ACKNOWLEDGE_EMOTION|p|G6|That must have been terrifying for you, um, anyone would feel that way.
+ACKNOWLEDGE_EMOTION|n|G5|It's not silly to feel frightened, um, lots of people do.
+ACKNOWLEDGE_EMOTION|c|G6|You look relaxed, no, sorry, I think you actually look quite worried to me.
+ACKNOWLEDGE_EMOTION|i|G5|I can imagine it's been so hard being away from your family and...
+ACKNOWLEDGE_EMOTION|a|G6|You look scared, and, um, we'll take good care of you.
+ACKNOWLEDGE_EMOTION|s|G5|i can tell this has been very stressful for you
+REASSURE|p|G5|I'm sure it'll be okay, the team here is really experienced and they'll look after you.
+REASSURE|p|G6|Um, I'll stay with you until the nurse comes, so you're not on your own.
+REASSURE|n|G5|There's nothing to be worried about, we're keeping a very close eye on you.
+REASSURE|c|G6|It's quite a risky, sorry, I mean a really routine operation, they do loads.
+REASSURE|i|G5|Please don't worry, I'm certain that everyone here will make sure that...
+REASSURE|a|G6|We'll look after you, um, I know it's frightening.
+REASSURE|s|G5|you are in very safe hands i promise
+ACKNOWLEDGE_FACT|p|G5|Okay, thank you, so you walked to the bathroom on your own this morning.
+ACKNOWLEDGE_FACT|p|G6|Um, so the pain is mostly in your shoulder, thanks for telling me, I'll write it down.
+ACKNOWLEDGE_FACT|n|G5|Right, so you haven't passed any wind yet, I'll make a note of that.
+ACKNOWLEDGE_FACT|c|G6|So you take two tablets at night, no, one tablet, sorry, I've changed that now.
+ACKNOWLEDGE_FACT|i|G5|Okay, thanks, so you were told about the clot in your leg when you...
+ACKNOWLEDGE_FACT|a|G6|Um, so you're on warfarin, thank you for letting me know.
+ACKNOWLEDGE_FACT|s|G5|thanks i see that your pain started after you moved
+CLOSED_LOOP|p|G5|Um, so just to check, that's two and a half of morphine into the vein now, and I'll tell you when it's done?
+CLOSED_LOOP|p|G6|Sorry, can I just read that back, bed nine goes to theatre four at two, and I'll ring you when we leave.
+CLOSED_LOOP|n|G5|So I shouldn't start the infusion until you say, sorry, understood, I'll wait.
+CLOSED_LOOP|c|G6|Oxygen at four, no, six litres, is that right, six, okay, I'll do it now.
+CLOSED_LOOP|i|G5|So you'd like the gas repeated in an hour, and then I should...
+CLOSED_LOOP|a|G6|Um, so I'm to give the antibiotic now, is that right?
+CLOSED_LOOP|s|G5|so to confirm you want me to hold the warfarin tonight
+ESCALATE_SPEECH|p|G5|Sorry, could somebody ask the consultant to come over, I really don't think I should decide this.
+ESCALATE_SPEECH|p|G6|I'm not comfortable with his airway, um, could the anaesthetist please come and look?
+ESCALATE_SPEECH|n|G5|I don't think it's right for me to make this call, can the registrar please help?
+ESCALATE_SPEECH|c|G6|Could you get the staff nurse, no, sorry, the surgeon, please, I need advice.
+ESCALATE_SPEECH|i|G5|Um, is there any chance someone more senior could come and see...
+ESCALATE_SPEECH|a|G6|Sorry, could someone get the registrar? I'd like him to decide what to do with this wound.
+ESCALATE_SPEECH|s|G5|please can the doctor in charge come to this bed
+REPORT_FAULT|p|G5|Sorry to bother you, but the pump at bed five keeps beeping and says there's a blockage.
+REPORT_FAULT|p|G6|The oxygen socket on the wall in bay three doesn't seem to be working.
+REPORT_FAULT|n|G5|Um, the brakes on this trolley don't seem to hold, I think it's not safe.
+REPORT_FAULT|c|G6|The lamp's broken, no, sorry, the whole socket by the bed has gone dead.
+REPORT_FAULT|i|G5|I think the suction machine might be faulty because it doesn't...
+REPORT_FAULT|a|G6|Sorry, the suction isn't working, could someone have a look?
+REPORT_FAULT|s|G5|the heater in recovery has stopped working
+SBAR_ELEMENT|p|G5|Um, Situation: I'm calling about Mr Reid, who had a hernia repair yesterday and is bleeding from the wound.
+SBAR_ELEMENT|p|G6|Background: he's on aspirin, and I think that's the only medical thing.
+SBAR_ELEMENT|n|G5|Assessment: he isn't tachycardic or low in blood pressure, but the wound is oozing.
+SBAR_ELEMENT|c|G6|Recommendation, sorry, Background first: he had a stent put in a few years ago.
+SBAR_ELEMENT|i|G5|Recommendation: could the surgeons come and have a look at the wound before...
+SBAR_ELEMENT|a|G6|Recommendation: um, I'd like the surgeon to review her.
+SBAR_ELEMENT|s|G5|assessment she is comfortable and eating a little
+VOICE_ORDER|p|G5|Sorry, could we possibly get some bloods sent, a full count, a clotting screen and a group and save?
+VOICE_ORDER|p|G6|Would you mind calling the porter to take the patient back to the ward, please?
+VOICE_ORDER|n|G5|Please could we not take the drain out until I've looked at how much has come out.
+VOICE_ORDER|c|G6|Could we get a chest X-ray, no sorry, a CT of the head, quite urgently please.
+VOICE_ORDER|i|G5|Could someone please ring the lab and ask whether they could...
+VOICE_ORDER|a|G6|Please could you call the porter, and let the anaesthetist know when she's ready?
+VOICE_ORDER|s|G5|can you send this sample to the lab straight away please
+CONFIRM_IDENTITY|p|G5|Sorry, before I do anything, could you tell me your full name and date of birth?
+CONFIRM_IDENTITY|p|G6|I'm just checking your wristband, um, it says Reid, fourteenth of February sixty-six, is that you?
+CONFIRM_IDENTITY|n|G5|You're not the Mr Reid in bed eight, are you? Sorry, could you tell me your name?
+CONFIRM_IDENTITY|c|G6|Could you tell me your name, no, sorry, your date of birth first, for the check?
+CONFIRM_IDENTITY|i|G5|Sorry, would you mind confirming your name and when you were...
+CONFIRM_IDENTITY|a|G6|Are you Mr Ahmed? And, um, do you have any allergies?
+CONFIRM_IDENTITY|s|G5|can you say your name and birthday please
+STATE_ALLERGY|p|G5|I'm sorry to ask again, but are you allergic to any medicines or anything like that?
+STATE_ALLERGY|p|G6|You mentioned morphine gives you a reaction, so I'm writing that up in red on your chart.
+STATE_ALLERGY|n|G5|You aren't allergic to anything, are you? I just want to be sure.
+STATE_ALLERGY|c|G6|Is it iodine, no, sorry, was it morphine that you react to?
+STATE_ALLERGY|i|G5|Have you ever had swelling or a rash after taking...
+STATE_ALLERGY|a|G6|Um, do you have any allergies? And are you happy to go ahead?
+STATE_ALLERGY|s|G5|do you have an allergy to any medicine or latex
+CONSENT_SIGN|p|G5|If you're happy for us to go ahead with the transfusion, would you mind signing here?
+CONSENT_SIGN|p|G6|Um, are you happy for the anaesthetist to put you to sleep for the operation?
+CONSENT_SIGN|n|G5|You don't have to say yes, of course, but do you agree to go ahead?
+CONSENT_SIGN|c|G6|Could you sign this, no, sorry, first, do you actually agree to the operation?
+CONSENT_SIGN|i|G5|If you do agree with everything, would you be able to sign here to show that...
+CONSENT_SIGN|a|G6|Sorry, are you happy for us to go ahead with the operation, and do you have any questions?
+CONSENT_SIGN|s|G5|is it your wish to go ahead then sign the form for me
+HANDOVER_CRITICAL_ELEMENT|p|G5|Sorry to interrupt, but just so you know, she had anaphylaxis with penicillin before.
+HANDOVER_CRITICAL_ELEMENT|p|G6|Um, he isn't fasted, he had biscuits at ten, I thought you should know.
+HANDOVER_CRITICAL_ELEMENT|n|G5|The name on his wristband isn't Reid, I think it's the wrong patient, sorry.
+HANDOVER_CRITICAL_ELEMENT|c|G6|His pulse was ninety, no, it's a hundred and thirty now and he looks grey.
+HANDOVER_CRITICAL_ELEMENT|i|G5|Um, you should know she has a latex allergy, and last time she...
+HANDOVER_CRITICAL_ELEMENT|a|G6|Situation: um, Mr Reid is for theatre, and he's not fasted.
+HANDOVER_CRITICAL_ELEMENT|s|G5|i just want to say that she has an allergy to penicillin
+NONE|p|G5|Um, sorry, I've forgotten what I was going to say.
+NONE|p|G6|Is it me or is it freezing in here?
+NONE|n|G5|I haven't done the allergy history yet, I'm a bit behind.
+NONE|c|G6|It's Tuesday, no, sorry, Wednesday, my first week and I'm all muddled.
+NONE|i|G5|I was thinking about maybe going home early, but then...
+NONE|a|G6|Um, I wonder whether she's allergic to anything.
+NONE|s|G5|oh um okay right then

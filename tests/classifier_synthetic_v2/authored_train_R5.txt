@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G1|Where exactly is the pain, and did it come on suddenly or build up?
+ASK_TOPIC|p|G3|Who's at home with you after the procedure? Anyone driving you?
+ASK_TOPIC|p|G2|Any history of reflux, heartburn or a hiatus hernia?
+ASK_TOPIC|n|G4|You didn't take your aspirin this week, did you?
+ASK_TOPIC|c|G1|How much do you drink, per week, no, per day on a normal day?
+ASK_TOPIC|i|G2|Tell me about the bowel, any blood or...
+ASK_TOPIC|s|G3|how many flights of stairs can you walk up without stopping
+CLARIFY|p|G1|Say that last part once more for me.
+CLARIFY|p|G2|Sorry, which tablet is the white one?
+CLARIFY|p|G3|What does "turns" mean to you? Describe one.
+CLARIFY|n|G4|I didn't follow, can you put it differently?
+CLARIFY|c|G1|You said Monday, did you, or was it Sunday, can you say it again?
+CLARIFY|i|G2|And when you say tired, do you mean sleepy or...
+CLARIFY|s|G3|can you spell that name for me i did not catch it
+ANSWER_QUESTION|p|G1|Two nights at most, assuming all goes smoothly.
+ANSWER_QUESTION|p|G2|Yes, you can bring a book and your phone into the day unit.
+ANSWER_QUESTION|p|G3|The drip comes out the morning you go home.
+ANSWER_QUESTION|n|G4|No, it won't leave a large scar.
+ANSWER_QUESTION|c|G1|Visiting is at two, sorry, at three o'clock this afternoon.
+ANSWER_QUESTION|i|G2|The anaesthetic effect wears off in a few hours, but...
+ANSWER_QUESTION|s|G3|yes your husband can stay with you until we go through
+EXPLAIN_PROCEDURE|p|G1|They remove the stones by taking the whole gallbladder out, you don't need it to digest food.
+EXPLAIN_PROCEDURE|p|G2|A hernia repair puts a small mesh over the weak spot in the muscle wall.
+EXPLAIN_PROCEDURE|p|G3|A regional block numbs the arm so the surgeon can operate while you're lightly sedated.
+EXPLAIN_PROCEDURE|n|G4|They won't open the whole abdomen, only three or four small ports.
+EXPLAIN_PROCEDURE|c|G1|The camera goes through the navel, no, just above it, then the other ports follow.
+EXPLAIN_PROCEDURE|i|G2|After the anaesthetist puts you to sleep, the surgeon makes a cut about...
+EXPLAIN_PROCEDURE|s|G3|they put a small tube in your windpipe to help you breath while asleep
+EXPLAIN_TEST|p|G1|The CT scan builds pictures of your abdomen using x-rays, takes about ten minutes.
+EXPLAIN_TEST|p|G2|Troponin is a blood marker which rises if the heart muscle is strained.
+EXPLAIN_TEST|p|G3|A lung function test measures how much air you can blow out in one go.
+EXPLAIN_TEST|n|G4|The MRI doesn't use radiation, but it's noisy and you must lie still.
+EXPLAIN_TEST|c|G1|The swab checks for MRSA, no, for a skin bug that can cause wound infections.
+EXPLAIN_TEST|i|G2|We ask for the iron level because if it's low it can...
+EXPLAIN_TEST|s|G3|the echo is a scan of your heart with a probe on the chest
+EXPLAIN_ACTION|p|G1|Lifting your gown, feeling your tummy now.
+EXPLAIN_ACTION|p|G2|This is the oxygen clip, going on your index finger.
+EXPLAIN_ACTION|p|G3|I'll clean the skin with spirit first, might feel cold.
+EXPLAIN_ACTION|n|G4|No needle this time, I'm just taking your temperature.
+EXPLAIN_ACTION|c|G1|Rolling you to the left, no, to the right, hold the rail.
+EXPLAIN_ACTION|i|G2|I'm going to give you a small injection of local so that when I...
+EXPLAIN_ACTION|s|G3|now i will tilt the bed back a little for you
+CHECK_UNDERSTANDING|p|G1|What will you do if the wound starts to leak at home?
+CHECK_UNDERSTANDING|p|G2|Can you remind me which tablets you stop and which you carry on?
+CHECK_UNDERSTANDING|p|G3|Tell me what you'll do when you feel sick tonight.
+CHECK_UNDERSTANDING|n|G4|You won't be driving tomorrow, will you? Tell me what the arrangement is.
+CHECK_UNDERSTANDING|c|G1|Do you, sorry, how would you explain the plan to your wife?
+CHECK_UNDERSTANDING|i|G2|Just so I know it's clear, what will you do about...
+CHECK_UNDERSTANDING|s|G3|how would you describe the next steps back to me
+ACKNOWLEDGE_EMOTION|p|G1|You must be exhausted with the worry of it all.
+ACKNOWLEDGE_EMOTION|p|G2|I can hear how upsetting that was.
+ACKNOWLEDGE_EMOTION|p|G3|You seem overwhelmed and that's fair.
+ACKNOWLEDGE_EMOTION|n|G4|It's not weakness to be frightened, nobody judges that here.
+ACKNOWLEDGE_EMOTION|c|G1|You're fine, no, actually you sound anxious, am I right?
+ACKNOWLEDGE_EMOTION|i|G2|I suspect waiting like this has made you feel quite...
+ACKNOWLEDGE_EMOTION|s|G3|i understand you are angry about the long wait
+REASSURE|p|G1|You'll be monitored closely all night, you won't be alone.
+REASSURE|p|G2|The pain will be treated promptly, ask any time.
+REASSURE|p|G3|We've got a clear plan and the right people here.
+REASSURE|n|G4|There's nothing you've done wrong, and nothing to feel guilty for.
+REASSURE|c|G1|It could go badly, no, it's most likely to go smoothly, and we're ready either way.
+REASSURE|i|G2|We'll be with you at every stage so that...
+REASSURE|s|G3|you are doing really well and we are here
+ACKNOWLEDGE_FACT|p|G1|Got it, you stopped the clopidogrel nine days ago.
+ACKNOWLEDGE_FACT|p|G2|So the pain wakes you at night. Noted.
+ACKNOWLEDGE_FACT|p|G3|Okay, you live alone on the second floor, no lift.
+ACKNOWLEDGE_FACT|n|G4|Right, no diabetes in the family, thanks.
+ACKNOWLEDGE_FACT|c|G1|So two pints a night, sorry, two pints a week. Updated.
+ACKNOWLEDGE_FACT|i|G2|Right, you had a stent put in, and that was...
+ACKNOWLEDGE_FACT|s|G3|thank you i see that you have a pacemaker fitted
+CLOSED_LOOP|p|G1|Confirming: co-amoxiclav 1.2 g IV now, I'll update you when done.
+CLOSED_LOOP|p|G2|Read back: Hb 82, group and crossmatch two units.
+CLOSED_LOOP|p|G3|Got it, bed 14 to recovery, then ward, I'll call when she's out.
+CLOSED_LOOP|n|G4|I'll hold the anticoagulant until you've reviewed him, understood.
+CLOSED_LOOP|c|G1|Metoprolol 50, sorry, 25 milligrams, confirming 25.
+CLOSED_LOOP|i|G2|So the plan is repeat lactate in an hour and then...
+CLOSED_LOOP|s|G3|ok to confirm you want an oxygen mask at fifteen litres
+ESCALATE_SPEECH|p|G1|I'd like the on-call surgeon to look at him before we go any further.
+ESCALATE_SPEECH|p|G2|Can you page the ITU outreach team? I'm worried.
+ESCALATE_SPEECH|p|G3|Please get the pharmacist, I need a second opinion on this dose.
+ESCALATE_SPEECH|n|G4|I won't take this decision alone, ask the consultant.
+ESCALATE_SPEECH|c|G1|Get the SHO, sorry, the registrar, to come now.
+ESCALATE_SPEECH|i|G2|Could someone more senior join us in bay three to...
+ESCALATE_SPEECH|s|G3|please call the nurse in charge to this bed urgently
+REPORT_FAULT|p|G1|The ECG machine won't print, paper jammed.
+REPORT_FAULT|p|G2|Defib pads in the crash trolley are out of date.
+REPORT_FAULT|p|G3|Call bell cord's snapped in cubicle five.
+REPORT_FAULT|n|G4|The sluice door isn't locking and the code pad is dead.
+REPORT_FAULT|c|G1|Heating's off in bay one, no, the whole ward is cold, boiler fault probably.
+REPORT_FAULT|i|G2|The syringe driver is displaying an error and I think the battery has...
+REPORT_FAULT|s|G3|the lift to theatre is stuck on the second floor
+SBAR_ELEMENT|p|G1|S: Mrs Rossi, 74, post-op day two, increasing abdominal distension.
+SBAR_ELEMENT|p|G2|B: hemicolectomy on Monday, atrial fibrillation, on apixaban.
+SBAR_ELEMENT|p|G3|A: tachycardic at 112, soft but distended abdomen, drain output rising.
+SBAR_ELEMENT|n|G4|R: no more oral intake, I need her reviewed before the afternoon list.
+SBAR_ELEMENT|c|G1|Background, no, S first: Mr Okoye, 61, short of breath on the ward.
+SBAR_ELEMENT|i|G2|My recommendation is a chest X-ray and an ABG, then possibly...
+SBAR_ELEMENT|s|G3|situation this is a man with chest pain on the surgical ward
+VOICE_ORDER|p|G1|Cross-match four units and book a bed on the high dependency unit.
+VOICE_ORDER|p|G2|Can we get 500 mls of Hartmann's over thirty minutes?
+VOICE_ORDER|p|G3|Please get theatre ready for an emergency at noon.
+VOICE_ORDER|n|G4|Don't send him to X-ray yet, hold until I say.
+VOICE_ORDER|c|G1|Bloods now, and an arterial gas, and a lactate too.
+VOICE_ORDER|i|G2|Could you ring ITU and ask whether they have a bed and...
+VOICE_ORDER|s|G3|please start the antibiotics and send urine for culture
+CONFIRM_IDENTITY|p|G1|Can you give me your full name and date of birth, please?
+CONFIRM_IDENTITY|p|G2|Wristband says Elena Rossi, 12 May 1949, that's you?
+CONFIRM_IDENTITY|p|G3|Name and DOB before I do anything else.
+CONFIRM_IDENTITY|n|G4|You're not on the list as Okonkwo, are you? What's your name again?
+CONFIRM_IDENTITY|c|G1|Tell me your name and your, sorry, what's your date of birth?
+CONFIRM_IDENTITY|i|G2|And your date of birth is...
+CONFIRM_IDENTITY|s|G3|please tell me your name and when you were born for the check
+STATE_ALLERGY|p|G1|Any allergies we should know about, drug or otherwise?
+STATE_ALLERGY|p|G2|So codeine gave you vomiting and itching, I'll mark it.
+STATE_ALLERGY|p|G3|Ever reacted to iodine or contrast dye?
+STATE_ALLERGY|n|G4|You don't react to latex or antibiotics, do you?
+STATE_ALLERGY|c|G1|Allergic to aspirin, or was it ibuprofen, which?
+STATE_ALLERGY|i|G2|Have you ever come up in a rash after taking...
+STATE_ALLERGY|s|G3|do you have any allergies to tablets or injections
+CONSENT_SIGN|p|G1|Are you happy to proceed? I'll need your signature here.
+CONSENT_SIGN|p|G2|You're agreeing to the biopsy, is that right?
+CONSENT_SIGN|p|G3|Do you consent to the blood transfusion if it's needed?
+CONSENT_SIGN|n|G4|You can still say no. Do you want to go ahead?
+CONSENT_SIGN|c|G1|Sign here, no, first tell me yes or no to the surgery.
+CONSENT_SIGN|i|G2|If you're agreeable, put your name on the line where it says...
+CONSENT_SIGN|s|G3|do you agree to the procedure then please sign
+HANDOVER_CRITICAL_ELEMENT|p|G1|She's allergic to contrast, came up in hives last scan.
+HANDOVER_CRITICAL_ELEMENT|p|G2|He's had breakfast, so he isn't fasted for the list.
+HANDOVER_CRITICAL_ELEMENT|p|G3|Wristband says Okoye, notes say Okonkwo, please recheck.
+HANDOVER_CRITICAL_ELEMENT|n|G4|She isn't fasted, she had a yoghurt at nine.
+HANDOVER_CRITICAL_ELEMENT|c|G1|BP was fine, no, it's falling now, 85 over 50, and he's sweaty.
+HANDOVER_CRITICAL_ELEMENT|i|G2|Just so you know he has a peanut allergy, and when he...
+HANDOVER_CRITICAL_ELEMENT|s|G3|be aware that she is allergic to latex
+NONE|p|G1|Right, nice and quiet for once.
+NONE|p|G2|Is it Friday already?
+NONE|p|G3|Oh, that's a nice cardigan.
+NONE|n|G4|I haven't checked the wristband yet, not my job just now.
+NONE|c|G1|Tea or, no, coffee, I'll have whatever's going.
+NONE|i|G2|I'm thinking of booking a holiday somewhere warm, maybe...
+NONE|s|G3|hmm yes ok then right

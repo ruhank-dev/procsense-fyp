@@ -1,0 +1,200 @@
+ASK_TOPIC|p|G7|Any loose teeth, caps, bridges?
+ASK_TOPIC|p|G7|Neck stiff? Can you open wide?
+ASK_TOPIC|p|G8|Date of your last period?
+ASK_TOPIC|p|G8|Blood sugars at home, what range?
+ASK_TOPIC|n|G7|No heart trouble, no chest pain on the stairs, correct?
+ASK_TOPIC|c|G8|On insulin, no, tablets only? What dose?
+ASK_TOPIC|i|G7|And the snoring, do you wake up gasping or...
+ASK_TOPIC|a|G8|Can you remind me what the nurse said you take for the thyroid?
+ASK_TOPIC|s|G7|do you have a cough or a cold at the moment
+ASK_TOPIC|s|G8|has anyone in your family had a clotting problem
+CLARIFY|p|G7|Pardon? Louder.
+CLARIFY|p|G7|What do you mean, it catches in your throat?
+CLARIFY|p|G8|Which finger? The left hand or the right?
+CLARIFY|p|G8|I need that again. Slowly.
+CLARIFY|n|G7|No, I didn't get that. Rephrase.
+CLARIFY|c|G8|Two days, no, you said three, repeat it for me, which was it?
+CLARIFY|i|G7|Hold on, you mean it feels like something is...
+CLARIFY|a|G8|What do you mean you've been run down lately?
+CLARIFY|s|G7|say that again i did not catch it
+CLARIFY|s|G8|what does that mean in plain words
+ANSWER_QUESTION|p|G7|You'll be breathing through a tube while you're asleep.
+ANSWER_QUESTION|p|G7|Sore throat for a day or so, that's normal.
+ANSWER_QUESTION|p|G8|The baby will be monitored the whole time.
+ANSWER_QUESTION|p|G8|Yes, your husband can wait in the next room.
+ANSWER_QUESTION|n|G7|No, the denture can't stay in.
+ANSWER_QUESTION|c|G8|Results tomorrow morning, sorry, tomorrow afternoon.
+ANSWER_QUESTION|i|G7|The tube takes a minute to place, and afterwards...
+ANSWER_QUESTION|a|G8|The cramping you feel afterwards is common and eases within a day.
+ANSWER_QUESTION|s|G7|yes you may feel groggy for a few hours when you wake
+ANSWER_QUESTION|s|G8|no the insulin will not be stopped completely
+EXPLAIN_PROCEDURE|p|G7|We give you drugs, you drop off, we put a tube in your windpipe, surgeons start.
+EXPLAIN_PROCEDURE|p|G7|The thyroid lobe comes out via a cut low on the neck.
+EXPLAIN_PROCEDURE|p|G8|Caesarean means we deliver the baby through a cut low on the belly.
+EXPLAIN_PROCEDURE|p|G8|A transfusion means red cells go in through a drip over a couple of hours.
+EXPLAIN_PROCEDURE|n|G7|It's not open surgery on your throat, it's through a small cut.
+EXPLAIN_PROCEDURE|c|G8|Spinal goes in the lower back, no, the middle of the lower back.
+EXPLAIN_PROCEDURE|i|G7|The surgeon first makes a cut, then lifts the muscle, and finally...
+EXPLAIN_PROCEDURE|a|G8|The spinal will numb you from the chest down, so you'll stay awake, don't worry, it's safe.
+EXPLAIN_PROCEDURE|s|G7|the operation will take away the diseased part of your thyroid
+EXPLAIN_PROCEDURE|s|G8|they make a small cut to deliver the baby then close it up
+EXPLAIN_TEST|p|G7|X-ray of the neck shows whether the windpipe is pushed over.
+EXPLAIN_TEST|p|G7|Lung function checks how hard you can blow, relevant for the anaesthetic.
+EXPLAIN_TEST|p|G8|Glucose reading tells us where the sugar is today.
+EXPLAIN_TEST|p|G8|Cross-match makes sure the donor blood suits yours.
+EXPLAIN_TEST|n|G7|The sleep study isn't an operation, it's a machine that watches your breathing.
+EXPLAIN_TEST|c|G8|HbA1c shows your sugar over the last, no, over three months.
+EXPLAIN_TEST|i|G7|The reason for the thyroid blood test is so that if your levels are...
+EXPLAIN_TEST|a|G8|We're checking your blood count so we know whether you need a transfusion, nothing alarming.
+EXPLAIN_TEST|s|G7|this test shows if your thyroid is working too fast
+EXPLAIN_TEST|s|G8|the scan shows us how the baby is lying
+EXPLAIN_ACTION|p|G7|Putting a clip on your finger. It reads oxygen.
+EXPLAIN_ACTION|p|G7|Tilting your head back, checking your neck movement.
+EXPLAIN_ACTION|p|G8|Feeling your bump. Say if it tightens.
+EXPLAIN_ACTION|p|G8|Pricking your finger for sugar. Quick sting.
+EXPLAIN_ACTION|n|G7|No injection yet, I'm only checking your mouth.
+EXPLAIN_ACTION|c|G8|Left arm, no, right arm for the drip.
+EXPLAIN_ACTION|i|G7|I'm going to ask you to open wide and then I'll...
+EXPLAIN_ACTION|a|G8|I'm strapping the belt on, that's the baby's heartbeat monitor starting.
+EXPLAIN_ACTION|s|G7|now i will place the mask on your face
+EXPLAIN_ACTION|s|G8|i am going to check your blood sugar with this machine
+CHECK_UNDERSTANDING|p|G7|What do you do with your tablets tonight? Tell me.
+CHECK_UNDERSTANDING|p|G7|Run through what happens when you wake up.
+CHECK_UNDERSTANDING|p|G8|Say back the signs that mean you ring the ward.
+CHECK_UNDERSTANDING|p|G8|What will you do about your insulin tomorrow morning?
+CHECK_UNDERSTANDING|n|G7|You're not confused about the fasting rules, are you? Explain them back.
+CHECK_UNDERSTANDING|c|G8|Understood? No, you tell me, how will you feed the baby afterwards?
+CHECK_UNDERSTANDING|i|G7|Just to be sure, you know that if you feel...
+CHECK_UNDERSTANDING|a|G8|Does that make sense, or shall I go through the transfusion again?
+CHECK_UNDERSTANDING|s|G7|tell me in your words what the anaesthetist does
+CHECK_UNDERSTANDING|s|G8|can you repeat back the steps for the injection
+ACKNOWLEDGE_EMOTION|p|G7|You're terrified of being put under. Understood.
+ACKNOWLEDGE_EMOTION|p|G7|Pretty worked up about the airway, I see.
+ACKNOWLEDGE_EMOTION|p|G8|Anxious about the baby. Of course you are.
+ACKNOWLEDGE_EMOTION|p|G8|You look drained. Hard few days.
+ACKNOWLEDGE_EMOTION|n|G7|Don't be ashamed of the shaking, no one minds.
+ACKNOWLEDGE_EMOTION|c|G8|You seem fine, no, you seem seriously scared, am I right?
+ACKNOWLEDGE_EMOTION|i|G7|I know this has been a really draining wait for...
+ACKNOWLEDGE_EMOTION|a|G8|I can see you're worried sick, and we'll look after both of you.
+ACKNOWLEDGE_EMOTION|s|G7|you are very afraid of the needle i see
+ACKNOWLEDGE_EMOTION|s|G8|i understand you feel overwhelmed right now
+REASSURE|p|G7|The anaesthetist is next to you the whole time.
+REASSURE|p|G7|This is bread and butter for us. Done it hundreds of times.
+REASSURE|p|G8|Baby's being watched every minute. You're not alone.
+REASSURE|p|G8|We'll sort your pain out, I promise.
+REASSURE|n|G7|No need to be scared, we'll have you covered.
+REASSURE|c|G8|Dangerous, no, safe, very safe, we do these daily.
+REASSURE|i|G7|You'll be in good hands, and everyone in theatre will...
+REASSURE|a|G8|We'll take good care of you, I know it's a lot to take in.
+REASSURE|s|G7|you will be fine we are right here
+REASSURE|s|G8|dont worry mum and baby are in good hands
+ACKNOWLEDGE_FACT|p|G7|OK, a cap on the upper left. Noted.
+ACKNOWLEDGE_FACT|p|G7|Right, you snore and stop breathing at night. Got it.
+ACKNOWLEDGE_FACT|p|G8|Noted, due date is the ninth.
+ACKNOWLEDGE_FACT|p|G8|OK, so your sugars run around eleven in the mornings.
+ACKNOWLEDGE_FACT|n|G7|So no reflux at all, thank you.
+ACKNOWLEDGE_FACT|c|G8|Thirty units, sorry, twenty units at night. Changed.
+ACKNOWLEDGE_FACT|i|G7|I see, you had a bad time coming round after your hernia and...
+ACKNOWLEDGE_FACT|a|G8|So you take levothyroxine, thanks for telling me.
+ACKNOWLEDGE_FACT|s|G7|thank you i see you had a tonsillectomy as a child
+ACKNOWLEDGE_FACT|s|G8|ok so this is your third pregnancy thanks for that
+CLOSED_LOOP|p|G7|Propofol 150, drawn up, giving on your word.
+CLOSED_LOOP|p|G7|Repeat: FiO2 0.6, tidal volume 450.
+CLOSED_LOOP|p|G8|Understood, two units cross-matched, running the first now.
+CLOSED_LOOP|p|G8|Read back: glucose 14, insulin sliding scale, recheck in an hour.
+CLOSED_LOOP|n|G7|I won't remove the tube until you say. Got it.
+CLOSED_LOOP|c|G8|Syntocinon 5 units, no, 10 units slowly, confirming 10.
+CLOSED_LOOP|i|G7|So you want the gas turned down and then I should...
+CLOSED_LOOP|a|G8|Okay, so I'm to start the transfusion now, right?
+CLOSED_LOOP|s|G7|ok i have that so give atropine now
+CLOSED_LOOP|s|G8|to confirm you want a repeat sugar in thirty minutes
+ESCALATE_SPEECH|p|G7|Get the consultant anaesthetist. Airway's difficult.
+ESCALATE_SPEECH|p|G7|I need the ENT registrar here, now.
+ESCALATE_SPEECH|p|G8|Call the obstetrician in charge to room two.
+ESCALATE_SPEECH|p|G8|Bring the diabetes team, I'm out of my depth.
+ESCALATE_SPEECH|n|G7|I can't manage this alone, send for the senior.
+ESCALATE_SPEECH|c|G8|Get the midwife, no, get the doctor, she's bleeding.
+ESCALATE_SPEECH|i|G7|Could somebody senior please come and take over the...
+ESCALATE_SPEECH|a|G8|Would someone fetch the consultant? I'd like her to decide whether to proceed.
+ESCALATE_SPEECH|s|G7|please call the chief anaesthetist to the theatre
+ESCALATE_SPEECH|s|G8|get someone senior to look at this patient now
+REPORT_FAULT|p|G7|Laryngoscope handle's dead, batteries gone.
+REPORT_FAULT|p|G7|Ventilator's showing a circuit leak.
+REPORT_FAULT|p|G8|CTG machine isn't printing, no trace.
+REPORT_FAULT|p|G8|Blood warmer's alarming and won't heat.
+REPORT_FAULT|n|G7|The patient trolley won't lock its wheels.
+REPORT_FAULT|c|G8|Fridge is fine, no, the blood fridge temperature alarm is going off.
+REPORT_FAULT|i|G7|I think the scope's fogging because the camera seems to...
+REPORT_FAULT|a|G8|The drip stand is broken, could somebody replace it?
+REPORT_FAULT|s|G7|the airway trolley light is not working
+REPORT_FAULT|s|G8|the glucose meter gives an error each time
+SBAR_ELEMENT|p|G7|S: Mrs Nowak, 58, thyroidectomy this morning, difficult airway flagged.
+SBAR_ELEMENT|p|G7|B: Graves' disease, on carbimazole, previous neck surgery.
+SBAR_ELEMENT|p|G8|A: Contracting every three minutes, baby's heart rate is steady.
+SBAR_ELEMENT|p|G8|R: Prepare theatre for a section within the hour.
+SBAR_ELEMENT|n|G7|R: Don't start until the senior anaesthetist is present.
+SBAR_ELEMENT|c|G8|Assessment, no, Background first: gestational diabetes, diet controlled.
+SBAR_ELEMENT|i|G7|Assessment: I'm concerned about the airway, and I'd suggest...
+SBAR_ELEMENT|a|G8|Recommendation: I'd like the obstetrician to review her.
+SBAR_ELEMENT|s|G7|situation i am calling about a lady for neck surgery
+SBAR_ELEMENT|s|G8|background she is a diabetic and has had a previous caesarean
+VOICE_ORDER|p|G7|Get me the fibre-optic scope and a smaller tube.
+VOICE_ORDER|p|G7|Can we have a chest film before she goes up?
+VOICE_ORDER|p|G8|Two units of blood to bay four, please, and warm them.
+VOICE_ORDER|p|G8|Page the porter, mum goes to theatre now.
+VOICE_ORDER|n|G7|Don't give the premed yet, wait.
+VOICE_ORDER|c|G8|Send a group and screen, no, a cross-match, urgently.
+VOICE_ORDER|i|G7|Please ring pathology and ask them to rush the...
+VOICE_ORDER|a|G8|Please get the porter, and tell the anaesthetist when she's ready.
+VOICE_ORDER|s|G7|please bring the airway trolley to bed three
+VOICE_ORDER|s|G8|order a urine test and a sugar check now
+CONFIRM_IDENTITY|p|G7|Name, date of birth. Go.
+CONFIRM_IDENTITY|p|G7|Band says Halina Nowak, 2 June 1966. That you?
+CONFIRM_IDENTITY|p|G8|Tell me your name and when you were born.
+CONFIRM_IDENTITY|p|G8|Checking the wristband, Ibrahim, Layla, correct?
+CONFIRM_IDENTITY|n|G7|You aren't Patel from bed nine, are you? What's your name?
+CONFIRM_IDENTITY|c|G8|Name and, no, birth date first.
+CONFIRM_IDENTITY|i|G7|Please state your full name and the date on which you were...
+CONFIRM_IDENTITY|a|G8|Are you Mrs Bianchi? And any allergies?
+CONFIRM_IDENTITY|s|G7|please say your name and date of birth
+CONFIRM_IDENTITY|s|G8|can you tell me who you are and your birthday
+STATE_ALLERGY|p|G7|Allergies? Drugs, latex, anything?
+STATE_ALLERGY|p|G7|Reaction to egg or soya? Propofol matters.
+STATE_ALLERGY|p|G8|So the penicillin gave you swelling in your lips, I'll note that.
+STATE_ALLERGY|p|G8|Any bad reaction to blood products before?
+STATE_ALLERGY|n|G7|Nothing you react to whatsoever, correct?
+STATE_ALLERGY|c|G8|Allergic to sulpha, no, to iodine, which one?
+STATE_ALLERGY|i|G7|Do you come up in hives if you eat...
+STATE_ALLERGY|a|G8|Any allergies to flag, and are you OK for us to start?
+STATE_ALLERGY|s|G7|are you allergic to any drug or to latex
+STATE_ALLERGY|s|G8|have you ever had a reaction to an antibiotic
+CONSENT_SIGN|p|G7|You agree to the anaesthetic and the surgery? Sign.
+CONSENT_SIGN|p|G7|Happy for us to go ahead, yes or no?
+CONSENT_SIGN|p|G8|Consent to a section if it's needed? Sign here.
+CONSENT_SIGN|p|G8|Do you consent to the transfusion?
+CONSENT_SIGN|n|G7|Nobody's forcing you. Do you agree?
+CONSENT_SIGN|c|G8|Sign, no, first say whether you consent.
+CONSENT_SIGN|i|G7|If you consent, put your name where it says...
+CONSENT_SIGN|a|G8|Are you happy for us to go ahead with the operation, and have you got questions?
+CONSENT_SIGN|s|G7|do you consent to the operation please sign
+CONSENT_SIGN|s|G8|are you agree to have the blood transfusion
+HANDOVER_CRITICAL_ELEMENT|p|G7|She's got a latex allergy, swelling last time.
+HANDOVER_CRITICAL_ELEMENT|p|G7|Not fasted, had a roll at nine.
+HANDOVER_CRITICAL_ELEMENT|p|G8|Wristband says Ibrahim, forms say Ibrahimi, recheck.
+HANDOVER_CRITICAL_ELEMENT|p|G8|Her sugar's 2.1 and she's confused.
+HANDOVER_CRITICAL_ELEMENT|n|G7|She isn't fasted, she had porridge at eight.
+HANDOVER_CRITICAL_ELEMENT|c|G8|BP was 110, no, it's 70 systolic now, she's pale.
+HANDOVER_CRITICAL_ELEMENT|i|G7|Be aware she's allergic to penicillin, her face swelled and...
+HANDOVER_CRITICAL_ELEMENT|a|G8|Situation: Mrs Bianchi for section, and she isn't fasted.
+HANDOVER_CRITICAL_ELEMENT|s|G7|please know the patient is allergic to latex
+HANDOVER_CRITICAL_ELEMENT|s|G8|the patient did not fast she ate lunch at twelve
+NONE|p|G7|Right.
+NONE|p|G7|Where's my coffee?
+NONE|p|G8|Hm.
+NONE|p|G8|Long list today.
+NONE|n|G7|Never asked about allergies, not my job.
+NONE|c|G8|It's the seventh, no, the eighth. Whatever.
+NONE|i|G7|I might go for lunch after this, if the...
+NONE|a|G8|Hm, I wonder whether she is allergic to anything.
+NONE|s|G7|yeah um so ok then
+NONE|s|G8|let me see the chart for a moment

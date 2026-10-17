@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G3|Got any loose teeth, crowns, dentures I should know about?
+ASK_TOPIC|p|G1|When'd you last have something to eat, mate?
+ASK_TOPIC|p|G4|Do you take anything for your blood pressure or thin your blood?
+ASK_TOPIC|n|G2|Nobody in your family's had a bad reaction to being put under, have they?
+ASK_TOPIC|c|G3|Any problems with your neck, no, with your jaw opening wide?
+ASK_TOPIC|i|G1|And you've had operations before, which were...
+ASK_TOPIC|s|G4|do you smoke or drink alcohol much a week
+CLARIFY|p|G3|Come again? Didn't catch it over the suction.
+CLARIFY|p|G1|You mean it hurts when you breathe in, or all the time?
+CLARIFY|p|G4|What's that word you used, I didn't follow.
+CLARIFY|n|G2|I couldn't hear what you said, say it again for me.
+CLARIFY|c|G3|Which one is it you want, the green line, sorry, the blue one, repeat that please.
+CLARIFY|i|G1|Hold on, I'm not sure what you're asking me to...
+CLARIFY|s|G4|sorry what was that can you run it by me one more time
+ANSWER_QUESTION|p|G3|Yep, the mask's just oxygen, nothing scary.
+ANSWER_QUESTION|p|G1|The tube comes out before you wake up, you won't know it was there.
+ANSWER_QUESTION|p|G4|It's normal to feel a bit sick after, it passes.
+ANSWER_QUESTION|n|G2|No, you won't be awake for any of it.
+ANSWER_QUESTION|c|G3|They're ready in ten minutes, no, more like fifteen, then we bring you through.
+ANSWER_QUESTION|i|G1|You'll be on the trolley for the trip down, and then...
+ANSWER_QUESTION|s|G4|yes you will get something for the pain before you wake up
+EXPLAIN_PROCEDURE|p|G3|Anaesthetic goes in through the cannula, you drift off in about thirty seconds, then we secure the airway.
+EXPLAIN_PROCEDURE|p|G1|Gallbladder comes out through a few small holes, camera in one, instruments in the others.
+EXPLAIN_PROCEDURE|p|G2|Spinal means a small injection in the back, numbs you from the waist down while you stay awake.
+EXPLAIN_PROCEDURE|n|G4|It's not a long cut, it's keyhole, just small incisions.
+EXPLAIN_PROCEDURE|c|G3|We put you to sleep first, sorry, we position you first, then the anaesthetic.
+EXPLAIN_PROCEDURE|i|G1|They inflate your tummy with gas so the surgeon can see, and afterwards...
+EXPLAIN_PROCEDURE|s|G2|the operation takes the appendix out through small cuts in your stomach
+EXPLAIN_TEST|p|G3|That trace on the screen is your ECG, shows us how the heart's behaving.
+EXPLAIN_TEST|p|G1|Sats probe tells us how much oxygen's in your blood, that's all.
+EXPLAIN_TEST|p|G4|We take a sample to cross-match, makes sure any blood we give is the right type.
+EXPLAIN_TEST|n|G2|The pregnancy test isn't a big deal, it's a routine urine dip before any anaesthetic.
+EXPLAIN_TEST|c|G3|The capnograph reads the oxygen, no, the carbon dioxide, you breathe out.
+EXPLAIN_TEST|i|G1|The reason we do a glucose finger-prick is because the sugar can...
+EXPLAIN_TEST|s|G4|this test show us how fast your blood clot
+EXPLAIN_ACTION|p|G3|Putting the mask on your face now, breathe normally.
+EXPLAIN_ACTION|p|G1|Just taping the electrodes on your chest, bit cold.
+EXPLAIN_ACTION|p|G4|About to slide you across to the theatre table on three.
+EXPLAIN_ACTION|n|G2|This isn't going to hurt, just a plaster to hold the line.
+EXPLAIN_ACTION|c|G3|Cuff on the left, no, right arm, squeezing now.
+EXPLAIN_ACTION|i|G1|I'm going to sit you up a little so that you can...
+EXPLAIN_ACTION|s|G4|i am going to turn you onto your side now
+CHECK_UNDERSTANDING|p|G3|You know to keep your head still when the mask's on?
+CHECK_UNDERSTANDING|p|G1|What did I say about not eating? Run it back for me.
+CHECK_UNDERSTANDING|p|G4|Happy with how it works? Tell me what you'll do when you wake up.
+CHECK_UNDERSTANDING|n|G2|You haven't got any doubts about the plan, right? Say it in your own words.
+CHECK_UNDERSTANDING|c|G3|You'll count backwards from ten, wait, do you remember what to do?
+CHECK_UNDERSTANDING|i|G1|Can you repeat the bit about when your tablets...
+CHECK_UNDERSTANDING|s|G4|do you understand what will happen when you go to sleep
+ACKNOWLEDGE_EMOTION|p|G3|Looks like you're dreading this. Heard that a lot.
+ACKNOWLEDGE_EMOTION|p|G1|Hands are shaking, you're properly nervous.
+ACKNOWLEDGE_EMOTION|p|G4|Bit overwhelmed by all the machines, eh?
+ACKNOWLEDGE_EMOTION|n|G2|Don't feel silly for being scared, everybody is.
+ACKNOWLEDGE_EMOTION|c|G3|You seem fine, though, thinking about it, you look really worried.
+ACKNOWLEDGE_EMOTION|i|G1|It's got to be hard lying here on your own with all that...
+ACKNOWLEDGE_EMOTION|s|G4|you are shaking so i know you feel afraid
+REASSURE|p|G3|I'll be next to you the whole way, promise.
+REASSURE|p|G1|Same routine every day. We've got it covered.
+REASSURE|p|G4|You'll wake up in recovery and I'll be there.
+REASSURE|n|G2|There's no need to be scared, we've rehearsed this many times.
+REASSURE|c|G3|This is a hard one, no, an easy one, honestly, we do it all the time.
+REASSURE|i|G1|You'll be fine, you just need to trust that...
+REASSURE|s|G4|you are in safe hands i will be with you
+ACKNOWLEDGE_FACT|p|G3|Dentures out already, perfect, thanks.
+ACKNOWLEDGE_FACT|p|G1|Righto, fasted from midnight, got that written.
+ACKNOWLEDGE_FACT|p|G4|So you take the blue inhaler twice a day, noted.
+ACKNOWLEDGE_FACT|n|G2|You've not had a general before, cheers, I'll note that.
+ACKNOWLEDGE_FACT|c|G3|Bridge on the top, no, bottom, sorry, got it down now.
+ACKNOWLEDGE_FACT|i|G1|And you said your knee operation was in twenty fifteen, and since then...
+ACKNOWLEDGE_FACT|s|G4|ok so you have asthma since you were a child thanks
+CLOSED_LOOP|p|G3|Propofol 200, fentanyl 100, drawn up, giving on your word.
+CLOSED_LOOP|p|G1|Readback: sevoflurane at two percent, flow two litres.
+CLOSED_LOOP|p|G4|Roger that, trolley to recovery bay two, going now.
+CLOSED_LOOP|n|G2|I won't extubate until you say so, got it.
+CLOSED_LOOP|c|G3|Rocuronium 50, sorry, 40 milligrams, confirming 40.
+CLOSED_LOOP|i|G1|So you want ephedrine drawn up and then I'll...
+CLOSED_LOOP|s|G4|ok repeating that you want the blood pressure cuff on every two minutes
+ESCALATE_SPEECH|p|G3|I need the consultant in here, now.
+ESCALATE_SPEECH|p|G1|Can someone call the senior anaesthetist, I'm not happy.
+ESCALATE_SPEECH|p|G4|We need a second pair of hands and an opinion on this airway.
+ESCALATE_SPEECH|n|G2|It isn't my call to make, get the boss.
+ESCALATE_SPEECH|c|G3|Get the scrub nurse, no, get the surgeon over here to decide.
+ESCALATE_SPEECH|i|G1|Somebody senior needs to come and look at...
+ESCALATE_SPEECH|s|G4|please call the doctor in charge to the theatre now
+REPORT_FAULT|p|G3|Laryngoscope bulb's gone, light's out.
+REPORT_FAULT|p|G1|Anaesthetic machine's throwing a leak alarm.
+REPORT_FAULT|p|G4|Diathermy's not cutting, the pad lead looks frayed.
+REPORT_FAULT|n|G2|Theatre doors aren't closing properly, the sensor fails.
+REPORT_FAULT|c|G3|Suction canister is full, no, the suction itself is dead.
+REPORT_FAULT|i|G1|Monitor keeps losing the trace, I think the cable is...
+REPORT_FAULT|s|G4|the oxygen alarm is going off but the gauge is okay
+SBAR_ELEMENT|p|G3|Situation: next case, forty year old female, laparoscopic appendicectomy.
+SBAR_ELEMENT|p|G1|Background: asthma, well controlled, no other history.
+SBAR_ELEMENT|p|G4|Assessment: airway looks straightforward, Mallampati two.
+SBAR_ELEMENT|n|G2|Recommendation: don't extubate in theatre, take her through intubated.
+SBAR_ELEMENT|c|G3|Background, hold on, situation first: emergency case from ED.
+SBAR_ELEMENT|i|G1|Recommendation is we hold the list until the anaesthetist has had a chance to...
+SBAR_ELEMENT|s|G4|assessment is that the patient is stable for the case
+VOICE_ORDER|p|G3|Pass me a size four blade and a bougie.
+VOICE_ORDER|p|G1|Can you draw up ondansetron and dex for me?
+VOICE_ORDER|p|G4|Get the trolley, we're moving to recovery.
+VOICE_ORDER|n|G2|Don't hang the next bag yet, hold the fluids.
+VOICE_ORDER|c|G3|Grab me a twenty, no, an eighteen gauge cannula.
+VOICE_ORDER|i|G1|Somebody ask blood bank to send two units and then...
+VOICE_ORDER|s|G4|please bring the warming blanket for the patient
+CONFIRM_IDENTITY|p|G3|Name and date of birth for the team before we start.
+CONFIRM_IDENTITY|p|G1|Wristband reads Maria Santos, same as the consent form, yes?
+CONFIRM_IDENTITY|p|G4|Just confirming it's you, say your name and birthday.
+CONFIRM_IDENTITY|n|G2|You're not the gentleman from bay five, are you? Name and date of birth?
+CONFIRM_IDENTITY|c|G3|What's your name and, sorry, your hospital number and date of birth?
+CONFIRM_IDENTITY|i|G1|Tell me who you are and when you were...
+CONFIRM_IDENTITY|s|G4|please say your name and date of birth for the check
+STATE_ALLERGY|p|G3|Any allergies? Latex, antibiotics, anything we put on your skin?
+STATE_ALLERGY|p|G1|Penicillin makes you come up in hives, right?
+STATE_ALLERGY|p|G4|What happens when you have eggs or soya? Allergic?
+STATE_ALLERGY|n|G2|No reactions to any drugs you know of, yeah?
+STATE_ALLERGY|c|G3|Latex allergy? No, sorry, I meant allergic to any plasters or tapes?
+STATE_ALLERGY|i|G1|Have you ever swelled up or got a rash from a...
+STATE_ALLERGY|s|G4|you have any allergy to medicine like anti biotics
+CONSENT_SIGN|p|G3|Are you OK for me to put you to sleep now?
+CONSENT_SIGN|p|G1|You've agreed to the procedure, yes? Just sign it for me.
+CONSENT_SIGN|p|G4|Happy with us going ahead, there's still time to say no.
+CONSENT_SIGN|n|G2|You aren't being forced into this, do you consent?
+CONSENT_SIGN|c|G3|Sign there, no, first say if you're happy to proceed with the anaesthetic.
+CONSENT_SIGN|i|G1|If you agree to all that, I just need your name on...
+CONSENT_SIGN|s|G4|are you agree for me to start the operation now
+HANDOVER_CRITICAL_ELEMENT|p|G3|Heads up team, latex allergy, no gloves with latex.
+HANDOVER_CRITICAL_ELEMENT|p|G1|Last food was a sandwich at noon, so full stomach.
+HANDOVER_CRITICAL_ELEMENT|p|G4|Patient's wristband says a different surname to the list.
+HANDOVER_CRITICAL_ELEMENT|n|G2|He didn't fast, he had cereal this morning, tell the anaesthetist.
+HANDOVER_CRITICAL_ELEMENT|c|G3|Pressure was 120, sorry, it's dropped to 80 systolic and she's pale.
+HANDOVER_CRITICAL_ELEMENT|i|G1|Be aware she's allergic to penicillin, she had a rash and...
+HANDOVER_CRITICAL_ELEMENT|s|G4|the patient has not fasted she ate breakfast at seven
+NONE|p|G3|Anyone seen the tea trolley?
+NONE|p|G1|Good game last night, shame about the ending.
+NONE|p|G4|Mm, ok.
+NONE|n|G2|I never asked about allergies, that wasn't me.
+NONE|c|G3|The list starts at eight, no, half eight, doesn't matter.
+NONE|i|G1|I keep thinking I left the car lights on, I might have to...
+NONE|s|G4|errr yeah right um okay then

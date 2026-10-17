@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G5|Would you be good enough to tell me how the discomfort in your wound has been overnight?
+ASK_TOPIC|p|G6|Has anything been passed per rectum or have you noticed any bleeding since the procedure?
+ASK_TOPIC|n|G5|You have not experienced any shortness of breath or palpitations this morning, I take it?
+ASK_TOPIC|c|G6|How long have you been on the inhaler, no, I should rather ask whether you use it daily?
+ASK_TOPIC|i|G5|It would help me to know whether your appetite has returned, and in particular whether...
+ASK_TOPIC|a|G6|Could you remind me which tablets you take for your stomach?
+ASK_TOPIC|s|G5|has your family ever had any difficulty with the anaesthetic
+CLARIFY|p|G5|I beg your pardon, could you kindly repeat the last sentence?
+CLARIFY|p|G6|When you describe it as a drag, would you elaborate on precisely what that sensation is?
+CLARIFY|n|G5|I did not quite follow your meaning; might you put it another way?
+CLARIFY|c|G6|By swelling, do you mean, or rather, please clarify whether the swelling is in the leg or the foot?
+CLARIFY|i|G5|I am afraid I do not follow what you mean by the phrase, which seems to...
+CLARIFY|a|G6|What exactly do you mean by saying you have been off colour?
+CLARIFY|s|G5|could you please clarify what you meant by that
+ANSWER_QUESTION|p|G5|The drain will be removed tomorrow, provided the output has diminished.
+ANSWER_QUESTION|p|G6|It is entirely usual to experience some bruising around the wound for up to a fortnight.
+ANSWER_QUESTION|n|G5|No, there is no restriction on gentle walking; indeed it is encouraged.
+ANSWER_QUESTION|c|G6|You will be discharged on Friday, or rather, on Thursday if the bloods are satisfactory.
+ANSWER_QUESTION|i|G5|The stitches are dissolvable and need not be removed, although should they...
+ANSWER_QUESTION|a|G6|The discomfort in the shoulder tip after laparoscopy is common and resolves within several days.
+ANSWER_QUESTION|s|G5|your results will be available to you at the clinic next month
+EXPLAIN_PROCEDURE|p|G5|The valve in your heart will be replaced with a mechanical one through an incision in the breastbone.
+EXPLAIN_PROCEDURE|p|G6|A knee arthroscopy permits the surgeon to examine and trim the damaged cartilage through two small incisions.
+EXPLAIN_PROCEDURE|n|G5|This is not a major open operation; it is conducted by means of a camera inserted through small ports.
+EXPLAIN_PROCEDURE|c|G6|The surgeon will make an incision over the hip, correction, over the outer thigh, and expose the joint.
+EXPLAIN_PROCEDURE|i|G5|The procedure consists of removing the diseased section of bowel and then rejoining the...
+EXPLAIN_PROCEDURE|a|G6|The anaesthetic will render you unconscious for the duration, so please do not be concerned; it is safe.
+EXPLAIN_PROCEDURE|s|G5|the operation will remove the thyroid gland through a cut in your neck
+EXPLAIN_TEST|p|G5|A chest radiograph permits us to see whether there is any fluid or collapse of the lung.
+EXPLAIN_TEST|p|G6|The troponin assay detects a protein released from damaged heart muscle, which is why it is being requested.
+EXPLAIN_TEST|n|G5|The blood gas is not performed under anaesthetic, but it is brief and little more than a sharp scratch.
+EXPLAIN_TEST|c|G6|The scan measures the thickness of the, I should say, the function of the heart valve.
+EXPLAIN_TEST|i|G5|The purpose of the clotting profile is to establish whether your blood will...
+EXPLAIN_TEST|a|G6|We are arranging a scan to visualise the stones; there is no cause for alarm.
+EXPLAIN_TEST|s|G5|a swab will be taken to establish which organism is responsible
+EXPLAIN_ACTION|p|G5|I am now going to examine the wound; this may be a little uncomfortable.
+EXPLAIN_ACTION|p|G6|I shall remove the dressing and inspect the surgical site for signs of infection.
+EXPLAIN_ACTION|n|G5|I shall not be touching the wound itself; I merely intend to check your pulse.
+EXPLAIN_ACTION|c|G6|I will place the probe on your finger, or rather, on your earlobe if the finger is cold.
+EXPLAIN_ACTION|i|G5|If you would permit me, I shall now sit you forward in order that I may...
+EXPLAIN_ACTION|a|G6|I am fitting the cuff to your arm now; that is merely your blood pressure being taken.
+EXPLAIN_ACTION|s|G5|i will now remove the dressing from the wound
+CHECK_UNDERSTANDING|p|G5|I wonder whether you could summarise the instructions I have given you regarding the wound.
+CHECK_UNDERSTANDING|p|G6|Would you be so kind as to repeat to me how you will take the anticoagulant at home?
+CHECK_UNDERSTANDING|n|G5|There is nothing you feel unclear about, I trust; do tell me in your own words what you will do.
+CHECK_UNDERSTANDING|c|G6|Is that clear, or rather, may I ask you to explain back to me the signs of infection?
+CHECK_UNDERSTANDING|i|G5|So that I am satisfied that we understand one another, what will you do in the event that...
+CHECK_UNDERSTANDING|a|G6|Does that make sense to you, or shall I take you through the scan once more?
+CHECK_UNDERSTANDING|s|G5|could you tell me in your own words what we have decided
+ACKNOWLEDGE_EMOTION|p|G5|I appreciate that this has been an exceedingly trying week for you and your family.
+ACKNOWLEDGE_EMOTION|p|G6|I can see that you are distressed by this news, and that is entirely natural.
+ACKNOWLEDGE_EMOTION|n|G5|You must not feel ashamed of your tears; they are quite understandable in the circumstances.
+ACKNOWLEDGE_EMOTION|c|G6|You seem composed, though on reflection I think you are rather anxious. Is that so?
+ACKNOWLEDGE_EMOTION|i|G5|I can only imagine how frightening it must have been to wake in that state and...
+ACKNOWLEDGE_EMOTION|a|G6|I can see that you are frightened, and we shall look after you.
+ACKNOWLEDGE_EMOTION|s|G5|i appreciate that you are angry with how long you waited
+REASSURE|p|G5|You may be assured that you will be closely observed throughout the night.
+REASSURE|p|G6|The nursing staff will attend promptly should your pain increase; you need only call.
+REASSURE|n|G5|There is no cause for undue anxiety; every necessary precaution has been taken.
+REASSURE|c|G6|It is a hazardous procedure, or rather, an entirely standard one, performed daily in this unit.
+REASSURE|i|G5|I can promise that we shall do everything within our power to ensure that...
+REASSURE|a|G6|We shall look after you well, and I appreciate how alarming this is.
+REASSURE|s|G5|you may rest assured that you are in capable hands
+ACKNOWLEDGE_FACT|p|G5|Thank you; I note that you stopped the clopidogrel a week prior to admission.
+ACKNOWLEDGE_FACT|p|G6|I see; the discomfort began following your first walk, which I have recorded.
+ACKNOWLEDGE_FACT|n|G5|So you have had no fever or rigors since the operation; I am obliged to you.
+ACKNOWLEDGE_FACT|c|G6|You live with your sister, or rather, with your daughter; I have amended the record.
+ACKNOWLEDGE_FACT|i|G5|I understand that your previous valve was fitted in two thousand and eight, and since then...
+ACKNOWLEDGE_FACT|a|G6|So you are taking warfarin; thank you for informing me.
+ACKNOWLEDGE_FACT|s|G5|thank you i note you have been feeling dizzy since the morning
+CLOSED_LOOP|p|G5|I shall repeat that: two and a half milligrams of morphine intravenously, to be given forthwith.
+CLOSED_LOOP|p|G6|To confirm, the patient in bay nine is to go to theatre four at two o'clock; I shall inform you on departure.
+CLOSED_LOOP|n|G5|I shall withhold the infusion until you instruct otherwise; understood.
+CLOSED_LOOP|c|G6|Oxygen at four litres, correction, six litres per minute; read back, six.
+CLOSED_LOOP|i|G5|The plan is therefore to repeat the gas in an hour, and thereafter I am to...
+CLOSED_LOOP|a|G6|Very well, so I am to commence the antibiotic immediately, is that correct?
+CLOSED_LOOP|s|G5|i confirm you wish the warfarin to be withheld this evening
+ESCALATE_SPEECH|p|G5|I should like the consultant surgeon to attend this patient without delay.
+ESCALATE_SPEECH|p|G6|Might I trouble you to summon the on-call anaesthetist; I am not content with his airway.
+ESCALATE_SPEECH|n|G5|I do not feel it appropriate to proceed alone; senior opinion is required.
+ESCALATE_SPEECH|c|G6|Call the staff nurse, or rather, the registrar, to this bedside as soon as possible.
+ESCALATE_SPEECH|i|G5|I should be grateful if a more experienced colleague could come and assess...
+ESCALATE_SPEECH|a|G6|Would someone fetch the registrar; I should like him to decide about this wound.
+ESCALATE_SPEECH|s|G5|please ask the consultant to come and review this patient
+REPORT_FAULT|p|G5|The infusion pump at bed five is giving a persistent occlusion alarm.
+REPORT_FAULT|p|G6|The medical gas outlet in bay three is delivering no oxygen whatsoever.
+REPORT_FAULT|n|G5|The brake on this trolley will not hold and the patient may roll.
+REPORT_FAULT|c|G6|The lamp, rather, the whole power socket at this bedside, has ceased to function.
+REPORT_FAULT|i|G5|The suction canister appears to be defective, as it does not seem to...
+REPORT_FAULT|a|G6|The suction is not functioning; could somebody see to it?
+REPORT_FAULT|s|G5|the heating in the recovery area has failed
+SBAR_ELEMENT|p|G5|Situation: this is Mr Reid, first day following hernia repair, with bleeding from the wound.
+SBAR_ELEMENT|p|G6|Background: he takes aspirin daily and has otherwise been entirely well.
+SBAR_ELEMENT|n|G5|Assessment: he is neither tachycardic nor hypotensive; the wound is oozing but not expanding.
+SBAR_ELEMENT|c|G6|Recommendation, or rather, background first: he had a coronary stent in two thousand nineteen.
+SBAR_ELEMENT|i|G5|Recommendation: that the surgical team should review the wound before...
+SBAR_ELEMENT|a|G6|Recommendation: I should like the surgeon to review her.
+SBAR_ELEMENT|s|G5|assessment she is comfortable and tolerating diet
+VOICE_ORDER|p|G5|Please send a full blood count, a coagulation screen and a group and save sample.
+VOICE_ORDER|p|G6|Would you ask the porter to return the patient to the ward?
+VOICE_ORDER|n|G5|Please do not remove the drain until I have reviewed the output.
+VOICE_ORDER|c|G6|Request a chest radiograph, or rather, a CT of the head, as a matter of urgency.
+VOICE_ORDER|i|G5|Would you kindly telephone the laboratory and request that they...
+VOICE_ORDER|a|G6|Please summon the porter and inform the anaesthetist when the patient is ready.
+VOICE_ORDER|s|G5|please send the specimen to the laboratory without delay
+CONFIRM_IDENTITY|p|G5|Might I ask you to state your full name and date of birth?
+CONFIRM_IDENTITY|p|G6|Your identity band reads Reid, born the fourteenth of February nineteen sixty-six; is that correct?
+CONFIRM_IDENTITY|n|G5|You are not the Mr Reid in bed eight, I take it? Please state your name.
+CONFIRM_IDENTITY|c|G6|Your name, or rather, your date of birth, if you would be so kind, for the identity check.
+CONFIRM_IDENTITY|i|G5|Would you confirm for me your name, together with the date on which...
+CONFIRM_IDENTITY|a|G6|Are you Mr Ahmed? And do you have any allergies?
+CONFIRM_IDENTITY|s|G5|would you please state your name and your date of birth
+STATE_ALLERGY|p|G5|Do you suffer from any allergy, to medication, dressings or foodstuffs?
+STATE_ALLERGY|p|G6|You have mentioned an allergy to morphine, which I shall now record in a prominent place.
+STATE_ALLERGY|n|G5|You are not aware of any drug allergy whatsoever, is that correct?
+STATE_ALLERGY|c|G6|Is it iodine to which you are allergic, or rather, is it morphine?
+STATE_ALLERGY|i|G5|Have you ever developed a rash or swelling following the administration of...
+STATE_ALLERGY|a|G6|Do you have any allergies, and are you content to proceed?
+STATE_ALLERGY|s|G5|have you any allergy to a drug or to a food
+CONSENT_SIGN|p|G5|Are you content for us to proceed with the transfusion? If so, please sign here.
+CONSENT_SIGN|p|G6|Do I have your consent to administer the anaesthetic for this operation?
+CONSENT_SIGN|n|G5|I am not pressing you; but do you consent to the procedure?
+CONSENT_SIGN|c|G6|Please sign below, or rather, first tell me whether you agree to the operation.
+CONSENT_SIGN|i|G5|If you are in agreement with the plan, I should be obliged if you would sign...
+CONSENT_SIGN|a|G6|Are you happy for us to proceed with the operation, and have you any questions?
+CONSENT_SIGN|s|G5|do you consent to the procedure being carried out
+HANDOVER_CRITICAL_ELEMENT|p|G5|I must draw your attention to a documented anaphylactic reaction to penicillin.
+HANDOVER_CRITICAL_ELEMENT|p|G6|The patient is not fasted; he had biscuits at ten o'clock this morning.
+HANDOVER_CRITICAL_ELEMENT|n|G5|The name upon the identity band is not that of Mr Reid; identity must be re-established.
+HANDOVER_CRITICAL_ELEMENT|c|G6|His pulse was ninety, correction, it is now one hundred and thirty and he appears grey.
+HANDOVER_CRITICAL_ELEMENT|i|G5|You ought to know that she has a latex allergy, and on the last occasion she...
+HANDOVER_CRITICAL_ELEMENT|a|G6|Situation: Mr Reid is for theatre, and I must add that he has not fasted.
+HANDOVER_CRITICAL_ELEMENT|s|G5|i must inform you that she is allergic to penicillin
+NONE|p|G5|It has been an exhausting week, has it not.
+NONE|p|G6|One does rather feel the cold in this corridor.
+NONE|n|G5|I have not yet taken the allergy history; that is for later.
+NONE|c|G6|It is Wednesday, or rather Thursday; not that it matters in the least.
+NONE|i|G5|I was merely wondering whether the committee would reconvene on...
+NONE|a|G6|Hmm, I do wonder whether she is allergic to anything.
+NONE|s|G5|well yes indeed quite so

@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G1|Please tell me, you have pain in stomach since when?
+ASK_TOPIC|p|G2|What medicines you are taking every day at home?
+ASK_TOPIC|p|G4|You did eat something today, or only drink water?
+ASK_TOPIC|n|G3|You have not got any problem with your heart before, no?
+ASK_TOPIC|c|G1|You vomit one time, sorry, how many time you vomit today?
+ASK_TOPIC|i|G2|And the water, how much you drink since...
+ASK_TOPIC|s|G3|do you have the sugar disease or high pressure
+CLARIFY|p|G1|Sorry, please say again slowly. I am not understand.
+CLARIFY|p|G2|What you mean by this word? I do not know it.
+CLARIFY|p|G3|You can explain more, please? Which place is the pain exactly?
+CLARIFY|n|G4|I am not sure I hear correct, you can repeat once again?
+CLARIFY|c|G1|You say left, or right, sorry, please say again which side.
+CLARIFY|i|G2|I am not understanding what you want to say about the...
+CLARIFY|s|G3|excuse me can you say it again more slow please
+ANSWER_QUESTION|p|G1|Yes, you will sleep very deep, no pain during operation.
+ANSWER_QUESTION|p|G2|You go home after two day if everything is good.
+ANSWER_QUESTION|p|G3|Your family can wait outside, they see you after.
+ANSWER_QUESTION|n|G4|No, no need to worry, you don't need blood from other person.
+ANSWER_QUESTION|c|G1|The operation take two hour, no, one hour only, maybe little more.
+ANSWER_QUESTION|i|G2|After operation you can eat when stomach is ready, normally...
+ANSWER_QUESTION|s|G3|yes you can drink little water before the surgery
+EXPLAIN_PROCEDURE|p|G1|Surgeon will take out the gallbladder with small holes in your stomach.
+EXPLAIN_PROCEDURE|p|G2|In operation, we remove appendix because it is infected and swollen.
+EXPLAIN_PROCEDURE|p|G3|Anaesthesia means medicine for sleep, you feel nothing and we watch your breathing.
+EXPLAIN_PROCEDURE|n|G4|It is not big cut, only small holes with camera.
+EXPLAIN_PROCEDURE|c|G1|They put camera in the, ah, first they put gas in the stomach, then camera.
+EXPLAIN_PROCEDURE|i|G2|The doctor will clean the infected part and then he...
+EXPLAIN_PROCEDURE|s|G3|we make you sleep with medicine and then doctor do operation
+EXPLAIN_TEST|p|G1|We take blood to see if you have infection or not.
+EXPLAIN_TEST|p|G2|This picture with sound wave show us stones in gallbladder.
+EXPLAIN_TEST|p|G3|The heart paper test show how your heart is working.
+EXPLAIN_TEST|n|G4|The X-ray is not painful, only you must stay still.
+EXPLAIN_TEST|c|G1|This test is for kidney, no sorry, for liver, to see if it work good.
+EXPLAIN_TEST|i|G2|We check your sugar because when sugar is high then...
+EXPLAIN_TEST|s|G3|urine test is for checking if the water is clean or infected
+EXPLAIN_ACTION|p|G1|Now I put the machine on your arm for blood pressure.
+EXPLAIN_ACTION|p|G2|I touch your stomach now, you tell me if pain.
+EXPLAIN_ACTION|p|G3|I will put needle in your hand, little bit pain only.
+EXPLAIN_ACTION|n|G4|I do not hurt you, I only listen to your chest.
+EXPLAIN_ACTION|c|G1|I look your eye, no, I look your throat first with the light.
+EXPLAIN_ACTION|i|G2|Now I am going to turn you on the side so I can...
+EXPLAIN_ACTION|s|G3|i will measure your sugar now with small prick on finger
+CHECK_UNDERSTANDING|p|G1|You understand what I told you? Please tell me again.
+CHECK_UNDERSTANDING|p|G2|Can you say me what will happen tomorrow, in your words?
+CHECK_UNDERSTANDING|p|G3|What you must do with the tablets before the operation?
+CHECK_UNDERSTANDING|n|G4|You don't have any question, but please explain me what you understand.
+CHECK_UNDERSTANDING|c|G1|It is clear for you? No, sorry, tell me what is the plan, please.
+CHECK_UNDERSTANDING|i|G2|Just to be sure you know, you will tell me what you...
+CHECK_UNDERSTANDING|s|G3|please tell me what you understand about the operation
+ACKNOWLEDGE_EMOTION|p|G1|I see you are very afraid, it is normal.
+ACKNOWLEDGE_EMOTION|p|G2|You look sad today. Is hard time for you.
+ACKNOWLEDGE_EMOTION|p|G3|Many person is nervous before operation, I understand.
+ACKNOWLEDGE_EMOTION|n|G4|Is not shame to cry, I know you are scared.
+ACKNOWLEDGE_EMOTION|c|G1|You are happy, no, sorry, I think you are worried, yes?
+ACKNOWLEDGE_EMOTION|i|G2|It must be very difficult for you and your family to...
+ACKNOWLEDGE_EMOTION|s|G3|i know you are feeling frightened now
+REASSURE|p|G1|Don't worry, we take care of you very good.
+REASSURE|p|G2|Doctor is very experienced, he do this operation many time.
+REASSURE|p|G3|I will be near you, you are not alone.
+REASSURE|n|G4|No need to be afraid, we will watch you all the time.
+REASSURE|c|G1|It is dangerous, no, not dangerous, it is very safe operation.
+REASSURE|i|G2|Everything will be okay, we make sure that...
+REASSURE|s|G3|dont be worry the team here is very good
+ACKNOWLEDGE_FACT|p|G1|Ok, thank you, you take insulin two time every day.
+ACKNOWLEDGE_FACT|p|G2|I understand, the pain start yesterday evening.
+ACKNOWLEDGE_FACT|p|G3|Ok, you eat last night at eight o'clock. I write it.
+ACKNOWLEDGE_FACT|n|G4|So you never have operation before, thank you.
+ACKNOWLEDGE_FACT|c|G1|You have three children, sorry, four children. Ok I change.
+ACKNOWLEDGE_FACT|i|G2|Ok so you said your father had also this problem when he...
+ACKNOWLEDGE_FACT|s|G3|thank you i know you are working in the market
+CLOSED_LOOP|p|G1|Ok, I repeat: paracetamol one gram now by drip. I do it.
+CLOSED_LOOP|p|G2|You say potassium is four point eight, ok, I write.
+CLOSED_LOOP|p|G3|Understand, patient go to theatre at ten, I call when we leave.
+CLOSED_LOOP|n|G4|I will not give medicine before you say, ok I wait.
+CLOSED_LOOP|c|G1|Fluid is one hundred, no, one hundred fifty per hour, I repeat one fifty.
+CLOSED_LOOP|i|G2|So you want me to stop the drip and after that I should...
+CLOSED_LOOP|s|G3|ok i repeat you want blood test and x ray for this patient
+ESCALATE_SPEECH|p|G1|Please call senior doctor, I need he come now.
+ESCALATE_SPEECH|p|G2|I am not sure, I want more experience doctor to see her.
+ESCALATE_SPEECH|p|G3|Can somebody call surgeon quick? Patient is not good.
+ESCALATE_SPEECH|n|G4|I cannot decide this, please ask the boss for help.
+ESCALATE_SPEECH|c|G1|Call nurse, no, call the doctor in charge, this one is serious.
+ESCALATE_SPEECH|i|G2|I think we must have the consultant come and see...
+ESCALATE_SPEECH|s|G3|please bring the senior doctor to bed number three
+REPORT_FAULT|p|G1|The machine for blood pressure is not work.
+REPORT_FAULT|p|G2|Oxygen is not coming from the wall, the tube is broken.
+REPORT_FAULT|p|G3|The bed is stuck, wheels not moving.
+REPORT_FAULT|n|G4|The light in room is not turn on, switch not working.
+REPORT_FAULT|c|G1|The drip machine, no, the monitor, it show wrong number.
+REPORT_FAULT|i|G2|I think the suction is broken because it does not...
+REPORT_FAULT|s|G3|the door of theatre will not open the button is broken
+SBAR_ELEMENT|p|G1|Situation: I call about patient in bed six, he is going for gallbladder operation.
+SBAR_ELEMENT|p|G2|Background: he is diabetic and have high blood pressure, nothing else.
+SBAR_ELEMENT|p|G3|Assessment: he is stable, stomach soft, I think it is colic.
+SBAR_ELEMENT|n|G4|Recommendation: no go to theatre, please wait for the blood result.
+SBAR_ELEMENT|c|G1|Background, sorry, first situation: a lady with pain in right side.
+SBAR_ELEMENT|i|G2|My recommendation is that surgeon see her in one hour and then...
+SBAR_ELEMENT|s|G3|situation i am calling about a patient with stomach pain
+VOICE_ORDER|p|G1|Please send blood test, full count and kidney.
+VOICE_ORDER|p|G2|You can call the porter, patient go to theatre at nine.
+VOICE_ORDER|p|G3|Please give drip, normal saline, one litre in four hour.
+VOICE_ORDER|n|G4|Please do not give insulin yet, wait for my word.
+VOICE_ORDER|c|G1|Book X-ray for chest, and also heart paper test, quick please.
+VOICE_ORDER|i|G2|Please ask the pharmacy to send antibiotic and then also...
+VOICE_ORDER|s|G3|please arrange a scan of the stomach for the patient now
+CONFIRM_IDENTITY|p|G1|Please tell me your full name and your birthday.
+CONFIRM_IDENTITY|p|G2|On your bracelet is Hamza Ali, born 3 April 1971, is this you?
+CONFIRM_IDENTITY|p|G3|First I must check who you are. Name and date of birth, please.
+CONFIRM_IDENTITY|n|G4|You are not Mrs Khan, yes? Please say your name for me.
+CONFIRM_IDENTITY|c|G1|Your name and, sorry, the date you were born, please.
+CONFIRM_IDENTITY|i|G2|Can you tell me your name and the day when you...
+CONFIRM_IDENTITY|s|G3|can you say your name and date of birth for me
+STATE_ALLERGY|p|G1|You have allergy to some medicine or food?
+STATE_ALLERGY|p|G2|You say penicillin make rash, I write now on the paper.
+STATE_ALLERGY|p|G3|Before, any bad reaction after antibiotic?
+STATE_ALLERGY|n|G4|You don't have any allergy to medicine, correct?
+STATE_ALLERGY|c|G1|Allergy to penicillin, no, to aspirin, please remember me which one.
+STATE_ALLERGY|i|G2|Do you ever get rash or swelling when you eat...
+STATE_ALLERGY|s|G3|are you allergy to any medicine or latex gloves
+CONSENT_SIGN|p|G1|You agree to do the operation? Please sign here.
+CONSENT_SIGN|p|G2|If you are happy, we can start. Sign the paper.
+CONSENT_SIGN|p|G3|Do I have your permission to give anaesthesia?
+CONSENT_SIGN|n|G4|You don't must say yes, but you want the operation?
+CONSENT_SIGN|c|G1|Sign here, no, first tell me you agree to the surgery.
+CONSENT_SIGN|i|G2|If you want to do the operation, please write your name here to show that...
+CONSENT_SIGN|s|G3|do you agree for the doctor to do operation now
+HANDOVER_CRITICAL_ELEMENT|p|G1|Be careful, she has allergy to penicillin, very bad reaction before.
+HANDOVER_CRITICAL_ELEMENT|p|G2|He did eat sandwich at eleven, he is not empty stomach.
+HANDOVER_CRITICAL_ELEMENT|p|G3|The name on bracelet is not same like in the file, check again.
+HANDOVER_CRITICAL_ELEMENT|n|G4|She is not fasted, she eat toast at seven this morning.
+HANDOVER_CRITICAL_ELEMENT|c|G1|Oxygen was ninety four, no, now eighty eight, he is more sleepy.
+HANDOVER_CRITICAL_ELEMENT|i|G2|You must know he has allergy to latex, last time he...
+HANDOVER_CRITICAL_ELEMENT|s|G3|please know that patient has allergy to penicillin
+NONE|p|G1|Today is very busy, yes.
+NONE|p|G2|Where is my pen? I always lose it.
+NONE|p|G3|Hmm, ok, ok.
+NONE|n|G4|I did not ask about allergy yet, later maybe.
+NONE|c|G1|Today is Monday, no, Tuesday, I forget.
+NONE|i|G2|I think I will go to the canteen and maybe...
+NONE|s|G3|ah yes let me thinking one second

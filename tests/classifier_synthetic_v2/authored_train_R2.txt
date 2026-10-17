@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G2|Tell me a little about the tummy pain, love, where does it hurt most and does it go anywhere else?
+ASK_TOPIC|p|G3|Have you had anything at all to eat or drink since you got up this morning, even a cup of tea?
+ASK_TOPIC|p|G4|What tablets do you take at home, including the ones from the chemist, and do you take any vitamins or herbal things?
+ASK_TOPIC|n|G1|You haven't been sick or had any fever over the last couple of days, have you?
+ASK_TOPIC|c|G2|How long have you had this, a week, oh no, you said two days, how has it changed since?
+ASK_TOPIC|i|G3|And can I ask whether anyone in your family has ever had trouble waking up after...
+ASK_TOPIC|s|G4|did you take your tablets for your heart this morning or leave them at home
+CLARIFY|p|G2|I'm so sorry, I didn't quite catch that, could you say it once more for me, slowly?
+CLARIFY|p|G3|When you say it's been a bit funny lately, what do you mean by funny exactly?
+CLARIFY|p|G1|Do you mean the pain is under your ribs on the right, or is it more in the middle? I want to be sure.
+CLARIFY|n|G4|I haven't understood what you meant by that last part, would you mind explaining it again?
+CLARIFY|c|G2|You said Tuesday, no, sorry, I mean can you tell me again which day it began, I lost track.
+CLARIFY|i|G3|I'm not quite sure what you mean when you say it feels like, like what, sorry?
+CLARIFY|s|G1|sorry i did not hear you very well can you say it again for me
+ANSWER_QUESTION|p|G1|Yes, the anaesthetist will give you medicine so you're fast asleep and won't feel a thing during it.
+ANSWER_QUESTION|p|G2|Most people go home within a day or two, though it depends how you're feeling afterwards.
+ANSWER_QUESTION|p|G3|You can have a sip of water until the nurse says to stop, that's perfectly fine.
+ANSWER_QUESTION|n|G4|No, it doesn't need a big cut, they usually do it with just a few tiny ones.
+ANSWER_QUESTION|c|G1|It'll be about, oh, an hour and a half, actually closer to an hour, give or take.
+ANSWER_QUESTION|i|G2|Well, that all depends on how things look when the surgeon first sees your appendix, but generally...
+ANSWER_QUESTION|s|G3|yes your daughter can wait for you just outside in the family room
+EXPLAIN_PROCEDURE|p|G1|What the surgeon does is take out your gallbladder, which is a small pouch under the liver, using little cuts and a camera.
+EXPLAIN_PROCEDURE|p|G2|The operation removes the swollen appendix, and most of the time it's done through three tiny cuts with a camera.
+EXPLAIN_PROCEDURE|p|G3|You'll be given a general anaesthetic, which means you go to sleep completely and the team looks after your breathing.
+EXPLAIN_PROCEDURE|n|G4|It isn't a major operation where they open you right up, they just make some keyhole cuts instead.
+EXPLAIN_PROCEDURE|c|G1|They'll make one cut here, no wait, first near your tummy button, and then put the camera through.
+EXPLAIN_PROCEDURE|i|G2|So what happens in theatre is the surgeon finds the appendix, clips it off and then...
+EXPLAIN_PROCEDURE|s|G3|you will be asleep for the operation and wake up in the recovery room
+EXPLAIN_TEST|p|G1|The ultrasound is a gentle scan with a bit of gel, it lets us see whether there are any stones in your gallbladder.
+EXPLAIN_TEST|p|G2|We take a blood sample because it tells us whether your body is fighting an infection and how your kidneys are doing.
+EXPLAIN_TEST|p|G4|The heart tracing, the ECG, just checks your heart rhythm before the anaesthetic, it's quick and painless.
+EXPLAIN_TEST|n|G3|The urine test doesn't hurt at all, we simply look for signs of infection or sugar in a sample.
+EXPLAIN_TEST|c|G1|The scan, sorry the blood test, looks at how well your liver is working, that's why we do it.
+EXPLAIN_TEST|i|G2|The reason we want a clotting test is that it shows how well your blood will...
+EXPLAIN_TEST|s|G4|the x ray is to see if there is any thing wrong with your chest
+EXPLAIN_ACTION|p|G1|I'm just going to wrap this cuff around your arm now, it'll squeeze for a few seconds and then let go.
+EXPLAIN_ACTION|p|G2|Now I'm going to gently press on different parts of your tummy and I'd like you to tell me when it's sore.
+EXPLAIN_ACTION|p|G3|I'm going to pop a small plastic tube into a vein on the back of your hand, you'll feel a sharp scratch.
+EXPLAIN_ACTION|n|G4|I won't be doing anything painful, I'm only going to listen to your chest with the stethoscope.
+EXPLAIN_ACTION|c|G1|I'll check your temperature in your ear, oh, actually under your arm, if that's easier for you.
+EXPLAIN_ACTION|i|G2|What I'm going to do now is clip a little monitor onto your finger, so that I can...
+EXPLAIN_ACTION|s|G3|i am just going to take your pulse now so please hold out your wrist
+CHECK_UNDERSTANDING|p|G1|Just so I know I've explained it properly, could you tell me in your own words what's going to happen tomorrow?
+CHECK_UNDERSTANDING|p|G2|Does all of that make sense to you, or would you like me to go through any part of it again?
+CHECK_UNDERSTANDING|p|G3|Can you tell me what you've understood about when you can eat and drink before the operation?
+CHECK_UNDERSTANDING|n|G4|You're not unsure about anything I've said, are you? Tell me what you remember.
+CHECK_UNDERSTANDING|c|G1|Would you say it back to me, actually let me ask differently, what's the plan as you understand it?
+CHECK_UNDERSTANDING|i|G2|I'd like to hear from you what the main risks are that you've taken in, so that...
+CHECK_UNDERSTANDING|s|G3|can you tell me back what i have just explained to you
+ACKNOWLEDGE_EMOTION|p|G1|I can see how worried you are about tomorrow, and that's completely understandable.
+ACKNOWLEDGE_EMOTION|p|G2|It sounds like these last few days have been really frightening for you, haven't they?
+ACKNOWLEDGE_EMOTION|p|G3|It's perfectly normal to feel nervous before an operation, lots of people tell me the same.
+ACKNOWLEDGE_EMOTION|n|G4|You don't need to feel bad about crying, it's okay to be upset right now.
+ACKNOWLEDGE_EMOTION|c|G1|You look quite relaxed, oh no, I think actually you look a bit tearful, am I right?
+ACKNOWLEDGE_EMOTION|i|G2|I can imagine how stressful it must have been waiting all night in pain and...
+ACKNOWLEDGE_EMOTION|s|G3|i can see that you are feeling very anxious today
+REASSURE|p|G1|Please don't worry, we do these operations every single week and the team here is very experienced.
+REASSURE|p|G2|We'll make sure your pain is well controlled, and I'll be right here if you need anything at all.
+REASSURE|p|G3|The anaesthetist will stay with you the whole time and watch you closely until you wake up.
+REASSURE|n|G4|There's nothing for you to be frightened about, you won't be left on your own at any point.
+REASSURE|c|G1|It's quite a serious, no, I mean a very routine operation, and most people do really well.
+REASSURE|i|G2|You're in the safest place you could be, and the whole team is going to make sure that...
+REASSURE|s|G3|we will look after you very well so try not to worry
+ACKNOWLEDGE_FACT|p|G1|Thank you for telling me that, so you take a water tablet each morning and nothing else.
+ACKNOWLEDGE_FACT|p|G2|I've written down that the pain began on Sunday evening and has been getting steadily worse.
+ACKNOWLEDGE_FACT|p|G3|Okay, so your last drink was a glass of water at half past six, I've noted that.
+ACKNOWLEDGE_FACT|n|G4|Right, so you've not had any problems with anaesthetics before, thank you, that's helpful.
+ACKNOWLEDGE_FACT|c|G1|So that's two sugars, no, you said you don't take sugar, I've corrected the notes.
+ACKNOWLEDGE_FACT|i|G2|Thanks, so you had the same sort of pain back in the spring, which settled after...
+ACKNOWLEDGE_FACT|s|G3|ok so you live on your own with your cat thank you for that
+CLOSED_LOOP|p|G1|Okay, just to confirm back to you, one gram of paracetamol intravenously now, and I'll tell you once it's in.
+CLOSED_LOOP|p|G2|Let me read that back, the potassium is five point two and you'd like it repeated within the hour.
+CLOSED_LOOP|p|G3|Right, I've got that, patient to theatre two at ten, porter booked, and I'll let you know when we've left the ward.
+CLOSED_LOOP|n|G4|I won't give the second dose until you've seen her, understood, I'll wait for your say.
+CLOSED_LOOP|c|G1|So that's fluids at a hundred, no, one hundred and twenty five mils an hour, yes I've got it.
+CLOSED_LOOP|i|G2|Just checking I heard correctly, you want me to stop the heparin and then...
+CLOSED_LOOP|s|G3|ok i have that so ondansetron four milligrams now i will do it straight away
+ESCALATE_SPEECH|p|G1|Could you please ask the anaesthetic consultant to come and see Mr Ali as soon as she can?
+ESCALATE_SPEECH|p|G2|I'm a little worried about this lady, would you mind getting the senior doctor to look at her now?
+ESCALATE_SPEECH|p|G3|I think we need someone more experienced to make the decision on this one, can you page them?
+ESCALATE_SPEECH|n|G4|I really shouldn't make this call by myself, can the charge nurse come and advise?
+ESCALATE_SPEECH|c|G1|Can I speak to the registrar, sorry, the consultant, because I think this needs her opinion.
+ESCALATE_SPEECH|i|G2|Would it be possible for one of the seniors to come over and have a look at...
+ESCALATE_SPEECH|s|G3|please can you get the surgeon to come and see this patient right away
+REPORT_FAULT|p|G1|The blood pressure machine in bay three keeps giving an error and won't take a reading.
+REPORT_FAULT|p|G2|There's a leak from the sink tap in the clean utility room, water is going all over the floor.
+REPORT_FAULT|p|G3|Oxygen isn't coming through the wall outlet at bed four, the flowmeter doesn't move at all.
+REPORT_FAULT|n|G4|The call bell isn't ringing at the desk when I press it in side room one.
+REPORT_FAULT|c|G1|The drip stand wheel is stuck, no, actually the whole pump is flashing a fault code.
+REPORT_FAULT|i|G2|I think the theatre light is flickering again and might need someone from estates to...
+REPORT_FAULT|s|G3|the thermometer is not working it show no number at all
+SBAR_ELEMENT|p|G1|Situation, I'm calling about Mr Ali in bed six, he's a fifty two year old booked for a gallbladder operation today.
+SBAR_ELEMENT|p|G2|Background, he's had two previous episodes of colic, is on tablets for diabetes and has otherwise been well.
+SBAR_ELEMENT|p|G3|My assessment is that his observations are stable and his tummy is soft, so I think it's biliary colic.
+SBAR_ELEMENT|n|G4|Recommendation, I don't think he should go to theatre until the blood results have come back.
+SBAR_ELEMENT|c|G1|Background first, sorry, situation first: this is a woman of thirty one admitted with right sided pain.
+SBAR_ELEMENT|i|G2|My recommendation would be that the surgical team review her within the hour and then...
+SBAR_ELEMENT|s|G3|situation i am calling about the patient in bed two who has abdominal pain
+VOICE_ORDER|p|G1|Could we please get a full blood count, some U and Es and a CRP sent off for this gentleman?
+VOICE_ORDER|p|G2|Please would you ring the porters and ask them to take Mrs Santos down to theatre at nine?
+VOICE_ORDER|p|G3|Can you set up a bag of normal saline and run it over four hours for me?
+VOICE_ORDER|n|G4|Please don't give the evening dose of insulin until I've checked his sugar again.
+VOICE_ORDER|c|G1|Could we have a chest X-ray, oh, and an ECG too, as soon as someone is free.
+VOICE_ORDER|i|G2|Can you ask pharmacy to send up the antibiotics and then also...
+VOICE_ORDER|s|G3|please book a cat scan of the stomach for this patient today
+CONFIRM_IDENTITY|p|G1|Before we go any further, would you mind telling me your full name and your date of birth?
+CONFIRM_IDENTITY|p|G2|I'm just checking your wristband against the notes, so can you confirm your name for me, please?
+CONFIRM_IDENTITY|p|G3|The band on your wrist says Hamza Ali, born the third of April nineteen seventy one, is that you?
+CONFIRM_IDENTITY|n|G4|You aren't Mrs Khan, are you, because I have two similar names on the list, so what's yours?
+CONFIRM_IDENTITY|c|G1|Can you tell me your name and address, oh sorry, your name and date of birth, I need those for the check.
+CONFIRM_IDENTITY|i|G2|Could you please confirm for me your full name and when you were...
+CONFIRM_IDENTITY|s|G3|can you tell me your name and your date of birth please
+STATE_ALLERGY|p|G1|Are you allergic to anything at all, any tablets, plasters, latex, foods, or anything like that?
+STATE_ALLERGY|p|G2|So you told me penicillin gives you a rash, I'll make sure that's written on your chart.
+STATE_ALLERGY|p|G3|Have you ever had a bad reaction to an antibiotic or to any medicine you've been given?
+STATE_ALLERGY|n|G4|You don't have any allergies that we need to know about, do you?
+STATE_ALLERGY|c|G1|Is it penicillin you react to, no, I mean is it a sulpha drug, can you remind me what happened?
+STATE_ALLERGY|i|G2|And is there anything that makes you come out in a rash or swell up, like a food or...
+STATE_ALLERGY|s|G3|do you have any allergy to any kind of medicine or food
+CONSENT_SIGN|p|G1|Are you happy for us to go ahead with the operation tomorrow, now that we've talked it all through?
+CONSENT_SIGN|p|G2|If you're comfortable with everything, I'd be grateful if you could sign the consent form just here.
+CONSENT_SIGN|p|G3|Do I have your permission to go ahead and give you the anaesthetic for this procedure?
+CONSENT_SIGN|n|G4|You don't have to agree to anything today, but are you willing to go ahead with the surgery?
+CONSENT_SIGN|c|G1|Would you sign here, no, first tell me whether you actually agree to the operation going ahead.
+CONSENT_SIGN|i|G2|So, if you're happy with the plan, I'll need your signature on this form to show that...
+CONSENT_SIGN|s|G3|do you agree to have this operation today you can sign the paper here
+HANDOVER_CRITICAL_ELEMENT|p|G1|Just to let you know before you take over, she's got a true penicillin allergy, she went into anaphylaxis last time.
+HANDOVER_CRITICAL_ELEMENT|p|G2|He's not fasted, he had a bacon sandwich around half past eleven, so please bear that in mind.
+HANDOVER_CRITICAL_ELEMENT|p|G3|The name on the wristband doesn't match the name on the consent form, so I think we need to recheck who this is.
+HANDOVER_CRITICAL_ELEMENT|n|G4|She hasn't fasted, she ate toast at seven this morning, so we can't start until the anaesthetist knows.
+HANDOVER_CRITICAL_ELEMENT|c|G1|His oxygen levels are ninety four, no, they've dropped to eighty eight in the last ten minutes and he's more drowsy.
+HANDOVER_CRITICAL_ELEMENT|i|G2|You should know she's allergic to latex, the last time she had gloves on she...
+HANDOVER_CRITICAL_ELEMENT|s|G3|please be aware the patient has a pen a sillin allergy
+NONE|p|G1|Goodness, it's been a long shift today, hasn't it.
+NONE|p|G2|I wonder what's for lunch in the canteen.
+NONE|p|G3|Oh, the weather's really turned this week.
+NONE|n|G4|I haven't done the allergy check yet, that's still on my list.
+NONE|c|G1|Let me think, it's Monday, no, Thursday, I always lose track in this job.
+NONE|i|G2|I was just wondering whether the lift is still out of order or if they've...
+NONE|s|G3|mm let me just have a look at this chart for a minute

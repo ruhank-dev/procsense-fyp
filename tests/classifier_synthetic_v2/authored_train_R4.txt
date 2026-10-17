@@ -1,0 +1,140 @@
+ASK_TOPIC|p|G1|Could you describe the character of the pain, whether it is sharp, dull or colicky?
+ASK_TOPIC|p|G2|Have you experienced any nausea, vomiting or change in bowel habit since the onset?
+ASK_TOPIC|p|G4|Are you currently prescribed any anticoagulants, antiplatelets or antihypertensive agents?
+ASK_TOPIC|n|G3|You have not had any previous surgery under general anaesthetic, is that correct?
+ASK_TOPIC|c|G1|Is there a history of diabetes, or rather, of any chronic illness in the family?
+ASK_TOPIC|i|G2|May I ask about your alcohol intake, specifically how many units per...
+ASK_TOPIC|s|G4|has the pain radiated to your back or to your shoulder
+CLARIFY|p|G1|I apologise, could you please repeat that statement, as I did not follow it completely?
+CLARIFY|p|G2|When you refer to feeling faint, do you mean light-headed or that you actually lose consciousness?
+CLARIFY|p|G3|Would you be able to elaborate on what you mean by pressure in the chest?
+CLARIFY|n|G4|I did not fully understand your last answer, could you rephrase it for me?
+CLARIFY|c|G1|By tightness, do you mean, forgive me, could you clarify whether it is pain or breathlessness?
+CLARIFY|i|G2|I am afraid I am not clear what you intend by the term, as in...
+CLARIFY|s|G3|can you explain more clearly what you mean by the burning feeling
+ANSWER_QUESTION|p|G1|Yes, the operation is typically performed under general anaesthesia, so you will be unconscious throughout.
+ANSWER_QUESTION|p|G2|The recovery period is usually between one and two weeks before returning to light activity.
+ANSWER_QUESTION|p|G3|You will be permitted to resume eating once you are fully awake and the nausea has settled.
+ANSWER_QUESTION|n|G4|No, there is no need for you to stay in hospital overnight if all goes well.
+ANSWER_QUESTION|c|G1|The scar will be approximately, no, I should say, about two centimetres each.
+ANSWER_QUESTION|i|G2|The likelihood of complications is low, and in most cases...
+ANSWER_QUESTION|s|G4|your relatives will be informed once you are in the recovery room
+EXPLAIN_PROCEDURE|p|G1|A laparoscopic cholecystectomy involves removing the gallbladder via several small abdominal incisions using a camera.
+EXPLAIN_PROCEDURE|p|G2|The appendicectomy entails excision of the inflamed appendix, which can be performed laparoscopically or through an open incision.
+EXPLAIN_PROCEDURE|p|G3|General anaesthesia involves intravenous induction followed by maintenance with inhaled agents, with the airway secured.
+EXPLAIN_PROCEDURE|n|G4|The procedure does not require a large abdominal incision as it is performed through ports.
+EXPLAIN_PROCEDURE|c|G1|They will insert the trocar at the umbilicus, correction, the first port goes just beneath the umbilicus.
+EXPLAIN_PROCEDURE|i|G2|During the operation the surgeon will first insufflate the abdomen with carbon dioxide and then...
+EXPLAIN_PROCEDURE|s|G3|the anaesthetist will give you medicine that makes you sleep for the surgery
+EXPLAIN_TEST|p|G1|The full blood count provides information regarding infection, anaemia and platelet numbers, which is relevant before surgery.
+EXPLAIN_TEST|p|G2|An abdominal ultrasound uses sound waves to visualise the gallbladder and detect the presence of stones.
+EXPLAIN_TEST|p|G4|A coagulation screen assesses how efficiently your blood clots, which matters for the risk of bleeding.
+EXPLAIN_TEST|n|G3|The electrocardiogram is not invasive and does not involve any electrical shock to you.
+EXPLAIN_TEST|c|G1|The liver function tests, rather, the liver enzymes, indicate whether the bile duct is obstructed.
+EXPLAIN_TEST|i|G2|We request a urea and electrolytes panel because kidney function influences how we...
+EXPLAIN_TEST|s|G4|the glucose test tell us if your blood sugar is too high or too low
+EXPLAIN_ACTION|p|G1|I am going to apply the blood pressure cuff to your upper arm and inflate it momentarily.
+EXPLAIN_ACTION|p|G2|I shall now palpate your abdomen, so please let me know if any area is tender.
+EXPLAIN_ACTION|p|G3|I will now insert a cannula into a vein on your forearm, which will cause a brief sharp sensation.
+EXPLAIN_ACTION|n|G4|I will not be performing anything invasive, merely auscultating your heart and lungs.
+EXPLAIN_ACTION|c|G1|I shall examine the right, I mean the left side first, and then compare it with the other.
+EXPLAIN_ACTION|i|G2|At this point I will be taking a small sample of blood from your arm in order to...
+EXPLAIN_ACTION|s|G3|i will now measure your temperature using this thermometer in your ear
+CHECK_UNDERSTANDING|p|G1|To ensure I have communicated clearly, could you summarise the plan in your own words?
+CHECK_UNDERSTANDING|p|G2|Would you mind telling me what you understand will happen after the operation?
+CHECK_UNDERSTANDING|p|G3|Can you explain back to me the instructions regarding food and drink prior to surgery?
+CHECK_UNDERSTANDING|n|G4|You have no further uncertainties regarding the risks, is that so? Please state them back to me.
+CHECK_UNDERSTANDING|c|G1|Do you follow, or rather, would you tell me which of the risks stood out to you?
+CHECK_UNDERSTANDING|i|G2|I would like to confirm that you understood the part about the medication and whether you can...
+CHECK_UNDERSTANDING|s|G3|please repeat the instructions i just gave you about your tablets
+ACKNOWLEDGE_EMOTION|p|G1|I appreciate that this is a distressing situation for you and your family.
+ACKNOWLEDGE_EMOTION|p|G2|It is entirely understandable that you feel anxious about undergoing surgery.
+ACKNOWLEDGE_EMOTION|p|G3|I recognise that waiting for the results has been very difficult for you.
+ACKNOWLEDGE_EMOTION|n|G4|There is no reason to feel embarrassed about being afraid; many patients feel the same.
+ACKNOWLEDGE_EMOTION|c|G1|You appear calm; actually, on reflection, you appear rather apprehensive. Is that fair?
+ACKNOWLEDGE_EMOTION|i|G2|I can see that the uncertainty has been a source of considerable distress, and...
+ACKNOWLEDGE_EMOTION|s|G3|it is understandable that you are feeling upset right now
+REASSURE|p|G1|Please be assured that the surgical team is highly experienced in performing this operation.
+REASSURE|p|G2|We will ensure your pain is managed effectively throughout your stay.
+REASSURE|p|G3|An anaesthetist will remain with you continuously and monitor you until you wake.
+REASSURE|n|G4|There is no cause for undue alarm; you will be closely observed at all times.
+REASSURE|c|G1|The risk is high, no, I mean the risk is very low and the benefits outweigh it.
+REASSURE|i|G2|You can be confident that everything possible will be done to keep you...
+REASSURE|s|G3|you will be well cared for by the whole team here
+ACKNOWLEDGE_FACT|p|G1|Thank you for confirming that you take metformin twice daily; I shall record that.
+ACKNOWLEDGE_FACT|p|G2|I understand that the pain commenced approximately thirty-six hours ago, which I will document.
+ACKNOWLEDGE_FACT|p|G3|So your last oral intake was black coffee at six this morning, and I have noted that.
+ACKNOWLEDGE_FACT|n|G4|I see you have never smoked, which is useful for the anaesthetist to know.
+ACKNOWLEDGE_FACT|c|G1|So you have two children; sorry, three children; I have amended the record accordingly.
+ACKNOWLEDGE_FACT|i|G2|I note that your previous operation took place in two thousand twelve, and since that time...
+ACKNOWLEDGE_FACT|s|G3|thank you for telling me you have had high blood pressure for years
+CLOSED_LOOP|p|G1|To confirm, you are requesting one gram of paracetamol intravenously, which I am administering now.
+CLOSED_LOOP|p|G2|Reading back: potassium is five point two millimoles per litre, and you would like a repeat sample.
+CLOSED_LOOP|p|G3|Understood. The patient is to be transferred to theatre three at ten o'clock; I will notify you on departure.
+CLOSED_LOOP|n|G4|I will not commence the infusion until you have given the instruction, confirmed.
+CLOSED_LOOP|c|G1|Fluids at one hundred, correction, at one hundred and twenty-five millilitres per hour; read back.
+CLOSED_LOOP|i|G2|So I am to stop the heparin infusion, and then you would like me to...
+CLOSED_LOOP|s|G3|i confirm that you have asked for four milligrams of morphine to be given
+ESCALATE_SPEECH|p|G1|I would be grateful if you could ask the consultant surgeon to review this patient urgently.
+ESCALATE_SPEECH|p|G2|I am concerned and would like a more senior colleague to assess him as soon as possible.
+ESCALATE_SPEECH|p|G3|This decision lies beyond my competence; may I request the registrar's involvement?
+ESCALATE_SPEECH|n|G4|I am not in a position to decide this alone, so I need senior advice.
+ESCALATE_SPEECH|c|G1|Please call the junior, correction, the senior house officer, to attend promptly.
+ESCALATE_SPEECH|i|G2|Might I ask whether the on-call consultant could attend in order to...
+ESCALATE_SPEECH|s|G3|please contact the senior nurse and ask her to review this case
+REPORT_FAULT|p|G1|The infusion pump at bed four is displaying an occlusion alarm despite the line being clear.
+REPORT_FAULT|p|G2|The portable suction unit is failing to generate any negative pressure.
+REPORT_FAULT|p|G3|The pulse oximeter on this ward is not producing a reading on any patient.
+REPORT_FAULT|n|G4|The overhead light in theatre two does not illuminate, and the switch is unresponsive.
+REPORT_FAULT|c|G1|The monitor is faulty, or rather, it is the lead that appears to be damaged.
+REPORT_FAULT|i|G2|It seems that the oxygen supply to bed seven has been interrupted, as the gauge...
+REPORT_FAULT|s|G3|the blood pressure machine is broken and gives an error message
+SBAR_ELEMENT|p|G1|Situation: I am calling regarding a fifty-two-year-old male scheduled for laparoscopic cholecystectomy today.
+SBAR_ELEMENT|p|G2|Background: he has type two diabetes and hypertension, with no previous abdominal surgery.
+SBAR_ELEMENT|p|G3|Assessment: his vital signs are stable and the abdomen is soft, with tenderness in the right upper quadrant.
+SBAR_ELEMENT|n|G4|Recommendation: I do not advise proceeding to theatre before the repeat bloods have been reviewed.
+SBAR_ELEMENT|c|G1|Background, rather, Situation: a thirty-one-year-old woman with right iliac fossa pain.
+SBAR_ELEMENT|i|G2|Recommendation: that the surgical registrar reviews her within the hour, and thereafter...
+SBAR_ELEMENT|s|G3|situation the patient is a female with lower abdominal pain since yesterday
+VOICE_ORDER|p|G1|Could we request a full blood count, urea and electrolytes and C-reactive protein for this patient?
+VOICE_ORDER|p|G2|Please arrange a porter to transfer Mrs Santos to the operating theatre at nine o'clock.
+VOICE_ORDER|p|G3|I would like intravenous normal saline commenced at one litre over four hours, please.
+VOICE_ORDER|n|G4|Please do not administer the evening insulin until I have rechecked the blood glucose.
+VOICE_ORDER|c|G1|Request a chest radiograph, and also an ECG, at the earliest opportunity.
+VOICE_ORDER|i|G2|Would you ask the pharmacy to dispatch the intravenous antibiotics, and furthermore...
+VOICE_ORDER|s|G3|please order an ultrasound of the abdomen for this patient today
+CONFIRM_IDENTITY|p|G1|Before proceeding, could you please state your full name and date of birth for verification?
+CONFIRM_IDENTITY|p|G2|I am verifying your identification band against the records; please confirm your name.
+CONFIRM_IDENTITY|p|G3|Your wristband reads Hamza Ali, date of birth the third of April nineteen seventy-one; is that correct?
+CONFIRM_IDENTITY|n|G4|You are not Mrs Khan, are you? There are two similar names, so please state yours.
+CONFIRM_IDENTITY|c|G1|Please give me your name and address, correction, your name and date of birth.
+CONFIRM_IDENTITY|i|G2|Would you kindly confirm your full name together with the date on which you were...
+CONFIRM_IDENTITY|s|G3|can you confirm your name and your date of birth for the record
+STATE_ALLERGY|p|G1|Do you have any known allergies to medications, latex, adhesives or foods?
+STATE_ALLERGY|p|G2|You have reported a penicillin allergy manifesting as a rash; I shall document that prominently.
+STATE_ALLERGY|p|G3|Have you ever experienced an adverse reaction to an antibiotic or any other drug?
+STATE_ALLERGY|n|G4|You have no known drug allergies, is that accurate?
+STATE_ALLERGY|c|G1|Is the reaction to penicillin, or rather, to sulphonamides? Please clarify the allergy.
+STATE_ALLERGY|i|G2|Do you suffer from any hypersensitivity, such as a rash or swelling after eating...
+STATE_ALLERGY|s|G3|are you allergic to penicillin or any other kind of medication
+CONSENT_SIGN|p|G1|Having discussed the risks and benefits, do you consent to proceeding with the operation?
+CONSENT_SIGN|p|G2|If you agree, please sign the consent form at the bottom of the page.
+CONSENT_SIGN|p|G3|I would like to confirm that you are willing to undergo the anaesthetic for this procedure.
+CONSENT_SIGN|n|G4|You are under no obligation to agree, but are you willing to go ahead with the surgery?
+CONSENT_SIGN|c|G1|Please sign here; no, first confirm verbally that you consent to the operation.
+CONSENT_SIGN|i|G2|If you are satisfied with the explanation, I would request your signature to indicate that...
+CONSENT_SIGN|s|G3|do you give your consent for the surgery to take place today
+HANDOVER_CRITICAL_ELEMENT|p|G1|Please be aware that she has a documented penicillin allergy with a history of anaphylaxis.
+HANDOVER_CRITICAL_ELEMENT|p|G2|The patient is not fasted; he consumed a sandwich at approximately eleven thirty.
+HANDOVER_CRITICAL_ELEMENT|p|G3|The identification band surname does not correspond with the consent form; identity must be re-verified.
+HANDOVER_CRITICAL_ELEMENT|n|G4|She has not been fasting; she ate toast at seven, and the anaesthetist should be informed.
+HANDOVER_CRITICAL_ELEMENT|c|G1|Saturations were ninety-four, correction, they are now eighty-eight and he is increasingly drowsy.
+HANDOVER_CRITICAL_ELEMENT|i|G2|I must highlight that he has a latex allergy, as on the previous admission he...
+HANDOVER_CRITICAL_ELEMENT|s|G3|please note the patient has a known allergy to penicillin
+NONE|p|G1|It has been a rather long day, has it not.
+NONE|p|G2|I wonder what time the library closes tonight.
+NONE|p|G3|Hmm, interesting.
+NONE|n|G4|I have not yet asked about the allergy history, that is still pending.
+NONE|c|G1|It is Tuesday, I mean Wednesday; never mind, it is not important.
+NONE|i|G2|I was merely considering whether the lecture on Friday will be...
+NONE|s|G3|let me just think about that for a second

@@ -1,0 +1,200 @@
+ASK_TOPIC|p|G7|Excuse me, you have some tooth that is moving, or false tooth?
+ASK_TOPIC|p|G7|Please, in your family, somebody had problem with the sleeping medicine before?
+ASK_TOPIC|p|G8|You are pregnant how many weeks now, please?
+ASK_TOPIC|p|G8|This morning you took the sugar medicine, yes or no?
+ASK_TOPIC|n|G7|You don't have problem to breathe when you walk, no?
+ASK_TOPIC|c|G8|The baby is moving, no, sorry, since when the baby is not moving?
+ASK_TOPIC|i|G7|And the heart, you feel pain in the heart when you...
+ASK_TOPIC|a|G8|Can you tell me again which medicine you use for the thyroid?
+ASK_TOPIC|s|G7|you have cough or fever in these days
+ASK_TOPIC|s|G8|did you lose blood during the pregnancy
+CLARIFY|p|G7|Sorry, I am not hearing well, please you repeat?
+CLARIFY|p|G7|What is it, burning inside the throat? Please explain more.
+CLARIFY|p|G8|Which hand is the pain, this one or this one?
+CLARIFY|p|G8|I don't know this word, what means?
+CLARIFY|n|G7|I did not understand, please say with other words.
+CLARIFY|c|G8|You say Monday, sorry, Sunday, please again which day it started.
+CLARIFY|i|G7|Excuse me, what you mean when you say it is like a...
+CLARIFY|a|G8|What you mean when you say you feel not good in yourself?
+CLARIFY|s|G7|please say again slowly i do not understand
+CLARIFY|s|G8|can you tell me what this word means
+ANSWER_QUESTION|p|G7|Yes, you will sleep totally, you don't feel nothing.
+ANSWER_QUESTION|p|G7|The throat can be sore for one or two day, is normal.
+ANSWER_QUESTION|p|G8|Your husband can enter with you in the room for the baby.
+ANSWER_QUESTION|p|G8|The blood go inside in two hours, more or less.
+ANSWER_QUESTION|n|G7|No, you cannot keep the teeth in, we put in safe place.
+ANSWER_QUESTION|c|G8|The result come tomorrow morning, sorry, tomorrow in the afternoon.
+ANSWER_QUESTION|i|G7|After the operation you will wake up slowly, and after that...
+ANSWER_QUESTION|a|G8|The pain in the belly after the operation is normal and finish in some days.
+ANSWER_QUESTION|s|G7|yes they will give you medicine for the pain when you wake up
+ANSWER_QUESTION|s|G8|your family is going to wait in the waiting room
+EXPLAIN_PROCEDURE|p|G7|The doctor make small cut in your neck and take out the sick part of the thyroid.
+EXPLAIN_PROCEDURE|p|G7|First the anaesthetist give medicine and you sleep, then he put tube in the throat for air.
+EXPLAIN_PROCEDURE|p|G8|In the caesarean the doctor open the belly low and take the baby out.
+EXPLAIN_PROCEDURE|p|G8|The transfusion is a bag of blood who goes in your arm slowly with a drip.
+EXPLAIN_PROCEDURE|n|G7|Is not a big operation, only one small cut, not big.
+EXPLAIN_PROCEDURE|c|G8|The injection for the back is in the middle, no, little bit down, and the legs are heavy.
+EXPLAIN_PROCEDURE|i|G7|They put you to sleep and the surgeon cut the neck and then he...
+EXPLAIN_PROCEDURE|a|G8|The injection in the back make you numb below, and is safe, don't be worry.
+EXPLAIN_PROCEDURE|s|G7|they give you a tube in the mouth to help you breathe while you sleep
+EXPLAIN_PROCEDURE|s|G8|the doctor will take the baby by cutting the womb
+EXPLAIN_TEST|p|G7|This small machine on finger show if you have enough oxygen in the blood.
+EXPLAIN_TEST|p|G7|We take blood for check the thyroid, if is working too fast or slow.
+EXPLAIN_TEST|p|G8|The sugar test is a small pinch on finger for know your sugar today.
+EXPLAIN_TEST|p|G8|The ultrasound is for see the baby, how he is lying, and the placenta.
+EXPLAIN_TEST|n|G7|The heart test is not painful, no electricity inside, only stickers.
+EXPLAIN_TEST|c|G8|The cross-match is for know your blood group, sorry, for check your blood is compatible.
+EXPLAIN_TEST|i|G7|We need to do this scan because the doctor want to see if the...
+EXPLAIN_TEST|a|G8|We make a blood test for see anaemia, and you don't need to worry for it.
+EXPLAIN_TEST|s|G7|this blood test is for check if the thyroid is too much active
+EXPLAIN_TEST|s|G8|the monitor show the heart of the baby
+EXPLAIN_ACTION|p|G7|Now I put this on your arm for the pressure, it will be tight.
+EXPLAIN_ACTION|p|G7|I will move your head little bit back for see the neck.
+EXPLAIN_ACTION|p|G8|I put this belt around your belly now, for listen the baby.
+EXPLAIN_ACTION|p|G8|Now a small needle in your hand, a little bit of pain.
+EXPLAIN_ACTION|n|G7|I don't touch the painful place, only I listen your chest.
+EXPLAIN_ACTION|c|G8|Give me your right hand, no, the left, for take the blood.
+EXPLAIN_ACTION|i|G7|Now I am going to lift you in the bed so that you can...
+EXPLAIN_ACTION|a|G8|I put the stickers on your chest now, this is for heart tracing.
+EXPLAIN_ACTION|s|G7|i will give you the oxygen with this mask now
+EXPLAIN_ACTION|s|G8|i am going to see the baby heartbeat with this machine
+CHECK_UNDERSTANDING|p|G7|You remember what we said about the tablets tonight? Please say to me.
+CHECK_UNDERSTANDING|p|G7|Can you explain me with your words what happen when you wake?
+CHECK_UNDERSTANDING|p|G8|Please you say back, what you do with the insulin tomorrow?
+CHECK_UNDERSTANDING|p|G8|You know what to do if the bleeding start at home? Tell me.
+CHECK_UNDERSTANDING|n|G7|You are not confused about not eating, no? Please explain me.
+CHECK_UNDERSTANDING|c|G8|Is clear? No, sorry, you tell me first what is the plan for you.
+CHECK_UNDERSTANDING|i|G7|I want to know that you understand, so if the pain come you...
+CHECK_UNDERSTANDING|a|G8|You understand everything, or I explain again about the transfusion?
+CHECK_UNDERSTANDING|s|G7|can you repeat to me what the doctor say to you
+CHECK_UNDERSTANDING|s|G8|please explain me what you understand about the injection
+ACKNOWLEDGE_EMOTION|p|G7|I see you are very afraid to sleep. Is normal.
+ACKNOWLEDGE_EMOTION|p|G7|You are shaking, I know you are nervous, many people is like this.
+ACKNOWLEDGE_EMOTION|p|G8|I understand you are worry too much for the baby.
+ACKNOWLEDGE_EMOTION|p|G8|You look tired and sad, is a very long night for you.
+ACKNOWLEDGE_EMOTION|n|G7|Is not a shame to cry, it is normal to be sad now.
+ACKNOWLEDGE_EMOTION|c|G8|You look happy, no, I think you are scared, yes?
+ACKNOWLEDGE_EMOTION|i|G7|I know it is very hard for you, waiting many hours without news and...
+ACKNOWLEDGE_EMOTION|a|G8|I see you are scared, and we take care of you here.
+ACKNOWLEDGE_EMOTION|s|G7|i know you are feeling very upset
+ACKNOWLEDGE_EMOTION|s|G8|you must be very tired and sad now
+REASSURE|p|G7|Don't worry, you are with a very good team.
+REASSURE|p|G7|I stay with you, I hold your hand until you sleep.
+REASSURE|p|G8|We look the baby all the time, you can relax a little.
+REASSURE|p|G8|We give you medicine for the pain, you will not suffer.
+REASSURE|n|G7|No need to be afraid, we take care of you.
+REASSURE|c|G8|Is dangerous, no, sorry, is very safe, we make this every day.
+REASSURE|i|G7|You are in good hands and I promise nothing will...
+REASSURE|a|G8|We will take care of you, I know is scary.
+REASSURE|s|G7|everything is fine do not be afraid
+REASSURE|s|G8|dont worry the doctors here are very good
+ACKNOWLEDGE_FACT|p|G7|Ok, you have a crown on the top, left. I write.
+ACKNOWLEDGE_FACT|p|G7|Ok thank you, you snore and stop breathing in the night. I write this.
+ACKNOWLEDGE_FACT|p|G8|Thank you, the baby is expected on the ninth, I put in the paper.
+ACKNOWLEDGE_FACT|p|G8|I understand, your sugar is high in the morning, I tell the doctor.
+ACKNOWLEDGE_FACT|n|G7|So you don't have problem in the stomach, thank you.
+ACKNOWLEDGE_FACT|c|G8|Thirty units, no, you say twenty units in the night, I correct.
+ACKNOWLEDGE_FACT|i|G7|Ok, you feel bad when you wake after the hernia, and then...
+ACKNOWLEDGE_FACT|a|G8|Ah, you take the tablet for thyroid every day, thank you.
+ACKNOWLEDGE_FACT|s|G7|thank you i see that you had your tonsils out
+ACKNOWLEDGE_FACT|s|G8|ok so this is your third baby thank you
+CLOSED_LOOP|p|G7|Ok doctor, I repeat: propofol one hundred fifty, and I tell when it is inside.
+CLOSED_LOOP|p|G7|I repeat, oxygen sixty percent and volume four hundred fifty.
+CLOSED_LOOP|p|G8|Understood, two bags of blood ready, I start the first one now.
+CLOSED_LOOP|p|G8|You say sugar is fourteen, so insulin by scale, and I check again in one hour.
+CLOSED_LOOP|n|G7|I don't take out the tube before you say, ok, I wait.
+CLOSED_LOOP|c|G8|Five units, no, you say ten units slowly, ten, yes I repeat ten.
+CLOSED_LOOP|i|G7|Ok, you want me to reduce the gas and then I...
+CLOSED_LOOP|a|G8|Ok doctor, so I start the second bag now, correct?
+CLOSED_LOOP|s|G7|ok i repeat you want atropine now
+CLOSED_LOOP|s|G8|i confirm that you want the sugar again in thirty minutes
+ESCALATE_SPEECH|p|G7|Please call the chief doctor, I think the airway is difficult.
+ESCALATE_SPEECH|p|G7|I need the doctor of the throat to come here fast.
+ESCALATE_SPEECH|p|G8|Can you call the doctor for the babies to come in room two?
+ESCALATE_SPEECH|p|G8|I want the diabetes specialist to see her, I am not sure about numbers.
+ESCALATE_SPEECH|n|G7|I cannot decide this myself, we need the senior person.
+ESCALATE_SPEECH|c|G8|Call the midwife, no, call the doctor, she is losing much blood.
+ESCALATE_SPEECH|i|G7|Please somebody with more experience come and see...
+ESCALATE_SPEECH|a|G8|Can somebody bring the consultant, I want her to decide if we go ahead.
+ESCALATE_SPEECH|s|G7|please call the head doctor to come to the theatre
+ESCALATE_SPEECH|s|G8|call a senior doctor to this patient immediately
+REPORT_FAULT|p|G7|The handle of the laryngoscope is not working, no light.
+REPORT_FAULT|p|G7|The ventilator is making alarm, air is going out from the tube.
+REPORT_FAULT|p|G8|The machine for the baby heart is not printing the paper.
+REPORT_FAULT|p|G8|The warmer of the blood is not hot, the alarm is on.
+REPORT_FAULT|n|G7|The wheels of the bed don't lock, it can move.
+REPORT_FAULT|c|G8|The fridge is ok, no, the blood fridge is giving alarm for temperature.
+REPORT_FAULT|i|G7|I think the camera is not clean because I can see only...
+REPORT_FAULT|a|G8|The stand for the drip is broken, someone can bring another one?
+REPORT_FAULT|s|G7|the light of the airway trolley is broken
+REPORT_FAULT|s|G8|the sugar machine gives error every time
+SBAR_ELEMENT|p|G7|Situation: I call about Mrs Nowak, fifty eight years, she is for operation of thyroid this morning.
+SBAR_ELEMENT|p|G7|Background: she have thyroid too active, she take carbimazole, and she had operation of the neck before.
+SBAR_ELEMENT|p|G8|Assessment: contractions every three minutes and the heart of baby is regular.
+SBAR_ELEMENT|p|G8|Recommendation: I think we need prepare theatre for the caesarean in one hour.
+SBAR_ELEMENT|n|G7|Recommendation: we don't start before the senior anaesthetist arrives.
+SBAR_ELEMENT|c|G8|Assessment, no, sorry, Background first: she has diabetes of pregnancy, with diet only.
+SBAR_ELEMENT|i|G7|My assessment is that the airway can be difficult so I suggest that...
+SBAR_ELEMENT|a|G8|Recommendation: I want the obstetric doctor to review her.
+SBAR_ELEMENT|s|G7|situation i am calling for a woman for operation in the neck
+SBAR_ELEMENT|s|G8|background she is diabetic and she had caesarean before
+VOICE_ORDER|p|G7|Please bring me the fibre scope and one tube more small.
+VOICE_ORDER|p|G7|Can you request chest X-ray before she go to theatre?
+VOICE_ORDER|p|G8|Two bags of blood to bay four, please, and make them warm.
+VOICE_ORDER|p|G8|Call the porter please, the mother go to theatre now.
+VOICE_ORDER|n|G7|Please don't give the pre-medicine now, wait.
+VOICE_ORDER|c|G8|Send group and save, no, send the cross-match, quick please.
+VOICE_ORDER|i|G7|Please call the laboratory and tell them to hurry the...
+VOICE_ORDER|a|G8|Call the porter please and tell the anaesthetist when she is ready.
+VOICE_ORDER|s|G7|please bring the airway trolley to the bed three
+VOICE_ORDER|s|G8|request a urine test and a sugar test now
+CONFIRM_IDENTITY|p|G7|Please, tell me your complete name and your date of birth.
+CONFIRM_IDENTITY|p|G7|Your bracelet says Halina Nowak, second June nineteen sixty six, is correct?
+CONFIRM_IDENTITY|p|G8|Please say me your name and the date you were born.
+CONFIRM_IDENTITY|p|G8|I check your bracelet, Layla Ibrahim, with the paper, it is you?
+CONFIRM_IDENTITY|n|G7|You are not Patel from bed nine, no? Please say your name.
+CONFIRM_IDENTITY|c|G8|Your name and, sorry, your date of birth first, for the check.
+CONFIRM_IDENTITY|i|G7|Please tell me your complete name and the day when you were...
+CONFIRM_IDENTITY|a|G8|You are Mrs Bianchi? And you have allergies?
+CONFIRM_IDENTITY|s|G7|please say your name and your date of birth
+CONFIRM_IDENTITY|s|G8|can you tell me your name and when you were born
+STATE_ALLERGY|p|G7|You are allergic to something, medicine, latex, food?
+STATE_ALLERGY|p|G7|With egg or soya you have reaction? It is important for the sleeping medicine.
+STATE_ALLERGY|p|G8|You tell me penicillin make your lips swell, I write in the red band.
+STATE_ALLERGY|p|G8|Before, you had bad reaction with blood or with medicine?
+STATE_ALLERGY|n|G7|You don't have any allergy, nothing, correct?
+STATE_ALLERGY|c|G8|Sulpha is your allergy, no, sorry, is iodine, which one?
+STATE_ALLERGY|i|G7|Do you have skin rash when you eat...
+STATE_ALLERGY|a|G8|You have allergies? And you are ready to go inside?
+STATE_ALLERGY|s|G7|are you allergic to some medicine or to latex
+STATE_ALLERGY|s|G8|did you have a bad reaction to an antibiotic
+CONSENT_SIGN|p|G7|You agree to anaesthetic and operation? Please sign here.
+CONSENT_SIGN|p|G7|You say yes to the surgery, is your decision, correct?
+CONSENT_SIGN|p|G8|You agree to the caesarean if the doctor need it? Sign here, please.
+CONSENT_SIGN|p|G8|And you agree for the blood transfusion?
+CONSENT_SIGN|n|G7|Nobody is forcing you. Do you want to continue with the operation?
+CONSENT_SIGN|c|G8|Sign here, no, first you tell me if you accept.
+CONSENT_SIGN|i|G7|If you agree with all this, please put your name in the line where...
+CONSENT_SIGN|a|G8|You accept to continue with the operation, and you have questions?
+CONSENT_SIGN|s|G7|you agree for the operation please sign the form
+CONSENT_SIGN|s|G8|do you accept the blood transfusion
+HANDOVER_CRITICAL_ELEMENT|p|G7|Be careful, she is allergic to latex, her lips swell last time.
+HANDOVER_CRITICAL_ELEMENT|p|G7|He is not fasting, he eat a bread at nine in the morning.
+HANDOVER_CRITICAL_ELEMENT|p|G8|The bracelet say Ibrahim but the paper say Ibrahimi, we must check.
+HANDOVER_CRITICAL_ELEMENT|p|G8|Her sugar is two point one and she is confused.
+HANDOVER_CRITICAL_ELEMENT|n|G7|She is not fasted, she eat porridge at eight, tell the anaesthetist.
+HANDOVER_CRITICAL_ELEMENT|c|G8|Pressure was one hundred ten, no, now seventy and she is pale.
+HANDOVER_CRITICAL_ELEMENT|i|G7|You must know she is allergic to penicillin, her face swell when she...
+HANDOVER_CRITICAL_ELEMENT|a|G8|Situation: Mrs Bianchi for caesarean, and she is not fasting.
+HANDOVER_CRITICAL_ELEMENT|s|G7|please know that the patient has allergy to latex
+HANDOVER_CRITICAL_ELEMENT|s|G8|the patient eat lunch so she is not fasting
+NONE|p|G7|Ah, is already late, no?
+NONE|p|G7|My feet is hurting me today, really.
+NONE|p|G8|You see the football yesterday?
+NONE|p|G8|Today is cold, no?
+NONE|n|G7|I did not ask about the allergy yet, is still on my list.
+NONE|c|G8|Today is seventh, no, eighth, I always forget.
+NONE|i|G7|I think maybe I will make some tea and after...
+NONE|a|G8|Hmm, I think maybe she has some allergy.
+NONE|s|G7|ah yes yes ok good
+NONE|s|G8|wait i must find my glasses
