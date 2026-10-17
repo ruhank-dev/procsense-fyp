@@ -94,3 +94,20 @@ The existing tablet, patient and monitoring targets retain their workflow.
 After placement, rebake only Bay and Corridor, inspect front/reverse views and
 verify arrivals, teleport pads, dropped items and sensor access. Device profiling
 requires an attached Quest; mesh counts and Editor tests do not establish FPS.
+
+## Supported sensor table
+
+`build_sensor_table.py` uses the same pinned Blender/exporter to generate the
+compact rounded worktop, stainless frame, castors and lower shelf. Sources,
+FBX and manifold/UV/budget validation are under ignored `Logs/SensorTableBuild`.
+Initial installation uses `ProcSense.EditorTools.SensorEquipmentTable.Install()`
+through the connected Editor; it rejects dirty scenes, Play, baking and an
+existing table prefab. It retains the old Sensor tray object with renderer and
+collider disabled, and creates the reusable bedside prefab with simple compound
+colliders. No runtime interaction component is added to the fixed table.
+
+The worktop remains exactly 0.8425m high beneath the unchanged probe/cuff return
+anchors. Its full visible surface and low rims have colliders; the open space
+between the legs remains open. Reimport later art revisions with the existing
+FBX GUID, rebake only PatientBay and review both sensor attach/remove/return
+flows plus dropped-item contact. Do not rerun the initial sensor/scene builder.

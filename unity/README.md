@@ -214,3 +214,8 @@ basin collision shape. Review dropped-item contact, walking clearance, bedside
 cuff/probe access and room navigation in Play. The new 256px fabric normal is
 mipmapped with an Android ASTC override. Actual Quest appearance, comfort and
 frame timing remain device-review work.
+
+The bedside sensor surface now has a compact wheeled equipment table with
+stainless legs and a lower shelf. The original floating pad is hidden and its
+collider disabled; the table supplies the full worktop/rim and frame collisions.
+Cuff/probe return and patient attachment points keep their existing positions.
