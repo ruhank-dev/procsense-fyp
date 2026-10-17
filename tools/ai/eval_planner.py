@@ -23,6 +23,8 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="qwen3.5:9b-q4_K_M")
     ap.add_argument("--requests", type=int, default=20)
     ap.add_argument("--timeout", type=float, default=300.0)
+    ap.add_argument("--spine-version", type=int, default=None, help="prompt version of compose_plan.spine (default: the latest)")
+    ap.add_argument("--tag", default="", help="suffix for the result file")
     a = ap.parse_args()
     from composer import blocks as B
     from generation import compose_plan, history as H, objectives as ob, package, pipeline, retrieve
@@ -34,8 +36,8 @@ if __name__ == "__main__":
     tables = ob.Tables.load()
     index = retrieve.build_index()
     behaviours = sorted(b for d in tables.dimensions for b in d.weak_behaviours)
-    arms = {"solver": pipeline.Context(index, cases, tables), "planner": pipeline.Context(index, cases, tables, planner=compose_plan.Planner(client, model=a.model, timeout=a.timeout))}
-    out = {"model": a.model, "digest": client.models().get(a.model, ""), "requests": a.requests, "arms": {}}
+    arms = {"solver": pipeline.Context(index, cases, tables), "planner": pipeline.Context(index, cases, tables, planner=compose_plan.Planner(client, model=a.model, timeout=a.timeout, spine_version=a.spine_version))}
+    out = {"model": a.model, "spine_prompt_version": a.spine_version, "shortlist": compose_plan.SHORTLIST, "digest": client.models().get(a.model, ""), "requests": a.requests, "arms": {}}
     reasons = []
     for arm, ctx in arms.items():
         served = passed = model_plans = 0
@@ -69,7 +71,7 @@ if __name__ == "__main__":
                             "distinct_block_sets": len(blocks), "distinct_stories": len(stories), "seconds_p50": round(statistics.median(secs), 1), "seconds_max": round(max(secs), 1),
                             "model_plans_used": model_plans, "rounds_mean": round(statistics.mean(rounds), 2) if rounds else None}
     out["sample_reasons"] = reasons[:10]
-    path = ROOT / "artifacts" / "ai-bench" / "planner-eval.json"
+    path = ROOT / "artifacts" / "ai-bench" / f"planner-eval{a.tag}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(out, indent=2))

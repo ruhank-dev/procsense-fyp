@@ -33,6 +33,7 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--turns", type=int, default=12)
     ap.add_argument("--ollama", default=None, help="base URL of the Ollama host (for example a second server started with OLLAMA_NUM_PARALLEL=3 on another port)")
+    ap.add_argument("--staff-pick", action="store_true", help="the nurse and the anaesthetist CHOOSE an approved line (Dialogue.pick: a one-word answer) instead of writing a reply")
     ap.add_argument("--parallel", action="store_true", help="send the three characters' requests at the same moment (needs OLLAMA_NUM_PARALLEL=3 on the host to overlap; otherwise the host queues them)")
     a = ap.parse_args()
     from composer import blocks as B
@@ -60,7 +61,7 @@ if __name__ == "__main__":
 
         def staff(role):
             ctx = {"role": role, "case": c["id"], "allowed_intents": intents[role], "facts": [], "last_turns": [{"who": "trainee", "text": say}], "results": []}
-            return d.reply(ctx, say, role=role)
+            return d.pick(ctx, say, role, {}) if a.staff_pick else d.reply(ctx, say, role=role)
         jobs = [patient] + [(lambda r=role: staff(r)) for role in STAFF]
         t0 = time.monotonic()
         t_first = None
@@ -82,12 +83,12 @@ if __name__ == "__main__":
                 fallbacks += r.source == "fallback"
         first.append(t_first)
         total.append(time.monotonic() - t0)
-    out = {"model": a.model, "mode": "parallel requests" if a.parallel else "one after another", "host": a.ollama or "default", "turns": a.turns, "characters": ["patient", *STAFF], "first_reply_s": {"p50": round(statistics.median(first), 2), "p95": round(pct(first, 0.95), 2)},
+    out = {"model": a.model, "mode": "parallel requests" if a.parallel else "one after another", "host": a.ollama or "default", "staff": "choose an approved line" if a.staff_pick else "write a reply", "turns": a.turns, "characters": ["patient", *STAFF], "first_reply_s": {"p50": round(statistics.median(first), 2), "p95": round(pct(first, 0.95), 2)},
            "all_three_s": {"p50": round(statistics.median(total), 2), "p95": round(pct(total, 0.95), 2)}, "all_three_within_budget": round(sum(t <= BUDGET_S for t in total) / len(total), 3), "budget_s": BUDGET_S,
            "fallback_share": round(fallbacks / replies, 3), "meets_target": pct(total, 0.95) <= BUDGET_S,
            "reading": "one model answers one request at a time, so three characters answer in turn; compare all_three_s with the budget before deciding how much the ReactionQueue must hide",
            "limit": "staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running"}
-    path = ROOT / "artifacts" / "ai-bench" / ("multiagent-eval-parallel.json" if a.parallel else "multiagent-eval.json")
+    path = ROOT / "artifacts" / "ai-bench" / ("multiagent-eval-parallel.json" if a.parallel else "multiagent-eval-pick.json" if a.staff_pick else "multiagent-eval.json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(out, indent=1))

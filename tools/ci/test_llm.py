@@ -538,6 +538,19 @@ class DialogueTests(unittest.TestCase):
         self.assertIn("Do not give orders, doses", sent)
 
 
+    def test_a_picked_staff_reply_speaks_only_an_approved_line_and_an_invented_intent_falls_back(self):
+        ctx = {"role": "nurse", "case": "X", "allowed_intents": ["ask_clarification", "confirm_order"], "facts": [], "last_turns": [{"who": "trainee", "text": "Give the antibiotic."}], "results": []}
+        lines = {"ask_clarification": "Can you confirm that order?", "confirm_order": "Understood, giving it now."}
+        ok = self.host([{"intent": "confirm_order"}])
+        r = self.D.Dialogue(ok).pick(ctx, "Give the antibiotic.", "nurse", lines)
+        self.assertEqual((r.source, r.intent, r.text), ("model", "confirm_order", "Understood, giving it now."))
+        self.assertNotIn("text", json.dumps(ok.calls[0].get("format", {})))                    # the schema has no free-text field: the model cannot write anything that is spoken
+        bad = self.host([{"intent": "prescribe_dose"}] * 2)
+        r = self.D.Dialogue(bad).pick(ctx, "Give the antibiotic.", "nurse", lines)
+        self.assertEqual((r.source, r.intent, r.text), ("fallback", "ask_clarification", "Can you confirm that order?"))
+        none = self.D.Dialogue(None).pick(ctx, "Give the antibiotic.", "nurse", lines)
+        self.assertEqual((none.source, none.reasons), ("fallback", ["NO_MODEL"]))
+
 class DebriefTests(unittest.TestCase):
     REPORT = {"end_state": "SAFE_BUT_DELAYED", "result": "SUCCESS_WITH_DELAY", "items": [
         {"id": "credit.decision_correct", "status": "credit"}, {"id": "major.postponed_unnecessarily", "status": "penalty"}, {"id": "credit.capacity_checked", "status": "credit"},

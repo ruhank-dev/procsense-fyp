@@ -37,6 +37,23 @@
       "gateway": false
     },
     {
+      "id": "compose_plan.spine",
+      "version": 2,
+      "role": "batch",
+      "file": "compose_plan/spine_v2.txt",
+      "sha256": "050d30939c9d83d707b3bda32473fe87061628a1420c1c038ad17ec3737e8c22",
+      "schema": null,
+      "variables": [
+        "objectives",
+        "difficulty",
+        "avoid",
+        "candidates"
+      ],
+      "num_predict": 200,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "compose_plan.blocks",
       "version": 1,
       "role": "batch",
@@ -161,6 +178,23 @@
         "question"
       ],
       "num_predict": 160,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "dialogue.staff_pick",
+      "version": 1,
+      "role": "live",
+      "file": "dialogue/staff_pick_v1.txt",
+      "sha256": "4239a4891ecfb2b719ca0a495851ecbe09e4625b88bfd248a88fdce18df6ae8d",
+      "schema": null,
+      "variables": [
+        "role",
+        "intents",
+        "turns",
+        "question"
+      ],
+      "num_predict": 40,
       "think": false,
       "gateway": false
     },

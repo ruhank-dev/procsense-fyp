@@ -20,7 +20,7 @@ try:
 except ImportError:
     from server.llm import gateway
 
-SHORTLIST = 8
+SHORTLIST = 5                                  # the same pool the deterministic skeleton draws from (skeleton.TOP_CHOICES): the model may not reach below it
 ROUNDS = 3
 
 
@@ -66,8 +66,8 @@ def blocks_schema(options: dict[str, list[str]], counts: dict[str, tuple[int, in
 
 
 class Planner:
-    def __init__(self, client, model: str | None = None, timeout: float | None = None, rounds: int = ROUNDS):
-        self.client, self.model, self.timeout, self.rounds = client, model, timeout, rounds
+    def __init__(self, client, model: str | None = None, timeout: float | None = None, rounds: int = ROUNDS, spine_version: int | None = None):
+        self.client, self.model, self.timeout, self.rounds, self.spine_version = client, model, timeout, rounds, spine_version
 
     def propose(self, objectives: dict, ranked: list, template: dict, library: list[dict], names: set[str], mrns: set[str], case_id: str, solve, difficulty: float = 0.0,
                 avoid_blocks: list[str] | None = None) -> Plan | None:
@@ -82,7 +82,7 @@ class Planner:
             (" ; dimensions: " + ", ".join(objectives["dimensions"]) if objectives["dimensions"] else "")
         r1 = gateway.run(self.client, "compose_plan.spine", {"objectives": objective_text, "difficulty": str(round(difficulty)), "avoid": ", ".join(objectives["exclusions"]["spines"]) or "none",
                                                               "candidates": "\n".join(describe_case(c) for c in short)}, schema=spine_schema(ids), model=self.model, timeout=self.timeout,
-                         retries=1, task="compose_plan_spine")
+                         retries=1, task="compose_plan_spine", version=self.spine_version)
         audits.append(r1.audit)
         if not r1.ok:
             return None

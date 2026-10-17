@@ -90,6 +90,22 @@ class Dialogue:
             return out
         return self._fallback(role, ctx, shown, asked_fact, authored, fallback_lines, [d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"], r.audit)
 
+    def pick(self, ctx: dict, question: str, role: str, fallback_lines: dict[str, str]) -> Reply:
+        """A staff reply that is CHOSEN, not written: the model names which of the allowed intents fits (a one-word answer, so it is fast) and the words are the approved line of that intent
+        (`fallback_lines`, the pre-rendered voice lines), so nothing the model writes is ever spoken. Measured (tools/ai/eval_multiagent.py --staff-pick) as the way three characters can answer within
+        the budget on one model. A model that is down or answers badly gives the first allowed intent's line, as `reply` does."""
+        intents = ctx["allowed_intents"]
+        turns = "\n".join(f"{t.get('who', '?')}: {t.get('text', '')}" for t in ctx.get("last_turns", [])[-4:]) or "(none)"
+        if self.client is None:
+            return self._fallback(role, ctx, [], None, {}, fallback_lines, ["NO_MODEL"])
+        r = gateway.run(self.client, "dialogue.staff_pick", {"role": role, "intents": ", ".join(intents), "turns": turns, "question": question},
+                        schema={"type": "object", "additionalProperties": False, "required": ["intent"], "properties": {"intent": {"type": "string", "enum": intents}}}, model=self.model,
+                        timeout=self.timeout, retries=1, task="dialogue_pick_" + role)
+        if r.ok:
+            intent = r.value["intent"]
+            return Reply(fallback_lines.get(intent, CLARIFY), intent, [], "model", [], r.audit)
+        return self._fallback(role, ctx, [], None, {}, fallback_lines, [d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"], r.audit)
+
     def _fallback(self, role, ctx, shown, asked_fact, authored, fallback_lines, reasons, audit=None) -> Reply:
         if role == "patient":
             if asked_fact and asked_fact in authored and any(f["id"] == asked_fact for f in shown):
