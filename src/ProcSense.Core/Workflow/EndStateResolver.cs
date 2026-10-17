@@ -138,7 +138,7 @@ namespace ProcSense.Core.Workflow
 
         private void SurfaceAt(string moment, ActionOutcome o)
         {
-            string caseId = _fixed?.Id ?? _s.Case.Id;
+            string caseId = _fixed?.TableKey ?? _s.Case.Id;
             foreach (var e in Tables.SurfaceLater.Where(x => x.Moment == moment && x.Case == caseId))
             {
                 if (_surfaced.Contains(e.Id)) continue;

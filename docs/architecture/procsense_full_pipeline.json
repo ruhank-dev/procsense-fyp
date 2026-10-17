@@ -1562,7 +1562,7 @@
         "Stage B report (HTML and JSON)",
         "pass or defect list"
       ],
-      "component": "tools/composer/stage_b.py + server/generation/package.py (built); the headless correct path waits for the engine to load generated packages (s10)",
+      "component": "tools/composer/stage_b.py + server/generation/package.py (built, including the headless idle run and correct path for generated cases)",
       "method": "Deterministic validator; the AI cannot mark anything approved.",
       "api": "internal",
       "validation": "60 of 60 mutation cases rejected today; extended set for generated content.",
@@ -1576,7 +1576,8 @@
         "tools/composer/stage_b.py",
         "tools/composer/test_composer.py (60 of 60)",
         "src/ProcSense.Core/Content/ContentGate.cs",
-        "server/generation/package.py (schema, Stage B, media and cross-modal gate)"
+        "server/generation/package.py (schema, Stage B, media and cross-modal gate)",
+        "tools/composer/checks/c05_to_c11.py (idle run and correct path for generated cases)"
       ],
       "tasks": [
         "p1-live-scenario-generation-s07"
@@ -1777,7 +1778,7 @@
       "id": "LG-14",
       "label": "Packaging with provenance",
       "group": "g_live_deliver",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "deterministic",
       "description": "Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed, pack versions, prompt versions, model digests, content manifest hash, review status GENERATED_PRACTICE_ONLY, package SHA-256.",
       "inputs": [
@@ -1786,7 +1787,7 @@
       "outputs": [
         "ScenarioPackage v1 (JSON) + SHA-256"
       ],
-      "component": "server/generation/package.py (planned)",
+      "component": "server/generation/package.py + src/ProcSense.Core/Content/ScenarioPackage.cs (built); the Unity bridge is a Unity task (DT-198)",
       "method": "Deterministic serialisation with canonical JSON ordering.",
       "api": "GET /v1/scenarios/{id} (planned)",
       "validation": "Package schema; hash recomputed on load.",
@@ -1806,7 +1807,12 @@
       ],
       "error_handling": "Serialisation error: reject and fall back.",
       "latency_budget_ms": 100,
-      "evidence": [],
+      "evidence": [
+        "server/generation/package.py (seal, file text, SHA-256)",
+        "src/ProcSense.Core/Content/ScenarioPackage.cs",
+        "tests/ProcSense.Core.Tests/ScenarioPackageTests.cs",
+        "tools/ci/test_generation_package.py"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",
@@ -1827,7 +1833,7 @@
       "id": "LG-15",
       "label": "Unity integration",
       "group": "g_live_deliver",
-      "status": "Planned",
+      "status": "Partially implemented",
       "method_class": "deterministic",
       "description": "Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status, then starts a Core Session on it. Unity code is not modified in this planning task.",
       "inputs": [
@@ -1836,7 +1842,7 @@
       "outputs": [
         "loaded Core Session"
       ],
-      "component": "unity/Assets/_Project/Scripts/Bridge/SimulationHost.cs, SessionConfig.cs, Content/UnityContentReader.cs (exist; package loading planned)",
+      "component": "server/generation/pool.py (built); the backend delivery endpoint is p1-backend-s06 (DT-199)",
       "method": "Deterministic loader; offline pool when the backend is unreachable.",
       "api": "GET /v1/scenarios/{id}; local pool folder",
       "validation": "ContentGate in the Core (exists) extended for GENERATED_PRACTICE_ONLY.",
@@ -1846,7 +1852,10 @@
       ],
       "acceptance": "A pooled package loads offline in under 2 s on the target PC.",
       "evidence": [
-        "unity/Assets/_Project/Scripts/Bridge/SimulationHost.cs"
+        "unity/Assets/_Project/Scripts/Bridge/SimulationHost.cs",
+        "server/generation/pool.py",
+        "tools/generation/pool.py",
+        "tools/ci/test_generation_package.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s10"

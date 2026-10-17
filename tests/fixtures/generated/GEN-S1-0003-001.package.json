@@ -1,0 +1,539 @@
+{
+  "version": 1,
+  "id": "GEN-S1-0003-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "d18c0189d47b9b5d",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S1-0003-001",
+    "walkthrough_label": "Patient S1-G - ate breakfast (composed GEN-S1-0003-001)",
+    "scenario": "S1",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Ms",
+      "full_name": "Helena Chen",
+      "sex": "F",
+      "age": 25,
+      "occupation": "call-centre agent",
+      "dob": "2001-07-06",
+      "mrn": "181446"
+    },
+    "spoken_identity_answer": "Helena Chen, sixth of July 2001.",
+    "wristband": {
+      "name_text": "HELENA CHEN",
+      "dob_text": "06/07/2001",
+      "mrn_text": "MR 181446"
+    },
+    "allergies": [
+      {
+        "reaction": "Throat swelling and collapse in 2019 (anaphylaxis)",
+        "substance": "Penicillin"
+      }
+    ],
+    "allergy_answer": "Penicillin: throat swelling and collapse in 2019.",
+    "reason_answer": "To have my gallbladder taken out.",
+    "presentation": {
+      "setting": "pre-assessment",
+      "time_now": "08:00",
+      "surgery_time": "09:00",
+      "summary": "Ms Helena, 25, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Attacks of pain under the ribs after meals.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No fever, no yellow eyes.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Toast and tea with milk at 07:00 this morning.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "book",
+        "intake": {
+          "kind": "light_meal",
+          "hours_before_now": 1.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Tea with milk at 07:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "book",
+        "intake": {
+          "kind": "milk",
+          "hours_before_now": 1.0
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Last period 2 weeks ago; she agrees to a test.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "observations": [
+      {
+        "time": "08:00",
+        "condition": "initial",
+        "heart_rate": 76,
+        "heart_rhythm": "regular",
+        "systolic_bp": 129,
+        "diastolic_bp": 74,
+        "respiratory_rate": 14,
+        "spo2": 99,
+        "oxygen": "room_air",
+        "temperature_c": 36.7,
+        "acvpu": "A",
+        "pain_score": 0,
+        "news2": 0,
+        "note": "Baseline vital signs, all normal.",
+        "origin": "authored"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Soft; no tenderness.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.upt",
+        "test": "Urine pregnancy test",
+        "value": "Negative",
+        "unit": "",
+        "normal_range": "negative",
+        "flag": "negative",
+        "comment": "Not pregnant",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 20,
+        "origin": "authored"
+      }
+    ],
+    "scores": [
+      {
+        "name": "Fasting",
+        "value": "Toast and milky tea = light meal: 6 hours needed, so not safe until 13:00",
+        "note": "Fasting rule: clear liquids 2 h, light meal (milk counts as food) 6 h, heavy meal 8 h",
+        "origin": "book"
+      }
+    ],
+    "problems": [
+      {
+        "id": "g.fasting",
+        "type": "safety_blocker",
+        "label": "Fasting rule broken: a light meal 2 hours before surgery",
+        "rank": 1,
+        "why": "A full stomach risks aspiration under anaesthetic.",
+        "expected_actions": [
+          "Record the exact time and what she ate",
+          "Tell the anaesthetist immediately and honestly",
+          "Do not round the time"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "g.d1",
+        "prompt": "She ate toast and milky tea at 07:00; surgery is at 09:00. What do you do?",
+        "rule": "fasting_planned",
+        "options": [
+          {
+            "id": "g.d1.1",
+            "text": "Tell the anaesthetist at once: a light meal needs 6 hours, so it is not safe until 13:00; the likely outcome is the end of the list or postponement",
+            "correct": true,
+            "consequence": "Matches the book and the ASA fasting guideline."
+          },
+          {
+            "id": "g.d1.2",
+            "text": "Say nothing, because it was only toast",
+            "correct": false,
+            "consequence": "Milk counts as food; the rule is 6 hours."
+          },
+          {
+            "id": "g.d1.3",
+            "text": "Record 'fasted' to keep the list on time",
+            "correct": false,
+            "consequence": "Falsifying the time is a safety failure."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "delayed",
+    "paths": {
+      "correct": [
+        "Ask the exact time and what she ate",
+        "Apply the 6 hour light meal rule: 13:00",
+        "Tell the anaesthetist immediately",
+        "Move to the end of the list or postpone"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Records 'fasted' to avoid trouble",
+          "shows": "The anaesthetist asks at Sign In",
+          "risk": "Aspiration under anaesthetic",
+          "recovery": "Correct the record; tell the anaesthetist"
+        }
+      ],
+      "missed": [
+        "Not asking about the last food"
+      ],
+      "recovery": [
+        "Ask and record now"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Honest report of the meal",
+        "Rule applied"
+      ],
+      "missed": [
+        "Last food not asked"
+      ],
+      "priority": "A breached fasting rule",
+      "why_priority": "Aspiration risk",
+      "related": "Meal, milk and timing",
+      "independent": "None",
+      "trigger_escalation": "Any food or milky drink inside the fasting window",
+      "if_ignored": "Aspiration pneumonitis",
+      "remember": "Milk counts as food; record exact times"
+    },
+    "verification": [
+      "V-09"
+    ],
+    "sources": {
+      "story": "SR-2306",
+      "authored": "SR-3706"
+    },
+    "risk": {
+      "asa": {
+        "min": 1,
+        "max": 1,
+        "emergency": false,
+        "why": "She is healthy with no illness: ASA 1; the fasting breach changes the timing, not the grade.",
+        "origin": "authored"
+      },
+      "plan": "standard_ga"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S1",
+      "seed": 3,
+      "spine": "VAR-S1-G",
+      "blocks": [
+        "ALG-PENICILLIN-3",
+        "DEM-VAR-S2-B",
+        "NAME-FIRST-HELENA-F",
+        "NAME-LAST-CHEN"
+      ],
+      "solver_steps": 4
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 3,
+    "spine": "VAR-S1-G",
+    "blocks": [
+      "ALG-PENICILLIN-3",
+      "DEM-VAR-S2-B",
+      "NAME-FIRST-HELENA-F",
+      "NAME-LAST-CHEN"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S1-G",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "ae827db60504a019",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.upt",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial.heart_rate",
+        "action": "drawn",
+        "from": "72",
+        "to": "76"
+      },
+      {
+        "slot": "obs.initial.systolic_bp",
+        "action": "drawn",
+        "from": "118",
+        "to": "129"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "drawn",
+        "from": "14",
+        "to": "14"
+      },
+      {
+        "slot": "obs.initial.spo2",
+        "action": "drawn",
+        "from": "99",
+        "to": "99"
+      },
+      {
+        "slot": "obs.initial.temperature_c",
+        "action": "drawn",
+        "from": "36.6",
+        "to": "36.7"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 0.5,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [
+      {
+        "code": "Q_TRAP",
+        "detail": "wrong options whose consequence names nothing the case holds: ['g.d1.3']"
+      }
+    ]
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01",
+        "basis": "proposed",
+        "picture_id": "us-gb-01-r1",
+        "dataset": "UIdataGB",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "gallbladder",
+          "gallstones"
+        ],
+        "report_id": "rep-us-gb-01-r1",
+        "report": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+        "measurements": {}
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S1-0003-001",
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S1-G",
+      "problem": "g.fasting",
+      "trigger": {
+        "in": [
+          "fasting.breach",
+          {
+            "var": "flags"
+          }
+        ]
+      },
+      "how": "the fasting rule is found broken (a light meal 2 hours before)",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:ALG-PENICILLIN-3",
+      "primary:g.fasting",
+      "scenario:S1",
+      "spine:VAR-S1-G"
+    ],
+    "clinical": [
+      "finding:US-GB-01",
+      "news2:low",
+      "problem_type:safety_blocker",
+      "result:urine pregnancy test:negative",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-VAR-S2-B",
+      "block:NAME-FIRST-HELENA-F",
+      "block:NAME-LAST-CHEN",
+      "name:Helena Chen",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "27e83c118baca8d3ae4cb17977664e277e281677e1896be0f39247958a07265b",
+  "package_sha256": "b133f09aa73f8e23064d938cffd37b3ad700b10da04d9cbdf60fdd924cb25819"
+}

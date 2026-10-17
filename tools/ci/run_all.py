@@ -213,6 +213,7 @@ def main(argv: list[str]) -> int:
         ("cross-modal rules and the package gate (a failing example per rule, mutations caught)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_crossmodal.py"])),
         ("novelty fingerprints, distances and the sealed package", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_novelty.py"])),
         ("quality metrics and bounded repair", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_quality.py"])),
+        ("generated package files, the pool and the engine", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_package.py"])),
         ("content manifest up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/content_manifest.py", "--check"])),
         ("medical review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/review_pack.py", "--check"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),

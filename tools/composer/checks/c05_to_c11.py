@@ -81,15 +81,47 @@ def _cli(args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run(["dotnet", "run", "--no-build", "-c", "Release", "--project", "src/ProcSense.Cli", "--"] + args, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
 
 
+def _scenario_args(card: dict, tmp: Path) -> list[str]:
+    """A composed case is not in content/: the engine reads it from a package file put in front of the real content (--scenario)."""
+    if card.get("created_by") != "composer":
+        return ["--case", card["id"]]
+    package = tmp / "check.package.json"
+    package.write_text(json.dumps({"version": 1, "status": "GENERATED_PRACTICE_ONLY", "case": card}, ensure_ascii=False), encoding="utf-8")
+    return ["--scenario", str(package)]
+
+
+def _golden_script(card: dict, kind: str) -> Path:
+    """The authored case's own script, or for a composed case its spine's: a composed case keeps the story, so the same actions are the right ones."""
+    spine = card.get("composition", {}).get("spine", card["id"]) if card.get("created_by") == "composer" else card["id"]
+    return ROOT / "tests" / "golden" / f"{spine}_{kind}.actions.json"
+
+
+def _adapt_script(script: Path, card: dict, ctx: dict, tmp: Path) -> Path:
+    """The spine's correct path is right for the spine's patient. What the variable blocks change, the correct answers follow: the safety checklist asks whether the patient has a known allergy
+    (sign_in.05), and the answer is the case's own. Any other change of the correct path by a variable block is a defect for the golden run to find, not something to adapt away."""
+    if card.get("created_by") != "composer":
+        return script
+    spine = next((c for c in ctx.get("others", []) if c["id"] == card["composition"]["spine"]), None)
+    if spine is None or bool(spine["allergies"]) == bool(card["allergies"]):
+        return script
+    actions = json.loads(script.read_text(encoding="utf-8"))
+    for a in actions:
+        if a.get("verb") == "checklist_item" and a.get("params", {}).get("item") == "sign_in.05":
+            a["params"]["response"] = "yes" if card["allergies"] else "no"
+    adapted = tmp / script.name
+    adapted.write_text(json.dumps(actions), encoding="utf-8")
+    return adapted
+
+
 def c09_idle(card: dict, ctx: dict) -> list[Defect]:
-    """A five-minute idle run of the case stays inside the engine's bounds (T-VB4). Runs the real CLI; only for cases in content/ and only when asked (--headless)."""
+    """A five-minute idle run of the case stays inside the engine's bounds (T-VB4). Runs the real CLI; only when asked (--headless). A composed case is read from a package file."""
     if not ctx.get("headless"):
         return []
     with tempfile.TemporaryDirectory() as tmp:
         actions = Path(tmp) / "idle.actions.json"
         actions.write_text(json.dumps([{"t": 300, "verb": "wait", "target": "patient", "params": {}}]), encoding="utf-8")
         out = Path(tmp) / "out.json"
-        p = _cli(["run", "--case", card["id"], "--seed", "42", "--actions", str(actions), "--out", str(out), "--allow-draft"])
+        p = _cli(["run", *_scenario_args(card, Path(tmp)), "--seed", "42", "--actions", str(actions), "--out", str(out), "--allow-draft"])
         if p.returncode != 0:
             return [Defect(9, "IDLE_RUN_FAILED", f"{card['id']}: {(p.stdout + p.stderr).strip()[-200:]}")]
         vit = {v["name"]: float(v["value"]) for v in json.loads(out.read_text(encoding="utf-8"))["observable"].get("vitals", []) if v["name"] != "oxygen" and v["name"] != "acvpu"}
@@ -98,15 +130,26 @@ def c09_idle(card: dict, ctx: dict) -> list[Defect]:
 
 
 def c10_golden(card: dict, ctx: dict) -> list[Defect]:
-    """The golden correct run of the case reaches its expected end state (T-CASE1). Only for cases that have one (tests/golden/<case>.correct.actions.json) and when asked (--headless)."""
-    script = ROOT / "tests" / "golden" / f"{card['id']}.correct.actions.json"
-    if not ctx.get("headless") or not script.exists():
+    """The golden correct run reaches the end state and result the authored case's golden file declares (T-CASE1). For a composed case the spine's script and expectations apply. Only when asked (--headless)."""
+    script = _golden_script(card, "correct")
+    expected_file = script.with_name(script.name.replace(".actions.json", ".expected.json"))
+    if not ctx.get("headless") or not script.exists() or not expected_file.exists():
         return []
+    expected = json.loads(expected_file.read_text(encoding="utf-8"))
     with tempfile.TemporaryDirectory() as tmp:
-        out = Path(tmp) / "out.json"
-        p = _cli(["run", "--case", card["id"], "--seed", "42", "--actions", str(script), "--out", str(out), "--allow-draft"])
+        out, report = Path(tmp) / "out.json", Path(tmp) / "report.json"
+        scenario = _scenario_args(card, Path(tmp))
+        script = _adapt_script(script, card, ctx, Path(tmp))
+        p = _cli(["run", *scenario, "--seed", "42", "--actions", str(script), "--out", str(out), "--allow-draft"])
         if p.returncode != 0:
             return [Defect(10, "GOLDEN_RUN_FAILED", f"{card['id']}: {(p.stdout + p.stderr).strip()[-200:]}")]
+        p = _cli(["report", *scenario, "--log", str(out.with_suffix(".session.jsonl")), "--out", str(Path(tmp) / "r.html"), "--json", str(report)])
+        if p.returncode != 0:
+            return [Defect(10, "GOLDEN_REPORT_FAILED", f"{card['id']}: {(p.stdout + p.stderr).strip()[-200:]}")]
+        got = json.loads(report.read_text(encoding="utf-8"))
+    want = (expected["facts"]["end_state"], expected["score"]["result"])
+    if (got["end_state"], got["result"]) != want:
+        return [Defect(10, "GOLDEN_END_STATE", f"{card['id']}: the correct path ends {got['end_state']} / {got['result']}, the golden file says {want[0]} / {want[1]}")]
     return []
 
 

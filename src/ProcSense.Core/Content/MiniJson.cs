@@ -20,6 +20,38 @@ namespace ProcSense.Core.Content
             return value;
         }
 
+        /// <summary>Writes a parsed value back as JSON text (keys in the order they were read, numbers as they were read), so a part of a document can be handed on as a file of its own.</summary>
+        public static string Write(object? value)
+        {
+            var sb = new StringBuilder();
+            WriteValue(sb, value);
+            return sb.ToString();
+        }
+
+        private static void WriteValue(StringBuilder sb, object? v)
+        {
+            switch (v)
+            {
+                case null: sb.Append("null"); break;
+                case bool b: sb.Append(b ? "true" : "false"); break;
+                case long l: sb.Append(l.ToString(CultureInfo.InvariantCulture)); break;
+                case double d: sb.Append(d.ToString("R", CultureInfo.InvariantCulture)); break;
+                case string str: Logging.JsonText.Quote(sb, str); break;
+                case List<object?> list:
+                    sb.Append('[');
+                    for (int k = 0; k < list.Count; k++) { if (k > 0) sb.Append(','); WriteValue(sb, list[k]); }
+                    sb.Append(']');
+                    break;
+                case Dictionary<string, object?> obj:
+                    sb.Append('{');
+                    bool first = true;
+                    foreach (var kv in obj) { if (!first) sb.Append(','); first = false; Logging.JsonText.Quote(sb, kv.Key); sb.Append(':'); WriteValue(sb, kv.Value); }
+                    sb.Append('}');
+                    break;
+                default: throw new ContentException("cannot write a " + v.GetType().Name + " as JSON");
+            }
+        }
+
         private static object? ReadValue(string s, ref int i)
         {
             SkipWs(s, ref i);

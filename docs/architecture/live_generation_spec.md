@@ -49,8 +49,8 @@ The full architecture (learning from evidence, AI composition, how each modality
 | 11 | LG-11 | Quality evaluation | Partially implemented | hybrid | 8000 | p1-live-scenario-generation-s08 |
 | 12 | LG-12 | Repair, regeneration or rejection | Implemented and tested | hybrid | 0 | p1-live-scenario-generation-s08 |
 | 13 | LG-13 | Novelty check (fingerprint) | Implemented and tested | deterministic | 100 | p1-live-scenario-generation-s09 |
-| 14 | LG-14 | Packaging with provenance | Proposed new feature | deterministic | 100 | p1-live-scenario-generation-s10 |
-| 15 | LG-15 | Unity integration | Planned | deterministic | 2000 | p1-live-scenario-generation-s10 |
+| 14 | LG-14 | Packaging with provenance | Partially implemented | deterministic | 100 | p1-live-scenario-generation-s10 |
+| 15 | LG-15 | Unity integration | Partially implemented | deterministic | 2000 | p1-live-scenario-generation-s10 |
 | 16 | LG-16 | Live simulation | Implemented and tested | deterministic | 0 | p1-live-scenario-generation-s11 |
 | 17 | LG-17 | Action interpretation | Partially implemented | hybrid | 1500 | p1-ai-language-s07; p1-voice-input-s01; p1-voice-input-s03 |
 | 18 | LG-18 | Deterministic state update and scoring | Implemented and tested | deterministic | 0 | p1-live-scenario-generation-s11 |
@@ -268,7 +268,7 @@ Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and 
 |---|---|
 | Inputs | filled scenario; consistency report |
 | Outputs | Stage B report (HTML and JSON); pass or defect list |
-| Component | tools/composer/stage_b.py + server/generation/package.py (built); the headless correct path waits for the engine to load generated packages (s10) |
+| Component | tools/composer/stage_b.py + server/generation/package.py (built, including the headless idle run and correct path for generated cases) |
 | Method | Deterministic validator; the AI cannot mark anything approved. |
 | Method class | deterministic |
 | Data dependencies | content/contradictions.json; content/schema |
@@ -278,7 +278,7 @@ Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and 
 | Tests | test_composer.py; ContentGate tests; headless correct-path reaches the expected end state |
 | Acceptance | Zero packages with a Stage B defect are delivered; the correct path reaches the declared end state. |
 | Status | Partially implemented |
-| Evidence | tools/composer/stage_b.py; tools/composer/test_composer.py (60 of 60); src/ProcSense.Core/Content/ContentGate.cs; server/generation/package.py (schema, Stage B, media and cross-modal gate) |
+| Evidence | tools/composer/stage_b.py; tools/composer/test_composer.py (60 of 60); src/ProcSense.Core/Content/ContentGate.cs; server/generation/package.py (schema, Stage B, media and cross-modal gate); tools/composer/checks/c05_to_c11.py (idle run and correct path for generated cases) |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s07 |
 
@@ -356,7 +356,7 @@ Write the Scenario Package: case file, generated values, asset references, narra
 |---|---|
 | Inputs | validated, novel scenario |
 | Outputs | ScenarioPackage v1 (JSON) + SHA-256 |
-| Component | server/generation/package.py (planned) |
+| Component | server/generation/package.py + src/ProcSense.Core/Content/ScenarioPackage.cs (built); the Unity bridge is a Unity task (DT-198) |
 | Method | Deterministic serialisation with canonical JSON ordering. |
 | Method class | deterministic |
 | Data dependencies | content/manifest.json |
@@ -365,8 +365,8 @@ Write the Scenario Package: case file, generated values, asset references, narra
 | Validation | Package schema; hash recomputed on load. |
 | Tests | round-trip test; hash stability test |
 | Acceptance | Same inputs give a byte-identical package. |
-| Status | Proposed new feature |
-| Evidence | — |
+| Status | Partially implemented |
+| Evidence | server/generation/package.py (seal, file text, SHA-256); src/ProcSense.Core/Content/ScenarioPackage.cs; tests/ProcSense.Core.Tests/ScenarioPackageTests.cs; tools/ci/test_generation_package.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s10 |
 
@@ -378,7 +378,7 @@ Unity fetches the package (or reads one from the pre-generated pool on disk), th
 |---|---|
 | Inputs | ScenarioPackage |
 | Outputs | loaded Core Session |
-| Component | unity/Assets/_Project/Scripts/Bridge/SimulationHost.cs, SessionConfig.cs, Content/UnityContentReader.cs (exist; package loading planned) |
+| Component | server/generation/pool.py (built); the backend delivery endpoint is p1-backend-s06 (DT-199) |
 | Method | Deterministic loader; offline pool when the backend is unreachable. |
 | Method class | deterministic |
 | Data dependencies | — |
@@ -387,8 +387,8 @@ Unity fetches the package (or reads one from the pre-generated pool on disk), th
 | Validation | ContentGate in the Core (exists) extended for GENERATED_PRACTICE_ONLY. |
 | Tests | EditMode test: package loads into a Session; hash mismatch rejected |
 | Acceptance | A pooled package loads offline in under 2 s on the target PC. |
-| Status | Planned |
-| Evidence | unity/Assets/_Project/Scripts/Bridge/SimulationHost.cs |
+| Status | Partially implemented |
+| Evidence | unity/Assets/_Project/Scripts/Bridge/SimulationHost.cs; server/generation/pool.py; tools/generation/pool.py; tools/ci/test_generation_package.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s10 |
 

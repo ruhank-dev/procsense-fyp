@@ -177,16 +177,16 @@
       "actor": "package",
       "label": "LG-14",
       "title": "Packaging with provenance",
-      "text": "Proposed. Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed… Plans: A2, A13.",
-      "tone": "aqua"
+      "text": "Partly built. Write the Scenario Package: case file, generated values, asset references, narrative, solver trace, fingerprint, quality and novelty reports, seed… Plans: A2, A13.",
+      "tone": "sun"
     },
     {
       "id": "LG-15",
       "actor": "rocket",
       "label": "LG-15",
       "title": "Unity integration",
-      "text": "Planned. Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status… Plans: A2.",
-      "tone": "blue"
+      "text": "Partly built. Unity fetches the package (or reads one from the pre-generated pool on disk), the C# loader validates schema, hash and review status… Plans: A2.",
+      "tone": "sun"
     },
     {
       "id": "LG-16",

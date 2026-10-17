@@ -441,6 +441,9 @@ jobs:
       - name: quality metrics and bounded repair
         run: uv run --project tools tools/ci/test_generation_quality.py
 
+      - name: generated package files, the pool and the engine
+        run: uv run --project tools tools/ci/test_generation_package.py
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

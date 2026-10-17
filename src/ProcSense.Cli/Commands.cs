@@ -11,8 +11,8 @@ internal static class Commands
 {
     private const string Usage =
         "usage:\n" +
-        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--noise] [--session-id guid] [--package-hash sha256] [--content dir] [--allow-draft] [--skip-integrity]\n" +
-        "  procsense-sim replay --log session.jsonl [--content dir]\n" +
+        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--noise] [--session-id guid] [--package-hash sha256] [--content dir] [--scenario generated.package.json] [--allow-draft] [--skip-integrity]\n" +
+        "  procsense-sim replay --log session.jsonl [--content dir] [--scenario generated.package.json]\n" +
         "  procsense-sim verify --log session.jsonl [--out verdict.json] [--html report.html] [--package package.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim report --log session.jsonl --out report.html [--json report.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim next-case --history dir --trainee pseudonym [--mode practice|assessment] [--content dir]\n" +
@@ -45,7 +45,7 @@ internal static class Commands
 
     private static int RunCase(Dictionary<string, string> o)
     {
-        string caseId = Need(o, "case");
+        string caseId = ScenarioOf(o)?.CaseId is { } fromPackage && !o.ContainsKey("case") ? fromPackage : Need(o, "case");
         ulong seed = ulong.Parse(Need(o, "seed"), CultureInfo.InvariantCulture);
         var mode = Enum.Parse<SessionMode>(o.GetValueOrDefault("mode", "practice"), true);
         string outPath = Need(o, "out");
@@ -63,7 +63,7 @@ internal static class Commands
         string contentVersion;
         try { contentVersion = ContentManifestCheck.Version(Reader(o)); }
         catch (Exception e) when (e is IOException or ContentException) { contentVersion = "unversioned"; }
-        File.WriteAllText(logPath, SessionFile.Write(session, new SessionMeta(sessionId, contentVersion, o.GetValueOrDefault("package-hash", ""))));
+        File.WriteAllText(logPath, SessionFile.Write(session, new SessionMeta(sessionId, contentVersion, o.GetValueOrDefault("package-hash", ScenarioOf(o)?.PackageHash ?? ""))));
         File.WriteAllText(outPath, $"{{\"case\":\"{caseId}\",\"seed\":\"{seed}\",\"log_hash\":\"{session.Log.Hash()}\",\"state_hash\":\"{session.Observable.Hash()}\",\"observable\":{session.Observable.ToJson()}}}\n");
         Console.WriteLine($"actions applied: {session.Log.Count}");
         Console.WriteLine($"log hash:   {session.Log.Hash()}");
@@ -247,8 +247,13 @@ internal static class Commands
     {
         string dir = ContentDir(o);
         string fixtures = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(dir))!, "tests", "fixtures");
-        return new CompositeContentReader(new FileContentReader(dir), new FileContentReader(fixtures));
+        var real = new CompositeContentReader(new FileContentReader(dir), new FileContentReader(fixtures));
+        // a generated scenario package is a content folder of one case file, put in front of the real content (p1-live-scenario-generation-s10)
+        return ScenarioOf(o) is { } scenario ? new CompositeContentReader(scenario, real) : real;
     }
+
+    private static ScenarioPackageReader? ScenarioOf(Dictionary<string, string> o) =>
+        o.TryGetValue("scenario", out var path) ? new ScenarioPackageReader(File.ReadAllText(path)) : null;
 
     private static string ContentDir(Dictionary<string, string> o)
     {

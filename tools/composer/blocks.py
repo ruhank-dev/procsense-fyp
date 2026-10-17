@@ -60,6 +60,11 @@ GALLBLADDER = re.compile(r"gallbladder|cholecyst", re.IGNORECASE)
 APPENDIX = re.compile(r"appendic|appendect|appendix", re.IGNORECASE)
 
 
+def _correct_path_gives_antibiotic(case_id: str) -> bool:
+    script = ROOT / "tests" / "golden" / f"{case_id}_correct.actions.json"
+    return script.exists() and re.search(r"TR-ABX|antibiotic", script.read_text(encoding="utf-8")) is not None
+
+
 def age_class(age: int) -> str:
     edges = [0] + AGE_EDGES + [200]
     for lo, hi in zip(edges, edges[1:]):
@@ -98,6 +103,8 @@ def spine_tags(c: dict) -> set[str]:
             tags.add(tag)
     if c["allergies"]:
         tags.add("pathway:allergy")
+    if _correct_path_gives_antibiotic(c["id"]):
+        tags.add("pathway:antibiotic")             # the case text does not say so but its correct path does (found by the headless golden run: a severe penicillin allergy on such a spine fails it)
     return tags
 
 

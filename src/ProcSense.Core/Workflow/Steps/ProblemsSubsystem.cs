@@ -35,7 +35,7 @@ namespace ProcSense.Core.Workflow.Steps
             session.ProblemsStep = this;
             _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             Registry = new ProblemRegistry(_content.Problems, session.Case.Scenario);
-            string caseId = _file?.Id ?? session.Case.Id;
+            string caseId = _file?.TableKey ?? session.Case.Id;
             foreach (var d in _content.Problems.Discovery) if (d.Case == caseId) _waiting.Add(d);
         }
 

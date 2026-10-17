@@ -15,7 +15,10 @@ namespace ProcSense.Core.Content
         public const string StatusTooLow = "STATUS_TOO_LOW";
 
         public static bool Allows(string status, SessionMode mode) =>
-            mode == SessionMode.Assessment ? status == "APPROVED_FOR_ASSESSMENT" : status == "APPROVED_FOR_TRAINING" || status == "APPROVED_FOR_ASSESSMENT";
+            mode == SessionMode.Assessment ? status == "APPROVED_FOR_ASSESSMENT" : status == "APPROVED_FOR_TRAINING" || status == "APPROVED_FOR_ASSESSMENT" || status == GeneratedPracticeOnly;
+
+        /// <summary>The status of a generated case: it may be played in practice and never in assessment, and nothing the generator does can raise it (ADR-0006: extended, not loosened).</summary>
+        public const string GeneratedPracticeOnly = "GENERATED_PRACTICE_ONLY";
 
         /// <summary>The status a session in this mode needs.</summary>
         public static string Needs(SessionMode mode) => mode == SessionMode.Assessment ? "APPROVED_FOR_ASSESSMENT" : "APPROVED_FOR_TRAINING";

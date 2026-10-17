@@ -36,6 +36,7 @@ def pack_versions() -> dict[str, str]:
 
 def assemble(skeleton: dict, objectives: dict, index: retrieve.Index, models: list[dict] | None = None, stages: list[str] | None = None) -> dict:
     case = skeleton["case"]
+    case["status"] = "GENERATED_PRACTICE_ONLY"                  # the only status the generator can give (ADR-0006); a person's approval is a different act
     comp = case["composition"]
     pkg = {"version": 1, "id": case["id"], "status": "GENERATED_PRACTICE_ONLY", "request_id": objectives["request_id"], "case": case,
            "provenance": {"generator": GENERATOR, "seed": objectives["seed"], "spine": comp["spine"], "blocks": comp["blocks"], "content_hash": index.content_hash, "packs": pack_versions(),
@@ -50,6 +51,22 @@ def assemble(skeleton: dict, objectives: dict, index: retrieve.Index, models: li
 
 def canonical(doc: dict) -> bytes:
     return json.dumps(doc, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+
+
+def file_text(pkg: dict) -> str:
+    """The text of a package file: the same package always gives the same bytes (two-space indent, keys in the order the generator wrote them, one newline at the end). The engine hashes this text."""
+    return json.dumps(pkg, indent=2, ensure_ascii=False) + "\n"
+
+
+def write(pkg: dict, directory: Path) -> Path:
+    path = Path(directory) / f"{pkg['id']}.package.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(file_text(pkg), encoding="utf-8", newline="\n")
+    return path
+
+
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(Path(path).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def reproducibility_key(objectives: dict, pkg: dict) -> str:

@@ -5,8 +5,8 @@
   "description": "The words every content schema uses the same way: the review status of an item, the evidence type of a value, the kind of a number and the shape of a register reference. Other schemas point here with $ref so the lists exist once. The source register (docs/research/source_register.csv) is where each value's evidence type, walkthrough reference and review state are recorded; a content file points at it with refs.",
   "$defs": {
     "review_status": {
-      "description": "How far an item has been reviewed. A session in practice mode may use APPROVED_FOR_TRAINING or above; assessment mode only APPROVED_FOR_ASSESSMENT; a DRAFT or CLINICAL_REVIEW item is never played (the content gate, T-CL-2).",
-      "enum": ["DRAFT", "CLINICAL_REVIEW", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT"]
+      "description": "How far an item has been reviewed. A session in practice mode may use APPROVED_FOR_TRAINING or above; assessment mode only APPROVED_FOR_ASSESSMENT; a DRAFT or CLINICAL_REVIEW item is never played (the content gate, T-CL-2). GENERATED_PRACTICE_ONLY is a case composed by the generator: practice only, never assessment, never raised by the generator itself, and only with created_by composer.",
+      "enum": ["DRAFT", "CLINICAL_REVIEW", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT", "GENERATED_PRACTICE_ONLY"]
     },
     "evidence_type": {
       "description": "A source-backed, B interpretation of a source, C institution-dependent (a placeholder), D simulator design value.",

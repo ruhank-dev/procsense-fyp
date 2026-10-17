@@ -60,7 +60,7 @@ namespace ProcSense.Core.Workflow.Steps
             _s = session;
             session.SepsisStep = this;
             _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
-            _infection = Tables.IsInfectionCase(_file?.Id ?? session.Case.Id);
+            _infection = Tables.IsInfectionCase(_file?.TableKey ?? session.Case.Id);
             session.Verbs.Register(SayConcernVerb);
             session.Events.Subscribe<TreatmentGiven>(OnGiven);
         }

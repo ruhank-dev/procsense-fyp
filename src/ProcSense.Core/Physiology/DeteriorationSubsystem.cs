@@ -44,7 +44,7 @@ namespace ProcSense.Core.Physiology
             _s = session;
             _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             if (_file == null || _file.Scenario != "S2") return;
-            if (_content.Deterioration.Timelines.TryGetValue(_file.Id, out var line)) _timeline = line;
+            if (_content.Deterioration.Timelines.TryGetValue(_file.TableKey, out var line)) _timeline = line;
             else _generic = _file.Problems.Any(p => p.Type == "life_threat" || p.Type == "time_critical");
             if (_timeline == null && !_generic) return;
             _rng = session.Random.Stream("deterioration");

@@ -16,14 +16,14 @@ namespace ProcSense.Core.Content
     {
         private static readonly string[] Origins = { "book", "authored" };
         private static readonly string[] Tiers = { "P0", "P1", "P2" };
-        private static readonly string[] Statuses = { "DRAFT", "CLINICAL_REVIEW", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT" };
+        private static readonly string[] Statuses = { "DRAFT", "CLINICAL_REVIEW", "APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT", "GENERATED_PRACTICE_ONLY" };
         private static readonly string[] Conditions = { "initial", "after_correct_action", "if_no_action", "variant" };
         private static readonly string[] EndStates = { "ready", "postponed", "redirected", "delayed", "failure" };
         private static readonly string[] Flags = { "normal", "high", "low", "critical_high", "critical_low", "abnormal", "positive", "negative" };
         private static readonly string[] Qualities = { "haemolysed", "drip_arm", "wrong_tube_edta", "clotted", "lipaemic" };
         private static readonly string[] ProblemTypes = { "life_threat", "safety_blocker", "time_critical", "pathway_changing", "optimisable", "information_only" };
         private static readonly string[] Settings = { "ward", "pre-assessment", "emergency department" };
-        private static readonly Regex CaseId = new Regex("^((VAR|STK)-S[12]-[A-Z]+|SC-[0-9]+)$");
+        private static readonly Regex CaseId = new Regex("^((VAR|STK)-S[12]-[A-Z]+|SC-[0-9]+|GEN-S[12]-[0-9]{4}-[0-9]{3})$");
         private static readonly Regex Clock = new Regex("^([01][0-9]|2[0-3]):[0-5][0-9]$");
         private static readonly Regex Verification = new Regex("^V-[0-9]{2}$");
         private static readonly Regex RefId = new Regex("^SR-[0-9]{4}$");
@@ -45,7 +45,7 @@ namespace ProcSense.Core.Content
             var c = new JsonObj(node, "");
             if (c.Int("schema") != 1) throw new ContentException("schema: only version 1 is supported");
             var id = c.Str("id");
-            if (!CaseId.IsMatch(id)) throw new ContentException("id: '" + id + "' is not a case id like VAR-S1-A, STK-S2-B or SC-4");
+            if (!CaseId.IsMatch(id)) throw new ContentException("id: '" + id + "' is not a case id like VAR-S1-A, STK-S2-B, SC-4 or GEN-S1-0003-001");
             var label = c.Str("walkthrough_label");
             var scenario = c.Enum("scenario", "S1", "S2");
             var tier = c.Enum("tier", Tiers);
@@ -59,7 +59,7 @@ namespace ProcSense.Core.Content
                 approval = new CaseFileApproval(a.Str("by"), a.Str("date"), a.Str("note"));
                 a.Finish();
             }
-            if (status != "DRAFT" && approval == null) throw new ContentException("approval: a case with status " + status + " must say who approved it");
+            if (status != "DRAFT" && status != "GENERATED_PRACTICE_ONLY" && approval == null) throw new ContentException("approval: a case with status " + status + " must say who approved it");
 
             var referenceDate = c.Str("reference_date");
             string? baseCard = c.Has("base_card") ? c.Any("base_card") as string : null;
@@ -257,10 +257,20 @@ namespace ProcSense.Core.Content
                     facts.Add(fact);
                 }
 
-            string createdBy = c.Has("created_by") ? c.Enum("created_by", "human", "ai_draft") : "human";
+            string createdBy = c.Has("created_by") ? c.Enum("created_by", "human", "ai_draft", "composer") : "human";
+            string? spine = null;
+            if (c.Has("composition"))
+            {
+                // how a composed case was made (tools/composer): the approved case it keeps the story of, and the variable blocks; only the spine matters to the engine
+                var comp = c.Obj("composition");
+                spine = comp.Str("spine");
+                comp.Str("template"); comp.Int("seed"); comp.Arr("blocks"); if (comp.Has("solver_steps")) comp.Int("solver_steps");
+                comp.Finish();
+            }
+            if (createdBy == "composer" && spine == null) throw new ContentException("composition: a composed case says which approved case it keeps the story of");
             c.Finish();
             return new CaseFile(id, label, scenario, tier, status, approval, referenceDate, baseCard, identity, spoken, wristband, allergies, allergyAnswer, reason, presentation, history, observations,
-                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts, createdBy);
+                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts, createdBy, spine);
         }
 
         // The checks that need no table: they hold for any case file.
@@ -304,6 +314,9 @@ namespace ProcSense.Core.Content
                 if (!d.Options.Any(o => o.Correct) || d.Options.All(o => o.Correct)) throw new ContentException("decisions." + d.Id + ": needs at least one correct and one wrong option");
                 Unique("decisions." + d.Id + ".options", d.Options.Select(o => o.Id));
             }
+            if (f.Status == "GENERATED_PRACTICE_ONLY" && f.CreatedBy != "composer") throw new ContentException("status: only a case composed by the generator can be GENERATED_PRACTICE_ONLY");
+            if (f.CreatedBy == "composer" && f.Status != "DRAFT" && f.Status != "GENERATED_PRACTICE_ONLY") throw new ContentException("status: a composed case is a draft or generated practice only; it is never approved by the generator");
+            if (f.Spine != null && f.CreatedBy != "composer") throw new ContentException("composition: only a composed case has one");
             if (f.CreatedBy == "ai_draft" && f.Status.StartsWith("APPROVED", StringComparison.Ordinal)) throw new ContentException("status: a case drafted by AI stops at CLINICAL_REVIEW until a person approves it");
             if (f.Status == "APPROVED_FOR_ASSESSMENT" && f.Tier != "P0") throw new ContentException("status: only a P0 case can be approved for assessment");
         }
