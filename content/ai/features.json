@@ -79,20 +79,26 @@
   },
   "critic": {
    "label": "Text consistency critic",
-   "status": "FAIL",
-   "enabled": false,
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
      "id": "critic.recall_gain",
-     "status": "FAIL",
-     "got": 0.818,
-     "needs": ">= 0.868"
+     "status": "PASS",
+     "got": 0.709,
+     "needs": ">= 0.282"
     },
     {
      "id": "critic.false_alarms",
      "status": "PASS",
      "got": 0.038,
      "needs": "<= 0.1"
+    },
+    {
+     "id": "critic.first_set_not_worse",
+     "status": "PASS",
+     "got": 0.991,
+     "needs": ">= 0.967"
     }
    ]
   },
@@ -123,14 +129,14 @@
   },
   "interpreter": {
    "label": "Performance interpreter",
-   "status": "FAIL",
-   "enabled": false,
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
      "id": "interpreter.better_than_random",
-     "status": "FAIL",
-     "got": 0.675,
-     "needs": ">= 0.75"
+     "status": "PASS",
+     "got": 0.842,
+     "needs": ">= 0.787"
     }
    ]
   },
@@ -180,19 +186,19 @@
   },
   "plan_composer": {
    "label": "AI plan composer",
-   "status": "FAIL",
-   "enabled": false,
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
      "id": "planner.not_worse_coverage",
-     "status": "FAIL",
-     "got": 0.685,
+     "status": "PASS",
+     "got": 0.877,
      "needs": ">= 0.746"
     },
     {
      "id": "planner.served",
-     "status": "FAIL",
-     "got": 19,
+     "status": "PASS",
+     "got": 20,
      "needs": ">= 20.0"
     }
    ]

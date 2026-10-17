@@ -1,0 +1,982 @@
+{
+ "written": "18 October 2026",
+ "steps": {
+  "p1-ai-infrastructure-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/ai/check_hosts.py",
+    "docs/architecture/deployment.md"
+   ],
+   "measured": "check_hosts finds Ollama, the two models and the card; unit tests in tools/ai/test_benchmark.py"
+  },
+  "p1-ai-infrastructure-s02": {
+   "owner": "Ruhan",
+   "before": "Open (desktop BT0 to BT2 only)",
+   "now": "PARTLY",
+   "evidence": [
+    "tools/ai/benchmark.py",
+    "tools/ai/bench_report.py",
+    "docs/research/model_benchmarks.md"
+   ],
+   "measured": "4B 58.6 tokens/s wholly on the card, 9B 11.7 tokens/s at 57 percent on the card; 100 percent valid JSON; grounding 59 of 60 and 60 of 60 (4B)",
+   "open": "The laptop (RTX 4050) alone, with Unity and the recogniser loaded, served over the LAN, thinking-on runs and the blind human rating (BT3): needs the laptop and raters (DT-113, DT-187, DT-188)"
+  },
+  "p1-ai-infrastructure-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "docs/architecture/deployment.md"
+   ],
+   "measured": "four deployment modes written with fallbacks and the switch-off path; read against the measured hosts"
+  },
+  "p1-ai-infrastructure-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "PARTLY",
+   "evidence": [
+    "tools/labelling/label.py",
+    "tools/ci/test_labelling.py",
+    "docs/research/labelling/guidelines.md"
+   ],
+   "measured": "agreement (Cohen kappa and quadratic-weighted kappa), adjudication and frozen splits tested",
+   "open": "The labelling itself needs two people per item and an adjudicator (DT-203)"
+  },
+  "p1-ai-infrastructure-s05": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "docs/architecture/unity_ai_hooks.md"
+   ],
+   "measured": "twelve hooks with inputs, outputs, timeouts and fallbacks written against the gateway routes",
+   "open": "The Unity side of the hooks is Sannan's (voice client, DT-205)"
+  },
+  "p1-ai-language-s01": {
+   "owner": "Ruhan",
+   "before": "Approved (tick)",
+   "now": "DONE",
+   "evidence": [
+    "server/validation/validator.py",
+    "server/validation/test_validator.py"
+   ],
+   "measured": "disclosure probes, off-card drugs, false rejects, debrief mutations pass; the C# validator and the Python twin share vectors"
+  },
+  "p1-ai-language-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct, measured on the desktop",
+   "now": "PARTLY",
+   "evidence": [
+    "tools/ai/benchmark.py",
+    "docs/research/model_benchmarks.md"
+   ],
+   "measured": "see p1-ai-infrastructure-s02: speed, structured output and grounding for qwen3.5 4B and 9B",
+   "open": "The laptop and Unity runs and the human rating of wording (DT-113, DT-203)"
+  },
+  "p1-ai-language-s03": {
+   "owner": "Ruhan",
+   "before": "Approved (tick)",
+   "now": "DONE",
+   "evidence": [
+    "src/ProcSense.Core/AIContext/ContextBuilder.cs",
+    "server/schemas/ai"
+   ],
+   "measured": "the Core builds the context the model sees (only earned facts); C# tests pass"
+  },
+  "p1-ai-language-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/dialogue/dialogue.py",
+    "reports/ai/dialogue-eval.json"
+   ],
+   "measured": "0 leaks of withheld facts in 82 withheld replies, p95 2.3 s against 3 s; the dialogue gate passes and the feature is on",
+   "open": "The human reading of wording and the A/B with trainees (DT-203, DT-206)"
+  },
+  "p1-ai-language-s05": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/dialogue/dialogue.py",
+    "prompts/dialogue/staff_pick_v1.txt"
+   ],
+   "measured": "staff speak only the closed intent lists; a chosen-line mode (Dialogue.pick) speaks only approved lines; tests in tools/ci/test_llm.py"
+  },
+  "p1-ai-language-s06": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct (synthetic only)",
+   "now": "PARTLY",
+   "evidence": [
+    "content/assessment/taxonomy.json",
+    "tests/classifier_synthetic/manifest.json",
+    "tests/classifier_synthetic_v2/manifest.json"
+   ],
+   "measured": "two synthetic sets (v1 800 rows, v2 1,860 rows, AI-judged, leakage-checked, never called independent)",
+   "open": "The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)"
+  },
+  "p1-ai-language-s07": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct (synthetic only)",
+   "now": "DONE_GATE_OFF",
+   "evidence": [
+    "server/classify/embedding.py",
+    "content/assessment/act_head.json",
+    "docs/decisions/ADR-0012-communication-act-classifier-embeddings-head.md"
+   ],
+   "measured": "see the classifier section of docs/report/ai-eval.md",
+   "open": "The production gate needs the independent set (classifier.independent_evidence is SKIPPED, so the classifier is off in production)"
+  },
+  "p1-ai-language-s08": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct, gate failing",
+   "now": "DONE",
+   "evidence": [
+    "server/debrief/rewrite.py",
+    "prompts/debrief/rewrite_v2.txt",
+    "reports/ai/debrief-eval.json"
+   ],
+   "measured": "48 sessions: 93.8 percent accepted, p50 4.5 s, 89.6 percent within 8 s (lower bound 77.8), 177 of 177 corrupted rewrites refused; the gate passes and the feature is on",
+   "open": "The human reading of wording (DT-203); the validator's lexical gap (DT-211)"
+  },
+  "p1-ai-language-s09": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/eval/ai_gate.py",
+    "content/ai/thresholds.json",
+    "content/ai/features.json",
+    "docs/report/ai-eval.md"
+   ],
+   "measured": "every feature has suites; a missing result never passes; the committed features file equals what the results give (CI)"
+  },
+  "p1-backend-s01": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s02": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s03": {
+   "owner": "Sannan",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s04": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s05": {
+   "owner": "Ruhan",
+   "before": "Built (no status recorded)",
+   "now": "DONE",
+   "evidence": [
+    "server/middleware/audit.py",
+    "server/models/ai_call.py",
+    "server/migrations/versions/0008_ai_call_audit.py",
+    "server/tests/test_ai_audit.py"
+   ],
+   "measured": "T-AU1 to T-AU3 in server/tests/test_ai_audit.py: one row per AI request, no text stored, under 5 ms added",
+   "open": "The weekly report page renders from real rows only after real sessions exist"
+  },
+  "p1-backend-s06": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/routers/ai_gateway.py",
+    "server/llm/gateway.py",
+    "server/tests/test_ai_routes.py"
+   ],
+   "measured": "gateway: prompt registry by hash, schema and validator, one retry, fallback; load test 4 x 5 in reports/ai/load-gateway-4x5.json"
+  },
+  "p1-backend-s07": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s08": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s09": {
+   "owner": "Ruhan (engine half)",
+   "before": "Approved (tick)",
+   "now": "DONE",
+   "evidence": [
+    "src/ProcSense.Cli/Program.cs",
+    "server/sessionfile.py"
+   ],
+   "measured": "the verify command and the server half pass the header, engine version and hash checks"
+  },
+  "p1-backend-s10": {
+   "owner": "Sannan",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s11": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s12": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-backend-s13": {
+   "owner": "Moiz",
+   "before": "Approved (tick)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-case-library-extended-s01": {
+   "owner": "Ruhan",
+   "before": "Approved (tick)",
+   "now": "DONE",
+   "evidence": [
+    "content/case_files/VAR-S1-I.json",
+    "tests/golden/VAR-S1-I_correct_p1.expected.json"
+   ],
+   "measured": "10 variants transcribed verbatim and checked"
+  },
+  "p1-case-library-extended-s02": {
+   "owner": "Ruhan",
+   "before": "Approved (tick)",
+   "now": "DONE",
+   "evidence": [
+    "content/case_files/STK-S1-A.json",
+    "tests/golden/STK-S1-A_correct_p1.expected.json"
+   ],
+   "measured": "6 stacked cases built and checked"
+  },
+  "p1-case-library-extended-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/golden/p0_scripts.py",
+    "tests/golden/engine_version.lock"
+   ],
+   "measured": "EXP-CASE-3: all 16 P1 cases play to their expected end state with no engine addition"
+  },
+  "p1-case-library-extended-s04": {
+   "owner": "Ruhan (headless), Sannan (headset)",
+   "before": "No status recorded",
+   "now": "PARTLY",
+   "evidence": [
+    "tools/golden/paths.py",
+    "tests/golden/STK-S1-A_dangerous_p1.expected.json"
+   ],
+   "measured": "16 P1 cases now have correct, novice, dangerous and edge goldens (142 golden runs, all pass; paths.py --check proves each path behaves as promised)",
+   "open": "The Quest playthrough, replay of the VR session and the reviewer video (Sannan); the maternity and minor-consent cases need a clinician's institutional review"
+  },
+  "p1-dataset-analysis-s01": {
+   "owner": "Ruhan",
+   "before": "Approved (tick)",
+   "now": "DONE",
+   "evidence": [
+    "docs/research/dataset_register.csv",
+    "docs/research/licence_provenance_register.md",
+    "tools/data/licence_register_check.py"
+   ],
+   "measured": "every dataset and model has a licence row; the register check is in CI"
+  },
+  "p1-dataset-analysis-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/data/profile_numeric.py",
+    "tools/ci/test_profile_numeric.py"
+   ],
+   "measured": "profiles regenerate identically (--check in CI)"
+  },
+  "p1-dataset-analysis-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/data/profile_waveforms.py"
+   ],
+   "measured": "waveform profiles regenerate identically (--check in CI)"
+  },
+  "p1-dataset-analysis-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/content/imaging_tags.py",
+    "docs/research/imaging_gaps.md"
+   ],
+   "measured": "204 pictures tagged; 29 findings have synthetic pictures only"
+  },
+  "p1-dataset-analysis-s05": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/generation/build_packs.py",
+    "content/generation/packs"
+   ],
+   "measured": "parameter packs and evaluation sets regenerate identically (--check in CI)"
+  },
+  "p1-dataset-analysis-s06": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "PARTLY",
+   "evidence": [
+    "content/kb/relations.json",
+    "tools/ci/test_kb.py"
+   ],
+   "measured": "grounding of model relations, review gate and score are tested",
+   "open": "The relation labels the precision gate needs (100 relations, two labellers) need people (DT-203)"
+  },
+  "p1-evaluation-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/synth/publish.py",
+    "tools/synth/card_schema.json"
+   ],
+   "measured": "a synthetic dataset cannot be published without a complete card"
+  },
+  "p1-evaluation-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/eval/collect_ai.py",
+    "docs/report/ai-eval.md"
+   ],
+   "measured": "the report is generated from the result files, never typed"
+  },
+  "p1-evaluation-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct (tooling)",
+   "now": "PARTLY",
+   "evidence": [
+    "tools/eval/analyse_study.py",
+    "tools/ci/test_study_analysis.py",
+    "docs/plans/p1/p1-evaluation/protocols/learning-effect.md"
+   ],
+   "measured": "paired differences, effect sizes, bootstrap and exact sign-flip tests tested on simulated data; simulated tables cannot enter the results folder",
+   "open": "The supervisor's agreement, a clinician for the quiz questions and 12 participants (DT-206)"
+  },
+  "p1-evaluation-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct (tooling)",
+   "now": "PARTLY",
+   "evidence": [
+    "tools/eval/analyse_study.py",
+    "docs/plans/p1/p1-evaluation/protocols/ai-dialogue-ab.md"
+   ],
+   "measured": "the decision rule is fixed beforehand and tested",
+   "open": "The supervisor's agreement and participants (DT-206)"
+  },
+  "p1-live-scenario-generation-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/schemas/session_request.json",
+    "server/generation/contracts.py"
+   ],
+   "measured": "request, objectives and package schemas validated"
+  },
+  "p1-live-scenario-generation-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/retrieve.py",
+    "tools/ci/test_generation_retrieve.py"
+   ],
+   "measured": "retrieval over 53 cases and 256 competencies tested"
+  },
+  "p1-live-scenario-generation-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/skeleton.py",
+    "tools/ci/test_generation_skeleton.py"
+   ],
+   "measured": "deterministic skeleton from the ranked spines"
+  },
+  "p1-live-scenario-generation-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/llm/gateway.py",
+    "server/generation/narrative.py",
+    "reports/ai/narrative-4b.json"
+   ],
+   "measured": "narrative: first-try schema valid and accepted share pass the gate and the feature is on"
+  },
+  "p1-live-scenario-generation-s05": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/numeric.py",
+    "tools/ci/test_generation_numeric.py"
+   ],
+   "measured": "numbers vary only inside the packs and are recomputed"
+  },
+  "p1-live-scenario-generation-s06": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/media.py",
+    "tools/ci/test_generation_media.py"
+   ],
+   "measured": "pictures chosen by finding; defects checked"
+  },
+  "p1-live-scenario-generation-s07": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/crossmodal.py",
+    "tools/ci/test_generation_crossmodal.py"
+   ],
+   "measured": "8 cross-modal rules, a failing example for each"
+  },
+  "p1-live-scenario-generation-s08": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/quality.py",
+    "server/generation/repair.py",
+    "tools/ci/test_generation_quality.py"
+   ],
+   "measured": "quality metrics and bounded repair"
+  },
+  "p1-live-scenario-generation-s09": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/novelty.py",
+    "tools/ci/test_generation_novelty.py"
+   ],
+   "measured": "novelty fingerprints, distances and the sealed package"
+  },
+  "p1-live-scenario-generation-s10": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct (Core)",
+   "now": "PARTLY",
+   "evidence": [
+    "server/generation/package.py",
+    "tools/ci/test_generation_package.py"
+   ],
+   "measured": "the Core plays a generated package; the gate refuses it in assessment",
+   "open": "The Unity side that fetches and plays a package is Sannan's"
+  },
+  "p1-live-scenario-generation-s11": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/ci/test_generation_live.py",
+    "tests/golden_generated"
+   ],
+   "measured": "generated cases end and score like the case they keep the story of"
+  },
+  "p1-live-scenario-generation-s12": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/history.py",
+    "tools/ci/test_generation_history.py"
+   ],
+   "measured": "debrief section for generated cases, history and the offline loop"
+  },
+  "p1-live-scenario-generation-s13": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct, gate failing",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/compose_plan.py",
+    "prompts/compose_plan/spine_v2.txt",
+    "reports/ai/planner-eval.json"
+   ],
+   "measured": "shortlist = the solver pool, spine prompt v2: 20 of 20 served, coverage 0.877 against the solver 0.746; the gate passes and the feature is on (offline tool, 37.5 s a request)",
+   "open": "The blind comparison by two raters on 40 cases (DT-203)"
+  },
+  "p1-live-scenario-generation-s14": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/generation/fit_joint.py",
+    "content/generation/releases.json"
+   ],
+   "measured": "a Gaussian copula over 19 analytes; release R2"
+  },
+  "p1-live-scenario-generation-s15": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct, critic below target",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/consistency.py",
+    "server/generation/critic.py",
+    "reports/ai/critic-eval.json",
+    "reports/ai/critic-eval-v2.json",
+    "tests/generation/text_inconsistencies_v2.json"
+   ],
+   "measured": "deterministic side-of-body and denied-pain rules on every package (36 of 36 and 28 of 29); held-out set scored once: rules 8.2 percent, rules and critic 70.9 percent (+62.7 points, target 20), false alarms 3.8 percent; the gate passes and the critic is on",
+   "open": "The critic recalls only 1 of 9 denied conditions; the contradictions are blunt and builder-written, not clinician-written"
+  },
+  "p1-personalisation-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/personalisation/evidence.py",
+    "tools/ci/test_personalisation_evidence.py"
+   ],
+   "measured": "evidence extracted from sessions"
+  },
+  "p1-personalisation-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/personalisation/learner_model.py",
+    "tools/ci/test_personalisation_model.py"
+   ],
+   "measured": "Beta-binomial learner model that fades"
+  },
+  "p1-personalisation-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/personalisation/policy.py",
+    "tools/ci/test_personalisation_policy.py"
+   ],
+   "measured": "targeting policy with spacing; simulated comparison in docs/research/personalisation_simulation.json",
+   "open": "A real-trainee comparison needs participants (DT-206)"
+  },
+  "p1-personalisation-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct, gate failing",
+   "now": "DONE",
+   "evidence": [
+    "server/personalisation/interpreter.py",
+    "prompts/personalisation/interpret_v2.txt",
+    "reports/ai/interpreter-eval.json"
+   ],
+   "measured": "prompt v2 with the weakness rule: 38 hypotheses from 14 of 20 simulated learners, 84.2 percent confirmed against 73.7 percent for random picks (was 67.5 against 70.0); the gate passes and the feature is on",
+   "open": "The learners are simulated and the margin has a wide interval; real learners need participants (DT-206)"
+  },
+  "p1-personalisation-s05": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/personalisation/explain.py"
+   ],
+   "measured": "template explanation from the facts of the choice"
+  },
+  "p1-pulse-physiology-s01": {
+   "owner": "Ruhan",
+   "before": "Desk research 17 Oct",
+   "now": "BLOCKED",
+   "evidence": [
+    "tools/pulse/README.md"
+   ],
+   "measured": "licence Apache-2.0, platforms and bindings recorded; no prebuilt wheel exists",
+   "open": "The PC build needs a C++ compiler and CMake (neither is installed) and about 25 GB of free disk (23 GB of 534 GB are free); the Quest ARM64 test is Sannan's (DT-207)"
+  },
+  "p1-pulse-physiology-s02": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "BLOCKED",
+   "evidence": [
+    "tools/pulse/README.md"
+   ],
+   "measured": "",
+   "open": "Waits for the spike of s01 (DT-207)"
+  },
+  "p1-pulse-physiology-s03": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "BLOCKED",
+   "evidence": [
+    "tools/pulse/README.md"
+   ],
+   "measured": "",
+   "open": "Waits for the adapter of s02 (DT-207)"
+  },
+  "p1-scenario-composer-difficulty-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/composer/blocks.py",
+    "content/blocks"
+   ],
+   "measured": "block library cut from named cases"
+  },
+  "p1-scenario-composer-difficulty-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/composer/solve.py",
+    "tools/composer"
+   ],
+   "measured": "solver tests T-CO1 to T-CO5"
+  },
+  "p1-scenario-composer-difficulty-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct (as the plan composer)",
+   "now": "DONE",
+   "evidence": [
+    "server/generation/compose_plan.py",
+    "reports/ai/planner-eval.json"
+   ],
+   "measured": "see p1-live-scenario-generation-s13",
+   "open": "the blind human comparison (DT-203)"
+  },
+  "p1-scenario-composer-difficulty-s04": {
+   "owner": "Ruhan",
+   "before": "Built earlier",
+   "now": "DONE",
+   "evidence": [
+    "src/ProcSense.Core/Difficulty"
+   ],
+   "measured": "template explanation of the difficulty"
+  },
+  "p1-scenario-composer-difficulty-s05": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "BLOCKED",
+   "evidence": [
+    "tools/composer/solve.py"
+   ],
+   "measured": "",
+   "open": "Composed cases need a named clinician's approval before they enter the pool"
+  },
+  "p1-theatre-extension-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "src/ProcSense.Core/Workflow/Steps/SafetyChecklistSubsystem.cs",
+    "tests/ProcSense.Core.Tests/TheatreExtensionTests.cs"
+   ],
+   "measured": "Sign Out phase with golden runs"
+  },
+  "p1-theatre-extension-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "PARTLY",
+   "evidence": [
+    "src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs",
+    "content/extension/intra_op_events.json"
+   ],
+   "measured": "4 labelled events, practice mode only, 11 tests in TheatreExtensionTests",
+   "open": "A clinician must review the 4 events (they are labelled ProcSense educational extension)"
+  },
+  "p1-theatre-extension-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "PARTLY",
+   "evidence": [
+    "src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs",
+    "content/handover/recovery_required.json"
+   ],
+   "measured": "12 required handover items sourced, practice mode only, tested",
+   "open": "A clinician must review the 12 items; the recovery bay scene is Sannan's"
+  },
+  "p1-theatre-extension-s04": {
+   "owner": "Sannan",
+   "before": "Not started (3D assets)",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-voice-input-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/asr/service.py",
+    "reports/ai/asr-wer.json"
+   ],
+   "measured": "word error rate 9.3 percent against the 25 percent limit; the gate passes and the feature is on",
+   "open": "Accented trainees in a noisy room (DT-205)"
+  },
+  "p1-voice-input-s02": {
+   "owner": "Sannan",
+   "before": "No status recorded",
+   "now": "NOT_RUHAN",
+   "evidence": [],
+   "measured": ""
+  },
+  "p1-voice-input-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/orders/grammar.py",
+    "reports/ai/orders-eval.json"
+   ],
+   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on"
+  },
+  "p1-voice-input-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct, gate failing",
+   "now": "DONE",
+   "evidence": [
+    "server/tts/engine.py",
+    "reports/ai/tts-latency.json"
+   ],
+   "measured": "first spoken sentence 2.19 s at the 95th percentile against 2.5 s on a quiet processor (was 4.95 s while other jobs ran); the gate passes and the feature is on"
+  },
+  "p2-ai-advanced-simulation-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "tools/redteam/run.py",
+    "reports/ai/redteam.json"
+   ],
+   "measured": "attacks on the grounding validator; none succeeds"
+  },
+  "p2-ai-advanced-simulation-s02": {
+   "owner": "Ruhan",
+   "before": "Not built (research)",
+   "now": "DONE",
+   "evidence": [
+    "src/ProcSense.Core/Twin/PatientTwin.cs",
+    "tests/ProcSense.Core.Tests/PatientTwinTests.cs"
+   ],
+   "measured": "7 tests: snapshot, hash, follow-up card, the carried state replays to the same snapshot; the 142 golden runs are untouched",
+   "open": "The Unity host does not offer a follow-up encounter yet (Sannan); a Pulse-driven twin waits for DT-207"
+  },
+  "p2-ai-advanced-simulation-s03": {
+   "owner": "Ruhan",
+   "before": "Measured, not built",
+   "now": "DONE_GATE_OFF",
+   "evidence": [
+    "tools/ai/eval_multiagent.py",
+    "reports/ai/multiagent-eval.json"
+   ],
+   "measured": "see the three-character section of docs/report/ai-eval.md",
+   "open": "see the report"
+  },
+  "p2-ai-advanced-simulation-s04": {
+   "owner": "Ruhan",
+   "before": "Not started",
+   "now": "RESEARCH_NEGATIVE",
+   "evidence": [
+    "docs/research/generative_images_trigger.md"
+   ],
+   "measured": "29 findings have synthetic pictures only, none of the 14 registered sources holds a labelled picture of them",
+   "open": "Reopens with a licensed dataset holding one of those findings, a reviewer and a GPU (DT-212)"
+  },
+  "p2-ai-advanced-simulation-s05": {
+   "owner": "Ruhan",
+   "before": "Not started",
+   "now": "RESEARCH_NEGATIVE",
+   "evidence": [
+    "docs/research/llm_adaptation_trigger.md"
+   ],
+   "measured": "every remaining quality gap has a cheaper remedy that is built or being measured",
+   "open": "Reopens when a gap survives prompt and code remedies and real or approved dialogue exists to learn from (DT-212)"
+  },
+  "p2-ai-extensions-s01": {
+   "owner": "Ruhan with Sannan",
+   "before": "Not started",
+   "now": "BLOCKED",
+   "evidence": [
+    "docs/architecture/deployment.md"
+   ],
+   "measured": "",
+   "open": "On-device recognition needs the Quest and an ARM build (Sannan, DT-205)"
+  },
+  "p2-ai-extensions-s02": {
+   "owner": "Ruhan",
+   "before": "Built and measured 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/retrieval/flat.py",
+    "reports/ai/retrieval-eval.json"
+   ],
+   "measured": "measured and not shipped: the disclosure filter leaves about 39 tokens of facts in the prompt, so the top 3 save nothing (DT-216)"
+  },
+  "p2-ai-extensions-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE_GATE_OFF",
+   "evidence": [
+    "server/classify/embedding.py",
+    "content/assessment/act_head.json"
+   ],
+   "measured": "the small classifier is the embeddings and logistic-regression head; see the classifier section of docs/report/ai-eval.md",
+   "open": "The independent set (see p1-ai-language-s07)"
+  },
+  "p2-ai-extensions-s04": {
+   "owner": "Ruhan with participants",
+   "before": "Not started",
+   "now": "BLOCKED",
+   "evidence": [
+    "tools/ai/asr_wer.py"
+   ],
+   "measured": "",
+   "open": "Urdu speech needs consented Urdu recordings and a recogniser benchmark on them (DT-212)"
+  },
+  "p2-ai-extensions-s05": {
+   "owner": "Ruhan",
+   "before": "Not started",
+   "now": "BLOCKED",
+   "evidence": [
+    "docs/research/model_benchmarks.md"
+   ],
+   "measured": "the general benchmark of the two Qwen models is done",
+   "open": "MedGemma needs the owner to accept its terms (DT-212); nothing was downloaded"
+  },
+  "p2-ai-learning-analytics-s01": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/analytics/patterns.py",
+    "tools/ci/test_analytics.py"
+   ],
+   "measured": "repeated error, repeated miss, late step and critical trend patterns with tests"
+  },
+  "p2-ai-learning-analytics-s02": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/analytics/calibration.py",
+    "tools/ci/test_analytics.py"
+   ],
+   "measured": "Brier score, calibration curve and coaching tested"
+  },
+  "p2-ai-learning-analytics-s03": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/analytics/reasoning.py",
+    "tools/ci/test_analytics.py"
+   ],
+   "measured": "order of gathering, history before tests, time to key steps tested"
+  },
+  "p2-ai-learning-analytics-s04": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/analytics/progression.py",
+    "tools/ci/test_analytics.py"
+   ],
+   "measured": "first-half and second-half share right tested"
+  },
+  "p2-ai-learning-analytics-s05": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/analytics/interpreter.py",
+    "tools/ci/test_analytics.py"
+   ],
+   "measured": "at most two sentences, grounded numbers, tested"
+  },
+  "p2-ai-learning-analytics-s06": {
+   "owner": "Ruhan",
+   "before": "Built 17 Oct",
+   "now": "DONE",
+   "evidence": [
+    "server/analytics/next_case.py",
+    "tools/ci/test_analytics.py"
+   ],
+   "measured": "reorders only the valid set the selector allows"
+  },
+  "p2-content-extensions-s01": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "DONE",
+   "evidence": [
+    "content/case_files/SC-1.json",
+    "content/case_files/SC-20.json",
+    "content/case_approvals.json"
+   ],
+   "measured": "20 SC cases exist with status APPROVED_FOR_TRAINING; the case-file builder and Stage B pass in CI (53 cases: 17 P0, 16 P1, 20 P2)"
+  },
+  "p2-content-extensions-s02": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "BLOCKED",
+   "evidence": [
+    "tools/composer/solve.py"
+   ],
+   "measured": "",
+   "open": "New multi-problem combinations need a named clinician's approval before they enter the pool"
+  },
+  "p2-content-extensions-s03": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "DONE",
+   "evidence": [
+    "content/codes/loinc.csv",
+    "content/codes/icd11.csv",
+    "tools/content/terminology_codes.py",
+    "tools/ci/test_terminology_codes.py"
+   ],
+   "measured": "23 LOINC and 30 ICD-11 codes, all 53 matched on the public terminology server; 6 words say why no single code fits",
+   "open": "A clinician or terminologist has not reviewed the choices; the session report does not print the codes (DT-218)"
+  },
+  "p2-content-extensions-s04": {
+   "owner": "Ruhan",
+   "before": "No status recorded",
+   "now": "BLOCKED",
+   "evidence": [
+    "content/medicines.csv"
+   ],
+   "measured": "",
+   "open": "The DRAP registry states it may not be used as a reference for research or citation; availability flags need an allowed source or a named pharmacist (DT-212)"
+  }
+ }
+}

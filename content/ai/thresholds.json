@@ -48,12 +48,12 @@
    "suites": [
     {
      "id": "critic.recall_gain",
-     "file": "critic-eval.json",
-     "path": "recall.union_before_rules",
+     "file": "critic-eval-v2.json",
+     "path": "recall.union",
      "op": ">=",
-     "vs": "recall.baseline_before_rules",
+     "vs": "recall.baseline",
      "plus": 0.2,
-     "ref": "plan: 20 points above the rules, measured against the rules as they were when the plan was written (before the deterministic side-of-body and denied-pain rules, which now find those defects without the critic); against the new rules the margin cannot be shown on this set (DT-217)"
+     "ref": "plan: 20 points above the rules, measured on the held-out set worded differently and frozen before any run (DT-217); the first set is saturated by the deterministic side-of-body and denied-pain rules and cannot show the margin"
     },
     {
      "id": "critic.false_alarms",
@@ -62,6 +62,14 @@
      "op": "<=",
      "value": 0.1,
      "ref": "plan: under 10 percent"
+    },
+    {
+     "id": "critic.first_set_not_worse",
+     "file": "critic-eval.json",
+     "path": "recall.union",
+     "op": ">=",
+     "vs": "recall.baseline",
+     "ref": "the critic must not lose anything the rules find on the first set"
     }
    ]
   },

@@ -1,12 +1,83 @@
 {
   "model": "qwen3.5:9b-q4_K_M",
+  "prompt_version": 2,
   "learners": 20,
-  "hypotheses": 40,
+  "hypotheses": 38,
   "learners_with_no_accepted_proposal": 6,
-  "confirmed_by_model": 0.675,
-  "confirmed_by_random_picks": 0.7,
-  "seconds_per_learner": 63.8,
+  "confirmed_by_model": 0.842,
+  "confirmed_by_random_picks": 0.737,
+  "seconds_per_learner": 47.0,
   "samples": [
+    {
+      "weak_dimensions": [
+        "more_complex_history",
+        "competing_priorities"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b01",
+            "b02",
+            "b09"
+          ],
+          "text": "The trainee's weakness in asking questions, identifying patient info, and noticing relevant info may stem from a shared difficulty in gathering information during the first few sessions.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b17",
+            "b21"
+          ],
+          "text": "Weaknesses in following workflow and completing safety checks might both result from a lack of familiarity with the pre-operative sequence established over only 3 sessions.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b22",
+            "b18"
+          ],
+          "text": "Hypotheses regarding responding to changing states and noticing environmental problems could both be caused by a limited ability to scan the environment effectively in only 2-4 sessions.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "weak_dimensions": [
+        "unexpected_events"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b20",
+            "b07"
+          ],
+          "text": "Both 'Escalates or seeks assistance' and 'Checks understanding' are weak/hypotheses with low session counts, suggesting a potential underlying issue in recognizing when to ask for help or verify information.",
+          "confidence": "low",
+          "status": "open"
+        },
+        {
+          "competencies": [
+            "b04",
+            "b15"
+          ],
+          "text": "'Responds to patient concerns' and 'Responds to unexpected events' both show low performance on few sessions, possibly indicating a shared difficulty in adapting communication to changing or anxious situations.",
+          "confidence": "low",
+          "status": "open"
+        },
+        {
+          "competencies": [
+            "b13",
+            "b21"
+          ],
+          "text": "'Performs required checks' and 'Completes preparation and safety checks' are both hypotheses with very few sessions, suggesting a potential gap in adhering to safety protocols or checklists.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
     {
       "weak_dimensions": [
         "communication_challenges"
@@ -14,30 +85,32 @@
       "hypotheses": [
         {
           "competencies": [
+            "b07",
             "b04",
-            "b07"
+            "b06"
           ],
-          "text": "The trainee struggles to respond to patient concerns (b04) and checks understanding (b07), suggesting a difficulty in managing the interpersonal flow of the consultation.",
-          "confidence": "medium",
+          "text": "The trainee's low performance in checking understanding, responding to concerns, and explaining before interactions suggests a shared difficulty in actively seeking clarification and confirming patient needs.",
+          "confidence": "low",
           "status": "confirmed"
         },
         {
           "competencies": [
             "b05",
-            "b06"
+            "b18"
           ],
-          "text": "Weaknesses in explaining procedures (b05) and explaining before interactions (b06) rely on very few sessions, so confidence is low.",
+          "text": "Weaknesses in explaining procedures and noticing environmental problems may both stem from a lack of structured scanning for hazards before initiating or describing clinical actions.",
           "confidence": "low",
           "status": "confirmed"
         },
         {
           "competencies": [
-            "b20",
-            "b14"
+            "b04",
+            "b07",
+            "b18"
           ],
-          "text": "The trainee has difficulty escalating for help (b20) and responding to abnormal findings (b14), which are based on only 3 sessions, limiting confidence.",
+          "text": "Low scores in responding to concerns, checking understanding, and noticing safety issues could indicate a general hesitation to pause and verify the immediate context before proceeding.",
           "confidence": "low",
-          "status": "open"
+          "status": "confirmed"
         }
       ]
     },
@@ -48,63 +121,30 @@
       "hypotheses": [
         {
           "competencies": [
-            "b08",
-            "b14"
-          ],
-          "text": "The trainee struggles significantly with responding to anxiety and abnormal findings, which may indicate a shared difficulty in managing high-stress situations or processing critical alerts under pressure.",
-          "confidence": "low",
-          "status": "confirmed"
-        },
-        {
-          "competencies": [
-            "b01",
-            "b07"
-          ],
-          "text": "The trainee performs poorly on asking relevant questions and checking understanding, suggesting a potential gap in active listening or the habit of verifying patient comprehension before proceeding.",
-          "confidence": "medium",
-          "status": "open"
-        },
-        {
-          "competencies": [
-            "b12",
-            "b21"
-          ],
-          "text": "The trainee shows weakness in giving instructions and completing safety checks, which may stem from rushing through the workflow or lacking confidence in executing procedural steps correctly.",
-          "confidence": "low",
-          "status": "confirmed"
-        }
-      ]
-    },
-    {
-      "weak_dimensions": [
-        "communication_challenges"
-      ],
-      "hypotheses": [
-        {
-          "competencies": [
-            "b04",
+            "b14",
             "b08"
           ],
-          "text": "The trainee struggles to respond to patient concerns and anxiety, which may indicate a difficulty in interpreting emotional cues or prioritizing empathy during high-stress interactions.",
+          "text": "Both responding to abnormal findings and responding to anxiety show low performance, suggesting a shared weakness in recognizing or prioritizing critical patient states.",
           "confidence": "low",
           "status": "confirmed"
         },
         {
           "competencies": [
-            "b05",
-            "b06",
-            "b07"
+            "b21",
+            "b20",
+            "b01"
           ],
-          "text": "Weaknesses in explaining procedures, explaining before interactions, and checking understanding suggest the trainee may be rushing through communication steps or lacks confidence in their explanatory skills.",
+          "text": "The trainee struggles with safety checks, seeking assistance, and asking relevant questions, indicating a potential gap in initiating the correct pre-operative workflow or recognizing information gaps early.",
           "confidence": "low",
           "status": "confirmed"
         },
         {
           "competencies": [
-            "b18",
-            "b21"
+            "b02",
+            "b10",
+            "b12"
           ],
-          "text": "The trainee shows weaknesses in noticing environmental/safety problems and completing preparation checks, potentially indicating a gap in situational awareness or adherence to safety protocols.",
+          "text": "Poor performance in identifying patient information, communicating with staff, and giving instructions suggests a difficulty in synthesizing data to form appropriate communication responses.",
           "confidence": "low",
           "status": "confirmed"
         }
@@ -118,12 +158,12 @@
       "hypotheses": [
         {
           "competencies": [
-            "b12",
-            "b13",
-            "b19"
+            "b19",
+            "b16",
+            "b14"
           ],
-          "text": "The trainee's significant weaknesses in giving instructions, performing safety checks, and responding to missing information likely stem from a failure to follow the established workflow sequence (b17) or a gap in their ",
-          "confidence": "high",
+          "text": "The trainee consistently fails to recognize missing information or abnormal findings (weaknesses in b16, b19, b14), suggesting a potential underlying issue with clinical vigilance or information processing that requires ",
+          "confidence": "low",
           "status": "confirmed"
         }
       ]
@@ -136,68 +176,53 @@
       "hypotheses": [
         {
           "competencies": [
-            "b01",
-            "b09"
-          ],
-          "text": "The trainee struggles to identify important patient information (b09) and asks few relevant questions (b01), suggesting a need to improve active listening and information gathering skills.",
-          "confidence": "low",
-          "status": "confirmed"
-        },
-        {
-          "competencies": [
-            "b02",
             "b09",
-            "b18"
-          ],
-          "text": "Weaknesses in identifying patient info (b02), noticing clinical details (b09), and spotting environmental safety issues (b18) likely stem from a lack of systematic scanning habits due to low session counts.",
-          "confidence": "low",
-          "status": "confirmed"
-        },
-        {
-          "competencies": [
             "b03",
-            "b06"
+            "b02"
           ],
-          "text": "Difficulty clarifying unclear information (b03) and explaining procedures before interactions (b06) may indicate the trainee needs to build confidence in managing communication gaps.",
-          "confidence": "low",
-          "status": "refuted"
-        }
-      ]
-    },
-    {
-      "weak_dimensions": [
-        "information_to_clarify",
-        "cognitive_workload"
-      ],
-      "hypotheses": [
-        {
-          "competencies": [
-            "b16",
-            "b19"
-          ],
-          "text": "The trainee shows weaknesses in recognizing missing information and responding to it, likely due to insufficient practice sessions (2-4) preventing pattern recognition.",
+          "text": "The trainee struggles to notice clinical/safety information (b09, b18) and identify important data (b02), which likely stems from a foundational inability to clarify unclear information (b03).",
           "confidence": "low",
           "status": "confirmed"
         },
         {
           "competencies": [
-            "b12",
-            "b13"
+            "b01",
+            "b03"
           ],
-          "text": "The trainee struggles with giving instructions and performing required checks, which may stem from a lack of procedural memory due to low session counts (2-3).",
+          "text": "The trainee's difficulty in asking relevant questions (b01) appears linked to the specific weakness in clarifying unclear information (b03), suggesting a broader communication barrier.",
           "confidence": "low",
           "status": "confirmed"
         },
         {
           "competencies": [
-            "b05",
-            "b12"
+            "b22",
+            "b14"
           ],
-          "text": "The trainee has moderate scores in explaining procedures but very low scores in giving instructions, suggesting a specific difficulty in translating explanations into actionable steps.",
-          "confidence": "medium",
-          "status": "open"
+          "text": "Given that b22 and b14 rest on only 1 and 4 sessions respectively, their current status as hypotheses may be premature; more data is needed before linking them to a cause.",
+          "confidence": "low",
+          "status": "confirmed"
         }
       ]
     }
-  ]
+  ],
+  "baselines": {
+    "prompt_v1_17_oct_no_weakness_rule": {
+      "learners": 20,
+      "hypotheses": 40,
+      "learners_with_no_accepted_proposal": 6,
+      "confirmed_by_model": 0.675,
+      "confirmed_by_random_picks": 0.7,
+      "seconds_per_learner": 63.8
+    },
+    "prompt_v1_with_weakness_rule_18_oct": {
+      "prompt_version": 1,
+      "learners": 20,
+      "hypotheses": 12,
+      "learners_with_no_accepted_proposal": 16,
+      "confirmed_by_model": 0.75,
+      "confirmed_by_random_picks": 0.5,
+      "seconds_per_learner": 62.9
+    }
+  },
+  "note": "Prompt version 2 with the weakness-first profile and the NOT_A_WEAKNESS rule, 20 simulated learners (a hidden cause: one or two weak difficulty dimensions). The hypotheses are checked by rule after three more simulated sessions; random picks link the same number of weak competencies. 38 hypotheses come from 14 of the 20 learners, so the 10.5-point margin has a wide interval; the learners are simulated, not people."
 }

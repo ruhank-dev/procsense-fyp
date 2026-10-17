@@ -1,0 +1,146 @@
+{
+  "set": "v2",
+  "model": "qwen3.5:4b-q4_K_M",
+  "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+  "members": 134,
+  "critic_could_not_answer": 0,
+  "recall": {
+    "baseline": 0.082,
+    "baseline_before_rules": 0.082,
+    "critic": 0.687,
+    "union": 0.709,
+    "union_before_rules": 0.709
+  },
+  "by_kind": {
+    "allergy_denied": {
+      "n": 5,
+      "baseline": 3,
+      "baseline_before_rules": 3,
+      "critic": 5,
+      "union": 5,
+      "union_before_rules": 5
+    },
+    "operation_described_wrongly": {
+      "n": 24,
+      "baseline": 0,
+      "baseline_before_rules": 0,
+      "critic": 15,
+      "union": 15,
+      "union_before_rules": 15
+    },
+    "tests_said_normal": {
+      "n": 24,
+      "baseline": 8,
+      "baseline_before_rules": 8,
+      "critic": 13,
+      "union": 16,
+      "union_before_rules": 16
+    },
+    "pregnancy_in_a_man": {
+      "n": 24,
+      "baseline": 0,
+      "baseline_before_rules": 0,
+      "critic": 18,
+      "union": 18,
+      "union_before_rules": 18
+    },
+    "allergy_invented": {
+      "n": 24,
+      "baseline": 0,
+      "baseline_before_rules": 0,
+      "critic": 17,
+      "union": 17,
+      "union_before_rules": 17
+    },
+    "age_said_in_other_words": {
+      "n": 24,
+      "baseline": 0,
+      "baseline_before_rules": 0,
+      "critic": 23,
+      "union": 23,
+      "union_before_rules": 23
+    },
+    "condition_denied": {
+      "n": 9,
+      "baseline": 0,
+      "baseline_before_rules": 0,
+      "critic": 1,
+      "union": 1,
+      "union_before_rules": 1
+    }
+  },
+  "clean_cases": 26,
+  "critic_false_alarm_rate": 0.038,
+  "baseline_false_alarm_rate": 0.192,
+  "raw": {
+    "recall": {
+      "baseline": 0.082,
+      "baseline_before_rules": 0.082,
+      "critic": 0.94,
+      "union": 0.94,
+      "union_before_rules": 0.94
+    },
+    "by_kind": {
+      "allergy_denied": {
+        "n": 5,
+        "baseline": 3,
+        "baseline_before_rules": 3,
+        "critic": 5,
+        "union": 5,
+        "union_before_rules": 5
+      },
+      "operation_described_wrongly": {
+        "n": 24,
+        "baseline": 0,
+        "baseline_before_rules": 0,
+        "critic": 23,
+        "union": 23,
+        "union_before_rules": 23
+      },
+      "tests_said_normal": {
+        "n": 24,
+        "baseline": 8,
+        "baseline_before_rules": 8,
+        "critic": 24,
+        "union": 24,
+        "union_before_rules": 24
+      },
+      "pregnancy_in_a_man": {
+        "n": 24,
+        "baseline": 0,
+        "baseline_before_rules": 0,
+        "critic": 23,
+        "union": 23,
+        "union_before_rules": 23
+      },
+      "allergy_invented": {
+        "n": 24,
+        "baseline": 0,
+        "baseline_before_rules": 0,
+        "critic": 24,
+        "union": 24,
+        "union_before_rules": 24
+      },
+      "age_said_in_other_words": {
+        "n": 24,
+        "baseline": 0,
+        "baseline_before_rules": 0,
+        "critic": 23,
+        "union": 23,
+        "union_before_rules": 23
+      },
+      "condition_denied": {
+        "n": 9,
+        "baseline": 0,
+        "baseline_before_rules": 0,
+        "critic": 4,
+        "union": 4,
+        "union_before_rules": 4
+      }
+    },
+    "critic_false_alarm_rate": 0.923
+  },
+  "note_rules": "baseline is the rule-based checks INCLUDING the side-of-body and denied-pain rules added in server/generation/consistency.py (they were written after the first critic run showed the model missed those two kinds); baseline_before_rules is the baseline the critic was first measured against. The plan's +20 points was set against the earlier baseline.",
+  "note": "recall and critic_false_alarm_rate are those of the verified critic, the one the pipeline runs; raw is the first pass alone",
+  "seconds": 873
+}

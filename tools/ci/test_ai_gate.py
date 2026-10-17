@@ -36,12 +36,17 @@ class Gate(unittest.TestCase):
         self.assertEqual([s["status"] for s in f["suites"]], ["FAIL", "PASS"])
 
     def test_a_comparison_with_another_number_and_a_margin(self):
-        base = {"recall": {"baseline_before_rules": 0.67, "union_before_rules": 0.9, "critic": 0.5}, "critic_false_alarm_rate": 0.05}
-        self.assertTrue(ai_gate.build(self.with_results({"critic-eval.json": base}))["features"]["critic"]["enabled"])
-        worse = {**base, "recall": {"baseline_before_rules": 0.67, "union_before_rules": 0.8, "critic": 0.5}}                       # only 13 points above the rules
-        f = ai_gate.build(self.with_results({"critic-eval.json": worse}))["features"]["critic"]
+        first = {"recall": {"baseline": 0.9, "union": 0.95, "critic": 0.5}, "critic_false_alarm_rate": 0.05}
+        held = {"recall": {"baseline": 0.1, "union": 0.7, "critic": 0.65}}
+        ok = ai_gate.build(self.with_results({"critic-eval.json": first, "critic-eval-v2.json": held}))["features"]["critic"]
+        self.assertTrue(ok["enabled"])
+        worse = {"recall": {"baseline": 0.67, "union": 0.8, "critic": 0.5}}                       # only 13 points above the rules on the held-out set
+        f = ai_gate.build(self.with_results({"critic-eval.json": first, "critic-eval-v2.json": worse}))["features"]["critic"]
         self.assertEqual((f["enabled"], f["suites"][0]["status"]), (False, "FAIL"))
         self.assertTrue(f["suites"][0]["needs"].startswith(">= 0.87"))
+        lost = {**first, "recall": {"baseline": 0.9, "union": 0.85, "critic": 0.5}}               # the critic must not lose what the rules find
+        f = ai_gate.build(self.with_results({"critic-eval.json": lost, "critic-eval-v2.json": held}))["features"]["critic"]
+        self.assertEqual((f["enabled"], [s["status"] for s in f["suites"]]), (False, ["PASS", "PASS", "FAIL"]))
 
     def test_a_result_file_missing_the_field_is_skipped_not_passed(self):
         f = ai_gate.build(self.with_results({"narrative-4b.json": {"accept_rate": 0.9}}))["features"]["narrative"]

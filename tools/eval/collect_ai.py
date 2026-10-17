@@ -47,7 +47,8 @@ def section_planner() -> list[str]:
         rows.append(f"| {arm} | {v['served']} | {v['passed_gate']} | {v['coverage_mean']} | {v['difficulty_mean']} | {v['distinct_block_sets']} | {v['distinct_stories']} | {v['seconds_p50']} s | {v['model_plans_used']} |")
     return [f"## Plan composer against the solver alone ({d['model']}, {d['requests']} requests)", "",
             "| Arm | Served | Passed the whole gate | Coverage of requested dimensions (mean) | Difficulty match (mean) | Distinct block sets | Distinct stories | Time p50 | Model plans used |", "|---|---|---|---|---|---|---|---|---|"] + rows + [
-            "", "Limit: coverage and difficulty are deterministic proxies. The blind comparison by two raters that the plan asks for has not been done (DT-203).", ""]
+            "", f"The planner chooses among the best {d.get('shortlist', 8)} spines (spine prompt version {d.get('spine_prompt_version') or 1}); the solver draws from the same best 5." + "".join(f" Before: {k.replace('_', ' ')}, coverage {v['arms']['planner']['coverage_mean']}, served {v['arms']['planner']['served']}." for k, v in d.get("baselines", {}).items()),
+            "", "Limit: coverage and difficulty are deterministic proxies; the planner is less varied than the solver and slow (an offline tool). The blind comparison by two raters that the plan asks for has not been done (DT-203).", ""]
 
 
 def section_interpreter() -> list[str]:
@@ -68,7 +69,19 @@ def section_critic() -> list[str]:
             f"| Recall of the rule-based checks before the side-of-body and denied-pain rules | {pct(r.get('baseline_before_rules', r['baseline']))} |", f"| Recall of the rule-based checks now (server/generation/consistency.py, always on, no model) | {pct(r['baseline'])} |",
             f"| Recall of the critic alone | {pct(r['critic'])} |", f"| Recall of rules and critic together | {pct(r['union'])} (before the new rules: {pct(r.get('union_before_rules', r['union']))}) |",
             f"| Critic false alarms on clean cases | {pct(d['critic_false_alarm_rate'])} |", f"| Rule-based false alarms on clean cases | {pct(d['baseline_false_alarm_rate'])} |", f"| Questions the critic could not answer | {d['critic_could_not_answer']} |", "",
-            "Limit: blunt synthetic contradictions. The plan asks for a union recall 20 points above the rules; the rules now find nearly all of this set themselves, so that margin cannot be shown on it and a harder, differently worded set is needed (the critic stays off meanwhile). The side-of-body and denied-pain defects, which the model found 13 of 29 and 14 of 36 times, no longer depend on it.", ""]
+            "The first set is saturated by the deterministic rules, so the critic is also measured on a second, held-out set worded differently and frozen before any run (`tests/generation/text_inconsistencies_v2.json`, DT-217):", ""] + section_critic_v2() + [
+            "Limit: blunt synthetic contradictions written by the builder, not by a clinician; the critic recalls only 1 of 9 denied conditions. The side-of-body and denied-pain defects, which the model found 13 of 29 and 14 of 36 times, no longer depend on it.", ""]
+
+
+def section_critic_v2() -> list[str]:
+    d = load("critic-eval-v2.json")
+    if d is None:
+        return ["not run", ""]
+    r = d["recall"]
+    rows = ["| Measure (held-out set, scored once) | Value |", "|---|---|", f"| Recall of the rule-based checks | {pct(r['baseline'])} |", f"| Recall of the critic alone | {pct(r['critic'])} |", f"| Recall of rules and critic together | {pct(r['union'])} (gain over the rules {round(100 * (r['union'] - r['baseline']))} points) |",
+            f"| Critic false alarms on clean cases | {pct(d['critic_false_alarm_rate'])} |"]
+    rows += [f"| {k.replace('_', ' ')} ({v['n']}) | rules {v['baseline']}, critic {v['critic']} |" for k, v in d["by_kind"].items()]
+    return rows + [""]
 
 
 def section_gateway() -> list[str]:

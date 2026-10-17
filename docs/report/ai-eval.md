@@ -16,18 +16,20 @@ Limit: the checks are lexical (numbers, number words, time words, yes and no, me
 | Arm | Served | Passed the whole gate | Coverage of requested dimensions (mean) | Difficulty match (mean) | Distinct block sets | Distinct stories | Time p50 | Model plans used |
 |---|---|---|---|---|---|---|---|---|
 | solver | 20 | 20 | 0.746 | 0.957 | 20 | 11 | 0.1 s | 0 |
-| planner | 19 | 19 | 0.685 | 0.955 | 19 | 8 | 30.0 s | 19 |
+| planner | 20 | 20 | 0.877 | 0.957 | 19 | 8 | 37.5 s | 20 |
 
-Limit: coverage and difficulty are deterministic proxies. The blind comparison by two raters that the plan asks for has not been done (DT-203).
+The planner chooses among the best 5 spines (spine prompt version 2); the solver draws from the same best 5. Before: shortlist 8 spine prompt v1 17 oct, coverage 0.685, served 19.
+
+Limit: coverage and difficulty are deterministic proxies; the planner is less varied than the solver and slow (an offline tool). The blind comparison by two raters that the plan asks for has not been done (DT-203).
 
 ## Performance interpreter (hypotheses against random picks)
 
-Model qwen3.5:9b-q4_K_M, 20 simulated learners, 40 hypotheses accepted, 6 learners with no accepted proposal.
+Model qwen3.5:9b-q4_K_M, 20 simulated learners, 38 hypotheses accepted, 6 learners with no accepted proposal.
 
 | Picks | Share confirmed by later sessions |
 |---|---|
-| The model's hypotheses | 67.5% |
-| Random weak competencies | 70.0% |
+| The model's hypotheses | 84.2% |
+| Random weak competencies | 73.7% |
 
 Limit: a simulation in which a weak dimension makes its behaviours weak; the model can only guess that from the plain names of the competencies.
 
@@ -45,7 +47,23 @@ Model qwen3.5:4b-q4_K_M, 214 seeded inconsistencies (SD-001), 26 clean cases.
 | Rule-based false alarms on clean cases | 19.2% |
 | Questions the critic could not answer | 0 |
 
-Limit: blunt synthetic contradictions. The plan asks for a union recall 20 points above the rules; the rules now find nearly all of this set themselves, so that margin cannot be shown on it and a harder, differently worded set is needed (the critic stays off meanwhile). The side-of-body and denied-pain defects, which the model found 13 of 29 and 14 of 36 times, no longer depend on it.
+The first set is saturated by the deterministic rules, so the critic is also measured on a second, held-out set worded differently and frozen before any run (`tests/generation/text_inconsistencies_v2.json`, DT-217):
+
+| Measure (held-out set, scored once) | Value |
+|---|---|
+| Recall of the rule-based checks | 8.2% |
+| Recall of the critic alone | 68.7% |
+| Recall of rules and critic together | 70.9% (gain over the rules 63 points) |
+| Critic false alarms on clean cases | 3.8% |
+| allergy denied (5) | rules 3, critic 5 |
+| operation described wrongly (24) | rules 0, critic 15 |
+| tests said normal (24) | rules 8, critic 13 |
+| pregnancy in a man (24) | rules 0, critic 18 |
+| allergy invented (24) | rules 0, critic 17 |
+| age said in other words (24) | rules 0, critic 23 |
+| condition denied (9) | rules 0, critic 1 |
+
+Limit: blunt synthetic contradictions written by the builder, not by a clinician; the critic recalls only 1 of 9 denied conditions. The side-of-body and denied-pain defects, which the model found 13 of 29 and 14 of 36 times, no longer depend on it.
 
 ## Communication act classifier (synthetic, NOT independent)
 
