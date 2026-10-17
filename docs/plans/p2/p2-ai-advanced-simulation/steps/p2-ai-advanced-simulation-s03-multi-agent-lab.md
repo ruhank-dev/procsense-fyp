@@ -14,7 +14,8 @@ Team communication is a core competency.
 
 ## Status (17 October 2026)
 
-- **Not built (DT-215):** three characters answering one trainee turn on the one model slot. Each reply takes about 1.9 s on the 4B (dialogue evaluation), so three in sequence exceed the 4 s target; the Core's ReactionQueue (priority, debounce, one spontaneous remark per 8 s) is the place to hide that, and it needs measuring with real turns.
+- **Measured, not built** (`tools/ai/eval_multiagent.py`, `reports/ai/multiagent-eval.json`, qwen3.5:4b-q4_K_M, 12 turns): the patient, the nurse and the anaesthetist answer one trainee turn through the single model slot, one after another. First reply p50 2.32 s, p95 2.6 s; all three p50 6.91 s, p95 7.14 s; none of the turns had all three within 4.0 s; 0 percent fell back. **The target (p95 under 4 s with three roles) is not met** on this GPU.
+- **Reading:** speak the first reply at once and let the Core's ReactionQueue (priority, debounce, one spontaneous remark per 8 s) stagger the others; a second slot would need a second model in memory, which the 6 GB card cannot hold. Orchestration code (`server/agents/`) is not built because the measurement shows the Core queue, not a new module, is the lever (DT-215).
 
 ## Verification
 p95 under 4 s with three roles.

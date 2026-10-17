@@ -1,0 +1,23 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "turns": 12,
+  "characters": [
+    "patient",
+    "nurse",
+    "anaesthesia"
+  ],
+  "first_reply_s": {
+    "p50": 2.32,
+    "p95": 2.6
+  },
+  "all_three_s": {
+    "p50": 6.91,
+    "p95": 7.14
+  },
+  "all_three_within_budget": 0.0,
+  "budget_s": 4.0,
+  "fallback_share": 0.0,
+  "meets_target": false,
+  "reading": "one model answers one request at a time, so three characters answer in turn; compare all_three_s with the budget before deciding how much the ReactionQueue must hide",
+  "limit": "staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running"
+}

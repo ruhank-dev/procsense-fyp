@@ -125,6 +125,20 @@ Critical classes: 0 escapes.
 
 Limit: a lexical check cannot see a paraphrase, a synonym or a made-up denial (DT-190, DT-211).
 
+## Three characters answering one trainee turn (one model, one request at a time)
+
+Model qwen3.5:4b-q4_K_M, 12 turns, characters patient, nurse, anaesthesia.
+
+| Measure | Value |
+|---|---|
+| First reply p50 / p95 | 2.32 s / 2.6 s |
+| All three replies p50 / p95 | 6.91 s / 7.14 s |
+| All three within 4.0 s | 0.0% |
+| Replies that fell back to a fixed line | 0.0% |
+| Target met (p95 of all three under 4.0 s) | no |
+
+Limit: staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running. one model answers one request at a time, so three characters answer in turn; compare all_three_s with the budget before deciding how much the ReactionQueue must hide.
+
 ## Gateway under load (one model slot)
 
 4 callers x 5 calls, qwen3.5:4b-q4_K_M.

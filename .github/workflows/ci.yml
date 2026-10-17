@@ -468,6 +468,12 @@ jobs:
       - name: classifier benchmark scenario cards are current
         run: uv run --project tools tools/bench/dataset.py cards --check
 
+      - name: study analysis (sign-flip test, effect sizes, safety rule, simulated tables refused)
+        run: uv run --project tools tools/ci/test_study_analysis.py
+
+      - name: quiz candidates are current
+        run: uv run --project tools tools/eval/build_quiz.py --check
+
       - name: communication classifier head, guard and regression of the critical misroutes
         run: uv run --project tools tools/ci/test_classifier_embedding.py
 

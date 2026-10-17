@@ -1540,7 +1540,7 @@ Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-ta
 | Kind (AI or deterministic) | ai |
 | Status | Proposed new feature |
 | AI status | Proposed new feature |
-| Evidence (what exists) | — |
+| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json |
 | Lineage (existing ids) | — |
 | Method | Multiple LLM roles orchestrated by the ReactionQueue. |
 | LLM-first classification | LLM roles; orchestration deterministic. |

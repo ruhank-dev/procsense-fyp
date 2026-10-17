@@ -14,6 +14,11 @@ AI dialogue is the riskiest P1 feature; it should ship on by default only with e
 3. Measures: realism rating, task success, time, number of validator rejections/fallbacks, any safety issue found in the audit log.
 4. Any safety violation → feature stays off by default.
 
+## Status (17 October 2026)
+
+- **Built (the part that needs no participant):** a draft protocol with the decision rule fixed beforehand (`docs/plans/p1/p1-evaluation/protocols/ai-dialogue-ab.md`: any safety issue keeps the feature off; otherwise realism must be higher with sign-flip p under 0.05) and the analysis (`tools/eval/analyse_study.py ab`: counterbalanced order effect, validator rejections and fallbacks, safety issues from the audit log, the decision text).
+- **Blocked on people:** the supervisor's agreement and participants (DT-206). `results/ai-dialogue-ab.md` is not written.
+
 ## Verification
 A/B results table; audit review notes; feature-flag decision recorded.
 

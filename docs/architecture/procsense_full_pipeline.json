@@ -12862,7 +12862,10 @@
       "status": "Proposed new feature",
       "ai_status": "Proposed new feature",
       "description": "Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-taking, all reading the same deterministic state.",
-      "evidence": [],
+      "evidence": [
+        "tools/ai/eval_multiagent.py",
+        "reports/ai/multiagent-eval.json"
+      ],
       "lineage": [],
       "method": "Multiple LLM roles orchestrated by the ReactionQueue.",
       "llm_first_classification": "LLM roles; orchestration deterministic.",

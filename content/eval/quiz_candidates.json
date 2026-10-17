@@ -1,0 +1,420 @@
+{
+ "note": "Candidates for the learning-effect quiz, one per confirmed teaching point. NOT questions: a clinician writes the question and the wrong answers; nothing here is put to a participant until then (p1-evaluation-s03, DT-206).",
+ "status": "awaiting clinician review",
+ "candidates": [
+  {
+   "id": "T01",
+   "claim": "Identity is checked against at least two identifiers (name, date of birth, number) on the band and notes; a mismatch stops everything",
+   "source": "NPSA Safer Practice Notice 24 and WHO Surgical Safety Checklist sign-in",
+   "url": "https://brenmoor.com/wp-content/uploads/2025/02/standardising-wristbands-improves-patient-safety.pdf",
+   "level": "secondary",
+   "applies_to": "step01.q02-q03 w47",
+   "check": "confirmed"
+  },
+  {
+   "id": "T02",
+   "claim": "Allergy band is red with identifiers on a white panel; record the exact reaction",
+   "source": "NPSA SPN 24; BSACI beta-lactam guideline",
+   "url": "https://brenmoor.com/wp-content/uploads/2025/02/standardising-wristbands-improves-patient-safety.pdf",
+   "level": "secondary",
+   "applies_to": "step01.q03 w28 w29",
+   "check": "confirmed"
+  },
+  {
+   "id": "T03",
+   "claim": "A day-surgery patient needs a responsible adult to take them home and stay for 24 hours",
+   "source": "NHS trust day-surgery discharge advice (several trusts)",
+   "url": "https://www.wuth.nhs.uk/our-locations/having-an-operation-adults/daycase-surgery/recovery-at-home",
+   "level": "secondary",
+   "applies_to": "step01.q03",
+   "check": "confirmed"
+  },
+  {
+   "id": "T04",
+   "claim": "NEWS2 parameter ranges and tiers; SpO2 target 94-98% (88-92% if at risk of hypercapnic failure); blood pressure bands",
+   "source": "RCP NEWS2 chart (read); BTS oxygen guideline; ESH 2023 / NICE NG136",
+   "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf",
+   "level": "primary",
+   "applies_to": "step03.q07-q09 w39 w46",
+   "check": "confirmed (V-01, V-33, V-64)"
+  },
+  {
+   "id": "T05",
+   "claim": "Offer a chaperone for an intimate examination; explain and ask permission",
+   "source": "GMC guidance on intimate examinations and chaperones",
+   "url": "https://www.gmc-uk.org/ethical-guidance/ethical-guidance-for-doctors/intimate-examinations-and-chaperones",
+   "level": "secondary",
+   "applies_to": "step04.q03",
+   "check": "confirmed"
+  },
+  {
+   "id": "T06",
+   "claim": "Murphy's sign: pain stopping inspiration on pressing under the right ribs; local inflammatory sign of acute cholecystitis",
+   "source": "Tokyo Guidelines TG07 and TG13 criteria",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2784516/",
+   "level": "secondary",
+   "applies_to": "step04.q03 step04.q06",
+   "check": "confirmed (V-54)"
+  },
+  {
+   "id": "T07",
+   "claim": "Rovsing's sign (pressing the left lower tummy hurts the right), psoas sign (hip extension) and obturator sign (internal rotation of the flexed hip) support appendicitis but are not diagnostic",
+   "source": "clinical-examination references (Lecturio, Nursing Center, textbook summaries)",
+   "url": "https://www.lecturio.com/explained/rovsing-sign/",
+   "level": "secondary",
+   "applies_to": "step04.q03",
+   "check": "confirmed"
+  },
+  {
+   "id": "T08",
+   "claim": "ASA classes, STOP-Bang bands, VTE and bleeding risk factors, TG18 severity grades, AIR and AAS scores",
+   "source": "ASA classification; STOP-Bang; NICE NG89; Tokyo Guidelines; AIR and AAS papers",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4087125/",
+   "level": "primary",
+   "applies_to": "step05.q03 step05.q06-q09",
+   "check": "confirmed (V-25, V-26, V-28, V-29, V-45, V-54)"
+  },
+  {
+   "id": "T09",
+   "claim": "Do not routinely order tests that will not change management; ask about pregnancy and test with consent if in doubt; no routine urine dipstick or chest X-ray",
+   "source": "NICE NG45 (text read)",
+   "url": "https://www.bjuinternational.com/?p=33086",
+   "level": "primary",
+   "applies_to": "step06.q02-q03 w25 w26 w27",
+   "check": "confirmed (V-41)"
+  },
+  {
+   "id": "T10",
+   "claim": "About 1 in 20 healthy people have a result outside a 95% reference interval",
+   "source": "reference-interval literature (MedCalc, Medicine Today, Acute Care Testing)",
+   "url": "https://www.medcalc.org/en/manual/referenceinterval.php",
+   "level": "secondary",
+   "applies_to": "step06.q02",
+   "check": "confirmed"
+  },
+  {
+   "id": "T11",
+   "claim": "Critical laboratory results are phoned, read back, acted on and documented; telephone limits",
+   "source": "Newcastle telephone limits based on the RCPath guidance",
+   "url": "https://laboratories.newcastle-hospitals.nhs.uk/wp-content/uploads/2024/06/BS-CTG-Biochem-67-telephone-limits.pdf",
+   "level": "primary",
+   "applies_to": "step07.q03 w38",
+   "check": "confirmed (V-60)"
+  },
+  {
+   "id": "T12",
+   "claim": "Sepsis: blood tests and cultures before antibiotics; antibiotics within 1 hour (high risk); fluid bolus 250 mL steps with reassessment; review times by risk level",
+   "source": "NICE NG253 (page read)",
+   "url": "https://www.nice.org.uk/guidance/ng253/chapter/Managing-suspected-sepsis",
+   "level": "primary",
+   "applies_to": "step08.q03 w01 w37 w40",
+   "check": "confirmed (V-44)"
+  },
+  {
+   "id": "T13",
+   "claim": "Medicine plan before surgery: diabetes, anticoagulant, steroid, blood-pressure medicines",
+   "source": "CPOC diabetes guideline; UKCPA Handbook; NICE NG243",
+   "url": "https://periop-handbook.ukclinicalpharmacy.org/",
+   "level": "primary",
+   "applies_to": "step08.q03",
+   "check": "confirmed (V-48, V-49, V-50)"
+  },
+  {
+   "id": "T14",
+   "claim": "Clot prevention: stockings or intermittent compression, pharmacological prophylaxis for at least 7 days after abdominal surgery when risk outweighs bleeding",
+   "source": "NICE NG89 (page read)",
+   "url": "https://www.nice.org.uk/guidance/ng89/chapter/Recommendations",
+   "level": "primary",
+   "applies_to": "step08.q03 step10.q03",
+   "check": "confirmed (V-45)"
+  },
+  {
+   "id": "T16",
+   "claim": "Consent covers benefits, risks, reasonable alternatives and doing nothing; teach-back; interpreter; do not pressure",
+   "source": "GMC Decision making and consent (2020)",
+   "url": "https://www.gmc-uk.org/professional-standards/the-professional-standards/decision-making-and-consent",
+   "level": "secondary",
+   "applies_to": "step09.q03 w41 w42",
+   "check": "confirmed"
+  },
+  {
+   "id": "T17",
+   "claim": "If the patient lacks capacity, decisions are taken in their best interests",
+   "source": "Mental Capacity Act 2005 section 4",
+   "url": "https://www.legislation.gov.uk/ukpga/2005/9/section/4",
+   "level": "primary",
+   "applies_to": "step09.q19 w10 w42",
+   "check": "confirmed (V-64)"
+  },
+  {
+   "id": "T18",
+   "claim": "A 16-year-old: consent follows the law for minors (Gillick competence; parental responsibility); involve the young person",
+   "source": "Gillick competence and Fraser guidelines (NSPCC, MDU)",
+   "url": "https://learning.nspcc.org.uk/research-resources/briefings/gillick-competency-and-fraser-guidelines/",
+   "level": "secondary",
+   "applies_to": "w43 step09.q09",
+   "check": "confirmed; the law differs by country (institutional)"
+  },
+  {
+   "id": "T19",
+   "claim": "Hair removal only if needed, with clippers and a single-use head on the day, not razors",
+   "source": "NICE NG125 1.2.4 to 1.2.5 (page read)",
+   "url": "https://www.nice.org.uk/guidance/ng125/chapter/Recommendations",
+   "level": "primary",
+   "applies_to": "step10.q03 step10.q20",
+   "check": "confirmed"
+  },
+  {
+   "id": "T20",
+   "claim": "Temperature below 36.0 degC: warm before anaesthesia",
+   "source": "NICE CG65",
+   "url": "https://www.nice.org.uk/guidance/cg65",
+   "level": "primary",
+   "applies_to": "step10.q03 step10.q08 w06",
+   "check": "confirmed (V-22)"
+  },
+  {
+   "id": "T21",
+   "claim": "Sign In, Time Out and Sign Out items, site marking, 500 mL blood loss, antibiotic within 60 minutes, specimen labelling",
+   "source": "WHO Surgical Safety Checklist; NICE QS216 statement 6",
+   "url": "https://en.wikipedia.org/wiki/WHO_Surgical_Safety_Checklist",
+   "level": "secondary",
+   "applies_to": "step10.q03 step13.q03 step14.q03 step15.q03 w44 w45",
+   "check": "confirmed (V-31)"
+  },
+  {
+   "id": "T22",
+   "claim": "Anaesthetic machine and equipment are checked and the check is recorded before use",
+   "source": "Association of Anaesthetists, Checking anaesthetic equipment 2012",
+   "url": "https://anaesthetists.org/Home/Resources-publications/Guidelines/Checking-Anaesthetic-Equipment",
+   "level": "secondary",
+   "applies_to": "step11.q03 w44",
+   "check": "confirmed"
+  },
+  {
+   "id": "T23",
+   "claim": "Information lost at handover is a classic cause of error; SBAR (Situation, Background, Assessment, Recommendation) structures the handover",
+   "source": "WHO Patient Safety Solutions, Communication during patient hand-overs (2007)",
+   "url": "https://pslhub.org/learn/improving-patient-safety/design-for-safety/processes/who-communication-during-patient-handovers-may-2007-r1248",
+   "level": "secondary",
+   "applies_to": "step12.q02 step12.q06",
+   "check": "confirmed"
+  },
+  {
+   "id": "T24",
+   "claim": "Counts of swabs, instruments and sharps; a wrong count means search and escalate",
+   "source": "NatSSIPs 2 (CPOC, 2023)",
+   "url": "https://cpoc.org.uk/sites/cpoc/files/documents/2022-12/CPOC_NatSSIPs2_Summary_2023.pdf",
+   "level": "secondary",
+   "applies_to": "step15.q03 step15.q13",
+   "check": "confirmed"
+  },
+  {
+   "id": "T25",
+   "claim": "Blood pressure below 180/110 in clinic does not delay elective surgery; do not rush BP down on the morning; rebook when controlled",
+   "source": "AAGBI and British Hypertension Society guidance; CPOC",
+   "url": "https://www.cpoc.org.uk/",
+   "level": "secondary",
+   "applies_to": "w02",
+   "check": "confirmed (V-07)"
+  },
+  {
+   "id": "T26",
+   "claim": "Fast or slow rhythm: find the cause, ECG, adverse features (shock, syncope, ischaemia, heart failure) make it unstable; new AF triggers sepsis, dehydration and salts",
+   "source": "Resuscitation Council UK peri-arrest arrhythmia guidance 2021 (overview), NICE NG45 ECG indication",
+   "url": "https://www.rcemlearning.co.uk/modules/tachycardias-in-the-resuscitation-room/lessons/the-als-tachycardia-guideline-2010/",
+   "level": "secondary",
+   "applies_to": "w03 w04 w25",
+   "check": "confirmed in outline; the treatment doses are not stored"
+  },
+  {
+   "id": "T27",
+   "claim": "Fever with a surgical source: sepsis screen; cultures before antibiotics; TG18 for cholecystitis and cholangitis",
+   "source": "NICE NG253; Tokyo Guidelines",
+   "url": "https://www.nice.org.uk/guidance/ng253/chapter/Managing-suspected-sepsis",
+   "level": "primary",
+   "applies_to": "w05",
+   "check": "confirmed; the book's 38.5 degC or rigors trigger for cultures is practice, not a guideline limit"
+  },
+  {
+   "id": "T29",
+   "claim": "Low SpO2: check probe, assess, oxygen to the target range, opioid effect, aspiration",
+   "source": "BTS guideline for oxygen use; RCP NEWS2",
+   "url": "https://www.brit-thoracic.org.uk/document-library/guidelines/emergency-oxygen/web-appendix-3-summary-of-guideline-for-hospital-use",
+   "level": "primary",
+   "applies_to": "w07 w46",
+   "check": "confirmed (V-64)"
+  },
+  {
+   "id": "T30",
+   "claim": "Opioid overdose: stimulate, support the airway, oxygen, naloxone by the clinician",
+   "source": "Naloxone SmPC; RCP NEWS2",
+   "url": "https://www.medicines.org.uk/emc/product/6344/smpc/print",
+   "level": "primary",
+   "applies_to": "w09",
+   "check": "confirmed (V-52)"
+  },
+  {
+   "id": "T31",
+   "claim": "New confusion: check glucose first; below 4 mmol/L treat; recheck after 10-15 minutes",
+   "source": "RCP NEWS2 (confusion scores 3); JBDS hypoglycaemia guideline",
+   "url": "https://www.mkuh.nhs.uk/wp-content/uploads/2021/03/JBDS_HypoGuideline_4th_edition_FINAL.pdf",
+   "level": "primary",
+   "applies_to": "w10 w21",
+   "check": "confirmed (V-57)"
+  },
+  {
+   "id": "T32",
+   "claim": "Peritonitis and perforation: re-examine, urgent senior review, surgery; an appendix not seen is not a normal appendix; leucocytosis above 18 is a TG18 moderate-grade criterion",
+   "source": "WSES Jerusalem 2020 PDF; Tokyo Guidelines",
+   "url": "https://www.wses.org.uk/wp-content/uploads/2020/04/acute-appendicitis-update.pdf",
+   "level": "primary",
+   "applies_to": "w11 w16 w35",
+   "check": "confirmed (V-54, V-55)"
+  },
+  {
+   "id": "T33",
+   "claim": "Potassium bands, ECG changes, haemolysed samples, insulin-glucose lowers potassium by about 0.65-1.0 mmol/L at 30-60 minutes",
+   "source": "UKKA hyperkalaemia guideline July 2026 (PDF read)",
+   "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+   "level": "primary",
+   "applies_to": "w12",
+   "check": "confirmed (V-51)"
+  },
+  {
+   "id": "T35",
+   "claim": "Sodium correction no faster than 10 mmol/L in 24 hours (about 8 per day after) to avoid osmotic demyelination",
+   "source": "European clinical practice guideline on hyponatraemia 2014",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24569496/",
+   "level": "secondary",
+   "applies_to": "w14",
+   "check": "confirmed (V-19)"
+  },
+  {
+   "id": "T36",
+   "claim": "Transfusion threshold 70 g/L (restrictive), 80 g/L with acute coronary syndrome; unexplained anaemia is investigated before planned surgery",
+   "source": "NICE NG24 1.5.1 to 1.5.3 (page read); WHO anaemia limits",
+   "url": "https://www.nice.org.uk/guidance/ng24/chapter/Red-blood-cell-transfusion",
+   "level": "primary",
+   "applies_to": "w15",
+   "check": "confirmed; NG24 names acute coronary syndrome where the book says heart disease"
+  },
+  {
+   "id": "T38",
+   "claim": "Neutrophils below 0.5 are a critical result; platelet clumping and haemolysis give false results",
+   "source": "Newcastle haematology telephone limits; EDTA pseudothrombocytopenia literature",
+   "url": "https://laboratories.newcastle-hospitals.nhs.uk/wp-content/uploads/2024/11/BS-CTG-Haem-1-Haematology-Telephoning-limits-v5.pdf",
+   "level": "primary",
+   "applies_to": "w17 w36",
+   "check": "confirmed (V-60, V-66)"
+  },
+  {
+   "id": "T39",
+   "claim": "Acute kidney injury: fluids if dry, stop NSAIDs, avoid contrast unless essential, creatinine rise of 26 micromol/L in 48 hours",
+   "source": "KDIGO and NICE NG148 (page read)",
+   "url": "https://www.nice.org.uk/guidance/ng148/chapter/Recommendations",
+   "level": "primary",
+   "applies_to": "w18",
+   "check": "confirmed (V-17)"
+  },
+  {
+   "id": "T40",
+   "claim": "Duct-stone risk: high risk goes to ERCP, intermediate to MRCP; cholangitis is an emergency",
+   "source": "ASGE 2019 and Tokyo Guidelines",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8039746/",
+   "level": "secondary",
+   "applies_to": "w19 w20",
+   "check": "confirmed (V-03, V-04, V-05)"
+  },
+  {
+   "id": "T41",
+   "claim": "Check ketones if glucose persistently high or unwell or on an SGLT2 inhibitor",
+   "source": "CPOC diabetes guideline 2023 (PDF read)",
+   "url": "https://cpoc.org.uk/sites/cpoc/files/documents/2024-05/CPOC-DiabetesGuideline2023.pdf",
+   "level": "primary",
+   "applies_to": "w22",
+   "check": "confirmed; CPOC says two readings above 13 mmol/L, the book keeps JBDS's 14"
+  },
+  {
+   "id": "T42",
+   "claim": "INR 1.9 without warfarin: liver disease, bile blockage or sepsis; correct before surgery; avoid neuraxial block",
+   "source": "UKCPA Handbook (warfarin, neuraxial advice); the book cites AoA/OAA/RA-UK 2013",
+   "url": "https://periop-handbook.ukclinicalpharmacy.org/drug/warfarin/",
+   "level": "secondary",
+   "applies_to": "w23",
+   "check": "confirmed in principle; reversal dose is clinician-controlled and not stored"
+  },
+  {
+   "id": "T43",
+   "claim": "Lactate 2 mmol/L or more marks hypoperfusion; repeat lactate after resuscitation (2-4 hours)",
+   "source": "Surviving Sepsis Campaign 2021; Sepsis-3",
+   "url": "https://sccm.org/sepsisguidelines",
+   "level": "secondary",
+   "applies_to": "w24 w40",
+   "check": "confirmed (V-21)"
+  },
+  {
+   "id": "T44",
+   "claim": "Positive pregnancy test with pain: ectopic pregnancy until proven otherwise; ultrasound, avoid CT",
+   "source": "NICE NG126; WSES appendicitis 2020",
+   "url": "https://www.nice.org.uk/guidance/ng126",
+   "level": "secondary",
+   "applies_to": "w26",
+   "check": "confirmed (V-10, V-55)"
+  },
+  {
+   "id": "T45",
+   "claim": "Penicillin allergy: record the exact reaction; choose the antibiotic by the hospital rule",
+   "source": "BSACI beta-lactam guideline; NICE CG183",
+   "url": "https://www.bsaci.org/guidelines-and-standards/bsaci-guidelines/beta-lactam-penicillin-allergy/",
+   "level": "primary",
+   "applies_to": "w28",
+   "check": "confirmed (V-53)"
+  },
+  {
+   "id": "T46",
+   "claim": "Anaphylaxis: stop the drug, call for help, IM adrenaline 500 micrograms repeated after 5 minutes if no improvement, oxygen, IV crystalloid bolus 500-1000 mL in an adult",
+   "source": "Resuscitation Council UK anaphylaxis guideline (PDF read)",
+   "url": "https://www.resus.org.uk/sites/default/files/2020-12/RCUK%20Anaphylaxis%20DRAFT.pdf",
+   "level": "primary",
+   "applies_to": "w29",
+   "check": "confirmed (V-38)"
+  },
+  {
+   "id": "T47",
+   "claim": "Anticoagulant and antiplatelet plans; never stop dual antiplatelets after a recent stent without the heart team",
+   "source": "UKCPA Handbook; PAUSE (V-08)",
+   "url": "https://periop-handbook.ukclinicalpharmacy.org/",
+   "level": "primary",
+   "applies_to": "w30 w32",
+   "check": "confirmed (V-08, V-50)"
+  },
+  {
+   "id": "T48",
+   "claim": "Diabetes plan, steroid cover, GLP-1 and SGLT2 handling, fasting times, unknown fasting means full stomach and rapid sequence induction",
+   "source": "CPOC; NICE NG243; ASA 2023 fasting; NAP4",
+   "url": "https://cpoc.org.uk/sites/cpoc/files/documents/2024-05/CPOC-DiabetesGuideline2023.pdf",
+   "level": "primary",
+   "applies_to": "w31 w32 w33 w34",
+   "check": "confirmed (V-09, V-32, V-48, V-49, V-64)"
+  },
+  {
+   "id": "T49",
+   "claim": "A capable patient may refuse surgery; antibiotics-only is a recognised option for simple appendicitis without a stone, with a recurrence risk; document and give safety-net advice",
+   "source": "APPAC trial and WSES 2020; GMC consent guidance",
+   "url": "https://www.wses.org.uk/wp-content/uploads/2020/04/acute-appendicitis-update.pdf",
+   "level": "primary",
+   "applies_to": "w41",
+   "check": "confirmed (V-11, V-55)"
+  },
+  {
+   "id": "T50",
+   "claim": "Deterioration during transfer: stop, ABCDE, call for help",
+   "source": "RCUK ABCDE approach; ICS and WFSA transfer principles",
+   "url": "https://www.resus.org.uk/",
+   "level": "secondary",
+   "applies_to": "w46 step12.q03",
+   "check": "confirmed in outline"
+  }
+ ]
+}

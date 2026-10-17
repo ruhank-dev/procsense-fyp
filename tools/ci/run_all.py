@@ -222,6 +222,8 @@ def main(argv: list[str]) -> int:
         ("classifier smoke dataset current and split by speaker (synthetic, SD-006)", lambda: run(["uv", "run", "--project", "tools", "tools/synth/gen_utterances.py", "--check"])),
         ("classifier benchmark: scenario cards match the taxonomy, a dataset cannot be frozen without independent authors, labels and an adjudicator, the benchmark refuses unfrozen data", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_bench.py"])),
         ("classifier benchmark scenario cards current (blank sheets: the independent set is blocked on people)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/dataset.py", "cards", "--check"])),
+        ("analysis of the learning-effect study and the AI-dialogue A/B", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_study_analysis.py"])),
+        ("quiz candidates for the learning-effect study are current", lambda: run(["uv", "run", "--project", "tools", "tools/eval/build_quiz.py", "--check"])),
         ("communication classifier: embedding head fits the taxonomy and the mapping, critical acts never credited, the critical-content guard, the model's critical misroutes replayed", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_classifier_embedding.py"])),
         ("retrieval index and the recorded decision not to ship it", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_retrieval.py"])),
         ("model-call layer against a fake Ollama", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_llm.py"])),
