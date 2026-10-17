@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/objectives.json",
+  "title": "Objectives v1 (LG-02)",
+  "description": "What the next scenario should exercise, worked out from the trainee's ratings by fixed rules (no model): the weakest behaviours, the dimensions that train them, the difficulty target and what must not repeat.",
+  "type": "object",
+  "required": ["version", "request_id", "scenario", "level", "seed", "basis", "competencies", "dimensions", "difficulty_vector", "exclusions", "explanation"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": 1},
+    "request_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+    "scenario": {"enum": ["S1", "S2"]},
+    "level": {"enum": ["beginner", "advanced"]},
+    "seed": {"type": "integer", "minimum": 0},
+    "basis": {"enum": ["default_objectives", "ratings", "focus_requested"], "description": "why these objectives: no history yet, the ratings, or the focus the request named"},
+    "sessions_rated": {"type": "integer", "minimum": 0},
+    "competencies": {"type": "array", "maxItems": 3, "items": {"type": "object", "required": ["behaviour", "rating", "times_rated"], "additionalProperties": false,
+      "properties": {"behaviour": {"type": "string"}, "rating": {"type": "number"}, "times_rated": {"type": "integer", "minimum": 0}}}},
+    "dimensions": {"type": "array", "maxItems": 3, "items": {"type": "string"}},
+    "difficulty_vector": {"type": "object", "minProperties": 8, "maxProperties": 8, "additionalProperties": {"type": "number"}, "description": "a target rating for each of the 8 difficulty dimensions"},
+    "exclusions": {"type": "object", "required": ["spines", "fingerprints"], "additionalProperties": false,
+      "properties": {"spines": {"type": "array", "items": {"type": "string"}}, "fingerprints": {"type": "array", "items": {"type": "string"}}}},
+    "explanation": {"type": "string", "minLength": 1}
+  }
+}

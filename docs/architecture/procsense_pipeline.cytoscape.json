@@ -261,7 +261,7 @@
     "id": "OFF-05",
     "label": "OFF-05 Retrieval index over approved content",
     "type": "offline_step",
-    "status": "Planned",
+    "status": "Implemented and tested",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -327,7 +327,7 @@
     "id": "LG-02",
     "label": "LG-02 Learning objectives and difficulty target",
     "type": "stage",
-    "status": "Partially implemented",
+    "status": "Implemented and tested",
     "parent": "g_live_plan"
    },
    "classes": "stage"
@@ -338,7 +338,7 @@
     "id": "LG-03",
     "label": "LG-03 Context retrieval",
     "type": "stage",
-    "status": "Planned",
+    "status": "Implemented and tested",
     "parent": "g_live_plan"
    },
    "classes": "stage"
@@ -360,7 +360,7 @@
     "id": "LG-05",
     "label": "LG-05 Scenario skeleton",
     "type": "stage",
-    "status": "Planned",
+    "status": "Implemented and tested",
     "parent": "g_live_plan"
    },
    "classes": "stage"

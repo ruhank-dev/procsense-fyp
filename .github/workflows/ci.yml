@@ -414,6 +414,27 @@ jobs:
       - name: composer solver tests (T-CO1 to T-CO5, definition of done)
         run: uv run --project tools tools/composer/test_solver.py
 
+      - name: live generation contracts and objectives (requests, schemas, Elo mirror)
+        run: uv run --project tools tools/ci/test_generation_contracts.py
+
+      - name: retrieval index (recall at 20, status filter, current hash)
+        run: uv run --project tools tools/generation/build_index.py --check
+
+      - name: retrieval tests (tag filter, order, exclusions, stale index)
+        run: uv run --project tools tools/ci/test_generation_retrieve.py
+
+      - name: scenario skeleton tests (selection, novelty, property over seeds)
+        run: uv run --project tools tools/ci/test_generation_skeleton.py
+
+      - name: numeric generation tests (bands, KS, copula, story numbers untouched)
+        run: uv run --project tools tools/ci/test_generation_numeric.py
+
+      - name: media selection tests (finding tags, licence filter, ECG and pulse)
+        run: uv run --project tools tools/ci/test_generation_media.py
+
+      - name: cross-modal rules and the package gate (a failing example per rule, mutations caught)
+        run: uv run --project tools tools/ci/test_generation_crossmodal.py
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

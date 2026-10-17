@@ -744,11 +744,15 @@
     {
       "type": "offline_step",
       "group": "g_offline",
-      "evidence": [],
+      "evidence": [
+        "server/generation/retrieve.py",
+        "tools/generation/build_index.py (recall at 20 = 1.0 on 246 queries)",
+        "tools/ci/test_generation_retrieve.py"
+      ],
       "blockers": [],
       "id": "OFF-05",
       "label": "Retrieval index over approved content",
-      "status": "Planned",
+      "status": "Implemented and tested",
       "method_class": "retrieval",
       "description": "Tag index plus lexical (BM25) index over case files, blocks, bands, critical results, what-ifs and source-register snippets, each entry carrying its SR id. Embeddings are optional and only added if lexical recall measured on the evaluation set is below target.",
       "inputs": [
@@ -759,7 +763,7 @@
       "outputs": [
         "generation index (built artefact, not committed if large)"
       ],
-      "component": "tools/generation/build_index.py (planned)",
+      "component": "server/generation/retrieve.py (built, --check in CI)",
       "tasks": [
         "p1-live-scenario-generation-s02"
       ],
@@ -980,7 +984,7 @@
       "outputs": [
         "SessionRequest v1 (JSON)"
       ],
-      "component": "server/generation/request.py (planned); today: CLI flags --level --variant --noise and next-case",
+      "component": "server/generation/contracts.py (built); the HTTP endpoint POST /v1/scenarios:generate is planned (p1-backend-s06)",
       "method": "Schema validation of the request; assessment mode is refused for generated content.",
       "api": "POST /v1/scenarios:generate (planned, p1-backend AI gateway)",
       "validation": "JSON schema; mode guard.",
@@ -991,7 +995,10 @@
       "acceptance": "Every request is either accepted with a logged seed or rejected with a reason; no request reaches LG-02 without a seed.",
       "evidence": [
         "src/ProcSense.Core/Session.cs (SessionOptions)",
-        "src/ProcSense.Cli/Commands.cs"
+        "src/ProcSense.Cli/Commands.cs",
+        "server/generation/contracts.py",
+        "server/schemas/session_request.json",
+        "tools/ci/test_generation_contracts.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s01",
@@ -1022,7 +1029,7 @@
       "id": "LG-02",
       "label": "Learning objectives and difficulty target",
       "group": "g_live_plan",
-      "status": "Partially implemented",
+      "status": "Implemented and tested",
       "method_class": "deterministic",
       "description": "Turn the trainee's history into objectives: the weakest behaviours and dimensions from the Elo ratings, the target difficulty, the competencies to exercise, and what must not repeat (recent fingerprints).",
       "inputs": [
@@ -1033,7 +1040,7 @@
       "outputs": [
         "Objectives v1: target competencies, difficulty vector over 8 dimensions, exclusions"
       ],
-      "component": "src/ProcSense.Core/Difficulty/Difficulty.cs (exists: ratings, Selector) + server/generation/objectives.py (planned)",
+      "component": "src/ProcSense.Core/Difficulty/Difficulty.cs + server/generation/objectives.py (both built, shared vectors)",
       "method": "Deterministic: reuse the Elo ratings (K 16, 3 sessions before adapting) and dimension mapping. An LLM is not used to choose objectives (choice must be explainable and reproducible).",
       "api": "internal",
       "validation": "Every objective names a behaviour or dimension that exists in content.",
@@ -1043,7 +1050,10 @@
       "acceptance": "Same history and seed give the same objectives.",
       "evidence": [
         "src/ProcSense.Core/Difficulty/Difficulty.cs",
-        "tests DifficultyTests"
+        "tests DifficultyTests",
+        "server/generation/objectives.py",
+        "tests/vectors/difficulty_vectors.json (13 histories, read by C# and Python)",
+        "tests/ProcSense.Core.Tests/DifficultyVectorTests.cs"
       ],
       "tasks": [
         "p1-live-scenario-generation-s01"
@@ -1085,7 +1095,7 @@
       "id": "LG-03",
       "label": "Context retrieval",
       "group": "g_live_plan",
-      "status": "Planned",
+      "status": "Implemented and tested",
       "method_class": "retrieval",
       "description": "Retrieve the evidence the scenario may draw on: candidate blocks matching the objectives, reference cases with similar structure, bands and critical limits for the conditions involved, what-ifs, events, and the SR ids behind each.",
       "inputs": [
@@ -1095,7 +1105,7 @@
       "outputs": [
         "RetrievedContext: ranked blocks, reference cases, bands, SR ids"
       ],
-      "component": "server/generation/retrieve.py (planned)",
+      "component": "server/generation/retrieve.py (built)",
       "method": "Tag filter then BM25 ranking (deterministic). Embedding retrieval only if measured recall is below 0.9 on the retrieval evaluation set.",
       "api": "internal",
       "validation": "Every retrieved item is APPROVED_FOR_TRAINING or above, or labelled generated-practice-only.",
@@ -1117,7 +1127,10 @@
       ],
       "error_handling": "Empty retrieval for an objective: drop that objective with a logged reason; if all drop, use the family template.",
       "latency_budget_ms": 300,
-      "evidence": [],
+      "evidence": [
+        "server/generation/retrieve.py",
+        "tools/ci/test_generation_retrieve.py"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",
@@ -1149,7 +1162,7 @@
       "outputs": [
         "ComponentSet: block ids per slot, solver trace"
       ],
-      "component": "tools/composer/solve.py (built) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13)",
+      "component": "tools/composer/solve.py + server/generation/skeleton.py (built, the baseline and fallback) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13)",
       "method": "LLM + retrieval proposes the plan (MC-01, JSON schema); seeded constraint solver completes and checks it (backtracking over slots with requires/excludes, KB relations, difficulty bounds, novelty pre-filter).",
       "api": "internal",
       "validation": "Constraint re-check after selection; solver trace stored in the package.",
@@ -1172,7 +1185,8 @@
       "error_handling": "Unsatisfiable: relax optional slots in a fixed order, then fall back to FALLBACK-POOL-LIBRARY.",
       "latency_budget_ms": 500,
       "evidence": [
-        "tools/composer/solve.py (the deterministic solver, built)"
+        "tools/composer/solve.py (the deterministic solver, built)",
+        "server/generation/skeleton.py (the deterministic baseline: ranking, selection, solver, relaxation, novelty pre-filter)"
       ],
       "blockers": [],
       "traced_to": {
@@ -1206,7 +1220,7 @@
       "id": "LG-05",
       "label": "Scenario skeleton",
       "group": "g_live_plan",
-      "status": "Planned",
+      "status": "Implemented and tested",
       "method_class": "deterministic",
       "description": "Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, problems with their discovery rules, investigation orders that must exist, expected end state, clock, events and handover items. Every clinical value is still a slot, not a number.",
       "inputs": [
@@ -1216,7 +1230,7 @@
       "outputs": [
         "ScenarioSkeleton (case file with typed slots)"
       ],
-      "component": "server/generation/skeleton.py (planned)",
+      "component": "server/generation/skeleton.py (built)",
       "method": "Deterministic assembly from block templates.",
       "api": "internal",
       "validation": "case_file.schema.json with slots allowed; every problem has a discovery rule.",
@@ -1237,7 +1251,10 @@
       ],
       "error_handling": "Schema violation: defect report to LG-12.",
       "latency_budget_ms": 100,
-      "evidence": [],
+      "evidence": [
+        "server/generation/skeleton.py",
+        "tools/ci/test_generation_skeleton.py (200 seeds in CI, 10,000 locally)"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",
@@ -1336,7 +1353,7 @@
       "outputs": [
         "numeric results with band, flag, units and provenance"
       ],
-      "component": "tools/content/exp_data2.py (band sampling, exists); server/generation/numeric.py (planned)",
+      "component": "server/generation/numeric.py (built; learned conditional generation planned, s14)",
       "method": "Statistical (seeded truncated normal or log-normal per band, Gaussian copula for linked analytes), never an LLM.",
       "api": "internal",
       "validation": "Band check, unit check, plausibility table (content/lab_plausibility.csv), critical-limit consistency, cross-analyte rules.",
@@ -1350,7 +1367,10 @@
       "evidence": [
         "tools/content/exp_data2.py",
         "content/lab_bands.csv (104)",
-        "content/lab_plausibility.csv"
+        "content/lab_plausibility.csv",
+        "server/generation/numeric.py",
+        "server/generation/packs.py",
+        "tools/ci/test_generation_numeric.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s05",
@@ -1405,7 +1425,7 @@
       "outputs": [
         "asset references with dataset id, licence, finding tags, report text"
       ],
-      "component": "tools/data/ultrasound.py, ecg_images.py, cxr_images.py (offline, exist); server/generation/media.py (planned)",
+      "component": "server/generation/media.py (built; the seeded parametric ECG variant is not: the real strips are chosen and the pulse follows the strip)",
       "method": "Retrieval from the labelled library (deterministic, seeded tie-break) plus seeded parametric ECG variation. No diffusion or GAN image generation at runtime (E64 is a deferred offline research track, PH-24).",
       "api": "internal",
       "validation": "Finding tags of the asset equal the skeleton's findings; report numbers equal the numeric slots; licence allows the use.",
@@ -1417,7 +1437,10 @@
       "acceptance": "Zero tag mismatches; every asset has a licence row.",
       "evidence": [
         "content/imaging_library.csv (60 results, 204 pictures)",
-        "tools/data/ultrasound.py"
+        "tools/data/ultrasound.py",
+        "server/generation/media.py",
+        "tools/ci/test_generation_media.py",
+        "content/imaging/picture_tags.csv"
       ],
       "tasks": [
         "p1-live-scenario-generation-s06"
@@ -1472,7 +1495,7 @@
       "outputs": [
         "consistency report (pass or defects with rule ids)"
       ],
-      "component": "tools/composer/stage_b.py contradiction types (12, exist) + content/generation/crossmodal_rules.json (planned)",
+      "component": "server/generation/crossmodal.py (built; the text consistency critic is planned, s15)",
       "method": "Deterministic rule table (VR-CM rules); an LLM judge may flag suspected inconsistencies as advisory only (LG-11).",
       "api": "internal",
       "validation": "Rule table itself has tests with one passing and one failing example per rule.",
@@ -1483,7 +1506,10 @@
       "acceptance": "Every cross-modal mutation in the evaluation set is caught.",
       "evidence": [
         "content/contradictions.json (12 types)",
-        "tools/composer/test_composer.py"
+        "tools/composer/test_composer.py",
+        "server/generation/crossmodal.py (8 rules)",
+        "content/generation/crossmodal_rules.json",
+        "tools/ci/test_generation_crossmodal.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s07",
@@ -1536,7 +1562,7 @@
         "Stage B report (HTML and JSON)",
         "pass or defect list"
       ],
-      "component": "tools/composer/stage_b.py (exists) + Core ContentGate (exists) + headless correct-path run (planned)",
+      "component": "tools/composer/stage_b.py + server/generation/package.py (built); the headless correct path waits for the engine to load generated packages (s10)",
       "method": "Deterministic validator; the AI cannot mark anything approved.",
       "api": "internal",
       "validation": "60 of 60 mutation cases rejected today; extended set for generated content.",
@@ -1549,7 +1575,8 @@
       "evidence": [
         "tools/composer/stage_b.py",
         "tools/composer/test_composer.py (60 of 60)",
-        "src/ProcSense.Core/Content/ContentGate.cs"
+        "src/ProcSense.Core/Content/ContentGate.cs",
+        "server/generation/package.py (schema, Stage B, media and cross-modal gate)"
       ],
       "tasks": [
         "p1-live-scenario-generation-s07"
@@ -24346,7 +24373,7 @@
         "PH-03",
         "PH-04"
       ],
-      "status": "Planned",
+      "status": "Partially implemented",
       "deliverables": [
         "request and package schemas",
         "retrieval index",
@@ -24457,7 +24484,7 @@
         "PH-03",
         "PH-05"
       ],
-      "status": "Planned",
+      "status": "Partially implemented",
       "deliverables": [
         "numeric generator",
         "media selector"
@@ -24486,7 +24513,7 @@
       "depends_on": [
         "PH-09"
       ],
-      "status": "Planned",
+      "status": "Partially implemented",
       "deliverables": [
         "cross-modal rule table",
         "headless correct-path run"

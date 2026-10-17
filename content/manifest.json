@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "0eed8c5af55225b70cb42f0cb727427d766ea350d9e3af2d913ed541356c9cb4",
- "files": 651,
- "bytes": 17627784,
+ "content_hash": "93f2bf535000b3d0fe9e133258e545cfe308d8abfa751cce0d6602672f9fafdf",
+ "files": 652,
+ "bytes": 17629693,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -25,7 +25,7 @@
   "events": 1,
   "fasting": 1,
   "flow": 1,
-  "generation": 5,
+  "generation": 6,
   "handover": 1,
   "images": 77,
   "imaging": 3,
@@ -1779,6 +1779,10 @@
   "flow_stages.csv": {
    "bytes": 36092,
    "sha256": "11f13f67117922e63bc955dae0b098695dd402670ab083650bcb199d23356d32"
+  },
+  "generation/crossmodal_rules.json": {
+   "bytes": 1909,
+   "sha256": "4feca37b8e52bd514feb4290c453bb91e6aef4165a83084c3b5624dc975b37dc"
   },
   "generation/packs/correlations.json": {
    "bytes": 1334,

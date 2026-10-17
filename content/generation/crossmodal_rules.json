@@ -1,0 +1,13 @@
+{
+  "note": "The cross-modal consistency rules of live generation (p1-live-scenario-generation-s07, LG-09). The code is server/generation/crossmodal.py; this file says the same in words, with the register rows behind each rule. All 53 authored cases pass every rule.",
+  "rules": [
+    {"id": "VR-CM-01", "title": "ECG rhythm against the pulse", "says": "An irregular strip (atrial fibrillation) goes with an irregular pulse, a regular strip with a regular pulse.", "refs": ["SR-3102"]},
+    {"id": "VR-CM-02", "title": "Potassium against the ECG", "says": "Peaked T waves need a high potassium in the case, flat T waves with U waves a low one; a potassium of 6.5 or more that is not a faulty sample does not sit with a normal strip.", "refs": ["SR-0651", "SR-0650", "SR-3107", "SR-3108", "SR-0700"]},
+    {"id": "VR-CM-03", "title": "Scan against inflammatory markers", "says": "A scan that shows appendicitis goes with a raised white cell count or CRP when either is reported.", "refs": ["SR-2807"]},
+    {"id": "VR-CM-04", "title": "Free air against the abdomen", "says": "Gas outside the bowel goes with a rigid or guarded abdomen on examination.", "refs": ["SR-3207", "SR-3309"]},
+    {"id": "VR-CM-05", "title": "Faulty sample against its repeat", "says": "A result from a faulty sample is followed in the case by its repeat.", "refs": ["SR-0700", "SR-0701"]},
+    {"id": "VR-CM-06", "title": "Lactate against the patient's state", "says": "A lactate of 4 or more does not sit with a patient whose starting NEWS2 is 2 or less.", "refs": ["SR-0651"]},
+    {"id": "VR-CM-07", "title": "Pregnancy test against sex and age", "says": "A pregnancy test result belongs to a female patient aged 12 to 55.", "refs": ["SR-0085", "SR-3601"]},
+    {"id": "VR-CM-08", "title": "Order of times", "says": "Observation times do not go backwards and no result has a negative time to result.", "refs": ["SR-0085"]}
+  ]
+}

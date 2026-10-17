@@ -41,8 +41,8 @@
       "actor": "calendar",
       "label": "PH-05 critical path",
       "title": "Live generation skeleton",
-      "text": "Planned. Request, objectives, retrieval, solver selection, skeleton. A fresh case can be produced with no LLM at all. 3 tasks, 4 features.",
-      "tone": "blue"
+      "text": "Partly built. Request, objectives, retrieval, solver selection, skeleton. A fresh case can be produced with no LLM at all. 3 tasks, 4 features.",
+      "tone": "sun"
     },
     {
       "id": "PH-06",
@@ -73,16 +73,16 @@
       "actor": "calendar",
       "label": "PH-09 critical path",
       "title": "Numeric, waveform and image generation",
-      "text": "Planned. Conditioned numbers, trends, anomalies; ECG variants; media selection. 2 tasks, 6 features.",
-      "tone": "blue"
+      "text": "Partly built. Conditioned numbers, trends, anomalies; ECG variants; media selection. 2 tasks, 6 features.",
+      "tone": "sun"
     },
     {
       "id": "PH-10",
       "actor": "calendar",
       "label": "PH-10 critical path",
       "title": "Cross-modal consistency, validation and live lo…",
-      "text": "Planned. Cross-modal rules, Stage B on generated packages, events and branches on generated cases. 2 tasks, 4 features.",
-      "tone": "blue"
+      "text": "Partly built. Cross-modal rules, Stage B on generated packages, events and branches on generated cases. 2 tasks, 4 features.",
+      "tone": "sun"
     },
     {
       "id": "PH-11",

@@ -31,12 +31,12 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-02 | Dataset analysis and profiling | Implemented and tested | PH-01 | yes | — |
 | PH-03 | Generator parameter packs, media index and evaluation sets | Implemented and tested | PH-02 | yes | — |
 | PH-04 | Block library and composer foundation | Partially implemented | PH-01 | — | A1; A12; B23 |
-| PH-05 | Live generation skeleton (deterministic path first) | Planned | PH-03; PH-04 | yes | A2; A4; A11; E58 |
+| PH-05 | Live generation skeleton (deterministic path first) | Partially implemented | PH-03; PH-04 | yes | A2; A4; A11; E58 |
 | PH-06 | Backend and AI gateway | Planned | PH-01 | — | E62 |
 | PH-07 | LLM serving and benchmark | Partially implemented | PH-01; PH-20 | — | E57 |
 | PH-08 | AI composition, profiles and personas | Blocked | PH-05; PH-06; PH-07; PH-22 | — | A3 |
-| PH-09 | Numeric, waveform and image generation | Planned | PH-03; PH-05 | yes | B14; B15; B16; B17; B20; B21 |
-| PH-10 | Cross-modal consistency, validation and live loop | Planned | PH-09 | yes | A5; A8; A10; B18 |
+| PH-09 | Numeric, waveform and image generation | Partially implemented | PH-03; PH-05 | yes | B14; B15; B16; B17; B20; B21 |
+| PH-10 | Cross-modal consistency, validation and live loop | Partially implemented | PH-09 | yes | A5; A8; A10; B18 |
 | PH-11 | Quality, repair, novelty and provenance | Planned | PH-10 | yes | A6; A7; A9; A13 |
 | PH-12 | Packaging, pool and Unity integration | Planned | PH-11 | yes | — |
 | PH-13 | Dialogue and personas | Blocked | PH-07; PH-06; PH-20 | — | C24; C25; C26; C27; C28; C29; C30 |
@@ -114,7 +114,7 @@ Request, objectives, retrieval, solver selection, skeleton. A fresh case can be 
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Partially implemented |
 | Depends on | PH-03; PH-04 |
 | Tasks (plan steps) | p1-live-scenario-generation-s01; p1-live-scenario-generation-s02; p1-live-scenario-generation-s03 |
 | Features | A2; A4; A11; E58 |
@@ -170,7 +170,7 @@ Conditioned numbers, trends, anomalies; ECG variants; media selection.
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Partially implemented |
 | Depends on | PH-03; PH-05 |
 | Tasks (plan steps) | p1-live-scenario-generation-s05; p1-live-scenario-generation-s06 |
 | Features | B14; B15; B16; B17; B20; B21 |
@@ -184,7 +184,7 @@ Cross-modal rules, Stage B on generated packages, events and branches on generat
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Partially implemented |
 | Depends on | PH-09 |
 | Tasks (plan steps) | p1-live-scenario-generation-s07; p1-live-scenario-generation-s11 |
 | Features | A5; A8; A10; B18 |

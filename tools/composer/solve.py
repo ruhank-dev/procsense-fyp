@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import copy
 import datetime as dt
+import hashlib
 import json
 import random
 import re
@@ -260,6 +261,38 @@ def spines(scenario: str, difficulty: int, template: dict, cases: list[dict], ta
     return out
 
 
+def fingerprint(spine_id: str, blocks: list[dict] | list[str]) -> str:
+    """What makes a composed case the same story again: its spine and the blocks that are not names (a new name on the same story is not a new story)."""
+    ids = sorted(b["id"] if isinstance(b, dict) else b for b in blocks)
+    ids = [i for i in ids if not i.startswith("NAME-") and not i.startswith("DEM-")]
+    return hashlib.sha256(json.dumps([spine_id, ids]).encode("utf-8")).hexdigest()[:16]
+
+
+RELAX_ORDER = ("ALG", "PSH", "SOC")        # optional slots given up first when a spine cannot be varied, in this order
+
+
+def build_card(spine: dict, scenario: str, case_seed: int, case_id: str, library: list[dict], template: dict, names: set[str], used_mrns: set[str], avoid_fingerprints: set[str] | None = None) -> tuple[dict, Choice]:
+    """One composed card from one spine. If the story's fingerprint is one to avoid, other blocks are tried (up to 20 seeds), then optional slots are given up in RELAX_ORDER; Unsatisfiable if nothing is left."""
+    avoid = avoid_fingerprints or set()
+    for relaxed in range(len(RELAX_ORDER) + 1):
+        tpl = copy.deepcopy(template)
+        for s in tpl["slots"]:
+            if s["type"] in RELAX_ORDER[:relaxed]:
+                s["min"], s["max"] = 0, 0
+        for attempt in range(20):
+            rng = random.Random(case_seed * 31 + attempt)
+            try:
+                choice = Solver(library, tpl, spine, rng, names).solve()
+            except Unsatisfiable:
+                break
+            if fingerprint(spine["id"], choice.blocks) in avoid:
+                continue
+            card = apply(spine, choice.blocks, case_id, case_seed, tpl, rng, used_mrns)
+            card["composition"]["solver_steps"] = choice.steps
+            return card, choice
+    raise Unsatisfiable(f"spine {spine['id']} cannot be varied into a story that is not one to avoid")
+
+
 def compose(scenario: str, difficulty: int, n: int, seed: int, targets: list[str] | None = None, cases: list[dict] | None = None, library: list[dict] | None = None) -> list[dict]:
     """n composed cards. Case i uses seed*1000+i; the card says so, so it can be made again."""
     cases = cases if cases is not None else B.load_cases()
@@ -276,19 +309,16 @@ def compose(scenario: str, difficulty: int, n: int, seed: int, targets: list[str
         rng = random.Random(case_seed)
         ordered = sorted(pool, key=lambda p: p[0]["id"])
         weights = [p[1] for p in ordered]
-        tried, choice, spine, solver = [], None, None, None
+        tried, card = [], None
         while len(tried) < len(ordered):
             spine = rng.choices([p[0] for p in ordered], weights=[w if p[0]["id"] not in tried else 0.0 for p, w in zip(ordered, weights)])[0]
-            solver = Solver(library, template, spine, rng, names)
             try:
-                choice = solver.solve()
+                card, _ = build_card(spine, scenario, case_seed, f"GEN-{scenario}-{seed:04d}-{i:03d}", library, template, names, used_mrns)
                 break
             except Unsatisfiable:
                 tried.append(spine["id"])          # a spine no block fits (for example no DEM block of its age class) is set aside for this case
-        if choice is None:
+        if card is None:
             raise Unsatisfiable(f"no spine of scenario {scenario} at difficulty {difficulty} can be varied with the library")
-        card = apply(spine, choice.blocks, f"GEN-{scenario}-{seed:04d}-{i:03d}", case_seed, template, rng, used_mrns)
-        card["composition"]["solver_steps"] = choice.steps
         names.add(card["identity"]["full_name"])
         out.append(card)
     return out

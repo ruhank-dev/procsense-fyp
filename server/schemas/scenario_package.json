@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/scenario_package.json",
+  "title": "ScenarioPackage v1 (LG-14)",
+  "description": "A generated practice scenario with everything needed to play, replay and trace it. The case is a case file (content/schema/case_file.schema.json) and is checked against it by Stage B; the package never claims review beyond GENERATED_PRACTICE_ONLY.",
+  "type": "object",
+  "required": ["version", "id", "status", "request_id", "case", "provenance", "fingerprint"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": 1},
+    "id": {"type": "string", "pattern": "^GEN-S[12]-[0-9]{4}-[0-9]{3}$"},
+    "status": {"const": "GENERATED_PRACTICE_ONLY"},
+    "request_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+    "case": {"type": "object", "required": ["id", "scenario", "composition"], "properties": {"id": {"type": "string"}, "scenario": {"enum": ["S1", "S2"]}}},
+    "provenance": {"type": "object", "required": ["generator", "seed", "spine", "blocks", "content_hash", "packs"], "additionalProperties": false,
+      "properties": {
+        "generator": {"type": "string"}, "seed": {"type": "integer", "minimum": 0}, "spine": {"type": "string"}, "blocks": {"type": "array", "items": {"type": "string"}},
+        "content_hash": {"type": "string"}, "packs": {"type": "object", "additionalProperties": {"type": "string"}},
+        "models": {"type": "array", "items": {"type": "object", "required": ["role", "name", "digest"], "properties": {"role": {"type": "string"}, "name": {"type": "string"}, "digest": {"type": "string"}}}},
+        "stages": {"type": "array", "items": {"type": "string"}}
+      }},
+    "fingerprint": {"type": "string", "pattern": "^[0-9a-f]{16,64}$"},
+    "quality": {"type": "object"}
+  }
+}

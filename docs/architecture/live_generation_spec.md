@@ -25,7 +25,7 @@ The full architecture (learning from evidence, AI composition, how each modality
 | OFF-02 | Normal versus abnormal profiling per modality | Implemented and tested | statistical | tools/data/cache (git-ignored raw data); tools/data/derived/*.json | docs/research/datasets/profiles/<modality>.md; tools/data/derived/profiles/*.json | tools/data/profile_numeric.py, tools/data/profile_waveforms.py (built, --check in CI) | p1-dataset-analysis-s02; p1-dataset-analysis-s03; p1-dataset-analysis-s04 |
 | OFF-03 | Generator parameter packs (versioned) | Implemented and tested | statistical | OFF-02 profiles; content/lab_bands.csv; content/vitals_bands (52 rows); content/critical_results.csv | content/generation/packs/*.json; content/generation/packs/manifest.json (SHA-256 per pack) | tools/generation/build_packs.py and packs.py (built, --check in CI) | p1-dataset-analysis-s05 |
 | OFF-04 | Component (block) library with requires and excludes | Partially implemented | deterministic | content/case_files/*.json (53); content/cases; content/whatif_library.csv; content/events/events.json | content/blocks/<TYPE>/*.json; content/blocks/tags.yaml; content/templates/SCN-S1.json, SCN-S2.json | tools/composer/blocks.py (built, --check in CI). In P1 the blocks vary the patient, not the story: a spine case keeps its problems, decisions and end state (decision of 17 Oct 2026) | p1-scenario-composer-difficulty-s01 |
-| OFF-05 | Retrieval index over approved content | Planned | retrieval | OFF-04 blocks; content tables; docs/research/source_register.csv | generation index (built artefact, not committed if large) | tools/generation/build_index.py (planned) | p1-live-scenario-generation-s02 |
+| OFF-05 | Retrieval index over approved content | Implemented and tested | retrieval | OFF-04 blocks; content tables; docs/research/source_register.csv | generation index (built artefact, not committed if large) | server/generation/retrieve.py (built, --check in CI) | p1-live-scenario-generation-s02 |
 | OFF-06 | Media asset index (images and ECG strips) | Implemented and tested | deterministic | content/imaging_library.csv; content/imaging_reports.json; content/images; content/ecg_reports.json; content/cxr_reports.json | content/imaging/finding_tags.json; content/imaging/picture_tags.csv; docs/research/imaging_gaps.md | tools/content/imaging_library.py, tools/content/imaging_tags.py (both --check in CI) | p1-dataset-analysis-s04 |
 | OFF-07 | Evaluation reference sets | Partially implemented | deterministic | tools/composer/mutate.py; tests/vectors/grounding_vectors.json; tests/golden | tests/generation/*.json with a data card (built); labelled utterances and adversarial questions (planned) | tools/composer/mutate.py, server/validation/make_vectors.py (exist) | p1-dataset-analysis-s05; p1-evaluation-s01 |
 | OFF-08 | Model preparation: pull, quantise, benchmark (no training) | Partially implemented | pretrained | model catalogue MC-01 to MC-13 | docs/research/model_benchmarks.md (planned); pinned model digests | tools/ai/benchmark.py (planned, p1-ai-language-s02) | p1-ai-language-s02 |
@@ -37,10 +37,10 @@ The full architecture (learning from evidence, AI composition, how each modality
 | # | ID | Stage | Status | Method | Latency budget (ms) | Tasks |
 |---|---|---|---|---|---|---|
 | 1 | LG-01 | Session request | Partially implemented | deterministic | 50 | p1-live-scenario-generation-s01; p1-backend-s01 |
-| 2 | LG-02 | Learning objectives and difficulty target | Partially implemented | deterministic | 20 | p1-live-scenario-generation-s01 |
-| 3 | LG-03 | Context retrieval | Planned | retrieval | 300 | p1-live-scenario-generation-s02 |
+| 2 | LG-02 | Learning objectives and difficulty target | Implemented and tested | deterministic | 20 | p1-live-scenario-generation-s01 |
+| 3 | LG-03 | Context retrieval | Implemented and tested | retrieval | 300 | p1-live-scenario-generation-s02 |
 | 4 | LG-04 | AI scenario plan composition and constraint solving | Planned | hybrid | 500 | p1-scenario-composer-difficulty-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 |
-| 5 | LG-05 | Scenario skeleton | Planned | deterministic | 100 | p1-live-scenario-generation-s03 |
+| 5 | LG-05 | Scenario skeleton | Implemented and tested | deterministic | 100 | p1-live-scenario-generation-s03 |
 | 6 | LG-06 | AI composition (narrative, patient profile, persona) | Blocked | LLM | 25000 | p1-scenario-composer-difficulty-s03; p1-live-scenario-generation-s04 |
 | 7 | LG-07 | Numeric generation (labs, vitals, trends) | Partially implemented | statistical | 200 | p1-live-scenario-generation-s05; p1-live-scenario-generation-s14 |
 | 8 | LG-08 | Image and waveform handling (ECG, ultrasound, X-ray, CT) | Partially implemented | hybrid | 300 | p1-live-scenario-generation-s06 |
@@ -70,7 +70,7 @@ Unity or the CLI asks for a session: trainee pseudonym, mode (practice only for 
 |---|---|
 | Inputs | trainee pseudonym; mode; scenario family; level; optional seed; optional focus |
 | Outputs | SessionRequest v1 (JSON) |
-| Component | server/generation/request.py (planned); today: CLI flags --level --variant --noise and next-case |
+| Component | server/generation/contracts.py (built); the HTTP endpoint POST /v1/scenarios:generate is planned (p1-backend-s06) |
 | Method | Schema validation of the request; assessment mode is refused for generated content. |
 | Method class | deterministic |
 | Data dependencies | — |
@@ -80,7 +80,7 @@ Unity or the CLI asks for a session: trainee pseudonym, mode (practice only for 
 | Tests | schema accept and reject vectors; assessment-mode refusal test |
 | Acceptance | Every request is either accepted with a logged seed or rejected with a reason; no request reaches LG-02 without a seed. |
 | Status | Partially implemented |
-| Evidence | src/ProcSense.Core/Session.cs (SessionOptions); src/ProcSense.Cli/Commands.cs |
+| Evidence | src/ProcSense.Core/Session.cs (SessionOptions); src/ProcSense.Cli/Commands.cs; server/generation/contracts.py; server/schemas/session_request.json; tools/ci/test_generation_contracts.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s01; p1-backend-s01 |
 
@@ -92,7 +92,7 @@ Turn the trainee's history into objectives: the weakest behaviours and dimension
 |---|---|
 | Inputs | SessionRequest; trainee history (pseudonymised); Elo ratings per behaviour |
 | Outputs | Objectives v1: target competencies, difficulty vector over 8 dimensions, exclusions |
-| Component | src/ProcSense.Core/Difficulty/Difficulty.cs (exists: ratings, Selector) + server/generation/objectives.py (planned) |
+| Component | src/ProcSense.Core/Difficulty/Difficulty.cs + server/generation/objectives.py (both built, shared vectors) |
 | Method | Deterministic: reuse the Elo ratings (K 16, 3 sessions before adapting) and dimension mapping. An LLM is not used to choose objectives (choice must be explainable and reproducible). |
 | Method class | deterministic |
 | Data dependencies | content/difficulty/dimensions.json; content/assessment/mapping.json |
@@ -101,8 +101,8 @@ Turn the trainee's history into objectives: the weakest behaviours and dimension
 | Validation | Every objective names a behaviour or dimension that exists in content. |
 | Tests | objective derivation unit tests against fixed histories |
 | Acceptance | Same history and seed give the same objectives. |
-| Status | Partially implemented |
-| Evidence | src/ProcSense.Core/Difficulty/Difficulty.cs; tests DifficultyTests |
+| Status | Implemented and tested |
+| Evidence | src/ProcSense.Core/Difficulty/Difficulty.cs; tests DifficultyTests; server/generation/objectives.py; tests/vectors/difficulty_vectors.json (13 histories, read by C# and Python); tests/ProcSense.Core.Tests/DifficultyVectorTests.cs |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s01 |
 
@@ -114,7 +114,7 @@ Retrieve the evidence the scenario may draw on: candidate blocks matching the ob
 |---|---|
 | Inputs | Objectives; OFF-05 retrieval index |
 | Outputs | RetrievedContext: ranked blocks, reference cases, bands, SR ids |
-| Component | server/generation/retrieve.py (planned) |
+| Component | server/generation/retrieve.py (built) |
 | Method | Tag filter then BM25 ranking (deterministic). Embedding retrieval only if measured recall is below 0.9 on the retrieval evaluation set. |
 | Method class | retrieval |
 | Data dependencies | OFF-04 blocks; content tables; docs/research/source_register.csv |
@@ -123,8 +123,8 @@ Retrieve the evidence the scenario may draw on: candidate blocks matching the ob
 | Validation | Every retrieved item is APPROVED_FOR_TRAINING or above, or labelled generated-practice-only. |
 | Tests | recall@k on the retrieval evaluation set; status filter test |
 | Acceptance | Recall@20 at least 0.9 on the evaluation set; zero items below the allowed review status. |
-| Status | Planned |
-| Evidence | — |
+| Status | Implemented and tested |
+| Evidence | server/generation/retrieve.py; tools/ci/test_generation_retrieve.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s02 |
 
@@ -136,7 +136,7 @@ The AI composer (LLM with retrieval over the scenario knowledge base and exempla
 |---|---|
 | Inputs | RetrievedContext; Objectives; templates SCN-S1 or SCN-S2 |
 | Outputs | ComponentSet: block ids per slot, solver trace |
-| Component | tools/composer/solve.py (built) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13) |
+| Component | tools/composer/solve.py + server/generation/skeleton.py (built, the baseline and fallback) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13) |
 | Method | LLM + retrieval proposes the plan (MC-01, JSON schema); seeded constraint solver completes and checks it (backtracking over slots with requires/excludes, KB relations, difficulty bounds, novelty pre-filter). |
 | Method class | hybrid |
 | Data dependencies | OFF-04 |
@@ -146,7 +146,7 @@ The AI composer (LLM with retrieval over the scenario knowledge base and exempla
 | Tests | T-SOLVE unit tests; property test: no output violates requires/excludes |
 | Acceptance | Zero constraint violations over 10,000 seeds; unsatisfiable inputs end in a logged fallback. |
 | Status | Planned |
-| Evidence | tools/composer/solve.py (the deterministic solver, built) |
+| Evidence | tools/composer/solve.py (the deterministic solver, built); server/generation/skeleton.py (the deterministic baseline: ranking, selection, solver, relaxation, novelty pre-filter) |
 | Blockers | — |
 | Tasks | p1-scenario-composer-difficulty-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 |
 
@@ -158,7 +158,7 @@ Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, prob
 |---|---|
 | Inputs | ComponentSet; case_file.schema.json |
 | Outputs | ScenarioSkeleton (case file with typed slots) |
-| Component | server/generation/skeleton.py (planned) |
+| Component | server/generation/skeleton.py (built) |
 | Method | Deterministic assembly from block templates. |
 | Method class | deterministic |
 | Data dependencies | content/case_files schema; content/problems/discovery.json |
@@ -167,8 +167,8 @@ Assemble the chosen blocks into a case-file-shaped skeleton: patient slots, prob
 | Validation | case_file.schema.json with slots allowed; every problem has a discovery rule. |
 | Tests | skeleton schema tests; discovery coverage test |
 | Acceptance | Every skeleton validates against the schema and every problem is discoverable. |
-| Status | Planned |
-| Evidence | — |
+| Status | Implemented and tested |
+| Evidence | server/generation/skeleton.py; tools/ci/test_generation_skeleton.py (200 seeds in CI, 10,000 locally) |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s03 |
 
@@ -202,7 +202,7 @@ Fill every numeric slot: lab results per analyte conditioned on the case's condi
 |---|---|
 | Inputs | ScenarioSkeleton; parameter packs; seed stream per slot |
 | Outputs | numeric results with band, flag, units and provenance |
-| Component | tools/content/exp_data2.py (band sampling, exists); server/generation/numeric.py (planned) |
+| Component | server/generation/numeric.py (built; learned conditional generation planned, s14) |
 | Method | Statistical (seeded truncated normal or log-normal per band, Gaussian copula for linked analytes), never an LLM. |
 | Method class | statistical |
 | Data dependencies | DS-0003; DS-0004; DS-0001; content/lab_bands.csv; content/critical_results.csv; content/case_measurements.csv |
@@ -212,7 +212,7 @@ Fill every numeric slot: lab results per analyte conditioned on the case's condi
 | Tests | EXP-DATA-2 extended to conditioned packs; distribution tests (KS against the profile); correlation tests; seed reproducibility |
 | Acceptance | 100 percent of values within the demanded band over 10,000 seeds; generated marginals within the profile's p5 to p95 for normal slots; same seed gives identical values. |
 | Status | Partially implemented |
-| Evidence | tools/content/exp_data2.py; content/lab_bands.csv (104); content/lab_plausibility.csv |
+| Evidence | tools/content/exp_data2.py; content/lab_bands.csv (104); content/lab_plausibility.csv; server/generation/numeric.py; server/generation/packs.py; tools/ci/test_generation_numeric.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s05; p1-live-scenario-generation-s14 |
 
@@ -224,7 +224,7 @@ Pick, for every imaging and ECG slot, an asset whose finding tags match the skel
 |---|---|
 | Inputs | ScenarioSkeleton imaging and ECG slots; OFF-06 media index; ECG parameter pack |
 | Outputs | asset references with dataset id, licence, finding tags, report text |
-| Component | tools/data/ultrasound.py, ecg_images.py, cxr_images.py (offline, exist); server/generation/media.py (planned) |
+| Component | server/generation/media.py (built; the seeded parametric ECG variant is not: the real strips are chosen and the pulse follows the strip) |
 | Method | Retrieval from the labelled library (deterministic, seeded tie-break) plus seeded parametric ECG variation. No diffusion or GAN image generation at runtime (E64 is a deferred offline research track, PH-24). |
 | Method class | hybrid |
 | Data dependencies | DS-0002; DS-0005; DS-0006; DS-0011; DS-0014; content/imaging_library.csv |
@@ -234,7 +234,7 @@ Pick, for every imaging and ECG slot, an asset whose finding tags match the skel
 | Tests | tag-match tests; report-number consistency tests; licence filter test |
 | Acceptance | Zero tag mismatches; every asset has a licence row. |
 | Status | Partially implemented |
-| Evidence | content/imaging_library.csv (60 results, 204 pictures); tools/data/ultrasound.py |
+| Evidence | content/imaging_library.csv (60 results, 204 pictures); tools/data/ultrasound.py; server/generation/media.py; tools/ci/test_generation_media.py; content/imaging/picture_tags.csv |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s06 |
 
@@ -246,7 +246,7 @@ Check that every modality tells the same story: ECG rhythm against pulse and mon
 |---|---|
 | Inputs | filled scenario (narrative, numbers, assets) |
 | Outputs | consistency report (pass or defects with rule ids) |
-| Component | tools/composer/stage_b.py contradiction types (12, exist) + content/generation/crossmodal_rules.json (planned) |
+| Component | server/generation/crossmodal.py (built; the text consistency critic is planned, s15) |
 | Method | Deterministic rule table (VR-CM rules); an LLM judge may flag suspected inconsistencies as advisory only (LG-11). |
 | Method class | deterministic |
 | Data dependencies | content/contradictions.json; content/critical_results.csv; content/ecg_findings.csv; content/cxr_findings.csv |
@@ -256,7 +256,7 @@ Check that every modality tells the same story: ECG rhythm against pulse and mon
 | Tests | one positive and one negative fixture per cross-modal rule; mutation set extended with cross-modal breaks |
 | Acceptance | Every cross-modal mutation in the evaluation set is caught. |
 | Status | Partially implemented |
-| Evidence | content/contradictions.json (12 types); tools/composer/test_composer.py |
+| Evidence | content/contradictions.json (12 types); tools/composer/test_composer.py; server/generation/crossmodal.py (8 rules); content/generation/crossmodal_rules.json; tools/ci/test_generation_crossmodal.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s07; p1-live-scenario-generation-s15 |
 
@@ -268,7 +268,7 @@ Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and 
 |---|---|
 | Inputs | filled scenario; consistency report |
 | Outputs | Stage B report (HTML and JSON); pass or defect list |
-| Component | tools/composer/stage_b.py (exists) + Core ContentGate (exists) + headless correct-path run (planned) |
+| Component | tools/composer/stage_b.py + server/generation/package.py (built); the headless correct path waits for the engine to load generated packages (s10) |
 | Method | Deterministic validator; the AI cannot mark anything approved. |
 | Method class | deterministic |
 | Data dependencies | content/contradictions.json; content/schema |
@@ -278,7 +278,7 @@ Run the existing Stage B checks (11 ordered checks, 12 contradiction types) and 
 | Tests | test_composer.py; ContentGate tests; headless correct-path reaches the expected end state |
 | Acceptance | Zero packages with a Stage B defect are delivered; the correct path reaches the declared end state. |
 | Status | Partially implemented |
-| Evidence | tools/composer/stage_b.py; tools/composer/test_composer.py (60 of 60); src/ProcSense.Core/Content/ContentGate.cs |
+| Evidence | tools/composer/stage_b.py; tools/composer/test_composer.py (60 of 60); src/ProcSense.Core/Content/ContentGate.cs; server/generation/package.py (schema, Stage B, media and cross-modal gate) |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s07 |
 

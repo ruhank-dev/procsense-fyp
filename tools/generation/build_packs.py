@@ -126,16 +126,23 @@ def mutation_vectors() -> dict:
 
 
 def retrieval_queries(cases: list[dict]) -> dict:
+    """A problem label asked for as an author would, with the cases that hold it. Only cases a session may use (approved) are expected: a DRAFT case is never retrieved."""
+    usable = [c for c in cases if c["status"] in ("APPROVED_FOR_TRAINING", "APPROVED_FOR_ASSESSMENT")]
     by_label: dict[str, list[str]] = {}
-    for c in cases:
+    for c in usable:
         for p in c["problems"]:
             by_label.setdefault(p["label"], []).append(c["id"])
     queries = [{"query": label, "expected_cases": sorted(set(ids))} for label, ids in sorted(by_label.items())]
-    scen = {}
-    for c in cases:
-        scen.setdefault(c["scenario"], []).append(c["id"])
-    queries += [{"query": f"scenario {s}", "expected_cases": sorted(ids)} for s, ids in sorted(scen.items())]
-    return {"note": "Each query is a problem label (or a scenario family) as an author would ask for it; the cases that hold it are the answer. Recall at k is measured against these (p1-live-scenario-generation-s02).", "queries": queries}
+    # the same problem asked for in other words: the first sentence of why it matters, and what the debrief says to remember (the words differ from the label)
+    for c in usable:
+        for p in c["problems"]:
+            first = p["why"].split(".")[0].strip()
+            if len(first.split()) >= 6:
+                queries.append({"query": first, "expected_cases": [c["id"]]})
+        remember = c["debrief"].get("remember", "").split(".")[0].strip()
+        if len(remember.split()) >= 6:
+            queries.append({"query": remember, "expected_cases": [c["id"]]})
+    return {"note": "Each query is a problem label, the first sentence of why it matters, or what the debrief says to remember, as an author would ask for it; the approved cases that hold it are the answer (a scenario family is a tag filter, not a search). Recall at 20 is measured against these (p1-live-scenario-generation-s02).", "queries": queries}
 
 
 CARD = """# Evaluation sets for live scenario generation

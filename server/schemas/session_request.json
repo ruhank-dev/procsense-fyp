@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/session_request.json",
+  "title": "SessionRequest v1 (LG-01)",
+  "description": "What Unity or the command line asks for when a trainee wants a fresh practice scenario. Assessment mode is refused: assessment keeps fixed cases.",
+  "type": "object",
+  "required": ["version", "trainee", "mode", "scenario", "level"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": 1},
+    "trainee": {"type": "string", "pattern": "^[A-Za-z0-9_-]{3,64}$", "description": "a pseudonym, never a name"},
+    "mode": {"enum": ["practice", "assessment"]},
+    "scenario": {"enum": ["S1", "S2"]},
+    "level": {"enum": ["beginner", "advanced"]},
+    "seed": {"type": "integer", "minimum": 0, "maximum": 2147483647, "description": "optional; drawn and logged when absent"},
+    "focus": {"type": "array", "maxItems": 4, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]{2,40}$"}, "description": "behaviour or dimension ids the trainee or teacher wants exercised"},
+    "time_budget_s": {"type": "integer", "minimum": 10, "maximum": 600, "description": "how long the trainee will wait for generation before the pre-generated pool is used"}
+  }
+}

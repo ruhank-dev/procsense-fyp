@@ -1,5 +1,5 @@
 {
- "note": "Each query is a problem label (or a scenario family) as an author would ask for it; the cases that hold it are the answer. Recall at k is measured against these (p1-live-scenario-generation-s02).",
+ "note": "Each query is a problem label, the first sentence of why it matters, or what the debrief says to remember, as an author would ask for it; the approved cases that hold it are the answer (a scenario family is a tag filter, not a search). Recall at 20 is measured against these (p1-live-scenario-generation-s02).",
  "queries": [
   {
    "expected_cases": [
@@ -147,27 +147,9 @@
   },
   {
    "expected_cases": [
-    "SC-4"
-   ],
-   "query": "BP 176/104 (below 180/110)"
-  },
-  {
-   "expected_cases": [
     "STK-S1-A"
    ],
    "query": "Blood pressure 174/102, repeat 172/100 (below 180/110)"
-  },
-  {
-   "expected_cases": [
-    "VAR-S1-B"
-   ],
-   "query": "Blood pressure 188/114 and 186/112 on repeat: above the 180/110 limit"
-  },
-  {
-   "expected_cases": [
-    "VAR-S1-B"
-   ],
-   "query": "Blood pressure high but below 180/110 and no organ-damage symptoms"
   },
   {
    "expected_cases": [
@@ -336,12 +318,6 @@
     "STK-S1-A"
    ],
    "query": "HbA1c 76 above the limit of 69 for planned surgery"
-  },
-  {
-   "expected_cases": [
-    "SC-4"
-   ],
-   "query": "HbA1c 78 above the planned-surgery limit of 69"
   },
   {
    "expected_cases": [
@@ -712,66 +688,795 @@
   },
   {
    "expected_cases": [
-    "SC-12",
-    "SC-13",
-    "SC-16",
-    "SC-18",
-    "SC-4",
-    "SC-5",
-    "SC-6",
-    "SC-9",
-    "STK-S1-A",
-    "STK-S1-B",
-    "STK-S1-C",
-    "STK-S1-D",
-    "VAR-S1-A",
-    "VAR-S1-B",
-    "VAR-S1-C",
-    "VAR-S1-D",
-    "VAR-S1-E",
-    "VAR-S1-G",
-    "VAR-S1-H",
-    "VAR-S1-I",
-    "VAR-S1-J",
-    "VAR-S1-K",
-    "VAR-S1-L",
-    "VAR-S1-M",
-    "VAR-S1-PB"
+    "SC-1"
    ],
-   "query": "scenario S1"
+   "query": "ABCDE, senior and anaesthetist, oxygen if needed, cultures"
   },
   {
    "expected_cases": [
-    "SC-1",
-    "SC-10",
-    "SC-11",
-    "SC-14",
-    "SC-15",
-    "SC-17",
-    "SC-19",
-    "SC-2",
-    "SC-20",
-    "SC-3",
-    "SC-7",
-    "SC-8",
-    "STK-S2-A",
-    "STK-S2-B",
-    "STK-S2-C",
-    "STK-S2-D",
-    "VAR-S2-B",
-    "VAR-S2-D",
-    "VAR-S2-E",
-    "VAR-S2-F",
-    "VAR-S2-G",
-    "VAR-S2-H",
-    "VAR-S2-I",
-    "VAR-S2-J",
-    "VAR-S2-K",
-    "VAR-S2-L",
-    "VAR-S2-PC",
+    "SC-1"
+   ],
+   "query": "The antibiotic follows the allergy rule, still within 1 hour"
+  },
+  {
+   "expected_cases": [
+    "SC-1"
+   ],
+   "query": "Fluids help; no anti-inflammatories; kidney-adjusted drugs"
+  },
+  {
+   "expected_cases": [
+    "SC-1"
+   ],
+   "query": "Treat the circulation first, then pick the antibiotic by the allergy, still within the hour"
+  },
+  {
+   "expected_cases": [
+    "SC-10"
+   ],
+   "query": "A trained interpreter, not a sibling or child"
+  },
+  {
+   "expected_cases": [
+    "SC-10"
+   ],
+   "query": "Parent or guardian consents; involve the young person"
+  },
+  {
+   "expected_cases": [
+    "SC-10"
+   ],
+   "query": "Consent needs understanding in a language the patient knows"
+  },
+  {
+   "expected_cases": [
+    "SC-11"
+   ],
+   "query": "Treat the cause and reassess capacity"
+  },
+  {
+   "expected_cases": [
+    "SC-11"
+   ],
+   "query": "Capacity can change when the patient becomes unwell"
+  },
+  {
+   "expected_cases": [
+    "SC-12"
+   ],
+   "query": "Moderate hyponatraemia: postpone; GP or medical review"
+  },
+  {
+   "expected_cases": [
+    "SC-12"
+   ],
+   "query": "Probably false; do not let it distract"
+  },
+  {
+   "expected_cases": [
+    "SC-12"
+   ],
+   "query": "A false alarm must not hide a real abnormality"
+  },
+  {
+   "expected_cases": [
+    "SC-13"
+   ],
+   "query": "Ask about black stools; group and save"
+  },
+  {
+   "expected_cases": [
+    "SC-15"
+   ],
+   "query": "Alternative antibiotic from a different family per the policy"
+  },
+  {
+   "expected_cases": [
+    "SC-15"
+   ],
+   "query": "A new allergy must be recorded immediately"
+  },
+  {
+   "expected_cases": [
+    "SC-16"
+   ],
+   "query": "Symptoms point to a full stomach"
+  },
+  {
+   "expected_cases": [
+    "SC-16"
+   ],
+   "query": "Postpone with a 24-hour liquid diet plan, or proceed with a rapid sequence and stomach ultrasound"
+  },
+  {
+   "expected_cases": [
+    "SC-16"
+   ],
+   "query": "A GLP-1 injection can slow stomach emptying despite fasting"
+  },
+  {
+   "expected_cases": [
+    "SC-17"
+   ],
+   "query": "Chronic; no new bleeding; HbA1c unreliable (irrelevant in S2)"
+  },
+  {
+   "expected_cases": [
+    "SC-17"
+   ],
+   "query": "Know the baseline before you call a result abnormal"
+  },
+  {
+   "expected_cases": [
+    "SC-18"
+   ],
+   "query": "If time runs out, postpone rather than rush"
+  },
+  {
+   "expected_cases": [
+    "SC-18"
+   ],
+   "query": "System failures cluster on busy lists; do not rush"
+  },
+  {
+   "expected_cases": [
+    "SC-19"
+   ],
+   "query": "Three conditions can cause the same confusion"
+  },
+  {
+   "expected_cases": [
+    "SC-2"
+   ],
+   "query": "Two large drips, crossmatch, fluids or blood"
+  },
+  {
+   "expected_cases": [
+    "SC-2"
+   ],
+   "query": "Gynaecology now; the appendicitis pathway stops"
+  },
+  {
+   "expected_cases": [
+    "SC-2"
+   ],
+   "query": "Always do a pregnancy test in a woman with lower tummy pain"
+  },
+  {
+   "expected_cases": [
+    "SC-20"
+   ],
+   "query": "Older patients with this picture need a scan first"
+  },
+  {
+   "expected_cases": [
+    "SC-3"
+   ],
+   "query": "Obstetrics early, MRI not CT first, analgesia avoiding anti-inflammatories, antibiotics from the safe local list, left tilt"
+  },
+  {
+   "expected_cases": [
+    "SC-3"
+   ],
+   "query": "Appendicitis in pregnancy needs the obstetric team and MRI"
+  },
+  {
+   "expected_cases": [
+    "SC-5"
+   ],
+   "query": "Two independent reasons strengthen the case to postpone"
+  },
+  {
+   "expected_cases": [
+    "SC-6"
+   ],
+   "query": "Light meals need 6 hours; the anaesthetist decides"
+  },
+  {
+   "expected_cases": [
+    "SC-7"
+   ],
+   "query": "Rapid sequence plan; NG tube per senior"
+  },
+  {
+   "expected_cases": [
+    "SC-7"
+   ],
+   "query": "Alternative pain plan; clinician considers the antidote"
+  },
+  {
+   "expected_cases": [
+    "SC-7"
+   ],
+   "query": "A drowsy vomiting patient is an airway problem first"
+  },
+  {
+   "expected_cases": [
+    "SC-8"
+   ],
+   "query": "Emergency team, monitor, ECG, treatment by the clinician"
+  },
+  {
+   "expected_cases": [
+    "SC-8"
+   ],
+   "query": "Treat the potassium and the shock together"
+  },
+  {
+   "expected_cases": [
+    "SC-9"
+   ],
+   "query": "Sepsis bundle, antibiotics within 1 hour"
+  },
+  {
+   "expected_cases": [
+    "SC-9"
+   ],
+   "query": "Gastroenterology and cardiology decide; a stent older than 12 months lowers the risk of stopping"
+  },
+  {
+   "expected_cases": [
+    "SC-9"
+   ],
+   "query": "Cholangitis needs drainage, not a gallbladder operation"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Disability (D in ABCDE): it can deteriorate within minutes to confusion or a seizure, and is quick and simple to treat"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Risk of euglycaemic DKA during fasting and surgery; it needs monitoring, and surgery today is unlikely to proceed (the anaesthetist decides)"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Not dangerous today, but a recognised reason to optimise before planned surgery (CPOC)"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Below the AAGBI/BHS 180/110 threshold: on its own it would not stop surgery; it needs GP follow-up"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Check the glucose in every diabetic patient and ask exactly which tablets were taken today"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "It directly determines whether surgery can safely happen today: still active at the time of surgery, so the bleeding risk rises; a blood thinner is not reversed simply to allow elective surgery"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "It may mean gut bleeding or a cancer, which could change whether this operation is the priority at all"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "It needs an anticoagulation stop and restart plan, not urgent action; confirm with an ECG that it is the known rhythm"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "Ask the exact time of the last dose of every blood thinner"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "Immediate threat (circulation): it can cause cardiac arrest within minutes; UKKA emergency"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "It is driving the hyperkalaemia; it needs careful fluids (heart failure) and a drug review"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "Mostly a consequence of the potassium and the kidney injury plus the beta-blocker; it improves as they are treated"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "A slow heart plus kidney or heart-failure drugs: think potassium"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Circulation threat; antibiotics and fluids are time-critical within 1 hour"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Source control, biliary drainage, is the definitive treatment"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Planned later, after drainage and recovery"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Check temperature and jaundice in every gallstone patient"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Correct it before anaesthesia: anaesthesia on a dry patient causes hypotension"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "It affects the drugs and the anaesthetic safety and is correctable within hours"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Together with the kidney injury it affects the drugs and the anaesthetic safety; replaced by the clinician's order and rechecked"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Surgery is generally planned promptly (WSES 2025: within 24 hours of admission when indicated); resuscitation proceeds in parallel and the team does not wait for perfect numbers"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Resuscitate, then operate: don't wait for perfection"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-B"
+   ],
+   "query": "A wrong antibiotic could cause anaphylaxis in a shocked patient; it must not delay the antibiotic"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-B"
+   ],
+   "query": "Urgent theatre after resuscitation starts; CT shows perforation with free fluid"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-B"
+   ],
+   "query": "Check allergy before every drug, especially in a rush"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "Airway first in ABCDE; stomach contents can reach the lungs"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "RSI plan; food alone is not a reason to delay emergency surgery"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "Watch the breathing after every opioid dose"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "The mother's health protects the fetus; HR 108 and fever are higher than pregnancy explains, so pregnancy can mask how ill she is"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Perforation increases maternal and fetal risk; the ultrasound did not see the appendix, which is not negative, so the MRI (no ionising radiation) decides"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Team input: the obstetric team is involved early and decides the fetal monitoring"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Aspiration risk is increased in pregnancy (RSI); left lateral tilt from about 20 weeks; pregnancy-safe drugs"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Pregnancy changes ranges, imaging, drugs and team"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-A"
+   ],
+   "query": "The task is to confirm identity, allergies, fasting and the usual tests without inventing problems"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-A"
+   ],
+   "query": "No transfer until each checkpoint is closed"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-A"
+   ],
+   "query": "A normal patient still needs every check; do not invent problems"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-C"
+   ],
+   "query": "HbA1c 58 is below 69 and the sugar is in the target: proceed with a medicine plan (metformin as normal; omit gliclazide today) and hourly sugar checks"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-C"
+   ],
+   "query": "Check HbA1c and sugar, then plan the medicines"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-D"
+   ],
+   "query": "Apixaban is usually omitted for a day or two before planned surgery with good kidneys"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-D"
+   ],
+   "query": "Ask exactly when the last tablet was taken"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-E"
+   ],
+   "query": "A planned patient with local signs (Murphy's), systemic inflammation (WBC, CRP, fever) and a scan with a thick wall and fluid is no longer a routine list patient"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-E"
+   ],
+   "query": "Planned patients can arrive unwell: always take the temperature"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-G"
+   ],
+   "query": "A full stomach risks aspiration under anaesthetic"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-G"
+   ],
+   "query": "Milk counts as food; record exact times"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-H"
+   ],
+   "query": "Changes imaging, drugs, anaesthesia and timing; she has no pain or bleeding, so ectopic pregnancy is not suspected but must be kept in mind"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-H"
+   ],
+   "query": "Always know the pregnancy status before surgery"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-I"
+   ],
+   "query": "A wrong antibiotic could cause anaphylaxis; the reaction must be recorded exactly and be visible to everyone"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-I"
+   ],
+   "query": "The allergy matters most if an antibiotic is prescribed; the simulator does not decide that"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-I"
+   ],
+   "query": "A severe allergy is recorded exactly and checked before every drug"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-J"
+   ],
+   "query": "Well patient, normal ECG and kidneys and a lab comment that the cells burst make a false result likely; it must still be repeated urgently"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-J"
+   ],
+   "query": "Read the lab comment and repeat; do not act on one implausible value"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-K"
+   ],
+   "query": "The cause must be found at her age (diet, periods, or slow bleeding from the gut) and the planned operation waits for the senior and the anaesthetist"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-K"
+   ],
+   "query": "Anaemia with small cells in a woman of this age needs a cause before elective surgery"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-L"
+   ],
+   "query": "The heart is not filling and emptying efficiently and stroke risk rises; the planned operation is usually deferred while the medical team controls the rate and decides about anticoagulation"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-L"
+   ],
+   "query": "A new fast irregular rhythm stops an elective list until the heart rate is controlled"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-M"
+   ],
+   "query": "Airway and breathing after anaesthesia and with painkillers need extra precautions; the anaesthetist decides to proceed with monitoring or to request a sleep study first"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-M"
+   ],
+   "query": "BMI above 40 and a high STOP-BANG score need an anaesthetic plan, not just a number"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-PB"
+   ],
+   "query": "Jaundice, cholestatic liver tests and a 9 mm duct make a duct stone likely; operating on the gallbladder alone would leave it in place"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-PB"
+   ],
+   "query": "No fever, shivering or low BP today, but it can develop"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-PB"
+   ],
+   "query": "Ask about yellow eyes in every gallstone patient"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-B"
+   ],
+   "query": "Positive pregnancy test plus pain, shoulder-tip pain, fast heart, lowish BP and low Hb: NICE NG126 says exclude ectopic the same day"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-B"
+   ],
+   "query": "If the pregnancy test is never done it is a hard safety failure"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-B"
+   ],
+   "query": "Always test for pregnancy in women of reproductive age with tummy pain"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-D"
+   ],
+   "query": "AIR 5 is intermediate; the appendix was not seen"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-D"
+   ],
+   "query": "'Not seen' means 'we do not know'"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-E"
+   ],
+   "query": "A CT scan before deciding on surgery separates appendicitis from a tumour or diverticulitis, and changes who operates"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-E"
+   ],
+   "query": "Unexplained in a 68-year-old; iron studies and a colon assessment follow"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-E"
+   ],
+   "query": "Older patients with right lower pain need a scan before surgery"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-F"
+   ],
+   "query": "Emergency surgery is not cancelled for this, but the anaesthetist plans a rapid sequence induction and may time it sensibly if he is stable"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-F"
+   ],
+   "query": "Emergency surgery proceeds, but the anaesthetist must know"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-G"
+   ],
+   "query": "Treatable: fluids with re-checks, stop kidney-harming medicines, measure urine, repeat bloods"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-G"
+   ],
+   "query": "Do not delay the source control waiting for the kidneys to normalise"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-G"
+   ],
+   "query": "Ask about ibuprofen; treat the dehydration and proceed"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-H"
+   ],
+   "query": "Pregnancy changes the picture and the imaging choice; the obstetric team joins early"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-H"
+   ],
+   "query": "Interpret with the trend and CRP"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-H"
+   ],
+   "query": "In pregnancy the team, the score and the imaging all change"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-I"
+   ],
+   "query": "A parent or guardian and/or a competent young person consents under the applicable law; Hamid is part of the discussion"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-I"
+   ],
+   "query": "Surgery within 24 hours of admission when indicated"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-I"
+   ],
+   "query": "A young person is part of the decision; the law and policy say who signs"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-J"
+   ],
+   "query": "Leucocytes without nitrite plus lower-right tenderness keeps appendicitis in play"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-J"
+   ],
+   "query": "A positive dipstick does not close the abdominal question"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-K"
+   ],
+   "query": "A mild delayed rash differs from anaphylaxis; many guidelines allow cefazolin-type antibiotics, but the hospital rule and the prescriber decide, and the allergy is recorded precisely"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-K"
+   ],
+   "query": "Ask what the reaction was before you label an allergy"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-L"
+   ],
+   "query": "About two in five people treated with antibiotics alone had a recurrence over five years (APPAC trial); the choice is his after an honest, balanced explanation"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-L"
+   ],
+   "query": "A capable patient can choose; your job is an honest explanation and a safety net"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Analgesia does not hide the diagnosis; the clinician prescribes, the nurse gives"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Story, examination, raised WBC and CRP and a positive ultrasound make simple appendicitis"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Fasting times look adequate but the anaesthetist still plans a rapid sequence induction"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Treat the pain and think about the heart rate; do not assume a heart problem"
+  },
+  {
+   "expected_cases": [
     "VAR-S2-PD"
    ],
-   "query": "scenario S2"
+   "query": "A rising heart rate, falling BP and rising temperature are one trend: perforated appendix with sepsis"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PD"
+   ],
+   "query": "NICE NG253: high-risk tier needs antibiotics and fluids within 1 hour"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PD"
+   ],
+   "query": "Surgery removes the source once resuscitation has started"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PD"
+   ],
+   "query": "Look at the trend, not one number; sepsis criteria were met at 14:45"
   }
  ]
 }
