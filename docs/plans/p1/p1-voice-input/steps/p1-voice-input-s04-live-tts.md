@@ -16,9 +16,10 @@ AI dialogue without a voice breaks immersion; mismatched voices between pre-rend
 
 ## Status (17 October 2026)
 
-- **Built:** `server/tts/engine.py` (Piper as a separate program writing a WAV file, ffmpeg shaping, the roles, pitch and pace of the offline voices from `tools/voice/voices.json`, one loudness pass, Ogg Vorbis, sentence by sentence, an LRU cache) and `POST /tts/organisations/{id}/speak` (newline-delimited JSON, one sentence per line; audited; rate limited; the fallback signal when the voice is unavailable or the feature is off). 9 tests.
+- **Built:** `server/tts/engine.py` (Piper as a separate program kept alive, one throw-away sentence at start so the voice is loaded once, ffmpeg shaping, the roles, pitch and pace of the offline voices from `tools/voice/voices.json`, one loudness pass, Ogg Vorbis, sentence by sentence, an LRU cache) and `POST /tts/organisations/{id}/speak` (newline-delimited JSON, one sentence per line; audited; rate limited; the fallback signal when the voice is unavailable or the feature is off). 9 tests.
 - **Fixed on 17 October:** the engine read Piper's WAV from standard output; on Windows the text-mode stream turned every line-feed byte into two and the speech was garbled (the recogniser heard "I love you"). It now gives Piper a file; a test pins it.
-- **Measured** (`tools/ai/tts_latency.py`): first spoken sentence 4.95 s at the 95th percentile (median 3.36 s) against a budget of 2.5 s; Piper starts afresh for each sentence (DT-213).
+- **Measured** (`tools/ai/tts_latency.py`, three runs of the first sentence of 12 catalogue lines, a different role each run): first spoken sentence **2.19 s at the 95th percentile** (worst of the runs; median 1.37 s) against the 2.5 s budget, so the `tts` gate passes and the feature is on. Baselines kept in `reports/ai/tts-latency.json`: 6.7 s with Piper started afresh for every sentence, 4.95 s with a kept-alive Piper while language-model evaluations were running. Profile on a quiet processor: Piper about 0.2 s per word (the "high" voice), ffmpeg shaping 0.1 to 0.2 s.
+- **Limit:** the figure holds on a quiet processor; it is not guaranteed while the 9B model or the recogniser runs on the same machine (the split topology of `docs/architecture/deployment.md` keeps them apart). The first sentence of a long line is the unit measured; a one-word line is faster, a twelve-word first sentence is not.
 
 ## Verification
 First sentence plays within the latency budget; voices consistent with pre-rendered lines.

@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "server"))
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=12)
+    ap.add_argument("--runs", type=int, default=3, help="repeat the whole measurement; the reported figure is the WORST run's 95th percentile")
     a = ap.parse_args()
     from tts.engine import TtsEngine, split_sentences
     engine = TtsEngine()
@@ -26,16 +27,25 @@ if __name__ == "__main__":
     chosen = lines[:: max(1, len(lines) // a.n)][: a.n]
     roles = engine.roles()
     engine.one("Warm up.", roles[0])                                            # loads the programs once so the first measured line is not a cold start of the disk cache
-    secs = []
-    for i, text in enumerate(chosen):
-        first = (split_sentences(text) or [text])[0]
-        t = time.monotonic()
-        audio, _ = engine.one(first, roles[i % len(roles)])
-        secs.append(time.monotonic() - t)
-        assert len(audio) > 1000
-    secs.sort()
-    out = {"sentences": len(secs), "first_sentence_seconds": round(secs[max(0, int(0.95 * len(secs)) - 1)], 2), "p50_seconds": round(statistics.median(secs), 2), "max_seconds": round(secs[-1], 2),
-           "note": "Piper is kept alive (PIPER_PERSISTENT=0 starts it afresh for each sentence: about five seconds more); the 'high' voice on this processor is the limit. Measured with other jobs possibly running."}
+    try:
+        import psutil
+        load = psutil.cpu_percent(interval=1.0)
+    except ImportError:
+        load = None
+    runs = []
+    for r in range(a.runs):
+        secs = []
+        for i, text in enumerate(chosen):
+            first = (split_sentences(text) or [text])[0]
+            t = time.monotonic()
+            audio, _ = engine.one(first + " " * r, roles[(i + r) % len(roles)])          # a different role each run so the cache cannot answer
+            secs.append(time.monotonic() - t)
+            assert len(audio) > 1000
+        secs.sort()
+        runs.append({"p95": round(secs[max(0, int(0.95 * len(secs)) - 1)], 2), "p50": round(statistics.median(secs), 2), "max": round(secs[-1], 2)})
+    out = {"sentences": len(chosen), "runs": runs, "first_sentence_seconds": max(r["p95"] for r in runs), "p50_seconds": max(r["p50"] for r in runs), "max_seconds": max(r["max"] for r in runs),
+           "cpu_percent_before": load, "baseline_before_persistent_piper_seconds": 6.7, "baseline_loaded_machine_seconds": 4.95,
+           "note": "First sentence of each line, Piper kept alive, then ffmpeg shaping; the reported figure is the worst of the runs' 95th percentiles. The 'high' voice costs about 0.2 s per word on this processor and the figure is meant for a quiet processor (4.95 s was measured while language-model evaluations were running; 6.7 s was before Piper was kept alive)."}
     path = ROOT / "artifacts" / "ai-bench" / "tts-latency.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")

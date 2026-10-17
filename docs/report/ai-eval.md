@@ -103,12 +103,12 @@ Limit: the validator knows the engine's event words only; an event that is not o
 | Measure | Value |
 |---|---|
 | Word error rate (small.en on cpu, 40 clips) | 0.0932 |
-| First spoken sentence, 95th percentile (12 sentences) | 4.95 s (median 3.36 s) |
+| First spoken sentence, 95th percentile (12 sentences) | 2.19 s (median 1.37 s; worst of 3 runs, Piper kept alive) |
 | Spoken orders parsed to the right target (702 phrasings, mild recogniser-like errors) | 84.0% |
 | ... to a wrong target (the read-back catches these) | 0.4% |
 | Actions released without a confirmation | 0 |
 
-Limit: clean synthetic speech from one voice is an upper bound, not accented trainees in a noisy room (DT-205); Piper is started afresh for each sentence.
+Limit: clean synthetic speech from one voice is an upper bound, not accented trainees in a noisy room (DT-205); Piper is kept alive; the voice costs about 0.2 s per word on this processor, so the figure holds on a quiet machine only (4.95 s while language-model evaluations were running).
 
 ## Red team of the grounding validator
 

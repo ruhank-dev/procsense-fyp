@@ -199,13 +199,13 @@
   },
   "tts": {
    "label": "Live speech",
-   "status": "FAIL",
-   "enabled": false,
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
      "id": "tts.first_sentence_s",
-     "status": "FAIL",
-     "got": 4.95,
+     "status": "PASS",
+     "got": 2.19,
      "needs": "<= 2.5"
     }
    ]

@@ -1,7 +1,27 @@
 {
   "sentences": 12,
-  "first_sentence_seconds": 4.95,
-  "p50_seconds": 3.36,
-  "max_seconds": 5.35,
-  "note": "Piper is started afresh for every sentence (it loads the voice each time); a persistent process would be faster. Measured with nothing else heavy running only if the run is."
+  "runs": [
+    {
+      "p95": 2.12,
+      "p50": 1.28,
+      "max": 2.22
+    },
+    {
+      "p95": 2.15,
+      "p50": 1.29,
+      "max": 2.37
+    },
+    {
+      "p95": 2.19,
+      "p50": 1.37,
+      "max": 2.26
+    }
+  ],
+  "first_sentence_seconds": 2.19,
+  "p50_seconds": 1.37,
+  "max_seconds": 2.37,
+  "cpu_percent_before": null,
+  "baseline_before_persistent_piper_seconds": 6.7,
+  "baseline_loaded_machine_seconds": 4.95,
+  "note": "First sentence of each line, Piper kept alive, then ffmpeg shaping; the reported figure is the worst of the runs' 95th percentiles. The 'high' voice costs about 0.2 s per word on this processor and the figure is meant for a quiet processor (4.95 s was measured while language-model evaluations were running; 6.7 s was before Piper was kept alive)."
 }

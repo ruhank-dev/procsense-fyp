@@ -149,14 +149,14 @@ def section_voice() -> list[str]:
     out += ["| Measure | Value |", "|---|---|"]
     out.append("| Word error rate of the recogniser on rendered voice lines | not run |" if a is None else f"| Word error rate ({a['model']} on {a['device']}, {a['clips']} clips) | {a['wer']} |")
     t = load("tts-latency.json")
-    out.append("| First spoken sentence, 95th percentile | not run |" if t is None else f"| First spoken sentence, 95th percentile ({t['sentences']} sentences) | {t['first_sentence_seconds']} s (median {t['p50_seconds']} s) |")
+    out.append("| First spoken sentence, 95th percentile | not run |" if t is None else f"| First spoken sentence, 95th percentile ({t['sentences']} sentences) | {t['first_sentence_seconds']} s (median {t['p50_seconds']} s; worst of {len(t.get('runs', [1]))} runs, Piper kept alive) |")
     o = load("orders-eval.json")
     if o is None:
         out.append("| Spoken orders | not run |")
     else:
         out += [f"| Spoken orders parsed to the right target ({o['phrases']} phrasings, mild recogniser-like errors) | {pct(o['parsed_right'])} |", f"| ... to a wrong target (the read-back catches these) | {pct(o['wrong_target'])} |",
                 f"| Actions released without a confirmation | {o['released_without_confirmation']} |"]
-    return out + ["", "Limit: clean synthetic speech from one voice is an upper bound, not accented trainees in a noisy room (DT-205); Piper is started afresh for each sentence.", ""]
+    return out + ["", "Limit: clean synthetic speech from one voice is an upper bound, not accented trainees in a noisy room (DT-205); Piper is kept alive; the voice costs about 0.2 s per word on this processor, so the figure holds on a quiet machine only (4.95 s while language-model evaluations were running).", ""]
 
 
 def section_redteam() -> list[str]:
