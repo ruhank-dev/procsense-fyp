@@ -2,7 +2,6 @@
 
 Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, dual-GPU benchmark, labelling, learner model**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 > **Status (16 October 2026).** `tools/ai/benchmark.py` exists (tests BT0 speed and GPU share, BT1 structured output, BT2 grounding, and a blind rating sheet for BT3) with 13 tests, and the desktop alone was measured idle. Not done: the laptop, desktop and laptop with Unity and speech recognition loaded, thinking-on runs, BT4 debrief, BT5 composition, BT6 judge, the report `docs/research/model_benchmarks.md` (DT-188, DT-187). This step stays open.
 
@@ -16,6 +15,11 @@ No model is chosen or rejected without numbers from our machines.
 1. Benchmark protocol and prompts (`tools/ai/benchmark.py`).
 2. Runs: desktop alone, laptop alone, laptop with Unity, desktop serving laptop over LAN.
 3. Report `docs/research/model_benchmarks.md` with a default per task and machine.
+
+## Status (17 October 2026)
+
+- **Done on the desktop (18 October 2026):** `tools/ai/benchmark.py` (BT0 speed and memory, BT1 structured output, BT2 grounding, 13 tests) was run for qwen3.5:4b, qwen3.5:9b and the since-removed qwen3:4b, and `tools/ai/bench_report.py` writes `docs/research/model_benchmarks.md` from those runs and from the committed evaluations that stand for BT4 (debrief), BT5 (composition) and BT6 (judge), with a default model per task. The 4B model fits the 6 GB card (about 1 s a request); the 9B model is 57 percent on the card at about 12 tokens a second and stays offline.
+- **Not done, and needs a machine or people:** the laptop (RTX 4050) alone, the laptop with Unity and the recogniser loaded (the frame-time cost on the shared card), the desktop serving the laptop over the LAN, thinking-on runs, and BT3, the blind human rating of wording. The report says so in its first section and its defaults are desktop-only (DT-113, DT-187, DT-188). Repeat runs within 10 percent were not made: each BT0 to BT2 file is a single run.
 
 ## Verification
 Report complete for every MC entry; repeat runs within 10 percent.
