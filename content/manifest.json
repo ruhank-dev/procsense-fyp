@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "6485d02f26b3a7e2cf1d2acffc60f4d2e123e1d1b1884ee22d086730ab29f481",
+ "content_hash": "ed68be3fa71fc011e00a74e0349ff84f439ca8149c18185d55bc06f65fe24dc1",
  "files": 654,
- "bytes": 17637571,
+ "bytes": 17638751,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -1373,8 +1373,8 @@
    "sha256": "33d58886fc8e3951bd1942065ad9b64ef6996cdb31cafefb43647485338a1785"
   },
   "checklist/safety_checklist.json": {
-   "bytes": 11332,
-   "sha256": "a32bbd132dde81be7462ecd5d8652914636eb427ad75f8f86113d4e35bea282d"
+   "bytes": 12448,
+   "sha256": "de596ef0aa02c2da42903e13ca93c8b293820d4fd24f67ecae4c252b99ef42f9"
   },
   "clashes/clashes.json": {
    "bytes": 14803,
@@ -2345,8 +2345,8 @@
    "sha256": "c25dab209685d8f9adacfd80a601d5e38df1db54d2aa023f2a0087fd796ca3e1"
   },
   "scoring/rubric.json": {
-   "bytes": 5509,
-   "sha256": "6961dc6ba633d7a2f66cf2b3549efdc4dbf1bfce7d6eb523c3cb9cd2e7c2d669"
+   "bytes": 5573,
+   "sha256": "44a0d769da3f1f27076040d57fff39098dbfde5f175c16f47bbe807c3e14f4a3"
   },
   "sepsis/sepsis.json": {
    "bytes": 2479,

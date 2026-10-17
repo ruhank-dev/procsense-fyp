@@ -368,9 +368,22 @@
    "extension": false,
    "critical": false,
    "if_no": "",
-   "no_stops": false,
+   "no_stops": true,
    "answered_by": "npc",
-   "expected_if": "yes",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "signout.procedure_recorded",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
    "ref": "SR-2164"
   },
   {
@@ -381,9 +394,22 @@
    "extension": false,
    "critical": false,
    "if_no": "",
-   "no_stops": false,
+   "no_stops": true,
    "answered_by": "npc",
-   "expected_if": "yes",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "signout.counts_complete",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
    "ref": "SR-2165"
   },
   {
@@ -394,9 +420,22 @@
    "extension": false,
    "critical": false,
    "if_no": "",
-   "no_stops": false,
+   "no_stops": true,
    "answered_by": "npc",
-   "expected_if": "yes",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "signout.specimen_read",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
    "ref": "SR-2166"
   },
   {
@@ -407,9 +446,35 @@
    "extension": false,
    "critical": false,
    "if_no": "",
-   "no_stops": false,
+   "no_stops": true,
    "answered_by": "npc",
-   "expected_if": "yes",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "or.fault_logged",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     {
+      "if": [
+       {
+        "in": [
+         "signout.equipment_reported",
+         {
+          "var": "flags"
+         }
+        ]
+       },
+       "yes",
+       "no"
+      ]
+     },
+     "yes"
+    ]
+   },
    "ref": "SR-2167"
   },
   {
@@ -420,9 +485,22 @@
    "extension": false,
    "critical": false,
    "if_no": "",
-   "no_stops": false,
-   "answered_by": "npc",
-   "expected_if": "yes",
+   "no_stops": true,
+   "answered_by": "trainee",
+   "expected_if": {
+    "if": [
+     {
+      "in": [
+       "signout.recovery_briefed",
+       {
+        "var": "flags"
+       }
+      ]
+     },
+     "yes",
+     "no"
+    ]
+   },
    "ref": "SR-2168"
   },
   {
@@ -584,7 +662,10 @@
   "skipped_repeat": "critical.checklist_skipped_repeatedly",
   "sign_in_complete": "credit.sign_in_complete",
   "time_out_complete": "credit.time_out_complete",
-  "stopped_honestly": "info.checklist_stopped_honestly"
+  "stopped_honestly": "info.checklist_stopped_honestly",
+  "sign_out_complete": "credit.sign_out_complete",
+  "specimen_name_wrong": "critical.specimen_name_wrong",
+  "count_discrepancy_handled": "credit.count_discrepancy_handled"
  },
  "ready_flag": "checklist.ready_for_incision",
  "rsi_flag": "plan.rsi",

@@ -177,7 +177,7 @@
    "teaching": false
   },
   {
-   "match": "^(checklist_contradiction|checklist_skipped_repeatedly|checklist_item_skipped|sign_in_complete|time_out_complete)$",
+   "match": "^(checklist_contradiction|checklist_skipped_repeatedly|checklist_item_skipped|sign_in_complete|time_out_complete|sign_out_complete|specimen_name_wrong|count_discrepancy_handled)$",
    "behaviour": "b21",
    "type": "REQUIRED",
    "teaching": false

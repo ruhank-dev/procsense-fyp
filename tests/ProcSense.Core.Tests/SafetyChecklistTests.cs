@@ -215,13 +215,14 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void Time_Out_needs_Sign_In_first_and_Sign_Out_is_not_available_yet()
+        public void Time_Out_needs_Sign_In_first_and_Sign_Out_needs_Time_Out()
         {
             var s = Prepared();
             Do(s, "declare_or_ready");                                                            // the theatre is ready, so only the checklist itself can say no
             Assert.Equal(SafetyChecklistSubsystem.SignInFirst, Reject(Say(s, "time_out.02", "yes")));
             Assert.Equal(SafetyChecklistSubsystem.SignInFirst, Reject(Do(s, "complete_time_out")));
-            Assert.Equal(SafetyChecklistSubsystem.PhaseNotAvailable, Reject(Say(s, "sign_out.01", "yes")));
+            Assert.Equal(SafetyChecklistSubsystem.TimeOutFirst, Reject(Say(s, "sign_out.05", "yes")));
+            Assert.Equal(SafetyChecklistSubsystem.TimeOutFirst, Reject(Do(s, "begin_sign_out")));
         }
 
         [Fact]

@@ -85,7 +85,7 @@ RULES = [
     (r"^(fasting_informed_and_delayed|proceed_despite_fasting_breach)$", "b13", "REQUIRED", False),
     (r"^(or_fault_reported|or_fault_ignored|checklist_stopped_honestly|substitute_theatre_used)$", "b18", "RESPONSE", True),
     (r"^(or_ready|or_declared_ready_not_ready|or_critical_station_unchecked)$", "b21", "REQUIRED", False),
-    (r"^(checklist_contradiction|checklist_skipped_repeatedly|checklist_item_skipped|sign_in_complete|time_out_complete)$", "b21", "REQUIRED", False),
+    (r"^(checklist_contradiction|checklist_skipped_repeatedly|checklist_item_skipped|sign_in_complete|time_out_complete|sign_out_complete|specimen_name_wrong|count_discrepancy_handled)$", "b21", "REQUIRED", False),
     (r"^(ward_checklist_complete|ward_signed_with_gaps|ward_tick_false|ward_tick_unverified|razor_used)$", "b21", "REQUIRED", False),
     (r"^(emergency_not_declared|handover_omitted)$", "b11", "COMMUNICATION", False),
 ]

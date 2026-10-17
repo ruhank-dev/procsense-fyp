@@ -49,11 +49,13 @@ RULES = {
     "time_out.05": ("npc", "yes"),
     "time_out.06": ("npc", yn(station_ready("lap_tower"))),
     "time_out.07": ("trainee", {"if": [{"var": "imaging_viewed"}, "yes", "na"]}),
-    "sign_out.01": ("npc", "yes"),
-    "sign_out.02": ("npc", "yes"),
-    "sign_out.03": ("npc", "yes"),
-    "sign_out.04": ("npc", "yes"),
-    "sign_out.05": ("npc", "yes"),
+    # Sign Out (p1-theatre-extension-s01, walkthrough step 15): what was actually done, the counts, the specimen, the equipment faults, the recovery concerns. The nurse's confirmation is only 'yes' once the
+    # trainee has done the thing (the engine sets these flags from the verbs record_procedure, count_check, search_for_item, request_xray, escalate_count, read_specimen_label, report_equipment_problem, brief_recovery)
+    "sign_out.01": ("npc", yn(has("signout.procedure_recorded"))),
+    "sign_out.02": ("npc", yn(has("signout.counts_complete"))),
+    "sign_out.03": ("npc", yn(has("signout.specimen_read"))),
+    "sign_out.04": ("npc", {"if": [has("or.fault_logged"), yn(has("signout.equipment_reported")), "yes"]}),
+    "sign_out.05": ("trainee", yn(has("signout.recovery_briefed"))),
     "extension.01": ("trainee", yn(has("vte.done"))),
     "extension.02": ("trainee", yn({"or": [{"!": [has("condition.diabetes")]}, has("ward.cbg.recorded")]})),
     "extension.03": ("trainee", yn({">=": [{"var": "temperature_c"}, 36.0]})),
@@ -61,7 +63,7 @@ RULES = {
     "extension.05": ("trainee", yn(station_ready("team_brief"))),
 }
 # a theatre colleague's 'no' that also stops the phase although the table gives no instruction: unconfirmed sterility (an indicator or the tower fails) holds the list
-NO_STOPS = {"time_out.06"}
+NO_STOPS = {"time_out.06", "sign_out.01", "sign_out.02", "sign_out.03", "sign_out.04", "sign_out.05"}      # a Sign Out item not done holds the phase until it is
 PHASES = ["sign_in", "time_out", "sign_out", "extension"]
 
 
@@ -86,7 +88,8 @@ def build() -> str:
         "npc_delay_seconds": 4,
         "skips_before_stop": 2,
         "scored": {"contradiction": "critical.checklist_contradiction", "skipped": "major.checklist_item_skipped", "skipped_repeat": "critical.checklist_skipped_repeatedly", "sign_in_complete": "credit.sign_in_complete",
-                   "time_out_complete": "credit.time_out_complete", "stopped_honestly": "info.checklist_stopped_honestly"},
+                   "time_out_complete": "credit.time_out_complete", "stopped_honestly": "info.checklist_stopped_honestly",
+                   "sign_out_complete": "credit.sign_out_complete", "specimen_name_wrong": "critical.specimen_name_wrong", "count_discrepancy_handled": "credit.count_discrepancy_handled"},
         "ready_flag": "checklist.ready_for_incision",
         "rsi_flag": "plan.rsi",
         "refs": ["SR-2836", "SR-2837"],

@@ -4,6 +4,6 @@ namespace ProcSense.Core
     public static class CoreInfo
     {
         public const string Name = "ProcSense.Core";
-        public const string Version = "0.0.5";
+        public const string Version = "0.0.6";
     }
 }

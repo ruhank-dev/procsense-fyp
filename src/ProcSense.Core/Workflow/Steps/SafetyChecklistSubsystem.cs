@@ -74,7 +74,7 @@ namespace ProcSense.Core.Workflow.Steps
             }
             int delay = (int)root.Int("npc_delay_seconds"), skips = (int)root.Int("skips_before_stop");
             var scored = new SortedDictionary<string, string>(root.StringMap("scored"), StringComparer.Ordinal);
-            foreach (var need in new[] { "contradiction", "skipped", "skipped_repeat", "sign_in_complete", "time_out_complete", "stopped_honestly" })
+            foreach (var need in new[] { "contradiction", "skipped", "skipped_repeat", "sign_in_complete", "time_out_complete", "stopped_honestly", "sign_out_complete", "specimen_name_wrong", "count_discrepancy_handled" })
                 if (!scored.ContainsKey(need)) throw new ContentException(root.Sub("scored") + ": '" + need + "' is missing");
             string ready = root.Str("ready_flag"), rsi = root.Str("rsi_flag");
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
@@ -88,12 +88,29 @@ namespace ProcSense.Core.Workflow.Steps
     /// until it is corrected; an honest 'no' where the checklist says STOP also stops it until the problem is fixed. Items go in order (a skipped one is challenged, skipping again stops the case); the theatre
     /// colleagues answer their own items from the state a few seconds after the question; the pulse oximeter cannot be 'yes' unless the probe is on; an emergency case answers 'yes' to aspiration risk and plans a
     /// rapid-sequence induction instead of stopping. Sign In completes by itself; Time Out is completed with complete_time_out, which needs the theatre ready (B-OR), and ends with READY FOR INCISION.
-    /// Sign Out is P1. The five ProcSense extensions are a separate block.
+    /// Sign Out (walkthrough step fifteen, p1-theatre-extension-s01) opens with begin_sign_out once Time Out is complete. The nurse confirms the procedure, the counts, the specimen label and the equipment faults only when the trainee has
+    /// done them: record_procedure; count_check for instruments, sponges and needles (a discrepancy needs a search, an X-ray and an escalation before the counts count as complete); read_specimen_label with the patient's name
+    /// (a wrong name is a critical error); report_equipment_problem when the readiness log holds a fault; brief_recovery for the key concerns. The five ProcSense extensions are a separate block.
     /// </summary>
     public sealed class SafetyChecklistSubsystem : ISubsystem
     {
         public const string ItemVerb = "checklist_item";
         public const string CompleteTimeOutVerb = "complete_time_out";
+        public const string BeginSignOutVerb = "begin_sign_out";
+        public const string RecordProcedureVerb = "record_procedure";
+        public const string CountCheckVerb = "count_check";
+        public const string SearchVerb = "search_for_item";
+        public const string XrayVerb = "request_xray";
+        public const string EscalateCountVerb = "escalate_count";
+        public const string SpecimenVerb = "read_specimen_label";
+        public const string EquipmentVerb = "report_equipment_problem";
+        public const string RecoveryVerb = "brief_recovery";
+        public const string TimeOutFirst = "TIME_OUT_FIRST";
+        public const string UnknownKind = "UNKNOWN_COUNT_KIND";
+        public const string UnknownResult = "UNKNOWN_COUNT_RESULT";
+        public const string NoDiscrepancy = "NO_DISCREPANCY_TO_HANDLE";
+        public const string MissingName = "MISSING_NAME";
+        private static readonly string[] CountKinds = { "instruments", "sponges", "needles" };
 
         public const string MissingPhase = "MISSING_PHASE";
         public const string UnknownPhase = "UNKNOWN_PHASE";
@@ -146,6 +163,7 @@ namespace ProcSense.Core.Workflow.Steps
             session.SafetyStep = this;
             session.Verbs.Register(ItemVerb, requiresIdentity: true);
             session.Verbs.Register(CompleteTimeOutVerb, requiresIdentity: true);
+            foreach (var verb in new[] { BeginSignOutVerb, RecordProcedureVerb, CountCheckVerb, SearchVerb, XrayVerb, EscalateCountVerb, SpecimenVerb, EquipmentVerb, RecoveryVerb }) session.Verbs.Register(verb, requiresIdentity: true);
         }
 
         public void OnAction(SimAction a, ActionOutcome o)
@@ -154,6 +172,15 @@ namespace ProcSense.Core.Workflow.Steps
             {
                 case ItemVerb: Answer(a, o); break;
                 case CompleteTimeOutVerb: CompleteTimeOut(o); break;
+                case BeginSignOutVerb: BeginSignOut(o); break;
+                case RecordProcedureVerb: SignOutFlag(o, "signout.procedure_recorded"); break;
+                case CountCheckVerb: CountCheck(a, o); break;
+                case SearchVerb: CountStep(o, "signout.count_searched"); break;
+                case XrayVerb: CountStep(o, "signout.count_xray"); break;
+                case EscalateCountVerb: CountStep(o, "signout.count_escalated"); break;
+                case SpecimenVerb: ReadSpecimen(a, o); break;
+                case EquipmentVerb: SignOutFlag(o, "signout.equipment_reported"); break;
+                case RecoveryVerb: SignOutFlag(o, "signout.recovery_briefed"); break;
             }
         }
 
@@ -195,7 +222,7 @@ namespace ProcSense.Core.Workflow.Steps
             if (!a.Params.TryGetValue("response", out var response) || response.Length == 0) { o.Reject(MissingResponse); return; }
             response = response.ToLowerInvariant();
             if (!Responses.Contains(response)) { o.Reject(UnknownResponse); return; }
-            if (phase == "sign_out") { o.Reject(PhaseNotAvailable); return; }                       // Sign Out is P1
+            if (phase == "sign_out" && !_s.Patient.Clinical.HasFlag(Tables.ReadyFlag)) { o.Reject(TimeOutFirst); return; }
             if (_s.Patient.Clinical.HasFlag(StoppedFlag)) { o.Reject(CaseStopped); return; }
             if (phase == "time_out" && PhaseState("sign_in") != "COMPLETE") { o.Reject(SignInFirst); return; }
             if (PhaseState(phase) == "COMPLETE") { o.Reject(PhaseComplete); return; }
@@ -278,6 +305,12 @@ namespace ProcSense.Core.Workflow.Steps
                     if (first != null && first.AnsweredBy == "npc") Queue(first);                      // Time Out opens with the team introductions
                 }
                 else if (phase == "time_out") Phases[phase] = "ITEMS_DONE";
+                else if (phase == "sign_out")
+                {
+                    Phases[phase] = "COMPLETE";
+                    _history.Add(new GraphEvent("sign_out_complete", phase, _s.Clock.Steps, new[] { Tables.Scored["sign_out_complete"] }));
+                    _s.Events.Publish(new WorkflowEvent("E-SIGN-OUT-COMPLETE", "sign_out"));
+                }
                 return;
             }
             if (pending.AnsweredBy == "npc" && PhaseState(phase) != "STOPPED") Queue(pending);
@@ -288,6 +321,85 @@ namespace ProcSense.Core.Workflow.Steps
         {
             if (_npcAt.ContainsKey(item.Id)) return;
             _npcAt[item.Id] = _s.Clock.Steps + (long)(Tables.NpcDelaySeconds / Time.SimClock.Step);
+        }
+
+        // ---------------------------------------------------------------- Sign Out (p1-theatre-extension-s01)
+
+        private void BeginSignOut(ActionOutcome o)
+        {
+            if (!_s.Patient.Clinical.HasFlag(Tables.ReadyFlag)) { o.Reject(TimeOutFirst); return; }
+            if (PhaseState("sign_out") != "NOT_STARTED") { o.Reject(PhaseComplete); return; }
+            Start("sign_out");
+            o.Effects.Add("sign_out_started");
+            var first = NextPending("sign_out");
+            if (first != null && first.AnsweredBy == "npc") Queue(first);
+        }
+
+        private bool SignOutOpen(ActionOutcome o)
+        {
+            if (!_s.Patient.Clinical.HasFlag(Tables.ReadyFlag)) { o.Reject(TimeOutFirst); return false; }          // the work of Sign Out is done after the incision phase: Time Out must be complete
+            return true;
+        }
+
+        private void SignOutFlag(ActionOutcome o, string flag)
+        {
+            if (!SignOutOpen(o)) return;
+            _s.Patient.Clinical.SetFlag(flag);
+            o.Effects.Add("recorded:" + flag);
+        }
+
+        private void CountCheck(SimAction a, ActionOutcome o)
+        {
+            if (!SignOutOpen(o)) return;
+            if (!a.Params.TryGetValue("kind", out var kind) || !CountKinds.Contains(kind)) { o.Reject(UnknownKind); return; }
+            if (!a.Params.TryGetValue("result", out var result) || (result != "correct" && result != "discrepancy")) { o.Reject(UnknownResult); return; }
+            var c = _s.Patient.Clinical;
+            c.SetFlag("signout.count." + kind + "." + result);
+            if (result == "discrepancy") { c.SetFlag("signout.count_discrepancy"); o.Effects.Add("search_required"); return; }
+            FinishCounts(o);
+        }
+
+        // a discrepancy is handled by a search, an X-ray (local policy) and an escalation, in any order; then the counts count as complete
+        private void CountStep(ActionOutcome o, string flag)
+        {
+            if (!SignOutOpen(o)) return;
+            var c = _s.Patient.Clinical;
+            if (!c.HasFlag("signout.count_discrepancy")) { o.Reject(NoDiscrepancy); return; }
+            c.SetFlag(flag);
+            o.Effects.Add("recorded:" + flag);
+            if (c.HasFlag("signout.count_searched") && c.HasFlag("signout.count_xray") && c.HasFlag("signout.count_escalated"))
+            {
+                c.SetFlag("signout.count_discrepancy_handled");
+                _history.Add(new GraphEvent("count_discrepancy_handled", "sign_out", _s.Clock.Steps, new[] { Tables.Scored["count_discrepancy_handled"] }));
+                foreach (var kind in CountKinds) c.SetFlag("signout.count." + kind + ".correct");
+                o.Effects.Add("discrepancy_resolved");
+                FinishCounts(o);
+            }
+        }
+
+        private void FinishCounts(ActionOutcome o)
+        {
+            var c = _s.Patient.Clinical;
+            if (CountKinds.All(k => c.HasFlag("signout.count." + k + ".correct")) && (!c.HasFlag("signout.count_discrepancy") || c.HasFlag("signout.count_discrepancy_handled")))
+            {
+                c.SetFlag("signout.counts_complete");
+                o.Effects.Add("counts_complete");
+            }
+        }
+
+        // the specimen label is read aloud including the patient's name; the wrong name is a critical error
+        private void ReadSpecimen(SimAction a, ActionOutcome o)
+        {
+            if (!SignOutOpen(o)) return;
+            if (!a.Params.TryGetValue("name", out var name) || name.Trim().Length == 0) { o.Reject(MissingName); return; }
+            if (string.Equals(name.Trim(), _s.Case.Identity.FullName, StringComparison.OrdinalIgnoreCase))
+            {
+                _s.Patient.Clinical.SetFlag("signout.specimen_read");
+                o.Effects.Add("specimen_label_read");
+                return;
+            }
+            _history.Add(new GraphEvent("specimen_name_wrong", name.Trim(), _s.Clock.Steps, new[] { Tables.Scored["specimen_name_wrong"] }));
+            o.Effects.Add("specimen_name_mismatch");
         }
 
         // ---------------------------------------------------------------- Time Out completion
