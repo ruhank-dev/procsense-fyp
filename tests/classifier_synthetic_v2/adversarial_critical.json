@@ -1,0 +1,433 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Adversarial sentences that touch critical content (an allergy, an identity check, consent, the fasting state, a worsening sign, a structured handover) in words that avoid the obvious ones, written by the builder on 18 October 2026 before any v2 benchmark was run. Used as a regression set: a speech classifier must never credit such a sentence under an ordinary act. Not a test split and not independent.",
+ "rows": [
+  {
+   "id": "ADV001",
+   "text": "Is there anything you can't take, any medicine that has upset you?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV002",
+   "text": "Do you come out in blotches when you take certain tablets?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV003",
+   "text": "Have you ever had a bad turn after an antibiotic?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV004",
+   "text": "Does your throat tighten up with any food?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV005",
+   "text": "What happens to you when you're given the pink antibiotic?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV006",
+   "text": "Any drug that makes your face puff up?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV007",
+   "text": "I need to know if plasters or tape ever make you sore and swollen.",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV008",
+   "text": "So that cream brought you out in spots, I'll mark it on the front of your notes.",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV009",
+   "text": "Anything at all that you've been told never to have again?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV010",
+   "text": "Does the usual painkiller disagree with you?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV011",
+   "text": "You said bee stings are dangerous for you, is that right?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV012",
+   "text": "Has a medicine ever made you wheezy or itchy?",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY"
+  },
+  {
+   "id": "ADV013",
+   "text": "Watch the first dose, she had a bad turn with the last antibiotic.",
+   "kind": "allergy",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV014",
+   "text": "His face puffed up after the contrast last year, so be careful.",
+   "kind": "allergy",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV015",
+   "text": "She cannot have the usual painkiller, it came out in blotches before.",
+   "kind": "allergy",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV016",
+   "text": "Careful with the gloves, his hands swell.",
+   "kind": "allergy",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV017",
+   "text": "Just so you know he stopped breathing properly after a tablet once.",
+   "kind": "allergy",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV018",
+   "text": "Who am I speaking to, and when's your birthday?",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV019",
+   "text": "Can I see your bracelet, I need to match it to the form.",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV020",
+   "text": "Is this Mrs Khan in front of me?",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV021",
+   "text": "What do I call you, and what date were you born?",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV022",
+   "text": "Read me what it says on your arm band.",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV023",
+   "text": "I need your name and the number on the card before we start.",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV024",
+   "text": "Can you confirm which patient you are for the list?",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV025",
+   "text": "Are you the lady in bed four, and what's the date you were born?",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV026",
+   "text": "Tell me your surname and the year you were born.",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV027",
+   "text": "Let me check the band on your wrist against the notes.",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV028",
+   "text": "State your name for the record please.",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV029",
+   "text": "Which Ahmed are you, the one born in the seventies?",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY"
+  },
+  {
+   "id": "ADV030",
+   "text": "Shall we go ahead then?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV031",
+   "text": "Do I have your OK to start?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV032",
+   "text": "Put your name on the form if you're on board.",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV033",
+   "text": "You're fine for us to carry on with the operation?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV034",
+   "text": "Are you on board with all of this?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV035",
+   "text": "Is it all right with you if we do it today?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV036",
+   "text": "Would you add your signature there if you are content.",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV037",
+   "text": "You want us to proceed, yes?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV038",
+   "text": "Are you giving us the go-ahead?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV039",
+   "text": "I just need a yes from you before the injection goes in.",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV040",
+   "text": "Will you let us operate?",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV041",
+   "text": "Say the word and we begin.",
+   "kind": "consent",
+   "act": "CONSENT_SIGN"
+  },
+  {
+   "id": "ADV042",
+   "text": "He had cereal this morning, so his stomach isn't empty.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV043",
+   "text": "She's eaten since midnight, a biscuit at six.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV044",
+   "text": "He's had a cup of tea with milk an hour ago.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV045",
+   "text": "Their last meal was lunch today at one.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV046",
+   "text": "He was eating crisps in the waiting room.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV047",
+   "text": "She took a bite of a sandwich before we came down.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV048",
+   "text": "He's had something to eat since the nurse stopped him.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV049",
+   "text": "Nothing's been withheld, he had a full breakfast.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV050",
+   "text": "She admits she ate a banana on the way in.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV051",
+   "text": "No, he is not empty, he drank juice at eight.",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV052",
+   "text": "She's going downhill fast.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV053",
+   "text": "He's gone grey and clammy.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV054",
+   "text": "Her pulse is racing and she's struggling to breathe.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV055",
+   "text": "His breathing's getting faster and shallower.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV056",
+   "text": "Sats are 88 and he's drowsy.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV057",
+   "text": "She's become confused in the last ten minutes.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV058",
+   "text": "Her blood pressure has crashed to 70 over 40.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV059",
+   "text": "He's not responding to me like he was.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV060",
+   "text": "Her urine output has stopped and she looks unwell.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV061",
+   "text": "He's burning up and shivering and his heart rate is 140.",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "id": "ADV062",
+   "text": "Let me give you the picture: fifty-two-year-old man, gallbladder case today.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV063",
+   "text": "Here's the story so far: she has had two days of pain on the right.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV064",
+   "text": "Quick handover: ward bed six, planned for theatre this morning.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV065",
+   "text": "So what I'd like is for the surgeons to see her before the list.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV066",
+   "text": "To bring you up to speed, he is diabetic and on tablets.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV067",
+   "text": "My read is that this is biliary colic rather than anything worse.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV068",
+   "text": "What I need from you is a review within the hour.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV069",
+   "text": "Background wise, he's had a stent and takes aspirin.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV070",
+   "text": "Overall I think she is stable at the moment.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  },
+  {
+   "id": "ADV071",
+   "text": "In terms of next steps, I want bloods and an ultrasound first.",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT"
+  }
+ ]
+}
