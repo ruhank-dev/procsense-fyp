@@ -22,6 +22,7 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="qwen3.5:9b-q4_K_M")
     ap.add_argument("--learners", type=int, default=24)
     ap.add_argument("--timeout", type=float, default=300.0)
+    ap.add_argument("--version", type=int, default=None, help="prompt version of personalisation.interpret (default: the latest)")
     a = ap.parse_args()
     from generation import objectives as ob
     from llm import client as C
@@ -38,7 +39,7 @@ if __name__ == "__main__":
     except (OSError, KeyError, ValueError):
         pass
     behaviours = sorted(b for d in tables.dimensions for b in d.weak_behaviours)
-    interp = I.Interpreter(client, model=a.model, timeout=a.timeout)
+    interp = I.Interpreter(client, model=a.model, timeout=a.timeout, version=a.version)
     model_conf = model_n = base_conf = base_n = refused = secs = 0
     samples = []
     for i in range(a.learners):
@@ -70,7 +71,7 @@ if __name__ == "__main__":
         base_conf += sum(h.status == "confirmed" for h in base_t.items)
         if hyps and len(samples) < 6:
             samples.append({"weak_dimensions": [d.id for d in weak_dims], "hypotheses": [{"competencies": h.competencies, "text": h.text, "confidence": h.confidence, "status": h.status} for h in tracker.items]})
-    out = {"model": a.model, "learners": a.learners, "hypotheses": model_n, "learners_with_no_accepted_proposal": refused, "confirmed_by_model": round(model_conf / max(model_n, 1), 3),
+    out = {"model": a.model, "prompt_version": a.version, "learners": a.learners, "hypotheses": model_n, "learners_with_no_accepted_proposal": refused, "confirmed_by_model": round(model_conf / max(model_n, 1), 3),
            "confirmed_by_random_picks": round(base_conf / max(base_n, 1), 3), "seconds_per_learner": round(secs / a.learners, 1), "samples": samples}
     path = ROOT / "artifacts" / "ai-bench" / "interpreter-eval.json"
     path.parent.mkdir(parents=True, exist_ok=True)

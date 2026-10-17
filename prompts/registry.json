@@ -67,6 +67,20 @@
       "gateway": false
     },
     {
+      "id": "personalisation.interpret",
+      "version": 2,
+      "role": "batch",
+      "file": "personalisation/interpret_v2.txt",
+      "sha256": "ff8ed94f1c8fc0455b69deeabc87231d6675d12c7d0130a2a6bc98a55ccfa31a",
+      "schema": null,
+      "variables": [
+        "profile"
+      ],
+      "num_predict": 500,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "critic.claims",
       "version": 1,
       "role": "batch",
