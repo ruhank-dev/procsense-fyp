@@ -384,6 +384,30 @@ jobs:
       - name: Image and dataset tests
         run: uv run --project tools tools/content/test_images.py
 
+      - name: numeric profiles reproduce the earlier aggregates and cover the lab bands
+        run: uv run --project tools tools/data/profile_numeric.py --check
+
+      - name: waveform profile covers every ECG finding of the imaging library
+        run: uv run --project tools tools/data/profile_waveforms.py --check
+
+      - name: imaging tags (every picture and finding is tagged and each tag is supported by its wording)
+        run: uv run --project tools tools/content/imaging_tags.py --check
+
+      - name: generator packs and evaluation sets current, no raw rows
+        run: uv run --project tools tools/generation/build_packs.py --check
+
+      - name: profile and pack tests (statistics, 10,000 draws reproduce the profile, zones, copula)
+        run: uv run --project tools tools/ci/test_generation_packs.py
+
+      - name: numeric profile tests (skew, ranks, correlations, borderline share)
+        run: uv run --project tools tools/ci/test_profile_numeric.py
+
+      - name: scenario knowledge base current, sourced and valid
+        run: uv run --project tools tools/kb/build_kb.py --check
+
+      - name: knowledge base tests (grounding of model relations, review gate, sheet and score)
+        run: uv run --project tools tools/ci/test_kb.py
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

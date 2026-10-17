@@ -28,8 +28,8 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | Phase | Name | Status | Depends on | Critical path | Features |
 |---|---|---|---|---|---|
 | PH-01 | Planning baseline and governance | Implemented and tested | — | yes | D43; E53; E54 |
-| PH-02 | Dataset analysis and profiling | Planned | PH-01 | yes | — |
-| PH-03 | Generator parameter packs, media index and evaluation sets | Planned | PH-02 | yes | — |
+| PH-02 | Dataset analysis and profiling | Implemented and tested | PH-01 | yes | — |
+| PH-03 | Generator parameter packs, media index and evaluation sets | Implemented and tested | PH-02 | yes | — |
 | PH-04 | Block library and composer foundation | Planned | PH-01 | — | A1; A12; B23 |
 | PH-05 | Live generation skeleton (deterministic path first) | Planned | PH-03; PH-04 | yes | A2; A4; A11; E58 |
 | PH-06 | Backend and AI gateway | Planned | PH-01 | — | E62 |
@@ -48,7 +48,7 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-19 | Advanced research features | Proposed new feature | PH-13; PH-15; PH-17 | — | E48; E49; E59; E60; E61; E63 |
 | PH-20 | AI infrastructure and dual-GPU benchmark | Planned | PH-01 | — | E69 |
 | PH-21 | Labelling programme | Planned | PH-01 | — | — |
-| PH-22 | Scenario knowledge base and AI composer | Planned | PH-03; PH-05; PH-20 | — | A66 |
+| PH-22 | Scenario knowledge base and AI composer | Partially implemented | PH-03; PH-05; PH-20 | — | A66 |
 | PH-23 | Personalisation | Planned | PH-06; PH-05 | — | D67; D68 |
 | PH-24 | Generative research (revived rejected features) | Deferred | PH-20; PH-03 | — | E64; E65 |
 
@@ -72,7 +72,7 @@ Profile every modality for normal, abnormal, borderline, missing and artefact pa
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Implemented and tested |
 | Depends on | PH-01 |
 | Tasks (plan steps) | p1-dataset-analysis-s01; p1-dataset-analysis-s02; p1-dataset-analysis-s03; p1-dataset-analysis-s04 |
 | Features | — |
@@ -86,7 +86,7 @@ Turn profiles into versioned packs; tag the media library; build evaluation sets
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Implemented and tested |
 | Depends on | PH-02 |
 | Tasks (plan steps) | p1-dataset-analysis-s05 |
 | Features | — |
@@ -352,7 +352,7 @@ Learn relations from evidence; the AI scenario plan composer; learned conditiona
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Partially implemented |
 | Depends on | PH-03; PH-05; PH-20 |
 | Tasks (plan steps) | p1-dataset-analysis-s06; p1-live-scenario-generation-s13; p1-live-scenario-generation-s14; p1-live-scenario-generation-s15 |
 | Features | A66 |

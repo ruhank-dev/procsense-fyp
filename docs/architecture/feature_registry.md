@@ -12,11 +12,11 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 |---|---|
 | Implemented and tested | 3 |
 | Implemented but incompletely tested | 0 |
-| Partially implemented | 29 |
+| Partially implemented | 30 |
 | Planned | 14 |
 | Blocked | 2 |
 | Deferred | 4 |
-| Proposed new feature | 17 |
+| Proposed new feature | 16 |
 | Superseded or rejected | 0 |
 
 Each feature's complete implementation plan (user experience, existing versus missing, the seven AI questions, separate capability plans with schemas, flow, validation, failure handling, tests, metrics, baseline, acceptance, both-GPU hardware notes and tasks) is in `feature_plans/<ID>.md`; coverage is audited in [feature_coverage_audit.md](feature_coverage_audit.md).
@@ -36,7 +36,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | A11 | Difficulty control in generation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-05 | P1 | [plan](feature_plans/A11.md) |
 | A12 | Recombination of case components | deterministic | Planned | Not applicable (deterministic feature) | PH-04 | P1 | [plan](feature_plans/A12.md) |
 | A13 | Provenance and reproducibility of generated scenarios | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-11 | P1 | [plan](feature_plans/A13.md) |
-| A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Proposed new feature | Proposed new feature | PH-22 | P1 | [plan](feature_plans/A66.md) |
+| A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Partially implemented | Partially implemented | PH-22 | P1 | [plan](feature_plans/A66.md) |
 | B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B14.md) |
 | B15 | ECG generation and variation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B15.md) |
 | B16 | Ultrasound image selection and labelled synthesis | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B16.md) |
@@ -466,9 +466,9 @@ A typed graph of condition-finding, test-finding and decision-consequence relati
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | content tables and source register exist as raw material |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | content tables and source register exist as raw material; content/kb/relations.json; tools/kb/build_kb.py; tools/kb/extract_relations.py |
 | Lineage (existing ids) | — |
 | Method | Table import + LLM relation extraction (offline) + dataset-estimated strengths. |
 | LLM-first classification | LLM used for extraction from prose (offline, reviewed); strengths are statistical. |
@@ -498,7 +498,7 @@ Lab values and vital signs that are realistic for the condition: conditioned dis
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | tools/content/exp_data2.py; tools/data/derived/mimic_lab_percentiles.json; tools/data/derived/vitaldb_noise.json |
+| Evidence (what exists) | tools/content/exp_data2.py; tools/data/derived/mimic_lab_percentiles.json; tools/data/derived/vitaldb_noise.json; content/generation/packs/labs.json; tools/generation/packs.py; tools/data/profile_numeric.py |
 | Lineage (existing ids) | — |
 | Method | Statistical: truncated distributions per band and condition, Gaussian copula for linked analytes, AR(1) noise for vitals. |
 | LLM-first classification | LLM rejected for numbers: not calibrated, not reproducible, may cross bands. SDV/CTGAN rejected (Business Source License, too little data). |
@@ -526,7 +526,7 @@ ECG strips and the monitor trace that match the case's rhythm, rate and potassiu
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | tools/data/derived/ptbxl_ecg_templates.json; tools/data/ecg_images.py; content/ecg_reports.json |
+| Evidence (what exists) | tools/data/derived/ptbxl_ecg_templates.json; tools/data/ecg_images.py; content/ecg_reports.json; content/generation/packs/ecg.json; tools/data/profile_waveforms.py |
 | Lineage (existing ids) | — |
 | Method | Real strips retrieved by finding tags; seeded parametric variation from templates or NeuroKit2 ecgsyn (MIT). |
 | LLM-first classification | LLM cannot produce waveforms; generative waveform models rejected (training, validation burden). |
@@ -554,7 +554,7 @@ Ultrasound pictures that match the findings. Built: 16 real UIdataGB images plus
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | tools/data/ultrasound.py; tools/data/ultrasound_synth.py; content/imaging_library.csv |
+| Evidence (what exists) | tools/data/ultrasound.py; tools/data/ultrasound_synth.py; content/imaging_library.csv; content/imaging/picture_tags.csv; content/imaging/finding_tags.json |
 | Lineage (existing ids) | ADR-0003; ADR-0004 |
 | Method | Retrieval by finding tags; offline labelled synthesis only where no real image exists. |
 | LLM-first classification | Image-generating models rejected (E64). |
@@ -582,7 +582,7 @@ Built: 10 real NIH chest X-rays (attribution), AMOS CT/MRI slices with painted l
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | tools/data/cxr_images.py; tools/data/fetch_amos.py; content/cxr_reports.json |
+| Evidence (what exists) | tools/data/cxr_images.py; tools/data/fetch_amos.py; content/cxr_reports.json; content/imaging/picture_tags.csv |
 | Lineage (existing ids) | ADR-0004 |
 | Method | Retrieval by finding tags. |
 | LLM-first classification | As B16. |

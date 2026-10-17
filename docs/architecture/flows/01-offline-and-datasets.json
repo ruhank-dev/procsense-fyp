@@ -129,16 +129,16 @@
       "actor": "folder",
       "label": "OFF-02",
       "title": "Normal versus abnormal profiling per modality",
-      "text": "Partly built. Describe each modality before any generator is designed: distribution of normal values, abnormal patterns per condition, borderline zones… Plans: A66, B14, B15.",
-      "tone": "sun"
+      "text": "Built. Describe each modality before any generator is designed: distribution of normal values, abnormal patterns per condition, borderline zones… Plans: A66, B14, B15.",
+      "tone": "mint"
     },
     {
       "id": "OFF-03",
       "actor": "folder",
       "label": "OFF-03",
       "title": "Generator parameter packs (versioned)",
-      "text": "Planned. Turn the profiles into small versioned JSON packs the live generators read: per analyte and condition a distribution (band, centre, spread, skew… Plans: B14.",
-      "tone": "blue"
+      "text": "Built. Turn the profiles into small versioned JSON packs the live generators read: per analyte and condition a distribution (band, centre, spread, skew, truncation)… Plans: B14.",
+      "tone": "mint"
     },
     {
       "id": "OFF-04",
@@ -161,8 +161,8 @@
       "actor": "folder",
       "label": "OFF-06",
       "title": "Media asset index (images and ECG strips)",
-      "text": "Partly built. Every picture and strip with its finding tags, modality, view, quality grade, real or synthetic flag, dataset id and licence. Plans: B15, B16, B17.",
-      "tone": "sun"
+      "text": "Built. Every picture and strip with its finding tags, modality, view, quality grade, real or synthetic flag, dataset id and licence. Plans: B15, B16, B17.",
+      "tone": "mint"
     },
     {
       "id": "OFF-07",
@@ -193,8 +193,8 @@
       "actor": "folder",
       "label": "OFF-10",
       "title": "Scenario knowledge base construction (A66)",
-      "text": "Proposed. Typed relations (condition-finding, test-finding, decision-consequence, interactions) imported from verified tables, extracted by an LLM from case files… Plans: A66.",
-      "tone": "aqua"
+      "text": "Partly built. Typed relations (condition-finding, test-finding, decision-consequence, interactions) imported from verified tables… Plans: A66.",
+      "tone": "sun"
     },
     {
       "id": "ST-PACKS",

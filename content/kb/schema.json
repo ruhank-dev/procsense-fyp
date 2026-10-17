@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProcSense scenario knowledge base: relations (p1-dataset-analysis-s06, feature A66)",
+  "description": "A typed graph the scenario composer may draw on. Every relation has a source; a relation is evidence the composer may use, never a rule that decides (ADR-0005). Statistical relations carry n and an interval; fewer than 50 observations is weak.",
+  "type": "object",
+  "required": ["schema", "relation_types", "relations"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": 1},
+    "note": {"type": "string"},
+    "relation_types": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "counts": {"type": "object"},
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "subject", "predicate", "object", "sources", "evidence", "confidence", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[^ ]+$"},
+          "type": {"type": "string"},
+          "subject": {"$ref": "#/$defs/node"},
+          "predicate": {"type": "string"},
+          "object": {"$ref": "#/$defs/node"},
+          "sources": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^(SR-[0-9]{4}|DS-[0-9]{4}|CASE:[A-Za-z0-9-]+|LLM:[a-z0-9._-]+)$"}},
+          "evidence": {
+            "type": "object",
+            "required": ["kind", "file"],
+            "additionalProperties": false,
+            "properties": {"kind": {"enum": ["table", "case", "dataset", "llm"]}, "file": {"type": "string"}, "row": {"type": "string"}, "quote": {"type": "string"}}
+          },
+          "strength": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {"n": {"type": "integer", "minimum": 0}, "estimate": {"type": ["number", "null"]}, "ci95": {"type": ["array", "null"], "items": {"type": "number"}, "minItems": 2, "maxItems": 2}, "weak": {"type": "boolean"}, "measure": {"type": "string"}}
+          },
+          "confidence": {"enum": ["verified", "authored", "statistical", "llm_unreviewed"]},
+          "status": {"enum": ["approved", "review"]},
+          "note": {"type": "string"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["kind", "id"],
+      "additionalProperties": false,
+      "properties": {"kind": {"type": "string"}, "id": {"type": "string"}, "label": {"type": "string"}}
+    }
+  }
+}

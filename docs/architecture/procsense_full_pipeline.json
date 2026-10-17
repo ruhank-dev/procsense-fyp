@@ -605,12 +605,18 @@
         "tools/data/derived/mimic_lab_percentiles.json",
         "tools/data/derived/vitaldb_noise.json",
         "tools/data/derived/ptbxl_ecg_templates.json",
-        "tools/data/derived/mimic_ed_triage.json"
+        "tools/data/derived/mimic_ed_triage.json",
+        "tools/data/profile_numeric.py",
+        "tools/data/profile_waveforms.py",
+        "tools/data/derived/profiles/labs.json",
+        "tools/data/derived/profiles/waveforms.json",
+        "docs/research/datasets/profiles/numeric.md",
+        "docs/research/datasets/profiles/waveforms.md"
       ],
       "blockers": [],
       "id": "OFF-02",
       "label": "Normal versus abnormal profiling per modality",
-      "status": "Partially implemented",
+      "status": "Implemented and tested",
       "method_class": "statistical",
       "description": "Describe each modality before any generator is designed: distribution of normal values, abnormal patterns per condition, borderline zones, missingness, artefacts, correlations. Lab percentiles, vital-sign noise and ECG templates already exist as aggregates; the per-condition profiles, correlations and the written analysis do not.",
       "inputs": [
@@ -621,7 +627,7 @@
         "docs/research/datasets/profiles/<modality>.md",
         "tools/data/derived/profiles/*.json"
       ],
-      "component": "tools/data/extract_*.py (exist); tools/data/profile_*.py (planned)",
+      "component": "tools/data/profile_numeric.py, tools/data/profile_waveforms.py (built, --check in CI)",
       "tasks": [
         "p1-dataset-analysis-s02",
         "p1-dataset-analysis-s03",
@@ -649,11 +655,16 @@
     {
       "type": "offline_step",
       "group": "g_offline",
-      "evidence": [],
+      "evidence": [
+        "tools/generation/build_packs.py",
+        "tools/generation/packs.py",
+        "content/generation/packs/manifest.json",
+        "tools/ci/test_generation_packs.py"
+      ],
       "blockers": [],
       "id": "OFF-03",
       "label": "Generator parameter packs (versioned)",
-      "status": "Planned",
+      "status": "Implemented and tested",
       "method_class": "statistical",
       "description": "Turn the profiles into small versioned JSON packs the live generators read: per analyte and condition a distribution (band, centre, spread, skew, truncation), correlation matrices for linked analytes, vital-sign trajectories, ECG rhythm parameters, artefact rates. Live sessions only read packs; they never refit or retrain.",
       "inputs": [
@@ -663,10 +674,10 @@
         "content/critical_results.csv"
       ],
       "outputs": [
-        "content/generation/packs/*.json (planned)",
-        "pack manifest with SHA-256"
+        "content/generation/packs/*.json",
+        "content/generation/packs/manifest.json (SHA-256 per pack)"
       ],
-      "component": "tools/generation/build_packs.py (planned)",
+      "component": "tools/generation/build_packs.py and packs.py (built, --check in CI)",
       "tasks": [
         "p1-dataset-analysis-s05"
       ],
@@ -765,12 +776,16 @@
       "group": "g_offline",
       "evidence": [
         "content/imaging_library.csv",
-        "tools/content/imaging_library.py"
+        "tools/content/imaging_library.py",
+        "content/imaging/finding_tags.json",
+        "content/imaging/picture_tags.csv",
+        "tools/content/imaging_tags.py",
+        "docs/research/imaging_gaps.md"
       ],
       "blockers": [],
       "id": "OFF-06",
       "label": "Media asset index (images and ECG strips)",
-      "status": "Partially implemented",
+      "status": "Implemented and tested",
       "method_class": "deterministic",
       "description": "Every picture and strip with its finding tags, modality, view, quality grade, real or synthetic flag, dataset id and licence. The imaging library (60 results, 204 pictures: 88 real, 116 labelled synthetic) is the start; finding tags in a machine-readable vocabulary and quality grades are missing.",
       "inputs": [
@@ -781,9 +796,11 @@
         "content/cxr_reports.json"
       ],
       "outputs": [
-        "media index with finding tags (planned)"
+        "content/imaging/finding_tags.json",
+        "content/imaging/picture_tags.csv",
+        "docs/research/imaging_gaps.md"
       ],
-      "component": "tools/content/imaging_library.py (exists, --check in CI)",
+      "component": "tools/content/imaging_library.py, tools/content/imaging_tags.py (both --check in CI)",
       "tasks": [
         "p1-dataset-analysis-s04"
       ],
@@ -809,7 +826,10 @@
       "group": "g_offline",
       "evidence": [
         "tools/composer/test_composer.py (60 of 60 rejected)",
-        "tests/vectors/grounding_vectors.json (44)"
+        "tests/vectors/grounding_vectors.json (44)",
+        "tests/generation/gold_scenarios.json (53)",
+        "tests/generation/mutations.json (12 types)",
+        "tests/generation/retrieval_queries.json"
       ],
       "blockers": [],
       "id": "OFF-07",
@@ -823,7 +843,7 @@
         "tests/golden"
       ],
       "outputs": [
-        "evaluation sets per feature (planned additions)"
+        "tests/generation/*.json with a data card (built); labelled utterances and adversarial questions (planned)"
       ],
       "component": "tools/composer/mutate.py, server/validation/make_vectors.py (exist)",
       "tasks": [
@@ -2187,7 +2207,7 @@
       "id": "OFF-10",
       "type": "offline_step",
       "group": "g_offline",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "hybrid",
       "label": "Scenario knowledge base construction (A66)",
       "description": "Typed relations (condition-finding, test-finding, decision-consequence, interactions) imported from verified tables, extracted by an LLM from case files and the walkthrough (quote-checked, reviewed) and quantified from dataset profiles with n and confidence.",
@@ -2198,11 +2218,20 @@
         "dataset profiles"
       ],
       "outputs": [
-        "content/kb (planned)"
+        "content/kb/relations.json",
+        "content/kb/review_queue.json"
       ],
-      "component": "tools/kb (planned)",
-      "evidence": [],
-      "blockers": [],
+      "component": "tools/kb/build_kb.py, tools/kb/extract_relations.py (built; extraction precision 0.8 on 100 hand-labelled relations not yet measured: needs a labeller, DT-114)",
+      "evidence": [
+        "content/kb/relations.json",
+        "content/kb/schema.json",
+        "tools/kb/build_kb.py",
+        "tools/kb/extract_relations.py",
+        "tools/ci/test_kb.py"
+      ],
+      "blockers": [
+        "precision of the model extraction needs 100 hand-labelled relations (a person, p1-ai-infrastructure-s04)"
+      ],
       "tasks": [
         "p1-dataset-analysis-s06"
       ],
@@ -6583,7 +6612,10 @@
       "evidence": [
         "tools/content/exp_data2.py",
         "tools/data/derived/mimic_lab_percentiles.json",
-        "tools/data/derived/vitaldb_noise.json"
+        "tools/data/derived/vitaldb_noise.json",
+        "content/generation/packs/labs.json",
+        "tools/generation/packs.py",
+        "tools/data/profile_numeric.py"
       ],
       "lineage": [],
       "method": "Statistical: truncated distributions per band and condition, Gaussian copula for linked analytes, AR(1) noise for vitals.",
@@ -6812,7 +6844,9 @@
       "evidence": [
         "tools/data/derived/ptbxl_ecg_templates.json",
         "tools/data/ecg_images.py",
-        "content/ecg_reports.json"
+        "content/ecg_reports.json",
+        "content/generation/packs/ecg.json",
+        "tools/data/profile_waveforms.py"
       ],
       "lineage": [],
       "method": "Real strips retrieved by finding tags; seeded parametric variation from templates or NeuroKit2 ecgsyn (MIT).",
@@ -7023,7 +7057,9 @@
       "evidence": [
         "tools/data/ultrasound.py",
         "tools/data/ultrasound_synth.py",
-        "content/imaging_library.csv"
+        "content/imaging_library.csv",
+        "content/imaging/picture_tags.csv",
+        "content/imaging/finding_tags.json"
       ],
       "lineage": [
         "ADR-0003",
@@ -7278,7 +7314,8 @@
       "evidence": [
         "tools/data/cxr_images.py",
         "tools/data/fetch_amos.py",
-        "content/cxr_reports.json"
+        "content/cxr_reports.json",
+        "content/imaging/picture_tags.csv"
       ],
       "lineage": [
         "ADR-0004"
@@ -15344,11 +15381,14 @@
       "category": "Scenario generation and composition",
       "group": "g_feat_A",
       "kind": "hybrid",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "A typed graph of condition-finding, test-finding and decision-consequence relations with sources, strengths and confidence, built offline; the AI composer may only use relations recorded here.",
       "evidence": [
-        "content tables and source register exist as raw material"
+        "content tables and source register exist as raw material",
+        "content/kb/relations.json",
+        "tools/kb/build_kb.py",
+        "tools/kb/extract_relations.py"
       ],
       "lineage": [],
       "method": "Table import + LLM relation extraction (offline) + dataset-estimated strengths.",
@@ -24213,7 +24253,7 @@
       "depends_on": [
         "PH-01"
       ],
-      "status": "Planned",
+      "status": "Implemented and tested",
       "deliverables": [
         "profiles per modality",
         "licence and provenance register refresh"
@@ -24238,7 +24278,7 @@
       "depends_on": [
         "PH-02"
       ],
-      "status": "Planned",
+      "status": "Implemented and tested",
       "deliverables": [
         "content/generation/packs",
         "media index",
@@ -24779,7 +24819,7 @@
         "PH-05",
         "PH-20"
       ],
-      "status": "Planned",
+      "status": "Partially implemented",
       "deliverables": [
         "content/kb",
         "compose_plan",

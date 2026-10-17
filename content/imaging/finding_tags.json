@@ -1,0 +1,739 @@
+{
+ "findings": {
+  "CT-AB-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ct",
+    "abdomen",
+    "normal"
+   ],
+   "test": "ct_abdomen_midlevel"
+  },
+  "CT-AB-01": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "abdomen",
+    "bowel_obstruction"
+   ],
+   "test": "ct_abdomen_midlevel"
+  },
+  "CT-AB-02": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "abdomen",
+    "free_air",
+    "perforation"
+   ],
+   "test": "ct_abdomen_midlevel"
+  },
+  "CT-AP-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ct",
+    "appendix",
+    "normal"
+   ],
+   "test": "ct_appendix_level"
+  },
+  "CT-AP-01": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "appendix",
+    "appendicitis"
+   ],
+   "test": "ct_appendix_level"
+  },
+  "CT-AP-02": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "appendix",
+    "appendicitis",
+    "abscess",
+    "complicated"
+   ],
+   "test": "ct_appendix_level"
+  },
+  "CT-AP-03": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "appendix",
+    "mass",
+    "mimic"
+   ],
+   "test": "ct_appendix_level"
+  },
+  "CT-AP-04": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "appendix",
+    "mimic"
+   ],
+   "test": "ct_appendix_level"
+  },
+  "CT-GB-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ct",
+    "gallbladder",
+    "normal"
+   ],
+   "test": "ct_gallbladder_level"
+  },
+  "CT-GB-01": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ct",
+    "gallbladder",
+    "complicated",
+    "gas_in_wall",
+    "wall_thickening"
+   ],
+   "test": "ct_gallbladder_level"
+  },
+  "CXR-01": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "xray",
+    "chest",
+    "normal"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-02": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "consolidation"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-03": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "effusion"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-04": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "pneumothorax"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-05": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "cardiomegaly"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-06": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "pulmonary_oedema"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-07": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "atelectasis"
+   ],
+   "test": "chest_xray"
+  },
+  "CXR-08": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "xray",
+    "chest",
+    "free_air",
+    "perforation"
+   ],
+   "test": "chest_xray"
+  },
+  "DIP-00": {
+   "category": "",
+   "has_pictures": false,
+   "role": "clean",
+   "tags": [
+    "written_result",
+    "normal"
+   ],
+   "test": "urine_dipstick"
+  },
+  "DIP-01": {
+   "category": "",
+   "has_pictures": false,
+   "role": "problem",
+   "tags": [
+    "written_result",
+    "urine_infection"
+   ],
+   "test": "urine_dipstick"
+  },
+  "DIP-02": {
+   "category": "",
+   "has_pictures": false,
+   "role": "problem",
+   "tags": [
+    "written_result",
+    "glucose_ketones"
+   ],
+   "test": "urine_dipstick"
+  },
+  "DIP-03": {
+   "category": "",
+   "has_pictures": false,
+   "role": "problem",
+   "tags": [
+    "written_result",
+    "blood_in_urine"
+   ],
+   "test": "urine_dipstick"
+  },
+  "ECG-01": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ecg",
+    "heart",
+    "normal"
+   ],
+   "test": "ecg"
+  },
+  "ECG-02": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "tachycardia"
+   ],
+   "test": "ecg"
+  },
+  "ECG-03": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "atrial_fibrillation",
+    "irregular_rhythm"
+   ],
+   "test": "ecg"
+  },
+  "ECG-04": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "bradycardia"
+   ],
+   "test": "ecg"
+  },
+  "ECG-05": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "heart_block",
+    "bradycardia"
+   ],
+   "test": "ecg"
+  },
+  "ECG-06": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "supraventricular",
+    "tachycardia"
+   ],
+   "test": "ecg"
+  },
+  "ECG-07": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "st_elevation"
+   ],
+   "test": "ecg"
+  },
+  "ECG-08": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "hyperkalaemia"
+   ],
+   "test": "ecg"
+  },
+  "ECG-09": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "hypokalaemia"
+   ],
+   "test": "ecg"
+  },
+  "ECG-10": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ecg",
+    "heart",
+    "atrial_fibrillation",
+    "irregular_rhythm",
+    "tachycardia"
+   ],
+   "test": "ecg"
+  },
+  "MR-AP-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "mri",
+    "appendix",
+    "normal"
+   ],
+   "test": "mri_appendix_level"
+  },
+  "MR-AP-01": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "mri",
+    "appendix",
+    "appendicitis"
+   ],
+   "test": "mri_appendix_level"
+  },
+  "MRCP-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "mrcp",
+    "gallbladder",
+    "normal"
+   ],
+   "test": "mrcp"
+  },
+  "MRCP-01": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "mrcp",
+    "gallbladder",
+    "duct_stone"
+   ],
+   "test": "mrcp"
+  },
+  "PREG-00": {
+   "category": "",
+   "has_pictures": false,
+   "role": "clean",
+   "tags": [
+    "written_result",
+    "negative_result"
+   ],
+   "test": "pregnancy_test"
+  },
+  "PREG-01": {
+   "category": "",
+   "has_pictures": false,
+   "role": "problem",
+   "tags": [
+    "written_result",
+    "positive_result"
+   ],
+   "test": "pregnancy_test"
+  },
+  "TUBE-00": {
+   "category": "",
+   "has_pictures": false,
+   "role": "clean",
+   "tags": [
+    "written_result",
+    "normal"
+   ],
+   "test": "blood_sample_appearance"
+  },
+  "TUBE-01": {
+   "category": "",
+   "has_pictures": false,
+   "role": "problem",
+   "tags": [
+    "written_result",
+    "haemolysed"
+   ],
+   "test": "blood_sample_appearance"
+  },
+  "TUBE-02": {
+   "category": "",
+   "has_pictures": false,
+   "role": "problem",
+   "tags": [
+    "written_result",
+    "lipaemic"
+   ],
+   "test": "blood_sample_appearance"
+  },
+  "US-AP-01": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "appendix",
+    "appendicitis"
+   ],
+   "test": "ultrasound_appendix"
+  },
+  "US-AP-02": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "appendix",
+    "complicated",
+    "perforation",
+    "abscess"
+   ],
+   "test": "ultrasound_appendix"
+  },
+  "US-AP-03": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "appendix",
+    "mimic",
+    "normal"
+   ],
+   "test": "ultrasound_appendix"
+  },
+  "US-AP-04": {
+   "category": "non_diagnostic",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "appendix",
+    "appendix_not_seen",
+    "non_diagnostic"
+   ],
+   "test": "ultrasound_appendix"
+  },
+  "US-AP-05": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ultrasound",
+    "appendix",
+    "normal"
+   ],
+   "test": "ultrasound_appendix"
+  },
+  "US-GB-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "normal"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-01": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "gallstones"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-02": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "gallstones",
+    "cholecystitis",
+    "wall_thickening"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-03": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "duct_dilated"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-04": {
+   "category": "positive",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "duct_stone",
+    "gallstones"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-05": {
+   "category": "complicated",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "complicated",
+    "gas_in_wall",
+    "abscess",
+    "perforation"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-06": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "mass"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-07": {
+   "category": "non_diagnostic",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "sludge",
+    "non_diagnostic"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-GB-08": {
+   "category": "non_diagnostic",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "gallbladder",
+    "non_diagnostic",
+    "no_wording"
+   ],
+   "test": "ultrasound_gallbladder"
+  },
+  "US-PV-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ultrasound",
+    "pelvis",
+    "normal",
+    "non_diagnostic"
+   ],
+   "test": "ultrasound_pelvis"
+  },
+  "US-PV-01": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "pelvis",
+    "no_wording"
+   ],
+   "test": "ultrasound_pelvis"
+  },
+  "US-PV-02": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "pelvis",
+    "no_wording"
+   ],
+   "test": "ultrasound_pelvis"
+  },
+  "US-RN-00": {
+   "category": "normal",
+   "has_pictures": true,
+   "role": "clean",
+   "tags": [
+    "ultrasound",
+    "kidney",
+    "normal",
+    "non_diagnostic"
+   ],
+   "test": "ultrasound_kidney"
+  },
+  "US-RN-01": {
+   "category": "other_diagnosis",
+   "has_pictures": true,
+   "role": "problem",
+   "tags": [
+    "ultrasound",
+    "kidney",
+    "no_wording"
+   ],
+   "test": "ultrasound_kidney"
+  }
+ },
+ "note": "Generated by tools/content/imaging_tags.py (p1-dataset-analysis-s04). Tags are a closed vocabulary; each finding's tags are supported by its own wording.",
+ "vocabulary": {
+  "abdomen": "mid abdomen",
+  "abscess": "pus collection",
+  "appendicitis": "inflamed appendix",
+  "appendix": "appendix and right iliac fossa",
+  "appendix_not_seen": "appendix not visualised",
+  "atelectasis": "collapsed lung",
+  "atrial_fibrillation": "atrial fibrillation",
+  "blood_in_urine": "blood in the urine",
+  "bowel_obstruction": "blocked bowel",
+  "bradycardia": "slow heart rate",
+  "cardiomegaly": "enlarged heart",
+  "chest": "chest",
+  "cholecystitis": "inflamed gallbladder",
+  "complicated": "complicated disease",
+  "consolidation": "consolidation",
+  "ct": "computed tomography slice",
+  "duct_dilated": "wide bile duct",
+  "duct_stone": "stone in the bile duct",
+  "ecg": "12-lead-derived rhythm strip",
+  "effusion": "pleural effusion",
+  "free_air": "gas under the diaphragm or in the peritoneum",
+  "gallbladder": "gallbladder and bile ducts",
+  "gallstones": "stones in the gallbladder",
+  "gas_in_wall": "gas in a wall or collection",
+  "glucose_ketones": "glucose and ketones in the urine",
+  "haemolysed": "haemolysed sample",
+  "heart": "heart rhythm or shape",
+  "heart_block": "heart block",
+  "hyperkalaemia": "high potassium pattern",
+  "hypokalaemia": "low potassium pattern",
+  "irregular_rhythm": "irregular rhythm",
+  "kidney": "kidney",
+  "lipaemic": "lipaemic sample",
+  "mass": "mass, polyp or tumour",
+  "mimic": "another condition that can look like the one asked about",
+  "mrcp": "MR cholangiopancreatography",
+  "mri": "magnetic resonance slice",
+  "negative_result": "a negative result",
+  "no_wording": "the book gives no wording for this finding",
+  "non_diagnostic": "the picture does not settle the question",
+  "normal": "no abnormality",
+  "pelvis": "pelvis",
+  "perforation": "a hole or gas outside the bowel or appendix",
+  "pneumothorax": "air around the lung",
+  "positive_result": "a positive result",
+  "pulmonary_oedema": "fluid in the lungs",
+  "sludge": "sludge",
+  "st_elevation": "ST elevation",
+  "supraventricular": "supraventricular rhythm",
+  "tachycardia": "fast heart rate",
+  "ultrasound": "ultrasound picture",
+  "urine_infection": "urine infection pattern",
+  "wall_thickening": "thick gallbladder wall",
+  "written_result": "a test that returns words and no picture",
+  "xray": "chest film"
+ }
+}

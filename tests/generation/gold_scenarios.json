@@ -1,0 +1,1371 @@
+{
+ "note": "The 53 authored cases summarised as reference scenarios for generated ones: a generated scenario is compared with these for structure and for novelty.",
+ "scenarios": [
+  {
+   "abnormal_results": [
+    "Creatinine",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 38,
+   "expected_end_state": "ready",
+   "id": "SC-1",
+   "problems": [
+    {
+     "id": "sc1.sepsis",
+     "label": "Sepsis with poor circulation",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc1.allergy",
+     "label": "Severe penicillin allergy before the antibiotic",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc1.aki",
+     "label": "Acute kidney injury caused by poor circulation",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "WBC"
+   ],
+   "age": 17,
+   "expected_end_state": "ready",
+   "id": "SC-10",
+   "problems": [
+    {
+     "id": "sc10.int",
+     "label": "Language barrier",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc10.consent",
+     "label": "A minor: consent per law",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc10.pain",
+     "label": "Pain relief first",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "CT appendix",
+    "Lactate"
+   ],
+   "age": 41,
+   "expected_end_state": "ready",
+   "id": "SC-11",
+   "problems": [
+    {
+     "id": "sc11.sepsis",
+     "label": "Sepsis now",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc11.capacity",
+     "label": "Capacity now lost from sepsis",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc11.refusal",
+     "label": "Earlier capable refusal is respected where it clearly applied",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Potassium",
+    "Sodium"
+   ],
+   "age": 66,
+   "expected_end_state": "postponed",
+   "id": "SC-12",
+   "problems": [
+    {
+     "id": "sc12.na",
+     "label": "Real low sodium from the water tablet",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc12.k",
+     "label": "Haemolysed potassium: repeat",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Hb",
+    "INR"
+   ],
+   "age": 68,
+   "expected_end_state": "postponed",
+   "id": "SC-13",
+   "problems": [
+    {
+     "id": "sc13.inr",
+     "label": "Warfarin not stopped: INR 2.6",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc13.anaemia",
+     "label": "Unexplained anaemia: bleeding on warfarin",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "CT appendix",
+    "Ultrasound appendix"
+   ],
+   "age": 28,
+   "expected_end_state": "ready",
+   "id": "SC-14",
+   "problems": [
+    {
+     "id": "sc14.det",
+     "label": "Deterioration overrides wait-and-see",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc14.imaging",
+     "label": "CT now with escort and monitoring, or straight to surgery",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Tryptase"
+   ],
+   "age": 35,
+   "expected_end_state": "ready",
+   "id": "SC-15",
+   "problems": [
+    {
+     "id": "sc15.record",
+     "label": "Record the new allergy",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc15.anaes",
+     "label": "Anaesthetist informed",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc15.time",
+     "label": "Surgery timing per senior",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "BMI",
+    "STOP-BANG"
+   ],
+   "age": 47,
+   "expected_end_state": "delayed",
+   "id": "SC-16",
+   "problems": [
+    {
+     "id": "sc16.glp",
+     "label": "Delayed stomach emptying likely: aspiration risk even if fasted",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc16.osa",
+     "label": "Airway and sleep apnoea risk",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc16.plan",
+     "label": "Anaesthetist decides",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Hb",
+    "MCV"
+   ],
+   "age": 25,
+   "expected_end_state": "ready",
+   "id": "SC-17",
+   "problems": [
+    {
+     "id": "sc17.hb",
+     "label": "Anaemia explained by thalassaemia trait",
+     "type": "information_only"
+    },
+    {
+     "id": "sc17.fluids",
+     "label": "Dehydration",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [],
+   "age": 52,
+   "expected_end_state": "postponed",
+   "id": "SC-18",
+   "problems": [
+    {
+     "id": "sc18.consent",
+     "label": "Consent form not signed",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc18.equip",
+     "label": "Insufflator fault",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc18.time",
+     "label": "Late list",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Capillary glucose",
+    "Capillary ketones",
+    "Urine dipstick"
+   ],
+   "age": 60,
+   "expected_end_state": "ready",
+   "id": "SC-19",
+   "problems": [
+    {
+     "id": "sc19.glu",
+     "label": "Low sugar",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc19.sepsis",
+     "label": "Sepsis",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc19.dka",
+     "label": "Ketoacidosis on an SGLT2 inhibitor",
+     "type": "life_threat"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Hb",
+    "Pregnancy test"
+   ],
+   "age": 24,
+   "expected_end_state": "redirected",
+   "id": "SC-2",
+   "problems": [
+    {
+     "id": "sc2.bleed",
+     "label": "Possible internal bleeding",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc2.dx",
+     "label": "Ectopic pregnancy until proven otherwise",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "CT appendix",
+    "Hb"
+   ],
+   "age": 70,
+   "expected_end_state": "delayed",
+   "id": "SC-20",
+   "problems": [
+    {
+     "id": "sc20.ct",
+     "label": "Possible caecal tumour presenting like appendicitis",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc20.asp",
+     "label": "Aspirin usually continues",
+     "type": "optimisable"
+    },
+    {
+     "id": "sc20.gs",
+     "label": "Group and save",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "MRI appendix",
+    "Ultrasound appendix",
+    "WBC"
+   ],
+   "age": 32,
+   "expected_end_state": "ready",
+   "id": "SC-3",
+   "problems": [
+    {
+     "id": "sc3.preg",
+     "label": "Appendicitis in pregnancy with fever",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Capillary glucose",
+    "HbA1c"
+   ],
+   "age": 55,
+   "expected_end_state": "postponed",
+   "id": "SC-4",
+   "problems": [
+    {
+     "id": "sc4.dm",
+     "label": "HbA1c 78 above the planned-surgery limit of 69",
+     "type": "optimisable"
+    },
+    {
+     "id": "sc4.bp",
+     "label": "BP 176/104 (below 180/110)",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "ECG"
+   ],
+   "age": 72,
+   "expected_end_state": "postponed",
+   "id": "SC-5",
+   "problems": [
+    {
+     "id": "sc5.af",
+     "label": "New fast AF",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc5.doac",
+     "label": "Apixaban not stopped: bleeding risk",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Capillary glucose"
+   ],
+   "age": 49,
+   "expected_end_state": "delayed",
+   "id": "SC-6",
+   "problems": [
+    {
+     "id": "sc6.glu",
+     "label": "Glucose 4.6: treat if below 4.0; recheck in 30 minutes",
+     "type": "optimisable"
+    },
+    {
+     "id": "sc6.fast",
+     "label": "Fasting breach: a light meal 1 hour ago",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc6.plan",
+     "label": "Insulin plan likely too much for fasting",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Chest X-ray"
+   ],
+   "age": 27,
+   "expected_end_state": "ready",
+   "id": "SC-7",
+   "problems": [
+    {
+     "id": "sc7.airway",
+     "label": "Airway at risk and slow breathing",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc7.aspiration",
+     "label": "Aspiration risk: full stomach",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc7.opioid",
+     "label": "Stop further opioid",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Creatinine",
+    "ECG",
+    "Lactate",
+    "Potassium"
+   ],
+   "age": 63,
+   "expected_end_state": "ready",
+   "id": "SC-8",
+   "problems": [
+    {
+     "id": "sc8.k",
+     "label": "Dangerous potassium",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc8.shock",
+     "label": "Septic shock",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc8.anaes",
+     "label": "No suxamethonium; correct potassium first",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Bilirubin",
+    "CRP",
+    "WBC"
+   ],
+   "age": 73,
+   "expected_end_state": "redirected",
+   "id": "SC-9",
+   "problems": [
+    {
+     "id": "sc9.sepsis",
+     "label": "Cholangitis with sepsis",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc9.dx",
+     "label": "Emergency biliary drainage (ERCP) instead of gallbladder surgery",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc9.antiplatelet",
+     "label": "Antiplatelet affects ERCP bleeding",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Capillary glucose",
+    "Capillary ketones",
+    "ECG",
+    "HbA1c"
+   ],
+   "age": 58,
+   "expected_end_state": "postponed",
+   "id": "STK-S1-A",
+   "problems": [
+    {
+     "id": "stka.hypo",
+     "label": "Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting",
+     "type": "life_threat"
+    },
+    {
+     "id": "stka.sglt2",
+     "label": "SGLT2 inhibitor taken today; ketones 0.9: risk of ketoacidosis even with a normal sugar",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "stka.hba1c",
+     "label": "HbA1c 76 above the limit of 69 for planned surgery",
+     "type": "optimisable"
+    },
+    {
+     "id": "stka.bp",
+     "label": "Blood pressure 174/102, repeat 172/100 (below 180/110)",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "Creatinine",
+    "ECG",
+    "Ferritin",
+    "Hb",
+    "MCV"
+   ],
+   "age": 69,
+   "expected_end_state": "postponed",
+   "id": "STK-S1-B",
+   "problems": [
+    {
+     "id": "stkb.dose",
+     "label": "Apixaban taken at 07:00 today although the plan was to stop it two days before",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "stkb.anaemia",
+     "label": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "stkb.af",
+     "label": "Known atrial fibrillation, rate controlled",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "Creatinine",
+    "ECG",
+    "Potassium"
+   ],
+   "age": 71,
+   "expected_end_state": "redirected",
+   "id": "STK-S1-C",
+   "problems": [
+    {
+     "id": "stkc.k",
+     "label": "Severe hyperkalaemia (6.6) with ECG changes",
+     "type": "life_threat"
+    },
+    {
+     "id": "stkc.aki",
+     "label": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
+     "type": "time_critical"
+    },
+    {
+     "id": "stkc.brady",
+     "label": "Slow heart and low BP",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "stkc.op",
+     "label": "The planned operation is cancelled",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "ALP",
+    "ALT",
+    "Bilirubin",
+    "Blood cultures",
+    "CRP",
+    "Creatinine",
+    "GGT",
+    "INR",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 62,
+   "expected_end_state": "redirected",
+   "id": "STK-S1-D",
+   "problems": [
+    {
+     "id": "s1d.sepsis",
+     "label": "High-risk sepsis (NEWS2 7, lactate 2.6)",
+     "type": "life_threat"
+    },
+    {
+     "id": "s1d.duct",
+     "label": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "s1d.aki",
+     "label": "Early kidney strain",
+     "type": "optimisable"
+    },
+    {
+     "id": "s1d.chole",
+     "label": "Cholecystectomy",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Creatinine",
+    "Neutrophils",
+    "Potassium",
+    "Pregnancy test",
+    "Ultrasound appendix",
+    "Urea",
+    "WBC"
+   ],
+   "age": 45,
+   "expected_end_state": "ready",
+   "id": "STK-S2-A",
+   "problems": [
+    {
+     "id": "stka2.fluids",
+     "label": "Hypovolaemia: tachycardia, low BP and slow capillary refill",
+     "type": "time_critical"
+    },
+    {
+     "id": "stka2.aki",
+     "label": "Acute kidney injury (stage 1), pre-renal, made worse by anti-inflammatory painkillers",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "stka2.k",
+     "label": "Low potassium (3.0)",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "stka2.appx",
+     "label": "Appendicitis needing surgery",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Creatinine",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 34,
+   "expected_end_state": "ready",
+   "id": "STK-S2-B",
+   "problems": [
+    {
+     "id": "s2b.sepsis",
+     "label": "Sepsis with hypoperfusion (NEWS2 10, lactate 3.8)",
+     "type": "life_threat"
+    },
+    {
+     "id": "s2b.allergy",
+     "label": "Allergy-safe antibiotic: penicillin anaphylaxis 2019",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "s2b.source",
+     "label": "Perforated appendix: urgent source control",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "WBC"
+   ],
+   "age": 22,
+   "expected_end_state": "ready",
+   "id": "STK-S2-C",
+   "problems": [
+    {
+     "id": "stkc2.airway",
+     "label": "Airway at risk: vomiting with reduced consciousness",
+     "type": "life_threat"
+    },
+    {
+     "id": "stkc2.breath",
+     "label": "Breathing: RR 9 and SpO2 90",
+     "type": "life_threat"
+    },
+    {
+     "id": "stkc2.opioid",
+     "label": "Opioid sedation: the cause",
+     "type": "time_critical"
+    },
+    {
+     "id": "stkc2.aspiration",
+     "label": "Full stomach for anaesthesia (a kebab 3 hours ago)",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "MRI appendix",
+    "Ultrasound appendix",
+    "WBC"
+   ],
+   "age": 29,
+   "expected_end_state": "ready",
+   "id": "STK-S2-D",
+   "problems": [
+    {
+     "id": "stkd.maternal",
+     "label": "Maternal stability first (ABC)",
+     "type": "time_critical"
+    },
+    {
+     "id": "stkd.preg",
+     "label": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "stkd.obstetric",
+     "label": "Obstetric and fetal assessment",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "stkd.anaesthetic",
+     "label": "Anaesthetic adjustments: aspiration risk and positioning",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "Urine pregnancy test"
+   ],
+   "age": 42,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-A",
+   "problems": [
+    {
+     "id": "a.nothing",
+     "label": "Nothing abnormal: the patient is fit and fasted",
+     "type": "information_only"
+    },
+    {
+     "id": "a.blockers",
+     "label": "Identity, allergy, consent and pregnancy-status checkpoints",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [],
+   "age": 58,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-B",
+   "problems": [
+    {
+     "id": "b.bp",
+     "label": "Blood pressure high but below 180/110 and no organ-damage symptoms",
+     "type": "information_only"
+    },
+    {
+     "id": "b.bp2",
+     "label": "Blood pressure 188/114 and 186/112 on repeat: above the 180/110 limit",
+     "type": "optimisable"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "Finger-prick glucose",
+    "HbA1c"
+   ],
+   "age": 55,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-C",
+   "problems": [
+    {
+     "id": "c.diabetes",
+     "label": "Diabetes control and the medicine plan for the fasting day",
+     "type": "optimisable"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "ECG",
+    "eGFR"
+   ],
+   "age": 67,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-D",
+   "problems": [
+    {
+     "id": "d.anticoag",
+     "label": "Anticoagulant still active: bleeding risk at surgery",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Urine pregnancy test",
+    "WBC"
+   ],
+   "age": 48,
+   "expected_end_state": "redirected",
+   "id": "VAR-S1-E",
+   "problems": [
+    {
+     "id": "e.cholecystitis",
+     "label": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "Urine pregnancy test"
+   ],
+   "age": 39,
+   "expected_end_state": "delayed",
+   "id": "VAR-S1-G",
+   "problems": [
+    {
+     "id": "g.fasting",
+     "label": "Fasting rule broken: a light meal 2 hours before surgery",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "Urine pregnancy test"
+   ],
+   "age": 29,
+   "expected_end_state": "postponed",
+   "id": "VAR-S1-H",
+   "problems": [
+    {
+     "id": "h.preg",
+     "label": "Positive pregnancy test before planned surgery",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [],
+   "age": 45,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-I",
+   "problems": [
+    {
+     "id": "s1i.allergy",
+     "label": "Severe immediate penicillin allergy (throat swelling and collapse, 2015)",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "s1i.lowrisk",
+     "label": "Low-risk planned operation: an antibiotic is probably not needed",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "Potassium"
+   ],
+   "age": 50,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-J",
+   "problems": [
+    {
+     "id": "j.k",
+     "label": "Potassium 6.4 on a haemolysed sample in a well patient",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "Ferritin",
+    "Hb",
+    "MCV"
+   ],
+   "age": 52,
+   "expected_end_state": "postponed",
+   "id": "VAR-S1-K",
+   "problems": [
+    {
+     "id": "s1k.anaemia",
+     "label": "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "ECG"
+   ],
+   "age": 70,
+   "expected_end_state": "postponed",
+   "id": "VAR-S1-L",
+   "problems": [
+    {
+     "id": "s1l.af",
+     "label": "New fast atrial fibrillation (heart rate 128)",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "BMI",
+    "STOP-BANG"
+   ],
+   "age": 44,
+   "expected_end_state": "ready",
+   "id": "VAR-S1-M",
+   "problems": [
+    {
+     "id": "s1m.osa",
+     "label": "High risk of obstructive sleep apnoea with BMI 41",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "ALP",
+    "ALT",
+    "Bilirubin",
+    "CRP",
+    "GGT"
+   ],
+   "age": 61,
+   "expected_end_state": "postponed",
+   "id": "VAR-S1-PB",
+   "problems": [
+    {
+     "id": "pb.stone",
+     "label": "Probable stone in the main bile duct: not what she was booked for",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "pb.cholangitis",
+     "label": "Watch for infection of the duct (cholangitis)",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "Haemoglobin",
+    "Urine pregnancy test"
+   ],
+   "age": 24,
+   "expected_end_state": "redirected",
+   "id": "VAR-S2-B",
+   "problems": [
+    {
+     "id": "sb.bleed",
+     "label": "Possible ruptured ectopic pregnancy with internal bleeding",
+     "type": "life_threat"
+    },
+    {
+     "id": "sb.blocker",
+     "label": "Pregnancy status positive: it changes everything",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Urine pregnancy test"
+   ],
+   "age": 28,
+   "expected_end_state": "redirected",
+   "id": "VAR-S2-D",
+   "problems": [
+    {
+     "id": "sd.unknown",
+     "label": "The scan did not answer the question: 'not visualised' is not 'negative'",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Hb",
+    "WBC"
+   ],
+   "age": 68,
+   "expected_end_state": "delayed",
+   "id": "VAR-S2-E",
+   "problems": [
+    {
+     "id": "s2e.mimic",
+     "label": "In older people bowel cancer or diverticulitis can mimic appendicitis (weight loss with anaemia is a warning)",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "s2e.anaemia",
+     "label": "Mild anaemia with weight loss",
+     "type": "optimisable"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "WBC"
+   ],
+   "age": 22,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-F",
+   "problems": [
+    {
+     "id": "sf.stomach",
+     "label": "Full stomach: aspiration risk",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "Creatinine",
+    "Potassium",
+    "Urea",
+    "WBC"
+   ],
+   "age": 45,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-G",
+   "problems": [
+    {
+     "id": "sg.aki",
+     "label": "Dehydration with acute kidney injury (stage 1)",
+     "type": "optimisable"
+    },
+    {
+     "id": "sg.surgery",
+     "label": "Surgery proceeds once she is resuscitated: the infection is part of the cause",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Pregnancy test",
+    "WBC"
+   ],
+   "age": 30,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-H",
+   "problems": [
+    {
+     "id": "s2h.preg",
+     "label": "Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "s2h.wbc",
+     "label": "White cell count partly raised by pregnancy",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "WBC"
+   ],
+   "age": 16,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-I",
+   "problems": [
+    {
+     "id": "s2i.consent",
+     "label": "A minor (16): consent follows the applicable law",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "s2i.appendix",
+     "label": "Classic appendicitis",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Pregnancy test",
+    "Urine dipstick",
+    "WBC"
+   ],
+   "age": 26,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-J",
+   "problems": [
+    {
+     "id": "s2j.mimic",
+     "label": "Do not stop at 'urine infection': an inflamed appendix next to the bladder can cause the same dipstick",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "WBC"
+   ],
+   "age": 21,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-K",
+   "problems": [
+    {
+     "id": "s2k.allergy",
+     "label": "Penicillin 'allergy': mild childhood rash, delayed",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Ultrasound appendix",
+    "WBC"
+   ],
+   "age": 37,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-L",
+   "problems": [
+    {
+     "id": "s2l.choice",
+     "label": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P1"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Neutrophils",
+    "Urine dipstick",
+    "WBC"
+   ],
+   "age": 19,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-PC",
+   "problems": [
+    {
+     "id": "pc.pain",
+     "label": "Severe pain (8/10) must not wait for the paperwork",
+     "type": "time_critical"
+    },
+    {
+     "id": "pc.appendicitis",
+     "label": "Probable appendicitis: scan, senior decision, antibiotics, theatre",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "pc.aspiration",
+     "label": "Emergency patient in pain with analgesia: treat as a full stomach",
+     "type": "safety_blocker"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P0"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Creatinine",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 34,
+   "expected_end_state": "ready",
+   "id": "VAR-S2-PD",
+   "problems": [
+    {
+     "id": "pd.sepsis",
+     "label": "Sepsis with poor circulation (NEWS2 5 then 10)",
+     "type": "life_threat"
+    },
+    {
+     "id": "pd.clock",
+     "label": "Antibiotics and fluids within 1 hour for the high-risk tier",
+     "type": "time_critical"
+    },
+    {
+     "id": "pd.source",
+     "label": "Perforated appendix: urgent source control",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P0"
+  }
+ ]
+}

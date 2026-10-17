@@ -228,7 +228,7 @@
     "id": "OFF-02",
     "label": "OFF-02 Normal versus abnormal profiling per modality",
     "type": "offline_step",
-    "status": "Partially implemented",
+    "status": "Implemented and tested",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -239,7 +239,7 @@
     "id": "OFF-03",
     "label": "OFF-03 Generator parameter packs (versioned)",
     "type": "offline_step",
-    "status": "Planned",
+    "status": "Implemented and tested",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -272,7 +272,7 @@
     "id": "OFF-06",
     "label": "OFF-06 Media asset index (images and ECG strips)",
     "type": "offline_step",
-    "status": "Partially implemented",
+    "status": "Implemented and tested",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -547,7 +547,7 @@
     "id": "OFF-10",
     "label": "OFF-10 Scenario knowledge base construction (A66)",
     "type": "offline_step",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -1966,7 +1966,7 @@
     "id": "A66",
     "label": "A66 Scenario knowledge base (relationships learned from cases, walkthrough and datasets)",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_A"
    },
    "classes": "feature"

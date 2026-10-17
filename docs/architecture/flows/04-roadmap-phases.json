@@ -17,16 +17,16 @@
       "actor": "calendar",
       "label": "PH-02 critical path",
       "title": "Dataset analysis and profiling",
-      "text": "Planned. Profile every modality for normal, abnormal, borderline, missing and artefact patterns before designing generators. 4 tasks, 0 features.",
-      "tone": "blue"
+      "text": "Built. Profile every modality for normal, abnormal, borderline, missing and artefact patterns before designing generators. 4 tasks, 0 features.",
+      "tone": "mint"
     },
     {
       "id": "PH-03",
       "actor": "calendar",
       "label": "PH-03 critical path",
       "title": "Generator parameter packs, media index and eval…",
-      "text": "Planned. Turn profiles into versioned packs; tag the media library; build evaluation sets. 1 tasks, 0 features.",
-      "tone": "blue"
+      "text": "Built. Turn profiles into versioned packs; tag the media library; build evaluation sets. 1 tasks, 0 features.",
+      "tone": "mint"
     },
     {
       "id": "PH-04",
@@ -177,8 +177,8 @@
       "actor": "calendar",
       "label": "PH-22",
       "title": "Scenario knowledge base and AI composer",
-      "text": "Planned. Learn relations from evidence; the AI scenario plan composer; learned conditional generation; text consistency critic. 4 tasks, 1 features.",
-      "tone": "blue"
+      "text": "Partly built. Learn relations from evidence; the AI scenario plan composer; learned conditional generation; text consistency critic. 4 tasks, 1 features.",
+      "tone": "sun"
     },
     {
       "id": "PH-23",

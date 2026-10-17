@@ -1,0 +1,65 @@
+{
+ "note": "The cross-modal contradiction types: each breaks one rule of a valid case; Stage B must reject the broken copy with this code (tools/composer/mutate.py, 5 cases each in CI).",
+ "types": [
+  {
+   "code": "ALLERGY_VS_MEDICINE",
+   "mutator": "m_allergy",
+   "what": "allergy"
+  },
+  {
+   "code": "DECISION_OPTIONS_INVALID",
+   "mutator": "m_decision",
+   "what": "decision"
+  },
+  {
+   "code": "FASTING_VS_STATE",
+   "mutator": "m_fasting",
+   "what": "fasting"
+  },
+  {
+   "code": "IDENTITY_MISMATCH",
+   "mutator": "m_identity",
+   "what": "identity"
+  },
+  {
+   "code": "MEDICATION_WITHOUT_INDICATION",
+   "mutator": "m_medication",
+   "what": "medication"
+  },
+  {
+   "code": "NEWS2_MISMATCH",
+   "mutator": "m_news2",
+   "what": "news2"
+  },
+  {
+   "code": "PREGNANT_MALE",
+   "mutator": "m_pregnant_male",
+   "what": "pregnant male"
+  },
+  {
+   "code": "PROBLEM_WITHOUT_EVIDENCE",
+   "mutator": "m_problem",
+   "what": "problem"
+  },
+  {
+   "code": "RESULTS_VS_STATE",
+   "mutator": "m_results_vs_state",
+   "what": "results vs state"
+  },
+  {
+   "code": "RESULT_FLAG_MISMATCH",
+   "mutator": "m_result_flag",
+   "what": "result flag"
+  },
+  {
+   "code": "RESULT_UNORDERABLE",
+   "mutator": "m_unorderable",
+   "what": "unorderable"
+  },
+  {
+   "code": "TIME_IMPOSSIBLE",
+   "mutator": "m_time",
+   "what": "time"
+  }
+ ]
+}

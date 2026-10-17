@@ -1,0 +1,583 @@
+{
+ "kind": "vitals",
+ "monitoring": {
+  "limitation": "intra-operative monitoring of anaesthetised patients; respiratory rate is the monitor/ventilator value and is the least reliable of the six",
+  "selection": "planned (emop 0), ASA 1-2, age 18-70, General surgery, every k-th case by id",
+  "source": "DS-0001 (VitalDB, CC BY 4.0 via the PhysioNet release; see DT-183)",
+  "variables": {
+   "heart_rate": {
+    "cases": 40,
+    "level_p5": 55.55,
+    "level_p50": 73.5,
+    "level_p95": 90.0,
+    "phi_median": 0.786,
+    "samples": 184078,
+    "sigma_median": 2.196,
+    "unit": "/min"
+   },
+   "nibp_diastolic": {
+    "cases": 26,
+    "level_p5": 53.25,
+    "level_p50": 64.0,
+    "level_p95": 74.75,
+    "phi_median": 0.12,
+    "samples": 1109,
+    "sigma_median": 7.178,
+    "unit": "mmHg"
+   },
+   "nibp_systolic": {
+    "cases": 25,
+    "level_p5": 96.4,
+    "level_p50": 106.5,
+    "level_p95": 117.8,
+    "phi_median": 0.107,
+    "samples": 1131,
+    "sigma_median": 11.062,
+    "unit": "mmHg"
+   },
+   "respiratory_rate": {
+    "cases": 14,
+    "level_p5": 11.95,
+    "level_p50": 14.0,
+    "level_p95": 18.7,
+    "phi_median": 0.746,
+    "samples": 54464,
+    "sigma_median": 4.891,
+    "unit": "/min"
+   },
+   "spo2": {
+    "cases": 40,
+    "level_p5": 98.0,
+    "level_p50": 100.0,
+    "level_p95": 100.0,
+    "phi_median": 0.76,
+    "samples": 187353,
+    "sigma_median": 0.454,
+    "unit": "%"
+   },
+   "temperature_c": {
+    "cases": 38,
+    "level_p5": 35.0,
+    "level_p50": 36.1,
+    "level_p95": 36.69,
+    "phi_median": 0.78,
+    "samples": 150683,
+    "sigma_median": 0.057,
+    "unit": "C"
+   }
+  }
+ },
+ "triage": {
+  "abdominal_rows": 27,
+  "groups": {
+   "abdominal_complaint": {
+    "correlations": [
+     {
+      "a": "temperature_c",
+      "b": "heart_rate",
+      "pairs": 26,
+      "pearson": 0.035,
+      "spearman": 0.118,
+      "spearman_ci95": [
+       -0.282,
+       0.483
+      ],
+      "weak": true
+     },
+     {
+      "a": "temperature_c",
+      "b": "respiratory_rate",
+      "pairs": 26,
+      "pearson": -0.151,
+      "spearman": -0.053,
+      "spearman_ci95": [
+       -0.432,
+       0.341
+      ],
+      "weak": true
+     },
+     {
+      "a": "temperature_c",
+      "b": "spo2",
+      "pairs": 26,
+      "pearson": -0.028,
+      "spearman": -0.08,
+      "spearman_ci95": [
+       -0.453,
+       0.318
+      ],
+      "weak": true
+     },
+     {
+      "a": "temperature_c",
+      "b": "systolic_bp",
+      "pairs": 26,
+      "pearson": -0.132,
+      "spearman": -0.259,
+      "spearman_ci95": [
+       -0.588,
+       0.142
+      ],
+      "weak": true
+     },
+     {
+      "a": "temperature_c",
+      "b": "diastolic_bp",
+      "pairs": 26,
+      "pearson": -0.197,
+      "spearman": -0.267,
+      "spearman_ci95": [
+       -0.593,
+       0.134
+      ],
+      "weak": true
+     },
+     {
+      "a": "heart_rate",
+      "b": "respiratory_rate",
+      "pairs": 26,
+      "pearson": 0.16,
+      "spearman": 0.13,
+      "spearman_ci95": [
+       -0.271,
+       0.493
+      ],
+      "weak": true
+     },
+     {
+      "a": "heart_rate",
+      "b": "spo2",
+      "pairs": 26,
+      "pearson": -0.286,
+      "spearman": -0.39,
+      "spearman_ci95": [
+       -0.676,
+       -0.004
+      ],
+      "weak": true
+     },
+     {
+      "a": "heart_rate",
+      "b": "systolic_bp",
+      "pairs": 26,
+      "pearson": -0.022,
+      "spearman": 0.03,
+      "spearman_ci95": [
+       -0.361,
+       0.413
+      ],
+      "weak": true
+     },
+     {
+      "a": "heart_rate",
+      "b": "diastolic_bp",
+      "pairs": 26,
+      "pearson": 0.088,
+      "spearman": 0.098,
+      "spearman_ci95": [
+       -0.301,
+       0.467
+      ],
+      "weak": true
+     },
+     {
+      "a": "respiratory_rate",
+      "b": "spo2",
+      "pairs": 26,
+      "pearson": 0.105,
+      "spearman": 0.186,
+      "spearman_ci95": [
+       -0.217,
+       0.535
+      ],
+      "weak": true
+     },
+     {
+      "a": "respiratory_rate",
+      "b": "systolic_bp",
+      "pairs": 26,
+      "pearson": 0.136,
+      "spearman": 0.107,
+      "spearman_ci95": [
+       -0.292,
+       0.475
+      ],
+      "weak": true
+     },
+     {
+      "a": "respiratory_rate",
+      "b": "diastolic_bp",
+      "pairs": 26,
+      "pearson": -0.018,
+      "spearman": 0.081,
+      "spearman_ci95": [
+       -0.316,
+       0.454
+      ],
+      "weak": true
+     },
+     {
+      "a": "spo2",
+      "b": "systolic_bp",
+      "pairs": 26,
+      "pearson": 0.3,
+      "spearman": 0.294,
+      "spearman_ci95": [
+       -0.106,
+       0.612
+      ],
+      "weak": true
+     },
+     {
+      "a": "spo2",
+      "b": "diastolic_bp",
+      "pairs": 26,
+      "pearson": 0.43,
+      "spearman": 0.491,
+      "spearman_ci95": [
+       0.128,
+       0.738
+      ],
+      "weak": true
+     },
+     {
+      "a": "systolic_bp",
+      "b": "diastolic_bp",
+      "pairs": 26,
+      "pearson": 0.584,
+      "spearman": 0.562,
+      "spearman_ci95": [
+       0.223,
+       0.78
+      ],
+      "weak": true
+     }
+    ],
+    "variables": {
+     "diastolic_bp": {
+      "missing_share": 0.037,
+      "n": 26,
+      "p1": 48.25,
+      "p25": 61.5,
+      "p5": 49.25,
+      "p50": 72.0,
+      "p75": 80.75,
+      "p95": 92.75,
+      "p99": 110.25
+     },
+     "heart_rate": {
+      "missing_share": 0.037,
+      "n": 26,
+      "p1": 63.75,
+      "p25": 73.75,
+      "p5": 66.25,
+      "p50": 86.0,
+      "p75": 97.75,
+      "p95": 107.5,
+      "p99": 112.5
+     },
+     "respiratory_rate": {
+      "missing_share": 0.037,
+      "n": 26,
+      "p1": 14.25,
+      "p25": 16.0,
+      "p5": 15.25,
+      "p50": 18.0,
+      "p75": 18.0,
+      "p95": 22.0,
+      "p99": 23.5
+     },
+     "spo2": {
+      "missing_share": 0.037,
+      "n": 26,
+      "p1": 90.75,
+      "p25": 96.0,
+      "p5": 93.5,
+      "p50": 97.0,
+      "p75": 99.0,
+      "p95": 100.0,
+      "p99": 100.0
+     },
+     "systolic_bp": {
+      "missing_share": 0.037,
+      "n": 26,
+      "p1": 96.5,
+      "p25": 112.25,
+      "p5": 100.0,
+      "p50": 137.0,
+      "p75": 161.5,
+      "p95": 188.25,
+      "p99": 210.0
+     },
+     "temperature_c": {
+      "missing_share": 0.037,
+      "n": 26,
+      "p1": 35.74,
+      "p25": 36.49,
+      "p5": 35.96,
+      "p50": 36.78,
+      "p75": 37.04,
+      "p95": 37.61,
+      "p99": 37.83
+     }
+    }
+   },
+   "all_ed_triage": {
+    "correlations": [
+     {
+      "a": "temperature_c",
+      "b": "heart_rate",
+      "pairs": 195,
+      "pearson": 0.02,
+      "spearman": 0.167,
+      "spearman_ci95": [
+       0.027,
+       0.301
+      ],
+      "weak": false
+     },
+     {
+      "a": "temperature_c",
+      "b": "respiratory_rate",
+      "pairs": 196,
+      "pearson": 0.038,
+      "spearman": 0.105,
+      "spearman_ci95": [
+       -0.035,
+       0.242
+      ],
+      "weak": false
+     },
+     {
+      "a": "temperature_c",
+      "b": "spo2",
+      "pairs": 195,
+      "pearson": -0.047,
+      "spearman": -0.215,
+      "spearman_ci95": [
+       -0.345,
+       -0.077
+      ],
+      "weak": false
+     },
+     {
+      "a": "temperature_c",
+      "b": "systolic_bp",
+      "pairs": 196,
+      "pearson": -0.016,
+      "spearman": 0.077,
+      "spearman_ci95": [
+       -0.064,
+       0.215
+      ],
+      "weak": false
+     },
+     {
+      "a": "temperature_c",
+      "b": "diastolic_bp",
+      "pairs": 196,
+      "pearson": 0.033,
+      "spearman": 0.073,
+      "spearman_ci95": [
+       -0.068,
+       0.211
+      ],
+      "weak": false
+     },
+     {
+      "a": "heart_rate",
+      "b": "respiratory_rate",
+      "pairs": 198,
+      "pearson": 0.234,
+      "spearman": 0.208,
+      "spearman_ci95": [
+       0.071,
+       0.338
+      ],
+      "weak": false
+     },
+     {
+      "a": "heart_rate",
+      "b": "spo2",
+      "pairs": 197,
+      "pearson": -0.035,
+      "spearman": -0.024,
+      "spearman_ci95": [
+       -0.163,
+       0.116
+      ],
+      "weak": false
+     },
+     {
+      "a": "heart_rate",
+      "b": "systolic_bp",
+      "pairs": 198,
+      "pearson": -0.108,
+      "spearman": -0.112,
+      "spearman_ci95": [
+       -0.247,
+       0.028
+      ],
+      "weak": false
+     },
+     {
+      "a": "heart_rate",
+      "b": "diastolic_bp",
+      "pairs": 198,
+      "pearson": 0.077,
+      "spearman": 0.218,
+      "spearman_ci95": [
+       0.081,
+       0.347
+      ],
+      "weak": false
+     },
+     {
+      "a": "respiratory_rate",
+      "b": "spo2",
+      "pairs": 198,
+      "pearson": -0.169,
+      "spearman": 0.036,
+      "spearman_ci95": [
+       -0.104,
+       0.174
+      ],
+      "weak": false
+     },
+     {
+      "a": "respiratory_rate",
+      "b": "systolic_bp",
+      "pairs": 199,
+      "pearson": -0.022,
+      "spearman": 0.032,
+      "spearman_ci95": [
+       -0.107,
+       0.171
+      ],
+      "weak": false
+     },
+     {
+      "a": "respiratory_rate",
+      "b": "diastolic_bp",
+      "pairs": 199,
+      "pearson": -0.03,
+      "spearman": 0.107,
+      "spearman_ci95": [
+       -0.032,
+       0.243
+      ],
+      "weak": false
+     },
+     {
+      "a": "spo2",
+      "b": "systolic_bp",
+      "pairs": 198,
+      "pearson": -0.047,
+      "spearman": -0.081,
+      "spearman_ci95": [
+       -0.218,
+       0.059
+      ],
+      "weak": false
+     },
+     {
+      "a": "spo2",
+      "b": "diastolic_bp",
+      "pairs": 198,
+      "pearson": 0.09,
+      "spearman": 0.142,
+      "spearman_ci95": [
+       0.002,
+       0.276
+      ],
+      "weak": false
+     },
+     {
+      "a": "systolic_bp",
+      "b": "diastolic_bp",
+      "pairs": 199,
+      "pearson": 0.061,
+      "spearman": 0.445,
+      "spearman_ci95": [
+       0.326,
+       0.55
+      ],
+      "weak": false
+     }
+    ],
+    "variables": {
+     "diastolic_bp": {
+      "missing_share": 0.104,
+      "n": 199,
+      "p1": 42.98,
+      "p25": 62.0,
+      "p5": 48.0,
+      "p50": 72.0,
+      "p75": 82.5,
+      "p95": 101.1,
+      "p99": 117.02
+     },
+     "heart_rate": {
+      "missing_share": 0.108,
+      "n": 198,
+      "p1": 54.91,
+      "p25": 77.0,
+      "p5": 63.0,
+      "p50": 89.5,
+      "p75": 104.0,
+      "p95": 124.15,
+      "p99": 130.3
+     },
+     "respiratory_rate": {
+      "missing_share": 0.104,
+      "n": 199,
+      "p1": 14.0,
+      "p25": 16.0,
+      "p5": 15.0,
+      "p50": 18.0,
+      "p75": 18.0,
+      "p95": 23.1,
+      "p99": 32.0
+     },
+     "spo2": {
+      "missing_share": 0.108,
+      "n": 198,
+      "p1": 87.94,
+      "p25": 97.0,
+      "p5": 93.85,
+      "p50": 98.0,
+      "p75": 100.0,
+      "p95": 100.0,
+      "p99": 100.0
+     },
+     "systolic_bp": {
+      "missing_share": 0.104,
+      "n": 199,
+      "p1": 85.7,
+      "p25": 116.5,
+      "p5": 98.0,
+      "p50": 136.0,
+      "p75": 154.5,
+      "p95": 182.4,
+      "p99": 208.18
+     },
+     "temperature_c": {
+      "missing_share": 0.117,
+      "n": 196,
+      "p1": 35.54,
+      "p25": 36.44,
+      "p5": 35.99,
+      "p50": 36.72,
+      "p75": 36.94,
+      "p95": 37.67,
+      "p99": 37.89
+     }
+    }
+   }
+  },
+  "note": "spot values at triage; the abdominal group is small (weak)",
+  "rows": 222,
+  "source": "DS-0004 (MIMIC-IV-ED demo 2.2, ODbL 1.0)"
+ },
+ "version": 1
+}

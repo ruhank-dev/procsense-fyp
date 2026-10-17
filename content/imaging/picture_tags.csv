@@ -1,0 +1,205 @@
+id,finding_code,set,modality,view,tags,quality_grade,width,height,exposure,contrast,sharpness,real,dataset,licence,status
+ct-ab-00-r0,CT-AB-00,xsec,CT,axial slice,ct abdomen normal,B,640,441,0.261,0.249,501.9,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ab-00-r1,CT-AB-00,xsec,CT,axial slice,ct abdomen normal,B,640,349,0.283,0.254,324.7,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ab-00-r2,CT-AB-00,xsec,CT,axial slice,ct abdomen normal,B,640,406,0.311,0.283,412.0,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ab-00-r3,CT-AB-00,xsec,CT,axial slice,ct abdomen normal,B,640,349,0.311,0.284,352.4,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ab-01-s0,CT-AB-01,xsec,CT,axial slice,ct abdomen bowel_obstruction,A,640,471,0.265,0.251,815.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-01-s1,CT-AB-01,xsec,CT,axial slice,ct abdomen bowel_obstruction,A,640,379,0.278,0.257,703.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-01-s2,CT-AB-01,xsec,CT,axial slice,ct abdomen bowel_obstruction,A,640,436,0.293,0.274,720.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-01-s3,CT-AB-01,xsec,CT,axial slice,ct abdomen bowel_obstruction,A,640,379,0.292,0.273,711.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-02-s0,CT-AB-02,xsec,CT,axial slice,ct abdomen free_air perforation,A,640,471,0.250,0.253,819.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-02-s1,CT-AB-02,xsec,CT,axial slice,ct abdomen free_air perforation,A,640,379,0.264,0.261,726.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-02-s2,CT-AB-02,xsec,CT,axial slice,ct abdomen free_air perforation,A,640,436,0.291,0.286,751.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ab-02-s3,CT-AB-02,xsec,CT,axial slice,ct abdomen free_air perforation,A,640,379,0.291,0.288,737.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-00-r0,CT-AP-00,xsec,CT,axial slice,ct appendix normal,B,640,403,0.263,0.245,573.1,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ap-00-r1,CT-AP-00,xsec,CT,axial slice,ct appendix normal,B,640,443,0.380,0.338,211.5,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ap-00-r2,CT-AP-00,xsec,CT,axial slice,ct appendix normal,B,640,380,0.270,0.257,223.9,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ap-00-r3,CT-AP-00,xsec,CT,axial slice,ct appendix normal,B,640,396,0.321,0.312,262.9,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-ap-01-s0,CT-AP-01,xsec,CT,axial slice,ct appendix appendicitis,A,640,433,0.252,0.249,898.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-01-s1,CT-AP-01,xsec,CT,axial slice,ct appendix appendicitis,B,640,473,0.364,0.341,585.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-01-s2,CT-AP-01,xsec,CT,axial slice,ct appendix appendicitis,B,640,410,0.260,0.261,664.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-01-s3,CT-AP-01,xsec,CT,axial slice,ct appendix appendicitis,A,640,426,0.305,0.313,669.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-02-s0,CT-AP-02,xsec,CT,axial slice,ct appendix appendicitis abscess complicated,A,640,433,0.255,0.249,895.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-02-s1,CT-AP-02,xsec,CT,axial slice,ct appendix appendicitis abscess complicated,B,640,473,0.365,0.340,584.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-02-s2,CT-AP-02,xsec,CT,axial slice,ct appendix appendicitis abscess complicated,B,640,410,0.267,0.261,661.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-02-s3,CT-AP-02,xsec,CT,axial slice,ct appendix appendicitis abscess complicated,A,640,426,0.308,0.309,665.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-03-s0,CT-AP-03,xsec,CT,axial slice,ct appendix mass mimic,A,640,433,0.255,0.250,891.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-03-s1,CT-AP-03,xsec,CT,axial slice,ct appendix mass mimic,B,640,473,0.368,0.341,581.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-03-s2,CT-AP-03,xsec,CT,axial slice,ct appendix mass mimic,B,640,410,0.262,0.261,662.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-03-s3,CT-AP-03,xsec,CT,axial slice,ct appendix mass mimic,A,640,426,0.309,0.316,668.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-04-s0,CT-AP-04,xsec,CT,axial slice,ct appendix mimic,A,640,433,0.253,0.249,899.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-04-s1,CT-AP-04,xsec,CT,axial slice,ct appendix mimic,B,640,473,0.365,0.341,585.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-04-s2,CT-AP-04,xsec,CT,axial slice,ct appendix mimic,B,640,410,0.263,0.261,664.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-ap-04-s3,CT-AP-04,xsec,CT,axial slice,ct appendix mimic,A,640,426,0.306,0.314,670.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-gb-00-r0,CT-GB-00,xsec,CT,axial slice,ct gallbladder normal,B,640,403,0.279,0.247,503.9,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-gb-00-r1,CT-GB-00,xsec,CT,axial slice,ct gallbladder normal,B,640,387,0.214,0.248,256.8,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-gb-00-r2,CT-GB-00,xsec,CT,axial slice,ct gallbladder normal,B,640,421,0.406,0.314,338.3,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-gb-00-r3,CT-GB-00,xsec,CT,axial slice,ct gallbladder normal,B,640,396,0.400,0.325,432.8,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+ct-gb-01-s0,CT-GB-01,xsec,CT,axial slice,ct gallbladder complicated gas_in_wall wall_thickening,A,640,433,0.267,0.253,836.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-gb-01-s1,CT-GB-01,xsec,CT,axial slice,ct gallbladder complicated gas_in_wall wall_thickening,A,640,417,0.207,0.251,673.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-gb-01-s2,CT-GB-01,xsec,CT,axial slice,ct gallbladder complicated gas_in_wall wall_thickening,B,640,451,0.385,0.319,664.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+ct-gb-01-s3,CT-GB-01,xsec,CT,axial slice,ct gallbladder complicated gas_in_wall wall_thickening,A,640,426,0.380,0.327,765.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+cxr-01-r0,CXR-01,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest normal,B,640,640,0.398,0.260,231.1,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-01-r1,CXR-01,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest normal,A,640,640,0.632,0.235,337.2,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-01-r2,CXR-01,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest normal,B,640,640,0.543,0.264,231.5,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-01-r3,CXR-01,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest normal,A,640,640,0.668,0.203,362.7,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-02-r0,CXR-02,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest consolidation,B,640,640,0.479,0.283,235.3,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-02-r1,CXR-02,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest consolidation,B,640,640,0.420,0.252,223.1,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-02-r2,CXR-02,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest consolidation,A,640,640,0.463,0.252,288.2,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-02-r3,CXR-02,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest consolidation,A,640,640,0.693,0.130,286.0,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-03-r0,CXR-03,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest effusion,B,640,640,0.411,0.309,227.7,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-03-r1,CXR-03,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest effusion,A,640,640,0.490,0.273,272.5,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-03-r2,CXR-03,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest effusion,A,640,640,0.642,0.187,261.5,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-03-r3,CXR-03,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest effusion,A,640,640,0.619,0.244,339.5,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-04-r0,CXR-04,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pneumothorax,A,640,640,0.508,0.257,278.5,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-04-r1,CXR-04,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pneumothorax,B,640,640,0.384,0.177,132.1,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-04-r2,CXR-04,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pneumothorax,B,640,640,0.435,0.286,243.7,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-04-r3,CXR-04,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pneumothorax,B,640,640,0.434,0.258,235.1,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-05-r0,CXR-05,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest cardiomegaly,B,640,640,0.381,0.289,206.8,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-05-r1,CXR-05,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest cardiomegaly,B,640,640,0.447,0.255,239.4,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-05-r2,CXR-05,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest cardiomegaly,A,640,640,0.614,0.238,304.0,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-05-r3,CXR-05,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest cardiomegaly,B,640,640,0.620,0.247,234.3,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-06-r0,CXR-06,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pulmonary_oedema,A,640,640,0.573,0.271,278.0,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-06-r1,CXR-06,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pulmonary_oedema,A,640,640,0.659,0.146,263.2,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-06-r2,CXR-06,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pulmonary_oedema,B,640,640,0.409,0.287,218.4,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-06-r3,CXR-06,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest pulmonary_oedema,B,640,640,0.403,0.299,222.3,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-07-r0,CXR-07,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest atelectasis,B,640,640,0.680,0.176,198.9,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-07-r1,CXR-07,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest atelectasis,B,640,640,0.639,0.195,177.1,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-07-r2,CXR-07,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest atelectasis,B,640,640,0.471,0.278,215.7,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-07-r3,CXR-07,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest atelectasis,A,640,640,0.632,0.238,288.1,true,NIH ChestX-ray14,NIH Clinical Center terms: no restrictions on use; attribution required,APPROVED_FOR_TRAINING
+cxr-08-s0,CXR-08,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest free_air perforation,A,640,670,0.475,0.283,457.2,false,ProcSense generated,ProcSense generated from an NIH ChestX-ray14 image,APPROVED_FOR_TRAINING
+cxr-08-s1,CXR-08,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest free_air perforation,A,640,670,0.377,0.284,479.3,false,ProcSense generated,ProcSense generated from an NIH ChestX-ray14 image,APPROVED_FOR_TRAINING
+cxr-08-s2,CXR-08,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest free_air perforation,A,640,670,0.433,0.278,482.0,false,ProcSense generated,ProcSense generated from an NIH ChestX-ray14 image,APPROVED_FOR_TRAINING
+cxr-08-s3,CXR-08,cxr,xray,frontal (ChestX-ray14 holds frontal films only),xray chest free_air perforation,A,640,670,0.509,0.293,441.5,false,ProcSense generated,ProcSense generated from an NIH ChestX-ray14 image,APPROVED_FOR_TRAINING
+ecg-01-r0,ECG-01,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart normal,B,1000,240,0.902,0.120,6206.4,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-01-r1,ECG-01,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart normal,A,1000,240,0.901,0.123,6225.5,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-01-r2,ECG-01,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart normal,A,1000,240,0.899,0.129,6268.6,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-01-r3,ECG-01,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart normal,B,1000,240,0.902,0.121,6224.3,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-02-r0,ECG-02,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart tachycardia,B,1000,240,0.902,0.121,6223.0,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-02-r1,ECG-02,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart tachycardia,A,1000,240,0.892,0.149,6501.7,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-02-r2,ECG-02,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart tachycardia,A,1000,240,0.897,0.137,6340.7,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-02-r3,ECG-02,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart tachycardia,A,1000,240,0.900,0.128,6302.9,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-03-r0,ECG-03,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm,B,1000,240,0.903,0.116,6163.5,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-03-r1,ECG-03,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm,B,1000,240,0.902,0.119,6184.3,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-03-r2,ECG-03,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm,B,1000,240,0.903,0.118,6184.2,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-03-r3,ECG-03,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm,B,1000,240,0.903,0.118,6171.3,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-04-r0,ECG-04,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart bradycardia,A,1000,240,0.899,0.131,6340.5,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-04-r1,ECG-04,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart bradycardia,B,1000,240,0.903,0.116,6149.8,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-04-r2,ECG-04,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart bradycardia,B,1000,240,0.902,0.119,6195.5,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-04-r3,ECG-04,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart bradycardia,A,1000,240,0.902,0.120,6247.5,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-05-r0,ECG-05,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart heart_block bradycardia,B,1000,240,0.904,0.115,6159.8,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-05-r1,ECG-05,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart heart_block bradycardia,B,1000,240,0.903,0.117,6192.4,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-05-r2,ECG-05,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart heart_block bradycardia,A,1000,240,0.901,0.124,6227.6,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-05-r3,ECG-05,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart heart_block bradycardia,B,1000,240,0.904,0.112,6128.6,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-06-r0,ECG-06,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart supraventricular tachycardia,A,1000,240,0.891,0.151,6479.7,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-06-r1,ECG-06,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart supraventricular tachycardia,A,1000,240,0.895,0.141,6403.8,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-06-r2,ECG-06,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart supraventricular tachycardia,A,1000,240,0.893,0.146,6545.6,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-06-r3,ECG-06,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart supraventricular tachycardia,A,1000,240,0.890,0.154,6550.2,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-07-r0,ECG-07,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart st_elevation,B,1000,240,0.901,0.125,6217.6,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-07-r1,ECG-07,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart st_elevation,A,1000,240,0.896,0.137,6430.4,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-07-r2,ECG-07,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart st_elevation,B,1000,240,0.903,0.117,6221.4,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-07-r3,ECG-07,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart st_elevation,A,1000,240,0.901,0.123,6255.8,true,PTB-XL,CC BY 4.0,APPROVED_FOR_TRAINING
+ecg-08-s0,ECG-08,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hyperkalaemia,A,1000,270,0.806,0.299,6267.4,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-08-s1,ECG-08,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hyperkalaemia,A,1000,270,0.805,0.300,6274.1,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-08-s2,ECG-08,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hyperkalaemia,A,1000,270,0.804,0.301,6305.1,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-08-s3,ECG-08,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hyperkalaemia,A,1000,270,0.806,0.299,6257.7,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-09-s0,ECG-09,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hypokalaemia,B,1000,270,0.808,0.297,6183.2,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-09-s1,ECG-09,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hypokalaemia,B,1000,270,0.807,0.298,6184.5,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-09-s2,ECG-09,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hypokalaemia,A,1000,270,0.806,0.299,6237.4,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-09-s3,ECG-09,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart hypokalaemia,B,1000,270,0.808,0.297,6190.2,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-10-s0,ECG-10,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm tachycardia,B,1000,270,0.808,0.297,6176.8,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-10-s1,ECG-10,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm tachycardia,B,1000,270,0.806,0.300,6221.8,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-10-s2,ECG-10,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm tachycardia,A,1000,270,0.803,0.302,6272.3,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+ecg-10-s3,ECG-10,ecg,ecg,"rhythm strip, lead II, 10 s",ecg heart atrial_fibrillation irregular_rhythm tachycardia,B,1000,270,0.807,0.298,6176.3,false,ProcSense generated,ProcSense generated from a CC BY 4.0 recording,APPROVED_FOR_TRAINING
+mr-ap-00-r0,MR-AP-00,xsec,MRI,axial slice,mri appendix normal,B,640,427,0.321,0.221,112.6,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+mr-ap-00-r1,MR-AP-00,xsec,MRI,axial slice,mri appendix normal,B,640,362,0.311,0.254,433.3,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+mr-ap-00-r2,MR-AP-00,xsec,MRI,axial slice,mri appendix normal,B,640,359,0.213,0.213,77.8,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+mr-ap-00-r3,MR-AP-00,xsec,MRI,axial slice,mri appendix normal,B,640,465,0.227,0.242,83.4,true,AMOS 2022,CC BY 4.0,APPROVED_FOR_TRAINING
+mr-ap-01-s0,MR-AP-01,xsec,MRI,axial slice,mri appendix appendicitis,B,640,457,0.307,0.230,452.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mr-ap-01-s1,MR-AP-01,xsec,MRI,axial slice,mri appendix appendicitis,A,640,392,0.296,0.260,792.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mr-ap-01-s2,MR-AP-01,xsec,MRI,axial slice,mri appendix appendicitis,B,640,389,0.206,0.219,525.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mr-ap-01-s3,MR-AP-01,xsec,MRI,axial slice,mri appendix appendicitis,B,640,495,0.218,0.243,398.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-00-s0,MRCP-00,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder normal,A,640,510,0.143,0.224,895.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-00-s1,MRCP-00,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder normal,A,640,510,0.142,0.223,897.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-00-s2,MRCP-00,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder normal,A,640,510,0.143,0.224,887.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-00-s3,MRCP-00,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder normal,A,640,510,0.144,0.225,897.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-01-s0,MRCP-01,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder duct_stone,A,640,510,0.148,0.232,892.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-01-s1,MRCP-01,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder duct_stone,A,640,510,0.148,0.233,886.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-01-s2,MRCP-01,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder duct_stone,A,640,510,0.150,0.236,884.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+mrcp-01-s3,MRCP-01,xsec,MRCP,coronal thick slab (stated by the generator),mrcp gallbladder duct_stone,A,640,510,0.152,0.237,892.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-01-s0,US-AP-01,ultrasound,ultrasound,,ultrasound appendix appendicitis,A,640,480,0.158,0.162,775.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-01-s1,US-AP-01,ultrasound,ultrasound,,ultrasound appendix appendicitis,A,640,480,0.155,0.161,763.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-01-s2,US-AP-01,ultrasound,ultrasound,,ultrasound appendix appendicitis,A,640,480,0.159,0.163,780.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-01-s3,US-AP-01,ultrasound,ultrasound,,ultrasound appendix appendicitis,A,640,480,0.155,0.161,763.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-02-s0,US-AP-02,ultrasound,ultrasound,,ultrasound appendix complicated perforation abscess,A,640,480,0.155,0.166,779.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-02-s1,US-AP-02,ultrasound,ultrasound,,ultrasound appendix complicated perforation abscess,A,640,480,0.155,0.167,781.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-02-s2,US-AP-02,ultrasound,ultrasound,,ultrasound appendix complicated perforation abscess,A,640,480,0.154,0.165,768.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-02-s3,US-AP-02,ultrasound,ultrasound,,ultrasound appendix complicated perforation abscess,A,640,480,0.154,0.163,776.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-03-s0,US-AP-03,ultrasound,ultrasound,,ultrasound appendix mimic normal,B,640,480,0.137,0.152,709.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-03-s1,US-AP-03,ultrasound,ultrasound,,ultrasound appendix mimic normal,B,640,480,0.142,0.152,716.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-03-s2,US-AP-03,ultrasound,ultrasound,,ultrasound appendix mimic normal,B,640,480,0.141,0.153,720.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-03-s3,US-AP-03,ultrasound,ultrasound,,ultrasound appendix mimic normal,B,640,480,0.139,0.153,713.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-04-s0,US-AP-04,ultrasound,ultrasound,,ultrasound appendix appendix_not_seen non_diagnostic,B,640,480,0.113,0.149,631.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-04-s1,US-AP-04,ultrasound,ultrasound,,ultrasound appendix appendix_not_seen non_diagnostic,B,640,480,0.114,0.150,632.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-04-s2,US-AP-04,ultrasound,ultrasound,,ultrasound appendix appendix_not_seen non_diagnostic,B,640,480,0.114,0.150,630.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-04-s3,US-AP-04,ultrasound,ultrasound,,ultrasound appendix appendix_not_seen non_diagnostic,B,640,480,0.116,0.150,637.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-05-s0,US-AP-05,ultrasound,ultrasound,,ultrasound appendix normal,B,640,480,0.151,0.150,752.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-05-s1,US-AP-05,ultrasound,ultrasound,,ultrasound appendix normal,A,640,480,0.151,0.150,756.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-05-s2,US-AP-05,ultrasound,ultrasound,,ultrasound appendix normal,A,640,480,0.151,0.151,754.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-ap-05-s3,US-AP-05,ultrasound,ultrasound,,ultrasound appendix normal,A,640,480,0.151,0.151,766.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-00-s0,US-GB-00,ultrasound,ultrasound,,ultrasound gallbladder normal,A,640,480,0.124,0.156,816.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-00-s1,US-GB-00,ultrasound,ultrasound,,ultrasound gallbladder normal,A,640,480,0.125,0.158,819.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-00-s2,US-GB-00,ultrasound,ultrasound,,ultrasound gallbladder normal,A,640,480,0.124,0.155,807.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-00-s3,US-GB-00,ultrasound,ultrasound,,ultrasound gallbladder normal,A,640,480,0.124,0.157,811.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-01-r0,US-GB-01,ultrasound,ultrasound,,ultrasound gallbladder gallstones,B,640,480,0.299,0.212,294.0,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-01-r1,US-GB-01,ultrasound,ultrasound,,ultrasound gallbladder gallstones,A,640,480,0.254,0.217,900.0,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-01-r2,US-GB-01,ultrasound,ultrasound,,ultrasound gallbladder gallstones,A,640,480,0.169,0.173,861.9,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-01-r3,US-GB-01,ultrasound,ultrasound,,ultrasound gallbladder gallstones,B,640,480,0.172,0.129,151.5,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-02-r0,US-GB-02,ultrasound,ultrasound,,ultrasound gallbladder gallstones cholecystitis wall_thickening,B,640,480,0.182,0.147,98.6,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-02-r1,US-GB-02,ultrasound,ultrasound,,ultrasound gallbladder gallstones cholecystitis wall_thickening,A,640,480,0.181,0.181,861.8,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-02-r2,US-GB-02,ultrasound,ultrasound,,ultrasound gallbladder gallstones cholecystitis wall_thickening,B,640,480,0.276,0.220,96.0,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-02-r3,US-GB-02,ultrasound,ultrasound,,ultrasound gallbladder gallstones cholecystitis wall_thickening,B,640,480,0.211,0.202,287.0,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-03-s0,US-GB-03,ultrasound,ultrasound,,ultrasound gallbladder duct_dilated,A,640,480,0.120,0.157,823.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-03-s1,US-GB-03,ultrasound,ultrasound,,ultrasound gallbladder duct_dilated,A,640,480,0.120,0.155,824.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-03-s2,US-GB-03,ultrasound,ultrasound,,ultrasound gallbladder duct_dilated,A,640,480,0.120,0.157,822.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-03-s3,US-GB-03,ultrasound,ultrasound,,ultrasound gallbladder duct_dilated,A,640,480,0.118,0.155,813.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-04-s0,US-GB-04,ultrasound,ultrasound,,ultrasound gallbladder duct_stone gallstones,A,640,480,0.117,0.156,809.6,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-04-s1,US-GB-04,ultrasound,ultrasound,,ultrasound gallbladder duct_stone gallstones,A,640,480,0.118,0.158,818.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-04-s2,US-GB-04,ultrasound,ultrasound,,ultrasound gallbladder duct_stone gallstones,A,640,480,0.118,0.158,824.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-04-s3,US-GB-04,ultrasound,ultrasound,,ultrasound gallbladder duct_stone gallstones,A,640,480,0.118,0.158,818.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-05-r0,US-GB-05,ultrasound,ultrasound,,ultrasound gallbladder complicated gas_in_wall abscess perforation,B,640,480,0.285,0.238,103.9,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-05-r1,US-GB-05,ultrasound,ultrasound,,ultrasound gallbladder complicated gas_in_wall abscess perforation,B,640,480,0.262,0.180,85.3,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-05-r2,US-GB-05,ultrasound,ultrasound,,ultrasound gallbladder complicated gas_in_wall abscess perforation,B,640,480,0.210,0.166,59.3,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-05-r3,US-GB-05,ultrasound,ultrasound,,ultrasound gallbladder complicated gas_in_wall abscess perforation,B,640,480,0.208,0.155,122.7,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-06-r0,US-GB-06,ultrasound,ultrasound,,ultrasound gallbladder mass,B,640,480,0.133,0.116,82.4,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-06-r1,US-GB-06,ultrasound,ultrasound,,ultrasound gallbladder mass,B,640,480,0.141,0.068,100.7,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-06-r2,US-GB-06,ultrasound,ultrasound,,ultrasound gallbladder mass,B,640,480,0.271,0.167,454.3,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-06-r3,US-GB-06,ultrasound,ultrasound,,ultrasound gallbladder mass,B,640,480,0.168,0.151,209.6,true,UIdataGB,CC BY 4.0,APPROVED_FOR_TRAINING
+us-gb-07-s0,US-GB-07,ultrasound,ultrasound,,ultrasound gallbladder sludge non_diagnostic,B,640,480,0.130,0.149,681.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-07-s1,US-GB-07,ultrasound,ultrasound,,ultrasound gallbladder sludge non_diagnostic,B,640,480,0.131,0.150,683.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-07-s2,US-GB-07,ultrasound,ultrasound,,ultrasound gallbladder sludge non_diagnostic,B,640,480,0.131,0.149,679.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-07-s3,US-GB-07,ultrasound,ultrasound,,ultrasound gallbladder sludge non_diagnostic,B,640,480,0.131,0.151,686.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-08-s0,US-GB-08,ultrasound,ultrasound,,ultrasound gallbladder non_diagnostic no_wording,A,640,480,0.132,0.165,824.3,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-08-s1,US-GB-08,ultrasound,ultrasound,,ultrasound gallbladder non_diagnostic no_wording,A,640,480,0.135,0.164,831.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-08-s2,US-GB-08,ultrasound,ultrasound,,ultrasound gallbladder non_diagnostic no_wording,A,640,480,0.130,0.164,830.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-gb-08-s3,US-GB-08,ultrasound,ultrasound,,ultrasound gallbladder non_diagnostic no_wording,A,640,480,0.135,0.164,828.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-00-s0,US-PV-00,ultrasound,ultrasound,,ultrasound pelvis normal non_diagnostic,B,640,480,0.152,0.162,733.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-00-s1,US-PV-00,ultrasound,ultrasound,,ultrasound pelvis normal non_diagnostic,B,640,480,0.152,0.162,729.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-00-s2,US-PV-00,ultrasound,ultrasound,,ultrasound pelvis normal non_diagnostic,B,640,480,0.152,0.163,742.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-00-s3,US-PV-00,ultrasound,ultrasound,,ultrasound pelvis normal non_diagnostic,B,640,480,0.153,0.163,745.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-01-s0,US-PV-01,ultrasound,ultrasound,,ultrasound pelvis no_wording,B,640,480,0.151,0.166,753.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-01-s1,US-PV-01,ultrasound,ultrasound,,ultrasound pelvis no_wording,B,640,480,0.150,0.165,743.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-01-s2,US-PV-01,ultrasound,ultrasound,,ultrasound pelvis no_wording,A,640,480,0.151,0.166,755.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-01-s3,US-PV-01,ultrasound,ultrasound,,ultrasound pelvis no_wording,B,640,480,0.151,0.166,748.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-02-s0,US-PV-02,ultrasound,ultrasound,,ultrasound pelvis no_wording,A,640,480,0.157,0.167,811.9,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-02-s1,US-PV-02,ultrasound,ultrasound,,ultrasound pelvis no_wording,A,640,480,0.157,0.168,817.0,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-02-s2,US-PV-02,ultrasound,ultrasound,,ultrasound pelvis no_wording,A,640,480,0.158,0.168,813.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-pv-02-s3,US-PV-02,ultrasound,ultrasound,,ultrasound pelvis no_wording,A,640,480,0.157,0.167,814.7,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-00-s0,US-RN-00,ultrasound,ultrasound,,ultrasound kidney normal non_diagnostic,B,640,480,0.156,0.157,700.2,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-00-s1,US-RN-00,ultrasound,ultrasound,,ultrasound kidney normal non_diagnostic,B,640,480,0.156,0.158,707.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-00-s2,US-RN-00,ultrasound,ultrasound,,ultrasound kidney normal non_diagnostic,B,640,480,0.156,0.157,705.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-00-s3,US-RN-00,ultrasound,ultrasound,,ultrasound kidney normal non_diagnostic,B,640,480,0.156,0.157,701.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-01-s0,US-RN-01,ultrasound,ultrasound,,ultrasound kidney no_wording,B,640,480,0.150,0.157,753.4,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-01-s1,US-RN-01,ultrasound,ultrasound,,ultrasound kidney no_wording,A,640,480,0.150,0.157,757.8,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-01-s2,US-RN-01,ultrasound,ultrasound,,ultrasound kidney no_wording,A,640,480,0.150,0.157,759.1,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING
+us-rn-01-s3,US-RN-01,ultrasound,ultrasound,,ultrasound kidney no_wording,A,640,480,0.150,0.157,758.5,false,ProcSense generated,ProcSense generated (CC0 for our own use),APPROVED_FOR_TRAINING

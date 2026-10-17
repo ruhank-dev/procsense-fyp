@@ -25,6 +25,14 @@ Done with the owner's approval; **no AI feature is built on these models yet (no
 * **Still to do:** the laptop, co-residency with speech recognition and Unity, thinking-on runs, debrief, composition and judge tests (DT-188).
 * **Harness gap closed:** the patient now has an approved "cannot recall" intent (DT-189).
 
+## 0c. Update of 17 October 2026 (build started, by the owner's instruction)
+
+The owner told the project to implement the P1 and P2 plan modules that are the engineer's, in order. Status as the code and tests show it (each item has a check in CI):
+
+* **Dataset analysis (PH-02, PH-03): built.** Numeric and waveform profiles, image tags and technical quality grades, generator packs with a sampler, evaluation sets: `tools/data/profile_*.py`, `tools/content/imaging_tags.py`, `tools/generation/`, `content/generation/packs/`, `tests/generation/`.
+* **Scenario knowledge base (A66, OFF-10): partly built.** 836 sourced relations and an offline extraction tool with quote checking and a review gate (`tools/kb/`, `content/kb/`). The extraction precision gate (0.8 on 100 hand-labelled relations) is not measured: it needs a labeller (DT-114). No model relation is in the base.
+* **Still true:** no live session calls a model; rules decide, AI proposes.
+
 ## 1. The short answers
 
 | Question | Answer |

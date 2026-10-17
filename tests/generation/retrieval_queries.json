@@ -1,0 +1,777 @@
+{
+ "note": "Each query is a problem label (or a scenario family) as an author would ask for it; the cases that hold it are the answer. Recall at k is measured against these (p1-live-scenario-generation-s02).",
+ "queries": [
+  {
+   "expected_cases": [
+    "VAR-S2-I"
+   ],
+   "query": "A minor (16): consent follows the applicable law"
+  },
+  {
+   "expected_cases": [
+    "SC-10"
+   ],
+   "query": "A minor: consent per law"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-E"
+   ],
+   "query": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "Acute kidney injury (creatinine 178, baseline 112) with dehydration"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Acute kidney injury (stage 1), pre-renal, made worse by anti-inflammatory painkillers"
+  },
+  {
+   "expected_cases": [
+    "SC-1"
+   ],
+   "query": "Acute kidney injury caused by poor circulation"
+  },
+  {
+   "expected_cases": [
+    "SC-16"
+   ],
+   "query": "Airway and sleep apnoea risk"
+  },
+  {
+   "expected_cases": [
+    "SC-7"
+   ],
+   "query": "Airway at risk and slow breathing"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "Airway at risk: vomiting with reduced consciousness"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-B"
+   ],
+   "query": "Allergy-safe antibiotic: penicillin anaphylaxis 2019"
+  },
+  {
+   "expected_cases": [
+    "SC-17"
+   ],
+   "query": "Anaemia explained by thalassaemia trait"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Anaesthetic adjustments: aspiration risk and positioning"
+  },
+  {
+   "expected_cases": [
+    "SC-16"
+   ],
+   "query": "Anaesthetist decides"
+  },
+  {
+   "expected_cases": [
+    "SC-15"
+   ],
+   "query": "Anaesthetist informed"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PD"
+   ],
+   "query": "Antibiotics and fluids within 1 hour for the high-risk tier"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-D"
+   ],
+   "query": "Anticoagulant still active: bleeding risk at surgery"
+  },
+  {
+   "expected_cases": [
+    "SC-9"
+   ],
+   "query": "Antiplatelet affects ERCP bleeding"
+  },
+  {
+   "expected_cases": [
+    "SC-5"
+   ],
+   "query": "Apixaban not stopped: bleeding risk"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "Apixaban taken at 07:00 today although the plan was to stop it two days before"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-H"
+   ],
+   "query": "Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up"
+  },
+  {
+   "expected_cases": [
+    "SC-3"
+   ],
+   "query": "Appendicitis in pregnancy with fever"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Appendicitis needing surgery"
+  },
+  {
+   "expected_cases": [
+    "SC-7"
+   ],
+   "query": "Aspiration risk: full stomach"
+  },
+  {
+   "expected_cases": [
+    "SC-20"
+   ],
+   "query": "Aspirin usually continues"
+  },
+  {
+   "expected_cases": [
+    "SC-4"
+   ],
+   "query": "BP 176/104 (below 180/110)"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Blood pressure 174/102, repeat 172/100 (below 180/110)"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-B"
+   ],
+   "query": "Blood pressure 188/114 and 186/112 on repeat: above the 180/110 limit"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-B"
+   ],
+   "query": "Blood pressure high but below 180/110 and no organ-damage symptoms"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "Breathing: RR 9 and SpO2 90"
+  },
+  {
+   "expected_cases": [
+    "SC-14"
+   ],
+   "query": "CT now with escort and monitoring, or straight to surgery"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-L"
+   ],
+   "query": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside"
+  },
+  {
+   "expected_cases": [
+    "SC-11"
+   ],
+   "query": "Capacity now lost from sepsis"
+  },
+  {
+   "expected_cases": [
+    "SC-9"
+   ],
+   "query": "Cholangitis with sepsis"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Cholecystectomy"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-I"
+   ],
+   "query": "Classic appendicitis"
+  },
+  {
+   "expected_cases": [
+    "SC-18"
+   ],
+   "query": "Consent form not signed"
+  },
+  {
+   "expected_cases": [
+    "SC-8"
+   ],
+   "query": "Dangerous potassium"
+  },
+  {
+   "expected_cases": [
+    "SC-17"
+   ],
+   "query": "Dehydration"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-G"
+   ],
+   "query": "Dehydration with acute kidney injury (stage 1)"
+  },
+  {
+   "expected_cases": [
+    "SC-16"
+   ],
+   "query": "Delayed stomach emptying likely: aspiration risk even if fasted"
+  },
+  {
+   "expected_cases": [
+    "SC-14"
+   ],
+   "query": "Deterioration overrides wait-and-see"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-C"
+   ],
+   "query": "Diabetes control and the medicine plan for the fasting day"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-J"
+   ],
+   "query": "Do not stop at 'urine infection': an inflamed appendix next to the bladder can cause the same dipstick"
+  },
+  {
+   "expected_cases": [
+    "SC-11"
+   ],
+   "query": "Earlier capable refusal is respected where it clearly applied"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Early kidney strain"
+  },
+  {
+   "expected_cases": [
+    "SC-2"
+   ],
+   "query": "Ectopic pregnancy until proven otherwise"
+  },
+  {
+   "expected_cases": [
+    "SC-9"
+   ],
+   "query": "Emergency biliary drainage (ERCP) instead of gallbladder surgery"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Emergency patient in pain with analgesia: treat as a full stomach"
+  },
+  {
+   "expected_cases": [
+    "SC-6"
+   ],
+   "query": "Fasting breach: a light meal 1 hour ago"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-G"
+   ],
+   "query": "Fasting rule broken: a light meal 2 hours before surgery"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "Full stomach for anaesthesia (a kebab 3 hours ago)"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-F"
+   ],
+   "query": "Full stomach: aspiration risk"
+  },
+  {
+   "expected_cases": [
+    "SC-6"
+   ],
+   "query": "Glucose 4.6: treat if below 4.0; recheck in 30 minutes"
+  },
+  {
+   "expected_cases": [
+    "SC-20"
+   ],
+   "query": "Group and save"
+  },
+  {
+   "expected_cases": [
+    "SC-12"
+   ],
+   "query": "Haemolysed potassium: repeat"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "HbA1c 76 above the limit of 69 for planned surgery"
+  },
+  {
+   "expected_cases": [
+    "SC-4"
+   ],
+   "query": "HbA1c 78 above the planned-surgery limit of 69"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-M"
+   ],
+   "query": "High risk of obstructive sleep apnoea with BMI 41"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "High-risk sepsis (NEWS2 7, lactate 2.6)"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Hypovolaemia: tachycardia, low BP and slow capillary refill"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-A"
+   ],
+   "query": "Identity, allergy, consent and pregnancy-status checkpoints"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-E"
+   ],
+   "query": "In older people bowel cancer or diverticulitis can mimic appendicitis (weight loss with anaemia is a warning)"
+  },
+  {
+   "expected_cases": [
+    "SC-18"
+   ],
+   "query": "Insufflator fault"
+  },
+  {
+   "expected_cases": [
+    "SC-6"
+   ],
+   "query": "Insulin plan likely too much for fasting"
+  },
+  {
+   "expected_cases": [
+    "SC-19"
+   ],
+   "query": "Ketoacidosis on an SGLT2 inhibitor"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "Known atrial fibrillation, rate controlled"
+  },
+  {
+   "expected_cases": [
+    "SC-10"
+   ],
+   "query": "Language barrier"
+  },
+  {
+   "expected_cases": [
+    "SC-18"
+   ],
+   "query": "Late list"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-A"
+   ],
+   "query": "Low potassium (3.0)"
+  },
+  {
+   "expected_cases": [
+    "SC-19"
+   ],
+   "query": "Low sugar"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-I"
+   ],
+   "query": "Low-risk planned operation: an antibiotic is probably not needed"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Maternal stability first (ABC)"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-E"
+   ],
+   "query": "Mild anaemia with weight loss"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-K"
+   ],
+   "query": "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency"
+  },
+  {
+   "expected_cases": [
+    "SC-5"
+   ],
+   "query": "New fast AF"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-L"
+   ],
+   "query": "New fast atrial fibrillation (heart rate 128)"
+  },
+  {
+   "expected_cases": [
+    "SC-8"
+   ],
+   "query": "No suxamethonium; correct potassium first"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-A"
+   ],
+   "query": "Nothing abnormal: the patient is fit and fasted"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Obstetric and fetal assessment"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-D"
+   ],
+   "query": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-C"
+   ],
+   "query": "Opioid sedation: the cause"
+  },
+  {
+   "expected_cases": [
+    "SC-10"
+   ],
+   "query": "Pain relief first"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-K"
+   ],
+   "query": "Penicillin 'allergy': mild childhood rash, delayed"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-B",
+    "VAR-S2-PD"
+   ],
+   "query": "Perforated appendix: urgent source control"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-H"
+   ],
+   "query": "Positive pregnancy test before planned surgery"
+  },
+  {
+   "expected_cases": [
+    "SC-20"
+   ],
+   "query": "Possible caecal tumour presenting like appendicitis"
+  },
+  {
+   "expected_cases": [
+    "SC-2"
+   ],
+   "query": "Possible internal bleeding"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-B"
+   ],
+   "query": "Possible ruptured ectopic pregnancy with internal bleeding"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-J"
+   ],
+   "query": "Potassium 6.4 on a haemolysed sample in a well patient"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-B"
+   ],
+   "query": "Pregnancy status positive: it changes everything"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Probable appendicitis: scan, senior decision, antibiotics, theatre"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-PB"
+   ],
+   "query": "Probable stone in the main bile duct: not what she was booked for"
+  },
+  {
+   "expected_cases": [
+    "SC-12"
+   ],
+   "query": "Real low sodium from the water tablet"
+  },
+  {
+   "expected_cases": [
+    "SC-15"
+   ],
+   "query": "Record the new allergy"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-A"
+   ],
+   "query": "SGLT2 inhibitor taken today; ketones 0.9: risk of ketoacidosis even with a normal sugar"
+  },
+  {
+   "expected_cases": [
+    "SC-19"
+   ],
+   "query": "Sepsis"
+  },
+  {
+   "expected_cases": [
+    "SC-11"
+   ],
+   "query": "Sepsis now"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-B"
+   ],
+   "query": "Sepsis with hypoperfusion (NEWS2 10, lactate 3.8)"
+  },
+  {
+   "expected_cases": [
+    "SC-1"
+   ],
+   "query": "Sepsis with poor circulation"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PD"
+   ],
+   "query": "Sepsis with poor circulation (NEWS2 5 then 10)"
+  },
+  {
+   "expected_cases": [
+    "SC-8"
+   ],
+   "query": "Septic shock"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "Severe hyperkalaemia (6.6) with ECG changes"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-I"
+   ],
+   "query": "Severe immediate penicillin allergy (throat swelling and collapse, 2015)"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-PC"
+   ],
+   "query": "Severe pain (8/10) must not wait for the paperwork"
+  },
+  {
+   "expected_cases": [
+    "SC-1"
+   ],
+   "query": "Severe penicillin allergy before the antibiotic"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "Slow heart and low BP"
+  },
+  {
+   "expected_cases": [
+    "SC-7"
+   ],
+   "query": "Stop further opioid"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-G"
+   ],
+   "query": "Surgery proceeds once she is resuscitated: the infection is part of the cause"
+  },
+  {
+   "expected_cases": [
+    "SC-15"
+   ],
+   "query": "Surgery timing per senior"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-C"
+   ],
+   "query": "The planned operation is cancelled"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-D"
+   ],
+   "query": "The scan did not answer the question: 'not visualised' is not 'negative'"
+  },
+  {
+   "expected_cases": [
+    "STK-S2-D"
+   ],
+   "query": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)"
+  },
+  {
+   "expected_cases": [
+    "SC-13"
+   ],
+   "query": "Unexplained anaemia: bleeding on warfarin"
+  },
+  {
+   "expected_cases": [
+    "STK-S1-B"
+   ],
+   "query": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)"
+  },
+  {
+   "expected_cases": [
+    "SC-13"
+   ],
+   "query": "Warfarin not stopped: INR 2.6"
+  },
+  {
+   "expected_cases": [
+    "VAR-S1-PB"
+   ],
+   "query": "Watch for infection of the duct (cholangitis)"
+  },
+  {
+   "expected_cases": [
+    "VAR-S2-H"
+   ],
+   "query": "White cell count partly raised by pregnancy"
+  },
+  {
+   "expected_cases": [
+    "SC-12",
+    "SC-13",
+    "SC-16",
+    "SC-18",
+    "SC-4",
+    "SC-5",
+    "SC-6",
+    "SC-9",
+    "STK-S1-A",
+    "STK-S1-B",
+    "STK-S1-C",
+    "STK-S1-D",
+    "VAR-S1-A",
+    "VAR-S1-B",
+    "VAR-S1-C",
+    "VAR-S1-D",
+    "VAR-S1-E",
+    "VAR-S1-G",
+    "VAR-S1-H",
+    "VAR-S1-I",
+    "VAR-S1-J",
+    "VAR-S1-K",
+    "VAR-S1-L",
+    "VAR-S1-M",
+    "VAR-S1-PB"
+   ],
+   "query": "scenario S1"
+  },
+  {
+   "expected_cases": [
+    "SC-1",
+    "SC-10",
+    "SC-11",
+    "SC-14",
+    "SC-15",
+    "SC-17",
+    "SC-19",
+    "SC-2",
+    "SC-20",
+    "SC-3",
+    "SC-7",
+    "SC-8",
+    "STK-S2-A",
+    "STK-S2-B",
+    "STK-S2-C",
+    "STK-S2-D",
+    "VAR-S2-B",
+    "VAR-S2-D",
+    "VAR-S2-E",
+    "VAR-S2-F",
+    "VAR-S2-G",
+    "VAR-S2-H",
+    "VAR-S2-I",
+    "VAR-S2-J",
+    "VAR-S2-K",
+    "VAR-S2-L",
+    "VAR-S2-PC",
+    "VAR-S2-PD"
+   ],
+   "query": "scenario S2"
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "kind": "correlations",
+ "pairs": [
+  {
+   "a": "wbc",
+   "b": "crp",
+   "pairs": 37,
+   "pearson": 0.476,
+   "spearman": 0.646,
+   "spearman_ci95": [
+    0.407,
+    0.802
+   ],
+   "weak": true
+  },
+  {
+   "a": "urea_nitrogen",
+   "b": "creatinine",
+   "pairs": 2963,
+   "pearson": 0.605,
+   "spearman": 0.772,
+   "spearman_ci95": [
+    0.757,
+    0.786
+   ],
+   "weak": false
+  },
+  {
+   "a": "haemoglobin",
+   "b": "haematocrit",
+   "pairs": 2780,
+   "pearson": 0.972,
+   "spearman": 0.971,
+   "spearman_ci95": [
+    0.969,
+    0.973
+   ],
+   "weak": false
+  },
+  {
+   "a": "alt",
+   "b": "bilirubin",
+   "pairs": 1110,
+   "pearson": -0.001,
+   "spearman": 0.171,
+   "spearman_ci95": [
+    0.114,
+    0.228
+   ],
+   "weak": false
+  },
+  {
+   "a": "alp",
+   "b": "bilirubin",
+   "pairs": 1112,
+   "pearson": -0.033,
+   "spearman": 0.094,
+   "spearman_ci95": [
+    0.036,
+    0.152
+   ],
+   "weak": false
+  },
+  {
+   "a": "sodium",
+   "b": "glucose",
+   "pairs": 2701,
+   "pearson": -0.218,
+   "spearman": -0.206,
+   "spearman_ci95": [
+    -0.242,
+    -0.17
+   ],
+   "weak": false
+  },
+  {
+   "a": "lactate",
+   "b": "creatinine",
+   "pairs": 6,
+   "pearson": 0.567,
+   "spearman": 0.794,
+   "spearman_ci95": [
+    -0.048,
+    0.976
+   ],
+   "weak": true
+  }
+ ],
+ "source": "DS-0003 (MIMIC-IV demo 2.2, ODbL 1.0)",
+ "version": 1
+}
