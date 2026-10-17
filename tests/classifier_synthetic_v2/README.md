@@ -10,7 +10,7 @@ a label is right. The independent set (`docs/research/classifier_benchmark`) is 
 | Dev | 420 sentences: 3 profiles D1-D3 x 20 x 7, scenario groups G5-G6 (recovery and observations, theatre handover and equipment) | `authored_dev_D*.txt` |
 | Test | 600 sentences: 3 profiles E1-E3 x 20 x 10, scenario groups G7-G8 (airway and induction, pregnancy, transfusion, diabetes) | `authored_test_E*.txt` |
 | Rubric | the label rules both judges receive (the tie-break order of the annotation guide) | `rubric.md` |
-| Judgements | blind labels by judge configurations J1 and J2 of `qwen3.5:4b-q4_K_M` (text only, never the intended act); large and regenerable, not committed | `judgements/` |
+| Judgements | blind labels by judge configurations J1 and J2 of `qwen3.5:4b-q4_K_M` (text only, never the intended act) for every dev and test sentence. **Training sentences were not judged** (GPU time; their label is the author's intent and the manifest says `intent_only`) | `judgements/` |
 | Adjudication | contested rows (both judges agree with each other against the author's intent) settled by the builder, reading the sentence without its intended act | `adjudication.txt` |
 | Frozen | merged rows, agreement figures and hashes | `train.jsonl`, `dev.jsonl`, `test.jsonl`, `agreement.json`, `manifest.json` |
 

@@ -190,10 +190,12 @@ def judgements() -> dict[str, dict[str, dict]]:
 def classify_rows(data: dict[str, list[dict]], judged: dict[str, dict[str, dict]]) -> dict[str, str]:
     """certain | uncertain | contested | unjudged for each row id."""
     status = {}
-    for rs in data.values():
+    for split, rs in data.items():
         for r in rs:
             j1, j2 = judged.get("J1", {}).get(r["id"], {}).get("act"), judged.get("J2", {}).get(r["id"], {}).get("act")
-            if j1 is None or j2 is None:
+            if j1 is None and j2 is None and split == "train":
+                status[r["id"]] = "intent_only"                                  # training rows are not judged (GPU time): their label is the author's intent, and the manifest says so
+            elif j1 is None or j2 is None:
                 status[r["id"]] = "unjudged"
             elif j1 == j2 == r["intended_act"]:
                 status[r["id"]] = "certain"
@@ -211,7 +213,7 @@ def agreement() -> dict:
     contested = []
     for split, rs in data.items():
         by = {r["id"]: r for r in rs}
-        both = [r["id"] for r in rs if status[r["id"]] != "unjudged"]
+        both = [r["id"] for r in rs if status[r["id"]] not in ("unjudged", "intent_only")]
         j1 = [judged["J1"][i]["act"] for i in both]
         j2 = [judged["J2"][i]["act"] for i in both]
         intent = [by[i]["intended_act"] for i in both]
@@ -222,6 +224,9 @@ def agreement() -> dict:
             by_bucket.setdefault(b, {"rows": 0, "certain": 0})
             by_bucket[b]["rows"] += 1
             by_bucket[b]["certain"] += status[i] == "certain"
+        if not both:
+            out["splits"][split] = {"rows": len(rs), "judged": 0, "note": "not judged: the label is the author's intent"}
+            continue
         out["splits"][split] = {"rows": len(rs), "judged": len(both), "kappa_J1_J2": DS.kappa(j1, j2) if both else None, "kappa_J1_intent": DS.kappa(j1, intent) if both else None,
                                 "kappa_J2_intent": DS.kappa(j2, intent) if both else None, "raw_agreement_J1_J2": round(sum(a == b for a, b in zip(j1, j2)) / len(both), 3) if both else None,
                                 "raw_agreement_judges_with_intent": round(sum(a == b == c for a, b, c in zip(j1, j2, intent)) / len(both), 3) if both else None, **counts, "by_bucket": by_bucket}
@@ -260,14 +265,15 @@ def build() -> dict[str, str]:
         for r in rs:
             s = status[r["id"]]
             final = adj[r["id"]][0] if r["id"] in adj else r["intended_act"]
-            r.update({"act": final, "judge_1": judged["J1"][r["id"]]["act"], "judge_2": judged["J2"][r["id"]]["act"], "judge_status": "adjudicated" if r["id"] in adj else s, "critical": tax[final]["critical"],
+            both = s != "intent_only"
+            r.update({"act": final, "judge_1": judged["J1"][r["id"]]["act"] if both else None, "judge_2": judged["J2"][r["id"]]["act"] if both else None, "judge_status": "adjudicated" if r["id"] in adj else s, "critical": tax[final]["critical"],
                       "synthetic": True, "independent": False, "persona": PROFILES[r["author"]][1]})
         text = "".join(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n" for r in rs)
         files[f"{split}.jsonl"] = text
         manifest["files"][f"{split}.jsonl"] = hashlib.sha256(text.encode("utf-8")).hexdigest()
         manifest["rows"][split] = len(rs)
         manifest["authors"][split] = sorted({r["author"] for r in rs})
-        manifest["status"][split] = {k: sum(1 for r in rs if r["judge_status"] == k) for k in ("certain", "uncertain", "adjudicated")}
+        manifest["status"][split] = {k: sum(1 for r in rs if r["judge_status"] == k) for k in ("certain", "uncertain", "adjudicated", "intent_only")}
         manifest["changed_by_adjudication"][split] = sum(1 for r in rs if r["act"] != r["intended_act"])
     manifest["leakage"] = leakage(data, False)
     if any(v for v in manifest["leakage"]["jaccard_pairs"].values()):

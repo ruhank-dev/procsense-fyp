@@ -241,6 +241,8 @@ def main(argv: list[str]) -> int:
         ("AI gate tests", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_ai_gate.py"])),
         ("red team of the validator", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_redteam.py"])),
         ("synthetic diverse classifier set is current (model-written, NOT independent)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/synthetic.py", "check"])),
+        ("synthetic v2 classifier set is current (model-written, AI-judged, NOT independent)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/synthetic2.py", "check"])),
+        ("synthetic v2 classifier set tests (structure, scenario groups, leakage, flags, adjudications)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_synthetic2.py"])),
         ("recovery handover content current and sourced", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_recovery_handover.py", "--check"])),
         ("intra-operative event content current and sourced", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_intraop_events.py", "--check"])),
         ("labelling toolkit (agreement, adjudication, frozen splits)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_labelling.py"])),

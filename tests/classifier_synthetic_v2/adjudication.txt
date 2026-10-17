@@ -1,0 +1,139 @@
+V2D0011|CLARIFY|asks which bag is meant: rule 7, explain something unclear
+V2D0018|ANSWER_QUESTION|tells the patient when: rule 8
+V2D0019|ANSWER_QUESTION|informs the patient what the sore throat is: rule 8
+V2D0021|ANSWER_QUESTION|informs the patient what the sickness is: rule 8, no first-clause comfort
+V2D0027|EXPLAIN_PROCEDURE|the first clause explains the anaesthetic: rule 6, first clause decides
+V2D0047|CHECK_UNDERSTANDING|checks the patient knows when to ring: rule 7
+V2D0048|CHECK_UNDERSTANDING|does that make sense: rule 7
+V2D0049|CHECK_UNDERSTANDING|asks what the patient would do: rule 7
+V2D0050|ACKNOWLEDGE_EMOTION|names how the patient feels: rule 6
+V2D0052|ACKNOWLEDGE_EMOTION|recognises the crying: rule 6
+V2D0054|ACKNOWLEDGE_EMOTION|recognises the fright: rule 6, recoverable
+V2D0064|ACKNOWLEDGE_FACT|notes back what the patient did: rule 5
+V2D0066|ACKNOWLEDGE_FACT|notes back what the patient said: rule 5
+V2D0068|ACKNOWLEDGE_FACT|notes back the dizziness, recoverable: rule 5
+V2D0070|ACKNOWLEDGE_FACT|notes back what the patient said: rule 5
+V2D0071|CLOSED_LOOP|reads back a dose and says it is being given: rule 5
+V2D0073|CLOSED_LOOP|repeats a hold instruction back: rule 5
+V2D0075|CLOSED_LOOP|repeats a plan back to a colleague: rule 5, recoverable
+V2D0077|CLOSED_LOOP|confirms an instruction back in transcript style: rule 5
+V2D0078|ESCALATE_SPEECH|asks for the registrar to come: rule 4
+V2D0081|ESCALATE_SPEECH|asks for the surgeon to come to the bed: rule 4, judgement and presence, not a task
+V2D0092|SBAR_ELEMENT|a Situation line; bleeding is a problem, not one of the rule 2 elements: rule 3
+V2D0093|SBAR_ELEMENT|a Background line: rule 3
+V2D0094|SBAR_ELEMENT|an Assessment line: rule 3
+V2D0117|STATE_ALLERGY|asks about a rash from something: allergy question, rule 1
+V2D0129|HANDOVER_CRITICAL_ELEMENT|identity mismatch told to a colleague: rule 2
+V2D0167|EXPLAIN_PROCEDURE|the first clause explains the anaesthetic: rule 6
+V2D0171|EXPLAIN_TEST|explains a blood gas test: rule 6
+V2D0184|CHECK_UNDERSTANDING|asks the patient to say back how they will take it: rule 7
+V2D0187|CHECK_UNDERSTANDING|asks what the patient will do: rule 7, recoverable
+V2D0188|CHECK_UNDERSTANDING|does that make sense: rule 7
+V2D0192|ACKNOWLEDGE_EMOTION|recognises the tears: rule 6
+V2D0194|ACKNOWLEDGE_EMOTION|recognises the fright: rule 6, recoverable
+V2D0205|ACKNOWLEDGE_FACT|notes back when the discomfort began: rule 5
+V2D0206|ACKNOWLEDGE_FACT|notes back no fever: rule 5
+V2D0215|CLOSED_LOOP|repeats the plan back: rule 5, recoverable
+V2D0217|CLOSED_LOOP|confirms an instruction back: rule 5
+V2D0221|ESCALATE_SPEECH|asks the registrar to come to the bedside: rule 4
+V2D0232|SBAR_ELEMENT|a Situation line: rule 3
+V2D0258|STATE_ALLERGY|allergy question comes before the consent question: rule 1 order
+V2D0267|HANDOVER_CRITICAL_ELEMENT|draws a colleague's attention to an allergy: rule 2
+V2D0284|ASK_TOPIC|corrects the speaker's own question about the cough: not a request to explain
+V2D0286|ASK_TOPIC|asks again what the patient takes: the rubric note, not unclear speech
+V2D0296|ANSWER_QUESTION|informs the patient about the scar: rule 8
+V2D0307|EXPLAIN_PROCEDURE|the first clause explains the anaesthetic: rule 6
+V2D0326|CHECK_UNDERSTANDING|asks the patient to explain it back: rule 7
+V2D0328|CHECK_UNDERSTANDING|does that make sense: rule 7
+V2D0329|CHECK_UNDERSTANDING|asks what the patient has taken in: rule 7
+V2D0332|ACKNOWLEDGE_EMOTION|recognises that being frightened is not silly: rule 6
+V2D0334|ACKNOWLEDGE_EMOTION|recognises how hard it is: rule 6, recoverable
+V2D0348|ACKNOWLEDGE_FACT|notes back that the patient was told about a clot: rule 5, recoverable
+V2D0350|ACKNOWLEDGE_FACT|notes back when the pain started: rule 5
+V2D0355|CLOSED_LOOP|repeats the instruction back: rule 5, recoverable
+V2D0394|STATE_ALLERGY|states the patient's reaction back to the patient: rule 1
+V2D0413|HANDOVER_CRITICAL_ELEMENT|states an allergy about "she" to a colleague: rule 2
+V2E0002|ASK_TOPIC|first clause asks about a stiff neck: rule 7
+V2E0018|CLARIFY|asks what an unclear phrase means: rule 7
+V2E0021|EXPLAIN_PROCEDURE|says what the anaesthetic involves: rule 6
+V2E0026|ANSWER_QUESTION|tells the patient when: rule 8
+V2E0034|EXPLAIN_PROCEDURE|says what a transfusion involves: rule 6
+V2E0056|EXPLAIN_ACTION|says which arm the drip goes in, to the patient: rule 6
+V2E0061|ASK_TOPIC|asks what the patient does with tablets: rule 7, a habit question
+V2E0062|CHECK_UNDERSTANDING|asks the patient to run through it: rule 7
+V2E0064|CHECK_UNDERSTANDING|asks what the patient will do tomorrow, a plan check: rule 7
+V2E0067|CHECK_UNDERSTANDING|checks the patient knows what to do if they feel something: rule 7, recoverable
+V2E0068|CHECK_UNDERSTANDING|does that make sense: rule 7
+V2E0074|ACKNOWLEDGE_EMOTION|names how the patient looks and feels: rule 6
+V2E0075|ACKNOWLEDGE_EMOTION|first clause recognises the shaking: rule 6
+V2E0077|ACKNOWLEDGE_EMOTION|recognises the draining wait: rule 6, recoverable
+V2E0078|ACKNOWLEDGE_EMOTION|first clause names the worry: rule 6, first clause decides
+V2E0082|REASSURE|comfort about experience: rule 6
+V2E0086|REASSURE|comfort that it is safe: rule 6
+V2E0097|ACKNOWLEDGE_FACT|notes back what happened after the hernia: rule 5
+V2E0099|ACKNOWLEDGE_FACT|notes back a past operation: rule 5
+V2E0105|CLOSED_LOOP|repeats a hold instruction back: rule 5
+V2E0106|CLOSED_LOOP|reads back a corrected dose: rule 5
+V2E0107|CLOSED_LOOP|repeats an instruction back: rule 5, recoverable
+V2E0109|CLOSED_LOOP|says it has the instruction and repeats it: rule 5
+V2E0110|CLOSED_LOOP|confirms an instruction back: rule 5
+V2E0113|ESCALATE_SPEECH|asks for the obstetrician in charge to come: rule 4
+V2E0131|SBAR_ELEMENT|a Situation line; a flagged airway is a plan item, not a rule 2 element: rule 3
+V2E0134|SBAR_ELEMENT|a Recommendation line: rule 3
+V2E0163|STATE_ALLERGY|states the patient's reaction back to the patient: rule 1
+V2E0181|HANDOVER_CRITICAL_ELEMENT|states an allergy about 'she' to a colleague: rule 2
+V2E0183|HANDOVER_CRITICAL_ELEMENT|identity mismatch told to a colleague: rule 2
+V2E0189|HANDOVER_CRITICAL_ELEMENT|tells a colleague of an allergy: rule 2
+V2E0207|ASK_TOPIC|asks about night breathing: rule 7, recoverable
+V2E0208|ASK_TOPIC|asks again what the patient takes: the rubric note
+V2E0221|ANSWER_QUESTION|tells the patient they will be asleep: rule 8
+V2E0227|ANSWER_QUESTION|tells the patient what to expect on waking: rule 8, recoverable
+V2E0234|EXPLAIN_PROCEDURE|says how a transfusion is given: rule 6
+V2E0261|CHECK_UNDERSTANDING|asks the patient to recall what was said: rule 7
+V2E0264|CHECK_UNDERSTANDING|asks what the patient would do: rule 7
+V2E0266|CHECK_UNDERSTANDING|asks the patient to give the plan from their side: rule 7
+V2E0267|CHECK_UNDERSTANDING|asks what the patient will do: rule 7, recoverable
+V2E0272|ACKNOWLEDGE_EMOTION|names the nervousness: rule 6
+V2E0275|ACKNOWLEDGE_EMOTION|recognises the tears: rule 6
+V2E0280|ACKNOWLEDGE_EMOTION|names the tiredness and being fed up: rule 6
+V2E0293|ACKNOWLEDGE_FACT|notes back the due date: rule 5
+V2E0296|ACKNOWLEDGE_FACT|notes back what the patient said and corrects the record: rule 5
+V2E0297|ACKNOWLEDGE_FACT|notes back what happened after the hernia: rule 5, recoverable
+V2E0300|ACKNOWLEDGE_FACT|notes back the third baby: rule 5
+V2E0307|CLOSED_LOOP|repeats an instruction back: rule 5, recoverable
+V2E0310|CLOSED_LOOP|confirms an instruction back: rule 5
+V2E0313|ESCALATE_SPEECH|asks for the obstetrician to come: rule 4
+V2E0316|ESCALATE_SPEECH|asks for a doctor because of bleeding: rule 4
+V2E0335|SBAR_ELEMENT|a Recommendation line: rule 3
+V2E0338|SBAR_ELEMENT|a Recommendation line: rule 3
+V2E0362|STATE_ALLERGY|asks about food reactions that matter for the drug: rule 1
+V2E0363|STATE_ALLERGY|states the patient's reaction back to the patient: rule 1
+V2E0366|STATE_ALLERGY|asks which allergy it is: rule 1
+V2E0389|HANDOVER_CRITICAL_ELEMENT|tells a colleague of an allergy: rule 2
+V2E0406|ASK_TOPIC|asks since when the baby is not moving, self-corrected: rule 7
+V2E0407|ASK_TOPIC|asks about heart pain: rule 7, recoverable
+V2E0421|ANSWER_QUESTION|tells the patient they will sleep: rule 8
+V2E0425|ANSWER_QUESTION|tells the patient the teeth cannot stay in: rule 8
+V2E0426|ANSWER_QUESTION|tells the patient when: rule 8
+V2E0430|ANSWER_QUESTION|tells the patient where the family waits: rule 8
+V2E0436|EXPLAIN_PROCEDURE|says how the back injection works: rule 6
+V2E0438|EXPLAIN_PROCEDURE|first clause says what the injection does: rule 6, first clause decides
+V2E0456|EXPLAIN_ACTION|asks for the hand for the blood to be taken: rule 6
+V2E0464|CHECK_UNDERSTANDING|asks if the patient knows what to do: rule 7
+V2E0465|CHECK_UNDERSTANDING|asks the patient to explain: rule 7
+V2E0466|CHECK_UNDERSTANDING|asks the patient to give the plan: rule 7
+V2E0469|CHECK_UNDERSTANDING|asks the patient to repeat what the doctor said: rule 7
+V2E0471|ACKNOWLEDGE_EMOTION|names the fear: rule 6
+V2E0475|ACKNOWLEDGE_EMOTION|recognises the crying: rule 6
+V2E0486|REASSURE|comfort that it is safe: rule 6
+V2E0491|ACKNOWLEDGE_FACT|notes back a crown: rule 5
+V2E0492|ACKNOWLEDGE_FACT|notes back the snoring: rule 5
+V2E0497|ACKNOWLEDGE_FACT|notes back how the patient felt after the hernia: rule 5, recoverable
+V2E0500|ACKNOWLEDGE_FACT|notes back the third baby: rule 5
+V2E0505|CLOSED_LOOP|repeats a hold instruction back: rule 5
+V2E0507|CLOSED_LOOP|repeats an instruction back: rule 5, recoverable
+V2E0513|ESCALATE_SPEECH|asks for the doctor for the babies to come: rule 4
+V2E0516|ESCALATE_SPEECH|asks for a doctor because of blood loss: rule 4
+V2E0566|STATE_ALLERGY|asks which allergy it is: rule 1
+V2E0583|HANDOVER_CRITICAL_ELEMENT|identity mismatch told to a colleague: rule 2
+V2E0589|HANDOVER_CRITICAL_ELEMENT|tells a colleague of an allergy: rule 2

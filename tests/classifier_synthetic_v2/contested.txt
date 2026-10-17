@@ -1,0 +1,139 @@
+V2D0011|The what, no, which bag are you pointing at?|NONE|NONE
+V2D0018|Back to the ward at six, no, seven, ish.|NONE|NONE
+V2D0019|Sore throat's from the tube, it settles in...|NONE|NONE
+V2D0021|yes the sickness is from the anaesthetic it will pass|REASSURE|REASSURE
+V2D0027|The anaesthetic will put you to sleep, so you needn't worry, it's safe.|REASSURE|REASSURE
+V2D0047|And you know to ring if the wound...|NONE|NONE
+V2D0048|Does that make sense, or shall I go over the scan again?|CLARIFY|CLARIFY
+V2D0049|what will you do if you feel chest pain at home|ASK_TOPIC|ASK_TOPIC
+V2D0050|Rough night. I can tell.|NONE|NONE
+V2D0052|Don't apologise for crying. Not a problem.|REASSURE|REASSURE
+V2D0054|Must be frightening waking up and...|NONE|NONE
+V2D0064|OK, you got up and walked at noon.|NONE|NONE
+V2D0066|OK so no pain when you cough. Got it.|REASSURE|REASSURE
+V2D0068|Okay, so you started feeling dizzy after the...|NONE|NONE
+V2D0070|ok you tell me you have not passed urine yet|ASK_TOPIC|ASK_TOPIC
+V2D0071|Morphine 2.5 IV, giving now.|VOICE_ORDER|VOICE_ORDER
+V2D0073|No more fluids till you say. Got it.|VOICE_ORDER|VOICE_ORDER
+V2D0075|So repeat the gas in an hour, then...|VOICE_ORDER|VOICE_ORDER
+V2D0077|confirm hold the warfarin tonight and check the inr in the morning|VOICE_ORDER|VOICE_ORDER
+V2D0078|Need the reg. Now.|VOICE_ORDER|VOICE_ORDER
+V2D0081|Call the nurse, no, the surgeon, to this bed.|VOICE_ORDER|VOICE_ORDER
+V2D0092|S: Mr Reid, day one hernia repair, bleeding from wound.|HANDOVER_CRITICAL_ELEMENT|HANDOVER_CRITICAL_ELEMENT
+V2D0093|B: on aspirin, otherwise fit.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT
+V2D0094|A: Not shocked, not tachycardic, wound oozing.|HANDOVER_CRITICAL_ELEMENT|HANDOVER_CRITICAL_ELEMENT
+V2D0117|Ever had a rash from...|ASK_TOPIC|ASK_TOPIC
+V2D0129|Wrong name on the band, not Reid, check.|CONFIRM_IDENTITY|CONFIRM_IDENTITY
+V2D0167|The anaesthetic will render you unconscious for the duration, so please do not be concerned; it is safe.|REASSURE|REASSURE
+V2D0171|The blood gas is not performed under anaesthetic, but it is brief and little more than a sharp scratch.|EXPLAIN_PROCEDURE|EXPLAIN_PROCEDURE
+V2D0184|Would you be so kind as to repeat to me how you will take the anticoagulant at home?|CLARIFY|CLARIFY
+V2D0187|So that I am satisfied that we understand one another, what will you do in the event that...|NONE|NONE
+V2D0188|Does that make sense to you, or shall I take you through the scan once more?|CLARIFY|CLARIFY
+V2D0192|You must not feel ashamed of your tears; they are quite understandable in the circumstances.|REASSURE|REASSURE
+V2D0194|I can only imagine how frightening it must have been to wake in that state and...|NONE|NONE
+V2D0205|I see; the discomfort began following your first walk, which I have recorded.|NONE|NONE
+V2D0206|So you have had no fever or rigors since the operation; I am obliged to you.|NONE|NONE
+V2D0215|The plan is therefore to repeat the gas in an hour, and thereafter I am to...|NONE|NONE
+V2D0217|i confirm you wish the warfarin to be withheld this evening|VOICE_ORDER|VOICE_ORDER
+V2D0221|Call the staff nurse, or rather, the registrar, to this bedside as soon as possible.|VOICE_ORDER|VOICE_ORDER
+V2D0232|Situation: this is Mr Reid, first day following hernia repair, with bleeding from the wound.|HANDOVER_CRITICAL_ELEMENT|HANDOVER_CRITICAL_ELEMENT
+V2D0258|Do you have any allergies, and are you content to proceed?|CONSENT_SIGN|CONSENT_SIGN
+V2D0267|I must draw your attention to a documented anaphylactic reaction to penicillin.|STATE_ALLERGY|STATE_ALLERGY
+V2D0284|Do you cough a lot, no, sorry, I meant do you bring up any phlegm when you do?|CLARIFY|CLARIFY
+V2D0286|I'm sorry, can you tell me again what the tablets for your stomach are called?|CLARIFY|CLARIFY
+V2D0296|I think the scar is going to be quite small, probably only a few centimetres long.|NONE|NONE
+V2D0307|The anaesthetic will make you sleep, but, um, please don't worry, it's very safe.|REASSURE|REASSURE
+V2D0326|Is that clear? Oh, actually, could you explain it to me so I know I said it right?|CLARIFY|CLARIFY
+V2D0328|Does that make sense, or shall I run through the tests again?|CLARIFY|CLARIFY
+V2D0329|can you tell me what you have taken in from our chat|CLARIFY|CLARIFY
+V2D0332|It's not silly to feel frightened, um, lots of people do.|REASSURE|REASSURE
+V2D0334|I can imagine it's been so hard being away from your family and...|NONE|NONE
+V2D0348|Okay, thanks, so you were told about the clot in your leg when you...|NONE|NONE
+V2D0350|thanks i see that your pain started after you moved|NONE|NONE
+V2D0355|So you'd like the gas repeated in an hour, and then I should...|NONE|NONE
+V2D0394|You mentioned morphine gives you a reaction, so I'm writing that up in red on your chart.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT
+V2D0413|i just want to say that she has an allergy to penicillin|STATE_ALLERGY|STATE_ALLERGY
+V2E0002|Neck stiff? Can you open wide?|EXPLAIN_ACTION|EXPLAIN_ACTION
+V2E0018|What do you mean you've been run down lately?|NONE|NONE
+V2E0021|You'll be breathing through a tube while you're asleep.|EXPLAIN_PROCEDURE|EXPLAIN_PROCEDURE
+V2E0026|Results tomorrow morning, sorry, tomorrow afternoon.|NONE|NONE
+V2E0034|A transfusion means red cells go in through a drip over a couple of hours.|EXPLAIN_TEST|EXPLAIN_TEST
+V2E0056|Left arm, no, right arm for the drip.|VOICE_ORDER|VOICE_ORDER
+V2E0061|What do you do with your tablets tonight? Tell me.|ASK_TOPIC|ASK_TOPIC
+V2E0062|Run through what happens when you wake up.|EXPLAIN_PROCEDURE|EXPLAIN_PROCEDURE
+V2E0064|What will you do about your insulin tomorrow morning?|ASK_TOPIC|ASK_TOPIC
+V2E0067|Just to be sure, you know that if you feel...|NONE|NONE
+V2E0068|Does that make sense, or shall I go through the transfusion again?|CLARIFY|CLARIFY
+V2E0074|You look drained. Hard few days.|NONE|NONE
+V2E0075|Don't be ashamed of the shaking, no one minds.|REASSURE|REASSURE
+V2E0077|I know this has been a really draining wait for...|NONE|NONE
+V2E0078|I can see you're worried sick, and we'll look after both of you.|REASSURE|REASSURE
+V2E0082|This is bread and butter for us. Done it hundreds of times.|NONE|NONE
+V2E0086|Dangerous, no, safe, very safe, we do these daily.|NONE|NONE
+V2E0097|I see, you had a bad time coming round after your hernia and...|ACKNOWLEDGE_EMOTION|ACKNOWLEDGE_EMOTION
+V2E0099|thank you i see you had a tonsillectomy as a child|NONE|NONE
+V2E0105|I won't remove the tube until you say. Got it.|NONE|NONE
+V2E0106|Syntocinon 5 units, no, 10 units slowly, confirming 10.|VOICE_ORDER|VOICE_ORDER
+V2E0107|So you want the gas turned down and then I should...|NONE|NONE
+V2E0109|ok i have that so give atropine now|VOICE_ORDER|VOICE_ORDER
+V2E0110|to confirm you want a repeat sugar in thirty minutes|VOICE_ORDER|VOICE_ORDER
+V2E0113|Call the obstetrician in charge to room two.|VOICE_ORDER|VOICE_ORDER
+V2E0131|S: Mrs Nowak, 58, thyroidectomy this morning, difficult airway flagged.|HANDOVER_CRITICAL_ELEMENT|HANDOVER_CRITICAL_ELEMENT
+V2E0134|R: Prepare theatre for a section within the hour.|VOICE_ORDER|VOICE_ORDER
+V2E0163|So the penicillin gave you swelling in your lips, I'll note that.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT
+V2E0181|She's got a latex allergy, swelling last time.|STATE_ALLERGY|STATE_ALLERGY
+V2E0183|Wristband says Ibrahim, forms say Ibrahimi, recheck.|CONFIRM_IDENTITY|CONFIRM_IDENTITY
+V2E0189|please know the patient is allergic to latex|STATE_ALLERGY|STATE_ALLERGY
+V2E0207|And your breathing at night, my love, do you ever wake up feeling like...|NONE|NONE
+V2E0208|What was it you said you take for your waterworks, I forget now?|CLARIFY|CLARIFY
+V2E0221|Oh yes, you'll be sound asleep, you won't know a thing about it, I promise.|REASSURE|REASSURE
+V2E0227|Most people feel like they've had a good night's sleep, a bit woozy, and then...|NONE|NONE
+V2E0234|With the transfusion we hang the bag of red cells on the drip stand and it runs into your arm slowly.|EXPLAIN_ACTION|EXPLAIN_ACTION
+V2E0261|Now remind me, what did we say about your morning tablets, love?|ASK_TOPIC|ASK_TOPIC
+V2E0264|Have you got that, then, can you tell me what you'd do if you start bleeding at home?|ASK_TOPIC|ASK_TOPIC
+V2E0266|Is that clear? Oh, hang on, what I mean is, can you tell me the plan from your side?|CLARIFY|CLARIFY
+V2E0267|I just want to be sure you've got it, so what will you do if the pain...|NONE|NONE
+V2E0272|You're shaking, aren't you, love, it's perfectly normal to be this nervous.|REASSURE|REASSURE
+V2E0275|No need to say sorry for the tears, it's only natural to be upset.|REASSURE|REASSURE
+V2E0280|you must be really tired and fed up by now|NONE|NONE
+V2E0293|Thanks, pet, so the baby's due on the ninth, I've put that on the chart.|NONE|NONE
+V2E0296|So that's thirty units at night, oh no, you said twenty, I'll cross it out and fix it.|CLOSED_LOOP|CLOSED_LOOP
+V2E0297|I see, so you had that bad reaction coming round after your hernia, and then...|ACKNOWLEDGE_EMOTION|ACKNOWLEDGE_EMOTION
+V2E0300|ok i see that this is your third baby that is lovely|NONE|NONE
+V2E0307|Lovely, so you're wanting the drip turned down and then I should...|NONE|NONE
+V2E0310|to be sure i have it you want the sugar done again in half an hour|VOICE_ORDER|VOICE_ORDER
+V2E0313|Could you ring through to the obstetrician and ask them to come to room two, please?|VOICE_ORDER|VOICE_ORDER
+V2E0316|Fetch the midwife, no, sorry, fetch the doctor, because she's bleeding rather a lot.|VOICE_ORDER|VOICE_ORDER
+V2E0335|Recommendation, I'd say we shouldn't start until the senior anaesthetist has arrived.|ESCALATE_SPEECH|ESCALATE_SPEECH
+V2E0338|Recommendation, I'd really like the obstetrician to come and review her.|ESCALATE_SPEECH|ESCALATE_SPEECH
+V2E0362|Anything with eggs or soya make you poorly? It matters for the anaesthetic drug.|ASK_TOPIC|ASK_TOPIC
+V2E0363|So you told me penicillin swells your lips up, I'll put that on the red wristband.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT
+V2E0366|Is it sulpha you can't take, oh, no, you said iodine, which one is it?|CLARIFY|CLARIFY
+V2E0389|please be aware that the patient is allergic to latex|STATE_ALLERGY|STATE_ALLERGY
+V2E0406|The baby is moving, no, sorry, since when the baby is not moving?|NONE|NONE
+V2E0407|And the heart, you feel pain in the heart when you...|NONE|NONE
+V2E0421|Yes, you will sleep totally, you don't feel nothing.|REASSURE|REASSURE
+V2E0425|No, you cannot keep the teeth in, we put in safe place.|EXPLAIN_ACTION|EXPLAIN_ACTION
+V2E0426|The result come tomorrow morning, sorry, tomorrow in the afternoon.|NONE|NONE
+V2E0430|your family is going to wait in the waiting room|NONE|NONE
+V2E0436|The injection for the back is in the middle, no, little bit down, and the legs are heavy.|NONE|NONE
+V2E0438|The injection in the back make you numb below, and is safe, don't be worry.|REASSURE|REASSURE
+V2E0456|Give me your right hand, no, the left, for take the blood.|VOICE_ORDER|VOICE_ORDER
+V2E0464|You know what to do if the bleeding start at home? Tell me.|ASK_TOPIC|ASK_TOPIC
+V2E0465|You are not confused about not eating, no? Please explain me.|CLARIFY|CLARIFY
+V2E0466|Is clear? No, sorry, you tell me first what is the plan for you.|CLARIFY|CLARIFY
+V2E0469|can you repeat to me what the doctor say to you|CLARIFY|CLARIFY
+V2E0471|I see you are very afraid to sleep. Is normal.|REASSURE|REASSURE
+V2E0475|Is not a shame to cry, it is normal to be sad now.|REASSURE|REASSURE
+V2E0486|Is dangerous, no, sorry, is very safe, we make this every day.|NONE|NONE
+V2E0491|Ok, you have a crown on the top, left. I write.|NONE|NONE
+V2E0492|Ok thank you, you snore and stop breathing in the night. I write this.|NONE|NONE
+V2E0497|Ok, you feel bad when you wake after the hernia, and then...|NONE|NONE
+V2E0500|ok so this is your third baby thank you|NONE|NONE
+V2E0505|I don't take out the tube before you say, ok, I wait.|NONE|NONE
+V2E0507|Ok, you want me to reduce the gas and then I...|NONE|NONE
+V2E0513|Can you call the doctor for the babies to come in room two?|VOICE_ORDER|VOICE_ORDER
+V2E0516|Call the midwife, no, call the doctor, she is losing much blood.|VOICE_ORDER|VOICE_ORDER
+V2E0566|Sulpha is your allergy, no, sorry, is iodine, which one?|CLARIFY|CLARIFY
+V2E0583|The bracelet say Ibrahim but the paper say Ibrahimi, we must check.|CONFIRM_IDENTITY|CONFIRM_IDENTITY
+V2E0589|please know that the patient has allergy to latex|STATE_ALLERGY|STATE_ALLERGY

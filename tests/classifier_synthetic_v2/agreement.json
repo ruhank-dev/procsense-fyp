@@ -1,0 +1,95 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "valid_for_claims": false,
+ "judge_model": "qwen3.5:4b-q4_K_M",
+ "configs": {
+  "J1": "rubric, zero-shot, temperature 0, labels in taxonomy order",
+  "J2": "rubric reworded with one example per label, labels in a fixed shuffled order, temperature 0.3, seed 7"
+ },
+ "rubric_sha256": "172ecc763555ed0e131e1346cc8fc0a9d7636066acd0ace5649ef491184268ed",
+ "splits": {
+  "train": {
+   "rows": 840,
+   "judged": 0,
+   "note": "not judged: the label is the author's intent"
+  },
+  "dev": {
+   "rows": 420,
+   "judged": 420,
+   "kappa_J1_J2": 0.841,
+   "kappa_J1_intent": 0.767,
+   "kappa_J2_intent": 0.757,
+   "raw_agreement_J1_J2": 0.85,
+   "raw_agreement_judges_with_intent": 0.719,
+   "certain": 302,
+   "uncertain": 63,
+   "contested": 55,
+   "by_bucket": {
+    "plain": {
+     "rows": 120,
+     "certain": 93
+    },
+    "negation": {
+     "rows": 60,
+     "certain": 44
+    },
+    "correction": {
+     "rows": 60,
+     "certain": 42
+    },
+    "incomplete": {
+     "rows": 60,
+     "certain": 35
+    },
+    "ambiguous": {
+     "rows": 60,
+     "certain": 42
+    },
+    "asr_style": {
+     "rows": 60,
+     "certain": 46
+    }
+   }
+  },
+  "test": {
+   "rows": 600,
+   "judged": 600,
+   "kappa_J1_J2": 0.853,
+   "kappa_J1_intent": 0.77,
+   "kappa_J2_intent": 0.758,
+   "raw_agreement_J1_J2": 0.862,
+   "raw_agreement_judges_with_intent": 0.722,
+   "certain": 433,
+   "uncertain": 83,
+   "contested": 84,
+   "by_bucket": {
+    "plain": {
+     "rows": 240,
+     "certain": 177
+    },
+    "negation": {
+     "rows": 60,
+     "certain": 38
+    },
+    "correction": {
+     "rows": 60,
+     "certain": 39
+    },
+    "incomplete": {
+     "rows": 60,
+     "certain": 40
+    },
+    "ambiguous": {
+     "rows": 60,
+     "certain": 44
+    },
+    "asr_style": {
+     "rows": 120,
+     "certain": 95
+    }
+   }
+  }
+ },
+ "note": "Agreement between two configurations of the same judge model is a consistency check, not evidence that a label is right."
+}

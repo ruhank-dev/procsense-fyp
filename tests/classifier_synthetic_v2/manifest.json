@@ -1,0 +1,114 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "valid_for_claims": false,
+ "ai_judged": true,
+ "note": "Written by the language model that built the tooling and labelled by two AI judge configurations of one local model; contested rows settled by that same builder. No person wrote, labelled or reviewed any row.",
+ "personas": {
+  "R1": "junior doctor on call: clipped, abbreviations, imperatives",
+  "R2": "nurse practitioner: warm, long, explanatory sentences",
+  "R3": "anaesthetic technician: practical, equipment-focused, informal",
+  "R4": "final-year medical student: textbook, formal phrasing",
+  "R5": "senior registrar: calm, concise, complete",
+  "R6": "second-language clinician: simple grammar, dropped articles",
+  "D1": "exhausted night-shift clinician: fragments, trailing off",
+  "D2": "formal senior consultant: long, passive, courteous",
+  "D3": "nervous first-week trainee: apologetic, hedging",
+  "E1": "brusque surgeon: curt, imperative, minimal",
+  "E2": "chatty ward nurse: warm, digressive, endearments",
+  "E3": "second-language clinician (other mother tongue): hesitant, unusual word order"
+ },
+ "scenario_groups": {
+  "train": [
+   "G1",
+   "G2",
+   "G3",
+   "G4"
+  ],
+  "dev": [
+   "G5",
+   "G6"
+  ],
+  "test": [
+   "G7",
+   "G8"
+  ]
+ },
+ "judge_model": "qwen3.5:4b-q4_K_M",
+ "judge_configs": {
+  "J1": "rubric, zero-shot, temperature 0, labels in taxonomy order",
+  "J2": "rubric reworded with one example per label, labels in a fixed shuffled order, temperature 0.3, seed 7"
+ },
+ "rubric_sha256": "172ecc763555ed0e131e1346cc8fc0a9d7636066acd0ace5649ef491184268ed",
+ "files": {
+  "train.jsonl": "94013378735ec507ad41f6aedf79d0a1760346bac75ffeb44ff3e20d8b031ea1",
+  "dev.jsonl": "72061b78325369bb03c75ce260d7694ac0bf1aa8cbf115c84054f1e12bd09775",
+  "test.jsonl": "4be41617d691187210a2e7c7a915ba41018db37260f1e97364eb0cad9f686c9e"
+ },
+ "rows": {
+  "train": 840,
+  "dev": 420,
+  "test": 600
+ },
+ "authors": {
+  "train": [
+   "R1",
+   "R2",
+   "R3",
+   "R4",
+   "R5",
+   "R6"
+  ],
+  "dev": [
+   "D1",
+   "D2",
+   "D3"
+  ],
+  "test": [
+   "E1",
+   "E2",
+   "E3"
+  ]
+ },
+ "status": {
+  "train": {
+   "certain": 0,
+   "uncertain": 0,
+   "adjudicated": 0,
+   "intent_only": 840
+  },
+  "dev": {
+   "certain": 302,
+   "uncertain": 63,
+   "adjudicated": 55,
+   "intent_only": 0
+  },
+  "test": {
+   "certain": 433,
+   "uncertain": 83,
+   "adjudicated": 84,
+   "intent_only": 0
+  }
+ },
+ "adjudicated": {},
+ "changed_by_adjudication": {
+  "train": 0,
+  "dev": 0,
+  "test": 2
+ },
+ "leakage": {
+  "jaccard_pairs": {
+   "train~dev": [],
+   "train~test": [],
+   "dev~test": []
+  },
+  "cosine_review": {},
+  "cosine_refused": {},
+  "first3_overlap": {
+   "train~dev": 0.224,
+   "train~test": 0.235,
+   "dev~test": 0.125
+  }
+ },
+ "agreement_sha256": "455177ee45c6ace70dd55389a2a38ef51c7261d415c196fad511f110d683094a"
+}
