@@ -63,6 +63,9 @@ jobs:
       - name: Golden runs through the CLI
         run: dotnet run --no-build -c Release --project src/ProcSense.Cli -- golden --dir tests/golden
 
+      - name: Golden runs of generated cases through the CLI
+        run: dotnet run --no-build -c Release --project src/ProcSense.Cli -- golden --dir tests/golden_generated
+
       - name: Replay a recorded session (determinism round trip)
         run: |
           dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-A --seed 42 --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/run.json"
@@ -443,6 +446,12 @@ jobs:
 
       - name: generated package files, the pool and the engine
         run: uv run --project tools tools/ci/test_generation_package.py
+
+      - name: generated golden snapshot is whole and passes the generation gate
+        run: uv run --project tools tools/golden/generated.py check
+
+      - name: a generated case ends and scores like the case it keeps
+        run: uv run --project tools tools/ci/test_generation_live.py
 
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check

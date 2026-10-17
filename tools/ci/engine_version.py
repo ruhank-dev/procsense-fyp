@@ -17,6 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 GOLDEN = ROOT / "tests" / "golden"
+GENERATED = ROOT / "tests" / "golden_generated"      # golden runs of generated cases count too: the engine plays them like any case
 LOCK = GOLDEN / "engine_version.lock"
 CORE_INFO = ROOT / "src" / "ProcSense.Core" / "CoreInfo.cs"
 
@@ -28,10 +29,12 @@ def core_version(text: str | None = None) -> str:
     return m.group(1)
 
 
-def golden_digest(golden: Path = GOLDEN) -> str:
-    """One digest over every golden's name, log hash and state hash (sorted by name)."""
+def golden_digest(golden: Path = GOLDEN, extra: tuple[Path, ...] | None = None) -> str:
+    """One digest over every golden's name, log hash and state hash (sorted by name). The generated cases' goldens are included when the default folder is used."""
     lines = []
-    for p in sorted(golden.glob("*.expected.json"), key=lambda f: f.name):   # by name as text: Path order differs between Windows and Linux
+    folders = [golden] + list(extra if extra is not None else ((GENERATED,) if golden == GOLDEN else ()))
+    files = [p for folder in folders if folder.exists() for p in folder.glob("*.expected.json")]
+    for p in sorted(files, key=lambda f: f.name):   # by name as text: Path order differs between Windows and Linux
         doc = json.loads(p.read_text(encoding="utf-8"))
         lines.append(f"{p.name}:{doc.get('log_hash', '')}:{doc.get('state_hash', '')}")
     return hashlib.sha256("\n".join(lines).encode("utf-8")).hexdigest()

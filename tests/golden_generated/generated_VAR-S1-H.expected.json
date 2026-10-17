@@ -1,0 +1,46 @@
+{
+  "case": "GEN-S1-0000-001",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "a4c6d2990c103cac2d7e17c21411319a9af830825a86c1198f9f92dc2e5c0f7c",
+  "state_hash": "1c78ead58950f0fde1c92d6bfe01b969f17d414ed445e21f454806dc2aa3b7f5",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": true,
+    "disclosed_topics": [
+      "identity",
+      "allergies",
+      "allergy_reaction",
+      "reason_for_admission",
+      "responsible_adult",
+      "complaint",
+      "pregnancy"
+    ],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.penicillin_allergy",
+      "condition.pregnancy",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced",
+      "results.any_viewed"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "POSTPONED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 3,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

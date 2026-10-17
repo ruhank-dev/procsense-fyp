@@ -1,0 +1,612 @@
+{
+  "version": 1,
+  "id": "GEN-S2-0000-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "fa466d6ba4e1b9c9",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S2-0000-001",
+    "walkthrough_label": "Patient S2-G - dehydrated with kidney injury (composed GEN-S2-0000-001)",
+    "scenario": "S2",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Ms",
+      "full_name": "Nimra Butt",
+      "sex": "F",
+      "age": 25,
+      "occupation": "nurse",
+      "dob": "2001-10-07",
+      "mrn": "832517"
+    },
+    "spoken_identity_answer": "Nimra Butt, seventh of October 2001.",
+    "wristband": {
+      "name_text": "NIMRA BUTT",
+      "dob_text": "07/10/2001",
+      "mrn_text": "MR 832517"
+    },
+    "allergies": [],
+    "allergy_answer": "None.",
+    "reason_answer": "I have been sick for two days and have pain.",
+    "presentation": {
+      "setting": "emergency department",
+      "time_now": "12:00",
+      "summary": "Ms Nimra, 25, has been vomiting for two days: HR 116, BP 104/66, dry mouth, little urine. Urea 12.4 and creatinine 160 (usual 85)."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Vomiting for two days and pain in the lower right tummy.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "authored"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No blood in the vomit; little urine today.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "Ibuprofen for the pain.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Nothing for two days apart from sips of water.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "unknown"
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Sips of water at 10:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 2.0
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Last period 2 weeks ago.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "observations": [
+      {
+        "time": "12:00",
+        "condition": "initial",
+        "heart_rate": 116,
+        "heart_rhythm": "regular",
+        "systolic_bp": 104,
+        "diastolic_bp": 66,
+        "respiratory_rate": 20,
+        "spo2": 98,
+        "oxygen": "room_air",
+        "temperature_c": 37.8,
+        "acvpu": "A",
+        "pain_score": 6,
+        "news2": 3,
+        "note": "Dry mouth, little urine.",
+        "origin": "book"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.mouth",
+        "system": "mouth",
+        "finding": "Dry mouth; reduced skin turgor.",
+        "abnormal": true,
+        "disclose_on": [
+          "examine:mouth"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Tender in the lower right tummy; no rebound.",
+        "abnormal": true,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored",
+        "painful": true
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.urea",
+        "test": "Urea",
+        "value": "12.4",
+        "unit": "mmol/L",
+        "normal_range": "2.5-7.8",
+        "flag": "high",
+        "comment": "Raised: dehydration",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "book"
+      },
+      {
+        "id": "lab.creat",
+        "test": "Creatinine",
+        "value": "160",
+        "unit": "umol/L",
+        "normal_range": "45-90",
+        "flag": "high",
+        "comment": "Kidney injury stage 1 (about 1.9 times her usual)",
+        "quality": null,
+        "previous": {
+          "value": "85",
+          "when": "her usual value"
+        },
+        "minutes_to_result": 45,
+        "origin": "book"
+      },
+      {
+        "id": "lab.k",
+        "test": "Potassium",
+        "value": "3.3",
+        "unit": "mmol/L",
+        "normal_range": "3.5-5.3",
+        "flag": "low",
+        "comment": "Low after two days of vomiting",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.wbc",
+        "test": "WBC",
+        "value": "14.2",
+        "unit": "x10^9/L",
+        "normal_range": "4.0-11.0",
+        "flag": "high",
+        "comment": "Raised: infection is part of the cause",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      }
+    ],
+    "scores": [
+      {
+        "name": "AKI stage",
+        "value": "1",
+        "note": "Creatinine about 1.9 times her usual 85",
+        "origin": "book"
+      },
+      {
+        "name": "NEWS2",
+        "value": "3",
+        "note": "HR 116 (2) + BP 104 (1); recomputed",
+        "origin": "authored"
+      }
+    ],
+    "problems": [
+      {
+        "id": "sg.aki",
+        "type": "optimisable",
+        "label": "Dehydration with acute kidney injury (stage 1)",
+        "rank": 1,
+        "why": "Treatable: fluids with re-checks, stop kidney-harming medicines, measure urine, repeat bloods.",
+        "expected_actions": [
+          "IV fluids with re-checks",
+          "Stop ibuprofen and other kidney-harming medicines",
+          "Measure urine output",
+          "Repeat bloods"
+        ]
+      },
+      {
+        "id": "sg.surgery",
+        "type": "pathway_changing",
+        "label": "Surgery proceeds once she is resuscitated: the infection is part of the cause",
+        "rank": 2,
+        "why": "Do not delay the source control waiting for the kidneys to normalise.",
+        "expected_actions": [
+          "Senior surgeon and anaesthetist aware",
+          "Proceed once resuscitation has started"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "sg.d1",
+        "prompt": "Creatinine 160 (usual 85), dehydrated, on ibuprofen. What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "sg.d1.1",
+            "text": "Kidney injury stage 1 from dehydration: IV fluids with re-checks; stop ibuprofen; measure urine; repeat bloods; surgery proceeds once resuscitated",
+            "correct": true,
+            "consequence": "Matches the book."
+          },
+          {
+            "id": "sg.d1.2",
+            "text": "Give more ibuprofen for the pain",
+            "correct": false,
+            "consequence": "Harms the kidneys."
+          },
+          {
+            "id": "sg.d1.3",
+            "text": "Postpone surgery until the kidneys are normal",
+            "correct": false,
+            "consequence": "The infection is part of the cause."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "ready",
+    "paths": {
+      "correct": [
+        "Recognise AKI stage 1",
+        "IV fluids with re-checks",
+        "Stop ibuprofen",
+        "Measure urine output; repeat bloods",
+        "Proceed to surgery once resuscitated"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Continues ibuprofen",
+          "shows": "Creatinine rises on repeat",
+          "risk": "Worse kidney injury",
+          "recovery": "Stop; fluids"
+        }
+      ],
+      "missed": [
+        "Not asking about her medicines"
+      ],
+      "recovery": [
+        "Ask; stop"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "AKI recognised",
+        "Medicines reviewed"
+      ],
+      "missed": [
+        "Medicines not asked"
+      ],
+      "priority": "Dehydration with kidney injury",
+      "why_priority": "It is treatable and affects drug choices",
+      "related": "Dehydration, creatinine and medicines",
+      "independent": "None",
+      "trigger_escalation": "A creatinine above 1.5 times the usual",
+      "if_ignored": "Worsening kidney injury",
+      "remember": "Ask about ibuprofen; treat the dehydration and proceed"
+    },
+    "verification": [
+      "V-12"
+    ],
+    "sources": {
+      "story": "SR-2318",
+      "authored": "SR-3714"
+    },
+    "risk": {
+      "asa": {
+        "min": 2,
+        "max": 3,
+        "emergency": true,
+        "why": "Vomiting for two days with kidney injury stage 1 and a fast pulse: mild to severe systemic disturbance (2E to 3E).",
+        "origin": "authored"
+      },
+      "plan": "rsi"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S2",
+      "seed": 0,
+      "spine": "VAR-S2-G",
+      "blocks": [
+        "DEM-VAR-S2-D",
+        "NAME-FIRST-NIMRA-F",
+        "NAME-LAST-BUTT",
+        "PSH-VAR-S1-G"
+      ],
+      "solver_steps": 5
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 0,
+    "spine": "VAR-S2-G",
+    "blocks": [
+      "DEM-VAR-S2-D",
+      "NAME-FIRST-NIMRA-F",
+      "NAME-LAST-BUTT",
+      "PSH-VAR-S1-G"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S2-G",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "beb6ae2597fc9bca",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.urea",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.creat",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.k",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.wbc",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial",
+        "action": "kept",
+        "why": "the starting observation is not an all-normal one"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_appendix",
+        "action": "picked",
+        "picture_id": "us-ap-01-s0",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 1.0,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": []
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_appendix",
+        "finding_code": "US-AP-01",
+        "basis": "proposed",
+        "picture_id": "us-ap-01-s0",
+        "dataset": "ProcSense generated",
+        "licence": "ProcSense generated (CC0 for our own use)",
+        "real": false,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "appendix",
+          "appendicitis"
+        ],
+        "report_id": "rep-us-ap-01-s0",
+        "report": "Appendix seen in cross-section, 9 mm, non-compressible, with surrounding inflamed echogenic fat. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+        "measurements": {
+          "appendicolith": "no",
+          "appendix_mm": "9.0",
+          "compressible": "no",
+          "perforation": "no"
+        }
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_appendix",
+        "action": "picked",
+        "picture_id": "us-ap-01-s0",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S2-0000-001",
+        "test": "ultrasound_appendix",
+        "finding_code": "US-AP-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S2-G",
+      "problem": "sg.aki",
+      "trigger": {
+        "in": [
+          "u_and_e",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the trainee opens the kidney tests",
+      "ref": "SR-2867"
+    },
+    {
+      "case": "VAR-S2-G",
+      "problem": "sg.surgery",
+      "trigger": {
+        "in": [
+          "fbc",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the trainee opens the blood count that shows the infection",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:PSH-VAR-S1-G",
+      "primary:sg.aki",
+      "scenario:S2",
+      "spine:VAR-S2-G"
+    ],
+    "clinical": [
+      "finding:US-AP-01",
+      "news2:low",
+      "problem_type:optimisable",
+      "problem_type:pathway_changing",
+      "result:creatinine:high",
+      "result:potassium:low",
+      "result:urea:high",
+      "result:wbc:high",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-VAR-S2-D",
+      "block:NAME-FIRST-NIMRA-F",
+      "block:NAME-LAST-BUTT",
+      "name:Nimra Butt",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "ff8d253583d70f9f171417331f695bfbd489d2dbbd0e49509bdf46ef40d3bd3b",
+  "package_sha256": "f7f08bc1932bfca653e5e9bdb4cfe519fa0100fe9a1129132f6b6d2cd551fe1e"
+}

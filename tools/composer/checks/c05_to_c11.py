@@ -119,12 +119,14 @@ def c09_idle(card: dict, ctx: dict) -> list[Defect]:
         return []
     with tempfile.TemporaryDirectory() as tmp:
         actions = Path(tmp) / "idle.actions.json"
-        actions.write_text(json.dumps([{"t": 300, "verb": "wait", "target": "patient", "params": {}}]), encoding="utf-8")
+        actions.write_text(json.dumps([{"t": 1, "verb": "attach_sensor", "params": {"sensor": "spo2"}}, {"t": 300, "verb": "wait", "target": "patient", "params": {}}]), encoding="utf-8")   # the sensor makes the vital signs readable
         out = Path(tmp) / "out.json"
         p = _cli(["run", *_scenario_args(card, Path(tmp)), "--seed", "42", "--actions", str(actions), "--out", str(out), "--allow-draft"])
         if p.returncode != 0:
             return [Defect(9, "IDLE_RUN_FAILED", f"{card['id']}: {(p.stdout + p.stderr).strip()[-200:]}")]
         vit = {v["name"]: float(v["value"]) for v in json.loads(out.read_text(encoding="utf-8"))["observable"].get("vitals", []) if v["name"] != "oxygen" and v["name"] != "acvpu"}
+    if not vit:
+        return [Defect(9, "IDLE_NO_VITALS", f"{card['id']}: the pulse oximeter shows no reading after the idle run")]
     bad = [f"{k}={v}" for k, v in vit.items() if (k == "heart_rate" and not 30 <= v <= 200) or (k == "spo2" and not 60 <= v <= 100) or (k == "respiratory_rate" and not 4 <= v <= 45)]
     return [Defect(9, "IDLE_OUT_OF_BOUNDS", f"{card['id']}: " + ", ".join(bad))] if bad else []
 

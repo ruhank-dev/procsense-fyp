@@ -1,0 +1,597 @@
+{
+  "version": 1,
+  "id": "GEN-S2-0004-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "fdd76221cfed42af",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S2-0004-001",
+    "walkthrough_label": "Patient S2-B - differential diagnosis / diagnostic diversion: it may NOT be appendicitis (ectopic pregnancy) (composed GEN-S2-0004-001)",
+    "scenario": "S2",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Ms",
+      "full_name": "Mehwish Dar",
+      "sex": "F",
+      "age": 22,
+      "occupation": "dental student",
+      "dob": "2004-08-04",
+      "mrn": "975957"
+    },
+    "spoken_identity_answer": "Mehwish Dar, fourth of August 2004.",
+    "wristband": {
+      "name_text": "MEHWISH DAR",
+      "dob_text": "04/08/2004",
+      "mrn_text": "MR 975957"
+    },
+    "allergies": [
+      {
+        "reaction": "Throat swelling",
+        "substance": "Penicillin"
+      }
+    ],
+    "allergy_answer": "Penicillin: my throat swelled.",
+    "reason_answer": "I have bad pain and feel dizzy.",
+    "presentation": {
+      "setting": "emergency department",
+      "time_now": "11:00",
+      "summary": "Ms Mehwish, 22, has lower-right pain, shoulder-tip pain and feels dizzy. Her last period was 7 weeks ago and the urine pregnancy test is positive."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Pain in the lower right tummy, and a pain at the tip of my shoulder. I feel dizzy.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "Some spotting yesterday; no fever; no urinary symptoms.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Toast this morning at 07:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "light_meal",
+          "hours_before_now": 4.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Tea at 08:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 3.0
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "My last period was seven weeks ago.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "book"
+      }
+    ],
+    "observations": [
+      {
+        "time": "11:00",
+        "condition": "initial",
+        "heart_rate": 112,
+        "heart_rhythm": "regular",
+        "systolic_bp": 98,
+        "diastolic_bp": 60,
+        "respiratory_rate": 20,
+        "spo2": 98,
+        "oxygen": "room_air",
+        "temperature_c": 37.2,
+        "acvpu": "A",
+        "pain_score": 7,
+        "news2": 4,
+        "note": "Fast heart and lowish BP: possible internal bleeding. NEWS2 recomputed.",
+        "origin": "book"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Tender in the lower tummy, worse on the right; no rebound at present.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored",
+        "painful": true
+      },
+      {
+        "id": "ex.pallor",
+        "system": "general",
+        "finding": "Pale and clammy.",
+        "abnormal": true,
+        "disclose_on": [
+          "examine:general"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.upt",
+        "test": "Urine pregnancy test",
+        "value": "Positive",
+        "unit": "",
+        "normal_range": "negative",
+        "flag": "positive",
+        "comment": "Pregnant (about 7 weeks): ectopic must be excluded",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 10,
+        "origin": "book"
+      },
+      {
+        "id": "lab.hb",
+        "test": "Haemoglobin",
+        "value": "104",
+        "unit": "g/L",
+        "normal_range": "120-150",
+        "flag": "low",
+        "comment": "Low: she may be bleeding inside",
+        "quality": null,
+        "previous": {
+          "value": "128",
+          "when": "booked at her GP 6 months ago"
+        },
+        "minutes_to_result": 45,
+        "origin": "book"
+      }
+    ],
+    "scores": [
+      {
+        "name": "NEWS2",
+        "value": "4",
+        "note": "HR 112 (2) + BP 98 (2); recomputed from the table",
+        "origin": "authored"
+      }
+    ],
+    "problems": [
+      {
+        "id": "sb.bleed",
+        "type": "life_threat",
+        "label": "Possible ruptured ectopic pregnancy with internal bleeding",
+        "rank": 1,
+        "why": "Positive pregnancy test plus pain, shoulder-tip pain, fast heart, lowish BP and low Hb: NICE NG126 says exclude ectopic the same day.",
+        "expected_actions": [
+          "Stop the appendicitis pathway",
+          "Call for help",
+          "Two large drips; crossmatch blood",
+          "Gynaecology now; keep nil by mouth"
+        ]
+      },
+      {
+        "id": "sb.blocker",
+        "type": "safety_blocker",
+        "label": "Pregnancy status positive: it changes everything",
+        "rank": 2,
+        "why": "If the pregnancy test is never done it is a hard safety failure.",
+        "expected_actions": [
+          "Do the urine pregnancy test before any scan or drug decision"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "sb.d1",
+        "prompt": "Positive pregnancy test, shoulder-tip pain, HR 112, BP 98/60, Hb 104. What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "sb.d1.1",
+            "text": "Stop the appendicitis pathway: emergency call, two large drips, crossmatch blood, gynaecology now, nil by mouth",
+            "correct": true,
+            "consequence": "Matches the book and NICE NG126."
+          },
+          {
+            "id": "sb.d1.2",
+            "text": "Continue the appendicitis work-up and send for CT",
+            "correct": false,
+            "consequence": "Ectopic until proven otherwise; avoid CT and delay."
+          },
+          {
+            "id": "sb.d1.3",
+            "text": "Discharge with painkillers",
+            "correct": false,
+            "consequence": "Unsafe."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "redirected",
+    "paths": {
+      "correct": [
+        "Do the urine pregnancy test",
+        "Recognise shoulder-tip pain and shock signs",
+        "Stop the appendicitis pathway",
+        "Emergency call, two drips, crossmatch, gynaecology, nil by mouth"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Never does the pregnancy test",
+          "shows": "The debrief records a hard safety failure",
+          "risk": "Missed ectopic pregnancy",
+          "recovery": "Do the test now; stop and escalate"
+        }
+      ],
+      "missed": [
+        "Not asking about the last period"
+      ],
+      "recovery": [
+        "Ask; test; escalate"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Ectopic considered",
+        "Pathway stopped"
+      ],
+      "missed": [
+        "Pregnancy test"
+      ],
+      "priority": "A possible ruptured ectopic pregnancy",
+      "why_priority": "Life-threatening bleeding",
+      "related": "Pain, shoulder-tip pain, tachycardia, low BP, low Hb",
+      "independent": "None",
+      "trigger_escalation": "A positive test with pain, or shoulder-tip pain",
+      "if_ignored": "Death from internal bleeding",
+      "remember": "Always test for pregnancy in women of reproductive age with tummy pain"
+    },
+    "verification": [
+      "V-10"
+    ],
+    "sources": {
+      "story": "SR-2315",
+      "authored": "SR-3711"
+    },
+    "pregnant": true,
+    "risk": {
+      "asa": {
+        "min": 2,
+        "max": 3,
+        "emergency": true,
+        "why": "Pregnant with suspected ectopic pregnancy and dizzy: pregnancy is ASA 2, and the risk of bleeding makes ASA 3 defensible; the E is for emergency.",
+        "origin": "authored"
+      },
+      "plan": "rsi"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S2",
+      "seed": 4,
+      "spine": "VAR-S2-B",
+      "blocks": [
+        "ALG-PENICILLIN-4",
+        "DEM-SC-17",
+        "NAME-FIRST-MEHWISH-F",
+        "NAME-LAST-DAR"
+      ],
+      "solver_steps": 5
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 4,
+    "spine": "VAR-S2-B",
+    "blocks": [
+      "ALG-PENICILLIN-4",
+      "DEM-SC-17",
+      "NAME-FIRST-MEHWISH-F",
+      "NAME-LAST-DAR"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S2-B",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "d9bbc4626eb76fa0",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.upt",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.hb",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial",
+        "action": "kept",
+        "why": "the starting observation is not an all-normal one"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_pelvis",
+        "action": "picked",
+        "picture_id": "us-pv-01-s2",
+        "candidates": 4
+      },
+      {
+        "slot": "pregnancy_test",
+        "action": "no_picture",
+        "finding_code": "PREG-01"
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 1.0,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": []
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_pelvis",
+        "finding_code": "US-PV-01",
+        "basis": "book",
+        "picture_id": "us-pv-01-s2",
+        "dataset": "ProcSense generated",
+        "licence": "ProcSense generated (CC0 for our own use)",
+        "real": false,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "pelvis",
+          "no_wording"
+        ],
+        "report_id": "rep-us-pv-01-s2",
+        "report": "The uterus is empty: no intrauterine gestational sac. A 23 mm adnexal mass with a thick echogenic ring is seen, and there is free fluid in the pouch of Douglas. Impression: Appearances suggest an ectopic pregnancy.",
+        "measurements": {
+          "adnexal_mass": "yes",
+          "fluid": "yes",
+          "mass_mm": "23.0",
+          "sac": "no",
+          "uterus": "empty"
+        }
+      },
+      {
+        "test": "pregnancy_test",
+        "finding_code": "PREG-01",
+        "basis": "book",
+        "picture_id": null,
+        "note": "no picture of this finding with a usable licence and grade: use a written-only result or change the story"
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_pelvis",
+        "action": "picked",
+        "picture_id": "us-pv-01-s2",
+        "candidates": 4
+      },
+      {
+        "slot": "pregnancy_test",
+        "action": "no_picture",
+        "finding_code": "PREG-01"
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S2-0004-001",
+        "test": "ultrasound_pelvis",
+        "finding_code": "US-PV-01"
+      },
+      {
+        "case_id": "GEN-S2-0004-001",
+        "test": "pregnancy_test",
+        "finding_code": "PREG-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S2-B",
+      "problem": "sb.bleed",
+      "trigger": {
+        "in": [
+          "pregnancy",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the trainee opens the positive pregnancy test in a patient in pain and pale",
+      "ref": "SR-2867"
+    },
+    {
+      "case": "VAR-S2-B",
+      "problem": "sb.blocker",
+      "trigger": {
+        "in": [
+          "pregnancy",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the pregnancy status is positive",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:ALG-PENICILLIN-4",
+      "primary:sb.bleed",
+      "scenario:S2",
+      "spine:VAR-S2-B"
+    ],
+    "clinical": [
+      "finding:PREG-01",
+      "finding:US-PV-01",
+      "news2:low_medium",
+      "problem_type:life_threat",
+      "problem_type:safety_blocker",
+      "result:haemoglobin:low",
+      "result:urine pregnancy test:positive",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-SC-17",
+      "block:NAME-FIRST-MEHWISH-F",
+      "block:NAME-LAST-DAR",
+      "name:Mehwish Dar",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "47ff0a241d0850ebe1bfe251ac64ae17bf74a41cc9659d37ff692aac0ce41792",
+  "package_sha256": "456d9a630b283df3ec022bb013376adfe30a6ea4cb5d0087459a711ea8b20fe7"
+}

@@ -1,0 +1,528 @@
+{
+  "version": 1,
+  "id": "GEN-S2-0003-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "0501d5f5a0eddf94",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S2-0003-001",
+    "walkthrough_label": "Patient S2-F - ate a big meal 2 hours ago (composed GEN-S2-0003-001)",
+    "scenario": "S2",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Mr",
+      "full_name": "Bilal Begum",
+      "sex": "M",
+      "age": 25,
+      "occupation": "mobile phone repairer",
+      "dob": "2001-04-06",
+      "mrn": "432222"
+    },
+    "spoken_identity_answer": "Bilal Begum, sixth of April 2001.",
+    "wristband": {
+      "name_text": "BILAL BEGUM",
+      "dob_text": "06/04/2001",
+      "mrn_text": "MR 432222"
+    },
+    "allergies": [],
+    "allergy_answer": "None.",
+    "reason_answer": "I have bad tummy pain.",
+    "presentation": {
+      "setting": "emergency department",
+      "time_now": "14:00",
+      "summary": "Mr Bilal, 25, is otherwise like Hamza (appendicitis) but ate biryani 2 hours ago: a full stomach."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Tummy pain that started around the belly button and moved to the lower right.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "One vomit; no urinary symptoms; no diarrhoea.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Biryani at 12:00 today, about 2 hours ago.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "book",
+        "intake": {
+          "kind": "heavy_meal",
+          "hours_before_now": 2.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "A fizzy drink at 13:30.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 0.5
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Not applicable.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "observations": [
+      {
+        "time": "14:00",
+        "condition": "initial",
+        "heart_rate": 104,
+        "heart_rhythm": "regular",
+        "systolic_bp": 126,
+        "diastolic_bp": 76,
+        "respiratory_rate": 17,
+        "spo2": 99,
+        "oxygen": "room_air",
+        "temperature_c": 37.9,
+        "acvpu": "A",
+        "pain_score": 7,
+        "news2": 1,
+        "note": "Like Hamza: only the heart rate is raised.",
+        "origin": "authored"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.rif",
+        "system": "abdomen",
+        "finding": "Tender in the lower right tummy with guarding; Rovsing's sign positive.",
+        "abnormal": true,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored",
+        "painful": true
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.wbc",
+        "test": "WBC",
+        "value": "13.0",
+        "unit": "x10^9/L",
+        "normal_range": "4.0-11.0",
+        "flag": "high",
+        "comment": "Raised",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.crp",
+        "test": "CRP",
+        "value": "36",
+        "unit": "mg/L",
+        "normal_range": "below 5",
+        "flag": "high",
+        "comment": "Moderate inflammation",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      }
+    ],
+    "scores": [
+      {
+        "name": "Full stomach",
+        "value": "Biryani 2 hours ago (heavy meal needs 8 hours)",
+        "note": "Record the exact time and food",
+        "origin": "book"
+      }
+    ],
+    "problems": [
+      {
+        "id": "sf.stomach",
+        "type": "safety_blocker",
+        "label": "Full stomach: aspiration risk",
+        "rank": 1,
+        "why": "Emergency surgery is not cancelled for this, but the anaesthetist plans a rapid sequence induction and may time it sensibly if he is stable.",
+        "expected_actions": [
+          "Record the exact time and what he ate",
+          "Tell the anaesthetist",
+          "Anaesthetist plans RSI"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "sf.d1",
+        "prompt": "He ate biryani 2 hours ago and needs an emergency appendectomy. What do you do?",
+        "rule": "fasting_planned",
+        "options": [
+          {
+            "id": "sf.d1.1",
+            "text": "Record the exact time and food and tell the anaesthetist, who plans a rapid sequence induction; the surgery is not cancelled and may be timed sensibly if he is stable",
+            "correct": true,
+            "consequence": "Matches the book; local protocol decides the timing."
+          },
+          {
+            "id": "sf.d1.2",
+            "text": "Cancel the surgery until he has fasted 8 hours",
+            "correct": false,
+            "consequence": "Emergency surgery is not cancelled for a full stomach."
+          },
+          {
+            "id": "sf.d1.3",
+            "text": "Say he is fasted",
+            "correct": false,
+            "consequence": "Falsifying the time is a safety failure."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "ready",
+    "paths": {
+      "correct": [
+        "Record the exact time and the food",
+        "Tell the anaesthetist",
+        "RSI plan; proceed as an emergency"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Records 'fasted'",
+          "shows": "The anaesthetist finds out at Sign In",
+          "risk": "Aspiration risk missed",
+          "recovery": "Correct the record; tell the anaesthetist"
+        }
+      ],
+      "missed": [
+        "Not asking when he last ate"
+      ],
+      "recovery": [
+        "Ask now; tell the anaesthetist"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Full stomach recognised"
+      ],
+      "missed": [
+        "Last food not asked"
+      ],
+      "priority": "Aspiration risk in an emergency",
+      "why_priority": "Aspiration can be fatal",
+      "related": "Meal, timing and emergency",
+      "independent": "None",
+      "trigger_escalation": "Any recent meal in an emergency",
+      "if_ignored": "Aspiration pneumonitis",
+      "remember": "Emergency surgery proceeds, but the anaesthetist must know"
+    },
+    "verification": [
+      "V-09"
+    ],
+    "sources": {
+      "story": "SR-2317",
+      "authored": "SR-3713"
+    },
+    "risk": {
+      "asa": {
+        "min": 1,
+        "max": 1,
+        "emergency": true,
+        "why": "A healthy young adult in an emergency: healthy S2 is 1E; the full stomach is handled by the rapid sequence plan.",
+        "origin": "book"
+      },
+      "plan": "rsi"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S2",
+      "seed": 3,
+      "spine": "VAR-S2-F",
+      "blocks": [
+        "DEM-SC-7",
+        "NAME-FIRST-BILAL-M",
+        "NAME-LAST-BEGUM"
+      ],
+      "solver_steps": 3
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 3,
+    "spine": "VAR-S2-F",
+    "blocks": [
+      "DEM-SC-7",
+      "NAME-FIRST-BILAL-M",
+      "NAME-LAST-BEGUM"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S2-F",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "7139d2203be3a01a",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.wbc",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.crp",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial",
+        "action": "kept",
+        "why": "the starting observation is not an all-normal one"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_appendix",
+        "action": "picked",
+        "picture_id": "us-ap-01-s3",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 0.5,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [
+      {
+        "code": "Q_TRAP",
+        "detail": "wrong options whose consequence names nothing the case holds: ['sf.d1.3']"
+      }
+    ]
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_appendix",
+        "finding_code": "US-AP-01",
+        "basis": "proposed",
+        "picture_id": "us-ap-01-s3",
+        "dataset": "ProcSense generated",
+        "licence": "ProcSense generated (CC0 for our own use)",
+        "real": false,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "appendix",
+          "appendicitis"
+        ],
+        "report_id": "rep-us-ap-01-s3",
+        "report": "Appendix seen in cross-section, 8.8 mm, non-compressible, with surrounding inflamed echogenic fat, containing an echogenic appendicolith. No perforation or collection. Impression: Positive, simple (uncomplicated) appendicitis.",
+        "measurements": {
+          "appendicolith": "yes",
+          "appendix_mm": "8.8",
+          "compressible": "no",
+          "perforation": "no"
+        }
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_appendix",
+        "action": "picked",
+        "picture_id": "us-ap-01-s3",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S2-0003-001",
+        "test": "ultrasound_appendix",
+        "finding_code": "US-AP-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S2-F",
+      "problem": "sf.stomach",
+      "trigger": {
+        "in": [
+          "last_food",
+          {
+            "var": "topics"
+          }
+        ]
+      },
+      "how": "the trainee asks about the last meal and learns of the biryani 2 hours ago",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "primary:sf.stomach",
+      "scenario:S2",
+      "spine:VAR-S2-F"
+    ],
+    "clinical": [
+      "finding:US-AP-01",
+      "news2:low",
+      "problem_type:safety_blocker",
+      "result:crp:high",
+      "result:wbc:high",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-SC-7",
+      "block:NAME-FIRST-BILAL-M",
+      "block:NAME-LAST-BEGUM",
+      "name:Bilal Begum",
+      "sex:M"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "279eb523083aac8d8fd8f459090917a936fe450df5828fe9d5242b11d573d058",
+  "package_sha256": "5c37b3b7345fcc42869681b5cd488efad997bd562ef44d2b52281b015267ad95"
+}

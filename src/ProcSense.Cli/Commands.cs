@@ -208,9 +208,11 @@ internal static class Commands
         string dir = o.GetValueOrDefault("dir", "tests/golden");
         bool update = o.ContainsKey("update");
         var scripts = Directory.GetFiles(dir, "*.actions.json").OrderBy(f => f, StringComparer.Ordinal).ToList();
-        var caseIds = scripts.Select(s => s.Replace(".actions.json", ".expected.json")).Where(File.Exists)
+        // a golden run of a generated case has its package next to it (<name>.package.json) and is played from that package; the others share one load of the real content
+        var plain = scripts.Where(s => !File.Exists(s.Replace(".actions.json", ".package.json"))).ToList();
+        var caseIds = plain.Select(s => s.Replace(".actions.json", ".expected.json")).Where(File.Exists)
             .Select(f => (string)((Dictionary<string, object?>)MiniJson.Parse(File.ReadAllText(f))!)["case"]!).Distinct().ToArray();
-        var content = ContentLoader.Load(Reader(o), caseIds);
+        var shared = caseIds.Length == 0 ? null : ContentLoader.Load(Reader(o), caseIds);
         int pass = 0, total = 0;
         foreach (var script in scripts)
         {
@@ -219,6 +221,14 @@ internal static class Commands
             total++;
             string name = Path.GetFileName(script).Replace(".actions.json", "");
             string scriptText = File.ReadAllText(script), expectedText = File.ReadAllText(expectedPath);
+            string packagePath = script.Replace(".actions.json", ".package.json");
+            var content = shared;
+            if (File.Exists(packagePath))
+            {
+                var package = new ScenarioPackageReader(File.ReadAllText(packagePath));
+                content = ContentLoader.Load(new CompositeContentReader(package, Reader(o)), package.CaseId);
+            }
+            if (content == null) return Fail($"no content for {name}");
             if (update)
             {
                 var h = (Dictionary<string, object?>)MiniJson.Parse(expectedText)!;

@@ -1,0 +1,599 @@
+{
+  "version": 1,
+  "id": "GEN-S1-0000-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "dbd5e6c72582da81",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S1-0000-001",
+    "walkthrough_label": "Patient S1-H - possible pregnancy (composed GEN-S1-0000-001)",
+    "scenario": "S1",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Ms",
+      "full_name": "Rabia Mirza",
+      "sex": "F",
+      "age": 26,
+      "occupation": "salon assistant",
+      "dob": "2000-06-06",
+      "mrn": "351045"
+    },
+    "spoken_identity_answer": "Rabia Mirza, sixth of June 2000.",
+    "wristband": {
+      "name_text": "RABIA MIRZA",
+      "dob_text": "06/06/2000",
+      "mrn_text": "MR 351045"
+    },
+    "allergies": [
+      {
+        "reaction": "Mild rash as a child (delayed)",
+        "substance": "Penicillin"
+      }
+    ],
+    "allergy_answer": "Penicillin: I had a rash as a child.",
+    "reason_answer": "To have my gallbladder taken out.",
+    "presentation": {
+      "setting": "pre-assessment",
+      "time_now": "08:00",
+      "surgery_time": "10:00",
+      "summary": "Ms Rabia, 26, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Attacks of pain under the ribs after fatty meals.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No fever, no yellow eyes; no vaginal bleeding; no pain in the lower tummy.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Dinner at 20:00 yesterday.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "heavy_meal",
+          "hours_before_now": 12.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Water at 06:30.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 1.5
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "My last period was seven weeks ago. I did not think about it.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "book"
+      }
+    ],
+    "observations": [
+      {
+        "time": "08:00",
+        "condition": "initial",
+        "heart_rate": 86,
+        "heart_rhythm": "regular",
+        "systolic_bp": 118,
+        "diastolic_bp": 70,
+        "respiratory_rate": 14,
+        "spo2": 100,
+        "oxygen": "room_air",
+        "temperature_c": 36.7,
+        "acvpu": "A",
+        "pain_score": 0,
+        "news2": 0,
+        "note": "Baseline vital signs, all normal.",
+        "origin": "authored"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Soft; mild tenderness under the right ribs; no lower tummy tenderness.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored",
+        "painful": true
+      },
+      {
+        "id": "ex.shoulder",
+        "system": "general",
+        "finding": "No shoulder-tip pain; not dizzy.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:general"
+        ],
+        "origin": "authored",
+        "painful": true
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.upt",
+        "test": "Urine pregnancy test",
+        "value": "Positive",
+        "unit": "",
+        "normal_range": "negative",
+        "flag": "positive",
+        "comment": "Pregnant (about 7 weeks)",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 20,
+        "origin": "book"
+      }
+    ],
+    "scores": [
+      {
+        "name": "NEWS2",
+        "value": "0",
+        "note": "All vital signs in the normal band",
+        "origin": "authored"
+      }
+    ],
+    "problems": [
+      {
+        "id": "h.preg",
+        "type": "safety_blocker",
+        "label": "Positive pregnancy test before planned surgery",
+        "rank": 1,
+        "why": "Changes imaging, drugs, anaesthesia and timing; she has no pain or bleeding, so ectopic pregnancy is not suspected but must be kept in mind.",
+        "expected_actions": [
+          "Tell her privately and sensitively",
+          "Do not proceed with planned surgery",
+          "Senior surgeon, anaesthetist and the obstetric team decide",
+          "Safety-net advice: lower tummy pain, bleeding, shoulder-tip pain or dizziness means come straight back"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "h.d1",
+        "prompt": "The pregnancy test is positive. What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "h.d1.1",
+            "text": "Postpone the planned surgery; the senior surgeon, anaesthetist and obstetric team decide; discuss it privately and sensitively",
+            "correct": true,
+            "consequence": "Matches the book."
+          },
+          {
+            "id": "h.d1.2",
+            "text": "Proceed because she has no pain in her lower tummy",
+            "correct": false,
+            "consequence": "Pregnancy status changes drugs, imaging and anaesthesia."
+          },
+          {
+            "id": "h.d1.3",
+            "text": "Tell her in front of other patients",
+            "correct": false,
+            "consequence": "Privacy and sensitivity are required."
+          }
+        ]
+      },
+      {
+        "id": "h.d2",
+        "prompt": "What if her gallbladder trouble became urgent during the pregnancy?",
+        "rule": null,
+        "options": [
+          {
+            "id": "h.d2.1",
+            "text": "Laparoscopic cholecystectomy is possible in any trimester when needed (SAGES); for non-urgent surgery the second trimester is usual",
+            "correct": true,
+            "consequence": "ISS-0017: the book prefers the second trimester; SAGES allows any trimester when surgery is needed."
+          },
+          {
+            "id": "h.d2.2",
+            "text": "Surgery is never possible in pregnancy",
+            "correct": false,
+            "consequence": "Incorrect."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "postponed",
+    "paths": {
+      "correct": [
+        "Do the pregnancy test per policy",
+        "Tell her privately and kindly",
+        "Stop the planned surgery",
+        "Involve the senior, anaesthetist and obstetric team",
+        "Safety-net advice"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Does not do the pregnancy test",
+          "shows": "The anaesthetist asks at Sign In",
+          "risk": "Unknown pregnancy status: a hard safety failure",
+          "recovery": "Do the test and stop"
+        }
+      ],
+      "missed": [
+        "Not asking about the last period"
+      ],
+      "recovery": [
+        "Ask; test"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Test done and acted on",
+        "Private and sensitive"
+      ],
+      "missed": [
+        "Last period not asked"
+      ],
+      "priority": "A positive pregnancy test",
+      "why_priority": "It changes surgery, drugs and imaging",
+      "related": "Test and history",
+      "independent": "None",
+      "trigger_escalation": "A positive test",
+      "if_ignored": "Unplanned exposure to drugs or imaging",
+      "remember": "Always know the pregnancy status before surgery"
+    },
+    "verification": [
+      "V-10",
+      "V-14"
+    ],
+    "sources": {
+      "story": "SR-2307",
+      "authored": "SR-3707"
+    },
+    "pregnant": true,
+    "risk": {
+      "asa": {
+        "min": 2,
+        "max": 2,
+        "emergency": false,
+        "why": "Pregnancy is ASA 2 in the book's list of examples.",
+        "origin": "book"
+      },
+      "plan": "standard_ga"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S1",
+      "seed": 0,
+      "spine": "VAR-S1-H",
+      "blocks": [
+        "ALG-PENICILLIN-1",
+        "DEM-SC-2",
+        "NAME-FIRST-RABIA-F",
+        "NAME-LAST-MIRZA",
+        "PSH-VAR-S2-F"
+      ],
+      "solver_steps": 5
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 0,
+    "spine": "VAR-S1-H",
+    "blocks": [
+      "ALG-PENICILLIN-1",
+      "DEM-SC-2",
+      "NAME-FIRST-RABIA-F",
+      "NAME-LAST-MIRZA",
+      "PSH-VAR-S2-F"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S1-H",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "c5843480d1393105",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.upt",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "kept",
+        "why": "the value is named in the story"
+      },
+      {
+        "slot": "obs.initial.heart_rate",
+        "action": "drawn",
+        "from": "78",
+        "to": "86"
+      },
+      {
+        "slot": "obs.initial.systolic_bp",
+        "action": "drawn",
+        "from": "112",
+        "to": "118"
+      },
+      {
+        "slot": "obs.initial.spo2",
+        "action": "drawn",
+        "from": "99",
+        "to": "100"
+      },
+      {
+        "slot": "obs.initial.temperature_c",
+        "action": "drawn",
+        "from": "36.7",
+        "to": "36.7"
+      }
+    ],
+    "media": [
+      {
+        "slot": "pregnancy_test",
+        "action": "no_picture",
+        "finding_code": "PREG-01"
+      },
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 0.667,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [
+      {
+        "code": "Q_TRAP",
+        "detail": "wrong options whose consequence names nothing the case holds: ['h.d1.3']"
+      }
+    ]
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "pregnancy_test",
+        "finding_code": "PREG-01",
+        "basis": "book",
+        "picture_id": null,
+        "note": "no picture of this finding with a usable licence and grade: use a written-only result or change the story"
+      },
+      {
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01",
+        "basis": "proposed",
+        "picture_id": "us-gb-01-r1",
+        "dataset": "UIdataGB",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "gallbladder",
+          "gallstones"
+        ],
+        "report_id": "rep-us-gb-01-r1",
+        "report": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+        "measurements": {}
+      }
+    ],
+    "log": [
+      {
+        "slot": "pregnancy_test",
+        "action": "no_picture",
+        "finding_code": "PREG-01"
+      },
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S1-0000-001",
+        "test": "pregnancy_test",
+        "finding_code": "PREG-01"
+      },
+      {
+        "case_id": "GEN-S1-0000-001",
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S1-H",
+      "problem": "h.preg",
+      "trigger": {
+        "in": [
+          "pregnancy",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the trainee opens the positive pregnancy test",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:ALG-PENICILLIN-1",
+      "block:PSH-VAR-S2-F",
+      "primary:h.preg",
+      "scenario:S1",
+      "spine:VAR-S1-H"
+    ],
+    "clinical": [
+      "finding:PREG-01",
+      "finding:US-GB-01",
+      "news2:low",
+      "problem_type:safety_blocker",
+      "result:urine pregnancy test:positive",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-SC-2",
+      "block:NAME-FIRST-RABIA-F",
+      "block:NAME-LAST-MIRZA",
+      "name:Rabia Mirza",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "655193d8b89ed9ca5126bf22aa4c955036015092aea12d8e5c1c8566d7992c5b",
+  "package_sha256": "9a8a8d2613425fc48b7646344965d034aeb86a382cbdca27cdb923cb8dcabb3b"
+}

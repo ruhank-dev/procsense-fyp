@@ -1,0 +1,673 @@
+{
+  "version": 1,
+  "id": "GEN-S1-0007-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "63517c5e803aafcb",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S1-0007-001",
+    "walkthrough_label": "Patient S1-D - on a blood thinner (composed GEN-S1-0007-001)",
+    "scenario": "S1",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Mr",
+      "full_name": "Sajid Butt",
+      "sex": "M",
+      "age": 69,
+      "occupation": "retired shopkeeper",
+      "dob": "1957-09-13",
+      "mrn": "281929"
+    },
+    "spoken_identity_answer": "Sajid Butt, thirteenth of September 1957.",
+    "wristband": {
+      "name_text": "SAJID BUTT",
+      "dob_text": "13/09/1957",
+      "mrn_text": "MR 281929"
+    },
+    "allergies": [],
+    "allergy_answer": "None.",
+    "reason_answer": "To have my gallbladder taken out.",
+    "presentation": {
+      "setting": "pre-assessment",
+      "time_now": "08:00",
+      "surgery_time": "10:00",
+      "summary": "Mr Sajid, 69, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Pain under the ribs after fatty food, on and off for a year.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "authored"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No fever, no yellow eyes.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "Atrial fibrillation (irregular heartbeat), high blood pressure.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "Apixaban for my heartbeat, and one blood pressure tablet.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Dinner at 19:30 yesterday.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "heavy_meal",
+          "hours_before_now": 12.5
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Water at 06:30.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 1.5
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Not applicable.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_dose.d1",
+        "topic": "medicines",
+        "answer": "Three days ago, as the pre-op nurse told me.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last dose",
+          "ask:apixaban",
+          "ask:blood thinner"
+        ],
+        "origin": "book",
+        "variant": "D1"
+      },
+      {
+        "id": "last_dose.d2",
+        "topic": "medicines",
+        "answer": "This morning. I forgot what the nurse said.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last dose",
+          "ask:apixaban",
+          "ask:blood thinner"
+        ],
+        "origin": "book",
+        "variant": "D2"
+      }
+    ],
+    "observations": [
+      {
+        "time": "08:00",
+        "condition": "initial",
+        "heart_rate": 78,
+        "heart_rhythm": "irregular",
+        "systolic_bp": 127,
+        "diastolic_bp": 82,
+        "respiratory_rate": 14,
+        "spo2": 97,
+        "oxygen": "room_air",
+        "temperature_c": 36.8,
+        "acvpu": "A",
+        "pain_score": 0,
+        "news2": 0,
+        "note": "Pulse irregular but rate 78: known, controlled atrial fibrillation.",
+        "origin": "book"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.pulse",
+        "system": "heart",
+        "finding": "Pulse irregularly irregular, rate about 78; heart sounds normal.",
+        "abnormal": true,
+        "disclose_on": [
+          "examine:heart"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Soft; no tenderness.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.egfr",
+        "test": "eGFR",
+        "value": "68",
+        "unit": "mL/min/1.73m2",
+        "normal_range": "90 or above (60 to 89 is mildly reduced)",
+        "flag": "low",
+        "comment": "Mildly reduced: enough for the usual apixaban pause",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "book"
+      },
+      {
+        "id": "lab.ecg",
+        "test": "ECG",
+        "value": "Atrial fibrillation, rate controlled",
+        "unit": "",
+        "normal_range": "sinus rhythm",
+        "flag": "abnormal",
+        "comment": "Known atrial fibrillation; confirms the pulse",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 20,
+        "origin": "book"
+      }
+    ],
+    "scores": [
+      {
+        "name": "NEWS2",
+        "value": "0",
+        "note": "Rate 78, other values normal; irregular rhythm is not scored by NEWS2",
+        "origin": "book"
+      }
+    ],
+    "problems": [
+      {
+        "id": "d.anticoag",
+        "type": "pathway_changing",
+        "label": "Anticoagulant still active: bleeding risk at surgery",
+        "rank": 1,
+        "why": "Apixaban is usually omitted for a day or two before planned surgery with good kidneys. If he took it this morning, the drug is active and planned surgery is deferred.",
+        "expected_actions": [
+          "Ask exactly when he last took apixaban",
+          "Check kidney function",
+          "Decide: three days ago means proceed; this morning means defer and re-list",
+          "Tell the surgeon and the anaesthetist"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "d.d1",
+        "prompt": "He says: 'Three days ago, as the pre-op nurse told me.' What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "d.d1.1",
+            "text": "Stopped long enough with good kidney function: proceed; restart after surgery as the surgeon decides",
+            "correct": true,
+            "consequence": "Variant D1 (PAUSE-type pause: 1 to 2 days with normal kidneys)."
+          },
+          {
+            "id": "d.d1.2",
+            "text": "Postpone anyway",
+            "correct": false,
+            "consequence": "No reason to delay."
+          }
+        ],
+        "variant": "D1"
+      },
+      {
+        "id": "d.d2",
+        "prompt": "He says: 'This morning, I forgot.' What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "d.d2.1",
+            "text": "The drug is still active: the surgeon and anaesthetist usually defer and re-list; reversal is not used just to make a planned operation possible",
+            "correct": true,
+            "consequence": "Variant D2: postpone."
+          },
+          {
+            "id": "d.d2.2",
+            "text": "Proceed because the operation is minor",
+            "correct": false,
+            "consequence": "Bleeding risk with an active anticoagulant."
+          },
+          {
+            "id": "d.d2.3",
+            "text": "Give a reversal agent so surgery can go ahead",
+            "correct": false,
+            "consequence": "Not done for planned surgery."
+          }
+        ],
+        "variant": "D2"
+      },
+      {
+        "id": "d.d3",
+        "prompt": "Pulse irregular, rate 78. What do you do?",
+        "rule": null,
+        "options": [
+          {
+            "id": "d.d3.1",
+            "text": "Known, controlled atrial fibrillation: record it and confirm with an ECG",
+            "correct": true,
+            "consequence": "Fine for surgery."
+          },
+          {
+            "id": "d.d3.2",
+            "text": "Treat it as a new emergency rhythm",
+            "correct": false,
+            "consequence": "Rate controlled and known."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "ready",
+    "paths": {
+      "correct": [
+        "Ask exactly when he last took apixaban",
+        "Check kidney function",
+        "D1: proceed; D2: defer and re-list",
+        "ECG to confirm known atrial fibrillation"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Does not ask when the last dose was",
+          "shows": "The anaesthetist asks at Sign In and finds a dose this morning",
+          "risk": "Surgery with an active anticoagulant",
+          "recovery": "Stop; defer and re-list"
+        }
+      ],
+      "missed": [
+        "Not noticing the irregular pulse"
+      ],
+      "recovery": [
+        "Feel the pulse; ECG"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Last dose asked exactly",
+        "Kidney function used"
+      ],
+      "missed": [
+        "Last dose not asked"
+      ],
+      "priority": "Is the anticoagulant still active?",
+      "why_priority": "Bleeding risk at surgery",
+      "related": "Anticoagulant, kidney function and timing go together",
+      "independent": "The rate-controlled atrial fibrillation",
+      "trigger_escalation": "A dose within the pause window",
+      "if_ignored": "Bleeding in surgery",
+      "remember": "Ask exactly when the last tablet was taken"
+    },
+    "verification": [
+      "V-08"
+    ],
+    "sources": {
+      "story": "SR-2305",
+      "authored": "SR-3705"
+    },
+    "variant_end_states": {
+      "D2": "postponed"
+    },
+    "risk": {
+      "asa": {
+        "min": 3,
+        "max": 3,
+        "emergency": false,
+        "why": "Atrial fibrillation on a blood thinner is ASA 3 in the book's list of expected grades.",
+        "origin": "book"
+      },
+      "plan": "standard_ga"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S1",
+      "seed": 7,
+      "spine": "VAR-S1-D",
+      "blocks": [
+        "DEM-VAR-S2-E",
+        "NAME-FIRST-SAJID-M",
+        "NAME-LAST-BUTT",
+        "PSH-STK-S1-C"
+      ],
+      "solver_steps": 5
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 7,
+    "spine": "VAR-S1-D",
+    "blocks": [
+      "DEM-VAR-S2-E",
+      "NAME-FIRST-SAJID-M",
+      "NAME-LAST-BUTT",
+      "PSH-STK-S1-C"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S1-D",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "b65173c608669b2e",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.egfr",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.ecg",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial.heart_rate",
+        "action": "kept",
+        "why": "the value is named in the story"
+      },
+      {
+        "slot": "obs.initial.systolic_bp",
+        "action": "drawn",
+        "from": "134",
+        "to": "127"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "drawn",
+        "from": "14",
+        "to": "14"
+      },
+      {
+        "slot": "obs.initial.spo2",
+        "action": "drawn",
+        "from": "97",
+        "to": "97"
+      },
+      {
+        "slot": "obs.initial.temperature_c",
+        "action": "drawn",
+        "from": "36.7",
+        "to": "36.8"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ecg",
+        "action": "picked",
+        "picture_id": "ecg-03-r0",
+        "candidates": 4
+      },
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 0.5,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [
+      {
+        "code": "Q_TRAP",
+        "detail": "wrong options whose consequence names nothing the case holds: ['d.d1.2', 'd.d3.2']"
+      }
+    ]
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ecg",
+        "finding_code": "ECG-03",
+        "basis": "book",
+        "picture_id": "ecg-03-r0",
+        "dataset": "PTB-XL",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "B",
+        "tags": [
+          "ecg",
+          "heart",
+          "atrial_fibrillation",
+          "irregular_rhythm"
+        ],
+        "report_id": "rep-ecg-03-r0",
+        "report": "Rhythm strip, lead II, 25 mm/s. Atrial fibrillation. Heart rate 76 per minute (measured from the recording). Beats irregularly irregular; no clear P waves. Impression: Atrial fibrillation.",
+        "measurements": {
+          "rate_bpm": "76",
+          "regular": "no",
+          "rhythm": "af"
+        }
+      },
+      {
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01",
+        "basis": "proposed",
+        "picture_id": "us-gb-01-r1",
+        "dataset": "UIdataGB",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "gallbladder",
+          "gallstones"
+        ],
+        "report_id": "rep-us-gb-01-r1",
+        "report": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+        "measurements": {}
+      }
+    ],
+    "log": [
+      {
+        "slot": "ecg",
+        "action": "picked",
+        "picture_id": "ecg-03-r0",
+        "candidates": 4
+      },
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S1-0007-001",
+        "test": "ecg",
+        "finding_code": "ECG-03"
+      },
+      {
+        "case_id": "GEN-S1-0007-001",
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S1-D",
+      "problem": "d.anticoag",
+      "trigger": {
+        "in": [
+          "medicines",
+          {
+            "var": "topics"
+          }
+        ]
+      },
+      "how": "the trainee asks about medicines and learns of the apixaban",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:PSH-STK-S1-C",
+      "primary:d.anticoag",
+      "scenario:S1",
+      "spine:VAR-S1-D"
+    ],
+    "clinical": [
+      "finding:ECG-03",
+      "finding:US-GB-01",
+      "news2:low",
+      "problem_type:pathway_changing",
+      "result:ecg:abnormal",
+      "result:egfr:low",
+      "rhythm:irregular"
+    ],
+    "surface": [
+      "age:60s",
+      "block:DEM-VAR-S2-E",
+      "block:NAME-FIRST-SAJID-M",
+      "block:NAME-LAST-BUTT",
+      "name:Sajid Butt",
+      "sex:M"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "c9d34c6013327b4943dd8426669a7560311b31416f3e54c64c5086f325017d3f",
+  "package_sha256": "dd5dc1fe9ca8c0c5f0d882d29a712039449e20fa0e9aed2083aa02d754d09b94"
+}

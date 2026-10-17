@@ -1,0 +1,47 @@
+{
+  "case": "GEN-S1-0003-001",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "223bd685208edf717ae4705ab7f99038813958dd37dae777c1319d441740d484",
+  "state_hash": "5171a8b94f4d87376640f97de25f63865b11bdfdb44739ed33111a9892af54dc",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": true,
+    "disclosed_topics": [
+      "identity",
+      "allergies",
+      "allergy_reaction",
+      "reason_for_admission",
+      "responsible_adult",
+      "complaint",
+      "last_food",
+      "last_drink"
+    ],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.penicillin_allergy",
+      "decision.declared",
+      "endstate.resolved",
+      "fasting.breach",
+      "identity_asked_open",
+      "introduced",
+      "pregnancy.status_required"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFE_BUT_DELAYED"
+  },
+  "score": {
+    "result": "SUCCESS_WITH_DELAY",
+    "credits": 1,
+    "minor": [],
+    "major": ["major.postponed_unnecessarily"],
+    "critical": []
+  }
+}

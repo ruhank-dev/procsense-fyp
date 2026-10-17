@@ -1907,7 +1907,9 @@
       "evidence": [
         "src/ProcSense.Core/Session.cs",
         "src/ProcSense.Core/Replay/SessionFile.cs",
-        "tests/golden"
+        "tests/golden",
+        "tests/golden_generated (six generated cases, both operating systems)",
+        "tools/ci/test_generation_live.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s11"
@@ -1968,7 +1970,8 @@
       "acceptance": "Classifier stays switched off below macro-F1 0.75.",
       "evidence": [
         "unity/Assets/_Project/Scripts/ActionEmitters",
-        "src/ProcSense.Core/Scoring/Evidence.cs"
+        "src/ProcSense.Core/Scoring/Evidence.cs",
+        "tools/ci/test_generation_live.py (a generated case ends and scores like its spine)"
       ],
       "tasks": [
         "p1-ai-language-s07",
@@ -2036,7 +2039,9 @@
       "acceptance": "Same log gives the same score.",
       "evidence": [
         "src/ProcSense.Core/Scoring/Scorer.cs",
-        "tools/ci/check_report.py"
+        "tools/ci/check_report.py",
+        "tests/golden_generated",
+        "tools/ci/test_generation_live.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s11"

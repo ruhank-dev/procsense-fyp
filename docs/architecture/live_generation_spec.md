@@ -410,7 +410,7 @@ The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LiteP
 | Tests | 17 P0 goldens; EventDirectorTests; physiology tests |
 | Acceptance | Replay of every session reproduces its log hash. |
 | Status | Implemented and tested |
-| Evidence | src/ProcSense.Core/Session.cs; src/ProcSense.Core/Replay/SessionFile.cs; tests/golden |
+| Evidence | src/ProcSense.Core/Session.cs; src/ProcSense.Core/Replay/SessionFile.cs; tests/golden; tests/golden_generated (six generated cases, both operating systems); tools/ci/test_generation_live.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s11 |
 
@@ -432,7 +432,7 @@ Turn what the trainee did into structured actions: VR interactions and menu choi
 | Tests | mapping tests; classifier macro-F1 on the frozen split; critical-act guard tests |
 | Acceptance | Classifier stays switched off below macro-F1 0.75. |
 | Status | Partially implemented |
-| Evidence | unity/Assets/_Project/Scripts/ActionEmitters; src/ProcSense.Core/Scoring/Evidence.cs |
+| Evidence | unity/Assets/_Project/Scripts/ActionEmitters; src/ProcSense.Core/Scoring/Evidence.cs; tools/ci/test_generation_live.py (a generated case ends and scores like its spine) |
 | Blockers | — |
 | Tasks | p1-ai-language-s07; p1-voice-input-s01; p1-voice-input-s03 |
 
@@ -454,7 +454,7 @@ Rules decide every state change, every credit and penalty, the outcome and the f
 | Tests | ScoringTests; tools/ci/check_report.py |
 | Acceptance | Same log gives the same score. |
 | Status | Implemented and tested |
-| Evidence | src/ProcSense.Core/Scoring/Scorer.cs; tools/ci/check_report.py |
+| Evidence | src/ProcSense.Core/Scoring/Scorer.cs; tools/ci/check_report.py; tests/golden_generated; tools/ci/test_generation_live.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s11 |
 

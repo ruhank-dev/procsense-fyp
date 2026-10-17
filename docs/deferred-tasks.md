@@ -251,6 +251,7 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 
 | Date | Change |
 |---|---|
+| 17 October 2026 (live generation, live loop) | p1-live-scenario-generation s11 built: six generated cases have golden runs on Linux and Windows (`tests/golden_generated`), a generated case ends and scores like the case it keeps, the idle check now reads a real pulse and saturation; engine version raised to 0.0.5 and the lock now covers the generated goldens; CI rows 3e, 7cc, 7cd. |
 | 17 October 2026 (live generation, packaging) | p1-live-scenario-generation s10 built: GENERATED_PRACTICE_ONLY status (ADR-0006 amended), the engine loads a scenario package (`ScenarioPackageReader`, `--scenario`), tables resolve through the spine, the headless idle and correct-path checks run for generated cases, the pre-generated pool; CI row 7cb and 1263 C# tests; DT-198 to DT-200 added. |
 | 17 October 2026 (live generation, quality and novelty) | p1-live-scenario-generation s08 (quality metrics, bounded repair) and s09 (three-level fingerprints, novelty check, sealed package) built; `pipeline.generate` runs the deterministic path end to end; CI rows 7bz and 7ca; DT-196 and DT-197 added. |
 | 17 October 2026 (live generation, deterministic path) | p1-live-scenario-generation s01, s02, s03, s05, s06, s07 built: contracts and objectives with shared difficulty vectors, the retrieval index, the skeleton builder, numeric generation, media selection, 8 cross-modal rules and the package gate; CI rows 7bs to 7by; DT-102, DT-104, DT-105 narrowed. |
