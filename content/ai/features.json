@@ -98,25 +98,25 @@
   },
   "debrief_ai": {
    "label": "AI debrief wording",
-   "status": "FAIL",
-   "enabled": false,
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
      "id": "debrief.accepted_share",
      "status": "PASS",
-     "got": 0.688,
+     "got": 0.938,
      "needs": ">= 0.5"
     },
     {
      "id": "debrief.mutations_rejected",
      "status": "PASS",
-     "got": 43,
-     "needs": "== 43.0"
+     "got": 177,
+     "needs": "== 177.0"
     },
     {
      "id": "debrief.within_8_s",
-     "status": "FAIL",
-     "got": 0.625,
+     "status": "PASS",
+     "got": 0.896,
      "needs": ">= 0.8"
     }
    ]

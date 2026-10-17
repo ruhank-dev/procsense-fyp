@@ -137,10 +137,11 @@ def section_debrief() -> list[str]:
     d = load("debrief-eval.json")
     if d is None:
         return ["## AI debrief", "", "not run", ""]
-    return ["## AI debrief (rewrite of the template debrief)", "", f"Model {d['model']} (`{d['digest'][:12]}`), {d['sessions']} golden sessions.", "", "| Measure | Value |", "|---|---|",
+    return ["## AI debrief (rewrite of the template debrief)", "", f"Model {d['model']} (`{d['digest'][:12]}`), prompt version {d.get('prompt_version') or 1}, {d['sessions']} golden sessions.", "", "| Measure | Value |", "|---|---|",
             f"| The rewrite replaced the template | {d['ai_used']} of {d['sessions']} ({pct(d['accept_rate'])}) |", f"| The template stayed (reasons) | {d['template_kept']} ({d['reasons']}) |",
-            f"| Latency p50 / worst | {d['latency_ms_p50']} ms / {d['latency_ms_max']} ms; within 8 s: {pct(d['within_8s_share'])} |", f"| Corrupted rewrites refused | {d['mutations_rejected']} of {d['mutations']} |", "",
-            "Limit: the validator knows the engine's event words only; an event that is not one of them passes (DT-211).", ""]
+            f"| Latency p50 / worst | {d['latency_ms_p50']} ms / {d['latency_ms_max']} ms; within 8 s: {pct(d['within_8s_share'])} (95% lower bound {pct(d['within_8s_wilson_lower_95']) if 'within_8s_wilson_lower_95' in d else 'n/a'}) |",
+            f"| Corrupted rewrites refused | {d['mutations_rejected']} of {d['mutations']} |"] + [f"| Before: {k.replace('_', ' ')} | accepted {pct(b['accept_rate'])}, p50 {b['latency_ms_p50']} ms, within 8 s {pct(b['within_8s_share'])} ({b['sessions'] if 'sessions' in b else 16} sessions) |" for k, b in d.get("baselines", {}).items()] + ["",
+            "Limit: the validator knows the engine's event words only; an event that is not one of them passes (DT-211). The within-8-seconds pass is a point estimate: its lower 95 percent bound is just under the 80 percent target.", ""]
 
 
 def section_voice() -> list[str]:

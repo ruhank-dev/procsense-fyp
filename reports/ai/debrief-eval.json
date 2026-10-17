@@ -1,20 +1,19 @@
 {
   "model": "qwen3.5:4b-q4_K_M",
+  "prompt_version": 2,
   "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
-  "sessions": 16,
-  "ai_used": 11,
-  "template_kept": 5,
-  "accept_rate": 0.688,
+  "sessions": 48,
+  "ai_used": 45,
+  "template_kept": 3,
+  "accept_rate": 0.938,
   "reasons": {
-    "DEBRIEF_VERDICT_CHANGED": 5,
-    "DEBRIEF_MISSING_FACT": 4,
-    "DEBRIEF_MIXED_VERDICT": 1
+    "DEBRIEF_NEW_EVENT": 6
   },
-  "latency_ms_p50": 7357,
-  "latency_ms_max": 18425,
-  "within_8s_share": 0.625,
-  "mutations": 43,
-  "mutations_rejected": 43,
+  "latency_ms_p50": 4506,
+  "latency_ms_max": 14014,
+  "within_8s_share": 0.896,
+  "mutations": 177,
+  "mutations_rejected": 177,
   "samples": [
     {
       "case": "STK-S1-D",
@@ -40,7 +39,7 @@
       "ai": [
         {
           "title": "What went well",
-          "text": "You performed the test appropriately, made a correct decision, and redirected the situation in an appropriate manner. Your actions demonstrated strong clinical judgment throughout the simulation.",
+          "text": "You correctly selected tests, made the right decision, and redirected the patient appropriately.",
           "fact_ids": [
             "f1",
             "f2",
@@ -50,7 +49,7 @@
         },
         {
           "title": "For your information",
-          "text": "The session concluded with you redirecting the scenario appropriately, resulting in a successful outcome.",
+          "text": "The session concluded successfully with the patient redirected appropriately.",
           "fact_ids": [
             "f5"
           ]
@@ -58,46 +57,295 @@
       ]
     },
     {
-      "case": "VAR-S1-H",
+      "case": "VAR-S1-A",
       "template": [
         {
           "title": "What went well",
-          "text": "test appropriate (credit); decision correct (credit); postponed appropriately (credit).",
+          "text": "test appropriate (credit); test appropriate (credit); asa correct (credit); capacity checked (credit); consent element (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); teach back (credit); consent valid (credit); ward checklist complete (credit); sign in complete (credit); or ready (credit); time out complete (credit).",
           "fact_ids": [
             "f1",
             "f2",
-            "f3"
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f16",
+            "f17",
+            "f18",
+            "f19"
           ]
         },
         {
           "title": "For your information",
-          "text": "the session ended: postponed appropriately; result success.",
+          "text": "the session ended: ready safe; result success.",
           "fact_ids": [
-            "f4"
+            "f20"
           ]
         }
       ],
       "ai": [
         {
           "title": "What went well",
-          "text": "You performed a test that was entirely appropriate for the scenario. Your decision to proceed with the plan was correct and you managed to postpone the surgery appropriately.",
+          "text": "You correctly validated consent, checked capacity, and completed all required checklists and timeouts.",
           "fact_ids": [
             "f1",
             "f2",
-            "f3"
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f16",
+            "f17",
+            "f18",
+            "f19"
           ]
         },
         {
           "title": "For your information",
-          "text": "The session concluded successfully with the decision to postpone the procedure.",
+          "text": "The session concluded successfully and safely.",
           "fact_ids": [
-            "f4"
+            "f20"
           ]
         }
       ]
     },
     {
-      "case": "VAR-S2-D",
+      "case": "VAR-S1-B",
+      "template": [
+        {
+          "title": "What went well",
+          "text": "test appropriate (credit); asa correct (credit); capacity checked (credit); consent element (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); teach back (credit); consent valid (credit); ward checklist complete (credit); sign in complete (credit); or ready (credit); time out complete (credit).",
+          "fact_ids": [
+            "f1",
+            "f2",
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f17",
+            "f18",
+            "f19"
+          ]
+        },
+        {
+          "title": "For your information",
+          "text": "test not ordered (info); the session ended: ready safe; result success.",
+          "fact_ids": [
+            "f16",
+            "f20"
+          ]
+        }
+      ],
+      "ai": [
+        {
+          "title": "What went well",
+          "text": "You correctly performed capacity checks, obtained valid consent, and completed essential safety steps like time-outs.",
+          "fact_ids": [
+            "f1",
+            "f2",
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f17",
+            "f18",
+            "f19"
+          ]
+        },
+        {
+          "title": "For your information",
+          "text": "A test was not ordered during this session, and the overall result was successful with a safe outcome.",
+          "fact_ids": [
+            "f16",
+            "f20"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "VAR-S1-C",
+      "template": [
+        {
+          "title": "What went well",
+          "text": "test appropriate (credit); test appropriate (credit); asa correct (credit); capacity checked (credit); consent element (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); teach back (credit); consent valid (credit); ward checklist complete (credit); sign in complete (credit); or ready (credit); time out complete (credit).",
+          "fact_ids": [
+            "f1",
+            "f2",
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f16",
+            "f18",
+            "f19",
+            "f20"
+          ]
+        },
+        {
+          "title": "For your information",
+          "text": "test not ordered (info); the session ended: ready safe; result success.",
+          "fact_ids": [
+            "f17",
+            "f21"
+          ]
+        }
+      ],
+      "ai": [
+        {
+          "title": "What went well",
+          "text": "You correctly ordered tests, assessed ASA capacity, and ensured all consent elements were valid. Ward checklist complete (credit). Sign in complete (credit). Or ready (credit). Time out complete (credit).",
+          "fact_ids": [
+            "f1",
+            "f2",
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f16",
+            "f18",
+            "f19",
+            "f20"
+          ]
+        },
+        {
+          "title": "For your information",
+          "text": "The test was not ordered during this simulation, and the session concluded safely with a success result.",
+          "fact_ids": [
+            "f17",
+            "f21"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "VAR-S1-D",
+      "template": [
+        {
+          "title": "What went well",
+          "text": "test appropriate (credit); test appropriate (credit); asa correct (credit); capacity checked (credit); consent element (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); question answered (credit); consent element (credit); consent element (credit); teach back (credit); consent valid (credit); ward checklist complete (credit); sign in complete (credit); or ready (credit); time out complete (credit).",
+          "fact_ids": [
+            "f1",
+            "f2",
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f16",
+            "f18",
+            "f19",
+            "f20"
+          ]
+        },
+        {
+          "title": "For your information",
+          "text": "test not ordered (info); the session ended: ready safe; result success.",
+          "fact_ids": [
+            "f17",
+            "f21"
+          ]
+        }
+      ],
+      "ai": [
+        {
+          "title": "What went well",
+          "text": "You correctly ordered tests, checked capacity, and ensured valid consent throughout the simulation. Your thoroughness with checklists and teach-back methods was excellent.",
+          "fact_ids": [
+            "f1",
+            "f2",
+            "f3",
+            "f4",
+            "f5",
+            "f6",
+            "f7",
+            "f8",
+            "f9",
+            "f10",
+            "f11",
+            "f12",
+            "f13",
+            "f14",
+            "f15",
+            "f16",
+            "f18",
+            "f19",
+            "f20"
+          ]
+        },
+        {
+          "title": "For your information",
+          "text": "The test was not ordered during this specific scenario, and the session concluded safely with a successful result.",
+          "fact_ids": [
+            "f17",
+            "f21"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "VAR-S1-E",
       "template": [
         {
           "title": "What went well",
@@ -120,7 +368,7 @@
       "ai": [
         {
           "title": "What went well",
-          "text": "You demonstrated excellent clinical judgment by making a correct decision and redirecting the scenario appropriately.",
+          "text": "You made the correct decision and redirected the patient appropriately.",
           "fact_ids": [
             "f3",
             "f4"
@@ -128,7 +376,7 @@
         },
         {
           "title": "For your information",
-          "text": "Remember that tests were ordered during the simulation, and the session concluded with a successful outcome through appropriate redirection.",
+          "text": "Tests were ordered during the session, which concluded with a successful redirection.",
           "fact_ids": [
             "f1",
             "f2",
@@ -136,167 +384,55 @@
           ]
         }
       ]
-    },
-    {
-      "case": "VAR-S1-G",
-      "template": [
-        {
-          "title": "What went well",
-          "text": "decision correct (credit).",
-          "fact_ids": [
-            "f1"
-          ]
-        },
-        {
-          "title": "What to improve",
-          "text": "postponed unnecessarily (penalty).",
-          "fact_ids": [
-            "f2"
-          ]
-        },
-        {
-          "title": "For your information",
-          "text": "the session ended: safe but delayed; result success with delay.",
-          "fact_ids": [
-            "f3"
-          ]
-        }
-      ],
-      "ai": [
-        {
-          "title": "What went well",
-          "text": "Your decision-making process was correct and demonstrated good judgment during the scenario.",
-          "fact_ids": [
-            "f1"
-          ]
-        },
-        {
-          "title": "What to improve",
-          "text": "Be mindful that you postponed the procedure unnecessarily, which is an area for growth in your next session.",
-          "fact_ids": [
-            "f2"
-          ]
-        },
-        {
-          "title": "For your information",
-          "text": "The session concluded with a safe result despite the delay, confirming overall success even with the time extension.",
-          "fact_ids": [
-            "f3"
-          ]
-        }
-      ]
-    },
-    {
-      "case": "VAR-S2-B",
-      "template": [
-        {
-          "title": "What went well",
-          "text": "test appropriate (credit); decision correct (credit); redirected appropriately (credit).",
-          "fact_ids": [
-            "f1",
-            "f2",
-            "f3"
-          ]
-        },
-        {
-          "title": "For your information",
-          "text": "the session ended: redirected appropriately; result success.",
-          "fact_ids": [
-            "f4"
-          ]
-        }
-      ],
-      "ai": [
-        {
-          "title": "What went well",
-          "text": "You chose an appropriate test, made a correct decision, and handled redirection effectively.",
-          "fact_ids": [
-            "f1",
-            "f2",
-            "f3"
-          ]
-        },
-        {
-          "title": "What to improve",
-          "text": "There are no specific areas for improvement identified in this session.",
-          "fact_ids": [
-            "f4"
-          ]
-        }
-      ]
-    },
-    {
-      "case": "VAR-S2-PC",
-      "template": [
-        {
-          "title": "What went well",
-          "text": "test appropriate (credit); test appropriate (credit); test appropriate (credit); test appropriate (credit); asa correct (credit); sbar complete (credit); right role (credit); capacity checked (credit); consent emergency route (credit); sepsis antibiotics on time (credit); sign in complete (credit); or ready (credit); time out complete (credit).",
-          "fact_ids": [
-            "f1",
-            "f2",
-            "f3",
-            "f4",
-            "f5",
-            "f6",
-            "f7",
-            "f8",
-            "f9",
-            "f10",
-            "f12",
-            "f13",
-            "f14"
-          ]
-        },
-        {
-          "title": "What to improve",
-          "text": "treatment documentation (penalty).",
-          "fact_ids": [
-            "f11"
-          ]
-        },
-        {
-          "title": "For your information",
-          "text": "the session ended: ready safe; result success.",
-          "fact_ids": [
-            "f15"
-          ]
-        }
-      ],
-      "ai": [
-        {
-          "title": "What went well",
-          "text": "You demonstrated excellent preparation by performing all necessary tests and checking capacity correctly. Your team roles were appropriate, consent was obtained via the emergency route, and antibiotics for sepsis were administered on time.",
-          "fact_ids": [
-            "f1",
-            "f2",
-            "f3",
-            "f4",
-            "f5",
-            "f6",
-            "f7",
-            "f8",
-            "f9",
-            "f10"
-          ]
-        },
-        {
-          "title": "What to improve",
-          "text": "The only area for improvement is ensuring that all treatment documentation is completed accurately. This step is essential for maintaining clear and safe records of your care.",
-          "fact_ids": [
-            "f11"
-          ]
-        },
-        {
-          "title": "For your information",
-          "text": "You successfully completed standard safety checks like signing in, performing the time out, and confirming the team was ready. The session concluded with a result of success.",
-          "fact_ids": [
-            "f12",
-            "f13",
-            "f14",
-            "f15"
-          ]
-        }
-      ]
     }
-  ]
+  ],
+  "baselines": {
+    "prompt_v1_before_completion_17_oct": {
+      "accept_rate": 0.688,
+      "ai_used": 11,
+      "template_kept": 5,
+      "reasons": {
+        "DEBRIEF_VERDICT_CHANGED": 5,
+        "DEBRIEF_MISSING_FACT": 4,
+        "DEBRIEF_MIXED_VERDICT": 1
+      },
+      "latency_ms_p50": 7357,
+      "latency_ms_max": 18425,
+      "within_8s_share": 0.625,
+      "mutations": 43,
+      "mutations_rejected": 43
+    },
+    "prompt_v1_with_completion_18_oct": {
+      "prompt_version": 1,
+      "accept_rate": 0.875,
+      "ai_used": 14,
+      "template_kept": 2,
+      "reasons": {
+        "DEBRIEF_NEW_EVENT": 2,
+        "DEBRIEF_VERDICT_CHANGED": 3
+      },
+      "latency_ms_p50": 8102,
+      "latency_ms_max": 21375,
+      "within_8s_share": 0.438,
+      "mutations": 55,
+      "mutations_rejected": 55
+    },
+    "prompt_v2_first_16_sessions_18_oct": {
+      "prompt_version": 2,
+      "sessions": 16,
+      "accept_rate": 0.938,
+      "ai_used": 15,
+      "template_kept": 1,
+      "reasons": {
+        "DEBRIEF_NEW_EVENT": 2
+      },
+      "latency_ms_p50": 4967,
+      "latency_ms_max": 13082,
+      "within_8s_share": 0.938,
+      "mutations": 59,
+      "mutations_rejected": 59
+    }
+  },
+  "within_8s_wilson_lower_95": 0.778,
+  "note": "Prompt version 2 (shorter sections, one section per verdict, every fact id listed once) with a rewrite that dropped a fact completed from the template in code, on 48 golden sessions. baselines are the earlier prompt on the same first 16 sessions before and after the completion step, and prompt version 2 on those 16. Measured on the 6 GB desktop with the 4B model while nothing else heavy ran; the lower bound is the Wilson 95 percent bound of the within-8-seconds share (it is just under the 0.8 target, so the pass is a point estimate)."
 }

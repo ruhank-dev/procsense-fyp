@@ -87,16 +87,19 @@ Limit: the leak checks are lexical; a paraphrase or a made-up denial is not seen
 
 ## AI debrief (rewrite of the template debrief)
 
-Model qwen3.5:4b-q4_K_M (`d8b0f5e9760c`), 16 golden sessions.
+Model qwen3.5:4b-q4_K_M (`d8b0f5e9760c`), prompt version 2, 48 golden sessions.
 
 | Measure | Value |
 |---|---|
-| The rewrite replaced the template | 11 of 16 (68.8%) |
-| The template stayed (reasons) | 5 ({'DEBRIEF_VERDICT_CHANGED': 5, 'DEBRIEF_MISSING_FACT': 4, 'DEBRIEF_MIXED_VERDICT': 1}) |
-| Latency p50 / worst | 7357 ms / 18425 ms; within 8 s: 62.5% |
-| Corrupted rewrites refused | 43 of 43 |
+| The rewrite replaced the template | 45 of 48 (93.8%) |
+| The template stayed (reasons) | 3 ({'DEBRIEF_NEW_EVENT': 6}) |
+| Latency p50 / worst | 4506 ms / 14014 ms; within 8 s: 89.6% (95% lower bound 77.8%) |
+| Corrupted rewrites refused | 177 of 177 |
+| Before: prompt v1 before completion 17 oct | accepted 68.8%, p50 7357 ms, within 8 s 62.5% (16 sessions) |
+| Before: prompt v1 with completion 18 oct | accepted 87.5%, p50 8102 ms, within 8 s 43.8% (16 sessions) |
+| Before: prompt v2 first 16 sessions 18 oct | accepted 93.8%, p50 4967 ms, within 8 s 93.8% (16 sessions) |
 
-Limit: the validator knows the engine's event words only; an event that is not one of them passes (DT-211).
+Limit: the validator knows the engine's event words only; an event that is not one of them passes (DT-211). The within-8-seconds pass is a point estimate: its lower 95 percent bound is just under the 80 percent target.
 
 ## Voice: speech recognition, speech output and spoken orders
 
