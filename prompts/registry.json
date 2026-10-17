@@ -180,6 +180,21 @@
       "gateway": false
     },
     {
+      "id": "debrief.rewrite",
+      "version": 2,
+      "role": "batch",
+      "file": "debrief/rewrite_v2.txt",
+      "sha256": "87f21009f3e98b91b857ba46d45fa091f9e38b06a3e11b37673508576dad05a1",
+      "schema": null,
+      "variables": [
+        "titles",
+        "facts"
+      ],
+      "num_predict": 450,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "analytics.explain_result",
       "version": 1,
       "role": "live",

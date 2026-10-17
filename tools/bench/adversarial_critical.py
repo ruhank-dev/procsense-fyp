@@ -20,12 +20,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "server"))
-SET = ROOT / "tests" / "classifier_synthetic_v2" / "adversarial_critical.json"
+SETS = {"tuning": ROOT / "tests" / "classifier_synthetic_v2" / "adversarial_critical.json", "holdout": ROOT / "tests" / "classifier_synthetic_v2" / "adversarial_critical_holdout.json"}
 REPORT = ROOT / "reports" / "ai" / "classifier-adversarial.json"
 
 
-def evaluate(classifier) -> dict:
-    rows = json.loads(SET.read_text(encoding="utf-8"))["rows"]
+def evaluate(classifier, which: str = "tuning") -> dict:
+    rows = json.loads(SETS[which].read_text(encoding="utf-8"))["rows"]
     counts: dict[str, dict] = {}
     credited = []
     unavailable = 0
@@ -50,10 +50,12 @@ def evaluate(classifier) -> dict:
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
+    ap.add_argument("--set", choices=sorted(SETS), default="tuning", help="tuning: the set the guard cues were chosen from; holdout: the set written before the change and never used to choose a cue")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args(argv)
     from classify.embedding import EmbeddingActClassifier, OllamaEmbedder
-    out = evaluate(EmbeddingActClassifier(OllamaEmbedder(a.ollama)))
+    out = evaluate(EmbeddingActClassifier(OllamaEmbedder(a.ollama)), a.set)
+    out["set"] = a.set
     out["synthetic"], out["independent"] = True, False
     print(json.dumps({k: v for k, v in out.items() if k != "credited_as_ordinary"}, indent=1))
     for c in out["credited_as_ordinary"]:

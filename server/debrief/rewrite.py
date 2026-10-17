@@ -95,8 +95,8 @@ def cover_missing(sections: list[dict], facts: list[dict]) -> list[str]:
 
 
 class Rewriter:
-    def __init__(self, client, model: str | None = None, timeout: float | None = None):
-        self.client, self.model, self.timeout = client, model, timeout
+    def __init__(self, client, model: str | None = None, timeout: float | None = None, version: int | None = None):
+        self.client, self.model, self.timeout, self.version = client, model, timeout, version
         self.lexicon = json.loads((ROOT / "content" / "ai" / "lexicon.json").read_text(encoding="utf-8"))
 
     def make(self, report: dict) -> dict:
@@ -110,7 +110,7 @@ class Rewriter:
         text = "\n".join(f"{f['id']} [{f['verdict']}]: {f['text']}" for f in facts)
         completed: list[str] = []
         r = gateway.run(self.client, "debrief.rewrite", {"titles": ", ".join(TITLES), "facts": text}, schema=schema([f["id"] for f in facts]),
-                        validate=lambda v: (completed.clear(), completed.extend(cover_missing(v["sections"], facts)), [f"{c}: refused" for c in check(v["sections"], facts, self.lexicon)])[2], model=self.model, timeout=self.timeout, retries=1, task="debrief")
+                        validate=lambda v: (completed.clear(), completed.extend(cover_missing(v["sections"], facts)), [f"{c}: refused" for c in check(v["sections"], facts, self.lexicon)])[2], model=self.model, timeout=self.timeout, retries=1, task="debrief", version=self.version)
         out["latency_ms"] = round((time.monotonic() - t) * 1000)
         if r.ok:
             out["ai"], out["used"] = r.value["sections"], "ai"

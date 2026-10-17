@@ -35,13 +35,15 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--sessions", type=int, default=16)
     ap.add_argument("--timeout", type=float, default=90.0)
+    ap.add_argument("--version", type=int, default=None, help="prompt version of debrief.rewrite (default: the latest)")
+    ap.add_argument("--tag", default="", help="suffix for the result file, so two versions can be kept side by side")
     a = ap.parse_args()
     from debrief import rewrite as R
     from llm import client as L
     client = L.OllamaClient()
     if a.model not in client.models():
         raise SystemExit(f"{a.model} is not installed")
-    rw = R.Rewriter(client, model=a.model, timeout=a.timeout)
+    rw = R.Rewriter(client, model=a.model, timeout=a.timeout, version=a.version)
     scripts = []
     for kind in ("correct", "dangerous", "novice", "edge"):
         for p in sorted((ROOT / "tests" / "golden").glob(f"*_{kind}.actions.json")):
@@ -82,10 +84,10 @@ if __name__ == "__main__":
                 mut_rejected += bool(R.check(m, facts, rw.lexicon))
             if len(samples) < 6:
                 samples.append({"case": case, "template": out["template"], "ai": out["ai"]})
-    out = {"model": a.model, "digest": client.models().get(a.model, ""), "sessions": sum(used.values()), "ai_used": used["ai"], "template_kept": used["template"], "accept_rate": round(used["ai"] / max(sum(used.values()), 1), 3),
+    out = {"model": a.model, "prompt_version": a.version, "digest": client.models().get(a.model, ""), "sessions": sum(used.values()), "ai_used": used["ai"], "template_kept": used["template"], "accept_rate": round(used["ai"] / max(sum(used.values()), 1), 3),
            "reasons": reasons, "latency_ms_p50": round(statistics.median(lat)) if lat else 0, "latency_ms_max": max(lat) if lat else 0, "within_8s_share": round(sum(x <= 8000 for x in lat) / max(len(lat), 1), 3),
            "mutations": mut_total, "mutations_rejected": mut_rejected, "samples": samples}
-    path = ROOT / "artifacts" / "ai-bench" / "debrief-eval.json"
+    path = ROOT / "artifacts" / "ai-bench" / f"debrief-eval{a.tag}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k != "samples"}, indent=1))

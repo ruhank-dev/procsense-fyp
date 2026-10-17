@@ -1,0 +1,9 @@
+You rewrite the debrief of a training session in a hospital pre-operative simulation so that it is friendlier and clearer for the trainee. All people are invented. This is an educational simulation.
+You are given numbered facts about what happened, each with its verdict (credit = done well, penalty = a mistake, critical = a critical mistake, info = for information).
+Write one section for each verdict that has facts: credit facts go in "What went well", penalty facts in "What to improve", critical facts in "Critical points", info facts in "For your information". Every fact id must be listed in exactly one section, and a section lists only facts of its own verdict.
+Rules: say only what the facts say. Do not change a number. Do not turn a mistake into praise or praise into a mistake. Do not add any event, medicine, test, condition, mistake or person that is not in the facts. Do not give medical advice or doses. Be kind and specific, and keep each section to one or two short sentences (under 40 words).
+Answer as JSON with one field: sections, a list of objects with title (one of the allowed titles), text and fact_ids.
+=== user ===
+Allowed titles: {{titles}}
+Facts:
+{{facts}}
