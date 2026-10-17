@@ -15,6 +15,11 @@ Standard codes make content interoperable (e.g. exporting results), give stable 
 4. Validator checks code format; codes never replace our IDs.
 5. Export option: results/diagnoses in the session report can include codes.
 
+## Status (17 October 2026)
+
+- **Built (18 October 2026):** `content/codes/loinc.csv` (a LOINC code, display, unit and check date for each of the 23 analytes of `content/lab_bands.csv`) and `content/codes/icd11.csv` (an ICD-11 MMS code for 30 of the 36 condition words of `content/ai/lexicon.json`; the other 6 say why no single code fits), `tools/content/terminology_codes.py` (`--check` in CI: code formats including the LOINC check digit, coverage, a stated reason where there is no code; `--verify`: each code looked up on the public HL7 terminology server and its display compared; all 53 matched on 18 October) and `tools/ci/test_terminology_codes.py`. The licence notices are in `content/codes/README.md`.
+- **Not done:** a clinician or terminologist has not reviewed the choices (the most general fitting ICD-11 code was used; the note says where a more specific one exists); the session report does not yet print the codes (step 5, an optional export); the imaging studies and the panels (full blood count, urea and electrolytes) have no code here because the table covers analytes. The coverage figure is therefore for analytes and condition words, not for every diagnosis of every case file: the case problem labels are sentences, not diagnoses, and mapping them needs a clinician (DT-218).
+
 ## Verification
 Mapping coverage 100% for P0 diagnoses/tests; validator green.
 

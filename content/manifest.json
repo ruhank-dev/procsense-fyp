@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "feff56b4671b4ba15940972bfccc480cd14c656228eba7aa9af06f9a761e01f6",
- "files": 666,
- "bytes": 17815290,
+ "content_hash": "3cb02fe3a8c263aba196307e99ff3200bd7def3913fc1d28a2e5910ae3e7f80f",
+ "files": 669,
+ "bytes": 17822703,
  "per_folder": {
   "(root)": 64,
   "ai": 6,
@@ -14,6 +14,7 @@
   "cases": 1,
   "checklist": 1,
   "clashes": 1,
+  "codes": 3,
   "consent": 1,
   "cxr": 33,
   "debrief": 1,
@@ -1405,6 +1406,18 @@
   "clashes/clashes.json": {
    "bytes": 14803,
    "sha256": "f848e59bc3d269a181a140bd885ff8014067420f5fca457d3b49d8f72ef89690"
+  },
+  "codes/README.md": {
+   "bytes": 1679,
+   "sha256": "6114b14fb23b9ad2226ca589def9184b7e1f8e5c7bfa3900592c1240377b1a9d"
+  },
+  "codes/icd11.csv": {
+   "bytes": 3155,
+   "sha256": "350378abb400ec7308bd66d64d876621b94bf914042dbee2411e2bd23b16cc48"
+  },
+  "codes/loinc.csv": {
+   "bytes": 2579,
+   "sha256": "9aa7bcf5dbdb507b4917229692035f52eb5c5cf1db5aca205a581d11d773ffa9"
   },
   "consent/consent.json": {
    "bytes": 7394,

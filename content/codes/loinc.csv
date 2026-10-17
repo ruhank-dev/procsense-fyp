@@ -1,0 +1,24 @@
+analyte,loinc,display,content_unit,checked,loinc_version,note
+haemoglobin,718-7,Hemoglobin [Mass/volume] in Blood,g/L,2026-10-18,2.82,mass concentration in blood; the content unit g/L is the SI form of the same property
+wbc,6690-2,Leukocytes [#/volume] in Blood by Automated count,x10^9/L,2026-10-18,2.82,
+neutrophils,751-8,Neutrophils [#/volume] in Blood by Automated count,x10^9/L,2026-10-18,2.82,absolute count
+platelets,777-3,Platelets [#/volume] in Blood by Automated count,x10^9/L,2026-10-18,2.82,
+crp,1988-5,C reactive protein [Mass/volume] in Serum or Plasma,mg/L,2026-10-18,2.82,
+sodium,2951-2,Sodium [Moles/volume] in Serum or Plasma,mmol/L,2026-10-18,2.82,
+potassium,2823-3,Potassium [Moles/volume] in Serum or Plasma,mmol/L,2026-10-18,2.82,
+urea,22664-7,Urea [Moles/volume] in Serum or Plasma,mmol/L,2026-10-18,2.82,"moles per volume, matching the content unit"
+creatinine,14682-9,Creatinine [Moles/volume] in Serum or Plasma,umol/L,2026-10-18,2.82,"moles per volume, matching the content unit"
+egfr,62238-1,"Glomerular filtration rate [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI)/1.73 sq M",mL/min/1.73m2,2026-10-18,2.82,CKD-EPI creatinine-based
+glucose_perioperative_diabetic,14743-9,Glucose [Moles/volume] in Capillary blood by Glucometer,mmol/L,2026-10-18,2.82,"capillary blood by glucometer, as taken at the bedside"
+hba1c,59261-8,Hemoglobin A1c/Hemoglobin.total standardized per IFCC-RMP for CDT in Blood,mmol/mol,2026-10-18,2.82,IFCC units; the display is as the terminology server returns it
+ketones,53061-8,Ketones [Moles/volume] in Blood,mmol/L,2026-10-18,2.82,blood ketones
+bilirubin,14631-6,Bilirubin.total [Moles/volume] in Serum or Plasma,umol/L,2026-10-18,2.82,"total bilirubin, moles per volume"
+alt,1742-6,Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma,U/L,2026-10-18,2.82,
+alp,6768-6,Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma,U/L,2026-10-18,2.82,
+ggt,2324-2,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,U/L,2026-10-18,2.82,
+albumin,1751-7,Albumin [Mass/volume] in Serum or Plasma,g/L,2026-10-18,2.82,
+lipase,3040-3,Lipase [Enzymatic activity/volume] in Serum or Plasma,U/L,2026-10-18,2.82,
+inr,6301-6,INR in Platelet poor plasma by Coagulation assay,ratio,2026-10-18,2.82,
+lactate,2524-7,Lactate [Moles/volume] in Serum or Plasma,mmol/L,2026-10-18,2.82,
+beta_hcg,21198-7,Choriogonadotropin.beta subunit [Units/volume] in Serum or Plasma,IU/L,2026-10-18,2.82,serum beta subunit
+qtc,8636-3,Q-T interval corrected,ms,2026-10-18,2.82,

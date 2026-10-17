@@ -1,0 +1,37 @@
+term,icd11,display,checked,icd11_release,note
+anaphylaxis,4A84,Anaphylaxis,2026-10-18,2026-01,
+appendicitis,DB10,Appendicitis,2026-10-18,2026-01,
+arrhythmia,BC9Z,"Cardiac arrhythmia, unspecified",2026-10-18,2026-01,unspecified; a specific rhythm has its own code
+asthma,CA23,Asthma,2026-10-18,2026-01,
+bradycardia,MC81.1,"Bradycardia, unspecified",2026-10-18,2026-01,"symptom code, unspecified"
+cholangitis,DC13,Cholangitis,2026-10-18,2026-01,
+cholecystitis,DC12,Cholecystitis,2026-10-18,2026-01,"DC12.0 acute, DC12.1 chronic"
+copd,CA22,Chronic obstructive pulmonary disease,2026-10-18,2026-01,
+dehydration,5C70,Volume depletion,2026-10-18,2026-01,volume depletion includes dehydration
+diabetes,5A14,"Diabetes mellitus, type unspecified",2026-10-18,2026-01,type unspecified
+ectopic,JA01,Ectopic pregnancy,2026-10-18,2026-01,ectopic pregnancy
+embolism,BB00,Pulmonary thromboembolism,2026-10-18,2026-01,pulmonary thromboembolism; the content word is used for the pulmonary case
+fibrillation,BC81.3,Atrial fibrillation,2026-10-18,2026-01,atrial fibrillation
+gallstones,DC11,Cholelithiasis,2026-10-18,2026-01,cholelithiasis
+hyperkalaemia,5C76,Hyperkalaemia,2026-10-18,2026-01,
+hypertension,BA00,Essential hypertension,2026-10-18,2026-01,essential hypertension
+hypoglycaemia,5A41,Hypoglycaemia without associated diabetes,2026-10-18,2026-01,without associated diabetes; with diabetes the diabetic code applies
+hypotension,BA20,Idiopathic hypotension,2026-10-18,2026-01,idiopathic hypotension
+infarction,BA41,Acute myocardial infarction,2026-10-18,2026-01,acute myocardial infarction; the content word is used for the heart
+jaundice,ME10.1,Unspecified jaundice,2026-10-18,2026-01,unspecified jaundice
+ketoacidosis,5A22,Diabetic acidosis,2026-10-18,2026-01,diabetic acidosis
+pancreatitis,DC31,Acute pancreatitis,2026-10-18,2026-01,acute pancreatitis
+peritonitis,DC50,Peritonitis,2026-10-18,2026-01,
+pneumonia,CA40,Pneumonia,2026-10-18,2026-01,
+pregnancy,QA41,Pregnant state,2026-10-18,2026-01,pregnant state
+sepsis,1G40,Sepsis without septic shock,2026-10-18,2026-01,without septic shock
+septic,1G41,Sepsis with septic shock,2026-10-18,2026-01,sepsis with septic shock
+stroke,8B11,Cerebral ischaemic stroke,2026-10-18,2026-01,cerebral ischaemic stroke
+tachycardia,MC81.0,"Tachycardia, unspecified",2026-10-18,2026-01,"symptom code, unspecified"
+thrombosis,BD71,Deep vein thrombosis,2026-10-18,2026-01,deep vein thrombosis; the content word is used for the venous case
+bleeding,,,2026-10-18,2026-01,no single code: a finding in every chapter; no single ICD-11 code (ME24.9 is gastrointestinal bleeding)
+cancer,,,2026-10-18,2026-01,"no single code: a block of chapter 02 by site, not one code"
+haemorrhage,,,2026-10-18,2026-01,no single code: a finding in every chapter; no single ICD-11 code
+hypoxia,,,2026-10-18,2026-01,no single code: no general ICD-11 code found for hypoxaemia; intrauterine hypoxia KB20 is a different concept
+obstruction,,,2026-10-18,2026-01,"no single code: site specific: DA91 small intestine, DB30 large intestine"
+perforation,,,2026-10-18,2026-01,no single code: site specific; a perforated appendix is DB10 with a perforation specifier
