@@ -74,6 +74,26 @@ def check(sections: list[dict], facts: list[dict], lexicon: dict) -> list[str]:
     return sorted(codes)
 
 
+def cover_missing(sections: list[dict], facts: list[dict]) -> list[str]:
+    """Completes a rewrite that left facts out, in place: each missing fact is added to a section whose facts all share its verdict (its fixed template wording is appended and its id listed), or to a new
+    section of its own. Returns the ids it added. The wording added is the template's, so no new claim can come from this step, and the strict check still runs on the completed sections; it makes a
+    dropped fact cost no second model call. Facts the model got wrong (a changed verdict, a changed number) are never repaired here: those go back to the model once and then to the template."""
+    covered = {i for s in sections for i in s["fact_ids"]}
+    by = {f["id"]: f for f in facts}
+    added = []
+    for f in facts:
+        if f["id"] in covered:
+            continue
+        home = next((s for s in sections if s["fact_ids"] and {by[i]["verdict"] for i in s["fact_ids"] if i in by} == {f["verdict"]}), None)
+        if home is None:
+            sections.append({"title": SECTION_OF.get(f["verdict"], "For your information"), "text": f["text"][0].upper() + f["text"][1:] + ".", "fact_ids": [f["id"]]})
+        else:
+            home["text"] = home["text"].rstrip() + " " + f["text"][0].upper() + f["text"][1:] + "."
+            home["fact_ids"].append(f["id"])
+        added.append(f["id"])
+    return added
+
+
 class Rewriter:
     def __init__(self, client, model: str | None = None, timeout: float | None = None):
         self.client, self.model, self.timeout = client, model, timeout
@@ -88,11 +108,13 @@ class Rewriter:
             return out
         t = time.monotonic()
         text = "\n".join(f"{f['id']} [{f['verdict']}]: {f['text']}" for f in facts)
+        completed: list[str] = []
         r = gateway.run(self.client, "debrief.rewrite", {"titles": ", ".join(TITLES), "facts": text}, schema=schema([f["id"] for f in facts]),
-                        validate=lambda v: [f"{c}: refused" for c in check(v["sections"], facts, self.lexicon)], model=self.model, timeout=self.timeout, retries=1, task="debrief")
+                        validate=lambda v: (completed.clear(), completed.extend(cover_missing(v["sections"], facts)), [f"{c}: refused" for c in check(v["sections"], facts, self.lexicon)])[2], model=self.model, timeout=self.timeout, retries=1, task="debrief")
         out["latency_ms"] = round((time.monotonic() - t) * 1000)
         if r.ok:
             out["ai"], out["used"] = r.value["sections"], "ai"
+            out["completed_from_template"] = completed
         else:
             out["reasons"] = [d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"]
         return out

@@ -611,6 +611,33 @@ class DebriefTests(unittest.TestCase):
         m[3]["text"] += " The patient went into cardiac arrest."
         self.assertEqual(self.R.check(m, self.facts, self.lex), [])
 
+    def test_a_dropped_fact_is_completed_from_the_template_without_a_second_model_call(self):
+        calls = {"n": 0}
+        sections = self.good()
+        sections[0]["fact_ids"] = ["f1"]                                        # the rewrite forgot fact f3 (a credit)
+        sections[0]["text"] = "You made the right decision, well done."
+
+        def h(request):
+            if request.url.path == "/api/tags":
+                return httpx.Response(200, json={"models": []})
+            calls["n"] += 1
+            return httpx.Response(200, json={"message": {"content": json.dumps({"sections": sections})}})
+        out = self.R.Rewriter(C.OllamaClient(transport=httpx.MockTransport(h))).make(self.REPORT)
+        self.assertEqual((out["used"], calls["n"], out["completed_from_template"]), ("ai", 1, ["f3"]))
+        self.assertEqual({i for s in out["ai"] for i in s["fact_ids"]}, {f["id"] for f in self.facts})
+        self.assertIn("Capacity checked (credit)", out["ai"][0]["text"])
+        self.assertEqual(self.R.check(out["ai"], self.facts, self.lex), [])
+
+    def test_a_missing_penalty_is_never_put_in_a_section_of_praise(self):
+        sections = self.good()
+        sections[1]["fact_ids"] = ["f2"]
+        dropped = self.good()
+        dropped.pop(2)                                                         # the whole critical section is gone
+        self.R.cover_missing(dropped, self.facts)
+        critical = [s for s in dropped if "f4" in s["fact_ids"]]
+        self.assertEqual([s["title"] for s in critical], ["Critical points"])
+        self.assertEqual(self.R.check(dropped, self.facts, self.lex), [])
+
     def test_a_rewrite_that_changes_the_verdict_is_refused_twice_and_the_template_stays(self):
         bad = self.good()
         bad[0]["text"] = "You made the wrong decision and forgot to check capacity."
