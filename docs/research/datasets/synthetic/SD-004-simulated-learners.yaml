@@ -1,0 +1,17 @@
+id: SD-004
+title: Simulated learners (personalisation experiment)
+synthetic: true
+purpose: Learners with a hidden mastery per behaviour who play sessions, to test the learner model and to compare targeting policies against the truth.
+generator: {path: server/personalisation/simulate.py, version: "1", command: "uv run --project tools tools/personalisation/simulate.py --write"}
+seed: "per learner: the run seed times 100000 plus the learner index"
+source: A simulation with assumed learning rates (0.02 a session in general, 0.12 for the behaviours a session practises); no real trainee data.
+method: Each item is a Bernoulli draw from the hidden mastery moved by the tier on the Elo logit scale; practising a behaviour closes part of the gap to full mastery.
+constraints: The truth is visible to the simulation only, never to a model or a policy.
+validation: The model's intervals cover the truth about 79 percent of the time at a nominal 80; results are reproducible (tests). The simulation says whether a policy can find and train a weakness in this assumed world, not that real trainees improve.
+review: Not reviewed by a person.
+labels: None.
+model_use: server/personalisation (learner model and policies); the result is docs/research/personalisation_simulation.json
+use: dev_only
+files: [docs/research/personalisation_simulation.json]
+rows: {docs/research/personalisation_simulation.json: {policies: 3}}
+licence: The project's own content

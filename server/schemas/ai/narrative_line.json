@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/ai/narrative_line.json",
+  "title": "A rewritten patient line (compose.narrative)",
+  "type": "object",
+  "required": ["text"],
+  "additionalProperties": false,
+  "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 400}}
+}

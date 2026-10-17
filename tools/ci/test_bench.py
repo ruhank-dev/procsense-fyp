@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "bench"))
 import bench_classifier as B  # noqa: E402
 import dataset as D  # noqa: E402
+import synthetic as SY  # noqa: E402
 
 
 def filled(split="dev", authors=("ann", "bob")):
@@ -199,6 +200,73 @@ class Benchmark(unittest.TestCase):
         self.assertTrue(B.verdict(result).startswith("a is ahead of b"))
         result["candidates"]["a"]["critical_acts_credited_from_speech"] = 1          # a critical act credited from speech can never win
         self.assertTrue(B.verdict(result).startswith("no clear winner"))
+
+
+class SyntheticSet(unittest.TestCase):
+    """The model-written, model-labelled set (tests/classifier_synthetic): what it is, that it says so, and that it is leakage-checked. Nothing here makes it independent."""
+
+    @staticmethod
+    def rows(name):
+        return [json.loads(l) for l in (SY.OUT / f"{name}.jsonl").read_text(encoding="utf-8").splitlines()]
+
+    def test_the_committed_files_are_what_the_sources_give(self):
+        files = SY.build()
+        for n, t in files.items():
+            self.assertEqual((SY.OUT / n).read_text(encoding="utf-8"), t, n)
+
+    def test_counts_profiles_and_labels(self):
+        train, dev, test = (self.rows(n) for n in ("train", "dev", "test"))
+        self.assertEqual((len(train), len(dev), len(test)), (320, 100, 200))
+        ids = {a["id"] for a in D.taxonomy()}
+        for rs in (train, dev, test):
+            self.assertEqual({r["act"] for r in rs}, ids)
+        authors = [{r["author"] for r in rs} for rs in (train, dev, test)]
+        self.assertEqual(authors[0] & authors[1] | authors[0] & authors[2] | authors[1] & authors[2], set())      # a style is in one split only
+        self.assertEqual(sorted(authors[0] | authors[1] | authors[2]), sorted(SY.PERSONAS))
+
+    def test_it_says_it_is_synthetic_and_not_independent_everywhere(self):
+        for n in ("train", "dev", "test"):
+            self.assertTrue(all(r["synthetic"] and r["independent"] is False for r in self.rows(n)), n)
+        m = json.loads((SY.OUT / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual((m["synthetic"], m["independent"]), (True, False))
+        self.assertIn("no person wrote", m["note"])
+
+    def test_every_critical_row_was_second_labelled_and_every_disagreement_adjudicated(self):
+        crit = {a["id"] for a in D.taxonomy() if a["critical"]}
+        for n in ("dev", "test"):
+            rs = self.rows(n)
+            self.assertTrue(all(r["second_label"] for r in rs if r["intended_act"] in crit), n)
+            self.assertTrue(all(r["adjudicated"] for r in rs if r["second_label"] and r["second_label"] != r["intended_act"]), n)
+
+    def test_no_dev_or_test_sentence_repeats_training_wording(self):
+        old = [json.loads(l)["text"] for n in ("train", "dev", "test") for l in (ROOT / "tests" / "classifier" / f"{n}.jsonl").read_text(encoding="utf-8").splitlines()]
+        train = old + [r["text"] for r in self.rows("train")]
+        for n in ("dev", "test"):
+            self.assertEqual(D.near_duplicates([r["text"] for r in self.rows(n)], train), [], n)
+        self.assertEqual(D.near_duplicates([r["text"] for r in self.rows("dev")], [r["text"] for r in self.rows("test")]), [])
+
+    def test_the_benchmark_refuses_a_changed_file_and_marks_the_data_invalid_for_claims(self):
+        data = B.load_data("synthetic", True)
+        self.assertFalse(data["valid_for_claims"])
+        self.assertIn("NOT INDEPENDENT", data["provenance"])
+        with tempfile.TemporaryDirectory() as t:
+            copy = Path(t)
+            for f in SY.OUT.glob("*.jsonl"):
+                (copy / f.name).write_bytes(f.read_bytes())
+            (copy / "manifest.json").write_bytes((SY.OUT / "manifest.json").read_bytes())
+            (copy / "test.jsonl").write_text(self.rows_text(copy) + " ", encoding="utf-8")
+            old = B.SYNTH
+            B.SYNTH = copy
+            try:
+                with self.assertRaises(SystemExit) as e:
+                    B.load_data("synthetic", True)
+                self.assertIn("frozen hash", str(e.exception))
+            finally:
+                B.SYNTH = old
+
+    @staticmethod
+    def rows_text(copy):
+        return (copy / "test.jsonl").read_text(encoding="utf-8")
 
 
 if __name__ == "__main__":

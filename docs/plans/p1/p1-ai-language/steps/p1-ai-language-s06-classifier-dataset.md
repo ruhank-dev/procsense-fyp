@@ -14,6 +14,12 @@ The classifier's accuracy can only be trusted against utterances labelled by peo
 3. Dataset card per B-M4.
 4. Role-play scripts per step (3 sessions each) recorded with consent; transcripts added to the set.
 
+## Status (17 October 2026)
+
+- **Built:** `content/assessment/taxonomy.json` (20 acts: the 15 non-critical acts of the behaviour mapping, the 4 critical acts of `critical_acts` and SBAR_ELEMENT, now critical too, and NONE, each with a definition and examples); `tools/synth/gen_utterances.py` (480 template utterances, the old smoke set, SD-006); and, for the real set, the scenario cards for 100 dev and 200 test rows, the annotation guide with single-label tie-break rules, the blind sheets and the freeze rules (`docs/research/classifier_benchmark`, `tools/bench/dataset.py`).
+- **Synthetic set:** `tests/classifier_synthetic` (320 train, 100 dev, 200 test rows in eight simulated writing styles, written and labelled by the model, NOT independent) lets the pipeline and the classifiers be exercised.
+- **Blocked on people:** two authors per split, a second labeller and an adjudicator (DT-210).
+
 ## Verification
 Card complete; kappa computed and recorded; splits frozen with hashes.
 

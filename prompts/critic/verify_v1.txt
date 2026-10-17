@@ -1,0 +1,10 @@
+You check one suspected contradiction in an invented patient's record. All people are invented and this is an educational simulation.
+You are given a fact about the patient, one line the patient or the summary says, and the claim someone read out of that line.
+Answer conflict = yes ONLY if the line says something that cannot be true if the fact is true: the same subject (age, sex, an allergy, the operation, the side of the body, pain) with a different or opposite value. If the line says less than the fact, says something unrelated, or the claim is about a different subject, answer no.
+Answer as JSON with one field: conflict, either yes or no.
+=== user ===
+Fact: {{fact}}
+
+Line: {{line}}
+
+Claim: {{claim}}

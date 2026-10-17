@@ -13,6 +13,11 @@ Transparent adaptation builds trust and tells trainees what to focus on.
 2. Template: 'Next: <case title>. Focus: <dimension>. Why: your recent <competency> score was <x>.' — facts from the selector only.
 3. Optional LLM rewording via the validator (facts unchanged).
 
+## Status (17 October 2026)
+
+- **Built earlier (P0):** the template explanation is `Selection.Explanation` of `src/ProcSense.Core/Difficulty/Difficulty.cs` from `content/difficulty/dimensions.json`, built from the selector's facts only and tested in `DifficultyTests`; `server/analytics/next_case.py` adds the matched pattern to the reason when it re-orders the valid set.
+- **Not built:** the optional language-model rewording behind the gate: the template is complete and a rewording could only risk changing a number.
+
 ## Verification
 Explanation test: every number/dimension in the text matches the selector output.
 

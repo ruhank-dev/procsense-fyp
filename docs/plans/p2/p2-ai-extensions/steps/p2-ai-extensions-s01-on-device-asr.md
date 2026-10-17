@@ -15,6 +15,10 @@ Server-free voice would make voice input work with the headset alone — useful 
 4. Measure on Quest 3 and Quest 2: latency for 5 s clips, WER on the same recorded test set used in EXP-VOX-3, CPU/thermal impact while the simulation runs.
 5. Decision: adopt as offline fallback, replace server ASR, or drop — ADR.
 
+## Status (17 October 2026)
+
+- **Not started:** on-device recognition on the Quest needs the headset and an ARM build (Sannan, DT-212); the service version (`server/asr`) is built.
+
 ## Verification
 EXP-P2AI-1 table (device, model, latency, WER, frame impact) + ADR in `docs/decisions/`.
 

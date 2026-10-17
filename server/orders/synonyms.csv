@@ -1,0 +1,47 @@
+phrase,kind,target
+full blood count,test,fbc
+blood count,test,fbc
+fbc,test,fbc
+u and e,test,u_and_e
+urea and electrolytes,test,u_and_e
+kidney function,test,u_and_e
+liver function,test,lft
+lfts,test,lft
+c reactive protein,test,crp
+inflammation marker,test,crp
+clotting,test,coag
+glucose,test,glucose
+calpol,medicine,TR-PARACETAMOL
+paracetamol,medicine,TR-PARACETAMOL
+acetaminophen,medicine,TR-PARACETAMOL
+ibuprofen,medicine,TR-NSAID
+diclofenac,medicine,TR-NSAID
+nurofen,medicine,TR-NSAID
+morphine,medicine,TR-OPIOID
+fentanyl,medicine,TR-OPIOID
+codeine,medicine,TR-OPIOID
+ondansetron,medicine,TR-ANTIEMETIC
+cyclizine,medicine,TR-ANTIEMETIC
+augmentin,medicine,TR-ABX-S2
+co-amoxiclav,medicine,TR-ABX-S2
+antibiotics,medicine,TR-ABX-S2
+adrenaline,medicine,TR-ADRENALINE
+epinephrine,medicine,TR-ADRENALINE
+naloxone,medicine,TR-NALOXONE
+fluids,medicine,TR-IV-FLUIDS
+saline,medicine,TR-IV-FLUIDS
+oxygen,medicine,TR-OXYGEN
+anaesthetist,staff,anaesthetist
+anesthetist,staff,anaesthetist
+senior,staff,senior
+registrar,staff,senior
+consultant,staff,senior
+nurse,staff,nurse
+surgeon,staff,surgeon
+porter,staff,porter
+theatre,place,theatre
+x ray,place,xray
+xray,place,xray
+ct,place,ct
+ultrasound,place,ultrasound
+ward,place,ward

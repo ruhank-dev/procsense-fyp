@@ -1,0 +1,13 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "callers": 4,
+  "calls_each": 5,
+  "served": 16,
+  "fallback_signals": 4,
+  "queue_wait_s_p50": 1.44,
+  "queue_wait_s_p95": 4.99,
+  "service_s_p50": 0.51,
+  "service_s_p95": 9.47,
+  "calls_per_minute": 71.8,
+  "seconds": 16.7
+}

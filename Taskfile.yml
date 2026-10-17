@@ -66,6 +66,16 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/catalogue.py
 
+  report-ai:
+    desc: Regenerate docs/report/ai-eval.md from the result files in reports/ai (no hand-typed numbers)
+    cmds:
+      - uv run --project tools tools/eval/collect_ai.py
+
+  check-hosts:
+    desc: Check this machine as a model host (Ollama, the wanted models and their digests, faster-whisper, Piper, ffmpeg, GPU); add --ask to send a schema-constrained prompt
+    cmds:
+      - uv run --project tools tools/ai/check_hosts.py {{.CLI_ARGS}}
+
   compose:
     desc: Compose practice cases from approved spines and blocks, e.g. task compose -- compose --scenario S1 --difficulty 2 --n 20 --seed 7 (each card goes through Stage B before it is written to build/composed)
     cmds:

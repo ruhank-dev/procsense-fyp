@@ -1,7 +1,12 @@
-# The build context is the whole repository (about 3 GB of datasets and the Unity project among it); only the server folder is sent.
+# The build context is the whole repository (about 3 GB of datasets and the Unity project among it); only the server folder, the prompts and the AI word lists are sent.
 *
 !server/
 !server/**
+!prompts/
+!prompts/**
+!content/
+!content/ai/
+!content/ai/**
 # never into an image: secrets, local environments, tests, caches
 server/.env
 server/.env.*

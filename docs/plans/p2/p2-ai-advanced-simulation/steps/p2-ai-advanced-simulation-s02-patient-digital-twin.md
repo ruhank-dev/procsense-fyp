@@ -2,7 +2,6 @@
 
 Milestone: **M15 P2 learning analytics and advanced simulation**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Persistent patient state across a session and repeat sessions from the generated profile and physiology.
@@ -12,6 +11,10 @@ Continuity makes consequences real.
 
 ## How to implement
 1. Twin state object over LitePhysio or PULSE; replayable.
+
+## Status (17 October 2026)
+
+- **Not built (research, DT-215):** a patient twin that persists across repeat sessions. The engine already replays a session exactly from its log; carrying the end state into a new session needs a state snapshot and restore, which is a design decision about which systems to keep (the step's own warning is state explosion).
 
 ## Verification
 Twin state replays.

@@ -42,6 +42,26 @@ def assemble(skeleton: dict, objectives: dict, index: retrieve.Index, models: li
            "provenance": {"generator": GENERATOR, "seed": objectives["seed"], "spine": comp["spine"], "blocks": comp["blocks"], "content_hash": index.content_hash, "packs": pack_versions(),
                           "stages": stages or ["LG-02", "LG-03", "LG-04", "LG-05", "LG-07", "LG-08"]},
            "fingerprint": skeleton["fingerprint"], "quality": {"numeric_log": skeleton.get("numeric_log", []), "media": skeleton.get("media", {}).get("log", [])}}
+    plan = skeleton.get("plan") or {}
+    if plan.get("method") == "model":
+        models = list(models or [])
+        seen = {(a["model"], a["model_digest"]) for a in plan["audit"] if a["outcome"] == "ok"}
+        models += [{"role": "planner", "name": m, "digest": d} for m, d in sorted(seen)]
+        pkg["provenance"].setdefault("prompts", {}).update({f"{a['prompt_id']}@{a['prompt_version']}": a["prompt_sha256"] for a in plan["audit"]})
+        pkg["provenance"]["stages"].append("LG-04")
+        pkg["provenance"]["plan"] = {"method": "model", "rounds": plan["rounds"], "reasons": plan["reasons"]}
+    elif plan:
+        pkg["provenance"]["plan"] = {"method": "solver", "why": plan.get("why", "")}
+    nar = skeleton.get("narrative")
+    if nar and any(x["method"] == "model" for x in nar["lines"]):
+        pkg["narrative"] = {"persona": nar["persona"], "lines": nar["lines"]}
+        seen = {(a["model"], a["model_digest"]) for a in nar["audit"] if a["outcome"] == "ok"}
+        models = (models or []) + [{"role": "narrative", "name": m, "digest": d} for m, d in sorted(seen)]
+        pkg["provenance"]["prompts"] = {f"{a['prompt_id']}@{a['prompt_version']}": a["prompt_sha256"] for a in nar["audit"]}
+        pkg["provenance"]["stages"].append("LG-06")
+        pkg["quality"]["narrative_audit"] = [{k: a[k] for k in ("task", "latency_ms", "attempts", "outcome", "input_hash", "output_hash")} for a in nar["audit"]]
+    elif nar:
+        pkg["narrative"] = {"persona": nar["persona"], "lines": nar["lines"]}
     if models:
         pkg["provenance"]["models"] = models
     pkg["media"] = skeleton.get("media", {"slots": []})

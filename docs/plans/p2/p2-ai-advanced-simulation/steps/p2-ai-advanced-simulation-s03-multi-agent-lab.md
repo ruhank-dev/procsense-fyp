@@ -2,7 +2,6 @@
 
 Milestone: **M15 P2 learning analytics and advanced simulation**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Several AI characters acting together with turn-taking, one shared model on 6 GB VRAM.
@@ -12,6 +11,10 @@ Team communication is a core competency.
 
 ## How to implement
 1. ReactionQueue orchestration; shared model; latency budget.
+
+## Status (17 October 2026)
+
+- **Not built (DT-215):** three characters answering one trainee turn on the one model slot. Each reply takes about 1.9 s on the 4B (dialogue evaluation), so three in sequence exceed the 4 s target; the Core's ReactionQueue (priority, debounce, one spontaneous remark per 8 s) is the place to hide that, and it needs measuring with real turns.
 
 ## Verification
 p95 under 4 s with three roles.

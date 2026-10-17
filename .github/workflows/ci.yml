@@ -468,6 +468,51 @@ jobs:
       - name: classifier benchmark scenario cards are current
         run: uv run --project tools tools/bench/dataset.py cards --check
 
+      - name: communication classifier head, guard and regression of the critical misroutes
+        run: uv run --project tools tools/ci/test_classifier_embedding.py
+
+      - name: retrieval index and the recorded decision
+        run: uv run --project tools tools/ci/test_retrieval.py
+
+      - name: model-call layer against a fake Ollama
+        run: uv run --project tools tools/ci/test_llm.py
+
+      - name: session evidence from golden sessions
+        run: uv run --project tools tools/ci/test_personalisation_evidence.py
+
+      - name: learner model against simulated learners
+        run: uv run --project tools tools/ci/test_personalisation_model.py
+
+      - name: targeting policy, explanations, interpreter and the simulated experiment
+        run: uv run --project tools tools/ci/test_personalisation_policy.py
+
+      - name: joint model of laboratory results
+        run: uv run --project tools tools/ci/test_generation_joint.py
+
+      - name: synthetic dataset cards are whole
+        run: uv run --project tools tools/synth/publish.py --check
+
+      - name: synthetic card tests
+        run: uv run --project tools tools/ci/test_synth_cards.py
+
+      - name: AI evaluation report is current
+        run: uv run --project tools tools/eval/collect_ai.py --check
+
+      - name: speech recognition vocabulary is current
+        run: uv run --project tools tools/content/build_vocab.py --check
+
+      - name: learning analytics (patterns, calibration, reasoning)
+        run: uv run --project tools tools/ci/test_analytics.py
+
+      - name: AI feature gate is current and a missing result never passes
+        run: uv run --project tools tools/eval/ai_gate.py --check
+
+      - name: AI gate tests
+        run: uv run --project tools tools/ci/test_ai_gate.py
+
+      - name: red team of the validator
+        run: uv run --project tools tools/ci/test_redteam.py
+
       - name: synthetic diverse classifier set is current
         run: uv run --project tools tools/bench/synthetic.py check
 

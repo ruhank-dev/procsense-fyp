@@ -14,6 +14,11 @@ Handing the patient safely to recovery closes the journey the walkthrough descri
 3. Recovery nurse avatar (from the chosen human set) with role uniform.
 4. Required handover elements from content; omissions scored like Step 12.
 
+## Status (17 October 2026)
+
+- **Built:** `RecoveryHandoverSubsystem.cs` and `content/handover/recovery_required.json` (SR-4130): after the Sign Out is complete the trainee hands over 12 SBAR items from a menu of facts they know (the Sign Out flags tell what they know); a missing item is scored by severity (allergies critical; procedure, findings, counts, analgesia plan, antibiotic plan and concerns major), the recovery nurse asks once in practice, the same omission again is a further major item; the walkthrough's named error is 'omits antibiotic plan'.
+- **Verification result:** `TheatreExtensionTests`: complete handover credited once, the antibiotic plan omission, the critical allergy omission, the repeat, scored with the session. The recovery bay reuses the patient bay layout, so the Core does not move the trainee; the scene and the nurse avatar are Sannan's.
+
 ## Verification
 Recovery handover playable for S1 and S2; omission fixtures scored.
 

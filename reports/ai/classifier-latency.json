@@ -1,0 +1,22 @@
+{
+  "sentences": 20,
+  "note": "one sentence at a time, dev split, nothing else running is required for a fair number",
+  "tfidf_logreg": {
+    "p50_ms": 1.39,
+    "p95_ms": 2.18
+  },
+  "embeddings_logreg": {
+    "p50_ms": 26.93,
+    "p95_ms": 71.06,
+    "includes": "the Ollama embedding call, the length normalisation and the 20-class head in plain Python"
+  },
+  "qwen_3_5_4b": {
+    "p50_ms": 2248.11,
+    "p95_ms": 2292.04,
+    "vram_used_mib_before_and_after_loading": [
+      5745,
+      5706
+    ]
+  },
+  "process_rss_mib": 130.7
+}

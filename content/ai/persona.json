@@ -1,0 +1,14 @@
+{
+  "note": "Speaking styles for a patient's lines (DT-085). A style changes wording only: it never adds or removes a fact, a time, a count or a feeling that is not in the line. Two are drawn for a generated case by its seed. The 'chatty' style of the first draft was removed: it invited the model to invent remarks (found on a real run).",
+  "tags": {
+    "brief": "answers in as few words as is natural",
+    "anxious": "a little worried in tone, through word choice only",
+    "calm": "steady and matter-of-fact",
+    "formal": "polite, complete sentences, no slang",
+    "casual": "everyday speech with contractions",
+    "warm": "friendly and polite in tone"
+  },
+  "refs": [
+    "SR-2870"
+  ]
+}

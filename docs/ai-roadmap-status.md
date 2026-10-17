@@ -33,6 +33,23 @@ The owner told the project to implement the P1 and P2 plan modules that are the 
 * **Scenario knowledge base (A66, OFF-10): partly built.** 836 sourced relations and an offline extraction tool with quote checking and a review gate (`tools/kb/`, `content/kb/`). The extraction precision gate (0.8 on 100 hand-labelled relations) is not measured: it needs a labeller (DT-114). No model relation is in the base.
 * **Still true:** no live session calls a model; rules decide, AI proposes.
 
+## 0d. Update of 17 October 2026 (the AI features are built; what the gate says)
+
+Built by the engineer under the owner's instruction, each with tests in CI and a measured result in `reports/ai/` (the generated page is `docs/report/ai-eval.md`):
+
+* **Model layer:** Ollama client, hashed prompt registry, gateway with schema, validator, one retry and the fallback signal, audit, rate limit and one model slot (ADR-0011).
+* **Generation with models:** patient wording, the AI plan composer (valid but did not beat the solver: off by default), the text critic with a verification pass, number-locked reports, the joint model of laboratory results.
+* **Characters and speech:** patient and staff dialogue (only the facts the Core allows are shown), the AI debrief (template first, strict validator), speech recognition (`faster-whisper`, CPU here), live speech (Piper; a Windows fix for standard output), spoken orders with read-back.
+* **The classifier:** sentence embeddings + logistic regression with a critical-content guard (ADR-0012); SBAR_ELEMENT made critical in the engine. Evaluated only on a synthetic, model-written, model-labelled set of eight styles; **not independent**.
+* **Learning and personalisation:** session evidence, learner model, targeting policies (neither beat the Elo selection in simulation), explanations, patterns, calibration, reasoning features, progression, next-case ranking, result explanations.
+* **Safety work:** red team of the validator (critical classes zero escapes; paraphrase, synonym and made-up denials are open, DT-211).
+* **Theatre extension and cases:** Sign Out, four labelled intra-operative events, the recovery handover, 16 P1 case goldens (engine 0.0.7).
+* **Measured and not shipped:** retrieval over approved content (DT-216); the AI plan composer; personalised targeting.
+
+**The gate (`content/ai/features.json`) switches on:** asr, narrative, patient_dialogue, voice_orders. **Off:** classifier (SKIPPED), classifier_synthetic (FAIL), critic (FAIL), debrief_ai (FAIL), interpreter (FAIL), plan_composer (FAIL), tts (FAIL). The classifier is off because its suites read the independent set (DT-210), the critic and others because their result does not yet meet the bar (see the page). A missing result never passes.
+
+**Needs a person:** the independent classifier set (two authors per split, a second labeller, an adjudicator), consented recordings (the draft rules are in `docs/research/labelling/consent_and_storage.md`), a clinician for the intra-operative events and the 12 recovery items, the laptop, and Sannan's scenes, assets and headset runs. Pulse, on-device speech, Urdu, the medical model benchmark and the content extensions wait for their own needs (DT-207, DT-212).
+
 ## 1. The short answers
 
 | Question | Answer |

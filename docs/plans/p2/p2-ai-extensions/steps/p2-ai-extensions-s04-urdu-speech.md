@@ -15,6 +15,10 @@ Many trainees and patients in Pakistan code-switch between Urdu and English; voi
 4. Evaluate Whisper multilingual on the set (WER per language mix); vocabulary prompt with transliterated medical terms.
 5. TTS: check available Urdu voices for the offline pipeline; record terms.
 
+## Status (17 October 2026)
+
+- **Not started:** Urdu speech needs consented Urdu recordings and a recogniser benchmark on them (DT-212, DT-210).
+
 ## Verification
 WER by category recorded; dataset card complete; ADR on whether Urdu input ships.
 

@@ -1,0 +1,387 @@
+{
+  "model": "qwen3.5:9b-q4_K_M",
+  "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "cases": 10,
+  "lines": 47,
+  "accepted_first_try": 30,
+  "accepted_after_retry": 7,
+  "fallback_to_authored": 10,
+  "accept_rate": 0.787,
+  "first_try_rate": 0.638,
+  "first_try_schema_valid_rate": 1.0,
+  "latency_ms_p50": 4358,
+  "latency_ms_max": 19146,
+  "seconds": 272,
+  "pairs": [
+    {
+      "case": "SC-1",
+      "line": "complaint",
+      "persona": [
+        "casual",
+        "formal"
+      ],
+      "before": "Terrible pain in my whole tummy for two days and I feel awful.",
+      "after": "I have terrible pain all over my tummy that has been going on for two days, and I am feeling awful."
+    },
+    {
+      "case": "SC-1",
+      "line": "red_flags",
+      "persona": [
+        "casual",
+        "formal"
+      ],
+      "before": "Fever and shaking. Vomiting. Very little urine.",
+      "after": "I have a fever and I am shaking, I am vomiting, and I am passing very little urine."
+    },
+    {
+      "case": "SC-1",
+      "line": "family_anaesthetic",
+      "persona": [
+        "casual",
+        "formal"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "There are no anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-1",
+      "line": "last_food",
+      "persona": [
+        "casual",
+        "formal"
+      ],
+      "before": "Lunch at 12:00 yesterday.",
+      "after": "I had lunch at 12:00 yesterday."
+    },
+    {
+      "case": "SC-10",
+      "line": "complaint",
+      "persona": [
+        "brief",
+        "anxious"
+      ],
+      "before": "(Through an interpreter) Pain in my right side.",
+      "after": "I'm worried about this pain on my right side."
+    },
+    {
+      "case": "SC-10",
+      "line": "family_anaesthetic",
+      "persona": [
+        "brief",
+        "anxious"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "There are no anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-10",
+      "line": "last_food",
+      "persona": [
+        "brief",
+        "anxious"
+      ],
+      "before": "Lunch at 12:00 yesterday.",
+      "after": "I had lunch at 12:00 yesterday."
+    },
+    {
+      "case": "SC-11",
+      "line": "complaint",
+      "persona": [
+        "casual",
+        "anxious"
+      ],
+      "before": "Pain low on the right; I do not want surgery.",
+      "after": "I'm feeling pain low on my right side, and honestly, I don't want surgery."
+    },
+    {
+      "case": "SC-11",
+      "line": "family_anaesthetic",
+      "persona": [
+        "casual",
+        "anxious"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "There are no anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-11",
+      "line": "last_food",
+      "persona": [
+        "casual",
+        "anxious"
+      ],
+      "before": "Lunch at 12:00 yesterday.",
+      "after": "I had lunch at 12:00 yesterday."
+    },
+    {
+      "case": "SC-12",
+      "line": "reason_answer",
+      "persona": [
+        "anxious",
+        "brief"
+      ],
+      "before": "To have my gallbladder taken out.",
+      "after": "I'm here because they need to take out my gallbladder."
+    },
+    {
+      "case": "SC-12",
+      "line": "complaint",
+      "persona": [
+        "anxious",
+        "brief"
+      ],
+      "before": "Gallstone pain under the right ribs.",
+      "after": "I'm a bit worried about this gallstone pain I'm feeling under my right ribs."
+    },
+    {
+      "case": "SC-12",
+      "line": "red_flags",
+      "persona": [
+        "anxious",
+        "brief"
+      ],
+      "before": "Tired and a bit confused at times.",
+      "after": "I feel tired and a bit confused at times."
+    },
+    {
+      "case": "SC-12",
+      "line": "past_history",
+      "persona": [
+        "anxious",
+        "brief"
+      ],
+      "before": "High blood pressure; gallstones.",
+      "after": "I've had high blood pressure and gallstones."
+    },
+    {
+      "case": "SC-12",
+      "line": "family_anaesthetic",
+      "persona": [
+        "anxious",
+        "brief"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "There haven't been any anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-13",
+      "line": "complaint",
+      "persona": [
+        "brief",
+        "calm"
+      ],
+      "before": "Gallstone pain and tiredness.",
+      "after": "I have gallstone pain and I am tired."
+    },
+    {
+      "case": "SC-13",
+      "line": "past_history",
+      "persona": [
+        "brief",
+        "calm"
+      ],
+      "before": "Atrial fibrillation (old mechanical valve is not present); gallstones.",
+      "after": "I have atrial fibrillation and gallstones. My old mechanical valve is not present."
+    },
+    {
+      "case": "SC-13",
+      "line": "medicines",
+      "persona": [
+        "brief",
+        "calm"
+      ],
+      "before": "Warfarin; I did not stop it.",
+      "after": "I took warfarin, and I didn't stop it."
+    },
+    {
+      "case": "SC-13",
+      "line": "family_anaesthetic",
+      "persona": [
+        "brief",
+        "calm"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "No anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-14",
+      "line": "family_anaesthetic",
+      "persona": [
+        "anxious",
+        "casual"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "I don't think we have any anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-14",
+      "line": "last_food",
+      "persona": [
+        "anxious",
+        "casual"
+      ],
+      "before": "Lunch at 12:00 yesterday.",
+      "after": "I had lunch at 12:00 yesterday."
+    },
+    {
+      "case": "SC-15",
+      "line": "complaint",
+      "persona": [
+        "formal",
+        "brief"
+      ],
+      "before": "Pain low on the right, and a rash and wheeze after the drip.",
+      "after": "I am experiencing pain low on my right side, and I also developed a rash and wheezing after receiving the drip."
+    },
+    {
+      "case": "SC-15",
+      "line": "previous_anaesthetic",
+      "persona": [
+        "formal",
+        "brief"
+      ],
+      "before": "No previous anaesthetics.",
+      "after": "I have had no previous anaesthetics."
+    },
+    {
+      "case": "SC-15",
+      "line": "family_anaesthetic",
+      "persona": [
+        "formal",
+        "brief"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "There are no anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-15",
+      "line": "last_food",
+      "persona": [
+        "formal",
+        "brief"
+      ],
+      "before": "Lunch at 12:00 yesterday.",
+      "after": "I had lunch at 12:00 yesterday."
+    },
+    {
+      "case": "SC-16",
+      "line": "reason_answer",
+      "persona": [
+        "calm",
+        "warm"
+      ],
+      "before": "To have my gallbladder taken out.",
+      "after": "I am here to have my gallbladder taken out."
+    },
+    {
+      "case": "SC-16",
+      "line": "complaint",
+      "persona": [
+        "calm",
+        "warm"
+      ],
+      "before": "Gallstone pain; I feel bloated and sick.",
+      "after": "I'm having gallstone pain, and I feel bloated and sick."
+    },
+    {
+      "case": "SC-16",
+      "line": "red_flags",
+      "persona": [
+        "calm",
+        "warm"
+      ],
+      "before": "Nausea and bloating since the injection.",
+      "after": "I have been experiencing nausea and bloating since receiving the injection."
+    },
+    {
+      "case": "SC-16",
+      "line": "past_history",
+      "persona": [
+        "calm",
+        "warm"
+      ],
+      "before": "Type 2 diabetes; obesity; snoring.",
+      "after": "I have a history of type 2 diabetes, obesity, and snoring."
+    },
+    {
+      "case": "SC-16",
+      "line": "previous_anaesthetic",
+      "persona": [
+        "calm",
+        "warm"
+      ],
+      "before": "No previous anaesthetics.",
+      "after": "I have not had any previous anaesthetics."
+    },
+    {
+      "case": "SC-16",
+      "line": "family_anaesthetic",
+      "persona": [
+        "calm",
+        "warm"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "There have been no anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-17",
+      "line": "complaint",
+      "persona": [
+        "anxious",
+        "warm"
+      ],
+      "before": "Pain low on the right and I keep vomiting.",
+      "after": "I'm feeling a bit worried because there's pain low on my right side, and I keep vomiting."
+    },
+    {
+      "case": "SC-17",
+      "line": "family_anaesthetic",
+      "persona": [
+        "anxious",
+        "warm"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "I'm just a bit worried to ask, but there are no anaesthetic problems in my family."
+    },
+    {
+      "case": "SC-17",
+      "line": "last_food",
+      "persona": [
+        "anxious",
+        "warm"
+      ],
+      "before": "Lunch at 12:00 yesterday.",
+      "after": "I'm a bit worried because my last lunch was at 12:00 yesterday."
+    },
+    {
+      "case": "SC-18",
+      "line": "complaint",
+      "persona": [
+        "formal",
+        "warm"
+      ],
+      "before": "Booked for gallbladder removal.",
+      "after": "I have been scheduled for my gallbladder removal surgery."
+    },
+    {
+      "case": "SC-18",
+      "line": "family_anaesthetic",
+      "persona": [
+        "formal",
+        "warm"
+      ],
+      "before": "No anaesthetic problems in the family.",
+      "after": "I have no family history of anesthesia problems."
+    },
+    {
+      "case": "SC-18",
+      "line": "last_food",
+      "persona": [
+        "formal",
+        "warm"
+      ],
+      "before": "Dinner at 20:00 yesterday.",
+      "after": "I had dinner at 20:00 yesterday."
+    }
+  ]
+}

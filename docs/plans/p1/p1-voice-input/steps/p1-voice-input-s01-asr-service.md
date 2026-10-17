@@ -14,6 +14,11 @@ Voice lets trainees practise the real communication of the job (asking, ordering
 3. Reject clips > 15 s; convert to 16 kHz mono server-side.
 4. Concurrency: queue requests (T-ASR6), never crash.
 
+## Status (17 October 2026)
+
+- **Built:** `server/asr/service.py` (faster-whisper loaded once, one clip at a time, clips over 15 s and non-audio refused, 16 kHz mono conversion by ffmpeg, vocabulary prompt from `tools/content/build_vocab.py`, beam 3, temperature 0, voice-activity filter, low-confidence flag) and `POST /asr/organisations/{id}/transcribe` (audited, rate limited, optional dependency `uv sync --extra asr`; without it the fallback signal). 9 tests with a fake recogniser.
+- **Measured** (`tools/ai/asr_wer.py`, small.en on cpu, 40 rendered voice lines, spoken and written forms of times and dates counted equal): word error rate 0.0932 on clean synthetic speech from one voice; 9.29 s a clip on the CPU. Not a measure of accented trainees (DT-205).
+
 ## Verification
 T-ASR1 5 s clip ≤ 0.7 s target; T-ASR2…T-ASR6 pass; thresholds documented.
 

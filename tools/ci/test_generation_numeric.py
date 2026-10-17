@@ -95,9 +95,11 @@ class Numbers(unittest.TestCase):
         together = [e for e in log if e.get("together_with")]
         self.assertEqual({e["slot"] for e in together}, {"r1", "r2"})
 
-    def test_a_weak_pair_is_drawn_independently(self):
+    def test_without_the_joint_model_a_weak_pair_is_drawn_independently(self):
+        pack = packs.LabPack()
+        pack._joint = None                                  # the earlier method: linked pairs through their own copula, a weak pair on its own
         c = card([result("r1", "WBC", "7.0", normal_range="4.0-11.0"), result("r2", "CRP", "2", normal_range="below 5")])
-        log = numeric.vary_numbers(c, 4, LAB, VITALS, news2.score)
+        log = numeric.vary_numbers(c, 4, pack, VITALS, news2.score)
         self.assertFalse([e for e in log if e.get("together_with")])
         self.assertEqual({e["slot"] for e in log if e["action"] == "drawn"} & {"r1", "r2"}, {"r1", "r2"})
 

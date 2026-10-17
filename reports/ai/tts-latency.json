@@ -1,0 +1,7 @@
+{
+  "sentences": 12,
+  "first_sentence_seconds": 4.95,
+  "p50_seconds": 3.36,
+  "max_seconds": 5.35,
+  "note": "Piper is started afresh for every sentence (it loads the voice each time); a persistent process would be faster. Measured with nothing else heavy running only if the run is."
+}

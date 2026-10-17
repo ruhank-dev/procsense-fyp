@@ -13,6 +13,12 @@ A rewritten debrief can be friendlier and more personal than templates — but a
 2. `tools/ai_eval/debrief_mutation.py` over 50 sessions.
 3. Template debrief shows immediately; AI version replaces it only after validation passes.
 
+## Status (17 October 2026)
+
+- **Built:** `server/debrief/rewrite.py` and `POST /debrief/organisations/{id}/rewrite`: every scored item of the report becomes a fact with a verdict and numbers; the TEMPLATE debrief is made first and is complete; the model rewrites the facts into sections (titles from a closed list, fact ids from the facts); the answer replaces the template only if the strict validator passes: every fact covered, no number changed, no praise turned into a mistake or the reverse (a section may not mix verdicts), no new event, medicine, test, condition or equipment, no dose, no prescribing phrase. Prompt `debrief.rewrite`.
+- **Mutation test** (`tools/ci/test_llm.py`): 19 corruptions are refused; a known gap: an event that is not an engine event passes (DT-211).
+- **Measured** (`tools/ai/eval_debrief.py`, qwen3.5:4b-q4_K_M, 16 golden sessions): the rewrite replaced the template in 11 (68.8 percent), the template stayed in 5 (reasons {'DEBRIEF_VERDICT_CHANGED': 5, 'DEBRIEF_MISSING_FACT': 4, 'DEBRIEF_MIXED_VERDICT': 1}); latency p50 7357 ms, within 8 s 62.5 percent; corrupted rewrites refused 43 of 43.
+
 ## Verification
 T-DB1–T-DB5 pass; offline shows the template only.
 

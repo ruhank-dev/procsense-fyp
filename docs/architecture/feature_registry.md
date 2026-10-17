@@ -10,21 +10,21 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 
 | Status | Features |
 |---|---|
-| Implemented and tested | 3 |
+| Implemented and tested | 9 |
 | Implemented but incompletely tested | 0 |
-| Partially implemented | 31 |
-| Planned | 13 |
-| Blocked | 2 |
+| Partially implemented | 46 |
+| Planned | 3 |
+| Blocked | 0 |
 | Deferred | 4 |
-| Proposed new feature | 16 |
+| Proposed new feature | 7 |
 | Superseded or rejected | 0 |
 
 Each feature's complete implementation plan (user experience, existing versus missing, the seven AI questions, separate capability plans with schemas, flow, validation, failure handling, tests, metrics, baseline, acceptance, both-GPU hardware notes and tasks) is in `feature_plans/<ID>.md`; coverage is audited in [feature_coverage_audit.md](feature_coverage_audit.md).
 
 | ID | Feature | Kind | Status | AI status | Phase | Tier | Plan |
 |---|---|---|---|---|---|---|---|
-| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Partially implemented | Planned | PH-04 | P1 | [plan](feature_plans/A1.md) |
-| A2 | Live dataset-driven scenario generation | hybrid | Proposed new feature | Proposed new feature | PH-05 | P1 | [plan](feature_plans/A2.md) |
+| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Partially implemented | Partially implemented | PH-04 | P1 | [plan](feature_plans/A1.md) |
+| A2 | Live dataset-driven scenario generation | hybrid | Partially implemented | Partially implemented | PH-05 | P1 | [plan](feature_plans/A2.md) |
 | A3 | Patient profile generation | hybrid | Proposed new feature | Proposed new feature | PH-08 | P1 | [plan](feature_plans/A3.md) |
 | A4 | Mixed (multi-problem) case generation | hybrid | Planned | Proposed new feature | PH-05 | P1 | [plan](feature_plans/A4.md) |
 | A5 | Dynamic events (selection and generated variants) | hybrid | Partially implemented | Proposed new feature | PH-10 | P1 | [plan](feature_plans/A5.md) |
@@ -42,56 +42,56 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | B16 | Ultrasound image selection and labelled synthesis | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B16.md) |
 | B17 | Chest X-ray, CT and MRI selection | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B17.md) |
 | B18 | Cross-modal consistency | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-10 | P1 | [plan](feature_plans/B18.md) |
-| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | hybrid | Planned | Planned | PH-17 | P1 | [plan](feature_plans/B19.md) |
+| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](feature_plans/B19.md) |
 | B20 | Anomalies and artefacts (deliberate and realistic) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B20.md) |
 | B21 | Result variation (repeats, trends, timing) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B21.md) |
-| B22 | Investigation Interpreter (teaching aid) | ai | Proposed new feature | Proposed new feature | PH-18 | P2 | [plan](feature_plans/B22.md) |
+| B22 | Investigation Interpreter (teaching aid) | ai | Partially implemented | Partially implemented | PH-18 | P2 | [plan](feature_plans/B22.md) |
 | B23 | Investigation discovery | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-04 | P0 | [plan](feature_plans/B23.md) |
-| C24 | Patient dialogue | hybrid | Partially implemented | Blocked | PH-13 | P1 | [plan](feature_plans/C24.md) |
-| C25 | Nurse dialogue | hybrid | Partially implemented | Blocked | PH-13 | P1 | [plan](feature_plans/C25.md) |
-| C26 | Anaesthetist dialogue | hybrid | Partially implemented | Blocked | PH-13 | P1 | [plan](feature_plans/C26.md) |
-| C27 | Surgeon dialogue | hybrid | Partially implemented | Blocked | PH-13 | P1 | [plan](feature_plans/C27.md) |
-| C28 | Porter dialogue | hybrid | Partially implemented | Blocked | PH-13 | P1 | [plan](feature_plans/C28.md) |
-| C29 | Persona system | hybrid | Planned | Planned | PH-13 | P1 | [plan](feature_plans/C29.md) |
-| C30 | Context-aware and reactive dialogue | hybrid | Partially implemented | Blocked | PH-13 | P1 | [plan](feature_plans/C30.md) |
-| C31 | Voice interaction (end to end) | ai | Planned | Planned | PH-14 | P1 | [plan](feature_plans/C31.md) |
-| C32 | Voice commands | hybrid | Planned | Planned | PH-14 | P1 | [plan](feature_plans/C32.md) |
-| C33 | Speech-to-text | ai | Planned | Planned | PH-14 | P1 | [plan](feature_plans/C33.md) |
-| C34 | Text-to-speech | ai | Planned | Planned | PH-14 | P1 | [plan](feature_plans/C34.md) |
-| C35 | Voice orders and read-back | hybrid | Planned | Planned | PH-14 | P1 | [plan](feature_plans/C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-15 | P1 | [plan](feature_plans/C36.md) |
-| C37 | Communication classifier | ai | Blocked | Blocked | PH-15 | P1 | [plan](feature_plans/C37.md) |
-| D38 | AI debrief | hybrid | Partially implemented | Blocked | PH-16 | P1 | [plan](feature_plans/D38.md) |
+| C24 | Patient dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C24.md) |
+| C25 | Nurse dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C25.md) |
+| C26 | Anaesthetist dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C26.md) |
+| C27 | Surgeon dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C27.md) |
+| C28 | Porter dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C28.md) |
+| C29 | Persona system | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C29.md) |
+| C30 | Context-aware and reactive dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C30.md) |
+| C31 | Voice interaction (end to end) | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C31.md) |
+| C32 | Voice commands | hybrid | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C32.md) |
+| C33 | Speech-to-text | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C33.md) |
+| C34 | Text-to-speech | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C34.md) |
+| C35 | Voice orders and read-back | hybrid | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C35.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-15 | P1 | [plan](feature_plans/C36.md) |
+| C37 | Communication classifier | ai | Partially implemented | Partially implemented | PH-15 | P1 | [plan](feature_plans/C37.md) |
+| D38 | AI debrief | hybrid | Partially implemented | Partially implemented | PH-16 | P1 | [plan](feature_plans/D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | hybrid | Partially implemented | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D39.md) |
-| D40 | Performance pattern analysis | hybrid | Proposed new feature | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D40.md) |
-| D41 | Confidence calibration coach | hybrid | Proposed new feature | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D41.md) |
-| D42 | Clinical Reasoning Fingerprint | hybrid | Proposed new feature | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D42.md) |
+| D40 | Performance pattern analysis | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D40.md) |
+| D41 | Confidence calibration coach | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D41.md) |
+| D42 | Clinical Reasoning Fingerprint | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D42.md) |
 | D43 | Adaptive difficulty (deterministic Elo ratings and Selector) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P0 | [plan](feature_plans/D43.md) |
-| D44 | AI enhancement to adaptive difficulty | ai | Proposed new feature | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D44.md) |
-| D45 | Progression tracking | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-18 | P2 | [plan](feature_plans/D45.md) |
+| D44 | AI enhancement to adaptive difficulty | ai | Partially implemented | Partially implemented | PH-18 | P2 | [plan](feature_plans/D44.md) |
+| D45 | Progression tracking | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-18 | P2 | [plan](feature_plans/D45.md) |
 | D46 | Missed-step explanation | hybrid | Partially implemented | Blocked | PH-16 | P1 | [plan](feature_plans/D46.md) |
 | D47 | Evidence-based feedback | hybrid | Partially implemented | Planned | PH-16 | P1 | [plan](feature_plans/D47.md) |
-| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Proposed new feature | Proposed new feature | PH-23 | P1 | [plan](feature_plans/D67.md) |
-| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Proposed new feature | Proposed new feature | PH-23 | P1 | [plan](feature_plans/D68.md) |
+| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](feature_plans/D67.md) |
+| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](feature_plans/D68.md) |
 | E48 | Patient Digital Twin | hybrid | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](feature_plans/E48.md) |
 | E49 | Multi-Agent Clinical Simulation Lab | ai | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](feature_plans/E49.md) |
-| E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Partially implemented | Proposed new feature | PH-17 | P1 | [plan](feature_plans/E50.md) |
+| E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](feature_plans/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | hybrid | Proposed new feature | Proposed new feature | PH-17 | P1 | [plan](feature_plans/E51.md) |
 | E52 | Investigation analytics | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-18 | P2 | [plan](feature_plans/E52.md) |
 | E53 | Grounding validator | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](feature_plans/E53.md) |
 | E54 | Context builder and reaction queue | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](feature_plans/E54.md) |
-| E55 | AI evaluation harness and switch-off gate | deterministic | Planned | Not applicable (deterministic feature) | PH-17 | P1 | [plan](feature_plans/E55.md) |
+| E55 | AI evaluation harness and switch-off gate | deterministic | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](feature_plans/E55.md) |
 | E56 | Difficulty explanation to the trainee | hybrid | Planned | Planned | PH-16 | P1 | [plan](feature_plans/E56.md) |
 | E57 | LLM serving and benchmark | ai | Partially implemented | Partially implemented | PH-07 | P1 | [plan](feature_plans/E57.md) |
-| E58 | Retrieval over approved content (RAG) | hybrid | Planned | Planned | PH-05 | P1 | [plan](feature_plans/E58.md) |
+| E58 | Retrieval over approved content (RAG) | hybrid | Partially implemented | Partially implemented | PH-05 | P1 | [plan](feature_plans/E58.md) |
 | E59 | Urdu and multilingual language | ai | Deferred | Deferred | PH-19 | P2 | [plan](feature_plans/E59.md) |
-| E60 | P2 small trained classifier | ai | Blocked | Blocked | PH-19 | P2 | [plan](feature_plans/E60.md) |
+| E60 | P2 small trained classifier | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](feature_plans/E60.md) |
 | E61 | Medical LLM benchmark (for example MedGemma) | ai | Deferred | Deferred | PH-19 | P2 | [plan](feature_plans/E61.md) |
-| E62 | Backend and AI gateway | deterministic | Planned | Not applicable (deterministic feature) | PH-06 | P1 | [plan](feature_plans/E62.md) |
+| E62 | Backend and AI gateway | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-06 | P1 | [plan](feature_plans/E62.md) |
 | E63 | On-device speech recognition | ai | Planned | Planned | PH-19 | P2 | [plan](feature_plans/E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | ai | Deferred | Deferred | PH-24 | P2 | [plan](feature_plans/E64.md) |
 | E65 | Fine-tuning an LLM on clinical text | ai | Deferred | Deferred | PH-24 | P2 | [plan](feature_plans/E65.md) |
-| E69 | AI inference infrastructure and dual-GPU deployment | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-20 | P1 | [plan](feature_plans/E69.md) |
+| E69 | AI inference infrastructure and dual-GPU deployment | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-20 | P1 | [plan](feature_plans/E69.md) |
 
 ## A. Scenario generation and composition
 
@@ -103,8 +103,8 @@ Compose complete cases from approved building blocks: a deterministic solver ass
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Planned |
-| Evidence (what exists) | tools/composer/stage_b.py (Stage B built); tools/composer/test_composer.py (60 of 60 mutations rejected); tools/composer/solve.py; tools/composer/cli.py; tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations) |
+| AI status | Partially implemented |
+| Evidence (what exists) | tools/composer/stage_b.py (Stage B built); tools/composer/test_composer.py (60 of 60 mutations rejected); tools/composer/solve.py; tools/composer/cli.py; tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations); server/generation/compose_plan.py; server/generation/narrative.py; server/llm/gateway.py |
 | Lineage (existing ids) | p1-scenario-composer-difficulty s01 to s05; EXP-COMP-1, EXP-COMP-2; DT-099; Implementation Guide B-M1, B-R10 |
 | Method | Deterministic constraint solver over blocks + LLM proposals with an enum schema of approved block ids. |
 | LLM-first classification | LLM considered for full composition and rejected as the decider: it cannot guarantee requires/excludes or values. Kept as proposer and narrator; the solver decides. |
@@ -130,9 +130,9 @@ Generate a fresh, coherent, validated scenario for each practice session from th
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py |
 | Lineage (existing ids) | new (this planning update, 12 Oct 2026); extends A1 |
 | Method | Hybrid: deterministic selection and validation, statistical numbers, retrieval of media; the AI composer (LLM with retrieval over the scenario knowledge base) proposes the scenario plan and the LLM writes the narrative, all constrained by the solver and validators. |
 | LLM-first classification | LLM-first examined per stage; it is used only where language is the product (narrative, persona). Values, media and decisions use statistical, retrieval or rule methods because they must be calibrated, licensed and reproducible. |
@@ -216,7 +216,7 @@ Unexpected events during the session. Built: EventDirector with 7 approved event
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
 | AI status | Proposed new feature |
-| Evidence (what exists) | src/ProcSense.Core/Events/EventDirector.cs; EventDirectorTests |
+| Evidence (what exists) | src/ProcSense.Core/Events/EventDirector.cs; EventDirectorTests; src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs; content/extension/intra_op_events.json |
 | Lineage (existing ids) | p0-physiology-events-behaviour s08, s09; DT-087 |
 | Method | Deterministic director; variant parameters drawn from bounds; LLM wording only. |
 | LLM-first classification | LLM rejected for choosing events (safety and replay); used for wording. |
@@ -300,7 +300,7 @@ Different consequences for different choices. Built: beginner versus advanced be
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Proposed new feature |
-| Evidence (what exists) | SessionOptions.Level; content/whatif_bindings.csv; content/decision_rules.csv |
+| Evidence (what exists) | SessionOptions.Level; content/whatif_bindings.csv; content/decision_rules.csv; src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs |
 | Lineage (existing ids) | DT-087 |
 | Method | Rule-based branches from the what-if library. |
 | LLM-first classification | LLM rejected for branch logic (state must be deterministic). |
@@ -498,7 +498,7 @@ Lab values and vital signs that are realistic for the condition: conditioned dis
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | tools/content/exp_data2.py; tools/data/derived/mimic_lab_percentiles.json; tools/data/derived/vitaldb_noise.json; content/generation/packs/labs.json; tools/generation/packs.py; tools/data/profile_numeric.py |
+| Evidence (what exists) | tools/content/exp_data2.py; tools/data/derived/mimic_lab_percentiles.json; tools/data/derived/vitaldb_noise.json; content/generation/packs/labs.json; tools/generation/packs.py; tools/data/profile_numeric.py; server/generation/numeric.py; tools/generation/fit_joint.py |
 | Lineage (existing ids) | — |
 | Method | Statistical: truncated distributions per band and condition, Gaussian copula for linked analytes, AR(1) noise for vitals. |
 | LLM-first classification | LLM rejected for numbers: not calibrated, not reproducible, may cross bands. SDV/CTGAN rejected (Business Source License, too little data). |
@@ -610,7 +610,7 @@ All modalities agree (LG-09). Built: 12 contradiction types in Stage B.
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/contradictions.json |
+| Evidence (what exists) | content/contradictions.json; server/generation/crossmodal.py; server/generation/reports.py; server/generation/critic.py |
 | Lineage (existing ids) | — |
 | Method | Rule table VR-CM-*. |
 | LLM-first classification | LLM judge advisory only. |
@@ -636,9 +636,9 @@ Labelled synthetic sets with data cards for evaluating classifiers, dialogue and
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | tools/synth/gen_utterances.py; tools/bench/synthetic.py; docs/research/datasets/synthetic/ |
 | Lineage (existing ids) | p1-evaluation-s01 |
 | Method | Scripted generation + LLM paraphrase for utterances, labelled and carded. |
 | LLM-first classification | LLM paraphrase is the cheapest way to diversify utterances; labels come from the script, not the LLM. |
@@ -720,9 +720,9 @@ After a result is viewed (practice mode, or in the debrief), explain what it sho
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/analytics/interpreter.py; tools/ci/test_analytics.py |
 | Lineage (existing ids) | — |
 | Method | LLM rewrite of approved report text and band facts behind the grounding validator. |
 | LLM-first classification | LLM fits: explanation is a language task; facts come from the report. |
@@ -779,8 +779,8 @@ Free questions answered in the patient's voice. Built: fixed history questions w
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | history step (approved); src/ProcSense.Core/AIContext/ContextBuilder.cs |
+| AI status | Partially implemented |
+| Evidence (what exists) | history step (approved); src/ProcSense.Core/AIContext/ContextBuilder.cs; server/dialogue/dialogue.py; server/routers/dialogue.py; tools/ai/eval_dialogue.py; reports/ai/dialogue-eval.json |
 | Lineage (existing ids) | p1-ai-language-s04; DT-096 |
 | Method | LLM with persona prompt and per-role context; hidden facts never in context. |
 | LLM-first classification | LLM fits; free conversation is a language task. |
@@ -807,8 +807,8 @@ Built: nurse wristband engine and fixed lines. AI: free nurse replies within app
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | content/ai/intents.json (nurse); nurse wristband engine |
+| AI status | Partially implemented |
+| Evidence (what exists) | content/ai/intents.json (nurse); nurse wristband engine; server/dialogue/dialogue.py; content/ai/intents.json |
 | Lineage (existing ids) | p1-ai-language-s05; DT-096 |
 | Method | LLM within role intents. |
 | LLM-first classification | LLM fits for phrasing; intent choice is rule-based. |
@@ -835,8 +835,8 @@ Approved intents exist for anaesthesia; AI replies planned.
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | content/ai/intents.json (anaesthesia) |
+| AI status | Partially implemented |
+| Evidence (what exists) | content/ai/intents.json (anaesthesia); server/dialogue/dialogue.py; content/ai/intents.json |
 | Lineage (existing ids) | p1-ai-language-s05 |
 | Method | As C25. |
 | LLM-first classification | As C25. |
@@ -863,8 +863,8 @@ Approved intents exist for the surgeon; AI replies planned.
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | content/ai/intents.json (surgeon) |
+| AI status | Partially implemented |
+| Evidence (what exists) | content/ai/intents.json (surgeon); server/dialogue/dialogue.py; content/ai/intents.json |
 | Lineage (existing ids) | p1-ai-language-s05 |
 | Method | As C25. |
 | LLM-first classification | As C25. |
@@ -891,8 +891,8 @@ Approved intents exist for the porter; AI replies planned.
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | content/ai/intents.json (porter) |
+| AI status | Partially implemented |
+| Evidence (what exists) | content/ai/intents.json (porter); server/dialogue/dialogue.py; content/ai/intents.json |
 | Lineage (existing ids) | p1-ai-language-s05 |
 | Method | As C25. |
 | LLM-first classification | As C25. |
@@ -918,9 +918,9 @@ Persona tags per character (anxiety, health literacy, talkativeness, language) t
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | content/ai/persona.json; server/generation/narrative.py |
 | Lineage (existing ids) | DT-085 |
 | Method | Tag vocabulary (deterministic) + LLM style conditioning. |
 | LLM-first classification | LLM fits for style. |
@@ -947,8 +947,8 @@ Characters react to what is happening (a falling saturation, a wrong drug) throu
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | src/ProcSense.Core/AIContext/ContextBuilder.cs; ContextBuilderTests |
+| AI status | Partially implemented |
+| Evidence (what exists) | src/ProcSense.Core/AIContext/ContextBuilder.cs; ContextBuilderTests; server/dialogue/dialogue.py |
 | Lineage (existing ids) | p1-ai-language-s03 |
 | Method | Deterministic triggers + LLM phrasing. |
 | LLM-first classification | Triggers rule-based; phrasing LLM. |
@@ -974,9 +974,9 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md |
 | Lineage (existing ids) | p1-voice-input; p0-voice-audio |
 | Method | faster-whisper + LLM + TTS. |
 | LLM-first classification | Each part is a pretrained model; no training. |
@@ -1002,9 +1002,9 @@ Short spoken commands mapped to verbs (open results, call nurse).
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/orders/grammar.py; tools/ai/eval_orders.py |
 | Lineage (existing ids) | p1-voice-input-s02 |
 | Method | ASR + deterministic grammar; LLM only for unmatched phrases. |
 | LLM-first classification | Grammar first (fast, exact); LLM fallback. |
@@ -1030,9 +1030,9 @@ faster-whisper on the desktop GPU with a vocabulary prompt built from content.
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/asr/service.py; server/routers/asr.py; tools/ai/asr_wer.py; tools/content/build_vocab.py |
 | Lineage (existing ids) | p1-voice-input-s01; DT-098 |
 | Method | Pretrained ASR (faster-whisper, MIT). |
 | LLM-first classification | Pretrained ASR; no training. |
@@ -1058,9 +1058,9 @@ Pre-rendered lines offline (P0) and live TTS for generated lines (P1). Piper is 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/tts/engine.py; server/routers/tts.py; tools/ai/tts_latency.py |
 | Lineage (existing ids) | p0-voice-audio-s02; p1-voice-input-s04 |
 | Method | Pretrained TTS. |
 | LLM-first classification | Pretrained; no training. |
@@ -1086,9 +1086,9 @@ Spoken orders (drug, dose, route) read back by the nurse before acting; closed-l
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py |
 | Lineage (existing ids) | p1-voice-input-s03 |
 | Method | ASR + slot grammar + deterministic read-back check. |
 | LLM-first classification | Slots must be exact; grammar first, LLM for unmatched phrasing. |
@@ -1114,9 +1114,9 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Partially implemented |
+| Status | Implemented and tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs |
+| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tools/ci/test_bench.py |
 | Lineage (existing ids) | p1-ai-language-s06 |
 | Method | Taxonomy + rules. |
 | LLM-first classification | Not a model task. |
@@ -1142,9 +1142,9 @@ Classify trainee utterances into acts. P1: served LLM with an enum schema; P2: s
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Blocked |
-| AI status | Blocked |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/classify/embedding.py; server/classify/guard.py; content/assessment/act_head.json; tools/bench/bench_classifier.py; reports/ai/classifier-bench-synthetic.json |
 | Lineage (existing ids) | p1-ai-language-s06, s07; DT-097 |
 | Method | LLM zero/few-shot with enum schema. |
 | LLM-first classification | LLM first (no training, no labelled training set needed); trained model only in P2 if LLM latency or accuracy is insufficient. |
@@ -1173,8 +1173,8 @@ Template debrief built; AI rewrite planned behind the validator (LG-19).
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Blocked |
-| Evidence (what exists) | src/ProcSense.Core/Scoring/Debrief.cs |
+| AI status | Partially implemented |
+| Evidence (what exists) | src/ProcSense.Core/Scoring/Debrief.cs; server/debrief/rewrite.py; server/routers/debrief.py; tools/ai/eval_debrief.py; reports/ai/debrief-eval.json |
 | Lineage (existing ids) | p1-ai-language-s08; DT-096 |
 | Method | LLM rewrite of DebriefFacts. |
 | LLM-first classification | LLM fits; facts fixed. |
@@ -1228,9 +1228,9 @@ Across sessions, find recurring errors (always late to check fasting, misses all
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
+| Status | Implemented and tested |
 | AI status | Proposed new feature |
-| Evidence (what exists) | per-behaviour credits and penalties (built) |
+| Evidence (what exists) | per-behaviour credits and penalties (built); server/analytics/patterns.py; tools/ci/test_analytics.py |
 | Lineage (existing ids) | — |
 | Method | Deterministic aggregation over history; LLM summarises patterns into words. |
 | LLM-first classification | Aggregation is arithmetic; LLM only narrates. |
@@ -1256,9 +1256,9 @@ Ask the trainee how confident they are at decision points; compare with correctn
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
+| Status | Implemented and tested |
 | AI status | Proposed new feature |
-| Evidence (what exists) | — |
+| Evidence (what exists) | server/analytics/calibration.py; tools/ci/test_analytics.py |
 | Lineage (existing ids) | — |
 | Method | Deterministic calibration metrics + LLM wording. |
 | LLM-first classification | Metrics are arithmetic. |
@@ -1284,9 +1284,9 @@ A profile of how the trainee reasons: order of information gathering, time to ke
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
+| Status | Implemented and tested |
 | AI status | Proposed new feature |
-| Evidence (what exists) | — |
+| Evidence (what exists) | server/analytics/reasoning.py; tools/ci/test_analytics.py |
 | Lineage (existing ids) | — |
 | Method | Deterministic features from the session log; optional clustering (no training of a deep model). |
 | LLM-first classification | LLM narrates; features are computed. |
@@ -1340,9 +1340,9 @@ Separate from D43: suggest which competencies to target next using patterns (D40
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/analytics/next_case.py; tools/ci/test_analytics.py |
 | Lineage (existing ids) | — |
 | Method | LLM suggestion ranked by the rule-based selector. |
 | LLM-first classification | LLM may rank among valid options; never overrides the rating. |
@@ -1368,9 +1368,9 @@ Built: pseudonymised history and ratings. Proposed: progression view across sess
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Partially implemented |
+| Status | Implemented and tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | record-session |
+| Evidence (what exists) | record-session; server/analytics/progression.py; tools/ci/test_analytics.py |
 | Lineage (existing ids) | — |
 | Method | Aggregation. |
 | LLM-first classification | Not AI. |
@@ -1452,9 +1452,9 @@ Evidence-based model of each trainee's mastery, demonstrated weaknesses and tren
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | Elo ratings and history exist |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | Elo ratings and history exist; server/personalisation/evidence.py; server/personalisation/learner_model.py; server/personalisation/interpreter.py |
 | Lineage (existing ids) | — |
 | Method | Beta-binomial or BKT posteriors + pattern detection + LLM interpreter. |
 | LLM-first classification | LLM interprets summaries; mastery is statistical. |
@@ -1480,9 +1480,9 @@ Uses the learning profile to choose objectives and scenario features that change
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | Selector exists |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | Selector exists; server/personalisation/policy.py; server/personalisation/explain.py; docs/research/personalisation_simulation.json |
 | Lineage (existing ids) | — |
 | Method | Rules then contextual bandit; LLM explanation. |
 | LLM-first classification | Statistical policy; LLM explains. |
@@ -1567,8 +1567,8 @@ Generate attacks on the system: jailbreak questions, disclosure probes, broken s
 |---|---|
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
-| AI status | Proposed new feature |
-| Evidence (what exists) | tools/composer/mutate.py; server/validation/make_vectors.py |
+| AI status | Partially implemented |
+| Evidence (what exists) | tools/composer/mutate.py; server/validation/make_vectors.py; tools/redteam/run.py; docs/research/redteam_report.md; reports/ai/redteam.json |
 | Lineage (existing ids) | — |
 | Method | Scripted mutations + LLM-generated attack paraphrases. |
 | LLM-first classification | LLM useful to diversify attacks. |
@@ -1706,9 +1706,9 @@ Weekly evaluation runs; any AI feature below its threshold is switched off in ai
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Planned |
-| AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | — |
+| Status | Implemented and tested |
+| AI status | Implemented and tested |
+| Evidence (what exists) | tools/eval/ai_gate.py; content/ai/thresholds.json; content/ai/features.json; server/ai_features.py; tools/ci/test_ai_gate.py |
 | Lineage (existing ids) | p1-ai-language-s09; p1-evaluation-s02, s04 |
 | Method | Harness. |
 | LLM-first classification | Not AI. |
@@ -1764,7 +1764,7 @@ Serve candidate models locally, measure latency, VRAM and schema validity, choos
 | Kind (AI or deterministic) | ai |
 | Status | Partially implemented |
 | AI status | Partially implemented |
-| Evidence (what exists) | tools/ai/benchmark.py; tools/ai/test_benchmark.py; Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026; BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored) |
+| Evidence (what exists) | tools/ai/benchmark.py; tools/ai/test_benchmark.py; Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026; BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored); tools/ai/check_hosts.py; docs/report/ai-eval.md |
 | Lineage (existing ids) | p1-ai-language-s02; DT-096 |
 | Method | Ollama with JSON-schema format. |
 | LLM-first classification | Infrastructure for every LLM feature. |
@@ -1790,9 +1790,9 @@ Retrieval for generation context (LG-03) and, later, grounded explanations. Line
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Planned |
-| AI status | Planned |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/retrieval/flat.py; tools/ai/eval_retrieval.py; reports/ai/retrieval-eval.json |
 | Lineage (existing ids) | p2-ai-extensions-s02 |
 | Method | Tag filter + BM25; embeddings optional. |
 | LLM-first classification | Lexical first; corpus is small. |
@@ -1846,9 +1846,9 @@ The only trained model in the plan: a small classifier trained on the human-labe
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Blocked |
-| AI status | Blocked |
-| Evidence (what exists) | — |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | server/classify/embedding.py; content/assessment/act_head.json; tests/classifier_synthetic/README.md |
 | Lineage (existing ids) | p2-ai-extensions-s03; DT-097 |
 | Method | Fine-tune a small encoder. |
 | LLM-first classification | Justified only if the P1 LLM classifier misses latency or accuracy targets. |
@@ -1902,9 +1902,9 @@ FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with serv
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Planned |
+| Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | — |
+| Evidence (what exists) | server/routers/ai_gateway.py; server/routers/asr.py; server/routers/tts.py; server/routers/dialogue.py; server/routers/classify.py; server/routers/debrief.py |
 | Lineage (existing ids) | p1-backend s01 to s13; DT-100; ADR-0009 |
 | Method | FastAPI. |
 | LLM-first classification | Not AI. |
@@ -2014,9 +2014,9 @@ Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop w
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Proposed new feature |
+| Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | desktop hardware measured 12 Oct 2026; Ollama and models installed and measured on the desktop 16 Oct 2026 |
+| Evidence (what exists) | desktop hardware measured 12 Oct 2026; Ollama and models installed and measured on the desktop 16 Oct 2026; server/llm/client.py; server/routers/ai_gateway.py; tools/ai/check_hosts.py; docs/architecture/deployment.md; docs/decisions/ADR-0011-ai-gateway-placement-and-single-slot.md |
 | Lineage (existing ids) | — |
 | Method | Install, benchmark, decide topology. |
 | LLM-first classification | Infrastructure. |

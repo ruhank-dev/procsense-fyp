@@ -1,0 +1,17 @@
+id: SD-006
+title: Communication act utterances (classifier set)
+synthetic: true
+purpose: "Labelled sentences of a trainee's speech, one communication act each, in frozen train, dev and test splits split by speaker, to calibrate and test the communication act classifier."
+generator: {path: tools/synth/gen_utterances.py, version: "1", command: "uv run --project tools tools/synth/gen_utterances.py"}
+seed: "per act: the act id; speakers and styles are fixed in the script"
+source: "Templates of the 20 acts of content/assessment/taxonomy.json filled with test, topic, medicine, role, equipment and name values taken from the content, then given a speaking style per speaker."
+method: "Template expansion with slot values and 8 speaker styles (fillers, politeness, contractions, case); 24 speakers; speakers 0 to 15 train, 16 to 19 dev, 20 to 23 test."
+constraints: "No speaker is in two splits; each act has at least 15 utterances in train; every row says synthetic and names its generator."
+validation: "Checked in CI (gen_utterances.py --check: files current, no speaker in two splits). One labeller (the generator): agreement with two people is not measured (DT-210). Scores on this set are an optimistic bound."
+review: Not reviewed by a person.
+labels: The act of the template that made the sentence; the critical flag from the taxonomy.
+model_use: tools/ai/eval_classifier.py (the small classifier is trained on train, thresholds are calibrated on dev, scores are on test); never used to credit a trainee.
+use: dev_only
+files: [tests/classifier/train.jsonl, tests/classifier/dev.jsonl, tests/classifier/test.jsonl, tests/classifier/splits.json, content/assessment/taxonomy.json]
+rows: {tests/classifier/splits.json: {rows: 3}}
+licence: The project's own content

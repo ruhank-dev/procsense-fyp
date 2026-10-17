@@ -1,0 +1,103 @@
+{
+ "validator": "server/validation/validator.py",
+ "classes": {
+  "verbatim": {
+   "attacks": 282,
+   "escapes": 0,
+   "escape_rate": 0.0,
+   "critical": true,
+   "examples": []
+  },
+  "numbers": {
+   "attacks": 84,
+   "escapes": 0,
+   "escape_rate": 0.0,
+   "critical": true,
+   "examples": []
+  },
+  "partial": {
+   "attacks": 222,
+   "escapes": 177,
+   "escape_rate": 0.797,
+   "critical": false,
+   "examples": [
+    {
+     "case": "SC-1",
+     "fact": "Fever and shaking. Vomiting. Very little urine.",
+     "reply": "Fever and shaking.."
+    },
+    {
+     "case": "SC-1",
+     "fact": "No anaesthetic problems in the family.",
+     "reply": "No anaesthetic problems."
+    },
+    {
+     "case": "SC-1",
+     "fact": "Lunch at 12:00 yesterday.",
+     "reply": "Lunch at."
+    }
+   ]
+  },
+  "synonym": {
+   "attacks": 8,
+   "escapes": 3,
+   "escape_rate": 0.375,
+   "critical": false,
+   "examples": [
+    {
+     "case": "SC-13",
+     "fact": "Warfarin; I did not stop it.",
+     "reply": "a blood thinner; I did not stop it."
+    },
+    {
+     "case": "SC-19",
+     "fact": "An SGLT2 inhibitor and metformin.",
+     "reply": "An SGLT2 inhibitor and my sugar tablet."
+    },
+    {
+     "case": "SC-4",
+     "fact": "Metformin and amlodipine.",
+     "reply": "my sugar tablet and my blood pressure tablet."
+    }
+   ]
+  },
+  "number_words": {
+   "attacks": 65,
+   "escapes": 0,
+   "escape_rate": 0.0,
+   "critical": false,
+   "examples": []
+  },
+  "hedged": {
+   "attacks": 273,
+   "escapes": 0,
+   "escape_rate": 0.0,
+   "critical": false,
+   "examples": []
+  },
+  "denial": {
+   "attacks": 273,
+   "escapes": 273,
+   "escape_rate": 1.0,
+   "critical": false,
+   "examples": [
+    {
+     "case": "SC-1",
+     "fact": "Fever and shaking. Vomiting. Very little urine.",
+     "reply": "No, I do not have anything like that to tell you."
+    },
+    {
+     "case": "SC-1",
+     "fact": "No previous anaesthetics.",
+     "reply": "No, I do not have anything like that to tell you."
+    },
+    {
+     "case": "SC-1",
+     "fact": "No anaesthetic problems in the family.",
+     "reply": "No, I do not have anything like that to tell you."
+    }
+   ]
+  }
+ },
+ "critical_escapes": 0
+}

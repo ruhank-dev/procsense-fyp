@@ -1,0 +1,17 @@
+id: SD-001
+title: Seeded text inconsistencies
+synthetic: true
+purpose: Cases in which one line of the patient's own text was changed to contradict the structured case, to measure the recall of the text consistency critic against the rule-based checks.
+generator: {path: tools/generation/inconsistency_set.py, version: "1", command: "uv run --project tools tools/generation/inconsistency_set.py --write"}
+seed: "none needed: the set takes up to 36 of each kind from the approved cases in case-id order, so it is the same every run"
+source: The approved authored case files (content/case_files) with one line changed.
+method: Rule-based mutation of one line (allergy denied or invented, wrong operation, wrong side of the body, wrong age, wrong sex pronoun, pain denied in another line). The structured case is left unchanged.
+constraints: Each member changes exactly one line; the changed line contradicts a stated fact of the case; clean controls are authored cases unchanged.
+validation: "The generator is deterministic (a test builds it twice and compares it with the file). It is not reviewed for whether a clinician would find each contradiction obvious; the kinds are blunt on purpose. It measures recall on these kinds only, not on subtle real errors."
+review: Not reviewed by a person.
+labels: The kind of inconsistency and the changed line, given by the generator, not by people.
+model_use: tools/ai/eval_critic.py (the critic and the baseline are scored on it); never used to train a model.
+use: dev_only
+files: [tests/generation/text_inconsistencies.json]
+rows: {tests/generation/text_inconsistencies.json: {members: 214, clean: 26}}
+licence: The project's own content

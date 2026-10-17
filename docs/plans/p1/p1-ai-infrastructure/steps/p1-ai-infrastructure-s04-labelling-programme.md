@@ -2,7 +2,6 @@
 
 Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, dual-GPU benchmark, labelling, learner model**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 A labelling tool and guidelines for utterances (communication acts), free questions (topics), scenario quality ratings, persona consistency and relation review; a consented role-play recording protocol; two labellers with inter-rater agreement (kappa at least 0.6); frozen test splits.
@@ -15,6 +14,11 @@ Classifiers, judges and evaluations need human labels; this creates them.
 2. Simple local labelling tool (CSV or web form).
 3. Recording consent form and storage rules.
 4. Kappa computation and adjudication.
+
+## Status (17 October 2026)
+
+- **Built:** `tools/labelling/label.py` (sheets, agreement with Cohen's kappa and quadratic-weighted kappa for ratings, adjudication by a third person, frozen splits by group with hashes and the plan's minimums), `tools/ci/test_labelling.py`, `docs/research/labelling/guidelines.md` and a draft `consent_and_storage.md` for recordings. For communication acts the classifier benchmark has its own cards and annotation guide (`docs/research/classifier_benchmark`).
+- **Blocked on people:** the labellers, the adjudicator, consented participants and the owner's approval of the consent draft (DT-210).
 
 ## Verification
 At least 300 utterances, 100 rated scenarios and 100 relation labels with kappa at least 0.6; splits frozen.

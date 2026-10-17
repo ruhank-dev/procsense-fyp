@@ -2,7 +2,6 @@
 
 Milestone: **M15 P2 learning analytics and advanced simulation**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Offline research: train a small mask-conditioned image generator (and, if needed, a conditional ECG generator) on licensed data; generate labelled synthetic candidates for library gaps; evaluate with finding-classifier agreement, rater discrimination and distribution distance; ingest only passing assets, labelled synthetic.
@@ -16,6 +15,10 @@ Revives the rejected feature as a staged track: the library has gaps and generat
 3. Train locally at 128 to 256 px or on a rented GPU; record cost.
 4. Evaluation protocol and review.
 5. Ingest via the imaging library builder with `synthetic=true`.
+
+## Status (17 October 2026)
+
+- **Not started:** conditional research whose trigger (a gap in the image library that selection cannot fill, from `p1-dataset-analysis-s04`, and a free GPU) is not met; DT-212.
 
 ## Verification
 Finding agreement at least 90 percent and rater accuracy under 70 percent, or a documented negative result.

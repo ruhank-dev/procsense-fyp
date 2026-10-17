@@ -1,0 +1,28 @@
+{
+ "phrases": 702,
+ "parsed_right": 0.84,
+ "wrong_target": 0.004,
+ "clarify_or_menu": 0.155,
+ "released_without_confirmation": 0,
+ "wrong_examples": [
+  {
+   "said": "so please send clotting srceen",
+   "wanted": "clotting",
+   "heard": "coag",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "said": "please send finger-prcik glucose and ketones",
+   "wanted": "glucose_fingerprick",
+   "heard": "glucose",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "said": "so take the patiient to ultrasound",
+   "wanted": "ultrasound",
+   "heard": "ultrasound",
+   "intent": "ORDER_TEST"
+  }
+ ],
+ "limit": "synthetic mild corruption of one-word errors; real recogniser errors on accented speech are not modelled"
+}

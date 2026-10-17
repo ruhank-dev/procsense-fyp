@@ -89,7 +89,7 @@ def _news2():
 
 
 def build_skeleton(objectives: dict, index: retrieve.Index, cases: list[dict], tables, behaviour_labels: dict[str, str] | None = None, library: list[dict] | None = None, serial: int = 1,
-                   vary_numbers: bool = True, force_spine: str | None = None, numeric_seed: int | None = None, media_seed: int | None = None) -> dict:
+                   vary_numbers: bool = True, force_spine: str | None = None, numeric_seed: int | None = None, media_seed: int | None = None, planner=None) -> dict:
     """`force_spine`, `numeric_seed` and `media_seed` are for repair (repair.py): keep the story and redraw only the numbers, or only the pictures, or the blocks."""
     B, solve = _composer()
     labels = behaviour_labels or {}
@@ -111,12 +111,31 @@ def build_skeleton(objectives: dict, index: retrieve.Index, cases: list[dict], t
     order += [r for r in ranked[TOP_CHOICES:]]                     # if none of the best few can be varied, the rest follow in rank order
     case_id = f"GEN-{objectives['scenario']}-{objectives['seed'] % 10000:04d}-{serial:03d}"
     last_error = None
-    for score, spine in order:
-        try:
-            card, choice = solve.build_card(spine, objectives["scenario"], objectives["seed"], case_id, library, template, names, mrns, avoid)
-        except solve.Unsatisfiable as e:
-            last_error = e
-            continue
+    plan, plan_info = None, {"method": "solver"}
+    if planner is not None and not force_spine:
+        plan = planner.propose(objectives, ranked, template, library, names, mrns, case_id, solve, difficulty=target_difficulty(objectives))
+        plan_info = {"method": "model", "spine": plan.spine, "blocks": plan.blocks, "reasons": plan.reasons, "rounds": plan.rounds, "audit": plan.audit} if plan else {"method": "solver", "why": "no valid proposal"}
+    attempts = [(None, plan)] if plan else []
+    attempts += [(item, None) for item in order]
+    for item, planned in attempts:
+        if planned is not None:
+            score, spine = next(((s, c) for s, c in ranked if c["id"] == planned.spine), (0.0, None))
+            try:
+                if spine is None:
+                    raise solve.Unsatisfiable("the proposed spine is not in the ranking")
+                card, choice = solve.build_card_from_blocks(spine, objectives["scenario"], objectives["seed"], case_id, library, template, names, set(mrns), planned.blocks)
+                if solve.fingerprint(spine["id"], choice.blocks) in avoid:
+                    raise solve.Unsatisfiable("the proposal is a story the trainee has met")
+            except solve.Unsatisfiable as e:
+                last_error, plan_info = e, {"method": "solver", "why": f"proposal refused: {str(e)[:160]}", "audit": plan_info.get("audit", [])}
+                continue
+        else:
+            score, spine = item
+            try:
+                card, choice = solve.build_card(spine, objectives["scenario"], objectives["seed"], case_id, library, template, names, mrns, avoid)
+            except solve.Unsatisfiable as e:
+                last_error = e
+                continue
         numeric_log = numeric.vary_numbers(card, objectives["seed"] if numeric_seed is None else numeric_seed, packs.LabPack(), packs.load("vitals"), _news2()) if vary_numbers else []
         picked = media.select_media(card, spine["id"], objectives["seed"] if media_seed is None else media_seed)
         picked["defects"] = media.check_media(card, picked)
@@ -125,5 +144,5 @@ def build_skeleton(objectives: dict, index: retrieve.Index, cases: list[dict], t
             slots.setdefault(b["type"], []).append(b["id"])
         return {"version": 1, "request_id": objectives["request_id"], "case": card, "slots": slots, "discovery": discovery_rules(spine["id"]), "numeric_log": numeric_log, "media": picked,
                 "selection": {"spine": spine["id"], "score": round(score, 4), "query": query, "candidates": [c["id"] for _, c in pool], "target_difficulty": round(target_difficulty(objectives), 2)},
-                "fingerprint": solve.fingerprint(spine["id"], choice.blocks)}
+                "fingerprint": solve.fingerprint(spine["id"], choice.blocks), "plan": plan_info}
     raise solve.Unsatisfiable(f"no spine could be varied into a story the trainee has not met: {last_error}")

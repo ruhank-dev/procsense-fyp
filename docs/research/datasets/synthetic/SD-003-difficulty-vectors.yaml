@@ -1,0 +1,17 @@
+id: SD-003
+title: Shared difficulty histories
+synthetic: true
+purpose: Thirteen session histories with the ratings the engine and the Python mirror must both compute, so the two implementations cannot drift apart.
+generator: {path: server/generation/make_vectors.py, version: "1", command: "python -m server.generation.make_vectors"}
+seed: fixed in the script
+source: Invented session records over the real behaviour and tier tables.
+method: Hand-designed histories (no history, one slip, steady strength, mixed tiers) rated by the Python mirror and written with their results.
+constraints: Both implementations agree on every rating within 1e-6.
+validation: tests/ProcSense.Core.Tests/DifficultyVectorTests.cs and tools/ci/test_generation_contracts.py.
+review: Not reviewed by a person.
+labels: The expected ratings, computed by the mirror.
+model_use: none
+use: dev_only
+files: [tests/vectors/difficulty_vectors.json]
+rows: {tests/vectors/difficulty_vectors.json: {cases: 13}}
+licence: The project's own content

@@ -1,0 +1,8 @@
+You label one sentence said by a trainee in a hospital pre-operative simulation. All people are invented.
+Choose the one communication act that best describes the sentence from the list, or NONE if it shows none of them. Use only the ids in the list. Give a confidence from 0 to 1: how sure you are that this act, and not another, is right.
+Answer as JSON with two fields: act and confidence.
+=== user ===
+Acts:
+{{acts}}
+
+Sentence: {{sentence}}

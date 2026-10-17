@@ -21,13 +21,15 @@
         "prompts": {"type": "object", "additionalProperties": {"type": "string"}},
         "novelty_attempts": {"type": "array", "items": {"type": "object"}},
         "repairs": {"type": "array", "items": {"type": "object", "required": ["round", "strategy", "result"]}},
-        "base_seed": {"type": "integer", "minimum": 0}
+        "base_seed": {"type": "integer", "minimum": 0},
+        "plan": {"type": "object", "required": ["method"], "properties": {"method": {"enum": ["model", "solver"]}}}
       }},
     "fingerprint": {"type": "string", "pattern": "^[0-9a-f]{16,64}$"},
     "fingerprint_levels": {"type": "object", "required": ["structural", "clinical", "surface"], "additionalProperties": {"type": "array", "items": {"type": "string"}}},
     "novelty": {"type": "object", "required": ["verdict", "nearest"], "properties": {"verdict": {"enum": ["novel", "not_novel", "low_novelty"]}, "nearest": {"type": "number"}}},
     "reproducibility_key": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "package_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "narrative": {"type": "object", "required": ["persona", "lines"], "properties": {"persona": {"type": "array", "items": {"type": "string"}}, "lines": {"type": "array", "items": {"type": "object", "required": ["id", "method"], "properties": {"id": {"type": "string"}, "method": {"enum": ["model", "template"]}}}}}},
     "quality": {"type": "object"}
   }
 }

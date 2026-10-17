@@ -1,0 +1,21 @@
+# ADR-0012 — The communication act classifier is sentence embeddings with a logistic regression head, kept off until an independent set passes
+
+**Date:** 17 October 2026 · **Status:** Accepted as the provisional classifier (17 October 2026, the owner's choice after the smoke test; evidence is synthetic and not independent, so the feature stays switched off in `content/ai/features.json`) · **Related:** ADR-0005, ADR-0010, ADR-0011, p1-ai-language-s06, p1-ai-language-s07, p2-ai-extensions-s03, `docs/research/classifier_benchmark/`
+
+## Context
+Trainee speech has to become a structured act (one of 20) for the evidence mapper. The first classifier asked the Qwen 3.5 4B model for the act and a confidence it wrote about itself; on the first (template) data it scored 0.64 macro-F1, its confidences sat at 0.95, and it credited a sentence about an allergy under an ordinary act. A small TF-IDF logistic regression scored 0.95 on the same data, but that data shares eight templates per act across every split, so neither number says how a classifier does on new wording. Separately, SBAR_ELEMENT was critical in the taxonomy but missing from the engine's `critical_acts`, so the engine would have credited the critical behaviour b11 from speech alone.
+
+## Decision
+1. The classifier is a sentence embedding (`all-minilm:22m` through Ollama: Apache-2.0, 22.6M parameters, 46 MB, 384 numbers, 256 word pieces) followed by a logistic regression head kept as plain JSON (`content/assessment/act_head.json`, no numpy or scikit-learn at run time). The confidence is the probability of the chosen act. Credit thresholds are tuned per act on a dev split only.
+2. Safety is unchanged and checked at load: the head must list exactly the acts of the taxonomy; the taxonomy's critical acts must equal `critical_acts` of `mapping.json`; a critical act and NONE are never credited from speech; a sentence that touches critical content (allergy, identity, consent, fasting, a worsening sign, a structured handover; `content/ai/critical_cues.json`) is never credited under a non-critical act; an embedder that is down credits nothing. Deterministic action-based scoring stays authoritative. SBAR_ELEMENT was added to `critical_acts` (commit 7de6281).
+3. The language-model classifier stays available as backend `llm` (`CLASSIFIER_BACKEND`), for comparison and as a fallback idea; it is not the default.
+4. No claim comes from synthetic or self-labelled data. The synthetic set (`tests/classifier_synthetic`: eight simulated writing styles, written and labelled by the model that built the tooling, each style in one split only, the test split scored once) is a style-generalisation check and is marked `independent: false` everywhere. The feature `classifier` in the gate reads the independent benchmark (`classifier-bench-independent.json`), which does not exist until two authors per split, a second labeller and an adjudicator produce it (DT-210); until then it is SKIPPED and the classifier is off. `classifier_synthetic` records the synthetic result for information and switches nothing on.
+
+## Alternatives
+Keep the language-model classifier (self-reported confidence, 3 s a sentence, mislabels critical sentences); TF-IDF alone (fast and simple, but no semantic generalisation to rewording and it was not separated from the embeddings on the synthetic data; kept as the baseline); SetFit and a zero-shot NLI model (deferred by the owner unless these three prove insufficient); spaCy rules (a guard, not a classifier); a fine-tuned encoder (too much data for the project's size).
+
+## Consequences
+A sentence costs one local embedding call (about 120 ms) and a few thousand multiplications; the model is tiny next to the 4B (3.3 GB), so classification and dialogue can share the 6 GB card. The head is a data file that can be re-exported when real labelled data exists (`tools/bench/bench_classifier.py --export-head`). Any change of embedding model needs a new head. The guard removes some legitimate credit from ordinary sentences that mention a wristband or a consent form; the benchmark reports how many.
+
+## Revisit if
+The independent set exists and a candidate does not meet macro-F1 0.75 and credited precision 0.8 with zero critical credits; a different embedding model is wanted; SetFit becomes worth its training cost.

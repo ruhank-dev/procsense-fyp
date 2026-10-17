@@ -1,0 +1,17 @@
+id: SD-002
+title: Golden runs of generated cases
+synthetic: true
+purpose: Six generated practice cases, each with the correct-path script of the case it keeps the story of and the engine's expected hashes, so the engine plays generated content identically on every platform.
+generator: {path: tools/golden/generated.py, version: "1", command: "uv run --project tools tools/golden/generated.py make"}
+seed: "the first request seed (from 0) whose generated case keeps the named approved case"
+source: The approved case files and the composer's blocks, through the generation pipeline.
+method: The generation pipeline makes a package; the spine's golden script is copied with the checklist allergy answer following the composed patient; the engine writes the expected hashes (golden --update).
+constraints: Each package passes the generation gate; the engine ends the correct path in the end state of the spine; Linux and Windows give the same hashes.
+validation: Played in CI on both operating systems and compared with the spine's own run in tools/ci/test_generation_live.py. A snapshot, remade deliberately when the engine, the composer or the content changes it.
+review: Not reviewed by a person; the cases are practice-only (GENERATED_PRACTICE_ONLY).
+labels: None.
+model_use: none (engine regression tests)
+use: dev_only
+files: [tests/golden_generated]
+rows: {tests/golden_generated: {"glob:*.package.json": 6, "glob:*.expected.json": 6}}
+licence: The project's own content

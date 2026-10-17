@@ -71,35 +71,40 @@ class Solver:
             out = [b for b in out if {t for t in b["tags"] if t.startswith(("sex:", "age_class:"))} == keep]
         return out
 
-    def consistent(self, chosen: list[dict]) -> bool:
-        """requires and excludes hold for the spine's tags together with every chosen block's tags; names are free; at most one name part of each kind."""
+    def violations(self, chosen: list[dict]) -> list[str]:
+        """Why a set of blocks does not fit the spine; empty when it does. Each reason names the blocks, so a proposer can be told what to avoid."""
+        out: list[str] = []
         tags = set(self.spine_tags)
         for b in chosen:
             tags |= set(b["tags"])
         for b in chosen:
             if not set(b["requires"]) <= tags:
-                return False
+                out.append(f"{b['id']} needs {sorted(set(b['requires']) - tags)}, which the spine and the other blocks do not give")
             if set(b["excludes"]) & (tags - set(b["tags"])) or set(b["excludes"]) & set(self.spine_tags):
-                return False
+                out.append(f"{b['id']} cannot go with this spine or with the other blocks chosen ({sorted(set(b['excludes']) & tags)})")
         parts = [b["attributes"]["part"] for b in chosen if b["type"] == "NAME"]
         if len(parts) != len(set(parts)):
-            return False
+            out.append("two name blocks of the same part")
         sexes = {t for b in chosen if b["type"] == "NAME" and b["attributes"]["part"] == "first" for t in b["tags"] if t.startswith("sex:")}
         if sexes and sexes != {f"sex:{self.spine['identity']['sex']}"}:
-            return False
+            out.append("the first name does not match the sex of the spine")
         if len(parts) == 2:
             full = " ".join(b["attributes"]["text"] for part in ("first", "last") for b in chosen if b["type"] == "NAME" and b["attributes"]["part"] == part)
             if full.lower() in self.avoid:
-                return False
+                out.append(f"the name {full} is already used by another case")
         # a story that depends on smoking, alcohol or an earlier anaesthetic keeps its own answers
         for b in chosen:
             if b["type"] == "SOC" and self.spine_tags & {"pathway:smoking", "pathway:alcohol"}:
-                return False
+                out.append(f"{b['id']}: this story keeps its own smoking and alcohol answers")
             if b["type"] == "PSH" and "pathway:anaesthetic_history" in self.spine_tags:
-                return False
+                out.append(f"{b['id']}: this story keeps its own anaesthetic history")
             if b["type"] == "ALG" and spine_has_own_allergy(self.spine):
-                return False
-        return True
+                out.append(f"{b['id']}: this story keeps its own allergy")
+        return out
+
+    def consistent(self, chosen: list[dict]) -> bool:
+        """requires and excludes hold for the spine's tags together with every chosen block's tags; names are free; at most one name part of each kind."""
+        return not self.violations(chosen)
 
     # ---------------------------------------------------------------- search
 
@@ -291,6 +296,33 @@ def build_card(spine: dict, scenario: str, case_seed: int, case_id: str, library
             card["composition"]["solver_steps"] = choice.steps
             return card, choice
     raise Unsatisfiable(f"spine {spine['id']} cannot be varied into a story that is not one to avoid")
+
+
+def build_card_from_blocks(spine: dict, scenario: str, case_seed: int, case_id: str, library: list[dict], template: dict, names: set[str], used_mrns: set[str], block_ids: list[str]) -> tuple[dict, Choice]:
+    """A card from blocks somebody else chose (a proposal): every id must exist, the blocks must fit the spine (`violations`) and fill the template's slots exactly within their minimum and maximum.
+    Unsatisfiable names every reason, so the proposer can be told what to avoid."""
+    by_id = {b["id"]: b for b in library}
+    unknown = [i for i in block_ids if i not in by_id]
+    if unknown:
+        raise Unsatisfiable(f"unknown block ids {unknown}")
+    chosen = [by_id[i] for i in dict.fromkeys(block_ids)]
+    solver = Solver(library, template, spine, random.Random(case_seed), names)
+    reasons = solver.violations(chosen)
+    for slot in solver.slots:
+        n = sum(1 for b in chosen if b["type"] == slot["type"])
+        if not slot["min"] <= n <= slot["max"]:
+            reasons.append(f"the {slot['type']} slot takes {slot['min']} to {slot['max']} blocks and {n} were chosen")
+    for b in chosen:
+        if b not in solver.candidates({"type": b["type"]}) and b["type"] == "DEM":
+            reasons.append(f"{b['id']} is not of the spine's sex and age class")
+        if B.STATUS_ORDER.index(b["status"]) < B.STATUS_ORDER.index(template["spine_status_at_least"]):
+            reasons.append(f"{b['id']} is below the approved status the template needs")
+    if reasons:
+        raise Unsatisfiable("; ".join(reasons))
+    rng = random.Random(case_seed * 31)
+    card = apply(spine, chosen, case_id, case_seed, template, rng, used_mrns)
+    card["composition"]["solver_steps"] = 0
+    return card, Choice(sorted(chosen, key=lambda b: (b["type"], b["id"])), 0)
 
 
 def compose(scenario: str, difficulty: int, n: int, seed: int, targets: list[str] | None = None, cases: list[dict] | None = None, library: list[dict] | None = None) -> list[dict]:

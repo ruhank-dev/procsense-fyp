@@ -1,0 +1,17 @@
+id: SD-007
+title: Communication act sentences in eight simulated writing styles (model-written, model-labelled, NOT independent)
+synthetic: true
+purpose: "To check whether a communication act classifier trained on some writing styles holds up on styles it has not seen: train, dev and test splits whose author profiles never overlap, with negation, self-correction, incomplete speech, deliberate ambiguity, NONE cases and real speech-recogniser copies."
+generator: {path: tools/bench/synthetic.py, version: "1", command: "uv run --project tools tools/bench/synthetic.py freeze"}
+seed: "none: the sentences were written by the language model that built the tooling; the second-labelling sample and its order are seeded (synthetic-second-pass-v1)"
+source: "Written for the cards of docs/research/classifier_benchmark (100 dev and 200 test rows with the per-act and per-bucket counts of the planned independent set) and 320 train sentences, 16 per act, by eight simulated author profiles: terse registrar, chatty nurse, formal consultant, anxious student (train); second-language English and text-message style (dev); rushed night shift and over-polite hesitant trainee (test)."
+method: "Authoring from the scenario cards; a separate blind second-labelling pass over every critical-act row and a quarter of the others; adjudication of the 4 disagreements by the annotation guide's tie-break rules; freezing with hashes; 268 copies of the plain and paraphrased test sentences spoken by the offline voice (clean and telephone band) and transcribed by the speech recogniser (tools/bench/asr_roundtrip.py)."
+constraints: "Each profile is in one split only; no dev or test sentence is a near-duplicate (token overlap 0.8 or more) of a training sentence or of each other; every row says synthetic true and independent false; the test split is scored once."
+validation: "Checked in CI (tools/bench/synthetic.py check: files equal their sources; tools/ci/test_bench.py: counts, profiles, flags, second labels, adjudications, leakage, refusal of a changed file). The second labeller and the adjudicator are the same model as the author, so agreement is not independent evidence (kappa on the double-labelled rows 0.97 dev, 0.97 test)."
+review: Not reviewed by a person.
+labels: The intended act of the card, replaced by the adjudicated act in the 4 rows where the blind second label disagreed.
+model_use: tools/bench/bench_classifier.py --data synthetic (embeddings + logistic regression, TF-IDF + logistic regression, the Qwen 3.5 4B classifier); the logistic regression head content/assessment/act_head.json is trained on the train split and the old template set and its thresholds tuned on dev; never used to credit a trainee and never presented as an independent benchmark.
+use: dev_only
+files: [tests/classifier_synthetic/train.jsonl, tests/classifier_synthetic/dev.jsonl, tests/classifier_synthetic/test.jsonl, tests/classifier_synthetic/asr_test.jsonl, tests/classifier_synthetic/manifest.json, tests/classifier_synthetic/README.md]
+rows: {tests/classifier_synthetic/manifest.json: {rows: 3}}
+licence: The project's own content

@@ -2,7 +2,6 @@
 
 Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, dual-GPU benchmark, labelling, learner model**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Define and extract SessionEvidence v1 at the end of every session: completed and missed steps with lateness, errors with severity, decision sequence, communication acts with source and confidence, investigation interpretation actions, responses to events with latency, hints and assistance used, confidence reports.
@@ -14,6 +13,11 @@ Personalisation is only as good as the evidence it learns from.
 1. Schema `server/schemas/session_evidence.json`.
 2. Extractor from the session log (C# or Python twin with shared vectors).
 3. Pseudonym only; no free text from the trainee stored.
+
+## Status (17 October 2026)
+
+- **Built:** `server/schemas/session_evidence.json` and `server/personalisation/evidence.py` (`extract`): steps completed and missed with lateness, errors by severity, actions in order, events, credits and penalties per behaviour, the story and tier of a generated case; a pseudonym and codes only. What the engine does not record (spoken acts, hints, confidence reports, event response latency, interpretation actions) is listed as `unrecorded`. Six golden sessions and a generated one give valid, deterministic records (`tools/ci/test_personalisation_evidence.py`).
+- **Not built:** a C# twin of the extractor (the report is the shared source; one extractor).
 
 ## Verification
 Every golden session yields a valid record identical in both extractors.

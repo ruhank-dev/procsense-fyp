@@ -2,7 +2,6 @@
 
 Milestone: **M15 P2 learning analytics and advanced simulation**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Progression across competencies; which tests are ordered, when, how often unnecessarily.
@@ -12,6 +11,10 @@ Trainers need the overview.
 
 ## How to implement
 1. Aggregations; report pages.
+
+## Status (17 October 2026)
+
+- **Built:** `server/analytics/progression.py`: per behaviour first-half and second-half share right with a trend, and investigation use (appropriate, not indicated, not ordered, unnecessary share) from the scored items; reproduces from the history (tests). The report pages are not built (the dashboard is p1-backend).
 
 ## Verification
 Reproduce from history.

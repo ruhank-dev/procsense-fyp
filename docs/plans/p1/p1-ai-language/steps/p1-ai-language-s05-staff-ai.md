@@ -14,6 +14,11 @@ Richer NPCs that can never invent instructions (T-AI-06).
 3. Nurse CHALLENGE intent wired to the medicine workflow (beginner mode) with slots {drug_class, reason}.
 4. Event communication intents (REPORT_DELAY with minutes from slots, REPORT_FAULT with station) wired to the reaction layer.
 
+## Status (17 October 2026)
+
+- **Built:** staff and environment dialogue on the same code (`POST /dialogue/organisations/{id}/staff`, prompt `dialogue.staff`): only the approved intents of the role (`content/ai/intents.json`), no orders, doses or advice, the pre-rendered line of the intent as the fallback (sent by the client), the same validator.
+- **Not built:** the extended roster of voice-only characters (lab caller, radiologist, pharmacist, interpreter) and `gen_staff_enums.py`: the intent lists are read from the content file directly.
+
 ## Verification
 T-ST1–T-ST5 pass; every intent has a pre-rendered fallback line.
 

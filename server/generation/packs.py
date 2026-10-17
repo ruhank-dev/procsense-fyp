@@ -34,6 +34,22 @@ class Draw:
     analyte: str
 
 
+def _cholesky(m: list[list[float]]) -> list[list[float]] | None:
+    n = len(m)
+    L = [[0.0] * n for _ in range(n)]
+    for i in range(n):
+        for k in range(i + 1):
+            s = sum(L[i][t] * L[k][t] for t in range(k))
+            if i == k:
+                d = m[i][i] - s
+                if d <= 1e-9:
+                    return None
+                L[i][i] = math.sqrt(d)
+            else:
+                L[i][k] = (m[i][k] - s) / L[k][k]
+    return L
+
+
 def _phi(z: float) -> float:
     return 0.5 * (1 + math.erf(z / math.sqrt(2)))
 
@@ -78,6 +94,35 @@ class LabPack:
 
     def analytes(self) -> list[str]:
         return sorted(self.doc["analytes"])
+
+    def joint(self) -> dict | None:
+        """The joint model (a Gaussian copula over many analytes, tools/generation/fit_joint.py), or None if the pack folder has none."""
+        if not hasattr(self, "_joint"):
+            try:
+                self._joint = load("joint")
+                self._index = {a: i for i, a in enumerate(self._joint["analytes"])}
+                self._chol: dict[tuple[str, ...], list[list[float]]] = {}
+            except (OSError, ValueError):
+                self._joint = None
+        return self._joint
+
+    def draw_panel(self, requests: list[tuple[str, str | None]], rng: random.Random, sex: str = "") -> list[Draw]:
+        """Several analytes drawn together: `requests` is [(analyte, zone)]. One correlated normal per analyte from the joint model (an analyte it does not know is independent), each turned into a probability
+        and then into a value of its zone. The order of the requests does not change a value: the normals are drawn in the order of the sorted analyte names."""
+        j = self.joint()
+        known = sorted({a for a, _ in requests if j and a in self._index})
+        z: dict[str, float] = {a: rng.gauss(0, 1) for a in sorted({a for a, _ in requests})}          # independent normals first, in a fixed order
+        if known:
+            key = tuple(known)
+            if key not in self._chol:
+                sub = [[j["matrix"][self._index[a]][self._index[b]] for b in known] for a in known]
+                L = _cholesky(sub)
+                self._chol[key] = L if L is not None else [[1.0 if r == c else 0.0 for c in range(len(known))] for r in range(len(known))]
+            L = self._chol[key]
+            e = [z[a] for a in known]
+            for r, a in enumerate(known):
+                z[a] = sum(L[r][c] * e[c] for c in range(r + 1))
+        return [self.draw(a, zone, rng, sex, _phi(z[a])) for a, zone in requests]
 
     def zones(self, analyte: str, sex: str = "") -> dict[str, list[tuple[float | None, float | None]]]:
         row = self.doc["analytes"][analyte]

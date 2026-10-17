@@ -15,6 +15,9 @@ dependencies = [
     "jsonschema>=4.23",
 ]
 
+[project.optional-dependencies]
+asr = ["faster-whisper>=1.1"]            # speech recognition; not in the hosted image, which has no GPU
+
 [dependency-groups]
 dev = [
     "playwright>=1.63.0",

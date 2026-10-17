@@ -25,24 +25,24 @@
       "actor": "agent",
       "label": "D40 P2 PH-18",
       "title": "Performance pattern analysis",
-      "text": "Proposed. Across sessions, find recurring errors (always late to check fasting, misses allergy in old notes).2 capability plans.",
-      "tone": "aqua"
+      "text": "Built. Across sessions, find recurring errors (always late to check fasting, misses allergy in old notes).2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D41",
       "actor": "agent",
       "label": "D41 P2 PH-18",
       "title": "Confidence calibration coach",
-      "text": "Proposed. Ask the trainee how confident they are at decision points; compare with correctness over time (Brier score, calibration curve)…2 capability plans.",
-      "tone": "aqua"
+      "text": "Built. Ask the trainee how confident they are at decision points; compare with correctness over time (Brier score, calibration curve)…2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D42",
       "actor": "agent",
       "label": "D42 P2 PH-18",
       "title": "Clinical Reasoning Fingerprint",
-      "text": "Proposed. A profile of how the trainee reasons: order of information gathering, time to key checks, premature closure, investigation yield.2 capability plans.",
-      "tone": "aqua"
+      "text": "Built. A profile of how the trainee reasons: order of information gathering, time to key checks, premature closure, investigation yield.2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D43",
@@ -57,16 +57,16 @@
       "actor": "model",
       "label": "D44 P2 PH-18",
       "title": "AI enhancement to adaptive difficulty",
-      "text": "Proposed. Separate from D43: suggest which competencies to target next using patterns (D40) and explain the choice.1 capability plans.",
-      "tone": "aqua"
+      "text": "Partly built. Separate from D43: suggest which competencies to target next using patterns (D40) and explain the choice.1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "D45",
       "actor": "gear",
       "label": "D45 P2 PH-18",
       "title": "Progression tracking",
-      "text": "Partly built. Built: pseudonymised history and ratings.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Built: pseudonymised history and ratings.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D46",
@@ -89,16 +89,16 @@
       "actor": "agent",
       "label": "D67 P1 PH-23",
       "title": "Trainee learning profile",
-      "text": "Proposed. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty…3 capability plans.",
-      "tone": "aqua"
+      "text": "Partly built. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty…3 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "D68",
       "actor": "agent",
       "label": "D68 P1 PH-23",
       "title": "Personalised scenario targeting",
-      "text": "Proposed. Uses the learning profile to choose objectives and scenario features that change the substance of the next case…3 capability plans.",
-      "tone": "aqua"
+      "text": "Partly built. Uses the learning profile to choose objectives and scenario features that change the substance of the next case…3 capability plans.",
+      "tone": "sun"
     }
   ],
   "edges": [

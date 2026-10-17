@@ -56,6 +56,17 @@ class Settings(BaseSettings):
     verify_on_upload: bool = True
     internal_key: SecretStr = SecretStr("")   # lets a scheduled job call /internal/verify-pending; empty = that route is closed
     upload_rate_per_hour: int = 120
+    # AI gateway (p1-backend-s06): the model host is Ollama on the machine the service runs next to; empty ollama_url switches every model call off (the routes answer with the fallback signal)
+    ollama_url: str = "http://127.0.0.1:11434"   # 127.0.0.1, not localhost: on Windows the name costs a flat 2 s per request
+    ai_rate_per_hour: int = 600                  # model calls per person per hour, in memory
+    ai_queue_wait_seconds: float = 5.0           # how long a request waits for the one model slot before the fallback signal (a 6 GB GPU runs one model call at a time)
+    asr_model: str = "small.en"                  # speech recognition (p1-voice-input-s01): faster-whisper, an optional dependency (uv sync --extra asr)
+    asr_device: str = "auto"
+    ai_features_override: str = ""               # features forced on for development and tests ("all" or names); empty in production: the evaluation gate decides (content/ai/features.json)
+    classifier_backend: str = "embeddings"       # "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
+    embed_model: str = "all-minilm:22m"          # the Ollama embedding model the head was trained on; changing it needs a new head
+    ai_live_timeout_seconds: float = 20.0
+    ai_batch_timeout_seconds: float = 600.0
     # privacy (p1-backend-s12): design values to be confirmed with a qualified person (DT-127)
     consent_required_for_upload: bool = True   # a session is accepted only from a person who agreed to the processing of their results (the current text)
     retention_session_months: int = 24         # after this the stored log and report page of a session are removed (the results stay); an organisation may choose 6 to 60

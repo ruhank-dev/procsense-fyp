@@ -1,0 +1,1480 @@
+{
+ "analytes": [
+  "albumin",
+  "alp",
+  "alt",
+  "bilirubin",
+  "creatinine",
+  "crp",
+  "ggt",
+  "glucose",
+  "haematocrit",
+  "haemoglobin",
+  "inr",
+  "lactate",
+  "lipase",
+  "neutrophils",
+  "platelets",
+  "potassium",
+  "sodium",
+  "urea_nitrogen",
+  "wbc"
+ ],
+ "card": "Small data: the demo has 100 patients, so the model is marginals plus correlations of whole-dataset pairs, not a model per condition; a pair with fewer than 30 observations is independent.",
+ "identity_mix": 0.01,
+ "kind": "joint",
+ "matrix": [
+  [
+   1.0,
+   -0.25955,
+   -0.10108,
+   -0.28325,
+   0.10731,
+   0.0,
+   0.0,
+   0.0,
+   0.34119,
+   0.34508,
+   -0.28379,
+   0.0,
+   0.0,
+   -0.15359,
+   0.0,
+   0.11501,
+   0.10102,
+   0.0,
+   0.0
+  ],
+  [
+   -0.25955,
+   1.0,
+   0.38164,
+   0.09569,
+   0.11702,
+   0.0,
+   0.0,
+   -0.11274,
+   0.13934,
+   0.1373,
+   0.0,
+   0.0,
+   0.0,
+   0.22925,
+   0.19916,
+   -0.10169,
+   0.07425,
+   0.0,
+   -0.09971
+  ],
+  [
+   -0.10108,
+   0.38164,
+   1.0,
+   0.17392,
+   0.09774,
+   0.0,
+   0.0,
+   0.06809,
+   0.20328,
+   0.2407,
+   0.0,
+   0.0,
+   0.0,
+   0.10234,
+   0.0,
+   0.0,
+   0.17581,
+   0.22055,
+   -0.18401
+  ],
+  [
+   -0.28325,
+   0.09569,
+   0.17392,
+   1.0,
+   0.10889,
+   0.0,
+   0.0,
+   -0.07823,
+   -0.1556,
+   -0.13325,
+   0.46407,
+   0.0,
+   0.34054,
+   0.23017,
+   -0.40132,
+   -0.20714,
+   0.0,
+   0.22049,
+   -0.22347
+  ],
+  [
+   0.10731,
+   0.11702,
+   0.09774,
+   0.10889,
+   1.0,
+   0.0,
+   0.0,
+   0.1347,
+   -0.05861,
+   -0.08532,
+   0.0857,
+   0.0,
+   0.0,
+   0.0,
+   -0.17459,
+   0.24034,
+   -0.05662,
+   0.7738,
+   0.10073
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   -0.43388,
+   -0.44241,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.43125
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   -0.11274,
+   0.06809,
+   -0.07823,
+   0.1347,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.04626,
+   0.0,
+   0.38507,
+   0.0,
+   0.0,
+   0.0,
+   0.15216,
+   -0.21159,
+   0.14804,
+   0.12836
+  ],
+  [
+   0.34119,
+   0.13934,
+   0.20328,
+   -0.1556,
+   -0.05861,
+   -0.43388,
+   0.0,
+   0.0,
+   1.0,
+   0.95756,
+   -0.14994,
+   0.0,
+   -0.30236,
+   0.27521,
+   0.32684,
+   0.08737,
+   0.08737,
+   0.0,
+   0.0
+  ],
+  [
+   0.34508,
+   0.1373,
+   0.2407,
+   -0.13325,
+   -0.08532,
+   -0.44241,
+   0.0,
+   0.04626,
+   0.95756,
+   1.0,
+   -0.16112,
+   -0.18395,
+   -0.28533,
+   0.2561,
+   0.26883,
+   0.07092,
+   0.0,
+   -0.06374,
+   0.0
+  ],
+  [
+   -0.28379,
+   0.0,
+   0.0,
+   0.46407,
+   0.0857,
+   0.0,
+   0.0,
+   0.0,
+   -0.14994,
+   -0.16112,
+   1.0,
+   0.0,
+   0.0,
+   0.28576,
+   -0.17741,
+   0.0,
+   -0.06428,
+   0.1509,
+   -0.07961
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.38507,
+   0.0,
+   -0.18395,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   0.34054,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   -0.30236,
+   -0.28533,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   -0.20519,
+   0.0,
+   -0.16646
+  ],
+  [
+   -0.15359,
+   0.22925,
+   0.10234,
+   0.23017,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.27521,
+   0.2561,
+   0.28576,
+   0.0,
+   0.0,
+   1.0,
+   0.36035,
+   0.0,
+   0.08694,
+   0.15585,
+   0.22385
+  ],
+  [
+   0.0,
+   0.19916,
+   0.0,
+   -0.40132,
+   -0.17459,
+   0.0,
+   0.0,
+   0.0,
+   0.32684,
+   0.26883,
+   -0.17741,
+   0.0,
+   0.0,
+   0.36035,
+   1.0,
+   0.14893,
+   0.0,
+   -0.12229,
+   0.14705
+  ],
+  [
+   0.11501,
+   -0.10169,
+   0.0,
+   -0.20714,
+   0.24034,
+   0.0,
+   0.0,
+   0.15216,
+   0.08737,
+   0.07092,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.14893,
+   1.0,
+   -0.22505,
+   0.24238,
+   0.0
+  ],
+  [
+   0.10102,
+   0.07425,
+   0.17581,
+   0.0,
+   -0.05662,
+   0.0,
+   0.0,
+   -0.21159,
+   0.08737,
+   0.0,
+   -0.06428,
+   0.0,
+   -0.20519,
+   0.08694,
+   0.0,
+   -0.22505,
+   1.0,
+   -0.04221,
+   -0.06167
+  ],
+  [
+   0.0,
+   0.0,
+   0.22055,
+   0.22049,
+   0.7738,
+   0.0,
+   0.0,
+   0.14804,
+   0.0,
+   -0.06374,
+   0.1509,
+   0.0,
+   0.0,
+   0.15585,
+   -0.12229,
+   0.24238,
+   -0.04221,
+   1.0,
+   0.05346
+  ],
+  [
+   0.0,
+   -0.09971,
+   -0.18401,
+   -0.22347,
+   0.10073,
+   0.43125,
+   0.0,
+   0.12836,
+   0.0,
+   0.0,
+   -0.07961,
+   0.0,
+   -0.16646,
+   0.22385,
+   0.14705,
+   0.0,
+   -0.06167,
+   0.05346,
+   1.0
+  ]
+ ],
+ "method": "gaussian copula on the Spearman correlations of pairs with at least 30 observations, kept if the 95 percent interval excludes zero, shrunk by n/(n+20), mixed with the identity until positive definite",
+ "pairs": [
+  {
+   "a": "albumin",
+   "b": "alp",
+   "normal_correlation": -0.2622,
+   "pairs": 563,
+   "spearman": -0.26,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "alt",
+   "normal_correlation": -0.1021,
+   "pairs": 564,
+   "spearman": -0.101,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "bilirubin",
+   "normal_correlation": -0.2861,
+   "pairs": 557,
+   "spearman": -0.284,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "creatinine",
+   "normal_correlation": 0.1084,
+   "pairs": 602,
+   "spearman": 0.107,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "glucose",
+   "normal_correlation": 0.0,
+   "pairs": 508,
+   "spearman": -0.008,
+   "used": false
+  },
+  {
+   "a": "albumin",
+   "b": "haematocrit",
+   "normal_correlation": 0.3446,
+   "pairs": 588,
+   "spearman": 0.342,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "haemoglobin",
+   "normal_correlation": 0.3486,
+   "pairs": 585,
+   "spearman": 0.346,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "inr",
+   "normal_correlation": -0.2867,
+   "pairs": 300,
+   "spearman": -0.293,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "lipase",
+   "normal_correlation": 0.0,
+   "pairs": 83,
+   "spearman": -0.167,
+   "used": false
+  },
+  {
+   "a": "albumin",
+   "b": "neutrophils",
+   "normal_correlation": -0.1551,
+   "pairs": 385,
+   "spearman": -0.156,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "platelets",
+   "normal_correlation": 0.0,
+   "pairs": 582,
+   "spearman": -0.029,
+   "used": false
+  },
+  {
+   "a": "albumin",
+   "b": "potassium",
+   "normal_correlation": 0.1162,
+   "pairs": 555,
+   "spearman": 0.115,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "sodium",
+   "normal_correlation": 0.102,
+   "pairs": 554,
+   "spearman": 0.101,
+   "used": true
+  },
+  {
+   "a": "albumin",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.0,
+   "pairs": 600,
+   "spearman": 0.035,
+   "used": false
+  },
+  {
+   "a": "albumin",
+   "b": "wbc",
+   "normal_correlation": 0.0,
+   "pairs": 585,
+   "spearman": 0.053,
+   "used": false
+  },
+  {
+   "a": "alp",
+   "b": "alt",
+   "normal_correlation": 0.3855,
+   "pairs": 1129,
+   "spearman": 0.377,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "bilirubin",
+   "normal_correlation": 0.0967,
+   "pairs": 1112,
+   "spearman": 0.094,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "creatinine",
+   "normal_correlation": 0.1182,
+   "pairs": 1099,
+   "spearman": 0.115,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "glucose",
+   "normal_correlation": -0.1139,
+   "pairs": 993,
+   "spearman": -0.111,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "haematocrit",
+   "normal_correlation": 0.1407,
+   "pairs": 1083,
+   "spearman": 0.137,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "haemoglobin",
+   "normal_correlation": 0.1387,
+   "pairs": 1079,
+   "spearman": 0.135,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "inr",
+   "normal_correlation": 0.0,
+   "pairs": 635,
+   "spearman": -0.032,
+   "used": false
+  },
+  {
+   "a": "alp",
+   "b": "lipase",
+   "normal_correlation": 0.0,
+   "pairs": 109,
+   "spearman": 0.021,
+   "used": false
+  },
+  {
+   "a": "alp",
+   "b": "neutrophils",
+   "normal_correlation": 0.2316,
+   "pairs": 601,
+   "spearman": 0.229,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "platelets",
+   "normal_correlation": 0.2012,
+   "pairs": 1077,
+   "spearman": 0.196,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "potassium",
+   "normal_correlation": -0.1027,
+   "pairs": 1048,
+   "spearman": -0.1,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "sodium",
+   "normal_correlation": 0.075,
+   "pairs": 1049,
+   "spearman": 0.073,
+   "used": true
+  },
+  {
+   "a": "alp",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.0,
+   "pairs": 1099,
+   "spearman": 0.025,
+   "used": false
+  },
+  {
+   "a": "alp",
+   "b": "wbc",
+   "normal_correlation": -0.1007,
+   "pairs": 1080,
+   "spearman": -0.098,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "bilirubin",
+   "normal_correlation": 0.1757,
+   "pairs": 1110,
+   "spearman": 0.171,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "creatinine",
+   "normal_correlation": 0.0987,
+   "pairs": 1118,
+   "spearman": 0.096,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "glucose",
+   "normal_correlation": 0.0688,
+   "pairs": 1000,
+   "spearman": 0.067,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "haematocrit",
+   "normal_correlation": 0.2053,
+   "pairs": 1098,
+   "spearman": 0.2,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "haemoglobin",
+   "normal_correlation": 0.2431,
+   "pairs": 1094,
+   "spearman": 0.237,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "inr",
+   "normal_correlation": 0.0,
+   "pairs": 639,
+   "spearman": -0.056,
+   "used": false
+  },
+  {
+   "a": "alt",
+   "b": "lipase",
+   "normal_correlation": 0.0,
+   "pairs": 109,
+   "spearman": 0.043,
+   "used": false
+  },
+  {
+   "a": "alt",
+   "b": "neutrophils",
+   "normal_correlation": 0.1034,
+   "pairs": 610,
+   "spearman": 0.102,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "platelets",
+   "normal_correlation": 0.0,
+   "pairs": 1091,
+   "spearman": 0.02,
+   "used": false
+  },
+  {
+   "a": "alt",
+   "b": "potassium",
+   "normal_correlation": 0.0,
+   "pairs": 1062,
+   "spearman": -0.053,
+   "used": false
+  },
+  {
+   "a": "alt",
+   "b": "sodium",
+   "normal_correlation": 0.1776,
+   "pairs": 1063,
+   "spearman": 0.173,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.2228,
+   "pairs": 1117,
+   "spearman": 0.217,
+   "used": true
+  },
+  {
+   "a": "alt",
+   "b": "wbc",
+   "normal_correlation": -0.1859,
+   "pairs": 1093,
+   "spearman": -0.181,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "creatinine",
+   "normal_correlation": 0.11,
+   "pairs": 1098,
+   "spearman": 0.107,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "glucose",
+   "normal_correlation": -0.079,
+   "pairs": 991,
+   "spearman": -0.077,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "haematocrit",
+   "normal_correlation": -0.1572,
+   "pairs": 1088,
+   "spearman": -0.153,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "haemoglobin",
+   "normal_correlation": -0.1346,
+   "pairs": 1085,
+   "spearman": -0.131,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "inr",
+   "normal_correlation": 0.4688,
+   "pairs": 638,
+   "spearman": 0.466,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "lipase",
+   "normal_correlation": 0.344,
+   "pairs": 105,
+   "spearman": 0.393,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "neutrophils",
+   "normal_correlation": 0.2325,
+   "pairs": 595,
+   "spearman": 0.23,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "platelets",
+   "normal_correlation": -0.4054,
+   "pairs": 1083,
+   "spearman": -0.397,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "potassium",
+   "normal_correlation": -0.2092,
+   "pairs": 1044,
+   "spearman": -0.204,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "sodium",
+   "normal_correlation": 0.0,
+   "pairs": 1045,
+   "spearman": 0.029,
+   "used": false
+  },
+  {
+   "a": "bilirubin",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.2227,
+   "pairs": 1098,
+   "spearman": 0.217,
+   "used": true
+  },
+  {
+   "a": "bilirubin",
+   "b": "wbc",
+   "normal_correlation": -0.2257,
+   "pairs": 1085,
+   "spearman": -0.22,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "crp",
+   "normal_correlation": 0.0,
+   "pairs": 38,
+   "spearman": 0.113,
+   "used": false
+  },
+  {
+   "a": "creatinine",
+   "b": "glucose",
+   "normal_correlation": 0.1361,
+   "pairs": 2680,
+   "spearman": 0.131,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "haematocrit",
+   "normal_correlation": -0.0592,
+   "pairs": 2462,
+   "spearman": -0.057,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "haemoglobin",
+   "normal_correlation": -0.0862,
+   "pairs": 2436,
+   "spearman": -0.083,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "inr",
+   "normal_correlation": 0.0866,
+   "pairs": 1265,
+   "spearman": 0.084,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "lipase",
+   "normal_correlation": 0.0,
+   "pairs": 120,
+   "spearman": -0.011,
+   "used": false
+  },
+  {
+   "a": "creatinine",
+   "b": "neutrophils",
+   "normal_correlation": 0.0,
+   "pairs": 855,
+   "spearman": -0.027,
+   "used": false
+  },
+  {
+   "a": "creatinine",
+   "b": "platelets",
+   "normal_correlation": -0.1763,
+   "pairs": 2444,
+   "spearman": -0.17,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "potassium",
+   "normal_correlation": 0.2428,
+   "pairs": 2908,
+   "spearman": 0.234,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "sodium",
+   "normal_correlation": -0.0572,
+   "pairs": 2899,
+   "spearman": -0.055,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.7816,
+   "pairs": 2963,
+   "spearman": 0.772,
+   "used": true
+  },
+  {
+   "a": "creatinine",
+   "b": "wbc",
+   "normal_correlation": 0.1017,
+   "pairs": 2431,
+   "spearman": 0.098,
+   "used": true
+  },
+  {
+   "a": "crp",
+   "b": "glucose",
+   "normal_correlation": 0.0,
+   "pairs": 31,
+   "spearman": 0.116,
+   "used": false
+  },
+  {
+   "a": "crp",
+   "b": "haematocrit",
+   "normal_correlation": -0.4383,
+   "pairs": 37,
+   "spearman": -0.65,
+   "used": true
+  },
+  {
+   "a": "crp",
+   "b": "haemoglobin",
+   "normal_correlation": -0.4469,
+   "pairs": 37,
+   "spearman": -0.663,
+   "used": true
+  },
+  {
+   "a": "crp",
+   "b": "platelets",
+   "normal_correlation": 0.0,
+   "pairs": 36,
+   "spearman": 0.236,
+   "used": false
+  },
+  {
+   "a": "crp",
+   "b": "potassium",
+   "normal_correlation": 0.0,
+   "pairs": 34,
+   "spearman": 0.017,
+   "used": false
+  },
+  {
+   "a": "crp",
+   "b": "sodium",
+   "normal_correlation": 0.0,
+   "pairs": 34,
+   "spearman": -0.198,
+   "used": false
+  },
+  {
+   "a": "crp",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.0,
+   "pairs": 36,
+   "spearman": 0.218,
+   "used": false
+  },
+  {
+   "a": "crp",
+   "b": "wbc",
+   "normal_correlation": 0.4356,
+   "pairs": 37,
+   "spearman": 0.646,
+   "used": true
+  },
+  {
+   "a": "glucose",
+   "b": "haematocrit",
+   "normal_correlation": 0.0,
+   "pairs": 2265,
+   "spearman": 0.027,
+   "used": false
+  },
+  {
+   "a": "glucose",
+   "b": "haemoglobin",
+   "normal_correlation": 0.0467,
+   "pairs": 2356,
+   "spearman": 0.045,
+   "used": true
+  },
+  {
+   "a": "glucose",
+   "b": "inr",
+   "normal_correlation": 0.0,
+   "pairs": 1228,
+   "spearman": 0.026,
+   "used": false
+  },
+  {
+   "a": "glucose",
+   "b": "lactate",
+   "normal_correlation": 0.389,
+   "pairs": 152,
+   "spearman": 0.423,
+   "used": true
+  },
+  {
+   "a": "glucose",
+   "b": "lipase",
+   "normal_correlation": 0.0,
+   "pairs": 110,
+   "spearman": -0.164,
+   "used": false
+  },
+  {
+   "a": "glucose",
+   "b": "neutrophils",
+   "normal_correlation": 0.0,
+   "pairs": 724,
+   "spearman": 0.014,
+   "used": false
+  },
+  {
+   "a": "glucose",
+   "b": "platelets",
+   "normal_correlation": 0.0,
+   "pairs": 2250,
+   "spearman": -0.006,
+   "used": false
+  },
+  {
+   "a": "glucose",
+   "b": "potassium",
+   "normal_correlation": 0.1537,
+   "pairs": 2699,
+   "spearman": 0.148,
+   "used": true
+  },
+  {
+   "a": "glucose",
+   "b": "sodium",
+   "normal_correlation": -0.2137,
+   "pairs": 2701,
+   "spearman": -0.206,
+   "used": true
+  },
+  {
+   "a": "glucose",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.1495,
+   "pairs": 2678,
+   "spearman": 0.144,
+   "used": true
+  },
+  {
+   "a": "glucose",
+   "b": "wbc",
+   "normal_correlation": 0.1297,
+   "pairs": 2246,
+   "spearman": 0.125,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "haemoglobin",
+   "normal_correlation": 0.9672,
+   "pairs": 2780,
+   "spearman": 0.971,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "inr",
+   "normal_correlation": -0.1515,
+   "pairs": 1299,
+   "spearman": -0.147,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "lipase",
+   "normal_correlation": -0.3054,
+   "pairs": 119,
+   "spearman": -0.342,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "neutrophils",
+   "normal_correlation": 0.278,
+   "pairs": 938,
+   "spearman": 0.272,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "platelets",
+   "normal_correlation": 0.3301,
+   "pairs": 2768,
+   "spearman": 0.319,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "potassium",
+   "normal_correlation": 0.0883,
+   "pairs": 2416,
+   "spearman": 0.085,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "sodium",
+   "normal_correlation": 0.0883,
+   "pairs": 2413,
+   "spearman": 0.085,
+   "used": true
+  },
+  {
+   "a": "haematocrit",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.0,
+   "pairs": 2459,
+   "spearman": -0.037,
+   "used": false
+  },
+  {
+   "a": "haematocrit",
+   "b": "wbc",
+   "normal_correlation": 0.0,
+   "pairs": 2758,
+   "spearman": -0.02,
+   "used": false
+  },
+  {
+   "a": "haemoglobin",
+   "b": "inr",
+   "normal_correlation": -0.1627,
+   "pairs": 1289,
+   "spearman": -0.158,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "lactate",
+   "normal_correlation": -0.1858,
+   "pairs": 110,
+   "spearman": -0.21,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "lipase",
+   "normal_correlation": -0.2882,
+   "pairs": 118,
+   "spearman": -0.323,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "neutrophils",
+   "normal_correlation": 0.2587,
+   "pairs": 938,
+   "spearman": 0.253,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "platelets",
+   "normal_correlation": 0.2715,
+   "pairs": 2759,
+   "spearman": 0.262,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "potassium",
+   "normal_correlation": 0.0716,
+   "pairs": 2368,
+   "spearman": 0.069,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "sodium",
+   "normal_correlation": 0.0,
+   "pairs": 2366,
+   "spearman": 0.041,
+   "used": false
+  },
+  {
+   "a": "haemoglobin",
+   "b": "urea_nitrogen",
+   "normal_correlation": -0.0644,
+   "pairs": 2434,
+   "spearman": -0.062,
+   "used": true
+  },
+  {
+   "a": "haemoglobin",
+   "b": "wbc",
+   "normal_correlation": 0.0,
+   "pairs": 2757,
+   "spearman": -0.036,
+   "used": false
+  },
+  {
+   "a": "inr",
+   "b": "lipase",
+   "normal_correlation": 0.0,
+   "pairs": 73,
+   "spearman": -0.026,
+   "used": false
+  },
+  {
+   "a": "inr",
+   "b": "neutrophils",
+   "normal_correlation": 0.2886,
+   "pairs": 413,
+   "spearman": 0.29,
+   "used": true
+  },
+  {
+   "a": "inr",
+   "b": "platelets",
+   "normal_correlation": -0.1792,
+   "pairs": 1294,
+   "spearman": -0.174,
+   "used": true
+  },
+  {
+   "a": "inr",
+   "b": "potassium",
+   "normal_correlation": 0.0,
+   "pairs": 1255,
+   "spearman": -0.049,
+   "used": false
+  },
+  {
+   "a": "inr",
+   "b": "sodium",
+   "normal_correlation": -0.0649,
+   "pairs": 1259,
+   "spearman": -0.063,
+   "used": true
+  },
+  {
+   "a": "inr",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.1524,
+   "pairs": 1266,
+   "spearman": 0.148,
+   "used": true
+  },
+  {
+   "a": "inr",
+   "b": "wbc",
+   "normal_correlation": -0.0804,
+   "pairs": 1290,
+   "spearman": -0.078,
+   "used": true
+  },
+  {
+   "a": "lipase",
+   "b": "neutrophils",
+   "normal_correlation": 0.0,
+   "pairs": 80,
+   "spearman": -0.162,
+   "used": false
+  },
+  {
+   "a": "lipase",
+   "b": "platelets",
+   "normal_correlation": 0.0,
+   "pairs": 118,
+   "spearman": -0.001,
+   "used": false
+  },
+  {
+   "a": "lipase",
+   "b": "potassium",
+   "normal_correlation": 0.0,
+   "pairs": 110,
+   "spearman": -0.005,
+   "used": false
+  },
+  {
+   "a": "lipase",
+   "b": "sodium",
+   "normal_correlation": -0.2073,
+   "pairs": 111,
+   "spearman": -0.234,
+   "used": true
+  },
+  {
+   "a": "lipase",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.0,
+   "pairs": 120,
+   "spearman": 0.026,
+   "used": false
+  },
+  {
+   "a": "lipase",
+   "b": "wbc",
+   "normal_correlation": -0.1681,
+   "pairs": 118,
+   "spearman": -0.188,
+   "used": true
+  },
+  {
+   "a": "neutrophils",
+   "b": "platelets",
+   "normal_correlation": 0.364,
+   "pairs": 936,
+   "spearman": 0.357,
+   "used": true
+  },
+  {
+   "a": "neutrophils",
+   "b": "potassium",
+   "normal_correlation": 0.0,
+   "pairs": 795,
+   "spearman": -0.049,
+   "used": false
+  },
+  {
+   "a": "neutrophils",
+   "b": "sodium",
+   "normal_correlation": 0.0878,
+   "pairs": 793,
+   "spearman": 0.086,
+   "used": true
+  },
+  {
+   "a": "neutrophils",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.1574,
+   "pairs": 855,
+   "spearman": 0.154,
+   "used": true
+  },
+  {
+   "a": "neutrophils",
+   "b": "wbc",
+   "normal_correlation": 0.2261,
+   "pairs": 938,
+   "spearman": 0.221,
+   "used": true
+  },
+  {
+   "a": "platelets",
+   "b": "potassium",
+   "normal_correlation": 0.1504,
+   "pairs": 2376,
+   "spearman": 0.145,
+   "used": true
+  },
+  {
+   "a": "platelets",
+   "b": "sodium",
+   "normal_correlation": 0.0,
+   "pairs": 2372,
+   "spearman": -0.028,
+   "used": false
+  },
+  {
+   "a": "platelets",
+   "b": "urea_nitrogen",
+   "normal_correlation": -0.1235,
+   "pairs": 2441,
+   "spearman": -0.119,
+   "used": true
+  },
+  {
+   "a": "platelets",
+   "b": "wbc",
+   "normal_correlation": 0.1485,
+   "pairs": 2752,
+   "spearman": 0.143,
+   "used": true
+  },
+  {
+   "a": "potassium",
+   "b": "sodium",
+   "normal_correlation": -0.2273,
+   "pairs": 2990,
+   "spearman": -0.219,
+   "used": true
+  },
+  {
+   "a": "potassium",
+   "b": "urea_nitrogen",
+   "normal_correlation": 0.2448,
+   "pairs": 2889,
+   "spearman": 0.236,
+   "used": true
+  },
+  {
+   "a": "potassium",
+   "b": "wbc",
+   "normal_correlation": 0.0,
+   "pairs": 2360,
+   "spearman": 0.008,
+   "used": false
+  },
+  {
+   "a": "sodium",
+   "b": "urea_nitrogen",
+   "normal_correlation": -0.0426,
+   "pairs": 2888,
+   "spearman": -0.041,
+   "used": true
+  },
+  {
+   "a": "sodium",
+   "b": "wbc",
+   "normal_correlation": -0.0623,
+   "pairs": 2358,
+   "spearman": -0.06,
+   "used": true
+  },
+  {
+   "a": "urea_nitrogen",
+   "b": "wbc",
+   "normal_correlation": 0.054,
+   "pairs": 2429,
+   "spearman": 0.052,
+   "used": true
+  }
+ ],
+ "source": "DS-0003 (MIMIC-IV demo 2.2, ODbL 1.0)",
+ "version": 1
+}

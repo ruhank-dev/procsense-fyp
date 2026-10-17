@@ -305,7 +305,7 @@
     "id": "OFF-09",
     "label": "OFF-09 Prompt and schema registry",
     "type": "offline_step",
-    "status": "Planned",
+    "status": "Implemented and tested",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -349,7 +349,7 @@
     "id": "LG-04",
     "label": "LG-04 AI scenario plan composition and constraint solving",
     "type": "stage",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_live_plan"
    },
    "classes": "stage"
@@ -371,7 +371,7 @@
     "id": "LG-06",
     "label": "LG-06 AI composition (narrative, patient profile, persona)",
     "type": "stage",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_live_compose"
    },
    "classes": "stage"
@@ -558,7 +558,7 @@
     "id": "LP-01",
     "label": "LP-01 Learner profile retrieval (session start)",
     "type": "runtime_step",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_live_plan"
    },
    "classes": "runtime_step"
@@ -569,7 +569,7 @@
     "id": "LP-03",
     "label": "LP-03 Personalised targeting policy",
     "type": "runtime_step",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_live_plan"
    },
    "classes": "runtime_step"
@@ -580,7 +580,7 @@
     "id": "LP-02",
     "label": "LP-02 Learner profile update (post-session, cheap)",
     "type": "runtime_step",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_post"
    },
    "classes": "runtime_step"
@@ -712,7 +712,7 @@
     "id": "CMP-BACKEND",
     "label": "CMP-BACKEND Backend and AI gateway (FastAPI)",
     "type": "component",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_components"
    },
    "classes": "component"
@@ -723,7 +723,7 @@
     "id": "CMP-LLM",
     "label": "CMP-LLM Served LLM runtime (Ollama)",
     "type": "component",
-    "status": "Partially implemented",
+    "status": "Implemented and tested",
     "parent": "g_components"
    },
    "classes": "component"
@@ -734,7 +734,7 @@
     "id": "CMP-ASR",
     "label": "CMP-ASR Speech recognition runtime (faster-whisper)",
     "type": "component",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_components"
    },
    "classes": "component"
@@ -745,7 +745,7 @@
     "id": "CMP-TTS",
     "label": "CMP-TTS Speech output (pre-rendered and live)",
     "type": "component",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_components"
    },
    "classes": "component"
@@ -1130,7 +1130,7 @@
     "id": "MC-03",
     "label": "MC-03 MC-03 Communication act classification",
     "type": "model",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_models"
    },
    "classes": "model"
@@ -1141,7 +1141,7 @@
     "id": "MC-04",
     "label": "MC-04 MC-04 Debrief rewrite, coaching, explanations",
     "type": "model",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_models"
    },
    "classes": "model"
@@ -1152,7 +1152,7 @@
     "id": "MC-05",
     "label": "MC-05 MC-05 Speech recognition",
     "type": "model",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_models"
    },
    "classes": "model"
@@ -1163,7 +1163,7 @@
     "id": "MC-06",
     "label": "MC-06 MC-06 Text-to-speech",
     "type": "model",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_models"
    },
    "classes": "model"
@@ -1174,7 +1174,7 @@
     "id": "MC-07",
     "label": "MC-07 MC-07 Retrieval",
     "type": "model",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_models"
    },
    "classes": "model"
@@ -1262,7 +1262,7 @@
     "id": "A2",
     "label": "A2 Live dataset-driven scenario generation",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1449,7 +1449,7 @@
     "id": "B19",
     "label": "B19 Synthetic evaluation datasets (sessions, utterances, scenarios)",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_B"
    },
    "classes": "feature"
@@ -1482,7 +1482,7 @@
     "id": "B22",
     "label": "B22 Investigation Interpreter (teaching aid)",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_B"
    },
    "classes": "feature"
@@ -1559,7 +1559,7 @@
     "id": "C29",
     "label": "C29 Persona system",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1581,7 +1581,7 @@
     "id": "C31",
     "label": "C31 Voice interaction (end to end)",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1592,7 +1592,7 @@
     "id": "C32",
     "label": "C32 Voice commands",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1603,7 +1603,7 @@
     "id": "C33",
     "label": "C33 Speech-to-text",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1614,7 +1614,7 @@
     "id": "C34",
     "label": "C34 Text-to-speech",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1625,7 +1625,7 @@
     "id": "C35",
     "label": "C35 Voice orders and read-back",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1636,7 +1636,7 @@
     "id": "C36",
     "label": "C36 Communication acts (taxonomy and evidence mapping)",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented and tested",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1647,7 +1647,7 @@
     "id": "C37",
     "label": "C37 Communication classifier",
     "type": "feature",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1680,7 +1680,7 @@
     "id": "D40",
     "label": "D40 Performance pattern analysis",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Implemented and tested",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1691,7 +1691,7 @@
     "id": "D41",
     "label": "D41 Confidence calibration coach",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Implemented and tested",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1702,7 +1702,7 @@
     "id": "D42",
     "label": "D42 Clinical Reasoning Fingerprint",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Implemented and tested",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1724,7 +1724,7 @@
     "id": "D44",
     "label": "D44 AI enhancement to adaptive difficulty",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1735,7 +1735,7 @@
     "id": "D45",
     "label": "D45 Progression tracking",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented and tested",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1845,7 +1845,7 @@
     "id": "E55",
     "label": "E55 AI evaluation harness and switch-off gate",
     "type": "feature",
-    "status": "Planned",
+    "status": "Implemented and tested",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -1878,7 +1878,7 @@
     "id": "E58",
     "label": "E58 Retrieval over approved content (RAG)",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -1900,7 +1900,7 @@
     "id": "E60",
     "label": "E60 P2 small trained classifier",
     "type": "feature",
-    "status": "Blocked",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -1922,7 +1922,7 @@
     "id": "E62",
     "label": "E62 Backend and AI gateway",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -1977,7 +1977,7 @@
     "id": "D67",
     "label": "D67 Trainee learning profile (Bayesian learner model and performance interpreter)",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1988,7 +1988,7 @@
     "id": "D68",
     "label": "D68 Personalised scenario targeting (policy, objectives for the composer, explanation)",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_D"
    },
    "classes": "feature"
@@ -1999,7 +1999,7 @@
     "id": "E69",
     "label": "E69 AI inference infrastructure and dual-GPU deployment",
     "type": "feature",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"

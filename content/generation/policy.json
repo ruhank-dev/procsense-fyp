@@ -1,0 +1,7 @@
+{
+  "note": "Which policy chooses the dimension of the next generated case (p1-personalisation-s03). Set from docs/research/personalisation_simulation.json by a person; a policy is adopted only if its paired interval against the one it would replace is above zero. tests/ci/test_personalisation_policy.py checks this file agrees with the recorded result.",
+  "default": "elo",
+  "rules": {"adopted": false, "why": "in the simulation of 200 learners over 12 sessions the learner-model rules did not beat the engine's Elo selection (paired difference -0.0085, 95 percent interval -0.0172 to -0.0003); they stay available for their explanations and their handling of uncertainty (a hypothesis is never acted on as a fact) and are not the default"},
+  "bandit": {"adopted": false, "why": "Thompson sampling was worse than the rules and than Elo in the same simulation (-0.0349 and -0.0433); it is not adopted and no real trainee is exposed to exploration"},
+  "evidence": "docs/research/personalisation_simulation.json"
+}

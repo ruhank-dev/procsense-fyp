@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "content_hash": "294351337b9f142cfe703cd81fa80a65206ef4468ce0366619c2ff4765871998",
- "files": 656,
- "bytes": 17646319,
+ "content_hash": "b6415424938ea4c554608c1f76cfa6cf6ad535f1c40f773fa7f580416130f25b",
+ "files": 665,
+ "bytes": 17796127,
  "per_folder": {
   "(root)": 64,
-  "ai": 2,
-  "assessment": 2,
+  "ai": 6,
+  "assessment": 4,
   "attributions": 1,
   "behaviour": 3,
   "blocks": 258,
@@ -26,7 +26,7 @@
   "extension": 1,
   "fasting": 1,
   "flow": 1,
-  "generation": 7,
+  "generation": 9,
   "handover": 2,
   "images": 77,
   "imaging": 3,
@@ -47,7 +47,7 @@
   "scoring": 1,
   "sepsis": 1,
   "templates": 2,
-  "voice": 3,
+  "voice": 4,
   "ward": 1,
   "workflow": 1,
   "xsec": 57
@@ -57,6 +57,14 @@
    "bytes": 1130,
    "sha256": "5facc82a956e9a80e09b9f04e2ade7aef9b44cb66bee8a3f251c06776d23d264"
   },
+  "ai/critical_cues.json": {
+   "bytes": 3117,
+   "sha256": "47c7ab1b395bf7392bd4ac8d9ae2f11f1829d1fe56274053f3c6eb7cbed9e1c3"
+  },
+  "ai/features.json": {
+   "bytes": 4849,
+   "sha256": "2f08ca52b1769cd34affb5fae191329a0b685866fceb6f3635a558538d4d5039"
+  },
   "ai/intents.json": {
    "bytes": 945,
    "sha256": "c19baf5c2f39f5a8c3e32597881fc0b9c741b1a3dc4b1af1cc4ef0bf8999fbc3"
@@ -65,6 +73,18 @@
    "bytes": 3860,
    "sha256": "7ebfd2e9150fad0f2646141358e5c9ea0cd51806ec1989ea9f20293b90453986"
   },
+  "ai/persona.json": {
+   "bytes": 701,
+   "sha256": "4919423b0ed05600bf6556e38d82edb3677aba63ef9ce55d74b6c4ae17f2b324"
+  },
+  "ai/thresholds.json": {
+   "bytes": 7470,
+   "sha256": "172fa6c8f64bb0f37c59fe05eeeebca436c5832dcf5076c5011660c11b50f85f"
+  },
+  "assessment/act_head.json": {
+   "bytes": 105156,
+   "sha256": "adfbf2fed1ae84707f27554fc103f74706945e231a58b7a960b8dc96bb4678b6"
+  },
   "assessment/mapping.json": {
    "bytes": 7687,
    "sha256": "a71d19dc25ac6720e1ac7feaeef0890872aeefa8f9e507dfe319ed7876ee8db9"
@@ -72,6 +92,10 @@
   "assessment/taxonomy.json": {
    "bytes": 5997,
    "sha256": "25a40afdd8082d38de52d9e6ad55bbbc0936ad5ba695d689419d2ed9bebf349f"
+  },
+  "assessment/thresholds.json": {
+   "bytes": 904,
+   "sha256": "4a5a6c6c18cb10946cb6999bf478b9357926800ed681a744c1e69daf1aa77d01"
   },
   "attributions/attributions.json": {
    "bytes": 13060,
@@ -1801,21 +1825,29 @@
    "bytes": 6497,
    "sha256": "bd62e3f3c5795e37627268657e9a490959c6a0cd46bd77a2ff3cc3a0d4c97217"
   },
+  "generation/packs/joint.json": {
+   "bytes": 22515,
+   "sha256": "1a9e92c7ed2249d1573570abbc1238c066c5cf354805ea1add78f30736f47bc1"
+  },
   "generation/packs/labs.json": {
    "bytes": 26653,
    "sha256": "421044953f64d79b5292eaf8c9be172abefc257c8beea43151da1f667d214161"
   },
   "generation/packs/manifest.json": {
-   "bytes": 498,
-   "sha256": "f9501f65eddbd4a63a1b6b72001b14419092ed86b41f0079c0cd957bab477ab2"
+   "bytes": 582,
+   "sha256": "32f24217878468510334009bcf7919411e2bbe7f2360061cd6dc49fa602f4eda"
   },
   "generation/packs/vitals.json": {
    "bytes": 11052,
    "sha256": "ed15e38f9f4bdc0e0c9cb2f045c2322d238e74f5bd25c2ad4d741d3b606cf602"
   },
+  "generation/policy.json": {
+   "bytes": 1018,
+   "sha256": "c06703ba812c38debe06eb30c6da278feed5f35f7054b43513a73577ce787076"
+  },
   "generation/releases.json": {
-   "bytes": 1238,
-   "sha256": "e760454e1eee1863c990e1128745345dbae0e0928cb0cfdb1a3163390c18780b"
+   "bytes": 2680,
+   "sha256": "95786f89310e49ca8159119711b52f80ead442fe652ea8e49c83333a447badf9"
   },
   "glossary.csv": {
    "bytes": 15141,
@@ -2400,6 +2432,10 @@
   "vitals_bands.csv": {
    "bytes": 7001,
    "sha256": "0415239feaf451d22878d3b05fd044f03fc94cf13deb5159744dee926eb8aa3b"
+  },
+  "voice/asr_vocab.json": {
+   "bytes": 2552,
+   "sha256": "c06d586b33d009be6b9d4afc5caa897fc41a88a07d8f56562d2daa0c68067e3f"
   },
   "voice/catalogue.json": {
    "bytes": 80492,

@@ -14,6 +14,11 @@ AI tests and the classifier depend on synthetic data; without cards (purpose, ge
 3. 18 dataset types listed in the Master Plan AI section get a card each as they're created.
 4. Spot-check 50 rows per generated dataset (T-SD3 ≥ 90% usable).
 
+## Status (17 October 2026)
+
+- **Built:** `tools/synth/card_schema.json`, `tools/synth/publish.py` (refuses an incomplete card, checks generators, files and row counts, writes the index) and five cards SD-001 to SD-005 in `docs/research/datasets/synthetic/` for the synthetic datasets that exist (text inconsistencies, generated goldens, difficulty vectors, simulated learners, gold scenarios and queries). `tools/ci/test_synth_cards.py` covers T-SD1 and T-SD4.
+- **Not built:** the LLM generators of utterances and handovers (they wait for p1-ai-language-s06); a spot-check of 50 rows by a person (T-SD3).
+
 ## Verification
 T-SD1–T-SD4 green; card index lists every dataset.
 

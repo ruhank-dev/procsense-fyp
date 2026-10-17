@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/session_evidence.json",
+  "title": "SessionEvidence v1 (p1-personalisation-s01)",
+  "description": "What one finished session showed, in a form the learner model and the targeting policy read. Made from the engine's debrief facts; holds a pseudonym and codes, never free text from the trainee. Fields the engine does not record yet say so (recorded: false) instead of being invented.",
+  "type": "object",
+  "required": ["version", "trainee", "session_id", "ended_at", "case", "story", "tier", "mode", "generated", "end_state", "result", "steps", "errors", "actions", "events", "competencies", "unrecorded"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": 1},
+    "trainee": {"type": "string", "pattern": "^[A-Za-z0-9_-]{3,64}$"},
+    "session_id": {"type": "string", "minLength": 1, "maxLength": 64},
+    "ended_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "case": {"type": "string"},
+    "story": {"type": "string", "description": "the case whose story it is: the spine of a generated case, else the case itself"},
+    "tier": {"enum": ["P0", "P1", "P2"]},
+    "mode": {"enum": ["practice", "assessment"]},
+    "generated": {"type": "boolean"},
+    "end_state": {"type": "string"},
+    "result": {"type": "string"},
+    "steps": {"type": "array", "items": {"type": "object", "required": ["item", "behaviour", "state", "at"], "additionalProperties": false,
+      "properties": {"item": {"type": "string"}, "behaviour": {"type": "string"}, "state": {"enum": ["completed", "missed"]}, "at": {"type": "string"}, "late_minutes": {"type": "number", "minimum": 0}}}},
+    "errors": {"type": "array", "items": {"type": "object", "required": ["item", "behaviour", "severity", "at"], "additionalProperties": false,
+      "properties": {"item": {"type": "string"}, "behaviour": {"type": "string"}, "severity": {"enum": ["minor", "major", "critical"]}, "at": {"type": "string"}}}},
+    "actions": {"type": "array", "maxItems": 400, "items": {"type": "object", "required": ["seq", "at", "verb"], "additionalProperties": false, "properties": {"seq": {"type": "integer"}, "at": {"type": "string"}, "verb": {"type": "string"}}}},
+    "events": {"type": "array", "items": {"type": "object", "required": ["event", "response_latency_s"], "additionalProperties": false, "properties": {"event": {"type": "string"}, "response_latency_s": {"type": ["number", "null"]}}}},
+    "competencies": {"type": "array", "items": {"type": "object", "required": ["behaviour", "credits", "penalties", "items"], "additionalProperties": false,
+      "properties": {"behaviour": {"type": "string"}, "credits": {"type": "integer"}, "penalties": {"type": "integer"}, "items": {"type": "integer"}}}},
+    "unrecorded": {"type": "array", "items": {"enum": ["communication_acts", "hints", "confidence_reports", "event_response_latency", "interpretation_actions"]}, "description": "evidence the engine does not record yet; a consumer treats these as unknown, not as zero"}
+  }
+}

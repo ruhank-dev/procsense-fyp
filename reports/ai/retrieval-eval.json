@@ -1,0 +1,21 @@
+{
+  "embedding_model": "all-minilm:22m",
+  "cases": 12,
+  "questions": 164,
+  "asked_fact_in_top": {
+    "1": 0.988,
+    "3": 1.0,
+    "5": 1.0
+  },
+  "facts_block_tokens_mean": {
+    "all_facts": 141.5,
+    "allowed_today": 39.1,
+    "top3_of_allowed": 39.1
+  },
+  "saving_top3_against_allowed_today": 0.0,
+  "rule": "ship only if the asked fact is in the top 3 at least 95 percent of the time and the facts block shrinks at least 30 percent against what is sent today",
+  "dialogue_decision": "do not ship",
+  "debrief_decision": "do not ship: the rewrite must cover every scored item (the strict validator rejects a missing fact), so there is nothing to leave out",
+  "reason": "the Core's disclosure filter already leaves the dialogue prompt about 39.1 tokens of facts; the top 3 of them would save 0 percent of that and the asked fact is in the top 3 100 percent of the time over all facts of the case",
+  "limit": "a token count is characters divided by four; the questions are two fixed wordings per topic, not free speech from trainees"
+}

@@ -935,11 +935,14 @@
     {
       "type": "offline_step",
       "group": "g_offline",
-      "evidence": [],
+      "evidence": [
+        "prompts/registry.json",
+        "server/llm/prompts.py"
+      ],
       "blockers": [],
       "id": "OFF-09",
       "label": "Prompt and schema registry",
-      "status": "Planned",
+      "status": "Implemented and tested",
       "method_class": "deterministic",
       "description": "Versioned prompts and JSON schemas for every model call (composition, dialogue, debrief, classifier, judge). A prompt change is a content change: new version, new evaluation run.",
       "inputs": [
@@ -951,7 +954,7 @@
         "prompts/<task>/vN.txt",
         "server/schemas/*.json (planned)"
       ],
-      "component": "prompts/ and server/schemas/ (planned)",
+      "component": "prompts/registry.json with the prompt files in prompts/ and the schemas in server/schemas/ai/ (built: server/llm/prompts.py checks hashes and slots in CI)",
       "tasks": [
         "p1-live-scenario-generation-s01",
         "p1-ai-language-s02"
@@ -1151,7 +1154,7 @@
       "id": "LG-04",
       "label": "AI scenario plan composition and constraint solving",
       "group": "g_live_plan",
-      "status": "Planned",
+      "status": "Partially implemented",
       "method_class": "hybrid",
       "description": "The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases, schema-constrained to approved ids) proposes a ScenarioPlan: problems, comorbidities, investigations with expected findings, decision points and traps, events, branches, outcomes and a rationale per choice. The deterministic solver completes missing slots and enforces requires/excludes, KB relations, difficulty bounds and novelty. With no model available the solver alone produces the plan (baseline and fallback). Revised 12 Oct 2026 (second pass): previously solver-only selection.",
       "inputs": [
@@ -1162,7 +1165,7 @@
       "outputs": [
         "ComponentSet: block ids per slot, solver trace"
       ],
-      "component": "tools/composer/solve.py + server/generation/skeleton.py (built, the baseline and fallback) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13)",
+      "component": "tools/composer/solve.py + server/generation/skeleton.py (built, the baseline and fallback) + server/generation/compose_plan.py (built, measured, switched off by default: it did not beat the solver)",
       "method": "LLM + retrieval proposes the plan (MC-01, JSON schema); seeded constraint solver completes and checks it (backtracking over slots with requires/excludes, KB relations, difficulty bounds, novelty pre-filter).",
       "api": "internal",
       "validation": "Constraint re-check after selection; solver trace stored in the package.",
@@ -1186,7 +1189,10 @@
       "latency_budget_ms": 500,
       "evidence": [
         "tools/composer/solve.py (the deterministic solver, built)",
-        "server/generation/skeleton.py (the deterministic baseline: ranking, selection, solver, relaxation, novelty pre-filter)"
+        "server/generation/skeleton.py (the deterministic baseline: ranking, selection, solver, relaxation, novelty pre-filter)",
+        "server/generation/compose_plan.py",
+        "tools/ai/eval_planner.py",
+        "reports/ai/planner-eval.json"
       ],
       "blockers": [],
       "traced_to": {
@@ -1277,7 +1283,7 @@
       "id": "LG-06",
       "label": "AI composition (narrative, patient profile, persona)",
       "group": "g_live_compose",
-      "status": "Blocked",
+      "status": "Partially implemented",
       "method_class": "LLM",
       "description": "A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording, distractor texture. It returns JSON that must match a schema whose enums are the allowed block ids and tags. It never chooses a value, a diagnosis, a drug or a result.",
       "inputs": [
@@ -1288,7 +1294,7 @@
       "outputs": [
         "NarrativeFill JSON"
       ],
-      "component": "server/generation/compose.py (planned) via the AI gateway",
+      "component": "server/generation/narrative.py (built, measured on the 4B and 9B; the template fallback is the authored line)",
       "method": "LLM with JSON-schema constrained output (Ollama `format`), temperature 0.7 to 0.8, thinking off; prompt and model digest logged.",
       "api": "POST /v1/llm/generate task=compose (planned)",
       "validation": "JSON schema, grounding validator (no invented drug, value, diagnosis or hidden fact), lexicon checks.",
@@ -1315,7 +1321,12 @@
       ],
       "error_handling": "Timeout (budget 25 s), invalid JSON, schema failure or grounding failure: one retry with the defect as an avoid-hint, then the template narrative (deterministic fallback).",
       "latency_budget_ms": 25000,
-      "evidence": [],
+      "evidence": [
+        "server/generation/narrative.py",
+        "prompts/compose/v1.txt",
+        "reports/ai/narrative-4b.json",
+        "tools/ci/test_llm.py"
+      ],
       "traced_to": {
         "kind": "direct",
         "features": [
@@ -1370,7 +1381,11 @@
         "content/lab_plausibility.csv",
         "server/generation/numeric.py",
         "server/generation/packs.py",
-        "tools/ci/test_generation_numeric.py"
+        "tools/ci/test_generation_numeric.py",
+        "server/generation/packs.py (draw_panel)",
+        "tools/generation/fit_joint.py",
+        "content/generation/packs/joint.json",
+        "tools/ci/test_generation_joint.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s05",
@@ -1509,7 +1524,9 @@
         "tools/composer/test_composer.py",
         "server/generation/crossmodal.py (8 rules)",
         "content/generation/crossmodal_rules.json",
-        "tools/ci/test_generation_crossmodal.py"
+        "tools/ci/test_generation_crossmodal.py",
+        "server/generation/reports.py (number-locked report lines)",
+        "server/generation/critic.py"
       ],
       "tasks": [
         "p1-live-scenario-generation-s07",
@@ -1647,7 +1664,9 @@
       "latency_budget_ms": 8000,
       "evidence": [
         "server/generation/quality.py (deterministic metrics, advisory judge slot)",
-        "tools/ci/test_generation_quality.py"
+        "tools/ci/test_generation_quality.py",
+        "server/generation/critic.py",
+        "tools/generation/inconsistency_set.py"
       ],
       "blockers": [],
       "traced_to": {
@@ -2320,11 +2339,14 @@
       "id": "LP-01",
       "type": "runtime_step",
       "group": "g_live_plan",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "statistical",
       "label": "Learner profile retrieval (session start)",
       "description": "Load the trainee's LearnerProfile v1 (posteriors, demonstrated weaknesses, hypotheses, trends, recent fingerprints).",
-      "evidence": [],
+      "evidence": [
+        "server/personalisation/evidence.py",
+        "server/personalisation/learner_model.py"
+      ],
       "blockers": [],
       "tasks": [
         "p1-personalisation-s02"
@@ -2346,11 +2368,13 @@
       "id": "LP-03",
       "type": "runtime_step",
       "group": "g_live_plan",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "statistical",
       "label": "Personalised targeting policy",
       "description": "Turn the profile into Objectives v1 (rules, later a contextual bandit adopted after off-policy evaluation) and the why-this-case facts.",
-      "evidence": [],
+      "evidence": [
+        "server/personalisation/policy.py"
+      ],
       "blockers": [],
       "tasks": [
         "p1-personalisation-s03",
@@ -2374,11 +2398,13 @@
       "id": "LP-02",
       "type": "runtime_step",
       "group": "g_post",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "statistical",
       "label": "Learner profile update (post-session, cheap)",
       "description": "Extract SessionEvidence v1, update posteriors and pattern status; the LLM interpreter adds hypotheses offline. No model retraining in a session.",
-      "evidence": [],
+      "evidence": [
+        "server/personalisation/learner_model.py"
+      ],
       "blockers": [],
       "tasks": [
         "p1-personalisation-s01",
@@ -2673,9 +2699,11 @@
       "type": "component",
       "label": "Backend and AI gateway (FastAPI)",
       "group": "g_components",
-      "status": "Planned",
+      "status": "Partially implemented",
       "description": "Backend and AI gateway (FastAPI on PostgreSQL, Supabase). Where: server/ (planned modules). Tests: p1-backend s01 to s13.",
-      "evidence": [],
+      "evidence": [
+        "server/routers/ai_gateway.py"
+      ],
       "location": "server/ (planned modules)",
       "traced_to": {
         "kind": "direct",
@@ -2693,12 +2721,14 @@
       "type": "component",
       "label": "Served LLM runtime (Ollama)",
       "group": "g_components",
-      "status": "Partially implemented",
+      "status": "Implemented and tested",
       "description": "Served LLM runtime (Ollama). Where: installed on the desktop (16 Oct 2026); the laptop is not set up. Tests: tools/ai/test_benchmark.py (fake server), p1-ai-language-s02 (real).",
       "evidence": [
         "tools/ai/benchmark.py",
         "tools/ai/test_benchmark.py",
-        "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026"
+        "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026",
+        "server/llm/client.py",
+        "server/llm/gateway.py"
       ],
       "location": "desktop (Ollama 0.40.5); laptop not installed",
       "traced_to": {
@@ -2719,9 +2749,11 @@
       "type": "component",
       "label": "Speech recognition runtime (faster-whisper)",
       "group": "g_components",
-      "status": "Planned",
+      "status": "Partially implemented",
       "description": "Speech recognition runtime (faster-whisper). Where: not installed. Tests: p1-voice-input-s01.",
-      "evidence": [],
+      "evidence": [
+        "server/asr/service.py"
+      ],
       "location": "not installed",
       "traced_to": {
         "kind": "direct",
@@ -2747,9 +2779,11 @@
       "type": "component",
       "label": "Speech output (pre-rendered and live)",
       "group": "g_components",
-      "status": "Planned",
+      "status": "Partially implemented",
       "description": "Speech output (pre-rendered and live). Where: not installed. Tests: p0-voice-audio-s02, p1-voice-input-s04.",
-      "evidence": [],
+      "evidence": [
+        "server/tts/engine.py"
+      ],
       "location": "not installed",
       "traced_to": {
         "kind": "direct",
@@ -3593,7 +3627,7 @@
       "type": "model",
       "label": "MC-03 Communication act classification",
       "group": "g_models",
-      "status": "Blocked",
+      "status": "Partially implemented",
       "description": "Communication act classification (C35, C37, E60)",
       "model_ref": "MC-03",
       "traced_to": {
@@ -3617,14 +3651,17 @@
           "docs/architecture/feature_plans/E57.md",
           "docs/architecture/feature_plans/E60.md"
         ]
-      }
+      },
+      "evidence": [
+        "server/classify/embedding.py"
+      ]
     },
     {
       "id": "MC-04",
       "type": "model",
       "label": "MC-04 Debrief rewrite, coaching, explanations",
       "group": "g_models",
-      "status": "Blocked",
+      "status": "Partially implemented",
       "description": "Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56)",
       "model_ref": "MC-04",
       "traced_to": {
@@ -3660,14 +3697,17 @@
           "docs/architecture/feature_plans/D68.md",
           "docs/architecture/feature_plans/E52.md"
         ]
-      }
+      },
+      "evidence": [
+        "server/debrief/rewrite.py"
+      ]
     },
     {
       "id": "MC-05",
       "type": "model",
       "label": "MC-05 Speech recognition",
       "group": "g_models",
-      "status": "Planned",
+      "status": "Partially implemented",
       "description": "Speech recognition (C31 to C35, E59, E63)",
       "model_ref": "MC-05",
       "traced_to": {
@@ -3691,14 +3731,17 @@
           "docs/architecture/feature_plans/E63.md",
           "docs/architecture/feature_plans/E69.md"
         ]
-      }
+      },
+      "evidence": [
+        "server/asr/service.py"
+      ]
     },
     {
       "id": "MC-06",
       "type": "model",
       "label": "MC-06 Text-to-speech",
       "group": "g_models",
-      "status": "Planned",
+      "status": "Partially implemented",
       "description": "Text-to-speech (C31, C34)",
       "model_ref": "MC-06",
       "traced_to": {
@@ -3712,14 +3755,17 @@
           "docs/architecture/feature_plans/C31.md",
           "docs/architecture/feature_plans/C34.md"
         ]
-      }
+      },
+      "evidence": [
+        "server/tts/engine.py"
+      ]
     },
     {
       "id": "MC-07",
       "type": "model",
       "label": "MC-07 Retrieval",
       "group": "g_models",
-      "status": "Planned",
+      "status": "Partially implemented",
       "description": "Retrieval (E58, LG-03)",
       "model_ref": "MC-07",
       "traced_to": {
@@ -3735,7 +3781,10 @@
           "docs/architecture/feature_plans/E53.md",
           "docs/architecture/feature_plans/E58.md"
         ]
-      }
+      },
+      "evidence": [
+        "server/retrieval/flat.py"
+      ]
     },
     {
       "id": "MC-08",
@@ -3885,14 +3934,17 @@
       "group": "g_feat_A",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Planned",
+      "ai_status": "Partially implemented",
       "description": "Compose complete cases from approved building blocks: a deterministic solver assembles blocks under requires/excludes and difficulty limits; an LLM proposes combinations and narratives (Stage A); Stage B validates. Offline batch use of the same machinery as live generation.",
       "evidence": [
         "tools/composer/stage_b.py (Stage B built)",
         "tools/composer/test_composer.py (60 of 60 mutations rejected)",
         "tools/composer/solve.py",
         "tools/composer/cli.py",
-        "tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations)"
+        "tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations)",
+        "server/generation/compose_plan.py",
+        "server/generation/narrative.py",
+        "server/llm/gateway.py"
       ],
       "lineage": [
         "p1-scenario-composer-difficulty s01 to s05",
@@ -4145,11 +4197,14 @@
       "category": "Scenario generation and composition",
       "group": "g_feat_A",
       "kind": "hybrid",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Generate a fresh, coherent, validated scenario for each practice session from the trainee's objectives, using the existing cases and datasets as templates, evidence and evaluation material. The 21-stage pipeline LG-01 to LG-21.",
       "evidence": [
-        "building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector"
+        "building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector",
+        "server/generation/pipeline.py",
+        "server/generation/pool.py",
+        "server/generation/compose_plan.py"
       ],
       "lineage": [
         "new (this planning update, 12 Oct 2026)",
@@ -4934,7 +4989,9 @@
       "description": "Unexpected events during the session. Built: EventDirector with 7 approved events, seeded draw in practice, fixed schedule in assessment. Proposed: generated variants of approved events (timing, severity, wording) inside bounds.",
       "evidence": [
         "src/ProcSense.Core/Events/EventDirector.cs",
-        "EventDirectorTests"
+        "EventDirectorTests",
+        "src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs",
+        "content/extension/intra_op_events.json"
       ],
       "lineage": [
         "p0-physiology-events-behaviour s08, s09",
@@ -5544,7 +5601,8 @@
       "evidence": [
         "SessionOptions.Level",
         "content/whatif_bindings.csv",
-        "content/decision_rules.csv"
+        "content/decision_rules.csv",
+        "src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs"
       ],
       "lineage": [
         "DT-087"
@@ -6689,7 +6747,9 @@
         "tools/data/derived/vitaldb_noise.json",
         "content/generation/packs/labs.json",
         "tools/generation/packs.py",
-        "tools/data/profile_numeric.py"
+        "tools/data/profile_numeric.py",
+        "server/generation/numeric.py",
+        "tools/generation/fit_joint.py"
       ],
       "lineage": [],
       "method": "Statistical: truncated distributions per band and condition, Gaussian copula for linked analytes, AR(1) noise for vitals.",
@@ -7594,7 +7654,10 @@
       "ai_status": "Not applicable (deterministic feature)",
       "description": "All modalities agree (LG-09). Built: 12 contradiction types in Stage B.",
       "evidence": [
-        "content/contradictions.json"
+        "content/contradictions.json",
+        "server/generation/crossmodal.py",
+        "server/generation/reports.py",
+        "server/generation/critic.py"
       ],
       "lineage": [],
       "method": "Rule table VR-CM-*.",
@@ -7780,10 +7843,14 @@
       "category": "Data, media and investigations",
       "group": "g_feat_B",
       "kind": "hybrid",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Labelled synthetic sets with data cards for evaluating classifiers, dialogue and generation. Lineage: p1-evaluation-s01.",
-      "evidence": [],
+      "evidence": [
+        "tools/synth/gen_utterances.py",
+        "tools/bench/synthetic.py",
+        "docs/research/datasets/synthetic/"
+      ],
       "lineage": [
         "p1-evaluation-s01"
       ],
@@ -8274,10 +8341,13 @@
       "category": "Data, media and investigations",
       "group": "g_feat_B",
       "kind": "ai",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "After a result is viewed (practice mode, or in the debrief), explain what it shows and why it matters, grounded only in the result's approved report and bands. Never available during assessment.",
-      "evidence": [],
+      "evidence": [
+        "server/analytics/interpreter.py",
+        "tools/ci/test_analytics.py"
+      ],
       "lineage": [],
       "method": "LLM rewrite of approved report text and band facts behind the grounding validator.",
       "llm_first_classification": "LLM fits: explanation is a language task; facts come from the report.",
@@ -8623,11 +8693,15 @@
       "group": "g_feat_C",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Free questions answered in the patient's voice. Built: fixed history questions with quoted answers, disclosure rules, context builder, validator.",
       "evidence": [
         "history step (approved)",
-        "src/ProcSense.Core/AIContext/ContextBuilder.cs"
+        "src/ProcSense.Core/AIContext/ContextBuilder.cs",
+        "server/dialogue/dialogue.py",
+        "server/routers/dialogue.py",
+        "tools/ai/eval_dialogue.py",
+        "reports/ai/dialogue-eval.json"
       ],
       "lineage": [
         "p1-ai-language-s04",
@@ -8848,11 +8922,13 @@
       "group": "g_feat_C",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Built: nurse wristband engine and fixed lines. AI: free nurse replies within approved intents.",
       "evidence": [
         "content/ai/intents.json (nurse)",
-        "nurse wristband engine"
+        "nurse wristband engine",
+        "server/dialogue/dialogue.py",
+        "content/ai/intents.json"
       ],
       "lineage": [
         "p1-ai-language-s05",
@@ -9011,10 +9087,12 @@
       "group": "g_feat_C",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Approved intents exist for anaesthesia; AI replies planned.",
       "evidence": [
-        "content/ai/intents.json (anaesthesia)"
+        "content/ai/intents.json (anaesthesia)",
+        "server/dialogue/dialogue.py",
+        "content/ai/intents.json"
       ],
       "lineage": [
         "p1-ai-language-s05"
@@ -9172,10 +9250,12 @@
       "group": "g_feat_C",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Approved intents exist for the surgeon; AI replies planned.",
       "evidence": [
-        "content/ai/intents.json (surgeon)"
+        "content/ai/intents.json (surgeon)",
+        "server/dialogue/dialogue.py",
+        "content/ai/intents.json"
       ],
       "lineage": [
         "p1-ai-language-s05"
@@ -9333,10 +9413,12 @@
       "group": "g_feat_C",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Approved intents exist for the porter; AI replies planned.",
       "evidence": [
-        "content/ai/intents.json (porter)"
+        "content/ai/intents.json (porter)",
+        "server/dialogue/dialogue.py",
+        "content/ai/intents.json"
       ],
       "lineage": [
         "p1-ai-language-s05"
@@ -9493,10 +9575,13 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "hybrid",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Persona tags per character (anxiety, health literacy, talkativeness, language) that shape wording, never facts. Persona tags in case files are pending (DT-085).",
-      "evidence": [],
+      "evidence": [
+        "content/ai/persona.json",
+        "server/generation/narrative.py"
+      ],
       "lineage": [
         "DT-085"
       ],
@@ -9688,11 +9773,12 @@
       "group": "g_feat_C",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Characters react to what is happening (a falling saturation, a wrong drug) through the reaction queue. Built: ContextBuilder, ReactionQueue (priority, debounce, one spontaneous remark per 8 s).",
       "evidence": [
         "src/ProcSense.Core/AIContext/ContextBuilder.cs",
-        "ContextBuilderTests"
+        "ContextBuilderTests",
+        "server/dialogue/dialogue.py"
       ],
       "lineage": [
         "p1-ai-language-s03"
@@ -9842,10 +9928,14 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "ai",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.",
-      "evidence": [],
+      "evidence": [
+        "server/routers/asr.py",
+        "server/routers/tts.py",
+        "docs/architecture/unity_ai_hooks.md"
+      ],
       "lineage": [
         "p1-voice-input",
         "p0-voice-audio"
@@ -10004,10 +10094,13 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "hybrid",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Short spoken commands mapped to verbs (open results, call nurse).",
-      "evidence": [],
+      "evidence": [
+        "server/orders/grammar.py",
+        "tools/ai/eval_orders.py"
+      ],
       "lineage": [
         "p1-voice-input-s02"
       ],
@@ -10154,10 +10247,15 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "ai",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "faster-whisper on the desktop GPU with a vocabulary prompt built from content.",
-      "evidence": [],
+      "evidence": [
+        "server/asr/service.py",
+        "server/routers/asr.py",
+        "tools/ai/asr_wer.py",
+        "tools/content/build_vocab.py"
+      ],
       "lineage": [
         "p1-voice-input-s01",
         "DT-098"
@@ -10312,10 +10410,14 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "ai",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Pre-rendered lines offline (P0) and live TTS for generated lines (P1). Piper is archived (MIT) and continued as GPL piper1-gpl; voice licences vary.",
-      "evidence": [],
+      "evidence": [
+        "server/tts/engine.py",
+        "server/routers/tts.py",
+        "tools/ai/tts_latency.py"
+      ],
       "lineage": [
         "p0-voice-audio-s02",
         "p1-voice-input-s04"
@@ -10461,10 +10563,14 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "hybrid",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Spoken orders (drug, dose, route) read back by the nurse before acting; closed-loop communication is assessed.",
-      "evidence": [],
+      "evidence": [
+        "server/orders/grammar.py",
+        "server/orders/synonyms.csv",
+        "tools/ai/eval_orders.py"
+      ],
       "lineage": [
         "p1-voice-input-s03"
       ],
@@ -10616,12 +10722,15 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "deterministic",
-      "status": "Partially implemented",
+      "status": "Implemented and tested",
       "ai_status": "Not applicable (deterministic feature)",
       "description": "The acts the classifier reports and how the evidence store weighs them. Built: AI-reportable acts in mapping.json; the evidence store never credits a critical, low-confidence or wrong-stage act from AI.",
       "evidence": [
         "content/assessment/mapping.json",
-        "src/ProcSense.Core/Scoring/Evidence.cs"
+        "src/ProcSense.Core/Scoring/Evidence.cs",
+        "content/assessment/taxonomy.json",
+        "tools/bench/dataset.py",
+        "tools/ci/test_bench.py"
       ],
       "lineage": [
         "p1-ai-language-s06"
@@ -10759,10 +10868,16 @@
       "category": "Dialogue, voice and communication",
       "group": "g_feat_C",
       "kind": "ai",
-      "status": "Blocked",
-      "ai_status": "Blocked",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Classify trainee utterances into acts. P1: served LLM with an enum schema; P2: small trained classifier (E60).",
-      "evidence": [],
+      "evidence": [
+        "server/classify/embedding.py",
+        "server/classify/guard.py",
+        "content/assessment/act_head.json",
+        "tools/bench/bench_classifier.py",
+        "reports/ai/classifier-bench-synthetic.json"
+      ],
       "lineage": [
         "p1-ai-language-s06, s07",
         "DT-097"
@@ -10919,10 +11034,14 @@
       "group": "g_feat_D",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Blocked",
+      "ai_status": "Partially implemented",
       "description": "Template debrief built; AI rewrite planned behind the validator (LG-19).",
       "evidence": [
-        "src/ProcSense.Core/Scoring/Debrief.cs"
+        "src/ProcSense.Core/Scoring/Debrief.cs",
+        "server/debrief/rewrite.py",
+        "server/routers/debrief.py",
+        "tools/ai/eval_debrief.py",
+        "reports/ai/debrief-eval.json"
       ],
       "lineage": [
         "p1-ai-language-s08",
@@ -11228,11 +11347,13 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "hybrid",
-      "status": "Proposed new feature",
+      "status": "Implemented and tested",
       "ai_status": "Proposed new feature",
       "description": "Across sessions, find recurring errors (always late to check fasting, misses allergy in old notes).",
       "evidence": [
-        "per-behaviour credits and penalties (built)"
+        "per-behaviour credits and penalties (built)",
+        "server/analytics/patterns.py",
+        "tools/ci/test_analytics.py"
       ],
       "lineage": [],
       "method": "Deterministic aggregation over history; LLM summarises patterns into words.",
@@ -11422,10 +11543,13 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "hybrid",
-      "status": "Proposed new feature",
+      "status": "Implemented and tested",
       "ai_status": "Proposed new feature",
       "description": "Ask the trainee how confident they are at decision points; compare with correctness over time (Brier score, calibration curve); coach over- and under-confidence.",
-      "evidence": [],
+      "evidence": [
+        "server/analytics/calibration.py",
+        "tools/ci/test_analytics.py"
+      ],
       "lineage": [],
       "method": "Deterministic calibration metrics + LLM wording.",
       "llm_first_classification": "Metrics are arithmetic.",
@@ -11612,10 +11736,13 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "hybrid",
-      "status": "Proposed new feature",
+      "status": "Implemented and tested",
       "ai_status": "Proposed new feature",
       "description": "A profile of how the trainee reasons: order of information gathering, time to key checks, premature closure, investigation yield. Built from logs.",
-      "evidence": [],
+      "evidence": [
+        "server/analytics/reasoning.py",
+        "tools/ci/test_analytics.py"
+      ],
       "lineage": [],
       "method": "Deterministic features from the session log; optional clustering (no training of a deep model).",
       "llm_first_classification": "LLM narrates; features are computed.",
@@ -11943,10 +12070,13 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "ai",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Separate from D43: suggest which competencies to target next using patterns (D40) and explain the choice. The Elo rating stays the decider.",
-      "evidence": [],
+      "evidence": [
+        "server/analytics/next_case.py",
+        "tools/ci/test_analytics.py"
+      ],
       "lineage": [],
       "method": "LLM suggestion ranked by the rule-based selector.",
       "llm_first_classification": "LLM may rank among valid options; never overrides the rating.",
@@ -12092,11 +12222,13 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "deterministic",
-      "status": "Partially implemented",
+      "status": "Implemented and tested",
       "ai_status": "Not applicable (deterministic feature)",
       "description": "Built: pseudonymised history and ratings. Proposed: progression view across sessions and competencies.",
       "evidence": [
-        "record-session"
+        "record-session",
+        "server/analytics/progression.py",
+        "tools/ci/test_analytics.py"
       ],
       "lineage": [],
       "method": "Aggregation.",
@@ -12883,11 +13015,14 @@
       "group": "g_feat_E",
       "kind": "hybrid",
       "status": "Partially implemented",
-      "ai_status": "Proposed new feature",
+      "ai_status": "Partially implemented",
       "description": "Generate attacks on the system: jailbreak questions, disclosure probes, broken scenarios. Built: 60 Stage B mutations, 100+ disclosure probes.",
       "evidence": [
         "tools/composer/mutate.py",
-        "server/validation/make_vectors.py"
+        "server/validation/make_vectors.py",
+        "tools/redteam/run.py",
+        "docs/research/redteam_report.md",
+        "reports/ai/redteam.json"
       ],
       "lineage": [],
       "method": "Scripted mutations + LLM-generated attack paraphrases.",
@@ -13748,10 +13883,16 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "deterministic",
-      "status": "Planned",
-      "ai_status": "Not applicable (deterministic feature)",
+      "status": "Implemented and tested",
+      "ai_status": "Implemented and tested",
       "description": "Weekly evaluation runs; any AI feature below its threshold is switched off in ai_features.yaml.",
-      "evidence": [],
+      "evidence": [
+        "tools/eval/ai_gate.py",
+        "content/ai/thresholds.json",
+        "content/ai/features.json",
+        "server/ai_features.py",
+        "tools/ci/test_ai_gate.py"
+      ],
       "lineage": [
         "p1-ai-language-s09",
         "p1-evaluation-s02, s04"
@@ -14053,7 +14194,9 @@
         "tools/ai/benchmark.py",
         "tools/ai/test_benchmark.py",
         "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026",
-        "BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored)"
+        "BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored)",
+        "tools/ai/check_hosts.py",
+        "docs/report/ai-eval.md"
       ],
       "lineage": [
         "p1-ai-language-s02",
@@ -14230,10 +14373,14 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "hybrid",
-      "status": "Planned",
-      "ai_status": "Planned",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Retrieval for generation context (LG-03) and, later, grounded explanations. Lineage p2-ai-extensions-s02, pulled forward for live generation.",
-      "evidence": [],
+      "evidence": [
+        "server/retrieval/flat.py",
+        "tools/ai/eval_retrieval.py",
+        "reports/ai/retrieval-eval.json"
+      ],
       "lineage": [
         "p2-ai-extensions-s02"
       ],
@@ -14535,10 +14682,14 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "ai",
-      "status": "Blocked",
-      "ai_status": "Blocked",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split, critical-act guard.",
-      "evidence": [],
+      "evidence": [
+        "server/classify/embedding.py",
+        "content/assessment/act_head.json",
+        "tests/classifier_synthetic/README.md"
+      ],
       "lineage": [
         "p2-ai-extensions-s03",
         "DT-097"
@@ -14837,10 +14988,17 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "deterministic",
-      "status": "Planned",
+      "status": "Partially implemented",
       "ai_status": "Not applicable (deterministic feature)",
       "description": "FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard, audit log, AI gateway (the only path to a model).",
-      "evidence": [],
+      "evidence": [
+        "server/routers/ai_gateway.py",
+        "server/routers/asr.py",
+        "server/routers/tts.py",
+        "server/routers/dialogue.py",
+        "server/routers/classify.py",
+        "server/routers/debrief.py"
+      ],
       "lineage": [
         "p1-backend s01 to s13",
         "DT-100",
@@ -15718,11 +15876,14 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "hybrid",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty; AI interpretations stored as hypotheses.",
       "evidence": [
-        "Elo ratings and history exist"
+        "Elo ratings and history exist",
+        "server/personalisation/evidence.py",
+        "server/personalisation/learner_model.py",
+        "server/personalisation/interpreter.py"
       ],
       "lineage": [],
       "method": "Beta-binomial or BKT posteriors + pattern detection + LLM interpreter.",
@@ -15977,11 +16138,14 @@
       "category": "Assessment, feedback and learning",
       "group": "g_feat_D",
       "kind": "hybrid",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Uses the learning profile to choose objectives and scenario features that change the substance of the next case, and explains the choice.",
       "evidence": [
-        "Selector exists"
+        "Selector exists",
+        "server/personalisation/policy.py",
+        "server/personalisation/explain.py",
+        "docs/research/personalisation_simulation.json"
       ],
       "lineage": [],
       "method": "Rules then contextual bandit; LLM explanation.",
@@ -16224,12 +16388,17 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "deterministic",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "ai_status": "Not applicable (deterministic feature)",
       "description": "Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.",
       "evidence": [
         "desktop hardware measured 12 Oct 2026",
-        "Ollama and models installed and measured on the desktop 16 Oct 2026"
+        "Ollama and models installed and measured on the desktop 16 Oct 2026",
+        "server/llm/client.py",
+        "server/routers/ai_gateway.py",
+        "tools/ai/check_hosts.py",
+        "docs/architecture/deployment.md",
+        "docs/decisions/ADR-0011-ai-gateway-placement-and-single-slot.md"
       ],
       "lineage": [],
       "method": "Install, benchmark, decide topology.",

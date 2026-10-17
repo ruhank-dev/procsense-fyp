@@ -15,6 +15,12 @@ Spoken orders teach closed-loop communication, but speech recognition makes mist
 4. Read-back line spoken by the nurse/staff voice; confirmation accepted by voice ('yes', 'confirm') or tablet button; 'no' cancels and offers the menu.
 5. Every parsed order and its confirmation logged (intent, slots, confirmed by, latency).
 
+## Status (17 October 2026)
+
+- **Built:** `server/orders/grammar.py` (`ReadBack`): intents ORDER_TEST, REQUEST_MEDICATION, HOLD_MED, REQUEST_TRANSPORT, CALL_STAFF from trigger words; things named matched against the content and `synonyms.csv` by fuzzy comparison; doses and units removed; ambiguity gives a clarifying question, no match the menu; read back before any action; a yes releases it, a no cancels; every hearing logged. 15 tests (T-VO1 to T-VO4).
+- **Measured** (`tools/ai/eval_orders.py`): 702 phrasings with mild recogniser-like corruption: parsed to the right target 84.0 percent, to a wrong target 0.4 percent (the read-back catches these), clarification or menu 15.5 percent; actions released without a confirmation: 0.
+- **Not built:** the language-model fallback and a hold-medicine engine verb (DT-208), the Unity read-back (Sannan).
+
 ## Verification
 T-VO1–T-VO4 pass; no Core action without confirmation (log check).
 

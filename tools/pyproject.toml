@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "ProcSense developer tools: content validation, content pipeline"
 requires-python = ">=3.11"
 dependencies = [
+    "httpx>=0.28",
     "jsonschema>=4.23",
     "pillow>=10.0",
     "pyyaml>=6.0.3",

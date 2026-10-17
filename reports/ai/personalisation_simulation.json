@@ -1,0 +1,49 @@
+{
+  "learners": 200,
+  "sessions": 12,
+  "policies": {
+    "elo": {
+      "gain_mean": 0.1485,
+      "dimensions_used_mean": 3.94
+    },
+    "rules": {
+      "gain_mean": 0.14,
+      "dimensions_used_mean": 3.67
+    },
+    "bandit": {
+      "gain_mean": 0.1051,
+      "dimensions_used_mean": 6.63
+    }
+  },
+  "paired": {
+    "rules_minus_elo": {
+      "mean": -0.0085,
+      "ci95": [
+        -0.0172,
+        -0.0003
+      ],
+      "better": false
+    },
+    "bandit_minus_elo": {
+      "mean": -0.0433,
+      "ci95": [
+        -0.0522,
+        -0.0355
+      ],
+      "better": false
+    },
+    "bandit_minus_rules": {
+      "mean": -0.0349,
+      "ci95": [
+        -0.043,
+        -0.0268
+      ],
+      "better": false
+    }
+  },
+  "off_policy": {
+    "bandit_ips_reward_vs_uniform": 0.4918,
+    "bandit_logged_reward": 0.4913,
+    "note": "inverse-propensity estimate of the reward a uniformly random policy would have had on the bandit's logged sessions; a bandit worth adopting logs a higher reward than this"
+  }
+}

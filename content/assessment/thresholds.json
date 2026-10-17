@@ -1,0 +1,27 @@
+{
+ "note": "Per-act credit thresholds calibrated on the dev split (tools/ai/eval_classifier.py): the lowest confidence at which predictions of the act reach 0.8 precision. None = never credited. Critical acts are never credited from speech whatever their threshold.",
+ "model": "qwen3.5:4b-q4_K_M",
+ "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+ "dev_rows": 83,
+ "per_act": {
+  "ASK_TOPIC": 0.95,
+  "CLARIFY": 0.95,
+  "ANSWER_QUESTION": null,
+  "EXPLAIN_PROCEDURE": null,
+  "EXPLAIN_TEST": 0.95,
+  "EXPLAIN_ACTION": 0.95,
+  "CHECK_UNDERSTANDING": 0.95,
+  "ACKNOWLEDGE_EMOTION": null,
+  "REASSURE": null,
+  "ACKNOWLEDGE_FACT": 0.95,
+  "CLOSED_LOOP": null,
+  "ESCALATE_SPEECH": null,
+  "REPORT_FAULT": 0.95,
+  "SBAR_ELEMENT": null,
+  "VOICE_ORDER": 0.95,
+  "CONFIRM_IDENTITY": 0.35,
+  "STATE_ALLERGY": null,
+  "CONSENT_SIGN": 0.95,
+  "HANDOVER_CRITICAL_ELEMENT": 0.95
+ }
+}

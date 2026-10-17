@@ -16,6 +16,11 @@ Ollama on the RTX 4050 laptop **and the GTX 1660 SUPER desktop** (planning updat
 3. `tools/ai_eval/bench_llm.py` — 200 prompts per task → CSV.
 4. ADR with benchmark evidence.
 
+## Status (17 October 2026)
+
+- **Measured so far:** BT0 to BT2 on the 4B, the 9B and the removed Qwen 3 baseline (speed, structured output, grounding; ADR-0010) and, as BT4 to BT6, the work the models were then given: patient wording (`narrative-4b.json`, `narrative-9b.json`), debrief rewrite, dialogue, the plan composer on the 9B, the critic (`docs/report/ai-eval.md`).
+- **Open:** BT3 is a blind human rating (DT-187); thinking-on runs and the laptop are DT-188; the 9B only half fits the 6 GB card (about 33 s a short call), which is why the live work stays on the 4B.
+
 ## Verification
 T-LLM1 100% schema-valid after retry; T-LLM2 p95 ≤ 1.6 s LLM (≤ 2.5 s end-to-end); T-LLM3/4/6 pass; ADR written.
 

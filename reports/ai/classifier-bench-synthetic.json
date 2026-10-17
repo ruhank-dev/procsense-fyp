@@ -1,0 +1,5588 @@
+{
+  "data": "synthetic",
+  "valid_for_claims": false,
+  "provenance": "SYNTHETIC, NOT INDEPENDENT: eight simulated author profiles, sentences written, second-labelled and adjudicated by the language model that built the tooling; no person wrote, labelled or reviewed any row. Train profiles T1-T4 (plus the old template set), dev profiles DA and DB, test profiles TC and TD never overlap. A generalisation check across writing styles, not evidence about real trainee speech.",
+  "rows": {
+    "train": 800,
+    "dev": 100,
+    "test": 200,
+    "asr": 268
+  },
+  "labels": 20,
+  "leakage": {
+    "cut_token_overlap": 0.8,
+    "cut_embedding_cosine": 0.9,
+    "dev_rows_with_near_duplicate_in_train": 0,
+    "dev_share_with_near_duplicate_in_train": 0.0,
+    "test_rows_with_near_duplicate_in_train": 0,
+    "test_share_with_near_duplicate_in_train": 0.0,
+    "dev_test_near_duplicate_pairs": 0,
+    "dev_share_with_embedding_cosine_ge_0.9_in_train": 0.02,
+    "test_share_with_embedding_cosine_ge_0.9_in_train": 0.03
+  },
+  "candidates": {
+    "tfidf_logreg": {
+      "thresholds_tuned_on_dev": {
+        "ASK_TOPIC": null,
+        "CLARIFY": 0.3859901026811651,
+        "ANSWER_QUESTION": 0.649099176972209,
+        "EXPLAIN_PROCEDURE": 0.2558961252991361,
+        "EXPLAIN_TEST": 0.7586003319548986,
+        "EXPLAIN_ACTION": 0.3619484621767704,
+        "CHECK_UNDERSTANDING": null,
+        "ACKNOWLEDGE_EMOTION": 0.5734185074884052,
+        "REASSURE": 0.2719541823641141,
+        "ACKNOWLEDGE_FACT": 0.672592539644011,
+        "CLOSED_LOOP": 0.26186452297845925,
+        "ESCALATE_SPEECH": 0.2768763477352789,
+        "REPORT_FAULT": 0.5159306421268469,
+        "SBAR_ELEMENT": 0.3479679926379054,
+        "VOICE_ORDER": 0.5105677624630066,
+        "CONFIRM_IDENTITY": 0.9982599685866589,
+        "STATE_ALLERGY": 0.21688346688646679,
+        "CONSENT_SIGN": 0.9387557202406304,
+        "HANDOVER_CRITICAL_ELEMENT": 0.25899578679134794
+      },
+      "macro_f1": 0.78,
+      "accuracy": 0.8,
+      "credited": 68,
+      "credited_share": 0.34,
+      "abstained_share": 0.66,
+      "false_credits": 8,
+      "credited_precision": 0.882,
+      "critical_acts_credited_from_speech": 0,
+      "critical_said_but_credited_as_other_act": 1,
+      "critical_said_but_credited_as_other_act_before_guard": 1,
+      "guard": {
+        "credits_removed": 1,
+        "of_which_were_correct": 1,
+        "credited_precision_before_guard": 0.884,
+        "credited_before_guard": 69
+      },
+      "C": 100,
+      "fit_seconds": 1.02,
+      "ms_per_sentence_batched": 0.019,
+      "asr_copies": {
+        "clean": {
+          "rows": 134,
+          "accuracy": 0.776
+        },
+        "phone": {
+          "rows": 134,
+          "accuracy": 0.776
+        }
+      },
+      "asr_note": "recogniser copies of test sentences, scored separately; not independent rows",
+      "features": "TF-IDF word 1-2 grams",
+      "per_class": {
+        "ASK_TOPIC": {
+          "f1": 0.462,
+          "precision": 0.6,
+          "recall": 0.375,
+          "support": 8,
+          "false_positives": 2
+        },
+        "CLARIFY": {
+          "f1": 0.8,
+          "precision": 0.667,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 4
+        },
+        "ANSWER_QUESTION": {
+          "f1": 0.632,
+          "precision": 0.545,
+          "recall": 0.75,
+          "support": 8,
+          "false_positives": 5
+        },
+        "EXPLAIN_PROCEDURE": {
+          "f1": 0.857,
+          "precision": 1.0,
+          "recall": 0.75,
+          "support": 8,
+          "false_positives": 0
+        },
+        "EXPLAIN_TEST": {
+          "f1": 0.941,
+          "precision": 0.889,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 1
+        },
+        "EXPLAIN_ACTION": {
+          "f1": 0.941,
+          "precision": 0.889,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 1
+        },
+        "CHECK_UNDERSTANDING": {
+          "f1": 0.571,
+          "precision": 0.667,
+          "recall": 0.5,
+          "support": 8,
+          "false_positives": 2
+        },
+        "ACKNOWLEDGE_EMOTION": {
+          "f1": 0.571,
+          "precision": 0.667,
+          "recall": 0.5,
+          "support": 8,
+          "false_positives": 2
+        },
+        "REASSURE": {
+          "f1": 0.824,
+          "precision": 0.778,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 2
+        },
+        "ACKNOWLEDGE_FACT": {
+          "f1": 0.842,
+          "precision": 0.727,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 3
+        },
+        "CLOSED_LOOP": {
+          "f1": 0.941,
+          "precision": 0.889,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 1
+        },
+        "ESCALATE_SPEECH": {
+          "f1": 0.667,
+          "precision": 0.6,
+          "recall": 0.75,
+          "support": 8,
+          "false_positives": 4
+        },
+        "REPORT_FAULT": {
+          "f1": 0.8,
+          "precision": 0.857,
+          "recall": 0.75,
+          "support": 8,
+          "false_positives": 1
+        },
+        "SBAR_ELEMENT": {
+          "f1": 0.786,
+          "precision": 0.786,
+          "recall": 0.786,
+          "support": 14,
+          "false_positives": 3
+        },
+        "VOICE_ORDER": {
+          "f1": 0.769,
+          "precision": 1.0,
+          "recall": 0.625,
+          "support": 8,
+          "false_positives": 0
+        },
+        "CONFIRM_IDENTITY": {
+          "f1": 0.929,
+          "precision": 0.867,
+          "recall": 1.0,
+          "support": 13,
+          "false_positives": 2
+        },
+        "STATE_ALLERGY": {
+          "f1": 0.812,
+          "precision": 0.765,
+          "recall": 0.867,
+          "support": 15,
+          "false_positives": 4
+        },
+        "CONSENT_SIGN": {
+          "f1": 0.909,
+          "precision": 0.833,
+          "recall": 1.0,
+          "support": 15,
+          "false_positives": 3
+        },
+        "HANDOVER_CRITICAL_ELEMENT": {
+          "f1": 0.938,
+          "precision": 1.0,
+          "recall": 0.882,
+          "support": 17,
+          "false_positives": 0
+        },
+        "NONE": {
+          "f1": 0.6,
+          "precision": 1.0,
+          "recall": 0.429,
+          "support": 14,
+          "false_positives": 0
+        }
+      },
+      "by_bucket": {
+        "ambiguous": {
+          "rows": 16,
+          "accuracy": 0.812
+        },
+        "correction": {
+          "rows": 16,
+          "accuracy": 0.938
+        },
+        "incomplete": {
+          "rows": 16,
+          "accuracy": 0.75
+        },
+        "negation": {
+          "rows": 16,
+          "accuracy": 0.688
+        },
+        "paraphrase": {
+          "rows": 73,
+          "accuracy": 0.808
+        },
+        "plain": {
+          "rows": 63,
+          "accuracy": 0.794
+        }
+      },
+      "predictions": [
+        {
+          "id": "T001",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.527,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T002",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.2318,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T003",
+          "truth": "SBAR_ELEMENT",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.1874,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T004",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.7392,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T005",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9227,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T006",
+          "truth": "VOICE_ORDER",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.3586,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T007",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9877,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T008",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.1745,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T009",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.8485,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T010",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9692,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T011",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.3277,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T012",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.7311,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T013",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.4248,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T014",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9908,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T015",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9878,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T016",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.2833,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T017",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.6585,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T018",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.1499,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T019",
+          "truth": "SBAR_ELEMENT",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.2002,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T020",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.6522,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T021",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9791,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T022",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.6086,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T023",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9776,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T024",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9076,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T025",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.2251,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T026",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.3218,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T027",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9524,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T028",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.7505,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T029",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5656,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T030",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.9516,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T031",
+          "truth": "NONE",
+          "pred": "CLARIFY",
+          "confidence": 0.3827,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T032",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.8909,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T033",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.9332,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T034",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.1887,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T035",
+          "truth": "STATE_ALLERGY",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.3372,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T036",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9543,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T037",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9658,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T038",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.2524,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T039",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.8101,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T040",
+          "truth": "NONE",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.1571,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T041",
+          "truth": "REPORT_FAULT",
+          "pred": "REASSURE",
+          "confidence": 0.2181,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T042",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.8557,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T043",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9793,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T044",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9055,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T045",
+          "truth": "NONE",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.1408,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T046",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.3568,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T047",
+          "truth": "ASK_TOPIC",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.2725,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T048",
+          "truth": "ANSWER_QUESTION",
+          "pred": "REASSURE",
+          "confidence": 0.8408,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T049",
+          "truth": "NONE",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.4311,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T050",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.4371,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T051",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.1963,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T052",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.9676,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T053",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.5697,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T054",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.4767,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T055",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.8618,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T056",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.7845,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T057",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9994,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T058",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.9463,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T059",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.7375,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T060",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.7478,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T061",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.6108,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T062",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.6064,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T063",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.77,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T064",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9175,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T065",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "CLARIFY",
+          "confidence": 0.5969,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T066",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.881,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T067",
+          "truth": "SBAR_ELEMENT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.3184,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T068",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.8505,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T069",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.7022,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T070",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9346,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T071",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.6685,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T072",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9983,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T073",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9371,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T074",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.3266,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T075",
+          "truth": "ASK_TOPIC",
+          "pred": "CLARIFY",
+          "confidence": 0.4763,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T076",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.2975,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T077",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.502,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T078",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.6092,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T079",
+          "truth": "NONE",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.261,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T080",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.4809,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T081",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.7053,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T082",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9583,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T083",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.1819,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T084",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.8509,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T085",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.8487,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T086",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9488,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T087",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.8107,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T088",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.2655,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T089",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.829,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T090",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.8845,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T091",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9993,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T092",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.94,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T093",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.9485,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T094",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.3476,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T095",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9279,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T096",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.728,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T097",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.1697,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T098",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.4703,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T099",
+          "truth": "REPORT_FAULT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.2003,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T100",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.3167,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T101",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9216,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T102",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9474,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T103",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.6577,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T104",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.7773,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T105",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9959,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T106",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.871,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T107",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.8517,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T108",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.8408,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T109",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9468,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T110",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.8414,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T111",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.7678,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T112",
+          "truth": "REASSURE",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.1746,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T113",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.9595,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T114",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.4834,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T115",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9916,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T116",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9443,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T117",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.5919,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T118",
+          "truth": "ASK_TOPIC",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.4256,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T119",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.7425,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T120",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9373,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T121",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5245,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T122",
+          "truth": "VOICE_ORDER",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.6808,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T123",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.7941,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T124",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.2416,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T125",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.4546,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T126",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.85,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T127",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.8852,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T128",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.4304,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T129",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9808,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T130",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.5258,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T131",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.9774,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T132",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.5145,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T133",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5917,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T134",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.8577,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T135",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.7527,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T136",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.1544,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T137",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.4878,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T138",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.2937,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T139",
+          "truth": "NONE",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.6116,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T140",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9898,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T141",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.8972,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T142",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.3212,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T143",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9609,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T144",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.92,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T145",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.8397,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T146",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.8798,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T147",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.7199,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T148",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.1788,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T149",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9235,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T150",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9689,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T151",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9664,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T152",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9386,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T153",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.7383,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T154",
+          "truth": "ASK_TOPIC",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.1907,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T155",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9984,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T156",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.8704,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T157",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9053,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T158",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.2303,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T159",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.8278,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T160",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.6361,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T161",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.443,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T162",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.8821,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T163",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.6736,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T164",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.7343,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T165",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9572,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T166",
+          "truth": "NONE",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.8427,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T167",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.6292,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T168",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.7671,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T169",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9581,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T170",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9446,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T171",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.9546,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T172",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.4296,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T173",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.5635,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T174",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.1797,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T175",
+          "truth": "ASK_TOPIC",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.6727,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T176",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.6889,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T177",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.4084,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T178",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.4027,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T179",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.7889,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T180",
+          "truth": "NONE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.2464,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T181",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9538,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T182",
+          "truth": "VOICE_ORDER",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.1659,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T183",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.8443,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T184",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9379,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T185",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.7525,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T186",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.6022,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T187",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.5327,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T188",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.4852,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T189",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.6256,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T190",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.1766,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T191",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9313,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T192",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5104,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T193",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9811,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T194",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.585,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T195",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.4236,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T196",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9836,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T197",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9917,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T198",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9715,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T199",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9928,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T200",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9859,
+          "credited": true,
+          "bucket": "plain"
+        }
+      ],
+      "macro_f1_without_ambiguous_rows": 0.778,
+      "macro_f1_ci95": [
+        0.709,
+        0.826
+      ],
+      "credited_precision_ci95": [
+        0.803,
+        0.957
+      ],
+      "post_hoc_guard_v2": {
+        "credited": 67,
+        "credited_share": 0.335,
+        "abstained_share": 0.665,
+        "false_credits": 7,
+        "credited_precision": 0.896,
+        "critical_said_but_credited_as_other_act": 0,
+        "critical_acts_credited_from_speech": 0,
+        "note": "the guard was extended (version 2) after this test split was scored; this is what the saved predictions give with it, so it is not an unseen result"
+      }
+    },
+    "embeddings_logreg": {
+      "thresholds_tuned_on_dev": {
+        "ASK_TOPIC": 0.2942228150806427,
+        "CLARIFY": 0.6368730047133029,
+        "ANSWER_QUESTION": 0.9002579389942251,
+        "EXPLAIN_PROCEDURE": 0.6444314716412836,
+        "EXPLAIN_TEST": 0.44429270078515387,
+        "EXPLAIN_ACTION": 0.1958719946792584,
+        "CHECK_UNDERSTANDING": null,
+        "ACKNOWLEDGE_EMOTION": 0.3804818541635477,
+        "REASSURE": 0.40192017628237975,
+        "ACKNOWLEDGE_FACT": 0.7448625562179488,
+        "CLOSED_LOOP": 0.6959194480243239,
+        "ESCALATE_SPEECH": 0.8759827195892612,
+        "REPORT_FAULT": 0.4641238637223408,
+        "SBAR_ELEMENT": 0.7834145711607456,
+        "VOICE_ORDER": 0.49435858202605926,
+        "CONFIRM_IDENTITY": 0.9950417878327579,
+        "STATE_ALLERGY": 0.696271473393555,
+        "CONSENT_SIGN": 0.5803712544324333,
+        "HANDOVER_CRITICAL_ELEMENT": 0.32715816825443095
+      },
+      "macro_f1": 0.809,
+      "accuracy": 0.82,
+      "credited": 83,
+      "credited_share": 0.415,
+      "abstained_share": 0.585,
+      "false_credits": 7,
+      "credited_precision": 0.916,
+      "critical_acts_credited_from_speech": 0,
+      "critical_said_but_credited_as_other_act": 1,
+      "critical_said_but_credited_as_other_act_before_guard": 2,
+      "guard": {
+        "credits_removed": 1,
+        "of_which_were_correct": 0,
+        "credited_precision_before_guard": 0.905,
+        "credited_before_guard": 84
+      },
+      "C": 100,
+      "fit_seconds": 5.65,
+      "ms_per_sentence_batched": 0.007,
+      "asr_copies": {
+        "clean": {
+          "rows": 134,
+          "accuracy": 0.739
+        },
+        "phone": {
+          "rows": 134,
+          "accuracy": 0.761
+        }
+      },
+      "asr_note": "recogniser copies of test sentences, scored separately; not independent rows",
+      "embedding_model": "all-minilm:22m",
+      "dimension": 384,
+      "ms_per_sentence_single_call_p50": 1299.3,
+      "ms_per_sentence_single_call_p95": 2757.2,
+      "per_class": {
+        "ASK_TOPIC": {
+          "f1": 0.714,
+          "precision": 0.833,
+          "recall": 0.625,
+          "support": 8,
+          "false_positives": 1
+        },
+        "CLARIFY": {
+          "f1": 0.762,
+          "precision": 0.615,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 5
+        },
+        "ANSWER_QUESTION": {
+          "f1": 0.7,
+          "precision": 0.583,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 5
+        },
+        "EXPLAIN_PROCEDURE": {
+          "f1": 0.615,
+          "precision": 0.8,
+          "recall": 0.5,
+          "support": 8,
+          "false_positives": 1
+        },
+        "EXPLAIN_TEST": {
+          "f1": 0.941,
+          "precision": 0.889,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 1
+        },
+        "EXPLAIN_ACTION": {
+          "f1": 0.875,
+          "precision": 0.875,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 1
+        },
+        "CHECK_UNDERSTANDING": {
+          "f1": 0.667,
+          "precision": 0.714,
+          "recall": 0.625,
+          "support": 8,
+          "false_positives": 2
+        },
+        "ACKNOWLEDGE_EMOTION": {
+          "f1": 0.737,
+          "precision": 0.636,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 4
+        },
+        "REASSURE": {
+          "f1": 0.875,
+          "precision": 0.875,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 1
+        },
+        "ACKNOWLEDGE_FACT": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 0
+        },
+        "CLOSED_LOOP": {
+          "f1": 0.875,
+          "precision": 0.875,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 1
+        },
+        "ESCALATE_SPEECH": {
+          "f1": 0.8,
+          "precision": 0.857,
+          "recall": 0.75,
+          "support": 8,
+          "false_positives": 1
+        },
+        "REPORT_FAULT": {
+          "f1": 0.941,
+          "precision": 0.889,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 1
+        },
+        "SBAR_ELEMENT": {
+          "f1": 0.759,
+          "precision": 0.733,
+          "recall": 0.786,
+          "support": 14,
+          "false_positives": 4
+        },
+        "VOICE_ORDER": {
+          "f1": 0.667,
+          "precision": 0.714,
+          "recall": 0.625,
+          "support": 8,
+          "false_positives": 2
+        },
+        "CONFIRM_IDENTITY": {
+          "f1": 0.833,
+          "precision": 0.909,
+          "recall": 0.769,
+          "support": 13,
+          "false_positives": 1
+        },
+        "STATE_ALLERGY": {
+          "f1": 0.968,
+          "precision": 0.938,
+          "recall": 1.0,
+          "support": 15,
+          "false_positives": 1
+        },
+        "CONSENT_SIGN": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 15,
+          "false_positives": 0
+        },
+        "HANDOVER_CRITICAL_ELEMENT": {
+          "f1": 0.824,
+          "precision": 0.824,
+          "recall": 0.824,
+          "support": 17,
+          "false_positives": 3
+        },
+        "NONE": {
+          "f1": 0.636,
+          "precision": 0.875,
+          "recall": 0.5,
+          "support": 14,
+          "false_positives": 1
+        }
+      },
+      "by_bucket": {
+        "ambiguous": {
+          "rows": 16,
+          "accuracy": 0.938
+        },
+        "correction": {
+          "rows": 16,
+          "accuracy": 0.938
+        },
+        "incomplete": {
+          "rows": 16,
+          "accuracy": 0.75
+        },
+        "negation": {
+          "rows": 16,
+          "accuracy": 0.75
+        },
+        "paraphrase": {
+          "rows": 73,
+          "accuracy": 0.822
+        },
+        "plain": {
+          "rows": 63,
+          "accuracy": 0.794
+        }
+      },
+      "predictions": [
+        {
+          "id": "T001",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.8432,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T002",
+          "truth": "NONE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.3032,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T003",
+          "truth": "SBAR_ELEMENT",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.1538,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T004",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9256,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T005",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.8447,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T006",
+          "truth": "VOICE_ORDER",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.6455,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T007",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9848,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T008",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.592,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T009",
+          "truth": "SBAR_ELEMENT",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.302,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T010",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.7602,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T011",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.9736,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T012",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.7806,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T013",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.8758,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T014",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9473,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T015",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9997,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T016",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "NONE",
+          "confidence": 0.3663,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T017",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.8485,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T018",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.4684,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T019",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.698,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T020",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5205,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T021",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9974,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T022",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9727,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T023",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9962,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T024",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.955,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T025",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.5142,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T026",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.5044,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T027",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9504,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T028",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9877,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T029",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.993,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T030",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.711,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T031",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.403,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T032",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.9939,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T033",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.9157,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T034",
+          "truth": "NONE",
+          "pred": "CLARIFY",
+          "confidence": 0.5075,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T035",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.8574,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T036",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.979,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T037",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9888,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T038",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.6246,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T039",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9145,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T040",
+          "truth": "NONE",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.6557,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T041",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.9385,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T042",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9676,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T043",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9966,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T044",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9514,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T045",
+          "truth": "NONE",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.2662,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T046",
+          "truth": "REASSURE",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.2031,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T047",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.9841,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T048",
+          "truth": "ANSWER_QUESTION",
+          "pred": "REASSURE",
+          "confidence": 0.9301,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T049",
+          "truth": "NONE",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.5217,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T050",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.6583,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T051",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.3452,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T052",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.9004,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T053",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.891,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T054",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.3475,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T055",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.9731,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T056",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9717,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T057",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.8694,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T058",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.9597,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T059",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.9359,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T060",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5892,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T061",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.9842,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T062",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.7101,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T063",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.6592,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T064",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9792,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T065",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "CLARIFY",
+          "confidence": 0.3343,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T066",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.6184,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T067",
+          "truth": "SBAR_ELEMENT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9399,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T068",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9975,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T069",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.978,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T070",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9819,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T071",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.7986,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T072",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9953,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T073",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9921,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T074",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.9657,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T075",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.4827,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T076",
+          "truth": "CLOSED_LOOP",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.6316,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T077",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9456,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T078",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.3095,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T079",
+          "truth": "NONE",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.3981,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T080",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9418,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T081",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.8995,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T082",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.8209,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T083",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.8505,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T084",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.8046,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T085",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.9251,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T086",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.4249,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T087",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.9644,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T088",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.3657,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T089",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.8619,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T090",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9754,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T091",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9988,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T092",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9339,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T093",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.9915,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T094",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.6548,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T095",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9728,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T096",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9279,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T097",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.5666,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T098",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.3363,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T099",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.8784,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T100",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.5858,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T101",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9861,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T102",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.9806,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T103",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.5295,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T104",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.8995,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T105",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.94,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T106",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9651,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T107",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.9515,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T108",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9371,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T109",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9688,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T110",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.8677,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T111",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9692,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T112",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.4025,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T113",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.9296,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T114",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.501,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T115",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9882,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T116",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9777,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T117",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.8013,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T118",
+          "truth": "ASK_TOPIC",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.4356,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T119",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9855,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T120",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9651,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T121",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9394,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T122",
+          "truth": "VOICE_ORDER",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.5627,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T123",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.8551,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T124",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.3997,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T125",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.6902,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T126",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.9968,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T127",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.8338,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T128",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.8279,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T129",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9837,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T130",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9771,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T131",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.9942,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T132",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.9252,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T133",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9956,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T134",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9534,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T135",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.9451,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T136",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.4757,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T137",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.8067,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T138",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.6555,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T139",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.3258,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T140",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9833,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T141",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.5648,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T142",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.9759,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T143",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.9967,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T144",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.5126,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T145",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.9876,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T146",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.7505,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T147",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9929,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T148",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.4902,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T149",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.5784,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T150",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9703,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T151",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9748,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T152",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.8492,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T153",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9676,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T154",
+          "truth": "ASK_TOPIC",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.2016,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T155",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.999,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T156",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.976,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T157",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.852,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T158",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.4436,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T159",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.8765,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T160",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.8564,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T161",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.3202,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T162",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9464,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T163",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.6572,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T164",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9224,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T165",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9211,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T166",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.8069,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T167",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.9405,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T168",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.5418,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T169",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9892,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T170",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9523,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T171",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.9247,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T172",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.4892,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T173",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.8122,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T174",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.6627,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T175",
+          "truth": "ASK_TOPIC",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9242,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T176",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.9958,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T177",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9756,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T178",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.6025,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T179",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.8817,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T180",
+          "truth": "NONE",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.3624,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T181",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.612,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T182",
+          "truth": "VOICE_ORDER",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.4957,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T183",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.94,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T184",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9474,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T185",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.9872,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T186",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.6242,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T187",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.8756,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T188",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.983,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T189",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.9902,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T190",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.2848,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T191",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9607,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T192",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.7993,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T193",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.5612,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T194",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.7006,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T195",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.6998,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T196",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.9846,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T197",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.9859,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T198",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.9885,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T199",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.9982,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T200",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.9722,
+          "credited": true,
+          "bucket": "plain"
+        }
+      ],
+      "macro_f1_without_ambiguous_rows": 0.801,
+      "macro_f1_ci95": [
+        0.742,
+        0.858
+      ],
+      "credited_precision_ci95": [
+        0.851,
+        0.973
+      ],
+      "post_hoc_guard_v2": {
+        "credited": 82,
+        "credited_share": 0.41,
+        "abstained_share": 0.59,
+        "false_credits": 6,
+        "credited_precision": 0.927,
+        "critical_said_but_credited_as_other_act": 0,
+        "critical_acts_credited_from_speech": 0,
+        "note": "the guard was extended (version 2) after this test split was scored; this is what the saved predictions give with it, so it is not an unseen result"
+      }
+    },
+    "qwen_3_5_4b": {
+      "thresholds_tuned_on_dev": {
+        "ASK_TOPIC": 0.95,
+        "CLARIFY": 0.95,
+        "ANSWER_QUESTION": null,
+        "EXPLAIN_PROCEDURE": null,
+        "EXPLAIN_TEST": 0.95,
+        "EXPLAIN_ACTION": 0.95,
+        "CHECK_UNDERSTANDING": null,
+        "ACKNOWLEDGE_EMOTION": 0.95,
+        "REASSURE": 0.95,
+        "ACKNOWLEDGE_FACT": 0.95,
+        "CLOSED_LOOP": null,
+        "ESCALATE_SPEECH": 0.95,
+        "REPORT_FAULT": 0.95,
+        "SBAR_ELEMENT": null,
+        "VOICE_ORDER": 0.95,
+        "CONFIRM_IDENTITY": 0.95,
+        "STATE_ALLERGY": null,
+        "CONSENT_SIGN": 0.95,
+        "HANDOVER_CRITICAL_ELEMENT": null
+      },
+      "macro_f1": 0.654,
+      "accuracy": 0.685,
+      "credited": 97,
+      "credited_share": 0.485,
+      "abstained_share": 0.515,
+      "false_credits": 31,
+      "credited_precision": 0.68,
+      "critical_acts_credited_from_speech": 0,
+      "critical_said_but_credited_as_other_act": 7,
+      "critical_said_but_credited_as_other_act_before_guard": 18,
+      "guard": {
+        "credits_removed": 13,
+        "of_which_were_correct": 1,
+        "credited_precision_before_guard": 0.609,
+        "credited_before_guard": 110
+      },
+      "asr_copies": {
+        "clean": {
+          "rows": 134,
+          "accuracy": 0.657
+        },
+        "phone": {
+          "rows": 134,
+          "accuracy": 0.642
+        }
+      },
+      "asr_note": "recogniser copies of test sentences, scored separately; not independent rows",
+      "model": "qwen3.5:4b-q4_K_M",
+      "unavailable": 0,
+      "ms_p50": 4571,
+      "ms_p95": 8705,
+      "vram_used_mib_before_and_after": [
+        4989,
+        5661
+      ],
+      "decoding": "temperature 0, top_k 1, seed 0 (benchmark process only)",
+      "per_class": {
+        "ASK_TOPIC": {
+          "f1": 0.727,
+          "precision": 0.571,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 6
+        },
+        "CLARIFY": {
+          "f1": 0.552,
+          "precision": 0.381,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 13
+        },
+        "ANSWER_QUESTION": {
+          "f1": 0.222,
+          "precision": 1.0,
+          "recall": 0.125,
+          "support": 8,
+          "false_positives": 0
+        },
+        "EXPLAIN_PROCEDURE": {
+          "f1": 0.615,
+          "precision": 0.8,
+          "recall": 0.5,
+          "support": 8,
+          "false_positives": 1
+        },
+        "EXPLAIN_TEST": {
+          "f1": 0.933,
+          "precision": 1.0,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 0
+        },
+        "EXPLAIN_ACTION": {
+          "f1": 0.737,
+          "precision": 0.636,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 4
+        },
+        "CHECK_UNDERSTANDING": {
+          "f1": 0.2,
+          "precision": 0.5,
+          "recall": 0.125,
+          "support": 8,
+          "false_positives": 1
+        },
+        "ACKNOWLEDGE_EMOTION": {
+          "f1": 0.857,
+          "precision": 1.0,
+          "recall": 0.75,
+          "support": 8,
+          "false_positives": 0
+        },
+        "REASSURE": {
+          "f1": 0.737,
+          "precision": 0.636,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 4
+        },
+        "ACKNOWLEDGE_FACT": {
+          "f1": 0.471,
+          "precision": 0.444,
+          "recall": 0.5,
+          "support": 8,
+          "false_positives": 5
+        },
+        "CLOSED_LOOP": {
+          "f1": 0.4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "support": 8,
+          "false_positives": 0
+        },
+        "ESCALATE_SPEECH": {
+          "f1": 0.636,
+          "precision": 0.5,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 7
+        },
+        "REPORT_FAULT": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 8,
+          "false_positives": 0
+        },
+        "SBAR_ELEMENT": {
+          "f1": 0.692,
+          "precision": 0.75,
+          "recall": 0.643,
+          "support": 14,
+          "false_positives": 3
+        },
+        "VOICE_ORDER": {
+          "f1": 0.737,
+          "precision": 0.636,
+          "recall": 0.875,
+          "support": 8,
+          "false_positives": 4
+        },
+        "CONFIRM_IDENTITY": {
+          "f1": 0.867,
+          "precision": 0.765,
+          "recall": 1.0,
+          "support": 13,
+          "false_positives": 4
+        },
+        "STATE_ALLERGY": {
+          "f1": 0.522,
+          "precision": 0.75,
+          "recall": 0.4,
+          "support": 15,
+          "false_positives": 2
+        },
+        "CONSENT_SIGN": {
+          "f1": 0.929,
+          "precision": 1.0,
+          "recall": 0.867,
+          "support": 15,
+          "false_positives": 0
+        },
+        "HANDOVER_CRITICAL_ELEMENT": {
+          "f1": 0.48,
+          "precision": 0.75,
+          "recall": 0.353,
+          "support": 17,
+          "false_positives": 2
+        },
+        "NONE": {
+          "f1": 0.765,
+          "precision": 0.65,
+          "recall": 0.929,
+          "support": 14,
+          "false_positives": 7
+        }
+      },
+      "by_bucket": {
+        "ambiguous": {
+          "rows": 16,
+          "accuracy": 0.562
+        },
+        "correction": {
+          "rows": 16,
+          "accuracy": 0.812
+        },
+        "incomplete": {
+          "rows": 16,
+          "accuracy": 0.625
+        },
+        "negation": {
+          "rows": 16,
+          "accuracy": 0.5
+        },
+        "paraphrase": {
+          "rows": 73,
+          "accuracy": 0.685
+        },
+        "plain": {
+          "rows": 63,
+          "accuracy": 0.746
+        }
+      },
+      "predictions": [
+        {
+          "id": "T001",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T002",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T003",
+          "truth": "SBAR_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T004",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T005",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T006",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T007",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T008",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T009",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T010",
+          "truth": "CLOSED_LOOP",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T011",
+          "truth": "ANSWER_QUESTION",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T012",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T013",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T014",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T015",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T016",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T017",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T018",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T019",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T020",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T021",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T022",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T023",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T024",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T025",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T026",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T027",
+          "truth": "CLOSED_LOOP",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T028",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T029",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T030",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T031",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T032",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T033",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T034",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T035",
+          "truth": "STATE_ALLERGY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T036",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T037",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T038",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T039",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T040",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T041",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T042",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T043",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T044",
+          "truth": "SBAR_ELEMENT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T045",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T046",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T047",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T048",
+          "truth": "ANSWER_QUESTION",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T049",
+          "truth": "NONE",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T050",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T051",
+          "truth": "ANSWER_QUESTION",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T052",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T053",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T054",
+          "truth": "ANSWER_QUESTION",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T055",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T056",
+          "truth": "CLOSED_LOOP",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T057",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T058",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T059",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T060",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T061",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T062",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T063",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T064",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T065",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T066",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T067",
+          "truth": "SBAR_ELEMENT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T068",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T069",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T070",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T071",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T072",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T073",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T074",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T075",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T076",
+          "truth": "CLOSED_LOOP",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T077",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T078",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 1.0,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T079",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T080",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.85,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T081",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T082",
+          "truth": "STATE_ALLERGY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T083",
+          "truth": "ANSWER_QUESTION",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T084",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T085",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T086",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T087",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T088",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T089",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T090",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T091",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T092",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T093",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.85,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T094",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T095",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T096",
+          "truth": "SBAR_ELEMENT",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T097",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T098",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T099",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T100",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T101",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T102",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T103",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T104",
+          "truth": "EXPLAIN_ACTION",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T105",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T106",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T107",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T108",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T109",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T110",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T111",
+          "truth": "STATE_ALLERGY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T112",
+          "truth": "REASSURE",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T113",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T114",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T115",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T116",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T117",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T118",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T119",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T120",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T121",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T122",
+          "truth": "VOICE_ORDER",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T123",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T124",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "ACKNOWLEDGE_EMOTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T125",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T126",
+          "truth": "ANSWER_QUESTION",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T127",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T128",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T129",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T130",
+          "truth": "CONSENT_SIGN",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T131",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T132",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T133",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T134",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T135",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T136",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CHECK_UNDERSTANDING",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T137",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T138",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T139",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T140",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T141",
+          "truth": "ACKNOWLEDGE_FACT",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T142",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T143",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T144",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T145",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T146",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T147",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T148",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T149",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T150",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T151",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T152",
+          "truth": "CLOSED_LOOP",
+          "pred": "VOICE_ORDER",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T153",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "correction"
+        },
+        {
+          "id": "T154",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T155",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T156",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T157",
+          "truth": "CLOSED_LOOP",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T158",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T159",
+          "truth": "CONSENT_SIGN",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T160",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T161",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "HANDOVER_CRITICAL_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T162",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T163",
+          "truth": "SBAR_ELEMENT",
+          "pred": "ACKNOWLEDGE_FACT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T164",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T165",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T166",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T167",
+          "truth": "CHECK_UNDERSTANDING",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T168",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T169",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T170",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T171",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_PROCEDURE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T172",
+          "truth": "REPORT_FAULT",
+          "pred": "REPORT_FAULT",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T173",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T174",
+          "truth": "REASSURE",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T175",
+          "truth": "ASK_TOPIC",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T176",
+          "truth": "SBAR_ELEMENT",
+          "pred": "SBAR_ELEMENT",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T177",
+          "truth": "EXPLAIN_TEST",
+          "pred": "REASSURE",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T178",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T179",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T180",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T181",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T182",
+          "truth": "VOICE_ORDER",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "incomplete"
+        },
+        {
+          "id": "T183",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T184",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T185",
+          "truth": "STATE_ALLERGY",
+          "pred": "STATE_ALLERGY",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T186",
+          "truth": "ANSWER_QUESTION",
+          "pred": "ANSWER_QUESTION",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T187",
+          "truth": "EXPLAIN_PROCEDURE",
+          "pred": "EXPLAIN_ACTION",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T188",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T189",
+          "truth": "CONSENT_SIGN",
+          "pred": "CONSENT_SIGN",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "negation"
+        },
+        {
+          "id": "T190",
+          "truth": "ACKNOWLEDGE_EMOTION",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T191",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 1.0,
+          "credited": true,
+          "bucket": "negation"
+        },
+        {
+          "id": "T192",
+          "truth": "HANDOVER_CRITICAL_ELEMENT",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        },
+        {
+          "id": "T193",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "correction"
+        },
+        {
+          "id": "T194",
+          "truth": "NONE",
+          "pred": "NONE",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T195",
+          "truth": "STATE_ALLERGY",
+          "pred": "ASK_TOPIC",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T196",
+          "truth": "ESCALATE_SPEECH",
+          "pred": "ESCALATE_SPEECH",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T197",
+          "truth": "CLARIFY",
+          "pred": "CLARIFY",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "ambiguous"
+        },
+        {
+          "id": "T198",
+          "truth": "EXPLAIN_TEST",
+          "pred": "EXPLAIN_TEST",
+          "confidence": 0.95,
+          "credited": true,
+          "bucket": "plain"
+        },
+        {
+          "id": "T199",
+          "truth": "CONFIRM_IDENTITY",
+          "pred": "CONFIRM_IDENTITY",
+          "confidence": 1.0,
+          "credited": false,
+          "bucket": "paraphrase"
+        },
+        {
+          "id": "T200",
+          "truth": "CLOSED_LOOP",
+          "pred": "CLOSED_LOOP",
+          "confidence": 0.95,
+          "credited": false,
+          "bucket": "plain"
+        }
+      ],
+      "macro_f1_without_ambiguous_rows": 0.663,
+      "macro_f1_ci95": [
+        0.575,
+        0.71
+      ],
+      "credited_precision_ci95": [
+        0.584,
+        0.773
+      ],
+      "post_hoc_guard_v2": {
+        "credited": 90,
+        "credited_share": 0.45,
+        "abstained_share": 0.55,
+        "false_credits": 24,
+        "credited_precision": 0.733,
+        "critical_said_but_credited_as_other_act": 0,
+        "critical_acts_credited_from_speech": 0,
+        "note": "the guard was extended (version 2) after this test split was scored; this is what the saved predictions give with it, so it is not an unseen result"
+      }
+    }
+  },
+  "process_rss_mib": 35.8,
+  "paired_macro_f1_differences": {
+    "tfidf_logreg minus embeddings_logreg": {
+      "macro_f1_difference": -0.029,
+      "ci95": [
+        -0.097,
+        0.042
+      ]
+    },
+    "tfidf_logreg minus qwen_3_5_4b": {
+      "macro_f1_difference": 0.126,
+      "ci95": [
+        0.044,
+        0.215
+      ]
+    },
+    "embeddings_logreg minus qwen_3_5_4b": {
+      "macro_f1_difference": 0.155,
+      "ci95": [
+        0.076,
+        0.236
+      ]
+    }
+  },
+  "verdict": "SYNTHETIC GENERALISATION CHECK, NOT INDEPENDENT (model-written, model-labelled): embeddings_logreg has the highest macro-F1, ahead of tfidf_logreg by 0.029 (paired interval [-0.042, 0.097]): not separated on this data. It says nothing about real trainee speech.",
+  "intervals": "95% percentile intervals from 1000 resamples of the test rows, recomputed from the saved predictions (the test split has 2 writing styles, too few to resample as groups)"
+}

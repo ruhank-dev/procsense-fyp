@@ -2,7 +2,6 @@
 
 Milestone: **M15 P2 learning analytics and advanced simulation**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Detect recurring errors across sessions and word coaching advice from them.
@@ -13,6 +12,10 @@ Trainees improve faster when patterns are named.
 ## How to implement
 1. Pattern detectors over history (deterministic).
 2. LLM wording via the debrief path.
+
+## Status (17 October 2026)
+
+- **Built:** `server/analytics/patterns.py`: repeated error, repeated miss, late step, critical trend and behaviour slide detectors with minimum evidence (3 sessions, half of the sessions where it could occur); neutral template coaching. **Verification result:** planted patterns found in at least 95 percent of 120 synthetic histories; noise alone gave no pattern in at least 95 percent; fewer than three sessions give none (`tools/ci/test_analytics.py`).
 
 ## Verification
 Planted patterns found in 95 percent of synthetic histories.

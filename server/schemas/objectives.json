@@ -12,7 +12,7 @@
     "scenario": {"enum": ["S1", "S2"]},
     "level": {"enum": ["beginner", "advanced"]},
     "seed": {"type": "integer", "minimum": 0},
-    "basis": {"enum": ["default_objectives", "ratings", "focus_requested"], "description": "why these objectives: no history yet, the ratings, or the focus the request named"},
+    "basis": {"enum": ["default_objectives", "ratings", "focus_requested", "learner_model"], "description": "why these objectives: no history yet, the ratings, the focus the request named, or the learner model (p1-personalisation)"},
     "sessions_rated": {"type": "integer", "minimum": 0},
     "competencies": {"type": "array", "maxItems": 3, "items": {"type": "object", "required": ["behaviour", "rating", "times_rated"], "additionalProperties": false,
       "properties": {"behaviour": {"type": "string"}, "rating": {"type": "number"}, "times_rated": {"type": "integer", "minimum": 0}}}},

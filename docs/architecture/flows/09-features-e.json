@@ -65,8 +65,8 @@
       "actor": "gear",
       "label": "E55 P1 PH-17",
       "title": "AI evaluation harness and switch-off gate",
-      "text": "Planned. Weekly evaluation runs; any AI feature below its threshold is switched off in ai_features.yaml.1 capability plans.",
-      "tone": "blue"
+      "text": "Built. Weekly evaluation runs; any AI feature below its threshold is switched off in ai_features.yaml.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "E56",
@@ -89,8 +89,8 @@
       "actor": "agent",
       "label": "E58 P1 PH-05",
       "title": "Retrieval over approved content (RAG)",
-      "text": "Planned. Retrieval for generation context (LG-03) and, later, grounded explanations.1 capability plans.",
-      "tone": "blue"
+      "text": "Partly built. Retrieval for generation context (LG-03) and, later, grounded explanations.1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "E59",
@@ -105,8 +105,8 @@
       "actor": "model",
       "label": "E60 P2 PH-19",
       "title": "P2 small trained classifier",
-      "text": "Blocked. The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split, critical-act guard.1 capability plans. Needs C37, B19.",
-      "tone": "coral"
+      "text": "Partly built. The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split…1 capability plans. Needs C37, B19.",
+      "tone": "sun"
     },
     {
       "id": "E61",
@@ -121,8 +121,8 @@
       "actor": "gear",
       "label": "E62 P1 PH-06",
       "title": "Backend and AI gateway",
-      "text": "Planned. FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard…1 capability plans.",
-      "tone": "blue"
+      "text": "Partly built. FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard…1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "E63",
@@ -153,8 +153,8 @@
       "actor": "gear",
       "label": "E69 P1 PH-20",
       "title": "AI inference and dual-GPU deployment",
-      "text": "Proposed. Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.1 capability plans.",
-      "tone": "aqua"
+      "text": "Partly built. Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.1 capability plans.",
+      "tone": "sun"
     }
   ],
   "edges": [

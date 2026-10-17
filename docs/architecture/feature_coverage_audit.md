@@ -24,7 +24,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | Feature | Name | Status | Kind | Capabilities (AI) | Complete plan | Tasks | Phase | Plan |
 |---|---|---|---|---|---|---|---|---|
 | A1 | AI Scenario Composer (block library, solver, Stage A proposals) | Partially implemented | hybrid | 2 (1) | yes | p1-live-scenario-generation-s13; p1-scenario-composer-difficulty-s01; p1-scenario-composer-difficulty-s02; p1-scenario-composer-difficulty-s03; p1-scenario-composer-difficulty-s05 | PH-04 | [A1](feature_plans/A1.md) |
-| A2 | Live dataset-driven scenario generation | Proposed new feature | hybrid | 3 (2) | yes | p1-live-scenario-generation-s01; p1-live-scenario-generation-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s04; p1-live-scenario-generation-s05; p1-live-scenario-generation-s06; p1-live-scenario-generation-s07; p1-live-scenario-generation-s08; p1-live-scenario-generation-s09; p1-live-scenario-generation-s10; p1-live-scenario-generation-s11; p1-live-scenario-generation-s12; p1-live-scenario-generation-s13; p1-live-scenario-generation-s14 | PH-05 | [A2](feature_plans/A2.md) |
+| A2 | Live dataset-driven scenario generation | Partially implemented | hybrid | 3 (2) | yes | p1-live-scenario-generation-s01; p1-live-scenario-generation-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s04; p1-live-scenario-generation-s05; p1-live-scenario-generation-s06; p1-live-scenario-generation-s07; p1-live-scenario-generation-s08; p1-live-scenario-generation-s09; p1-live-scenario-generation-s10; p1-live-scenario-generation-s11; p1-live-scenario-generation-s12; p1-live-scenario-generation-s13; p1-live-scenario-generation-s14 | PH-05 | [A2](feature_plans/A2.md) |
 | A3 | Patient profile generation | Proposed new feature | hybrid | 2 (1) | yes | p1-live-scenario-generation-s04 | PH-08 | [A3](feature_plans/A3.md) |
 | A4 | Mixed (multi-problem) case generation | Planned | hybrid | 2 (1) | yes | p1-case-library-extended-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 | PH-05 | [A4](feature_plans/A4.md) |
 | A5 | Dynamic events (selection and generated variants) | Partially implemented | hybrid | 2 (1) | yes | p1-live-scenario-generation-s11; p1-live-scenario-generation-s13 | PH-10 | [A5](feature_plans/A5.md) |
@@ -42,37 +42,37 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | B16 | Ultrasound image selection and labelled synthesis | Partially implemented | deterministic | 3 (1) | yes | p1-dataset-analysis-s04; p1-live-scenario-generation-s06; p2-ai-advanced-simulation-s04 | PH-09 | [B16](feature_plans/B16.md) |
 | B17 | Chest X-ray, CT and MRI selection | Partially implemented | deterministic | 2 (1) | yes | p1-dataset-analysis-s04; p1-live-scenario-generation-s06; p2-ai-advanced-simulation-s04 | PH-09 | [B17](feature_plans/B17.md) |
 | B18 | Cross-modal consistency | Partially implemented | deterministic | 2 (1) | yes | p1-live-scenario-generation-s07; p1-live-scenario-generation-s15 | PH-10 | [B18](feature_plans/B18.md) |
-| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | Planned | hybrid | 1 (1) | yes | p1-evaluation-s01 | PH-17 | [B19](feature_plans/B19.md) |
+| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | Partially implemented | hybrid | 1 (1) | yes | p1-evaluation-s01 | PH-17 | [B19](feature_plans/B19.md) |
 | B20 | Anomalies and artefacts (deliberate and realistic) | Partially implemented | deterministic | 2 (0) | yes | p1-live-scenario-generation-s05; p1-personalisation-s03 | PH-09 | [B20](feature_plans/B20.md) |
 | B21 | Result variation (repeats, trends, timing) | Partially implemented | deterministic | 1 (0) | yes | p1-live-scenario-generation-s05 | PH-09 | [B21](feature_plans/B21.md) |
-| B22 | Investigation Interpreter (teaching aid) | Proposed new feature | ai | 1 (1) | yes | p2-ai-learning-analytics-s05 | PH-18 | [B22](feature_plans/B22.md) |
+| B22 | Investigation Interpreter (teaching aid) | Partially implemented | ai | 1 (1) | yes | p2-ai-learning-analytics-s05 | PH-18 | [B22](feature_plans/B22.md) |
 | B23 | Investigation discovery | Partially implemented | deterministic | 2 (1) | yes | p0-case-library-s05; p1-ai-language-s07; p1-live-scenario-generation-s03 | PH-04 | [B23](feature_plans/B23.md) |
 | C24 | Patient dialogue | Partially implemented | hybrid | 2 (2) | yes | p1-ai-language-s04 | PH-13 | [C24](feature_plans/C24.md) |
 | C25 | Nurse dialogue | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C25](feature_plans/C25.md) |
 | C26 | Anaesthetist dialogue | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C26](feature_plans/C26.md) |
 | C27 | Surgeon dialogue | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C27](feature_plans/C27.md) |
 | C28 | Porter dialogue | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C28](feature_plans/C28.md) |
-| C29 | Persona system | Planned | hybrid | 2 (1) | yes | p1-ai-language-s04; p1-live-scenario-generation-s04 | PH-13 | [C29](feature_plans/C29.md) |
+| C29 | Persona system | Partially implemented | hybrid | 2 (1) | yes | p1-ai-language-s04; p1-live-scenario-generation-s04 | PH-13 | [C29](feature_plans/C29.md) |
 | C30 | Context-aware and reactive dialogue | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C30](feature_plans/C30.md) |
-| C31 | Voice interaction (end to end) | Planned | ai | 1 (1) | yes | p1-voice-input-s02; p1-voice-input-s04 | PH-14 | [C31](feature_plans/C31.md) |
-| C32 | Voice commands | Planned | hybrid | 1 (1) | yes | p1-voice-input-s02 | PH-14 | [C32](feature_plans/C32.md) |
-| C33 | Speech-to-text | Planned | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-voice-input-s01 | PH-14 | [C33](feature_plans/C33.md) |
-| C34 | Text-to-speech | Planned | ai | 1 (1) | yes | p0-voice-audio-s02; p1-voice-input-s04 | PH-14 | [C34](feature_plans/C34.md) |
-| C35 | Voice orders and read-back | Planned | hybrid | 1 (1) | yes | p1-voice-input-s03 | PH-14 | [C35](feature_plans/C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | Partially implemented | deterministic | 1 (0) | yes | p1-ai-language-s06 | PH-15 | [C36](feature_plans/C36.md) |
-| C37 | Communication classifier | Blocked | ai | 1 (1) | yes | p1-ai-infrastructure-s04; p1-ai-language-s06; p1-ai-language-s07 | PH-15 | [C37](feature_plans/C37.md) |
+| C31 | Voice interaction (end to end) | Partially implemented | ai | 1 (1) | yes | p1-voice-input-s02; p1-voice-input-s04 | PH-14 | [C31](feature_plans/C31.md) |
+| C32 | Voice commands | Partially implemented | hybrid | 1 (1) | yes | p1-voice-input-s02 | PH-14 | [C32](feature_plans/C32.md) |
+| C33 | Speech-to-text | Partially implemented | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-voice-input-s01 | PH-14 | [C33](feature_plans/C33.md) |
+| C34 | Text-to-speech | Partially implemented | ai | 1 (1) | yes | p0-voice-audio-s02; p1-voice-input-s04 | PH-14 | [C34](feature_plans/C34.md) |
+| C35 | Voice orders and read-back | Partially implemented | hybrid | 1 (1) | yes | p1-voice-input-s03 | PH-14 | [C35](feature_plans/C35.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | Implemented and tested | deterministic | 1 (0) | yes | p1-ai-language-s06 | PH-15 | [C36](feature_plans/C36.md) |
+| C37 | Communication classifier | Partially implemented | ai | 1 (1) | yes | p1-ai-infrastructure-s04; p1-ai-language-s06; p1-ai-language-s07 | PH-15 | [C37](feature_plans/C37.md) |
 | D38 | AI debrief | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s08 | PH-16 | [D38](feature_plans/D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | Partially implemented | hybrid | 1 (1) | yes | p2-ai-learning-analytics-s01 | PH-18 | [D39](feature_plans/D39.md) |
-| D40 | Performance pattern analysis | Proposed new feature | hybrid | 2 (1) | yes | p1-personalisation-s02; p2-ai-learning-analytics-s01 | PH-18 | [D40](feature_plans/D40.md) |
-| D41 | Confidence calibration coach | Proposed new feature | hybrid | 2 (1) | yes | p2-ai-learning-analytics-s02 | PH-18 | [D41](feature_plans/D41.md) |
-| D42 | Clinical Reasoning Fingerprint | Proposed new feature | hybrid | 2 (2) | yes | p2-ai-learning-analytics-s03 | PH-18 | [D42](feature_plans/D42.md) |
+| D40 | Performance pattern analysis | Implemented and tested | hybrid | 2 (1) | yes | p1-personalisation-s02; p2-ai-learning-analytics-s01 | PH-18 | [D40](feature_plans/D40.md) |
+| D41 | Confidence calibration coach | Implemented and tested | hybrid | 2 (1) | yes | p2-ai-learning-analytics-s02 | PH-18 | [D41](feature_plans/D41.md) |
+| D42 | Clinical Reasoning Fingerprint | Implemented and tested | hybrid | 2 (2) | yes | p2-ai-learning-analytics-s03 | PH-18 | [D42](feature_plans/D42.md) |
 | D43 | Adaptive difficulty (deterministic Elo ratings and Selector) | Implemented and tested | deterministic | 1 (0) | yes | p0-case-library-s06 | PH-01 | [D43](feature_plans/D43.md) |
-| D44 | AI enhancement to adaptive difficulty | Proposed new feature | ai | 1 (1) | yes | p1-personalisation-s03; p2-ai-learning-analytics-s06 | PH-18 | [D44](feature_plans/D44.md) |
-| D45 | Progression tracking | Partially implemented | deterministic | 1 (0) | yes | p2-ai-learning-analytics-s04 | PH-18 | [D45](feature_plans/D45.md) |
+| D44 | AI enhancement to adaptive difficulty | Partially implemented | ai | 1 (1) | yes | p1-personalisation-s03; p2-ai-learning-analytics-s06 | PH-18 | [D44](feature_plans/D44.md) |
+| D45 | Progression tracking | Implemented and tested | deterministic | 1 (0) | yes | p2-ai-learning-analytics-s04 | PH-18 | [D45](feature_plans/D45.md) |
 | D46 | Missed-step explanation | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s08 | PH-16 | [D46](feature_plans/D46.md) |
 | D47 | Evidence-based feedback | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s08 | PH-16 | [D47](feature_plans/D47.md) |
-| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | Proposed new feature | hybrid | 3 (2) | yes | p1-personalisation-s01; p1-personalisation-s02; p1-personalisation-s04 | PH-23 | [D67](feature_plans/D67.md) |
-| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | Proposed new feature | hybrid | 3 (2) | yes | p1-personalisation-s03; p1-personalisation-s05 | PH-23 | [D68](feature_plans/D68.md) |
+| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | Partially implemented | hybrid | 3 (2) | yes | p1-personalisation-s01; p1-personalisation-s02; p1-personalisation-s04 | PH-23 | [D67](feature_plans/D67.md) |
+| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | Partially implemented | hybrid | 3 (2) | yes | p1-personalisation-s03; p1-personalisation-s05 | PH-23 | [D68](feature_plans/D68.md) |
 | E48 | Patient Digital Twin | Proposed new feature | hybrid | 2 (1) | yes | p2-ai-advanced-simulation-s02 | PH-19 | [E48](feature_plans/E48.md) |
 | E49 | Multi-Agent Clinical Simulation Lab | Proposed new feature | ai | 1 (1) | yes | p2-ai-advanced-simulation-s03 | PH-19 | [E49](feature_plans/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | Partially implemented | hybrid | 1 (1) | yes | p1-ai-language-s09; p2-ai-advanced-simulation-s01 | PH-17 | [E50](feature_plans/E50.md) |
@@ -80,15 +80,15 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | E52 | Investigation analytics | Proposed new feature | deterministic | 2 (1) | yes | p2-ai-learning-analytics-s04 | PH-18 | [E52](feature_plans/E52.md) |
 | E53 | Grounding validator | Implemented and tested | deterministic | 2 (1) | yes | p1-ai-language-s01; p1-ai-language-s09 | PH-01 | [E53](feature_plans/E53.md) |
 | E54 | Context builder and reaction queue | Implemented and tested | deterministic | 2 (1) | yes | p1-ai-language-s03; p1-ai-language-s05 | PH-01 | [E54](feature_plans/E54.md) |
-| E55 | AI evaluation harness and switch-off gate | Planned | deterministic | 1 (0) | yes | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04 | PH-17 | [E55](feature_plans/E55.md) |
+| E55 | AI evaluation harness and switch-off gate | Implemented and tested | deterministic | 1 (0) | yes | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04 | PH-17 | [E55](feature_plans/E55.md) |
 | E56 | Difficulty explanation to the trainee | Planned | hybrid | 1 (1) | yes | p1-scenario-composer-difficulty-s04 | PH-16 | [E56](feature_plans/E56.md) |
 | E57 | LLM serving and benchmark | Partially implemented | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-language-s02 | PH-07 | [E57](feature_plans/E57.md) |
-| E58 | Retrieval over approved content (RAG) | Planned | hybrid | 1 (1) | yes | p1-live-scenario-generation-s02; p2-ai-extensions-s02 | PH-05 | [E58](feature_plans/E58.md) |
+| E58 | Retrieval over approved content (RAG) | Partially implemented | hybrid | 1 (1) | yes | p1-live-scenario-generation-s02; p2-ai-extensions-s02 | PH-05 | [E58](feature_plans/E58.md) |
 | E59 | Urdu and multilingual language | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s04 | PH-19 | [E59](feature_plans/E59.md) |
-| E60 | P2 small trained classifier | Blocked | ai | 1 (1) | yes | p2-ai-extensions-s03 | PH-19 | [E60](feature_plans/E60.md) |
+| E60 | P2 small trained classifier | Partially implemented | ai | 1 (1) | yes | p2-ai-extensions-s03 | PH-19 | [E60](feature_plans/E60.md) |
 | E61 | Medical LLM benchmark (for example MedGemma) | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s05 | PH-19 | [E61](feature_plans/E61.md) |
-| E62 | Backend and AI gateway | Planned | deterministic | 1 (0) | yes | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 | PH-06 | [E62](feature_plans/E62.md) |
+| E62 | Backend and AI gateway | Partially implemented | deterministic | 1 (0) | yes | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 | PH-06 | [E62](feature_plans/E62.md) |
 | E63 | On-device speech recognition | Planned | ai | 1 (1) | yes | p2-ai-extensions-s01 | PH-19 | [E63](feature_plans/E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | Deferred | ai | 1 (1) | yes | p2-ai-advanced-simulation-s04 | PH-24 | [E64](feature_plans/E64.md) |
 | E65 | Fine-tuning an LLM on clinical text | Deferred | ai | 1 (1) | yes | p2-ai-advanced-simulation-s05 | PH-24 | [E65](feature_plans/E65.md) |
-| E69 | AI inference infrastructure and dual-GPU deployment | Proposed new feature | deterministic | 1 (0) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-infrastructure-s03 | PH-20 | [E69](feature_plans/E69.md) |
+| E69 | AI inference infrastructure and dual-GPU deployment | Partially implemented | deterministic | 1 (0) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-infrastructure-s03 | PH-20 | [E69](feature_plans/E69.md) |

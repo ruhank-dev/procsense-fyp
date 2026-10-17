@@ -1,0 +1,24 @@
+# Unity-side AI hooks (p1-ai-infrastructure-s05)
+
+A specification for when Unity work on the AI features is approved. It is written for Sannan's side of the project and is **not implemented or tested on a headset**; the server and engine halves it depends on exist and are listed against each hook. Written 17 October 2026.
+
+Rules for every hook: all AI calls are asynchronous and never block the main thread; each has a timeout and a fallback that the session already has; nothing an AI returns is shown or spoken until the gateway says it passed its checks; a trainee is never told that an AI answer is clinical advice.
+
+| # | Hook | Inputs | Outputs | Timeout and fallback | Server or engine half (exists) | EditMode tests to write |
+|---|---|---|---|---|---|---|
+| 1 | AI client | Gateway address, sign-in token, request id | Typed replies (`ok`, `fallback`, `value`, reasons) and the `X-AI-Call-Id` header written into the session log | Per-call timeout (live 3 s, batch 10 min); on timeout or `fallback: true` the caller uses its fallback | `server/routers/ai_gateway.py`, `/ai/health` | Timeout gives the fallback; header id lands in the log; no call on the main thread |
+| 2 | Fallback switch | `/ai/health`, a user setting | One flag per capability: model or deterministic | Health down means deterministic everywhere | `OLLAMA_URL` empty | Switch off means no network call |
+| 3 | Scenario package download and pool | Request, pool of packages on the device | A `ScenarioPackage` file, its SHA-256 | Offline: the device pool, then a library case | `PUT /scenario-packages/{hash}`, `ScenarioPackageReader`, `pool.take` | Hash mismatch refused; pooled package loads under 2 s; assessment never offered a generated package |
+| 4 | Load a generated case | Package file | The case in the engine through the existing content loader and `ContentGate` (status GENERATED_PRACTICE_ONLY) | Refuse and fall back to a library case | `src/ProcSense.Core/Content/ScenarioPackage.cs` | Practice allowed, assessment refused; a changed package refused |
+| 5 | Show the case's pictures | `media.slots` of the package (picture id, finding code, report) | The ultrasound, ECG, X-ray or CT in the room, with the written report | A written-only result when a slot has no picture | `server/generation/media.py` | Every slot's picture opens; none missing |
+| 6 | Push-to-talk capture and playback | Microphone, the trainee's button | Audio to `/asr` (later), then text; spoken replies from rendered lines | No speech: menus and typed input | `/asr` and `/tts` are planned (p1-voice-input) | Button release ends capture; no audio is kept without consent |
+| 7 | Lip sync and subtitles | The line's audio and text | Mouth shapes (visemes) and a subtitle | Text only | Voice catalogue `tools/voice` | Subtitle always present with audio |
+| 8 | Confidence prompt | A decision point from the engine | "How sure are you?" (low, medium, high) sent with the decision | Skipped | planned: p1-personalisation (confidence reports are `unrecorded` today) | Answer lands in the log; skipping is allowed |
+| 9 | "Explain this result" panel | A result id | The grounded explanation text | Panel shows the written result only | planned: p1-ai-language | Text matches the result's numbers |
+| 10 | "Why this case" panel | The objectives explanation | The sentence from `server/personalisation/explain.py` | Hidden | `explain.py` (built) | Numbers on screen equal the facts |
+| 11 | Frame-time budget | Unity profiler | A cap: no AI work on the render thread; model calls from a worker | AI features off if the budget is missed | `docs/architecture/deployment.md` | Frame time with a call in flight within budget |
+| 12 | Session end upload | The session file, the package hash | Upload and the verified report | Queue and retry | `PUT /organisations/{id}/sessions`, `SessionVerifier` (loads the package) | A generated session uploads with its package |
+
+## Order of work
+
+1 and 2 first (they gate the rest), then 3 and 4 (a generated case can be played), then 5 (pictures), then 12. Hooks 6 to 10 wait for the language and voice steps. None of this has been run on the Quest; the headset test is Sannan's.

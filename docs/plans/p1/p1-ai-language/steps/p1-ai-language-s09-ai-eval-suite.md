@@ -14,6 +14,12 @@ Models, prompts and content change every week; only a scheduled, automatic evalu
 3. Schedule: weekly run on the desktop (Windows Task Scheduler); results committed to `reports/`.
 4. Gate updates `ai_features.yaml` automatically; you approve the PR.
 
+## Status (17 October 2026)
+
+- **Built:** `content/ai/thresholds.json` (the suites each feature must pass), `tools/eval/ai_gate.py` (writes `content/ai/features.json`; a suite with no result is SKIPPED and never passes; CI checks the file is current) and `server/ai_features.py` (the service reads it; `AI_FEATURES_OVERRIDE` forces features on for development and tests). Dialogue, classification, debrief, speech and the gateway answer with the fallback signal when their feature is off. `/ai/health` lists the features.
+- **State of the gate** (from the committed results): on: asr, narrative, patient_dialogue, voice_orders. Off: classifier (SKIPPED), classifier_synthetic (FAIL), critic (FAIL), debrief_ai (FAIL), interpreter (FAIL), plan_composer (FAIL), tts (FAIL).
+- **Not built:** the weekly schedule and trend charts (no weekly runs yet; the history of `features.json` in git is the trend) and the audit-based suites (fallback rate from real sessions).
+
 ## Verification
 Weekly report present; a deliberately bad output makes the suite fail (T-EV1).
 

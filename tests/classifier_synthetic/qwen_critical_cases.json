@@ -1,0 +1,168 @@
+{
+ "note": "Sentences of the synthetic test split where a critical act was said and the Qwen 3.5 4B classifier named an ordinary act above its dev threshold, so the answer would have been credited. Model-written, model-labelled data, NOT independent. Found by tools/bench/bench_classifier.py --data synthetic on 17 October 2026; replayed by tools/ci/test_classifier_embedding.py.",
+ "model": "qwen3.5:4b-q4_K_M",
+ "cases": [
+  {
+   "id": "T021",
+   "text": "I'm sorry to be a bother, but what happened when you had penicillin before, was there a reaction?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "ASK_TOPIC",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T029",
+   "text": "Sorry to interrupt, band says one name, notes another, and I think she mentioned an allergy to penicillin too.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "predicted": "ESCALATE_SPEECH",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T035",
+   "text": "Excuse me, what did the penicillin do to you the last time you took it?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "CLARIFY",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T044",
+   "text": "Background. Bit of asthma. Otherwise fit.",
+   "truth": "SBAR_ELEMENT",
+   "predicted": "ACKNOWLEDGE_FACT",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "handover"
+  },
+  {
+   "id": "T062",
+   "text": "Any bad reactions to medicines before? Rash, swelling, breathing?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "ASK_TOPIC",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T066",
+   "text": "Penicillin. Before. What happened?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "ASK_TOPIC",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T067",
+   "text": "My suggestion, if I may, would be a quick senior review before we take him round.",
+   "truth": "SBAR_ELEMENT",
+   "predicted": "ESCALATE_SPEECH",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "handover"
+  },
+  {
+   "id": "T068",
+   "text": "Last time you had that antibiotic. Reaction? Rash? Allergy?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "ASK_TOPIC",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T082",
+   "text": "Penicillin. What happened. Rash?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "CLARIFY",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T092",
+   "text": "Not fasted. Had breakfast.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "predicted": "ACKNOWLEDGE_FACT",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "fasting"
+  },
+  {
+   "id": "T097",
+   "text": "Pressure's down. Pulse up. Concerned.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "predicted": "ESCALATE_SPEECH",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "worsening"
+  },
+  {
+   "id": "T108",
+   "text": "Not fasted. Toast. Seven o'clock.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "predicted": "ACKNOWLEDGE_FACT",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "fasting"
+  },
+  {
+   "id": "T111",
+   "text": "Excuse me, sorry, you said penicillin gave you a rash, is that right, and was it a bad one?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "CLARIFY",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T119",
+   "text": "Do you have any allergies at all? I'm so sorry to keep asking, it's just important.",
+   "truth": "STATE_ALLERGY",
+   "predicted": "ASK_TOPIC",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "allergy"
+  },
+  {
+   "id": "T159",
+   "text": "Please could you tell me whether it's all right for the anaesthetic to go ahead, sorry if you've said already?",
+   "truth": "CONSENT_SIGN",
+   "predicted": "ESCALATE_SPEECH",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "consent"
+  },
+  {
+   "id": "T163",
+   "text": "Sorry, he isn't diabetic, he's just got hypertension, that's the background.",
+   "truth": "SBAR_ELEMENT",
+   "predicted": "ACKNOWLEDGE_FACT",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "handover"
+  },
+  {
+   "id": "T192",
+   "text": "BP dropping. Sats too. Watch him.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "predicted": "ESCALATE_SPEECH",
+   "confidence": 0.95,
+   "credited_by_guard_v1": false,
+   "cue_v2": "worsening"
+  },
+  {
+   "id": "T195",
+   "text": "Excuse me, did you have any problems the last time you took penicillin?",
+   "truth": "STATE_ALLERGY",
+   "predicted": "ASK_TOPIC",
+   "confidence": 0.95,
+   "credited_by_guard_v1": true,
+   "cue_v2": "allergy"
+  }
+ ]
+}

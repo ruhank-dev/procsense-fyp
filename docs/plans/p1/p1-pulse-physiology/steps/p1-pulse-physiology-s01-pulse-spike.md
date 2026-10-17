@@ -15,6 +15,10 @@ Pulse could add physiological fidelity, but whether it builds for Quest (ARM64) 
 4. PC test: build Pulse, run one scenario (e.g. dehydration) and read HR/BP/SpO2 over time.
 5. Quest test (B-R13 Step 6): blank Unity 6 project + Pulse Unity asset → ARM64 IL2CPP APK → does it run, and at what cost?
 
+## Status (17 October 2026)
+
+- **Done (desk research, 17 October 2026):** licence Apache-2.0, platforms, bindings, no prebuilt wheel, recorded in `tools/pulse/README.md`. **Not done:** the PC build and the scenario run, and the Quest ARM64 test (Sannan). Steps s02 and s03 wait for the spike (DT-207).
+
 ## Verification
 Spike notes: runs on PC yes/no, on Quest yes/no, effort estimate for the adapter.
 

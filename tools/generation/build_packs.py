@@ -95,7 +95,8 @@ def ecg_pack() -> dict:
 
 def pack_files() -> dict[str, str]:
     labs, corr = labs_pack()
-    files = {"labs": jdump(labs), "correlations": jdump(corr), "vitals": jdump(vitals_pack()), "ecg": jdump(ecg_pack())}
+    joint = json.loads((PROFILES / "joint.json").read_text(encoding="utf-8"))          # made by tools/generation/fit_joint.py from the demo data (aggregates only)
+    files = {"labs": jdump(labs), "correlations": jdump(corr), "vitals": jdump(vitals_pack()), "ecg": jdump(ecg_pack()), "joint": jdump(joint)}
     manifest = {"version": VERSION, "files": {f"{k}.json": hashlib.sha256(v.encode("utf-8")).hexdigest() for k, v in sorted(files.items())},
                 "note": "Packs never hold raw rows: every number is an aggregate with its n. A live session reads them and never refits."}
     files["manifest"] = jdump(manifest)

@@ -2,7 +2,6 @@
 
 Milestone: **M15 P2 learning analytics and advanced simulation**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Practice-mode explanation of an opened result, grounded in its approved report and bands.
@@ -12,6 +11,10 @@ Turns results into teaching moments.
 
 ## How to implement
 1. Validator-gated LLM rewrite; off in assessment.
+
+## Status (17 October 2026)
+
+- **Built:** `server/analytics/interpreter.py` (prompt `analytics.explain_result`): at most two sentences grounded in the result row and its approved report; numbers must be the row's, no entity outside the row and report, no prescribing; practice mode only; nothing is shown if it fails. Tests: invented number, medicine and instruction refused; never in assessment.
 
 ## Verification
 Zero validator escapes.

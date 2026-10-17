@@ -1,0 +1,17 @@
+id: SD-005
+title: Gold scenarios and retrieval queries
+synthetic: true
+purpose: The authored cases summarised as reference scenarios, and problem-label queries with the cases that hold them, to test generated scenarios and the retrieval index.
+generator: {path: tools/generation/build_packs.py, version: "1", command: "uv run --project tools tools/generation/build_packs.py"}
+seed: none needed
+source: The authored case files.
+method: Summaries and queries derived from the cases (label, first sentence of why, what the debrief says to remember).
+constraints: Only approved cases are expected in a query result.
+validation: Rebuilt and compared in CI (build_packs.py --check). The queries come from the cases themselves, so they measure whether retrieval finds what is there, not whether it understands a paraphrase.
+review: Not reviewed by a person.
+labels: The case ids that hold each query, taken from the cases.
+model_use: tools/generation/build_index.py and server/generation/retrieve.py (recall at 20)
+use: dev_only
+files: [tests/generation/gold_scenarios.json, tests/generation/retrieval_queries.json]
+rows: {tests/generation/gold_scenarios.json: {scenarios: 53}}
+licence: The project's own content

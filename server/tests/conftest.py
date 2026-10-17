@@ -136,6 +136,7 @@ def api(monkeypatch, migrated, db_url):
     """The application on a migrated test database, with test tokens trusted and invitations captured instead of emailed."""
     monkeypatch.setenv("DATABASE_URL", db_url)
     monkeypatch.setenv("SUPABASE_URL", SUPABASE_URL)
+    monkeypatch.setenv("AI_FEATURES_OVERRIDE", "all")           # the evaluation gate is tested on its own; the route tests need the features on
     monkeypatch.setenv("SUPABASE_SECRET_KEY", "test-only-not-a-real-key")
     for cache in (config.get_settings, database.get_engine, dependencies.get_verifier, dependencies.get_admin, sessions_router._limiter, worker.get_runner, audit.get_writer):
         cache.cache_clear()

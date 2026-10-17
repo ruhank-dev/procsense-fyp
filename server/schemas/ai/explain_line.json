@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/ai/explain_line.json",
+  "title": "An explanation of a result (analytics.explain_result)",
+  "type": "object",
+  "required": [
+    "text"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "text": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 400
+    }
+  }
+}

@@ -3,6 +3,8 @@
     uv run --project tools --with faster-whisper --with "av<14" tools/bench/asr_roundtrip.py --smoke 24            # check the machinery on old synthetic sentences; writes artifacts/ai-bench/asr-smoke-copies.jsonl
     uv run --project tools --with faster-whisper --with "av<14" tools/bench/asr_roundtrip.py --split test            # copies of the frozen sentences; writes tests/classifier_independent/asr_test.jsonl
 
+    uv run --project tools --with faster-whisper --with "av<14" tools/bench/asr_roundtrip.py --synthetic         # copies of the synthetic test split; writes tests/classifier_synthetic/asr_test.jsonl
+
 Each sentence is spoken by the offline voice (server/tts/engine.py: Piper then ffmpeg, voices cycling through the roles of tools/voice/voices.json) and transcribed by the service the app uses
 (server/asr/service.py, faster-whisper), in two variants: `clean`, and `phone` (band-limited to 300-3000 Hz with white noise mixed in by ffmpeg). The recogniser's domain vocabulary prompt is switched OFF here, so
 the copies show what an unprompted recogniser does to the wording. Copies keep the group and the label of their source, record the source id and the SHA-256 of the source text, are marked independent false (the
@@ -21,6 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "server"))
 INDEP = ROOT / "tests" / "classifier_independent"
+SYNTH = ROOT / "tests" / "classifier_synthetic"
 OUT = ROOT / "artifacts" / "ai-bench"
 PHONE = "highpass=f=300,lowpass=f=3000,volume=0.7"
 
@@ -56,11 +59,16 @@ def copies(rows: list[dict], limit: int) -> list[dict]:
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", choices=["dev", "test"])
+    ap.add_argument("--synthetic", action="store_true", help="copies of the plain and paraphrased rows of the synthetic test split (tests/classifier_synthetic)")
     ap.add_argument("--smoke", type=int, default=0, help="N old synthetic test sentences, to check the machinery only")
     ap.add_argument("--limit", type=int, default=0)
     a = ap.parse_args(argv)
     OUT.mkdir(parents=True, exist_ok=True)
-    if a.smoke:
+    if a.synthetic:
+        rows = [json.loads(l) for l in (SYNTH / "test.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+        rows = [{**r, "group": r["author"]} for r in rows if r["bucket"] in ("plain", "paraphrase")]
+        made, path = copies(rows, a.limit), SYNTH / "asr_test.jsonl"
+    elif a.smoke:
         rows = [json.loads(l) for l in (ROOT / "tests" / "classifier" / "test.jsonl").read_text(encoding="utf-8").splitlines()][::3]
         rows = [{**r, "group": r["speaker"]} for r in rows]
         made, path = copies(rows, a.smoke), OUT / "asr-smoke-copies.jsonl"

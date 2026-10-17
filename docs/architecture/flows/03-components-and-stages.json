@@ -97,32 +97,32 @@
       "actor": "code",
       "label": "CMP-BACKEND",
       "title": "Backend and AI gateway (FastAPI)",
-      "text": "Planned. Backend and AI gateway (FastAPI on PostgreSQL, Supabase). Plans: E62.",
-      "tone": "blue"
+      "text": "Partly built. Backend and AI gateway (FastAPI on PostgreSQL, Supabase). Plans: E62.",
+      "tone": "sun"
     },
     {
       "id": "CMP-LLM",
       "actor": "code",
       "label": "CMP-LLM",
       "title": "Served LLM runtime (Ollama)",
-      "text": "Partly built. Served LLM runtime (Ollama). Plans: E57, E69.",
-      "tone": "sun"
+      "text": "Built. Served LLM runtime (Ollama). Plans: E57, E69.",
+      "tone": "mint"
     },
     {
       "id": "CMP-ASR",
       "actor": "code",
       "label": "CMP-ASR",
       "title": "Speech recognition runtime (faster-whisper)",
-      "text": "Planned. Speech recognition runtime (faster-whisper). Plans: C31, C33, E59, E63.",
-      "tone": "blue"
+      "text": "Partly built. Speech recognition runtime (faster-whisper). Plans: C31, C33, E59, E63.",
+      "tone": "sun"
     },
     {
       "id": "CMP-TTS",
       "actor": "code",
       "label": "CMP-TTS",
       "title": "Speech output (pre-rendered and live)",
-      "text": "Planned. Speech output (pre-rendered and live). Plans: C31, C34.",
-      "tone": "blue"
+      "text": "Partly built. Speech output (pre-rendered and live). Plans: C31, C34.",
+      "tone": "sun"
     },
     {
       "id": "LG-01",
@@ -153,8 +153,8 @@
       "actor": "model",
       "label": "LG-06",
       "title": "AI narrative, profile and persona",
-      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
-      "tone": "coral"
+      "text": "Partly built. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
+      "tone": "sun"
     },
     {
       "id": "LG-10",

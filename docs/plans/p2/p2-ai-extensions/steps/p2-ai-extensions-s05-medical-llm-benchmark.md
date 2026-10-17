@@ -14,6 +14,10 @@ A medical model might ground better or sound more natural — switch only on mea
 3. Run the full `tools/ai_eval/run.py --suite all` with the candidate as the LLM backend; same prompts/schemas.
 4. Compare grounding leaks, schema validity, latency p95, dialogue quality (blind reviewer rating on 50 samples).
 
+## Status (17 October 2026)
+
+- **Not started:** the MedGemma terms must be accepted by the owner first (DT-212); the general benchmark harness (`tools/ai/benchmark.py`) can run it afterwards.
+
 ## Verification
 Comparison table + ADR update; switch only if grounding/quality improve without breaking latency.
 

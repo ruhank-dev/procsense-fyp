@@ -1,0 +1,112 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+  "members": 214,
+  "critic_could_not_answer": 0,
+  "recall": {
+    "baseline": 0.668,
+    "critic": 0.687,
+    "union": 0.818
+  },
+  "by_kind": {
+    "allergy_denied": {
+      "n": 5,
+      "baseline": 5,
+      "critic": 5,
+      "union": 5
+    },
+    "operation_wrong": {
+      "n": 36,
+      "baseline": 36,
+      "critic": 36,
+      "union": 36
+    },
+    "pain_denied_elsewhere": {
+      "n": 36,
+      "baseline": 0,
+      "critic": 14,
+      "union": 14
+    },
+    "age_wrong": {
+      "n": 36,
+      "baseline": 30,
+      "critic": 34,
+      "union": 35
+    },
+    "sex_wrong": {
+      "n": 36,
+      "baseline": 36,
+      "critic": 9,
+      "union": 36
+    },
+    "allergy_invented": {
+      "n": 36,
+      "baseline": 36,
+      "critic": 36,
+      "union": 36
+    },
+    "side_flip": {
+      "n": 29,
+      "baseline": 0,
+      "critic": 13,
+      "union": 13
+    }
+  },
+  "clean_cases": 26,
+  "critic_false_alarm_rate": 0.038,
+  "baseline_false_alarm_rate": 0.192,
+  "raw": {
+    "recall": {
+      "baseline": 0.668,
+      "critic": 0.921,
+      "union": 0.93
+    },
+    "by_kind": {
+      "allergy_denied": {
+        "n": 5,
+        "baseline": 5,
+        "critic": 5,
+        "union": 5
+      },
+      "operation_wrong": {
+        "n": 36,
+        "baseline": 36,
+        "critic": 36,
+        "union": 36
+      },
+      "pain_denied_elsewhere": {
+        "n": 36,
+        "baseline": 0,
+        "critic": 25,
+        "union": 25
+      },
+      "age_wrong": {
+        "n": 36,
+        "baseline": 30,
+        "critic": 36,
+        "union": 36
+      },
+      "sex_wrong": {
+        "n": 36,
+        "baseline": 36,
+        "critic": 34,
+        "union": 36
+      },
+      "allergy_invented": {
+        "n": 36,
+        "baseline": 36,
+        "critic": 36,
+        "union": 36
+      },
+      "side_flip": {
+        "n": 29,
+        "baseline": 0,
+        "critic": 25,
+        "union": 25
+      }
+    },
+    "critic_false_alarm_rate": 0.923
+  },
+  "note": "recall and critic_false_alarm_rate are those of the verified critic, the one the pipeline runs; raw is the first pass alone",
+  "seconds": 3232
+}

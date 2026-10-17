@@ -1,0 +1,113 @@
+{
+  "model": "qwen3.5:9b-q4_K_M",
+  "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "requests": 20,
+  "arms": {
+    "solver": {
+      "served": 20,
+      "passed_gate": 20,
+      "coverage_mean": 0.746,
+      "difficulty_mean": 0.957,
+      "distinct_block_sets": 20,
+      "distinct_stories": 11,
+      "seconds_p50": 0.1,
+      "seconds_max": 0.2,
+      "model_plans_used": 0,
+      "rounds_mean": null
+    },
+    "planner": {
+      "served": 19,
+      "passed_gate": 19,
+      "coverage_mean": 0.685,
+      "difficulty_mean": 0.955,
+      "distinct_block_sets": 19,
+      "distinct_stories": 8,
+      "seconds_p50": 30.0,
+      "seconds_max": 129.2,
+      "model_plans_used": 19,
+      "rounds_mean": 1.32
+    }
+  },
+  "sample_reasons": [
+    {
+      "request": 0,
+      "spine": "VAR-S1-PB",
+      "reasons": {
+        "spine": "This case involves a patient with a competing priority of an abnormal pre-op scan suggesting a different surgical need (stone in bile duct) while also requiring monitoring for infection, which exercises complex history and cognitive load.",
+        "blocks": "The patient is a 61-year-old female shopkeeper named Aisha Khan with no significant past surgical history or allergies, fitting the 'elective but unwell' profile for this simulation."
+      }
+    },
+    {
+      "request": 1,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case combines sepsis with hypoperfusion, a penicillin anaphylaxis history requiring specific antibiotic selection, and urgent source control for perforated appendicitis.",
+        "blocks": "The patient is a 34-year-old software tester named Usman Khan who has never smoked, drinks occasionally, and has no previous anaesthetic history or family issues."
+      }
+    },
+    {
+      "request": 2,
+      "spine": "STK-S1-D",
+      "reasons": {
+        "spine": "This stacked case addresses the competing priorities of managing high-risk sepsis and obstructed infected bile ducts while handling a more complex history involving early kidney strain, fitting the specified objectives.",
+        "blocks": "Mrs Hina Khan is a 62-year-old school secretary with no prior anaesthetic history or substance use, fitting the high-risk sepsis and cholangitis profile without repeating previous names."
+      }
+    },
+    {
+      "request": 3,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case combines sepsis/hypoperfusion with a penicillin anaphylaxis history, directly addressing the objectives for complex handover, cognitive workload, and managing a more complex medical history.",
+        "blocks": "Faisal Khan, a 34-year-old software tester who has never smoked and drinks occasionally, has no history of previous anaesthetics or family problems."
+      }
+    },
+    {
+      "request": 4,
+      "spine": "VAR-S1-D",
+      "reasons": {
+        "spine": "This case exercises objectives b15, b17, and b08 by presenting anticoagulant management, bleeding risks, and communication challenges regarding surgery timing.",
+        "blocks": "The patient is a retired bus driver named Usman Khan who has never smoked, drinks occasionally, has no previous anaesthetic problems, and had a mild penicillin rash as a child."
+      }
+    },
+    {
+      "request": 5,
+      "spine": "VAR-S2-G",
+      "reasons": {
+        "spine": "This case matches the objectives and recent cases constraints while addressing dehydration with acute kidney injury.",
+        "blocks": "The patient is a 28-year-old graphic designer named Aisha Khan who has never smoked, drinks occasionally, and has no history of anaesthetic problems."
+      }
+    },
+    {
+      "request": 6,
+      "spine": "VAR-S1-C",
+      "reasons": {
+        "spine": "This case addresses diabetes control and medicine planning for fasting, which aligns with complex handover and communication challenges regarding medication management.",
+        "blocks": "Mrs Aisha Khan is a 55-year-old primary school cook with no history of anaesthesia or allergies, fitting the diabetes management scenario."
+      }
+    },
+    {
+      "request": 7,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case addresses the required objectives of managing sepsis with hypoperfusion, cognitive workload via an allergy-safe antibiotic decision, and communication challenges regarding a complex history of penicillin anaphylaxis.",
+        "blocks": "Mr Usman Khan is a 34-year-old software tester who quit smoking years ago, occasionally drinks alcohol, has no previous anaesthetics but had a minor hernia repair without issues."
+      }
+    },
+    {
+      "request": 8,
+      "spine": "STK-S1-D",
+      "reasons": {
+        "spine": "This case exercises environmental interruptions and complex handover while presenting a more complex history of high-risk sepsis with obstructed infected bile duct, early kidney strain, and acute cholangitis.",
+        "blocks": "Mrs Aisha Khan, a 62-year-old school secretary with no previous anaesthetic history or substance use issues."
+      }
+    },
+    {
+      "request": 9,
+      "spine": "VAR-S2-PD",
+      "reasons": {
+        "spine": "This case exercises objectives b07, b03, and b01 with a target difficulty rating of 1004 by simulating a deteriorating patient with sepsis and poor circulation, which aligns with the required communication challenges and more complex histoy",
+        "blocks": "Bilal Khan is a 34-year-old warehouse supervisor who has never smoked or drunk alcohol and has no history of previous anaesthetics or family problems."
+      }
+    }
+  ]
+}

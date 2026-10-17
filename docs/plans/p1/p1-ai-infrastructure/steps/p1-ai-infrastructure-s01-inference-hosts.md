@@ -2,7 +2,6 @@
 
 Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, dual-GPU benchmark, labelling, learner model**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 > **Status (16 October 2026).** Desktop part done with the owner's approval (the dependency below): Ollama 0.40.5 and the two Qwen3.5 models are installed and measured (ADR-0010); digests are in the licence register. Not done: the laptop, faster-whisper, the TTS engine, `tools/ai/check_hosts.py` and the health endpoint. This step stays open.
 
@@ -16,6 +15,11 @@ Blocked AI features are blocked only by this; installing is a task, not a reason
 1. Install notes per machine and a check script (`tools/ai/check_hosts.py`).
 2. Record digests in the licence register.
 3. Health check endpoint in the inference service.
+
+## Status (17 October 2026)
+
+- **Built (17 October 2026):** `tools/ai/check_hosts.py` (`task check-hosts`, `--ask`): Ollama up, the wanted models and their digests against the licence register, a schema-constrained prompt answered, faster-whisper, Piper, ffmpeg and the GPU, each missing piece with its fix; the same function backs `/ai/health` of the gateway. On the desktop: both models present with the registered digests; faster-whisper and ffmpeg-on-the-path are missing in this shell (DT-205).
+- **Still open:** the laptop, faster-whisper, a transcribed test clip.
 
 ## Verification
 Both machines answer a schema-constrained prompt and transcribe a test clip; versions recorded.

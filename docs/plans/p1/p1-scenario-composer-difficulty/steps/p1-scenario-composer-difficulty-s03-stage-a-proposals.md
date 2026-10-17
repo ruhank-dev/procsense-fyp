@@ -16,6 +16,11 @@ An LLM can suggest varied, plausible block combinations faster than a person —
 3. Narratives for passing candidates via `/llm/generate` task=narrative, validated for entities; presentation only.
 4. Dedupe proposals by block-set hash; temperature 0.8 for diversity.
 
+## Status (17 October 2026)
+
+- **Built:** the live plan composer (`server/generation/compose_plan.py`, `p1-live-scenario-generation-s13`) is this step's `propose.py`: enum schemas per slot reject invented ids (T-SA1, T-SA4), the composer's `violations` are fed back as avoid-hints (3 rounds), and the narrative of a passing case comes from `server/generation/narrative.py`. Diversity T-SA3: 19 distinct block sets in 20 requests (target 12). Status stays GENERATED_PRACTICE_ONLY; the model never approves.
+- **Not built:** `tools/composer/propose.py` as a separate command (the pipeline is the entry point); candidates folder.
+
 ## Verification
 T-SA1–T-SA4 pass; ≥ 12 distinct block sets in 20 proposals (T-SA3).
 

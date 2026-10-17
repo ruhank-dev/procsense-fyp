@@ -2,7 +2,6 @@
 
 Milestone: **M16 P1 AI infrastructure and personalisation — inference hosts, dual-GPU benchmark, labelling, learner model**
 
-> **Planning only (12 October 2026).** Written in the planning update; do not implement until the owner says so. Spec: `docs/architecture/live_generation_spec.md`; canonical graph: `docs/architecture/procsense_full_pipeline.json`.
 
 ## What
 Grounded explanation of each choice from objective facts; evaluation with simulated learners, off-policy estimates and a pilot comparing personalised generated practice with Elo selection on targeted-competency improvement.
@@ -13,6 +12,11 @@ Personalisation must be explainable and proven.
 ## How to implement
 1. Explanation prompt behind the validator.
 2. Simulation harness; pilot design in p1-evaluation-s03.
+
+## Status (17 October 2026)
+
+- **Built:** `server/personalisation/explain.py` (template explanation from the facts of the choice; `check` rejects a number that is not a fact and a hypothesis called a weakness) and `server/personalisation/experiment.py` with `tools/personalisation/simulate.py` (elo, rules and bandit on the same simulated learners, paired bootstrap, an inverse-propensity estimate for the bandit).
+- **Verification result:** zero ungrounded claims in the template output (tests). **The second criterion was not met:** personalised practice did not show a larger improvement than Elo selection in the simulation (see s03); the pilot is p1-evaluation-s03 (DT-206).
 
 ## Verification
 Zero ungrounded explanation claims; personalised practice shows larger improvement on targeted competencies than Elo selection in simulation.

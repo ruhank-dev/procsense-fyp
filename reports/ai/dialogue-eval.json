@@ -1,0 +1,382 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+  "cases": 12,
+  "earned": {
+    "n": 82,
+    "model": 80,
+    "used_fact": 67,
+    "fallback": 2
+  },
+  "withheld": {
+    "n": 82,
+    "cannot_recall": 74,
+    "fallback": 0,
+    "validator_leaks": 0,
+    "word_leaks": 0
+  },
+  "ms_p50": 1870,
+  "ms_p95": 2318,
+  "samples": [
+    {
+      "case": "STK-S1-D",
+      "topic": "red_flags",
+      "hidden_fact": "Rigors last night; dark urine and pale stools; itching.",
+      "reply": "I am not sure what red flags are.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S1-D",
+      "topic": "past_history",
+      "hidden_fact": "High blood pressure. Gallstones on an ultrasound; three episodes of colic.",
+      "reply": "I don't remember anything about my past history.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S1-D",
+      "topic": "previous_anaesthetic",
+      "hidden_fact": "No previous anaesthetics.",
+      "reply": "I'm not sure about my previous anaesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S1-D",
+      "topic": "family_anaesthetic",
+      "hidden_fact": "No anaesthetic problems in the family.",
+      "reply": "I don't remember anything about that.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S1-D",
+      "topic": "last_food",
+      "hidden_fact": "Dinner at 19:00 yesterday; nothing since.",
+      "reply": "I'm not sure about my last food.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S1-D",
+      "topic": "last_drink",
+      "hidden_fact": "Water at 06:00.",
+      "reply": "I don't remember my last drink.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S1-D",
+      "topic": "pregnancy",
+      "hidden_fact": "Not applicable.",
+      "reply": "I am not sure.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "red_flags",
+      "hidden_fact": "Fever and sweats; vomiting.",
+      "reply": "I have had tummy pain for three days, and now it feels all over.",
+      "intent": "answer_question",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "allergy_detail",
+      "hidden_fact": "Penicillin: my throat swelled and I collapsed in 2019.",
+      "reply": "I am not sure about my allergies.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "previous_anaesthetic",
+      "hidden_fact": "No previous anaesthetics.",
+      "reply": "I don't remember my previous anaesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "family_anaesthetic",
+      "hidden_fact": "No anaesthetic problems in the family.",
+      "reply": "I don't remember my family anesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "last_food",
+      "hidden_fact": "Eaten 10 hours ago.",
+      "reply": "I am not sure what I ate last.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "last_drink",
+      "hidden_fact": "Sips of water 4 hours ago.",
+      "reply": "I am not sure what I had to drink.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "STK-S2-B",
+      "topic": "pregnancy",
+      "hidden_fact": "Not applicable.",
+      "reply": "I'm not sure about that.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "red_flags",
+      "hidden_fact": "No fever, no yellow eyes, urine normal colour, no back pain.",
+      "reply": "I don't remember any red flags.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "medicines",
+      "hidden_fact": "None except paracetamol sometimes.",
+      "reply": "I'm not sure what medicines I take.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "previous_anaesthetic",
+      "hidden_fact": "Caesarean section 2012, no problems.",
+      "reply": "I'm not sure about my previous anaesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "family_anaesthetic",
+      "hidden_fact": "No anaesthetic problems.",
+      "reply": "I am not sure about my family anesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "last_food",
+      "hidden_fact": "Dinner at 21:00 last night (rice and chicken).",
+      "reply": "I don't remember what I ate for my last meal.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "last_drink",
+      "hidden_fact": "Water at 06:30.",
+      "reply": "I don't remember what I had for a drink.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-A",
+      "topic": "pregnancy",
+      "hidden_fact": "Last period started 10 days ago; she uses a coil. She agrees to a urine pregnancy test (hospital policy).",
+      "reply": "I am not sure about my pregnancy.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "red_flags",
+      "hidden_fact": "No fever, no yellow eyes.",
+      "reply": "I haven't had any attacks of pain under my ribs since last week.",
+      "intent": "answer_question",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "past_history",
+      "hidden_fact": "Type 2 diabetes for eight years.",
+      "reply": "I'm not sure about my past history.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "medicines",
+      "hidden_fact": "Metformin and gliclazide. She has not taken them this morning.",
+      "reply": "I'm not sure what my medicines are.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "previous_anaesthetic",
+      "hidden_fact": "No previous anaesthetics.",
+      "reply": "I am not sure about my previous anaesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "family_anaesthetic",
+      "hidden_fact": "No anaesthetic problems in the family.",
+      "reply": "I am not sure about my family anesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "last_food",
+      "hidden_fact": "Dinner at 20:00 yesterday.",
+      "reply": "I'm not sure what I ate last.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "last_drink",
+      "hidden_fact": "Water at 06:00.",
+      "reply": "I'm not sure about my last drink.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-C",
+      "topic": "pregnancy",
+      "hidden_fact": "Past the menopause.",
+      "reply": "I am not sure if I was pregnant.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "red_flags",
+      "hidden_fact": "No fever, no yellow eyes.",
+      "reply": "I have pain under my ribs after eating fatty food, it comes and goes.",
+      "intent": "answer_question",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "past_history",
+      "hidden_fact": "Atrial fibrillation (irregular heartbeat), high blood pressure.",
+      "reply": "I have pain under my ribs after eating fatty food, on and off for the last year.",
+      "intent": "answer_question",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "medicines",
+      "hidden_fact": "Apixaban for my heartbeat, and one blood pressure tablet.",
+      "reply": "I'm not sure what medicines I take.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "previous_anaesthetic",
+      "hidden_fact": "No previous anaesthetics.",
+      "reply": "I don't remember my previous anaesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "family_anaesthetic",
+      "hidden_fact": "No anaesthetic problems in the family.",
+      "reply": "I'm not sure about my family anesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "last_food",
+      "hidden_fact": "Dinner at 19:30 yesterday.",
+      "reply": "I am not sure about my last meal.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "last_drink",
+      "hidden_fact": "Water at 06:30.",
+      "reply": "I'm not sure what I had for my last drink.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-D",
+      "topic": "pregnancy",
+      "hidden_fact": "Not applicable.",
+      "reply": "I am not sure about that.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-E",
+      "topic": "red_flags",
+      "hidden_fact": "No yellow eyes. Urine normal colour.",
+      "reply": "I am not sure what the red flags are.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-E",
+      "topic": "medicines",
+      "hidden_fact": "Paracetamol.",
+      "reply": "I don't remember taking any medicines.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    },
+    {
+      "case": "VAR-S1-E",
+      "topic": "previous_anaesthetic",
+      "hidden_fact": "No previous anaesthetics.",
+      "reply": "I'm not sure about my previous anaesthetic.",
+      "intent": "cannot_recall",
+      "source": "model",
+      "shared_words": []
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+"""AI evaluation report for the project report (p1-evaluation-s02): `uv run --project tools tools/eval/collect_ai.py [--check]`.
+
+Reads the committed result files in reports/ai/ (one JSON per evaluation run, copied from artifacts/ai-bench/ or written by the tool that ran it) and writes docs/report/ai-eval.md: tables of what was measured,
+on which model and digest, with the limit of each measure stated beside it. Every number in the page comes from a file; nothing is typed by hand. A result file that is missing is listed as "not run", never
+filled in. `--check` fails if the page differs from what the files would give (so a result cannot change without the page changing).
+"""
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+REPORTS = ROOT / "reports" / "ai"
+OUT = ROOT / "docs" / "report" / "ai-eval.md"
+
+
+def load(name: str) -> dict | None:
+    p = REPORTS / name
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def pct(x) -> str:
+    return "n/a" if x is None else f"{100 * x:.1f}%"
+
+
+def section_narrative() -> list[str]:
+    rows = []
+    for name in ("narrative-4b.json", "narrative-9b.json"):
+        d = load(name)
+        if d is None:
+            rows.append(f"| {name} | not run | | | | | |")
+            continue
+        rows.append(f"| {d['model']} (`{d['digest'][:12]}`) | {d['lines']} | {pct(d['first_try_schema_valid_rate'])} | {pct(d['first_try_rate'])} | {pct(d['accept_rate'])} | {d['fallback_to_authored']} | {d['latency_ms_p50']} ms |")
+    return ["## Patient wording of generated cases (compose.narrative)", "",
+            "| Model | Lines | Schema valid first try | Accepted first try | Accepted after one retry | Fell back to the authored line | Latency p50 |", "|---|---|---|---|---|---|---|"] + rows + [
+            "", "Limit: the checks are lexical (numbers, number words, time words, yes and no, medicines, tests, conditions, allergens, prescribing phrases, length, words kept). Every accepted pair is in the result file for a person to read; "
+            "the share a person finds unfaithful has not been measured (needs a reader).", ""]
+
+
+def section_planner() -> list[str]:
+    d = load("planner-eval.json")
+    if d is None:
+        return ["## Plan composer against the solver alone", "", "not run", ""]
+    rows = []
+    for arm, v in d["arms"].items():
+        rows.append(f"| {arm} | {v['served']} | {v['passed_gate']} | {v['coverage_mean']} | {v['difficulty_mean']} | {v['distinct_block_sets']} | {v['distinct_stories']} | {v['seconds_p50']} s | {v['model_plans_used']} |")
+    return [f"## Plan composer against the solver alone ({d['model']}, {d['requests']} requests)", "",
+            "| Arm | Served | Passed the whole gate | Coverage of requested dimensions (mean) | Difficulty match (mean) | Distinct block sets | Distinct stories | Time p50 | Model plans used |", "|---|---|---|---|---|---|---|---|---|"] + rows + [
+            "", "Limit: coverage and difficulty are deterministic proxies. The blind comparison by two raters that the plan asks for has not been done (DT-203).", ""]
+
+
+def section_interpreter() -> list[str]:
+    d = load("interpreter-eval.json")
+    if d is None:
+        return ["## Performance interpreter", "", "not run", ""]
+    return ["## Performance interpreter (hypotheses against random picks)", "", f"Model {d['model']}, {d['learners']} simulated learners, {d['hypotheses']} hypotheses accepted, {d['learners_with_no_accepted_proposal']} learners with no accepted proposal.", "",
+            "| Picks | Share confirmed by later sessions |", "|---|---|", f"| The model's hypotheses | {pct(d['confirmed_by_model'])} |", f"| Random weak competencies | {pct(d['confirmed_by_random_picks'])} |", "",
+            "Limit: a simulation in which a weak dimension makes its behaviours weak; the model can only guess that from the plain names of the competencies.", ""]
+
+
+def section_critic() -> list[str]:
+    d = load("critic-eval.json")
+    if d is None:
+        return ["## Text consistency critic", "", "not run", ""]
+    r = d["recall"]
+    return ["## Text consistency critic", "", f"Model {d['model']}, {d['members']} seeded inconsistencies (SD-001), {d['clean_cases']} clean cases.", "", "| Measure | Value |", "|---|---|",
+            f"| Recall of the rule-based checks | {pct(r['baseline'])} |", f"| Recall of the critic alone | {pct(r['critic'])} |", f"| Recall of both together | {pct(r['union'])} |",
+            f"| Critic false alarms on clean cases | {pct(d['critic_false_alarm_rate'])} |", f"| Rule-based false alarms on clean cases | {pct(d['baseline_false_alarm_rate'])} |", f"| Questions the critic could not answer | {d['critic_could_not_answer']} |", "",
+            "Limit: blunt synthetic contradictions; the plan asks for a union recall 20 points above the rules.", ""]
+
+
+def section_gateway() -> list[str]:
+    d = load("load-gateway-4x5.json")
+    if d is None:
+        return ["## Gateway under load", "", "not run", ""]
+    return ["## Gateway under load (one model slot)", "", f"{d['callers']} callers x {d['calls_each']} calls, {d['model']}.", "", "| Measure | Value |", "|---|---|", f"| Answered | {d['served']} |", f"| Fallback signals | {d['fallback_signals']} |",
+            f"| Queue wait p50 / p95 | {d['queue_wait_s_p50']} s / {d['queue_wait_s_p95']} s |", f"| Service time p50 / p95 | {d['service_s_p50']} s / {d['service_s_p95']} s |", f"| Calls per minute | {d['calls_per_minute']} |", "",
+            "Limit: the model host and the slot rule only; the speech recognition half of EXP-BE-2 was not run.", ""]
+
+
+def section_personalisation() -> list[str]:
+    d = load("personalisation_simulation.json")
+    if d is None:
+        return ["## Personalisation policies (simulation)", "", "not run", ""]
+    rows = [f"| {k.replace('_minus_', ' minus ')} | {v['mean']} | {v['ci95'][0]} to {v['ci95'][1]} | {'yes' if v['better'] else 'no'} |" for k, v in d["paired"].items()]
+    return [f"## Personalisation policies ({d['learners']} simulated learners, {d['sessions']} sessions)", "", "| Paired difference in true improvement of the five weakest behaviours | Mean | 95% interval | Better |", "|---|---|---|---|"] + rows + [
+            "", "Limit: a simulation with assumed learning; it shows whether a policy can find and train a weakness, not that real trainees improve (pilot: p1-evaluation-s03).", ""]
+
+
+def section_novelty() -> list[str]:
+    d = load("novelty_simulation.json")
+    if d is None:
+        return ["## Novelty over simulated trainees", "", "not run", ""]
+    return ["## Novelty over simulated trainees", "", f"{d['trainees']} trainees, {d['sessions_each']} sessions each.", "", "| Measure | Value |", "|---|---|", f"| Novelty rate | {pct(d['novel_rate'])} |",
+            f"| Low-novelty cases served | {d['low_novelty']} |", f"| Fallbacks | {d['fallbacks']} |", f"| Mean distance to the nearest earlier case | {round(d['mean_nearest'], 3)} |", ""]
+
+
+def section_classifier() -> list[str]:
+    d = load("classifier-bench-synthetic.json")
+    if d is None:
+        return ["## Communication act classifier", "", "not run", ""]
+    lat = load("classifier-latency.json") or {}
+    rows = []
+    for name, c in d["candidates"].items():
+        g = c["guard"]
+        p = c["post_hoc_guard_v2"]
+        asr = c.get("asr_copies", {})
+        asr_text = " / ".join(f"{pct(v['accuracy'])}" for v in asr.values()) if asr else "n/a"
+        ms = (lat.get(name) or {}).get("p50_ms")
+        rows.append(f"| {name} | {c['macro_f1']} ({c['macro_f1_ci95'][0]} to {c['macro_f1_ci95'][1]}) | {c['credited']} / {c['credited_precision']} | {c['false_credits']} | {pct(c['abstained_share'])} | {c['critical_acts_credited_from_speech']} | "
+                    f"{c['critical_said_but_credited_as_other_act']} (before the guard {c['critical_said_but_credited_as_other_act_before_guard']}; post hoc, guard v2: {p['critical_said_but_credited_as_other_act']}) | {asr_text} | {'n/a' if ms is None else str(ms) + ' ms'} |")
+    diffs = [f"| {k} | {v['macro_f1_difference']} | {v['ci95'][0]} to {v['ci95'][1]} |" for k, v in d["paired_macro_f1_differences"].items()]
+    return ["## Communication act classifier (synthetic, NOT independent)", "",
+            f"{d['provenance']}", "",
+            f"Rows: {d['rows']['train']} train, {d['rows']['dev']} dev, {d['rows']['test']} test, {d['rows'].get('asr', 0)} recogniser copies of test sentences. Leakage between splits: {d['leakage']}.", "",
+            "| Candidate | Macro-F1 (95% interval) | Credited / precision | False credits | Not credited | Critical acts credited from speech | A critical act said, credited as another act | Recogniser copies, clean / telephone band | Latency p50, one sentence, quiet machine |",
+            "|---|---|---|---|---|---|---|---|---|"] + rows + [
+            "", "| Paired comparison | Macro-F1 difference | 95% interval |", "|---|---|---|"] + diffs + ["", f"Intervals: {d.get('intervals', 'by writing style')}", "", f"Verdict: {d['verdict']}", "",
+            "Limit: every sentence and label was written by the model that built the tooling, in eight simulated styles (two in the test split); no person wrote, labelled or reviewed anything. This is a check across writing styles, not evidence about real trainee speech. "
+            "The guard against crediting critical sentences was extended after the test split was scored, so its figures in brackets are post hoc. The independent set (docs/research/classifier_benchmark) is still blocked on people, so the classifier stays off in production (content/ai/features.json).", ""]
+
+
+def section_dialogue() -> list[str]:
+    d = load("dialogue-eval.json")
+    if d is None:
+        return ["## Patient and staff dialogue", "", "not run", ""]
+    return ["## Patient dialogue", "", f"Model {d['model']} (`{d['digest'][:12]}`), {d['cases']} cases.", "", "| Measure | Value |", "|---|---|",
+            f"| Earned questions answered by the model | {d['earned']['model']} of {d['earned']['n']} (fell back {d['earned']['fallback']}) |", f"| Of those, the reply used the fact | {d['earned']['used_fact']} |",
+            f"| Withheld questions answered \"cannot recall\" | {d['withheld']['cannot_recall']} of {d['withheld']['n']} |", f"| Validator leaks / shared-word leaks | {d['withheld']['validator_leaks']} / {d['withheld']['word_leaks']} |",
+            f"| Latency p50 / p95 | {d['ms_p50']} ms / {d['ms_p95']} ms |", "",
+            "Limit: the leak checks are lexical; a paraphrase or a made-up denial is not seen by them (red team: docs/research/redteam_report.md). Every withheld reply is in the result file for a person to read.", ""]
+
+
+def section_debrief() -> list[str]:
+    d = load("debrief-eval.json")
+    if d is None:
+        return ["## AI debrief", "", "not run", ""]
+    return ["## AI debrief (rewrite of the template debrief)", "", f"Model {d['model']} (`{d['digest'][:12]}`), {d['sessions']} golden sessions.", "", "| Measure | Value |", "|---|---|",
+            f"| The rewrite replaced the template | {d['ai_used']} of {d['sessions']} ({pct(d['accept_rate'])}) |", f"| The template stayed (reasons) | {d['template_kept']} ({d['reasons']}) |",
+            f"| Latency p50 / worst | {d['latency_ms_p50']} ms / {d['latency_ms_max']} ms; within 8 s: {pct(d['within_8s_share'])} |", f"| Corrupted rewrites refused | {d['mutations_rejected']} of {d['mutations']} |", "",
+            "Limit: the validator knows the engine's event words only; an event that is not one of them passes (DT-211).", ""]
+
+
+def section_voice() -> list[str]:
+    out = ["## Voice: speech recognition, speech output and spoken orders", ""]
+    a = load("asr-wer.json")
+    out += ["| Measure | Value |", "|---|---|"]
+    out.append("| Word error rate of the recogniser on rendered voice lines | not run |" if a is None else f"| Word error rate ({a['model']} on {a['device']}, {a['clips']} clips) | {a['wer']} |")
+    t = load("tts-latency.json")
+    out.append("| First spoken sentence, 95th percentile | not run |" if t is None else f"| First spoken sentence, 95th percentile ({t['sentences']} sentences) | {t['first_sentence_seconds']} s (median {t['p50_seconds']} s) |")
+    o = load("orders-eval.json")
+    if o is None:
+        out.append("| Spoken orders | not run |")
+    else:
+        out += [f"| Spoken orders parsed to the right target ({o['phrases']} phrasings, mild recogniser-like errors) | {pct(o['parsed_right'])} |", f"| ... to a wrong target (the read-back catches these) | {pct(o['wrong_target'])} |",
+                f"| Actions released without a confirmation | {o['released_without_confirmation']} |"]
+    return out + ["", "Limit: clean synthetic speech from one voice is an upper bound, not accented trainees in a noisy room (DT-205); Piper is started afresh for each sentence.", ""]
+
+
+def section_redteam() -> list[str]:
+    d = load("redteam.json")
+    if d is None:
+        return ["## Red team of the grounding validator", "", "not run", ""]
+    rows = [f"| {k} | {v['attacks']} | {v['escapes']} | {pct(v['escape_rate'])} | {'critical' if v['critical'] else 'known gap'} |" for k, v in d["classes"].items()]
+    return ["## Red team of the grounding validator", "", f"Critical classes: {d['critical_escapes']} escapes.", "", "| Class | Attacks | Escapes | Escape rate | Kind |", "|---|---|---|---|---|"] + rows + ["", "Limit: a lexical check cannot see a paraphrase, a synonym or a made-up denial (DT-190, DT-211).", ""]
+
+
+def build() -> str:
+    parts = ["# AI evaluation (generated)", "", "Generated by `tools/eval/collect_ai.py` from the result files in `reports/ai/`; do not edit. Each section names the model and its digest, and each states what the measure does not show.", ""]
+    for fn in (section_narrative, section_planner, section_interpreter, section_critic, section_classifier, section_dialogue, section_debrief, section_voice, section_redteam, section_gateway, section_personalisation, section_novelty):
+        parts += fn()
+    return "\n".join(parts).rstrip("\n") + "\n"
+
+
+def main(argv: list[str]) -> int:
+    text = build()
+    if "--check" in argv:
+        ok = OUT.exists() and OUT.read_text(encoding="utf-8") == text
+        print("AI evaluation report: " + ("current" if ok else "out of date: run tools/eval/collect_ai.py"))
+        return 0 if ok else 1
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(text, encoding="utf-8", newline="\n")
+    print("wrote", OUT.relative_to(ROOT).as_posix())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))

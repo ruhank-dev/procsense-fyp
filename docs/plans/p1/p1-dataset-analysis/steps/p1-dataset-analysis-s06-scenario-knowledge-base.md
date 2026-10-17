@@ -17,9 +17,7 @@ The AI composer must learn relationships from evidence instead of drawing indepe
 
 ## Status (17 October 2026)
 
-- **Built:** `content/kb/schema.json` and `tools/kb/build_kb.py` (`--check` in CI, `--neighbours`): 836 relations imported from the bands, critical limits, test indications, treatment clashes, what-ifs, the authored cases (problem to abnormal result and to expected action), the image tags and the dataset correlations; each has an SR, DS or CASE source, a confidence (verified, authored, statistical) and, for statistical ones, n and a 95 % interval with weak marked under 50. `tools/kb/extract_relations.py` asks the offline model (qwen3.5:9b) for candidate relations from case and walkthrough chunks, keeps one only if its quote appears word for word and both ends are in the quote, queues it unreviewed (`content/kb/review_queue.json`), and imports nothing until a person approves it (`--approve ID --by NAME`); `--sheet` and `--score` give a labeller the sample and the precision.
-- **Measured:** a first run on 16 case chunks gave 33 proposed, 21 kept, 12 dropped as ungrounded (quote not word for word 1, subject not in the quote 7, object not in the quote 4).
-- **Not met:** the gate of precision at least 0.8 on 100 hand-labelled relations and recall above a keyword baseline needs a person to label (DT-114, p1-ai-infrastructure-s04); until then no model relation is in the base. Compatibility suggestions for blocks (A12.c2) wait for the block library (p1-scenario-composer-difficulty-s01).
+- **Labelling:** the relation labels the precision gate needs (100 relations, two labellers) can be made with `tools/labelling/label.py --kind relation`; the labellers are still the open need (DT-114, DT-210).
 
 ## Verification
 Every relation has a source; extraction precision at least 0.8 on 100 hand-labelled relations and recall above a keyword baseline; importer `--check` passes.

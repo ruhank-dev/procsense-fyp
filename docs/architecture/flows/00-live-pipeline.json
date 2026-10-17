@@ -33,8 +33,8 @@
       "actor": "agent",
       "label": "LG-04",
       "title": "AI plan composer + constraint solver",
-      "text": "Planned. The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases… Plans: A1, A2, A3, A4.",
-      "tone": "blue"
+      "text": "Partly built. The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases… Plans: A1, A2, A3, A4.",
+      "tone": "sun"
     },
     {
       "id": "LG-05",
@@ -49,8 +49,8 @@
       "actor": "model",
       "label": "LG-06",
       "title": "AI narrative, profile and persona",
-      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
-      "tone": "coral"
+      "text": "Partly built. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
+      "tone": "sun"
     },
     {
       "id": "LG-07",
@@ -177,24 +177,24 @@
       "actor": "eye",
       "label": "LP-01",
       "title": "Learner profile retrieval (session start)",
-      "text": "Proposed. Load the trainee's LearnerProfile v1 (posteriors, demonstrated weaknesses, hypotheses, trends, recent fingerprints). Plans: D67.",
-      "tone": "aqua"
+      "text": "Partly built. Load the trainee's LearnerProfile v1 (posteriors, demonstrated weaknesses, hypotheses, trends, recent fingerprints). Plans: D67.",
+      "tone": "sun"
     },
     {
       "id": "LP-02",
       "actor": "sync",
       "label": "LP-02",
       "title": "Learner profile update (post-session, cheap)",
-      "text": "Proposed. Extract SessionEvidence v1, update posteriors and pattern status; the LLM interpreter adds hypotheses offline. Plans: D67.",
-      "tone": "aqua"
+      "text": "Partly built. Extract SessionEvidence v1, update posteriors and pattern status; the LLM interpreter adds hypotheses offline. Plans: D67.",
+      "tone": "sun"
     },
     {
       "id": "LP-03",
       "actor": "idea",
       "label": "LP-03",
       "title": "Personalised targeting policy",
-      "text": "Proposed. Turn the profile into Objectives v1 (rules, later a contextual bandit adopted after off-policy evaluation) and the why-this-case facts. Plans: D68.",
-      "tone": "aqua"
+      "text": "Partly built. Turn the profile into Objectives v1 (rules, later a contextual bandit adopted after off-policy evaluation) and the why-this-case facts. Plans: D68.",
+      "tone": "sun"
     },
     {
       "id": "ENTRY-TRAINEE",

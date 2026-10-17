@@ -1,0 +1,262 @@
+{
+ "note": "What each AI feature must show before it is switched on (p1-ai-language-s09). Every value is a design value chosen by the implementer from the plan's targets, awaiting the owner's review; a feature is enabled only when every suite below passes on the committed result files in reports/ai. A suite with no result file is SKIPPED, and SKIPPED never passes: the feature stays off. tools/eval/ai_gate.py writes content/ai/features.json from this file.",
+ "features": {
+  "narrative": {
+   "label": "Patient wording of generated cases",
+   "suites": [
+    {
+     "id": "narrative.schema_valid_first_try",
+     "file": "narrative-4b.json",
+     "path": "first_try_schema_valid_rate",
+     "op": ">=",
+     "value": 0.95,
+     "ref": "plan p1-live-scenario-generation-s04: 95 percent"
+    },
+    {
+     "id": "narrative.accepted_share",
+     "file": "narrative-4b.json",
+     "path": "accept_rate",
+     "op": ">=",
+     "value": 0.6,
+     "ref": "design value"
+    }
+   ]
+  },
+  "plan_composer": {
+   "label": "AI plan composer",
+   "suites": [
+    {
+     "id": "planner.not_worse_coverage",
+     "file": "planner-eval.json",
+     "path": "arms.planner.coverage_mean",
+     "op": ">=",
+     "vs": "arms.solver.coverage_mean",
+     "ref": "plan: better than the solver alone"
+    },
+    {
+     "id": "planner.served",
+     "file": "planner-eval.json",
+     "path": "arms.planner.served",
+     "op": ">=",
+     "vs": "arms.solver.served",
+     "ref": "plan: equal Stage B pass rate"
+    }
+   ]
+  },
+  "critic": {
+   "label": "Text consistency critic",
+   "suites": [
+    {
+     "id": "critic.recall_gain",
+     "file": "critic-eval.json",
+     "path": "recall.union",
+     "op": ">=",
+     "vs": "recall.baseline",
+     "plus": 0.2,
+     "ref": "plan: 20 points above the rules"
+    },
+    {
+     "id": "critic.false_alarms",
+     "file": "critic-eval.json",
+     "path": "critic_false_alarm_rate",
+     "op": "<=",
+     "value": 0.1,
+     "ref": "plan: under 10 percent"
+    }
+   ]
+  },
+  "patient_dialogue": {
+   "label": "Patient free-text dialogue",
+   "suites": [
+    {
+     "id": "dialogue.no_leaked_words",
+     "file": "dialogue-eval.json",
+     "path": "withheld.word_leaks",
+     "op": "==",
+     "value": 0,
+     "ref": "plan: zero leaks"
+    },
+    {
+     "id": "dialogue.no_validator_leaks",
+     "file": "dialogue-eval.json",
+     "path": "withheld.validator_leaks",
+     "op": "==",
+     "value": 0,
+     "ref": "plan: zero leaks"
+    },
+    {
+     "id": "dialogue.latency_p95_ms",
+     "file": "dialogue-eval.json",
+     "path": "ms_p95",
+     "op": "<=",
+     "value": 3000,
+     "ref": "plan: 3 s"
+    }
+   ]
+  },
+  "classifier": {
+   "label": "Communication act classifier (sentence embeddings + logistic regression)",
+   "suites": [
+    {
+     "id": "classifier.macro_f1",
+     "file": "classifier-bench-independent.json",
+     "path": "candidates.embeddings_logreg.macro_f1",
+     "op": ">=",
+     "value": 0.75,
+     "ref": "plan: below macro-F1 0.75 the classifier stays switched off"
+    },
+    {
+     "id": "classifier.credited_precision",
+     "file": "classifier-bench-independent.json",
+     "path": "candidates.embeddings_logreg.credited_precision",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "plan: precision 0.8 on what is credited"
+    },
+    {
+     "id": "classifier.no_critical_credited",
+     "file": "classifier-bench-independent.json",
+     "path": "candidates.embeddings_logreg.critical_acts_credited_from_speech",
+     "op": "==",
+     "value": 0,
+     "ref": "plan: critical acts never credited from speech"
+    },
+    {
+     "id": "classifier.no_critical_misrouted",
+     "file": "classifier-bench-independent.json",
+     "path": "candidates.embeddings_logreg.critical_said_but_credited_as_other_act",
+     "op": "==",
+     "value": 0,
+     "ref": "a critical sentence must not earn credit under another act (benchmark finding)"
+    },
+    {
+     "id": "classifier.independent_evidence",
+     "file": "classifier-bench-independent.json",
+     "path": "valid_for_claims",
+     "op": "==",
+     "value": true,
+     "ref": "owner rule: no claim from synthetic or self-labelled data; the independent set (docs/research/classifier_benchmark) needs real authors, a second labeller and an adjudicator"
+    }
+   ]
+  },
+  "debrief_ai": {
+   "label": "AI debrief wording",
+   "suites": [
+    {
+     "id": "debrief.accepted_share",
+     "file": "debrief-eval.json",
+     "path": "accept_rate",
+     "op": ">=",
+     "value": 0.5,
+     "ref": "design value"
+    },
+    {
+     "id": "debrief.mutations_rejected",
+     "file": "debrief-eval.json",
+     "path": "mutations_rejected",
+     "op": "==",
+     "vs": "mutations",
+     "ref": "plan: every corruption refused"
+    },
+    {
+     "id": "debrief.within_8_s",
+     "file": "debrief-eval.json",
+     "path": "within_8s_share",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "plan: 8 s"
+    }
+   ]
+  },
+  "interpreter": {
+   "label": "Performance interpreter",
+   "suites": [
+    {
+     "id": "interpreter.better_than_random",
+     "file": "interpreter-eval.json",
+     "path": "confirmed_by_model",
+     "op": ">=",
+     "vs": "confirmed_by_random_picks",
+     "plus": 0.05,
+     "ref": "plan: more often than random picks"
+    }
+   ]
+  },
+  "asr": {
+   "label": "Speech recognition",
+   "suites": [
+    {
+     "id": "asr.wer_synthetic",
+     "file": "asr-wer.json",
+     "path": "wer",
+     "op": "<=",
+     "value": 0.25,
+     "ref": "design value on clean synthetic speech; a test on real speech is open (DT-205)"
+    }
+   ]
+  },
+  "tts": {
+   "label": "Live speech",
+   "suites": [
+    {
+     "id": "tts.first_sentence_s",
+     "file": "tts-latency.json",
+     "path": "first_sentence_seconds",
+     "op": "<=",
+     "value": 2.5,
+     "ref": "plan: 2.5 s"
+    }
+   ]
+  },
+  "voice_orders": {
+   "label": "Spoken orders with read-back",
+   "suites": [
+    {
+     "id": "orders.no_action_without_confirmation",
+     "file": "orders-eval.json",
+     "path": "released_without_confirmation",
+     "op": "==",
+     "value": 0,
+     "ref": "plan T-VO: no action without confirmation"
+    }
+   ]
+  },
+  "classifier_synthetic": {
+   "label": "Communication act classifier on SYNTHETIC styles (model-written and model-labelled, NOT independent; recorded for information, switches nothing on)",
+   "suites": [
+    {
+     "id": "classifier_synthetic.macro_f1",
+     "file": "classifier-bench-synthetic.json",
+     "path": "candidates.embeddings_logreg.macro_f1",
+     "op": ">=",
+     "value": 0.75,
+     "ref": "plan: below macro-F1 0.75 the classifier stays switched off"
+    },
+    {
+     "id": "classifier_synthetic.credited_precision",
+     "file": "classifier-bench-synthetic.json",
+     "path": "candidates.embeddings_logreg.credited_precision",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "plan: precision 0.8 on what is credited"
+    },
+    {
+     "id": "classifier_synthetic.no_critical_credited",
+     "file": "classifier-bench-synthetic.json",
+     "path": "candidates.embeddings_logreg.critical_acts_credited_from_speech",
+     "op": "==",
+     "value": 0,
+     "ref": "plan: critical acts never credited from speech"
+    },
+    {
+     "id": "classifier_synthetic.no_critical_misrouted",
+     "file": "classifier-bench-synthetic.json",
+     "path": "candidates.embeddings_logreg.critical_said_but_credited_as_other_act",
+     "op": "==",
+     "value": 0,
+     "ref": "a critical sentence must not earn credit under another act (benchmark finding)"
+    }
+   ]
+  }
+ }
+}

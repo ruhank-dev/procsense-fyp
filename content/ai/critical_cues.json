@@ -1,0 +1,71 @@
+{
+ "note": "Words and phrases that mark a sentence as carrying critical content (allergy, identity, consent, fasting state, a worsening sign, a structured handover). If a classifier names a NON-critical act for such a sentence, the sentence is not credited as that act: speech can never earn credit for a critical item, and a sentence that touches one is not allowed to earn credit under another act by being mislabelled. The sentence is still recorded. Lower-case regular expressions; reviewed with the act taxonomy (content/assessment/taxonomy.json). Version 2 (17 October 2026, after the first synthetic test run found seven sentences about an allergy reaction, a consent question and a handover that the language model still credited under ordinary acts): the allergens of content/ai/lexicon.json are cues too (loaded by guard.py), and the handover and consent cues cover \"that's the background\", \"my suggestion\" and \"all right to go ahead\". These were added after the synthetic test split was scored, so the as-scored numbers in reports/ai/classifier-bench-synthetic.json are those of version 1 and the effect of version 2 is reported separately as post hoc. Found by the classifier benchmark: the language model credited critical sentences under non-critical acts (docs/research/classifier_benchmark/qwen_critical_cases.md).",
+ "cues": {
+  "allergy": [
+   "allerg",
+   "anaphyla",
+   "\\brash\\b",
+   "\\bhives\\b",
+   "intoleran",
+   "reaction to",
+   "reacted to",
+   "swell(ing|ed)? up",
+   "penicillin",
+   "\\blatex\\b"
+  ],
+  "identity": [
+   "wrist ?band",
+   "\\bid band\\b",
+   "identity",
+   "date of birth",
+   "\\bdob\\b",
+   "birthday",
+   "hospital number",
+   "full name",
+   "your name",
+   "name on (the |his |her |my )?(band|chart|notes)",
+   "band (says|name)"
+  ],
+  "consent": [
+   "consent",
+   "signature",
+   "\\bsign (here|the|this|it)\\b",
+   "sign (here|the|this) ",
+   "\\bagree\\b",
+   "happy (for us )?to (go ahead|proceed)",
+   "willing to",
+   "content for us to",
+   "(okay|ok|fine) with (the|being) (op|operation|surgery|anaesthetic|put to sleep)",
+   "\\b(all right|okay|ok|fine) (for us |with you )?to (go ahead|proceed|operate)",
+   "(happy|content|willing) to (go ahead|proceed)",
+   "go ahead with the (op|operation|surgery|anaesthetic)",
+   "whether it'?s (all right|okay|ok)"
+  ],
+  "fasting": [
+   "\\bfasted\\b",
+   "\\bfasting\\b",
+   "nil by mouth",
+   "\\bnbm\\b",
+   "not fasted",
+   "(had|ate) (breakfast|toast|a sandwich)"
+  ],
+  "worsening": [
+   "deteriorat",
+   "getting worse",
+   "(pressure|bp|sats|saturations?|oxygen|pulse|heart rate|obs)\\b[^.?!]{0,40}\\b(dropp|fall|falling|sliding|drifting|low|down|worse|not coming)",
+   "(dropp|falling|sliding|drifting)[^.?!]{0,30}(pressure|bp|sats|saturations?|oxygen)"
+  ],
+  "handover": [
+   "^(situation|background|assessment|recommendation)\\b",
+   "\\bmy (recommendation|assessment)\\b",
+   "\\bi recommend\\b",
+   "\\bthe situation is\\b",
+   "\\bbackground is\\b",
+   "\\bthat'?s the background\\b",
+   "\\bthe background\\b",
+   "\\bmy suggestion\\b",
+   "\\bi suggest\\b",
+   "\\brecommend"
+  ]
+ }
+}

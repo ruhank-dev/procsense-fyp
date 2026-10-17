@@ -1,0 +1,183 @@
+{
+  "note": "Every prompt a model is given. A released prompt is immutable: a change is a new version with a new file and hash (server/llm/prompts.py check).",
+  "prompts": [
+    {
+      "id": "compose.narrative",
+      "version": 1,
+      "role": "batch",
+      "file": "compose/v1.txt",
+      "sha256": "97bd7c6adb3bea157a4b2fdf0415395aa30cbb20039f01c35d59961875f68ff4",
+      "schema": "server/schemas/ai/narrative_line.json",
+      "variables": [
+        "style",
+        "age",
+        "sex_word",
+        "topic",
+        "original"
+      ],
+      "num_predict": 300,
+      "think": false,
+      "gateway": true
+    },
+    {
+      "id": "compose_plan.spine",
+      "version": 1,
+      "role": "batch",
+      "file": "compose_plan/spine_v1.txt",
+      "sha256": "ff4547fb4f01a93a0900fce977a120b4822eb53964d39ea35f4ec41e570e55d9",
+      "schema": null,
+      "variables": [
+        "objectives",
+        "difficulty",
+        "avoid",
+        "candidates"
+      ],
+      "num_predict": 200,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "compose_plan.blocks",
+      "version": 1,
+      "role": "batch",
+      "file": "compose_plan/blocks_v1.txt",
+      "sha256": "8721754ceb167e2a4565b3b1c334894d7171b33f0003a8c962ce055eb1ce2b57",
+      "schema": null,
+      "variables": [
+        "case",
+        "avoid",
+        "slots"
+      ],
+      "num_predict": 300,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "personalisation.interpret",
+      "version": 1,
+      "role": "batch",
+      "file": "personalisation/interpret_v1.txt",
+      "sha256": "cbed0e73962c59cd1d603e34c66445fa10b3714feb15721101e8aed7900c9bc8",
+      "schema": null,
+      "variables": [
+        "profile"
+      ],
+      "num_predict": 500,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "critic.claims",
+      "version": 1,
+      "role": "batch",
+      "file": "critic/claims_v1.txt",
+      "sha256": "fe3ee2eb3b26015fef5d4ee22b5a72787ae8e321fc4a0239d6b654a260a30bd9",
+      "schema": null,
+      "variables": [
+        "facts",
+        "lines"
+      ],
+      "num_predict": 500,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "critic.verify",
+      "version": 1,
+      "role": "batch",
+      "file": "critic/verify_v1.txt",
+      "sha256": "264eae29d1967da4e8533991b4994792f2e31d349149f5cee2d1a22830c50981",
+      "schema": null,
+      "variables": [
+        "fact",
+        "line",
+        "claim"
+      ],
+      "num_predict": 40,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "classify.acts",
+      "version": 1,
+      "role": "live",
+      "file": "classify/acts_v1.txt",
+      "sha256": "69c5a1305524f7a3a2916d21e769225118769e7ec8502927aa7cc203f5791bf5",
+      "schema": null,
+      "variables": [
+        "acts",
+        "sentence"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "dialogue.patient",
+      "version": 1,
+      "role": "live",
+      "file": "dialogue/patient_v1.txt",
+      "sha256": "f918599cc91c7959d1861157190eb4daaeabaafc785f145ed93877bdea6ee92b",
+      "schema": null,
+      "variables": [
+        "style",
+        "age",
+        "sex_word",
+        "intents",
+        "facts",
+        "turns",
+        "question"
+      ],
+      "num_predict": 160,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "dialogue.staff",
+      "version": 1,
+      "role": "live",
+      "file": "dialogue/staff_v1.txt",
+      "sha256": "c183d7aef3bc13f947f4568f1fdd4f27e8d8cbc50f34f6cd8337f04b89878e2e",
+      "schema": null,
+      "variables": [
+        "role",
+        "intents",
+        "facts",
+        "turns",
+        "question"
+      ],
+      "num_predict": 160,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "debrief.rewrite",
+      "version": 1,
+      "role": "batch",
+      "file": "debrief/rewrite_v1.txt",
+      "sha256": "05b72289fb2e7b1e479617047a20ec916281b294c7cb00fcd2a912cc5539f80e",
+      "schema": null,
+      "variables": [
+        "titles",
+        "facts"
+      ],
+      "num_predict": 700,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "analytics.explain_result",
+      "version": 1,
+      "role": "live",
+      "file": "analytics/explain_result_v1.txt",
+      "sha256": "b12040aa4bb65f811604d39c5839a0890ca79852740ac3b155c4607d82da4f7e",
+      "schema": "server/schemas/ai/explain_line.json",
+      "variables": [
+        "result"
+      ],
+      "num_predict": 120,
+      "think": false,
+      "gateway": false
+    }
+  ]
+}

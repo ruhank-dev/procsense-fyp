@@ -10,9 +10,10 @@ called here; the model steps (s04, s13, s15) wrap this baseline and fall back to
 """
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass, field
 
-from . import contracts, novelty, objectives as ob, package, quality, repair, retrieve, skeleton
+from . import contracts, novelty, objectives as ob, package, quality, repair, reports, retrieve, skeleton
 
 
 @dataclass
@@ -25,6 +26,9 @@ class Context:
     library: list[dict] | None = None
     library_levels: list[dict] | None = None
     discovery_all: list[dict] | None = None
+    critic: object | None = None                # generation.critic.Critic, or None: no model review of the free text
+    planner: object | None = None               # generation.compose_plan.Planner, or None: the deterministic choice of story and blocks
+    narrator: object | None = None              # generation.narrative.Narrator, or None: the patient keeps the authored words
 
     def discovery(self, spine: str) -> list[dict]:
         return skeleton.discovery_rules(spine) if self.discovery_all is None else [r for r in self.discovery_all if r["case"] == spine]
@@ -40,7 +44,9 @@ class Result:
 
 
 def _candidate(objectives: dict, ctx: Context, serial: int, **kw) -> tuple[dict, dict]:
-    sk = skeleton.build_skeleton(objectives, ctx.index, ctx.cases, ctx.tables, ctx.behaviour_labels, ctx.library, serial, **kw)
+    sk = skeleton.build_skeleton(objectives, ctx.index, ctx.cases, ctx.tables, ctx.behaviour_labels, ctx.library, serial, planner=ctx.planner, **kw)
+    if ctx.narrator is not None:
+        sk["narrative"] = ctx.narrator.apply(sk["case"], objectives["seed"])         # words only; the gate below checks the changed case again
     return sk, novelty.levels_of(sk["case"], sk["media"])
 
 
@@ -54,6 +60,14 @@ def _gate(pkg: dict, objectives: dict, ctx: Context) -> list[dict]:
     pkg["quality"]["advisory"] = q["advisory"]
     pkg["quality"]["unmet_dimensions"] = q["unmet_dimensions"]
     defects += [{"stage": "quality", "code": f["code"], "detail": f["detail"]} for f in q["failures"]]
+    texts = reports.render(pkg["case"], pkg.get("media"))
+    for d in reports.check(texts, pkg["case"], pkg.get("media")):
+        defects.append({"stage": "reports", "code": "UNLOCKED_NUMBER", "detail": d})
+    if ctx.critic is not None:
+        flags = ctx.critic.review(pkg["case"])
+        pkg["quality"]["critic"] = "unavailable" if flags is None else f"{len(flags)} flag(s)"
+        for f in flags or []:
+            defects.append({"stage": "critic", "code": "CRITIC", "detail": f"{f.line}: {f.claim} (fact: {f.fact})"})
     return defects
 
 
@@ -82,6 +96,7 @@ def generate(request: dict, history: list[ob.SessionRecord], novelty_history: li
     if o["seed"] != objectives["seed"]:
         pkg["provenance"]["base_seed"] = objectives["seed"]
     defects = _gate(pkg, o, ctx)
+    budget.started = time.monotonic()                      # the time budget is for repair: the model calls that made the first candidate do not use it up
     tried: list[str] = []
     repairs: list[dict] = []
     while defects and not budget.spent():

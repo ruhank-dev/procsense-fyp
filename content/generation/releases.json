@@ -29,6 +29,35 @@
       ],
       "summary": "First release: the packs built from the dataset profiles and the thresholds of the specification, checked on a simulated batch of 240 requests (0 fallbacks); the proposals in the report are for the next release.",
       "review": "made by the implementer for the owner to read; not yet reviewed"
+    },
+    {
+      "release": "R2",
+      "date": "2026-10-17",
+      "packs_hash": "32f2421787846851",
+      "thresholds": {
+        "novelty": {
+          "min_distance": 0.35,
+          "history": 10,
+          "structural_history": 3,
+          "deliberate_clinical": 0.3,
+          "attempts": 5
+        },
+        "quality": {
+          "teachable": 1.0,
+          "discoverable": 1.0,
+          "difficulty": 0.5,
+          "fairness": 1.0,
+          "reading": 0.8,
+          "persona": 1.0,
+          "coherence": 1.0
+        },
+        "repair_rounds": 3
+      },
+      "cites": [
+        "EVAL-7603eb25344c"
+      ],
+      "summary": "Adds the joint model of laboratory results (content/generation/packs/joint.json, a Gaussian copula over 19 analytes with 92 correlated pairs, fitted offline by tools/generation/fit_joint.py) so a panel keeps the correlations real patients show instead of independent draws. The thresholds are those of R1. The simulated batch of 240 requests was run again with it: the report and its outcomes are unchanged (0 fallbacks), so the cited report is the one that shows generation behaving with the new packs; the case for the change is tools/ci/test_generation_joint.py (the correlation error of drawn panels is less than half that of independent draws, every value is inside its zone, 200-seed property tests pass).",
+      "review": "made by the implementer for the owner to read; not yet reviewed"
     }
   ]
 }

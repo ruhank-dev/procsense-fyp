@@ -25,40 +25,40 @@
       "actor": "model",
       "label": "MC-03",
       "title": "Communication act classification",
-      "text": "Blocked. Communication act classification (C35, C37, E60)",
-      "tone": "coral"
+      "text": "Partly built. Communication act classification (C35, C37, E60)",
+      "tone": "sun"
     },
     {
       "id": "MC-04",
       "actor": "model",
       "label": "MC-04",
       "title": "Debrief rewrite, coaching, explanations",
-      "text": "Blocked. Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56)",
-      "tone": "coral"
+      "text": "Partly built. Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56)",
+      "tone": "sun"
     },
     {
       "id": "MC-05",
       "actor": "model",
       "label": "MC-05",
       "title": "Speech recognition",
-      "text": "Planned. Speech recognition (C31 to C35, E59, E63)",
-      "tone": "blue"
+      "text": "Partly built. Speech recognition (C31 to C35, E59, E63)",
+      "tone": "sun"
     },
     {
       "id": "MC-06",
       "actor": "model",
       "label": "MC-06",
       "title": "Text-to-speech",
-      "text": "Planned. Text-to-speech (C31, C34)",
-      "tone": "blue"
+      "text": "Partly built. Text-to-speech (C31, C34)",
+      "tone": "sun"
     },
     {
       "id": "MC-07",
       "actor": "model",
       "label": "MC-07",
       "title": "Retrieval",
-      "text": "Planned. Retrieval (E58, LG-03)",
-      "tone": "blue"
+      "text": "Partly built. Retrieval (E58, LG-03)",
+      "tone": "sun"
     },
     {
       "id": "MC-08",
@@ -121,8 +121,8 @@
       "actor": "code",
       "label": "CMP-TTS",
       "title": "Speech output (pre-rendered and live)",
-      "text": "Planned. Speech output (pre-rendered and live). Plans: C31, C34.",
-      "tone": "blue"
+      "text": "Partly built. Speech output (pre-rendered and live). Plans: C31, C34.",
+      "tone": "sun"
     },
     {
       "id": "LG-03",
@@ -137,16 +137,16 @@
       "actor": "agent",
       "label": "LG-04",
       "title": "AI plan composer + constraint solver",
-      "text": "Planned. The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases… Plans: A1, A2, A3, A4.",
-      "tone": "blue"
+      "text": "Partly built. The AI composer (LLM with retrieval over the scenario knowledge base and exemplar cases… Plans: A1, A2, A3, A4.",
+      "tone": "sun"
     },
     {
       "id": "LG-06",
       "actor": "model",
       "label": "LG-06",
       "title": "AI narrative, profile and persona",
-      "text": "Blocked. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
-      "tone": "coral"
+      "text": "Partly built. A served LLM fills the narrative slots only: presenting story in the patient's words, social context, persona traits, staff handover wording… Plans: A1, A2, A3, A7.",
+      "tone": "sun"
     },
     {
       "id": "LG-07",

@@ -13,6 +13,10 @@ Step 15 (Sign Out) requires the specimen to be labelled and read aloud; the reco
 2. Specimen container: clear pot with lid thread, label area, biohazard bag variant.
 3. Recovery setup: reuse monitor/oxygen/suction prefabs placed via the recovery manifest.
 
+## Status (17 October 2026)
+
+- **Not started (3D assets, Sannan's area):** the specimen container with screw lid and live label, and the recovery set-up. The Core side is built: `read_specimen_label` takes the patient name from the case, so the label text can be live.
+
 ## Verification
 Validator + previews approved; specimen labelling interaction works in the headset.
 

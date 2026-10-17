@@ -29,7 +29,7 @@ The full architecture (learning from evidence, AI composition, how each modality
 | OFF-06 | Media asset index (images and ECG strips) | Implemented and tested | deterministic | content/imaging_library.csv; content/imaging_reports.json; content/images; content/ecg_reports.json; content/cxr_reports.json | content/imaging/finding_tags.json; content/imaging/picture_tags.csv; docs/research/imaging_gaps.md | tools/content/imaging_library.py, tools/content/imaging_tags.py (both --check in CI) | p1-dataset-analysis-s04 |
 | OFF-07 | Evaluation reference sets | Partially implemented | deterministic | tools/composer/mutate.py; tests/vectors/grounding_vectors.json; tests/golden | tests/generation/*.json with a data card (built); labelled utterances and adversarial questions (planned) | tools/composer/mutate.py, server/validation/make_vectors.py (exist) | p1-dataset-analysis-s05; p1-evaluation-s01 |
 | OFF-08 | Model preparation: pull, quantise, benchmark (no training) | Partially implemented | pretrained | model catalogue MC-01 to MC-13 | docs/research/model_benchmarks.md (planned); pinned model digests | tools/ai/benchmark.py (planned, p1-ai-language-s02) | p1-ai-language-s02 |
-| OFF-09 | Prompt and schema registry | Planned | deterministic | model catalogue; content/ai/intents.json; content/ai/lexicon.json | prompts/<task>/vN.txt; server/schemas/*.json (planned) | prompts/ and server/schemas/ (planned) | p1-live-scenario-generation-s01; p1-ai-language-s02 |
+| OFF-09 | Prompt and schema registry | Implemented and tested | deterministic | model catalogue; content/ai/intents.json; content/ai/lexicon.json | prompts/<task>/vN.txt; server/schemas/*.json (planned) | prompts/registry.json with the prompt files in prompts/ and the schemas in server/schemas/ai/ (built: server/llm/prompts.py checks hashes and slots in CI) | p1-live-scenario-generation-s01; p1-ai-language-s02 |
 | OFF-10 | Scenario knowledge base construction (A66) | Partially implemented | hybrid | verified content tables; case files; walkthrough text; dataset profiles | content/kb/relations.json; content/kb/review_queue.json | tools/kb/build_kb.py, tools/kb/extract_relations.py (built; extraction precision 0.8 on 100 hand-labelled relations not yet measured: needs a labeller, DT-114) | p1-dataset-analysis-s06 |
 
 ## 3. Live stages (overview)
@@ -39,9 +39,9 @@ The full architecture (learning from evidence, AI composition, how each modality
 | 1 | LG-01 | Session request | Partially implemented | deterministic | 50 | p1-live-scenario-generation-s01; p1-backend-s01 |
 | 2 | LG-02 | Learning objectives and difficulty target | Implemented and tested | deterministic | 20 | p1-live-scenario-generation-s01 |
 | 3 | LG-03 | Context retrieval | Implemented and tested | retrieval | 300 | p1-live-scenario-generation-s02 |
-| 4 | LG-04 | AI scenario plan composition and constraint solving | Planned | hybrid | 500 | p1-scenario-composer-difficulty-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 |
+| 4 | LG-04 | AI scenario plan composition and constraint solving | Partially implemented | hybrid | 500 | p1-scenario-composer-difficulty-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 |
 | 5 | LG-05 | Scenario skeleton | Implemented and tested | deterministic | 100 | p1-live-scenario-generation-s03 |
-| 6 | LG-06 | AI composition (narrative, patient profile, persona) | Blocked | LLM | 25000 | p1-scenario-composer-difficulty-s03; p1-live-scenario-generation-s04 |
+| 6 | LG-06 | AI composition (narrative, patient profile, persona) | Partially implemented | LLM | 25000 | p1-scenario-composer-difficulty-s03; p1-live-scenario-generation-s04 |
 | 7 | LG-07 | Numeric generation (labs, vitals, trends) | Partially implemented | statistical | 200 | p1-live-scenario-generation-s05; p1-live-scenario-generation-s14 |
 | 8 | LG-08 | Image and waveform handling (ECG, ultrasound, X-ray, CT) | Partially implemented | hybrid | 300 | p1-live-scenario-generation-s06 |
 | 9 | LG-09 | Cross-modal consistency | Partially implemented | deterministic | 200 | p1-live-scenario-generation-s07; p1-live-scenario-generation-s15 |
@@ -136,7 +136,7 @@ The AI composer (LLM with retrieval over the scenario knowledge base and exempla
 |---|---|
 | Inputs | RetrievedContext; Objectives; templates SCN-S1 or SCN-S2 |
 | Outputs | ComponentSet: block ids per slot, solver trace |
-| Component | tools/composer/solve.py + server/generation/skeleton.py (built, the baseline and fallback) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13) |
+| Component | tools/composer/solve.py + server/generation/skeleton.py (built, the baseline and fallback) + server/generation/compose_plan.py (built, measured, switched off by default: it did not beat the solver) |
 | Method | LLM + retrieval proposes the plan (MC-01, JSON schema); seeded constraint solver completes and checks it (backtracking over slots with requires/excludes, KB relations, difficulty bounds, novelty pre-filter). |
 | Method class | hybrid |
 | Data dependencies | OFF-04 |
@@ -145,8 +145,8 @@ The AI composer (LLM with retrieval over the scenario knowledge base and exempla
 | Validation | Constraint re-check after selection; solver trace stored in the package. |
 | Tests | T-SOLVE unit tests; property test: no output violates requires/excludes |
 | Acceptance | Zero constraint violations over 10,000 seeds; unsatisfiable inputs end in a logged fallback. |
-| Status | Planned |
-| Evidence | tools/composer/solve.py (the deterministic solver, built); server/generation/skeleton.py (the deterministic baseline: ranking, selection, solver, relaxation, novelty pre-filter) |
+| Status | Partially implemented |
+| Evidence | tools/composer/solve.py (the deterministic solver, built); server/generation/skeleton.py (the deterministic baseline: ranking, selection, solver, relaxation, novelty pre-filter); server/generation/compose_plan.py; tools/ai/eval_planner.py; reports/ai/planner-eval.json |
 | Blockers | — |
 | Tasks | p1-scenario-composer-difficulty-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 |
 
@@ -180,7 +180,7 @@ A served LLM fills the narrative slots only: presenting story in the patient's w
 |---|---|
 | Inputs | ScenarioSkeleton (values hidden where they are hidden facts); persona tag vocabulary; prompt vN |
 | Outputs | NarrativeFill JSON |
-| Component | server/generation/compose.py (planned) via the AI gateway |
+| Component | server/generation/narrative.py (built, measured on the 4B and 9B; the template fallback is the authored line) |
 | Method | LLM with JSON-schema constrained output (Ollama `format`), temperature 0.7 to 0.8, thinking off; prompt and model digest logged. |
 | Method class | LLM |
 | Data dependencies | OFF-09 prompts and schemas; content/ai/lexicon.json |
@@ -189,8 +189,8 @@ A served LLM fills the narrative slots only: presenting story in the patient's w
 | Validation | JSON schema, grounding validator (no invented drug, value, diagnosis or hidden fact), lexicon checks. |
 | Tests | T-SA1 to T-SA4 (enum schema rejects invented ids); grounding mutation tests on narratives; latency benchmark |
 | Acceptance | At least 95 percent schema-valid on first try on the benchmark set; zero grounding failures reach the package; template fallback always available. |
-| Status | Blocked |
-| Evidence | — |
+| Status | Partially implemented |
+| Evidence | server/generation/narrative.py; prompts/compose/v1.txt; reports/ai/narrative-4b.json; tools/ci/test_llm.py |
 | Blockers | served model not installed (OFF-08); backend AI gateway not built (p1-backend-s06) |
 | Tasks | p1-scenario-composer-difficulty-s03; p1-live-scenario-generation-s04 |
 
@@ -212,7 +212,7 @@ Fill every numeric slot: lab results per analyte conditioned on the case's condi
 | Tests | EXP-DATA-2 extended to conditioned packs; distribution tests (KS against the profile); correlation tests; seed reproducibility |
 | Acceptance | 100 percent of values within the demanded band over 10,000 seeds; generated marginals within the profile's p5 to p95 for normal slots; same seed gives identical values. |
 | Status | Partially implemented |
-| Evidence | tools/content/exp_data2.py; content/lab_bands.csv (104); content/lab_plausibility.csv; server/generation/numeric.py; server/generation/packs.py; tools/ci/test_generation_numeric.py |
+| Evidence | tools/content/exp_data2.py; content/lab_bands.csv (104); content/lab_plausibility.csv; server/generation/numeric.py; server/generation/packs.py; tools/ci/test_generation_numeric.py; server/generation/packs.py (draw_panel); tools/generation/fit_joint.py; content/generation/packs/joint.json; tools/ci/test_generation_joint.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s05; p1-live-scenario-generation-s14 |
 
@@ -256,7 +256,7 @@ Check that every modality tells the same story: ECG rhythm against pulse and mon
 | Tests | one positive and one negative fixture per cross-modal rule; mutation set extended with cross-modal breaks |
 | Acceptance | Every cross-modal mutation in the evaluation set is caught. |
 | Status | Partially implemented |
-| Evidence | content/contradictions.json (12 types); tools/composer/test_composer.py; server/generation/crossmodal.py (8 rules); content/generation/crossmodal_rules.json; tools/ci/test_generation_crossmodal.py |
+| Evidence | content/contradictions.json (12 types); tools/composer/test_composer.py; server/generation/crossmodal.py (8 rules); content/generation/crossmodal_rules.json; tools/ci/test_generation_crossmodal.py; server/generation/reports.py (number-locked report lines); server/generation/critic.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s07; p1-live-scenario-generation-s15 |
 
@@ -300,7 +300,7 @@ Score a valid scenario for teaching quality: objective coverage, difficulty matc
 | Tests | metric unit tests; judge calibration study |
 | Acceptance | Quality gate rejects all gold 'poor' scenarios and passes 90 percent of gold 'good' ones. |
 | Status | Partially implemented |
-| Evidence | server/generation/quality.py (deterministic metrics, advisory judge slot); tools/ci/test_generation_quality.py |
+| Evidence | server/generation/quality.py (deterministic metrics, advisory judge slot); tools/ci/test_generation_quality.py; server/generation/critic.py; tools/generation/inconsistency_set.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s08 |
 

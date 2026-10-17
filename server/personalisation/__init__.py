@@ -1,0 +1,1 @@
+"""Personalisation: what a session showed, what the learner knows, what to practise next, and why (p1-personalisation s01 to s05). Rules and statistics decide; a language model may only propose hypotheses."""

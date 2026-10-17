@@ -14,6 +14,12 @@ One controlled entry point for every AI capability means one place to enforce ti
 3. EXP-BE-2: concurrent LLM + ASR load test; record decision.
 4. Each route: request/response schemas, timeout, validator, audit, fallback signal; `/health` reports per-service status.
 
+## Status (17 October 2026)
+
+- **Built:** `server/routers/ai_gateway.py`: `POST /llm/organisations/{id}/generate` (a registered prompt with `gateway: true` and a validator, signed-in member, rate limit, one model slot with a 5 s wait, timeout, schema and validator, one retry, the fallback signal, one audit row) and `GET /ai/health`; settings `OLLAMA_URL`, `AI_RATE_PER_HOUR`, `AI_QUEUE_WAIT_SECONDS`, timeouts; the server image carries `prompts/` and `content/ai/`. 11 tests on a real PostgreSQL with a fake model host (`server/tests/test_ai_gateway.py`). ADR-0011.
+- **EXP-BE-2 (part):** `tools/ai/load_gateway.py`, 4 callers x 5 calls on the 4B: 16 answered, 4 got the fallback signal, queue wait p95 4.99 s, 71.8 calls a minute. The speech-recognition half could not be run.
+- **Not built:** the routes `dialogue`, `staff`, `behaviour`, `classify`, `debrief`, `asr`, `tts`: each waits for its prompt and model (p1-ai-language, p1-voice-input).
+
 ## Verification
 All AI routes visible and testable in `/docs`; EXP-BE-2 recorded.
 

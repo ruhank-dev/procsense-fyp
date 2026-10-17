@@ -79,7 +79,14 @@ def stand_in_router() -> APIRouter:
 
 @pytest.fixture
 def world(api):
-    api.client.app.include_router(stand_in_router())
+    stand_in = stand_in_router()
+    taken = {r.path for r in stand_in.routes}
+    app = api.client.app
+    def real(route) -> bool:                                                  # a route, or an included router, that has one of the stand-in paths
+        paths = {getattr(x, "path", None) for x in getattr(getattr(route, "original_router", None), "routes", [])} | {getattr(route, "path", None)}
+        return bool(paths & taken)
+    app.router.routes[:] = [r for r in app.router.routes if not real(r)]    # the real classify and dialogue routes have these paths now; the audit tests use their own stand-ins
+    app.include_router(stand_in)
 
     def build(s: DbSession):
         a, b = accounts.create_organisation(s, "Alpha", "alpha-org"), accounts.create_organisation(s, "Beta", "beta-org")

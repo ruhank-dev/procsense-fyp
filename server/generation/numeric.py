@@ -121,22 +121,10 @@ def vary_numbers(card: dict, seed: int, lab_pack: packs.LabPack, vitals_pack: di
         else:
             by_analyte.setdefault(LAB_NAMES[r["test"].split(" (")[0].strip().lower()], []).append(r)
     done: set[str] = set()
-    corr = {frozenset((c["a"], c["b"])): c for c in lab_pack.corr.values()}
-    for a, b in LINKED:
-        if a in by_analyte and b in by_analyte and frozenset((a, b)) in corr and not corr[frozenset((a, b))]["weak"]:
-            ra, rb = by_analyte[a][0], by_analyte[b][0]
-            rng = stream(seed, f"{ra['id']}+{rb['id']}")
-            for _ in range(TRIES):
-                da, db = lab_pack.draw_pair(a, b, "normal", "normal", rng, sex)
-                va, vb = round(da.value, decimals(ra["value"])), round(db.value, decimals(rb["value"]))
-                if in_normal(va, ra["normal_range"]) is not False and in_normal(vb, rb["normal_range"]) is not False:
-                    for r, v, d in ((ra, va, da), (rb, vb, db)):
-                        log.append({"slot": r["id"], "action": "drawn", "from": r["value"], "to": f"{v:g}" if decimals(r["value"]) == 0 else f"{v:.{decimals(r['value'])}f}", "source": d.source, "together_with": rb["id"] if r is ra else ra["id"]})
-                        r["value"] = log[-1]["to"]
-                        r["origin"] = "authored"
-                        r.pop("source_row", None)
-                        done.add(r["id"])
-                    break
+    if lab_pack.joint() is not None:
+        _panel(by_analyte, lab_pack, sex, seed, log, done)
+    else:
+        _pairs(by_analyte, lab_pack, sex, seed, log, done)
     for analyte, rows in by_analyte.items():
         for r in rows:
             if r["id"] in done:
@@ -153,6 +141,53 @@ def vary_numbers(card: dict, seed: int, lab_pack: packs.LabPack, vitals_pack: di
             r.pop("source_row", None)
     _vitals(card, seed, vitals_pack, news2_score, log)
     return log
+
+
+def _store(r: dict, v: float, d: packs.Draw, log: list[dict], done: set[str], together: list[str]) -> None:
+    to = f"{v:g}" if decimals(r["value"]) == 0 else f"{v:.{decimals(r['value'])}f}"
+    log.append({"slot": r["id"], "action": "drawn", "from": r["value"], "to": to, "source": d.source, "together_with": together})
+    r["value"] = to
+    r["origin"] = "authored"
+    r.pop("source_row", None)
+    done.add(r["id"])
+
+
+def _panel(by_analyte: dict[str, list[dict]], lab_pack: packs.LabPack, sex: str, seed: int, log: list[dict], done: set[str]) -> None:
+    """All the free results of the case drawn together through the joint model (fit_joint.py): results that move together in real patients still do. A draw whose value does not fit the case's own normal
+    range for that row is redrawn with the rest of the panel (up to TRIES panels); a row that never fits keeps its authored value."""
+    pending = {a: rows[0] for a, rows in sorted(by_analyte.items())}           # one row per analyte; further rows of the same analyte are drawn alone below
+    for attempt in range(TRIES):
+        if not pending:
+            break
+        order = sorted(pending)
+        draws = lab_pack.draw_panel([(a, "normal") for a in order], stream(seed, f"panel:{attempt}"), sex)
+        fits = {}
+        for a, d in zip(order, draws):
+            r = pending[a]
+            v = round(d.value, decimals(r["value"]))
+            if in_normal(v, r["normal_range"]) is not False:
+                fits[a] = (r, v, d)
+        ids = {a: fits[a][0]["id"] for a in fits}
+        for a, (r, v, d) in fits.items():
+            _store(r, v, d, log, done, [ids[b] for b in sorted(ids) if b != a])
+        for a in fits:
+            del pending[a]
+
+
+def _pairs(by_analyte: dict[str, list[dict]], lab_pack: packs.LabPack, sex: str, seed: int, log: list[dict], done: set[str]) -> None:
+    """The earlier method, used when the pack folder has no joint model: the linked pairs through their own copula."""
+    corr = {frozenset((c["a"], c["b"])): c for c in lab_pack.corr.values()}
+    for a, b in LINKED:
+        if a in by_analyte and b in by_analyte and frozenset((a, b)) in corr and not corr[frozenset((a, b))]["weak"]:
+            ra, rb = by_analyte[a][0], by_analyte[b][0]
+            rng = stream(seed, f"{ra['id']}+{rb['id']}")
+            for _ in range(TRIES):
+                da, db = lab_pack.draw_pair(a, b, "normal", "normal", rng, sex)
+                va, vb = round(da.value, decimals(ra["value"])), round(db.value, decimals(rb["value"]))
+                if in_normal(va, ra["normal_range"]) is not False and in_normal(vb, rb["normal_range"]) is not False:
+                    _store(ra, va, da, log, done, [rb["id"]])
+                    _store(rb, vb, db, log, done, [ra["id"]])
+                    break
 
 
 def _vitals(card: dict, seed: int, vitals_pack: dict, news2_score: Callable[..., int], log: list[dict]) -> None:

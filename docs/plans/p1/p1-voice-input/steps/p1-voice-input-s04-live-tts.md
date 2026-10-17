@@ -14,6 +14,12 @@ AI dialogue without a voice breaks immersion; mismatched voices between pre-rend
 3. Sentence splitter on the LLM output; first sentence synthesised immediately, the rest streamed.
 4. Client falls back to subtitles if TTS times out (2.5 s).
 
+## Status (17 October 2026)
+
+- **Built:** `server/tts/engine.py` (Piper as a separate program writing a WAV file, ffmpeg shaping, the roles, pitch and pace of the offline voices from `tools/voice/voices.json`, one loudness pass, Ogg Vorbis, sentence by sentence, an LRU cache) and `POST /tts/organisations/{id}/speak` (newline-delimited JSON, one sentence per line; audited; rate limited; the fallback signal when the voice is unavailable or the feature is off). 9 tests.
+- **Fixed on 17 October:** the engine read Piper's WAV from standard output; on Windows the text-mode stream turned every line-feed byte into two and the speech was garbled (the recogniser heard "I love you"). It now gives Piper a file; a test pins it.
+- **Measured** (`tools/ai/tts_latency.py`): first spoken sentence 4.95 s at the 95th percentile (median 3.36 s) against a budget of 2.5 s; Piper starts afresh for each sentence (DT-213).
+
 ## Verification
 First sentence plays within the latency budget; voices consistent with pre-rendered lines.
 
