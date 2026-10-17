@@ -30,8 +30,10 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="qwen3.5:9b-q4_K_M")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--timeout", type=float, default=300.0)
+    ap.add_argument("--set", choices=["v1", "v2"], default="v1", help="v1: the first seeded set; v2: the held-out set worded differently (DT-217), scored once per critic version")
     a = ap.parse_args()
     import inconsistency_set as I
+    import inconsistency_set_v2 as I2
     from composer import blocks as B
     from generation import critic
     from llm import client as C
@@ -39,7 +41,9 @@ if __name__ == "__main__":
     if a.model not in client.models():
         raise SystemExit(f"{a.model} is not installed")
     cases = {c["id"]: c for c in B.load_cases()}
-    data = json.loads((ROOT / "tests" / "generation" / "text_inconsistencies.json").read_text(encoding="utf-8"))
+    data = json.loads((ROOT / "tests" / "generation" / ("text_inconsistencies.json" if a.set == "v1" else "text_inconsistencies_v2.json")).read_text(encoding="utf-8"))
+    apply_edit = I.apply if a.set == "v1" else I2.apply
+    tag = "" if a.set == "v1" else "v2|"                                   # cache keys of the held-out set never meet those of the first set (the same case, line and kind can carry different text)
     members = data["members"][: a.limit] if a.limit else data["members"]
     crit = critic.Critic(client, model=a.model, timeout=a.timeout)
     cache_path = ROOT / "artifacts" / "ai-bench" / f"critic-cache-{a.model.replace(':', '_')}.json"
@@ -59,10 +63,10 @@ if __name__ == "__main__":
     per = {"raw": {}, "verified": {}}
     failed = 0
     for n, m in enumerate(members, 1):
-        case = I.apply(cases[m["case"]], m["line"], m["text"])
+        case = apply_edit(cases[m["case"]], m["line"], m["text"])
         base = m["line"] in I.baseline_flags(case)
         base_old = m["line"] in I.baseline_flags(case, rules=False)
-        raw, ver, ok = ask(f"member|{m['case']}|{m['line']}|{m['kind']}", case)
+        raw, ver, ok = ask(f"{tag}member|{m['case']}|{m['line']}|{m['kind']}", case)
         failed += not ok
         for arm, flags in (("raw", raw), ("verified", ver)):
             hit = any(f["line"] == m["line"] for f in flags)
@@ -83,13 +87,13 @@ if __name__ == "__main__":
         alarms["raw"] += bool(raw)
         alarms["verified"] += bool(ver)
         baseline_alarms += bool(I.baseline_flags(cases[cid]))
-    out = {"model": a.model, "digest": client.models().get(a.model, ""), "members": len(members), "critic_could_not_answer": failed, "recall": rates(per["verified"]), "by_kind": per["verified"],
+    out = {"set": a.set, "model": a.model, "digest": client.models().get(a.model, ""), "members": len(members), "critic_could_not_answer": failed, "recall": rates(per["verified"]), "by_kind": per["verified"],
            "clean_cases": len(clean), "critic_false_alarm_rate": round(alarms["verified"] / len(clean), 3), "baseline_false_alarm_rate": round(baseline_alarms / len(clean), 3),
            "raw": {"recall": rates(per["raw"]), "by_kind": per["raw"], "critic_false_alarm_rate": round(alarms["raw"] / len(clean), 3)},
            "note_rules": "baseline is the rule-based checks INCLUDING the side-of-body and denied-pain rules added in server/generation/consistency.py (they were written after the first critic run showed the model missed those two kinds); baseline_before_rules is the baseline the critic was first measured against. The plan's +20 points was set against the earlier baseline.",
            "note": "recall and critic_false_alarm_rate are those of the verified critic, the one the pipeline runs; raw is the first pass alone",
            "seconds": round(time.monotonic() - started)}
-    path = ROOT / "artifacts" / "ai-bench" / "critic-eval.json"
+    path = ROOT / "artifacts" / "ai-bench" / ("critic-eval.json" if a.set == "v1" else "critic-eval-v2.json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k not in ("by_kind",)}, indent=1))

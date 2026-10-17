@@ -86,5 +86,27 @@ class Gate(unittest.TestCase):
             self.assertIn(code, repair.TABLE)
 
 
+class HeldOutSet(unittest.TestCase):
+    """The second inconsistency set (DT-217): deterministic, committed, and worded so that the rule-based baseline does not saturate it."""
+
+    def test_the_committed_file_is_what_the_builder_gives_and_the_baseline_leaves_room(self):
+        import inconsistency_set_v2 as V
+        built = V.build(list(CASES.values()))
+        committed = json.loads((ROOT / "tests" / "generation" / "text_inconsistencies_v2.json").read_text(encoding="utf-8"))
+        self.assertEqual(committed, built)
+        self.assertGreaterEqual(len(built["members"]), 120)
+        self.assertGreaterEqual(len(built["counts"]), 6)
+        found = sum(m["line"] in I.baseline_flags(V.apply(CASES[m["case"]], m["line"], m["text"])) for m in built["members"])
+        self.assertLess(found / len(built["members"]), 0.25)                  # the rules were written before this set and none of them looks for this wording
+
+    def test_every_member_changes_only_its_own_line(self):
+        import inconsistency_set_v2 as V
+        for m in V.build(list(CASES.values()))["members"][:40]:
+            before, after = CASES[m["case"]], V.apply(CASES[m["case"]], m["line"], m["text"])
+            self.assertNotEqual(json.dumps(before, sort_keys=True), json.dumps(after, sort_keys=True))
+            self.assertEqual(before["identity"], after["identity"])
+            self.assertEqual(before["allergies"], after["allergies"])
+
+
 if __name__ == "__main__":
     unittest.main()
