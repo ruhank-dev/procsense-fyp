@@ -8,12 +8,12 @@ unless these three give insufficient results and the extra cost is justified.
 
 | Part | State |
 |---|---|
-| SBAR_ELEMENT made a critical act in the engine (`critical_acts`), regression test, taxonomy-to-mapping consistency check | Done (commit `b813b98`) |
+| SBAR_ELEMENT made a critical act in the engine (`critical_acts`), regression test, taxonomy-to-mapping consistency check | Done (commit `7de6281`) |
 | Scenario cards (100 dev + 200 test), annotation guide | Done: `cards_dev.csv`, `cards_test.csv`, [annotation_guide.md](annotation_guide.md) |
 | Benchmark script, leakage checks, freeze step, tests | Done: `tools/bench/` |
 | Embedding model | `all-minilm:22m` verified and pulled (below) |
 | **Independent dev and test text and labels** | **BLOCKED on people** (below). Nothing has been written, labelled or generated to stand in for them. |
-| Winner chosen | **No.** Results so far are smoke tests on the old synthetic set and say nothing about real trainees. |
+| Winner chosen | **No.** Results so far are smoke tests on the old synthetic set and say nothing about real trainees: [smoke_results.md](smoke_results.md). |
 
 ## What the old data can and cannot show
 
@@ -40,8 +40,8 @@ published numbers for MiniLM do not transfer exactly.
 ## Dataset (blocked on people)
 
 Needed before any claim: **at least two authors per split, with dev and test authors different** (100 dev + 200 test sentences, about 1.5 hours each), **a second labeller** for the 100 critical rows plus a quarter of the others
-(about 1 hour), and **an adjudicator** who is a third person for the rows where the two labels differ. Optionally a clinician to look over the critical-act rows (the existing Q8, Q9). I (the assistant) wrote the generator
-and the taxonomy and must not write or label these rows. Steps and rules: [annotation_guide.md](annotation_guide.md).
+(about 1 hour), and **an adjudicator** who is a third person for the rows where the two labels differ. Optionally a clinician to look over the critical-act rows (the existing Q8, Q9). Whoever wrote the generator
+and the taxonomy must not write or label these rows, because they would be grading their own wording. Steps and rules: [annotation_guide.md](annotation_guide.md).
 
 ## Reading a result
 
