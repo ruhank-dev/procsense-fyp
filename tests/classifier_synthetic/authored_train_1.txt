@@ -1,0 +1,160 @@
+T1|ASK_TOPIC|p|Last meal? When was it.
+T1|ASK_TOPIC|p|Any meds at home, what are you on?
+T1|ASK_TOPIC|n|Never had a general anaesthetic before? None at all?
+T1|ASK_TOPIC|i|And the cough, how long has that
+T2|ASK_TOPIC|p|So tell me a little about how your breathing has been lately, love.
+T2|ASK_TOPIC|p|Have you been having any trouble with your tummy before coming in today?
+T2|ASK_TOPIC|c|Do you smoke, oh sorry, did you ever smoke, and how much?
+T2|ASK_TOPIC|a|Just checking whether anything runs in the family when it comes to going under?
+T3|ASK_TOPIC|p|I should like to establish what you have eaten and drunk since midnight.
+T3|ASK_TOPIC|p|Could you describe the nature of the pain that brought you to us?
+T3|ASK_TOPIC|n|Is it correct that you have not undergone any previous surgery?
+T3|ASK_TOPIC|p|Which prescribed or over-the-counter preparations do you take regularly?
+T4|ASK_TOPIC|p|Um, sorry, can I ask if you've been drinking any alcohol recently?
+T4|ASK_TOPIC|i|I was wondering if you could maybe tell me about the, the chest tightness
+T4|ASK_TOPIC|p|Is it okay if I ask about operations you've had before?
+T4|ASK_TOPIC|c|How many cigarettes, no wait, how many a day did you say you smoke?
+T1|CLARIFY|p|Say again?
+T1|CLARIFY|p|Which one, the left or right?
+T1|CLARIFY|c|You said Tuesday. No, what do you mean, which Tuesday?
+T1|CLARIFY|i|Not sure I got the second part, the bit about
+T2|CLARIFY|p|Sorry hun, I didn't quite catch that, would you mind going over it again?
+T2|CLARIFY|p|When you say a funny turn, what exactly do you mean by that?
+T2|CLARIFY|n|I'm not following, I don't understand what you meant by that last bit.
+T2|CLARIFY|a|Could you tell me more about what you meant?
+T3|CLARIFY|p|Would you kindly repeat the instruction, as I did not hear it clearly.
+T3|CLARIFY|p|Please clarify what is meant by the term used in the referral.
+T3|CLARIFY|n|I am unable to follow the plan as it was stated; could you restate it?
+T3|CLARIFY|p|To what precisely does that figure refer?
+T4|CLARIFY|p|Sorry, I think I missed that, could you say it one more time?
+T4|CLARIFY|p|Um, what does that mean exactly, I'm not sure I've got it?
+T4|CLARIFY|i|Sorry, you said the dose was, was it
+T4|CLARIFY|c|Do you mean the morning, no, I mean did you mean last night?
+T1|ANSWER_QUESTION|p|About an hour. Maybe ninety minutes.
+T1|ANSWER_QUESTION|p|No, nothing felt. You'll be under.
+T1|ANSWER_QUESTION|n|Not today, no. Tomorrow at the earliest.
+T1|ANSWER_QUESTION|p|Yes, relatives can sit outside, there's a waiting room.
+T2|ANSWER_QUESTION|p|Oh yes, you'll be fast asleep the whole time, you won't know a thing about it.
+T2|ANSWER_QUESTION|p|Most folks are eating again by teatime, so don't worry about that.
+T2|ANSWER_QUESTION|a|It depends a bit, but usually you're home by tonight.
+T2|ANSWER_QUESTION|p|Someone will be with you right through, so you're never on your own.
+T3|ANSWER_QUESTION|p|The procedure typically lasts between one and two hours.
+T3|ANSWER_QUESTION|p|You may take sips of clear water until two hours before the anaesthetic.
+T3|ANSWER_QUESTION|n|No, you will not be awake at any point during the operation.
+T3|ANSWER_QUESTION|p|A relative may remain in the day room while you are in theatre.
+T4|ANSWER_QUESTION|p|I think it's about an hour, maybe a bit more, I can check.
+T4|ANSWER_QUESTION|p|Yes, I'm fairly sure you'll be asleep, you won't feel it.
+T4|ANSWER_QUESTION|c|You can drink, no, sorry, you can have water until ten.
+T4|ANSWER_QUESTION|i|You'll wake up in the recovery room, and then
+T1|EXPLAIN_PROCEDURE|p|We take the gallbladder out with keyhole cuts. Four small ones.
+T1|EXPLAIN_PROCEDURE|p|General anaesthetic. You sleep, we operate, you wake in recovery.
+T1|EXPLAIN_PROCEDURE|n|It's not open surgery, just a camera and small cuts.
+T1|EXPLAIN_PROCEDURE|i|After they close up you go through to
+T2|EXPLAIN_PROCEDURE|p|So what happens is the surgeon makes a few tiny cuts and does it all with a little camera, nothing major.
+T2|EXPLAIN_PROCEDURE|p|First we pop a small tube in your hand, then the anaesthetist gives you the sleepy medicine.
+T2|EXPLAIN_PROCEDURE|a|Basically they fix the hernia from the inside, you'll just have a few stitches.
+T2|EXPLAIN_PROCEDURE|p|When it's all done you'll be taken to the recovery area to come round slowly.
+T3|EXPLAIN_PROCEDURE|p|The operation involves removal of the inflamed appendix via a laparoscopic approach.
+T3|EXPLAIN_PROCEDURE|p|You will receive a general anaesthetic, administered intravenously, followed by airway support.
+T3|EXPLAIN_PROCEDURE|c|The incision will be, correction, there will be several small incisions rather than one.
+T3|EXPLAIN_PROCEDURE|p|Following surgery you will be monitored in the post-anaesthesia care unit.
+T4|EXPLAIN_PROCEDURE|p|So I think what they do is, um, they remove the gallbladder using a camera.
+T4|EXPLAIN_PROCEDURE|p|The anaesthetic means you'll be asleep, if I've understood it right.
+T4|EXPLAIN_PROCEDURE|i|Basically the surgeon goes in through a small
+T4|EXPLAIN_PROCEDURE|p|Afterwards you'll come to in the recovery bay, I believe.
+T1|EXPLAIN_TEST|p|Bloods are for infection and kidneys.
+T1|EXPLAIN_TEST|p|ECG, checks the heart rhythm.
+T1|EXPLAIN_TEST|n|The chest film is not about bones, it's your lungs.
+T1|EXPLAIN_TEST|p|Clotting test. Tells us if you'll bleed more than normal.
+T2|EXPLAIN_TEST|p|We're just popping a bit of blood to see how your kidneys are getting on, that's all.
+T2|EXPLAIN_TEST|p|The heart trace is a quick sticker test, it shows us if your heart's beating nicely.
+T2|EXPLAIN_TEST|p|The urine sample tells us if there's an infection brewing or any sugar in there.
+T2|EXPLAIN_TEST|a|It's a test to check things are safe before the operation.
+T3|EXPLAIN_TEST|p|The full blood count assesses for anaemia and signs of infection.
+T3|EXPLAIN_TEST|p|An electrocardiogram records the electrical activity of the heart.
+T3|EXPLAIN_TEST|n|The chest radiograph does not examine the abdomen; it demonstrates the lung fields.
+T3|EXPLAIN_TEST|p|The coagulation profile informs us of your tendency to bleed.
+T4|EXPLAIN_TEST|p|It's a blood test to see if your kidneys are okay, I think.
+T4|EXPLAIN_TEST|p|The ECG is, um, it shows how your heart is working.
+T4|EXPLAIN_TEST|i|The X-ray will let us see whether your
+T4|EXPLAIN_TEST|p|So the urine test checks for infection, sorry if that's obvious.
+T1|EXPLAIN_ACTION|p|Cuff going on your arm now.
+T1|EXPLAIN_ACTION|p|Listening to your chest. Breathe normally.
+T1|EXPLAIN_ACTION|n|This won't hurt, just a little clip on your finger.
+T1|EXPLAIN_ACTION|p|Bloods now, sharp scratch in a sec.
+T2|EXPLAIN_ACTION|p|I'm just going to pop this little clip on your finger so I can see your oxygen, okay?
+T2|EXPLAIN_ACTION|p|Now I'm going to feel your tummy, so shout if anything's sore.
+T2|EXPLAIN_ACTION|p|I'm going to check your wristband against your notes, just a quick look.
+T2|EXPLAIN_ACTION|c|I'm going to take your temp, oh sorry, your blood pressure first.
+T3|EXPLAIN_ACTION|p|I am now going to apply the blood pressure cuff to your upper arm.
+T3|EXPLAIN_ACTION|p|I shall auscultate your chest; please breathe deeply through your mouth.
+T3|EXPLAIN_ACTION|p|I will palpate the abdomen; do inform me if any area is tender.
+T3|EXPLAIN_ACTION|p|I am going to insert a cannula into a vein on the back of your hand.
+T4|EXPLAIN_ACTION|p|Sorry, I'm going to take a little blood from your arm now, is that okay?
+T4|EXPLAIN_ACTION|p|I'm just going to listen to your lungs for a moment.
+T4|EXPLAIN_ACTION|i|I'm about to put the thermometer in your
+T4|EXPLAIN_ACTION|p|Right, I'm going to look at your wristband, if you don't mind.
+T1|CHECK_UNDERSTANDING|p|Clear so far? Any questions?
+T1|CHECK_UNDERSTANDING|p|Tell me back what you're going to do tonight.
+T1|CHECK_UNDERSTANDING|p|So when do you stop eating?
+T1|CHECK_UNDERSTANDING|n|You don't have any questions, do you? Make sure.
+T2|CHECK_UNDERSTANDING|p|Does all of that make sense, or shall I go over any bit again?
+T2|CHECK_UNDERSTANDING|p|Can you tell me in your own words what we've just talked about, just so I know I've explained it right?
+T2|CHECK_UNDERSTANDING|p|So have I made it clear what happens when you wake up?
+T2|CHECK_UNDERSTANDING|a|Are you okay with all of that so far?
+T3|CHECK_UNDERSTANDING|p|Could you summarise for me what you understand will happen tomorrow morning?
+T3|CHECK_UNDERSTANDING|p|Have the fasting instructions been sufficiently clear to you?
+T3|CHECK_UNDERSTANDING|n|I would not wish to assume comprehension; do you have any outstanding questions?
+T3|CHECK_UNDERSTANDING|p|May I ask you to repeat back the arrangements we have agreed?
+T4|CHECK_UNDERSTANDING|p|Sorry, did that make sense or was I explaining it badly?
+T4|CHECK_UNDERSTANDING|p|Could you maybe say back to me what you'll do about the tablets?
+T4|CHECK_UNDERSTANDING|i|Is it all clear, or would you like me to
+T4|CHECK_UNDERSTANDING|c|Do you know when to, no, can you tell me when you should stop drinking?
+T1|ACKNOWLEDGE_EMOTION|p|You look scared. That's normal.
+T1|ACKNOWLEDGE_EMOTION|p|I can see this is stressing you out.
+T1|ACKNOWLEDGE_EMOTION|n|You don't need to pretend you're fine, anyone would be nervous.
+T1|ACKNOWLEDGE_EMOTION|p|Long wait, I know. Annoying.
+T2|ACKNOWLEDGE_EMOTION|p|Oh bless you, I can tell you're really worried about tomorrow.
+T2|ACKNOWLEDGE_EMOTION|p|It's perfectly natural to feel a bit wobbly before an operation, lots of people do.
+T2|ACKNOWLEDGE_EMOTION|p|I'm so sorry you've been in pain all this time, that must have been awful.
+T2|ACKNOWLEDGE_EMOTION|a|You seem a bit down today, am I right?
+T3|ACKNOWLEDGE_EMOTION|p|I appreciate that this must be a source of considerable anxiety for you.
+T3|ACKNOWLEDGE_EMOTION|p|It is entirely understandable to feel apprehensive at this stage.
+T3|ACKNOWLEDGE_EMOTION|n|I do not doubt that the delay has been frustrating for you.
+T3|ACKNOWLEDGE_EMOTION|p|I can see that this has been distressing.
+T4|ACKNOWLEDGE_EMOTION|p|I can see you're really nervous, and that's okay, I think anyone would be.
+T4|ACKNOWLEDGE_EMOTION|p|Sorry you've had such a hard time, that sounds really difficult.
+T4|ACKNOWLEDGE_EMOTION|i|I can tell you're feeling quite
+T4|ACKNOWLEDGE_EMOTION|c|You seem calm, no actually you seem quite frightened, is that right?
+T1|REASSURE|p|You're in good hands. We do this every day.
+T1|REASSURE|p|We'll be right here the whole time.
+T1|REASSURE|n|Nothing to be afraid of, you won't be alone.
+T1|REASSURE|p|Pain will be covered. Don't worry.
+T2|REASSURE|p|Don't you worry, pet, we'll look after you and I'll be right beside you.
+T2|REASSURE|p|Honestly, the team does this operation all the time, you're going to be just fine.
+T2|REASSURE|p|There's no rush at all, take as long as you need.
+T2|REASSURE|a|It's going to be okay, I promise we'll keep you comfortable.
+T3|REASSURE|p|You will be closely monitored by an experienced team at every stage.
+T3|REASSURE|p|You may be assured that your comfort is our priority.
+T3|REASSURE|n|There is no cause for undue concern; this is a routine procedure for us.
+T3|REASSURE|p|Several of us will remain with you throughout.
+T4|REASSURE|p|I'm sure it'll be fine, the team is really experienced.
+T4|REASSURE|p|You're not alone, we'll all be with you.
+T4|REASSURE|i|I promise we'll keep you comfortable and
+T4|REASSURE|p|Please don't worry, we'll treat any pain straight away.
+T1|ACKNOWLEDGE_FACT|p|Okay, stopped the warfarin on Monday. Noted.
+T1|ACKNOWLEDGE_FACT|p|Right, toast at seven. Got it.
+T1|ACKNOWLEDGE_FACT|n|So no tablets this morning. Noted.
+T1|ACKNOWLEDGE_FACT|p|Pain since Tuesday, right.
+T2|ACKNOWLEDGE_FACT|p|Thanks for telling me, so you live on your own, I'll make a note of that.
+T2|ACKNOWLEDGE_FACT|p|Lovely, so you took your tablets before you came in, that's really helpful.
+T2|ACKNOWLEDGE_FACT|p|Right so you had a cup of tea at six, good to know.
+T2|ACKNOWLEDGE_FACT|a|So what you're saying is the pain got worse overnight.
+T3|ACKNOWLEDGE_FACT|p|I note that you discontinued the anticoagulant three days ago.
+T3|ACKNOWLEDGE_FACT|p|Thank you; I understand that your last meal was at approximately seven o'clock.
+T3|ACKNOWLEDGE_FACT|n|I have recorded that you did not take your morning medication.
+T3|ACKNOWLEDGE_FACT|p|So the symptoms commenced on Tuesday; I have documented that.
+T4|ACKNOWLEDGE_FACT|p|Okay, so you stopped your blood thinner, I'll write that down.
+T4|ACKNOWLEDGE_FACT|p|Thanks, so the toast was at seven, sorry I just want to be sure I've got it.
+T4|ACKNOWLEDGE_FACT|c|So you take two, no, three tablets, I'll note that.
+T4|ACKNOWLEDGE_FACT|i|Right, so you've been living alone since

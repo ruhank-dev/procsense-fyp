@@ -1,0 +1,62 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Written, second-labelled and adjudicated by the language model that built the tooling; no person wrote, labelled or reviewed any row. A generalisation check across simulated writing styles, not an independent benchmark.",
+ "personas": {
+  "T1": "terse registrar: clipped, imperative, abbreviations",
+  "T2": "chatty junior nurse: warm, long, fillers",
+  "T3": "formal consultant: complete sentences, passive voice",
+  "T4": "anxious student: hedging, apologetic, questions",
+  "DA": "second-language English: simple grammar, missing articles",
+  "DB": "text-message style: lower case, abbreviations, no punctuation",
+  "TC": "rushed night-shift clinician: fragments, trailing off",
+  "TD": "over-polite hesitant trainee: apologies, indirect requests"
+ },
+ "files": {
+  "train.jsonl": "d895d7c8f9febb19334cf718064ee0532d70fbb4347047d60ba5fde93167271c",
+  "dev.jsonl": "d22e3f5ab80626370b636924266912738707a474b3fa110392d554cbb63f6d9a",
+  "test.jsonl": "e44d625221180007b974544003a42ac3c97c0b449f01996bb24b4594541dcb37"
+ },
+ "rows": {
+  "train": 320,
+  "dev": 100,
+  "test": 200
+ },
+ "authors": {
+  "train": [
+   "T1",
+   "T2",
+   "T3",
+   "T4"
+  ],
+  "dev": [
+   "DA",
+   "DB"
+  ],
+  "test": [
+   "TC",
+   "TD"
+  ]
+ },
+ "second_label_rows": {
+  "train": 0,
+  "dev": 43,
+  "test": 106
+ },
+ "disagreements": {
+  "train": 0,
+  "dev": 1,
+  "test": 3
+ },
+ "agreement_with_intended": {
+  "train": {
+   "kappa": null
+  },
+  "dev": {
+   "kappa": 0.975
+  },
+  "test": {
+   "kappa": 0.968
+  }
+ }
+}

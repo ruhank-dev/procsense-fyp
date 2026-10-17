@@ -222,6 +222,7 @@ def main(argv: list[str]) -> int:
         ("classifier smoke dataset current and split by speaker (synthetic, SD-006)", lambda: run(["uv", "run", "--project", "tools", "tools/synth/gen_utterances.py", "--check"])),
         ("classifier benchmark: scenario cards match the taxonomy, a dataset cannot be frozen without independent authors, labels and an adjudicator, the benchmark refuses unfrozen data", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_bench.py"])),
         ("classifier benchmark scenario cards current (blank sheets: the independent set is blocked on people)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/dataset.py", "cards", "--check"])),
+        ("synthetic diverse classifier set is current (model-written, NOT independent)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/synthetic.py", "check"])),
         ("recovery handover content current and sourced", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_recovery_handover.py", "--check"])),
         ("intra-operative event content current and sourced", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_intraop_events.py", "--check"])),
         ("labelling toolkit (agreement, adjudication, frozen splits)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_labelling.py"])),

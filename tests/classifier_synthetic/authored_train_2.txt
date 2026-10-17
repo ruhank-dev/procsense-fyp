@@ -1,0 +1,160 @@
+T1|CLOSED_LOOP|p|Copy, antibiotic going in now.
+T1|CLOSED_LOOP|p|Potassium five point two, read back, will act on it.
+T1|CLOSED_LOOP|p|Ordering the group and save now, back to you when sent.
+T1|CLOSED_LOOP|n|Not giving the full dose, just half. Confirming that's what you want?
+T2|CLOSED_LOOP|p|Okay lovely, so I'm giving the paracetamol now and I'll shout when it's done.
+T2|CLOSED_LOOP|p|Let me just say that back to you, blood pressure one ten over seventy, yes?
+T2|CLOSED_LOOP|p|Right, I'll get the oxygen up to four litres and let you know once it's running.
+T2|CLOSED_LOOP|a|Got it, I'll do that now.
+T3|CLOSED_LOOP|p|Understood. I shall administer the antibiotic immediately and report completion.
+T3|CLOSED_LOOP|p|To confirm, you require the clotting screen to be sent urgently; is that correct?
+T3|CLOSED_LOOP|c|I will, correction, I am now repeating: potassium five point two millimoles.
+T3|CLOSED_LOOP|p|Message received; I am ordering the chest radiograph now.
+T4|CLOSED_LOOP|p|Okay, just to check I heard right, you want the fluids started?
+T4|CLOSED_LOOP|p|Sorry, repeating that back, giving the antiemetic now?
+T4|CLOSED_LOOP|i|So I'll order the ECG and then tell you when
+T4|CLOSED_LOOP|p|Right, I'll do that and come back to you.
+T1|ESCALATE_SPEECH|p|Need the anaesthetist. Now.
+T1|ESCALATE_SPEECH|p|Get the registrar, I can't decide this.
+T1|ESCALATE_SPEECH|n|I'm not comfortable proceeding without the senior seeing this.
+T1|ESCALATE_SPEECH|i|Can someone get the consultant to
+T2|ESCALATE_SPEECH|p|Could you possibly ask the senior nurse to pop over, I'm a bit worried about this one?
+T2|ESCALATE_SPEECH|p|I think we need the surgeon to have a look at this before we go any further.
+T2|ESCALATE_SPEECH|p|Please can somebody bleep the anaesthetist for me, it's urgent.
+T2|ESCALATE_SPEECH|a|I'd like a second opinion on this if that's okay.
+T3|ESCALATE_SPEECH|p|I request that the consultant anaesthetist attend this patient without delay.
+T3|ESCALATE_SPEECH|p|This decision lies beyond my remit; kindly summon the registrar.
+T3|ESCALATE_SPEECH|n|I am not prepared to proceed in the absence of senior review.
+T3|ESCALATE_SPEECH|p|May I ask that the surgeon be contacted to review these findings?
+T4|ESCALATE_SPEECH|p|Sorry, I think I need to get some help, could someone call the registrar?
+T4|ESCALATE_SPEECH|p|Um, I'm not sure what to do, should we ask the anaesthetist to come?
+T4|ESCALATE_SPEECH|c|Can you get the nurse, no, the senior, the senior doctor, please?
+T4|ESCALATE_SPEECH|p|I'd feel better if someone more senior looked at this.
+T1|REPORT_FAULT|p|Suction's dead.
+T1|REPORT_FAULT|p|Pulse ox isn't reading. Probe maybe.
+T1|REPORT_FAULT|n|The diathermy's not working, no power.
+T1|REPORT_FAULT|i|The tower keeps freezing and the
+T2|REPORT_FAULT|p|Oh no, the warming blanket won't switch on, can somebody have a look at it?
+T2|REPORT_FAULT|p|I think there's something wrong with the monitor, it keeps beeping for no reason.
+T2|REPORT_FAULT|p|Just to let you know the trolley wheel is jammed, it needs fixing.
+T2|REPORT_FAULT|a|The machine isn't behaving properly, something's off.
+T3|REPORT_FAULT|p|I wish to report that the anaesthetic machine has failed its self-test.
+T3|REPORT_FAULT|p|The laparoscopic tower has ceased to display an image.
+T3|REPORT_FAULT|n|The suction apparatus is not functioning and requires attention.
+T3|REPORT_FAULT|p|There is a fault with the diathermy return pad connection.
+T4|REPORT_FAULT|p|Sorry, I think the oxygen monitor might be broken, it's showing nothing.
+T4|REPORT_FAULT|p|Um, is it normal that the suction isn't working? I think it's faulty.
+T4|REPORT_FAULT|i|The monitor screen has gone blank and
+T4|REPORT_FAULT|c|The pump is, no wait, the infusion pump has stopped and is alarming.
+T1|SBAR_ELEMENT|p|Situation: Mr Khan, lap chole, bay three, ready.
+T1|SBAR_ELEMENT|p|Background: diabetic, on metformin, otherwise fit.
+T1|SBAR_ELEMENT|p|Assessment: stable obs, pain controlled.
+T1|SBAR_ELEMENT|p|Recommendation: review before theatre please.
+T2|SBAR_ELEMENT|p|So the situation is I've got Mrs Bibi here for her hernia repair this morning and she's all ready to go.
+T2|SBAR_ELEMENT|p|The background is she's got a bit of asthma but it's well controlled.
+T2|SBAR_ELEMENT|p|My assessment is that she's comfortable and her obs have been steady all night.
+T2|SBAR_ELEMENT|p|What I'd recommend is that the anaesthetist sees her before we send for her.
+T3|SBAR_ELEMENT|p|Situation: this is a fifty-two-year-old gentleman scheduled for cholecystectomy at nine.
+T3|SBAR_ELEMENT|p|Background: he has hypertension, managed with a single agent.
+T3|SBAR_ELEMENT|p|Assessment: haemodynamically stable with no active concerns.
+T3|SBAR_ELEMENT|p|Recommendation: proceed to theatre once consent is confirmed.
+T4|SBAR_ELEMENT|p|Um, so the situation is, I have a patient for appendectomy in bay two.
+T4|SBAR_ELEMENT|p|The background is that she had a chest infection last month, I think.
+T4|SBAR_ELEMENT|p|Assessment, I think she looks well, her observations are fine.
+T4|SBAR_ELEMENT|c|I'd recommend, sorry, my recommendation is that we do an ECG first.
+T1|VOICE_ORDER|p|Get me a group and save.
+T1|VOICE_ORDER|p|Fluids running, one litre. Do it now.
+T1|VOICE_ORDER|p|Porter to bay two, theatre transfer.
+T1|VOICE_ORDER|n|Don't wait for the lab, send the clotting now.
+T2|VOICE_ORDER|p|Could you please grab the U and Es for this patient, thanks so much?
+T2|VOICE_ORDER|p|Can we get the antibiotic drawn up and given before we go through?
+T2|VOICE_ORDER|p|Would you mind ringing the porter to take her round to theatre?
+T2|VOICE_ORDER|a|Can we have some bloods sent off and a chest X-ray as well?
+T3|VOICE_ORDER|p|Please arrange an urgent twelve-lead ECG for this patient.
+T3|VOICE_ORDER|p|I should like the antiemetic prescribed and administered now.
+T3|VOICE_ORDER|n|Do not delay transfer; order the porter immediately.
+T3|VOICE_ORDER|p|Kindly request a full blood count and CRP.
+T4|VOICE_ORDER|p|Could we maybe get a urine dip done, if that's okay with everyone?
+T4|VOICE_ORDER|p|Sorry, would it be possible to order the clotting screen please?
+T4|VOICE_ORDER|i|Can someone please arrange transport to
+T4|VOICE_ORDER|c|Can we give oxygen, no, can we start the fluids first?
+T1|CONFIRM_IDENTITY|p|Name and date of birth.
+T1|CONFIRM_IDENTITY|p|Band says Rehman, you Mr Rehman? DOB?
+T1|CONFIRM_IDENTITY|n|That's not your wristband, is it? Tell me your name.
+T1|CONFIRM_IDENTITY|p|Hospital number, please.
+T2|CONFIRM_IDENTITY|p|Hello there, can you just tell me your full name and your date of birth for me, love?
+T2|CONFIRM_IDENTITY|p|Let me double check your wristband matches what's on your notes, bear with me.
+T2|CONFIRM_IDENTITY|p|Could you confirm your address and your name just so I know I've got the right person?
+T2|CONFIRM_IDENTITY|a|And you are, sorry?
+T3|CONFIRM_IDENTITY|p|Would you please state your full name and date of birth for identification.
+T3|CONFIRM_IDENTITY|p|I am verifying that the details on your identity band correspond to the record.
+T3|CONFIRM_IDENTITY|n|The band and the chart do not appear to match; please state your name.
+T3|CONFIRM_IDENTITY|p|Could you confirm your hospital number?
+T4|CONFIRM_IDENTITY|p|Sorry, just to be safe, can you tell me your name and birthday?
+T4|CONFIRM_IDENTITY|p|Um, is this your name on the wristband?
+T4|CONFIRM_IDENTITY|i|Could you confirm for me your full name and
+T4|CONFIRM_IDENTITY|c|Are you Mr Chen, sorry, Mr Khan, can you confirm?
+T1|STATE_ALLERGY|p|Allergies? Anything?
+T1|STATE_ALLERGY|p|Penicillin allergy, what happens when you take it?
+T1|STATE_ALLERGY|n|You don't react to latex, do you?
+T1|STATE_ALLERGY|i|Have you ever reacted to any antibi
+T2|STATE_ALLERGY|p|Now are you allergic to anything at all, any tablets or creams or plasters?
+T2|STATE_ALLERGY|p|Oh so penicillin gave you a rash, that's good to know, what did it look like?
+T2|STATE_ALLERGY|p|Have you ever had a funny reaction to a medicine or to latex gloves?
+T2|STATE_ALLERGY|a|Anything make you come out in a rash or swell up?
+T3|STATE_ALLERGY|p|Do you have any known drug allergies or hypersensitivities?
+T3|STATE_ALLERGY|p|I understand that you reacted adversely to penicillin; what was the nature of the reaction?
+T3|STATE_ALLERGY|n|You have no allergy to iodine or latex of which I should be aware?
+T3|STATE_ALLERGY|p|Have you ever experienced anaphylaxis?
+T4|STATE_ALLERGY|p|Sorry, are you allergic to anything, like medicines?
+T4|STATE_ALLERGY|p|Um, what happened when you had the antibiotic, was it an allergy?
+T4|STATE_ALLERGY|c|Any allergies, no, I mean any reactions to a medicine in the past?
+T4|STATE_ALLERGY|p|You said you were allergic to latex, is that right?
+T1|CONSENT_SIGN|p|Sign here if you're happy.
+T1|CONSENT_SIGN|p|You agree to the op? Consent form.
+T1|CONSENT_SIGN|n|You haven't signed yet. Do you consent or not?
+T1|CONSENT_SIGN|i|Are you happy to go ahead with the
+T2|CONSENT_SIGN|p|Are you happy for us to go ahead with the operation today, my love?
+T2|CONSENT_SIGN|p|If you're okay with everything, could you pop your signature at the bottom of the form?
+T2|CONSENT_SIGN|p|And are you fine with having the anaesthetic as we've discussed?
+T2|CONSENT_SIGN|a|So is it all right with you if we carry on?
+T3|CONSENT_SIGN|p|Do you give your informed consent to the proposed operation?
+T3|CONSENT_SIGN|p|I would ask you to sign the consent form if you agree to proceed.
+T3|CONSENT_SIGN|n|Unless you are willing, we will not proceed; do you consent?
+T3|CONSENT_SIGN|p|Are you content for the anaesthetic to be administered?
+T4|CONSENT_SIGN|p|Sorry, are you happy to go ahead with the surgery, you can say no.
+T4|CONSENT_SIGN|p|Would you mind signing here, only if you agree to it?
+T4|CONSENT_SIGN|c|Do you agree, no, are you willing to have the operation today?
+T4|CONSENT_SIGN|p|Is it okay to proceed with the anaesthetic?
+T1|HANDOVER_CRITICAL_ELEMENT|p|Allergic to penicillin. Flag it.
+T1|HANDOVER_CRITICAL_ELEMENT|p|Not fasted, had toast at seven.
+T1|HANDOVER_CRITICAL_ELEMENT|p|Band doesn't match the notes. Different name.
+T1|HANDOVER_CRITICAL_ELEMENT|n|Pressure hasn't recovered, still dropping.
+T2|HANDOVER_CRITICAL_ELEMENT|p|Just so you know before you take her, she's allergic to penicillin, it gave her a rash.
+T2|HANDOVER_CRITICAL_ELEMENT|p|Heads up, he did have breakfast this morning so he's not fasted.
+T2|HANDOVER_CRITICAL_ELEMENT|p|Be aware the name on the wristband isn't the same as on the chart.
+T2|HANDOVER_CRITICAL_ELEMENT|a|His blood pressure's been creeping down over the last hour.
+T3|HANDOVER_CRITICAL_ELEMENT|p|It is essential that you are aware of the patient's documented penicillin allergy.
+T3|HANDOVER_CRITICAL_ELEMENT|p|Please note that the patient has not complied with the fasting instructions.
+T3|HANDOVER_CRITICAL_ELEMENT|n|The identity band is not consistent with the medical record.
+T3|HANDOVER_CRITICAL_ELEMENT|p|The patient's oxygen saturation has been falling progressively.
+T4|HANDOVER_CRITICAL_ELEMENT|p|Sorry, I should say she's allergic to latex, it's really important.
+T4|HANDOVER_CRITICAL_ELEMENT|p|I think he ate something this morning, so he might not be fasted.
+T4|HANDOVER_CRITICAL_ELEMENT|i|The wristband doesn't seem to match the
+T4|HANDOVER_CRITICAL_ELEMENT|c|His sats have been low, no, they dropped about an hour ago.
+T1|NONE|p|Hmm.
+T1|NONE|p|Right. Whatever.
+T1|NONE|p|Where's my pen.
+T1|NONE|i|Er, I was just
+T2|NONE|p|Oh isn't it a lovely day out there, finally some sunshine.
+T2|NONE|p|Ooh hang on, I think that's my phone buzzing.
+T2|NONE|p|Gosh, it's been such a long shift today, hasn't it?
+T2|NONE|p|Mm, lovely, right, where was I.
+T3|NONE|p|One moment while I collect my thoughts.
+T3|NONE|p|The corridor appears rather crowded this morning.
+T3|NONE|p|Indeed. Quite so.
+T3|NONE|n|No, I am not hungry, thank you.
+T4|NONE|p|Um.
+T4|NONE|p|Sorry, I'm just thinking.
+T4|NONE|p|Oh, uh, is it nearly lunchtime?
+T4|NONE|i|I wonder if
