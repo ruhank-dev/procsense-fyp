@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Qadir"
+ },
+ "derived_from": [
+  "VAR-S2-PD"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-QADIR",
+ "requires": [],
+ "sources": [
+  "SR-2314",
+  "SR-3710"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

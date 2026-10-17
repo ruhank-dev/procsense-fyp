@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 22,
+  "occupation": "university student",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "STK-S2-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-STK-S2-C",
+ "requires": [],
+ "sources": [
+  "SR-2331",
+  "SR-3731"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

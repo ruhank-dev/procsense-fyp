@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Mirza"
+ },
+ "derived_from": [
+  "VAR-S2-J"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-MIRZA",
+ "requires": [],
+ "sources": [
+  "SR-2322",
+  "SR-3724"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

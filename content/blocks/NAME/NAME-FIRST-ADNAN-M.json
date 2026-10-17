@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Adnan"
+ },
+ "derived_from": [
+  "SC-7"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-ADNAN-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2339",
+  "SR-3739"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Dar"
+ },
+ "derived_from": [
+  "VAR-S2-K"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-DAR",
+ "requires": [],
+ "sources": [
+  "SR-2323",
+  "SR-3725"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Khan"
+ },
+ "derived_from": [
+  "VAR-S1-A",
+  "VAR-S2-I"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-KHAN",
+ "requires": [],
+ "sources": [
+  "SR-2300",
+  "SR-2321",
+  "SR-3700",
+  "SR-3723"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

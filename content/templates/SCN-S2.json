@@ -1,0 +1,181 @@
+{
+ "difficulty_limits": {
+  "1": {
+   "max_problems": 1,
+   "max_variable_blocks": 3,
+   "tiers": [
+    "P0"
+   ]
+  },
+  "2": {
+   "max_problems": 2,
+   "max_variable_blocks": 4,
+   "tiers": [
+    "P0",
+    "P1"
+   ]
+  },
+  "3": {
+   "max_problems": 99,
+   "max_variable_blocks": 5,
+   "tiers": [
+    "P0",
+    "P1",
+    "P2"
+   ]
+  }
+ },
+ "note": "Slots with source 'spine' are fixed by the spine case; slots with source 'block' are filled by the solver. min and max count the blocks of that type.",
+ "procedure": "procedure:appendicectomy",
+ "scenario": "S2",
+ "slots": [
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "block",
+   "type": "DEM"
+  },
+  {
+   "max": 2,
+   "min": 2,
+   "required": true,
+   "source": "block",
+   "type": "NAME"
+  },
+  {
+   "max": 1,
+   "min": 0,
+   "required": false,
+   "source": "block",
+   "type": "SOC"
+  },
+  {
+   "max": 1,
+   "min": 0,
+   "required": false,
+   "source": "block",
+   "type": "PSH"
+  },
+  {
+   "max": 1,
+   "min": 0,
+   "required": false,
+   "source": "block",
+   "type": "ALG"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "PRES"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "CMB"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "MED"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "OBS"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "FND"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "RSK"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "LAB"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "IMG"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "CON"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "PER"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "PAIN"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "DIFF"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "EVT"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "ENV"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "STAFF"
+  },
+  {
+   "max": 1,
+   "min": 1,
+   "required": true,
+   "source": "spine",
+   "type": "TIME"
+  }
+ ],
+ "spine_status_at_least": "APPROVED_FOR_TRAINING"
+}

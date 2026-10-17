@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "alcohol": "None.",
+  "smoking": "Never."
+ },
+ "derived_from": [
+  "SC-6"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "SOC-SC-6",
+ "requires": [],
+ "sources": [
+  "SR-2338",
+  "SR-3738"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "alcohol:none",
+  "smoking:never"
+ ],
+ "type": "SOC"
+}

@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "family_anaesthetic": "No anaesthetic problems in the family.",
+  "previous_anaesthetic": "One caesarean section years ago, no problems with the anaesthetic."
+ },
+ "derived_from": [
+  "VAR-S1-I"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "PSH-VAR-S1-I",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2312",
+  "SR-3717"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "anaesthetic:uneventful",
+  "female_surgery_history"
+ ],
+ "type": "PSH"
+}

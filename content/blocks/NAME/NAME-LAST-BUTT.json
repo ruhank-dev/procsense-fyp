@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Butt"
+ },
+ "derived_from": [
+  "VAR-S2-L"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-BUTT",
+ "requires": [],
+ "sources": [
+  "SR-2324",
+  "SR-3726"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

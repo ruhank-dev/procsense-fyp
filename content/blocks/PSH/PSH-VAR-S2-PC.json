@@ -1,0 +1,23 @@
+{
+ "attributes": {
+  "family_anaesthetic": "No anaesthetic problems in the family.",
+  "previous_anaesthetic": "No previous operations."
+ },
+ "derived_from": [
+  "VAR-S2-PC"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "PSH-VAR-S2-PC",
+ "requires": [],
+ "sources": [
+  "SR-2313",
+  "SR-3709"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "anaesthetic:uneventful"
+ ],
+ "type": "PSH"
+}

@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Mahnoor"
+ },
+ "derived_from": [
+  "SC-14"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-MAHNOOR-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2346",
+  "SR-3746"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Akhtar"
+ },
+ "derived_from": [
+  "SC-12",
+  "VAR-S1-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-AKHTAR",
+ "requires": [],
+ "sources": [
+  "SR-2304",
+  "SR-2344",
+  "SR-3704",
+  "SR-3744"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

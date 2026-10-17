@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Ravi"
+ },
+ "derived_from": [
+  "STK-S2-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-RAVI-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2330",
+  "SR-3716"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

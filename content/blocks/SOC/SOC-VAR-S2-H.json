@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "alcohol": "None.",
+  "smoking": "Never."
+ },
+ "derived_from": [
+  "VAR-S2-H"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "SOC-VAR-S2-H",
+ "requires": [],
+ "sources": [
+  "SR-2320",
+  "SR-3722"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "alcohol:none",
+  "smoking:never"
+ ],
+ "type": "SOC"
+}

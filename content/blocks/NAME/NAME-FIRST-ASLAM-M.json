@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Aslam"
+ },
+ "derived_from": [
+  "VAR-S1-L"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-ASLAM-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2310",
+  "SR-3719"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

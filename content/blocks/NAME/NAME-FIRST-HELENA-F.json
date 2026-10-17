@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Helena"
+ },
+ "derived_from": [
+  "STK-S1-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-HELENA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2327",
+  "SR-3729"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

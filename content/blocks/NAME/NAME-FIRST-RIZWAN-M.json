@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Rizwan"
+ },
+ "derived_from": [
+  "VAR-S1-M"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-RIZWAN-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2311",
+  "SR-3720"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

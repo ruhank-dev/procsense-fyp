@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Waqas"
+ },
+ "derived_from": [
+  "SC-8"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-WAQAS-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2340",
+  "SR-3740"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

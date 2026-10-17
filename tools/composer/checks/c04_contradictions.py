@@ -93,8 +93,9 @@ def problem_without_evidence(card: dict) -> list[Defect]:
         return []
     import build_discovery as bd
     listed = {(c, p) for c, p, *_ in bd.RULES} | set(bd.NOT_DISCOVERABLE)
+    key = card.get("composition", {}).get("spine", card["id"])      # a composed case keeps its spine's story, so it finds its problems by the spine's rules
     return [Defect(4, "PROBLEM_WITHOUT_EVIDENCE", f"{card['id']}: the problem {p['id']} has no discovery rule, so the trainee cannot find it")
-            for p in card["problems"] if p["type"] != "information_only" and (card["id"], p["id"]) not in listed]
+            for p in card["problems"] if p["type"] != "information_only" and (key, p["id"]) not in listed]
 
 
 CONTRADICTIONS = [

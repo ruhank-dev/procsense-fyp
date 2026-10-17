@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Anwar"
+ },
+ "derived_from": [
+  "SC-20"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-ANWAR-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2352",
+  "SR-3752"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

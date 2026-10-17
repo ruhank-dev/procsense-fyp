@@ -1,0 +1,23 @@
+{
+ "attributes": {
+  "family_anaesthetic": "No anaesthetic problems in the family.",
+  "previous_anaesthetic": "No previous anaesthetics."
+ },
+ "derived_from": [
+  "SC-18"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "PSH-SC-18",
+ "requires": [],
+ "sources": [
+  "SR-2350",
+  "SR-3750"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "anaesthetic:uneventful"
+ ],
+ "type": "PSH"
+}

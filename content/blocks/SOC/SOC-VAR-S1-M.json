@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "alcohol": "Occasional.",
+  "smoking": "Never."
+ },
+ "derived_from": [
+  "VAR-S1-M"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "SOC-VAR-S1-M",
+ "requires": [],
+ "sources": [
+  "SR-2311",
+  "SR-3720"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "alcohol:some",
+  "smoking:never"
+ ],
+ "type": "SOC"
+}

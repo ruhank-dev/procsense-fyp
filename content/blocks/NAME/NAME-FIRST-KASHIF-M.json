@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Kashif"
+ },
+ "derived_from": [
+  "SC-11"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-KASHIF-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2343",
+  "SR-3743"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

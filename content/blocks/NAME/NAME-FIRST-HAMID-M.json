@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Hamid"
+ },
+ "derived_from": [
+  "VAR-S2-I"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-HAMID-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2321",
+  "SR-3723"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

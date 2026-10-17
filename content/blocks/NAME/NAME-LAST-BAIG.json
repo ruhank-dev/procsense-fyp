@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Baig"
+ },
+ "derived_from": [
+  "SC-20"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-BAIG",
+ "requires": [],
+ "sources": [
+  "SR-2352",
+  "SR-3752"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Uzma"
+ },
+ "derived_from": [
+  "SC-6"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-UZMA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2338",
+  "SR-3738"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

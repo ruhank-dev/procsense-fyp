@@ -408,6 +408,12 @@ jobs:
       - name: knowledge base tests (grounding of model relations, review gate, sheet and score)
         run: uv run --project tools tools/ci/test_kb.py
 
+      - name: composer block library current, tagged and cut from named cases
+        run: uv run --project tools tools/composer/blocks.py --check
+
+      - name: composer solver tests (T-CO1 to T-CO5, definition of done)
+        run: uv run --project tools tools/composer/test_solver.py
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

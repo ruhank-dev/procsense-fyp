@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Hashmi"
+ },
+ "derived_from": [
+  "SC-18",
+  "VAR-S1-I"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-HASHMI",
+ "requires": [],
+ "sources": [
+  "SR-2312",
+  "SR-2350",
+  "SR-3717",
+  "SR-3750"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

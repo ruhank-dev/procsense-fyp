@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Chen"
+ },
+ "derived_from": [
+  "STK-S2-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-CHEN",
+ "requires": [],
+ "sources": [
+  "SR-2331",
+  "SR-3731"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

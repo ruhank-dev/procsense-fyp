@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Raza"
+ },
+ "derived_from": [
+  "SC-14",
+  "VAR-S2-F"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-RAZA",
+ "requires": [],
+ "sources": [
+  "SR-2317",
+  "SR-2346",
+  "SR-3713",
+  "SR-3746"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

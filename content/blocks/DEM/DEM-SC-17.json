@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 25,
+  "occupation": "dental student",
+  "sex": "F",
+  "title": "Ms"
+ },
+ "derived_from": [
+  "SC-17"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-17",
+ "requires": [],
+ "sources": [
+  "SR-2349",
+  "SR-3749"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

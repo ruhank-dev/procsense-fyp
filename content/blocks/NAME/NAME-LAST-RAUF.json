@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Rauf"
+ },
+ "derived_from": [
+  "VAR-S1-H"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-RAUF",
+ "requires": [],
+ "sources": [
+  "SR-2307",
+  "SR-3707"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

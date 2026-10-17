@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Tariq"
+ },
+ "derived_from": [
+  "VAR-S1-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-TARIQ-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2303",
+  "SR-3703"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

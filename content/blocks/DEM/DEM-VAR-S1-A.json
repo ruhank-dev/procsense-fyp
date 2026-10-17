@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 42,
+  "occupation": "teacher",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "VAR-S1-A"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S1-A",
+ "requires": [],
+ "sources": [
+  "SR-2300",
+  "SR-3700"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Latif"
+ },
+ "derived_from": [
+  "SC-9"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-LATIF",
+ "requires": [],
+ "sources": [
+  "SR-2341",
+  "SR-3741"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

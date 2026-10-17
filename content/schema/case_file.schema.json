@@ -41,7 +41,7 @@
     },
     "id": {
       "type": "string",
-      "pattern": "^((VAR|STK)-S[12]-[A-Z]+|SC-[0-9]+)$"
+      "pattern": "^((VAR|STK)-S[12]-[A-Z]+|SC-[0-9]+|GEN-S[12]-[0-9]{4}-[0-9]{3})$"
     },
     "walkthrough_label": {
       "type": "string"
@@ -66,7 +66,8 @@
     "created_by": {
       "enum": [
         "human",
-        "ai_draft"
+        "ai_draft",
+        "composer"
       ]
     },
     "status": {
@@ -904,6 +905,40 @@
           "delayed",
           "failure"
         ]
+      }
+    },
+    "composition": {
+      "type": "object",
+      "description": "Present on a case the composer made from a spine and blocks (p1-scenario-composer-difficulty): enough to make it again.",
+      "additionalProperties": false,
+      "required": [
+        "template",
+        "seed",
+        "spine",
+        "blocks"
+      ],
+      "properties": {
+        "template": {
+          "type": "string"
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "spine": {
+          "type": "string"
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "solver_steps": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
       }
     }
   },

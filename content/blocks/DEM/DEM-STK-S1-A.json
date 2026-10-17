@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 58,
+  "occupation": "accountant",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "STK-S1-A"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-STK-S1-A",
+ "requires": [],
+ "sources": [
+  "SR-2325",
+  "SR-3727"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:55-60",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

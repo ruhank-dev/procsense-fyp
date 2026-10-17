@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Ayesha"
+ },
+ "derived_from": [
+  "VAR-S1-A"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-AYESHA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2300",
+  "SR-3700"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

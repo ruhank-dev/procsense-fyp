@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 58,
+  "occupation": "taxi driver",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "VAR-S1-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S1-B",
+ "requires": [],
+ "sources": [
+  "SR-2303",
+  "SR-3703"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:55-60",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

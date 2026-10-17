@@ -1,0 +1,28 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Imran"
+ },
+ "derived_from": [
+  "STK-S1-A",
+  "VAR-S1-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-IMRAN-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2305",
+  "SR-2325",
+  "SR-3705",
+  "SR-3727"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

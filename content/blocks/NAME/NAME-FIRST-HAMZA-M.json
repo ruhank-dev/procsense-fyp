@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Hamza"
+ },
+ "derived_from": [
+  "VAR-S2-PC"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-HAMZA-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2313",
+  "SR-3709"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

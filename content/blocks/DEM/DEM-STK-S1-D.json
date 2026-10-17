@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 62,
+  "occupation": "school secretary",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "STK-S1-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-STK-S1-D",
+ "requires": [],
+ "sources": [
+  "SR-2328",
+  "SR-3715"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:60-65",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

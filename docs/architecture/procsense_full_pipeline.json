@@ -697,11 +697,16 @@
     {
       "type": "offline_step",
       "group": "g_offline",
-      "evidence": [],
+      "evidence": [
+        "tools/composer/blocks.py (256 blocks of 5 variable types, 21 types named)",
+        "content/blocks",
+        "content/templates/SCN-S1.json",
+        "content/templates/SCN-S2.json"
+      ],
       "blockers": [],
       "id": "OFF-04",
       "label": "Component (block) library with requires and excludes",
-      "status": "Planned",
+      "status": "Partially implemented",
       "method_class": "deterministic",
       "description": "The 21 block types of the composer (DEM, PRES, CMB, MED, ALG, PSH, SOC, OBS, FND, RSK, LAB, IMG, CON, PER, PAIN, DIFF, EVT, ENV, STAFF, TIME...) derived from the 53 case files, each citing the case it came from. Lineage: p1-scenario-composer-difficulty-s01.",
       "inputs": [
@@ -711,11 +716,11 @@
         "content/events/events.json"
       ],
       "outputs": [
-        "content/blocks/<type>/*.json",
+        "content/blocks/<TYPE>/*.json",
         "content/blocks/tags.yaml",
         "content/templates/SCN-S1.json, SCN-S2.json"
       ],
-      "component": "tools/composer/blocks.py (planned)",
+      "component": "tools/composer/blocks.py (built, --check in CI). In P1 the blocks vary the patient, not the story: a spine case keeps its problems, decisions and end state (decision of 17 Oct 2026)",
       "tasks": [
         "p1-scenario-composer-difficulty-s01"
       ],
@@ -1144,7 +1149,7 @@
       "outputs": [
         "ComponentSet: block ids per slot, solver trace"
       ],
-      "component": "server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13) + tools/composer/solver.py (planned, p1-scenario-composer-difficulty-s02)",
+      "component": "tools/composer/solve.py (built) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13)",
       "method": "LLM + retrieval proposes the plan (MC-01, JSON schema); seeded constraint solver completes and checks it (backtracking over slots with requires/excludes, KB relations, difficulty bounds, novelty pre-filter).",
       "api": "internal",
       "validation": "Constraint re-check after selection; solver trace stored in the package.",
@@ -1166,7 +1171,9 @@
       ],
       "error_handling": "Unsatisfiable: relax optional slots in a fixed order, then fall back to FALLBACK-POOL-LIBRARY.",
       "latency_budget_ms": 500,
-      "evidence": [],
+      "evidence": [
+        "tools/composer/solve.py (the deterministic solver, built)"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",
@@ -3821,7 +3828,10 @@
       "description": "Compose complete cases from approved building blocks: a deterministic solver assembles blocks under requires/excludes and difficulty limits; an LLM proposes combinations and narratives (Stage A); Stage B validates. Offline batch use of the same machinery as live generation.",
       "evidence": [
         "tools/composer/stage_b.py (Stage B built)",
-        "tools/composer/test_composer.py (60 of 60 mutations rejected)"
+        "tools/composer/test_composer.py (60 of 60 mutations rejected)",
+        "tools/composer/solve.py",
+        "tools/composer/cli.py",
+        "tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations)"
       ],
       "lineage": [
         "p1-scenario-composer-difficulty s01 to s05",
@@ -6260,10 +6270,13 @@
       "category": "Scenario generation and composition",
       "group": "g_feat_A",
       "kind": "deterministic",
-      "status": "Planned",
+      "status": "Partially implemented",
       "ai_status": "Not applicable (deterministic feature)",
       "description": "Reuse blocks across cases (a comorbidity from one case, an event from another) under requires and excludes.",
-      "evidence": [],
+      "evidence": [
+        "content/blocks (256 blocks)",
+        "tools/composer/solve.py"
+      ],
       "lineage": [
         "p1-scenario-composer-difficulty-s01, s02"
       ],
@@ -24301,7 +24314,7 @@
       "depends_on": [
         "PH-01"
       ],
-      "status": "Planned",
+      "status": "Partially implemented",
       "deliverables": [
         "content/blocks",
         "templates",

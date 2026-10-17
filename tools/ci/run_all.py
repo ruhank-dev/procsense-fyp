@@ -202,6 +202,8 @@ def main(argv: list[str]) -> int:
         ("numeric profile tests (skew, ranks, correlations, borderline share)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_profile_numeric.py"])),
         ("scenario knowledge base current, sourced and valid", lambda: run(["uv", "run", "--project", "tools", "tools/kb/build_kb.py", "--check"])),
         ("knowledge base tests (grounding of model relations, review gate, sheet and score)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_kb.py"])),
+        ("composer block library current, tagged and cut from named cases", lambda: run(["uv", "run", "--project", "tools", "tools/composer/blocks.py", "--check"])),
+        ("composer solver tests (T-CO1 to T-CO5, definition of done)", lambda: run(["uv", "run", "--project", "tools", "tools/composer/test_solver.py"])),
         ("content manifest up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/content_manifest.py", "--check"])),
         ("medical review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/review_pack.py", "--check"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),

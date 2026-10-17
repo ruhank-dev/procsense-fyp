@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 34,
+  "occupation": "warehouse supervisor",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "VAR-S2-PD"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S2-PD",
+ "requires": [],
+ "sources": [
+  "SR-2314",
+  "SR-3710"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

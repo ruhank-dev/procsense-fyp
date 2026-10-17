@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Anwar"
+ },
+ "derived_from": [
+  "VAR-S1-M",
+  "VAR-S2-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-ANWAR",
+ "requires": [],
+ "sources": [
+  "SR-2311",
+  "SR-2316",
+  "SR-3712",
+  "SR-3720"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

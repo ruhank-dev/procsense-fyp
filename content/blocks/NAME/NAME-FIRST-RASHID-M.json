@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Rashid"
+ },
+ "derived_from": [
+  "SC-19"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-RASHID-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2351",
+  "SR-3751"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

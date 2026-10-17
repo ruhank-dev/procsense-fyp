@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Iqra"
+ },
+ "derived_from": [
+  "SC-17"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-IQRA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2349",
+  "SR-3749"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

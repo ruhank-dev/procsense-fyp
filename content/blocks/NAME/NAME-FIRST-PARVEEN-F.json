@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Parveen"
+ },
+ "derived_from": [
+  "SC-12"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-PARVEEN-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2344",
+  "SR-3744"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Patel"
+ },
+ "derived_from": [
+  "STK-S2-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-PATEL",
+ "requires": [],
+ "sources": [
+  "SR-2330",
+  "SR-3716"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

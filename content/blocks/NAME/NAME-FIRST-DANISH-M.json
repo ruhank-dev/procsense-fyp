@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Danish"
+ },
+ "derived_from": [
+  "SC-1"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-DANISH-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2333",
+  "SR-3733"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

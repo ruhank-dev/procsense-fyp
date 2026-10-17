@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 28,
+  "occupation": "graphic designer",
+  "sex": "F",
+  "title": "Ms"
+ },
+ "derived_from": [
+  "SC-14"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-14",
+ "requires": [],
+ "sources": [
+  "SR-2346",
+  "SR-3746"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

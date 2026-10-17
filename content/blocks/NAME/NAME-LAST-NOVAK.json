@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Novak"
+ },
+ "derived_from": [
+  "STK-S1-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-NOVAK",
+ "requires": [],
+ "sources": [
+  "SR-2327",
+  "SR-3729"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

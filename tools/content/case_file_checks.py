@@ -156,7 +156,7 @@ def problems(c: dict, ctx: dict, others: list[dict] | None = None) -> list[str]:
             mv, rv = (_num(m["v_value"]) if re.fullmatch(r"-?\d+(?:\.\d+)?", m["v_value"].strip()) else None), _num(r["value"])     # composite rows ('WBC 15.2, CRP 96') are not compared
             if mv is not None and rv is not None and mv != rv:
                 out.append(f"{w}: result {r['id']} {r['value']} differs from the walkthrough row {r['source_row']} ({m['v_value']})")
-            if m["case_id"] != w:
+            if m["case_id"] != c.get("composition", {}).get("spine", w):      # a composed case cites the rows of its spine
                 out.append(f"{w}: result {r['id']} cites a row of another case")
     # problems, decisions
     ranks = sorted(p["rank"] for p in c["problems"])

@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Iqbal"
+ },
+ "derived_from": [
+  "VAR-S1-K"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-IQBAL",
+ "requires": [],
+ "sources": [
+  "SR-2309",
+  "SR-3718"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

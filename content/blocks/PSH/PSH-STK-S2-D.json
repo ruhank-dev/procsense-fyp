@@ -1,0 +1,23 @@
+{
+ "attributes": {
+  "family_anaesthetic": "No anaesthetic problems in the family.",
+  "previous_anaesthetic": "No previous anaesthetics."
+ },
+ "derived_from": [
+  "STK-S2-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "PSH-STK-S2-D",
+ "requires": [],
+ "sources": [
+  "SR-2332",
+  "SR-3732"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "anaesthetic:uneventful"
+ ],
+ "type": "PSH"
+}

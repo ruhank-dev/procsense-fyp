@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Hameed"
+ },
+ "derived_from": [
+  "SC-15"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-HAMEED",
+ "requires": [],
+ "sources": [
+  "SR-2347",
+  "SR-3747"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

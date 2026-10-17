@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Mehmood"
+ },
+ "derived_from": [
+  "SC-4"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-MEHMOOD",
+ "requires": [],
+ "sources": [
+  "SR-2336",
+  "SR-3736"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}

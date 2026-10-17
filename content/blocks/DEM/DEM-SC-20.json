@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 70,
+  "occupation": "retired postman",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-20"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-20",
+ "requires": [],
+ "sources": [
+  "SR-2352",
+  "SR-3752"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:70-75",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

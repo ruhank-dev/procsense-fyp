@@ -66,6 +66,16 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/catalogue.py
 
+  compose:
+    desc: Compose practice cases from approved spines and blocks, e.g. task compose -- compose --scenario S1 --difficulty 2 --n 20 --seed 7 (each card goes through Stage B before it is written to build/composed)
+    cmds:
+      - uv run --project tools tools/composer/cli.py {{.CLI_ARGS}}
+
+  blocks:
+    desc: Rebuild the composer's block library, tag vocabulary and templates from the case files (content/blocks, content/templates)
+    cmds:
+      - uv run --project tools tools/composer/blocks.py
+
   voice-render:
     desc: Render the voice-line catalogue to audio (build/voice, git-ignored) with the offline voice; only new or changed lines are rendered. Needs Piper, the voice model and ffmpeg (see tools/voice/README.md)
     cmds:

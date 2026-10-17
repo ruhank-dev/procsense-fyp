@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 49,
+  "occupation": "bookkeeper",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "SC-6"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-6",
+ "requires": [],
+ "sources": [
+  "SR-2338",
+  "SR-3738"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 71,
+  "occupation": "retired seamstress",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "STK-S1-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-STK-S1-C",
+ "requires": [],
+ "sources": [
+  "SR-2327",
+  "SR-3729"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:70-75",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

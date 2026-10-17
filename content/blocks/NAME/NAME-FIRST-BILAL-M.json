@@ -1,0 +1,28 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Bilal"
+ },
+ "derived_from": [
+  "SC-18",
+  "VAR-S2-F"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-BILAL-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2317",
+  "SR-2350",
+  "SR-3713",
+  "SR-3750"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

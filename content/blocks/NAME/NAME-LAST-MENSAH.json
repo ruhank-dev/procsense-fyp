@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Mensah"
+ },
+ "derived_from": [
+  "STK-S1-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-MENSAH",
+ "requires": [],
+ "sources": [
+  "SR-2326",
+  "SR-3728"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

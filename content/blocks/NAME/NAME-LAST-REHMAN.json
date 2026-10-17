@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Rehman"
+ },
+ "derived_from": [
+  "SC-1"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-REHMAN",
+ "requires": [],
+ "sources": [
+  "SR-2333",
+  "SR-3733"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

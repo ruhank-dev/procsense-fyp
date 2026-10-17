@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Bello"
+ },
+ "derived_from": [
+  "STK-S1-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-BELLO",
+ "requires": [],
+ "sources": [
+  "SR-2328",
+  "SR-3715"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

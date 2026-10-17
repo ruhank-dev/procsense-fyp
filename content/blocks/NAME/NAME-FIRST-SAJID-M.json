@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Sajid"
+ },
+ "derived_from": [
+  "SC-5"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-SAJID-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2337",
+  "SR-3737"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

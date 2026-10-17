@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Chaudhry"
+ },
+ "derived_from": [
+  "VAR-S1-L"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-CHAUDHRY",
+ "requires": [],
+ "sources": [
+  "SR-2310",
+  "SR-3719"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

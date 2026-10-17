@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Nadeem"
+ },
+ "derived_from": [
+  "SC-8"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-NADEEM",
+ "requires": [],
+ "sources": [
+  "SR-2340",
+  "SR-3740"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

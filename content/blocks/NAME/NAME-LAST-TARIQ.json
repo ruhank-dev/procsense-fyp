@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Tariq"
+ },
+ "derived_from": [
+  "VAR-S2-H"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-TARIQ",
+ "requires": [],
+ "sources": [
+  "SR-2320",
+  "SR-3722"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

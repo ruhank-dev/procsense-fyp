@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Qureshi"
+ },
+ "derived_from": [
+  "SC-7"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-QURESHI",
+ "requires": [],
+ "sources": [
+  "SR-2339",
+  "SR-3739"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

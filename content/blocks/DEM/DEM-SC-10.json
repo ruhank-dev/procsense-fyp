@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 17,
+  "occupation": "school student",
+  "sex": "M",
+  "title": "Master"
+ },
+ "derived_from": [
+  "SC-10"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-10",
+ "requires": [],
+ "sources": [
+  "SR-2342",
+  "SR-3742"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:16-18",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

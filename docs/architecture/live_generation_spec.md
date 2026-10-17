@@ -24,7 +24,7 @@ The full architecture (learning from evidence, AI composition, how each modality
 | OFF-01 | Dataset inventory and licence check | Partially implemented | deterministic | docs/research/dataset_register.csv; dataset licence pages | refreshed dataset register; docs/research/licence_provenance_register.md | tools/data/dataset_cards.py (exists, --check in CI) | p1-dataset-analysis-s01 |
 | OFF-02 | Normal versus abnormal profiling per modality | Implemented and tested | statistical | tools/data/cache (git-ignored raw data); tools/data/derived/*.json | docs/research/datasets/profiles/<modality>.md; tools/data/derived/profiles/*.json | tools/data/profile_numeric.py, tools/data/profile_waveforms.py (built, --check in CI) | p1-dataset-analysis-s02; p1-dataset-analysis-s03; p1-dataset-analysis-s04 |
 | OFF-03 | Generator parameter packs (versioned) | Implemented and tested | statistical | OFF-02 profiles; content/lab_bands.csv; content/vitals_bands (52 rows); content/critical_results.csv | content/generation/packs/*.json; content/generation/packs/manifest.json (SHA-256 per pack) | tools/generation/build_packs.py and packs.py (built, --check in CI) | p1-dataset-analysis-s05 |
-| OFF-04 | Component (block) library with requires and excludes | Planned | deterministic | content/case_files/*.json (53); content/cases; content/whatif_library.csv; content/events/events.json | content/blocks/<type>/*.json; content/blocks/tags.yaml; content/templates/SCN-S1.json, SCN-S2.json | tools/composer/blocks.py (planned) | p1-scenario-composer-difficulty-s01 |
+| OFF-04 | Component (block) library with requires and excludes | Partially implemented | deterministic | content/case_files/*.json (53); content/cases; content/whatif_library.csv; content/events/events.json | content/blocks/<TYPE>/*.json; content/blocks/tags.yaml; content/templates/SCN-S1.json, SCN-S2.json | tools/composer/blocks.py (built, --check in CI). In P1 the blocks vary the patient, not the story: a spine case keeps its problems, decisions and end state (decision of 17 Oct 2026) | p1-scenario-composer-difficulty-s01 |
 | OFF-05 | Retrieval index over approved content | Planned | retrieval | OFF-04 blocks; content tables; docs/research/source_register.csv | generation index (built artefact, not committed if large) | tools/generation/build_index.py (planned) | p1-live-scenario-generation-s02 |
 | OFF-06 | Media asset index (images and ECG strips) | Implemented and tested | deterministic | content/imaging_library.csv; content/imaging_reports.json; content/images; content/ecg_reports.json; content/cxr_reports.json | content/imaging/finding_tags.json; content/imaging/picture_tags.csv; docs/research/imaging_gaps.md | tools/content/imaging_library.py, tools/content/imaging_tags.py (both --check in CI) | p1-dataset-analysis-s04 |
 | OFF-07 | Evaluation reference sets | Partially implemented | deterministic | tools/composer/mutate.py; tests/vectors/grounding_vectors.json; tests/golden | tests/generation/*.json with a data card (built); labelled utterances and adversarial questions (planned) | tools/composer/mutate.py, server/validation/make_vectors.py (exist) | p1-dataset-analysis-s05; p1-evaluation-s01 |
@@ -136,7 +136,7 @@ The AI composer (LLM with retrieval over the scenario knowledge base and exempla
 |---|---|
 | Inputs | RetrievedContext; Objectives; templates SCN-S1 or SCN-S2 |
 | Outputs | ComponentSet: block ids per slot, solver trace |
-| Component | server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13) + tools/composer/solver.py (planned, p1-scenario-composer-difficulty-s02) |
+| Component | tools/composer/solve.py (built) + server/generation/compose_plan.py (planned, p1-live-scenario-generation-s13) |
 | Method | LLM + retrieval proposes the plan (MC-01, JSON schema); seeded constraint solver completes and checks it (backtracking over slots with requires/excludes, KB relations, difficulty bounds, novelty pre-filter). |
 | Method class | hybrid |
 | Data dependencies | OFF-04 |
@@ -146,7 +146,7 @@ The AI composer (LLM with retrieval over the scenario knowledge base and exempla
 | Tests | T-SOLVE unit tests; property test: no output violates requires/excludes |
 | Acceptance | Zero constraint violations over 10,000 seeds; unsatisfiable inputs end in a logged fallback. |
 | Status | Planned |
-| Evidence | — |
+| Evidence | tools/composer/solve.py (the deterministic solver, built) |
 | Blockers | — |
 | Tasks | p1-scenario-composer-difficulty-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s13 |
 

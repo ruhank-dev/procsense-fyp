@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Tasneem"
+ },
+ "derived_from": [
+  "SC-13"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-TASNEEM-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2345",
+  "SR-3745"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

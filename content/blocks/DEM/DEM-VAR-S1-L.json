@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 70,
+  "occupation": "retired bus driver",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "VAR-S1-L"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S1-L",
+ "requires": [],
+ "sources": [
+  "SR-2310",
+  "SR-3719"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:70-75",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

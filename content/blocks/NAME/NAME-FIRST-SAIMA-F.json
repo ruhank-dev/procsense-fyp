@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Saima"
+ },
+ "derived_from": [
+  "SC-16"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-SAIMA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2348",
+  "SR-3748"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

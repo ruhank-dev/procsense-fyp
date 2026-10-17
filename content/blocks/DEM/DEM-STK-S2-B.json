@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 34,
+  "occupation": "software tester",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "STK-S2-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-STK-S2-B",
+ "requires": [],
+ "sources": [
+  "SR-2330",
+  "SR-3716"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

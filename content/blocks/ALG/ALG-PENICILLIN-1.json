@@ -1,0 +1,31 @@
+{
+ "attributes": {
+  "allergies": [
+   {
+    "reaction": "Mild rash as a child (delayed)",
+    "substance": "Penicillin"
+   }
+  ],
+  "allergy_answer": "Penicillin: I had a rash as a child."
+ },
+ "derived_from": [
+  "VAR-S2-K"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [
+  "pathway:allergy",
+  "pathway:antibiotic"
+ ],
+ "id": "ALG-PENICILLIN-1",
+ "requires": [],
+ "sources": [
+  "SR-2323",
+  "SR-3725"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "allergy:drug"
+ ],
+ "type": "ALG"
+}

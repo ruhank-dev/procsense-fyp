@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "family_anaesthetic": "No anaesthetic problems.",
+  "previous_anaesthetic": "Caesarean section 2012, no problems."
+ },
+ "derived_from": [
+  "VAR-S1-A"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "PSH-VAR-S1-A",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2300",
+  "SR-3700"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "anaesthetic:uneventful",
+  "female_surgery_history"
+ ],
+ "type": "PSH"
+}

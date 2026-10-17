@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Nimra"
+ },
+ "derived_from": [
+  "SC-2"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-NIMRA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2334",
+  "SR-3734"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

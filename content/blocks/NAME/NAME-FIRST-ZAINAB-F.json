@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Zainab"
+ },
+ "derived_from": [
+  "VAR-S2-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-ZAINAB-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2316",
+  "SR-3712"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

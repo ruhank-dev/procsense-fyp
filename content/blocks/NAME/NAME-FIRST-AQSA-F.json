@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Aqsa"
+ },
+ "derived_from": [
+  "VAR-S2-J"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-AQSA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2322",
+  "SR-3724"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

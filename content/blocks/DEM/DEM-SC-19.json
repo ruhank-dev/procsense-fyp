@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 60,
+  "occupation": "retired engineer",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-19"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-19",
+ "requires": [],
+ "sources": [
+  "SR-2351",
+  "SR-3751"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:60-65",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

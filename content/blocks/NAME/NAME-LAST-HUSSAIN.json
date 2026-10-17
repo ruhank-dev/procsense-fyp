@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Hussain"
+ },
+ "derived_from": [
+  "SC-3"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-HUSSAIN",
+ "requires": [],
+ "sources": [
+  "SR-2335",
+  "SR-3735"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

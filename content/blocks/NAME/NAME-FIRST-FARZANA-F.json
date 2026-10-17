@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Farzana"
+ },
+ "derived_from": [
+  "VAR-S1-PB"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-FARZANA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2301",
+  "SR-3701"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

@@ -1,0 +1,28 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Rabia"
+ },
+ "derived_from": [
+  "SC-3",
+  "VAR-S1-E"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-RABIA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2302",
+  "SR-2335",
+  "SR-3702",
+  "SR-3735"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

@@ -30,7 +30,7 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-01 | Planning baseline and governance | Implemented and tested | — | yes | D43; E53; E54 |
 | PH-02 | Dataset analysis and profiling | Implemented and tested | PH-01 | yes | — |
 | PH-03 | Generator parameter packs, media index and evaluation sets | Implemented and tested | PH-02 | yes | — |
-| PH-04 | Block library and composer foundation | Planned | PH-01 | — | A1; A12; B23 |
+| PH-04 | Block library and composer foundation | Partially implemented | PH-01 | — | A1; A12; B23 |
 | PH-05 | Live generation skeleton (deterministic path first) | Planned | PH-03; PH-04 | yes | A2; A4; A11; E58 |
 | PH-06 | Backend and AI gateway | Planned | PH-01 | — | E62 |
 | PH-07 | LLM serving and benchmark | Partially implemented | PH-01; PH-20 | — | E57 |
@@ -100,7 +100,7 @@ Blocks with requires/excludes, templates, discovery coverage; composer lineage s
 
 | Field | Value |
 |---|---|
-| Status | Planned |
+| Status | Partially implemented |
 | Depends on | PH-01 |
 | Tasks (plan steps) | p1-scenario-composer-difficulty-s01; p1-scenario-composer-difficulty-s02; p1-scenario-composer-difficulty-s05; p1-case-library-extended-s02; p0-case-library-s05 |
 | Features | A1; A12; B23 |

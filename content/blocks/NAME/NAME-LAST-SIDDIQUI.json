@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Siddiqui"
+ },
+ "derived_from": [
+  "STK-S1-A",
+  "VAR-S1-E"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-SIDDIQUI",
+ "requires": [],
+ "sources": [
+  "SR-2302",
+  "SR-2325",
+  "SR-3702",
+  "SR-3727"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Tufail"
+ },
+ "derived_from": [
+  "SC-16"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-TUFAIL",
+ "requires": [],
+ "sources": [
+  "SR-2348",
+  "SR-3748"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

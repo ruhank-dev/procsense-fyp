@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Faisal"
+ },
+ "derived_from": [
+  "VAR-S2-K"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-FAISAL-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2323",
+  "SR-3725"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

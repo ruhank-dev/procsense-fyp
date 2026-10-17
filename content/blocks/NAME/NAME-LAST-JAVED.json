@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Javed"
+ },
+ "derived_from": [
+  "SC-2",
+  "VAR-S1-J"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-JAVED",
+ "requires": [],
+ "sources": [
+  "SR-2308",
+  "SR-2334",
+  "SR-3708",
+  "SR-3734"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

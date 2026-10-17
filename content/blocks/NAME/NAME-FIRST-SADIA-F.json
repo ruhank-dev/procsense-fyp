@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Sadia"
+ },
+ "derived_from": [
+  "VAR-S2-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-SADIA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2315",
+  "SR-3711"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

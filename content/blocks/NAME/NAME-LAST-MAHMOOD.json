@@ -1,0 +1,27 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Mahmood"
+ },
+ "derived_from": [
+  "SC-19",
+  "SC-5",
+  "VAR-S1-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-MAHMOOD",
+ "requires": [],
+ "sources": [
+  "SR-2303",
+  "SR-2337",
+  "SR-2351",
+  "SR-3703",
+  "SR-3737",
+  "SR-3751"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}

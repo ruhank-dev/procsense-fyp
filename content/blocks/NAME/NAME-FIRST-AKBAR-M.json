@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Akbar"
+ },
+ "derived_from": [
+  "VAR-S2-E"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-AKBAR-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2319",
+  "SR-3721"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

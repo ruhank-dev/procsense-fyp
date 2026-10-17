@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 61,
+  "occupation": "retired shopkeeper",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "VAR-S1-PB"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S1-PB",
+ "requires": [],
+ "sources": [
+  "SR-2301",
+  "SR-3701"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:60-65",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

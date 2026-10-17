@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Mehwish"
+ },
+ "derived_from": [
+  "VAR-S2-H"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-MEHWISH-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2320",
+  "SR-3722"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

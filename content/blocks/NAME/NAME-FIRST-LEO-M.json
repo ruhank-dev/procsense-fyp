@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Leo"
+ },
+ "derived_from": [
+  "STK-S2-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-LEO-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2331",
+  "SR-3731"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

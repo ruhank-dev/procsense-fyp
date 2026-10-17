@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Aisha"
+ },
+ "derived_from": [
+  "STK-S1-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-AISHA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2328",
+  "SR-3715"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

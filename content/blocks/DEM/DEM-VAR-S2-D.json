@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 28,
+  "occupation": "nurse",
+  "sex": "F",
+  "title": "Ms"
+ },
+ "derived_from": [
+  "VAR-S2-D"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S2-D",
+ "requires": [],
+ "sources": [
+  "SR-2316",
+  "SR-3712"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

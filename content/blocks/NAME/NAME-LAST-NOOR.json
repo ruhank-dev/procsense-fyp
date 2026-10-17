@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Noor"
+ },
+ "derived_from": [
+  "VAR-S2-B"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-NOOR",
+ "requires": [],
+ "sources": [
+  "SR-2315",
+  "SR-3711"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

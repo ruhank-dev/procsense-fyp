@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Kamran"
+ },
+ "derived_from": [
+  "VAR-S1-J"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-KAMRAN-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2308",
+  "SR-3708"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

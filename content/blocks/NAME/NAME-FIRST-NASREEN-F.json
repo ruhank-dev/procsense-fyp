@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Nasreen"
+ },
+ "derived_from": [
+  "VAR-S1-C"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-NASREEN-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2304",
+  "SR-3704"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Sofia"
+ },
+ "derived_from": [
+  "STK-S2-A"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-SOFIA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2329",
+  "SR-3730"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

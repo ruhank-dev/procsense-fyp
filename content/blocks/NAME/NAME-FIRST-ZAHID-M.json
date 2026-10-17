@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Zahid"
+ },
+ "derived_from": [
+  "SC-9"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-ZAHID-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2341",
+  "SR-3741"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

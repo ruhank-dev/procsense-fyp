@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Amna"
+ },
+ "derived_from": [
+  "VAR-S1-I"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-AMNA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2312",
+  "SR-3717"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

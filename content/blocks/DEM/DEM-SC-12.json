@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 66,
+  "occupation": "retired nurse",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "SC-12"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-12",
+ "requires": [],
+ "sources": [
+  "SR-2344",
+  "SR-3744"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:65-70",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

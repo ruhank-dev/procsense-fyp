@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 30,
+  "occupation": "bank clerk",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "VAR-S2-H"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S2-H",
+ "requires": [],
+ "sources": [
+  "SR-2320",
+  "SR-3722"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

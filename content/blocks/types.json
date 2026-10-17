@@ -1,0 +1,86 @@
+{
+ "ALG": {
+  "meaning": "Allergies and the allergy answer",
+  "owner": "variable"
+ },
+ "CMB": {
+  "meaning": "A comorbidity",
+  "owner": "spine"
+ },
+ "CON": {
+  "meaning": "The consent situation",
+  "owner": "spine"
+ },
+ "DEM": {
+  "meaning": "Who the patient is: title, sex, age, occupation",
+  "owner": "variable"
+ },
+ "DIFF": {
+  "meaning": "The decisions and the difficulty",
+  "owner": "spine"
+ },
+ "ENV": {
+  "meaning": "The setting and the room",
+  "owner": "spine"
+ },
+ "EVT": {
+  "meaning": "Events and what-if branches",
+  "owner": "spine"
+ },
+ "FND": {
+  "meaning": "Examination findings",
+  "owner": "spine"
+ },
+ "IMG": {
+  "meaning": "Imaging and ECG results",
+  "owner": "spine"
+ },
+ "LAB": {
+  "meaning": "Laboratory results",
+  "owner": "spine"
+ },
+ "MED": {
+  "meaning": "A medicine and its reason",
+  "owner": "spine"
+ },
+ "NAME": {
+  "meaning": "A first name or a family name",
+  "owner": "variable"
+ },
+ "OBS": {
+  "meaning": "Observations over time",
+  "owner": "spine"
+ },
+ "PAIN": {
+  "meaning": "Pain history and score",
+  "owner": "spine"
+ },
+ "PER": {
+  "meaning": "The patient's persona and how they behave",
+  "owner": "spine"
+ },
+ "PRES": {
+  "meaning": "The presentation and the booked procedure",
+  "owner": "spine"
+ },
+ "PSH": {
+  "meaning": "Previous and family anaesthetic answers",
+  "owner": "variable"
+ },
+ "RSK": {
+  "meaning": "ASA grade and the anaesthetic plan",
+  "owner": "spine"
+ },
+ "SOC": {
+  "meaning": "Smoking and alcohol answers",
+  "owner": "variable"
+ },
+ "STAFF": {
+  "meaning": "Who is present and who can be called",
+  "owner": "spine"
+ },
+ "TIME": {
+  "meaning": "Fasting times and the clock",
+  "owner": "spine"
+ }
+}

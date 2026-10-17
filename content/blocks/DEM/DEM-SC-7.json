@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 27,
+  "occupation": "mobile phone repairer",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-7"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-7",
+ "requires": [],
+ "sources": [
+  "SR-2339",
+  "SR-3739"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

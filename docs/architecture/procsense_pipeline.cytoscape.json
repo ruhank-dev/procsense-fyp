@@ -250,7 +250,7 @@
     "id": "OFF-04",
     "label": "OFF-04 Component (block) library with requires and excludes",
     "type": "offline_step",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_offline"
    },
    "classes": "offline_step"
@@ -1372,7 +1372,7 @@
     "id": "A12",
     "label": "A12 Recombination of case components",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_A"
    },
    "classes": "feature"

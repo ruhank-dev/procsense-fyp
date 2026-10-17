@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 35,
+  "occupation": "driver",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-15"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-15",
+ "requires": [],
+ "sources": [
+  "SR-2347",
+  "SR-3747"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:18-50",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Yasir"
+ },
+ "derived_from": [
+  "SC-15"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-YASIR-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2347",
+  "SR-3747"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

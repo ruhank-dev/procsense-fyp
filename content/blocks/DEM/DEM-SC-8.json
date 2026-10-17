@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 63,
+  "occupation": "retired mechanic",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-8"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-8",
+ "requires": [],
+ "sources": [
+  "SR-2340",
+  "SR-3740"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:60-65",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

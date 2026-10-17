@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Sheikh"
+ },
+ "derived_from": [
+  "VAR-S1-D",
+  "VAR-S2-E"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-SHEIKH",
+ "requires": [],
+ "sources": [
+  "SR-2305",
+  "SR-2319",
+  "SR-3705",
+  "SR-3721"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

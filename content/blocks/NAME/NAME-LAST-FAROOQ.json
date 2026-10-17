@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Farooq"
+ },
+ "derived_from": [
+  "VAR-S1-G"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-FAROOQ",
+ "requires": [],
+ "sources": [
+  "SR-2306",
+  "SR-3706"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Naveed"
+ },
+ "derived_from": [
+  "VAR-S2-L"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-NAVEED-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-2324",
+  "SR-3726"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

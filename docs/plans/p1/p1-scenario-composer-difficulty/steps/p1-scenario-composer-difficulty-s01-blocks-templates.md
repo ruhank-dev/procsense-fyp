@@ -13,6 +13,13 @@ The composer can only produce trustworthy cases if its raw material is trustwort
 2. Composer uses only blocks ≥ APPROVED_FOR_TRAINING.
 3. Tag vocabulary `tags.yaml` (e.g. tag:diabetes, tag:anticoagulant) used consistently by requires/excludes.
 
+## Status (17 October 2026)
+
+- **Built** (decision of 17 October 2026, written in `tools/composer/blocks.py`): a composed case is an approved *spine* (an authored case file that fixes the clinical story) varied by *blocks* that do not change that story. 21 block types are named (`content/blocks/types.json`); five carry variation now: DEM (title, sex, age, occupation), NAME (first and family names), SOC (smoking and alcohol answers), PSH (previous and family anaesthetic answers) and ALG (allergies, only for stories that never touch allergies or antibiotics). The other 16 types are owned by the spine and open up as the generators arrive (OBS and LAB by the packs, IMG by the tags, EVT by the director).
+- 256 blocks in `content/blocks/<TYPE>/*.json`, each cut from named cases (`derived_from`), with tags, `requires`, `excludes`, sources and the lowest status of its source cases; the tag vocabulary `content/blocks/tags.yaml` (every tag used is defined); `content/templates/SCN-S1.json` and `SCN-S2.json` (slots with min and max, `source` block or spine, difficulty limits by spine tier and problem count). `--check` is in CI.
+- **Why not vary comorbidities and medicines:** each one changes the ASA grade, the tests and the decision. They travel with their whole source case, so a stacked case is an authored one (the P1 stacked cases) or made with the 14B.5 recipe (p2-content-extensions-s02).
+- **Verification result:** the validator checks every tag exists and every block lists the case it came from.
+
 ## Verification
 Validator checks every tag exists; every block lists the case(s) it was derived from.
 

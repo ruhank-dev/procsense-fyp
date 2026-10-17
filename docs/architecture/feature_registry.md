@@ -12,8 +12,8 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 |---|---|
 | Implemented and tested | 3 |
 | Implemented but incompletely tested | 0 |
-| Partially implemented | 30 |
-| Planned | 14 |
+| Partially implemented | 31 |
+| Planned | 13 |
 | Blocked | 2 |
 | Deferred | 4 |
 | Proposed new feature | 16 |
@@ -34,7 +34,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Proposed new feature | Proposed new feature | PH-11 | P1 | [plan](feature_plans/A9.md) |
 | A10 | Validation, repair and rejection | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-10 | P1 | [plan](feature_plans/A10.md) |
 | A11 | Difficulty control in generation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-05 | P1 | [plan](feature_plans/A11.md) |
-| A12 | Recombination of case components | deterministic | Planned | Not applicable (deterministic feature) | PH-04 | P1 | [plan](feature_plans/A12.md) |
+| A12 | Recombination of case components | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-04 | P1 | [plan](feature_plans/A12.md) |
 | A13 | Provenance and reproducibility of generated scenarios | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-11 | P1 | [plan](feature_plans/A13.md) |
 | A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Partially implemented | Partially implemented | PH-22 | P1 | [plan](feature_plans/A66.md) |
 | B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B14.md) |
@@ -104,7 +104,7 @@ Compose complete cases from approved building blocks: a deterministic solver ass
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
 | AI status | Planned |
-| Evidence (what exists) | tools/composer/stage_b.py (Stage B built); tools/composer/test_composer.py (60 of 60 mutations rejected) |
+| Evidence (what exists) | tools/composer/stage_b.py (Stage B built); tools/composer/test_composer.py (60 of 60 mutations rejected); tools/composer/solve.py; tools/composer/cli.py; tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations) |
 | Lineage (existing ids) | p1-scenario-composer-difficulty s01 to s05; EXP-COMP-1, EXP-COMP-2; DT-099; Implementation Guide B-M1, B-R10 |
 | Method | Deterministic constraint solver over blocks + LLM proposals with an enum schema of approved block ids. |
 | LLM-first classification | LLM considered for full composition and rejected as the decider: it cannot guarantee requires/excludes or values. Kept as proposer and narrator; the solver decides. |
@@ -410,9 +410,9 @@ Reuse blocks across cases (a comorbidity from one case, an event from another) u
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Planned |
+| Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | — |
+| Evidence (what exists) | content/blocks (256 blocks); tools/composer/solve.py |
 | Lineage (existing ids) | p1-scenario-composer-difficulty-s01, s02 |
 | Method | Block library + solver. |
 | LLM-first classification | Same as A1. |

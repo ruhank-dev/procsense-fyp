@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Rossi"
+ },
+ "derived_from": [
+  "STK-S2-A"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-ROSSI",
+ "requires": [],
+ "sources": [
+  "SR-2329",
+  "SR-3730"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

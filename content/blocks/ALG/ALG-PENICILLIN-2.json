@@ -1,0 +1,31 @@
+{
+ "attributes": {
+  "allergies": [
+   {
+    "reaction": "Throat swelling and collapse in 2015 (anaphylaxis)",
+    "substance": "Penicillin"
+   }
+  ],
+  "allergy_answer": "Penicillin: my throat swelled up and I collapsed in 2015."
+ },
+ "derived_from": [
+  "VAR-S1-I"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [
+  "pathway:allergy",
+  "pathway:antibiotic"
+ ],
+ "id": "ALG-PENICILLIN-2",
+ "requires": [],
+ "sources": [
+  "SR-2312",
+  "SR-3717"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "allergy:drug"
+ ],
+ "type": "ALG"
+}

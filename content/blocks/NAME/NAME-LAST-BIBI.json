@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Bibi"
+ },
+ "derived_from": [
+  "SC-13"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-BIBI",
+ "requires": [],
+ "sources": [
+  "SR-2345",
+  "SR-3745"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}

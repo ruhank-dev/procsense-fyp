@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "family_anaesthetic": "No anaesthetic problems in the family.",
+  "previous_anaesthetic": "Epidural in the last pregnancy."
+ },
+ "derived_from": [
+  "VAR-S2-H"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "PSH-VAR-S2-H",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-2320",
+  "SR-3722"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "anaesthetic:uneventful",
+  "female_surgery_history"
+ ],
+ "type": "PSH"
+}

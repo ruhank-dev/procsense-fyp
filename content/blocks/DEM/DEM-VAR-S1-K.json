@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 52,
+  "occupation": "school cook",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "VAR-S1-K"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-VAR-S1-K",
+ "requires": [],
+ "sources": [
+  "SR-2309",
+  "SR-3718"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [
+  "age_class:50-55",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

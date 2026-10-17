@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Begum"
+ },
+ "derived_from": [
+  "VAR-S2-G"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-BEGUM",
+ "requires": [],
+ "sources": [
+  "SR-2318",
+  "SR-3714"
+ ],
+ "status": "APPROVED_FOR_TRAINING",
+ "tags": [],
+ "type": "NAME"
+}
