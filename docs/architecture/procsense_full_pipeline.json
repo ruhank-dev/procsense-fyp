@@ -2103,7 +2103,9 @@
       "acceptance": "Zero validator escapes on the mutation set.",
       "evidence": [
         "src/ProcSense.Core/Scoring/Debrief.cs",
-        "server/validation/validator.py"
+        "server/validation/validator.py",
+        "content/schema/debrief_facts.schema.json (generated section)",
+        "tools/ci/test_generation_history.py"
       ],
       "tasks": [
         "p1-ai-language-s08",
@@ -2167,7 +2169,9 @@
       ],
       "acceptance": "Every completed session has exactly one history entry.",
       "evidence": [
-        "src/ProcSense.Cli/Commands.cs (record-session)"
+        "src/ProcSense.Cli/Commands.cs (record-session)",
+        "server/generation/history.py",
+        "tools/ci/test_generation_history.py"
       ],
       "tasks": [
         "p1-backend-s02",
@@ -2208,7 +2212,7 @@
       "id": "LG-21",
       "label": "Evaluation feedback loop (offline only)",
       "group": "g_post",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "hybrid",
       "description": "Aggregate rejection reasons, repair rates, novelty, quality scores, trainee outcomes and validator escapes across sessions. Results update parameter packs, block weights, prompts and thresholds in a reviewed offline release, never inside a live session.",
       "inputs": [
@@ -2220,7 +2224,7 @@
         "evaluation report",
         "proposed pack, prompt and threshold changes"
       ],
-      "component": "tools/generation/evaluate.py (planned)",
+      "component": "tools/generation/evaluate.py (built: batch or request log, aggregate, proposals, reviewed releases); the language-model proposal summariser is not built",
       "method": "Deterministic aggregation; optional LLM summarisation of defect clusters (advisory).",
       "api": "offline CLI",
       "validation": "Changes go through the normal content build, --check and CI.",
@@ -2240,7 +2244,12 @@
       ],
       "error_handling": "n/a (offline)",
       "latency_budget_ms": 0,
-      "evidence": [],
+      "evidence": [
+        "tools/generation/evaluate.py",
+        "content/generation/releases.json",
+        "docs/research/generation_evaluations",
+        "tools/ci/test_generation_history.py"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",

@@ -12,6 +12,9 @@ namespace ProcSense.Core.Scoring
     /// <summary>One debrief line: the item it states, the sentence made from a template (placeholders filled only from the item's own facts) and the log entries behind it.</summary>
     public sealed record DebriefLine(string Item, string Behaviour, string Label, string Severity, string Status, int Points, string Sentence, IReadOnlyList<int> Evidence, string RuleId, string Source);
 
+    /// <summary>Where a generated case came from: the approved case it keeps the story of, its status, its tier and the SHA-256 of the package it was played from (empty when the host did not give one).</summary>
+    public sealed record GeneratedInfo(string Spine, string Status, string Tier, string PackageHash);
+
     public sealed record TimelineEntry(long Step, string Time, string Kind, string Text, int Seq);
 
     /// <summary>
@@ -40,6 +43,9 @@ namespace ProcSense.Core.Scoring
         public IReadOnlyList<string> NotShown { get; }
         public IReadOnlyList<string> Sources { get; }
 
+        /// <summary>Set only for a case composed by the generator; every debrief sentence still comes from the engine's own items, so provenance adds a statement of where the case came from and nothing a trainee could be told wrongly.</summary>
+        public GeneratedInfo? Generated { get; set; }
+
         public static DebriefFacts Build(Session s, ContentPackage content)
         {
             var report = Scorer.Score(s, content);
@@ -63,7 +69,9 @@ namespace ProcSense.Core.Scoring
             var ordered = timeline.OrderBy(x => x.Step).ThenBy(x => x.Kind == "action" ? 0 : x.Kind == "item" ? 1 : 2).ToList();
             var events = s.Director?.History.Where(h => h.Kind == "event_fired").Select(h => h.Id).ToList() ?? new List<string>();
             var sources = lines.Select(l => l.Source).Where(x => x.Length > 0).Concat(report.Lateness.Select(l => l.Source)).Distinct().OrderBy(x => x, StringComparer.Ordinal).ToList();
-            return new DebriefFacts(report.Case, report.Mode, report.EndState, report.Result, lines, report.Categories, ordered, report.Lateness, events, store.NotShown(), sources);
+            var facts = new DebriefFacts(report.Case, report.Mode, report.EndState, report.Result, lines, report.Categories, ordered, report.Lateness, events, store.NotShown(), sources);
+            if (content.CaseFiles.TryGetValue(s.Case.Id, out var file) && file.CreatedBy == "composer" && file.Spine != null) facts.Generated = new GeneratedInfo(file.Spine, file.Status, file.Tier, "");
+            return facts;
         }
 
         private static string Clock(Session s, long step) => ObservableBuilder.Hms(s.Clock.Start + TimeSpan.FromSeconds(step * Time.SimClock.Step));
@@ -132,7 +140,16 @@ namespace ProcSense.Core.Scoring
             sb.Append("],\"events\":["); sb.Append(string.Join(",", Events.Select(e => Quoted(e))));
             sb.Append("],\"not_shown\":["); sb.Append(string.Join(",", NotShown.Select(e => Quoted(e))));
             sb.Append("],\"sources\":["); sb.Append(string.Join(",", Sources.Select(e => Quoted(e))));
-            sb.Append("]}");
+            sb.Append(']');
+            if (Generated != null)
+            {
+                sb.Append(",\"generated\":{\"spine\":"); JsonText.Quote(sb, Generated.Spine);
+                sb.Append(",\"status\":"); JsonText.Quote(sb, Generated.Status);
+                sb.Append(",\"tier\":"); JsonText.Quote(sb, Generated.Tier);
+                sb.Append(",\"package_sha256\":"); JsonText.Quote(sb, Generated.PackageHash);
+                sb.Append('}');
+            }
+            sb.Append('}');
             return sb.ToString();
         }
 
@@ -148,6 +165,7 @@ namespace ProcSense.Core.Scoring
             sb.Append("<style>body{font-family:system-ui,sans-serif;margin:16px;max-width:60rem;line-height:1.4}h1{font-size:1.3rem}h2{font-size:1.1rem;margin-top:1.5rem}table{border-collapse:collapse;width:100%}td,th{border:1px solid #bbb;padding:4px 6px;text-align:left;vertical-align:top;font-size:.9rem}.crit{background:#fde2e2}.ok{background:#e4f5e4}.warn{background:#fff3d6}.small{font-size:.8rem;color:#555}</style></head><body>");
             sb.Append("<h1>ProcSense session report</h1>");
             sb.Append("<p>Case <b>").Append(E(Case)).Append("</b> (").Append(E(Mode)).Append(" mode). Educational simulation, not clinical advice. Synthetic patient.</p>");
+            if (Generated != null) sb.Append("<p class=\"small\">Generated practice case (").Append(E(Generated.Status)).Append("): it keeps the story of ").Append(E(Generated.Spine)).Append(" with a different patient. It is not a reviewed case and is not used for assessment.</p>");
             sb.Append("<h2>Summary</h2><p>End state: <b>").Append(E(EndState.Length == 0 ? "not reached" : EndState)).Append("</b>. Result: <b>").Append(E(Result)).Append("</b>.</p>");
             sb.Append("<h2>Critical items</h2>");
             var crit = Lines.Where(l => l.Status == "critical").ToList();

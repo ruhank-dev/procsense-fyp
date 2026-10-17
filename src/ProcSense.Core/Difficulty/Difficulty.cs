@@ -65,7 +65,7 @@ namespace ProcSense.Core.Difficulty
     }
 
     /// <summary>What a finished session showed in each behaviour: credits earned and penalties taken (the "competencies" of the debrief facts).</summary>
-    public sealed record SessionRecord(string Case, IReadOnlyDictionary<string, (int Credits, int Penalties)> Behaviours);
+    public sealed record SessionRecord(string Case, IReadOnlyDictionary<string, (int Credits, int Penalties)> Behaviours, string? Tier = null);
 
     /// <summary>
     /// A rating per behaviour for one trainee (a pseudonym, never a name), updated after each session in order. A behaviour with no items in a session is not rated that time.
@@ -108,7 +108,7 @@ namespace ProcSense.Core.Difficulty
         public static Ratings From(IEnumerable<SessionRecord> history, DifficultyTables tables, Func<string, string> tierOf)
         {
             var ratings = new Ratings(tables);
-            foreach (var s in history) ratings.Add(s, tierOf(s.Case));
+            foreach (var s in history) ratings.Add(s, s.Tier ?? tierOf(s.Case));         // a generated case is not in the library, so the record carries its tier
             return ratings;
         }
     }

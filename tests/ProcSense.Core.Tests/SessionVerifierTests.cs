@@ -152,14 +152,16 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void A_generated_scenario_needs_its_package_and_until_the_loader_exists_it_is_not_verified()
+        public void A_generated_scenario_needs_its_package_and_a_matching_hash_that_is_not_a_package_is_refused()
         {
             byte[] package = Encoding.UTF8.GetBytes("{\"schema\":\"scenario_package.v1\"}");
             string hash = Sha(Encoding.UTF8.GetString(package));
             var file = Saved(new SessionMeta(Guid.NewGuid().ToString(), ContentVersion, hash));
             Assert.Equal(VerifyReason.PackageMissing, Verify(file).Reason);
             Assert.Equal(VerifyReason.PackageMissing, Verify(file, Encoding.UTF8.GetBytes("{\"something\":\"else\"}")).Reason);
-            Assert.Equal(VerifyReason.PackageLoaderMissing, Verify(file, package).Reason);
+            var unreadable = Verify(file, package);
+            Assert.Equal(VerifyReason.PackageMissing, unreadable.Reason);
+            Assert.Contains("cannot be read", unreadable.Detail);            // the hash matches but the bytes are not a scenario package; the loader itself is tested in ScenarioPackageVerifyTests
         }
 
         [Fact]

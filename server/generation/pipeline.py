@@ -52,6 +52,7 @@ def _gate(pkg: dict, objectives: dict, ctx: Context) -> list[dict]:
     pkg["quality"]["metrics"] = q["metrics"]
     pkg["quality"]["not_measured"] = q["not_measured"]
     pkg["quality"]["advisory"] = q["advisory"]
+    pkg["quality"]["unmet_dimensions"] = q["unmet_dimensions"]
     defects += [{"stage": "quality", "code": f["code"], "detail": f["detail"]} for f in q["failures"]]
     return defects
 

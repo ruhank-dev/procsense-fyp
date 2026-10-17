@@ -11,6 +11,7 @@ distance is 0.3 or more). The numbers are deterministic; nothing here is a model
 """
 from __future__ import annotations
 
+import hashlib
 import re
 from dataclasses import dataclass, field
 from typing import Callable
@@ -53,8 +54,8 @@ def levels_of(case: dict, media: dict | None = None) -> dict[str, list[str]]:
         if s.get("finding_code"):
             clinical.add(f"finding:{s['finding_code']}")
     ident = case["identity"]
-    surface = {f"block:{b}" for b in blocks if b.split("-")[0] not in HISTORY_BLOCK}
-    surface |= {f"sex:{ident['sex']}", f"age:{_age_band(ident['age'])}", f"name:{ident['full_name']}"}
+    surface = {f"block:{b}" for b in blocks if b.split("-")[0] not in HISTORY_BLOCK and b.split("-")[0] != "NAME"}      # name blocks carry readable names: only their hash below
+    surface |= {f"sex:{ident['sex']}", f"age:{_age_band(ident['age'])}", f"name:{hashlib.sha256(ident['full_name'].encode('utf-8')).hexdigest()[:10]}"}      # the name only as a short hash: the stored fingerprint never carries a readable name
     return {"structural": sorted(structural), "clinical": sorted(clinical), "surface": sorted(surface)}
 
 

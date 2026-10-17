@@ -7,7 +7,7 @@ Deterministic metrics decide. Each returns a score from 0 to 1 and, below its th
     teachable      every problem names what to do (expected actions) and why it matters
     discoverable   every problem of a spine that has discovery rules has a rule, so it can be found by examining or testing
     difficulty     the case's tier rating is near the target in the objectives (one tier = 100 points)
-    coverage       the dimensions the objectives name are exercised by the case (dimensions only the headset delivers are listed, not counted)
+    coverage       ADVISORY: the dimensions the objectives name that the case exercises (the ranking prefers stories that exercise more; a library of 51 stories cannot exercise every dimension in every family, and a good case that misses one is better than a fallback that misses it too). The unmet dimensions are reported to the evaluation loop, which asks for stories that exercise them (dimensions only the headset delivers are listed, not counted)
     fairness       every decision has a correct option, at least one wrong one, a consequence for each wrong one, and no duplicate options
     trap_fairness  ADVISORY: a wrong option is a trap only if the case holds the fact that shows why it is wrong. A word-overlap test flags 20 of the 53 good authored cases, so it is reported and
                    never fails a case; a real check needs the adversarial blocks of the library (none exist yet, DT-197)
@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import re
 
-THRESHOLDS = {"teachable": 1.0, "discoverable": 1.0, "difficulty": 0.5, "coverage": 0.5, "fairness": 1.0, "reading": 0.8, "persona": 1.0, "coherence": 1.0}
+THRESHOLDS = {"teachable": 1.0, "discoverable": 1.0, "difficulty": 0.5,  "fairness": 1.0, "reading": 0.8, "persona": 1.0, "coherence": 1.0}
 MAX_SENTENCE_WORDS = 26
 HARD_SENTENCE_WORDS = 45                  # one sentence this long fails the case outright
 TIER_POINTS = 100.0
@@ -77,16 +77,15 @@ def _covered(case: dict, tag: str) -> bool:
     return True
 
 
-def coverage(case: dict, objectives: dict, tables) -> tuple[float | None, list[dict], list[str]]:
+def coverage(case: dict, objectives: dict, tables) -> tuple[float | None, list[dict], list[str], list[str]]:
     wanted = [d for d in tables.dimensions if d.id in objectives["dimensions"]]
     judged = [d for d in wanted if d.id not in HEADSET_DIMENSIONS]
     delivery = [d.id for d in wanted if d.id in HEADSET_DIMENSIONS]
     if not judged:
-        return None, [], delivery
+        return None, [], delivery, []
     hit = [d for d in judged if _covered(case, d.tag)]
-    score = len(hit) / len(judged)
-    miss = [d.id for d in judged if d not in hit]
-    return score, ([{"code": "Q_COVERAGE", "detail": f"the case does not exercise {miss}"}] if score < THRESHOLDS["coverage"] else []), delivery
+    unmet = [d.id for d in judged if d not in hit]
+    return len(hit) / len(judged), ([{"code": "Q_COVERAGE", "detail": f"the case does not exercise {unmet}"}] if unmet else []), delivery, unmet
 
 
 def fairness(case: dict) -> tuple[float, list[dict]]:
@@ -179,12 +178,12 @@ def evaluate(case: dict, objectives: dict, tables, discovery: list[dict] | None 
             advisory += defects
         else:
             failures += defects
-    score, defects, delivery = coverage(case, objectives, tables)
+    score, defects, delivery, unmet = coverage(case, objectives, tables)
     metrics["coverage"] = score
-    failures += defects
+    advisory += defects
     for name, score in metrics.items():
         code = "Q_" + name.upper()
         if name in THRESHOLDS and score is not None and score < THRESHOLDS[name] and not any(f["code"] == code for f in failures):
             failures.append({"code": code, "detail": f"{name} {score} is under {THRESHOLDS[name]}"})
-    return {"metrics": metrics, "not_measured": sorted(k for k, v in metrics.items() if v is None), "headset_dimensions": delivery, "failures": failures, "advisory": advisory,
+    return {"metrics": metrics, "not_measured": sorted(k for k, v in metrics.items() if v is None), "headset_dimensions": delivery, "failures": failures, "advisory": advisory, "unmet_dimensions": unmet,
             "verdict": "fail" if failures else "pass", "judge": judge}

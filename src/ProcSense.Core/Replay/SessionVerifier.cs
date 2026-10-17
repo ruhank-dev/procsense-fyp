@@ -65,9 +65,16 @@ namespace ProcSense.Core.Replay
 
             if (header.ScenarioPackageHash.Length > 0)
             {
-                if (packageBytes == null || Sha256(packageBytes) != header.ScenarioPackageHash)
+                // the host hashes the package text with line endings normalised (ScenarioPackageReader.PackageHash); the raw bytes are accepted too
+                string packageText = packageBytes == null ? "" : new System.Text.UTF8Encoding(false).GetString(packageBytes);
+                if (packageBytes == null || (Sha256(packageBytes) != header.ScenarioPackageHash && JsonText.Sha256Hex(packageText.Replace("\r\n", "\n")) != header.ScenarioPackageHash))
                     return VerifyResult.Refused(VerifyReason.PackageMissing, "the log names a generated scenario package that was not given, or whose bytes do not match its hash", header);
-                return VerifyResult.Refused(VerifyReason.PackageLoaderMissing, "this engine cannot load a generated scenario package yet (p1-live-scenario-generation-s10)", header);
+                ScenarioPackageReader package;
+                try { package = new ScenarioPackageReader(packageText); }
+                catch (Exception e) when (IsMalformed(e)) { return VerifyResult.Refused(VerifyReason.PackageMissing, "the generated scenario package cannot be read: " + e.Message, header); }
+                if (package.CaseId != header.Case)
+                    return VerifyResult.Refused(VerifyReason.PackageMissing, "the package holds the case " + package.CaseId + " but the log is of " + header.Case, header);
+                reader = new CompositeContentReader(package, reader);          // the real content behind it: tables, rules and workflow are the content the log names
             }
 
             if (header.ContentVersion.Length > 0)
@@ -101,7 +108,7 @@ namespace ProcSense.Core.Replay
                 var replay = SessionFile.Replay(text.Replace("\r\n", "\n"), content, () => Subsystems.Default(content));
                 if (!replay.Match) return VerifyResult.Refused(VerifyReason.HashMismatch, "the log does not replay to the hash in its header", header, replay.ActualHash);
 
-                var facts = DebriefFacts.Build(replay.Session, content);
+                var facts = DebriefFacts.Build(replay.Session, content); if (facts.Generated != null) facts.Generated = facts.Generated with { PackageHash = header.ScenarioPackageHash };
                 double total = facts.Categories.Sum(c => c.Weighted);
                 return new VerifyResult(true, "", "", header.Case, header.Mode, header.ContentVersion, header.EngineVersion.Length > 0 ? header.EngineVersion : CoreInfo.Version, replay.ActualHash,
                                         header.LogHash, facts.EndState, facts.Result, total, facts);

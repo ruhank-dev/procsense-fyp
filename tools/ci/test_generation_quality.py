@@ -121,7 +121,9 @@ class Gold(unittest.TestCase):
         o = objectives_for(c)
         o["dimensions"] = ["competing_priorities", "complex_handover"]
         r = evaluate(c, o)
-        self.assertIn("Q_COVERAGE", codes(r))
+        self.assertNotIn("Q_COVERAGE", codes(r))                                        # advisory: a good case that misses a dimension is served and the miss is reported
+        self.assertEqual(r["unmet_dimensions"], ["competing_priorities"])
+        self.assertIn("Q_COVERAGE", {a["code"] for a in r["advisory"]})
         self.assertEqual(r["headset_dimensions"], ["complex_handover"])
 
     def test_the_trap_metric_is_advisory_and_never_fails_a_case(self):

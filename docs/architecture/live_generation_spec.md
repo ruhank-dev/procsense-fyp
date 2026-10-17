@@ -56,7 +56,7 @@ The full architecture (learning from evidence, AI composition, how each modality
 | 18 | LG-18 | Deterministic state update and scoring | Implemented and tested | deterministic | 0 | p1-live-scenario-generation-s11 |
 | 19 | LG-19 | Grounded debrief | Partially implemented | hybrid | 15000 | p1-ai-language-s08; p1-live-scenario-generation-s12 |
 | 20 | LG-20 | Session history | Partially implemented | deterministic | 100 | p1-backend-s02; p1-live-scenario-generation-s12 |
-| 21 | LG-21 | Evaluation feedback loop (offline only) | Proposed new feature | hybrid | 0 | p1-live-scenario-generation-s12; p1-evaluation-s02 |
+| 21 | LG-21 | Evaluation feedback loop (offline only) | Partially implemented | hybrid | 0 | p1-live-scenario-generation-s12; p1-evaluation-s02 |
 
 Latency budgets are design targets until the benchmark (OQ-01). Total live budget before the pool is used: 45 s; the pool makes start-up instant.
 
@@ -476,7 +476,7 @@ Template debrief from DebriefFacts is always produced first (built). An LLM may 
 | Tests | debrief mutation tests (50 sessions); GroundingValidatorTests |
 | Acceptance | Zero validator escapes on the mutation set. |
 | Status | Partially implemented |
-| Evidence | src/ProcSense.Core/Scoring/Debrief.cs; server/validation/validator.py |
+| Evidence | src/ProcSense.Core/Scoring/Debrief.cs; server/validation/validator.py; content/schema/debrief_facts.schema.json (generated section); tools/ci/test_generation_history.py |
 | Blockers | — |
 | Tasks | p1-ai-language-s08; p1-live-scenario-generation-s12 |
 
@@ -498,7 +498,7 @@ Store the pseudonymised session record: scores, ratings update, fingerprint of t
 | Tests | record-session tests; pseudonym test |
 | Acceptance | Every completed session has exactly one history entry. |
 | Status | Partially implemented |
-| Evidence | src/ProcSense.Cli/Commands.cs (record-session) |
+| Evidence | src/ProcSense.Cli/Commands.cs (record-session); server/generation/history.py; tools/ci/test_generation_history.py |
 | Blockers | — |
 | Tasks | p1-backend-s02; p1-live-scenario-generation-s12 |
 
@@ -510,7 +510,7 @@ Aggregate rejection reasons, repair rates, novelty, quality scores, trainee outc
 |---|---|
 | Inputs | history entries; defect logs; quality and novelty reports |
 | Outputs | evaluation report; proposed pack, prompt and threshold changes |
-| Component | tools/generation/evaluate.py (planned) |
+| Component | tools/generation/evaluate.py (built: batch or request log, aggregate, proposals, reviewed releases); the language-model proposal summariser is not built |
 | Method | Deterministic aggregation; optional LLM summarisation of defect clusters (advisory). |
 | Method class | hybrid |
 | Data dependencies | OFF-07 |
@@ -519,8 +519,8 @@ Aggregate rejection reasons, repair rates, novelty, quality scores, trainee outc
 | Validation | Changes go through the normal content build, --check and CI. |
 | Tests | report generation test on fixture logs |
 | Acceptance | Every pack or prompt change cites the evaluation report that motivated it. |
-| Status | Proposed new feature |
-| Evidence | — |
+| Status | Partially implemented |
+| Evidence | tools/generation/evaluate.py; content/generation/releases.json; docs/research/generation_evaluations; tools/ci/test_generation_history.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s12; p1-evaluation-s02 |
 

@@ -105,7 +105,7 @@ internal static class Commands
                 var v = (Dictionary<string, object?>)kv.Value!;
                 by[kv.Key] = ((int)(long)v["credits"]!, (int)(long)v["penalties"]!);
             }
-            list.Add(new ProcSense.Core.Difficulty.SessionRecord((string)d["case"]!, by));
+            list.Add(new ProcSense.Core.Difficulty.SessionRecord((string)d["case"]!, by, d.TryGetValue("tier", out var tier) ? tier as string : null));
         }
         return list;
     }
@@ -127,7 +127,9 @@ internal static class Commands
                 ProcSense.Core.Logging.JsonText.Quote(sb, kv.Key);
                 sb.Append(":{\"credits\":").Append(kv.Value.Credits.ToString(CultureInfo.InvariantCulture)).Append(",\"penalties\":").Append(kv.Value.Penalties.ToString(CultureInfo.InvariantCulture)).Append('}');
             }
-            sb.Append("}}");
+            sb.Append('}');
+            if (sessions[i].Tier != null) { sb.Append(",\"tier\":"); ProcSense.Core.Logging.JsonText.Quote(sb, sessions[i].Tier!); }
+            sb.Append('}');
         }
         sb.Append("]}"); sb.Append('\n');
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
@@ -161,7 +163,8 @@ internal static class Commands
             if ((long)d["items"]! > 0) by[(string)d["behaviour"]!] = ((int)(long)d["credits"]!, (int)(long)d["penalties"]!);
         }
         var history = ReadHistory(path);
-        history.Add(new ProcSense.Core.Difficulty.SessionRecord((string)facts["case"]!, by));
+        string? tier = facts.TryGetValue("generated", out var generated) && generated is Dictionary<string, object?> g ? g["tier"] as string : null;     // a generated case carries its tier into the history
+        history.Add(new ProcSense.Core.Difficulty.SessionRecord((string)facts["case"]!, by, tier));
         WriteHistory(path, Need(o, "trainee"), history);
         Console.WriteLine($"recorded session {history.Count} for {Need(o, "trainee")}");
         return 0;
@@ -194,6 +197,7 @@ internal static class Commands
         var r = SessionFile.Replay(text, content, () => Subsystems.Default(content));
         if (!r.Match) return Fail($"replay MISMATCH: log says {r.ExpectedHash}, replay gave {r.ActualHash}; no report is made from a log that does not replay");
         var facts = ProcSense.Core.Scoring.DebriefFacts.Build(r.Session, content);
+        if (facts.Generated != null) facts.Generated = facts.Generated with { PackageHash = o.GetValueOrDefault("package-hash", ScenarioOf(o)?.PackageHash ?? "") };
         string jsonPath = o.GetValueOrDefault("json", Path.ChangeExtension(outPath, ".json"));
         File.WriteAllText(outPath, facts.ToHtml());
         File.WriteAllText(jsonPath, facts.ToJson() + "\n");

@@ -116,6 +116,11 @@ class Engine(unittest.TestCase):
             self.assertIn(package.file_sha256(fixture), log.read_text(encoding="utf-8").split("\n")[0])      # the session header names the package it was played from
             replay = cli("replay", "--scenario", str(fixture), "--log", str(log))
             self.assertEqual(replay.returncode, 0, replay.stdout + replay.stderr)
+            verified = cli("verify", "--log", str(log), "--package", str(fixture))               # what the server does with an uploaded session of a generated case
+            self.assertEqual(verified.returncode, 0, verified.stdout + verified.stderr)
+            self.assertIn('"ok":true', verified.stdout)
+            self.assertIn("GENERATED_PRACTICE_ONLY", verified.stdout)
+            self.assertNotEqual(cli("verify", "--log", str(log)).returncode, 0)                  # without the package it is not verified
 
 
 if __name__ == "__main__":

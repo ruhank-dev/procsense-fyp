@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "90b46b59d0465b62691a8f05a055dcfe1344f078c649fa089519c59b40ac0d55",
- "files": 652,
- "bytes": 17629887,
+ "content_hash": "754e12190736ef998d20725842d2909262908ac121dc4cd601f6e0eb62bd1fb2",
+ "files": 653,
+ "bytes": 17631556,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -25,7 +25,7 @@
   "events": 1,
   "fasting": 1,
   "flow": 1,
-  "generation": 6,
+  "generation": 7,
   "handover": 1,
   "images": 77,
   "imaging": 3,
@@ -1804,6 +1804,10 @@
    "bytes": 11052,
    "sha256": "ed15e38f9f4bdc0e0c9cb2f045c2322d238e74f5bd25c2ad4d741d3b606cf602"
   },
+  "generation/releases.json": {
+   "bytes": 1238,
+   "sha256": "e760454e1eee1863c990e1128745345dbae0e0928cb0cfdb1a3163390c18780b"
+  },
   "glossary.csv": {
    "bytes": 15141,
    "sha256": "16deff6c67db69737b8b0cb3cccc953ef6f18031515ddcc9052da293f28dc3e4"
@@ -2301,8 +2305,8 @@
    "sha256": "f66f27c07e03f1deff0d0390dcaf0f8f8fe14d63dcda81cae908fe1e54579a9a"
   },
   "schema/debrief_facts.schema.json": {
-   "bytes": 3428,
-   "sha256": "14e6cfdc4e3e31f074c9c79c519e55286576ade11dfa6e6f035ac5ce2d634971"
+   "bytes": 3859,
+   "sha256": "bb5a508cb11d5a4e72025418beead89a50a7c7f32ff7c1748115782008a6aa6a"
   },
   "schema/rule.schema.json": {
    "bytes": 2127,

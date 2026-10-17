@@ -1,0 +1,34 @@
+{
+  "note": "Releases of the generation parameters (packs, thresholds, repair table). A release is made by a person after reading an evaluation report; every release cites the report that asked for it (tools/generation/evaluate.py check). Nothing changes inside a session.",
+  "releases": [
+    {
+      "release": "R1",
+      "date": "2026-10-17",
+      "packs_hash": "f9501f65eddbd4a6",
+      "thresholds": {
+        "novelty": {
+          "min_distance": 0.35,
+          "history": 10,
+          "structural_history": 3,
+          "deliberate_clinical": 0.3,
+          "attempts": 5
+        },
+        "quality": {
+          "teachable": 1.0,
+          "discoverable": 1.0,
+          "difficulty": 0.5,
+          "fairness": 1.0,
+          "reading": 0.8,
+          "persona": 1.0,
+          "coherence": 1.0
+        },
+        "repair_rounds": 3
+      },
+      "cites": [
+        "EVAL-7603eb25344c"
+      ],
+      "summary": "First release: the packs built from the dataset profiles and the thresholds of the specification, checked on a simulated batch of 240 requests (0 fallbacks); the proposals in the report are for the next release.",
+      "review": "made by the implementer for the owner to read; not yet reviewed"
+    }
+  ]
+}

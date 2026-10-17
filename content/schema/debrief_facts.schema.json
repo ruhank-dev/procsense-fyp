@@ -73,6 +73,8 @@
   },
   "events": { "type": "array", "items": { "type": "string" } },
   "not_shown": { "type": "array", "items": { "type": "string", "pattern": "^b[0-9]{2}$" } },
-  "sources": { "type": "array", "items": { "type": "string", "pattern": "^SR-[0-9]{4}$" } }
+  "sources": { "type": "array", "items": { "type": "string", "pattern": "^SR-[0-9]{4}$" } },
+  "generated": { "type": "object", "description": "Present only for a case composed by the generator: where it came from.", "additionalProperties": false, "required": ["spine", "status", "tier", "package_sha256"],
+    "properties": { "spine": { "type": "string" }, "status": { "const": "GENERATED_PRACTICE_ONLY" }, "tier": { "enum": ["P0", "P1", "P2"] }, "package_sha256": { "type": "string", "pattern": "^([0-9a-f]{64})?$" } } }
  }
 }

@@ -453,6 +453,12 @@ jobs:
       - name: a generated case ends and scores like the case it keeps
         run: uv run --project tools tools/ci/test_generation_live.py
 
+      - name: generation history, generated debrief and the offline evaluation loop
+        run: uv run --project tools tools/ci/test_generation_history.py
+
+      - name: every generation release cites an evaluation report
+        run: uv run --project tools tools/generation/evaluate.py check
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

@@ -1,0 +1,158 @@
+{
+  "id": "EVAL-7603eb25344c",
+  "source": "simulated batch of 240 requests from seed 0",
+  "stats": {
+    "requests": 240,
+    "served": 240,
+    "fallbacks": 0,
+    "fallback_rate": 0.0,
+    "repaired": 1,
+    "repair_by_strategy": {
+      "swap_spine": {
+        "tries": 1,
+        "passed": 1
+      }
+    },
+    "defect_codes_in_fallbacks": {},
+    "defect_codes_repaired": {
+      "Q_DIFFICULTY": 1
+    },
+    "novel": 240,
+    "low_novelty": 0,
+    "novelty_rate": 1.0,
+    "mean_nearest": 0.8363,
+    "spine_use": {
+      "STK-S1-C": 1,
+      "STK-S1-D": 6,
+      "STK-S2-B": 23,
+      "VAR-S1-A": 8,
+      "VAR-S1-C": 2,
+      "VAR-S1-D": 19,
+      "VAR-S1-E": 23,
+      "VAR-S1-G": 23,
+      "VAR-S1-H": 13,
+      "VAR-S1-J": 21,
+      "VAR-S1-PB": 4,
+      "VAR-S2-B": 10,
+      "VAR-S2-D": 26,
+      "VAR-S2-F": 17,
+      "VAR-S2-G": 16,
+      "VAR-S2-PC": 15,
+      "VAR-S2-PD": 13
+    },
+    "metric_mean": {
+      "coherence": 1.0,
+      "coverage": 0.587,
+      "difficulty": 0.9695,
+      "discoverable": 1.0,
+      "fairness": 1.0,
+      "persona": 1.0,
+      "reading": 1.0,
+      "teachable": 1.0,
+      "trap_fairness": 0.7641
+    },
+    "metric_min": {
+      "coherence": 1.0,
+      "coverage": 0.0,
+      "difficulty": 0.533,
+      "discoverable": 1.0,
+      "fairness": 1.0,
+      "persona": 1.0,
+      "reading": 1.0,
+      "teachable": 1.0,
+      "trap_fairness": 0.5
+    },
+    "not_measured": {
+      "coverage": 125,
+      "discoverable": 9
+    },
+    "unmet_dimensions": {
+      "information_to_clarify": 28,
+      "competing_priorities": 27,
+      "cognitive_workload": 22,
+      "unexpected_events": 10
+    },
+    "stories_available": 51
+  },
+  "proposals": [
+    {
+      "id": "P01",
+      "kind": "threshold",
+      "target": "novelty.min_distance",
+      "change": "the distance threshold could be raised; novelty has room",
+      "why": "novelty rate 100.00% with a mean nearest distance of 0.8363",
+      "evidence": {
+        "novelty_rate": 1.0,
+        "mean_nearest": 0.8363
+      },
+      "status": "proposed"
+    },
+    {
+      "id": "P02",
+      "kind": "ranking",
+      "target": "rank_spines and the tier limits",
+      "change": "widen the choice among the best stories or review the tier limits so more approved stories are used",
+      "why": "only 17 of 51 approved stories were used in 240 served cases",
+      "evidence": {
+        "used": 17,
+        "available": 51
+      },
+      "status": "proposed"
+    },
+    {
+      "id": "P03",
+      "kind": "content",
+      "target": "information_to_clarify",
+      "change": "author or approve stories that exercise this dimension; the ranking prefers them once they exist",
+      "why": "28 of 240 served cases were asked to exercise it and did not",
+      "evidence": {
+        "dimension": "information_to_clarify",
+        "count": 28
+      },
+      "status": "proposed"
+    },
+    {
+      "id": "P04",
+      "kind": "content",
+      "target": "competing_priorities",
+      "change": "author or approve stories that exercise this dimension; the ranking prefers them once they exist",
+      "why": "27 of 240 served cases were asked to exercise it and did not",
+      "evidence": {
+        "dimension": "competing_priorities",
+        "count": 27
+      },
+      "status": "proposed"
+    },
+    {
+      "id": "P05",
+      "kind": "content",
+      "target": "cognitive_workload",
+      "change": "author or approve stories that exercise this dimension; the ranking prefers them once they exist",
+      "why": "22 of 240 served cases were asked to exercise it and did not",
+      "evidence": {
+        "dimension": "cognitive_workload",
+        "count": 22
+      },
+      "status": "proposed"
+    }
+  ],
+  "thresholds": {
+    "novelty": {
+      "min_distance": 0.35,
+      "history": 10,
+      "structural_history": 3,
+      "deliberate_clinical": 0.3,
+      "attempts": 5
+    },
+    "quality": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 0.5,
+      "fairness": 1.0,
+      "reading": 0.8,
+      "persona": 1.0,
+      "coherence": 1.0
+    },
+    "repair_rounds": 3
+  }
+}

@@ -51,6 +51,15 @@ def target_difficulty(objectives: dict) -> float:
     return sum(vec[n] for n in names) / len(names)
 
 
+def coverage_bonus(case: dict, objectives: dict, tables) -> float:
+    """Up to 1.0 for how many of the dimensions the objectives name (and a case file can show) the story exercises: the quality gate (quality.py) asks for the same, so the ranking prefers stories that will pass it."""
+    from . import quality
+    wanted = [d for d in tables.dimensions if d.id in objectives["dimensions"] and d.id not in quality.HEADSET_DIMENSIONS]
+    if not wanted:
+        return 0.0
+    return sum(quality._covered(case, d.tag) for d in wanted) / len(wanted)
+
+
 def rank_spines(objectives: dict, index: retrieve.Index, cases: list[dict], tables, query: str) -> list[tuple[float, dict]]:
     """Approved spines of the scenario, best match first. Score: relevance to the objectives (BM25, scaled to 0..1) minus how far the tier's rating is from the target, in hundreds of rating points."""
     B, solve = _composer()
@@ -65,7 +74,7 @@ def rank_spines(objectives: dict, index: retrieve.Index, cases: list[dict], tabl
             continue
         if c["id"] in objectives["exclusions"]["spines"]:
             continue
-        score = hits.get(c["id"], 0.0) / top - abs(tables.case_rating(c["tier"]) - target) / 100.0
+        score = hits.get(c["id"], 0.0) / top - abs(tables.case_rating(c["tier"]) - target) / 100.0 + coverage_bonus(c, objectives, tables)
         out.append((score, c))
     out.sort(key=lambda s: (-s[0], s[1]["id"]))
     return out
