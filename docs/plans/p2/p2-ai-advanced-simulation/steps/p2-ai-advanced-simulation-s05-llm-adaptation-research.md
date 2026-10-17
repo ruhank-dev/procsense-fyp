@@ -17,7 +17,7 @@ Revives the rejected fine-tuning feature as a conditional option.
 
 ## Status (17 October 2026)
 
-- **Not started:** conditional on a documented quality gap that prompting cannot close (E57 or E55); the evaluations so far show gaps that are checks and data, not adapters; DT-212.
+- **Trigger analysed, not met (18 October 2026):** `docs/research/llm_adaptation_trigger.md`. Every remaining quality gap (debrief latency and acceptance, the interpreter, the plan composer, three-character latency) has a cheaper remedy that is built or being measured, and the only data to tune on would be model-written; fine-tuning is not started (DT-212).
 
 ## Verification
 Better than base with no rise in validator rejections, or a documented decision not to adopt.

@@ -18,7 +18,7 @@ Revives the rejected feature as a staged track: the library has gaps and generat
 
 ## Status (17 October 2026)
 
-- **Not started:** conditional research whose trigger (a gap in the image library that selection cannot fill, from `p1-dataset-analysis-s04`, and a free GPU) is not met; DT-212.
+- **Trigger analysed, track not started (18 October 2026):** `docs/research/generative_images_trigger.md`. The gap exists (29 findings have synthetic pictures only) but none of the 14 registered sources holds a labelled picture of any of them, so a generator would have nothing to learn them from; the step's documented negative result stands. Reopens when a licensed dataset holding one of those findings, a reviewer and a free or rented GPU exist (DT-212).
 
 ## Verification
 Finding agreement at least 90 percent and rater accuracy under 70 percent, or a documented negative result.
