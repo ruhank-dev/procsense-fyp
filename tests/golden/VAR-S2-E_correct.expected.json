@@ -1,0 +1,36 @@
+{
+  "case": "VAR-S2-E",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "eb5c72d05ace2fa3dc2ad56f2a28b271a2ef5120fbf38041d255fc8fc04e2d4d",
+  "state_hash": "245507cd60b8e979545a4efd7a31a51d7c9ed2fae6aab6689402dd1d47f46951",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.blood_thinner",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFE_BUT_DELAYED"
+  },
+  "score": {
+    "result": "SUCCESS_WITH_DELAY",
+    "credits": 1,
+    "minor": [],
+    "major": ["major.postponed_unnecessarily"],
+    "critical": []
+  }
+}

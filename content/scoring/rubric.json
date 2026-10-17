@@ -69,6 +69,18 @@
    "teaching": false
   },
   {
+   "match": "^(recovery_handover_complete|recovery_handover_omitted|recovery_handover_repeat_omission)$",
+   "behaviour": "b11",
+   "type": "COMMUNICATION",
+   "teaching": false
+  },
+  {
+   "match": "^(intraop_response|intraop_wrong_response|intraop_no_response)$",
+   "behaviour": "b15",
+   "type": "RESPONSE",
+   "teaching": false
+  },
+  {
    "match": "^(transfer_escort_inadequate|unsafe_transport_mode)$",
    "behaviour": "b11",
    "type": "APPROPRIATENESS",

@@ -98,6 +98,8 @@ namespace ProcSense.Core
         public Events.EventDirector? Director => DirectorStep;
         internal Workflow.OrReadinessSubsystem? OrStep { get; set; }
         internal Workflow.Steps.HandoverSubsystem? HandoverStep { get; set; }
+        internal Workflow.Steps.RecoveryHandoverSubsystem? RecoveryHandoverStep { get; set; }
+        internal Workflow.Steps.IntraOpSubsystem? IntraOpStep { get; set; }
         internal Workflow.Steps.SafetyChecklistSubsystem? SafetyStep { get; set; }
         internal Workflow.EndStateSubsystem? EndStateStep { get; set; }
         internal Physiology.PhysiologySubsystem? PhysiologyStep { get; set; }
@@ -129,6 +131,12 @@ namespace ProcSense.Core
 
         /// <summary>The SBAR handover: what was handed over and what was missing (null when the session has no handover step).</summary>
         public Workflow.Steps.HandoverSubsystem? Handover => HandoverStep;
+
+        /// <summary>The handover to the recovery nurse after Sign Out, a ProcSense educational extension (null when the session has no such step).</summary>
+        public Workflow.Steps.RecoveryHandoverSubsystem? RecoveryHandover => RecoveryHandoverStep;
+
+        /// <summary>The intra-operative training event of the ProcSense educational extension (null when the session has no such step).</summary>
+        public Workflow.Steps.IntraOpSubsystem? IntraOp => IntraOpStep;
 
         /// <summary>The theatre stations and the readiness of the theatre (null when the session has no theatre step).</summary>
         public Workflow.OrReadinessSubsystem? Or => OrStep;

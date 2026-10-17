@@ -33,6 +33,8 @@ namespace ProcSense.Core.Workflow
             new OrReadinessSubsystem(content),
             new HandoverSubsystem(content),
             new SafetyChecklistSubsystem(content),
+            new RecoveryHandoverSubsystem(content),
+            new IntraOpSubsystem(content),
             new EndStateSubsystem(content),
             new Physiology.DeteriorationSubsystem(content),
             new ProblemsSubsystem(content),

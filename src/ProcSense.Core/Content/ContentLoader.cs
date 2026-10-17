@@ -112,7 +112,18 @@ namespace ProcSense.Core.Content
                 Difficulty.DifficultyTables.Parse(reader.ReadText("difficulty/dimensions.json")),
                 AIContext.AiTables.Parse(reader.ReadText("ai/intents.json"), reader.ReadText("ai/lexicon.json")),
                 Records.RecordTables.Parse(reader.ReadText("records/records.json")),
-                Diagnostics.DiagnosticsTables.Parse(reader.ReadText("diagnostics/diagnostics.json")));
+                Diagnostics.DiagnosticsTables.Parse(reader.ReadText("diagnostics/diagnostics.json")),
+                Optional(reader, "handover/recovery_required.json", t => Workflow.Steps.HandoverTables.Parse(t, "handover/recovery_required")),
+                Optional(reader, "extension/intra_op_events.json", t => Workflow.Steps.IntraOpTables.Parse(t)));
+        }
+
+        // the extension content is optional: a package built before it existed still loads, with no recovery handover and no intra-operative events
+        private static T? Optional<T>(IContentReader reader, string path, Func<string, T> parse) where T : class
+        {
+            string text;
+            try { text = reader.ReadText(path); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is System.IO.DirectoryNotFoundException || e is KeyNotFoundException) { return null; }
+            return parse(text);
         }
 
         /// <summary>One playable case file; the file name and the id inside must agree.</summary>

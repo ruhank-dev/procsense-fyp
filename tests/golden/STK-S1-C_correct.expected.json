@@ -1,0 +1,38 @@
+{
+  "case": "STK-S1-C",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "cbaa91bf2861b3b1af0dfb7d6643af08050cbe5775a666875d6382188be40e53",
+  "state_hash": "0a264981a926ea540a6c3dbfbdac2d2efae49f055207ab9a586ea1dc0c44335b",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.dehydration",
+      "condition.heart_failure",
+      "condition.kidney_injury",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "REDIRECTED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 2,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "ed68be3fa71fc011e00a74e0349ff84f439ca8149c18185d55bc06f65fe24dc1",
- "files": 654,
- "bytes": 17638751,
+ "content_hash": "294351337b9f142cfe703cd81fa80a65206ef4468ce0366619c2ff4765871998",
+ "files": 656,
+ "bytes": 17646319,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
@@ -23,10 +23,11 @@
   "ecg": 41,
   "endstate": 1,
   "events": 1,
+  "extension": 1,
   "fasting": 1,
   "flow": 1,
   "generation": 7,
-  "handover": 1,
+  "handover": 2,
   "images": 77,
   "imaging": 3,
   "investigations": 4,
@@ -1768,6 +1769,10 @@
    "bytes": 9296,
    "sha256": "5a40075ab4d7b323cb2aed46f7f07ec8899ced7181d71aa4a02216d3a4fd08d9"
   },
+  "extension/intra_op_events.json": {
+   "bytes": 3334,
+   "sha256": "c2d4b58c3a9c0a9a343aa42d6f665dc2433fade43e53b0962af1d2094c2f624c"
+  },
   "fasting/fasting.json": {
    "bytes": 351,
    "sha256": "0f5ba9b4dba4708fac986ad85cc1b212945a2c46a055c973da1cfc753cd6a3d8"
@@ -1819,6 +1824,10 @@
   "handover/handover_required.json": {
    "bytes": 4221,
    "sha256": "22345ed9cd7c6fcfc3384fc53fb413f9ac56c6d19ebde2f6ee6db856e6e90459"
+  },
+  "handover/recovery_required.json": {
+   "bytes": 3892,
+   "sha256": "fe2a255045162ddcf68ece634b5d67dade2eebfc8161614341b67948e0e95d07"
   },
   "history_topics.json": {
    "bytes": 453,
@@ -2345,8 +2354,8 @@
    "sha256": "c25dab209685d8f9adacfd80a601d5e38df1db54d2aa023f2a0087fd796ca3e1"
   },
   "scoring/rubric.json": {
-   "bytes": 5573,
-   "sha256": "44a0d769da3f1f27076040d57fff39098dbfde5f175c16f47bbe807c3e14f4a3"
+   "bytes": 5915,
+   "sha256": "fa3d002cf6587c05276ee59cfc2fc558c32f0615ed2e7ced6f79aba5468abc42"
   },
   "sepsis/sepsis.json": {
    "bytes": 2479,

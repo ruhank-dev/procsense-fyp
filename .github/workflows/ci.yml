@@ -468,6 +468,15 @@ jobs:
       - name: classifier benchmark scenario cards are current
         run: uv run --project tools tools/bench/dataset.py cards --check
 
+      - name: recovery handover content is current and sourced
+        run: uv run --project tools tools/content/build_recovery_handover.py --check
+
+      - name: intra-operative event content is current and sourced
+        run: uv run --project tools tools/content/build_intraop_events.py --check
+
+      - name: labelling toolkit tests
+        run: uv run --project tools tools/ci/test_labelling.py
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

@@ -1,0 +1,238 @@
+{
+ "sections": [
+  "s",
+  "b",
+  "a",
+  "r"
+ ],
+ "items": [
+  {
+   "id": "identity",
+   "section": "s",
+   "label": "Who the patient is: name, age and date of birth",
+   "known_if": {
+    "var": "identity_confirmed"
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "procedure",
+   "section": "s",
+   "label": "What was done (the procedure that was recorded at Sign Out)",
+   "known_if": {
+    "in": [
+     "signout.procedure_recorded",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "allergies",
+   "section": "b",
+   "label": "Allergies (and the reaction)",
+   "known_if": {
+    "var": "allergies_known"
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "critical",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "findings",
+   "section": "b",
+   "label": "Operative findings and anything unexpected",
+   "known_if": {
+    "in": [
+     "signout.procedure_recorded",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "specimen",
+   "section": "b",
+   "label": "The specimen: what it is and that it was labelled and read aloud",
+   "known_if": {
+    "in": [
+     "signout.specimen_read",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "counts",
+   "section": "b",
+   "label": "Counts correct (or how a discrepancy was resolved)",
+   "known_if": {
+    "in": [
+     "signout.counts_complete",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "drains",
+   "section": "b",
+   "label": "Drains and wounds",
+   "known_if": {
+    "in": [
+     "signout.procedure_recorded",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "observations",
+   "section": "a",
+   "label": "Latest observations and NEWS2",
+   "known_if": {
+    "in": [
+     "news2.computed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "analgesia_plan",
+   "section": "a",
+   "label": "Analgesia plan",
+   "known_if": {
+    "in": [
+     "signout.recovery_briefed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "antiemetic_plan",
+   "section": "a",
+   "label": "Antiemetic plan",
+   "known_if": {
+    "in": [
+     "signout.recovery_briefed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "minor",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "antibiotic_plan",
+   "section": "a",
+   "label": "Antibiotic plan: what was given and when the next dose is due",
+   "known_if": {
+    "in": [
+     "signout.recovery_briefed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-4130"
+  },
+  {
+   "id": "concerns",
+   "section": "r",
+   "label": "Key concerns for recovery and what to watch for",
+   "known_if": {
+    "in": [
+     "signout.recovery_briefed",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "required_in": [
+    "S1",
+    "S2"
+   ],
+   "severity": "major",
+   "ref": "SR-4130"
+  }
+ ],
+ "scored": {
+  "complete": "credit.recovery_handover_complete",
+  "critical": "critical.recovery_handover_omitted",
+  "major": "major.recovery_handover_omitted",
+  "minor": "minor.recovery_handover_omitted",
+  "repeat": "major.recovery_handover_repeat_omission"
+ },
+ "refs": [
+  "SR-4130"
+ ]
+}

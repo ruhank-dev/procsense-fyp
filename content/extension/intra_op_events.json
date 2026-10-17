@@ -1,0 +1,134 @@
+{
+ "label": "ProcSense educational extension",
+ "events": [
+  {
+   "id": "adhesions_open_set",
+   "title": "The surgeon asks for the open set",
+   "label": "ProcSense educational extension",
+   "applies_to": [
+    "S1"
+   ],
+   "cue": "The surgeon says dense adhesions make the keyhole view poor and asks for the open set.",
+   "deadline_steps": 6,
+   "approval": "awaiting_clinician",
+   "practice_only": true,
+   "responses": [
+    {
+     "id": "ask_open_set",
+     "label": "Ask the scrub nurse to open the open set and say so aloud",
+     "correct": true
+    },
+    {
+     "id": "tell_anaesthetist",
+     "label": "Tell the anaesthetist the operation may be converted to open",
+     "correct": true
+    },
+    {
+     "id": "carry_on",
+     "label": "Say nothing and carry on",
+     "correct": false
+    }
+   ],
+   "ref": "SR-4131"
+  },
+  {
+   "id": "bleeding_suction",
+   "title": "Bleeding that needs suction",
+   "label": "ProcSense educational extension",
+   "applies_to": [
+    "S1",
+    "S2"
+   ],
+   "cue": "There is bleeding at the operative site and the surgeon asks for suction.",
+   "deadline_steps": 6,
+   "approval": "awaiting_clinician",
+   "practice_only": true,
+   "responses": [
+    {
+     "id": "check_suction",
+     "label": "Check the suction is working and tell the team it is ready",
+     "correct": true
+    },
+    {
+     "id": "tell_anaesthetist_bleeding",
+     "label": "Tell the anaesthetist there is bleeding",
+     "correct": true
+    },
+    {
+     "id": "wait",
+     "label": "Wait to be asked again",
+     "correct": false
+    }
+   ],
+   "ref": "SR-4131"
+  },
+  {
+   "id": "unexpected_stone",
+   "title": "An unexpected finding",
+   "label": "ProcSense educational extension",
+   "applies_to": [
+    "S1"
+   ],
+   "cue": "The surgeon reports an unexpected finding, a stone in the duct, and says the plan may change.",
+   "deadline_steps": 6,
+   "approval": "awaiting_clinician",
+   "practice_only": true,
+   "responses": [
+    {
+     "id": "relay_finding",
+     "label": "Acknowledge it and relay it to the anaesthetist and the circulating nurse",
+     "correct": true
+    },
+    {
+     "id": "note_for_handover",
+     "label": "Say you will include it in the Sign Out and recovery handover",
+     "correct": true
+    },
+    {
+     "id": "ignore",
+     "label": "Carry on without acknowledging it",
+     "correct": false
+    }
+   ],
+   "ref": "SR-4131"
+  },
+  {
+   "id": "normal_appendix",
+   "title": "A normal-looking appendix",
+   "label": "ProcSense educational extension",
+   "applies_to": [
+    "S2"
+   ],
+   "cue": "The surgeon says the appendix looks normal and decides to remove it anyway.",
+   "deadline_steps": 6,
+   "approval": "awaiting_clinician",
+   "practice_only": true,
+   "responses": [
+    {
+     "id": "label_specimen",
+     "label": "Make sure the specimen will be labelled and sent, and say so",
+     "correct": true
+    },
+    {
+     "id": "relay_finding",
+     "label": "Relay the finding to the anaesthetist and note it for the handover",
+     "correct": true
+    },
+    {
+     "id": "ignore",
+     "label": "Carry on without acknowledging it",
+     "correct": false
+    }
+   ],
+   "ref": "SR-4131"
+  }
+ ],
+ "scored": {
+  "respond": "credit.intraop_response",
+  "wrong": "minor.intraop_wrong_response",
+  "freeze": "major.intraop_no_response"
+ },
+ "refs": [
+  "SR-4131"
+ ]
+}

@@ -27,9 +27,9 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void Every_P0_case_shows_every_section_from_content()
+        public void Every_case_with_a_correct_path_golden_shows_every_section_from_content()
         {
-            Assert.Equal(17, P0.Length);
+            Assert.Equal(33, P0.Length);                                                            // the 17 P0 cases and the 16 P1 cases
             foreach (var id in P0)
             {
                 var e = Start(id).Records!.Sections();

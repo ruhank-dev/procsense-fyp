@@ -1,4 +1,4 @@
-"""Writes and checks the correct-path scripts for the P0 cases (p0-case-library s02, plan tests T-CASE1 and T-CASE2).
+"""Writes and checks the correct-path scripts for the P0 cases (p0-case-library s02, plan tests T-CASE1 and T-CASE2) and the 16 P1 cases (p1-case-library-extended-s03, EXP-CASE-3).
 
     uv run --project tools tools/golden/p0_scripts.py --write            # write tests/golden/<case>_correct.actions.json
     uv run --project tools tools/golden/p0_scripts.py --check            # run each script through the CLI, list refusals and compare the end state with the case file
@@ -282,7 +282,7 @@ def probe(case_id: str, s: Script) -> str:
     raise SystemExit(f"{case_id}: the engine did not say what it expects")
 
 
-SERVICE = {"VAR-S1-E": "acute surgical team", "STK-S1-D": "acute surgical and medical team", "VAR-S2-B": "gynaecology", "VAR-S2-D": "senior surgical review and further imaging"}
+SERVICE = {"STK-S1-C": "acute medical team", "VAR-S1-E": "acute surgical team", "STK-S1-D": "acute surgical and medical team", "VAR-S2-B": "gynaecology", "VAR-S2-D": "senior surgical review and further imaging"}
 
 
 def decided(c: dict) -> Script:
@@ -301,6 +301,10 @@ def decided(c: dict) -> Script:
 
 BUILDERS = {
     "VAR-S1-G": decided, "VAR-S1-H": decided, "VAR-S1-PB": decided, "VAR-S1-E": decided, "STK-S1-D": decided, "VAR-S2-B": decided, "VAR-S2-D": decided,
+    # the P1 cases (p1-case-library-extended-s03, EXP-CASE-3): the same segments play all sixteen to their expected end state with nothing refused, so no engine addition is needed for them
+    "VAR-S1-I": planned_ready, "VAR-S1-M": planned_ready, "VAR-S1-K": decided, "VAR-S1-L": decided, "VAR-S2-E": decided,
+    "VAR-S2-H": with_options(antibiotic=True), "VAR-S2-I": with_options(antibiotic=True), "VAR-S2-J": with_options(antibiotic=True), "VAR-S2-K": with_options(antibiotic=True), "VAR-S2-L": with_options(antibiotic=True),
+    "STK-S1-A": decided, "STK-S1-B": decided, "STK-S1-C": decided, "STK-S2-A": with_options(antibiotic=True), "STK-S2-C": with_options(emergency=True, antibiotic=True), "STK-S2-D": with_options(antibiotic=True),
     "VAR-S1-A": planned_ready,
     "VAR-S1-B": planned_ready,
     "VAR-S1-C": planned_ready,
@@ -326,7 +330,7 @@ def stale() -> int:
     if old or missing:
         print("FAIL  out of date: " + ", ".join(old + missing) + "; run tools/golden/p0_scripts.py --write and then procsense-sim golden --update")
         return 1
-    print(f"the {len(BUILDERS)} P0 correct-path scripts are what the generator writes today")
+    print(f"the {len(BUILDERS)} correct-path scripts (P0 and P1 cases) are what the generator writes today")
     return 0
 
 

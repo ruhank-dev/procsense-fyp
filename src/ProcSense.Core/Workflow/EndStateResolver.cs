@@ -126,7 +126,7 @@ namespace ProcSense.Core.Workflow
             IEnumerable<IReadOnlyList<GraphEvent>> sources = new IReadOnlyList<GraphEvent>?[]
             {
                 _s.ResultReviewHistory, _s.InvestigationHistory, _s.MedicineHistory, _s.TransportHistory, _s.GraphHistory, _s.SepsisStep?.History, _s.DecisionStep?.History, _s.WardStep?.History, _s.OrStep?.History,
-                _s.HandoverStep?.History, _s.SafetyStep?.History, _s.ClashStep?.History, _s.ConsentStep?.History, _s.DirectorStep?.History, _s.BehaviourStep?.History, _s.Flow?.History, _history,
+                _s.HandoverStep?.History, _s.RecoveryHandoverStep?.History, _s.IntraOpStep?.History, _s.SafetyStep?.History, _s.ClashStep?.History, _s.ConsentStep?.History, _s.DirectorStep?.History, _s.BehaviourStep?.History, _s.Flow?.History, _history,
             }.Where(x => x != null)!;
             return sources.SelectMany(h => h);
         }

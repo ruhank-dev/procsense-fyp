@@ -67,6 +67,8 @@ RULES = [
     (r"^false_reassurance$", "b08", "COMMUNICATION", False),
     (r"^(readback_wrong)$", "b10", "COMMUNICATION", False),
     (r"^(handover_complete|handover_omitted|handover_repeat_omission|sbar_complete|sbar_incomplete)$", "b11", "COMMUNICATION", False),
+    (r"^(recovery_handover_complete|recovery_handover_omitted|recovery_handover_repeat_omission)$", "b11", "COMMUNICATION", False),
+    (r"^(intraop_response|intraop_wrong_response|intraop_no_response)$", "b15", "RESPONSE", False),
     (r"^(transfer_escort_inadequate|unsafe_transport_mode)$", "b11", "APPROPRIATENESS", False),
     (r"^(asa_correct)$", "b21", "APPROPRIATENESS", False),
     (r"^(asa_close|asa_far)$", "b21", "APPROPRIATENESS", True),
