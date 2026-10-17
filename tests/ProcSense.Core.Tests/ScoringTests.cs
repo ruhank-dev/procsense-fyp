@@ -209,6 +209,24 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void T_EM1b_a_confident_sbar_element_in_a_handover_step_is_recorded_but_never_credited_to_b11()
+        {
+            var b11 = Tables.Behaviours.First(b => b.Id == "b11");
+            Assert.True(b11.Critical);                                           // the conditions under which speech could once credit b11
+            Assert.Contains("SBAR_ELEMENT", b11.AiActs);
+            Assert.True(Tables.ThresholdFor("SBAR_ELEMENT") <= 0.99);
+            foreach (var step in b11.Steps)
+            {
+                var store = new EvidenceStore(Tables);
+                var r = store.Submit("SBAR_ELEMENT", "handover", "Situation: Mr Khan, planned surgery this morning", 0.99, step, new[] { 1 });
+                Assert.False(r.Accepted);
+                Assert.Equal(EvidenceStore.CriticalNeedsAction, r.Reason);
+                Assert.Empty(store.Credited("b11"));
+                Assert.Single(store.Records);                                    // recorded, not credited
+            }
+        }
+
+        [Fact]
         public void T_EM1_a_critical_act_from_speech_is_recorded_but_not_credited()
         {
             var store = new EvidenceStore(Tables);

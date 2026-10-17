@@ -145,7 +145,7 @@ def build() -> dict[Path, str]:
     mapping = {
         "behaviours": BEHAVIOURS,
         "thresholds": {"default": 0.8, "per_act": {}, "note": "no classifier exists in P0; the default is the guide's example and is replaced by the calibration export when one exists"},
-        "critical_acts": ["CONFIRM_IDENTITY", "STATE_ALLERGY", "CONSENT_SIGN", "HANDOVER_CRITICAL_ELEMENT"],
+        "critical_acts": ["CONFIRM_IDENTITY", "STATE_ALLERGY", "CONSENT_SIGN", "HANDOVER_CRITICAL_ELEMENT", "SBAR_ELEMENT"],
         "refs": [REF, REF_RUBRIC],
     }
     templates = {"sentences": SENTENCES, "placeholders": ["label", "rule_id", "source"], "refs": [REF_RUBRIC]}
@@ -153,9 +153,25 @@ def build() -> dict[Path, str]:
     return {RUBRIC: dump(rubric), MAPPING: dump(mapping), TEMPLATES: dump(templates)}
 
 
+def critical_act_problems(mapping: dict) -> list[str]:
+    """The acts the taxonomy flags critical must be exactly `critical_acts`, and every act a critical behaviour lets speech report must be one of them (else speech alone could credit a critical behaviour)."""
+    path = ROOT / "content" / "assessment" / "taxonomy.json"
+    if not path.exists():
+        return []
+    flagged = {a["id"] for a in json.loads(path.read_text(encoding="utf-8"))["acts"] if a["critical"]}
+    listed = set(mapping["critical_acts"])
+    out = [f"taxonomy.json and critical_acts disagree: only in taxonomy {sorted(flagged - listed)}, only in critical_acts {sorted(listed - flagged)}"] if flagged != listed else []
+    out += [f"critical behaviour {b['id']} lets speech report {a}, which is not in critical_acts" for b in mapping["behaviours"] if b["critical"] for a in b["ai_acts"] if a not in listed]
+    return out
+
+
 def main(argv: list[str]) -> int:
     files = build()
     if "--check" in argv:
+        problems = critical_act_problems(json.loads(files[MAPPING]))
+        if problems:
+            print("FAIL  " + "; ".join(problems))
+            return 1
         stale = [str(p.relative_to(ROOT)) for p, t in files.items() if not p.exists() or p.read_text(encoding="utf-8") != t]
         if stale:
             print("FAIL  out of date: " + ", ".join(stale) + "; run tools/content/build_scoring.py")
