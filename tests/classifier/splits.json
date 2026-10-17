@@ -1,0 +1,45 @@
+{
+ "note": "Frozen splits (p1-ai-language-s06). Split by speaker. Changing a file changes its hash: the classifier results are only valid for these hashes.",
+ "sha256": {
+  "dev.jsonl": "bdec6389668dcf8bc2eb31fcfd6d525d90ebe7ab8951221d950af72bb04a1210",
+  "test.jsonl": "1c236df3f152b2aa42a8761279e90ab7cde423124d5ea10a045b122ccfb602e1",
+  "train.jsonl": "7b1c1b25c84bf384cfcf7a3514146fd9571a9f5bc5e8631ab80415f47468579d"
+ },
+ "rows": {
+  "train": 319,
+  "dev": 83,
+  "test": 78
+ },
+ "speakers": {
+  "train": [
+   "spk-00",
+   "spk-01",
+   "spk-02",
+   "spk-03",
+   "spk-04",
+   "spk-05",
+   "spk-06",
+   "spk-07",
+   "spk-08",
+   "spk-09",
+   "spk-10",
+   "spk-11",
+   "spk-12",
+   "spk-13",
+   "spk-14",
+   "spk-15"
+  ],
+  "dev": [
+   "spk-16",
+   "spk-17",
+   "spk-18",
+   "spk-19"
+  ],
+  "test": [
+   "spk-20",
+   "spk-21",
+   "spk-22",
+   "spk-23"
+  ]
+ }
+}

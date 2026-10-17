@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "content_hash": "0aab6b0fdb749d5906d89691fb22af7794ffc003c092425941930c2bd2650a15",
- "files": 653,
- "bytes": 17631574,
+ "content_hash": "6485d02f26b3a7e2cf1d2acffc60f4d2e123e1d1b1884ee22d086730ab29f481",
+ "files": 654,
+ "bytes": 17637571,
  "per_folder": {
   "(root)": 64,
   "ai": 2,
-  "assessment": 1,
+  "assessment": 2,
   "attributions": 1,
   "behaviour": 3,
   "blocks": 258,
@@ -67,6 +67,10 @@
   "assessment/mapping.json": {
    "bytes": 7687,
    "sha256": "a71d19dc25ac6720e1ac7feaeef0890872aeefa8f9e507dfe319ed7876ee8db9"
+  },
+  "assessment/taxonomy.json": {
+   "bytes": 5997,
+   "sha256": "25a40afdd8082d38de52d9e6ad55bbbc0936ad5ba695d689419d2ed9bebf349f"
   },
   "attributions/attributions.json": {
    "bytes": 13060,
