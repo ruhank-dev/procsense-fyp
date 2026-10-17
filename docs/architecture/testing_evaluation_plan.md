@@ -65,7 +65,7 @@ Specification only (12 October 2026): these tests are planned with the features 
 | Interpreter hypotheses | AI interpretations are useful, not taken as truth | Later confirmation rate above random picks | p1-personalisation-s04 |
 | Dual-GPU benchmark | Every AI capability fits a measured deployment | Report for each model on GTX 1660 SUPER and RTX 4050, with and without Unity | p1-ai-infrastructure-s02 |
 | Revived generative research | Only proven synthetic assets or adapters are used | Finding agreement at least 90 percent, rater accuracy under 70 percent; adapters beat base | p2-ai-advanced-simulation-s04, s05 |
-| Every AI capability (105 capabilities, 65 AI) | Each has a baseline comparison and acceptance criterion | See `feature_plans/<ID>.md` and the coverage audit | per feature |
+| Every AI capability (105 capabilities, 65 AI) | Each has a baseline comparison and acceptance criterion | See `docs/plans/features/<ID>.md` and the coverage audit | per feature |
 
 ## 5. Whole system
 

@@ -3293,3 +3293,13 @@ Continue from the latest repository state and complete the remaining work end to
 6. Final report: each completed P1/P2 phase and AI feature with verification status; the classifier chosen, synthetic results, limitations and whether it is safe to integrate; all commit hashes, push status, latest CI status and files; test counts; anything that needs my input, access or physical testing.
 (The prompt was pasted at full length; this entry keeps its numbered requirements in the owner's wording, shortened.)
 ``````
+
+## 163. 17 October 2026 (exact time not captured)
+_Session: 1f9a53f2_
+
+``````text
+Question: why are all the feature plans in the architecture folder, should they be in the plans folder?
+(Answered: historical, generated beside the pipeline JSON; proposed moving docs/architecture/feature_plans to docs/plans/features.)
+
+Instruction: Keep one canonical copy of the 69 feature plans in docs/plans/features/, but preserve docs/architecture/feature_plans/ as a discoverable entry point with a README linking to the canonical plans. Update the generator and all references so the plans are generated only once, in the canonical location. Do not duplicate the full files. Run the relevant checks and commit/push the change following INSTRUCTIONS.md.
+``````

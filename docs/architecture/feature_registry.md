@@ -19,79 +19,79 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 | Proposed new feature | 7 |
 | Superseded or rejected | 0 |
 
-Each feature's complete implementation plan (user experience, existing versus missing, the seven AI questions, separate capability plans with schemas, flow, validation, failure handling, tests, metrics, baseline, acceptance, both-GPU hardware notes and tasks) is in `feature_plans/<ID>.md`; coverage is audited in [feature_coverage_audit.md](feature_coverage_audit.md).
+Each feature's complete implementation plan (user experience, existing versus missing, the seven AI questions, separate capability plans with schemas, flow, validation, failure handling, tests, metrics, baseline, acceptance, both-GPU hardware notes and tasks) is in [`../plans/features/<ID>.md`](../plans/features/); coverage is audited in [feature_coverage_audit.md](feature_coverage_audit.md).
 
 | ID | Feature | Kind | Status | AI status | Phase | Tier | Plan |
 |---|---|---|---|---|---|---|---|
-| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Partially implemented | Partially implemented | PH-04 | P1 | [plan](feature_plans/A1.md) |
-| A2 | Live dataset-driven scenario generation | hybrid | Partially implemented | Partially implemented | PH-05 | P1 | [plan](feature_plans/A2.md) |
-| A3 | Patient profile generation | hybrid | Proposed new feature | Proposed new feature | PH-08 | P1 | [plan](feature_plans/A3.md) |
-| A4 | Mixed (multi-problem) case generation | hybrid | Planned | Proposed new feature | PH-05 | P1 | [plan](feature_plans/A4.md) |
-| A5 | Dynamic events (selection and generated variants) | hybrid | Partially implemented | Proposed new feature | PH-10 | P1 | [plan](feature_plans/A5.md) |
-| A6 | Novelty control and scenario fingerprinting | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-11 | P1 | [plan](feature_plans/A6.md) |
-| A7 | Adversarial (trap) scenario generation for trainees | hybrid | Partially implemented | Proposed new feature | PH-11 | P1 | [plan](feature_plans/A7.md) |
-| A8 | Branching scenario paths | deterministic | Partially implemented | Proposed new feature | PH-10 | P1 | [plan](feature_plans/A8.md) |
-| A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Proposed new feature | Proposed new feature | PH-11 | P1 | [plan](feature_plans/A9.md) |
-| A10 | Validation, repair and rejection | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-10 | P1 | [plan](feature_plans/A10.md) |
-| A11 | Difficulty control in generation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-05 | P1 | [plan](feature_plans/A11.md) |
-| A12 | Recombination of case components | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-04 | P1 | [plan](feature_plans/A12.md) |
-| A13 | Provenance and reproducibility of generated scenarios | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-11 | P1 | [plan](feature_plans/A13.md) |
-| A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Partially implemented | Partially implemented | PH-22 | P1 | [plan](feature_plans/A66.md) |
-| B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B14.md) |
-| B15 | ECG generation and variation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B15.md) |
-| B16 | Ultrasound image selection and labelled synthesis | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B16.md) |
-| B17 | Chest X-ray, CT and MRI selection | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B17.md) |
-| B18 | Cross-modal consistency | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-10 | P1 | [plan](feature_plans/B18.md) |
-| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](feature_plans/B19.md) |
-| B20 | Anomalies and artefacts (deliberate and realistic) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B20.md) |
-| B21 | Result variation (repeats, trends, timing) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](feature_plans/B21.md) |
-| B22 | Investigation Interpreter (teaching aid) | ai | Partially implemented | Partially implemented | PH-18 | P2 | [plan](feature_plans/B22.md) |
-| B23 | Investigation discovery | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-04 | P0 | [plan](feature_plans/B23.md) |
-| C24 | Patient dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C24.md) |
-| C25 | Nurse dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C25.md) |
-| C26 | Anaesthetist dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C26.md) |
-| C27 | Surgeon dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C27.md) |
-| C28 | Porter dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C28.md) |
-| C29 | Persona system | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C29.md) |
-| C30 | Context-aware and reactive dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](feature_plans/C30.md) |
-| C31 | Voice interaction (end to end) | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C31.md) |
-| C32 | Voice commands | hybrid | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C32.md) |
-| C33 | Speech-to-text | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C33.md) |
-| C34 | Text-to-speech | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C34.md) |
-| C35 | Voice orders and read-back | hybrid | Partially implemented | Partially implemented | PH-14 | P1 | [plan](feature_plans/C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-15 | P1 | [plan](feature_plans/C36.md) |
-| C37 | Communication classifier | ai | Partially implemented | Partially implemented | PH-15 | P1 | [plan](feature_plans/C37.md) |
-| D38 | AI debrief | hybrid | Partially implemented | Partially implemented | PH-16 | P1 | [plan](feature_plans/D38.md) |
-| D39 | Coaching (in-session hints and between-session advice) | hybrid | Partially implemented | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D39.md) |
-| D40 | Performance pattern analysis | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D40.md) |
-| D41 | Confidence calibration coach | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D41.md) |
-| D42 | Clinical Reasoning Fingerprint | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](feature_plans/D42.md) |
-| D43 | Adaptive difficulty (deterministic Elo ratings and Selector) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P0 | [plan](feature_plans/D43.md) |
-| D44 | AI enhancement to adaptive difficulty | ai | Partially implemented | Partially implemented | PH-18 | P2 | [plan](feature_plans/D44.md) |
-| D45 | Progression tracking | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-18 | P2 | [plan](feature_plans/D45.md) |
-| D46 | Missed-step explanation | hybrid | Partially implemented | Blocked | PH-16 | P1 | [plan](feature_plans/D46.md) |
-| D47 | Evidence-based feedback | hybrid | Partially implemented | Planned | PH-16 | P1 | [plan](feature_plans/D47.md) |
-| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](feature_plans/D67.md) |
-| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](feature_plans/D68.md) |
-| E48 | Patient Digital Twin | hybrid | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](feature_plans/E48.md) |
-| E49 | Multi-Agent Clinical Simulation Lab | ai | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](feature_plans/E49.md) |
-| E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](feature_plans/E50.md) |
-| E51 | Scenario Quality Evaluator (offline batch) | hybrid | Proposed new feature | Proposed new feature | PH-17 | P1 | [plan](feature_plans/E51.md) |
-| E52 | Investigation analytics | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-18 | P2 | [plan](feature_plans/E52.md) |
-| E53 | Grounding validator | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](feature_plans/E53.md) |
-| E54 | Context builder and reaction queue | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](feature_plans/E54.md) |
-| E55 | AI evaluation harness and switch-off gate | deterministic | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](feature_plans/E55.md) |
-| E56 | Difficulty explanation to the trainee | hybrid | Planned | Planned | PH-16 | P1 | [plan](feature_plans/E56.md) |
-| E57 | LLM serving and benchmark | ai | Partially implemented | Partially implemented | PH-07 | P1 | [plan](feature_plans/E57.md) |
-| E58 | Retrieval over approved content (RAG) | hybrid | Partially implemented | Partially implemented | PH-05 | P1 | [plan](feature_plans/E58.md) |
-| E59 | Urdu and multilingual language | ai | Deferred | Deferred | PH-19 | P2 | [plan](feature_plans/E59.md) |
-| E60 | P2 small trained classifier | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](feature_plans/E60.md) |
-| E61 | Medical LLM benchmark (for example MedGemma) | ai | Deferred | Deferred | PH-19 | P2 | [plan](feature_plans/E61.md) |
-| E62 | Backend and AI gateway | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-06 | P1 | [plan](feature_plans/E62.md) |
-| E63 | On-device speech recognition | ai | Planned | Planned | PH-19 | P2 | [plan](feature_plans/E63.md) |
-| E64 | Generative image synthesis (diffusion or GAN) for medical images | ai | Deferred | Deferred | PH-24 | P2 | [plan](feature_plans/E64.md) |
-| E65 | Fine-tuning an LLM on clinical text | ai | Deferred | Deferred | PH-24 | P2 | [plan](feature_plans/E65.md) |
-| E69 | AI inference infrastructure and dual-GPU deployment | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-20 | P1 | [plan](feature_plans/E69.md) |
+| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Partially implemented | Partially implemented | PH-04 | P1 | [plan](../plans/features/A1.md) |
+| A2 | Live dataset-driven scenario generation | hybrid | Partially implemented | Partially implemented | PH-05 | P1 | [plan](../plans/features/A2.md) |
+| A3 | Patient profile generation | hybrid | Proposed new feature | Proposed new feature | PH-08 | P1 | [plan](../plans/features/A3.md) |
+| A4 | Mixed (multi-problem) case generation | hybrid | Planned | Proposed new feature | PH-05 | P1 | [plan](../plans/features/A4.md) |
+| A5 | Dynamic events (selection and generated variants) | hybrid | Partially implemented | Proposed new feature | PH-10 | P1 | [plan](../plans/features/A5.md) |
+| A6 | Novelty control and scenario fingerprinting | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A6.md) |
+| A7 | Adversarial (trap) scenario generation for trainees | hybrid | Partially implemented | Proposed new feature | PH-11 | P1 | [plan](../plans/features/A7.md) |
+| A8 | Branching scenario paths | deterministic | Partially implemented | Proposed new feature | PH-10 | P1 | [plan](../plans/features/A8.md) |
+| A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Proposed new feature | Proposed new feature | PH-11 | P1 | [plan](../plans/features/A9.md) |
+| A10 | Validation, repair and rejection | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-10 | P1 | [plan](../plans/features/A10.md) |
+| A11 | Difficulty control in generation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-05 | P1 | [plan](../plans/features/A11.md) |
+| A12 | Recombination of case components | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-04 | P1 | [plan](../plans/features/A12.md) |
+| A13 | Provenance and reproducibility of generated scenarios | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A13.md) |
+| A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Partially implemented | Partially implemented | PH-22 | P1 | [plan](../plans/features/A66.md) |
+| B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B14.md) |
+| B15 | ECG generation and variation | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B15.md) |
+| B16 | Ultrasound image selection and labelled synthesis | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B16.md) |
+| B17 | Chest X-ray, CT and MRI selection | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B17.md) |
+| B18 | Cross-modal consistency | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-10 | P1 | [plan](../plans/features/B18.md) |
+| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](../plans/features/B19.md) |
+| B20 | Anomalies and artefacts (deliberate and realistic) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B20.md) |
+| B21 | Result variation (repeats, trends, timing) | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B21.md) |
+| B22 | Investigation Interpreter (teaching aid) | ai | Partially implemented | Partially implemented | PH-18 | P2 | [plan](../plans/features/B22.md) |
+| B23 | Investigation discovery | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-04 | P0 | [plan](../plans/features/B23.md) |
+| C24 | Patient dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C24.md) |
+| C25 | Nurse dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C25.md) |
+| C26 | Anaesthetist dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C26.md) |
+| C27 | Surgeon dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C27.md) |
+| C28 | Porter dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C28.md) |
+| C29 | Persona system | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C29.md) |
+| C30 | Context-aware and reactive dialogue | hybrid | Partially implemented | Partially implemented | PH-13 | P1 | [plan](../plans/features/C30.md) |
+| C31 | Voice interaction (end to end) | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](../plans/features/C31.md) |
+| C32 | Voice commands | hybrid | Partially implemented | Partially implemented | PH-14 | P1 | [plan](../plans/features/C32.md) |
+| C33 | Speech-to-text | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](../plans/features/C33.md) |
+| C34 | Text-to-speech | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](../plans/features/C34.md) |
+| C35 | Voice orders and read-back | hybrid | Partially implemented | Partially implemented | PH-14 | P1 | [plan](../plans/features/C35.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-15 | P1 | [plan](../plans/features/C36.md) |
+| C37 | Communication classifier | ai | Partially implemented | Partially implemented | PH-15 | P1 | [plan](../plans/features/C37.md) |
+| D38 | AI debrief | hybrid | Partially implemented | Partially implemented | PH-16 | P1 | [plan](../plans/features/D38.md) |
+| D39 | Coaching (in-session hints and between-session advice) | hybrid | Partially implemented | Proposed new feature | PH-18 | P2 | [plan](../plans/features/D39.md) |
+| D40 | Performance pattern analysis | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](../plans/features/D40.md) |
+| D41 | Confidence calibration coach | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](../plans/features/D41.md) |
+| D42 | Clinical Reasoning Fingerprint | hybrid | Implemented and tested | Proposed new feature | PH-18 | P2 | [plan](../plans/features/D42.md) |
+| D43 | Adaptive difficulty (deterministic Elo ratings and Selector) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P0 | [plan](../plans/features/D43.md) |
+| D44 | AI enhancement to adaptive difficulty | ai | Partially implemented | Partially implemented | PH-18 | P2 | [plan](../plans/features/D44.md) |
+| D45 | Progression tracking | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-18 | P2 | [plan](../plans/features/D45.md) |
+| D46 | Missed-step explanation | hybrid | Partially implemented | Blocked | PH-16 | P1 | [plan](../plans/features/D46.md) |
+| D47 | Evidence-based feedback | hybrid | Partially implemented | Planned | PH-16 | P1 | [plan](../plans/features/D47.md) |
+| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](../plans/features/D67.md) |
+| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](../plans/features/D68.md) |
+| E48 | Patient Digital Twin | hybrid | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E48.md) |
+| E49 | Multi-Agent Clinical Simulation Lab | ai | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E49.md) |
+| E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](../plans/features/E50.md) |
+| E51 | Scenario Quality Evaluator (offline batch) | hybrid | Proposed new feature | Proposed new feature | PH-17 | P1 | [plan](../plans/features/E51.md) |
+| E52 | Investigation analytics | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-18 | P2 | [plan](../plans/features/E52.md) |
+| E53 | Grounding validator | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](../plans/features/E53.md) |
+| E54 | Context builder and reaction queue | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-01 | P1 | [plan](../plans/features/E54.md) |
+| E55 | AI evaluation harness and switch-off gate | deterministic | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E55.md) |
+| E56 | Difficulty explanation to the trainee | hybrid | Planned | Planned | PH-16 | P1 | [plan](../plans/features/E56.md) |
+| E57 | LLM serving and benchmark | ai | Partially implemented | Partially implemented | PH-07 | P1 | [plan](../plans/features/E57.md) |
+| E58 | Retrieval over approved content (RAG) | hybrid | Partially implemented | Partially implemented | PH-05 | P1 | [plan](../plans/features/E58.md) |
+| E59 | Urdu and multilingual language | ai | Deferred | Deferred | PH-19 | P2 | [plan](../plans/features/E59.md) |
+| E60 | P2 small trained classifier | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E60.md) |
+| E61 | Medical LLM benchmark (for example MedGemma) | ai | Deferred | Deferred | PH-19 | P2 | [plan](../plans/features/E61.md) |
+| E62 | Backend and AI gateway | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-06 | P1 | [plan](../plans/features/E62.md) |
+| E63 | On-device speech recognition | ai | Planned | Planned | PH-19 | P2 | [plan](../plans/features/E63.md) |
+| E64 | Generative image synthesis (diffusion or GAN) for medical images | ai | Deferred | Deferred | PH-24 | P2 | [plan](../plans/features/E64.md) |
+| E65 | Fine-tuning an LLM on clinical text | ai | Deferred | Deferred | PH-24 | P2 | [plan](../plans/features/E65.md) |
+| E69 | AI inference infrastructure and dual-GPU deployment | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-20 | P1 | [plan](../plans/features/E69.md) |
 
 ## A. Scenario generation and composition
 

@@ -14,9 +14,9 @@
     "planning_rule": "Planning and documentation only: nothing marked Planned, Proposed, Blocked or Deferred is built. Implementation starts only when the owner says so.",
     "baseline_commit": "a4ecc21",
     "research_accessed": "2026-10-12",
-    "traceability": "Every node and edge has traced_to: the feature plans (docs/architecture/feature_plans/<ID>.md) and plan step files it is derived from; kind=indirect means it is supported only through adjacent nodes. Checked by VR-G-TRACE.",
+    "traceability": "Every node and edge has traced_to: the feature plans (docs/plans/features/<ID>.md) and plan step files it is derived from; kind=indirect means it is supported only through adjacent nodes. Checked by VR-G-TRACE.",
     "generated_docs": [
-      "docs/architecture/feature_plans/<ID>.md",
+      "docs/plans/features/<ID>.md",
       "docs/architecture/feature_coverage_audit.md",
       "docs/architecture/feature_registry.md",
       "docs/architecture/live_generation_spec.md",
@@ -482,7 +482,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -501,7 +501,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -522,7 +522,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -541,7 +541,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -560,7 +560,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/E51.md"
+          "docs/plans/features/E51.md"
         ]
       }
     },
@@ -646,9 +646,9 @@
           "p1-dataset-analysis-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md",
-          "docs/architecture/feature_plans/B15.md"
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md",
+          "docs/plans/features/B15.md"
         ]
       }
     },
@@ -690,7 +690,7 @@
           "p1-dataset-analysis-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -735,9 +735,9 @@
           "p1-scenario-composer-difficulty-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A12.md",
-          "docs/architecture/feature_plans/E58.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A12.md",
+          "docs/plans/features/E58.md"
         ]
       }
     },
@@ -776,7 +776,7 @@
           "p1-live-scenario-generation-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E58.md"
+          "docs/plans/features/E58.md"
         ]
       }
     },
@@ -824,9 +824,9 @@
           "p1-dataset-analysis-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B15.md",
-          "docs/architecture/feature_plans/B16.md",
-          "docs/architecture/feature_plans/B17.md"
+          "docs/plans/features/B15.md",
+          "docs/plans/features/B16.md",
+          "docs/plans/features/B17.md"
         ]
       }
     },
@@ -873,11 +873,11 @@
           "p1-evaluation-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A9.md",
-          "docs/architecture/feature_plans/B19.md",
-          "docs/architecture/feature_plans/E50.md",
-          "docs/architecture/feature_plans/E51.md",
-          "docs/architecture/feature_plans/E55.md"
+          "docs/plans/features/A9.md",
+          "docs/plans/features/B19.md",
+          "docs/plans/features/E50.md",
+          "docs/plans/features/E51.md",
+          "docs/plans/features/E55.md"
         ]
       }
     },
@@ -925,10 +925,10 @@
           "p1-ai-language-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E57.md",
-          "docs/architecture/feature_plans/E61.md",
-          "docs/architecture/feature_plans/E65.md",
-          "docs/architecture/feature_plans/E69.md"
+          "docs/plans/features/E57.md",
+          "docs/plans/features/E61.md",
+          "docs/plans/features/E65.md",
+          "docs/plans/features/E69.md"
         ]
       }
     },
@@ -1024,7 +1024,7 @@
           "p1-live-scenario-generation-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -1085,12 +1085,12 @@
           "p1-live-scenario-generation-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A11.md",
-          "docs/architecture/feature_plans/D43.md",
-          "docs/architecture/feature_plans/D44.md",
-          "docs/architecture/feature_plans/D68.md",
-          "docs/architecture/feature_plans/E56.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A11.md",
+          "docs/plans/features/D43.md",
+          "docs/plans/features/D44.md",
+          "docs/plans/features/D68.md",
+          "docs/plans/features/E56.md"
         ]
       }
     },
@@ -1145,8 +1145,8 @@
           "p1-live-scenario-generation-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/E58.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/E58.md"
         ]
       }
     },
@@ -1212,13 +1212,13 @@
           "p1-scenario-composer-difficulty-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A4.md",
-          "docs/architecture/feature_plans/A7.md",
-          "docs/architecture/feature_plans/A11.md",
-          "docs/architecture/feature_plans/A12.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A4.md",
+          "docs/plans/features/A7.md",
+          "docs/plans/features/A11.md",
+          "docs/plans/features/A12.md"
         ]
       }
     },
@@ -1273,9 +1273,9 @@
           "p1-live-scenario-generation-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B23.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B23.md"
         ]
       }
     },
@@ -1341,11 +1341,11 @@
           "p1-scenario-composer-difficulty-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A7.md",
-          "docs/architecture/feature_plans/C29.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A7.md",
+          "docs/plans/features/C29.md"
         ]
       }
     },
@@ -1418,10 +1418,10 @@
           "p1-live-scenario-generation-s14"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B14.md",
-          "docs/architecture/feature_plans/B20.md",
-          "docs/architecture/feature_plans/B21.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B14.md",
+          "docs/plans/features/B20.md",
+          "docs/plans/features/B21.md"
         ]
       }
     },
@@ -1488,12 +1488,12 @@
           "p1-live-scenario-generation-s06"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B15.md",
-          "docs/architecture/feature_plans/B16.md",
-          "docs/architecture/feature_plans/B17.md",
-          "docs/architecture/feature_plans/B20.md",
-          "docs/architecture/feature_plans/E64.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B15.md",
+          "docs/plans/features/B16.md",
+          "docs/plans/features/B17.md",
+          "docs/plans/features/B20.md",
+          "docs/plans/features/E64.md"
         ]
       }
     },
@@ -1557,10 +1557,10 @@
           "p1-live-scenario-generation-s15"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A4.md",
-          "docs/architecture/feature_plans/A10.md",
-          "docs/architecture/feature_plans/B18.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A4.md",
+          "docs/plans/features/A10.md",
+          "docs/plans/features/B18.md"
         ]
       }
     },
@@ -1621,10 +1621,10 @@
           "p1-live-scenario-generation-s07"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A4.md",
-          "docs/architecture/feature_plans/A10.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A4.md",
+          "docs/plans/features/A10.md"
         ]
       }
     },
@@ -1680,9 +1680,9 @@
           "p1-live-scenario-generation-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A7.md",
-          "docs/architecture/feature_plans/A9.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A7.md",
+          "docs/plans/features/A9.md"
         ]
       }
     },
@@ -1733,8 +1733,8 @@
           "p1-live-scenario-generation-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A10.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A10.md"
         ]
       }
     },
@@ -1788,8 +1788,8 @@
           "p1-live-scenario-generation-s09"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A6.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A6.md"
         ]
       }
     },
@@ -1843,8 +1843,8 @@
           "p1-live-scenario-generation-s10"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A13.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A13.md"
         ]
       }
     },
@@ -1895,7 +1895,7 @@
           "p1-live-scenario-generation-s10"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -1955,10 +1955,10 @@
           "p1-live-scenario-generation-s11"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A5.md",
-          "docs/architecture/feature_plans/A8.md",
-          "docs/architecture/feature_plans/E48.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A5.md",
+          "docs/plans/features/A8.md",
+          "docs/plans/features/E48.md"
         ]
       }
     },
@@ -2024,13 +2024,13 @@
           "p1-voice-input-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/C24.md",
-          "docs/architecture/feature_plans/C31.md",
-          "docs/architecture/feature_plans/C32.md",
-          "docs/architecture/feature_plans/C35.md",
-          "docs/architecture/feature_plans/C37.md",
-          "docs/architecture/feature_plans/E60.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/C24.md",
+          "docs/plans/features/C31.md",
+          "docs/plans/features/C32.md",
+          "docs/plans/features/C35.md",
+          "docs/plans/features/C37.md",
+          "docs/plans/features/E60.md"
         ]
       }
     },
@@ -2088,11 +2088,11 @@
           "p1-live-scenario-generation-s11"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A8.md",
-          "docs/architecture/feature_plans/C35.md",
-          "docs/architecture/feature_plans/C36.md",
-          "docs/architecture/feature_plans/D41.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A8.md",
+          "docs/plans/features/C35.md",
+          "docs/plans/features/C36.md",
+          "docs/plans/features/D41.md"
         ]
       }
     },
@@ -2155,12 +2155,12 @@
           "p1-live-scenario-generation-s12"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B22.md",
-          "docs/architecture/feature_plans/D38.md",
-          "docs/architecture/feature_plans/D39.md",
-          "docs/architecture/feature_plans/D46.md",
-          "docs/architecture/feature_plans/D47.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B22.md",
+          "docs/plans/features/D38.md",
+          "docs/plans/features/D39.md",
+          "docs/plans/features/D46.md",
+          "docs/plans/features/D47.md"
         ]
       }
     },
@@ -2218,12 +2218,12 @@
           "p1-live-scenario-generation-s12"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/D40.md",
-          "docs/architecture/feature_plans/D41.md",
-          "docs/architecture/feature_plans/D42.md",
-          "docs/architecture/feature_plans/D45.md",
-          "docs/architecture/feature_plans/E52.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/D40.md",
+          "docs/plans/features/D41.md",
+          "docs/plans/features/D42.md",
+          "docs/plans/features/D45.md",
+          "docs/plans/features/E52.md"
         ]
       }
     },
@@ -2283,10 +2283,10 @@
           "p1-live-scenario-generation-s12"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/D40.md",
-          "docs/architecture/feature_plans/E51.md",
-          "docs/architecture/feature_plans/E55.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/D40.md",
+          "docs/plans/features/E51.md",
+          "docs/plans/features/E55.md"
         ]
       }
     },
@@ -2331,7 +2331,7 @@
           "p1-dataset-analysis-s06"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A66.md"
+          "docs/plans/features/A66.md"
         ]
       }
     },
@@ -2360,7 +2360,7 @@
           "p1-personalisation-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D67.md"
+          "docs/plans/features/D67.md"
         ]
       }
     },
@@ -2390,7 +2390,7 @@
           "p1-personalisation-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D68.md"
+          "docs/plans/features/D68.md"
         ]
       }
     },
@@ -2422,7 +2422,7 @@
           "p1-personalisation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D67.md"
+          "docs/plans/features/D67.md"
         ]
       }
     },
@@ -2444,7 +2444,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A13.md"
+          "docs/plans/features/A13.md"
         ]
       }
     },
@@ -2466,7 +2466,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/E48.md"
+          "docs/plans/features/E48.md"
         ]
       }
     },
@@ -2489,8 +2489,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A5.md",
-          "docs/architecture/feature_plans/A8.md"
+          "docs/plans/features/A5.md",
+          "docs/plans/features/A8.md"
         ]
       }
     },
@@ -2510,7 +2510,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B23.md"
+          "docs/plans/features/B23.md"
         ]
       }
     },
@@ -2532,7 +2532,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C36.md"
+          "docs/plans/features/C36.md"
         ]
       }
     },
@@ -2554,7 +2554,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/D43.md"
+          "docs/plans/features/D43.md"
         ]
       }
     },
@@ -2576,7 +2576,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A10.md"
+          "docs/plans/features/A10.md"
         ]
       }
     },
@@ -2604,13 +2604,13 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C24.md",
-          "docs/architecture/feature_plans/C25.md",
-          "docs/architecture/feature_plans/C26.md",
-          "docs/architecture/feature_plans/C27.md",
-          "docs/architecture/feature_plans/C28.md",
-          "docs/architecture/feature_plans/D38.md",
-          "docs/architecture/feature_plans/E53.md"
+          "docs/plans/features/C24.md",
+          "docs/plans/features/C25.md",
+          "docs/plans/features/C26.md",
+          "docs/plans/features/C27.md",
+          "docs/plans/features/C28.md",
+          "docs/plans/features/D38.md",
+          "docs/plans/features/E53.md"
         ]
       }
     },
@@ -2640,15 +2640,15 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C24.md",
-          "docs/architecture/feature_plans/C25.md",
-          "docs/architecture/feature_plans/C26.md",
-          "docs/architecture/feature_plans/C27.md",
-          "docs/architecture/feature_plans/C28.md",
-          "docs/architecture/feature_plans/C29.md",
-          "docs/architecture/feature_plans/C30.md",
-          "docs/architecture/feature_plans/E49.md",
-          "docs/architecture/feature_plans/E54.md"
+          "docs/plans/features/C24.md",
+          "docs/plans/features/C25.md",
+          "docs/plans/features/C26.md",
+          "docs/plans/features/C27.md",
+          "docs/plans/features/C28.md",
+          "docs/plans/features/C29.md",
+          "docs/plans/features/C30.md",
+          "docs/plans/features/E49.md",
+          "docs/plans/features/E54.md"
         ]
       }
     },
@@ -2670,7 +2670,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A13.md"
+          "docs/plans/features/A13.md"
         ]
       }
     },
@@ -2690,7 +2690,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -2712,7 +2712,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/E62.md"
+          "docs/plans/features/E62.md"
         ]
       }
     },
@@ -2739,8 +2739,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/E57.md",
-          "docs/architecture/feature_plans/E69.md"
+          "docs/plans/features/E57.md",
+          "docs/plans/features/E69.md"
         ]
       }
     },
@@ -2766,11 +2766,11 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C31.md",
-          "docs/architecture/feature_plans/C33.md",
-          "docs/architecture/feature_plans/E59.md",
-          "docs/architecture/feature_plans/E63.md",
-          "docs/architecture/feature_plans/E69.md"
+          "docs/plans/features/C31.md",
+          "docs/plans/features/C33.md",
+          "docs/plans/features/E59.md",
+          "docs/plans/features/E63.md",
+          "docs/plans/features/E69.md"
         ]
       }
     },
@@ -2793,8 +2793,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C31.md",
-          "docs/architecture/feature_plans/C34.md"
+          "docs/plans/features/C31.md",
+          "docs/plans/features/C34.md"
         ]
       }
     },
@@ -2821,12 +2821,12 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A4.md",
-          "docs/architecture/feature_plans/A12.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/C24.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A4.md",
+          "docs/plans/features/A12.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/C24.md"
         ]
       }
     },
@@ -2850,9 +2850,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md",
-          "docs/architecture/feature_plans/B22.md"
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md",
+          "docs/plans/features/B22.md"
         ]
       }
     },
@@ -2875,8 +2875,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -2898,7 +2898,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -2920,7 +2920,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B22.md"
+          "docs/plans/features/B22.md"
         ]
       }
     },
@@ -2944,9 +2944,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A5.md",
-          "docs/architecture/feature_plans/A8.md",
-          "docs/architecture/feature_plans/A66.md"
+          "docs/plans/features/A5.md",
+          "docs/plans/features/A8.md",
+          "docs/plans/features/A66.md"
         ]
       }
     },
@@ -2969,8 +2969,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A7.md"
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A7.md"
         ]
       }
     },
@@ -2992,7 +2992,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A3.md"
+          "docs/plans/features/A3.md"
         ]
       }
     },
@@ -3014,7 +3014,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -3036,7 +3036,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C24.md"
+          "docs/plans/features/C24.md"
         ]
       }
     },
@@ -3058,7 +3058,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/D46.md"
+          "docs/plans/features/D46.md"
         ]
       }
     },
@@ -3081,8 +3081,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/D46.md"
+          "docs/plans/features/A66.md",
+          "docs/plans/features/D46.md"
         ]
       }
     },
@@ -3102,7 +3102,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -3124,9 +3124,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A4.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A4.md"
         ]
       }
     },
@@ -3146,7 +3146,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -3167,8 +3167,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A11.md",
-          "docs/architecture/feature_plans/D67.md"
+          "docs/plans/features/A11.md",
+          "docs/plans/features/D67.md"
         ]
       }
     },
@@ -3194,13 +3194,13 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A4.md",
-          "docs/architecture/feature_plans/A8.md",
-          "docs/architecture/feature_plans/A12.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A4.md",
+          "docs/plans/features/A8.md",
+          "docs/plans/features/A12.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -3222,9 +3222,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/D67.md",
-          "docs/architecture/feature_plans/D68.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/D67.md",
+          "docs/plans/features/D68.md"
         ]
       }
     },
@@ -3246,10 +3246,10 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md",
-          "docs/architecture/feature_plans/B20.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md",
+          "docs/plans/features/B20.md"
         ]
       }
     },
@@ -3270,9 +3270,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B15.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B15.md"
         ]
       }
     },
@@ -3294,10 +3294,10 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md",
-          "docs/architecture/feature_plans/B21.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md",
+          "docs/plans/features/B21.md"
         ]
       }
     },
@@ -3319,10 +3319,10 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -3343,9 +3343,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B16.md",
-          "docs/architecture/feature_plans/E64.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B16.md",
+          "docs/plans/features/E64.md"
         ]
       }
     },
@@ -3366,9 +3366,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B17.md",
-          "docs/architecture/feature_plans/E64.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B17.md",
+          "docs/plans/features/E64.md"
         ]
       }
     },
@@ -3387,7 +3387,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A3.md"
+          "docs/plans/features/A3.md"
         ]
       }
     },
@@ -3423,7 +3423,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C33.md"
+          "docs/plans/features/C33.md"
         ]
       }
     },
@@ -3443,8 +3443,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C33.md",
-          "docs/architecture/feature_plans/E59.md"
+          "docs/plans/features/C33.md",
+          "docs/plans/features/E59.md"
         ]
       }
     },
@@ -3466,10 +3466,10 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B15.md",
-          "docs/architecture/feature_plans/B16.md",
-          "docs/architecture/feature_plans/B17.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B15.md",
+          "docs/plans/features/B16.md",
+          "docs/plans/features/B17.md"
         ]
       }
     },
@@ -3489,8 +3489,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A7.md"
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A7.md"
         ]
       }
     },
@@ -3529,10 +3529,10 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B16.md",
-          "docs/architecture/feature_plans/B17.md",
-          "docs/architecture/feature_plans/E64.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B16.md",
+          "docs/plans/features/B17.md",
+          "docs/plans/features/E64.md"
         ]
       }
     },
@@ -3564,18 +3564,18 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A1.md",
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A3.md",
-          "docs/architecture/feature_plans/A4.md",
-          "docs/architecture/feature_plans/A5.md",
-          "docs/architecture/feature_plans/A7.md",
-          "docs/architecture/feature_plans/A8.md",
-          "docs/architecture/feature_plans/A12.md",
-          "docs/architecture/feature_plans/A66.md",
-          "docs/architecture/feature_plans/B19.md",
-          "docs/architecture/feature_plans/E50.md",
-          "docs/architecture/feature_plans/E57.md"
+          "docs/plans/features/A1.md",
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A3.md",
+          "docs/plans/features/A4.md",
+          "docs/plans/features/A5.md",
+          "docs/plans/features/A7.md",
+          "docs/plans/features/A8.md",
+          "docs/plans/features/A12.md",
+          "docs/plans/features/A66.md",
+          "docs/plans/features/B19.md",
+          "docs/plans/features/E50.md",
+          "docs/plans/features/E57.md"
         ]
       }
     },
@@ -3607,18 +3607,18 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C24.md",
-          "docs/architecture/feature_plans/C25.md",
-          "docs/architecture/feature_plans/C26.md",
-          "docs/architecture/feature_plans/C27.md",
-          "docs/architecture/feature_plans/C28.md",
-          "docs/architecture/feature_plans/C29.md",
-          "docs/architecture/feature_plans/C30.md",
-          "docs/architecture/feature_plans/C31.md",
-          "docs/architecture/feature_plans/E48.md",
-          "docs/architecture/feature_plans/E49.md",
-          "docs/architecture/feature_plans/E54.md",
-          "docs/architecture/feature_plans/E57.md"
+          "docs/plans/features/C24.md",
+          "docs/plans/features/C25.md",
+          "docs/plans/features/C26.md",
+          "docs/plans/features/C27.md",
+          "docs/plans/features/C28.md",
+          "docs/plans/features/C29.md",
+          "docs/plans/features/C30.md",
+          "docs/plans/features/C31.md",
+          "docs/plans/features/E48.md",
+          "docs/plans/features/E49.md",
+          "docs/plans/features/E54.md",
+          "docs/plans/features/E57.md"
         ]
       }
     },
@@ -3643,13 +3643,13 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B23.md",
-          "docs/architecture/feature_plans/C24.md",
-          "docs/architecture/feature_plans/C32.md",
-          "docs/architecture/feature_plans/C35.md",
-          "docs/architecture/feature_plans/C37.md",
-          "docs/architecture/feature_plans/E57.md",
-          "docs/architecture/feature_plans/E60.md"
+          "docs/plans/features/B23.md",
+          "docs/plans/features/C24.md",
+          "docs/plans/features/C32.md",
+          "docs/plans/features/C35.md",
+          "docs/plans/features/C37.md",
+          "docs/plans/features/E57.md",
+          "docs/plans/features/E60.md"
         ]
       },
       "evidence": [
@@ -3684,18 +3684,18 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/B22.md",
-          "docs/architecture/feature_plans/D38.md",
-          "docs/architecture/feature_plans/D39.md",
-          "docs/architecture/feature_plans/D40.md",
-          "docs/architecture/feature_plans/D41.md",
-          "docs/architecture/feature_plans/D42.md",
-          "docs/architecture/feature_plans/D44.md",
-          "docs/architecture/feature_plans/D46.md",
-          "docs/architecture/feature_plans/D47.md",
-          "docs/architecture/feature_plans/D67.md",
-          "docs/architecture/feature_plans/D68.md",
-          "docs/architecture/feature_plans/E52.md"
+          "docs/plans/features/B22.md",
+          "docs/plans/features/D38.md",
+          "docs/plans/features/D39.md",
+          "docs/plans/features/D40.md",
+          "docs/plans/features/D41.md",
+          "docs/plans/features/D42.md",
+          "docs/plans/features/D44.md",
+          "docs/plans/features/D46.md",
+          "docs/plans/features/D47.md",
+          "docs/plans/features/D67.md",
+          "docs/plans/features/D68.md",
+          "docs/plans/features/E52.md"
         ]
       },
       "evidence": [
@@ -3723,13 +3723,13 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C31.md",
-          "docs/architecture/feature_plans/C32.md",
-          "docs/architecture/feature_plans/C33.md",
-          "docs/architecture/feature_plans/C35.md",
-          "docs/architecture/feature_plans/E59.md",
-          "docs/architecture/feature_plans/E63.md",
-          "docs/architecture/feature_plans/E69.md"
+          "docs/plans/features/C31.md",
+          "docs/plans/features/C32.md",
+          "docs/plans/features/C33.md",
+          "docs/plans/features/C35.md",
+          "docs/plans/features/E59.md",
+          "docs/plans/features/E63.md",
+          "docs/plans/features/E69.md"
         ]
       },
       "evidence": [
@@ -3752,8 +3752,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/C31.md",
-          "docs/architecture/feature_plans/C34.md"
+          "docs/plans/features/C31.md",
+          "docs/plans/features/C34.md"
         ]
       },
       "evidence": [
@@ -3777,9 +3777,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A6.md",
-          "docs/architecture/feature_plans/E53.md",
-          "docs/architecture/feature_plans/E58.md"
+          "docs/plans/features/A6.md",
+          "docs/plans/features/E53.md",
+          "docs/plans/features/E58.md"
         ]
       },
       "evidence": [
@@ -3804,10 +3804,10 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B14.md",
-          "docs/architecture/feature_plans/B20.md",
-          "docs/architecture/feature_plans/B21.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B14.md",
+          "docs/plans/features/B20.md",
+          "docs/plans/features/B21.md"
         ]
       }
     },
@@ -3827,8 +3827,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B15.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B15.md"
         ]
       }
     },
@@ -3849,9 +3849,9 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/B16.md",
-          "docs/architecture/feature_plans/B17.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/B16.md",
+          "docs/plans/features/B17.md"
         ]
       }
     },
@@ -3871,8 +3871,8 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A6.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A6.md"
         ]
       }
     },
@@ -3897,13 +3897,13 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/A2.md",
-          "docs/architecture/feature_plans/A9.md",
-          "docs/architecture/feature_plans/A10.md",
-          "docs/architecture/feature_plans/B18.md",
-          "docs/architecture/feature_plans/C29.md",
-          "docs/architecture/feature_plans/E51.md",
-          "docs/architecture/feature_plans/E57.md"
+          "docs/plans/features/A2.md",
+          "docs/plans/features/A9.md",
+          "docs/plans/features/A10.md",
+          "docs/plans/features/B18.md",
+          "docs/plans/features/C29.md",
+          "docs/plans/features/E51.md",
+          "docs/plans/features/E57.md"
         ]
       }
     },
@@ -3922,7 +3922,7 @@
         ],
         "steps": [],
         "plans": [
-          "docs/architecture/feature_plans/E61.md"
+          "docs/plans/features/E61.md"
         ]
       }
     },
@@ -4186,7 +4186,7 @@
           "p1-scenario-composer-difficulty-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A1.md"
+          "docs/plans/features/A1.md"
         ]
       }
     },
@@ -4547,7 +4547,7 @@
           "p1-live-scenario-generation-s14"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A2.md"
+          "docs/plans/features/A2.md"
         ]
       }
     },
@@ -4760,7 +4760,7 @@
           "p1-live-scenario-generation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A3.md"
+          "docs/plans/features/A3.md"
         ]
       }
     },
@@ -4973,7 +4973,7 @@
           "p1-live-scenario-generation-s13"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A4.md"
+          "docs/plans/features/A4.md"
         ]
       }
     },
@@ -5182,7 +5182,7 @@
           "p1-live-scenario-generation-s13"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A5.md"
+          "docs/plans/features/A5.md"
         ]
       }
     },
@@ -5377,7 +5377,7 @@
           "p1-live-scenario-generation-s09"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A6.md"
+          "docs/plans/features/A6.md"
         ]
       }
     },
@@ -5584,7 +5584,7 @@
           "p1-live-scenario-generation-s13"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A7.md"
+          "docs/plans/features/A7.md"
         ]
       }
     },
@@ -5787,7 +5787,7 @@
           "p1-live-scenario-generation-s13"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A8.md"
+          "docs/plans/features/A8.md"
         ]
       }
     },
@@ -5985,7 +5985,7 @@
           "p1-live-scenario-generation-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A9.md"
+          "docs/plans/features/A9.md"
         ]
       }
     },
@@ -6186,7 +6186,7 @@
           "p1-live-scenario-generation-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A10.md"
+          "docs/plans/features/A10.md"
         ]
       }
     },
@@ -6378,7 +6378,7 @@
           "p1-personalisation-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A11.md"
+          "docs/plans/features/A11.md"
         ]
       }
     },
@@ -6580,7 +6580,7 @@
           "p1-scenario-composer-difficulty-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A12.md"
+          "docs/plans/features/A12.md"
         ]
       }
     },
@@ -6727,7 +6727,7 @@
           "p1-live-scenario-generation-s10"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A13.md"
+          "docs/plans/features/A13.md"
         ]
       }
     },
@@ -6961,7 +6961,7 @@
           "p1-live-scenario-generation-s14"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B14.md"
+          "docs/plans/features/B14.md"
         ]
       }
     },
@@ -7174,7 +7174,7 @@
           "p2-ai-advanced-simulation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B15.md"
+          "docs/plans/features/B15.md"
         ]
       }
     },
@@ -7431,7 +7431,7 @@
           "p2-ai-advanced-simulation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B16.md"
+          "docs/plans/features/B16.md"
         ]
       }
     },
@@ -7639,7 +7639,7 @@
           "p2-ai-advanced-simulation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B17.md"
+          "docs/plans/features/B17.md"
         ]
       }
     },
@@ -7832,7 +7832,7 @@
           "p1-live-scenario-generation-s15"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B18.md"
+          "docs/plans/features/B18.md"
         ]
       }
     },
@@ -7987,7 +7987,7 @@
           "p1-evaluation-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B19.md"
+          "docs/plans/features/B19.md"
         ]
       }
     },
@@ -8187,7 +8187,7 @@
           "p1-personalisation-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B20.md"
+          "docs/plans/features/B20.md"
         ]
       }
     },
@@ -8330,7 +8330,7 @@
           "p1-live-scenario-generation-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B21.md"
+          "docs/plans/features/B21.md"
         ]
       }
     },
@@ -8488,7 +8488,7 @@
           "p2-ai-learning-analytics-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B22.md"
+          "docs/plans/features/B22.md"
         ]
       }
     },
@@ -8681,7 +8681,7 @@
           "p1-live-scenario-generation-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/B23.md"
+          "docs/plans/features/B23.md"
         ]
       }
     },
@@ -8910,7 +8910,7 @@
           "p1-ai-language-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C24.md"
+          "docs/plans/features/C24.md"
         ]
       }
     },
@@ -9075,7 +9075,7 @@
           "p1-ai-language-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C25.md"
+          "docs/plans/features/C25.md"
         ]
       }
     },
@@ -9238,7 +9238,7 @@
           "p1-ai-language-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C26.md"
+          "docs/plans/features/C26.md"
         ]
       }
     },
@@ -9401,7 +9401,7 @@
           "p1-ai-language-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C27.md"
+          "docs/plans/features/C27.md"
         ]
       }
     },
@@ -9564,7 +9564,7 @@
           "p1-ai-language-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C28.md"
+          "docs/plans/features/C28.md"
         ]
       }
     },
@@ -9761,7 +9761,7 @@
           "p1-live-scenario-generation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C29.md"
+          "docs/plans/features/C29.md"
         ]
       }
     },
@@ -9917,7 +9917,7 @@
           "p1-ai-language-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C30.md"
+          "docs/plans/features/C30.md"
         ]
       }
     },
@@ -10083,7 +10083,7 @@
           "p1-voice-input-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C31.md"
+          "docs/plans/features/C31.md"
         ]
       }
     },
@@ -10236,7 +10236,7 @@
           "p1-voice-input-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C32.md"
+          "docs/plans/features/C32.md"
         ]
       }
     },
@@ -10399,7 +10399,7 @@
           "p1-voice-input-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C33.md"
+          "docs/plans/features/C33.md"
         ]
       }
     },
@@ -10552,7 +10552,7 @@
           "p1-voice-input-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C34.md"
+          "docs/plans/features/C34.md"
         ]
       }
     },
@@ -10711,7 +10711,7 @@
           "p1-voice-input-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C35.md"
+          "docs/plans/features/C35.md"
         ]
       }
     },
@@ -10857,7 +10857,7 @@
           "p1-ai-language-s06"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C36.md"
+          "docs/plans/features/C36.md"
         ]
       }
     },
@@ -11022,7 +11022,7 @@
           "p1-ai-language-s07"
         ],
         "plans": [
-          "docs/architecture/feature_plans/C37.md"
+          "docs/plans/features/C37.md"
         ]
       }
     },
@@ -11186,7 +11186,7 @@
           "p1-ai-language-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D38.md"
+          "docs/plans/features/D38.md"
         ]
       }
     },
@@ -11336,7 +11336,7 @@
           "p2-ai-learning-analytics-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D39.md"
+          "docs/plans/features/D39.md"
         ]
       }
     },
@@ -11532,7 +11532,7 @@
           "p2-ai-learning-analytics-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D40.md"
+          "docs/plans/features/D40.md"
         ]
       }
     },
@@ -11725,7 +11725,7 @@
           "p2-ai-learning-analytics-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D41.md"
+          "docs/plans/features/D41.md"
         ]
       }
     },
@@ -11918,7 +11918,7 @@
           "p2-ai-learning-analytics-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D42.md"
+          "docs/plans/features/D42.md"
         ]
       }
     },
@@ -12059,7 +12059,7 @@
           "p0-case-library-s06"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D43.md"
+          "docs/plans/features/D43.md"
         ]
       }
     },
@@ -12211,7 +12211,7 @@
           "p2-ai-learning-analytics-s06"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D44.md"
+          "docs/plans/features/D44.md"
         ]
       }
     },
@@ -12354,7 +12354,7 @@
           "p2-ai-learning-analytics-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D45.md"
+          "docs/plans/features/D45.md"
         ]
       }
     },
@@ -12506,7 +12506,7 @@
           "p1-ai-language-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D46.md"
+          "docs/plans/features/D46.md"
         ]
       }
     },
@@ -12651,7 +12651,7 @@
           "p1-ai-language-s08"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D47.md"
+          "docs/plans/features/D47.md"
         ]
       }
     },
@@ -12848,7 +12848,7 @@
           "p2-ai-advanced-simulation-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E48.md"
+          "docs/plans/features/E48.md"
         ]
       }
     },
@@ -13006,7 +13006,7 @@
           "p2-ai-advanced-simulation-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E49.md"
+          "docs/plans/features/E49.md"
         ]
       }
     },
@@ -13166,7 +13166,7 @@
           "p2-ai-advanced-simulation-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E50.md"
+          "docs/plans/features/E50.md"
         ]
       }
     },
@@ -13318,7 +13318,7 @@
           "p1-live-scenario-generation-s12"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E51.md"
+          "docs/plans/features/E51.md"
         ]
       }
     },
@@ -13501,7 +13501,7 @@
           "p2-ai-learning-analytics-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E52.md"
+          "docs/plans/features/E52.md"
         ]
       }
     },
@@ -13691,7 +13691,7 @@
           "p1-ai-language-s09"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E53.md"
+          "docs/plans/features/E53.md"
         ]
       }
     },
@@ -13875,7 +13875,7 @@
           "p1-ai-language-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E54.md"
+          "docs/plans/features/E54.md"
         ]
       }
     },
@@ -14033,7 +14033,7 @@
           "p1-evaluation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E55.md"
+          "docs/plans/features/E55.md"
         ]
       }
     },
@@ -14179,7 +14179,7 @@
           "p1-scenario-composer-difficulty-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E56.md"
+          "docs/plans/features/E56.md"
         ]
       }
     },
@@ -14365,7 +14365,7 @@
           "p1-ai-language-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E57.md"
+          "docs/plans/features/E57.md"
         ]
       }
     },
@@ -14519,7 +14519,7 @@
           "p2-ai-extensions-s02"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E58.md"
+          "docs/plans/features/E58.md"
         ]
       }
     },
@@ -14674,7 +14674,7 @@
           "p2-ai-extensions-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E59.md"
+          "docs/plans/features/E59.md"
         ]
       }
     },
@@ -14831,7 +14831,7 @@
           "p2-ai-extensions-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E60.md"
+          "docs/plans/features/E60.md"
         ]
       }
     },
@@ -14980,7 +14980,7 @@
           "p2-ai-extensions-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E61.md"
+          "docs/plans/features/E61.md"
         ]
       }
     },
@@ -15151,7 +15151,7 @@
           "p1-backend-s09"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E62.md"
+          "docs/plans/features/E62.md"
         ]
       }
     },
@@ -15296,7 +15296,7 @@
           "p2-ai-extensions-s01"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E63.md"
+          "docs/plans/features/E63.md"
         ]
       }
     },
@@ -15454,7 +15454,7 @@
           "p2-ai-advanced-simulation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E64.md"
+          "docs/plans/features/E64.md"
         ]
       }
     },
@@ -15605,7 +15605,7 @@
           "p2-ai-advanced-simulation-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E65.md"
+          "docs/plans/features/E65.md"
         ]
       }
     },
@@ -15868,7 +15868,7 @@
           "p1-dataset-analysis-s06"
         ],
         "plans": [
-          "docs/architecture/feature_plans/A66.md"
+          "docs/plans/features/A66.md"
         ]
       }
     },
@@ -16130,7 +16130,7 @@
           "p1-personalisation-s04"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D67.md"
+          "docs/plans/features/D67.md"
         ]
       }
     },
@@ -16380,7 +16380,7 @@
           "p1-personalisation-s05"
         ],
         "plans": [
-          "docs/architecture/feature_plans/D68.md"
+          "docs/plans/features/D68.md"
         ]
       }
     },
@@ -16549,7 +16549,7 @@
           "p1-ai-infrastructure-s03"
         ],
         "plans": [
-          "docs/architecture/feature_plans/E69.md"
+          "docs/plans/features/E69.md"
         ]
       }
     }

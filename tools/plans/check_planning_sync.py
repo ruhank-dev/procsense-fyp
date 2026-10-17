@@ -40,7 +40,11 @@ def main() -> int:
         | {x["id"] for x in doc["external_dependencies"]}
 
     # files
-    plan_files = {p.stem for p in (ARCH / "feature_plans").glob("*.md")} if (ARCH / "feature_plans").exists() else set()
+    PLANS = ARCH.parent / "plans" / "features"
+    plan_files = {p.stem for p in PLANS.glob("*.md")} if PLANS.exists() else set()
+    stray = sorted(p.name for p in (ARCH / "feature_plans").glob("*.md") if p.name != "README.md")
+    if stray:
+        problems.append(f"files: plan files must live only in docs/plans/features, found in docs/architecture/feature_plans: {stray}")
     if plan_files != set(feats):
         problems.append(f"files: feature plan files differ from features: {sorted(plan_files ^ set(feats))}")
     reg = read(ARCH / "feature_registry.md")
@@ -90,7 +94,7 @@ def main() -> int:
             problems.append(f"steps: phase task {t} has no step file")
 
     # trace (documents -> JSON)
-    docs = list(ARCH.glob("*.md")) + list((ARCH / "feature_plans").glob("*.md")) + [steps[s] for s in steps if s.startswith(NEW_MODULES)]
+    docs = list(ARCH.glob("*.md")) + list((ARCH.parent / "plans" / "features").glob("*.md")) + [steps[s] for s in steps if s.startswith(NEW_MODULES)]
     for d in docs:
         text = re.sub(r"`[^`\n]*<[A-Za-z]+>[^`\n]*`", "", read(d))
         found = set()

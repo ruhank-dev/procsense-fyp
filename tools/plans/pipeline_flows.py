@@ -223,7 +223,7 @@ def build(doc: dict) -> dict:
             caps = len(f["plan"]["capabilities"])
             n["text"] = clip(f"{SHORT[f['status']]}. {first_sentence(f['description'])}", 180 - 40) + trunc(f" {caps} capability plans." + (f" Needs {', '.join(outside)}." if outside else ""), 40)
         fe = [{"from": d, "to": i} for i in fs for d in nodes[i]["depends_on"] if d in fs]
-        flows[f"0{5 + 'ABCDE'.index(letter)}-features-{letter.lower()}.json"] = dict(**{"$schema": SCHEMA}, title=f"Features {letter}: {name}"[:80], subtitle="Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/architecture/feature_plans/<ID>.md", columns=5,
+        flows[f"0{5 + 'ABCDE'.index(letter)}-features-{letter.lower()}.json"] = dict(**{"$schema": SCHEMA}, title=f"Features {letter}: {name}"[:80], subtitle="Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/plans/features/<ID>.md", columns=5,
             nodes=fn, edges=fe, notes=notes_for(doc))
 
     for name, f in flows.items():

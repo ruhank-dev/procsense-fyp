@@ -1,7 +1,7 @@
 {
   "$schema": "/api/flows/schema",
   "title": "Features B: Data, media and investigations",
-  "subtitle": "Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/architecture/feature_plans/<ID>.md",
+  "subtitle": "Arrows run from a prerequisite to the feature that needs it. Each feature's full plan: docs/plans/features/<ID>.md",
   "columns": 5,
   "nodes": [
     {

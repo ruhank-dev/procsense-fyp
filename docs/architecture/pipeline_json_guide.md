@@ -12,7 +12,7 @@
 | `uv run --project tools tools/plans/pipeline_docs.py` | Regenerates the derived files below |
 | `uv run --project tools tools/plans/pipeline_docs.py --check` | Fails if a derived file is out of date (CI) |
 
-Derived files: [feature_registry.md](feature_registry.md), [live_generation_spec.md](live_generation_spec.md), [dataset_feature_matrix.md](dataset_feature_matrix.md), [model_technology_register.md](model_technology_register.md), [master_roadmap.md](master_roadmap.md), [pipeline_overview.mmd](pipeline_overview.mmd), [procsense_pipeline.cytoscape.json](procsense_pipeline.cytoscape.json), [feature_coverage_audit.md](feature_coverage_audit.md), `feature_plans/<ID>.md` (69 files) and `flows/*.json` (10 Synverk diagrams, section 5).
+Derived files: [feature_registry.md](feature_registry.md), [live_generation_spec.md](live_generation_spec.md), [dataset_feature_matrix.md](dataset_feature_matrix.md), [model_technology_register.md](model_technology_register.md), [master_roadmap.md](master_roadmap.md), [pipeline_overview.mmd](pipeline_overview.mmd), [procsense_pipeline.cytoscape.json](procsense_pipeline.cytoscape.json), [feature_coverage_audit.md](feature_coverage_audit.md), `docs/plans/features/<ID>.md` (69 files) and `flows/*.json` (10 Synverk diagrams, section 5).
 
 ## 2. Schema (version 1.0.0)
 
