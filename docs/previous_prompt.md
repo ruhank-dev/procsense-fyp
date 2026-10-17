@@ -3303,3 +3303,18 @@ Question: why are all the feature plans in the architecture folder, should they 
 
 Instruction: Keep one canonical copy of the 69 feature plans in docs/plans/features/, but preserve docs/architecture/feature_plans/ as a discoverable entry point with a README linking to the canonical plans. Update the generator and all references so the plans are generated only once, in the canonical location. Do not duplicate the full files. Run the relevant checks and commit/push the change following INSTRUCTIONS.md.
 ``````
+
+## 164. 18 October 2026 (exact time not captured)
+_Session: 1f9a53f2_
+
+``````text
+Continue from the latest repository state, follow INSTRUCTIONS.md, and work continuously until all safely executable Ruhan-owned P1/P2 tasks and planned AI features are implemented end to end. Do not stop after producing an audit or another plan.
+1. Finish the remaining safety work first: weak-side and pain-denial cases that depend on the AI critic get deterministic safeguards from the approved clinical rules, regression tests, and proof that no AI output can bypass safety checks or grant unauthorized credit.
+2. Make the classifier evaluation progress without human annotators: a substantially more diverse synthetic dataset (every label, NONE, negation, corrections, incomplete speech, ambiguity, ASR errors, communication styles); separate simulated author profiles and scenario groups for train, dev and test; no template, near-duplicate or paraphrase leakage; an AI judge with a documented rubric, agreement between judge passes or configurations, uncertain cases and disagreements inspected, never called independent human annotation; freeze before evaluation, tune on dev only, score test once; compare embeddings with TF-IDF and the Qwen alternative (per-class metrics, macro-F1, false positives, abstention, critical-act misroutes, latency, resources, uncertainty, leakage); adversarial and regression tests; record as synthetic, AI-judged evaluation; new frozen holdouts when justified; production gate stays OFF unless acceptance can genuinely be met.
+3. Audit and complete every Ruhan-owned P1/P2 task with a task-by-task reconciliation; checkmarks are not proof; implement outstanding items; update trackers only after verifying; do not take over Sannan's headset tasks.
+4. Implement every planned AI feature end to end (inventory the canonical feature-plans folder, DT-207, DT-212, DT-215; plan composer, Pulse, on-device ASR, Urdu, MedGemma, content extensions, digital twin, image and LLM adaptation where safely possible) with real functionality, integration, fallbacks, feature flags, tests, measured acceptance, accurate docs; keep disabled what lacks dependencies, permissions, hardware or approvals; no stubs in place of doable work and no pretending unavailable tests occurred.
+5. Meet performance targets where possible (critic recall and false alarms, debrief latency, TTS p95, interpreter accuracy, three-character latency): profile, improve, rerun, keep baseline and new measurements, never weaken criteria.
+6. Repository workflow per INSTRUCTIONS.md: commit and push each coherent tested step, stage only intended files, preserve stashes, no force-push, verify each push and CI.
+7. Final report: reconciliation of every Ruhan-owned P1/P2 task and planned AI feature (ID, status before, implementation, tests and measured criteria, tracker location and checkbox, commit, push, CI, genuine blockers).
+(The prompt was pasted at full length; this entry keeps its numbered requirements, shortened. The owner then wrote: "Yes start on them go".)
+``````

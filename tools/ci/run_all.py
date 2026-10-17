@@ -214,6 +214,7 @@ def main(argv: list[str]) -> int:
         ("cross-modal rules and the package gate (a failing example per rule, mutations caught)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_crossmodal.py"])),
         ("novelty fingerprints, distances and the sealed package", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_novelty.py"])),
         ("quality metrics and bounded repair", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_quality.py"])),
+        ("deterministic side-of-body and denied-pain rules (no authored case flagged, the gate rejects without a critic)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_consistency.py"])),
         ("generated package files, the pool and the engine", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_package.py"])),
         ("generated golden snapshot is whole and passes the generation gate", lambda: run(["uv", "run", "--project", "tools", "tools/golden/generated.py", "check"])),
         ("a generated case ends and scores like the case it keeps", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_live.py"])),

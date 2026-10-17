@@ -610,7 +610,7 @@ All modalities agree (LG-09). Built: 12 contradiction types in Stage B.
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/contradictions.json; server/generation/crossmodal.py; server/generation/reports.py; server/generation/critic.py |
+| Evidence (what exists) | content/contradictions.json; server/generation/crossmodal.py; server/generation/reports.py; server/generation/critic.py; server/generation/consistency.py; tools/ci/test_generation_consistency.py |
 | Lineage (existing ids) | — |
 | Method | Rule table VR-CM-*. |
 | LLM-first classification | LLM judge advisory only. |

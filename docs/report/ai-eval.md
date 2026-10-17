@@ -37,14 +37,15 @@ Model qwen3.5:4b-q4_K_M, 214 seeded inconsistencies (SD-001), 26 clean cases.
 
 | Measure | Value |
 |---|---|
-| Recall of the rule-based checks | 66.8% |
+| Recall of the rule-based checks before the side-of-body and denied-pain rules | 66.8% |
+| Recall of the rule-based checks now (server/generation/consistency.py, always on, no model) | 96.7% |
 | Recall of the critic alone | 68.7% |
-| Recall of both together | 81.8% |
+| Recall of rules and critic together | 99.1% (before the new rules: 81.8%) |
 | Critic false alarms on clean cases | 3.8% |
 | Rule-based false alarms on clean cases | 19.2% |
 | Questions the critic could not answer | 0 |
 
-Limit: blunt synthetic contradictions; the plan asks for a union recall 20 points above the rules.
+Limit: blunt synthetic contradictions. The plan asks for a union recall 20 points above the rules; the rules now find nearly all of this set themselves, so that margin cannot be shown on it and a harder, differently worded set is needed (the critic stays off meanwhile). The side-of-body and denied-pain defects, which the model found 13 of 29 and 14 of 36 times, no longer depend on it.
 
 ## Communication act classifier (synthetic, NOT independent)
 

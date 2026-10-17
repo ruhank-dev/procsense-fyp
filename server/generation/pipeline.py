@@ -13,7 +13,7 @@ from __future__ import annotations
 import time
 from dataclasses import dataclass, field
 
-from . import contracts, novelty, objectives as ob, package, quality, repair, reports, retrieve, skeleton
+from . import consistency, contracts, novelty, objectives as ob, package, quality, repair, reports, retrieve, skeleton
 
 
 @dataclass
@@ -63,6 +63,8 @@ def _gate(pkg: dict, objectives: dict, ctx: Context) -> list[dict]:
     texts = reports.render(pkg["case"], pkg.get("media"))
     for d in reports.check(texts, pkg["case"], pkg.get("media")):
         defects.append({"stage": "reports", "code": "UNLOCKED_NUMBER", "detail": d})
+    for f in consistency.check(pkg["case"]):                          # always on, no model: the side of the body and denied pain (a critic that is down or silent cannot let them through)
+        defects.append({"stage": "consistency", "code": f.rule, "detail": f"{f.line}: {f.detail}"})
     if ctx.critic is not None:
         flags = ctx.critic.review(pkg["case"])
         pkg["quality"]["critic"] = "unavailable" if flags is None else f"{len(flags)} flag(s)"

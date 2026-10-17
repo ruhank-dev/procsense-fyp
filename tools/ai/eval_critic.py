@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT / "tools" / "generation"))
 
 def rates(per: dict, key_n: str = "n") -> dict:
     n = sum(v[key_n] for v in per.values())
-    return {k: round(sum(v[k] for v in per.values()) / n, 3) for k in ("baseline", "critic", "union")}
+    return {k: round(sum(v[k] for v in per.values()) / n, 3) for k in ("baseline", "baseline_before_rules", "critic", "union", "union_before_rules")}
 
 
 if __name__ == "__main__":
@@ -61,15 +61,18 @@ if __name__ == "__main__":
     for n, m in enumerate(members, 1):
         case = I.apply(cases[m["case"]], m["line"], m["text"])
         base = m["line"] in I.baseline_flags(case)
+        base_old = m["line"] in I.baseline_flags(case, rules=False)
         raw, ver, ok = ask(f"member|{m['case']}|{m['line']}|{m['kind']}", case)
         failed += not ok
         for arm, flags in (("raw", raw), ("verified", ver)):
             hit = any(f["line"] == m["line"] for f in flags)
-            k = per[arm].setdefault(m["kind"], {"n": 0, "baseline": 0, "critic": 0, "union": 0})
+            k = per[arm].setdefault(m["kind"], {"n": 0, "baseline": 0, "baseline_before_rules": 0, "critic": 0, "union": 0, "union_before_rules": 0})
             k["n"] += 1
             k["baseline"] += base
+            k["baseline_before_rules"] += base_old
             k["critic"] += hit
             k["union"] += base or hit
+            k["union_before_rules"] += base_old or hit
         if n % 10 == 0:
             print(f"  {n}/{len(members)} members, {round(time.monotonic() - started)} s", flush=True)
     clean = data["clean"][: max(10, len(data["clean"]) // 2)] if a.limit else data["clean"]
@@ -83,6 +86,7 @@ if __name__ == "__main__":
     out = {"model": a.model, "digest": client.models().get(a.model, ""), "members": len(members), "critic_could_not_answer": failed, "recall": rates(per["verified"]), "by_kind": per["verified"],
            "clean_cases": len(clean), "critic_false_alarm_rate": round(alarms["verified"] / len(clean), 3), "baseline_false_alarm_rate": round(baseline_alarms / len(clean), 3),
            "raw": {"recall": rates(per["raw"]), "by_kind": per["raw"], "critic_false_alarm_rate": round(alarms["raw"] / len(clean), 3)},
+           "note_rules": "baseline is the rule-based checks INCLUDING the side-of-body and denied-pain rules added in server/generation/consistency.py (they were written after the first critic run showed the model missed those two kinds); baseline_before_rules is the baseline the critic was first measured against. The plan's +20 points was set against the earlier baseline.",
            "note": "recall and critic_false_alarm_rate are those of the verified critic, the one the pipeline runs; raw is the first pass alone",
            "seconds": round(time.monotonic() - started)}
     path = ROOT / "artifacts" / "ai-bench" / "critic-eval.json"

@@ -7657,7 +7657,9 @@
         "content/contradictions.json",
         "server/generation/crossmodal.py",
         "server/generation/reports.py",
-        "server/generation/critic.py"
+        "server/generation/critic.py",
+        "server/generation/consistency.py",
+        "tools/ci/test_generation_consistency.py"
       ],
       "lineage": [],
       "method": "Rule table VR-CM-*.",

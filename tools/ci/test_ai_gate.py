@@ -36,9 +36,9 @@ class Gate(unittest.TestCase):
         self.assertEqual([s["status"] for s in f["suites"]], ["FAIL", "PASS"])
 
     def test_a_comparison_with_another_number_and_a_margin(self):
-        base = {"recall": {"baseline": 0.67, "union": 0.9, "critic": 0.5}, "critic_false_alarm_rate": 0.05}
+        base = {"recall": {"baseline_before_rules": 0.67, "union_before_rules": 0.9, "critic": 0.5}, "critic_false_alarm_rate": 0.05}
         self.assertTrue(ai_gate.build(self.with_results({"critic-eval.json": base}))["features"]["critic"]["enabled"])
-        worse = {**base, "recall": {"baseline": 0.67, "union": 0.8, "critic": 0.5}}                       # only 13 points above the rules
+        worse = {**base, "recall": {"baseline_before_rules": 0.67, "union_before_rules": 0.8, "critic": 0.5}}                       # only 13 points above the rules
         f = ai_gate.build(self.with_results({"critic-eval.json": worse}))["features"]["critic"]
         self.assertEqual((f["enabled"], f["suites"][0]["status"]), (False, "FAIL"))
         self.assertTrue(f["suites"][0]["needs"].startswith(">= 0.87"))

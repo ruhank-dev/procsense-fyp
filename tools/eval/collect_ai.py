@@ -65,9 +65,10 @@ def section_critic() -> list[str]:
         return ["## Text consistency critic", "", "not run", ""]
     r = d["recall"]
     return ["## Text consistency critic", "", f"Model {d['model']}, {d['members']} seeded inconsistencies (SD-001), {d['clean_cases']} clean cases.", "", "| Measure | Value |", "|---|---|",
-            f"| Recall of the rule-based checks | {pct(r['baseline'])} |", f"| Recall of the critic alone | {pct(r['critic'])} |", f"| Recall of both together | {pct(r['union'])} |",
+            f"| Recall of the rule-based checks before the side-of-body and denied-pain rules | {pct(r.get('baseline_before_rules', r['baseline']))} |", f"| Recall of the rule-based checks now (server/generation/consistency.py, always on, no model) | {pct(r['baseline'])} |",
+            f"| Recall of the critic alone | {pct(r['critic'])} |", f"| Recall of rules and critic together | {pct(r['union'])} (before the new rules: {pct(r.get('union_before_rules', r['union']))}) |",
             f"| Critic false alarms on clean cases | {pct(d['critic_false_alarm_rate'])} |", f"| Rule-based false alarms on clean cases | {pct(d['baseline_false_alarm_rate'])} |", f"| Questions the critic could not answer | {d['critic_could_not_answer']} |", "",
-            "Limit: blunt synthetic contradictions; the plan asks for a union recall 20 points above the rules.", ""]
+            "Limit: blunt synthetic contradictions. The plan asks for a union recall 20 points above the rules; the rules now find nearly all of this set themselves, so that margin cannot be shown on it and a harder, differently worded set is needed (the critic stays off meanwhile). The side-of-body and denied-pain defects, which the model found 13 of 29 and 14 of 36 times, no longer depend on it.", ""]
 
 
 def section_gateway() -> list[str]:

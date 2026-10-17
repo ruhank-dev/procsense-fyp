@@ -410,7 +410,9 @@ class ReportsAndCritic(unittest.TestCase):
         self.assertEqual(json.loads((ROOT / "tests" / "generation" / "text_inconsistencies.json").read_text(encoding="utf-8")), a)
         hit = sum(m["line"] in I.baseline_flags(I.apply(self.cases[m["case"]], m["line"], m["text"])) for m in a["members"])
         self.assertGreater(hit / len(a["members"]), 0.5)
-        self.assertLess(hit / len(a["members"]), 0.8)                  # the baseline leaves room: the side of the body and denied pain are invisible to it
+        old = sum(m["line"] in I.baseline_flags(I.apply(self.cases[m["case"]], m["line"], m["text"]), rules=False) for m in a["members"])
+        self.assertLess(old / len(a["members"]), 0.8)                  # without the side-of-body and denied-pain rules the baseline left room: those two kinds were invisible to it
+        self.assertGreater(hit / len(a["members"]), 0.9)               # with them (server/generation/consistency.py) it finds nearly everything on this set
 
 
 class Classifier(unittest.TestCase):

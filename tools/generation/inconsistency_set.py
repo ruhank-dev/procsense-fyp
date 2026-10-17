@@ -3,7 +3,7 @@
 Each member is an authored case in which ONE line of the patient's own text was changed so that it contradicts the structured case: an allergy denied that the case lists, an allergy invented that it does not,
 the wrong operation, the wrong side of the body, the wrong age, the wrong sex. The structured case is untouched. The set is synthetic and deterministic (up to PER_TYPE of each kind, in case-id order); the clean
 cases are the same authored cases unchanged and measure false alarms. `baseline_flags(case)` is the checker that exists without a model: the cross-modal rules, Stage B, the lexicon (an allergen the case does not
-list, an operation word of the other operation), the age written in the text, and the pronoun-against-sex test. The critic (server/generation/critic.py) must find more of the inserted contradictions than this.
+list, an operation word of the other operation), the age written in the text, the pronoun-against-sex test, and the side-of-body and denied-pain rules (server/generation/consistency.py). The critic (server/generation/critic.py) must find more of the inserted contradictions than this.
 """
 from __future__ import annotations
 
@@ -88,8 +88,8 @@ def build(cases: list[dict]) -> dict:
     return {"note": "Synthetic. Each member changes one line of the patient's text so that it contradicts the structured case; clean cases are authored cases unchanged (false-alarm control).", "members": members, "clean": clean, "counts": counts}
 
 
-def baseline_flags(case: dict) -> list[str]:
-    """What the checks that exist without a model find in a case: a list of line ids (and 'case' for structured checks)."""
+def baseline_flags(case: dict, rules: bool = True) -> list[str]:
+    """What the checks that exist without a model find in a case: a list of line ids (and 'case' for structured checks). rules=False leaves out the side-of-body and denied-pain rules, which is the baseline the critic was first measured against (recall 66.8 percent)."""
     from generation import crossmodal, quality
     from validation.validator import CATEGORIES, has_term, norm  # noqa: F401
     flags = []
@@ -114,6 +114,8 @@ def baseline_flags(case: dict) -> list[str]:
         flags.append("summary")
     if any(f["code"] == "Q_PERSONA" for f in quality.persona(case)[1]):
         flags.append("h.complaint")
+    from generation import consistency
+    flags += [f.line for f in consistency.check(case)] if rules else []                      # the side of the body and denied pain: plain code, run by the package gate
     media = {"slots": []}
     flags += ["case" for _ in crossmodal.check(case, media)]
     try:
