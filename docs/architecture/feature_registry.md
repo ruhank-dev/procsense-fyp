@@ -12,11 +12,11 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 |---|---|
 | Implemented and tested | 9 |
 | Implemented but incompletely tested | 0 |
-| Partially implemented | 46 |
+| Partially implemented | 47 |
 | Planned | 3 |
 | Blocked | 0 |
 | Deferred | 4 |
-| Proposed new feature | 7 |
+| Proposed new feature | 6 |
 | Superseded or rejected | 0 |
 
 Each feature's complete implementation plan (user experience, existing versus missing, the seven AI questions, separate capability plans with schemas, flow, validation, failure handling, tests, metrics, baseline, acceptance, both-GPU hardware notes and tasks) is in [`../plans/features/<ID>.md`](../plans/features/); coverage is audited in [feature_coverage_audit.md](feature_coverage_audit.md).
@@ -73,7 +73,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | D47 | Evidence-based feedback | hybrid | Partially implemented | Planned | PH-16 | P1 | [plan](../plans/features/D47.md) |
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](../plans/features/D68.md) |
-| E48 | Patient Digital Twin | hybrid | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E48.md) |
+| E48 | Patient Digital Twin | hybrid | Partially implemented | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E48.md) |
 | E49 | Multi-Agent Clinical Simulation Lab | ai | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | hybrid | Proposed new feature | Proposed new feature | PH-17 | P1 | [plan](../plans/features/E51.md) |
@@ -1510,9 +1510,9 @@ A patient model whose physiology, history and responses persist and evolve acros
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Proposed new feature |
+| Status | Partially implemented |
 | AI status | Proposed new feature |
-| Evidence (what exists) | src/ProcSense.Core/Physiology/LitePhysio.cs |
+| Evidence (what exists) | src/ProcSense.Core/Physiology/LitePhysio.cs; src/ProcSense.Core/Twin/PatientTwin.cs; tests/ProcSense.Core.Tests/PatientTwinTests.cs |
 | Lineage (existing ids) | p1-pulse-physiology |
 | Method | Deterministic physiology + generated profile; LLM voice. |
 | LLM-first classification | LLM cannot be the physiology. |

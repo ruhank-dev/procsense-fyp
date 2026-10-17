@@ -12664,11 +12664,13 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "hybrid",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "ai_status": "Proposed new feature",
       "description": "A patient model whose physiology, history and responses persist and evolve across the session and repeat sessions. Basis: LitePhysio (built), PULSE (planned).",
       "evidence": [
-        "src/ProcSense.Core/Physiology/LitePhysio.cs"
+        "src/ProcSense.Core/Physiology/LitePhysio.cs",
+        "src/ProcSense.Core/Twin/PatientTwin.cs",
+        "tests/ProcSense.Core.Tests/PatientTwinTests.cs"
       ],
       "lineage": [
         "p1-pulse-physiology"

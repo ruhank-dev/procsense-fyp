@@ -14,7 +14,10 @@ Continuity makes consequences real.
 
 ## Status (17 October 2026)
 
-- **Not built (research, DT-215):** a patient twin that persists across repeat sessions. The engine already replays a session exactly from its log; carrying the end state into a new session needs a state snapshot and restore, which is a design decision about which systems to keep (the step's own warning is state explosion).
+- **Built (18 October 2026):** `src/ProcSense.Core/Twin/PatientTwin.cs` and `tests/ProcSense.Core.Tests/PatientTwinTests.cs` (7 tests). `PatientTwin.Capture(session)` takes a `TwinSnapshot` (case id, clock time, vital signs, the facts the engine set about the patient, the behaviour attributes, the trust, anxiety and understanding counters, the treatments given) with canonical JSON and a SHA-256 hash; `PatientTwin.FollowUp(card, snapshot)` makes the card for the next encounter (carried clock time and vitals, which the physiology integrates from) and `PatientTwin.Apply(session, snapshot)` puts the rest in before the first action. A snapshot of another case, an unknown field or a newer version is refused.
+- **Verified:** the snapshot reads back to the same JSON and hash; a second encounter starts at the carried clock, vitals, flags, behaviour and counters; captured again before anything happens it is the same twin (the carried state replays); the same snapshot and actions give the same log and state, and a fresh patient gives a different state; a session without a twin is unchanged (the 94 golden runs are untouched).
+- **Scope, on purpose:** the twin carries the patient, not the encounter. Checklist progress, fired events, orders in flight and what the trainee has found out are not carried (state explosion, the step's own warning); treatments given stay as `twin.prior_treatment.*` flags. The twin is over LitePhysio; a Pulse-driven twin waits for DT-207.
+- **Not done:** the Unity host does not yet offer a follow-up encounter, and no case content uses a prior treatment as a reason (DT-215).
 
 ## Verification
 Twin state replays.
