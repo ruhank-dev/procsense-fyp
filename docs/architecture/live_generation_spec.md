@@ -46,9 +46,9 @@ The full architecture (learning from evidence, AI composition, how each modality
 | 8 | LG-08 | Image and waveform handling (ECG, ultrasound, X-ray, CT) | Partially implemented | hybrid | 300 | p1-live-scenario-generation-s06 |
 | 9 | LG-09 | Cross-modal consistency | Partially implemented | deterministic | 200 | p1-live-scenario-generation-s07; p1-live-scenario-generation-s15 |
 | 10 | LG-10 | Constraint and clinical-safety validation (Stage B) | Partially implemented | deterministic | 1500 | p1-live-scenario-generation-s07 |
-| 11 | LG-11 | Quality evaluation | Proposed new feature | hybrid | 8000 | p1-live-scenario-generation-s08 |
-| 12 | LG-12 | Repair, regeneration or rejection | Proposed new feature | hybrid | 0 | p1-live-scenario-generation-s08 |
-| 13 | LG-13 | Novelty check (fingerprint) | Proposed new feature | deterministic | 100 | p1-live-scenario-generation-s09 |
+| 11 | LG-11 | Quality evaluation | Partially implemented | hybrid | 8000 | p1-live-scenario-generation-s08 |
+| 12 | LG-12 | Repair, regeneration or rejection | Implemented and tested | hybrid | 0 | p1-live-scenario-generation-s08 |
+| 13 | LG-13 | Novelty check (fingerprint) | Implemented and tested | deterministic | 100 | p1-live-scenario-generation-s09 |
 | 14 | LG-14 | Packaging with provenance | Proposed new feature | deterministic | 100 | p1-live-scenario-generation-s10 |
 | 15 | LG-15 | Unity integration | Planned | deterministic | 2000 | p1-live-scenario-generation-s10 |
 | 16 | LG-16 | Live simulation | Implemented and tested | deterministic | 0 | p1-live-scenario-generation-s11 |
@@ -290,7 +290,7 @@ Score a valid scenario for teaching quality: objective coverage, difficulty matc
 |---|---|
 | Inputs | validated scenario; Objectives |
 | Outputs | QualityReport: metric scores, judge scores, verdict |
-| Component | server/generation/quality.py (planned) |
+| Component | server/generation/quality.py (built; the language-model judge is planned, DT-196) |
 | Method | Deterministic metrics (gate) + LLM-as-judge rubric with JSON output (advisory only). |
 | Method class | hybrid |
 | Data dependencies | OFF-07 gold scenarios with human ratings |
@@ -299,8 +299,8 @@ Score a valid scenario for teaching quality: objective coverage, difficulty matc
 | Validation | Judge agreement with human ratings measured offline (target Spearman 0.6 or more before the judge may influence repair). |
 | Tests | metric unit tests; judge calibration study |
 | Acceptance | Quality gate rejects all gold 'poor' scenarios and passes 90 percent of gold 'good' ones. |
-| Status | Proposed new feature |
-| Evidence | — |
+| Status | Partially implemented |
+| Evidence | server/generation/quality.py (deterministic metrics, advisory judge slot); tools/ci/test_generation_quality.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s08 |
 
@@ -312,7 +312,7 @@ Fix defects at the cheapest level: redraw a numeric slot, swap an asset, swap a 
 |---|---|
 | Inputs | defect list from LG-09, LG-10, LG-11, LG-13 |
 | Outputs | repaired candidate (back to the failing stage) or rejection |
-| Component | server/generation/repair.py (planned) |
+| Component | server/generation/repair.py (built; a narrative model re-ask is planned with s04) |
 | Method | Deterministic repair strategy table; LLM re-ask only for narrative defects. |
 | Method class | hybrid |
 | Data dependencies | — |
@@ -321,8 +321,8 @@ Fix defects at the cheapest level: redraw a numeric slot, swap an asset, swap a 
 | Validation | A repaired candidate repeats every check from the earliest stage it changed. |
 | Tests | repair strategy tests per defect type; budget exhaustion test |
 | Acceptance | No repaired candidate skips a check; budget is never exceeded. |
-| Status | Proposed new feature |
-| Evidence | — |
+| Status | Implemented and tested |
+| Evidence | server/generation/repair.py; server/generation/pipeline.py; tools/ci/test_generation_quality.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s08 |
 
@@ -334,7 +334,7 @@ Build the structured fingerprint (structural, clinical and surface levels) and c
 |---|---|
 | Inputs | validated scenario; trainee fingerprint history; library fingerprints |
 | Outputs | NoveltyReport: per-level distances, verdict |
-| Component | server/generation/novelty.py (planned) |
+| Component | server/generation/novelty.py (built) |
 | Method | Weighted Jaccard over fingerprint sets, MinHash LSH (datasketch, MIT) for fast nearest-neighbour search when histories grow. |
 | Method class | deterministic |
 | Data dependencies | — |
@@ -343,8 +343,8 @@ Build the structured fingerprint (structural, clinical and surface levels) and c
 | Validation | Fingerprint schema; thresholds documented in the live generation spec. |
 | Tests | fingerprint determinism; distance unit tests; novelty rate over 1,000 simulated trainees |
 | Acceptance | Structural distance at least 0.35 from each of the trainee's last 10 sessions in at least 95 percent of sessions where the pool allows it. |
-| Status | Proposed new feature |
-| Evidence | — |
+| Status | Implemented and tested |
+| Evidence | server/generation/novelty.py; tools/ci/test_generation_novelty.py; tools/generation/simulate_novelty.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s09 |
 

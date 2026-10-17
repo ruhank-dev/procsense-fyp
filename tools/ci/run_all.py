@@ -211,6 +211,8 @@ def main(argv: list[str]) -> int:
         ("numeric generation tests (bands, KS, copula, story numbers untouched)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_numeric.py"])),
         ("media selection tests (finding tags, licence filter, ECG and pulse)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_media.py"])),
         ("cross-modal rules and the package gate (a failing example per rule, mutations caught)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_crossmodal.py"])),
+        ("novelty fingerprints, distances and the sealed package", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_novelty.py"])),
+        ("quality metrics and bounded repair", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_quality.py"])),
         ("content manifest up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/content_manifest.py", "--check"])),
         ("medical review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/review_pack.py", "--check"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),

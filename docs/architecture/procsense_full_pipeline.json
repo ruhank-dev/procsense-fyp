@@ -1614,7 +1614,7 @@
       "id": "LG-11",
       "label": "Quality evaluation",
       "group": "g_live_validate",
-      "status": "Proposed new feature",
+      "status": "Partially implemented",
       "method_class": "hybrid",
       "description": "Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness, narrative coherence, reading level, persona consistency. Deterministic metrics decide; an LLM judge with a fixed rubric gives advisory scores that are logged and compared against human ratings offline.",
       "inputs": [
@@ -1624,7 +1624,7 @@
       "outputs": [
         "QualityReport: metric scores, judge scores, verdict"
       ],
-      "component": "server/generation/quality.py (planned)",
+      "component": "server/generation/quality.py (built; the language-model judge is planned, DT-196)",
       "method": "Deterministic metrics (gate) + LLM-as-judge rubric with JSON output (advisory only).",
       "api": "internal",
       "validation": "Judge agreement with human ratings measured offline (target Spearman 0.6 or more before the judge may influence repair).",
@@ -1644,7 +1644,10 @@
       ],
       "error_handling": "Below threshold: defects to LG-12; judge unavailable: deterministic metrics only (logged).",
       "latency_budget_ms": 8000,
-      "evidence": [],
+      "evidence": [
+        "server/generation/quality.py (deterministic metrics, advisory judge slot)",
+        "tools/ci/test_generation_quality.py"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",
@@ -1667,7 +1670,7 @@
       "id": "LG-12",
       "label": "Repair, regeneration or rejection",
       "group": "g_live_validate",
-      "status": "Proposed new feature",
+      "status": "Implemented and tested",
       "method_class": "hybrid",
       "description": "Fix defects at the cheapest level: redraw a numeric slot, swap an asset, swap a block, re-ask the LLM with the defect as an avoid-hint. Bounded: at most 3 repair rounds and the session time budget. Every repair is logged in the package's provenance.",
       "inputs": [
@@ -1676,7 +1679,7 @@
       "outputs": [
         "repaired candidate (back to the failing stage) or rejection"
       ],
-      "component": "server/generation/repair.py (planned)",
+      "component": "server/generation/repair.py (built; a narrative model re-ask is planned with s04)",
       "method": "Deterministic repair strategy table; LLM re-ask only for narrative defects.",
       "api": "internal",
       "validation": "A repaired candidate repeats every check from the earliest stage it changed.",
@@ -1694,7 +1697,11 @@
       "data_dependencies": [],
       "error_handling": "Budget exhausted: FALLBACK-POOL-LIBRARY with the defect log kept for the evaluation loop.",
       "latency_budget_ms": 0,
-      "evidence": [],
+      "evidence": [
+        "server/generation/repair.py",
+        "server/generation/pipeline.py",
+        "tools/ci/test_generation_quality.py"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",
@@ -1715,7 +1722,7 @@
       "id": "LG-13",
       "label": "Novelty check (fingerprint)",
       "group": "g_live_validate",
-      "status": "Proposed new feature",
+      "status": "Implemented and tested",
       "method_class": "deterministic",
       "description": "Build the structured fingerprint (structural, clinical and surface levels) and compare it with this trainee's recent sessions and the library. Novel means a coherent combination the trainee has not met, not random noise.",
       "inputs": [
@@ -1726,7 +1733,7 @@
       "outputs": [
         "NoveltyReport: per-level distances, verdict"
       ],
-      "component": "server/generation/novelty.py (planned)",
+      "component": "server/generation/novelty.py (built)",
       "method": "Weighted Jaccard over fingerprint sets, MinHash LSH (datasketch, MIT) for fast nearest-neighbour search when histories grow.",
       "api": "internal",
       "validation": "Fingerprint schema; thresholds documented in the live generation spec.",
@@ -1745,7 +1752,11 @@
       "data_dependencies": [],
       "error_handling": "Not novel: defect to LG-12 (swap a block); after 5 attempts accept the most novel valid candidate and log low novelty.",
       "latency_budget_ms": 100,
-      "evidence": [],
+      "evidence": [
+        "server/generation/novelty.py",
+        "tools/ci/test_generation_novelty.py",
+        "tools/generation/simulate_novelty.py"
+      ],
       "blockers": [],
       "traced_to": {
         "kind": "direct",

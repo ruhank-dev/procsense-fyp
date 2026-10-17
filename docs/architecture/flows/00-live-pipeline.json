@@ -89,24 +89,24 @@
       "actor": "eye",
       "label": "LG-11",
       "title": "Quality evaluation",
-      "text": "Proposed. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness… Plans: A2, A7, A9.",
-      "tone": "aqua"
+      "text": "Partly built. Score a valid scenario for teaching quality: objective coverage, difficulty match, discoverability of every problem, distractor fairness… Plans: A2, A7, A9.",
+      "tone": "sun"
     },
     {
       "id": "LG-12",
       "actor": "hammer",
       "label": "LG-12",
       "title": "Repair, regeneration or rejection",
-      "text": "Proposed. Fix defects at the cheapest level: redraw a numeric slot, swap an asset, swap a block, re-ask the LLM with the defect as an avoid-hint. Plans: A2, A10.",
-      "tone": "aqua"
+      "text": "Built. Fix defects at the cheapest level: redraw a numeric slot, swap an asset, swap a block, re-ask the LLM with the defect as an avoid-hint. Plans: A2, A10.",
+      "tone": "mint"
     },
     {
       "id": "LG-13",
       "actor": "star",
       "label": "LG-13",
       "title": "Novelty check (fingerprint)",
-      "text": "Proposed. Build the structured fingerprint (structural, clinical and surface levels) and compare it with this trainee's recent sessions and the library. Plans: A2, A6.",
-      "tone": "aqua"
+      "text": "Built. Build the structured fingerprint (structural, clinical and surface levels) and compare it with this trainee's recent sessions and the library. Plans: A2, A6.",
+      "tone": "mint"
     },
     {
       "id": "LG-14",

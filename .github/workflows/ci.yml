@@ -435,6 +435,12 @@ jobs:
       - name: cross-modal rules and the package gate (a failing example per rule, mutations caught)
         run: uv run --project tools tools/ci/test_generation_crossmodal.py
 
+      - name: novelty fingerprints, distances and the sealed package
+        run: uv run --project tools tools/ci/test_generation_novelty.py
+
+      - name: quality metrics and bounded repair
+        run: uv run --project tools tools/ci/test_generation_quality.py
+
       - name: Content manifest is up to date
         run: uv run --project tools tools/content/content_manifest.py --check
 

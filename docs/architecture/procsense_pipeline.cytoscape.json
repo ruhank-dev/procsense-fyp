@@ -426,7 +426,7 @@
     "id": "LG-11",
     "label": "LG-11 Quality evaluation",
     "type": "stage",
-    "status": "Proposed new feature",
+    "status": "Partially implemented",
     "parent": "g_live_validate"
    },
    "classes": "stage"
@@ -437,7 +437,7 @@
     "id": "LG-12",
     "label": "LG-12 Repair, regeneration or rejection",
     "type": "stage",
-    "status": "Proposed new feature",
+    "status": "Implemented and tested",
     "parent": "g_live_validate"
    },
    "classes": "stage"
@@ -448,7 +448,7 @@
     "id": "LG-13",
     "label": "LG-13 Novelty check (fingerprint)",
     "type": "stage",
-    "status": "Proposed new feature",
+    "status": "Implemented and tested",
     "parent": "g_live_validate"
    },
    "classes": "stage"

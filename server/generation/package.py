@@ -48,10 +48,41 @@ def assemble(skeleton: dict, objectives: dict, index: retrieve.Index, models: li
     return pkg
 
 
+def canonical(doc: dict) -> bytes:
+    return json.dumps(doc, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+
+
+def reproducibility_key(objectives: dict, pkg: dict) -> str:
+    """The same request, seed, packs, block library, prompts and models give the same key (spec section 6). Named seed streams per stage and slot are the generators' own; this key names the inputs."""
+    prov = pkg["provenance"]
+    doc = {"request": {k: objectives[k] for k in ("scenario", "level", "seed")}, "exclusions": objectives["exclusions"], "packs": prov["packs"], "content_hash": prov["content_hash"],
+           "generator": prov["generator"], "models": prov.get("models", []), "prompts": prov.get("prompts", {})}
+    return hashlib.sha256(canonical(doc)).hexdigest()
+
+
+def seal(pkg: dict, objectives: dict, levels: dict | None = None, novelty: dict | None = None) -> dict:
+    """Add the fingerprint levels, the novelty report, the reproducibility key and the package's own SHA-256 (over everything else). A changed package no longer matches its hash."""
+    pkg.pop("package_sha256", None)
+    if levels:
+        pkg["fingerprint_levels"] = levels
+    if novelty:
+        pkg["novelty"] = novelty
+    pkg["reproducibility_key"] = reproducibility_key(objectives, pkg)
+    pkg["package_sha256"] = hashlib.sha256(canonical(pkg)).hexdigest()
+    return pkg
+
+
+def verify_seal(pkg: dict) -> bool:
+    body = {k: v for k, v in pkg.items() if k != "package_sha256"}
+    return pkg.get("package_sha256") == hashlib.sha256(canonical(body)).hexdigest()
+
+
 def validate(pkg: dict, cases: list[dict] | None = None, headless: bool = False) -> dict:
     """A report: {"passed": bool, "defects": [{"stage", "code", "detail"}]}."""
     defects: list[dict] = []
     schema_doc = {k: v for k, v in pkg.items() if k not in ("media", "discovery")}
+    if "package_sha256" in pkg and not verify_seal(pkg):
+        defects.append({"stage": "package", "code": "HASH", "detail": "the package no longer matches its SHA-256"})
     for e in contracts.errors("scenario_package", schema_doc):
         defects.append({"stage": "package", "code": "SCHEMA", "detail": e})
     sb = _stage_b()

@@ -80,11 +80,14 @@ def _news2():
 
 
 def build_skeleton(objectives: dict, index: retrieve.Index, cases: list[dict], tables, behaviour_labels: dict[str, str] | None = None, library: list[dict] | None = None, serial: int = 1,
-                   vary_numbers: bool = True) -> dict:
+                   vary_numbers: bool = True, force_spine: str | None = None, numeric_seed: int | None = None, media_seed: int | None = None) -> dict:
+    """`force_spine`, `numeric_seed` and `media_seed` are for repair (repair.py): keep the story and redraw only the numbers, or only the pictures, or the blocks."""
     B, solve = _composer()
     labels = behaviour_labels or {}
     query = retrieve.query_from_objectives(objectives, labels, {d.id: d.label for d in tables.dimensions})
     ranked = rank_spines(objectives, index, cases, tables, query)
+    if force_spine:
+        ranked = [r for r in ranked if r[1]["id"] == force_spine]
     if not ranked:
         raise solve.Unsatisfiable(f"no approved spine for scenario {objectives['scenario']} outside the recent ones")
     rng = random.Random(objectives["seed"])
@@ -105,8 +108,8 @@ def build_skeleton(objectives: dict, index: retrieve.Index, cases: list[dict], t
         except solve.Unsatisfiable as e:
             last_error = e
             continue
-        numeric_log = numeric.vary_numbers(card, objectives["seed"], packs.LabPack(), packs.load("vitals"), _news2()) if vary_numbers else []
-        picked = media.select_media(card, spine["id"], objectives["seed"])
+        numeric_log = numeric.vary_numbers(card, objectives["seed"] if numeric_seed is None else numeric_seed, packs.LabPack(), packs.load("vitals"), _news2()) if vary_numbers else []
+        picked = media.select_media(card, spine["id"], objectives["seed"] if media_seed is None else media_seed)
         picked["defects"] = media.check_media(card, picked)
         slots: dict[str, list[str]] = {}
         for b in choice.blocks:

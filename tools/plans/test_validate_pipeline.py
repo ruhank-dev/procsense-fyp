@@ -29,7 +29,7 @@ MUTATIONS = [
     ("unknown model ref", "VR-G-REFS", lambda d: node(d, "A1")["model_refs"].append("MC-99")),
     ("task without a step file", "VR-G-REFS", lambda d: d["phases"][1]["tasks"].append("p1-nothing-s01")),
     ("feature without task", "VR-G-COVERAGE", lambda d: node(d, "A6").update(tasks=[])),
-    ("planned stage labelled implemented without evidence", "VR-G-HONEST", lambda d: node(d, "LG-13").update(status="Implemented and tested")),
+    ("planned stage labelled implemented without evidence", "VR-G-HONEST", lambda d: node(d, "LG-21").update(status="Implemented and tested")),
     ("evidence path that does not exist", "VR-G-HONEST", lambda d: node(d, "LG-16").update(evidence=["src/ProcSense.Core/NoSuchFile.cs"])),
     ("undocumented cycle", "VR-G-CYCLES", lambda d: first_cycle_edge(d).pop("cycle")),
     ("stage cut off from exits", "VR-G-ENTRY-EXIT", lambda d: d.update(edges=[e for e in d["edges"] if e["source"] != "LG-21"])),
