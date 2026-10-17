@@ -21,6 +21,12 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 CLI = ["dotnet", "run", "--no-build", "-c", "Release", "--project", "src/ProcSense.Cli", "--"]
 GOLDEN = ROOT / "tests" / "golden"
+P1_CASES = {"VAR-S1-I", "VAR-S1-K", "VAR-S1-L", "VAR-S1-M", "VAR-S2-E", "VAR-S2-H", "VAR-S2-I", "VAR-S2-J", "VAR-S2-K", "VAR-S2-L", "STK-S1-A", "STK-S1-B", "STK-S1-C", "STK-S2-A", "STK-S2-C", "STK-S2-D"}
+
+
+def stem(case_id: str) -> str:
+    """The file stem of a case's correct-path golden. The 17 P0 cases keep `<case>_correct`; the 16 P1 cases use `<case>_correct_p1`, so every tool that lists the P0 cases by their `_correct` files (voice catalogue, EMR sections, golden paths, traceability) is unchanged."""
+    return f"{case_id}_correct_p1" if case_id in P1_CASES else f"{case_id}_correct"
 END_CODE = {"ready": "READY_SAFE", "postponed": "POSTPONED_APPROPRIATELY", "redirected": "REDIRECTED_APPROPRIATELY", "delayed": "SAFE_BUT_DELAYED", "failure": "SAFETY_FAILURE"}
 TOPICS = ["complaint", "red_flags", "past_history", "medicines", "herbal", "previous_anaesthetic", "family_anaesthetic", "smoking", "alcohol", "last_food", "last_drink", "pregnancy"]
 VTE_NO = "age_over_60:no,bmi_over_30:no,cancer:no,previous_clot:no,family_history_clots:no,oestrogen_or_hrt:no,pregnancy:no,dehydration:no,reduced_mobility:no,surgery_over_90_minutes:no,acute_tummy_inflammation:no,active_bleeding:no,blood_thinners:no,platelets_below_75:no,very_high_bp:no"
@@ -316,17 +322,17 @@ BUILDERS = {
 
 def write() -> None:
     for case_id, build in BUILDERS.items():
-        (GOLDEN / f"{case_id}_correct.actions.json").write_text(build(case(case_id)).json(), encoding="utf-8", newline="\n")
-        stub = GOLDEN / f"{case_id}_correct.expected.json"
+        (GOLDEN / f"{stem(case_id)}.actions.json").write_text(build(case(case_id)).json(), encoding="utf-8", newline="\n")
+        stub = GOLDEN / f"{stem(case_id)}.expected.json"
         if not stub.exists():
             stub.write_text(json.dumps({"case": case_id, "seed": "42", "mode": "practice"}, indent=2) + "\n", encoding="utf-8", newline="\n")      # `procsense-sim golden --update` fills it in
-        print(f"wrote tests/golden/{case_id}_correct.actions.json")
+        print(f"wrote tests/golden/{stem(case_id)}.actions.json")
 
 
 def stale() -> int:
     """The scripts in tests/golden must be exactly what the generator writes today (so a change to the generator or to a case file is noticed)."""
-    old = [c for c in BUILDERS if (GOLDEN / f"{c}_correct.actions.json").read_text(encoding="utf-8") != BUILDERS[c](case(c)).json()]
-    missing = [c for c in BUILDERS if not (GOLDEN / f"{c}_correct.expected.json").exists()]
+    old = [c for c in BUILDERS if (GOLDEN / f"{stem(c)}.actions.json").read_text(encoding="utf-8") != BUILDERS[c](case(c)).json()]
+    missing = [c for c in BUILDERS if not (GOLDEN / f"{stem(c)}.expected.json").exists()]
     if old or missing:
         print("FAIL  out of date: " + ", ".join(old + missing) + "; run tools/golden/p0_scripts.py --write and then procsense-sim golden --update")
         return 1
@@ -341,7 +347,7 @@ def check() -> int:
         want = END_CODE[c["expected_end_state"]]
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "run.json"
-            p = subprocess.run(CLI + ["run", "--case", case_id, "--seed", "42", "--actions", str(GOLDEN / f"{case_id}_correct.actions.json"), "--out", str(out), "--allow-draft"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
+            p = subprocess.run(CLI + ["run", "--case", case_id, "--seed", "42", "--actions", str(GOLDEN / f"{stem(case_id)}.actions.json"), "--out", str(out), "--allow-draft"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
             if p.returncode != 0:
                 print(f"FAIL  {case_id}: {(p.stdout + p.stderr).strip()[-300:]}")
                 bad += 1
