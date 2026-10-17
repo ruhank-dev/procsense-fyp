@@ -16,7 +16,7 @@ Some P1 cases need behaviour P0 never needed (maternity early-warning, guardian 
 
 ## Status (17 October 2026)
 
-- **Result of EXP-CASE-3:** the generic correct-path segments of `tools/golden/p0_scripts.py` play all 16 P1 cases (10 variants and 6 stacked) to their expected end state with nothing refused, so **none needs an engine addition**: the maternity tool is the NEWS2 'not used' note, the minor and guardian consent, the capable refusal, the interpreter and the anaphylaxis history are in the consent and decision content, new atrial fibrillation is an ECG finding. STK-S2-C needs the emergency consent route. Each case got a correct-path golden (`tests/golden`, 94 goldens in all, engine 0.0.7).
+- **Result of EXP-CASE-3:** the generic correct-path segments of `tools/golden/p0_scripts.py` play all 16 P1 cases (10 variants and 6 stacked) to their expected end state with nothing refused, so **none needs an engine addition**: the maternity tool is the NEWS2 'not used' note, the minor and guardian consent, the capable refusal, the interpreter and the anaphylaxis history are in the consent and decision content, new atrial fibrillation is an ECG finding. STK-S2-C needs the emergency consent route. Each case got a correct-path golden (`tests/golden`; with the wrong paths of s04 there are 142 goldens in all, engine 0.0.8).
 - **Limit:** the headset playthroughs (s04) are Sannan's.
 
 ## Verification

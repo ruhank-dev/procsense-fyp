@@ -13,6 +13,11 @@ P1 cases must meet the same bar as P0 — reproducible, walkthrough-faithful, re
 2. Per case: correct + one wrong path golden script from the walkthrough; VR playthrough; replay agreement; reviewer video.
 3. Maternity (VAR-S2-H) and minor-consent (VAR-S2-I) cases reviewed specifically for institutional rules.
 
+## Status (17 October 2026)
+
+- **Done headless (18 October 2026):** every one of the 16 P1 cases (10 variants, 6 stacked) now has a correct path and three more paths derived from it by `tools/golden/paths.py`: **novice** (without the courtesies a novice forgets: ends as the correct path does and costs something), **dangerous** (bloods before the identity check: the engine refuses it or the case fails) and **edge** (a pause and split time-skips: the same final state hash). `paths.py --check` proves each behaves as its path promises for all 33 cases (17 P0 and 16 P1); the golden suite is 142 runs, all pass (engine 0.0.8). Files: `tests/golden/<case>_{novice,dangerous,edge}_p1.*`.
+- **Not done, and Sannan's:** the Quest playthrough of each case, the headless replay of that VR session, and the short reviewer video. The maternity case (VAR-S2-H) and the minor-consent case (VAR-S2-I) still need their specific review for institutional rules by a named clinician (DT-203 family).
+
 ## Verification
 16/16 cases reach expected end states in VR and headless; reviewer notes logged.
 

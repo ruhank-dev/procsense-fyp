@@ -1,0 +1,37 @@
+{
+  "case": "STK-S1-A",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "b9b9bb45f2bc89d37d440b8e21da279200cab9beb52dec3c72809c7163dfaa34",
+  "state_hash": "049ee3aa453f526ddfe3b606cd9a8fdda41a0caf6936f1d58d127b404a3df215",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.diabetes",
+      "condition.sglt2_user",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "physio.confusion"
+    ],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "POSTPONED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 2,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

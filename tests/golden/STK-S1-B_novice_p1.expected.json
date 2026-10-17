@@ -1,0 +1,35 @@
+{
+  "case": "STK-S1-B",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "3c4ac9a47d9645e7ef9f5a65577d8aa7db0ec98ad7e6092b5d7c75c56a0ff9a2",
+  "state_hash": "e971d0841a911deed9c1eef3fca6b5ad62dbab7e8f2d093b3b835bed2833c91c",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.blood_thinner",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open"
+    ],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "POSTPONED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 2,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

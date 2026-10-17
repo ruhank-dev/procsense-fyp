@@ -43,7 +43,7 @@ Built by the engineer under the owner's instruction, each with tests in CI and a
 * **The classifier:** sentence embeddings + logistic regression with a critical-content guard (ADR-0012); SBAR_ELEMENT made critical in the engine. Evaluated only on a synthetic, model-written, model-labelled set of eight styles; **not independent**.
 * **Learning and personalisation:** session evidence, learner model, targeting policies (neither beat the Elo selection in simulation), explanations, patterns, calibration, reasoning features, progression, next-case ranking, result explanations.
 * **Safety work:** red team of the validator (critical classes zero escapes; paraphrase, synonym and made-up denials are open, DT-211).
-* **Theatre extension and cases:** Sign Out, four labelled intra-operative events, the recovery handover, 16 P1 case goldens (engine 0.0.7).
+* **Theatre extension and cases:** Sign Out, four labelled intra-operative events, the recovery handover, 16 P1 cases with four goldens each (correct, novice, dangerous, edge; 142 goldens in all, engine 0.0.8).
 * **Measured and not shipped:** retrieval over approved content (DT-216); the AI plan composer; personalised targeting.
 
 **The gate (`content/ai/features.json`) switches on:** asr, narrative, patient_dialogue, voice_orders. **Off:** classifier (SKIPPED), classifier_synthetic (FAIL), critic (FAIL), debrief_ai (FAIL), interpreter (FAIL), plan_composer (FAIL), tts (FAIL). The classifier is off because its suites read the independent set (DT-210), the critic and others because their result does not yet meet the bar (see the page). A missing result never passes.

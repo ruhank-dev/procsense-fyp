@@ -1,0 +1,18 @@
+[
+  {"t": 0.0, "verb": "introduce_self"},
+  {"t": 4.0, "verb": "ask_identity"},
+  {"t": 8.0, "verb": "read_wristband"},
+  {"t": 12.0, "verb": "open_notes"},
+  {"t": 16.0, "verb": "confirm_identity"},
+  {"t": 16.0, "verb": "pause"},
+  {"t": 16.0, "verb": "resume"},
+  {"t": 20.0, "verb": "ask_allergies"},
+  {"t": 24.0, "verb": "ask_allergy_reaction"},
+  {"t": 28.0, "verb": "ask_reason_for_admission"},
+  {"t": 32.0, "verb": "ask_responsible_adult"},
+  {"t": 36.0, "verb": "time_skip", "params": {"minutes": "30"}},
+  {"t": 1836.0, "verb": "time_skip", "params": {"minutes": "30"}},
+  {"t": 3637.0, "verb": "declare_outcome", "params": {"outcome": "INVESTIGATE", "reason": "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency"}},
+  {"t": 3641.0, "verb": "postpone", "params": {"reason": "Moderate anaemia with small cells (Hb 98, MCV 72): probably iron deficiency"}},
+  {"t": 3645.0, "verb": "wait"}
+]

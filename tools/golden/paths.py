@@ -1,4 +1,4 @@
-"""The golden suite's other three paths for each P0 case (p0-evaluation-performance-s02): novice, dangerous and edge, derived from the case's correct path.
+"""The golden suite's other three paths for each P0 case (p0-evaluation-performance-s02) and each P1 case (p1-case-library-extended-s04): novice, dangerous and edge, derived from the case's correct path.
 
     uv run --project tools tools/golden/paths.py --write     # write tests/golden/<case>_<path>.actions.json (and an expected stub for a new one; then: task golden -- --update)
     uv run --project tools tools/golden/paths.py --check     # the scripts are up to date, and every expected file behaves as its path promises
@@ -11,6 +11,7 @@ The paths (the step's definitions):
 - edge: timing corner cases that must change nothing: a pause and a resume at once after the identity check, and every time-skip split in two halves. The final state must equal the correct path's
   (the same state hash); only the log differs.
 Deriving the paths from the correct ones keeps them in step when a correct path changes; --check proves each still means what it says.
+The P1 cases (16: ten variants and six stacked) are named `<case>_<path>_p1` beside their `<case>_correct_p1`, so the P0 checks that expect `<case>_correct` are not disturbed.
 """
 from __future__ import annotations
 
@@ -28,8 +29,17 @@ def cases() -> list[str]:
     return sorted(p.name[: -len("_correct.actions.json")] for p in GOLDEN.glob("*_correct.actions.json") if p.name[0].isupper() and "-" in p.name)
 
 
-def load(case: str, path: str = "correct") -> list[dict]:
-    return json.loads((GOLDEN / f"{case}_{path}.actions.json").read_text(encoding="utf-8"))
+def cases_p1() -> list[str]:
+    return sorted(p.name[: -len("_correct_p1.actions.json")] for p in GOLDEN.glob("*_correct_p1.actions.json") if p.name[0].isupper() and "-" in p.name)
+
+
+def every() -> list[tuple[str, str]]:
+    """(case, suffix): the P0 cases with no suffix and the P1 cases with `_p1`."""
+    return [(c, "") for c in cases()] + [(c, "_p1") for c in cases_p1()]
+
+
+def load(case: str, path: str = "correct", suffix: str = "") -> list[dict]:
+    return json.loads((GOLDEN / f"{case}_{path}{suffix}.actions.json").read_text(encoding="utf-8"))
 
 
 def novice(rows: list[dict]) -> list[dict]:
@@ -65,8 +75,8 @@ def text(rows: list[dict]) -> str:
     return "[\n" + ",\n".join("  " + json.dumps(r, ensure_ascii=False) for r in rows) + "\n]\n"
 
 
-def expected(case: str, path: str) -> dict | None:
-    p = GOLDEN / f"{case}_{path}.expected.json"
+def expected(case: str, path: str, suffix: str = "") -> dict | None:
+    p = GOLDEN / f"{case}_{path}{suffix}.expected.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
@@ -77,18 +87,18 @@ def lost(e: dict) -> int:
 
 def problems() -> list[str]:
     out = []
-    for case in cases():
-        rows = load(case)
-        correct = expected(case, "correct")
+    for case, sfx in every():
+        rows = load(case, "correct", sfx)
+        correct = expected(case, "correct", sfx)
         for path in PATHS:
             want = text(MAKERS[path](rows))
-            script = GOLDEN / f"{case}_{path}.actions.json"
+            script = GOLDEN / f"{case}_{path}{sfx}.actions.json"
             if not script.exists() or script.read_text(encoding="utf-8") != want:
                 out.append(f"{script.name} is out of date: run tools/golden/paths.py --write, then task golden -- --update")
                 continue
-            e = expected(case, path)
+            e = expected(case, path, sfx)
             if e is None or correct is None or "score" not in e:
-                out.append(f"{case}_{path}.expected.json is missing or has no score: run task golden -- --update")
+                out.append(f"{case}_{path}{sfx}.expected.json is missing or has no score: run task golden -- --update")
                 continue
             facts, cfacts = e["facts"], correct["facts"]
             if path == "novice":
@@ -109,15 +119,15 @@ def problems() -> list[str]:
 
 
 def write() -> None:
-    for case in cases():
-        rows = load(case)
+    for case, sfx in every():
+        rows = load(case, "correct", sfx)
         for path in PATHS:
-            (GOLDEN / f"{case}_{path}.actions.json").write_text(text(MAKERS[path](rows)), encoding="utf-8", newline="\n")
-            stub = GOLDEN / f"{case}_{path}.expected.json"
+            (GOLDEN / f"{case}_{path}{sfx}.actions.json").write_text(text(MAKERS[path](rows)), encoding="utf-8", newline="\n")
+            stub = GOLDEN / f"{case}_{path}{sfx}.expected.json"
             if not stub.exists():
-                c = expected(case, "correct") or {}
+                c = expected(case, "correct", sfx) or {}
                 stub.write_text(json.dumps({"case": case, "seed": c.get("seed", "42"), "mode": c.get("mode", "practice")}) + "\n", encoding="utf-8", newline="\n")
-    print(f"wrote {len(cases()) * len(PATHS)} scripts for {len(cases())} cases; now run: task golden -- --update")
+    print(f"wrote {len(every()) * len(PATHS)} scripts for {len(every())} cases; now run: task golden -- --update")
 
 
 def main(argv: list[str]) -> int:
@@ -128,7 +138,7 @@ def main(argv: list[str]) -> int:
     probs = problems()
     for p in probs:
         print("  - " + p)
-    n = len(cases())
+    n = len(every())
     print(f"golden paths: {n} cases x 4 paths = {n * 4} scripts; {'all behave as their path promises' if not probs else str(len(probs)) + ' problems'}")
     return 1 if probs else 0
 
