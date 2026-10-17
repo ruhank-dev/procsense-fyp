@@ -32,6 +32,7 @@ from eval_classifier import f1_scores                 # noqa: E402
 OLD = ROOT / "tests" / "classifier"
 INDEP = ROOT / "tests" / "classifier_independent"
 SYNTH = ROOT / "tests" / "classifier_synthetic"
+SYNTH2 = ROOT / "tests" / "classifier_synthetic_v2"
 OUT = ROOT / "artifacts" / "ai-bench"
 COSINE_REVIEW = 0.9                                   # embedding cosine at or above this between a dev/test sentence and a training sentence is listed for review (paraphrase leakage)
 MIN_PRECISION = 0.8
@@ -66,6 +67,25 @@ def load_data(mode: str, allow_rerun: bool) -> dict:
                 "asr": asr_copies(SYNTH / "asr_test.jsonl", test),
                 "provenance": "SYNTHETIC, NOT INDEPENDENT: eight simulated author profiles, sentences written, second-labelled and adjudicated by the language model that built the tooling; no person wrote, labelled or reviewed any row. "
                               "Train profiles T1-T4 (plus the old template set), dev profiles DA and DB, test profiles TC and TD never overlap. A generalisation check across writing styles, not evidence about real trainee speech."}
+    if mode == "synthetic2":
+        manifest_path = SYNTH2 / "manifest.json"
+        if not manifest_path.exists():
+            raise SystemExit("BLOCKED: tests/classifier_synthetic_v2/manifest.json does not exist (tools/bench/synthetic2.py freeze)")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for name, digest in manifest["files"].items():
+            if hashlib.sha256((SYNTH2 / name).read_bytes()).hexdigest() != digest:
+                raise SystemExit(f"REFUSED: {name} does not match the frozen hash in the manifest (tools/bench/synthetic2.py freeze)")
+        lock = OUT / "classifier-bench-synthetic2-test-used.json"
+        if lock.exists() and not allow_rerun and json.loads(lock.read_text(encoding="utf-8")).get("manifest_sha") == hashlib.sha256(manifest_path.read_bytes()).hexdigest():
+            raise SystemExit("REFUSED: the synthetic v2 test split has already been scored for this manifest (it is scored once). Use --allow-test-rerun only deliberately.")
+        old = [{**r, "group": r["speaker"], "bucket": "plain"} for n in ("train", "dev", "test") for r in rows_of(OLD / f"{n}.jsonl")]
+        v1 = [{**r, "group": r["author"]} for n in ("train", "dev", "test") for r in rows_of(SYNTH / f"{n}.jsonl")]
+        tr, dev, test = (rows_of(SYNTH2 / f"{n}.jsonl") for n in ("train", "dev", "test"))
+        return {"train": old + v1 + [{**r, "group": r["author"]} for r in tr], "dev": [{**r, "group": r["author"]} for r in dev], "test": [{**r, "group": r["author"]} for r in test], "valid_for_claims": False,
+                "manifest": manifest, "asr": asr_copies(SYNTH2 / "asr_test.jsonl", test),
+                "provenance": "SYNTHETIC, AI-JUDGED, NOT INDEPENDENT: twelve simulated author profiles write the v2 sentences (train R1-R6, dev D1-D3, test E1-E3, no profile or scenario group shared between splits); labels are the author's intent, "
+                              "checked by two configurations of one local AI judge and settled by the builder where both judges disagreed with the intent; no person wrote, labelled or reviewed any row. Training also uses the old "
+                              "template set and the v1 synthetic set (already scored, never v2 dev or test). A generalisation check, not evidence about real trainee speech."}
     manifest_path = INDEP / "manifest.json"
     if not manifest_path.exists():
         raise SystemExit("BLOCKED: tests/classifier_independent/manifest.json does not exist. The independent dev and test set has not been authored; see docs/research/classifier_benchmark/README.md.")
@@ -295,7 +315,7 @@ def leakage(data: dict, vectors: dict | None) -> dict:
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", choices=["smoke", "synthetic", "independent"], default="smoke")
+    ap.add_argument("--data", choices=["smoke", "synthetic", "synthetic2", "independent"], default="smoke")
     ap.add_argument("--qwen-model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--embed-model", default="all-minilm:22m")
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
@@ -386,6 +406,13 @@ def main(argv: list[str]) -> int:
             ix = [i for i, r in enumerate(data["test"]) if r["bucket"] == b]
             buckets[b] = {"rows": len(ix), "accuracy": round(sum(truth[i] == pred[i] for i in ix) / len(ix), 3)}
         cand["by_bucket"] = buckets
+        if all("judge_status" in r for r in data["test"]):
+            cand["by_judge_status"] = {}
+            for st in sorted({r["judge_status"] for r in data["test"]}):
+                ix = [i for i, r in enumerate(data["test"]) if r["judge_status"] == st]
+                cand["by_judge_status"][st] = {"rows": len(ix), "accuracy": round(sum(truth[i] == pred[i] for i in ix) / len(ix), 3)}
+            sure = [i for i, r in enumerate(data["test"]) if r["judge_status"] == "certain"]
+            cand["macro_f1_on_certain_rows_only"] = round(macro_f1([truth[i] for i in sure], [pred[i] for i in sure], labels), 3)
         cand["predictions"] = [{"id": r["id"], "truth": t, "pred": p, "confidence": round(cf, 4), "credited": c, "bucket": r["bucket"]} for r, t, p, cf, c in zip(data["test"], truth, pred, conf, credited)]
         main_ix = [i for i, r in enumerate(data["test"]) if r["bucket"] != "ambiguous"]
         cand["macro_f1_without_ambiguous_rows"] = round(macro_f1([truth[i] for i in main_ix], [pred[i] for i in main_ix], labels), 3)
@@ -443,6 +470,9 @@ def main(argv: list[str]) -> int:
     if a.data == "synthetic" and not a.limit:
         OUT.mkdir(parents=True, exist_ok=True)
         (OUT / "classifier-bench-synthetic-test-used.json").write_text(json.dumps({"manifest_sha": hashlib.sha256((SYNTH / "manifest.json").read_bytes()).hexdigest(), "candidates": names}) + "\n", encoding="utf-8")
+    if a.data == "synthetic2" and not a.limit:
+        OUT.mkdir(parents=True, exist_ok=True)
+        (OUT / "classifier-bench-synthetic2-test-used.json").write_text(json.dumps({"manifest_sha": hashlib.sha256((SYNTH2 / "manifest.json").read_bytes()).hexdigest(), "candidates": names}) + "\n", encoding="utf-8")
     if a.data == "independent" and not a.limit:
         (OUT / "classifier-bench-test-used.json").write_text(json.dumps({"manifest_sha": hashlib.sha256((INDEP / "manifest.json").read_bytes()).hexdigest(), "candidates": names}) + "\n", encoding="utf-8")
     OUT.mkdir(parents=True, exist_ok=True)
@@ -456,7 +486,7 @@ def main(argv: list[str]) -> int:
 
 
 def verdict(result: dict) -> str:
-    if result.get("data") == "synthetic":
+    if result.get("data") in ("synthetic", "synthetic2"):
         cands = result["candidates"]
         order = sorted(cands, key=lambda n: -cands[n]["macro_f1"])
         diffs = result["paired_macro_f1_differences"]

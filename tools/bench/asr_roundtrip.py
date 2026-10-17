@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "server"))
 INDEP = ROOT / "tests" / "classifier_independent"
 SYNTH = ROOT / "tests" / "classifier_synthetic"
+SYNTH2 = ROOT / "tests" / "classifier_synthetic_v2"
 OUT = ROOT / "artifacts" / "ai-bench"
 PHONE = "highpass=f=300,lowpass=f=3000,volume=0.7"
 
@@ -60,6 +61,7 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", choices=["dev", "test"])
     ap.add_argument("--synthetic", action="store_true", help="copies of the plain and paraphrased rows of the synthetic test split (tests/classifier_synthetic)")
+    ap.add_argument("--synthetic2", action="store_true", help="copies of the plain rows of the AI-judged synthetic v2 test split (tests/classifier_synthetic_v2)")
     ap.add_argument("--smoke", type=int, default=0, help="N old synthetic test sentences, to check the machinery only")
     ap.add_argument("--limit", type=int, default=0)
     a = ap.parse_args(argv)
@@ -68,6 +70,10 @@ def main(argv: list[str]) -> int:
         rows = [json.loads(l) for l in (SYNTH / "test.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
         rows = [{**r, "group": r["author"]} for r in rows if r["bucket"] in ("plain", "paraphrase")]
         made, path = copies(rows, a.limit), SYNTH / "asr_test.jsonl"
+    elif a.synthetic2:
+        rows = [json.loads(line) for line in (SYNTH2 / "test.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+        rows = [{**r, "group": r["author"]} for r in rows if r["bucket"] == "plain"]
+        made, path = copies(rows, a.limit), SYNTH2 / "asr_test.jsonl"
     elif a.smoke:
         rows = [json.loads(l) for l in (ROOT / "tests" / "classifier" / "test.jsonl").read_text(encoding="utf-8").splitlines()][::3]
         rows = [{**r, "group": r["speaker"]} for r in rows]
