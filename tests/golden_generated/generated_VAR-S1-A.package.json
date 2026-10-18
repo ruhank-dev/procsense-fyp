@@ -1,0 +1,758 @@
+{
+  "version": 1,
+  "id": "GEN-S1-0300-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "6a7568a5565ecd3e",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S1-0300-001",
+    "walkthrough_label": "Example Patient A - uncomplicated S1 (everything goes right) (composed GEN-S1-0300-001)",
+    "scenario": "S1",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": "VAR-S1-A",
+    "identity": {
+      "title": "Mrs",
+      "full_name": "Sadia Javed",
+      "sex": "F",
+      "age": 26,
+      "occupation": "nursery assistant",
+      "dob": "2000-02-18",
+      "mrn": "456614"
+    },
+    "spoken_identity_answer": "Sadia Javed, eighteenth of February 2000.",
+    "wristband": {
+      "name_text": "SADIA JAVED",
+      "dob_text": "18/02/2000",
+      "mrn_text": "MR 456614"
+    },
+    "allergies": [],
+    "allergy_answer": "None.",
+    "reason_answer": "To have my gallbladder taken out with keyhole.",
+    "presentation": {
+      "setting": "pre-assessment",
+      "time_now": "08:00",
+      "surgery_time": "09:00",
+      "summary": "A fit 26-year-old nursery assistant booked for planned keyhole gallbladder removal at 09:00. Nothing is wrong today: the case teaches careful confirmation without over-investigating."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Attacks under my right ribs after oily food, settle in an hour or two. None in the last 3 weeks.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No fever, no yellow eyes, urine normal colour, no back pain.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "None except paracetamol sometimes.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Dinner at 21:00 last night (rice and chicken).",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "book",
+        "intake": {
+          "kind": "heavy_meal",
+          "hours_before_now": 11.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Water at 06:30.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "book",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 1.5
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Last period started 10 days ago; she uses a coil. She agrees to a urine pregnancy test (hospital policy).",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "book"
+      }
+    ],
+    "observations": [
+      {
+        "time": "08:00",
+        "condition": "initial",
+        "heart_rate": 84,
+        "heart_rhythm": "regular",
+        "systolic_bp": 121,
+        "diastolic_bp": 78,
+        "respiratory_rate": 14,
+        "spo2": 98,
+        "oxygen": "room_air",
+        "temperature_c": 36.6,
+        "acvpu": "A",
+        "pain_score": 0,
+        "news2": 0,
+        "note": "Baseline vital signs; every value in the normal band.",
+        "origin": "book"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.eyes",
+        "system": "eyes",
+        "finding": "Whites of the eyes are white; no jaundice.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:eyes"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.chest",
+        "system": "chest",
+        "finding": "Heart and lungs sound normal.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:chest"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Tummy soft; mild tenderness under the right ribs, only with deep pressure.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "book",
+        "painful": true
+      },
+      {
+        "id": "ex.murphy",
+        "system": "murphy",
+        "finding": "Murphy's sign negative.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:murphy"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.mouth",
+        "system": "airway",
+        "finding": "Mouth opens well (3 fingers).",
+        "abnormal": false,
+        "disclose_on": [
+          "airway_check:mouth_opening"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.mallampati",
+        "system": "airway",
+        "finding": "Mallampati class 2.",
+        "abnormal": false,
+        "disclose_on": [
+          "airway_check:mallampati"
+        ],
+        "origin": "book"
+      },
+      {
+        "id": "ex.neck",
+        "system": "airway",
+        "finding": "Neck moves normally.",
+        "abnormal": false,
+        "disclose_on": [
+          "airway_check:neck"
+        ],
+        "origin": "book"
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.bilirubin",
+        "test": "Bilirubin",
+        "value": "12",
+        "unit": "umol/L",
+        "normal_range": "3-21",
+        "flag": "normal",
+        "comment": "Bile flowing normally",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "book",
+        "source_row": "SR-2400"
+      },
+      {
+        "id": "lab.alt",
+        "test": "ALT",
+        "value": "20",
+        "unit": "U/L",
+        "normal_range": "7-40",
+        "flag": "normal",
+        "comment": "Liver cells fine",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.alp",
+        "test": "ALP",
+        "value": "90",
+        "unit": "U/L",
+        "normal_range": "30-130",
+        "flag": "normal",
+        "comment": "Bile ducts not blocked",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.ggt",
+        "test": "GGT",
+        "value": "30",
+        "unit": "U/L",
+        "normal_range": "below 40 (women)",
+        "flag": "normal",
+        "comment": "Confirms ducts fine",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.albumin",
+        "test": "Albumin",
+        "value": "37",
+        "unit": "g/L",
+        "normal_range": "35-50",
+        "flag": "normal",
+        "comment": "Good nutrition",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.upt",
+        "test": "Urine pregnancy test",
+        "value": "Negative",
+        "unit": "",
+        "normal_range": "negative",
+        "flag": "negative",
+        "comment": "Not pregnant",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "book",
+        "source_row": "SR-2405"
+      }
+    ],
+    "scores": [
+      {
+        "name": "NEWS2",
+        "value": "0",
+        "note": "Computed from the baseline vital signs",
+        "origin": "book"
+      }
+    ],
+    "problems": [
+      {
+        "id": "a.nothing",
+        "type": "information_only",
+        "label": "Nothing abnormal: the patient is fit and fasted",
+        "rank": 1,
+        "why": "The task is to confirm identity, allergies, fasting and the usual tests without inventing problems.",
+        "expected_actions": [
+          "Complete the identity check against the wristband and the notes",
+          "Confirm there are no allergies",
+          "Check fasting times",
+          "Do the liver tests and the urine pregnancy test"
+        ]
+      },
+      {
+        "id": "a.blockers",
+        "type": "safety_blocker",
+        "label": "Identity, allergy, consent and pregnancy-status checkpoints",
+        "rank": 2,
+        "why": "No transfer until each checkpoint is closed.",
+        "expected_actions": [
+          "Close each checkpoint before transfer"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "a.d1",
+        "prompt": "Which extra tests does Mrs Javed need before surgery?",
+        "rule": null,
+        "options": [
+          {
+            "id": "a.d1.1",
+            "text": "Only the liver tests and the pregnancy test: she is healthy and under 65, so chest X-ray, ECG, clotting and kidney tests would not change anything",
+            "correct": true,
+            "consequence": "Matches the book: routine extra tests are not ordered."
+          },
+          {
+            "id": "a.d1.2",
+            "text": "Chest X-ray, ECG, clotting and kidney tests as well",
+            "correct": false,
+            "consequence": "Not harmful, but none would change management; the debrief notes the wasted time."
+          }
+        ]
+      },
+      {
+        "id": "a.d2",
+        "prompt": "Is she fasted enough for 09:00?",
+        "rule": "fasting_planned",
+        "options": [
+          {
+            "id": "a.d2.1",
+            "text": "Yes: last solid food was about 12 hours ago and her last water 2.5 hours ago",
+            "correct": true,
+            "consequence": "Within the 6 hour and 2 hour rules."
+          },
+          {
+            "id": "a.d2.2",
+            "text": "No: postpone",
+            "correct": false,
+            "consequence": "Unnecessary delay."
+          }
+        ]
+      },
+      {
+        "id": "a.d3",
+        "prompt": "Proceed to theatre?",
+        "rule": null,
+        "options": [
+          {
+            "id": "a.d3.1",
+            "text": "Yes: safe to continue",
+            "correct": true,
+            "consequence": "End state: ready for incision."
+          },
+          {
+            "id": "a.d3.2",
+            "text": "Postpone",
+            "correct": false,
+            "consequence": "No reason to postpone."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "ready",
+    "paths": {
+      "correct": [
+        "Check identity: spoken name and date of birth, wristband, notes",
+        "Allergies: none",
+        "Short history including the red flags and fasting times",
+        "Baseline vital signs, NEWS2 0",
+        "Liver tests and urine pregnancy test",
+        "Report to the anaesthetist; proceed"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Orders chest X-ray, ECG, clotting and kidney tests",
+          "shows": "Results all normal; time passes",
+          "risk": "Delay and cost with no benefit",
+          "recovery": "Stop ordering; proceed once the standard checks are done"
+        }
+      ],
+      "missed": [
+        "Skipping the urine pregnancy test (hospital policy) leaves the pregnancy status undocumented at Sign In"
+      ],
+      "recovery": [
+        "Do the test late; document; tell the anaesthetist"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Identity matched in three places",
+        "Fasting times adequate",
+        "No unnecessary tests"
+      ],
+      "missed": [
+        "Pregnancy status not documented"
+      ],
+      "priority": "Confirm identity, allergies and fasting",
+      "why_priority": "Wrong-patient and fasting errors are the most serious avoidable harms",
+      "related": "The checks are independent",
+      "independent": "Nothing in this case is connected: it is a clean pass",
+      "trigger_escalation": "Any mismatch in identity or an unknown allergy",
+      "if_ignored": "Not applicable: the case ends well",
+      "remember": "A normal patient still needs every check; do not invent problems"
+    },
+    "verification": [
+      "V-09"
+    ],
+    "sources": {
+      "story": "SR-2300",
+      "authored": "SR-3700",
+      "measurements": [
+        "SR-2400",
+        "SR-2401",
+        "SR-2402",
+        "SR-2403",
+        "SR-2404",
+        "SR-2405"
+      ]
+    },
+    "risk": {
+      "asa": {
+        "min": 1,
+        "max": 1,
+        "emergency": false,
+        "why": "She is fit, a non-smoker, drinks little and has no illness: healthy is ASA 1 (walkthrough Scene 5).",
+        "origin": "book"
+      },
+      "plan": "standard_ga"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S1",
+      "seed": 300,
+      "spine": "VAR-S1-A",
+      "blocks": [
+        "DEM-STK-S2-D",
+        "NAME-FIRST-SADIA-F",
+        "NAME-LAST-JAVED",
+        "PSH-VAR-S2-F",
+        "SOC-VAR-S2-L"
+      ],
+      "solver_steps": 7
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 300,
+    "spine": "VAR-S1-A",
+    "blocks": [
+      "DEM-STK-S2-D",
+      "NAME-FIRST-SADIA-F",
+      "NAME-LAST-JAVED",
+      "PSH-VAR-S2-F",
+      "SOC-VAR-S2-L"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S1-A",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "85724479a9cfcdfa",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.bilirubin",
+        "action": "kept",
+        "why": "the value is named in the story"
+      },
+      {
+        "slot": "lab.upt",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.albumin",
+        "action": "drawn",
+        "from": "42",
+        "to": "37",
+        "source": "dataset",
+        "together_with": [
+          "lab.alp",
+          "lab.alt",
+          "lab.ggt"
+        ]
+      },
+      {
+        "slot": "lab.alp",
+        "action": "drawn",
+        "from": "78",
+        "to": "90",
+        "source": "dataset",
+        "together_with": [
+          "lab.albumin",
+          "lab.alt",
+          "lab.ggt"
+        ]
+      },
+      {
+        "slot": "lab.alt",
+        "action": "drawn",
+        "from": "24",
+        "to": "20",
+        "source": "dataset",
+        "together_with": [
+          "lab.albumin",
+          "lab.alp",
+          "lab.ggt"
+        ]
+      },
+      {
+        "slot": "lab.ggt",
+        "action": "drawn",
+        "from": "22",
+        "to": "30",
+        "source": "band_only",
+        "together_with": [
+          "lab.albumin",
+          "lab.alp",
+          "lab.alt"
+        ]
+      },
+      {
+        "slot": "obs.initial.heart_rate",
+        "action": "drawn",
+        "from": "76",
+        "to": "84"
+      },
+      {
+        "slot": "obs.initial.systolic_bp",
+        "action": "drawn",
+        "from": "124",
+        "to": "121"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "drawn",
+        "from": "14",
+        "to": "14"
+      },
+      {
+        "slot": "obs.initial.spo2",
+        "action": "drawn",
+        "from": "98",
+        "to": "98"
+      },
+      {
+        "slot": "obs.initial.temperature_c",
+        "action": "drawn",
+        "from": "36.7",
+        "to": "36.6"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": null,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 1.0,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage",
+      "discoverable"
+    ],
+    "advisory": [],
+    "unmet_dimensions": []
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01",
+        "basis": "book",
+        "picture_id": "us-gb-01-r1",
+        "dataset": "UIdataGB",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "gallbladder",
+          "gallstones"
+        ],
+        "report_id": "rep-us-gb-01-r1",
+        "report": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+        "measurements": {}
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S1-0300-001",
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [],
+  "fingerprint_levels": {
+    "structural": [
+      "block:PSH-VAR-S2-F",
+      "primary:a.nothing",
+      "scenario:S1",
+      "spine:VAR-S1-A"
+    ],
+    "clinical": [
+      "finding:US-GB-01",
+      "news2:low",
+      "problem_type:information_only",
+      "problem_type:safety_blocker",
+      "result:urine pregnancy test:negative",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-STK-S2-D",
+      "block:SOC-VAR-S2-L",
+      "name:7f5601802a",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "6a9ff3b3ea0bf1db8f55653cd5bfc3b1b66a089942c8e2aed74aa292bc8390dc",
+  "package_sha256": "2d103c546b61e4974162d7acd192a33a3923802efca9b889dc9f1273c6cc7082"
+}

@@ -427,6 +427,7 @@
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
       "labs": "421044953f64d79b",
       "vitals": "ed15e38f9f4bdc0e"
     },
@@ -438,6 +439,10 @@
       "LG-07",
       "LG-08"
     ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
     "novelty_attempts": [
       {
         "attempt": 0,
@@ -606,6 +611,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "ff8d253583d70f9f171417331f695bfbd489d2dbbd0e49509bdf46ef40d3bd3b",
-  "package_sha256": "d2c1ebde99deffa1a57d575c8952a24e0b9c5bade4817406d265fe28cae8809c"
+  "reproducibility_key": "7f3ead9ac1389686202b336c40ecbaf3d4e86b7ec8be11ced0ecf58114733711",
+  "package_sha256": "d14ff2d4206fe4c8e3aba2b7a2833f884940b961573846207134656caafad2fa"
 }

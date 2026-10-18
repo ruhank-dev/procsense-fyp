@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "id": "GEN-S1-0007-001",
+  "id": "GEN-S1-0200-001",
   "status": "GENERATED_PRACTICE_ONLY",
-  "request_id": "63517c5e803aafcb",
+  "request_id": "62d5ed66e8b0822e",
   "case": {
     "schema": 1,
-    "id": "GEN-S1-0007-001",
-    "walkthrough_label": "Patient S1-D - on a blood thinner (composed GEN-S1-0007-001)",
+    "id": "GEN-S1-0200-001",
+    "walkthrough_label": "Patient S1-D - on a blood thinner (composed GEN-S1-0200-001)",
     "scenario": "S1",
     "tier": "P0",
     "synthetic": true,
@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mr",
-      "full_name": "Sajid Butt",
+      "full_name": "Zahid Tufail",
       "sex": "M",
-      "age": 69,
-      "occupation": "retired shopkeeper",
-      "dob": "1957-09-13",
-      "mrn": "281929"
+      "age": 65,
+      "occupation": "retired bus driver",
+      "dob": "1961-02-14",
+      "mrn": "344531"
     },
-    "spoken_identity_answer": "Sajid Butt, thirteenth of September 1957.",
+    "spoken_identity_answer": "Zahid Tufail, fourteenth of February 1961.",
     "wristband": {
-      "name_text": "SAJID BUTT",
-      "dob_text": "13/09/1957",
-      "mrn_text": "MR 281929"
+      "name_text": "ZAHID TUFAIL",
+      "dob_text": "14/02/1961",
+      "mrn_text": "MR 344531"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "10:00",
-      "summary": "Mr Sajid, 69, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
+      "summary": "Mr Zahid, 65, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
     },
     "history": [
       {
@@ -210,12 +210,12 @@
         "condition": "initial",
         "heart_rate": 78,
         "heart_rhythm": "irregular",
-        "systolic_bp": 127,
+        "systolic_bp": 155,
         "diastolic_bp": 82,
         "respiratory_rate": 14,
         "spo2": 97,
         "oxygen": "room_air",
-        "temperature_c": 36.8,
+        "temperature_c": 36.7,
         "acvpu": "A",
         "pain_score": 0,
         "news2": 0,
@@ -425,31 +425,30 @@
     "created_by": "composer",
     "composition": {
       "template": "SCN-S1",
-      "seed": 7,
+      "seed": 200,
       "spine": "VAR-S1-D",
       "blocks": [
-        "DEM-VAR-S2-E",
-        "NAME-FIRST-SAJID-M",
-        "NAME-LAST-BUTT",
-        "PSH-STK-S1-C"
+        "DEM-VAR-S1-D",
+        "NAME-FIRST-ZAHID-M",
+        "NAME-LAST-TUFAIL"
       ],
-      "solver_steps": 5
+      "solver_steps": 4
     }
   },
   "provenance": {
     "generator": "skeleton-1",
-    "seed": 7,
+    "seed": 200,
     "spine": "VAR-S1-D",
     "blocks": [
-      "DEM-VAR-S2-E",
-      "NAME-FIRST-SAJID-M",
-      "NAME-LAST-BUTT",
-      "PSH-STK-S1-C"
+      "DEM-VAR-S1-D",
+      "NAME-FIRST-ZAHID-M",
+      "NAME-LAST-TUFAIL"
     ],
     "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
       "labs": "421044953f64d79b",
       "vitals": "ed15e38f9f4bdc0e"
     },
@@ -461,6 +460,10 @@
       "LG-07",
       "LG-08"
     ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
     "novelty_attempts": [
       {
         "attempt": 0,
@@ -470,7 +473,7 @@
       }
     ]
   },
-  "fingerprint": "b65173c608669b2e",
+  "fingerprint": "806593696841c450",
   "quality": {
     "numeric_log": [
       {
@@ -489,16 +492,15 @@
         "why": "the value is named in the story"
       },
       {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "kept",
+        "why": "the value is named in the story"
+      },
+      {
         "slot": "obs.initial.systolic_bp",
         "action": "drawn",
         "from": "134",
-        "to": "127"
-      },
-      {
-        "slot": "obs.initial.respiratory_rate",
-        "action": "drawn",
-        "from": "14",
-        "to": "14"
+        "to": "155"
       },
       {
         "slot": "obs.initial.spo2",
@@ -510,7 +512,7 @@
         "slot": "obs.initial.temperature_c",
         "action": "drawn",
         "from": "36.7",
-        "to": "36.8"
+        "to": "36.7"
       }
     ],
     "media": [
@@ -609,12 +611,12 @@
     ],
     "imaging_rows": [
       {
-        "case_id": "GEN-S1-0007-001",
+        "case_id": "GEN-S1-0200-001",
         "test": "ecg",
         "finding_code": "ECG-03"
       },
       {
-        "case_id": "GEN-S1-0007-001",
+        "case_id": "GEN-S1-0200-001",
         "test": "ultrasound_gallbladder",
         "finding_code": "US-GB-01"
       }
@@ -639,7 +641,6 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-STK-S1-C",
       "primary:d.anticoag",
       "scenario:S1",
       "spine:VAR-S1-D"
@@ -655,8 +656,8 @@
     ],
     "surface": [
       "age:60s",
-      "block:DEM-VAR-S2-E",
-      "name:5d2f228732",
+      "block:DEM-VAR-S1-D",
+      "name:b7b1f32cf4",
       "sex:M"
     ]
   },
@@ -667,6 +668,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "c9d34c6013327b4943dd8426669a7560311b31416f3e54c64c5086f325017d3f",
-  "package_sha256": "efb95a82fc4f8cb1024ad3d44be12e957099d4c2dada1fa29657c790f7a29248"
+  "reproducibility_key": "7b720f113c81c5ffdaf4d304a9cc381cfea5230e464359a5456985a3cafd4ae0",
+  "package_sha256": "f370fc00215283cc9bf9548bf6367eb7773413d7c7ad08852c209083e9d4492f"
 }

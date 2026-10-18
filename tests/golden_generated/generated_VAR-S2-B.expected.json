@@ -1,18 +1,17 @@
 {
-  "case": "GEN-S2-0004-001",
+  "case": "GEN-S2-0100-001",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "3265715bb2344640dbf673997863195808ca7a6103d8ca35a3a5cad1842b8117",
-  "state_hash": "e107905fc59d29618943c7bf51ca2ac7cf7e3ac38efa081dc65dbb5c4f3e3a10",
+  "log_hash": "24f38b8be56d1db002e6724e8393ece92e68aa920aa0622e7b2f4c388229bb7d",
+  "state_hash": "7b6b3a10eb64001e9e58218c27b3037c60eb2a13dfb3d28b47765c6e5817ffc0",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
     "nurse": "",
-    "allergy_band": true,
+    "allergy_band": false,
     "disclosed_topics": [
       "identity",
       "allergies",
-      "allergy_reaction",
       "reason_for_admission",
       "responsible_adult",
       "complaint",
@@ -21,7 +20,6 @@
     "vitals": {},
     "flags": [
       "allergy_reaction_asked",
-      "condition.penicillin_allergy",
       "condition.pregnancy",
       "decision.declared",
       "endstate.resolved",

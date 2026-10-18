@@ -1927,7 +1927,7 @@
         "src/ProcSense.Core/Session.cs",
         "src/ProcSense.Core/Replay/SessionFile.cs",
         "tests/golden",
-        "tests/golden_generated (six generated cases, both operating systems)",
+        "tests/golden_generated (fourteen generated cases, both operating systems)",
         "tools/ci/test_generation_live.py"
       ],
       "tasks": [

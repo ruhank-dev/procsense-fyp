@@ -40,7 +40,7 @@ class Parity(unittest.TestCase):
     def test_the_generated_goldens_pass_in_the_engine(self):
         r = cli("golden", "--dir", str(GEN))
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-        self.assertIn("golden: 6/6 pass", r.stdout)
+        self.assertIn("golden: 14/14 pass", r.stdout)
 
     def test_a_generated_case_ends_and_scores_like_the_case_it_keeps_the_story_of(self):
         differences = []

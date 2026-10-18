@@ -1,0 +1,594 @@
+{
+  "version": 1,
+  "id": "GEN-S1-0500-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "da8569798c2a7e7d",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S1-0500-001",
+    "walkthrough_label": "Patient S1-E - the planned patient with an inflamed gallbladder (composed GEN-S1-0500-001)",
+    "scenario": "S1",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Ms",
+      "full_name": "Maria Iqbal",
+      "sex": "F",
+      "age": 27,
+      "occupation": "call-centre agent",
+      "dob": "1999-02-12",
+      "mrn": "392794"
+    },
+    "spoken_identity_answer": "Maria Iqbal, twelfth of February 1999.",
+    "wristband": {
+      "name_text": "MARIA IQBAL",
+      "dob_text": "12/02/1999",
+      "mrn_text": "MR 392794"
+    },
+    "allergies": [],
+    "allergy_answer": "None.",
+    "reason_answer": "To have my gallbladder taken out, but the pain is bad today.",
+    "presentation": {
+      "setting": "pre-assessment",
+      "time_now": "08:00",
+      "surgery_time": "10:30",
+      "summary": "Ms Maria, 27, booked for planned gallbladder removal, arrives with constant pain for 2 days and felt hot overnight: she now has an acute illness."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Constant pain under the right ribs for two days; I felt hot and shivery overnight.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No yellow eyes. Urine normal colour.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "Gallstones.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "Paracetamol.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Dry toast yesterday at noon; nothing since because of the pain.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "light_meal",
+          "hours_before_now": 20.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Sips of water at 05:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 3.0
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Last period 3 weeks ago; she agrees to a test.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "observations": [
+      {
+        "time": "08:00",
+        "condition": "initial",
+        "heart_rate": 108,
+        "heart_rhythm": "regular",
+        "systolic_bp": 118,
+        "diastolic_bp": 72,
+        "respiratory_rate": 20,
+        "spo2": 97,
+        "oxygen": "room_air",
+        "temperature_c": 38.4,
+        "acvpu": "A",
+        "pain_score": 6,
+        "news2": 2,
+        "note": "NEWS2 2 as the book states: HR 108 (1) + T 38.4 (1).",
+        "origin": "book"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.murphy",
+        "system": "murphy",
+        "finding": "Tender under the right ribs; Murphy's sign positive.",
+        "abnormal": true,
+        "disclose_on": [
+          "examine:murphy"
+        ],
+        "origin": "book",
+        "painful": true,
+        "flags": [
+          "finding.murphy_positive"
+        ]
+      },
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Tender under the right ribs; no guarding elsewhere; no palpable lump.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored",
+        "painful": true
+      },
+      {
+        "id": "ex.eyes",
+        "system": "eyes",
+        "finding": "No jaundice.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:eyes"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.wbc",
+        "test": "WBC",
+        "value": "15.2",
+        "unit": "x10^9/L",
+        "normal_range": "4.0-11.0",
+        "flag": "high",
+        "comment": "Raised: whole-body inflammation (not above 18)",
+        "quality": null,
+        "previous": {
+          "value": "6.8",
+          "when": "pre-assessment 6 weeks ago"
+        },
+        "minutes_to_result": 45,
+        "origin": "book",
+        "source_row": "SR-2443"
+      },
+      {
+        "id": "lab.crp",
+        "test": "CRP",
+        "value": "96",
+        "unit": "mg/L",
+        "normal_range": "below 5",
+        "flag": "high",
+        "comment": "Raised: whole-body inflammation",
+        "quality": null,
+        "previous": {
+          "value": "4",
+          "when": "pre-assessment 6 weeks ago"
+        },
+        "minutes_to_result": 45,
+        "origin": "book",
+        "source_row": "SR-2443"
+      },
+      {
+        "id": "lab.upt",
+        "test": "Urine pregnancy test",
+        "value": "Negative",
+        "unit": "",
+        "normal_range": "negative",
+        "flag": "negative",
+        "comment": "Not pregnant",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 20,
+        "origin": "authored"
+      }
+    ],
+    "scores": [
+      {
+        "name": "NEWS2",
+        "value": "2",
+        "note": "HR 108 (1) + T 38.4 (1) as the book states; recomputed",
+        "origin": "book"
+      },
+      {
+        "name": "Tokyo 2018 grade",
+        "value": "I (mild)",
+        "note": "WBC 15.2 not above 18; symptoms under 72 hours; no mass; no organ failure",
+        "origin": "book"
+      }
+    ],
+    "problems": [
+      {
+        "id": "e.cholecystitis",
+        "type": "pathway_changing",
+        "label": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+        "rank": 1,
+        "why": "A planned patient with local signs (Murphy's), systemic inflammation (WBC, CRP, fever) and a scan with a thick wall and fluid is no longer a routine list patient.",
+        "expected_actions": [
+          "Recognise A (local signs), B (systemic signs) and C (imaging)",
+          "Grade it: Grade I",
+          "Do not take her on today's planned list as a routine case",
+          "Senior surgeon review; antibiotics per protocol; move to the acute pathway"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "e.d1",
+        "prompt": "Ms Maria has fever, a positive Murphy's sign, WBC 15.2, CRP 96 and a scan with a 6 mm wall and fluid. What now?",
+        "rule": "gallbladder_moderate_grade",
+        "options": [
+          {
+            "id": "e.d1.1",
+            "text": "She has acute cholecystitis (Grade I): not suitable for the routine list; senior review, antibiotics and the acute pathway",
+            "correct": true,
+            "consequence": "Matches the book; early keyhole surgery is usually the plan."
+          },
+          {
+            "id": "e.d1.2",
+            "text": "Proceed with the planned operation as booked",
+            "correct": false,
+            "consequence": "She is acutely ill; the elective pathway no longer applies."
+          },
+          {
+            "id": "e.d1.3",
+            "text": "Send her home on tablets",
+            "correct": false,
+            "consequence": "Fever and raised inflammatory markers need review today."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "redirected",
+    "paths": {
+      "correct": [
+        "Notice fever and tachycardia in a planned patient",
+        "Examine: Murphy's positive",
+        "Blood tests: WBC and CRP",
+        "Ultrasound: wall 6 mm, fluid",
+        "Tokyo grade I",
+        "Call the senior; acute pathway"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Continues the list",
+          "shows": "The anaesthetist finds T 38.4 at Sign In",
+          "risk": "An acutely infected patient anaesthetised as elective",
+          "recovery": "Stop and escalate"
+        }
+      ],
+      "missed": [
+        "Does not take a temperature: the inflammation is missed until the anaesthetist checks"
+      ],
+      "recovery": [
+        "Repeat vital signs, send bloods, call the senior"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Fever and tachycardia noticed",
+        "Tokyo A, B and C combined",
+        "Pathway changed"
+      ],
+      "missed": [
+        "Not examining the abdomen"
+      ],
+      "priority": "Acute cholecystitis in a planned patient",
+      "why_priority": "The pathway changes from elective to acute",
+      "related": "Local signs, systemic signs and the scan fit together",
+      "independent": "None",
+      "trigger_escalation": "Fever in a planned patient",
+      "if_ignored": "Worsening infection and a delayed operation",
+      "remember": "Planned patients can arrive unwell: always take the temperature"
+    },
+    "verification": [
+      "V-06",
+      "V-01"
+    ],
+    "sources": {
+      "story": "SR-2302",
+      "authored": "SR-3702",
+      "measurements": [
+        "SR-2442",
+        "SR-2443",
+        "SR-2444"
+      ]
+    },
+    "risk": {
+      "asa": {
+        "min": 2,
+        "max": 3,
+        "emergency": false,
+        "why": "A planned patient now unwell with an inflamed gallbladder, no organ failure: mild systemic illness (ASA 2) to severe (ASA 3).",
+        "origin": "authored"
+      },
+      "plan": "standard_ga"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S1",
+      "seed": 500,
+      "spine": "VAR-S1-E",
+      "blocks": [
+        "DEM-VAR-S2-B",
+        "NAME-FIRST-MARIA-F",
+        "NAME-LAST-IQBAL"
+      ],
+      "solver_steps": 7
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 500,
+    "spine": "VAR-S1-E",
+    "blocks": [
+      "DEM-VAR-S2-B",
+      "NAME-FIRST-MARIA-F",
+      "NAME-LAST-IQBAL"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S1-E",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "bfbee1edf894b23a",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.wbc",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.crp",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.upt",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "obs.initial",
+        "action": "kept",
+        "why": "the starting observation is not an all-normal one"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-02-r1",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 1.0,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [],
+    "unmet_dimensions": []
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-02",
+        "basis": "book",
+        "picture_id": "us-gb-02-r1",
+        "dataset": "UIdataGB",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "gallbladder",
+          "gallstones",
+          "cholecystitis",
+          "wall_thickening"
+        ],
+        "report_id": "rep-us-gb-02-r1",
+        "report": "Thickened gallbladder wall with surrounding fluid in keeping with acute inflammation. Measurements are not stated for this image. Impression: Appearances of acute cholecystitis (inflamed gallbladder).",
+        "measurements": {}
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-02-r1",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S1-0500-001",
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-02"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S1-E",
+      "problem": "e.cholecystitis",
+      "trigger": {
+        "in": [
+          "ultrasound",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the trainee opens the ultrasound report that shows the inflamed gallbladder",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "primary:e.cholecystitis",
+      "scenario:S1",
+      "spine:VAR-S1-E"
+    ],
+    "clinical": [
+      "finding:US-GB-02",
+      "news2:low",
+      "problem_type:pathway_changing",
+      "result:crp:high",
+      "result:urine pregnancy test:negative",
+      "result:wbc:high",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-VAR-S2-B",
+      "name:471bf32227",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "cdaf5cc72c7ec471e1b577af3910431bee667f112379307daa8a6f05d081ba9e",
+  "package_sha256": "4e431cec3c1ff144c13112cacf2fff9982132a9152a25703ea154eeb27d03e69"
+}

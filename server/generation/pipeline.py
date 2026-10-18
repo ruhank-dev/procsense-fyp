@@ -74,7 +74,7 @@ def _gate(pkg: dict, objectives: dict, ctx: Context) -> list[dict]:
 
 
 def generate(request: dict, history: list[ob.SessionRecord], novelty_history: list[dict], ctx: Context, draw_seed=None, recent_fingerprints: list[str] | None = None,
-             deliberate: bool = False, budget: repair.Budget | None = None, serial: int = 1) -> Result:
+             deliberate: bool = False, budget: repair.Budget | None = None, serial: int = 1, force_spine: str | None = None) -> Result:
     req = contracts.accept_request(request, draw_seed or (lambda n: 0))
     objectives = ob.derive(req, history, ctx.tables, recent_fingerprints)
     budget = budget or repair.Budget()
@@ -84,7 +84,7 @@ def generate(request: dict, history: list[ob.SessionRecord], novelty_history: li
         o = dict(objectives)
         o["seed"] = objectives["seed"] + attempt * 15485863
         o["exclusions"] = {**objectives["exclusions"], "spines": list(dict.fromkeys([*objectives["exclusions"]["spines"], *avoid]))}
-        sk, lv = _candidate(o, ctx, serial)
+        sk, lv = _candidate(o, ctx, serial, **({"force_spine": force_spine} if force_spine else {}))           # force_spine: make a case from one named spine (the golden snapshot of generated cases uses it); a request never sets it
         sk["_objectives"] = o
         return sk, lv
 

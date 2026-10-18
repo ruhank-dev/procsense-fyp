@@ -1,9 +1,9 @@
 {
-  "case": "GEN-S1-0007-001",
+  "case": "GEN-S1-0200-001",
   "seed": "42",
   "mode": "practice",
   "log_hash": "ad8831a0b3fab1d967e57b5cd21799f6615abbac205789b77f3c8ee57bc2791e",
-  "state_hash": "90ff12815514b6c0c9a3afc6d4321fbf71f0b43a1f680432c621c22b37fcd2b2",
+  "state_hash": "1ed642373fcb0979194549acdb45a121299ff1e1a5145939c08449202dbbf99d",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -27,7 +27,7 @@
       "last_drink",
       "pregnancy"
     ],
-    "vitals": { "spo2": "97", "oxygen": "room_air", "heart_rate": "78", "systolic_bp": "127", "diastolic_bp": "82", "respiratory_rate": "14", "temperature_c": "36.8", "acvpu": "A", "pain_score": "0" },
+    "vitals": { "spo2": "97", "oxygen": "room_air", "heart_rate": "78", "systolic_bp": "155", "diastolic_bp": "82", "respiratory_rate": "14", "temperature_c": "36.7", "acvpu": "A", "pain_score": "0" },
     "flags": [
       "allergy_reaction_asked",
       "anaesthetic.plan_agreed",

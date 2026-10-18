@@ -410,7 +410,7 @@ The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LiteP
 | Tests | 17 P0 goldens; EventDirectorTests; physiology tests |
 | Acceptance | Replay of every session reproduces its log hash. |
 | Status | Implemented and tested |
-| Evidence | src/ProcSense.Core/Session.cs; src/ProcSense.Core/Replay/SessionFile.cs; tests/golden; tests/golden_generated (six generated cases, both operating systems); tools/ci/test_generation_live.py |
+| Evidence | src/ProcSense.Core/Session.cs; src/ProcSense.Core/Replay/SessionFile.cs; tests/golden; tests/golden_generated (fourteen generated cases, both operating systems); tools/ci/test_generation_live.py |
 | Blockers | — |
 | Tasks | p1-live-scenario-generation-s11 |
 

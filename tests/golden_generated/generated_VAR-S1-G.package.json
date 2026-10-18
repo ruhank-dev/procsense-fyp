@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "id": "GEN-S1-0003-001",
+  "id": "GEN-S1-0000-001",
   "status": "GENERATED_PRACTICE_ONLY",
-  "request_id": "d18c0189d47b9b5d",
+  "request_id": "dbd5e6c72582da81",
   "case": {
     "schema": 1,
-    "id": "GEN-S1-0003-001",
-    "walkthrough_label": "Patient S1-G - ate breakfast (composed GEN-S1-0003-001)",
+    "id": "GEN-S1-0000-001",
+    "walkthrough_label": "Patient S1-G - ate breakfast (composed GEN-S1-0000-001)",
     "scenario": "S1",
     "tier": "P0",
     "synthetic": true,
@@ -15,32 +15,32 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Helena Chen",
+      "full_name": "Rabia Mirza",
       "sex": "F",
-      "age": 25,
-      "occupation": "call-centre agent",
-      "dob": "2001-07-06",
-      "mrn": "181446"
+      "age": 26,
+      "occupation": "salon assistant",
+      "dob": "2000-06-06",
+      "mrn": "351045"
     },
-    "spoken_identity_answer": "Helena Chen, sixth of July 2001.",
+    "spoken_identity_answer": "Rabia Mirza, sixth of June 2000.",
     "wristband": {
-      "name_text": "HELENA CHEN",
-      "dob_text": "06/07/2001",
-      "mrn_text": "MR 181446"
+      "name_text": "RABIA MIRZA",
+      "dob_text": "06/06/2000",
+      "mrn_text": "MR 351045"
     },
     "allergies": [
       {
-        "reaction": "Throat swelling and collapse in 2019 (anaphylaxis)",
+        "reaction": "Mild rash as a child (delayed)",
         "substance": "Penicillin"
       }
     ],
-    "allergy_answer": "Penicillin: throat swelling and collapse in 2019.",
+    "allergy_answer": "Penicillin: I had a rash as a child.",
     "reason_answer": "To have my gallbladder taken out.",
     "presentation": {
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "09:00",
-      "summary": "Ms Helena, 25, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
+      "summary": "Ms Rabia, 26, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
     },
     "history": [
       {
@@ -187,14 +187,14 @@
       {
         "time": "08:00",
         "condition": "initial",
-        "heart_rate": 76,
+        "heart_rate": 80,
         "heart_rhythm": "regular",
-        "systolic_bp": 129,
+        "systolic_bp": 124,
         "diastolic_bp": 74,
         "respiratory_rate": 14,
-        "spo2": 99,
+        "spo2": 100,
         "oxygen": "room_air",
-        "temperature_c": 36.7,
+        "temperature_c": 36.6,
         "acvpu": "A",
         "pain_score": 0,
         "news2": 0,
@@ -337,31 +337,34 @@
     "created_by": "composer",
     "composition": {
       "template": "SCN-S1",
-      "seed": 3,
+      "seed": 0,
       "spine": "VAR-S1-G",
       "blocks": [
-        "ALG-PENICILLIN-3",
-        "DEM-VAR-S2-B",
-        "NAME-FIRST-HELENA-F",
-        "NAME-LAST-CHEN"
+        "ALG-PENICILLIN-1",
+        "DEM-SC-2",
+        "NAME-FIRST-RABIA-F",
+        "NAME-LAST-MIRZA",
+        "PSH-VAR-S2-F"
       ],
-      "solver_steps": 4
+      "solver_steps": 5
     }
   },
   "provenance": {
     "generator": "skeleton-1",
-    "seed": 3,
+    "seed": 0,
     "spine": "VAR-S1-G",
     "blocks": [
-      "ALG-PENICILLIN-3",
-      "DEM-VAR-S2-B",
-      "NAME-FIRST-HELENA-F",
-      "NAME-LAST-CHEN"
+      "ALG-PENICILLIN-1",
+      "DEM-SC-2",
+      "NAME-FIRST-RABIA-F",
+      "NAME-LAST-MIRZA",
+      "PSH-VAR-S2-F"
     ],
     "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
       "labs": "421044953f64d79b",
       "vitals": "ed15e38f9f4bdc0e"
     },
@@ -373,6 +376,10 @@
       "LG-07",
       "LG-08"
     ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
     "novelty_attempts": [
       {
         "attempt": 0,
@@ -382,7 +389,7 @@
       }
     ]
   },
-  "fingerprint": "ae827db60504a019",
+  "fingerprint": "4f77c2b3d38ca7af",
   "quality": {
     "numeric_log": [
       {
@@ -394,13 +401,13 @@
         "slot": "obs.initial.heart_rate",
         "action": "drawn",
         "from": "72",
-        "to": "76"
+        "to": "80"
       },
       {
         "slot": "obs.initial.systolic_bp",
         "action": "drawn",
         "from": "118",
-        "to": "129"
+        "to": "124"
       },
       {
         "slot": "obs.initial.respiratory_rate",
@@ -412,13 +419,13 @@
         "slot": "obs.initial.spo2",
         "action": "drawn",
         "from": "99",
-        "to": "99"
+        "to": "100"
       },
       {
         "slot": "obs.initial.temperature_c",
         "action": "drawn",
         "from": "36.6",
-        "to": "36.7"
+        "to": "36.6"
       }
     ],
     "media": [
@@ -482,7 +489,7 @@
     ],
     "imaging_rows": [
       {
-        "case_id": "GEN-S1-0003-001",
+        "case_id": "GEN-S1-0000-001",
         "test": "ultrasound_gallbladder",
         "finding_code": "US-GB-01"
       }
@@ -507,7 +514,8 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:ALG-PENICILLIN-3",
+      "block:ALG-PENICILLIN-1",
+      "block:PSH-VAR-S2-F",
       "primary:g.fasting",
       "scenario:S1",
       "spine:VAR-S1-G"
@@ -521,8 +529,8 @@
     ],
     "surface": [
       "age:20s",
-      "block:DEM-VAR-S2-B",
-      "name:4d4f6223c4",
+      "block:DEM-SC-2",
+      "name:e5425c4732",
       "sex:F"
     ]
   },
@@ -533,6 +541,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "27e83c118baca8d3ae4cb17977664e277e281677e1896be0f39247958a07265b",
-  "package_sha256": "0b6ab464b5b0abf409299bc1b57635b60abb4e318255ec8293e11199c15bd2b2"
+  "reproducibility_key": "82261d1676ed2aba891d65ea1e38ad3109f733ea7d0c23a049aa2bbbaa9f9217",
+  "package_sha256": "9fbb1f6b59604825c3fe567723ceda4fb5b668b1f8bd59decec5fbaed4daf547"
 }

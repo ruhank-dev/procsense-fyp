@@ -1,0 +1,613 @@
+{
+  "version": 1,
+  "id": "GEN-S2-0300-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "46487e81b758fe9e",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S2-0300-001",
+    "walkthrough_label": "Patient S2-D - the scan didn't answer the question (composed GEN-S2-0300-001)",
+    "scenario": "S2",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Ms",
+      "full_name": "Sadia Bello",
+      "sex": "F",
+      "age": 21,
+      "occupation": "salon assistant",
+      "dob": "2005-02-18",
+      "mrn": "456614"
+    },
+    "spoken_identity_answer": "Sadia Bello, eighteenth of February 2005.",
+    "wristband": {
+      "name_text": "SADIA BELLO",
+      "dob_text": "18/02/2005",
+      "mrn_text": "MR 456614"
+    },
+    "allergies": [
+      {
+        "reaction": "Mild rash as a child (delayed)",
+        "substance": "Penicillin"
+      }
+    ],
+    "allergy_answer": "Penicillin: I had a rash as a child.",
+    "reason_answer": "I have pain in my lower right tummy.",
+    "presentation": {
+      "setting": "emergency department",
+      "time_now": "13:00",
+      "summary": "Ms Sadia, 21, has pain 5/10 in the lower right tummy. The ultrasound says 'appendix not visualised, no free fluid'."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Pain in the lower right tummy since yesterday.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "book"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No fever; no vaginal bleeding; no urinary symptoms.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "None, but I am nervous about being put to sleep.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Breakfast at 08:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "unknown",
+          "hours_before_now": 5.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Water at 11:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 2.0
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Last period 3 weeks ago; the pregnancy test is negative.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "book"
+      }
+    ],
+    "observations": [
+      {
+        "time": "13:00",
+        "condition": "initial",
+        "heart_rate": 92,
+        "heart_rhythm": "regular",
+        "systolic_bp": 118,
+        "diastolic_bp": 72,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "oxygen": "room_air",
+        "temperature_c": 37.4,
+        "acvpu": "A",
+        "pain_score": 5,
+        "news2": 1,
+        "note": "Pain 5/10; T 37.4; HR 92.",
+        "origin": "book"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Mild tenderness in the lower right tummy; no guarding or rebound.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored",
+        "painful": true
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.wbc",
+        "test": "WBC",
+        "value": "5.3",
+        "unit": "x10^9/L",
+        "normal_range": "4.0-11.0",
+        "flag": "normal",
+        "comment": "Normal",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "authored"
+      },
+      {
+        "id": "lab.crp",
+        "test": "CRP",
+        "value": "22",
+        "unit": "mg/L",
+        "normal_range": "below 5",
+        "flag": "high",
+        "comment": "Mildly raised",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 45,
+        "origin": "book"
+      },
+      {
+        "id": "lab.upt",
+        "test": "Urine pregnancy test",
+        "value": "Negative",
+        "unit": "",
+        "normal_range": "negative",
+        "flag": "negative",
+        "comment": "Not pregnant",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 10,
+        "origin": "book"
+      }
+    ],
+    "scores": [
+      {
+        "name": "AIR",
+        "value": "5 (indeterminate)",
+        "note": "Intermediate",
+        "origin": "book"
+      },
+      {
+        "name": "NEWS2",
+        "value": "1",
+        "note": "HR 92 scores 1",
+        "origin": "authored"
+      }
+    ],
+    "problems": [
+      {
+        "id": "sd.unknown",
+        "type": "pathway_changing",
+        "label": "The scan did not answer the question: 'not visualised' is not 'negative'",
+        "rank": 1,
+        "why": "AIR 5 is intermediate; the appendix was not seen. The senior chooses CT, or admission with observation and re-scoring in 6 to 12 hours.",
+        "expected_actions": [
+          "Score: AIR 5",
+          "Do not treat 'not visualised' as negative",
+          "Senior decides: CT or admit, nil by mouth, pain relief, re-examine and re-score in 6 to 12 hours",
+          "Consider gynaecology causes (ovary)"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "sd.d1",
+        "prompt": "AIR 5 and 'appendix not visualised, no free fluid'. What now?",
+        "rule": "air_bands",
+        "options": [
+          {
+            "id": "sd.d1.1",
+            "text": "This is non-diagnostic: do not discharge; the senior decides between CT and admission with re-examination and re-scoring in 6 to 12 hours; consider gynaecology causes",
+            "correct": true,
+            "consequence": "Matches the book."
+          },
+          {
+            "id": "sd.d1.2",
+            "text": "Appendicitis is excluded: discharge",
+            "correct": false,
+            "consequence": "The classic beginner error."
+          },
+          {
+            "id": "sd.d1.3",
+            "text": "Operate immediately",
+            "correct": false,
+            "consequence": "Not indicated yet."
+          }
+        ]
+      }
+    ],
+    "expected_end_state": "redirected",
+    "paths": {
+      "correct": [
+        "Calculate AIR 5",
+        "Recognise 'not visualised' as inconclusive",
+        "Escalate to the senior; CT or admit and re-score",
+        "Consider ovarian causes"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Treats 'not visualised' as negative and discharges",
+          "shows": "She returns worse with a burst appendix",
+          "risk": "Perforation",
+          "recovery": "Recall; re-score; image"
+        }
+      ],
+      "missed": [
+        "Not considering gynaecological causes"
+      ],
+      "recovery": [
+        "Consider them now"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "Inconclusive scan recognised"
+      ],
+      "missed": [
+        "Gynaecology causes"
+      ],
+      "priority": "An inconclusive scan",
+      "why_priority": "A missed appendicitis may perforate",
+      "related": "Score, scan and observations",
+      "independent": "None",
+      "trigger_escalation": "'Not visualised' with an intermediate score",
+      "if_ignored": "Perforation",
+      "remember": "'Not seen' means 'we do not know'"
+    },
+    "verification": [
+      "V-11",
+      "V-12"
+    ],
+    "sources": {
+      "story": "SR-2316",
+      "authored": "SR-3712"
+    },
+    "risk": {
+      "asa": {
+        "min": 1,
+        "max": 1,
+        "emergency": true,
+        "why": "A healthy young adult in an emergency: healthy S2 is 1E in the book.",
+        "origin": "book"
+      },
+      "plan": "rsi"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S2",
+      "seed": 300,
+      "spine": "VAR-S2-D",
+      "blocks": [
+        "ALG-PENICILLIN-1",
+        "DEM-SC-2",
+        "NAME-FIRST-SADIA-F",
+        "NAME-LAST-BELLO",
+        "PSH-VAR-S1-M",
+        "SOC-SC-6"
+      ],
+      "solver_steps": 8
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 300,
+    "spine": "VAR-S2-D",
+    "blocks": [
+      "ALG-PENICILLIN-1",
+      "DEM-SC-2",
+      "NAME-FIRST-SADIA-F",
+      "NAME-LAST-BELLO",
+      "PSH-VAR-S1-M",
+      "SOC-SC-6"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S2-D",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "57b4711b55db145f",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.crp",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.upt",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.wbc",
+        "action": "drawn",
+        "from": "10.9",
+        "to": "5.3",
+        "source": "dataset",
+        "together_with": []
+      },
+      {
+        "slot": "obs.initial",
+        "action": "kept",
+        "why": "the starting observation is not an all-normal one"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_appendix",
+        "action": "picked",
+        "picture_id": "us-ap-04-s2",
+        "candidates": 4
+      },
+      {
+        "slot": "ct_appendix_level",
+        "action": "picked",
+        "picture_id": "ct-ap-01-s3",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 0.5,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [
+      {
+        "code": "Q_TRAP",
+        "detail": "wrong options whose consequence names nothing the case holds: ['sd.d1.2']"
+      }
+    ],
+    "unmet_dimensions": []
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_appendix",
+        "finding_code": "US-AP-04",
+        "basis": "book",
+        "picture_id": "us-ap-04-s2",
+        "dataset": "ProcSense generated",
+        "licence": "ProcSense generated (CC0 for our own use)",
+        "real": false,
+        "quality_grade": "B",
+        "tags": [
+          "ultrasound",
+          "appendix",
+          "appendix_not_seen",
+          "non_diagnostic"
+        ],
+        "report_id": "rep-us-ap-04-s2",
+        "report": "Appendix not seen: bowel gas obscures the right iliac fossa. No other signs. Impression: Non-diagnostic (equivocal): this is not the same as a negative scan.",
+        "measurements": {
+          "appendix": "not_seen"
+        }
+      },
+      {
+        "test": "ct_appendix_level",
+        "finding_code": "CT-AP-01",
+        "basis": "proposed",
+        "picture_id": "ct-ap-01-s3",
+        "dataset": "ProcSense generated",
+        "licence": "ProcSense generated (CC0 for our own use)",
+        "real": false,
+        "quality_grade": "A",
+        "tags": [
+          "ct",
+          "appendix",
+          "appendicitis"
+        ],
+        "report_id": "rep-ct-ap-01-s3",
+        "report": "CT abdomen and pelvis, axial. The appendix is dilated to 13 mm with wall thickening and surrounding fat stranding. No collection or free gas. Impression: Acute appendicitis, uncomplicated.",
+        "measurements": {
+          "appendix_mm": "13.0",
+          "collection": "no"
+        }
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_appendix",
+        "action": "picked",
+        "picture_id": "us-ap-04-s2",
+        "candidates": 4
+      },
+      {
+        "slot": "ct_appendix_level",
+        "action": "picked",
+        "picture_id": "ct-ap-01-s3",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S2-0300-001",
+        "test": "ultrasound_appendix",
+        "finding_code": "US-AP-04"
+      },
+      {
+        "case_id": "GEN-S2-0300-001",
+        "test": "ct_appendix_level",
+        "finding_code": "CT-AP-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S2-D",
+      "problem": "sd.unknown",
+      "trigger": {
+        "in": [
+          "ultrasound",
+          {
+            "var": "viewed_tests"
+          }
+        ]
+      },
+      "how": "the trainee opens the scan report that did not answer the question",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:ALG-PENICILLIN-1",
+      "block:PSH-VAR-S1-M",
+      "primary:sd.unknown",
+      "scenario:S2",
+      "spine:VAR-S2-D"
+    ],
+    "clinical": [
+      "finding:CT-AP-01",
+      "finding:US-AP-04",
+      "news2:low",
+      "problem_type:pathway_changing",
+      "result:crp:high",
+      "result:urine pregnancy test:negative",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:20s",
+      "block:DEM-SC-2",
+      "block:SOC-SC-6",
+      "name:77158e3e13",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "3eb1042ec6bd85c09d1a810996b106362889f2fb6ca19aeb760ddbb42e4e7a20",
+  "package_sha256": "d3b5b9542bddb2ad288f2359beb54a9dc1e7206f6722bf24c30490a5c4614d2d"
+}

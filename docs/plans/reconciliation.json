@@ -691,12 +691,15 @@
   "p1-scenario-composer-difficulty-s05": {
    "owner": "Ruhan",
    "before": "No status recorded",
-   "now": "BLOCKED",
+   "now": "DONE",
    "evidence": [
-    "tools/composer/solve.py"
+    "tools/golden/generated.py",
+    "docs/research/review-packs/2026-10-18-composed.md",
+    "tests/golden_generated/generated_VAR-S1-A.package.json",
+    "tools/ci/test_generation_live.py"
    ],
-   "measured": "",
-   "open": "Composed cases need a named clinician's approval before they enter the pool"
+   "measured": "14 composed cases (8 S1, 6 S2) pass the generation gate, are GENERATED_PRACTICE_ONLY and play like their spines on the correct and dangerous paths (golden 14 of 14, engine 0.0.9)",
+   "open": "No clinician has read them; approval is optional under ADR-0008 and they stay practice-only"
   },
   "p1-theatre-extension-s01": {
    "owner": "Ruhan",

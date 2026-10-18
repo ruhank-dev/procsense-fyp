@@ -1,0 +1,36 @@
+{
+  "case": "GEN-S1-0700-001",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "2d0893d06f240c53e77e9c78bacced71f66f69f321f399b86844998e3a79fb56",
+  "state_hash": "47280c10ddcb1a99c7307b88e6892c22aaf5823721de57e73ef21d04b78e7d1e",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced",
+      "results.any_viewed"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "POSTPONED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 3,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

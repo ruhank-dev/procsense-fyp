@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "id": "GEN-S1-0000-001",
+  "id": "GEN-S1-0100-001",
   "status": "GENERATED_PRACTICE_ONLY",
-  "request_id": "dbd5e6c72582da81",
+  "request_id": "07f667d228ee819f",
   "case": {
     "schema": 1,
-    "id": "GEN-S1-0000-001",
-    "walkthrough_label": "Patient S1-H - possible pregnancy (composed GEN-S1-0000-001)",
+    "id": "GEN-S1-0100-001",
+    "walkthrough_label": "Patient S1-H - possible pregnancy (composed GEN-S1-0100-001)",
     "scenario": "S1",
     "tier": "P0",
     "synthetic": true,
@@ -15,32 +15,27 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Rabia Mirza",
+      "full_name": "Helena Chaudhry",
       "sex": "F",
-      "age": 26,
-      "occupation": "salon assistant",
-      "dob": "2000-06-06",
-      "mrn": "351045"
+      "age": 24,
+      "occupation": "dental student",
+      "dob": "2002-09-01",
+      "mrn": "600743"
     },
-    "spoken_identity_answer": "Rabia Mirza, sixth of June 2000.",
+    "spoken_identity_answer": "Helena Chaudhry, first of September 2002.",
     "wristband": {
-      "name_text": "RABIA MIRZA",
-      "dob_text": "06/06/2000",
-      "mrn_text": "MR 351045"
+      "name_text": "HELENA CHAUDHRY",
+      "dob_text": "01/09/2002",
+      "mrn_text": "MR 600743"
     },
-    "allergies": [
-      {
-        "reaction": "Mild rash as a child (delayed)",
-        "substance": "Penicillin"
-      }
-    ],
-    "allergy_answer": "Penicillin: I had a rash as a child.",
+    "allergies": [],
+    "allergy_answer": "None.",
     "reason_answer": "To have my gallbladder taken out.",
     "presentation": {
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "10:00",
-      "summary": "Ms Rabia, 26, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
+      "summary": "Ms Helena, 24, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
     },
     "history": [
       {
@@ -187,14 +182,14 @@
       {
         "time": "08:00",
         "condition": "initial",
-        "heart_rate": 86,
+        "heart_rate": 77,
         "heart_rhythm": "regular",
         "systolic_bp": 118,
         "diastolic_bp": 70,
         "respiratory_rate": 14,
         "spo2": 100,
         "oxygen": "room_air",
-        "temperature_c": 36.7,
+        "temperature_c": 36.8,
         "acvpu": "A",
         "pain_score": 0,
         "news2": 0,
@@ -372,33 +367,32 @@
     "created_by": "composer",
     "composition": {
       "template": "SCN-S1",
-      "seed": 0,
+      "seed": 100,
       "spine": "VAR-S1-H",
       "blocks": [
-        "ALG-PENICILLIN-1",
-        "DEM-SC-2",
-        "NAME-FIRST-RABIA-F",
-        "NAME-LAST-MIRZA",
-        "PSH-VAR-S2-F"
+        "DEM-SC-17",
+        "NAME-FIRST-HELENA-F",
+        "NAME-LAST-CHAUDHRY",
+        "PSH-SC-11"
       ],
-      "solver_steps": 5
+      "solver_steps": 16
     }
   },
   "provenance": {
     "generator": "skeleton-1",
-    "seed": 0,
+    "seed": 100,
     "spine": "VAR-S1-H",
     "blocks": [
-      "ALG-PENICILLIN-1",
-      "DEM-SC-2",
-      "NAME-FIRST-RABIA-F",
-      "NAME-LAST-MIRZA",
-      "PSH-VAR-S2-F"
+      "DEM-SC-17",
+      "NAME-FIRST-HELENA-F",
+      "NAME-LAST-CHAUDHRY",
+      "PSH-SC-11"
     ],
     "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
       "labs": "421044953f64d79b",
       "vitals": "ed15e38f9f4bdc0e"
     },
@@ -410,6 +404,10 @@
       "LG-07",
       "LG-08"
     ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
     "novelty_attempts": [
       {
         "attempt": 0,
@@ -419,7 +417,7 @@
       }
     ]
   },
-  "fingerprint": "c5843480d1393105",
+  "fingerprint": "7ffca592103434fd",
   "quality": {
     "numeric_log": [
       {
@@ -436,7 +434,7 @@
         "slot": "obs.initial.heart_rate",
         "action": "drawn",
         "from": "78",
-        "to": "86"
+        "to": "77"
       },
       {
         "slot": "obs.initial.systolic_bp",
@@ -454,7 +452,7 @@
         "slot": "obs.initial.temperature_c",
         "action": "drawn",
         "from": "36.7",
-        "to": "36.7"
+        "to": "36.8"
       }
     ],
     "media": [
@@ -466,7 +464,7 @@
       {
         "slot": "ultrasound_gallbladder",
         "action": "picked",
-        "picture_id": "us-gb-01-r1",
+        "picture_id": "us-gb-01-r2",
         "candidates": 4
       }
     ],
@@ -505,7 +503,7 @@
         "test": "ultrasound_gallbladder",
         "finding_code": "US-GB-01",
         "basis": "proposed",
-        "picture_id": "us-gb-01-r1",
+        "picture_id": "us-gb-01-r2",
         "dataset": "UIdataGB",
         "licence": "CC BY 4.0",
         "real": true,
@@ -515,7 +513,7 @@
           "gallbladder",
           "gallstones"
         ],
-        "report_id": "rep-us-gb-01-r1",
+        "report_id": "rep-us-gb-01-r2",
         "report": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
         "measurements": {}
       }
@@ -529,18 +527,18 @@
       {
         "slot": "ultrasound_gallbladder",
         "action": "picked",
-        "picture_id": "us-gb-01-r1",
+        "picture_id": "us-gb-01-r2",
         "candidates": 4
       }
     ],
     "imaging_rows": [
       {
-        "case_id": "GEN-S1-0000-001",
+        "case_id": "GEN-S1-0100-001",
         "test": "pregnancy_test",
         "finding_code": "PREG-01"
       },
       {
-        "case_id": "GEN-S1-0000-001",
+        "case_id": "GEN-S1-0100-001",
         "test": "ultrasound_gallbladder",
         "finding_code": "US-GB-01"
       }
@@ -565,8 +563,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:ALG-PENICILLIN-1",
-      "block:PSH-VAR-S2-F",
+      "block:PSH-SC-11",
       "primary:h.preg",
       "scenario:S1",
       "spine:VAR-S1-H"
@@ -581,8 +578,8 @@
     ],
     "surface": [
       "age:20s",
-      "block:DEM-SC-2",
-      "name:e5425c4732",
+      "block:DEM-SC-17",
+      "name:c05bb2c90b",
       "sex:F"
     ]
   },
@@ -593,6 +590,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "655193d8b89ed9ca5126bf22aa4c955036015092aea12d8e5c1c8566d7992c5b",
-  "package_sha256": "55e8a6cf73aea5ff01ca0a16c84c6a2f2ebc7160d5b3587fd139296ab065b71e"
+  "reproducibility_key": "59332f28eb6d372eb822c48c4b3fd6b98d8634b9d36fe7ddf29fae4a7ee8cd73",
+  "package_sha256": "49ac40272af04b6549f3e1b82d53d908c4a16b24387799019124d384bd8d31ee"
 }

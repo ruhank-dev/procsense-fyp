@@ -1,0 +1,649 @@
+{
+  "version": 1,
+  "id": "GEN-S1-0400-001",
+  "status": "GENERATED_PRACTICE_ONLY",
+  "request_id": "73e8e47efa848ebb",
+  "case": {
+    "schema": 1,
+    "id": "GEN-S1-0400-001",
+    "walkthrough_label": "Patient S1-C - diabetes (composed GEN-S1-0400-001)",
+    "scenario": "S1",
+    "tier": "P0",
+    "synthetic": true,
+    "status": "GENERATED_PRACTICE_ONLY",
+    "reference_date": "2026-10-10",
+    "base_card": null,
+    "identity": {
+      "title": "Mrs",
+      "full_name": "Zainab Baig",
+      "sex": "F",
+      "age": 55,
+      "occupation": "primary school cook",
+      "dob": "1971-09-25",
+      "mrn": "923362"
+    },
+    "spoken_identity_answer": "Zainab Baig, twenty-fifth of September 1971.",
+    "wristband": {
+      "name_text": "ZAINAB BAIG",
+      "dob_text": "25/09/1971",
+      "mrn_text": "MR 923362"
+    },
+    "allergies": [],
+    "allergy_answer": "None.",
+    "reason_answer": "To have my gallbladder taken out.",
+    "presentation": {
+      "setting": "pre-assessment",
+      "time_now": "08:00",
+      "surgery_time": "10:00",
+      "summary": "Mrs Zainab, 55, has type 2 diabetes treated with metformin and gliclazide. HbA1c was 58 mmol/mol two months ago and her finger-prick sugar this morning is 7.8. Variant C2 has HbA1c 82, sugar 13.4 and ketones 0.4."
+    },
+    "history": [
+      {
+        "id": "complaint",
+        "topic": "complaint",
+        "answer": "Attacks of pain under the ribs after meals; none this week.",
+        "volunteered": true,
+        "disclose_on": [],
+        "origin": "authored"
+      },
+      {
+        "id": "red_flags",
+        "topic": "red_flags",
+        "answer": "No fever, no yellow eyes.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:red flags",
+          "ask:yellow",
+          "ask:fever",
+          "ask:urine colour"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "past_history",
+        "topic": "past_history",
+        "answer": "Type 2 diabetes for eight years.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:past history",
+          "ask:illnesses",
+          "ask:operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "medicines",
+        "topic": "medicines",
+        "answer": "Metformin and gliclazide. She has not taken them this morning.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:medicines",
+          "ask:tablets",
+          "ask:drugs"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "herbal",
+        "topic": "herbal",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:herbal",
+          "ask:supplements"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "previous_anaesthetic",
+        "topic": "previous_anaesthetic",
+        "answer": "No previous anaesthetics.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:previous anaesthetic",
+          "ask:previous operations"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "family_anaesthetic",
+        "topic": "family_anaesthetic",
+        "answer": "No anaesthetic problems in the family.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:family anaesthetic"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "smoking",
+        "topic": "smoking",
+        "answer": "Never.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:smoking"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "alcohol",
+        "topic": "alcohol",
+        "answer": "None.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:alcohol"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "last_food",
+        "topic": "last_food",
+        "answer": "Dinner at 20:00 yesterday.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last food",
+          "ask:when did you eat",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "heavy_meal",
+          "hours_before_now": 12.0
+        }
+      },
+      {
+        "id": "last_drink",
+        "topic": "last_drink",
+        "answer": "Water at 06:00.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:last drink",
+          "ask:fasting"
+        ],
+        "origin": "authored",
+        "intake": {
+          "kind": "clear_liquids",
+          "hours_before_now": 2.0
+        }
+      },
+      {
+        "id": "pregnancy",
+        "topic": "pregnancy",
+        "answer": "Past the menopause.",
+        "volunteered": false,
+        "disclose_on": [
+          "ask:pregnancy",
+          "ask:last period"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "observations": [
+      {
+        "time": "08:00",
+        "condition": "initial",
+        "heart_rate": 87,
+        "heart_rhythm": "regular",
+        "systolic_bp": 137,
+        "diastolic_bp": 80,
+        "respiratory_rate": 14,
+        "spo2": 99,
+        "oxygen": "room_air",
+        "temperature_c": 36.9,
+        "acvpu": "A",
+        "pain_score": 0,
+        "news2": 0,
+        "note": "Baseline vital signs, all normal.",
+        "origin": "authored"
+      }
+    ],
+    "examination": [
+      {
+        "id": "ex.abdomen",
+        "system": "abdomen",
+        "finding": "Soft; no tenderness.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:abdomen"
+        ],
+        "origin": "authored"
+      },
+      {
+        "id": "ex.feet",
+        "system": "feet",
+        "finding": "No foot ulcers.",
+        "abnormal": false,
+        "disclose_on": [
+          "examine:feet"
+        ],
+        "origin": "authored"
+      }
+    ],
+    "results": [
+      {
+        "id": "lab.hba1c",
+        "test": "HbA1c",
+        "value": "58",
+        "unit": "mmol/mol",
+        "normal_range": "below 42 (below 69 is acceptable for planned surgery)",
+        "flag": "high",
+        "comment": "Taken 2 months ago: diabetes acceptably controlled for planned surgery",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 0,
+        "origin": "book",
+        "source_row": "SR-3002"
+      },
+      {
+        "id": "lab.glucose",
+        "test": "Finger-prick glucose",
+        "value": "7.8",
+        "unit": "mmol/L",
+        "normal_range": "6-10 (perioperative target)",
+        "flag": "normal",
+        "comment": "Inside the target 6 to 10",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 2,
+        "origin": "book"
+      },
+      {
+        "id": "lab.hba1c.c2",
+        "test": "HbA1c",
+        "value": "82",
+        "unit": "mmol/mol",
+        "normal_range": "below 42 (below 69 is acceptable for planned surgery)",
+        "flag": "high",
+        "comment": "Variant C2: above 69",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 0,
+        "origin": "book",
+        "variant": "C2"
+      },
+      {
+        "id": "lab.glucose.c2",
+        "test": "Finger-prick glucose",
+        "value": "13.4",
+        "unit": "mmol/L",
+        "normal_range": "6-10 (perioperative target)",
+        "flag": "high",
+        "comment": "Variant C2: high",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 2,
+        "origin": "book",
+        "variant": "C2"
+      },
+      {
+        "id": "lab.ketones.c2",
+        "test": "Ketones",
+        "value": "0.4",
+        "unit": "mmol/L",
+        "normal_range": "below 0.6",
+        "flag": "normal",
+        "comment": "Variant C2: normal",
+        "quality": null,
+        "previous": null,
+        "minutes_to_result": 2,
+        "origin": "book",
+        "variant": "C2"
+      }
+    ],
+    "scores": [
+      {
+        "name": "NEWS2",
+        "value": "0",
+        "note": "All vital signs in the normal band",
+        "origin": "book"
+      }
+    ],
+    "problems": [
+      {
+        "id": "c.diabetes",
+        "type": "optimisable",
+        "label": "Diabetes control and the medicine plan for the fasting day",
+        "rank": 1,
+        "why": "HbA1c 58 is below 69 and the sugar is in the target: proceed with a medicine plan (metformin as normal; omit gliclazide today) and hourly sugar checks. In C2, HbA1c above 69 means optimise first.",
+        "expected_actions": [
+          "Check HbA1c and today's sugar against the thresholds",
+          "Plan the medicines for a fasting day",
+          "Put her first on the list if possible",
+          "Check sugar at least hourly; tell the anaesthetist"
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "c.d1",
+        "prompt": "HbA1c 58, sugar 7.8. What do you do?",
+        "rule": "s1_diabetes_postpone",
+        "options": [
+          {
+            "id": "c.d1.1",
+            "text": "Proceed: metformin as normal, omit gliclazide today, first on the list, sugar at least hourly, tell the anaesthetist",
+            "correct": true,
+            "consequence": "Matches the book. The prescriber confirms the plan; no doses are set here."
+          },
+          {
+            "id": "c.d1.2",
+            "text": "Postpone because she is diabetic",
+            "correct": false,
+            "consequence": "HbA1c below 69 is acceptable for planned surgery."
+          },
+          {
+            "id": "c.d1.3",
+            "text": "Give both tablets as usual",
+            "correct": false,
+            "consequence": "Gliclazide while fasting could cause low sugar."
+          }
+        ]
+      },
+      {
+        "id": "c.d2",
+        "prompt": "Variant C2: HbA1c 82, sugar 13.4, ketones 0.4. What do you do?",
+        "rule": "s1_diabetes_postpone",
+        "options": [
+          {
+            "id": "c.d2.1",
+            "text": "Discuss with the anaesthetist or diabetes team; the usual answer is postpone and optimise",
+            "correct": true,
+            "consequence": "HbA1c above 69 and a high sugar: planned surgery is deferred."
+          },
+          {
+            "id": "c.d2.2",
+            "text": "Proceed as for C1",
+            "correct": false,
+            "consequence": "Above the threshold."
+          }
+        ],
+        "variant": "C2"
+      }
+    ],
+    "expected_end_state": "ready",
+    "paths": {
+      "correct": [
+        "Check HbA1c and the finger-prick sugar",
+        "Compare with 69 mmol/mol and the 6 to 10 target",
+        "Medicine plan: metformin as normal, omit gliclazide",
+        "First on the list; hourly sugar; tell the anaesthetist"
+      ],
+      "incorrect": [
+        {
+          "mistake": "Lets her take gliclazide this morning",
+          "shows": "Sugar falls to 3.4 while fasting",
+          "risk": "Hypoglycaemia in a fasting patient",
+          "recovery": "Treat per the hypoglycaemia protocol; tell the anaesthetist"
+        }
+      ],
+      "missed": [
+        "Not checking today's sugar"
+      ],
+      "recovery": [
+        "Check now; act on the result"
+      ]
+    },
+    "debrief": {
+      "recognised": [
+        "HbA1c and sugar both checked",
+        "Medicine plan for fasting"
+      ],
+      "missed": [
+        "Today's sugar not checked"
+      ],
+      "priority": "Make a safe plan for a diabetic patient on a fasting day",
+      "why_priority": "Low sugar is the immediate risk of the usual tablets",
+      "related": "HbA1c is long-term control; sugar is today",
+      "independent": "None",
+      "trigger_escalation": "HbA1c above 69 or a sugar outside the target",
+      "if_ignored": "Hypoglycaemia while fasting, or surgery in poorly controlled diabetes",
+      "remember": "Check HbA1c and sugar, then plan the medicines"
+    },
+    "verification": [
+      "V-07"
+    ],
+    "sources": {
+      "story": "SR-2304",
+      "authored": "SR-3704",
+      "measurements": [
+        "SR-3002"
+      ]
+    },
+    "variant_end_states": {
+      "C2": "postponed"
+    },
+    "risk": {
+      "asa": {
+        "min": 2,
+        "max": 3,
+        "emergency": false,
+        "why": "Type 2 diabetes: well controlled is ASA 2 and poorly controlled is ASA 3; an HbA1c of 58 sits between the two, and the poorly controlled variant leans to 3.",
+        "origin": "authored"
+      },
+      "plan": "standard_ga"
+    },
+    "created_by": "composer",
+    "composition": {
+      "template": "SCN-S1",
+      "seed": 400,
+      "spine": "VAR-S1-C",
+      "blocks": [
+        "DEM-VAR-S1-C",
+        "NAME-FIRST-ZAINAB-F",
+        "NAME-LAST-BAIG",
+        "PSH-SC-5",
+        "SOC-VAR-S1-H"
+      ],
+      "solver_steps": 7
+    }
+  },
+  "provenance": {
+    "generator": "skeleton-1",
+    "seed": 400,
+    "spine": "VAR-S1-C",
+    "blocks": [
+      "DEM-VAR-S1-C",
+      "NAME-FIRST-ZAINAB-F",
+      "NAME-LAST-BAIG",
+      "PSH-SC-5",
+      "SOC-VAR-S1-H"
+    ],
+    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "packs": {
+      "correlations": "69f0f4aab79cdfc8",
+      "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
+      "labs": "421044953f64d79b",
+      "vitals": "ed15e38f9f4bdc0e"
+    },
+    "stages": [
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-07",
+      "LG-08"
+    ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
+    "novelty_attempts": [
+      {
+        "attempt": 0,
+        "spine": "VAR-S1-C",
+        "verdict": "novel",
+        "nearest": 1.0
+      }
+    ]
+  },
+  "fingerprint": "3dc513faaae59188",
+  "quality": {
+    "numeric_log": [
+      {
+        "slot": "lab.hba1c",
+        "action": "kept",
+        "why": "not normal"
+      },
+      {
+        "slot": "lab.glucose",
+        "action": "kept",
+        "why": "no pack row for this test"
+      },
+      {
+        "slot": "lab.hba1c.c2",
+        "action": "kept",
+        "why": "belongs to a variant"
+      },
+      {
+        "slot": "lab.glucose.c2",
+        "action": "kept",
+        "why": "belongs to a variant"
+      },
+      {
+        "slot": "lab.ketones.c2",
+        "action": "kept",
+        "why": "belongs to a variant"
+      },
+      {
+        "slot": "obs.initial.heart_rate",
+        "action": "drawn",
+        "from": "74",
+        "to": "87"
+      },
+      {
+        "slot": "obs.initial.systolic_bp",
+        "action": "drawn",
+        "from": "132",
+        "to": "137"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "drawn",
+        "from": "14",
+        "to": "14"
+      },
+      {
+        "slot": "obs.initial.spo2",
+        "action": "drawn",
+        "from": "98",
+        "to": "99"
+      },
+      {
+        "slot": "obs.initial.temperature_c",
+        "action": "drawn",
+        "from": "36.8",
+        "to": "36.9"
+      }
+    ],
+    "media": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "metrics": {
+      "teachable": 1.0,
+      "discoverable": 1.0,
+      "difficulty": 1.0,
+      "fairness": 1.0,
+      "trap_fairness": 1.0,
+      "reading": 1.0,
+      "persona": 1.0,
+      "coherence": 1.0,
+      "coverage": null
+    },
+    "not_measured": [
+      "coverage"
+    ],
+    "advisory": [],
+    "unmet_dimensions": []
+  },
+  "media": {
+    "slots": [
+      {
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01",
+        "basis": "proposed",
+        "picture_id": "us-gb-01-r1",
+        "dataset": "UIdataGB",
+        "licence": "CC BY 4.0",
+        "real": true,
+        "quality_grade": "A",
+        "tags": [
+          "ultrasound",
+          "gallbladder",
+          "gallstones"
+        ],
+        "report_id": "rep-us-gb-01-r1",
+        "report": "Echogenic stones with posterior acoustic shadowing within the gallbladder. Wall thickness and bile duct diameter are not measured on this image. Impression: Gallstones.",
+        "measurements": {}
+      }
+    ],
+    "log": [
+      {
+        "slot": "ultrasound_gallbladder",
+        "action": "picked",
+        "picture_id": "us-gb-01-r1",
+        "candidates": 4
+      }
+    ],
+    "imaging_rows": [
+      {
+        "case_id": "GEN-S1-0400-001",
+        "test": "ultrasound_gallbladder",
+        "finding_code": "US-GB-01"
+      }
+    ],
+    "defects": []
+  },
+  "discovery": [
+    {
+      "case": "VAR-S1-C",
+      "problem": "c.diabetes",
+      "trigger": {
+        "in": [
+          "medicines",
+          {
+            "var": "topics"
+          }
+        ]
+      },
+      "how": "the trainee asks about medicines and learns of the diabetes tablets",
+      "ref": "SR-2867"
+    }
+  ],
+  "fingerprint_levels": {
+    "structural": [
+      "block:PSH-SC-5",
+      "primary:c.diabetes",
+      "scenario:S1",
+      "spine:VAR-S1-C"
+    ],
+    "clinical": [
+      "finding:US-GB-01",
+      "news2:low",
+      "problem_type:optimisable",
+      "result:hba1c:high",
+      "rhythm:regular"
+    ],
+    "surface": [
+      "age:50s",
+      "block:DEM-VAR-S1-C",
+      "block:SOC-VAR-S1-H",
+      "name:20f44e8de6",
+      "sex:F"
+    ]
+  },
+  "novelty": {
+    "verdict": "novel",
+    "nearest": 1.0,
+    "nearest_library": null,
+    "reasons": [],
+    "per_level": {}
+  },
+  "reproducibility_key": "7fec139afa34879f4e38fb3eb5d06b54ee891896ac494b97cb177f1b01f1911c",
+  "package_sha256": "b16d7a7ef3cdb4fe206998f240f0659523e5064a6954f19fb1bc46b7abc67c06"
+}

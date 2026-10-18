@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "id": "GEN-S2-0004-001",
+  "id": "GEN-S2-0100-001",
   "status": "GENERATED_PRACTICE_ONLY",
-  "request_id": "fdd76221cfed42af",
+  "request_id": "371972e7ace3d38f",
   "case": {
     "schema": 1,
-    "id": "GEN-S2-0004-001",
-    "walkthrough_label": "Patient S2-B - differential diagnosis / diagnostic diversion: it may NOT be appendicitis (ectopic pregnancy) (composed GEN-S2-0004-001)",
+    "id": "GEN-S2-0100-001",
+    "walkthrough_label": "Patient S2-B - differential diagnosis / diagnostic diversion: it may NOT be appendicitis (ectopic pregnancy) (composed GEN-S2-0100-001)",
     "scenario": "S2",
     "tier": "P0",
     "synthetic": true,
@@ -15,31 +15,26 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Mehwish Dar",
+      "full_name": "Helena Chaudhry",
       "sex": "F",
-      "age": 22,
+      "age": 24,
       "occupation": "dental student",
-      "dob": "2004-08-04",
-      "mrn": "975957"
+      "dob": "2002-09-01",
+      "mrn": "600743"
     },
-    "spoken_identity_answer": "Mehwish Dar, fourth of August 2004.",
+    "spoken_identity_answer": "Helena Chaudhry, first of September 2002.",
     "wristband": {
-      "name_text": "MEHWISH DAR",
-      "dob_text": "04/08/2004",
-      "mrn_text": "MR 975957"
+      "name_text": "HELENA CHAUDHRY",
+      "dob_text": "01/09/2002",
+      "mrn_text": "MR 600743"
     },
-    "allergies": [
-      {
-        "reaction": "Throat swelling",
-        "substance": "Penicillin"
-      }
-    ],
-    "allergy_answer": "Penicillin: my throat swelled.",
+    "allergies": [],
+    "allergy_answer": "None.",
     "reason_answer": "I have bad pain and feel dizzy.",
     "presentation": {
       "setting": "emergency department",
       "time_now": "11:00",
-      "summary": "Ms Mehwish, 22, has lower-right pain, shoulder-tip pain and feels dizzy. Her last period was 7 weeks ago and the urine pregnancy test is positive."
+      "summary": "Ms Helena, 24, has lower-right pain, shoulder-tip pain and feels dizzy. Her last period was 7 weeks ago and the urine pregnancy test is positive."
     },
     "history": [
       {
@@ -375,31 +370,32 @@
     "created_by": "composer",
     "composition": {
       "template": "SCN-S2",
-      "seed": 4,
+      "seed": 100,
       "spine": "VAR-S2-B",
       "blocks": [
-        "ALG-PENICILLIN-4",
         "DEM-SC-17",
-        "NAME-FIRST-MEHWISH-F",
-        "NAME-LAST-DAR"
+        "NAME-FIRST-HELENA-F",
+        "NAME-LAST-CHAUDHRY",
+        "PSH-SC-11"
       ],
-      "solver_steps": 5
+      "solver_steps": 16
     }
   },
   "provenance": {
     "generator": "skeleton-1",
-    "seed": 4,
+    "seed": 100,
     "spine": "VAR-S2-B",
     "blocks": [
-      "ALG-PENICILLIN-4",
       "DEM-SC-17",
-      "NAME-FIRST-MEHWISH-F",
-      "NAME-LAST-DAR"
+      "NAME-FIRST-HELENA-F",
+      "NAME-LAST-CHAUDHRY",
+      "PSH-SC-11"
     ],
     "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
+      "joint": "1a9e92c7ed2249d1",
       "labs": "421044953f64d79b",
       "vitals": "ed15e38f9f4bdc0e"
     },
@@ -411,6 +407,10 @@
       "LG-07",
       "LG-08"
     ],
+    "plan": {
+      "method": "solver",
+      "why": ""
+    },
     "novelty_attempts": [
       {
         "attempt": 0,
@@ -420,7 +420,7 @@
       }
     ]
   },
-  "fingerprint": "d9bbc4626eb76fa0",
+  "fingerprint": "f95e41e9ae90ab19",
   "quality": {
     "numeric_log": [
       {
@@ -518,12 +518,12 @@
     ],
     "imaging_rows": [
       {
-        "case_id": "GEN-S2-0004-001",
+        "case_id": "GEN-S2-0100-001",
         "test": "ultrasound_pelvis",
         "finding_code": "US-PV-01"
       },
       {
-        "case_id": "GEN-S2-0004-001",
+        "case_id": "GEN-S2-0100-001",
         "test": "pregnancy_test",
         "finding_code": "PREG-01"
       }
@@ -562,7 +562,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:ALG-PENICILLIN-4",
+      "block:PSH-SC-11",
       "primary:sb.bleed",
       "scenario:S2",
       "spine:VAR-S2-B"
@@ -580,7 +580,7 @@
     "surface": [
       "age:20s",
       "block:DEM-SC-17",
-      "name:a4c8e35030",
+      "name:c05bb2c90b",
       "sex:F"
     ]
   },
@@ -591,6 +591,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "47ff0a241d0850ebe1bfe251ac64ae17bf74a41cc9659d37ff692aac0ce41792",
-  "package_sha256": "f3c04758a476678542f8cd5e6129eaeff7de7cd1de7f54ad0a41f91498e1c4b6"
+  "reproducibility_key": "47f8d7c69ab14bfd09f188812f1fdb5a29746a73dd4406871823f66709c9b05b",
+  "package_sha256": "53cf81e250c905613ce065925856935a3a3ba545e5a1f132c445f69383017700"
 }
