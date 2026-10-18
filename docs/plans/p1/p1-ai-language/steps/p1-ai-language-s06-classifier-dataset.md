@@ -42,5 +42,6 @@ Implementation Guide B-M6 Steps 1–4, T-TX1–T-TX3; inventory D58–D60.
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
 * [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent communication-act set: authors, second labeller, adjudicator, then the independent run
+* [EX-18](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-18): A second author for the spoken-order paraphrases and for the next classifier challenge set
 
 <!-- external-testing:end -->

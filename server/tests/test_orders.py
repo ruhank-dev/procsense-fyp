@@ -87,7 +87,7 @@ def test_the_log_never_shows_an_action_released_without_a_confirmation(phrase):
             assert any(x["event"] == "heard" and x["status"] in ("confirm", "removed_dose_confirm") for x in r.log[:i])
 
 
-@pytest.mark.parametrize("phrase,place", [("send him down to the CT department", "ct"), ("wheel the patient to the ultrasound department", "ultrasound"), ("move her up to the operating theatre", "theatre")])
+@pytest.mark.parametrize("phrase,place", [("take her along to the CT scanner", "ct"), ("send him down to the CT department", "ct"), ("wheel the patient to the ultrasound department", "ultrasound"), ("move her up to the operating theatre", "theatre")])
 def test_moving_the_patient_to_a_scanner_is_a_transport_not_a_test(phrase, place):
     """Found on the frozen second order set (18 October 2026): 'send him down to the CT department' was read back as ordering a CT scan."""
     h = rb().hear(phrase)

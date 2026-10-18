@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import difflib
 import functools
+import math
 import json
 import re
 from dataclasses import dataclass
@@ -26,7 +27,8 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[2]
 LIST_SIZE = 140
-MIN_CONFIDENCE = 0.9
+RERANK_K = LIST_SIZE               # every item of the chosen kind stays on offer (a described order shares no word with its item); the re-ranking only orders them
+MIN_CONFIDENCE = 0.5                 # a floor only: the stated confidence does not separate right from wrong (reports/ai/orders-eval-llm-v2.json), agreement of two readings decides
 KINDS = ("test", "medicine", "home_medicine", "place", "staff")
 INTENT_OF_KIND = {"test": "ORDER_TEST", "medicine": "REQUEST_MEDICATION", "home_medicine": "HOLD_MED", "place": "REQUEST_TRANSPORT", "staff": "CALL_STAFF"}
 HOLD_WORDS = TRIGGERS["HOLD_MED"] + ("leave out", "leave off", "left off", "left out", "not take", "no", "should not", "needs stopping", "stopping")
@@ -60,6 +62,7 @@ class Mapped:
     intent: str
     confidence: float
     shortlist: list[str]
+    alternatives: tuple = ()           # set when two readings disagree: both items are offered to the trainee to choose between, nothing is read back as an order
 
 
 def is_hold(text: str) -> bool:
@@ -86,6 +89,41 @@ def shortlist(text: str, vocab: list[Entry], size: int = LIST_SIZE) -> list[Entr
     return [e for _, e in ranked[:size]]
 
 
+
+_STOP = {"the", "a", "an", "of", "to", "for", "and", "in", "on", "is", "are", "her", "his", "him", "she", "he", "please", "some", "any", "with", "we", "i", "it", "that", "this", "my", "at", "be", "do", "you", "can", "could", "would", "like", "need", "want", "get", "give", "check", "test"}
+
+
+def _stem(w: str) -> str:
+    for suf in ("ing", "ed", "es", "s"):
+        if len(w) > 4 and w.endswith(suf):
+            return w[: -len(suf)]
+    return w
+
+
+def rerank(text: str, cands: list[Entry], vocab: list[Entry]) -> list[Entry]:
+    """The candidates, best first, by the stemmed words of the sentence that also occur in the item's names and synonyms (every phrase the vocabulary holds for it), its label and its note, weighted by how rare the word is among the
+    candidates (an idf), so that a word shared by every blood test counts for little and 'inflammation' counts for much. No model; ties keep the earlier (fuzzy-match) order."""
+    docs: dict[tuple[str, str], set[str]] = {}
+    for e in vocab:
+        docs.setdefault((e.kind, e.target), set()).update(_stem(w) for w in re.findall(r"[a-z]+", f"{e.phrase} {e.label}".lower()) if w not in _STOP)
+    for e in cands:
+        docs.setdefault((e.kind, e.target), set()).update(_stem(w) for w in re.findall(r"[a-z]+", f"{e.label} {gloss(e)}".lower()) if w not in _STOP)
+        docs[(e.kind, e.target)].update(_stem(w) for w in re.findall(r"[a-z]+", gloss(e).lower()) if w not in _STOP)
+    n = len(cands)
+    df: dict[str, int] = {}
+    for e in cands:
+        for w in docs[(e.kind, e.target)]:
+            df[w] = df.get(w, 0) + 1
+    words = {_stem(w) for w in re.findall(r"[a-z]+", text.lower()) if w not in _STOP}
+    scored = []
+    for k, e in enumerate(cands):
+        d = docs[(e.kind, e.target)]
+        score = sum(math.log(1 + n / df[w]) for w in words if w in d)
+        scored.append((-score, k, e))
+    scored.sort(key=lambda x: (x[0], x[1]))
+    return [e for _, _, e in scored]
+
+
 def schema(ids: list[str]) -> dict:
     return {"type": "object", "required": ["target", "confidence"], "additionalProperties": False,
             "properties": {"target": {"enum": ids + ["NONE"]}, "confidence": {"type": "number", "minimum": 0, "maximum": 1}}}
@@ -95,7 +133,7 @@ def kind_schema() -> dict:
     return {"type": "object", "required": ["kind"], "additionalProperties": False, "properties": {"kind": {"enum": list(KINDS) + ["NONE"]}}}
 
 
-MOVES = tuple(w for w in TRIGGERS["REQUEST_TRANSPORT"]) + ("take him", "take her", "send him", "send her", "wheel", "move him", "move her", "return", "transfer", "porter", "go to", "up to", "down to")
+MOVES = tuple(w for w in TRIGGERS["REQUEST_TRANSPORT"]) + ("take him", "take her", "send him", "send her", "wheel", "move him", "move her", "return", "transfer", "porter", "go to", "up to", "down to", "over to", "back to", "get her to", "get him to", "bring him", "bring her", "along to", "to the")
 
 
 class OrderMapper:
@@ -116,23 +154,49 @@ class OrderMapper:
             k = "test"
         return k
 
+    def _ask(self, text: str, cands: list[Entry]) -> tuple[str, float] | None:
+        ids = [f"{e.kind}:{e.target}" for e in cands]
+        items = chr(10).join(f"{i} | {e.label} | {gloss(e)}" for i, e in zip(ids, cands))
+        r = gateway.run(self.client, "orders.map", {"heard": text, "items": items}, schema=schema(ids), model=self.model, timeout=self.timeout, retries=0, task="orders_map", version=2)
+        if not r.ok:
+            return None
+        pick = r.value["target"]
+        return (pick, float(r.value["confidence"])) if pick in ids else ("NONE", 0.0)
+
     def map(self, transcript: str, vocab: list[Entry]) -> Mapped | None:
+        """grammar-independent mapping in four steps: (1) the kind of thing wanted (model, closed answer); (2) a deterministic RE-RANKING of the items of that kind by the words of the sentence against each item's names, synonyms and note, keeping the
+        best `RERANK_K`; (3) the model chooses among those, shown with their notes; (4) the choice is accepted only if it AGREES: either it is the re-ranker's first item, or a second call with the items in reverse order picks the same
+        item. The stated confidence is not used to decide (it does not separate right from wrong, reports/ai/orders-eval-llm-v2.json); agreement is the calibration. Anything else gives None and the menu."""
         if self.client is None:
             return None
         text, _ = clean(transcript)
-        cands = shortlist(text, vocab)
-        if not text or not cands:
+        pool = shortlist(text, vocab)
+        if not text or not pool:
             return None
-        ids = [f"{e.kind}:{e.target}" for e in cands]
-        items = "\n".join(f"{i} | {e.label} | {KIND_WORDS[e.kind]}" for i, e in zip(ids, cands))
-        r = gateway.run(self.client, "orders.map", {"heard": text, "items": items}, schema=schema(ids), model=self.model, timeout=self.timeout, retries=0, task="orders_map")
-        if not r.ok:
+        kind = self._kind(text) if self.two_stage else None
+        if self.two_stage and kind is None:
             return None
-        pick, conf = r.value["target"], float(r.value["confidence"])
-        if pick == "NONE" or pick not in ids or conf < MIN_CONFIDENCE:
+        ranked = rerank(text, [e for e in pool if kind is None or e.kind == kind] or pool, vocab)[:RERANK_K]
+        first = self._ask(text, ranked)
+        if first is None or first[0] == "NONE" or first[1] < MIN_CONFIDENCE:
             return None
-        e = cands[ids.index(pick)]
+        ids = [f"{e.kind}:{e.target}" for e in ranked]
+        pick = first[0]
+        if pick != ids[0]:                                           # the re-ranker disagrees with the model: ask again with the order reversed and accept only the same item twice
+            second = self._ask(text, list(reversed(ranked)))
+            if second is None or second[0] == "NONE" or second[0] not in ids:
+                return None
+            if second[0] != pick:                                      # two readings, two items: the trainee chooses (a question, not an order)
+                a, b = ranked[ids.index(pick)], ranked[ids.index(second[0])]
+                if a.kind != b.kind:
+                    return None
+                return Mapped(a, INTENT_OF_KIND[a.kind], 0.0, ids, alternatives=(a, b))
+        e = ranked[ids.index(pick)]
+        if e.kind == "test" and any(w in text for w in MOVES):                      # 'take her to the CT scanner' moves the patient to the place; it does not order the scan
+            place = next((v for v in vocab if v.kind == "place" and v.target == e.target), None)
+            if place is not None:
+                e = place
         intent = INTENT_OF_KIND[e.kind]
         if e.kind == "medicine" and is_hold(text):
             intent = "HOLD_MED"
-        return Mapped(e, intent, conf, ids)
+        return Mapped(e, intent, first[1], ids)

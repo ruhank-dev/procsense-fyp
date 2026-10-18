@@ -497,6 +497,38 @@
      "op": ">=",
      "value": 0.9,
      "ref": "precision of what is credited on the v3 hold-out (post hoc)"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_challenge_v6",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v6.variants.ensemble.ALL.false_credit.k",
+     "op": "==",
+     "value": 0,
+     "ref": "no evasive critical sentence of the frozen challenge set v6 is credited under an ordinary act (scored ONCE, 19 October 2026, synthetic, same author family: 0 of 48)"
+    },
+    {
+     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v6",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v6.variants.ensemble.ALL.non_assertive_credited.k",
+     "op": "==",
+     "value": 0,
+     "ref": "a denied, hypothetical, reported or broken-off act earns no credit on the frozen v6 (0 of 12)"
+    },
+    {
+     "id": "classifier_safety.credited_precision_challenge_v6",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v6.variants.ensemble.ALL.credited_precision.rate",
+     "op": ">=",
+     "value": 0.9,
+     "ref": "precision of what is credited on the frozen v6"
+    },
+    {
+     "id": "classifier_safety.ordinary_credit_challenge_v6",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v6.variants.ensemble.ALL.ordinary_credited.rate",
+     "op": ">=",
+     "value": 0.5,
+     "ref": "legitimate sentences credited on the frozen v6 (recall; 0.70 measured)"
     }
    ]
   },
@@ -505,7 +537,7 @@
    "suites": [
     {
      "id": "order_fallback.no_release_without_confirmation",
-     "file": "orders-eval-llm-v2.json",
+     "file": "orders-eval-llm-v3.json",
      "path": "with_fallback.released_without_confirmation",
      "op": "==",
      "ref": "no action leaves the read-back before a yes",
@@ -513,7 +545,7 @@
     },
     {
      "id": "order_fallback.accuracy",
-     "file": "orders-eval-llm-v2.json",
+     "file": "orders-eval-llm-v3.json",
      "path": "with_fallback.correct",
      "op": ">=",
      "ref": "plan C32.c1: at least 95 percent (B23.c2: 90 percent)",
@@ -521,7 +553,7 @@
     },
     {
      "id": "order_fallback.gain_over_grammar",
-     "file": "orders-eval-llm-v2.json",
+     "file": "orders-eval-llm-v3.json",
      "path": "with_fallback.correct",
      "op": ">=",
      "ref": "plan B23.c2: at least 10 points above the grammar alone",
@@ -530,7 +562,7 @@
     },
     {
      "id": "order_fallback.wrong_item_offered",
-     "file": "orders-eval-llm-v2.json",
+     "file": "orders-eval-llm-v3.json",
      "path": "with_fallback.wrong",
      "op": "<=",
      "ref": "a wrong item is caught by the read-back, but more than 5 percent wastes the trainee's time",
@@ -538,7 +570,7 @@
     },
     {
      "id": "order_fallback.non_orders_not_offered",
-     "file": "orders-eval-llm-v2.json",
+     "file": "orders-eval-llm-v3.json",
      "path": "with_fallback.false_offer",
      "op": "<=",
      "ref": "small talk is not turned into an order",
@@ -546,7 +578,7 @@
     },
     {
      "id": "order_fallback.latency_p95_ms",
-     "file": "orders-eval-llm-v2.json",
+     "file": "orders-eval-llm-v3.json",
      "path": "with_fallback.latency_ms_p95",
      "op": "<=",
      "ref": "live budget of the plan: a reply to speech within 3 s",

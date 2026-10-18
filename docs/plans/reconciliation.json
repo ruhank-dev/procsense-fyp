@@ -845,10 +845,11 @@
     "server/tests/test_orders_route.py",
     "tools/ci/test_orders_fallback.py",
     "tests/orders/paraphrases.json",
-    "reports/ai/orders-eval-llm-v2.json",
-    "tests/orders/paraphrases_v2.json"
+    "tests/orders/paraphrases_v2.json",
+    "reports/ai/orders-eval-llm-v3.json",
+    "tests/orders/paraphrases_v3.json"
    ],
-   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on. The model fallback (B23.c2, C32.c1) is built but BELOW its acceptance and OFF: frozen second set (65 rows, scored once) 76.4 percent correct against 12.7 percent for the grammar alone, 18.2 percent wrong, 1 of 10 non-orders offered, about 5 s a call (reports/ai/orders-eval-llm-v2.json); the development set went from 70.5 to 83.6 percent with the kind-first, content-noted mapper"
+   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on. The model fallback (B23.c2, C32.c1) is built but BELOW its acceptance and OFF: frozen third set (66 rows, scored once) 58.9 percent correct, 10.7 percent wrong, 1 of 10 non-orders offered, about 4.5 s a call (reports/ai/orders-eval-llm-v3.json); the single-call mapper had scored 76.4 percent correct and 18.2 percent wrong on the second set (historical)"
   },
   "p1-voice-input-s04": {
    "owner": "Ruhan",

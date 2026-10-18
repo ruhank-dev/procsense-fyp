@@ -79,6 +79,44 @@ class Proposal(unittest.TestCase):
         self.assertEqual(y["events"], [])
         self.assertIsNone(PE.ExtrasPlanner(None).propose(case, objectives()))
 
+    def test_a_case_with_no_knowledge_base_pair_asks_the_model_nothing_about_interactions(self):
+        case = next(c for c in CASES.values() if not PE.interaction_candidates(c))
+        asked = []
+
+        def h(request):
+            if request.url.path == "/api/tags":
+                return httpx.Response(200, json={"models": []})
+            asked.append(json.loads(request.content)["messages"][-1]["content"])
+            return httpx.Response(200, json={"message": {"content": json.dumps({"events": [], "interactions": []})}})
+        x = PE.ExtrasPlanner(C.OllamaClient(transport=httpx.MockTransport(h))).propose(case, objectives())
+        self.assertEqual(x["interactions"], [])
+        self.assertFalse(any("share:" in a for a in asked))                      # the interactions prompt (which lists pairs) was never sent
+
+    def test_no_eligible_event_means_no_event_question_and_a_repeat_or_too_many_is_refused(self):
+        case = CASES["SC-1"]
+        ev = [{"event_id": "E-LOW-BP", "whatif_id": "w01", "reason": "x y z"}]
+        self.assertIn("REPEATED_EVENT:E-LOW-BP", PE.validate(case, ev + ev, []))
+        many = [{"event_id": e["id"], "whatif_id": e["whatif"], "reason": "x y z"} for e in PE.eligible_events(case)][: PE.MAX_EVENTS + 1]
+        self.assertIn("TOO_MANY_EVENTS", PE.validate(case, many, []))
+        saved = PE._events
+        try:
+            PE._events = lambda: []
+            self.assertEqual(PE.eligible_events(case), [])
+            self.assertEqual(PE.ExtrasPlanner(host([{"events": []}, {"interactions": []}])).propose(case, objectives())["events"], [])
+        finally:
+            PE._events = saved
+
+    def test_a_reason_that_is_not_a_sentence_and_a_non_json_answer_change_nothing(self):
+        case = CASES["SC-1"]
+        self.assertIn("REASON", PE.validate(case, [{"event_id": "E-LOW-BP", "whatif_id": "w01", "reason": "12"}], []))
+
+        def h(request):
+            if request.url.path == "/api/tags":
+                return httpx.Response(200, json={"models": []})
+            return httpx.Response(200, json={"message": {"content": "this is not json at all"}})
+        x = PE.ExtrasPlanner(C.OllamaClient(transport=httpx.MockTransport(h))).propose(case, objectives())
+        self.assertEqual((x["events"], x["interactions"]), ([], []))
+
 
 class FakePlanner:
     def __init__(self, client):

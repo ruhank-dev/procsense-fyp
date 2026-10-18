@@ -9,8 +9,8 @@ liver function,test,lft
 lfts,test,lft
 c reactive protein,test,crp
 inflammation marker,test,crp
-clotting,test,coag
-glucose,test,glucose
+clotting,test,clotting
+glucose,test,glucose_fingerprick
 calpol,medicine,TR-PARACETAMOL
 paracetamol,medicine,TR-PARACETAMOL
 acetaminophen,medicine,TR-PARACETAMOL
@@ -45,3 +45,46 @@ xray,place,xray
 ct,place,ct
 ultrasound,place,ultrasound
 ward,place,ward
+infection marker,test,crp
+inflammatory marker,test,crp
+infection markers,test,crp
+sugar level,test,glucose_fingerprick
+blood sugar,test,glucose_fingerprick
+finger prick,test,glucose_fingerprick
+electrolytes,test,u_and_e
+salts,test,u_and_e
+renal profile,test,u_and_e
+potassium,test,u_and_e
+liver enzymes,test,lft
+sugar average,test,hba1c
+three month sugar,test,hba1c
+pregnant,test,pregnancy
+pregnancy test,test,pregnancy
+cross match,test,group_and_save
+crossmatch,test,group_and_save
+group and save,test,group_and_save
+blood ready,test,group_and_save
+blood cultures,test,lactate_cultures
+lactate,test,lactate_cultures
+tracing of the heart,test,ecg
+heart tracing,test,ecg
+twelve lead,test,ecg
+sleep apnoea,test,stopbang
+chest film,test,chest_xray
+chest x ray,test,chest_xray
+cross sectional,test,ct
+ct scan,test,ct
+mr scan,test,mri
+magnetic resonance,test,mri
+bile duct scan,test,mrcp
+cholangiopancreatography,test,mrcp
+anti sickness,medicine,TR-ANTIEMETIC
+sickness,medicine,TR-ANTIEMETIC
+heparin,medicine,TR-VTE-PROPHYLAXIS
+hydrocortisone,medicine,TR-STEROID-COVER
+dextrose,medicine,TR-IV-GLUCOSE
+orange juice,medicine,TR-FAST-SUGAR
+sugary drink,medicine,TR-FAST-SUGAR
+sepsis six,medicine,TR-SEPSIS-BUNDLE
+sepsis bundle,medicine,TR-SEPSIS-BUNDLE
+potassium lowering,medicine,TR-HYPERKALAEMIA

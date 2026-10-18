@@ -27,6 +27,7 @@ from classify.ensemble import EnsembleActClassifier  # noqa: E402
 V2, V3, V4 = ROOT / "tests" / "classifier_synthetic_v2", ROOT / "tests" / "classifier_synthetic_v3", ROOT / "tests" / "classifier_challenge_v4"
 OUT = ROOT / "tests" / "classifier_regression" / "cases.json"
 FAILURES = ["ADD014", "ADD029", "ADD048"]
+V4_FAILURES = ["Did you manage to keep away from food and drink overnight?", "The numbers on the monitor are heading the wrong way fast."]            # credited by the fourth-session gate on the challenge set v4 (found when v4 was rescored in the fifth session)
 V5_FAILURES = ["When was the last time you had anything in your stomach?", "I wanted to tell you what happens next but there is no time."]
 NON_ASSERTIVE = ["I haven't asked about allergies yet.", "I'm not going to explain the procedure now, we'll do it later.", "If I were to explain the operation, I'd start with the incision.",
                  "The nurse said she would reassure you later.", "I never asked about allergies, that was the other nurse.", "Didn't check the wristband yet. Later.",
@@ -43,6 +44,7 @@ def main(argv: list[str]) -> int:
     tuning = json.loads((V2 / "adversarial_critical.json").read_text(encoding="utf-8"))["rows"]
     cases = [{"group": "must_not_credit_failure", "id": r["id"], "text": r["text"], "kind": r["kind"]} for r in h3 if r["id"] in FAILURES]
     cases += [{"group": "must_not_credit_v5", "id": f"V5F{i + 1}", "text": t, "kind": "v5_failure"} for i, t in enumerate(V5_FAILURES)]
+    cases += [{"group": "must_not_credit_v4_rescore", "id": f"V4F{i + 1}", "text": t, "kind": "v4_failure"} for i, t in enumerate(V4_FAILURES)]
     taken: dict[str, int] = {}
     for r in tuning + h3:
         if r["id"] not in FAILURES and taken.get(r["kind"], 0) < 3:

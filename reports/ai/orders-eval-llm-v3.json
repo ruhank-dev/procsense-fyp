@@ -1,0 +1,102 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "set": "paraphrases_v3.json (frozen, scored once)",
+ "two_stage": true,
+ "rows": 66,
+ "grammar_only": {
+  "orders": 56,
+  "correct": 0.054,
+  "wrong": 0.036,
+  "menu": 0.911,
+  "non_orders": 10,
+  "false_offer": 0.0,
+  "released_without_confirmation": 0,
+  "clarify_questions": 0,
+  "clarify_questions_containing_the_right_item": 0,
+  "latency_ms_p50": 173,
+  "latency_ms_p95": 383,
+  "by_kind": {
+   "home_medicine": "0/4",
+   "medicine": "1/16",
+   "place": "0/6",
+   "staff": "1/5",
+   "test": "1/25"
+  },
+  "wrong_examples": [
+   {
+    "said": "take her along to the CT scanner",
+    "wanted": "ct",
+    "heard": "ct",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "page the surgical registrar",
+    "wanted": "surgeon",
+    "heard": "senior",
+    "intent": "CALL_STAFF"
+   }
+  ]
+ },
+ "with_fallback": {
+  "orders": 56,
+  "correct": 0.589,
+  "wrong": 0.107,
+  "menu": 0.304,
+  "non_orders": 10,
+  "false_offer": 0.1,
+  "released_without_confirmation": 0,
+  "clarify_questions": 3,
+  "clarify_questions_containing_the_right_item": 2,
+  "latency_ms_p50": 4460,
+  "latency_ms_p95": 8048,
+  "by_kind": {
+   "home_medicine": "1/4",
+   "medicine": "10/16",
+   "place": "5/6",
+   "staff": "4/5",
+   "test": "13/25"
+  },
+  "wrong_examples": [
+   {
+    "said": "I want to know if there is an infection brewing, a quick inflammatory blood marker",
+    "wanted": "crp",
+    "heard": "fbc",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "is his blood too thin or too thick",
+    "wanted": "clotting",
+    "heard": "fbc",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "magnetic resonance of the head",
+    "wanted": "mri",
+    "heard": "mrcp",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "antibiotic cover before the first incision",
+    "wanted": "TR-ABX-PROPHYLAXIS",
+    "heard": "TR-ABX-S2",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "take her along to the CT scanner",
+    "wanted": "ct",
+    "heard": "ct",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "page the surgical registrar",
+    "wanted": "surgeon",
+    "heard": "senior",
+    "intent": "CALL_STAFF"
+   }
+  ]
+ },
+ "limit": "61 paraphrases and 10 non-orders written by one author; real trainees and recogniser errors are not modelled (DC-08 on the Quest)",
+ "gain_points": 53.5
+}

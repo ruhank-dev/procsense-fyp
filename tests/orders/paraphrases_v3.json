@@ -1,0 +1,469 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Third set of spoken-order paraphrases, written by the builder (the same model family as the first two sets; no second human author exists yet, see EX-18) on 19 October 2026 BEFORE the re-ranker and the self-consistency check were built and before any of its rows was run through any mapper. Frozen: scored once. 'none' lines are not orders; several mention a test or a person so that a keyword matcher would offer an order.",
+ "rows": [
+  {
+   "id": "OR001",
+   "text": "I want to know if there is an infection brewing, a quick inflammatory blood marker",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR002",
+   "text": "measure the c reactive protein",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR003",
+   "text": "count the white and red cells in a sample of blood",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR004",
+   "text": "what is her haemoglobin doing",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR005",
+   "text": "renal profile please",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR006",
+   "text": "how are the liver enzymes",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR007",
+   "text": "what has the three month sugar average been",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR008",
+   "text": "is his blood too thin or too thick",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR009",
+   "text": "match some blood for a possible transfusion",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR010",
+   "text": "take blood cultures and a lactate",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR011",
+   "text": "check the enzyme that shows pancreatitis",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR012",
+   "text": "how much iron is stored",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR013",
+   "text": "a thyroid function check",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR014",
+   "text": "I suspect anaphylaxis so measure the mast cell enzyme",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR015",
+   "text": "rule out pregnancy before we go ahead",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR016",
+   "text": "dip the urine",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR017",
+   "text": "prick his finger and read the glucose meter",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR018",
+   "text": "record a twelve lead",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR019",
+   "text": "what is the body mass index",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR020",
+   "text": "go through the sleep apnoea screening questions with her",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR021",
+   "text": "put the ultrasound probe on her tummy",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR022",
+   "text": "a slice scan of the chest and abdomen with contrast",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR023",
+   "text": "magnetic resonance of the head",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR024",
+   "text": "magnetic resonance cholangiopancreatography to look at the ducts",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR025",
+   "text": "plain film of the chest",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OR026",
+   "text": "a simple painkiller by the drip",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR027",
+   "text": "an anti inflammatory pain tablet",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR028",
+   "text": "something opioid for the pain, he is in agony",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR029",
+   "text": "an anti sickness injection",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR030",
+   "text": "run in a litre of saline",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR031",
+   "text": "antibiotic cover before the first incision",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR032",
+   "text": "start intravenous antibiotics for the peritonitis",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR033",
+   "text": "hydrocortisone because she takes steroids long term",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR034",
+   "text": "low molecular weight heparin to prevent clots",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR035",
+   "text": "epinephrine now, she is in anaphylaxis",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR036",
+   "text": "orange juice for his hypo",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR037",
+   "text": "ten percent dextrose into the vein",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR038",
+   "text": "treat the high potassium",
+   "kind": "medicine",
+   "target": "TR-HYPERKALAEMIA",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR039",
+   "text": "reverse the opiate",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR040",
+   "text": "the sepsis six",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR041",
+   "text": "put her on four litres of oxygen",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OR042",
+   "text": "she must not have the metformin on the morning of surgery",
+   "kind": "home_medicine",
+   "target": "metformin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OR043",
+   "text": "withhold the blood thinner",
+   "kind": "home_medicine",
+   "target": "anticoagulant",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OR044",
+   "text": "leave out the long acting insulin tonight",
+   "kind": "home_medicine",
+   "target": "insulin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OR045",
+   "text": "no ramipril today",
+   "kind": "home_medicine",
+   "target": "ramipril",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OR046",
+   "text": "bring him to the x ray room",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OR047",
+   "text": "take her along to the CT scanner",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OR048",
+   "text": "get him up to theatre",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OR049",
+   "text": "back to the ward with her",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OR050",
+   "text": "down to the ultrasound room",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OR051",
+   "text": "into the corridor",
+   "kind": "place",
+   "target": "corridor",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OR052",
+   "text": "page the surgical registrar",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OR053",
+   "text": "I need the anaesthetist here",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OR054",
+   "text": "could the senior doctor come",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OR055",
+   "text": "shout for a nurse",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OR056",
+   "text": "get a porter",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OY01",
+   "text": "her CT result was normal yesterday",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY02",
+   "text": "she had bloods taken this morning by the other team",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY03",
+   "text": "the porter is on his break",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY04",
+   "text": "I would like to thank the nurse",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY05",
+   "text": "do you take any medicines at home",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY06",
+   "text": "is the theatre list running late",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY07",
+   "text": "he looks pale",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY08",
+   "text": "what does the senior think about the plan",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY09",
+   "text": "the ultrasound machine is very noisy",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY10",
+   "text": "I will explain the operation shortly",
+   "kind": null,
+   "target": null,
+   "intent": null
+  }
+ ]
+}

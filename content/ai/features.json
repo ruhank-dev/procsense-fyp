@@ -120,6 +120,30 @@
      "status": "PASS",
      "got": 0.988,
      "needs": ">= 0.9"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_challenge_v6",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v6",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.credited_precision_challenge_v6",
+     "status": "PASS",
+     "got": 0.98,
+     "needs": ">= 0.9"
+    },
+    {
+     "id": "classifier_safety.ordinary_credit_challenge_v6",
+     "status": "PASS",
+     "got": 0.7,
+     "needs": ">= 0.5"
     }
    ]
   },
@@ -350,19 +374,19 @@
     {
      "id": "order_fallback.accuracy",
      "status": "FAIL",
-     "got": 0.764,
+     "got": 0.589,
      "needs": ">= 0.95"
     },
     {
      "id": "order_fallback.gain_over_grammar",
      "status": "PASS",
-     "got": 0.764,
-     "needs": ">= 0.227"
+     "got": 0.589,
+     "needs": ">= 0.154"
     },
     {
      "id": "order_fallback.wrong_item_offered",
      "status": "FAIL",
-     "got": 0.182,
+     "got": 0.107,
      "needs": "<= 0.05"
     },
     {
@@ -374,7 +398,7 @@
     {
      "id": "order_fallback.latency_p95_ms",
      "status": "FAIL",
-     "got": 5802,
+     "got": 8048,
      "needs": "<= 3000.0"
     }
    ]

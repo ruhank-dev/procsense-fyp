@@ -35,10 +35,10 @@ from classify.hybrid import HybridActClassifier  # noqa: E402
 from classify.ensemble import EnsembleActClassifier  # noqa: E402
 from classify.tfidf import TfidfActClassifier  # noqa: E402
 
-V2, V3, V5 = ROOT / "tests" / "classifier_synthetic_v2", ROOT / "tests" / "classifier_synthetic_v3", ROOT / "tests" / "classifier_challenge_v5"
+V2, V3, V4, V5, V6 = (ROOT / "tests" / "classifier_synthetic_v2", ROOT / "tests" / "classifier_synthetic_v3", ROOT / "tests" / "classifier_challenge_v4", ROOT / "tests" / "classifier_challenge_v5", ROOT / "tests" / "classifier_challenge_v6")
 OUT = ROOT / "artifacts" / "ai-bench"
 REPORT = ROOT / "reports" / "ai" / "classifier-safety.json"
-LOCK = OUT / "classifier-challenge-v5-used.json"
+LOCK = OUT / "classifier-challenge-v6-used.json"
 
 
 def jl(path: Path) -> list[dict]:
@@ -52,11 +52,13 @@ def adv(name: str) -> list[dict]:
 def sets(final: bool) -> dict[str, list[dict]]:
     out = {"v2_dev": jl(V2 / "dev.jsonl"), "v2_test": jl(V2 / "test.jsonl"), "v3_test": jl(V3 / "test.jsonl"), "adv_tuning": adv("adversarial_critical.json"), "adv_holdout": adv("adversarial_critical_holdout.json"),
            "adv_holdout2": adv("adversarial_critical_holdout2.json"), "adv_holdout3": adv("adversarial_critical_holdout3.json")}
+    out["challenge_v4_dev"] = json.loads((V4 / "challenge.json").read_text(encoding="utf-8"))["rows"]            # scored once in the third session; a development set (the heads train on its critical rows)
+    out["challenge_v5_dev"] = json.loads((V5 / "challenge.json").read_text(encoding="utf-8"))["rows"]            # scored once in the fourth session; a development set since its two failures were fixed
     if final:
-        manifest = json.loads((V5 / "manifest.json").read_text(encoding="utf-8"))
-        if hashlib.sha256((V5 / "challenge.json").read_bytes()).hexdigest() != manifest["files"]["challenge.json"]:
-            raise SystemExit("REFUSED: challenge.json does not match its frozen hash")
-        out["challenge_v5"] = json.loads((V5 / "challenge.json").read_text(encoding="utf-8"))["rows"]
+        manifest = json.loads((V6 / "manifest.json").read_text(encoding="utf-8"))
+        if hashlib.sha256((V6 / "challenge.json").read_bytes()).hexdigest() != manifest["files"]["challenge.json"]:
+            raise SystemExit("REFUSED: challenge.json of v6 does not match its frozen hash")
+        out["challenge_v6"] = json.loads((V6 / "challenge.json").read_text(encoding="utf-8"))["rows"]
     return out
 
 
@@ -138,12 +140,12 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     ap.add_argument("--baseline-rev", default="b73d8d8", help="the commit whose heads are the 'baseline' variant (the shipped heads at the start of the third session)")
-    ap.add_argument("--final", action="store_true", help="also score the frozen challenge set v5 (once)")
+    ap.add_argument("--final", action="store_true", help="also score the frozen challenge set v6 (once)")
     ap.add_argument("--allow-rerun", action="store_true")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args(argv)
     if a.final and LOCK.exists() and not a.allow_rerun:
-        raise SystemExit("REFUSED: the challenge set v4 has already been scored (it is scored once per candidate). Use --allow-rerun only deliberately.")
+        raise SystemExit("REFUSED: the challenge set v6 has already been scored (it is scored once). Use --allow-rerun only deliberately; a second look makes it a development set.")
     cache: dict[str, list[float] | None] = {}
     base = OllamaEmbedder(a.ollama)
 
@@ -175,16 +177,18 @@ def main(argv: list[str]) -> int:
         for vn, clf in variants.items():
             preds = [clf.classify(r["text"]) for r in rows]
             result["sets"][sn]["variants"][vn] = score(rows, preds, critical)
-            if sn in ("v2_dev", "v2_test", "v3_test", "challenge_v5"):
+            if sn in ("v2_dev", "v2_test", "v3_test", "challenge_v4_dev", "challenge_v5_dev", "challenge_v6"):
                 result["sets"][sn]["per_class"][vn] = per_class(rows, preds)
-    if not a.final and REPORT.exists():                                  # the frozen challenge set is scored once: carry its recorded result over instead of dropping it from the report
+    if REPORT.exists():                                                  # a frozen challenge set is scored once: carry its recorded result over instead of dropping it from the report
         old = json.loads(REPORT.read_text(encoding="utf-8"))
-        for key in ("challenge_v4", "challenge_v5"):
+        for key in ("challenge_v4", "challenge_v5", "challenge_v6"):
+            if key in result["sets"]:
+                continue
             if key in old.get("sets", {}):
                 result["sets"][key] = old["sets"][key]
                 result[key + "_scored_with"] = old.get(key + "_scored_with", "the committed heads and guards of the commit that first wrote this file")
     if a.final:
-        result["challenge_v5_scored_with"] = "hybrid head and TF-IDF head built by tools/bench/build_safe_heads.py in the fourth session, assertion rules of server/classify/assertion.py, cap 0.05; v5 was written before the false-reject analysis"
+        result["challenge_v6_scored_with"] = "hybrid head trained with the v4 critical rows added as hard negatives (tools/bench/build_safe_heads.py, fifth session), cue list version 5, assertion rules of server/classify/assertion.py, critical-mass cap of the head file; v6 was written before any change of that session and was never shown to a model or a tuning step"
     sample = [r["text"] for r in data["v2_dev"][:40]]
     for vn, clf in variants.items():
         times = []
@@ -197,7 +201,11 @@ def main(argv: list[str]) -> int:
         result["latency_ms"][vn] = {"median": round(times[len(times) // 2], 2), "p95": round(times[int(len(times) * 0.95) - 1], 2)}
     na = [non_assertive(r["text"]) for r in data["v2_dev"]]
     result["non_assertive_flagged_on_v2_dev"] = {"flagged": sum(bool(x) for x in na), "of": len(na)}
-    lost = {f"{sn}/{vn}": v["ALL"]["unavailable"] for sn, x in result["sets"].items() for vn, v in x["variants"].items() if v["ALL"]["unavailable"] and sn != "challenge_v4"}
+    scored = {sn: x for sn, x in result["sets"].items() if sn in data}                    # the sets scored in THIS run (carried records are not re-checked)
+    lost = {f"{sn}/{vn}": v["ALL"]["unavailable"] for sn, x in scored.items() for vn, v in x["variants"].items() if v["ALL"]["unavailable"]}
+    short = {f"{sn}/{vn}": (v["ALL"]["rows"], len(data[sn])) for sn, x in scored.items() for vn, v in x["variants"].items() if v["ALL"]["rows"] != len(data[sn])}
+    if short:
+        raise SystemExit(f"REFUSED: a variant scored a different number of rows than the set holds ({short}); nothing written")
     if lost:
         raise SystemExit(f"REFUSED: the embedder was unavailable for some rows ({lost}); nothing written and the v5 lock untouched. Rerun with Ollama otherwise idle.")
     text = json.dumps(result, indent=1) + "\n"

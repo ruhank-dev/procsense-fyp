@@ -10787,7 +10787,9 @@
     "tools/ci/test_orders_fallback.py",
     "tests/orders/paraphrases.json",
     "reports/ai/orders-eval-llm-v2.json",
-    "tests/orders/paraphrases_v2.json"
+    "tests/orders/paraphrases_v2.json",
+    "reports/ai/orders-eval-llm-v3.json",
+    "tests/orders/paraphrases_v3.json"
    ],
    "lineage": [
     "p1-voice-input-s03"
@@ -10977,7 +10979,7 @@
    ],
    "acceptance": "Guard tests pass.",
    "blockers": [
-    "external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-01, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
@@ -11152,7 +11154,7 @@
    ],
    "acceptance": "Switched off below macro-F1 0.75.",
    "blockers": [
-    "external acceptance: EX-01, EX-15 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-01, EX-15, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "labelled set not available (DT-097)",

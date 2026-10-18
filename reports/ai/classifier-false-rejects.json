@@ -1,0 +1,201 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v2_dev": {
+   "rows": 294,
+   "reasons": {
+    "head_wrong_act": 27,
+    "head_names_critical": 10,
+    "critical_mass": 96,
+    "credited": 128,
+    "below_threshold": 9,
+    "non_assertive": 19,
+    "second_reader": 5
+   }
+  },
+  "v2_test": {
+   "rows": 420,
+   "reasons": {
+    "critical_mass": 152,
+    "head_wrong_act": 44,
+    "credited": 160,
+    "non_assertive": 18,
+    "below_threshold": 22,
+    "second_reader": 8,
+    "head_names_critical": 14,
+    "cue_guard": 2
+   }
+  },
+  "v3_test": {
+   "rows": 210,
+   "reasons": {
+    "critical_mass": 68,
+    "head_wrong_act": 11,
+    "credited": 84,
+    "non_assertive": 21,
+    "below_threshold": 10,
+    "head_names_critical": 13,
+    "second_reader": 3
+   }
+  },
+  "challenge_v4": {
+   "rows": 35,
+   "reasons": {
+    "credited": 27,
+    "critical_mass": 3,
+    "head_wrong_act": 5
+   }
+  },
+  "challenge_v5_development": {
+   "rows": 70,
+   "reasons": {
+    "critical_mass": 14,
+    "credited": 47,
+    "head_wrong_act": 4,
+    "cue_guard": 2,
+    "second_reader": 1,
+    "below_threshold": 1,
+    "head_names_critical": 1
+   }
+  }
+ },
+ "all": {
+  "rows": 1029,
+  "reasons": {
+   "head_wrong_act": 91,
+   "head_names_critical": 38,
+   "critical_mass": 333,
+   "credited": 446,
+   "below_threshold": 42,
+   "non_assertive": 58,
+   "second_reader": 17,
+   "cue_guard": 4
+  },
+  "shares": {
+   "head_wrong_act": 0.088,
+   "head_names_critical": 0.037,
+   "critical_mass": 0.324,
+   "credited": 0.433,
+   "below_threshold": 0.041,
+   "non_assertive": 0.056,
+   "second_reader": 0.017,
+   "cue_guard": 0.004
+  }
+ },
+ "by_act": {
+  "ACKNOWLEDGE_EMOTION": {
+   "below_threshold": 3,
+   "credited": 40,
+   "second_reader": 3,
+   "critical_mass": 14,
+   "head_wrong_act": 6,
+   "non_assertive": 6,
+   "head_names_critical": 1
+  },
+  "ACKNOWLEDGE_FACT": {
+   "critical_mass": 36,
+   "head_names_critical": 4,
+   "credited": 27,
+   "head_wrong_act": 5,
+   "non_assertive": 1
+  },
+  "ANSWER_QUESTION": {
+   "critical_mass": 24,
+   "head_wrong_act": 15,
+   "head_names_critical": 6,
+   "credited": 19,
+   "second_reader": 2,
+   "below_threshold": 4,
+   "non_assertive": 1,
+   "cue_guard": 1
+  },
+  "ASK_TOPIC": {
+   "head_wrong_act": 18,
+   "head_names_critical": 7,
+   "critical_mass": 41,
+   "credited": 11,
+   "non_assertive": 1
+  },
+  "CHECK_UNDERSTANDING": {
+   "critical_mass": 32,
+   "head_wrong_act": 10,
+   "credited": 25,
+   "cue_guard": 3,
+   "non_assertive": 1
+  },
+  "CLARIFY": {
+   "credited": 37,
+   "critical_mass": 20,
+   "head_names_critical": 2,
+   "below_threshold": 2,
+   "non_assertive": 6,
+   "head_wrong_act": 3,
+   "second_reader": 3
+  },
+  "CLOSED_LOOP": {
+   "critical_mass": 32,
+   "head_wrong_act": 4,
+   "credited": 31,
+   "second_reader": 1,
+   "below_threshold": 2,
+   "head_names_critical": 2,
+   "non_assertive": 1
+  },
+  "ESCALATE_SPEECH": {
+   "below_threshold": 4,
+   "critical_mass": 21,
+   "credited": 36,
+   "non_assertive": 6,
+   "head_names_critical": 4,
+   "head_wrong_act": 2
+  },
+  "EXPLAIN_ACTION": {
+   "critical_mass": 25,
+   "credited": 42,
+   "head_names_critical": 3,
+   "non_assertive": 4,
+   "head_wrong_act": 1
+  },
+  "EXPLAIN_PROCEDURE": {
+   "critical_mass": 15,
+   "head_wrong_act": 10,
+   "credited": 27,
+   "non_assertive": 8,
+   "below_threshold": 12,
+   "second_reader": 2
+  },
+  "EXPLAIN_TEST": {
+   "critical_mass": 25,
+   "credited": 36,
+   "second_reader": 2,
+   "head_wrong_act": 5,
+   "non_assertive": 5
+  },
+  "REASSURE": {
+   "critical_mass": 14,
+   "below_threshold": 7,
+   "credited": 39,
+   "non_assertive": 8,
+   "head_wrong_act": 5,
+   "head_names_critical": 1
+  },
+  "REPORT_FAULT": {
+   "credited": 46,
+   "critical_mass": 14,
+   "non_assertive": 3,
+   "second_reader": 2,
+   "head_names_critical": 1,
+   "below_threshold": 7
+  },
+  "VOICE_ORDER": {
+   "critical_mass": 20,
+   "head_wrong_act": 7,
+   "non_assertive": 7,
+   "credited": 30,
+   "below_threshold": 1,
+   "head_names_critical": 7,
+   "second_reader": 2
+  }
+ }
+}

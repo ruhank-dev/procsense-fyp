@@ -22,8 +22,12 @@ def host(answer, seen=None):
     def h(request):
         if request.url.path == "/api/tags":
             return httpx.Response(200, json={"models": []})
+        body = json.loads(request.content)
         if seen is not None:
-            seen.append(json.loads(request.content))
+            seen.append(body)
+        if '"kind"' in json.dumps(body.get("format", {})):                 # the first stage asks for the KIND of thing wanted: answered consistently with the item the test wants the model to choose
+            tgt = answer.get("target", "NONE")
+            return httpx.Response(200, json={"message": {"content": json.dumps({"kind": tgt.split(":")[0] if ":" in tgt else "NONE"})}})
         return httpx.Response(200, json={"message": {"content": json.dumps(answer)}})
     return client_mod.OllamaClient(transport=httpx.MockTransport(h))
 
@@ -120,6 +124,52 @@ class Tickets(unittest.TestCase):
         with self.assertRaises(TK.TicketError) as e:
             TK.open_ticket(t, "u1")
         self.assertEqual(str(e.exception), "TICKET_ALREADY_DECIDED")
+
+
+class Agreement(unittest.TestCase):
+    """A choice that the deterministic re-ranker does not support must be made twice, with the items in opposite order; a model that changes its mind is not believed (the menu is offered)."""
+
+    def host_flipping(self):
+        calls = {"n": 0}
+
+        def h(request):
+            if request.url.path == "/api/tags":
+                return httpx.Response(200, json={"models": []})
+            body = json.loads(request.content)
+            if '"kind"' in json.dumps(body.get("format", {})):
+                return httpx.Response(200, json={"message": {"content": json.dumps({"kind": "test"})}})
+            calls["n"] += 1
+            ids = json.loads(json.dumps(body["format"]))["properties"]["target"]["enum"]
+            pick = ids[1] if calls["n"] % 2 else ids[0]                  # a different item each time it is asked
+            return httpx.Response(200, json={"message": {"content": json.dumps({"target": pick, "confidence": 0.99})}})
+        return client_mod.OllamaClient(transport=httpx.MockTransport(h)), calls
+
+    def test_a_model_that_changes_its_mind_when_the_order_is_reversed_gives_the_menu(self):
+        client, calls = self.host_flipping()
+        rb = ReadBack(VOCAB, LF.OrderMapper(client))
+        h = rb.hear("something nobody would find in the list of words here")
+        self.assertEqual((h.status, h.source, len(h.options)), ("clarify", "model", 2))            # a question between the two readings; nothing is pending and nothing is released
+        self.assertIsNone(rb.pending)
+        self.assertEqual(rb.released, [])
+        self.assertIsNone(rb.confirm("yes"))
+
+    def test_the_reranker_puts_the_item_that_shares_the_rare_word_first(self):
+        cands = [e for e in LF.shortlist("is there inflammation in her blood", VOCAB) if e.kind == "test"]
+        order = [e.target for e in LF.rerank("is there inflammation in her blood", cands, VOCAB)]
+        self.assertEqual(order[0], "crp")
+        order = [e.target for e in LF.rerank("what is his sugar right now", [e for e in LF.shortlist("what is his sugar right now", VOCAB) if e.kind == "test"], VOCAB)]
+        self.assertEqual(set(order[:2]), {"glucose_fingerprick", "hba1c"})            # both are about sugar; the model (or the read-back's no) separates them
+
+    def test_every_synonym_names_something_that_exists(self):
+        """Found in the fourth session: 'clotting' pointed at an id (`coag`) and 'glucose' at one (`glucose`) that no content file has, so a heard word was read back as something that could not be ordered."""
+        import csv
+        inv = {t["id"] for t in json.loads((ROOT / "content" / "investigations" / "investigations.json").read_text(encoding="utf-8"))["tests"]}
+        tre = {t["id"] for t in json.loads((ROOT / "content" / "treatments.json").read_text(encoding="utf-8"))["treatments"]}
+        loc = {p["id"] for p in json.loads((ROOT / "content" / "locations" / "locations.json").read_text(encoding="utf-8"))["locations"]} | {"ward"}     # 'ward' is the spoken name of the patient bay
+        known = {"test": inv, "medicine": tre, "place": loc, "staff": {"anaesthetist", "senior", "nurse", "surgeon", "porter"}}
+        with (ROOT / "server" / "orders" / "synonyms.csv").open(encoding="utf-8", newline="") as f:
+            bad = [r for r in csv.DictReader(f) if r["target"] not in known[r["kind"]]]
+        self.assertEqual(bad, [])
 
 
 if __name__ == "__main__":

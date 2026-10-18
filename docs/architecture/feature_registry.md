@@ -1087,7 +1087,7 @@ Spoken orders (drug, dose, route) read back by the nurse before acting; closed-l
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented and tested |
 | AI status | Implemented and tested |
-| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py; reports/ai/orders-eval.json; server/routers/orders.py; server/orders/ticket.py; server/orders/llm_fallback.py; server/tests/test_orders_route.py; tools/ci/test_orders_fallback.py; tests/orders/paraphrases.json; reports/ai/orders-eval-llm-v2.json; tests/orders/paraphrases_v2.json |
+| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py; reports/ai/orders-eval.json; server/routers/orders.py; server/orders/ticket.py; server/orders/llm_fallback.py; server/tests/test_orders_route.py; tools/ci/test_orders_fallback.py; tests/orders/paraphrases.json; reports/ai/orders-eval-llm-v2.json; tests/orders/paraphrases_v2.json; reports/ai/orders-eval-llm-v3.json; tests/orders/paraphrases_v3.json |
 | Lineage (existing ids) | p1-voice-input-s03 |
 | Method | ASR + slot grammar + deterministic read-back check. |
 | LLM-first classification | Slots must be exact; grammar first, LLM for unmatched phrasing. |
@@ -1128,7 +1128,7 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 | Fallback | n/a |
 | Tests planned | evidence guard tests |
 | Acceptance | Guard tests pass. |
-| Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
 | Tasks | p1-ai-language-s06 |
 | Phase | PH-15 Communication acts and classifier |
@@ -1156,7 +1156,7 @@ Classify trainee utterances into acts. P1: served LLM with an enum schema; P2: s
 | Fallback | Menu choice of act. |
 | Tests planned | macro-F1 on frozen human-labelled split |
 | Acceptance | Switched off below macro-F1 0.75. |
-| Blockers | external acceptance: EX-01, EX-15 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-15, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | labelled set not available (DT-097); critical acts misclassified (never credited from AI alone) |
 | Tasks | p1-ai-language-s06; p1-ai-language-s07 |
 | Phase | PH-15 Communication acts and classifier |

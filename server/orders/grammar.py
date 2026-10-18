@@ -32,7 +32,7 @@ NO = {"no", "nope", "cancel", "stop", "wrong", "not that"}
 
 TRIGGERS = {
     "HOLD_MED": ("hold", "withhold", "stop the", "omit", "do not give", "dont give", "don't give", "skip"),
-    "REQUEST_TRANSPORT": ("transport", "porter", "transfer", "take the patient", "move the patient", "send the patient", "take her to", "take him to", "send him", "send her", "wheel", "move him", "move her", "take them to", "send them"),
+    "REQUEST_TRANSPORT": ("transport", "porter", "transfer", "take the patient", "move the patient", "send the patient", "take her to", "take him to", "send him", "send her", "take her along", "take him along", "bring him to", "bring her to", "wheel", "move him", "move her", "take them to", "send them"),
     "CALL_STAFF": ("call", "bleep", "phone", "page", "get the", "ask the", "ring", "i need the", "escalate to"),
     "REQUEST_MEDICATION": ("give", "start", "administer", "request", "prescribe", "i would like to give", "can i have", "set up"),
     "ORDER_TEST": ("order", "request", "send", "take", "get me", "can i have", "could i get", "could i have", "i would like", "check", "run"),
@@ -152,6 +152,12 @@ class ReadBack:
         intent = intent_of(text, {k: bool(v) for k, v in found.items()})
         if intent is None:
             m = self.mapper.map(transcript, self.vocab) if self.mapper is not None else None
+            if m is not None and m.alternatives:                 # two readings disagreed: ask which one, release nothing
+                names = [x.label for x in m.alternatives]
+                h = Hearing("clarify", m.intent, {}, "Which one: " + " or ".join(names) + "?", names, removed, source="model")
+                self.pending = None
+                self._log(transcript, h, t0)
+                return h
             if m is not None:                                    # a suggestion of the model: read back like any other, released only by a yes
                 h = Hearing("removed_dose_confirm" if removed else "confirm", m.intent, {"target": m.entry.target, "label": m.entry.label}, "Confirm: " + READBACK[m.intent].format(label=m.entry.label.lower()) + "?",
                             dose_removed=removed, action=action_for(m.intent, m.entry), source="model")

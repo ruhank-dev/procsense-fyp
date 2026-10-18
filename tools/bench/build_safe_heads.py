@@ -24,14 +24,17 @@ from classify.guard import critical_cue  # noqa: E402
 from classify.tfidf import TfidfActClassifier  # noqa: E402
 
 HARD_SETS = ("adversarial_critical.json", "adversarial_critical_holdout.json", "adversarial_critical_holdout2.json")
+GRID_HYBRID = [0.01, 0.02, 0.03, 0.05, 0.08, 0.12]
 GRID = [0.01, 0.02, 0.03, 0.05]                                  # defence in depth: the cap stays tight even though the agreement rule already removes most wrong credit
-HARD_NOTE = " Hard negatives: the 179 evasive critical sentences of the three tuning adversarial sets are added to training with their critical act (build_safe_heads.py)."
+HARD_NOTE = " Hard negatives: the 179 evasive critical sentences of the three tuning adversarial sets and, since the fifth session, the critical_evasive rows of the challenge set v4 (a development set since its third-session scoring) are added to training with their critical act (build_safe_heads.py). Adversarial hold-out 3 and the challenge set v5 are held out of training as the internal validation; the challenge set v6 is frozen and unread."
 
 
 def hard_negatives() -> list[dict]:
     rows = []
     for name in HARD_SETS:
         rows += [{"text": r["text"], "act": r["act"], "group": "hard-negative", "bucket": "hard_negative"} for r in json.loads((BC.SYNTH2 / name).read_text(encoding="utf-8"))["rows"]]
+    v4 = json.loads((ROOT / "tests" / "classifier_challenge_v4" / "challenge.json").read_text(encoding="utf-8"))["rows"]
+    rows += [{"text": r["text"], "act": r["act"], "group": "hard-negative", "bucket": "hard_negative"} for r in v4 if r.get("bucket") == "critical_evasive"]       # fifth session: v4 was scored once in the third session and is a development set since
     return rows
 
 
@@ -149,7 +152,7 @@ def main(argv: list[str]) -> int:
     classes_h = [str(k) for k in m_h.classes_]
     p_h, p_t = m_h.predict_proba(h_dev), m_t.predict_proba(t_dev)
     tab_h = {}
-    for tau in GRID:
+    for tau in GRID_HYBRID:
         credited = wrong = misrouted = 0
         for r, ph, pt in zip(data["dev"], p_h, p_t):
             act = classes_h[int(ph.argmax())]
@@ -160,14 +163,29 @@ def main(argv: list[str]) -> int:
                 wrong += act != r["act"]
                 misrouted += r["act"] in critical
         tab_h[tau] = {"credited": credited, "precision": round((credited - wrong) / credited, 3) if credited else None, "critical_said_but_credited_as_other_act": misrouted}
-    cap_h, met_h = choose(tab_h)
+    # fifth session: the hybrid head's cap is the largest of a wider grid that credits NO held-out critical sentence. Held out of training: adversarial hold-out 3 and the critical rows of the challenge set v5 (96 sentences).
+    held = json.loads((BC.SYNTH2 / "adversarial_critical_holdout3.json").read_text(encoding="utf-8"))["rows"] + [r for r in json.loads((ROOT / "tests" / "classifier_challenge_v5" / "challenge.json").read_text(encoding="utf-8"))["rows"] if r.get("bucket") == "critical_evasive"]
+    x_held = np.array(BC.embed([r["text"] for r in held], "all-minilm:22m", a.ollama))
+    t_held = vec.transform([r["text"] for r in held])
+    p_hh, p_th = m_h.predict_proba(hstack([csr_matrix(x_held), t_held]).tocsr()), m_t.predict_proba(t_held)
+    held_tab = {}
+    for tau in GRID_HYBRID:
+        fc = 0
+        for r, ph, pt in zip(held, p_hh, p_th):
+            act = classes_h[int(ph.argmax())]
+            t = thr_h.get(act)
+            mass = sum(v for k, v in zip(classes_h, ph) if k in critical)
+            fc += bool(act not in critical and act != "NONE" and t is not None and ph.max() >= t and mass < tau and not critical_cue(r["text"]) and classes_t[int(pt.argmax())] == act)
+        held_tab[tau] = fc
+    ok_caps = [t for t in GRID_HYBRID if held_tab[t] == 0 and tab_h.get(t, {"critical_said_but_credited_as_other_act": 0})["critical_said_but_credited_as_other_act"] == 0]
+    cap_h, met_h = (max(ok_caps), True) if ok_caps else choose(tab_h)
     hybrid = {"kind": "hybrid_logreg_head.v1", "embedding_model": "all-minilm:22m", "embedding_dimension": int(x_tr.shape[1]), "dimension": int(x_tr.shape[1]) + len(terms), "classes": classes_h, "vocabulary": terms,
               "idf": t_head["idf"], "coef": [[round(float(w), 5) for w in row] for row in m_h.coef_], "intercept": [round(float(b), 6) for b in m_h.intercept_], "C": c_h,
               "thresholds": {act: (None if act in critical or act == "NONE" else thr_h.get(act)) for act in classes_h}, "min_precision": BC.MIN_PRECISION, "trained_on_rows": len(data["train"]),
               "train_text_sha256": t_head["train_text_sha256"], "thresholds_tuned_on": f"dev split ({len(data['dev'])} rows)", "valid_for_claims": False, "provenance": data["provenance"],
               "note": "Embedding and word features in one regression; the first reader of the credit gate, never trusted alone (server/classify/ensemble.py). Credit needs the act to be neither NONE nor critical, its probability to reach the threshold, no critical cue and a critical-act probability below critical_mass_max.",
               "critical_mass_max": cap_h if cap_h <= 1 else None,
-              "critical_mass_tuning": {"split": "synthetic v2 dev only", "rule": "the TF-IDF head must name the same act; the cap grid stops at 0.05, a leave-one-adversarial-set-out check (tools/bench/cap_loso.py) found no false credit at 0.05", "grid": {str(k): v for k, v in tab_h.items()}, "chosen": cap_h, "met_both_conditions": met_h}}
+              "critical_mass_tuning": {"split": "v2 dev (precision) and 96 held-out critical sentences (adversarial hold-out 3 and the critical rows of challenge v5, not in training)", "rule": "the TF-IDF head must name the same act; the cap is the largest of the grid at which no held-out critical sentence is credited", "grid": {str(k): v for k, v in tab_h.items()}, "held_out_false_credit_by_cap": {str(k): v for k, v in held_tab.items()}, "chosen": cap_h, "met_both_conditions": met_h}}
     print(json.dumps({"rows": len(data["train"]), "embedding": {"C": c_e, "dev_macro_f1": round(f_e, 4), "cap": cap_e, "met": met_e}, "tfidf": {"C": c_t, "dev_macro_f1": round(f_t, 4), "cap": cap_t, "met": met_t}, "hybrid": {"C": c_h, "dev_macro_f1": round(f_h, 4), "cap": cap_h, "met": met_h}}, indent=1))
     if a.dry_run:
         tmp.unlink()

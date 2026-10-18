@@ -871,6 +871,36 @@
     "the names and roles of the raters (never invented)"
    ],
    "after": "The engineer records the result in DT-224 and the feature matrix; a gate flips only when every suite of it passes."
+  },
+  {
+   "id": "EX-18",
+   "title": "A second author for the spoken-order paraphrases and for the next classifier challenge set",
+   "kind": "people",
+   "who": "A person who has not worked on the mapper or the classifier (a student, a colleague or a clinician); the owner arranges them",
+   "steps": [
+    "p1-voice-input-s03",
+    "p1-ai-language-s06"
+   ],
+   "needs": "One person, about 90 minutes, no access to the repository's test sets",
+   "prepared": [
+    "tests/orders/paraphrases_v3.json",
+    "tools/ai/eval_orders_llm.py",
+    "tests/classifier_challenge_v6/challenge.json",
+    "tools/bench/safety_gate.py"
+   ],
+   "procedure": [
+    "Give the person the list of orders the simulator understands (tests, medicines, places, staff: docs in server/orders/synonyms.csv and the content files) WITHOUT any existing example sentence.",
+    "Ask them to write at least 100 different ways a trainee might SAY an order, and 20 sentences that are not orders but mention a test, a medicine or a person; for the classifier, 60 sentences about allergy, identity, consent, fasting, a worsening sign or a handover worded so that none uses the obvious word, and 60 ordinary clinical-communication sentences.",
+    "Save them as tests/orders/paraphrases_v4.json and tests/classifier_challenge_v7/challenge.json in the same shape as the v3 and v6 files, add their SHA-256 to the manifests, commit them, and tell the engineer. Nobody scores them until the engineer runs the one-shot commands.",
+    "The engineer runs `tools/ai/eval_orders_llm.py --final v4` once, points `tools/bench/safety_gate.py --final` at the new classifier set (a one-line change of its frozen-set path) and runs it once, and records the results."
+   ],
+   "pass_rule": "Orders: at least 90 percent read back correctly, at most 5 percent wrong, at most 1 of 20 non-orders offered, p95 under 3 s (content/ai/thresholds.json order_fallback). Classifier: 0 critical sentences credited, at least 95 percent credited precision, and the independent-set rule of EX-01 (a second labeller and an adjudicator). Failing either leaves the feature off.",
+   "evidence": [
+    "the two files the person wrote",
+    "their name and role (never invented)",
+    "the engineer's one-shot result files"
+   ],
+   "after": "The engineer records the result in DT-224 and ADR-0018; a feature gate flips only when every suite of it passes."
   }
  ]
 }
