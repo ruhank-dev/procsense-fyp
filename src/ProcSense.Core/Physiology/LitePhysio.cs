@@ -194,7 +194,7 @@ namespace ProcSense.Core.Physiology
     /// LitePhysio: each variable relaxes toward its target (baseline plus every active effect times its profile, plus the couplings) by x += (target - x) * dt / tau, and is held inside its guard bounds.
     /// Noise is optional (off by default): a seeded AR(1) per variable, never larger than its cap, added to what is read but never to the state. Everything is deterministic for a seed.
     /// </summary>
-    public sealed class LitePhysio : IPhysiologyEngine
+    public sealed class LitePhysio : ISessionPhysiology
     {
         private readonly PhysioTables _t;
         private readonly Dictionary<string, double> _baseline = new Dictionary<string, double>(StringComparer.Ordinal);

@@ -19,7 +19,7 @@ namespace ProcSense.Core
     public enum TrainingLevel { Beginner, Advanced }
 
     /// <summary>Optional settings of a session that are part of what is replayed: the training level and which variant of the case is played (for example B2 of VAR-S1-B).</summary>
-    public sealed record SessionOptions(TrainingLevel Level = TrainingLevel.Beginner, string Variant = "", bool Noise = false);
+    public sealed record SessionOptions(TrainingLevel Level = TrainingLevel.Beginner, string Variant = "", bool Noise = false, string PulseTrace = "");
 
     /// <summary>Verbs and rejection codes the Session itself owns (pause, resume, time-skip). They are logged like any action, so a replay reproduces them.</summary>
     public static class SessionControl
@@ -48,6 +48,7 @@ namespace ProcSense.Core
             Level = options?.Level ?? TrainingLevel.Beginner;
             Variant = options?.Variant ?? "";
             Noise = options?.Noise ?? false;
+            PulseTrace = options?.PulseTrace ?? "";
             Seed = seed;
             Mode = mode;
             Patient = PatientFactory.Create(card);
@@ -72,6 +73,9 @@ namespace ProcSense.Core
 
         /// <summary>Whether the live vital signs carry small seeded flicker (LitePhysio noise); off by default so exact-value tests and the golden runs stay exact.</summary>
         public bool Noise { get; }
+
+        /// <summary>The id of a recorded Pulse run (content/physio/pulse_traces) that drives the vital signs instead of LitePhysio, or empty (the default). Saved in the session header so a replay uses the same engine.</summary>
+        public string PulseTrace { get; }
         public PatientState Patient { get; }
         public SimClock Clock { get; }
         public SimRandom Random { get; }

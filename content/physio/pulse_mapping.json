@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "note": "How the Core's physiology maps to the Pulse Physiology Engine (Kitware, Apache-2.0) for the parity experiment and the adapter (p1-pulse-physiology-s02 and s03). Pulse is run server-side or offline by tools/pulse/pulse_bridge.py; its outputs are recorded as traces (content/physio/pulse_traces) and the Core replays a trace through PulseTraceEngine, so a session stays deterministic. Nothing here changes LitePhysio, which stays the default engine.",
+  "pulse_build": "Kitware Pulse, branch stable, built on Windows with MinGW-w64 GCC 16 (see tools/pulse/README.md)",
+  "outputs": [
+    {"request": "HeartRate", "unit": "Per_min", "core": "HR", "scale": 1.0},
+    {"request": "SystolicArterialPressure", "unit": "mmHg", "core": "SBP", "scale": 1.0},
+    {"request": "DiastolicArterialPressure", "unit": "mmHg", "core": "DBP", "scale": 1.0},
+    {"request": "RespirationRate", "unit": "Per_min", "core": "RR", "scale": 1.0},
+    {"request": "OxygenSaturation", "unit": null, "core": "SpO2", "scale": 100.0},
+    {"request": "SkinTemperature", "unit": "degC", "core": "Temp", "scale": 1.0, "note": "Pulse's default vitals carry the skin temperature; the Core's Temp is a core-temperature reading, so only the direction of a change is compared"}
+  ],
+  "effects": {
+    "EFF-FLUID-BOLUS": {"pulse": "SubstanceCompoundInfusion", "compound": "Saline", "rate_ml_per_min": 50, "bag_ml": 500},
+    "EFF-OXYGEN": {"pulse": "SupplementalOxygen", "device": "NasalCannula", "flow_l_per_min": 4, "volume_l": 100},
+    "EFF-ADRENALINE": {"pulse": "SubstanceBolus", "substance": "Epinephrine", "dose_ml": 1.0, "concentration_ug_per_ml": 100},
+    "EFF-OPIOID-REVERSAL": {"pulse": "SubstanceBolus", "substance": "Naloxone", "dose_ml": 1.0, "concentration_mg_per_ml": 0.4}
+  },
+  "patterns": {
+    "PAT-BLEEDING": {"pulse": "Hemorrhage", "compartment": "RightLeg", "severity": 0.5},
+    "PAT-OPIOID": {"pulse": "SubstanceBolus", "substance": "Morphine", "dose_ml": 1.0, "concentration_mg_per_ml": 20},
+    "PAT-PAIN": {"pulse": "AcuteStress", "severity": 0.8}
+  },
+  "unmapped": {
+    "EFF-ANAPHYLAXIS": "the Pulse Python patient actions contain no anaphylaxis; LitePhysio keeps it",
+    "PAT-ALLERGY": "as EFF-ANAPHYLAXIS",
+    "PAT-NORMAL": "a pattern with no targets: nothing to map",
+    "PAT-SEPSIS": "Pulse's sepsis is a patient condition that needs a 90-second stabilisation of a patient file and its authors mark the model incomplete; not used",
+    "PAT-DEHYDRATION": "Pulse offers a dehydration condition only through stabilisation of a patient file; the haemorrhage scenario covers volume loss",
+    "PAT-INFECTION": "no infection model in the actions used",
+    "PAT-AF": "an arrhythmia action exists but sets a rhythm, not the Core's pattern of rate and pressure",
+    "EFF-ANALGESIA": "a morphine bolus would change several things at once; the Core's analgesia lowers a pain score that Pulse does not carry",
+    "EFF-ANTIEMETIC": "nausea is not a Pulse variable",
+    "EFF-ANTIBIOTIC": "no physiological effect in either engine",
+    "EFF-POTASSIUM-LOWER": "no physiological effect in the Core model",
+    "EFF-GLUCOSE-RISE": "glucose is a Core variable with no Pulse output used here",
+    "variables": "pain, nausea, sedation, glucose and volume_deficit are Core-only variables; Pulse supplies HR, SBP, DBP, RR, SpO2 and a temperature"
+  },
+  "scenarios": [
+    {
+      "id": "PS-BLEED-FLUID", "label": "Bleeding, then a fluid bolus", "start_state": "states/StandardMale@0s.json", "duration_s": 1800, "sample_every_s": 10,
+      "pulse_events": [{"t": 60, "pattern": "PAT-BLEEDING"}, {"t": 600, "effect": "EFF-FLUID-BOLUS"}],
+      "lite_events": [{"t": 60, "id": "PAT-BLEEDING"}, {"t": 600, "id": "EFF-FLUID-BOLUS"}],
+      "baseline": {"HR": 72, "SBP": 114, "DBP": 73, "RR": 12, "SpO2": 98, "Temp": 36.7}
+    },
+    {
+      "id": "PS-OPIOID-NALOXONE", "label": "Opioid effect, then naloxone", "start_state": "states/StandardMale@0s.json", "duration_s": 1800, "sample_every_s": 10,
+      "pulse_events": [{"t": 60, "pattern": "PAT-OPIOID"}, {"t": 900, "effect": "EFF-OPIOID-REVERSAL"}],
+      "lite_events": [{"t": 60, "id": "PAT-OPIOID"}, {"t": 900, "id": "EFF-OPIOID-REVERSAL"}],
+      "baseline": {"HR": 72, "SBP": 114, "DBP": 73, "RR": 12, "SpO2": 98, "Temp": 36.7}
+    },
+    {
+      "id": "PS-ADRENALINE", "label": "Adrenaline bolus", "start_state": "states/StandardMale@0s.json", "duration_s": 900, "sample_every_s": 10,
+      "pulse_events": [{"t": 60, "effect": "EFF-ADRENALINE"}],
+      "lite_events": [{"t": 60, "id": "EFF-ADRENALINE"}],
+      "baseline": {"HR": 72, "SBP": 114, "DBP": 73, "RR": 12, "SpO2": 98, "Temp": 36.7}
+    },
+    {
+      "id": "PS-ACUTE-STRESS", "label": "Acute stress (the Core's pain pattern)", "start_state": "states/StandardMale@0s.json", "duration_s": 900, "sample_every_s": 10,
+      "pulse_events": [{"t": 60, "pattern": "PAT-PAIN"}],
+      "lite_events": [{"t": 60, "id": "PAT-PAIN"}],
+      "baseline": {"HR": 72, "SBP": 114, "DBP": 73, "RR": 12, "SpO2": 98, "Temp": 36.7}
+    }
+  ]
+}

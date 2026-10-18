@@ -13,6 +13,11 @@ Pulse must plug in behind the same `IPhysiologyEngine` interface so no rule, cas
 2. Mapping table: our effects (fluids, oxygen, analgesia, anaphylaxis…) → Pulse actions; Pulse outputs → our variables.
 3. If Pulse runs server-side: results streamed and logged so replays use the logged values.
 
+## Status (18 October 2026)
+
+- **Built:** `PulseTraceEngine` behind `IPhysiologyEngine` (`src/ProcSense.Core/Physiology/PulseTraceEngine.cs`), `content/physio/pulse_mapping.json`, the bridge that records Pulse runs (`tools/pulse/pulse_bridge.py`) and a config switch per session (`SessionOptions.PulseTrace`, header field `pulse_trace`, CLI `--pulse-trace`). Server-side results are logged data: a session replays a recorded run, so it verifies on any machine. 11 tests (`PulseTraceTests`); all 142 golden runs complete with a trace selected, with the same end state, and are identical unless the effect that starts the recording was given.
+- **Limit:** it is a recorded scenario aligned by its first action, not an interactive patient; an interactive bridge (Pulse beside the session, values logged) is not built.
+
 ## Verification
 P0 golden runs complete with Pulse selected; logged values replay identically.
 

@@ -46,6 +46,7 @@ namespace ProcSense.Core.Replay
             if (s.Level != TrainingLevel.Beginner) { sb.Append(",\"level\":"); JsonText.Quote(sb, s.Level.ToString().ToLowerInvariant()); }      // only when not the default, so older logs read the same
             if (s.Variant.Length > 0) { sb.Append(",\"variant\":"); JsonText.Quote(sb, s.Variant); }
             if (s.Noise) sb.Append(",\"noise\":true");
+            if (s.PulseTrace.Length > 0) { sb.Append(",\"pulse_trace\":"); JsonText.Quote(sb, s.PulseTrace); }
             if (meta != null)
             {
                 sb.Append(",\"session_id\":"); JsonText.Quote(sb, meta.SessionId);
@@ -78,7 +79,7 @@ namespace ProcSense.Core.Replay
             string caseId = header.Str("case");
             ulong seed = ulong.Parse(header.Str("seed"), CultureInfo.InvariantCulture);
             var mode = (SessionMode)Enum.Parse(typeof(SessionMode), header.Str("mode"), true);
-            var options = new SessionOptions(header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner, header.Has("variant") ? header.Str("variant") : "", header.Has("noise") && header.Bool("noise"));
+            var options = new SessionOptions(header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner, header.Has("variant") ? header.Str("variant") : "", header.Has("noise") && header.Bool("noise"), header.Has("pulse_trace") ? header.Str("pulse_trace") : "");
             string expected = header.Str("log_hash");
 
             if (!content.Cases.TryGetValue(caseId, out var card)) throw new ContentException("case '" + caseId + "' is not loaded");

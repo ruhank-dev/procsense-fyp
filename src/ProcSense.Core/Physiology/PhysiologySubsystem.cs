@@ -21,7 +21,7 @@ namespace ProcSense.Core.Physiology
 
         private readonly ContentPackage _content;
         private readonly CaseFile? _fixed;
-        private LitePhysio _engine = null!;
+        private ISessionPhysiology _engine = null!;
         private CaseFile? _file;
         private Session _s = null!;
         private double _lastSpo2;
@@ -34,7 +34,7 @@ namespace ProcSense.Core.Physiology
 
         public int Order => PipelineOrder.Clinical + 5;
 
-        public LitePhysio Engine => _engine;
+        public ISessionPhysiology Engine => _engine;
 
         /// <summary>The monitor's display zones and the probe artefact (separate from the NEWS2 scoring bands).</summary>
         public DisplayZoneTable Display => _content.Physio.Display;
@@ -63,7 +63,12 @@ namespace ProcSense.Core.Physiology
             };
             var glucose = _file?.Results.FirstOrDefault(r => r.Test.StartsWith("Capillary glucose", StringComparison.Ordinal) && !r.Test.Contains("repeat"));
             if (glucose != null && double.TryParse(glucose.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double g)) { Glucose = g; _hasGlucose = true; baseline["glucose"] = g; }
-            _engine = new LitePhysio(_content.Physio) { NoiseEnabled = _content.Physio.NoiseEnabled || session.Noise };
+            if (session.PulseTrace.Length > 0)
+            {
+                if (!_content.PulseTraces.Traces.TryGetValue(session.PulseTrace, out var trace)) throw new ContentException("the content has no Pulse trace '" + session.PulseTrace + "'");
+                _engine = new PulseTraceEngine(_content.Physio, trace);              // a recorded Pulse run replaces the LitePhysio equations for this session; noise is not added to recorded data
+            }
+            else _engine = new LitePhysio(_content.Physio) { NoiseEnabled = _content.Physio.NoiseEnabled || session.Noise };
             _engine.Initialise(baseline, session.Random.Stream("physio"));
             session.Events.Subscribe<TreatmentGiven>(OnGiven);
             Refresh();

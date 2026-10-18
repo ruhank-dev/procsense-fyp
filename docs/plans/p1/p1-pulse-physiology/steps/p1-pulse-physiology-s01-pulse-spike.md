@@ -19,6 +19,11 @@ Pulse could add physiological fidelity, but whether it builds for Quest (ARM64) 
 
 - **Done (desk research, 17 October 2026):** licence Apache-2.0, platforms, bindings, no prebuilt wheel, recorded in `tools/pulse/README.md`. **Not done:** the PC build and the scenario run, and the Quest ARM64 test (Sannan). Steps s02 and s03 wait for the spike (DT-207).
 
+## Status (18 October 2026)
+
+- **PC build done** with free tools (CMake, Ninja, MinGW-w64 GCC, a portable JDK): Pulse 4.4.0 (commit 5e29e5b) builds and runs on the desktop, the Python API works, four scenarios were run. The recipe and the three things that went wrong are in `tools/pulse/README.md`. Cost: 1.6 ms for each 20 ms step on the desktop (shared processor).
+- **Not done:** the Quest ARM64 build and its cost (Sannan, `docs/plans/sannan-device-checks.md` DC-05).
+
 ## Verification
 Spike notes: runs on PC yes/no, on Quest yes/no, effort estimate for the adapter.
 

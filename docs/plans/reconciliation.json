@@ -641,32 +641,43 @@
   "p1-pulse-physiology-s01": {
    "owner": "Ruhan",
    "before": "Desk research 17 Oct",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
-    "tools/pulse/README.md"
+    "tools/pulse/README.md",
+    "tools/pulse/pulse_bridge.py",
+    "content/physio/pulse_traces/index.json",
+    "docs/plans/sannan-device-checks.md"
    ],
-   "measured": "licence Apache-2.0, platforms and bindings recorded; no prebuilt wheel exists",
-   "open": "The PC build needs a C++ compiler and CMake (neither is installed) and about 25 GB of free disk (23 GB of 534 GB are free); the Quest ARM64 test is Sannan's (DT-207)"
+   "measured": "Pulse 4.4.0 (5e29e5b) built with CMake, Ninja, MinGW-w64 GCC 16 and a portable JDK; the HowTo ran; 1.6 ms for each 20 ms step on the desktop (shared processor)",
+   "open": "The Quest ARM64 test (Sannan, DC-05). The PC build, the Python API and four runs are done",
+   "external": "Sannan: the Quest ARM64 build and its cost per frame (check DC-05)"
   },
   "p1-pulse-physiology-s02": {
    "owner": "Ruhan",
    "before": "No status recorded",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
-    "tools/pulse/README.md"
+    "src/ProcSense.Core/Physiology/PulseTraceEngine.cs",
+    "content/physio/pulse_mapping.json",
+    "tests/ProcSense.Core.Tests/PulseTraceTests.cs",
+    "docs/plans/sannan-device-checks.md"
    ],
-   "measured": "",
-   "open": "Waits for the spike of s01 (DT-207)"
+   "measured": "PulseTraceEngine behind IPhysiologyEngine, session option and header field, 11 tests; all 142 golden runs complete with a trace selected with the same end state",
+   "open": "The recorded-run adapter is done; an interactive Pulse beside the session is not built and not needed for replay",
+   "external": "Sannan: the adapter on the device if Pulse is to run there (DC-05); an interactive bridge is optional future work"
   },
   "p1-pulse-physiology-s03": {
    "owner": "Ruhan",
    "before": "No status recorded",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
-    "tools/pulse/README.md"
+    "tools/pulse/parity.py",
+    "docs/research/physio-plots/pulse-parity/parity.md",
+    "tools/ci/test_pulse.py"
    ],
-   "measured": "",
-   "open": "Waits for the adapter of s02 (DT-207)"
+   "measured": "four scenarios against LitePhysio: 9 of 27 comparisons where either engine moves agree in direction, the main effect of each action agrees; decision recorded: LitePhysio stays the default",
+   "open": "No reviewer has compared the plots; the Quest cost is not measured",
+   "external": "a medical reviewer picking the more realistic curve (optional under ADR-0008) and Sannan for the Quest cost (DC-05)"
   },
   "p1-scenario-composer-difficulty-s01": {
    "owner": "Ruhan",
@@ -768,13 +779,16 @@
   "p1-voice-input-s01": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "server/asr/service.py",
-    "reports/ai/asr-wer.json"
+    "reports/ai/asr-wer.json",
+    "reports/ai/asr-primock57.json",
+    "tools/ai/asr_primock.py"
    ],
-   "measured": "word error rate 9.3 percent against the 25 percent limit; the gate passes and the feature is on",
-   "open": "The step asks for 5 s of speech to text in 0.7 s: measured 9.29 s per clip on the processor (the gate checked only the error rate); being re-measured on the card. EXP-VOX-3 asks for PriMock57 and consented recordings; accented trainees in a noisy room (DT-205)"
+   "measured": "on the card beside the 4B model: 0.58 s for 3 to 7 s clips (target 0.7), WER 0.0847 on rendered lines; real mock consultations (PriMock57, 257 utterances): WER 0.217 (doctors 0.234, patients 0.183), median 0.699 s for 4 to 6 s utterances, p95 1.02 s",
+   "open": "Consented team recordings and accented trainees in a noisy room (DT-205); the public part of EXP-VOX-3 (PriMock57) is done",
+   "external": "consented recordings of the team and of accented trainees in a noisy room (DT-205)"
   },
   "p1-voice-input-s02": {
    "owner": "Sannan",

@@ -114,7 +114,8 @@ namespace ProcSense.Core.Content
                 Records.RecordTables.Parse(reader.ReadText("records/records.json")),
                 Diagnostics.DiagnosticsTables.Parse(reader.ReadText("diagnostics/diagnostics.json")),
                 Optional(reader, "handover/recovery_required.json", t => Workflow.Steps.HandoverTables.Parse(t, "handover/recovery_required")),
-                Optional(reader, "extension/intra_op_events.json", t => Workflow.Steps.IntraOpTables.Parse(t)));
+                Optional(reader, "extension/intra_op_events.json", t => Workflow.Steps.IntraOpTables.Parse(t)),
+                Optional(reader, "physio/pulse_traces/index.json", t => Physiology.PulseTraceTables.Parse(t, id => reader.ReadText("physio/pulse_traces/" + id + ".json"))));
         }
 
         // the extension content is optional: a package built before it existed still loads, with no recovery handover and no intra-operative events

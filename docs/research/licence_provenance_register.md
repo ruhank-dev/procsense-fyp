@@ -26,6 +26,7 @@ ProcSense is meant to be sold to organisations (p1-backend), so a **non-commerci
 | DS-0012 | ProcSense EMR distractor identities | ProcSense authored | ALLOWED | CSV | Invented names only | 2026-10-16 (own work) |
 | DS-0013 | Indiana University chest X-ray (Open-i) | CC BY-NC-ND 4.0 | REJECTED | Nothing | Non-commercial and no-derivatives (cropping and labelling are derivatives) | 2026-10-10 (licence field of the report files; not re-read) |
 | DS-0014 | AMOS 2022 | CC BY 4.0 | ALLOWED WITH CONDITIONS | Selected slices (raw, selected) | Attribution; painted findings labelled synthetic | 2026-10-16 (R-023) |
+| — | PriMock57 (Babylon Health): 57 mock primary-care consultations, audio and transcripts | CC BY 4.0 (LICENCE.md of the repository) | ALLOWED WITH CONDITIONS (evaluation only) | No (downloaded to a folder outside the repository; only figures are committed) | Attribution in the report that uses it; not used to train anything; actors, not patients | 2026-10-18 (R-045) |
 
 ## Models
 
@@ -43,6 +44,8 @@ ProcSense is meant to be sold to organisations (p1-backend), so a **non-commerci
 | MC-10 | Medical image selection (tag retrieval) | own code; each image keeps its dataset's licence | ALLOWED WITH CONDITIONS | Image library | The licence filter keeps only images of an ALLOWED or ALLOWED WITH CONDITIONS dataset; each image carries its dataset id for attribution | 2026-10-16 (dataset rows above) |
 | MC-11 | Novelty fingerprints | own code (weighted Jaccard); datasketch (MIT) later | ALLOWED | Code | Keep the licence notice if datasketch is added | 2026-10-16 (R-024) |
 | MC-13 | MedGemma 4B | Health AI Developer Foundations terms (gated; Hugging Face lists the licence as "other") | ALLOWED WITH CONDITIONS (deferred) | No | The account holder accepts the terms before download, after confirming they are entitled to (the pages read do not state the eligibility rule; nothing is accepted on anyone's behalf); outputs never used for clinical decisions; the registry content/ai/model_candidates.json records the acceptance | 2026-10-18 (R-010, R-028, R-041) |
+| — | Pulse Physiology Engine 4.4.0 (Kitware; built from source, commit 5e29e5b) | Apache-2.0 (NOTICE file: keep the Kitware copyright notice) | ALLOWED WITH CONDITIONS | No: only recordings of its output (content/physio/pulse_traces) | Keep the notice with any copy of the engine or the traces; the traces are outputs of a simulation, labelled as such | 2026-10-18 (R-043) |
+| — | sherpa-onnx (k2-fsa) with Whisper tiny.en int8 and the 20M streaming Zipformer (mobile) model files | sherpa-onnx code Apache-2.0; the model files' own licences were NOT read in this pass | VERIFY | No (downloaded to a folder outside the repository for the proxy measurement) | Read each model's licence before any file is shipped on the headset (ADR-0014) | 2026-10-18 (R-044) |
 | — | Llama 3.2 3B | Llama 3.2 Community License (Hugging Face licence tag `llama3.2`; gated, approved by hand) | VERIFY | No | The terms themselves were not read; read them before choosing it (OQ-08) | 2026-10-16 (R-027, licence name only) |
 
 ## Voices

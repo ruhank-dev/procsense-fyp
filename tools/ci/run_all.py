@@ -287,6 +287,7 @@ def main(argv: list[str]) -> int:
         ("dialogue stress scenarios are seeded and their reply rules catch leaks, meta talk, doses and advice", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_dialogue_stress.py"])),
         ("headset checks cover every step that needs a device and the page is current", lambda: run(["uv", "run", "--project", "tools", "tools/plans/device_checks.py", "--check"])),
         ("on-device recogniser proxy report is a desktop figure on the server's clips, never a headset result", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_asr_proxy_report.py"])),
+        ("Pulse adapter data: mapping, recorded traces, parity page (no Pulse needed)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pulse.py"])),
         ("candidate model rules (a gated model needs recorded terms; a switch needs measured parity and a blind rating)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_model_candidate.py"])),
         ("remote CI status classifier (a run GitHub never started is not a pass)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_remote_status.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),

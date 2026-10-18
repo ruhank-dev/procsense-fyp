@@ -11,7 +11,7 @@ internal static class Commands
 {
     private const string Usage =
         "usage:\n" +
-        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--noise] [--session-id guid] [--package-hash sha256] [--content dir] [--scenario generated.package.json] [--allow-draft] [--skip-integrity]\n" +
+        "  procsense-sim run --case VAR-S1-A --seed 42 --actions file.actions.json --out result.json [--log session.jsonl] [--mode practice|assessment] [--level beginner|advanced] [--variant B2] [--noise] [--pulse-trace ID] [--session-id guid] [--package-hash sha256] [--content dir] [--scenario generated.package.json] [--allow-draft] [--skip-integrity]\n" +
         "  procsense-sim replay --log session.jsonl [--content dir] [--scenario generated.package.json]\n" +
         "  procsense-sim verify --log session.jsonl [--out verdict.json] [--html report.html] [--package package.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim report --log session.jsonl --out report.html [--json report.json] [--content dir] [--skip-integrity]\n" +
@@ -54,7 +54,7 @@ internal static class Commands
         var content = ContentLoader.Load(Reader(o), caseId);
         if (Guard(o, content, caseId, mode) is { } refused) return refused;
         var script = ActionScript.Parse(File.ReadAllText(Need(o, "actions")));
-        var options = new SessionOptions(Enum.Parse<TrainingLevel>(o.GetValueOrDefault("level", "beginner"), true), o.GetValueOrDefault("variant", ""), o.ContainsKey("noise"));
+        var options = new SessionOptions(Enum.Parse<TrainingLevel>(o.GetValueOrDefault("level", "beginner"), true), o.GetValueOrDefault("variant", ""), o.ContainsKey("noise"), o.GetValueOrDefault("pulse-trace", ""));
         var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content), options);
         SessionFile.Play(session, script);
 

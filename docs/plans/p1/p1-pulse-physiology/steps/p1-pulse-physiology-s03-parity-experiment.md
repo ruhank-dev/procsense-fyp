@@ -13,6 +13,11 @@ Pulse may add realism but costs complexity and compute; the choice must be evide
 2. Cases: Usman (treated/untreated), VAR-S1-A baseline, an anaphylaxis what-if, dehydration (VAR-S2-G).
 3. Metrics: direction/timing agreement with walkthrough patterns, reviewer preference, compute cost (≤ 3 ms/frame on Quest per guide target, or server latency).
 
+## Status (18 October 2026)
+
+- **Done on the desktop:** LitePhysio and Pulse on four scenarios (bleeding then fluid, opioid then naloxone, adrenaline, acute stress), plots and the direction comparison in `docs/research/physio-plots/pulse-parity/` (9 of the 27 comparisons where either engine moves agree in direction; the main effect of each action agrees, secondary variables often do not). Anaphylaxis and dehydration have no usable Pulse action and are listed with the reason. The decision is in `tools/pulse/README.md`: LitePhysio stays the default, Pulse is a recorded reference for practice.
+- **Not done:** a medical reviewer's choice of the more realistic curve (not a gate, ADR-0008) and the cost on the Quest (Sannan, DC-05).
+
 ## Verification
 Comparison plots + reviewer verdict + decision recorded in the README.
 

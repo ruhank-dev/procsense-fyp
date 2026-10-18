@@ -120,7 +120,7 @@ Prepared (already in the repository):
 
 Procedure:
 
-1. Follow tools/pulse/README.md section 'Quest' (it states what the PC build produced and what is missing for ARM64).
+1. Follow tools/pulse/README.md, section 'Steps still to do' (it states what the PC build produced and what is missing for ARM64: the C# bindings for Android arm64 and a Unity project).
 2. Run the dehydration scenario for 5 simulated minutes at the frame rate of the app and record milliseconds per frame (average and maximum).
 
 **Pass rule:** At most 3 ms per frame on average (the guide's target). If it fails, Pulse runs on the server or not at all, per the README decision.
