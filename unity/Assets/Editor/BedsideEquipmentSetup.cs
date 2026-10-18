@@ -91,6 +91,8 @@ namespace ProcSense.EditorTools
             var cable = new GameObject(id + " cable");
             cable.transform.SetParent(root,false);
             var line = cable.AddComponent<LineRenderer>();
+            line.positionCount = 0; // Runtime cable view supplies positions; avoid default metre-wide Edit-mode geometry.
+            line.startWidth = line.endWidth = .004f;
             line.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/Equipment/M_RubberBlack.mat");
             var view = cable.AddComponent<SensorCableView>();
             view.DevicePort = monitor.GetComponentsInChildren<Transform>().Single(t=>t.name==port);

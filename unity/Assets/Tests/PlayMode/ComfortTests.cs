@@ -30,7 +30,8 @@ namespace ProcSense.Tests.PlayMode
             yield return new WaitForSecondsRealtime(1.2f);
             Assert.That(rig.transform.position.y, Is.EqualTo(0).Within(0.01f), "no floor exists yet; input/gravity must remain held");
             yield return SceneManager.LoadSceneAsync("PatientBay", LoadSceneMode.Additive);
-            for (int i = 0; i < 5; i++) yield return null;
+            float ready = Time.realtimeSinceStartup + 15;
+            while (rooms.Busy && Time.realtimeSinceStartup < ready) yield return null;
             Assert.IsFalse(rooms.Busy);
             Assert.That(rig.transform.position.y, Is.InRange(-0.05f, 0.1f));
         }
@@ -95,7 +96,9 @@ namespace ProcSense.Tests.PlayMode
                 SimulationHost.Instance.AutoTick = false;
                 var provider = Object.FindAnyObjectByType<SafeTeleportProvider>();
                 var ray = Object.FindObjectsByType<XRRayInteractor>(FindObjectsInactive.Include).First(r => r.name == "Teleport Interactor");
-                var anchor = Object.FindObjectsByType<SafeTeleportAnchor>().First();
+                end = Time.realtimeSinceStartup + 15;
+                while (Object.FindAnyObjectByType<RoomLoader>().Busy && Time.realtimeSinceStartup < end) yield return null;
+                var anchor = Object.FindObjectsByType<SafeTeleportAnchor>().First(a => a.gameObject.scene.name == room);
                 anchor.IsSelectableBy((IXRSelectInteractor)ray); // Must bind before a selection request can be generated.
                 Assert.AreSame(provider, anchor.teleportationProvider);
                 anchor.RequestTeleport();
@@ -126,7 +129,7 @@ namespace ProcSense.Tests.PlayMode
             var rig = Object.FindAnyObjectByType<XROrigin>();
             string state = SimulationHost.Instance.Observable.Hash();
             string log = SimulationHost.Instance.Session.Log.Hash();
-            foreach (var anchor in Object.FindObjectsByType<SafeTeleportAnchor>().OrderBy(a => a.name))
+            foreach (var anchor in Object.FindObjectsByType<SafeTeleportAnchor>().Where(a => a.gameObject.scene.name == rooms.CurrentRoom).OrderBy(a => a.name))
             {
                 var destination = anchor.teleportAnchorTransform.position;
                 Assert.IsTrue(provider.CanTeleport(destination), anchor.name);
@@ -215,10 +218,15 @@ namespace ProcSense.Tests.PlayMode
                 if (room == "Corridor")
                 {
                     Assert.IsNotNull(Object.FindAnyObjectByType<SafeTeleportArea>());
-                    Assert.IsFalse(provider.CanTeleport(new Vector3(-2.1f, 0, -1.5f)), "behind diagnostic wall");
-                    Assert.IsTrue(provider.QueueTeleportRequest(new TeleportRequest { destinationPosition = new Vector3(0, 0, 0), matchOrientation = MatchOrientation.WorldSpaceUp }));
+                    var layout = Object.FindObjectsByType<RoomLayout>().Single(l => l.gameObject.scene.name == "Corridor");
+                    Assert.IsFalse(provider.CanTeleport(layout.transform.TransformPoint(new Vector3(-2.1f, 0, -1.5f))), "behind diagnostic wall");
+                    Assert.IsTrue(provider.QueueTeleportRequest(new TeleportRequest { destinationPosition = layout.transform.TransformPoint(Vector3.zero), matchOrientation = MatchOrientation.WorldSpaceUp }));
                 }
-                else Object.FindObjectsByType<SafeTeleportAnchor>().First().RequestTeleport();
+                else
+                {
+                    Object.FindObjectsByType<SafeTeleportAnchor>().First(a => a.gameObject.scene.name == room).RequestTeleport();
+                    Assert.IsTrue(provider.Busy, room);
+                }
                 yield return Idle(provider);
                 Assert.AreEqual(0, rig.GetComponent<LocomotionFade>().Alpha);
             }

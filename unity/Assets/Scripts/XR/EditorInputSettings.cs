@@ -25,7 +25,7 @@ namespace ProcSense.VR.XR
 #if UNITY_EDITOR
                 return UnityEditor.EditorPrefs.GetBool(PreferenceKey + ".Thumbsticks", true);
 #else
-                return false;
+                return true;
 #endif
             }
         }

@@ -2,3 +2,8 @@
 # Unity's own model assets (including imported XR sample meshes) must be versioned.
 !Assets/**/[Mm]odels/
 !Assets/**/[Mm]odels/**
+
+# Unity build scratch files and temporary scenes created by the Test Runner.
+/.utmp/
+/Assets/InitTestScene*.unity
+/Assets/InitTestScene*.unity.meta

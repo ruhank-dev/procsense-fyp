@@ -82,11 +82,13 @@ namespace ProcSense.VR.Login
         private void Resize()
         {
             var canvas = GetComponent<Canvas>();
-            bool narrow = canvas.renderMode != RenderMode.WorldSpace && Screen.width / (float)Mathf.Max(1, Screen.height) < 1.30f;
+            bool headset = canvas.renderMode == RenderMode.WorldSpace;
+            bool narrow = headset || Screen.width / (float)Mathf.Max(1, Screen.height) < 1.30f;
             if (_narrow == narrow && introduction.activeSelf == !narrow) return;
             _narrow = narrow;
             introduction.SetActive(!narrow); divider.SetActive(!narrow);
             card.anchorMin = card.anchorMax = new Vector2(narrow ? .5f : .74f, .5f);
+            card.anchoredPosition = headset ? new Vector2(0, 180) : Vector2.zero;
         }
 
         public void Submit()
