@@ -19,7 +19,7 @@ _PATTERNS = [
     ("incomplete", re.compile(r"(\.\.\.|…|\s-)\s*$")),
     ("denied", re.compile(rf"\b(haven'?t|have not|hasn'?t|didn'?t|did not|never|won'?t|will not|not going to|am not going to|i'?m not going to|can'?t|cannot|wasn'?t going to|no longer)\b(\s+\w+){{0,3}}\s+{_VERBS}\b")),
     ("denied", re.compile(rf"\b(not (yet|now|today))\b(\s+\w+){{0,2}}\s+{_VERBS}\b")),
-    ("denied", re.compile(rf"\b(was going to|meant to|about to|wanted to|intended to)\b(\s+\w+){{0,2}}\s+{_VERBS}\b[^.?!]{{0,40}}\b(but|then)\b[^.?!]{{0,25}}\b(forget|not|didn'?t|won'?t|never|can'?t|haven'?t)")),
+    ("denied", re.compile(rf"\b(was going to|meant to|about to|wanted to|intended to)\b(\s+\w+){{0,2}}\s+{_VERBS}\b[^.?!]{{0,40}}\b(but|then)\b[^.?!]{{0,25}}\b(forget|not|didn'?t|won'?t|never|can'?t|haven'?t|no time|no chance|out of time)")),
     ("hypothetical", re.compile(r"\b(if i (were|was|had|did)\b|had i\b|were i to\b|(?<!can )(?<!only )imagine\b|pretend\b|what if\b|hypothetical)")),
     ("hypothetical", re.compile(rf"\b(maybe|perhaps) (i|we) (should|could|ought to|might)\b[^.?!]{{0,60}}\b(but|though)\b[^.?!]{{0,20}}\b(won'?t|will not|not|don'?t)")),
     ("reported", re.compile(rf"\b(he|she|they|the (nurse|registrar|doctor|consultant|surgeon|sister|anaesthetist|team)|someone|nobody|no one)\b(\s+\w+){{0,2}}\s+(said|says|told|tell|promised|will|would|asked|wants|wanted|is going to|was going to|has yet to)\b[^.?!]{{0,40}}\b{_VERBS}\b")),

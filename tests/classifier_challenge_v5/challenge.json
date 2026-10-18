@@ -1,0 +1,1087 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Challenge set v5, written by the builder on 18 October 2026 (fourth session) BEFORE the false-reject analysis and any change to the credit gate of that session; it is scored once per final candidate (docs/research/classifier_benchmark/safety_gate.md). Same buckets as v4: critical_evasive (must never be credited), ordinary_hard (credit allowed; here the share credited is the recall that matters), non_assertive (denied, hypothetical, reported or broken-off speech; must not be credited). Same author as v4 and the adversarial sets: a measure of generalisation to that author's wording only. Not independent, not clinical validation.",
+ "rows": [
+  {
+   "id": "C5001",
+   "text": "Has your skin ever blown up after a new medicine?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5002",
+   "text": "Is there a tablet you were warned never to touch again?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5003",
+   "text": "Did the last antibiotic leave you struggling for air?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5004",
+   "text": "Anything the chemist told you to steer clear of?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5005",
+   "text": "Do certain foods set off a reaction in you?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5006",
+   "text": "Have you had a nasty turn after an injection?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5007",
+   "text": "Which drugs have disagreed with you in the past?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5008",
+   "text": "Did a plaster once bring you out in welts?",
+   "bucket": "critical_evasive",
+   "kind": "allergy",
+   "act": "STATE_ALLERGY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5009",
+   "text": "Please read me the details printed on your bracelet.",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5010",
+   "text": "I need to be sure you are the person on my list: your full name and birth date.",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5011",
+   "text": "Tell me when your birthday is and how it is spelled on the band.",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5012",
+   "text": "Is the number on your tag the same as on the notes?",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5013",
+   "text": "Let me check the label on your wrist against your name.",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5014",
+   "text": "Can you confirm which patient you are before we begin?",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5015",
+   "text": "What name should be on the chart for you?",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5016",
+   "text": "Could you give me your date of birth the way it is on the band?",
+   "bucket": "critical_evasive",
+   "kind": "identity",
+   "act": "CONFIRM_IDENTITY",
+   "expect_credit": false
+  },
+  {
+   "id": "C5017",
+   "text": "Are you happy for the surgeon to go ahead this morning?",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5018",
+   "text": "Has everything been explained well enough for you to agree?",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5019",
+   "text": "I'll need your signature on the form before we start.",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5020",
+   "text": "Is it still your wish to have the operation?",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5021",
+   "text": "Do you understand the risks and want to continue?",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5022",
+   "text": "Would you rather we waited, or do we have your go-ahead?",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5023",
+   "text": "Please add your name at the bottom to show you're willing.",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5024",
+   "text": "You are free to refuse, so do you want us to proceed?",
+   "bucket": "critical_evasive",
+   "kind": "consent",
+   "act": "CONSENT_SIGN",
+   "expect_credit": false
+  },
+  {
+   "id": "C5025",
+   "text": "She had a slice of toast before leaving the house.",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5026",
+   "text": "He says he drank a glass of milk at seven.",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5027",
+   "text": "Nothing to eat or drink since midnight, is that right?",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5028",
+   "text": "When was the last time you had anything in your stomach?",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5029",
+   "text": "He admits having a biscuit with his tea.",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5030",
+   "text": "She has been nibbling crackers on the ward.",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5031",
+   "text": "Did you have breakfast this morning?",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5032",
+   "text": "His last meal was a sandwich at noon.",
+   "bucket": "critical_evasive",
+   "kind": "fasting",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5033",
+   "text": "Her skin is cold and clammy and she looks washed out.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5034",
+   "text": "His heart rate keeps climbing and his pressure is sliding.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5035",
+   "text": "She is more drowsy than an hour ago and hard to rouse.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5036",
+   "text": "He is breathing fast and shallow and struggling to talk.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5037",
+   "text": "The readings are getting worse every ten minutes.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5038",
+   "text": "Her lips look blue and she is not making sense.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5039",
+   "text": "His urine output has dried up and he feels faint.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5040",
+   "text": "The oxygen level keeps falling even with the mask on.",
+   "bucket": "critical_evasive",
+   "kind": "worsening",
+   "act": "HANDOVER_CRITICAL_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5041",
+   "text": "Quick update on Mrs Ali: sixty, planned surgery, stable overnight.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5042",
+   "text": "Here is the background: long history of gallstones and two earlier attacks.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5043",
+   "text": "My assessment is that she is getting septic.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5044",
+   "text": "What I would like is a surgical review within the hour.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5045",
+   "text": "I am calling because his pain has changed since the morning.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5046",
+   "text": "To summarise, he is stable now but I am worried about tonight.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5047",
+   "text": "Situation first: abdominal pain for two days, worse today.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5048",
+   "text": "My recommendation is to get the registrar to see her now.",
+   "bucket": "critical_evasive",
+   "kind": "handover",
+   "act": "SBAR_ELEMENT",
+   "expect_credit": false
+  },
+  {
+   "id": "C5049",
+   "text": "How long has the cough been going on?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ASK_TOPIC",
+   "expect_credit": true
+  },
+  {
+   "id": "C5050",
+   "text": "Are you on any tablets at the moment?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ASK_TOPIC",
+   "expect_credit": true
+  },
+  {
+   "id": "C5051",
+   "text": "Have you had trouble sleeping lately?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ASK_TOPIC",
+   "expect_credit": true
+  },
+  {
+   "id": "C5052",
+   "text": "Does anyone in your family have heart problems?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ASK_TOPIC",
+   "expect_credit": true
+  },
+  {
+   "id": "C5053",
+   "text": "What do you do for work?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ASK_TOPIC",
+   "expect_credit": true
+  },
+  {
+   "id": "C5054",
+   "text": "Sorry, could you say that once more?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLARIFY",
+   "expect_credit": true
+  },
+  {
+   "id": "C5055",
+   "text": "What do you mean by a funny feeling?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLARIFY",
+   "expect_credit": true
+  },
+  {
+   "id": "C5056",
+   "text": "I didn't follow that, can you explain?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLARIFY",
+   "expect_credit": true
+  },
+  {
+   "id": "C5057",
+   "text": "Which side did you say the pain was on?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLARIFY",
+   "expect_credit": true
+  },
+  {
+   "id": "C5058",
+   "text": "Can you repeat the last part please?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLARIFY",
+   "expect_credit": true
+  },
+  {
+   "id": "C5059",
+   "text": "You can have a sip of water until the nurse says otherwise.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ANSWER_QUESTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5060",
+   "text": "Visiting starts at two this afternoon.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ANSWER_QUESTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5061",
+   "text": "The operation usually takes about an hour.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ANSWER_QUESTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5062",
+   "text": "You'll be back on the ward by lunchtime.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ANSWER_QUESTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5063",
+   "text": "Yes, you can ask for a drink afterwards.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ANSWER_QUESTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5064",
+   "text": "We make a few small cuts and use a camera to remove the gallbladder.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_PROCEDURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5065",
+   "text": "You will be asleep for the whole operation.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_PROCEDURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5066",
+   "text": "The surgeon takes out the appendix through a small cut low on the right.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_PROCEDURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5067",
+   "text": "Afterwards you wake up in recovery with a nurse beside you.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_PROCEDURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5068",
+   "text": "A tube helps you breathe while you are asleep.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_PROCEDURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5069",
+   "text": "The blood test checks whether you have an infection.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_TEST",
+   "expect_credit": true
+  },
+  {
+   "id": "C5070",
+   "text": "An ECG records the electrical activity of your heart.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_TEST",
+   "expect_credit": true
+  },
+  {
+   "id": "C5071",
+   "text": "The scan shows us the stones in your gallbladder.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_TEST",
+   "expect_credit": true
+  },
+  {
+   "id": "C5072",
+   "text": "We take a urine sample to look for signs of infection.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_TEST",
+   "expect_credit": true
+  },
+  {
+   "id": "C5073",
+   "text": "The oxygen probe tells us how well your blood carries oxygen.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_TEST",
+   "expect_credit": true
+  },
+  {
+   "id": "C5074",
+   "text": "I'm going to listen to your chest now.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_ACTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5075",
+   "text": "I'll put a small clip on your finger for a moment.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_ACTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5076",
+   "text": "I am about to take your temperature.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_ACTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5077",
+   "text": "I'm going to wrap this cuff round your arm and squeeze it.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_ACTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5078",
+   "text": "I'll press on your tummy to feel where it is tender.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "EXPLAIN_ACTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5079",
+   "text": "Can you tell me what will happen when you wake up?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CHECK_UNDERSTANDING",
+   "expect_credit": true
+  },
+  {
+   "id": "C5080",
+   "text": "Just so I know I explained it well, what are you going to do tonight?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CHECK_UNDERSTANDING",
+   "expect_credit": true
+  },
+  {
+   "id": "C5081",
+   "text": "Would you say back to me what the operation involves?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CHECK_UNDERSTANDING",
+   "expect_credit": true
+  },
+  {
+   "id": "C5082",
+   "text": "What will you do if the pain returns?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CHECK_UNDERSTANDING",
+   "expect_credit": true
+  },
+  {
+   "id": "C5083",
+   "text": "Can you explain to me in your own words why you need fasting?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CHECK_UNDERSTANDING",
+   "expect_credit": true
+  },
+  {
+   "id": "C5084",
+   "text": "You seem really worried about this.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5085",
+   "text": "It's completely natural to feel frightened.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5086",
+   "text": "I can tell this has been a hard few days.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5087",
+   "text": "That sounds very upsetting for you.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5088",
+   "text": "I can see you're anxious about the anaesthetic.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "expect_credit": true
+  },
+  {
+   "id": "C5089",
+   "text": "We look after people like you every day.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REASSURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5090",
+   "text": "You're in good hands, there's no need to worry.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REASSURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5091",
+   "text": "Most people find this goes smoothly.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REASSURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5092",
+   "text": "Everything is going well so far.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REASSURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5093",
+   "text": "You will be well looked after throughout.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REASSURE",
+   "expect_credit": true
+  },
+  {
+   "id": "C5094",
+   "text": "Thank you, I've noted that you live alone.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_FACT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5095",
+   "text": "Okay, so you take warfarin each evening.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_FACT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5096",
+   "text": "Right, you had your appendix out as a child.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_FACT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5097",
+   "text": "Got it, you don't smoke.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_FACT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5098",
+   "text": "I see, the pain started on Tuesday.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ACKNOWLEDGE_FACT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5099",
+   "text": "So that's one litre over six hours, I understand.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLOSED_LOOP",
+   "expect_credit": true
+  },
+  {
+   "id": "C5100",
+   "text": "Repeating that: paracetamol now, one gram, intravenous.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLOSED_LOOP",
+   "expect_credit": true
+  },
+  {
+   "id": "C5101",
+   "text": "Understood, oxygen at four litres, I'm doing it now.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLOSED_LOOP",
+   "expect_credit": true
+  },
+  {
+   "id": "C5102",
+   "text": "To confirm, I am to call the registrar straight away.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLOSED_LOOP",
+   "expect_credit": true
+  },
+  {
+   "id": "C5103",
+   "text": "Okay, bloods sent and I'll recheck in an hour.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "CLOSED_LOOP",
+   "expect_credit": true
+  },
+  {
+   "id": "C5104",
+   "text": "I think the registrar needs to see this patient.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ESCALATE_SPEECH",
+   "expect_credit": true
+  },
+  {
+   "id": "C5105",
+   "text": "Could you ask the consultant anaesthetist to come over?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ESCALATE_SPEECH",
+   "expect_credit": true
+  },
+  {
+   "id": "C5106",
+   "text": "I'm not sure about this, I need a senior opinion.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ESCALATE_SPEECH",
+   "expect_credit": true
+  },
+  {
+   "id": "C5107",
+   "text": "Please can someone more senior look at her?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ESCALATE_SPEECH",
+   "expect_credit": true
+  },
+  {
+   "id": "C5108",
+   "text": "I need help with this decision.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "ESCALATE_SPEECH",
+   "expect_credit": true
+  },
+  {
+   "id": "C5109",
+   "text": "The suction isn't working in this bay.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REPORT_FAULT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5110",
+   "text": "The monitor keeps losing its signal.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REPORT_FAULT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5111",
+   "text": "There is a leak from the drip stand.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REPORT_FAULT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5112",
+   "text": "The bed brake won't lock.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REPORT_FAULT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5113",
+   "text": "The light above the bed has gone out.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "REPORT_FAULT",
+   "expect_credit": true
+  },
+  {
+   "id": "C5114",
+   "text": "Could we get a chest X-ray for her?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "VOICE_ORDER",
+   "expect_credit": true
+  },
+  {
+   "id": "C5115",
+   "text": "Please give him ten milligrams of morphine.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "VOICE_ORDER",
+   "expect_credit": true
+  },
+  {
+   "id": "C5116",
+   "text": "Can someone take the bloods now?",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "VOICE_ORDER",
+   "expect_credit": true
+  },
+  {
+   "id": "C5117",
+   "text": "Start the fluids please.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "VOICE_ORDER",
+   "expect_credit": true
+  },
+  {
+   "id": "C5118",
+   "text": "Send him round for the scan.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "VOICE_ORDER",
+   "expect_credit": true
+  },
+  {
+   "id": "C5119",
+   "text": "Hmm, let me think about that.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5120",
+   "text": "Oh, sorry, I dropped my pen.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5121",
+   "text": "It's busy in here today.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5122",
+   "text": "Right then.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5123",
+   "text": "Never mind.",
+   "bucket": "ordinary_hard",
+   "kind": "ordinary",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5124",
+   "text": "I haven't checked your wristband yet.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5125",
+   "text": "I'm not going to ask about your medicines at the moment.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5126",
+   "text": "If I were to explain the test, I would start with the needle.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5127",
+   "text": "The registrar said he would come and speak to you later.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5128",
+   "text": "I didn't order the scan after all.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5129",
+   "text": "Imagine I asked you to repeat the plan back to me.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5130",
+   "text": "She told me she would reassure you afterwards.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5131",
+   "text": "I never explained what the tube is for.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5132",
+   "text": "So you want the fluids stopped and then I should...",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5133",
+   "text": "Could you tell me whether the pain is worse when you...",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5134",
+   "text": "The surgeon said that the operation would take about -",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  },
+  {
+   "id": "C5135",
+   "text": "I wanted to tell you what happens next but there is no time.",
+   "bucket": "non_assertive",
+   "kind": "non_assertive",
+   "act": "NONE",
+   "expect_credit": false
+  }
+ ]
+}

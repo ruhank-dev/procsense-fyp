@@ -30,7 +30,7 @@ class Fixture(unittest.TestCase):
 
     def test_cases_exist_in_every_group(self):
         groups = {c["group"] for c in CASES}
-        self.assertEqual(groups, {"must_not_credit_failure", "must_not_credit_critical", "must_not_credit_nonassertive", "may_credit"})
+        self.assertEqual(groups, {"must_not_credit_failure", "must_not_credit_v5", "must_not_credit_critical", "must_not_credit_nonassertive", "may_credit"})
         self.assertEqual(sum(c["group"] == "must_not_credit_failure" for c in CASES), 3)
 
     def test_nothing_in_the_must_not_groups_is_credited(self):

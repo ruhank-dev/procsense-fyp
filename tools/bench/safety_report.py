@@ -16,8 +16,10 @@ OUT = ROOT / "docs" / "research" / "classifier_benchmark" / "safety_gate.md"
 SETS = [("v2_dev", "v2 dev split", "the split the heads' thresholds and caps are tuned on"), ("v2_test", "v2 test split", "scored once before this change; post hoc here"),
         ("v3_test", "v3 hold-out", "fresh when it was written; scored once before; post hoc here"), ("adv_tuning", "adversarial set 1", "TRAINING rows of the new heads (hard negatives)"),
         ("adv_holdout", "adversarial set 2", "TRAINING rows of the new heads"), ("adv_holdout2", "adversarial set 3", "TRAINING rows of the new heads"),
-        ("adv_holdout3", "adversarial set 4", "the set that exposed the failure; used to judge the change, so a development set now"), ("challenge_v4", "challenge set v4", "written before any gate was designed, scored ONCE per final candidate")]
-VARIANTS = [("baseline", "Shipped head at the start of the session"), ("embedding", "Rebuilt embedding head alone"), ("tfidf", "Rebuilt TF-IDF head alone"), ("ensemble", "Ensemble gate (what the service runs)")]
+        ("adv_holdout3", "adversarial set 4", "the set that exposed the failure; used to judge the change, so a development set now"), ("challenge_v4", "challenge set v4", "written before the third session's gate was designed, scored ONCE for that gate; the fourth session's hybrid gate was designed after seeing its failures, so for the hybrid gate it is a development set"),
+        ("challenge_v5", "challenge set v5", "written before the hybrid head was trained or any v5 sentence was seen by a model, scored ONCE for the final gate")]
+VARIANTS = [("baseline", "Shipped head at the start of the third session"), ("embedding", "Rebuilt embedding head alone"), ("tfidf", "Rebuilt TF-IDF head alone"), ("hybrid", "Hybrid head alone (embedding + words)"),
+            ("ensemble_v1", "Third-session gate (embedding head and TF-IDF head agree)"), ("ensemble", "Current gate (hybrid head and TF-IDF head agree; what the service runs)")]
 
 
 def pct(x) -> str:
@@ -71,6 +73,14 @@ def render() -> str:
             for b, a in s["variants"]["ensemble"].items():
                 if b != "ALL":
                     L.append(f"| {b} | {a['rows']} | {cell(a['false_credit']) if a['critical_rows'] else '-'} | {pct(a['critical_named']['rate']) if a['critical_rows'] else '-'} | {cell(a['ordinary_credited']) if a['ordinary_rows'] else '-'} | {cell(a['credited_precision']) if a['ordinary_rows'] else '-'} |")
+        pc = s.get("per_class")
+        if pc:
+            names = [vk for vk, _ in VARIANTS if vk in pc]
+            acts = sorted(k for k in next(iter(pc.values())) if k != "_macro_f1")
+            L += ["", "Per-act F1 of the NAMED act (credit not applied; support in brackets) and macro-F1:", "", "| Act | " + " | ".join(names) + " |", "|---|" + "---|" * len(names)]
+            for a_ in acts:
+                L.append(f"| {a_} ({pc[names[0]][a_]['support']}) | " + " | ".join(str(pc[n].get(a_, {}).get('f1', '-')) for n in names) + " |")
+            L.append("| **macro-F1** | " + " | ".join(str(pc[n]["_macro_f1"]) for n in names) + " |")
         L.append("")
     lat = d["latency_ms"]
     L += ["### Cost", "", "| Variant | Median latency (ms) | 95th percentile (ms) |", "|---|---|---|"] + [f"| {vname} | {lat[vk]['median']} | {lat[vk]['p95']} |" for vk, vname in VARIANTS if vk in lat]
@@ -93,9 +103,19 @@ def render() -> str:
                 L.append(f"| {hn} | {nm} | {h['rows'][sk]} | {m['accuracy']} | {m['macro_f1']} | {m['critical_rows_named_ordinary']} | - | {d['latency_ms'].get('embedding' if hk == 'embedding_head' else 'tfidf', {}).get('median', '-')} / {d['latency_ms'].get('embedding' if hk == 'embedding_head' else 'tfidf', {}).get('p95', '-')} |")
         L += ["", "Credited critical sentences after the gate (the ensemble): " + ", ".join(f"{nm} {h['ensemble_gate'][sk]['critical_rows_credited']}" for sk, nm in (("v3_test_sample", "v3 sample"), ("adversarial_holdout3", "adversarial set 4"))) + ".", "",
               "Reading: the 9B model is clearly better than the 4B at naming the act, but neither language model is usable as the classifier: both are well below the heads on accuracy, both name critical content as an ordinary act far more often (a cue list stops only some of those), and both take seconds against milliseconds. The credit path therefore uses no language model at all, and the 4B-or-9B question does not touch it. The language-model classifier stays available as the `llm` backend for comparison only.", ""]
+    v5 = d["sets"].get("challenge_v5")
+    if v5:
+        e, e1 = v5["variants"]["ensemble"]["ALL"], v5["variants"]["ensemble_v1"]["ALL"]
+        o2, o1 = d["sets"]["v2_test"]["variants"]["ensemble"]["ALL"], d["sets"]["v2_test"]["variants"]["ensemble_v1"]["ALL"]
+        p2, p1 = d["sets"]["v3_test"]["variants"]["ensemble"]["ALL"], d["sets"]["v3_test"]["variants"]["ensemble_v1"]["ALL"]
+        L += ["## Fourth session: legitimate recall and the frozen set v5", "",
+              "**Why credit was lost.** The third-session gate (embedding head and TF-IDF head must agree) credited only about a third of the ordinary sentences. The false rejects were mostly one reader being unsure (the embedding head alone names the act of about half of them, the TF-IDF head of under a fifth) and the two disagreeing, not a guard firing. A single head that reads meaning and words together (the hybrid head) names the act far better on the development split (macro-F1 0.87 against 0.76 and 0.83).",
+              "", f"**What changed.** The first reader is now the hybrid head; the TF-IDF head is still the second reader; every guard is unchanged. Ordinary sentences credited, third-session gate against current gate: v2 test split {pct(o1['ordinary_credited']['rate'])} to {pct(o2['ordinary_credited']['rate'])} (credited precision {pct(o1['credited_precision']['rate'])} to {pct(o2['credited_precision']['rate'])}), v3 hold-out {pct(p1['ordinary_credited']['rate'])} to {pct(p2['ordinary_credited']['rate'])} (precision {pct(p1['credited_precision']['rate'])} to {pct(p2['credited_precision']['rate'])}); critical false credit stays 0 on every development set. This is a modest gain bought without extra false credit on those sets, not a recovery of the shipped head's recall.",
+              "", f"**The frozen challenge set v5 (135 rows written before the hybrid head existed, scored once, {d.get('challenge_v5_scored_with', '')}):** critical sentences credited under an ordinary act {cell(e['false_credit'])} for the current gate and {cell(e1['false_credit'])} for the third-session gate; denials, hypotheticals and reports credited {e['non_assertive_credited']['k']}/{e['non_assertive_rows']} and {e1['non_assertive_credited']['k']}/{e1['non_assertive_rows']}; ordinary credited {pct(e['ordinary_credited']['rate'])} against {pct(e1['ordinary_credited']['rate'])}, credited precision {pct(e['credited_precision']['rate'])} against {pct(e1['credited_precision']['rate'])}. **The zero-false-credit target is therefore NOT met on a fresh set.** The two failures were a fasting question worded without a fasting word (\"When was the last time you had anything in your stomach?\", credited as ASK_TOPIC at 0.97) and an unfulfilled intention (\"I wanted to tell you what happens next but there is no time.\").",
+              "", "Both were fixed after the score (a fasting cue and one more clause of the assertion check, content/ai/critical_cues.json version 5 and server/classify/assertion.py) and added to the regression fixture (group `must_not_credit_v5`); that makes v5 a development set, and the fixed gate has no fresh evidence until a set v6 is written and scored once. The effect of the fixes on the other sets was nil (the figures above were produced with them).", ""]
     L += ["## What this does not show", "",
           "* It is not validation. Authors, judges and the builder are the same model family; agreement between them is not independent evidence, and the three tuning sets are now training rows.",
-          "* The challenge set v4 was written by the same author as the earlier adversarial sets, before the gate was designed, and scored once; the assertion patterns were written after v4 existed (same author), so the v4 non-assertive row is a test of the pattern, not a held-out measure of it. Any further change needs a new frozen set (v5).",
+          "* The challenge set v4 was written by the same author as the earlier adversarial sets, before the gate was designed, and scored once; the assertion patterns were written after v4 existed (same author), so the v4 non-assertive row is a test of the pattern, not a held-out measure of it. Any further change needs a new frozen set (v6).",
           "* Credit recall fell (ordinary rows credited): safety was bought with abstention. Credit is only evidence for the debrief; the menu and action path still decide.",
           "* Nothing here turns the classifier on. `content/ai/features.json` keeps `classifier` OFF until `classifier-bench-independent.json` exists with independent authors, labellers and an adjudicator (EX-01 in docs/testing/SANNAN_EXTERNAL_TESTING.md).", ""]
     return "\n".join(L) + "\n"

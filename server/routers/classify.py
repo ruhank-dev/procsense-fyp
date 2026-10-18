@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field
 from server import ai_features
 from server.classify.classifier import ActClassifier, Result
 from server.classify.ensemble import EnsembleActClassifier
+from server.classify.hybrid import HEAD_HYBRID
 from server.classify.embedding import EmbeddingActClassifier, HeadError, OllamaEmbedder, load_head
 from server.classify.tfidf import TfidfActClassifier
 from server.config import Settings, get_settings
@@ -57,7 +58,7 @@ def get_classifier():
         embedder = OllamaEmbedder(s.ollama_url, s.embed_model) if s.ollama_url else None
         if s.classifier_backend == "embeddings":
             return EmbeddingActClassifier(embedder, load_head())
-        return EnsembleActClassifier(embedder, load_head())
+        return EnsembleActClassifier(embedder, load_head(HEAD_HYBRID))
     except (OSError, ValueError, KeyError, HeadError):
         return _Down("CLASSIFIER_HEAD_UNAVAILABLE")
 

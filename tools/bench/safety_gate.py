@@ -12,7 +12,7 @@ Runs the production classifiers over every labelled set and reports, per set, bu
 
 Variants: `baseline` = the shipped embedding head and cues at the start of the session (read from git, --baseline-rev), `embedding` = the rebuilt embedding head alone, `tfidf` = the rebuilt TF-IDF head alone,
 `ensemble` = what the service now runs (server/classify/ensemble.py). Sets: the v2 dev split (the heads' tuning set), the v2 test and v3 test splits (scored once before; post hoc here), the four adversarial sets
-(the first three were used to train and tune; hold-out 3 is the set that exposed the failure), and the challenge set v4 (tests/classifier_challenge_v4), which only `--final` scores, once (a lock file in
+(the first three were used to train and tune; hold-out 3 is the set that exposed the failure), and the challenge set v5 (tests/classifier_challenge_v5), which only `--final` scores, once; the v4 result of the third session is carried over unchanged (a lock file in
 artifacts/ai-bench records it; --allow-rerun overrides, deliberately). The 22M embedding model needs a running Ollama with all-minilm:22m.
 """
 from __future__ import annotations
@@ -31,13 +31,14 @@ sys.path.insert(0, str(ROOT / "server"))
 from classify.assertion import non_assertive  # noqa: E402
 from classify.classifier import Result  # noqa: E402
 from classify.embedding import EmbeddingActClassifier, OllamaEmbedder, load_head  # noqa: E402
+from classify.hybrid import HybridActClassifier  # noqa: E402
 from classify.ensemble import EnsembleActClassifier  # noqa: E402
 from classify.tfidf import TfidfActClassifier  # noqa: E402
 
-V2, V3, V4 = ROOT / "tests" / "classifier_synthetic_v2", ROOT / "tests" / "classifier_synthetic_v3", ROOT / "tests" / "classifier_challenge_v4"
+V2, V3, V5 = ROOT / "tests" / "classifier_synthetic_v2", ROOT / "tests" / "classifier_synthetic_v3", ROOT / "tests" / "classifier_challenge_v5"
 OUT = ROOT / "artifacts" / "ai-bench"
 REPORT = ROOT / "reports" / "ai" / "classifier-safety.json"
-LOCK = OUT / "classifier-challenge-v4-used.json"
+LOCK = OUT / "classifier-challenge-v5-used.json"
 
 
 def jl(path: Path) -> list[dict]:
@@ -52,10 +53,10 @@ def sets(final: bool) -> dict[str, list[dict]]:
     out = {"v2_dev": jl(V2 / "dev.jsonl"), "v2_test": jl(V2 / "test.jsonl"), "v3_test": jl(V3 / "test.jsonl"), "adv_tuning": adv("adversarial_critical.json"), "adv_holdout": adv("adversarial_critical_holdout.json"),
            "adv_holdout2": adv("adversarial_critical_holdout2.json"), "adv_holdout3": adv("adversarial_critical_holdout3.json")}
     if final:
-        manifest = json.loads((V4 / "manifest.json").read_text(encoding="utf-8"))
-        if hashlib.sha256((V4 / "challenge.json").read_bytes()).hexdigest() != manifest["files"]["challenge.json"]:
+        manifest = json.loads((V5 / "manifest.json").read_text(encoding="utf-8"))
+        if hashlib.sha256((V5 / "challenge.json").read_bytes()).hexdigest() != manifest["files"]["challenge.json"]:
             raise SystemExit("REFUSED: challenge.json does not match its frozen hash")
-        out["challenge_v4"] = json.loads((V4 / "challenge.json").read_text(encoding="utf-8"))["rows"]
+        out["challenge_v5"] = json.loads((V5 / "challenge.json").read_text(encoding="utf-8"))["rows"]
     return out
 
 
@@ -108,6 +109,20 @@ def score(rows: list[dict], preds: list[Result], critical: set[str]) -> dict:
     return out
 
 
+def per_class(rows: list[dict], preds: list[Result]) -> dict:
+    """Precision, recall and F1 of the NAMED act (credit is not applied) per act, and their macro mean over the acts that occur in the labels."""
+    acts = sorted({r["act"] for r in rows})
+    out = {}
+    for a in acts:
+        tp = sum(r["act"] == a and p.act == a for r, p in zip(rows, preds))
+        fp = sum(r["act"] != a and p.act == a for r, p in zip(rows, preds))
+        fn = sum(r["act"] == a and p.act != a for r, p in zip(rows, preds))
+        pr, rc = (tp / (tp + fp) if tp + fp else 0.0), (tp / (tp + fn) if tp + fn else 0.0)
+        out[a] = {"precision": round(pr, 3), "recall": round(rc, 3), "f1": round(2 * pr * rc / (pr + rc), 3) if pr + rc else 0.0, "support": tp + fn}
+    out["_macro_f1"] = round(sum(v["f1"] for k, v in out.items()) / len(acts), 3)
+    return out
+
+
 def baseline_head(rev: str, path: str) -> dict | None:
     try:
         raw = subprocess.run(["git", "show", f"{rev}:{path}"], cwd=ROOT, capture_output=True, check=True).stdout
@@ -123,7 +138,7 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     ap.add_argument("--baseline-rev", default="b73d8d8", help="the commit whose heads are the 'baseline' variant (the shipped heads at the start of the third session)")
-    ap.add_argument("--final", action="store_true", help="also score the frozen challenge set v4 (once)")
+    ap.add_argument("--final", action="store_true", help="also score the frozen challenge set v5 (once)")
     ap.add_argument("--allow-rerun", action="store_true")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args(argv)
@@ -143,6 +158,10 @@ def main(argv: list[str]) -> int:
         variants["baseline"] = EmbeddingActClassifier(embedder, old)
     variants["embedding"] = EmbeddingActClassifier(embedder)
     variants["tfidf"] = TfidfActClassifier()
+    variants["hybrid"] = HybridActClassifier(embedder)
+    v1 = EnsembleActClassifier(embedder)
+    v1.embedding = EmbeddingActClassifier(embedder)                              # the gate of the third session: embedding head and TF-IDF head
+    variants["ensemble_v1"] = v1
     variants["ensemble"] = EnsembleActClassifier(embedder)
     critical = variants["ensemble"].critical
     data = sets(a.final)
@@ -152,15 +171,20 @@ def main(argv: list[str]) -> int:
         result["heads"][name] = {"trained_on_rows": h.get("trained_on_rows"), "critical_mass_max": h.get("critical_mass_max"), "C": h.get("C"), "sha256": hashlib.sha256(json.dumps(h.get("coef"), sort_keys=True).encode()).hexdigest()[:16]}
     for sn, rows in data.items():
         result["sets"][sn] = {"rows": len(rows), "variants": {}}
+        result["sets"][sn]["per_class"] = {}
         for vn, clf in variants.items():
-            result["sets"][sn]["variants"][vn] = score(rows, [clf.classify(r["text"]) for r in rows], critical)
+            preds = [clf.classify(r["text"]) for r in rows]
+            result["sets"][sn]["variants"][vn] = score(rows, preds, critical)
+            if sn in ("v2_dev", "v2_test", "v3_test", "challenge_v5"):
+                result["sets"][sn]["per_class"][vn] = per_class(rows, preds)
     if not a.final and REPORT.exists():                                  # the frozen challenge set is scored once: carry its recorded result over instead of dropping it from the report
         old = json.loads(REPORT.read_text(encoding="utf-8"))
-        if "challenge_v4" in old.get("sets", {}):
-            result["sets"]["challenge_v4"] = old["sets"]["challenge_v4"]
-            result["challenge_v4_scored_with"] = old.get("challenge_v4_scored_with", "the committed heads and guards of the commit that first wrote this file")
+        for key in ("challenge_v4", "challenge_v5"):
+            if key in old.get("sets", {}):
+                result["sets"][key] = old["sets"][key]
+                result[key + "_scored_with"] = old.get(key + "_scored_with", "the committed heads and guards of the commit that first wrote this file")
     if a.final:
-        result["challenge_v4_scored_with"] = "heads built by tools/bench/build_safe_heads.py on 18 October 2026; ensemble gate with the denial, hypothetical and report patterns of server/classify/assertion.py (the incomplete-speech pattern was added afterwards and flags no sentence of the set, tools/ci/test_classifier_regression.py)"
+        result["challenge_v5_scored_with"] = "hybrid head and TF-IDF head built by tools/bench/build_safe_heads.py in the fourth session, assertion rules of server/classify/assertion.py, cap 0.05; v5 was written before the false-reject analysis"
     sample = [r["text"] for r in data["v2_dev"][:40]]
     for vn, clf in variants.items():
         times = []
@@ -173,6 +197,9 @@ def main(argv: list[str]) -> int:
         result["latency_ms"][vn] = {"median": round(times[len(times) // 2], 2), "p95": round(times[int(len(times) * 0.95) - 1], 2)}
     na = [non_assertive(r["text"]) for r in data["v2_dev"]]
     result["non_assertive_flagged_on_v2_dev"] = {"flagged": sum(bool(x) for x in na), "of": len(na)}
+    lost = {f"{sn}/{vn}": v["ALL"]["unavailable"] for sn, x in result["sets"].items() for vn, v in x["variants"].items() if v["ALL"]["unavailable"] and sn != "challenge_v4"}
+    if lost:
+        raise SystemExit(f"REFUSED: the embedder was unavailable for some rows ({lost}); nothing written and the v5 lock untouched. Rerun with Ollama otherwise idle.")
     text = json.dumps(result, indent=1) + "\n"
     if a.final:
         OUT.mkdir(parents=True, exist_ok=True)

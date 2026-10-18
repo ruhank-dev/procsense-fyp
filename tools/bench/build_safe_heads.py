@@ -135,14 +135,48 @@ def main(argv: list[str]) -> int:
     cap_t, met_t = choose(pt_tab)
     t_head["critical_mass_max"] = cap_t if cap_t <= 1 else None
     t_head["critical_mass_tuning"] = {"split": "synthetic v2 dev only", "grid": {str(k): v for k, v in pt_tab.items()}, "chosen": cap_t, "met_both_conditions": met_t}
-    print(json.dumps({"rows": len(data["train"]), "embedding": {"C": c_e, "dev_macro_f1": round(f_e, 4), "cap": cap_e, "met": met_e}, "tfidf": {"C": c_t, "dev_macro_f1": round(f_t, 4), "cap": cap_t, "met": met_t}}, indent=1))
+    # the hybrid head: embedding and word features in one regression (the first reader of the gate)
+    from scipy.sparse import csr_matrix, hstack
+    h_tr, h_dev = hstack([csr_matrix(x_tr), t_tr]).tocsr(), hstack([csr_matrix(x_dev), t_dev]).tocsr()
+    best_h = None
+    for c in (10, 30, 100):
+        m = LogisticRegression(max_iter=4000, C=c).fit(h_tr, tr_y)
+        f1 = BC.macro_f1(dev_y, list(m.predict(h_dev)), labels)
+        if best_h is None or f1 > best_h[0] + 1e-9:
+            best_h = (f1, c, m)
+    f_h, c_h, m_h = best_h
+    thr_h = thresholds(m_h, h_dev)
+    classes_h = [str(k) for k in m_h.classes_]
+    p_h, p_t = m_h.predict_proba(h_dev), m_t.predict_proba(t_dev)
+    tab_h = {}
+    for tau in GRID:
+        credited = wrong = misrouted = 0
+        for r, ph, pt in zip(data["dev"], p_h, p_t):
+            act = classes_h[int(ph.argmax())]
+            t = thr_h.get(act)
+            mass = sum(v for k, v in zip(classes_h, ph) if k in critical)
+            if act not in critical and act != "NONE" and t is not None and ph.max() >= t and mass < tau and not critical_cue(r["text"]) and classes_t[int(pt.argmax())] == act:
+                credited += 1
+                wrong += act != r["act"]
+                misrouted += r["act"] in critical
+        tab_h[tau] = {"credited": credited, "precision": round((credited - wrong) / credited, 3) if credited else None, "critical_said_but_credited_as_other_act": misrouted}
+    cap_h, met_h = choose(tab_h)
+    hybrid = {"kind": "hybrid_logreg_head.v1", "embedding_model": "all-minilm:22m", "embedding_dimension": int(x_tr.shape[1]), "dimension": int(x_tr.shape[1]) + len(terms), "classes": classes_h, "vocabulary": terms,
+              "idf": t_head["idf"], "coef": [[round(float(w), 5) for w in row] for row in m_h.coef_], "intercept": [round(float(b), 6) for b in m_h.intercept_], "C": c_h,
+              "thresholds": {act: (None if act in critical or act == "NONE" else thr_h.get(act)) for act in classes_h}, "min_precision": BC.MIN_PRECISION, "trained_on_rows": len(data["train"]),
+              "train_text_sha256": t_head["train_text_sha256"], "thresholds_tuned_on": f"dev split ({len(data['dev'])} rows)", "valid_for_claims": False, "provenance": data["provenance"],
+              "note": "Embedding and word features in one regression; the first reader of the credit gate, never trusted alone (server/classify/ensemble.py). Credit needs the act to be neither NONE nor critical, its probability to reach the threshold, no critical cue and a critical-act probability below critical_mass_max.",
+              "critical_mass_max": cap_h if cap_h <= 1 else None,
+              "critical_mass_tuning": {"split": "synthetic v2 dev only", "rule": "the TF-IDF head must name the same act; the cap grid stops at 0.05, a leave-one-adversarial-set-out check (tools/bench/cap_loso.py) found no false credit at 0.05", "grid": {str(k): v for k, v in tab_h.items()}, "chosen": cap_h, "met_both_conditions": met_h}}
+    print(json.dumps({"rows": len(data["train"]), "embedding": {"C": c_e, "dev_macro_f1": round(f_e, 4), "cap": cap_e, "met": met_e}, "tfidf": {"C": c_t, "dev_macro_f1": round(f_t, 4), "cap": cap_t, "met": met_t}, "hybrid": {"C": c_h, "dev_macro_f1": round(f_h, 4), "cap": cap_h, "met": met_h}}, indent=1))
     if a.dry_run:
         tmp.unlink()
         return 0
     (ROOT / "content" / "assessment" / "act_head.json").write_text(json.dumps(e_head, indent=1) + "\n", encoding="utf-8", newline="\n")
     (ROOT / "content" / "assessment" / "act_head_tfidf.json").write_text(json.dumps(t_head, indent=1) + "\n", encoding="utf-8", newline="\n")
+    (ROOT / "content" / "assessment" / "act_head_hybrid.json").write_text(json.dumps(hybrid, separators=(",", ":")) + "\n", encoding="utf-8", newline="\n")
     tmp.unlink()
-    print("wrote content/assessment/act_head.json and act_head_tfidf.json")
+    print("wrote content/assessment/act_head.json, act_head_tfidf.json and act_head_hybrid.json")
     return 0
 
 

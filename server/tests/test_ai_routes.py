@@ -121,7 +121,7 @@ def test_the_default_classifier_is_the_two_head_ensemble_and_a_missing_head_cred
     classify_router.get_classifier.cache_clear()
     assert isinstance(classify_router.get_classifier(), ensemble.EnsembleActClassifier)
     classify_router.get_classifier.cache_clear()
-    monkeypatch.setattr(classify_router, "load_head", lambda: (_ for _ in ()).throw(FileNotFoundError("no head")))
+    monkeypatch.setattr(classify_router, "load_head", lambda *a: (_ for _ in ()).throw(FileNotFoundError("no head")))
     r = classify_router.get_classifier().classify("What about your last meal?")
     assert (r.credited, r.source, r.error) == (False, "unavailable", "CLASSIFIER_HEAD_UNAVAILABLE")
     classify_router.get_classifier.cache_clear()

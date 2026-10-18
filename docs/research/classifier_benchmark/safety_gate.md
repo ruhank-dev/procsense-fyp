@@ -34,110 +34,224 @@ False credit = a row whose true act is critical (or a denial, hypothetical or re
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 0/105 [0.0%, 3.5%] | 90.5% | 196/315 [56.8%, 67.4%] | 172/196 [82.4%, 91.6%] | 24/315 [5.2%, 11.1%] | 9/315 [1.5%, 5.3%] | 0/0 |
+| Shipped head at the start of the third session | 0/105 [0.0%, 3.5%] | 90.5% | 196/315 [56.8%, 67.4%] | 172/196 [82.4%, 91.6%] | 24/315 [5.2%, 11.1%] | 9/315 [1.5%, 5.3%] | 0/0 |
 | Rebuilt embedding head alone | 0/105 [0.0%, 3.5%] | 87.6% | 160/315 [45.3%, 56.3%] | 139/160 [80.8%, 91.3%] | 21/315 [4.4%, 10.0%] | 20/315 [4.1%, 9.6%] | 0/0 |
 | Rebuilt TF-IDF head alone | 0/105 [0.0%, 3.5%] | 88.6% | 61/315 [15.4%, 24.1%] | 61/61 [94.1%, 100.0%] | 0/315 [0.0%, 1.2%] | 11/315 [2.0%, 6.1%] | 0/0 |
-| Ensemble gate (what the service runs) | 0/105 [0.0%, 3.5%] | 87.6% | 115/315 [31.4%, 42.0%] | 114/115 [95.2%, 99.8%] | 1/315 [0.1%, 1.8%] | 20/315 [4.1%, 9.6%] | 0/0 |
+| Hybrid head alone (embedding + words) | 0/105 [0.0%, 3.5%] | 89.5% | 163/315 [46.2%, 57.2%] | 155/163 [90.6%, 97.5%] | 8/315 [1.3%, 4.9%] | 11/315 [2.0%, 6.1%] | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/105 [0.0%, 3.5%] | 87.6% | 115/315 [31.4%, 42.0%] | 114/115 [95.2%, 99.8%] | 1/315 [0.1%, 1.8%] | 20/315 [4.1%, 9.6%] | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/105 [0.0%, 3.5%] | 89.5% | 130/315 [36.0%, 46.8%] | 129/130 [95.8%, 99.9%] | 1/315 [0.1%, 1.8%] | 11/315 [2.0%, 6.1%] | 0/0 |
+
+Per-act F1 of the NAMED act (credit not applied; support in brackets) and macro-F1:
+
+| Act | baseline | embedding | tfidf | hybrid | ensemble_v1 | ensemble |
+|---|---|---|---|---|---|---|
+| ACKNOWLEDGE_EMOTION (21) | 0.829 | 0.8 | 0.95 | 0.95 | 0.8 | 0.95 |
+| ACKNOWLEDGE_FACT (21) | 0.622 | 0.619 | 0.872 | 0.87 | 0.619 | 0.87 |
+| ANSWER_QUESTION (21) | 0.591 | 0.683 | 0.432 | 0.732 | 0.683 | 0.732 |
+| ASK_TOPIC (21) | 0.703 | 0.7 | 0.588 | 0.737 | 0.7 | 0.737 |
+| CHECK_UNDERSTANDING (21) | 0.667 | 0.429 | 0.833 | 0.865 | 0.429 | 0.865 |
+| CLARIFY (21) | 0.737 | 0.684 | 0.952 | 0.952 | 0.684 | 0.952 |
+| CLOSED_LOOP (21) | 0.756 | 0.791 | 0.878 | 0.905 | 0.791 | 0.905 |
+| CONFIRM_IDENTITY (21) | 0.923 | 0.923 | 0.878 | 0.923 | 0.923 | 0.923 |
+| CONSENT_SIGN (21) | 0.977 | 0.955 | 0.933 | 0.977 | 0.955 | 0.977 |
+| ESCALATE_SPEECH (21) | 0.851 | 0.833 | 0.977 | 0.933 | 0.833 | 0.933 |
+| EXPLAIN_ACTION (21) | 0.829 | 0.81 | 0.85 | 0.884 | 0.81 | 0.884 |
+| EXPLAIN_PROCEDURE (21) | 0.821 | 0.829 | 0.791 | 0.9 | 0.829 | 0.9 |
+| EXPLAIN_TEST (21) | 0.783 | 0.844 | 0.878 | 0.905 | 0.844 | 0.905 |
+| HANDOVER_CRITICAL_ELEMENT (21) | 0.809 | 0.667 | 0.762 | 0.756 | 0.667 | 0.756 |
+| NONE (21) | 0.667 | 0.7 | 0.85 | 0.833 | 0.7 | 0.833 |
+| REASSURE (21) | 0.735 | 0.783 | 0.773 | 0.826 | 0.783 | 0.826 |
+| REPORT_FAULT (21) | 0.977 | 1.0 | 0.87 | 1.0 | 1.0 | 1.0 |
+| SBAR_ELEMENT (21) | 0.85 | 0.739 | 0.844 | 0.837 | 0.739 | 0.837 |
+| STATE_ALLERGY (21) | 0.833 | 0.784 | 0.809 | 0.816 | 0.784 | 0.816 |
+| VOICE_ORDER (21) | 0.5 | 0.556 | 0.952 | 0.829 | 0.556 | 0.829 |
+| **macro-F1** | 0.773 | 0.756 | 0.834 | 0.871 | 0.756 | 0.871 |
 
 ### v2 test split (600 rows): scored once before this change; post hoc here
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 0/150 [0.0%, 2.5%] | 85.3% | 266/450 [54.5%, 63.6%] | 240/266 [86.1%, 93.2%] | 26/450 [4.0%, 8.3%] | 17/450 [2.4%, 6.0%] | 0/0 |
+| Shipped head at the start of the third session | 0/150 [0.0%, 2.5%] | 85.3% | 266/450 [54.5%, 63.6%] | 240/266 [86.1%, 93.2%] | 26/450 [4.0%, 8.3%] | 17/450 [2.4%, 6.0%] | 0/0 |
 | Rebuilt embedding head alone | 0/150 [0.0%, 2.5%] | 92.0% | 189/450 [37.5%, 46.6%] | 172/189 [86.1%, 94.3%] | 17/450 [2.4%, 6.0%] | 22/450 [3.3%, 7.3%] | 0/0 |
 | Rebuilt TF-IDF head alone | 0/150 [0.0%, 2.5%] | 89.3% | 77/450 [13.9%, 20.9%] | 76/77 [93.0%, 99.8%] | 1/450 [0.0%, 1.2%] | 15/450 [2.0%, 5.4%] | 0/0 |
-| Ensemble gate (what the service runs) | 0/150 [0.0%, 2.5%] | 92.0% | 149/450 [28.9%, 37.6%] | 146/149 [94.2%, 99.3%] | 3/450 [0.2%, 1.9%] | 22/450 [3.3%, 7.3%] | 0/0 |
+| Hybrid head alone (embedding + words) | 0/150 [0.0%, 2.5%] | 93.3% | 209/450 [41.9%, 51.1%] | 198/209 [90.8%, 97.0%] | 11/450 [1.4%, 4.3%] | 15/450 [2.0%, 5.4%] | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/150 [0.0%, 2.5%] | 92.0% | 149/450 [28.9%, 37.6%] | 146/149 [94.2%, 99.3%] | 3/450 [0.2%, 1.9%] | 22/450 [3.3%, 7.3%] | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/150 [0.0%, 2.5%] | 93.3% | 178/450 [35.1%, 44.1%] | 172/178 [92.8%, 98.4%] | 6/450 [0.6%, 2.9%] | 15/450 [2.0%, 5.4%] | 0/0 |
 
 By kind of utterance (credited precision and wrong-action credit, baseline against ensemble; negation, correction, incomplete and ambiguous speech are the hard kinds):
 
 | Kind | Ordinary rows | Credited (baseline / ensemble) | Credited precision (baseline / ensemble) | Wrong-action credit (baseline / ensemble) |
 |---|---|---|---|---|
-| plain | 180 | 105 / 62 | 91.4% / 98.4% | 9 / 1 |
-| negation | 45 | 27 / 19 | 100.0% / 100.0% | 0 / 0 |
-| correction | 45 | 23 / 16 | 91.3% / 100.0% | 2 / 0 |
+| plain | 180 | 105 / 75 | 91.4% / 97.3% | 9 / 2 |
+| negation | 45 | 27 / 20 | 100.0% / 95.0% | 0 / 1 |
+| correction | 45 | 23 / 18 | 91.3% / 100.0% | 2 / 0 |
 | incomplete | 45 | 27 / 0 | 77.8% / - | 6 / 0 |
-| ambiguous | 45 | 27 / 15 | 81.5% / 86.7% | 5 / 2 |
-| asr_style | 90 | 57 / 37 | 93.0% / 100.0% | 4 / 0 |
+| ambiguous | 45 | 27 / 20 | 81.5% / 90.0% | 5 / 2 |
+| asr_style | 90 | 57 / 45 | 93.0% / 97.8% | 4 / 1 |
+
+Per-act F1 of the NAMED act (credit not applied; support in brackets) and macro-F1:
+
+| Act | baseline | embedding | tfidf | hybrid | ensemble_v1 | ensemble |
+|---|---|---|---|---|---|---|
+| ACKNOWLEDGE_EMOTION (30) | 0.825 | 0.857 | 0.833 | 0.871 | 0.857 | 0.871 |
+| ACKNOWLEDGE_FACT (30) | 0.714 | 0.741 | 0.733 | 0.867 | 0.741 | 0.867 |
+| ANSWER_QUESTION (29) | 0.618 | 0.704 | 0.642 | 0.735 | 0.704 | 0.735 |
+| ASK_TOPIC (31) | 0.737 | 0.717 | 0.553 | 0.769 | 0.717 | 0.769 |
+| CHECK_UNDERSTANDING (29) | 0.714 | 0.735 | 0.847 | 0.929 | 0.735 | 0.929 |
+| CLARIFY (30) | 0.852 | 0.836 | 0.82 | 0.931 | 0.836 | 0.931 |
+| CLOSED_LOOP (30) | 0.783 | 0.743 | 0.889 | 0.984 | 0.743 | 0.984 |
+| CONFIRM_IDENTITY (30) | 0.885 | 0.885 | 0.885 | 0.931 | 0.885 | 0.931 |
+| CONSENT_SIGN (30) | 0.909 | 0.933 | 0.952 | 1.0 | 0.933 | 1.0 |
+| ESCALATE_SPEECH (30) | 0.679 | 0.691 | 0.833 | 0.8 | 0.691 | 0.8 |
+| EXPLAIN_ACTION (30) | 0.875 | 0.862 | 0.921 | 0.952 | 0.862 | 0.952 |
+| EXPLAIN_PROCEDURE (31) | 0.788 | 0.806 | 0.75 | 0.818 | 0.806 | 0.818 |
+| EXPLAIN_TEST (30) | 0.833 | 0.833 | 0.794 | 0.918 | 0.833 | 0.918 |
+| HANDOVER_CRITICAL_ELEMENT (30) | 0.833 | 0.852 | 0.812 | 0.839 | 0.852 | 0.839 |
+| NONE (30) | 0.78 | 0.759 | 0.8 | 0.9 | 0.759 | 0.9 |
+| REASSURE (30) | 0.833 | 0.867 | 0.824 | 0.889 | 0.867 | 0.889 |
+| REPORT_FAULT (30) | 0.933 | 0.933 | 0.892 | 0.967 | 0.933 | 0.967 |
+| SBAR_ELEMENT (30) | 0.761 | 0.783 | 0.836 | 0.806 | 0.783 | 0.806 |
+| STATE_ALLERGY (30) | 0.8 | 0.882 | 0.836 | 0.896 | 0.882 | 0.896 |
+| VOICE_ORDER (30) | 0.689 | 0.655 | 0.862 | 0.833 | 0.655 | 0.833 |
+| **macro-F1** | 0.792 | 0.804 | 0.816 | 0.882 | 0.804 | 0.882 |
 
 ### v3 hold-out (300 rows): fresh when it was written; scored once before; post hoc here
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 0/75 [0.0%, 4.9%] | 90.7% | 137/225 [54.4%, 67.0%] | 129/137 [88.9%, 97.0%] | 8/225 [1.8%, 6.9%] | 10/225 [2.4%, 8.0%] | 0/0 |
+| Shipped head at the start of the third session | 0/75 [0.0%, 4.9%] | 90.7% | 137/225 [54.4%, 67.0%] | 129/137 [88.9%, 97.0%] | 8/225 [1.8%, 6.9%] | 10/225 [2.4%, 8.0%] | 0/0 |
 | Rebuilt embedding head alone | 0/75 [0.0%, 4.9%] | 94.7% | 106/225 [40.7%, 53.6%] | 100/106 [88.2%, 97.4%] | 6/225 [1.2%, 5.7%] | 12/225 [3.1%, 9.1%] | 0/0 |
 | Rebuilt TF-IDF head alone | 0/75 [0.0%, 4.9%] | 96.0% | 41/225 [13.7%, 23.8%] | 41/41 [91.4%, 100.0%] | 0/225 [0.0%, 1.7%] | 11/225 [2.8%, 8.5%] | 0/0 |
-| Ensemble gate (what the service runs) | 0/75 [0.0%, 4.9%] | 94.7% | 76/225 [27.9%, 40.2%] | 75/76 [92.9%, 99.8%] | 1/225 [0.1%, 2.5%] | 12/225 [3.1%, 9.1%] | 0/0 |
+| Hybrid head alone (embedding + words) | 0/75 [0.0%, 4.9%] | 97.3% | 113/225 [43.7%, 56.7%] | 111/113 [93.8%, 99.5%] | 2/225 [0.2%, 3.2%] | 10/225 [2.4%, 8.0%] | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/75 [0.0%, 4.9%] | 94.7% | 76/225 [27.9%, 40.2%] | 75/76 [92.9%, 99.8%] | 1/225 [0.1%, 2.5%] | 12/225 [3.1%, 9.1%] | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/75 [0.0%, 4.9%] | 97.3% | 86/225 [32.1%, 44.7%] | 85/86 [93.7%, 99.8%] | 1/225 [0.1%, 2.5%] | 10/225 [2.4%, 8.0%] | 0/0 |
 
 By kind of utterance (credited precision and wrong-action credit, baseline against ensemble; negation, correction, incomplete and ambiguous speech are the hard kinds):
 
 | Kind | Ordinary rows | Credited (baseline / ensemble) | Credited precision (baseline / ensemble) | Wrong-action credit (baseline / ensemble) |
 |---|---|---|---|---|
-| plain | 90 | 54 / 35 | 94.4% / 97.1% | 3 / 1 |
-| negation | 45 | 25 / 17 | 88.0% / 100.0% | 3 / 0 |
+| plain | 90 | 54 / 38 | 94.4% / 100.0% | 3 / 0 |
+| negation | 45 | 25 / 20 | 88.0% / 95.0% | 3 / 1 |
 | incomplete | 45 | 26 / 0 | 96.2% / - | 1 / 0 |
-| asr_style | 45 | 32 / 24 | 96.9% / 100.0% | 1 / 0 |
+| asr_style | 45 | 32 / 28 | 96.9% / 100.0% | 1 / 0 |
+
+Per-act F1 of the NAMED act (credit not applied; support in brackets) and macro-F1:
+
+| Act | baseline | embedding | tfidf | hybrid | ensemble_v1 | ensemble |
+|---|---|---|---|---|---|---|
+| ACKNOWLEDGE_EMOTION (15) | 0.897 | 0.867 | 0.857 | 0.897 | 0.867 | 0.897 |
+| ACKNOWLEDGE_FACT (15) | 0.824 | 0.875 | 0.968 | 0.903 | 0.875 | 0.903 |
+| ANSWER_QUESTION (15) | 0.759 | 0.828 | 0.69 | 0.867 | 0.828 | 0.867 |
+| ASK_TOPIC (16) | 0.64 | 0.667 | 0.741 | 0.72 | 0.667 | 0.72 |
+| CHECK_UNDERSTANDING (14) | 0.8 | 0.8 | 0.857 | 0.889 | 0.8 | 0.889 |
+| CLARIFY (15) | 0.812 | 0.909 | 0.929 | 1.0 | 0.909 | 1.0 |
+| CLOSED_LOOP (15) | 0.733 | 0.786 | 0.889 | 0.867 | 0.786 | 0.867 |
+| CONFIRM_IDENTITY (15) | 1.0 | 1.0 | 0.938 | 0.968 | 1.0 | 0.968 |
+| CONSENT_SIGN (15) | 0.897 | 0.966 | 0.968 | 1.0 | 0.966 | 1.0 |
+| ESCALATE_SPEECH (15) | 0.966 | 0.966 | 0.938 | 1.0 | 0.966 | 1.0 |
+| EXPLAIN_ACTION (15) | 0.897 | 0.867 | 0.867 | 0.897 | 0.867 | 0.897 |
+| EXPLAIN_PROCEDURE (15) | 0.857 | 0.828 | 0.857 | 0.933 | 0.828 | 0.933 |
+| EXPLAIN_TEST (15) | 0.903 | 0.933 | 0.933 | 0.933 | 0.933 | 0.933 |
+| HANDOVER_CRITICAL_ELEMENT (15) | 0.875 | 0.857 | 0.788 | 0.903 | 0.857 | 0.903 |
+| NONE (15) | 0.788 | 0.759 | 0.903 | 0.875 | 0.759 | 0.875 |
+| REASSURE (15) | 0.933 | 0.897 | 0.968 | 1.0 | 0.897 | 1.0 |
+| REPORT_FAULT (15) | 0.903 | 0.909 | 0.897 | 0.938 | 0.909 | 0.938 |
+| SBAR_ELEMENT (15) | 0.706 | 0.727 | 0.875 | 0.8 | 0.727 | 0.8 |
+| STATE_ALLERGY (15) | 0.966 | 0.938 | 0.938 | 0.938 | 0.938 | 0.938 |
+| VOICE_ORDER (15) | 0.692 | 0.615 | 0.903 | 0.846 | 0.615 | 0.846 |
+| **macro-F1** | 0.842 | 0.85 | 0.885 | 0.909 | 0.85 | 0.909 |
 
 ### adversarial set 1 (71 rows): TRAINING rows of the new heads (hard negatives)
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 0/71 [0.0%, 5.1%] | 74.6% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Shipped head at the start of the third session | 0/71 [0.0%, 5.1%] | 74.6% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt embedding head alone | 0/71 [0.0%, 5.1%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt TF-IDF head alone | 0/71 [0.0%, 5.1%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
-| Ensemble gate (what the service runs) | 0/71 [0.0%, 5.1%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Hybrid head alone (embedding + words) | 0/71 [0.0%, 5.1%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/71 [0.0%, 5.1%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/71 [0.0%, 5.1%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 
 ### adversarial set 2 (48 rows): TRAINING rows of the new heads
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 0/48 [0.0%, 7.4%] | 58.3% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Shipped head at the start of the third session | 0/48 [0.0%, 7.4%] | 58.3% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt embedding head alone | 0/48 [0.0%, 7.4%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt TF-IDF head alone | 0/48 [0.0%, 7.4%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
-| Ensemble gate (what the service runs) | 0/48 [0.0%, 7.4%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Hybrid head alone (embedding + words) | 0/48 [0.0%, 7.4%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/48 [0.0%, 7.4%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/48 [0.0%, 7.4%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 
 ### adversarial set 3 (60 rows): TRAINING rows of the new heads
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 0/60 [0.0%, 6.0%] | 55.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Shipped head at the start of the third session | 0/60 [0.0%, 6.0%] | 55.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt embedding head alone | 0/60 [0.0%, 6.0%] | 95.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt TF-IDF head alone | 0/60 [0.0%, 6.0%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
-| Ensemble gate (what the service runs) | 0/60 [0.0%, 6.0%] | 95.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Hybrid head alone (embedding + words) | 0/60 [0.0%, 6.0%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/60 [0.0%, 6.0%] | 95.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/60 [0.0%, 6.0%] | 100.0% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 
 ### adversarial set 4 (48 rows): the set that exposed the failure; used to judge the change, so a development set now
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 3/48 [2.1%, 16.8%] | 45.8% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Shipped head at the start of the third session | 3/48 [2.1%, 16.8%] | 45.8% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt embedding head alone | 0/48 [0.0%, 7.4%] | 66.7% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 | Rebuilt TF-IDF head alone | 0/48 [0.0%, 7.4%] | 81.2% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
-| Ensemble gate (what the service runs) | 0/48 [0.0%, 7.4%] | 66.7% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Hybrid head alone (embedding + words) | 0/48 [0.0%, 7.4%] | 77.1% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Third-session gate (embedding head and TF-IDF head agree) | 0/48 [0.0%, 7.4%] | 66.7% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 0/48 [0.0%, 7.4%] | 77.1% | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 |
 
-### challenge set v4 (110 rows): written before any gate was designed, scored ONCE per final candidate
+### challenge set v5 (135 rows): written before the hybrid head was trained or any v5 sentence was seen by a model, scored ONCE for the final gate
 
 | Variant | False credit | Critical act named | Ordinary credited | Credited precision | Wrong-action credit | Read as critical | Denial/hypothetical/report credited |
 |---|---|---|---|---|---|---|---|
-| Shipped head at the start of the session | 5/60 [3.6%, 18.1%] | 55.0% | 34/38 [75.9%, 95.8%] | 29/34 [69.9%, 93.6%] | 5/38 [5.8%, 27.3%] | 0/38 [0.0%, 9.2%] | 9/12 |
-| Rebuilt embedding head alone | 1/60 [0.3%, 8.9%] | 80.0% | 28/38 [58.0%, 85.0%] | 25/28 [72.8%, 96.3%] | 3/38 [2.7%, 20.8%] | 0/38 [0.0%, 9.2%] | 7/12 |
-| Rebuilt TF-IDF head alone | 0/60 [0.0%, 6.0%] | 76.7% | 19/38 [34.8%, 65.2%] | 18/19 [75.4%, 99.1%] | 1/38 [0.5%, 13.5%] | 0/38 [0.0%, 9.2%] | 0/12 |
-| Ensemble gate (what the service runs) | 0/60 [0.0%, 6.0%] | 80.0% | 26/38 [52.5%, 80.9%] | 25/26 [81.1%, 99.3%] | 1/38 [0.5%, 13.5%] | 0/38 [0.0%, 9.2%] | 0/12 |
+| Shipped head at the start of the third session | 3/48 [2.1%, 16.8%] | 64.6% | 55/75 [62.4%, 82.0%] | 53/55 [87.7%, 99.0%] | 2/75 [0.7%, 9.2%] | 0/75 [0.0%, 4.9%] | 6/12 |
+| Rebuilt embedding head alone | 1/48 [0.4%, 10.9%] | 83.3% | 49/75 [54.1%, 75.1%] | 47/49 [86.3%, 98.9%] | 2/75 [0.7%, 9.2%] | 0/75 [0.0%, 4.9%] | 5/12 |
+| Rebuilt TF-IDF head alone | 0/48 [0.0%, 7.4%] | 89.6% | 30/75 [29.7%, 51.3%] | 30/30 [88.6%, 100.0%] | 0/75 [0.0%, 4.9%] | 2/75 [0.7%, 9.2%] | 1/12 |
+| Hybrid head alone (embedding + words) | 1/48 [0.4%, 10.9%] | 85.4% | 49/75 [54.1%, 75.1%] | 49/49 [92.7%, 100.0%] | 0/75 [0.0%, 4.9%] | 0/75 [0.0%, 4.9%] | 6/12 |
+| Third-session gate (embedding head and TF-IDF head agree) | 1/48 [0.4%, 10.9%] | 83.3% | 48/75 [52.7%, 73.9%] | 46/48 [86.0%, 98.8%] | 2/75 [0.7%, 9.2%] | 0/75 [0.0%, 4.9%] | 1/12 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 1/48 [0.4%, 10.9%] | 85.4% | 48/75 [52.7%, 73.9%] | 48/48 [92.6%, 100.0%] | 0/75 [0.0%, 4.9%] | 0/75 [0.0%, 4.9%] | 1/12 |
 
-By bucket (ensemble):
+Per-act F1 of the NAMED act (credit not applied; support in brackets) and macro-F1:
 
-| Bucket | Rows | False credit | Critical act named | Ordinary credited | Credited precision |
-|---|---|---|---|---|---|
-| critical_evasive | 60 | 0/60 [0.0%, 6.0%] | 80.0% | - | - |
-| ordinary_hard | 38 | - | - | 26/38 [52.5%, 80.9%] | 25/26 [81.1%, 99.3%] |
-| non_assertive | 12 | - | - | - | - |
+| Act | baseline | embedding | tfidf | hybrid | ensemble_v1 | ensemble |
+|---|---|---|---|---|---|---|
+| ACKNOWLEDGE_EMOTION (5) | 0.909 | 0.909 | 1.0 | 1.0 | 0.909 | 1.0 |
+| ACKNOWLEDGE_FACT (5) | 0.833 | 0.909 | 0.909 | 0.909 | 0.909 | 0.909 |
+| ANSWER_QUESTION (5) | 0.8 | 0.909 | 0.667 | 1.0 | 0.909 | 1.0 |
+| ASK_TOPIC (5) | 0.471 | 0.615 | 0.462 | 0.571 | 0.615 | 0.571 |
+| CHECK_UNDERSTANDING (5) | 0.5 | 0.533 | 0.667 | 0.625 | 0.533 | 0.625 |
+| CLARIFY (5) | 0.833 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| CLOSED_LOOP (5) | 0.667 | 0.667 | 0.6 | 0.667 | 0.667 | 0.667 |
+| CONFIRM_IDENTITY (8) | 0.714 | 0.941 | 1.0 | 0.941 | 0.941 | 0.941 |
+| CONSENT_SIGN (8) | 0.857 | 0.857 | 0.889 | 0.857 | 0.857 | 0.857 |
+| ESCALATE_SPEECH (5) | 0.769 | 0.769 | 0.833 | 0.769 | 0.769 | 0.769 |
+| EXPLAIN_ACTION (5) | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| EXPLAIN_PROCEDURE (5) | 0.727 | 0.8 | 0.667 | 0.909 | 0.8 | 0.909 |
+| EXPLAIN_TEST (5) | 0.833 | 0.833 | 1.0 | 0.833 | 0.833 | 0.833 |
+| HANDOVER_CRITICAL_ELEMENT (16) | 0.769 | 0.857 | 0.839 | 0.867 | 0.857 | 0.867 |
+| NONE (17) | 0.435 | 0.435 | 0.522 | 0.455 | 0.435 | 0.455 |
+| REASSURE (5) | 0.667 | 0.727 | 0.667 | 1.0 | 0.727 | 1.0 |
+| REPORT_FAULT (5) | 1.0 | 0.909 | 1.0 | 1.0 | 0.909 | 1.0 |
+| SBAR_ELEMENT (8) | 0.714 | 0.933 | 0.875 | 0.857 | 0.933 | 0.857 |
+| STATE_ALLERGY (8) | 0.769 | 0.933 | 0.933 | 1.0 | 0.933 | 1.0 |
+| VOICE_ORDER (5) | 0.909 | 0.909 | 0.8 | 0.909 | 0.909 | 0.909 |
+| **macro-F1** | 0.759 | 0.822 | 0.817 | 0.858 | 0.822 | 0.858 |
 
 ### Cost
 
 | Variant | Median latency (ms) | 95th percentile (ms) |
 |---|---|---|
-| Shipped head at the start of the session | 103.17 | 253.85 |
-| Rebuilt embedding head alone | 81.0 | 156.31 |
-| Rebuilt TF-IDF head alone | 0.17 | 0.32 |
-| Ensemble gate (what the service runs) | 93.97 | 175.36 |
+| Shipped head at the start of the third session | 18.62 | 23.39 |
+| Rebuilt embedding head alone | 20.15 | 24.36 |
+| Rebuilt TF-IDF head alone | 0.13 | 0.26 |
+| Hybrid head alone (embedding + words) | 19.54 | 25.73 |
+| Third-session gate (embedding head and TF-IDF head agree) | 22.07 | 38.05 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 18.46 | 22.7 |
 
 The embedding call dominates (a 46 MB model through Ollama); the TF-IDF head adds well under a millisecond and no service. Memory: the TF-IDF head is a 2 MB JSON file; no extra model is loaded.
 
@@ -151,19 +265,29 @@ Same rows for every system: a stratified sample of the v3 hold-out (5 per act, f
 | qwen3.5:4b-q4_K_M | adversarial set 4 | 48 | 0.479 | 0.628 | 24 | 22 | 3332 / 3997 |
 | qwen3.5:9b-q4_K_M | v3 hold-out sample | 100 | 0.82 | 0.803 | 5 | 3 | 9173 / 10135 |
 | qwen3.5:9b-q4_K_M | adversarial set 4 | 48 | 0.583 | 0.736 | 20 | 16 | 10371 / 14431 |
-| Embedding head (all-minilm:22m + logistic regression) | v3 hold-out sample | 100 | 0.93 | 0.928 | 0 | - | 81.0 / 156.31 |
-| Embedding head (all-minilm:22m + logistic regression) | adversarial set 4 | 48 | 0.667 | 0.731 | 12 | - | 81.0 / 156.31 |
-| TF-IDF head | v3 hold-out sample | 100 | 0.89 | 0.882 | 0 | - | 0.17 / 0.32 |
-| TF-IDF head | adversarial set 4 | 48 | 0.812 | 0.834 | 5 | - | 0.17 / 0.32 |
+| Embedding head (all-minilm:22m + logistic regression) | v3 hold-out sample | 100 | 0.93 | 0.928 | 0 | - | 20.15 / 24.36 |
+| Embedding head (all-minilm:22m + logistic regression) | adversarial set 4 | 48 | 0.667 | 0.731 | 12 | - | 20.15 / 24.36 |
+| TF-IDF head | v3 hold-out sample | 100 | 0.89 | 0.882 | 0 | - | 0.13 / 0.26 |
+| TF-IDF head | adversarial set 4 | 48 | 0.812 | 0.834 | 5 | - | 0.13 / 0.26 |
 
 Credited critical sentences after the gate (the ensemble): v3 sample 0, adversarial set 4 0.
 
 Reading: the 9B model is clearly better than the 4B at naming the act, but neither language model is usable as the classifier: both are well below the heads on accuracy, both name critical content as an ordinary act far more often (a cue list stops only some of those), and both take seconds against milliseconds. The credit path therefore uses no language model at all, and the 4B-or-9B question does not touch it. The language-model classifier stays available as the `llm` backend for comparison only.
 
+## Fourth session: legitimate recall and the frozen set v5
+
+**Why credit was lost.** The third-session gate (embedding head and TF-IDF head must agree) credited only about a third of the ordinary sentences. The false rejects were mostly one reader being unsure (the embedding head alone names the act of about half of them, the TF-IDF head of under a fifth) and the two disagreeing, not a guard firing. A single head that reads meaning and words together (the hybrid head) names the act far better on the development split (macro-F1 0.87 against 0.76 and 0.83).
+
+**What changed.** The first reader is now the hybrid head; the TF-IDF head is still the second reader; every guard is unchanged. Ordinary sentences credited, third-session gate against current gate: v2 test split 33.1% to 39.6% (credited precision 98.0% to 96.6%), v3 hold-out 33.8% to 38.2% (precision 98.7% to 98.8%); critical false credit stays 0 on every development set. This is a modest gain bought without extra false credit on those sets, not a recovery of the shipped head's recall.
+
+**The frozen challenge set v5 (135 rows written before the hybrid head existed, scored once, hybrid head and TF-IDF head built by tools/bench/build_safe_heads.py in the fourth session, assertion rules of server/classify/assertion.py, cap 0.05; v5 was written before the false-reject analysis):** critical sentences credited under an ordinary act 1/48 [0.4%, 10.9%] for the current gate and 1/48 [0.4%, 10.9%] for the third-session gate; denials, hypotheticals and reports credited 1/12 and 1/12; ordinary credited 64.0% against 64.0%, credited precision 100.0% against 95.8%. **The zero-false-credit target is therefore NOT met on a fresh set.** The two failures were a fasting question worded without a fasting word ("When was the last time you had anything in your stomach?", credited as ASK_TOPIC at 0.97) and an unfulfilled intention ("I wanted to tell you what happens next but there is no time.").
+
+Both were fixed after the score (a fasting cue and one more clause of the assertion check, content/ai/critical_cues.json version 5 and server/classify/assertion.py) and added to the regression fixture (group `must_not_credit_v5`); that makes v5 a development set, and the fixed gate has no fresh evidence until a set v6 is written and scored once. The effect of the fixes on the other sets was nil (the figures above were produced with them).
+
 ## What this does not show
 
 * It is not validation. Authors, judges and the builder are the same model family; agreement between them is not independent evidence, and the three tuning sets are now training rows.
-* The challenge set v4 was written by the same author as the earlier adversarial sets, before the gate was designed, and scored once; the assertion patterns were written after v4 existed (same author), so the v4 non-assertive row is a test of the pattern, not a held-out measure of it. Any further change needs a new frozen set (v5).
+* The challenge set v4 was written by the same author as the earlier adversarial sets, before the gate was designed, and scored once; the assertion patterns were written after v4 existed (same author), so the v4 non-assertive row is a test of the pattern, not a held-out measure of it. Any further change needs a new frozen set (v6).
 * Credit recall fell (ordinary rows credited): safety was bought with abstention. Credit is only evidence for the debrief; the menu and action path still decide.
 * Nothing here turns the classifier on. `content/ai/features.json` keeps `classifier` OFF until `classifier-bench-independent.json` exists with independent authors, labellers and an adjudicator (EX-01 in docs/testing/SANNAN_EXTERNAL_TESTING.md).
 

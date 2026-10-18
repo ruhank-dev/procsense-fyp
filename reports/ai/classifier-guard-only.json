@@ -1,6 +1,6 @@
 {
  "guard": "server/classify/guard.py",
- "cues_version": 4,
+ "cues_version": 5,
  "synthetic": true,
  "independent": false,
  "note": "No classifier is involved. Sentences are model-written and AI-judged, so these are regression figures, not real-world accuracy.",
