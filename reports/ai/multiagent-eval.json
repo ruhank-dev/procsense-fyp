@@ -1,5 +1,8 @@
 {
   "model": "qwen3.5:4b-q4_K_M",
+  "mode": "one after another",
+  "host": "default",
+  "staff": "choose approved lines in one call",
   "turns": 12,
   "characters": [
     "patient",
@@ -7,17 +10,81 @@
     "anaesthesia"
   ],
   "first_reply_s": {
-    "p50": 2.32,
-    "p95": 2.6
+    "p50": 1.84,
+    "p95": 2.22
   },
   "all_three_s": {
-    "p50": 6.91,
-    "p95": 7.14
+    "p50": 3.4,
+    "p95": 3.77
   },
-  "all_three_within_budget": 0.0,
+  "all_three_within_budget": 1.0,
   "budget_s": 4.0,
   "fallback_share": 0.0,
-  "meets_target": false,
+  "meets_target": true,
   "reading": "one model answers one request at a time, so three characters answer in turn; compare all_three_s with the budget before deciding how much the ReactionQueue must hide",
-  "limit": "staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running"
+  "limit": "staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running",
+  "baselines": {
+    "written_staff_replies_17_oct_busy_machine": {
+      "first_reply_s": {
+        "p50": 2.32,
+        "p95": 2.6
+      },
+      "all_three_s": {
+        "p50": 6.91,
+        "p95": 7.14
+      },
+      "all_three_within_budget": 0.0,
+      "fallback_share": 0.0,
+      "meets_target": false
+    },
+    "written_staff_replies_18_oct_quiet_machine": {
+      "mode": "one after another",
+      "staff": "write a reply",
+      "host": "default",
+      "first_reply_s": {
+        "p50": 1.89,
+        "p95": 2.08
+      },
+      "all_three_s": {
+        "p50": 5.53,
+        "p95": 5.85
+      },
+      "all_three_within_budget": 0.0,
+      "fallback_share": 0.0,
+      "meets_target": false
+    },
+    "staff_choose_a_line_each_in_own_call_18_oct": {
+      "mode": "one after another",
+      "staff": "choose an approved line",
+      "host": "default",
+      "first_reply_s": {
+        "p50": 1.87,
+        "p95": 2.09
+      },
+      "all_three_s": {
+        "p50": 3.94,
+        "p95": 4.14
+      },
+      "all_three_within_budget": 0.75,
+      "fallback_share": 0.0,
+      "meets_target": false
+    },
+    "written_staff_replies_parallel_requests_18_oct": {
+      "mode": "parallel requests",
+      "host": "http://127.0.0.1:11435",
+      "first_reply_s": {
+        "p50": 1.78,
+        "p95": 1.85
+      },
+      "all_three_s": {
+        "p50": 5.42,
+        "p95": 5.62
+      },
+      "all_three_within_budget": 0.0,
+      "fallback_share": 0.0,
+      "meets_target": false,
+      "note": "qwen3.5 does not support parallel requests in this Ollama (\"model architecture does not currently support parallel requests\"), so setting OLLAMA_NUM_PARALLEL=3 gave no overlap"
+    }
+  },
+  "note": "The patient reply is written by the model from the earned facts (server/dialogue Dialogue.reply); the nurse and the anaesthetist both choose an approved line of their own closed intent list in ONE short model call (Dialogue.pick_many) and speak the pre-rendered line, so nothing a model writes is spoken for staff. 12 fixed trainee turns on the 6 GB desktop, one model, one request at a time. The staff speak fixed lines, which is the price of the budget: with written staff replies the same measurement is 5.9 s (target 4 s, not met)."
 }

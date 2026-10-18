@@ -14,8 +14,10 @@ Team communication is a core competency.
 
 ## Status (17 October 2026)
 
-- **Measured, not built** (`tools/ai/eval_multiagent.py`, `reports/ai/multiagent-eval.json`, qwen3.5:4b-q4_K_M, 12 turns): the patient, the nurse and the anaesthetist answer one trainee turn through the single model slot, one after another. First reply p50 2.32 s, p95 2.6 s; all three p50 6.91 s, p95 7.14 s; none of the turns had all three within 4.0 s; 0 percent fell back. **The target (p95 under 4 s with three roles) is not met** on this GPU.
-- **Reading:** speak the first reply at once and let the Core's ReactionQueue (priority, debounce, one spontaneous remark per 8 s) stagger the others; a second slot would need a second model in memory, which the 6 GB card cannot hold. Orchestration code (`server/agents/`) is not built because the measurement shows the Core queue, not a new module, is the lever (DT-215).
+- **Measured first** (17 October, `tools/ai/eval_multiagent.py`, qwen3.5:4b-q4_K_M, 12 fixed trainee turns): the patient, the nurse and the anaesthetist answer through the single model slot, one after another, each writing a reply: all three p95 7.14 s against the 4 s target. Re-measured on a quiet machine on 18 October: 5.85 s.
+- **Parallel requests do not help:** a second Ollama server with `OLLAMA_NUM_PARALLEL=3` gave the same 5.6 s, because the server logs "model architecture does not currently support parallel requests" for qwen3.5 (one slot).
+- **What met the target** (18 October): the patient is still written by the model from the earned facts, but the two staff do not write; both **choose an approved line** of their own closed intent list in **one short model call** (`Dialogue.pick_many` in `server/dialogue/dialogue.py`, prompt `dialogue.staff_pick_many`; `Dialogue.pick` is the one-character version) and speak the pre-rendered line of that intent. Result: **first reply p95 2.22 s, all three p50 3.4 s, p95 3.77 s (target 4 s), 100 percent of turns within 4 s, 0 percent fell back**. Choosing in two separate calls was 4.14 s (75 percent within 4 s). The `multi_agent` gate passes. Nothing a model writes is spoken for staff, which is also the safest form.
+- **Price:** the staff speak fixed approved lines (no varied wording); with written staff replies the target is not met on this card. The Core's ReactionQueue still staggers the three voices so the lines do not overlap (DT-215). Orchestration code (`server/agents/`) is not needed: the lever is in `server/dialogue`.
 
 ## Verification
 p95 under 4 s with three roles.

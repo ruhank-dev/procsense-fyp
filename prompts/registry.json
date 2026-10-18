@@ -199,6 +199,22 @@
       "gateway": false
     },
     {
+      "id": "dialogue.staff_pick_many",
+      "version": 1,
+      "role": "live",
+      "file": "dialogue/staff_pick_many_v1.txt",
+      "sha256": "7b388cdda1941ffec8f0229f2bf3464c43967675bbdcd4db5ba7da0fc39d59ef",
+      "schema": null,
+      "variables": [
+        "roles",
+        "turns",
+        "question"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "debrief.rewrite",
       "version": 1,
       "role": "batch",

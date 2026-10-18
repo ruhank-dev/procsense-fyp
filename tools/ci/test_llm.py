@@ -272,7 +272,7 @@ class Planner(unittest.TestCase):
             body = json.loads(request.content)
             user = body["messages"][1]["content"]
             if "Approved cases you may choose from" in user:
-                first = re.findall(r"^([A-Z0-9-]+): ", user.split("Approved cases you may choose from:", 1)[1], re.M)[0]
+                first = re.findall(r"^([A-Z0-9-]+): ", re.split(r"Approved cases you may choose from[^:\n]*:", user, maxsplit=1)[1], re.M)[0]
                 return httpx.Response(200, json={"message": {"content": json.dumps({"spine": first, "reason": "It exercises the objectives."})}})
             seen["blocks_calls"] += 1
             chosen, slot = {}, None
@@ -302,7 +302,7 @@ class Planner(unittest.TestCase):
         self.assertEqual(p["provenance"]["plan"]["method"], "model")
         self.assertIn("LG-04", p["provenance"]["stages"])
         self.assertEqual(p["provenance"]["models"][0]["role"], "planner")
-        self.assertIn("compose_plan.spine@1", p["provenance"]["prompts"])
+        self.assertIn("compose_plan.spine@2", p["provenance"]["prompts"])
         self.assertTrue(package.validate(p, self.cases)["passed"])
         self.assertTrue(package.verify_seal(p))
 
@@ -537,6 +537,20 @@ class DialogueTests(unittest.TestCase):
         sent = json.dumps(ok.calls)
         self.assertIn("Do not give orders, doses", sent)
 
+
+    def test_two_staff_replies_come_from_one_model_call_and_each_role_keeps_its_own_intents(self):
+        ctxs = {"nurse": {"allowed_intents": ["ask_clarification", "confirm_order"], "last_turns": [{"who": "trainee", "text": "Give the antibiotic."}]},
+                "anaesthesia": {"allowed_intents": ["ask_fasting_allergy_airway", "sign_in_answer"], "last_turns": []}}
+        lines = {"nurse": {"ask_clarification": "Can you confirm that order?", "confirm_order": "Understood, giving it now."}, "anaesthesia": {"sign_in_answer": "Sign in is complete.", "ask_fasting_allergy_airway": "Any fasting, allergy or airway issue?"}}
+        ok = self.host([{"nurse": "confirm_order", "anaesthesia": "sign_in_answer"}])
+        out = self.D.Dialogue(ok).pick_many(ctxs, "Give the antibiotic.", lines)
+        self.assertEqual(len(ok.calls), 1)
+        self.assertEqual({r: (x.intent, x.text, x.source) for r, x in out.items()}, {"nurse": ("confirm_order", "Understood, giving it now.", "model"), "anaesthesia": ("sign_in_answer", "Sign in is complete.", "model")})
+        crossed = self.host([{"nurse": "sign_in_answer", "anaesthesia": "confirm_order"}] * 2)                    # an intent that belongs to the other role is refused by the schema
+        out = self.D.Dialogue(crossed).pick_many(ctxs, "Give the antibiotic.", lines)
+        self.assertEqual({r: (x.source, x.intent) for r, x in out.items()}, {"nurse": ("fallback", "ask_clarification"), "anaesthesia": ("fallback", "ask_fasting_allergy_airway")})
+        down = self.D.Dialogue(None).pick_many(ctxs, "Give the antibiotic.", lines)
+        self.assertEqual({x.source for x in down.values()}, {"fallback"})
 
     def test_a_picked_staff_reply_speaks_only_an_approved_line_and_an_invented_intent_falls_back(self):
         ctx = {"role": "nurse", "case": "X", "allowed_intents": ["ask_clarification", "confirm_order"], "facts": [], "last_turns": [{"who": "trainee", "text": "Give the antibiotic."}], "results": []}

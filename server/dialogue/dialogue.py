@@ -106,6 +106,24 @@ class Dialogue:
             return Reply(fallback_lines.get(intent, CLARIFY), intent, [], "model", [], r.audit)
         return self._fallback(role, ctx, [], None, {}, fallback_lines, [d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"], r.audit)
 
+    def pick_many(self, ctxs: dict[str, dict], question: str, fallback_lines: dict[str, dict[str, str]]) -> dict[str, Reply]:
+        """Several staff replies from ONE model call: one answer holds an intent for every role, each from that role's own allowed list, and each is spoken as the approved line of its intent (`fallback_lines[role]`).
+        One short decode instead of one per character is what brings a patient and two staff within the budget on a single model (tools/ai/eval_multiagent.py --staff-pick-together). A role the model
+        answers badly for, or a model that is down, gets the first allowed intent's line, as `pick` does."""
+        roles = {r: c["allowed_intents"] for r, c in ctxs.items()}
+        turns = "\n".join(f"{t.get('who', '?')}: {t.get('text', '')}" for c in list(ctxs.values())[:1] for t in c.get("last_turns", [])[-4:]) or "(none)"
+
+        def fallback(why):
+            return {r: self._fallback(r, ctxs[r], [], None, {}, fallback_lines.get(r, {}), why) for r in roles}
+        if self.client is None:
+            return fallback(["NO_MODEL"])
+        schema = {"type": "object", "additionalProperties": False, "required": list(roles), "properties": {r: {"type": "string", "enum": intents} for r, intents in roles.items()}}
+        r = gateway.run(self.client, "dialogue.staff_pick_many", {"roles": "\n".join(f"{name}: {', '.join(intents)}" for name, intents in roles.items()), "turns": turns, "question": question}, schema=schema,
+                        model=self.model, timeout=self.timeout, retries=1, task="dialogue_pick_many")
+        if not r.ok:
+            return fallback([d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"])
+        return {name: Reply(fallback_lines.get(name, {}).get(r.value[name], CLARIFY), r.value[name], [], "model", [], r.audit) for name in roles}
+
     def _fallback(self, role, ctx, shown, asked_fact, authored, fallback_lines, reasons, audit=None) -> Reply:
         if role == "patient":
             if asked_fact and asked_fact in authored and any(f["id"] == asked_fact for f in shown):

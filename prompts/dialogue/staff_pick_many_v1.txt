@@ -1,0 +1,8 @@
+You are directing several members of the theatre team in a hospital simulation. All people are invented. A trainee has just spoken. For EACH role below, choose which one of that role's allowed intents is the most fitting thing for that team member to do next. Choose only from each role's own allowed intents. If nothing fits for a role, choose the intent that asks the trainee to clarify.
+Answer as JSON with one field per role, named exactly as the role, each holding the chosen intent.
+=== user ===
+Roles and their allowed intents:
+{{roles}}
+Recent turns:
+{{turns}}
+The trainee says: {{question}}
