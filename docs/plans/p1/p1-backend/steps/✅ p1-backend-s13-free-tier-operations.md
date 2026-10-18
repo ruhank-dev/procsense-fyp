@@ -63,4 +63,4 @@ ADR-0009; Supabase and host documentation (record the pages and the date); Imple
 - **Keep-alive checked:** the Scheduled jobs workflow calls `/health/db` (a database query), the verification sweep and, daily, the retention clean-up: at least 8 database calls a day, far inside Supabase's 7 days; runs #23 and #24 were green after the repository became public, and `/health/db` answered in 8 ms. Found while checking: in a public repository GitHub disables scheduled workflows after 60 days without a commit, which would stop the keep-alive, the backup and the monitor together; the exit list says what to do before and after a long break.
 - **Recovered after the Actions block (18 Oct 2026):** CI #186 and Deploy #62 green on 756dc4d (the service reports that commit); the nightly backup #5 did not start during the block (one night missed), #2 to #4 were good.
 - **Decision (Abdul Moiz, 18 Oct 2026):** the project stays on free plans; paying is the last step of every row and the owner's decision.
-- With this the step has no open item (DT-160 completed).
+- With this the step has no open item (DT-160 completed). **Approved by Abdul Moiz (owner), 19 Oct 2026.**
