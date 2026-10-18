@@ -1,0 +1,39 @@
+{
+ "model": "qwen3.5:9b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "same_family_as_judges_1_and_2": true,
+ "sets": {
+  "v2dev": {
+   "rows": 420,
+   "labelled_by_j3": 0,
+   "status": "incomplete"
+  },
+  "v2test": {
+   "rows": 600,
+   "labelled_by_j3": 0,
+   "status": "incomplete"
+  },
+  "v3test": {
+   "rows": 300,
+   "agreement_with_final_label": 0.803,
+   "agreement_with_j1": 0.85,
+   "agreement_with_j2": 0.8,
+   "disagreements": 59,
+   "critical_involved": 14,
+   "top_confusions": {
+    "CHECK_UNDERSTANDING -> ASK_TOPIC": 5,
+    "EXPLAIN_PROCEDURE -> EXPLAIN_ACTION": 4,
+    "CHECK_UNDERSTANDING -> CLARIFY": 4,
+    "CLOSED_LOOP -> VOICE_ORDER": 4,
+    "ESCALATE_SPEECH -> VOICE_ORDER": 4,
+    "ACKNOWLEDGE_FACT -> NONE": 3,
+    "ACKNOWLEDGE_FACT -> ASK_TOPIC": 3,
+    "CLOSED_LOOP -> NONE": 3,
+    "HANDOVER_CRITICAL_ELEMENT -> STATE_ALLERGY": 3,
+    "ANSWER_QUESTION -> NONE": 3
+   },
+   "latency_ms_median": 6893
+  }
+ }
+}

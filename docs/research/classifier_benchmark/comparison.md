@@ -94,6 +94,14 @@ Hold-out 2 was measured on cues version 3 BEFORE version 4 was written: 23 of 60
 | Hold-out 2 (tuning evidence for the cues of version 4 once seen) | 60 | 0 |
 | Hold-out 3 (fresh: no cue was chosen from it) | 48 | 3 |
 
+## Cross-check by a larger labeller (qwen3.5:9b, labels untouched)
+
+| Set | Rows | Agreement with the final label | with J1 | with J2 | Disagreements | Involving a critical act |
+|---|---|---|---|---|---|---|
+| v3test | 300 | 0.803 | 0.85 | 0.8 | 59 | 14 |
+
+The rows to read first are in `cross_judge_disagreements.md`. The same model family as the first two judges: agreement is not independence.
+
 ## What this does not show
 
 * Anything about real trainee speech, accents, noise or hesitation: the sentences are model-written; the recogniser-noise copies of the test sentences are the only speech-like input.
