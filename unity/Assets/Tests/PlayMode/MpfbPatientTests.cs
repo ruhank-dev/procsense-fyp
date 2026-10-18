@@ -29,6 +29,9 @@ namespace ProcSense.Tests.PlayMode
         {
             yield return LoadReview();
             var patient = GameObject.Find("MPFB patient");
+            var idle = patient.GetComponent<PatientIdleView>();
+            bool wasEnabled = idle != null && idle.enabled;
+            if (idle != null) idle.enabled = false;
             var animator = patient.GetComponentInChildren<Animator>();
             Assert.IsTrue(animator.avatar.isValid && animator.avatar.isHuman);
             Assert.AreEqual(1, Camera.allCamerasCount);
@@ -73,6 +76,7 @@ namespace ProcSense.Tests.PlayMode
                 forearm.localRotation = initial;
                 Object.DestroyImmediate(before);
                 Object.DestroyImmediate(after);
+                if (idle != null) idle.enabled = wasEnabled;
             }
         }
 
@@ -80,6 +84,10 @@ namespace ProcSense.Tests.PlayMode
         public IEnumerator Blink_shape_deforms_the_face_without_changing_simulation()
         {
             yield return LoadReview();
+            // This test owns the shape weight; the live idle layer is verified separately.
+            var idle = GameObject.Find("MPFB patient").GetComponent<PatientIdleView>();
+            bool wasEnabled = idle != null && idle.enabled;
+            if (idle != null) idle.enabled = false;
             var body = GameObject.Find("MPFB patient").GetComponentsInChildren<SkinnedMeshRenderer>().Single(r => r.name.Contains(".body"));
             int blink = Enumerable.Range(0, body.sharedMesh.blendShapeCount).Single(i => body.sharedMesh.GetBlendShapeName(i).EndsWith("eyeBlinkLeft"));
             var before = new Mesh();
@@ -99,6 +107,7 @@ namespace ProcSense.Tests.PlayMode
                 body.SetBlendShapeWeight(blink, 0);
                 Object.DestroyImmediate(before);
                 Object.DestroyImmediate(after);
+                if (idle != null) idle.enabled = wasEnabled;
             }
         }
 

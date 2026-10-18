@@ -3,10 +3,14 @@
     uv run --project tools tools/ci/test_repo_checks.py
 CI runs it as "secret scan catches pasted keys". The example strings are built from pieces so this file does not contain a real-looking key itself.
 """
+import hashlib
 import re
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import repo_checks  # noqa: E402
@@ -48,6 +52,57 @@ class SecretPatterns(unittest.TestCase):
 
     def test_the_real_repository_is_clean(self):
         self.assertEqual(repo_checks.check_hygiene(), [])
+
+
+class LfsSizeRule(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        self.git("init", "--quiet")
+        self.file = self.root / "large mesh.asset"
+        self.file.write_bytes(b"a" * 5_000_001)
+        self.root_patch = patch.object(repo_checks, "ROOT", self.root)
+        self.root_patch.start()
+        self.addCleanup(self.root_patch.stop)
+
+    def git(self, *args, data=None):
+        return subprocess.run(["git", *args], cwd=self.root, input=data, capture_output=True, check=True).stdout
+
+    def stage(self, *, attribute=True, pointer=True):
+        if attribute:
+            (self.root / ".gitattributes").write_text("*.asset filter=lfs diff=lfs merge=lfs -text\n", encoding="utf-8")
+        content = self.file.read_bytes()
+        if pointer:
+            content = ("version https://git-lfs.github.com/spec/v1\noid sha256:" + hashlib.sha256(content).hexdigest()
+                       + "\nsize " + str(len(content)) + "\n").encode("ascii")
+        oid = self.git("hash-object", "-w", "--stdin", data=content).decode().strip()
+        self.git("update-index", "--add", "--cacheinfo", "100644", oid, self.file.name)
+
+    def test_large_lfs_file_with_spaces_passes(self):
+        self.stage()
+        self.assertEqual(repo_checks.check_hygiene(), [])
+
+    def test_attribute_without_an_indexed_pointer_still_fails(self):
+        self.stage(pointer=False)
+        self.assertTrue(any("larger than 5 MB" in message for message in repo_checks.check_hygiene()))
+
+    def test_pointer_without_lfs_configuration_still_fails(self):
+        self.stage(attribute=False)
+        self.assertFalse(repo_checks.stored_in_lfs(self.file))
+
+    def test_changed_local_bytes_do_not_match_an_old_pointer(self):
+        self.stage()
+        self.file.write_bytes(b"b" * 5_000_001)
+        self.assertFalse(repo_checks.stored_in_lfs(self.file))
+
+    def test_lfs_does_not_exempt_secret_scanning(self):
+        self.file = self.root / "large.cs"
+        self.file.write_bytes(b"a" * 5_000_001 + b"\n" + ("sb_" + "secret_" + "A1b2C3d4E5f6G7h8I9j0").encode())
+        self.stage()
+        (self.root / ".gitattributes").write_text("*.cs filter=lfs diff=lfs merge=lfs -text\n", encoding="utf-8")
+        self.assertTrue(repo_checks.stored_in_lfs(self.file))
+        self.assertTrue(any("Supabase secret key" in message for message in repo_checks.check_hygiene()))
 
 
 if __name__ == "__main__":

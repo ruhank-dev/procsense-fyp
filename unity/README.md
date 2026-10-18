@@ -219,3 +219,13 @@ The bedside sensor surface now has a compact wheeled equipment table with
 stainless legs and a lower shelf. The original floating pad is hidden and its
 collider disabled; the table supplies the full worktop/rim and frame collisions.
 Cuff/probe return and patient attachment points keep their existing positions.
+
+The MPFB patient now has clearer fitted torso breathing (up to 14mm chest lift),
+blinks and gentle head/eye movement. The gown and opaque navy shorts follow
+breathing; relaxed arms, wrists and fingers make small shifts with the fitted
+sensors following their bones. Legs, ankles and toes wiggle in occasional
+alternating bursts with quiet pauses. Shorts cover the pelvis from low foot-end
+views. The blanket is
+removed from the bay. Disable `PatientIdleView` on `MPFB patient` for a static pose.
+Breathing is cosmetic pending a continuous Core respiratory presentation
+contract, not a clinical RR measurement. See [patient idle notes](Tools/MPFB/README.md#fitted-patient-idle).

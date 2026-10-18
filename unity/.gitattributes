@@ -2,3 +2,5 @@
 Assets/Scenes/*/LightingData.asset filter=lfs diff=lfs merge=lfs -text
 Assets/Scenes/*/*.exr filter=lfs diff=lfs merge=lfs -text
 Assets/Settings/HospitalLighting/*.exr filter=lfs diff=lfs merge=lfs -text
+# Generated patient blendshape mesh exceeds the repository's 5 MB file limit.
+Assets/Models/Characters/MPFBPatient/patient_body_idle.asset filter=lfs diff=lfs merge=lfs -text

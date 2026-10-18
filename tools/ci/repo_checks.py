@@ -4,6 +4,7 @@ Usage (from repo root):  task check     or     uv run --project tools tools/ci/r
 Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards, no-tool-attributions
 Exit code 0 = all pass, 1 = at least one failure. Add a new check here (and a row in docs/CI.md) whenever a new rule appears.
 """
+import hashlib
 import re
 import subprocess
 import sys
@@ -74,6 +75,27 @@ FORBIDDEN_PATHS = [
 TEXT_SUFFIXES = {".cs", ".py", ".yml", ".yaml", ".json", ".csproj", ".toml", ".sln", ".props", ".ps1", ".sh"}
 
 
+def stored_in_lfs(p: Path) -> bool:
+    """Require an LFS attribute and a small indexed pointer matching the local bytes.
+
+    An attribute alone does not move an already-staged large blob into LFS.
+    Inspect Git's index without requiring the LFS executable on CI runners.
+    """
+    rel = p.relative_to(ROOT).as_posix()
+    attr = subprocess.run(["git", "check-attr", "-z", "filter", "--", rel], cwd=ROOT, capture_output=True)
+    if attr.returncode or not attr.stdout.endswith(b"\0filter\0lfs\0"):
+        return False
+    size = subprocess.run(["git", "cat-file", "-s", ":" + rel], cwd=ROOT, capture_output=True)
+    if size.returncode or not size.stdout.strip().isdigit() or int(size.stdout) > 1024:
+        return False
+    blob = subprocess.run(["git", "cat-file", "blob", ":" + rel], cwd=ROOT, capture_output=True)
+    pointer = re.fullmatch(rb"version https://git-lfs.github.com/spec/v1\noid sha256:([0-9a-f]{64})\nsize ([0-9]+)\n", blob.stdout)
+    if blob.returncode or pointer is None or int(pointer[2]) != p.stat().st_size:
+        return False
+    with p.open("rb") as source:
+        return hashlib.file_digest(source, "sha256").hexdigest().encode("ascii") == pointer[1]
+
+
 def check_hygiene() -> list[str]:
     problems = []
     for p in tracked_files():
@@ -81,7 +103,7 @@ def check_hygiene() -> list[str]:
         for pattern, why in FORBIDDEN_PATHS:
             if re.search(pattern, rel) and not rel.endswith(".env.example"):
                 problems.append(f"{rel}: {why} must not be committed")
-        if p.stat().st_size > 5_000_000 and p.suffix.lower() not in {".png", ".jpg", ".fbx", ".blend", ".wav", ".ogg", ".pdf"}:
+        if p.stat().st_size > 5_000_000 and p.suffix.lower() not in {".png", ".jpg", ".fbx", ".blend", ".wav", ".ogg", ".pdf"} and not stored_in_lfs(p):
             problems.append(f"{rel}: larger than 5 MB (use Git LFS or rebuild it from a script)")
         # the server folder's notes and its .env.example are scanned too: that is where a pasted key would most likely end up
         scanned = p.suffix in TEXT_SUFFIXES or (rel.startswith("server/") and p.suffix in {".md", ".example"})
