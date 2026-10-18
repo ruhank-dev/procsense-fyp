@@ -98,6 +98,7 @@ Hold-out 2 was measured on cues version 3 BEFORE version 4 was written: 23 of 60
 
 | Set | Rows | Agreement with the final label | with J1 | with J2 | Disagreements | Involving a critical act |
 |---|---|---|---|---|---|---|
+| v2test | 600 | 0.822 | 0.875 | 0.815 | 107 | 24 |
 | v3test | 300 | 0.803 | 0.85 | 0.8 | 59 | 14 |
 
 The rows to read first are in `cross_judge_disagreements.md`. The same model family as the first two judges: agreement is not independence.

@@ -11,8 +11,24 @@
   },
   "v2test": {
    "rows": 600,
-   "labelled_by_j3": 0,
-   "status": "incomplete"
+   "agreement_with_final_label": 0.822,
+   "agreement_with_j1": 0.875,
+   "agreement_with_j2": 0.815,
+   "disagreements": 107,
+   "critical_involved": 24,
+   "top_confusions": {
+    "CHECK_UNDERSTANDING -> CLARIFY": 10,
+    "CLOSED_LOOP -> VOICE_ORDER": 9,
+    "HANDOVER_CRITICAL_ELEMENT -> STATE_ALLERGY": 9,
+    "ANSWER_QUESTION -> REASSURE": 8,
+    "ACKNOWLEDGE_EMOTION -> REASSURE": 5,
+    "ESCALATE_SPEECH -> VOICE_ORDER": 5,
+    "ACKNOWLEDGE_FACT -> NONE": 5,
+    "ANSWER_QUESTION -> NONE": 4,
+    "CHECK_UNDERSTANDING -> ASK_TOPIC": 4,
+    "EXPLAIN_PROCEDURE -> EXPLAIN_ACTION": 4
+   },
+   "latency_ms_median": 6642
   },
   "v3test": {
    "rows": 300,
