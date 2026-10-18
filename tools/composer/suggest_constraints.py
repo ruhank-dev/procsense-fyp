@@ -1,7 +1,7 @@
 """Compatibility suggestions for the block library (feature A12, capability A12.c2): `uv run --project tools tools/composer/suggest_constraints.py [--check]`.
 
 Mines the tags of the blocks of each source case (content/blocks, one tag set per case) for pairs of tags of different block types that go together more or less often than chance, and writes them as SUGGESTIONS
-(content/blocks/suggestions.json), never as constraints: a person reads each one and, if it is right, adds it to the block's `requires` or `excludes` through tools/composer/blocks.py. Two kinds:
+(tests/composition/block_suggestions.json), never as constraints: a person reads each one and, if it is right, adds it to the block's `requires` or `excludes` through tools/composer/blocks.py. Two kinds:
 
   excludes  tag A and tag B never occur in the same case although independence says they should in at least MIN_EXPECTED cases (A and B each appear in at least MIN_SUPPORT cases)
   requires  every case that has tag A also has tag B, A appears in at least MIN_SUPPORT cases, and B is not in nearly every case (at most 90 percent) and A brings it at least 3 cases more often than independence predicts
@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BLOCKS = ROOT / "content" / "blocks"
-OUT = BLOCKS / "suggestions.json"
+OUT = ROOT / "tests" / "composition" / "block_suggestions.json"
 MIN_SUPPORT, MIN_EXPECTED = 6, 4.0
 
 
