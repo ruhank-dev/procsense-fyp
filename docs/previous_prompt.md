@@ -3369,3 +3369,18 @@ _Session: b9c36c34_
 ``````text
 Continue with the implementation priorities in the original prompt. Keep progress summaries concise, maintain the canonical task files as your source of truth, and work through each stage without repeating completed audits. Do not stop at planning or documentation when implementation remains possible.
 ``````
+
+## 169. 18 October 2026 (exact time not captured)
+_Session: b9c36c34_
+
+``````text
+Continue from the latest pushed commit 9ad90cb (verify origin/main first). Read INSTRUCTIONS.md. Continue implementation, not another audit.
+1. Classifier: keep it OFF; improve legitimate-action recall without reintroducing critical false credit; analyse the two-head gate's false rejects; compare precision, recall, per-class F1, critical false-credit rate, abstention and latency on fixed sets; preserve all regression cases; do not tune on the frozen test set; keep synthetic results labelled.
+2. 4B against 9B: investigate the remaining 9B uses (KB extraction etc.), run the KB extraction with 4B on equivalent data, replace 9B where 4B meets the criteria; keep the evaluation tooling; claim no unrun comparison.
+3. Implement end to end: interacting-problem proposals, event selection, trap-wording writer, branch proposals; first the shared engine hooks (DT-224); integration, deterministic safety validation, failure handling, positive/negative/regression tests; synthetic fixtures labelled; anything outside P0 to P2 goes to a P3 backlog without duplicates; tick only when acceptance is met.
+4. Spoken orders: investigate 70.5 percent against the 90 to 95 percent target, name the failure categories, implement justified fixes, rerun a frozen evaluation; the gate stays OFF until the target is met; do not lower the target.
+5. Verify every P0, P1, P2 checkbox and all 68 feature plans against source; complete feasible work; tick only what is complete; reconcile the unticked P0 steps one by one.
+6. Verify the Sannan handoff against every task and plan (exact setup, steps, pass/fail, evidence paths, status), link it from the canonical task files; do not claim device testing happened.
+7. CI and delivery: verify GitHub Actions on the latest commit, run full local CI, fix regressions, check generated plans and English-only enforcement, commit and push each coherent tested stage; preserve unrelated changes and stashes; no paid services, force-pushes or fabricated results; final report with real test results, classifier before/after, 4B/9B evidence, missing-feature status, task counts, Sannan's remaining checklist and exact external blockers.
+(The prompt was pasted at full length; this entry keeps its numbered requirements, shortened.)
+``````

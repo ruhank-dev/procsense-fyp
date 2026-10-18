@@ -566,11 +566,17 @@
    "evidence": [
     "server/generation/compose_plan.py",
     "prompts/compose_plan/spine_v2.txt",
-    "reports/ai/planner-eval.json"
+    "reports/ai/planner-eval.json",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
-   "measured": "shortlist = the solver pool, spine prompt v2: 20 of 20 served, coverage 0.877 against the solver 0.746; the gate passes and the feature is on (offline tool, 37.5 s a request)",
-   "open": "The blind comparison by two raters on 40 cases (DT-203)",
-   "external": "two blind raters on 40 cases (DT-203)"
+   "measured": "shortlist = the solver pool, spine prompt v2: 20 of 20 served, coverage 0.877 against the solver 0.746; the gate passes and the feature is on (offline tool, 37.5 s a request). 18 Oct (fourth session): the composer's extras are built behind the engine hook (events, what-if branches, interacting problems; the trap wording writer), all gated OFF: real 4B on 53 cases, no ineligible event, interactions on 24 cases (all that have a knowledge-base pair; the plan's 80 percent cannot be met on this library), 24 of 98 wrong options reworded with trap fairness never lower",
+   "open": "The blind comparison by two raters on 40 cases (DT-203); relevance of the chosen events and interactions and the plausibility of the reworded traps (EX-17)",
+   "external": "two blind raters on 40 cases (DT-203); two raters for EX-17"
   },
   "p1-live-scenario-generation-s14": {
    "owner": "Ruhan",
@@ -824,9 +830,11 @@
     "server/orders/llm_fallback.py",
     "server/tests/test_orders_route.py",
     "tools/ci/test_orders_fallback.py",
-    "tests/orders/paraphrases.json"
+    "tests/orders/paraphrases.json",
+    "reports/ai/orders-eval-llm-v2.json",
+    "tests/orders/paraphrases_v2.json"
    ],
-   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on"
+   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on. The model fallback (B23.c2, C32.c1) is built but BELOW its acceptance and OFF: frozen second set (65 rows, scored once) 76.4 percent correct against 12.7 percent for the grammar alone, 18.2 percent wrong, 1 of 10 non-orders offered, about 5 s a call (reports/ai/orders-eval-llm-v2.json); the development set went from 70.5 to 83.6 percent with the kind-first, content-noted mapper"
   },
   "p1-voice-input-s04": {
    "owner": "Ruhan",

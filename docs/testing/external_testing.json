@@ -836,6 +836,36 @@
     "the licence record"
    ],
    "after": "The engineer plans the adaptation experiment as the step describes and changes its status."
+  },
+  {
+   "id": "EX-17",
+   "title": "Blind rating of the plan composer's extras (events, branches, interactions) and of the reworded traps",
+   "kind": "people",
+   "who": "Two raters who did not write the cases; a clinician for the clinical plausibility of the traps; the owner arranges them",
+   "steps": [
+    "p1-live-scenario-generation-s13"
+   ],
+   "needs": "Two raters, `uv`, the evaluation samples in reports/ai (plan-extras-eval.json, trap-writer-eval.json)",
+   "prepared": [
+    "tools/eval/blind_extras.py",
+    "tools/ai/eval_plan_extras.py",
+    "tools/ai/eval_traps.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json"
+   ],
+   "procedure": [
+    "Run `uv run --project tools tools/eval/blind_extras.py make --seed 1` to write the blind sheet (docs/testing/results/EX-17/sheet.csv) and the private key (key.json; do not open it).",
+    "Each rater, independently in their own copy: for an event or interaction row give the relevance to the case 1 to 5; for a trap row write which wording (X or Y) a busy clinician would more plausibly choose, or SAME.",
+    "Run `uv run --project tools tools/eval/blind_extras.py analyse --a rater_a.csv --b rater_b.csv`: it opens the key and writes reports/ai/plan-extras-human-rating.json and reports/ai/trap-writer-human-rating.json, which the gates `plan_extras` and `trap_writer` read.",
+    "Run `uv run --project tools tools/eval/ai_gate.py` to see whether the gates now pass, and commit the two result files."
+   ],
+   "pass_rule": "Proposed by the engineer on 18 October 2026 (the plans name the ratings but no number): mean relevance of events and interactions at least 3.5 of 5; across the trap judgements the reworded text is preferred more often than the authored text (balance above 0). The plan's separate 80 percent interaction share (A4.c2) is a machine measure and is NOT met on the current library (45 percent); it needs more stacked cases with knowledge-base links, not raters.",
+   "evidence": [
+    "both filled sheets",
+    "the analysis output",
+    "the names and roles of the raters (never invented)"
+   ],
+   "after": "The engineer records the result in DT-224 and the feature matrix; a gate flips only when every suite of it passes."
   }
  ]
 }

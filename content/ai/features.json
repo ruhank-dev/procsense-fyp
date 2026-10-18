@@ -66,14 +66,25 @@
   },
   "classifier_safety": {
    "label": "Safety of the credit path of the communication classifier (two-head ensemble gate, hard negatives, assertion check) on SYNTHETIC sets (model-written, AI-judged, NOT independent; recorded for information, switches nothing on: the `classifier` feature still needs the independent set)",
-   "status": "PASS",
+   "status": "FAIL",
    "enabled": false,
    "informational": true,
    "suites": [
     {
      "id": "classifier_safety.no_false_credit_challenge_v4",
-     "status": "PASS",
-     "got": 0,
+     "status": "SKIPPED",
+     "why": "the result file has no sets.challenge_v4.variants.ensemble.ALL.false_credit.k"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_challenge_v5",
+     "status": "FAIL",
+     "got": 1,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v5",
+     "status": "FAIL",
+     "got": 1,
      "needs": "== 0.0"
     },
     {
@@ -96,20 +107,18 @@
     },
     {
      "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v4",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
+     "status": "SKIPPED",
+     "why": "the result file has no sets.challenge_v4.variants.ensemble.ALL.non_assertive_credited.k"
     },
     {
      "id": "classifier_safety.credited_precision_challenge_v4",
-     "status": "PASS",
-     "got": 0.962,
-     "needs": ">= 0.9"
+     "status": "SKIPPED",
+     "why": "the result file has no sets.challenge_v4.variants.ensemble.ALL.credited_precision.rate"
     },
     {
      "id": "classifier_safety.credited_precision_v3_holdout",
      "status": "PASS",
-     "got": 0.987,
+     "got": 0.988,
      "needs": ">= 0.9"
     }
    ]
@@ -341,31 +350,31 @@
     {
      "id": "order_fallback.accuracy",
      "status": "FAIL",
-     "got": 0.705,
+     "got": 0.764,
      "needs": ">= 0.95"
     },
     {
      "id": "order_fallback.gain_over_grammar",
      "status": "PASS",
-     "got": 0.705,
-     "needs": ">= 0.166"
+     "got": 0.764,
+     "needs": ">= 0.227"
     },
     {
      "id": "order_fallback.wrong_item_offered",
      "status": "FAIL",
-     "got": 0.148,
+     "got": 0.182,
      "needs": "<= 0.05"
     },
     {
      "id": "order_fallback.non_orders_not_offered",
      "status": "PASS",
-     "got": 0.0,
+     "got": 0.1,
      "needs": "<= 0.1"
     },
     {
      "id": "order_fallback.latency_p95_ms",
      "status": "FAIL",
-     "got": 12210,
+     "got": 5802,
      "needs": "<= 3000.0"
     }
    ]
@@ -417,6 +426,54 @@
      "status": "PASS",
      "got": 20,
      "needs": ">= 20.0"
+    }
+   ]
+  },
+  "plan_extras": {
+   "label": "Plan composer extras: model-chosen events, what-if branches and interacting problems among code-made candidates (A4.c2, A5.c2, A8.c2). The real 4B model on the 53 library cases; relevance to the case is a human rating (EX-03), NOT measured",
+   "status": "FAIL",
+   "enabled": false,
+   "suites": [
+    {
+     "id": "plan_extras.no_ineligible_event",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "plan_extras.interaction_share",
+     "status": "FAIL",
+     "got": 0.453,
+     "needs": ">= 0.8"
+    },
+    {
+     "id": "plan_extras.gain_over_baseline",
+     "status": "FAIL",
+     "got": 0.453,
+     "needs": "> 0.453"
+    },
+    {
+     "id": "plan_extras.human_relevance_rating",
+     "status": "SKIPPED",
+     "why": "no result file plan-extras-human-rating.json"
+    }
+   ]
+  },
+  "trap_writer": {
+   "label": "Trap wording writer (A7.c2): a model rewords wrong options; lexical checks and fairness are machine-checked, plausibility above the authored wording is a human rating (EX-03), NOT measured",
+   "status": "SKIPPED",
+   "enabled": false,
+   "suites": [
+    {
+     "id": "trap_writer.fairness_never_falls",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "trap_writer.human_plausibility",
+     "status": "SKIPPED",
+     "why": "no result file trap-writer-human-rating.json"
     }
    ]
   },

@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "content_hash": "321731761a42229b809c28ff6838ead341f64b28aa00ca166daf72eba5c8a819",
- "files": 682,
- "bytes": 21325894,
+ "content_hash": "9b2abad097212142e8fe4d45af888b11bb0de6c32f623568dc2613746776ed7d",
+ "files": 683,
+ "bytes": 23742193,
  "per_folder": {
   "(root)": 64,
   "ai": 8,
-  "assessment": 5,
+  "assessment": 6,
   "attributions": 1,
   "availability": 4,
   "behaviour": 3,
@@ -65,12 +65,12 @@
    "sha256": "777f3d22fc9aaba6657a143cf0e1f835e81806a2646fc54b0e1269f54a5fb10b"
   },
   "ai/critical_cues.json": {
-   "bytes": 8924,
-   "sha256": "5c5e029ea42b48d4369ed5bc521d293c8eba44b2e6189df60cd7ccd3d5205860"
+   "bytes": 9416,
+   "sha256": "558b3c424ff66835253efa2fc9c0edbe0d7be712f1028981bf850ffca4d9ac82"
   },
   "ai/features.json": {
-   "bytes": 10271,
-   "sha256": "9fd184ac6bc6f27190f2ab0b4103771658c8c1cfdbc72e3b1b95e0c62bf1ee5b"
+   "bytes": 12154,
+   "sha256": "cc50a30d384889fe063b6be9e3346634a67907cb58e81767f1327d32b2cf6d2a"
   },
   "ai/intents.json": {
    "bytes": 945,
@@ -89,12 +89,16 @@
    "sha256": "4919423b0ed05600bf6556e38d82edb3677aba63ef9ce55d74b6c4ae17f2b324"
   },
   "ai/thresholds.json": {
-   "bytes": 18259,
-   "sha256": "9d92f89a6b38818fea471ccfae36c5f23d4929f466a608a9c934880c063f6f92"
+   "bytes": 21637,
+   "sha256": "534d26655fcc7d8227951f811a1834bd2dec50f19065280e34c86f6bd1a9b2ec"
   },
   "assessment/act_head.json": {
    "bytes": 106070,
    "sha256": "59824c170906d7b9085644e4a9592ed17c2d5bd2e5808af9ad84b08c5a32b7a3"
+  },
+  "assessment/act_head_hybrid.json": {
+   "bytes": 2410546,
+   "sha256": "325f852d9b131845c3e07c485c7f92a3edeca4a818fb750c4e340cc449e550ec"
   },
   "assessment/act_head_tfidf.json": {
    "bytes": 3364695,

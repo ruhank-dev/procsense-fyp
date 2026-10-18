@@ -103,7 +103,7 @@ Compose complete cases from approved building blocks: a deterministic solver ass
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | tools/composer/stage_b.py (Stage B built); tools/composer/test_composer.py (60 of 60 mutations rejected); tools/composer/solve.py; tools/composer/cli.py; tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations); server/generation/compose_plan.py; server/generation/narrative.py; server/llm/gateway.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/composer/blocks.py; content/blocks; tools/composer; tools/golden/generated.py; docs/research/review-packs/2026-10-18-composed.md; tests/golden_generated/generated_VAR-S1-A.package.json; tools/ci/test_generation_live.py |
+| Evidence (what exists) | tools/composer/stage_b.py (Stage B built); tools/composer/test_composer.py (60 of 60 mutations rejected); tools/composer/solve.py; tools/composer/cli.py; tools/composer/test_solver.py (1,020 compositions, 0 excluded combinations); server/generation/compose_plan.py; server/generation/narrative.py; server/llm/gateway.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/composer/blocks.py; content/blocks; tools/composer; tools/golden/generated.py; docs/research/review-packs/2026-10-18-composed.md; tests/golden_generated/generated_VAR-S1-A.package.json; tools/ci/test_generation_live.py; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | p1-scenario-composer-difficulty s01 to s05; EXP-COMP-1, EXP-COMP-2; DT-099; Implementation Guide B-M1, B-R10 |
 | Method | Deterministic constraint solver over blocks + LLM proposals with an enum schema of approved block ids. |
 | LLM-first classification | LLM considered for full composition and rejected as the decider: it cannot guarantee requires/excludes or values. Kept as proposer and narrator; the solver decides. |
@@ -116,7 +116,7 @@ Compose complete cases from approved building blocks: a deterministic solver ass
 | Fallback | Solver-only composition with template narrative. |
 | Tests planned | T-SOLVE; T-SA1 to T-SA4; EXP-COMP-1 (0 auto-approved); EXP-COMP-2 |
 | Acceptance | At least 8 S1 and 6 S2 composed cases pass Stage B; no composed case is ever marked approved by the composer. |
-| Blockers | external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | blocks invented to fill gaps break traceability (every block cites its source case); low proposal diversity |
 | Tasks | p1-scenario-composer-difficulty-s01; p1-scenario-composer-difficulty-s02; p1-scenario-composer-difficulty-s03; p1-scenario-composer-difficulty-s05 |
 | Phase | PH-04 Block library and composer foundation |
@@ -131,7 +131,7 @@ Generate a fresh, coherent, validated scenario for each practice session from th
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json |
+| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | new (this planning update, 12 Oct 2026); extends A1 |
 | Method | Hybrid: deterministic selection and validation, statistical numbers, retrieval of media; the AI composer (LLM with retrieval over the scenario knowledge base) proposes the scenario plan and the LLM writes the narrative, all constrained by the solver and validators. |
 | LLM-first classification | LLM-first examined per stage; it is used only where language is the product (narrative, persona). Values, media and decisions use statistical, retrieval or rule methods because they must be calibrated, licensed and reproducible. |
@@ -144,7 +144,7 @@ Generate a fresh, coherent, validated scenario for each practice session from th
 | Fallback | Pre-generated validated pool, then the case library (FALLBACK-POOL-LIBRARY). |
 | Tests planned | end-to-end: 1,000 seeded generations, zero Stage B defects delivered; p95 generation latency; novelty rate |
 | Acceptance | A practice session can start on a freshly generated case that passed every validation stage, with full provenance, in the time budget or from the pool. |
-| Blockers | external acceptance: DC-02, EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-02, EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | generation latency on a 6 GB GPU (pool hides it); generated cases that are valid but dull or unfair (quality gate, trap-fairness check); validator blind spots on new combinations (mutation set grows with every escape) |
 | Tasks | p1-live-scenario-generation-s01; p1-live-scenario-generation-s02; p1-live-scenario-generation-s03; p1-live-scenario-generation-s04; p1-live-scenario-generation-s05; p1-live-scenario-generation-s06; p1-live-scenario-generation-s07; p1-live-scenario-generation-s08; p1-live-scenario-generation-s09; p1-live-scenario-generation-s10; p1-live-scenario-generation-s11; p1-live-scenario-generation-s12 |
 | Phase | PH-05 Live generation skeleton (deterministic path first) |
@@ -187,7 +187,7 @@ Combine two or more problems (for example sepsis with a penicillin allergy) unde
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
 | AI status | Planned |
-| Evidence (what exists) | stacked case files (STK-*) authored by hand; content problem ladder (6 types, 7 rungs); content/case_files/STK-S1-A.json; tests/golden/STK-S1-A_correct_p1.expected.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json |
+| Evidence (what exists) | stacked case files (STK-*) authored by hand; content problem ladder (6 types, 7 rungs); content/case_files/STK-S1-A.json; tests/golden/STK-S1-A_correct_p1.expected.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | p1-case-library-extended (6 stacked cases); DT-092 |
 | Method | Solver slots with stack templates + ladder rules. |
 | LLM-first classification | LLM not used to choose combinations; it cannot check ladder coherence. |
@@ -200,7 +200,7 @@ Combine two or more problems (for example sepsis with a penicillin allergy) unde
 | Fallback | Single-problem case. |
 | Tests planned | ladder coherence tests; Stage B on every stacked output |
 | Acceptance | Every generated stacked case passes Stage B and has a reachable correct path. |
-| Blockers | external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-case-library-extended-s02; p1-live-scenario-generation-s03 |
 | Phase | PH-05 Live generation skeleton (deterministic path first) |
@@ -215,7 +215,7 @@ Unexpected events during the session. Built: EventDirector with 7 approved event
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
 | AI status | Planned |
-| Evidence (what exists) | src/ProcSense.Core/Events/EventDirector.cs; EventDirectorTests; src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs; content/extension/intra_op_events.json; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json |
+| Evidence (what exists) | src/ProcSense.Core/Events/EventDirector.cs; EventDirectorTests; src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs; content/extension/intra_op_events.json; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | p0-physiology-events-behaviour s08, s09; DT-087 |
 | Method | Deterministic director; variant parameters drawn from bounds; LLM wording only. |
 | LLM-first classification | LLM rejected for choosing events (safety and replay); used for wording. |
@@ -228,7 +228,7 @@ Unexpected events during the session. Built: EventDirector with 7 approved event
 | Fallback | The 7 approved events with their fixed wording. |
 | Tests planned | EventDirectorTests; variant bound tests |
 | Acceptance | Variants stay in bounds; replay reproduces them. |
-| Blockers | external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-live-scenario-generation-s11 |
 | Phase | PH-10 Cross-modal consistency, validation and live loop |
@@ -271,7 +271,7 @@ Scenarios built to tempt a known error: look-alike patients, haemolysed potassiu
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
 | AI status | Planned |
-| Evidence (what exists) | content/emr_distractors.csv; VAR-S1-J case file; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json |
+| Evidence (what exists) | content/emr_distractors.csv; VAR-S1-J case file; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | DT-094 |
 | Method | Trap blocks chosen by the solver against the trainee's weak behaviours; LLM writes the misleading wording within limits. |
 | LLM-first classification | LLM useful for plausible misleading wording; the trap logic must be rule-based so the correct path stays reachable and fair. |
@@ -284,7 +284,7 @@ Scenarios built to tempt a known error: look-alike patients, haemolysed potassiu
 | Fallback | Hand-authored trap variants. |
 | Tests planned | fairness check: every trap has a discoverable cue; Stage B |
 | Acceptance | Every trap has at least one discoverable cue in the session. |
-| Blockers | external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | trap feels unfair or unteachable (every trap needs a discoverable cue) |
 | Tasks | p1-live-scenario-generation-s08 |
 | Phase | PH-11 Quality, repair, novelty and provenance |
@@ -299,7 +299,7 @@ Different consequences for different choices. Built: beginner versus advanced be
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Planned |
-| Evidence (what exists) | SessionOptions.Level; content/whatif_bindings.csv; content/decision_rules.csv; src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json |
+| Evidence (what exists) | SessionOptions.Level; content/whatif_bindings.csv; content/decision_rules.csv; src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | DT-087 |
 | Method | Rule-based branches from the what-if library. |
 | LLM-first classification | LLM rejected for branch logic (state must be deterministic). |
@@ -312,7 +312,7 @@ Different consequences for different choices. Built: beginner versus advanced be
 | Fallback | Library branches. |
 | Tests planned | WhatIfBindingTests; branch reachability tests |
 | Acceptance | Every generated branch is reachable and replayable. |
-| Blockers | external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
 | Tasks | p1-live-scenario-generation-s11 |
 | Phase | PH-10 Cross-modal consistency, validation and live loop |
@@ -1087,7 +1087,7 @@ Spoken orders (drug, dose, route) read back by the nurse before acting; closed-l
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented and tested |
 | AI status | Implemented and tested |
-| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py; reports/ai/orders-eval.json; server/routers/orders.py; server/orders/ticket.py; server/orders/llm_fallback.py; server/tests/test_orders_route.py; tools/ci/test_orders_fallback.py; tests/orders/paraphrases.json |
+| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py; reports/ai/orders-eval.json; server/routers/orders.py; server/orders/ticket.py; server/orders/llm_fallback.py; server/tests/test_orders_route.py; tools/ci/test_orders_fallback.py; tests/orders/paraphrases.json; reports/ai/orders-eval-llm-v2.json; tests/orders/paraphrases_v2.json |
 | Lineage (existing ids) | p1-voice-input-s03 |
 | Method | ASR + slot grammar + deterministic read-back check. |
 | LLM-first classification | Slots must be exact; grammar first, LLM for unmatched phrasing. |

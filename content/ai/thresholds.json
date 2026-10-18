@@ -435,6 +435,22 @@
      "ref": "no evasive critical sentence of the frozen challenge set v4 is credited under an ordinary act (scored once)"
     },
     {
+     "id": "classifier_safety.no_false_credit_challenge_v5",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v5.variants.ensemble.ALL.false_credit.k",
+     "op": "==",
+     "value": 0,
+     "ref": "no evasive critical sentence of the frozen challenge set v5 is credited under an ordinary act (scored ONCE, 18 October 2026: 1 of 48 was credited, so this suite FAILS as recorded; the cue and assertion fixes made after it make v5 a development set and need a new frozen set, v6)"
+    },
+    {
+     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v5",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v5.variants.ensemble.ALL.non_assertive_credited.k",
+     "op": "==",
+     "value": 0,
+     "ref": "scored ONCE on the frozen v5: 1 of 12 non-assertive sentences was credited, so this suite FAILS as recorded"
+    },
+    {
      "id": "classifier_safety.no_false_credit_adversarial_set_4",
      "file": "classifier-safety.json",
      "path": "sets.adv_holdout3.variants.ensemble.ALL.false_credit.k",
@@ -489,7 +505,7 @@
    "suites": [
     {
      "id": "order_fallback.no_release_without_confirmation",
-     "file": "orders-eval-llm.json",
+     "file": "orders-eval-llm-v2.json",
      "path": "with_fallback.released_without_confirmation",
      "op": "==",
      "ref": "no action leaves the read-back before a yes",
@@ -497,7 +513,7 @@
     },
     {
      "id": "order_fallback.accuracy",
-     "file": "orders-eval-llm.json",
+     "file": "orders-eval-llm-v2.json",
      "path": "with_fallback.correct",
      "op": ">=",
      "ref": "plan C32.c1: at least 95 percent (B23.c2: 90 percent)",
@@ -505,7 +521,7 @@
     },
     {
      "id": "order_fallback.gain_over_grammar",
-     "file": "orders-eval-llm.json",
+     "file": "orders-eval-llm-v2.json",
      "path": "with_fallback.correct",
      "op": ">=",
      "ref": "plan B23.c2: at least 10 points above the grammar alone",
@@ -514,7 +530,7 @@
     },
     {
      "id": "order_fallback.wrong_item_offered",
-     "file": "orders-eval-llm.json",
+     "file": "orders-eval-llm-v2.json",
      "path": "with_fallback.wrong",
      "op": "<=",
      "ref": "a wrong item is caught by the read-back, but more than 5 percent wastes the trainee's time",
@@ -522,7 +538,7 @@
     },
     {
      "id": "order_fallback.non_orders_not_offered",
-     "file": "orders-eval-llm.json",
+     "file": "orders-eval-llm-v2.json",
      "path": "with_fallback.false_offer",
      "op": "<=",
      "ref": "small talk is not turned into an order",
@@ -530,11 +546,69 @@
     },
     {
      "id": "order_fallback.latency_p95_ms",
-     "file": "orders-eval-llm.json",
+     "file": "orders-eval-llm-v2.json",
      "path": "with_fallback.latency_ms_p95",
      "op": "<=",
      "ref": "live budget of the plan: a reply to speech within 3 s",
      "value": 3000
+    }
+   ]
+  },
+  "plan_extras": {
+   "label": "Plan composer extras: model-chosen events, what-if branches and interacting problems among code-made candidates (A4.c2, A5.c2, A8.c2). The real 4B model on the 53 library cases; relevance to the case is a human rating (EX-03), NOT measured",
+   "suites": [
+    {
+     "id": "plan_extras.no_ineligible_event",
+     "file": "plan-extras-eval.json",
+     "path": "ineligible_events_in_final_proposals",
+     "op": "==",
+     "value": 0,
+     "ref": "every chosen event is approved and its precondition can be met (checked by code)"
+    },
+    {
+     "id": "plan_extras.interaction_share",
+     "file": "plan-extras-eval.json",
+     "path": "share_cases_with_interaction",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "plan A4.c2: at least 80 percent of AI stacks contain a KB-confirmed interaction (measured 0.453: only 24 of the 53 library cases have a knowledge-base pair at all, so the criterion cannot be met on this library)"
+    },
+    {
+     "id": "plan_extras.gain_over_baseline",
+     "file": "plan-extras-eval.json",
+     "path": "share_cases_with_interaction",
+     "op": ">",
+     "vs": "baseline_share_cases_with_interaction",
+     "ref": "the model must add interactions beyond the code-made baseline (measured: equal, the model chose every candidate)"
+    },
+    {
+     "id": "plan_extras.human_relevance_rating",
+     "file": "plan-extras-human-rating.json",
+     "path": "mean_relevance",
+     "op": ">=",
+     "value": 3.5,
+     "ref": "EX-03 style blind rating of relevance to the case; no result file exists, so SKIPPED and the feature stays off"
+    }
+   ]
+  },
+  "trap_writer": {
+   "label": "Trap wording writer (A7.c2): a model rewords wrong options; lexical checks and fairness are machine-checked, plausibility above the authored wording is a human rating (EX-03), NOT measured",
+   "suites": [
+    {
+     "id": "trap_writer.fairness_never_falls",
+     "file": "trap-writer-eval.json",
+     "path": "cases_with_lower_trap_fairness",
+     "op": "==",
+     "value": 0,
+     "ref": "zero traps missing their cue: the consequence is never changed and a wording that lowers trap fairness is reverted"
+    },
+    {
+     "id": "trap_writer.human_plausibility",
+     "file": "trap-writer-human-rating.json",
+     "path": "plausibility_gain_over_authored",
+     "op": ">",
+     "value": 0,
+     "ref": "plan A7.c2: plausibility higher than the template; no result file exists, so SKIPPED and the feature stays off"
     }
    ]
   }

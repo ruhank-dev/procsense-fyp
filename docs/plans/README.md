@@ -116,3 +116,5 @@ The owner confirmed the same day that the statement **also closes the 15 institu
 | Backend | Optional (P1); headset works without it | Required | Demo/use never depends on a laptop or Wi-Fi | — |
 
 See [working-model.md](working-model.md) for who does what (the developer vs team) in VR, 3D and backend.
+
+Work that no step of P0, P1 or P2 covers but that measured results ask for is kept in [p3-backlog.md](p3-backlog.md) (not started).

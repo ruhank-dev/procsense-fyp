@@ -3946,7 +3946,13 @@
     "tools/golden/generated.py",
     "docs/research/review-packs/2026-10-18-composed.md",
     "tests/golden_generated/generated_VAR-S1-A.package.json",
-    "tools/ci/test_generation_live.py"
+    "tools/ci/test_generation_live.py",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
    "lineage": [
     "p1-scenario-composer-difficulty s01 to s05",
@@ -3995,7 +4001,7 @@
    ],
    "acceptance": "At least 8 S1 and 6 S2 composed cases pass Stage B; no composed case is ever marked approved by the composer.",
    "blockers": [
-    "external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "blocks invented to fill gaps break traceability (every block cites its source case)",
@@ -4236,7 +4242,13 @@
     "prompts/compose_plan/spine_v2.txt",
     "reports/ai/planner-eval.json",
     "tools/generation/fit_joint.py",
-    "content/generation/releases.json"
+    "content/generation/releases.json",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
    "lineage": [
     "new (this planning update, 12 Oct 2026)",
@@ -4315,7 +4327,7 @@
    ],
    "acceptance": "A practice session can start on a freshly generated case that passed every validation stage, with full provenance, in the time budget or from the pool.",
    "blockers": [
-    "external acceptance: DC-02, EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: DC-02, EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "generation latency on a 6 GB GPU (pool hides it)",
@@ -4818,7 +4830,13 @@
     "tools/ci/test_generation_skeleton.py",
     "server/generation/compose_plan.py",
     "prompts/compose_plan/spine_v2.txt",
-    "reports/ai/planner-eval.json"
+    "reports/ai/planner-eval.json",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
    "lineage": [
     "p1-case-library-extended (6 stacked cases)",
@@ -4855,7 +4873,7 @@
    ],
    "acceptance": "Every generated stacked case passes Stage B and has a reachable correct path.",
    "blockers": [
-    "external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
@@ -5040,7 +5058,13 @@
     "tests/golden_generated",
     "server/generation/compose_plan.py",
     "prompts/compose_plan/spine_v2.txt",
-    "reports/ai/planner-eval.json"
+    "reports/ai/planner-eval.json",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
    "lineage": [
     "p0-physiology-events-behaviour s08, s09",
@@ -5072,7 +5096,7 @@
    ],
    "acceptance": "Variants stay in bounds; replay reproduces them.",
    "blockers": [
-    "external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
@@ -5453,7 +5477,13 @@
     "tools/ci/test_generation_quality.py",
     "server/generation/compose_plan.py",
     "prompts/compose_plan/spine_v2.txt",
-    "reports/ai/planner-eval.json"
+    "reports/ai/planner-eval.json",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
    "lineage": [
     "DT-094"
@@ -5488,7 +5518,7 @@
    ],
    "acceptance": "Every trap has at least one discoverable cue in the session.",
    "blockers": [
-    "external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "trap feels unfair or unteachable (every trap needs a discoverable cue)"
@@ -5669,7 +5699,13 @@
     "tests/golden_generated",
     "server/generation/compose_plan.py",
     "prompts/compose_plan/spine_v2.txt",
-    "reports/ai/planner-eval.json"
+    "reports/ai/planner-eval.json",
+    "server/generation/plan_extras.py",
+    "server/generation/trap_writer.py",
+    "reports/ai/plan-extras-eval.json",
+    "reports/ai/trap-writer-eval.json",
+    "tools/ci/test_plan_extras.py",
+    "tools/ci/test_trap_writer.py"
    ],
    "lineage": [
     "DT-087"
@@ -5697,7 +5733,7 @@
    ],
    "acceptance": "Every generated branch is reachable and replayable.",
    "blockers": [
-    "external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
@@ -10749,7 +10785,9 @@
     "server/orders/llm_fallback.py",
     "server/tests/test_orders_route.py",
     "tools/ci/test_orders_fallback.py",
-    "tests/orders/paraphrases.json"
+    "tests/orders/paraphrases.json",
+    "reports/ai/orders-eval-llm-v2.json",
+    "tests/orders/paraphrases_v2.json"
    ],
    "lineage": [
     "p1-voice-input-s03"

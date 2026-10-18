@@ -106,7 +106,7 @@ Blocks with requires/excludes, templates, discovery coverage; composer lineage s
 | Features | A1; A12; B23 |
 | Deliverables | content/blocks; templates; solver |
 | Acceptance | T-SOLVE; every block cites its source case |
-| Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-05 — Live generation skeleton (deterministic path first)
 
@@ -120,7 +120,7 @@ Request, objectives, retrieval, solver selection, skeleton. A fresh case can be 
 | Features | A2; A4; A11; E58 |
 | Deliverables | request and package schemas; retrieval index; skeleton builder |
 | Acceptance | 1,000 seeded skeletons valid |
-| Blockers | external acceptance: DC-02, EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-02, EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-06 — Backend and AI gateway
 
@@ -190,7 +190,7 @@ Cross-modal rules, Stage B on generated packages, events and branches on generat
 | Features | A5; A8; A10; B18 |
 | Deliverables | cross-modal rule table; headless correct-path run |
 | Acceptance | every cross-modal mutation caught |
-| Blockers | external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-11 — Quality, repair, novelty and provenance
 
@@ -204,7 +204,7 @@ Quality gate, repair budget, fingerprints, package provenance.
 | Features | A6; A7; A9; A13 |
 | Deliverables | quality metrics; repair table; fingerprints |
 | Acceptance | zero defective deliveries; novelty rate |
-| Blockers | external acceptance: DC-02 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-15 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-02 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-15 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-12 — Packaging, pool and Unity integration
 

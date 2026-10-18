@@ -60,7 +60,7 @@ class Gate(unittest.TestCase):
         names = set(json.loads(ai_gate.THRESHOLDS.read_text(encoding="utf-8"))["features"])
         text = "".join(p.read_text(encoding="utf-8") for p in (ROOT / "server" / "routers").glob("*.py")) + (ROOT / "server" / "generation" / "pipeline.py").read_text(encoding="utf-8")
         routed = {n for n in names if f'enabled("{n}")' in text or f'"{n}"' in text}
-        self.assertEqual(sorted(names - routed), sorted({"plan_composer", "interpreter", "classifier_synthetic", "classifier_synthetic2", "classifier_safety", "multi_agent"}))        # offline or library-level features, and the synthetic classifier check that is recorded for information and switches nothing on; (the pipeline is given a planner or a critic by its caller): listed, so a new unhonoured feature is noticed
+        self.assertEqual(sorted(names - routed), sorted({"plan_composer", "interpreter", "classifier_synthetic", "classifier_synthetic2", "classifier_safety", "multi_agent", "plan_extras", "trap_writer"}))        # offline or library-level features, and the synthetic classifier check that is recorded for information and switches nothing on; (the pipeline is given a planner or a critic by its caller): listed, so a new unhonoured feature is noticed
 
 
 if __name__ == "__main__":

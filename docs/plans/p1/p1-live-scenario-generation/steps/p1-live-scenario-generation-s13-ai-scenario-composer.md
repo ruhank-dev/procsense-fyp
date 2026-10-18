@@ -45,5 +45,6 @@ Features A1, A2, A4, A5, A7, A8.
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
 * [EX-03](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-03): Blind comparison of the AI plan composer with the solver alone (40 cases, two raters)
+* [EX-17](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-17): Blind rating of the plan composer's extras (events, branches, interactions) and of the reworded traps
 
 <!-- external-testing:end -->

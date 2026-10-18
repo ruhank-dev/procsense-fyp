@@ -274,6 +274,35 @@
       "gateway": false
     },
     {
+      "id": "orders.map",
+      "version": 2,
+      "role": "live",
+      "file": "orders/map_v2.txt",
+      "sha256": "08963c747eb69b399f23723725af45d11eaacf5f352fca7511a722fdc63f8c64",
+      "schema": null,
+      "variables": [
+        "heard",
+        "items"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "orders.kind",
+      "version": 1,
+      "role": "live",
+      "file": "orders/kind_v1.txt",
+      "sha256": "30d07d354a2e4d6c59105f7a55ac2ffa9e4c7053cfdd256f0240281593bf06f7",
+      "schema": null,
+      "variables": [
+        "heard"
+      ],
+      "num_predict": 30,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "judge.scenario",
       "version": 1,
       "role": "batch",
@@ -283,6 +312,52 @@
       "variables": [
         "facts",
         "lines"
+      ],
+      "num_predict": 120,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "compose_plan.events",
+      "version": 1,
+      "role": "batch",
+      "file": "compose_plan/events_v1.txt",
+      "sha256": "05953b9fa2b5a8a391ebba30ffe4974ad720bcf4bc5fe983746a739da1937f82",
+      "schema": null,
+      "variables": [
+        "case",
+        "objectives",
+        "events"
+      ],
+      "num_predict": 300,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "compose_plan.interactions",
+      "version": 1,
+      "role": "batch",
+      "file": "compose_plan/interactions_v1.txt",
+      "sha256": "cec8802a3371013761ed68548899e995b929b66a20f9b60d9f648100ce7946dc",
+      "schema": null,
+      "variables": [
+        "case",
+        "pairs"
+      ],
+      "num_predict": 300,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "trap.reword",
+      "version": 1,
+      "role": "batch",
+      "file": "trap/reword_v1.txt",
+      "sha256": "dbec9fb7b6832cf33bfccdcfd142baf2b8000e9cb7bba1cece82b7b8a49470ba",
+      "schema": "server/schemas/ai/narrative_line.json",
+      "variables": [
+        "prompt",
+        "original"
       ],
       "num_predict": 120,
       "think": false,

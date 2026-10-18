@@ -276,6 +276,8 @@ class Planner(unittest.TestCase):
             if "Approved cases you may choose from" in user:
                 first = re.findall(r"^([A-Z0-9-]+): ", re.split(r"Approved cases you may choose from[^:\n]*:", user, maxsplit=1)[1], re.M)[0]
                 return httpx.Response(200, json={"message": {"content": json.dumps({"spine": first, "reason": "It exercises the objectives."})}})
+            if "Slots and the blocks you may choose for each:" not in user:                         # the extras prompts (events, interactions): the model chooses nothing
+                return httpx.Response(200, json={"message": {"content": json.dumps({"events": [], "interactions": []})}})
             seen["blocks_calls"] += 1
             chosen, slot = {}, None
             for line in user.split("Slots and the blocks you may choose for each:", 1)[1].splitlines():
