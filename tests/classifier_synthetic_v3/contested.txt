@@ -1,0 +1,46 @@
+V3F0006|Come again, pet? Didn't catch it.|NONE|NONE
+V3F0014|The patch comes off the next morning, and then...|NONE|NONE
+V3F0019|They'll numb your eye with drops first and then...|EXPLAIN_ACTION|EXPLAIN_ACTION
+V3F0028|I won't move the broken leg, only the good one.|NONE|NONE
+V3F0033|You're not worried about the exercises? Show me what you've got.|NONE|NONE
+V3F0038|Don't feel foolish for crying about it.|REASSURE|REASSURE
+V3F0042|The eye team do dozens of these every week.|NONE|NONE
+V3F0046|Right, you slipped on the wet step at the back door, I've got it.|NONE|NONE
+V3F0047|Thanks, you wear glasses for reading only.|NONE|NONE
+V3F0049|So you've had the other eye done in the spring and then...|ASK_TOPIC|ASK_TOPIC
+V3F0054|So that's the drops every hour and then I'll...|NONE|NONE
+V3F0064|I think the microscope arm is drifting because the...|NONE|NONE
+V3F0068|R: don't take her till the anaesthetist has reviewed her chest.|VOICE_ORDER|VOICE_ORDER
+V3F0069|A: she's comfortable and I'd suggest we...|NONE|NONE
+V3F0082|You told me the eye drops sting you up, I'll note that as an allergy.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT
+V3F0091|She's allergic to penicillin, rash and swelling last time.|STATE_ALLERGY|STATE_ALLERGY
+V3F0103|No head strike, no LOC, correct?|CLOSED_LOOP|CLOSED_LOOP
+V3F0104|Floaters, flashes, curtain, any of...|NONE|NONE
+V3F0108|Missed that. Again.|NONE|NONE
+V3F0114|Vision clears in a day or two, though...|NONE|NONE
+V3F0117|Remove the lens through a tiny cut, fold in a new one, no stitches.|EXPLAIN_ACTION|EXPLAIN_ACTION
+V3F0131|Back to me: when do you call for help?|VOICE_ORDER|VOICE_ORDER
+V3F0132|What goes on the eye at bedtime?|ASK_TOPIC|ASK_TOPIC
+V3F0133|Nothing unclear on the weight rules? Repeat them.|CLARIFY|CLARIFY
+V3F0135|tell me what you will do if the wound leaks|ASK_TOPIC|ASK_TOPIC
+V3F0139|I know how stressful the wait has been for...|NONE|NONE
+V3F0149|Right, so the vision went blurry after the...|NONE|NONE
+V3F0151|Repeat: tranexamic acid one gram IV now, will say when done.|VOICE_ORDER|VOICE_ORDER
+V3F0156|Need ortho reg. Now.|VOICE_ORDER|VOICE_ORDER
+V3F0160|call the consultant to bed six please|VOICE_ORDER|VOICE_ORDER
+V3F0167|B: AF on apixaban, last dose Friday.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT
+V3F0168|R: not for theatre until the echo is back.|NONE|NONE
+V3F0182|Iodine allergy, rash. Putting it on the board.|HANDOVER_CRITICAL_ELEMENT|HANDOVER_CRITICAL_ELEMENT
+V3F0193|Band name wrong. Not Burns. Recheck.|CONFIRM_IDENTITY|CONFIRM_IDENTITY
+V3F0211|Well, yes, you'd be given something so you don't feel the operation, so that's all right.|REASSURE|REASSURE
+V3F0214|It does vary a bit, you know, but usually people see better within a week, and then...|NONE|NONE
+V3F0220|you will have an injection in the back and then you will not feel your legs for the operation|EXPLAIN_ACTION|EXPLAIN_ACTION
+V3F0231|Um, I wonder if you could tell me, in your own words, how you're going to manage the stairs when you get home?|NONE|NONE
+V3F0232|Well, just to be sure we're on the same page, what will you do with the eye shield at night?|ASK_TOPIC|ASK_TOPIC
+V3F0237|Um, it must be rather worrying thinking about something going near your eye, anyone would feel like that.|REASSURE|REASSURE
+V3F0238|Please don't think you're being silly for being upset, it's, well, it's perfectly understandable.|REASSURE|REASSURE
+V3F0239|I can only imagine how hard it has been waiting all this time and not knowing when...|NONE|NONE
+V3F0249|Okay, so your sight started going blurry after the cold you had in...|ASK_TOPIC|ASK_TOPIC
+V3F0254|So you'd like her sugar checked again in an hour and then I should...|VOICE_ORDER|VOICE_ORDER
+V3F0281|Um, are there any medicines or foods that you know you shouldn't have, or that have ever made you poorly?|ASK_TOPIC|ASK_TOPIC
+V3F0282|Well, you said that the iodine gives you a rash, so I'll make sure that's written up in red.|ACKNOWLEDGE_FACT|ACKNOWLEDGE_FACT

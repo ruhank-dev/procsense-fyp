@@ -12,6 +12,7 @@ Safety, unchanged from the language-model classifier and checked at load time:
 - a CRITICAL act is recorded and never credited from speech, whatever its probability; NONE is never credited;
 - an act is credited only if its probability reaches the threshold tuned on dev for it (an act without one is never credited);
 - a sentence that touches critical content (server/classify/guard.py) is not credited under a non-critical act;
+- neither is a sentence to which the head gives a critical-act probability of `critical_mass_max` or more (when the head carries that number: it is tuned on dev only, tools/bench/tune_mass.py);
 - if the embedding service is down, slow or answers badly the result is `source: unavailable` and nothing is credited, so the menu and action path decide, as before.
 This classifier adds evidence only; deterministic action-based scoring stays authoritative.
 """
@@ -90,10 +91,17 @@ class EmbeddingActClassifier:
         total = sum(exp)
         return {c: e / total for c, e in zip(h["classes"], exp)}
 
-    def credit_allowed(self, act: str, probability: float, sentence: str) -> bool:
+    def critical_mass(self, probs: dict[str, float]) -> float:
+        """The probability the head gives to ANY critical act: how likely the sentence is to be critical content said in some way, whatever act it was named as."""
+        return sum(p for c, p in probs.items() if c in self.critical)
+
+    def credit_allowed(self, act: str, probability: float, sentence: str, mass: float | None = None) -> bool:
         if act in self.critical or act == "NONE":
             return False
         t = self.head["thresholds"].get(act)
+        cap = self.head.get("critical_mass_max")                       # tuned on dev only (tools/bench/tune_mass.py); absent in a head made before it existed
+        if cap is not None and mass is not None and mass >= cap:
+            return False
         return t is not None and probability >= t and not critical_cue(sentence)
 
     def classify(self, sentence: str) -> Result:
@@ -104,4 +112,4 @@ class EmbeddingActClassifier:
             return Result("NONE", 0.0, False, "unavailable", error="EMBEDDING_UNAVAILABLE")
         probs = self.probabilities(vec)
         act = max(probs, key=probs.get)
-        return Result(act, probs[act], self.credit_allowed(act, probs[act], sentence), "embedding", act in self.critical)
+        return Result(act, probs[act], self.credit_allowed(act, probs[act], sentence, self.critical_mass(probs)), "embedding", act in self.critical)

@@ -3,7 +3,7 @@
  "independent": false,
  "valid_for_claims": false,
  "ai_judged": true,
- "note": "Written by the language model that built the tooling and labelled by two AI judge configurations of one local model; contested rows settled by that same builder. No person wrote, labelled or reviewed any row.",
+ "note": "Written by the language model that built the tooling and labelled by two AI judge configurations of one local model; contested rows settled by that same builder, who also wrote the sentences and sided with the author's intent in nearly every case (see adjudicated_agreeing_with_intent), so the adjudication is not an independent check. No person wrote, labelled or reviewed any row.",
  "personas": {
   "R1": "junior doctor on call: clipped, abbreviations, imperatives",
   "R2": "nurse practitioner: warm, long, explanatory sentences",
@@ -95,6 +95,11 @@
   "train": 0,
   "dev": 0,
   "test": 2
+ },
+ "adjudicated_agreeing_with_intent": {
+  "train": 0,
+  "dev": 55,
+  "test": 82
  },
  "leakage": {
   "jaccard_pairs": {

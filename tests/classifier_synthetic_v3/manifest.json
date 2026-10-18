@@ -1,0 +1,61 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "valid_for_claims": false,
+ "ai_judged": true,
+ "note": "Written by the language model that built the tooling and labelled by two AI judge configurations of one local model; contested rows settled by that same builder, who also wrote the sentences and sided with the author's intent in nearly every case (see adjudicated_agreeing_with_intent), so the adjudication is not an independent check. No person wrote, labelled or reviewed any row.",
+ "personas": {
+  "F1": "calm plain-speaking ward nurse: contractions, short, Scottish-flavoured endearments",
+  "F2": "telegraphic on-call doctor: shorthand, fragments, no articles",
+  "F3": "wordy hesitant clinician: fillers, indirect requests, long sentences"
+ },
+ "scenario_groups": {
+  "test": [
+   "G10",
+   "G9"
+  ]
+ },
+ "judge_model": "qwen3.5:4b-q4_K_M",
+ "judge_configs": {
+  "J1": "rubric, zero-shot, temperature 0, labels in taxonomy order",
+  "J2": "rubric reworded with one example per label, labels in a fixed shuffled order, temperature 0.3, seed 7"
+ },
+ "rubric_sha256": "172ecc763555ed0e131e1346cc8fc0a9d7636066acd0ace5649ef491184268ed",
+ "files": {
+  "test.jsonl": "a36ce87b0d6787ac7477a04a76433c9fc7df549a2c15581cecc1aa19f07a6edd"
+ },
+ "rows": {
+  "test": 300
+ },
+ "authors": {
+  "test": [
+   "F1",
+   "F2",
+   "F3"
+  ]
+ },
+ "status": {
+  "test": {
+   "certain": 200,
+   "uncertain": 54,
+   "adjudicated": 46,
+   "intent_only": 0
+  }
+ },
+ "adjudicated": {},
+ "changed_by_adjudication": {
+  "test": 1
+ },
+ "adjudicated_agreeing_with_intent": {
+  "test": 45
+ },
+ "leakage": {
+  "jaccard_pairs": {
+   "earlier_sets~test": []
+  },
+  "cosine_review": {},
+  "cosine_refused": {},
+  "first3_overlap": {}
+ },
+ "agreement_sha256": "c656a2d04ed57781bda4227d610549bf9cd777b10d3616f7f6fc18e090170a21"
+}

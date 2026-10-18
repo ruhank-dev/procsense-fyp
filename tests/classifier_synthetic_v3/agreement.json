@@ -1,0 +1,44 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "valid_for_claims": false,
+ "judge_model": "qwen3.5:4b-q4_K_M",
+ "configs": {
+  "J1": "rubric, zero-shot, temperature 0, labels in taxonomy order",
+  "J2": "rubric reworded with one example per label, labels in a fixed shuffled order, temperature 0.3, seed 7"
+ },
+ "rubric_sha256": "172ecc763555ed0e131e1346cc8fc0a9d7636066acd0ace5649ef491184268ed",
+ "splits": {
+  "test": {
+   "rows": 300,
+   "judged": 300,
+   "kappa_J1_J2": 0.807,
+   "kappa_J1_intent": 0.719,
+   "kappa_J2_intent": 0.712,
+   "raw_agreement_J1_J2": 0.82,
+   "raw_agreement_judges_with_intent": 0.667,
+   "certain": 200,
+   "uncertain": 54,
+   "contested": 46,
+   "by_bucket": {
+    "plain": {
+     "rows": 120,
+     "certain": 78
+    },
+    "negation": {
+     "rows": 60,
+     "certain": 38
+    },
+    "incomplete": {
+     "rows": 60,
+     "certain": 33
+    },
+    "asr_style": {
+     "rows": 60,
+     "certain": 51
+    }
+   }
+  }
+ },
+ "note": "Agreement between two configurations of the same judge model is a consistency check, not evidence that a label is right."
+}

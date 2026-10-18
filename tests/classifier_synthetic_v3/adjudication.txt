@@ -1,0 +1,46 @@
+V3F0006|CLARIFY|asks for a repeat: rule 7
+V3F0014|ANSWER_QUESTION|tells the patient what to expect: rule 8, recoverable
+V3F0019|EXPLAIN_PROCEDURE|says what the operation involves: rule 6, recoverable
+V3F0028|EXPLAIN_ACTION|says what will and will not be done now: rule 6
+V3F0033|CHECK_UNDERSTANDING|asks the patient to show what they have learned: rule 7
+V3F0038|ACKNOWLEDGE_EMOTION|recognises the crying: rule 6
+V3F0042|REASSURE|comfort about experience: rule 6
+V3F0046|ACKNOWLEDGE_FACT|notes back how the patient fell: rule 5
+V3F0047|ACKNOWLEDGE_FACT|notes back when the patient wears glasses: rule 5
+V3F0049|ACKNOWLEDGE_FACT|notes back the other eye operation: rule 5, recoverable
+V3F0054|CLOSED_LOOP|repeats an instruction back: rule 5, recoverable
+V3F0064|REPORT_FAULT|reports a drifting microscope arm: rule 9, recoverable
+V3F0068|SBAR_ELEMENT|a Recommendation line: rule 3
+V3F0069|SBAR_ELEMENT|an Assessment line: rule 3, recoverable
+V3F0082|STATE_ALLERGY|states the patient's reaction back to the patient: rule 1
+V3F0091|HANDOVER_CRITICAL_ELEMENT|states an allergy about 'she' to a colleague: rule 2
+V3F0103|ASK_TOPIC|confirms history details with the patient: rule 7
+V3F0104|ASK_TOPIC|asks about eye symptoms: rule 7, recoverable
+V3F0108|CLARIFY|asks for a repeat: rule 7
+V3F0114|ANSWER_QUESTION|tells the patient when vision clears: rule 8, recoverable
+V3F0117|EXPLAIN_PROCEDURE|says what the operation involves: rule 6
+V3F0131|CHECK_UNDERSTANDING|asks the patient to say when to call for help: rule 7
+V3F0132|ASK_TOPIC|asks what goes on the eye, a medicine question without context: rule 7
+V3F0133|CHECK_UNDERSTANDING|asks the patient to repeat the rules back: rule 7
+V3F0135|CHECK_UNDERSTANDING|asks what the patient will do: rule 7
+V3F0139|ACKNOWLEDGE_EMOTION|recognises the stressful wait: rule 6, recoverable
+V3F0149|ACKNOWLEDGE_FACT|notes back the blurred vision: rule 5, recoverable
+V3F0151|CLOSED_LOOP|reads back a drug and dose: rule 5
+V3F0156|ESCALATE_SPEECH|asks for the orthopaedic registrar: rule 4
+V3F0160|ESCALATE_SPEECH|asks for the consultant to come to a bed: rule 4
+V3F0167|SBAR_ELEMENT|a Background line: rule 3
+V3F0168|SBAR_ELEMENT|a Recommendation line: rule 3
+V3F0182|STATE_ALLERGY|states an allergy and its reaction and says it is being recorded, no colleague addressed: rule 1
+V3F0193|HANDOVER_CRITICAL_ELEMENT|identity mismatch told to a colleague with a request to recheck: rule 2
+V3F0211|ANSWER_QUESTION|tells the patient they will feel nothing: rule 8
+V3F0214|ANSWER_QUESTION|tells the patient how soon vision improves: rule 8, recoverable
+V3F0220|EXPLAIN_PROCEDURE|says what the spinal injection does: rule 6
+V3F0231|CHECK_UNDERSTANDING|asks the patient to say how they will manage: rule 7
+V3F0232|CHECK_UNDERSTANDING|asks what the patient will do with the shield: rule 7
+V3F0237|ACKNOWLEDGE_EMOTION|names the worry: rule 6
+V3F0238|ACKNOWLEDGE_EMOTION|recognises being upset: rule 6
+V3F0239|ACKNOWLEDGE_EMOTION|recognises the wait: rule 6, recoverable
+V3F0249|ACKNOWLEDGE_FACT|notes back when the sight went blurry: rule 5, recoverable
+V3F0254|CLOSED_LOOP|repeats an instruction back: rule 5, recoverable
+V3F0281|STATE_ALLERGY|asks about medicines or foods that made the patient poorly: rule 1
+V3F0282|STATE_ALLERGY|states the patient's reaction back to the patient: rule 1

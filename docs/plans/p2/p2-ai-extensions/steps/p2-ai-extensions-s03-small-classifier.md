@@ -16,7 +16,7 @@ A small classifier is cheaper and faster (no GPU contention with dialogue) and w
 
 ## Status (17 October 2026)
 
-- **Built:** the small classifier of this step is the embeddings + logistic regression head (`server/classify/embedding.py`, `content/assessment/act_head.json`), trained on the old template set and the synthetic styles (not on a human-labelled set, which does not exist, DT-210); the TF-IDF logistic regression is the baseline. Synthetic result: embeddings macro-F1 0.809 (0.742 to 0.858), credited 83 at precision 0.916, critical acts credited from speech 0, TF-IDF macro-F1 0.78 (0.709 to 0.826), credited 68 at precision 0.882, critical acts credited from speech 0. Below macro-F1 0.75 or without the independent set it stays off.
+- **Built:** the small classifier of this step is the embeddings + logistic regression head (`server/classify/embedding.py`, `content/assessment/act_head.json`); see `p1-ai-language-s07` for the results of three candidates on two synthetic sets and the adversarial check. It is off in production until an independent set exists (DT-210).
 
 ## Verification
 EXP-P2AI-2 table; ship only within the agreed F1 margin.

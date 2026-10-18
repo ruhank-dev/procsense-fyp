@@ -1,0 +1,340 @@
+{
+ "set": "v3 (300 sentences, 3 new profiles, 2 new scenario groups; frozen after two AI judge passes and adjudication)",
+ "set_manifest_sha256": "02cad41ca18ecd846b2e4449e8f1ac4c9bf7b3ef439955030e11c615ad99b7cf",
+ "valid_for_claims": false,
+ "independent": false,
+ "provenance": "model-written, AI-judged synthetic hold-out written and judged AFTER the v2 test split was scored once; it measures the changes made after that look; not independent and not real-world validation",
+ "shipped_head": {
+  "rows": 300,
+  "macro_f1": 0.842,
+  "accuracy": 0.843,
+  "credited": 137,
+  "credited_precision": 0.942,
+  "false_credits": 8,
+  "not_credited_share": 0.543,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 0,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.874,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "cc2d3a5a233e31615a7d721a4b8eabe76c95a83c628f6d985f4d123ce8807135",
+  "head_trained_on_rows": 1940,
+  "critical_mass_max": 0.02,
+  "per_class": {
+   "ASK_TOPIC": {
+    "f1": 0.64,
+    "precision": 0.889,
+    "recall": 0.5,
+    "support": 16,
+    "false_positives": 1
+   },
+   "CLARIFY": {
+    "f1": 0.812,
+    "precision": 0.765,
+    "recall": 0.867,
+    "support": 15,
+    "false_positives": 4
+   },
+   "ANSWER_QUESTION": {
+    "f1": 0.759,
+    "precision": 0.786,
+    "recall": 0.733,
+    "support": 15,
+    "false_positives": 3
+   },
+   "EXPLAIN_PROCEDURE": {
+    "f1": 0.857,
+    "precision": 0.923,
+    "recall": 0.8,
+    "support": 15,
+    "false_positives": 1
+   },
+   "EXPLAIN_TEST": {
+    "f1": 0.903,
+    "precision": 0.875,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 2
+   },
+   "EXPLAIN_ACTION": {
+    "f1": 0.897,
+    "precision": 0.929,
+    "recall": 0.867,
+    "support": 15,
+    "false_positives": 1
+   },
+   "CHECK_UNDERSTANDING": {
+    "f1": 0.8,
+    "precision": 0.75,
+    "recall": 0.857,
+    "support": 14,
+    "false_positives": 4
+   },
+   "ACKNOWLEDGE_EMOTION": {
+    "f1": 0.897,
+    "precision": 0.929,
+    "recall": 0.867,
+    "support": 15,
+    "false_positives": 1
+   },
+   "REASSURE": {
+    "f1": 0.933,
+    "precision": 0.933,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 1
+   },
+   "ACKNOWLEDGE_FACT": {
+    "f1": 0.824,
+    "precision": 0.737,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 5
+   },
+   "CLOSED_LOOP": {
+    "f1": 0.733,
+    "precision": 0.733,
+    "recall": 0.733,
+    "support": 15,
+    "false_positives": 4
+   },
+   "ESCALATE_SPEECH": {
+    "f1": 0.966,
+    "precision": 1.0,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 0
+   },
+   "REPORT_FAULT": {
+    "f1": 0.903,
+    "precision": 0.875,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 2
+   },
+   "SBAR_ELEMENT": {
+    "f1": 0.706,
+    "precision": 0.632,
+    "recall": 0.8,
+    "support": 15,
+    "false_positives": 7
+   },
+   "VOICE_ORDER": {
+    "f1": 0.692,
+    "precision": 0.818,
+    "recall": 0.6,
+    "support": 15,
+    "false_positives": 2
+   },
+   "CONFIRM_IDENTITY": {
+    "f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "support": 15,
+    "false_positives": 0
+   },
+   "STATE_ALLERGY": {
+    "f1": 0.966,
+    "precision": 1.0,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 0
+   },
+   "CONSENT_SIGN": {
+    "f1": 0.897,
+    "precision": 0.929,
+    "recall": 0.867,
+    "support": 15,
+    "false_positives": 1
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "f1": 0.875,
+    "precision": 0.824,
+    "recall": 0.933,
+    "support": 15,
+    "false_positives": 3
+   },
+   "NONE": {
+    "f1": 0.788,
+    "precision": 0.722,
+    "recall": 0.867,
+    "support": 15,
+    "false_positives": 5
+   }
+  },
+  "by_bucket": {
+   "asr_style": {
+    "rows": 60,
+    "accuracy": 0.917
+   },
+   "incomplete": {
+    "rows": 60,
+    "accuracy": 0.867
+   },
+   "negation": {
+    "rows": 60,
+    "accuracy": 0.8
+   },
+   "plain": {
+    "rows": 120,
+    "accuracy": 0.817
+   }
+  },
+  "note": "content/assessment/act_head.json: trained on 1,940 rows (old templates, synthetic v1, v2 train), thresholds and critical-mass cap 0.02 tuned on v2 dev, critical cues version 3 plus two allergy cues added after this set's one misroute was seen (post hoc for those two cues)"
+ },
+ "shipped_head_before_the_two_late_cues": {
+  "rows": 300,
+  "macro_f1": 0.842,
+  "accuracy": 0.843,
+  "credited": 138,
+  "credited_precision": 0.935,
+  "false_credits": 9,
+  "not_credited_share": 0.54,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 1,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.874,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "cc2d3a5a233e31615a7d721a4b8eabe76c95a83c628f6d985f4d123ce8807135",
+  "head_trained_on_rows": 1940,
+  "critical_mass_max": 0.02
+ },
+ "v2_test_post_hoc": {
+  "shipped_head": {
+   "rows": 600,
+   "macro_f1": 0.792,
+   "accuracy": 0.793,
+   "credited": 266,
+   "credited_precision": 0.902,
+   "false_credits": 26,
+   "not_credited_share": 0.557,
+   "critical_acts_credited_from_speech": 0,
+   "critical_said_but_credited_as_other_act": 0,
+   "critical_said_total": 150,
+   "macro_f1_on_rows_both_judges_agreed_with": 0.84,
+   "rows_both_judges_agreed_with": 433,
+   "head_sha256": "cc2d3a5a233e31615a7d721a4b8eabe76c95a83c628f6d985f4d123ce8807135",
+   "head_trained_on_rows": 1940,
+   "critical_mass_max": 0.02
+  },
+  "v2_head_without_mass_guard": {
+   "rows": 600,
+   "macro_f1": 0.792,
+   "accuracy": 0.793,
+   "credited": 343,
+   "credited_precision": 0.86,
+   "false_credits": 48,
+   "not_credited_share": 0.428,
+   "critical_acts_credited_from_speech": 0,
+   "critical_said_but_credited_as_other_act": 4,
+   "critical_said_total": 150,
+   "macro_f1_on_rows_both_judges_agreed_with": 0.84,
+   "rows_both_judges_agreed_with": 433,
+   "head_sha256": "5c56fb157afd2242a26330b6d8fd67a0b857b359d327bac13783c9cc513855cc",
+   "head_trained_on_rows": 1940,
+   "critical_mass_max": null
+  },
+  "note": "the v2 test split was scored once (reports/ai/classifier-bench-synthetic2.json, as scored); these two rows apply the cues of version 3 and the critical-mass cap to the same predictions of the same head and are therefore post hoc"
+ },
+ "v2_head_without_mass_guard_before_the_two_late_cues": {
+  "rows": 300,
+  "macro_f1": 0.842,
+  "accuracy": 0.843,
+  "credited": 175,
+  "credited_precision": 0.909,
+  "false_credits": 16,
+  "not_credited_share": 0.417,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 1,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.874,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "5c56fb157afd2242a26330b6d8fd67a0b857b359d327bac13783c9cc513855cc",
+  "head_trained_on_rows": 1940,
+  "critical_mass_max": null
+ },
+ "v1_head_17_oct_before_the_two_late_cues": {
+  "rows": 300,
+  "macro_f1": 0.742,
+  "accuracy": 0.747,
+  "credited": 117,
+  "credited_precision": 0.855,
+  "false_credits": 17,
+  "not_credited_share": 0.61,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 1,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.746,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "adfbf2fed1ae84707f27554fc103f74706945e231a58b7a960b8dc96bb4678b6",
+  "head_trained_on_rows": 800,
+  "critical_mass_max": null
+ },
+ "tfidf_before_the_two_late_cues": {
+  "rows": 300,
+  "macro_f1": 0.892,
+  "accuracy": 0.893,
+  "credited": 171,
+  "credited_precision": 0.942,
+  "false_credits": 10,
+  "not_credited_share": 0.43,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 1,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.922,
+  "rows_both_judges_agreed_with": 200,
+  "head_trained_on_rows": 1940,
+  "C": 100
+ },
+ "v2_head_without_mass_guard": {
+  "rows": 300,
+  "macro_f1": 0.842,
+  "accuracy": 0.843,
+  "credited": 174,
+  "credited_precision": 0.914,
+  "false_credits": 15,
+  "not_credited_share": 0.42,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 0,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.874,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "5c56fb157afd2242a26330b6d8fd67a0b857b359d327bac13783c9cc513855cc",
+  "head_trained_on_rows": 1940,
+  "critical_mass_max": null
+ },
+ "v1_head_17_oct": {
+  "rows": 300,
+  "macro_f1": 0.742,
+  "accuracy": 0.747,
+  "credited": 116,
+  "credited_precision": 0.862,
+  "false_credits": 16,
+  "not_credited_share": 0.613,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 0,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.746,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "adfbf2fed1ae84707f27554fc103f74706945e231a58b7a960b8dc96bb4678b6",
+  "head_trained_on_rows": 800,
+  "critical_mass_max": null
+ },
+ "tfidf_logreg": {
+  "rows": 300,
+  "macro_f1": 0.892,
+  "accuracy": 0.893,
+  "credited": 171,
+  "credited_precision": 0.942,
+  "false_credits": 10,
+  "not_credited_share": 0.43,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 1,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.922,
+  "rows_both_judges_agreed_with": 200,
+  "head_trained_on_rows": 1940,
+  "C": 100
+ },
+ "note_comparison": "All rows marked without \"before the two late cues\" use the cue file as shipped, so the comparison between heads is like for like. TF-IDF is trained on the same 1,940 rows, C chosen on v2 dev, per-act thresholds tuned on v2 dev, the same regular-expression guard; it has no critical-mass cap."
+}

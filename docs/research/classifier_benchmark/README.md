@@ -53,3 +53,7 @@ lower bound meets 0.8. Otherwise it says **no clear winner** and the next step i
 
 Deterministic action-based scoring stays authoritative. Speech is never credited for a critical act (the engine refuses it in `EvidenceStore.Submit`, and the benchmark counts any violation). Nothing in this folder or in
 `tools/bench` writes `content/assessment/thresholds.json`, the mapping, a gate or a scoring file; results go to `artifacts/ai-bench/` (git-ignored).
+
+## AI-judged synthetic sets v2 and v3 (18 October 2026)
+
+While people cannot be arranged, the classifier work continues on two larger synthetic sets that are model-written and labelled by two configurations of one local AI judge: `tests/classifier_synthetic_v2` (train 840, dev 420, test 600) and `tests/classifier_synthetic_v3` (a fresh hold-out of 300). They are **not independent human annotation and not validation**; the method, numbers and limits are in [ADR-0013](../../decisions/ADR-0013-classifier-ai-judged-evaluation.md) and the "AI-judged synthetic set v2" section of `docs/report/ai-eval.md`. The independent set described above is still required before any claim about real speech and before the classifier can be switched on.

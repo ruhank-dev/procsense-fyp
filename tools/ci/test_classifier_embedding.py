@@ -72,6 +72,21 @@ class Head(unittest.TestCase):
             r = self.classify("EXPLAIN_ACTION", sentence)
             self.assertEqual((r.act, r.credited), ("EXPLAIN_ACTION", False), sentence)
 
+    def test_the_critical_mass_cap_removes_credit_when_the_head_thinks_the_sentence_may_be_critical(self):
+        head = tiny_head("ASK_TOPIC")
+        head["critical_mass_max"] = 0.2
+        coef = [[8.0, 0.0, 0.0] if c == "ASK_TOPIC" else [0.0, 0.0, 0.0] for c in IDS]
+        head["coef"] = coef
+        clf = E.EmbeddingActClassifier(fixed([1.0, 0.0, 0.0]), head)
+        probs = clf.probabilities([1.0, 0.0, 0.0])
+        self.assertLess(clf.critical_mass(probs), 0.2)                                      # a clear ordinary act: nothing critical in the mass
+        self.assertTrue(clf.classify("Any pain?").credited)
+        self.assertTrue(clf.credit_allowed("ASK_TOPIC", 0.9, "Any pain?", mass=0.1))
+        self.assertFalse(clf.credit_allowed("ASK_TOPIC", 0.9, "Any pain?", mass=0.3))        # over the cap: recorded, not credited
+        self.assertTrue(clf.credit_allowed("ASK_TOPIC", 0.9, "Any pain?", mass=None))        # a caller that gives no mass is not blocked by it
+        del head["critical_mass_max"]
+        self.assertTrue(E.EmbeddingActClassifier(fixed([1.0, 0.0, 0.0]), head).credit_allowed("ASK_TOPIC", 0.9, "Any pain?", mass=0.9))      # a head made before the cap existed behaves as before
+
     def test_the_embedder_being_down_credits_nothing(self):
         for embedder in (None, lambda t: None, lambda t: [1.0, 2.0]):
             r = E.EmbeddingActClassifier(embedder, tiny_head("ASK_TOPIC")).classify("x")

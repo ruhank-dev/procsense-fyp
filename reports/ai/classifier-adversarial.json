@@ -1,0 +1,313 @@
+{
+ "shipped_head_with_cues_v3_and_mass_guard": {
+  "tuning": {
+   "rows": 71,
+   "by_kind": {
+    "allergy": {
+     "rows": 17,
+     "right_critical_act": 11,
+     "other_not_credited": 6,
+     "credited_as_ordinary": 0
+    },
+    "identity": {
+     "rows": 12,
+     "right_critical_act": 9,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 0
+    },
+    "consent": {
+     "rows": 12,
+     "right_critical_act": 11,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "fasting": {
+     "rows": 10,
+     "right_critical_act": 6,
+     "other_not_credited": 4,
+     "credited_as_ordinary": 0
+    },
+    "worsening": {
+     "rows": 10,
+     "right_critical_act": 9,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "handover": {
+     "rows": 10,
+     "right_critical_act": 9,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    }
+   },
+   "credited_as_ordinary": [],
+   "credited_as_ordinary_count": 0,
+   "head_critical_mass_max": 0.02,
+   "head_trained_on_rows": 1940
+  },
+  "holdout": {
+   "rows": 48,
+   "by_kind": {
+    "allergy": {
+     "rows": 8,
+     "right_critical_act": 2,
+     "other_not_credited": 6,
+     "credited_as_ordinary": 0
+    },
+    "identity": {
+     "rows": 8,
+     "right_critical_act": 5,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 0
+    },
+    "consent": {
+     "rows": 8,
+     "right_critical_act": 5,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 0
+    },
+    "fasting": {
+     "rows": 8,
+     "right_critical_act": 6,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 0
+    },
+    "worsening": {
+     "rows": 8,
+     "right_critical_act": 7,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "handover": {
+     "rows": 8,
+     "right_critical_act": 6,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 0
+    }
+   },
+   "credited_as_ordinary": [],
+   "credited_as_ordinary_count": 0,
+   "head_critical_mass_max": 0.02,
+   "head_trained_on_rows": 1940
+  }
+ },
+ "v1_head_17_oct_with_cues_v3": {
+  "tuning": {
+   "rows": 71,
+   "by_kind": {
+    "allergy": {
+     "rows": 17,
+     "right_critical_act": 10,
+     "other_not_credited": 7,
+     "credited_as_ordinary": 0
+    },
+    "identity": {
+     "rows": 12,
+     "right_critical_act": 10,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 0
+    },
+    "consent": {
+     "rows": 12,
+     "right_critical_act": 10,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 0
+    },
+    "fasting": {
+     "rows": 10,
+     "right_critical_act": 5,
+     "other_not_credited": 5,
+     "credited_as_ordinary": 0
+    },
+    "worsening": {
+     "rows": 10,
+     "right_critical_act": 9,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "handover": {
+     "rows": 10,
+     "right_critical_act": 8,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 0
+    }
+   },
+   "credited_as_ordinary": [],
+   "credited_as_ordinary_count": 0,
+   "head_critical_mass_max": null,
+   "head_trained_on_rows": 800
+  },
+  "holdout": {
+   "rows": 48,
+   "by_kind": {
+    "allergy": {
+     "rows": 8,
+     "right_critical_act": 3,
+     "other_not_credited": 5,
+     "credited_as_ordinary": 0
+    },
+    "identity": {
+     "rows": 8,
+     "right_critical_act": 4,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 1
+    },
+    "consent": {
+     "rows": 8,
+     "right_critical_act": 4,
+     "other_not_credited": 4,
+     "credited_as_ordinary": 0
+    },
+    "fasting": {
+     "rows": 8,
+     "right_critical_act": 5,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 0
+    },
+    "worsening": {
+     "rows": 8,
+     "right_critical_act": 7,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "handover": {
+     "rows": 8,
+     "right_critical_act": 7,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    }
+   },
+   "credited_as_ordinary": [
+    {
+     "id": "ADB010",
+     "text": "I've got two Patels on the list, which one are you?",
+     "act": "ASK_TOPIC",
+     "confidence": 0.373
+    }
+   ],
+   "credited_as_ordinary_count": 1,
+   "head_critical_mass_max": null,
+   "head_trained_on_rows": 800
+  }
+ },
+ "v2_head_without_mass_guard": {
+  "tuning": {
+   "rows": 71,
+   "by_kind": {
+    "allergy": {
+     "rows": 17,
+     "right_critical_act": 11,
+     "other_not_credited": 6,
+     "credited_as_ordinary": 0
+    },
+    "identity": {
+     "rows": 12,
+     "right_critical_act": 9,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 1
+    },
+    "consent": {
+     "rows": 12,
+     "right_critical_act": 11,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "fasting": {
+     "rows": 10,
+     "right_critical_act": 6,
+     "other_not_credited": 4,
+     "credited_as_ordinary": 0
+    },
+    "worsening": {
+     "rows": 10,
+     "right_critical_act": 9,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "handover": {
+     "rows": 10,
+     "right_critical_act": 9,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    }
+   },
+   "credited_as_ordinary": [
+    {
+     "id": "ADV027",
+     "text": "Let me check the band on your wrist against the notes.",
+     "act": "EXPLAIN_ACTION",
+     "confidence": 0.495
+    }
+   ],
+   "credited_as_ordinary_count": 1,
+   "head_critical_mass_max": null,
+   "head_trained_on_rows": 1940
+  },
+  "holdout": {
+   "rows": 48,
+   "by_kind": {
+    "allergy": {
+     "rows": 8,
+     "right_critical_act": 2,
+     "other_not_credited": 6,
+     "credited_as_ordinary": 0
+    },
+    "identity": {
+     "rows": 8,
+     "right_critical_act": 5,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 0
+    },
+    "consent": {
+     "rows": 8,
+     "right_critical_act": 5,
+     "other_not_credited": 3,
+     "credited_as_ordinary": 0
+    },
+    "fasting": {
+     "rows": 8,
+     "right_critical_act": 6,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 1
+    },
+    "worsening": {
+     "rows": 8,
+     "right_critical_act": 7,
+     "other_not_credited": 1,
+     "credited_as_ordinary": 0
+    },
+    "handover": {
+     "rows": 8,
+     "right_critical_act": 6,
+     "other_not_credited": 2,
+     "credited_as_ordinary": 0
+    }
+   },
+   "credited_as_ordinary": [
+    {
+     "id": "ADB026",
+     "text": "She says she finished a packet of mints on the ward.",
+     "act": "CLOSED_LOOP",
+     "confidence": 0.606
+    }
+   ],
+   "credited_as_ordinary_count": 1,
+   "head_critical_mass_max": null,
+   "head_trained_on_rows": 1940
+  }
+ },
+ "before_any_change_17_oct": {
+  "tuning": {
+   "rows": 71,
+   "credited_as_ordinary_count": 8
+  },
+  "holdout": {
+   "rows": 48,
+   "credited_as_ordinary_count": 7
+  },
+  "note": "the shipped v1 head with the regular-expression guard of version 2, measured before this work (tools/bench/adversarial_critical.py, 18 October 2026)"
+ },
+ "synthetic": true,
+ "independent": false,
+ "note": "Sentences that touch critical content in evasive words, written by the builder. The tuning set (71) was used to choose the cues of version 3; the hold-out (48) was written before that change but by the same author, so it shows generalisation only to the author's other wordings. The critical-mass cap (0.02) was chosen on v2 dev only. A sentence is \"credited as ordinary\" when the classifier names an ordinary act and credit is given: the failure this check counts."
+}
