@@ -11,8 +11,8 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 | Status | Features |
 |---|---|
 | Implemented and tested | 41 |
-| Implemented but incompletely tested | 17 |
-| Partially implemented | 7 |
+| Implemented but incompletely tested | 19 |
+| Partially implemented | 5 |
 | Planned | 1 |
 | Blocked | 0 |
 | Deferred | 2 |
@@ -31,10 +31,10 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | A6 | Novelty control and scenario fingerprinting | deterministic | Implemented and tested | Implemented and tested | PH-11 | P1 | [plan](../plans/features/A6.md) |
 | A7 | Adversarial (trap) scenario generation for trainees | hybrid | Partially implemented | Planned | PH-11 | P1 | [plan](../plans/features/A7.md) |
 | A8 | Branching scenario paths | deterministic | Partially implemented | Planned | PH-10 | P1 | [plan](../plans/features/A8.md) |
-| A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Partially implemented | Planned | PH-11 | P1 | [plan](../plans/features/A9.md) |
+| A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-11 | P1 | [plan](../plans/features/A9.md) |
 | A10 | Validation, repair and rejection | deterministic | Implemented and tested | Implemented and tested | PH-10 | P1 | [plan](../plans/features/A10.md) |
 | A11 | Difficulty control in generation | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-05 | P1 | [plan](../plans/features/A11.md) |
-| A12 | Recombination of case components | deterministic | Partially implemented | Planned | PH-04 | P1 | [plan](../plans/features/A12.md) |
+| A12 | Recombination of case components | deterministic | Implemented but incompletely tested | Implemented but incompletely tested | PH-04 | P1 | [plan](../plans/features/A12.md) |
 | A13 | Provenance and reproducibility of generated scenarios | deterministic | Implemented but incompletely tested | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A13.md) |
 | A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-22 | P1 | [plan](../plans/features/A66.md) |
 | B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B14.md) |
@@ -325,8 +325,8 @@ Score each valid scenario for teaching quality before it is served (LG-11).
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
-| AI status | Planned |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
 | Evidence (what exists) | tools/labelling/label.py; tools/ci/test_labelling.py; docs/research/labelling/guidelines.md; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py |
 | Lineage (existing ids) | — |
 | Method | Deterministic metrics gate + LLM judge advisory. |
@@ -409,8 +409,8 @@ Reuse blocks across cases (a comorbidity from one case, an event from another) u
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Partially implemented |
-| AI status | Planned |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
 | Evidence (what exists) | content/blocks (256 blocks); tools/composer/solve.py; content/kb/relations.json; tools/ci/test_kb.py; tools/kb/judge_relations.py; reports/ai/kb-relations-ai-judged.json; tools/ci/test_kb_judge.py; tools/composer/blocks.py; tools/composer |
 | Lineage (existing ids) | p1-scenario-composer-difficulty-s01, s02 |
 | Method | Block library + solver. |

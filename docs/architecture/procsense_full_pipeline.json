@@ -5867,8 +5867,8 @@
    "category": "Scenario generation and composition",
    "group": "g_feat_A",
    "kind": "hybrid",
-   "status": "Partially implemented",
-   "ai_status": "Planned",
+   "status": "Implemented but incompletely tested",
+   "ai_status": "Implemented but incompletely tested",
    "description": "Score each valid scenario for teaching quality before it is served (LG-11).",
    "evidence": [
     "tools/labelling/label.py",
@@ -5983,7 +5983,7 @@
       "id": "A9.c2",
       "name": "LLM quality judge",
       "kind": "AI (LLM)",
-      "status": "Planned",
+      "status": "Implemented but incompletely tested",
       "purpose": "Catch incoherence.",
       "method": "Qwen3.5 9B rubric scoring, JSON.",
       "models": [
@@ -6476,8 +6476,8 @@
    "category": "Scenario generation and composition",
    "group": "g_feat_A",
    "kind": "deterministic",
-   "status": "Partially implemented",
-   "ai_status": "Planned",
+   "status": "Implemented but incompletely tested",
+   "ai_status": "Implemented but incompletely tested",
    "description": "Reuse blocks across cases (a comorbidity from one case, an event from another) under requires and excludes.",
    "evidence": [
     "content/blocks (256 blocks)",
@@ -6596,7 +6596,7 @@
       "id": "A12.c2",
       "name": "Compatibility suggestions",
       "kind": "AI (statistical + LLM, offline)",
-      "status": "Planned",
+      "status": "Implemented but incompletely tested",
       "purpose": "Grow constraints.",
       "method": "Co-occurrence mining + LLM notes.",
       "models": [

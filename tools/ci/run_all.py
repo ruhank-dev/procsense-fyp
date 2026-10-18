@@ -217,6 +217,8 @@ def main(argv: list[str]) -> int:
         ("knowledge base tests (grounding of model relations, review gate, sheet and score)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_kb.py"])),
         ("composer block library current, tagged and cut from named cases", lambda: run(["uv", "run", "--project", "tools", "tools/composer/blocks.py", "--check"])),
         ("composer solver tests (T-CO1 to T-CO5, definition of done)", lambda: run(["uv", "run", "--project", "tools", "tools/composer/test_solver.py"])),
+        ("scenario quality judge: scores, a broken or missing answer gives none, nothing in the pipeline reads it (advisory only)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_judge.py"])),
+        ("block compatibility suggestions: never constraints, current, found where chance says two tags should meet and never do", lambda: run(["uv", "run", "--project", "tools", "tools/composer/test_suggest_constraints.py"])),
         ("multi-problem composition engine: coherence rules, ladder order, stable schema, committed synthetic compositions valid and current (14B.5 recipe, DRAFT, not clinically validated)", lambda: run(["uv", "run", "--project", "tools", "tools/composer/test_multiproblem.py"])),
         ("multi-problem compositions current and every one traces to approved source problems", lambda: run(["uv", "run", "--project", "tools", "tools/composer/multiproblem.py", "--check"])),
         ("live generation contracts and objectives (requests, schemas, Elo mirror)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_generation_contracts.py"])),

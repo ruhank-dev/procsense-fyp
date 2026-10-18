@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "321731761a42229b809c28ff6838ead341f64b28aa00ca166daf72eba5c8a819",
- "files": 682,
- "bytes": 21325894,
+ "content_hash": "746293a71a8d31859e4d35edcba1507e6643fe56f187737a89be0b99b7e15d34",
+ "files": 683,
+ "bytes": 21326083,
  "per_folder": {
   "(root)": 64,
   "ai": 8,
@@ -10,7 +10,7 @@
   "attributions": 1,
   "availability": 4,
   "behaviour": 3,
-  "blocks": 258,
+  "blocks": 259,
   "case_files": 53,
   "cases": 1,
   "checklist": 1,
@@ -1175,6 +1175,10 @@
   "blocks/SOC/SOC-VAR-S2-PD.json": {
    "bytes": 354,
    "sha256": "6ed38aca637cb578519cadd5c57212091e8b9896d3326b8ca5aa18827cb67c90"
+  },
+  "blocks/suggestions.json": {
+   "bytes": 189,
+   "sha256": "cefaf89746d0c70550fcf80a752a0a72da1eb700350b9bb4f445291858f651e8"
   },
   "blocks/tags.yaml": {
    "bytes": 1478,

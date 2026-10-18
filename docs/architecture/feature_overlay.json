@@ -77,9 +77,10 @@
    "gates": []
   },
   "A9": {
-   "runtime": "`server/generation/quality.py` scores every package before it is served",
+   "runtime": "`server/generation/quality.py` scores every package; `server/generation/judge.py` adds advisory model scores that nothing reads (4B, seeded-defect proxy: flags 52 percent of the defects the rules miss with 6.7 percent clean cases flagged, `reports/ai/judge-eval.json`; the plan's human calibration is EX-15, so it is unvalidated)",
    "tests": [
-    "tools/ci/test_generation_quality.py"
+    "tools/ci/test_generation_quality.py",
+    "tools/ci/test_judge.py"
    ],
    "gates": []
   },
@@ -102,9 +103,10 @@
    "gates": []
   },
   "A12": {
-   "runtime": "`tools/composer/solve.py` recombines blocks under requires and excludes",
+   "runtime": "`tools/composer/solve.py` recombines blocks under requires and excludes; `tools/composer/suggest_constraints.py` mines suggestions for a person to review (today none: the 53 cases vary too little, so the plan's 50 percent acceptance cannot be measured, EX-13)",
    "tests": [
-    "tools/composer/test_solver.py"
+    "tools/composer/test_solver.py",
+    "tools/composer/test_suggest_constraints.py"
    ],
    "gates": []
   },
@@ -600,8 +602,6 @@
   "A5.c2": "Context-fitting event selection by the model is not built: events are chosen by the engine's EventDirector from data; the planner has no events field.",
   "A7.c2": "The misleading-wording writer is not built: traps use the authored trap block (VAR-S1-J) with the deterministic fairness check; no model writes misdirection.",
   "A8.c2": "Branch-point proposals by the planner are not built: what-if branches come from the engine's library; the planner has no branches field.",
-  "A9.c2": "The LLM quality judge is not built: scenario quality is the deterministic metric set; the judge needs the human-rated calibration set (EX-15).",
-  "A12.c2": "Compatibility suggestions (co-occurrence mining with model notes) are not built; blocks carry requires and excludes written by hand.",
   "B23.c2": "Built and measured, below its acceptance, gate `order_fallback` OFF: the model fallback of the order grammar (server/orders/llm_fallback.py, route server/routers/orders.py) read back the right item for 70.5 percent of 61 paraphrased orders against 6.6 percent for the grammar alone (plan: 90 percent), offered a wrong item for 14.8 percent, and took 6 s per call (reports/ai/orders-eval-llm.json). It stays off; the grammar and the menu are unchanged.",
   "C32.c1": "Built and measured, below its acceptance, gate `order_fallback` OFF (see B23.c2: 70.5 percent against the plan's 95); the server route and read-back are on. The Quest voice client is Sannan's (DC-08)."
  }

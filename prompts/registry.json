@@ -272,6 +272,21 @@
       "num_predict": 60,
       "think": false,
       "gateway": false
+    },
+    {
+      "id": "judge.scenario",
+      "version": 1,
+      "role": "batch",
+      "file": "judge/scenario_v1.txt",
+      "sha256": "2dbd1bc96deb444ac8b5afcb3be8834fd5c8617353e9afc1bb45ec2b5df0f618",
+      "schema": null,
+      "variables": [
+        "facts",
+        "lines"
+      ],
+      "num_predict": 120,
+      "think": false,
+      "gateway": false
     }
   ]
 }

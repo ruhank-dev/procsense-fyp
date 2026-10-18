@@ -1339,7 +1339,7 @@
     "id": "A9",
     "label": "A9 Scenario quality evaluation (per scenario, in the pipeline)",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1372,7 +1372,7 @@
     "id": "A12",
     "label": "A12 Recombination of case components",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"

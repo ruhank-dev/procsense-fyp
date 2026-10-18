@@ -1,0 +1,14 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "set": "text_inconsistencies_v2 (seeded defects: an AI-made proxy for poor cases, NOT human ratings)",
+ "seeded": 30,
+ "unanswered": 0,
+ "flag_at": 2,
+ "flagged_share": 0.467,
+ "seeded_not_flagged_by_rules": 27,
+ "flagged_among_those_the_rules_missed": 0.519,
+ "clean_cases": 15,
+ "clean_flagged_share": 0.067,
+ "human_calibration": "none: Spearman with human ratings needs the rated set (EX-15); the judge is advisory and unvalidated",
+ "seconds": 148
+}
