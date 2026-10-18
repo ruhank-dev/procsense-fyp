@@ -1,0 +1,100 @@
+ASK_TOPIC|p|G9|Mechanism? Trip or collapse?
+ASK_TOPIC|p|G10|Contacts or glasses? Wear either?
+ASK_TOPIC|n|G9|No head strike, no LOC, correct?
+ASK_TOPIC|i|G10|Floaters, flashes, curtain, any of...
+ASK_TOPIC|s|G9|when did you last pass urine and was it clear
+CLARIFY|p|G9|Pardon?
+CLARIFY|p|G10|Which eye, left or right? Repeat.
+CLARIFY|n|G9|Missed that. Again.
+CLARIFY|i|G10|Hang on, you said double vision when...
+CLARIFY|s|G9|what do you mean by that exactly
+ANSWER_QUESTION|p|G9|Surgery tonight if the bloods allow.
+ANSWER_QUESTION|p|G10|Drops four times a day for a month.
+ANSWER_QUESTION|n|G9|No, no weight on it for six weeks.
+ANSWER_QUESTION|i|G10|Vision clears in a day or two, though...
+ANSWER_QUESTION|s|G9|yes you can sit up in the chair after the operation
+EXPLAIN_PROCEDURE|p|G9|Nail down the femur, spinal anaesthetic, awake or sedated, your choice.
+EXPLAIN_PROCEDURE|p|G10|Remove the lens through a tiny cut, fold in a new one, no stitches.
+EXPLAIN_PROCEDURE|n|G9|Not open surgery, small cut only.
+EXPLAIN_PROCEDURE|i|G10|After the local goes in they will lift the cloudy bit and then...
+EXPLAIN_PROCEDURE|s|G9|the surgeon fix the break with a metal rod inside the bone
+EXPLAIN_TEST|p|G9|Cross-match: so blood's ready if you bleed.
+EXPLAIN_TEST|p|G10|Biometry: measures the eye length for the lens power.
+EXPLAIN_TEST|n|G9|ECG isn't invasive, just stickers.
+EXPLAIN_TEST|i|G10|We want the INR because if it's high then...
+EXPLAIN_TEST|s|G9|the scan show if there is bleeding in the head
+EXPLAIN_ACTION|p|G9|Rolling you on your side. Hold the rail.
+EXPLAIN_ACTION|p|G10|Eyelid taped down now. Keep still.
+EXPLAIN_ACTION|n|G9|No needle. Only listening to your lungs.
+EXPLAIN_ACTION|i|G10|I'll check the pressure in your eye with a puff of...
+EXPLAIN_ACTION|s|G9|now i am putting the oxygen tube under your nose
+CHECK_UNDERSTANDING|p|G9|Back to me: when do you call for help?
+CHECK_UNDERSTANDING|p|G10|What goes on the eye at bedtime?
+CHECK_UNDERSTANDING|n|G9|Nothing unclear on the weight rules? Repeat them.
+CHECK_UNDERSTANDING|i|G10|And the warning signs, what are...
+CHECK_UNDERSTANDING|s|G9|tell me what you will do if the wound leaks
+ACKNOWLEDGE_EMOTION|p|G9|You're scared. Normal.
+ACKNOWLEDGE_EMOTION|p|G10|Anxious about the needle near your eye. Understandable.
+ACKNOWLEDGE_EMOTION|n|G9|No need to hide the tears.
+ACKNOWLEDGE_EMOTION|i|G10|I know how stressful the wait has been for...
+ACKNOWLEDGE_EMOTION|s|G9|you must be feeling very scared and alone
+REASSURE|p|G9|We do ten of these a month. You're fine.
+REASSURE|p|G10|Pain-free procedure. We'll stay with you.
+REASSURE|n|G9|Nothing to be scared of.
+REASSURE|i|G10|Rest easy, the team will make sure...
+REASSURE|s|G9|you are safe here dont worry
+ACKNOWLEDGE_FACT|p|G9|Noted: left hip, fell Sunday, lives alone.
+ACKNOWLEDGE_FACT|p|G10|OK, warfarin stopped last week.
+ACKNOWLEDGE_FACT|n|G9|OK, no previous fractures.
+ACKNOWLEDGE_FACT|i|G10|Right, so the vision went blurry after the...
+ACKNOWLEDGE_FACT|s|G9|ok you told me you take a water tablet each day
+CLOSED_LOOP|p|G9|Repeat: tranexamic acid one gram IV now, will say when done.
+CLOSED_LOOP|p|G10|Readback: list moves to theatre two, 11:30.
+CLOSED_LOOP|n|G9|Not starting fluids until you say. Got it.
+CLOSED_LOOP|i|G10|So you want pressure checked hourly and then...
+CLOSED_LOOP|s|G9|confirm you asked for two units of blood
+ESCALATE_SPEECH|p|G9|Need ortho reg. Now.
+ESCALATE_SPEECH|p|G10|Can the ophthalmologist come? Pressure's high.
+ESCALATE_SPEECH|n|G9|Beyond my competence, senior please.
+ESCALATE_SPEECH|i|G10|Request attendance from someone senior to...
+ESCALATE_SPEECH|s|G9|call the consultant to bed six please
+REPORT_FAULT|p|G9|Fracture table lock's gone, won't hold.
+REPORT_FAULT|p|G10|Phaco machine error, no vacuum.
+REPORT_FAULT|n|G9|Bed alarm isn't sounding, battery dead.
+REPORT_FAULT|i|G10|The monitor's showing nothing and the lead looks...
+REPORT_FAULT|s|G9|the x ray machine in theatre will not switch on
+SBAR_ELEMENT|p|G9|S: 84F, hip fracture, for fixation tonight.
+SBAR_ELEMENT|p|G10|B: AF on apixaban, last dose Friday.
+SBAR_ELEMENT|n|G9|R: not for theatre until the echo is back.
+SBAR_ELEMENT|i|G10|A: I think she's fit enough, but I'd want...
+SBAR_ELEMENT|s|G9|assessment she is stable and comfortable now
+VOICE_ORDER|p|G9|Group and save, bloods, hip film.
+VOICE_ORDER|p|G10|Phone the clinic, move her to the afternoon list.
+VOICE_ORDER|n|G9|Hold the warfarin tonight.
+VOICE_ORDER|i|G10|Ask pharmacy for the drops and also the...
+VOICE_ORDER|s|G9|please book a chest x ray for this patient
+CONFIRM_IDENTITY|p|G9|Name, DOB.
+CONFIRM_IDENTITY|p|G10|Band: M Burns, 09/05/1941. You?
+CONFIRM_IDENTITY|n|G9|Not Mrs Patterson? Your name, please.
+CONFIRM_IDENTITY|i|G10|Confirm your name and the date you...
+CONFIRM_IDENTITY|s|G9|i need your surname plus the day you were born
+STATE_ALLERGY|p|G9|Allergies?
+STATE_ALLERGY|p|G10|Iodine allergy, rash. Putting it on the board.
+STATE_ALLERGY|n|G9|No drug allergies, right?
+STATE_ALLERGY|i|G10|Any reaction to anaesthetic drops or...
+STATE_ALLERGY|s|G9|do you have any allergy to latex or antibiotics
+CONSENT_SIGN|p|G9|Consent to fixation? Sign here.
+CONSENT_SIGN|p|G10|Agree to the lens operation?
+CONSENT_SIGN|n|G9|Optional. Do you want to proceed?
+CONSENT_SIGN|i|G10|If you agree, sign the form where it says...
+CONSENT_SIGN|s|G9|do you agree to have the operation tonight
+HANDOVER_CRITICAL_ELEMENT|p|G9|Penicillin anaphylaxis. Avoid.
+HANDOVER_CRITICAL_ELEMENT|p|G10|Not fasted: toast at eight.
+HANDOVER_CRITICAL_ELEMENT|n|G9|Band name wrong. Not Burns. Recheck.
+HANDOVER_CRITICAL_ELEMENT|i|G10|Sats 86 and falling, she is also...
+HANDOVER_CRITICAL_ELEMENT|s|G9|the patient has not fasted she had a cup of tea
+NONE|p|G9|Ugh. Tuesday.
+NONE|p|G10|Anyone seen my pager?
+NONE|n|G9|Didn't check the wristband yet. Later.
+NONE|i|G10|Thinking about lunch, maybe the canteen if...
+NONE|s|G9|hm ok then let me see

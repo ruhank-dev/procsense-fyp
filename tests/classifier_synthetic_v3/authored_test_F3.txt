@@ -1,0 +1,100 @@
+ASK_TOPIC|p|G9|Well, I was wondering, if it's not too much trouble, whether you could tell me what the pain in your hip feels like at night?
+ASK_TOPIC|p|G10|Um, would you say you have much trouble seeing the television, or reading the paper, that sort of thing?
+ASK_TOPIC|n|G9|You wouldn't happen to have had any blood in your water recently, would you, not that I'm assuming?
+ASK_TOPIC|i|G10|I just wanted to check, you know, whether you've been getting any headaches around the eye when you...
+ASK_TOPIC|s|G9|well did you have a drink of water or anything since you woke
+CLARIFY|p|G9|I'm sorry, I think I missed what you said there, would you mind going over it once more for me?
+CLARIFY|p|G10|Well, when you say it feels strange, I'm not sure I follow, could you explain what you mean?
+CLARIFY|n|G9|Oh dear, I really didn't understand that, I wonder if you might say it another way?
+CLARIFY|i|G10|Um, sorry, are you saying that the vision is worse or that it is just...
+CLARIFY|s|G9|sorry i was not listening could you say that again please
+ANSWER_QUESTION|p|G9|Well, yes, you'd be given something so you don't feel the operation, so that's all right.
+ANSWER_QUESTION|p|G10|Um, the patch normally comes off the next morning, I believe, when you come back to see us.
+ANSWER_QUESTION|n|G9|No, I don't think you'll need a catheter after, no.
+ANSWER_QUESTION|i|G10|It does vary a bit, you know, but usually people see better within a week, and then...
+ANSWER_QUESTION|s|G9|well your son is allowed to come and see you in the recovery area
+EXPLAIN_PROCEDURE|p|G9|So, what we'll be doing, essentially, is repairing the broken bone with a metal rod that goes down the middle of it.
+EXPLAIN_PROCEDURE|p|G10|Well, the surgeon makes a very small opening at the edge of the eye and takes the cloudy lens out, then puts in a clear one.
+EXPLAIN_PROCEDURE|n|G9|It isn't, um, a major operation where they replace the whole joint, it's a smaller repair than that.
+EXPLAIN_PROCEDURE|i|G10|So the way it goes is you'll have the numbing drops, then the lens is removed and then...
+EXPLAIN_PROCEDURE|s|G9|you will have an injection in the back and then you will not feel your legs for the operation
+EXPLAIN_TEST|p|G9|Well, the heart tracing, which we call an ECG, is just so we can see your heart rhythm is steady before the anaesthetic.
+EXPLAIN_TEST|p|G10|Um, the ultrasound of the eye is simply to measure its length so that we can choose the right strength of lens.
+EXPLAIN_TEST|n|G9|The blood test isn't anything to worry about, it just tells us how well your kidneys are coping, that's all.
+EXPLAIN_TEST|i|G10|The reason we check the pressure inside the eye is that if it is too high then...
+EXPLAIN_TEST|s|G9|this test is to see if your blood clots properly before the surgery
+EXPLAIN_ACTION|p|G9|Well, I'm just going to take hold of your ankle, if that's all right, and gently turn it to see how it moves.
+EXPLAIN_ACTION|p|G10|Um, I'll put a couple of drops in your eye now, they may sting a little, but it passes quickly.
+EXPLAIN_ACTION|n|G9|I won't be doing anything that hurts, I'm only going to feel the pulse in your foot.
+EXPLAIN_ACTION|i|G10|If you don't mind, I'm going to lean you back a little in the chair so that I can...
+EXPLAIN_ACTION|s|G9|i am just going to put a little clip on your finger now
+CHECK_UNDERSTANDING|p|G9|Um, I wonder if you could tell me, in your own words, how you're going to manage the stairs when you get home?
+CHECK_UNDERSTANDING|p|G10|Well, just to be sure we're on the same page, what will you do with the eye shield at night?
+CHECK_UNDERSTANDING|n|G9|I'm sure you've taken it all in, but you wouldn't mind telling me what happens after the operation, would you?
+CHECK_UNDERSTANDING|i|G10|So I'd just like to hear from you what you would do if the eye started to...
+CHECK_UNDERSTANDING|s|G9|can you tell me back what i have said about getting out of bed
+ACKNOWLEDGE_EMOTION|p|G9|Well, I can see that this has been really frightening for you, and I'm very sorry you've had such a rotten time.
+ACKNOWLEDGE_EMOTION|p|G10|Um, it must be rather worrying thinking about something going near your eye, anyone would feel like that.
+ACKNOWLEDGE_EMOTION|n|G9|Please don't think you're being silly for being upset, it's, well, it's perfectly understandable.
+ACKNOWLEDGE_EMOTION|i|G10|I can only imagine how hard it has been waiting all this time and not knowing when...
+ACKNOWLEDGE_EMOTION|s|G9|you seem very down today and i understand why
+REASSURE|p|G9|Well, you're in a very good place, the team here look after people with broken hips all the time.
+REASSURE|p|G10|Um, please try not to worry, the eye surgeons are really very experienced at this.
+REASSURE|n|G9|There's really nothing to be frightened of, we'll be with you throughout, I promise.
+REASSURE|i|G10|I do think you'll be absolutely fine, and we'll all make sure that...
+REASSURE|s|G9|dont worry too much we are going to look after you very well
+ACKNOWLEDGE_FACT|p|G9|Well, thank you for that, so you live in a bungalow with your husband and there are no steps, I'll write that down.
+ACKNOWLEDGE_FACT|p|G10|Um, so you stopped the blood thinner on Friday, that's useful for us to know, thanks.
+ACKNOWLEDGE_FACT|n|G9|Right, so you haven't had any problems with the anaesthetic before, I'll make a note.
+ACKNOWLEDGE_FACT|i|G10|Okay, so your sight started going blurry after the cold you had in...
+ACKNOWLEDGE_FACT|s|G9|well thank you i see you are on tablets for your thyroid
+CLOSED_LOOP|p|G9|Well, just to repeat that back to you, doctor, five hundred milligrams of paracetamol by drip now, and I'll tell you once it's gone in.
+CLOSED_LOOP|p|G10|Um, so, the eye list starts at half past nine and the patient goes down at nine, understood, I'll ring when she leaves.
+CLOSED_LOOP|n|G9|I'll, um, hold off on the next dose of the antibiotic until you've told me it's all right, understood.
+CLOSED_LOOP|i|G10|So you'd like her sugar checked again in an hour and then I should...
+CLOSED_LOOP|s|G9|just to confirm you want me to hold the water tablet this morning
+ESCALATE_SPEECH|p|G9|Well, I'm not terribly comfortable with this, I think we ought to ask the consultant orthopaedic surgeon to come and look.
+ESCALATE_SPEECH|p|G10|Um, would someone be able to get the senior eye doctor, because I really think she needs a second opinion.
+ESCALATE_SPEECH|n|G9|I don't think it's for me to make this decision, so perhaps somebody more senior could advise.
+ESCALATE_SPEECH|i|G10|It would be ever so helpful if one of the more experienced doctors could pop over and see...
+ESCALATE_SPEECH|s|G9|can someone ask the head nurse to come to this bed quickly
+REPORT_FAULT|p|G9|Um, the hoist doesn't seem to be lifting, the motor just clicks and nothing happens.
+REPORT_FAULT|p|G10|Well, the light on the examination chair has gone out and I can't see a thing.
+REPORT_FAULT|n|G9|The call bell in this bay isn't ringing at the desk when I press it, I'm afraid.
+REPORT_FAULT|i|G10|I think there may be a leak from the sink because there's water all along the...
+REPORT_FAULT|s|G9|the bed in side room three will not go up or down
+SBAR_ELEMENT|p|G9|Well, the situation is, um, I'm calling about Mrs Burns, who is eighty-four and has broken her hip.
+SBAR_ELEMENT|p|G10|Background, well, she has a heart rhythm problem and is on a blood thinner, as far as I can tell.
+SBAR_ELEMENT|n|G9|Recommendation, if I may, is that we shouldn't take her to theatre until the heart scan has been done.
+SBAR_ELEMENT|i|G10|My assessment is, you know, that she is stable at present, but I would suggest...
+SBAR_ELEMENT|s|G9|situation i am ringing about a lady in bed two with a hip fracture
+VOICE_ORDER|p|G9|Um, could we possibly have some bloods sent, and a cross-match as well, if that's no trouble?
+VOICE_ORDER|p|G10|Well, would you mind ringing the eye clinic and asking them to move her to the afternoon list?
+VOICE_ORDER|n|G9|Could we perhaps not give the evening tablets until I've had a look at her?
+VOICE_ORDER|i|G10|Would somebody be kind enough to ask pharmacy to send up the drops and also to...
+VOICE_ORDER|s|G9|please could you order a heart tracing for the patient now
+CONFIRM_IDENTITY|p|G9|Well, um, I would like to be sure who I have here, so could you give me your name and the day you were born?
+CONFIRM_IDENTITY|p|G10|Um, I'm just checking the band on your wrist, it says Margaret Burns, born in May nineteen forty-one, is that right?
+CONFIRM_IDENTITY|n|G9|You're not by any chance the other Mrs Burns on the ward, are you, because I'd better check, what's your first name?
+CONFIRM_IDENTITY|i|G10|I wonder if you'd be so good as to confirm your name for me, and then the day you were...
+CONFIRM_IDENTITY|s|G9|well could you please say your name and when you were born
+STATE_ALLERGY|p|G9|Um, are there any medicines or foods that you know you shouldn't have, or that have ever made you poorly?
+STATE_ALLERGY|p|G10|Well, you said that the iodine gives you a rash, so I'll make sure that's written up in red.
+STATE_ALLERGY|n|G9|I don't suppose you have any allergies to anything at all, do you, I just want to be certain?
+STATE_ALLERGY|i|G10|Have you ever come out in a rash, or swollen up, after you took...
+STATE_ALLERGY|s|G9|well er any reaction you know of to drugs or to rubber gloves
+CONSENT_SIGN|p|G9|So, um, are you quite happy for us to go ahead with the operation tonight, and would you sign here if so?
+CONSENT_SIGN|p|G10|Well, do I have your permission to change the lens in your eye this morning?
+CONSENT_SIGN|n|G9|Nobody is pushing you, of course, but I wonder if you'd like us to carry on with the surgery?
+CONSENT_SIGN|i|G10|If you feel ready, perhaps you could put your signature on the form, just here, to show that...
+CONSENT_SIGN|s|G9|well do you agree to the operation then please sign the form
+HANDOVER_CRITICAL_ELEMENT|p|G9|Well, I'd better mention that she has a proper penicillin allergy, she went into anaphylaxis with it once.
+HANDOVER_CRITICAL_ELEMENT|p|G10|Um, he isn't fasted, I'm afraid, he had a bacon roll at about ten this morning.
+HANDOVER_CRITICAL_ELEMENT|n|G9|She hasn't been fasting, you see, she had porridge at eight, so the anaesthetist ought to know.
+HANDOVER_CRITICAL_ELEMENT|i|G10|You should know that the band says Burns but the notes say Burnes and I did wonder whether...
+HANDOVER_CRITICAL_ELEMENT|s|G9|well the patient is getting very drowsy and her blood pressure is dropping
+NONE|p|G9|Goodness, is that the time already, I haven't even had my coffee.
+NONE|p|G10|Oh, I do like this new rota, it's so much better.
+NONE|n|G9|I didn't actually ask about allergies, that was somebody else's job.
+NONE|i|G10|I was thinking I might nip out for a sandwich in a bit, if the...
+NONE|s|G9|well er let me think about that for a moment

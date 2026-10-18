@@ -51,10 +51,13 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     ap.add_argument("--set", choices=sorted(SETS), default="tuning", help="tuning: the set the guard cues were chosen from; holdout: the set written before the change and never used to choose a cue")
+    ap.add_argument("--head", default="", help="a head file to test instead of content/assessment/act_head.json (for example a head just exported by the benchmark)")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args(argv)
-    from classify.embedding import EmbeddingActClassifier, OllamaEmbedder
-    out = evaluate(EmbeddingActClassifier(OllamaEmbedder(a.ollama)), a.set)
+    from classify.embedding import EmbeddingActClassifier, OllamaEmbedder, load_head
+    head = load_head(Path(a.head)) if a.head else None
+    out = evaluate(EmbeddingActClassifier(OllamaEmbedder(a.ollama), head), a.set)
+    out["head_file"] = a.head or "content/assessment/act_head.json"
     out["set"] = a.set
     out["synthetic"], out["independent"] = True, False
     print(json.dumps({k: v for k, v in out.items() if k != "credited_as_ordinary"}, indent=1))

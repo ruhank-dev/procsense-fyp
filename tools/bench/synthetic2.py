@@ -48,6 +48,8 @@ PER_CELL = {"train": 7, "dev": 7, "test": 10}
 PREFIX = {"train": "V2T", "dev": "V2D", "test": "V2E"}
 CONFIGS = {"J1": "rubric, zero-shot, temperature 0, labels in taxonomy order", "J2": "rubric reworded with one example per label, labels in a fixed shuffled order, temperature 0.3, seed 7"}
 JUDGE_MODEL = "qwen3.5:4b-q4_K_M"
+SPLITS = ("train", "dev", "test")
+EXTERNAL: list[str] = []                       # sentences of earlier sets: a later set (synthetic3.py) must not repeat them
 
 
 def source_files(split: str) -> list[Path]:
@@ -57,7 +59,7 @@ def source_files(split: str) -> list[Path]:
 def rows() -> dict[str, list[dict]]:
     tax = {a["id"] for a in DS.taxonomy()}
     out: dict[str, list[dict]] = {}
-    for split in ("train", "dev", "test"):
+    for split in SPLITS:
         rs = []
         for f in source_files(split):
             profile = f.stem.rsplit("_", 1)[1]
@@ -106,13 +108,21 @@ def leakage(data: dict[str, list[dict]], cosine: bool) -> dict:
             hits = DS.near_duplicates([r["text"] for r in data[a]], [r["text"] for r in data[b]])
             out["jaccard_pairs"][f"{a}~{b}"] = [(data[a][x]["id"], data[b][y]["id"], round(s, 3)) for x, y, s in hits]
     for a, b in (("train", "dev"), ("train", "test"), ("dev", "test")):
+        if a not in data or b not in data:
+            continue
         first3 = lambda t: " ".join(t.lower().split()[:3])                   # noqa: E731
         left = {first3(r["text"]) for r in data[a] if len(r["text"].split()) >= 4}
         out["first3_overlap"][f"{a}~{b}"] = round(sum(first3(r["text"]) in left for r in data[b] if len(r["text"].split()) >= 4) / len(data[b]), 3)
+    if EXTERNAL:
+        for s, rs in data.items():
+            hits = DS.near_duplicates([r["text"] for r in rs], EXTERNAL)
+            out["jaccard_pairs"][f"earlier_sets~{s}"] = [(rs[x]["id"], f"earlier:{y}", round(sc, 3)) for x, y, sc in hits]
     if cosine:
         import bench_classifier as BC
         emb = {s: BC.embed([r["text"] for r in rs], "all-minilm:22m", "http://127.0.0.1:11434") for s, rs in data.items()}
         for a, b in (("train", "dev"), ("train", "test"), ("dev", "test")):
+            if a not in emb or b not in emb:
+                continue
             review, refused = [], []
             for j, vb in enumerate(emb[b]):
                 best = max(((sum(x * y for x, y in zip(va, vb)), i) for i, va in enumerate(emb[a])))
@@ -257,9 +267,9 @@ def build() -> dict[str, str]:
     if missing:
         raise SystemExit(f"{len(missing)} contested rows have no adjudication (see contested.txt): {missing[:5]}")
     manifest = {"synthetic": True, "independent": False, "valid_for_claims": False, "ai_judged": True,
-                "note": "Written by the language model that built the tooling and labelled by two AI judge configurations of one local model; contested rows settled by that same builder. No person wrote, labelled or reviewed any row.",
+                "note": "Written by the language model that built the tooling and labelled by two AI judge configurations of one local model; contested rows settled by that same builder, who also wrote the sentences and sided with the author's intent in nearly every case (see adjudicated_agreeing_with_intent), so the adjudication is not an independent check. No person wrote, labelled or reviewed any row.",
                 "personas": {p: d for p, (_, d) in PROFILES.items()}, "scenario_groups": {k: sorted(v) for k, v in GROUPS.items()}, "judge_model": JUDGE_MODEL, "judge_configs": CONFIGS,
-                "rubric_sha256": hashlib.sha256(rubric_text().encode("utf-8")).hexdigest(), "files": {}, "rows": {}, "authors": {}, "status": {}, "adjudicated": {}, "changed_by_adjudication": {}}
+                "rubric_sha256": hashlib.sha256(rubric_text().encode("utf-8")).hexdigest(), "files": {}, "rows": {}, "authors": {}, "status": {}, "adjudicated": {}, "changed_by_adjudication": {}, "adjudicated_agreeing_with_intent": {}}
     files = {}
     for split, rs in data.items():
         for r in rs:
@@ -275,6 +285,7 @@ def build() -> dict[str, str]:
         manifest["authors"][split] = sorted({r["author"] for r in rs})
         manifest["status"][split] = {k: sum(1 for r in rs if r["judge_status"] == k) for k in ("certain", "uncertain", "adjudicated", "intent_only")}
         manifest["changed_by_adjudication"][split] = sum(1 for r in rs if r["act"] != r["intended_act"])
+        manifest["adjudicated_agreeing_with_intent"][split] = sum(1 for r in rs if r["judge_status"] == "adjudicated" and r["act"] == r["intended_act"])
     manifest["leakage"] = leakage(data, False)
     if any(v for v in manifest["leakage"]["jaccard_pairs"].values()):
         raise SystemExit("REFUSED: near-duplicate sentences across splits: " + json.dumps(manifest["leakage"]["jaccard_pairs"])[:400])
