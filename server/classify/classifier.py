@@ -36,6 +36,7 @@ class Result:
     source: str                      # "model" or "unavailable"
     critical: bool = False
     error: str = ""
+    refused: str = ""                # why an otherwise eligible answer was not credited (a guard), empty when credited or when the act itself is not creditable
 
 
 def taxonomy() -> dict:

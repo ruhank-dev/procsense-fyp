@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from server import ai_features
 from server.classify.classifier import ActClassifier, Result
+from server.classify.ensemble import EnsembleActClassifier
 from server.classify.embedding import EmbeddingActClassifier, HeadError, OllamaEmbedder, load_head
 from server.classify.tfidf import TfidfActClassifier
 from server.config import Settings, get_settings
@@ -31,6 +32,7 @@ class ClassifyOut(BaseModel):
     critical: bool
     source: str
     error: str = ""
+    refused: str = ""                 # the guard that removed credit from an otherwise eligible answer (HEADS_DISAGREE, NON_ASSERTIVE), empty otherwise
 
 
 class _Down:
@@ -52,7 +54,10 @@ def get_classifier():
     try:
         if s.classifier_backend == "tfidf":
             return TfidfActClassifier()
-        return EmbeddingActClassifier(OllamaEmbedder(s.ollama_url, s.embed_model) if s.ollama_url else None, load_head())
+        embedder = OllamaEmbedder(s.ollama_url, s.embed_model) if s.ollama_url else None
+        if s.classifier_backend == "embeddings":
+            return EmbeddingActClassifier(embedder, load_head())
+        return EnsembleActClassifier(embedder, load_head())
     except (OSError, ValueError, KeyError, HeadError):
         return _Down("CLASSIFIER_HEAD_UNAVAILABLE")
 
@@ -80,4 +85,4 @@ def classify(body: ClassifyIn, call: AiCallRecord = Depends(audited("classify"))
     else:
         call.validated(True)
         call.set_output(ref=r.act)
-    return ClassifyOut(act=r.act, confidence=round(r.confidence, 3), credited=r.credited, critical=r.critical, source=r.source, error=r.error)
+    return ClassifyOut(act=r.act, confidence=round(r.confidence, 3), credited=r.credited, critical=r.critical, source=r.source, error=r.error, refused=getattr(r, "refused", ""))

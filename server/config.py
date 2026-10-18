@@ -64,7 +64,7 @@ class Settings(BaseSettings):
     asr_device: str = "auto"                     # "cuda" on the desktop with a card (needs the asr-gpu extra on Windows), "cpu" otherwise
     asr_compute: str = "int8"                    # "int8_float16" on the card: 0.57 s for a 3 to 7 s clip beside the resident 4B model, against 6 s on the processor (reports/ai/asr-wer.json)
     ai_features_override: str = ""               # features forced on for development and tests ("all" or names); empty in production: the evaluation gate decides (content/ai/features.json)
-    classifier_backend: str = "embeddings"       # "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json), "tfidf" (word features + logistic regression in plain Python, content/assessment/act_head_tfidf.json: no service call) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
+    classifier_backend: str = "ensemble"         # "ensemble" (the embedding head AND the TF-IDF head must name the same ordinary act, and the sentence must be assertive: server/classify/ensemble.py), "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json), "tfidf" (word features + logistic regression in plain Python, content/assessment/act_head_tfidf.json: no service call) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
     embed_model: str = "all-minilm:22m"          # the Ollama embedding model the head was trained on; changing it needs a new head
     ai_live_timeout_seconds: float = 20.0
     ai_batch_timeout_seconds: float = 600.0

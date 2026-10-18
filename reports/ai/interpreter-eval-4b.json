@@ -1,0 +1,175 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "prompt_version": null,
+  "learners": 20,
+  "hypotheses": 41,
+  "learners_with_no_accepted_proposal": 2,
+  "confirmed_by_model": 0.927,
+  "confirmed_by_random_picks": 0.659,
+  "seconds_per_learner": 16.7,
+  "samples": [
+    {
+      "weak_dimensions": [
+        "more_complex_history",
+        "competing_priorities"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b01",
+            "b02"
+          ],
+          "text": "Both 'Asks relevant questions' and 'Identifies important patient information' are weaknesses resting on few sessions, suggesting a shared difficulty in gathering clinical data.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "weak_dimensions": [
+        "unexpected_events"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b20",
+            "b07"
+          ],
+          "text": "The trainee might need to focus on asking questions because both seeking assistance and checking understanding are weak skills resting on few sessions.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b20",
+            "b13",
+            "b04"
+          ],
+          "text": "The trainee might need to improve responding to patient concerns because it is a weak skill resting on only one session.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "weak_dimensions": [
+        "communication_challenges"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b07",
+            "b04"
+          ],
+          "text": "The trainee may struggle with both checking understanding and responding to concerns due to a shared difficulty in managing complex patient interactions.",
+          "confidence": "medium",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b05",
+            "b06"
+          ],
+          "text": "Because both explaining procedures and explaining before interactions rest on only one or two sessions, further data is needed to confirm if they share a root cause.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b18",
+            "b08"
+          ],
+          "text": "Noticing safety problems and responding to anxiety are linked hypotheses with very limited session data, so confidence in a shared cause is low.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "weak_dimensions": [
+        "communication_challenges"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b04",
+            "b08"
+          ],
+          "text": "Both b04 and b08 are weaknesses with low performance, suggesting the trainee may need to improve asking relevant questions.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b05",
+            "b18"
+          ],
+          "text": "The weaknesses in b05 and b18 might indicate a shared issue with noticing or explaining safety-related environmental problems.",
+          "confidence": "medium",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b06",
+            "b07"
+          ],
+          "text": "Since b06 rests on only one session, the hypothesis that explaining before interaction and checking understanding are linked is uncertain.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "weak_dimensions": [
+        "information_to_clarify",
+        "cognitive_workload"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b19",
+            "b16"
+          ],
+          "text": "Both competencies are marked as weaknesses, have low success rates, and rely on multiple sessions.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b13",
+            "b12"
+          ],
+          "text": "These two competencies are both weaknesses with similarly low success rates and moderate session counts.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "weak_dimensions": [
+        "more_complex_history",
+        "environmental_interruptions"
+      ],
+      "hypotheses": [
+        {
+          "competencies": [
+            "b09",
+            "b03"
+          ],
+          "text": "The trainee struggles to notice clinically relevant information and clarify unclear information, suggesting a shared weakness in recognizing when data is insufficient.",
+          "confidence": "low",
+          "status": "confirmed"
+        },
+        {
+          "competencies": [
+            "b18",
+            "b02"
+          ],
+          "text": "Both identifying important patient information and noticing environmental safety problems are weaknesses, implying a potential issue with scanning the overall situation.",
+          "confidence": "low",
+          "status": "confirmed"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sample_rows": 100,
+ "adversarial_rows": 48,
+ "seed": 20261018,
+ "v3_test_sample": {
+  "rows": 100,
+  "accuracy": 0.64,
+  "macro_f1": 0.591,
+  "unavailable": 0,
+  "critical_rows_named_ordinary_before_guard": 10,
+  "critical_rows_named_ordinary_and_not_stopped_by_cues": 4,
+  "latency_ms_p50": 3147,
+  "latency_ms_p95": 4601
+ },
+ "adversarial_holdout3": {
+  "rows": 48,
+  "accuracy": 0.479,
+  "macro_f1": 0.628,
+  "unavailable": 0,
+  "critical_rows_named_ordinary_before_guard": 24,
+  "critical_rows_named_ordinary_and_not_stopped_by_cues": 22,
+  "latency_ms_p50": 3332,
+  "latency_ms_p95": 3997
+ }
+}

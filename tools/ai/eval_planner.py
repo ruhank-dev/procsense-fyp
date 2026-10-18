@@ -1,4 +1,4 @@
-"""Measures the AI plan composer against the solver alone (p1-live-scenario-generation-s13, p1-scenario-composer-difficulty-s03, EXP-COMP-1): `uv run --project tools tools/ai/eval_planner.py --model qwen3.5:9b-q4_K_M --requests 20`.
+"""Measures the AI plan composer against the solver alone (p1-live-scenario-generation-s13, p1-scenario-composer-difficulty-s03, EXP-COMP-1): `uv run --project tools tools/ai/eval_planner.py --model qwen3.5:4b-q4_K_M --requests 20`.
 
 The same requests (a simulated trainee with ratings, so the objectives name dimensions) are generated twice through the production pipeline: once with the planner (the model proposes the story and the blocks, the solver and
 validators decide) and once with the deterministic skeleton alone. Reported for each arm: how many packages passed the whole gate, how many were served, the quality metrics (coverage of the requested dimensions,
@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="qwen3.5:9b-q4_K_M")
+    ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--requests", type=int, default=20)
     ap.add_argument("--timeout", type=float, default=300.0)
     ap.add_argument("--spine-version", type=int, default=None, help="prompt version of compose_plan.spine (default: the latest)")

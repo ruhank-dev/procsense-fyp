@@ -257,6 +257,21 @@
       "num_predict": 120,
       "think": false,
       "gateway": false
+    },
+    {
+      "id": "orders.map",
+      "version": 1,
+      "role": "live",
+      "file": "orders/map_v1.txt",
+      "sha256": "ef76576017c25f5c88837993fa60968aa0c235314ac11ec76120fe3bbd3aee5e",
+      "schema": null,
+      "variables": [
+        "heard",
+        "items"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false
     }
   ]
 }

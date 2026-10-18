@@ -193,8 +193,10 @@ class Hosts(unittest.TestCase):
         r = check_hosts.check(client=down, which=lambda x: "x", find_spec=lambda n: object())
         self.assertFalse(r["ready"])
         self.assertTrue(any("does not answer" in p for p in r["problems"]))
-        r = check_hosts.check(client=host({"qwen3.5:4b-q4_K_M": full["qwen3.5:4b-q4_K_M"]}), which=lambda x: "x", find_spec=lambda n: object())
-        self.assertTrue(any("9b-q4_K_M is not installed" in p for p in r["problems"]))
+        r = check_hosts.check(client=host({"all-minilm:22m": full["all-minilm:22m"]}), which=lambda x: "x", find_spec=lambda n: object())
+        self.assertTrue(any("4b-q4_K_M is not installed" in p for p in r["problems"]))
+        r = check_hosts.check(client=host({k: v for k, v in full.items() if "9b" not in k}), which=lambda x: "x", find_spec=lambda n: object())
+        self.assertFalse(any("9b" in p for p in r["problems"]))                                    # the 9B is optional since ADR-0017
         r = check_hosts.check(client=host({**full, "qwen3.5:4b-q4_K_M": "0" * 64}), which=lambda x: "x", find_spec=lambda n: object())
         self.assertTrue(any("licence register records" in p for p in r["problems"]))
         r = check_hosts.check(client=host(full), which=lambda x: None, find_spec=lambda n: None)
@@ -218,7 +220,7 @@ class InPipeline(unittest.TestCase):
     @staticmethod
     def echo(request: httpx.Request) -> httpx.Response:
         if request.url.path == "/api/tags":
-            return httpx.Response(200, json={"models": [{"name": "qwen3.5:9b-q4_K_M", "digest": "d9"}]})
+            return httpx.Response(200, json={"models": [{"name": "qwen3.5:4b-q4_K_M", "digest": "d9"}]})
         user = json.loads(request.content)["messages"][1]["content"]
         original = user.split("Original line: ", 1)[1].splitlines()[0]
         return httpx.Response(200, json={"message": {"content": json.dumps({"text": "Well, " + original[0].lower() + original[1:]})}, "eval_count": 7})
@@ -268,7 +270,7 @@ class Planner(unittest.TestCase):
 
         def handler(request: httpx.Request) -> httpx.Response:
             if request.url.path == "/api/tags":
-                return httpx.Response(200, json={"models": [{"name": "qwen3.5:9b-q4_K_M", "digest": "d9"}]})
+                return httpx.Response(200, json={"models": [{"name": "qwen3.5:4b-q4_K_M", "digest": "d9"}]})
             body = json.loads(request.content)
             user = body["messages"][1]["content"]
             if "Approved cases you may choose from" in user:

@@ -8,8 +8,8 @@ Recognition makes mistakes, so nothing reaches the engine on a first hearing. Th
 doses elsewhere), an intent is found from trigger words (ORDER_TEST, REQUEST_MEDICATION, HOLD_MED, REQUEST_TRANSPORT, CALL_STAFF), and the thing named is matched against the content by fuzzy comparison
 (difflib ratio of at least FUZZY, 0.85, over every run of 1 to 5 words; brand names and plain words come from synonyms.csv). Two different things equally close is an ambiguity and a clarifying question is asked
 (T-VO2); nothing close enough offers the menu (T-VO4). The read-back is spoken by the staff voice; "yes" or "confirm" releases the action, "no" cancels and offers the menu. Every hearing and its outcome is
-logged (intent, slots, confirmed or not, latency) and a test checks that no action was released without a confirmation. A language model is not used here; the plan's model fallback for a failed grammar is
-left out until the grammar's failures are measured (DT-208).
+logged (intent, slots, confirmed or not, latency) and a test checks that no action was released without a confirmation. The grammar itself never calls a language model. The plan's model fallback for a transcript with no order in it is
+server/orders/llm_fallback.py (an optional `mapper`): it only suggests an item of the content, the read-back and the yes are unchanged (DT-208).
 """
 from __future__ import annotations
 
@@ -119,6 +119,7 @@ class Hearing:
     options: list[str] = field(default_factory=list)
     dose_removed: bool = False
     action: dict | None = None
+    source: str = "grammar"                      # grammar | model (the language-model fallback suggested it; the read-back and the yes are the same)
 
 
 def action_for(intent: str, e: Entry) -> dict | None:
@@ -137,8 +138,9 @@ READBACK = {"ORDER_TEST": "order {label}", "REQUEST_MEDICATION": "request {label
 
 
 class ReadBack:
-    def __init__(self, vocab: list[Entry] | None = None):
+    def __init__(self, vocab: list[Entry] | None = None, mapper=None):
         self.vocab = vocab or vocabulary()
+        self.mapper = mapper                     # server/orders/llm_fallback.OrderMapper or None: used only when the grammar found no order
         self.pending: Hearing | None = None
         self.log: list[dict] = []
         self.released: list[dict] = []
@@ -149,6 +151,15 @@ class ReadBack:
         found = {k: matches(text, self.vocab, (k,)) for k in ("test", "medicine", "home_medicine", "place", "staff")}
         intent = intent_of(text, {k: bool(v) for k, v in found.items()})
         if intent is None:
+            m = self.mapper.map(transcript, self.vocab) if self.mapper is not None else None
+            if m is not None:                                    # a suggestion of the model: read back like any other, released only by a yes
+                h = Hearing("removed_dose_confirm" if removed else "confirm", m.intent, {"target": m.entry.target, "label": m.entry.label}, "Confirm: " + READBACK[m.intent].format(label=m.entry.label.lower()) + "?",
+                            dose_removed=removed, action=action_for(m.intent, m.entry), source="model")
+                if removed:
+                    h.read_back += " (I left out the dose; choose it on the form.)"
+                self.pending = h
+                self._log(transcript, h, t0)
+                return h
             h = Hearing("menu", read_back="I did not catch an order. Please use the menu.", options=sorted(MENU.values()), dose_removed=removed)
             self._log(transcript, h, t0)
             return h
@@ -189,4 +200,4 @@ class ReadBack:
         return None                                                      # anything else leaves the question open
 
     def _log(self, transcript: str, h: Hearing, t0: float) -> None:
-        self.log.append({"event": "heard", "status": h.status, "intent": h.intent, "slots": h.slots, "dose_removed": h.dose_removed, "latency_ms": round((time.monotonic() - t0) * 1000), "words": len(transcript.split())})
+        self.log.append({"event": "heard", "status": h.status, "intent": h.intent, "slots": h.slots, "dose_removed": h.dose_removed, "latency_ms": round((time.monotonic() - t0) * 1000), "words": len(transcript.split()), "source": h.source})

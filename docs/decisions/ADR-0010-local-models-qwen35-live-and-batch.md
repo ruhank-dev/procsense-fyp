@@ -1,6 +1,6 @@
 # ADR-0010 — Local models: Qwen3.5 4B for live work, Qwen3.5 9B for offline batch work, rules decide
 
-**Date:** 16 October 2026 · **Status:** Accepted (16 October 2026, owner; the quality of the choice is not yet confirmed, see Revisit) · **Related:** ADR-0005, ADR-0008, p1-ai-language-s02, p1-ai-infrastructure-s01, s02, DT-187 to DT-192
+**Date:** 16 October 2026 · **Status (batch half superseded by ADR-0017, 18 October 2026):** Accepted (16 October 2026, owner; the quality of the choice is not yet confirmed, see Revisit) · **Related:** ADR-0005, ADR-0008, p1-ai-language-s02, p1-ai-infrastructure-s01, s02, DT-187 to DT-192
 
 ## Context
 Nothing in the repository calls a language model yet. The plan named Qwen3 (4B default, 8B possible) with unmeasured speed. The hardware is a GTX 1660 SUPER (6 GB VRAM, 16 GB RAM) and an RTX 4050 laptop (6 GB). Independent evidence (Artificial Analysis, reasoning mode) puts Qwen3.5 4B at 27 and 9B at 32 on its index against 18 for Qwen3-4B-2507, and the owner's own experience is that Qwen2.5 and Qwen3 were poor and Qwen3.5 better. Both Qwen3.5 sizes answer about 80 percent of factual-knowledge questions wrongly (same source), so no model may state clinical facts that are not in its context. On 16 October 2026 the models were installed on the desktop and measured with the machine idle (`tools/ai/benchmark.py`).

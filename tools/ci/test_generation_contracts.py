@@ -77,7 +77,7 @@ class Objectives(unittest.TestCase):
 
     def test_after_three_sessions_the_weakest_behaviours_lead_and_name_their_dimensions(self):
         h = history(("VAR-S1-A", "P0", {"b01": (4, 0), "b05": (0, 4), "b09": (2, 2)}), ("VAR-S1-C", "P0", {"b05": (0, 4), "b01": (3, 1)}), ("VAR-S1-K", "P1", {"b05": (1, 3), "b09": (3, 1)}))
-        o = ob.derive(self.request(), h, self.tables)
+        o = ob.derive(self.request(), h, self.tables, policy="elo")                 # the Elo selection: the baseline and the fallback (the default policy is set in content/generation/policy.json)
         self.assertEqual(o["basis"], "ratings")
         self.assertEqual(o["competencies"][0]["behaviour"], "b05")
         self.assertEqual(o["competencies"][0]["times_rated"], 3)

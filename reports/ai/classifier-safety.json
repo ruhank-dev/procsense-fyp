@@ -1,0 +1,8939 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "baseline_rev": "b73d8d8",
+ "heads": {
+  "embedding": {
+   "trained_on_rows": 2119,
+   "critical_mass_max": 0.05,
+   "C": 10,
+   "sha256": "0871facfb72927f7"
+  },
+  "tfidf": {
+   "trained_on_rows": 2119,
+   "critical_mass_max": 0.01,
+   "C": 100,
+   "sha256": "488ab3e6819fcfed"
+  }
+ },
+ "sets": {
+  "v2_dev": {
+   "rows": 420,
+   "variants": {
+    "baseline": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 28,
+       "n": 30,
+       "rate": 0.933,
+       "ci95": [
+        0.787,
+        0.982
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 53,
+       "n": 90,
+       "rate": 0.589,
+       "ci95": [
+        0.486,
+        0.685
+       ]
+      },
+      "credited_precision": {
+       "k": 49,
+       "n": 53,
+       "rate": 0.925,
+       "ci95": [
+        0.821,
+        0.97
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 4,
+       "n": 90,
+       "rate": 0.044,
+       "ci95": [
+        0.017,
+        0.109
+       ]
+      },
+      "abstained": {
+       "k": 37,
+       "n": 90,
+       "rate": 0.411,
+       "ci95": [
+        0.315,
+        0.514
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 90,
+       "rate": 0.011,
+       "ci95": [
+        0.002,
+        0.06
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 420,
+      "unavailable": 0,
+      "critical_rows": 105,
+      "false_credit": {
+       "k": 0,
+       "n": 105,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.035
+       ]
+      },
+      "critical_named": {
+       "k": 95,
+       "n": 105,
+       "rate": 0.905,
+       "ci95": [
+        0.834,
+        0.947
+       ]
+      },
+      "ordinary_rows": 315,
+      "ordinary_credited": {
+       "k": 196,
+       "n": 315,
+       "rate": 0.622,
+       "ci95": [
+        0.568,
+        0.674
+       ]
+      },
+      "credited_precision": {
+       "k": 172,
+       "n": 196,
+       "rate": 0.878,
+       "ci95": [
+        0.824,
+        0.916
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 24,
+       "n": 315,
+       "rate": 0.076,
+       "ci95": [
+        0.052,
+        0.111
+       ]
+      },
+      "abstained": {
+       "k": 119,
+       "n": 315,
+       "rate": 0.378,
+       "ci95": [
+        0.326,
+        0.432
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 9,
+       "n": 315,
+       "rate": 0.029,
+       "ci95": [
+        0.015,
+        0.053
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 12,
+       "n": 15,
+       "rate": 0.8,
+       "ci95": [
+        0.548,
+        0.93
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 32,
+       "n": 45,
+       "rate": 0.711,
+       "ci95": [
+        0.566,
+        0.823
+       ]
+      },
+      "credited_precision": {
+       "k": 28,
+       "n": 32,
+       "rate": 0.875,
+       "ci95": [
+        0.719,
+        0.95
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "abstained": {
+       "k": 13,
+       "n": 45,
+       "rate": 0.289,
+       "ci95": [
+        0.177,
+        0.434
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 30,
+       "n": 45,
+       "rate": 0.667,
+       "ci95": [
+        0.521,
+        0.786
+       ]
+      },
+      "credited_precision": {
+       "k": 28,
+       "n": 30,
+       "rate": 0.933,
+       "ci95": [
+        0.787,
+        0.982
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "abstained": {
+       "k": 15,
+       "n": 45,
+       "rate": 0.333,
+       "ci95": [
+        0.214,
+        0.479
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 26,
+       "n": 45,
+       "rate": 0.578,
+       "ci95": [
+        0.433,
+        0.71
+       ]
+      },
+      "credited_precision": {
+       "k": 23,
+       "n": 26,
+       "rate": 0.885,
+       "ci95": [
+        0.71,
+        0.96
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 45,
+       "rate": 0.067,
+       "ci95": [
+        0.023,
+        0.179
+       ]
+      },
+      "abstained": {
+       "k": 19,
+       "n": 45,
+       "rate": 0.422,
+       "ci95": [
+        0.29,
+        0.567
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 45,
+       "rate": 0.067,
+       "ci95": [
+        0.023,
+        0.179
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 11,
+       "n": 15,
+       "rate": 0.733,
+       "ci95": [
+        0.48,
+        0.891
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "credited_precision": {
+       "k": 17,
+       "n": 25,
+       "rate": 0.68,
+       "ci95": [
+        0.484,
+        0.828
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 8,
+       "n": 45,
+       "rate": 0.178,
+       "ci95": [
+        0.093,
+        0.313
+       ]
+      },
+      "abstained": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 45,
+       "rate": 0.067,
+       "ci95": [
+        0.023,
+        0.179
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 30,
+       "n": 45,
+       "rate": 0.667,
+       "ci95": [
+        0.521,
+        0.786
+       ]
+      },
+      "credited_precision": {
+       "k": 27,
+       "n": 30,
+       "rate": 0.9,
+       "ci95": [
+        0.744,
+        0.965
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 45,
+       "rate": 0.067,
+       "ci95": [
+        0.023,
+        0.179
+       ]
+      },
+      "abstained": {
+       "k": 15,
+       "n": 45,
+       "rate": 0.333,
+       "ci95": [
+        0.214,
+        0.479
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 27,
+       "n": 30,
+       "rate": 0.9,
+       "ci95": [
+        0.744,
+        0.965
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 38,
+       "n": 90,
+       "rate": 0.422,
+       "ci95": [
+        0.325,
+        0.525
+       ]
+      },
+      "credited_precision": {
+       "k": 33,
+       "n": 38,
+       "rate": 0.868,
+       "ci95": [
+        0.727,
+        0.942
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 90,
+       "rate": 0.056,
+       "ci95": [
+        0.024,
+        0.124
+       ]
+      },
+      "abstained": {
+       "k": 52,
+       "n": 90,
+       "rate": 0.578,
+       "ci95": [
+        0.475,
+        0.675
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 5,
+       "n": 90,
+       "rate": 0.056,
+       "ci95": [
+        0.024,
+        0.124
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 420,
+      "unavailable": 0,
+      "critical_rows": 105,
+      "false_credit": {
+       "k": 0,
+       "n": 105,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.035
+       ]
+      },
+      "critical_named": {
+       "k": 92,
+       "n": 105,
+       "rate": 0.876,
+       "ci95": [
+        0.8,
+        0.926
+       ]
+      },
+      "ordinary_rows": 315,
+      "ordinary_credited": {
+       "k": 160,
+       "n": 315,
+       "rate": 0.508,
+       "ci95": [
+        0.453,
+        0.563
+       ]
+      },
+      "credited_precision": {
+       "k": 139,
+       "n": 160,
+       "rate": 0.869,
+       "ci95": [
+        0.808,
+        0.913
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 21,
+       "n": 315,
+       "rate": 0.067,
+       "ci95": [
+        0.044,
+        0.1
+       ]
+      },
+      "abstained": {
+       "k": 155,
+       "n": 315,
+       "rate": 0.492,
+       "ci95": [
+        0.437,
+        0.547
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 20,
+       "n": 315,
+       "rate": 0.063,
+       "ci95": [
+        0.041,
+        0.096
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 12,
+       "n": 15,
+       "rate": 0.8,
+       "ci95": [
+        0.548,
+        0.93
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 29,
+       "n": 45,
+       "rate": 0.644,
+       "ci95": [
+        0.498,
+        0.768
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 29,
+       "rate": 0.862,
+       "ci95": [
+        0.694,
+        0.945
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "abstained": {
+       "k": 16,
+       "n": 45,
+       "rate": 0.356,
+       "ci95": [
+        0.232,
+        0.502
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "credited_precision": {
+       "k": 24,
+       "n": 25,
+       "rate": 0.96,
+       "ci95": [
+        0.805,
+        0.993
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "abstained": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "credited_precision": {
+       "k": 18,
+       "n": 20,
+       "rate": 0.9,
+       "ci95": [
+        0.699,
+        0.972
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "abstained": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 9,
+       "n": 15,
+       "rate": 0.6,
+       "ci95": [
+        0.357,
+        0.802
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 23,
+       "n": 45,
+       "rate": 0.511,
+       "ci95": [
+        0.37,
+        0.65
+       ]
+      },
+      "credited_precision": {
+       "k": 16,
+       "n": 23,
+       "rate": 0.696,
+       "ci95": [
+        0.491,
+        0.844
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 7,
+       "n": 45,
+       "rate": 0.156,
+       "ci95": [
+        0.077,
+        0.288
+       ]
+      },
+      "abstained": {
+       "k": 22,
+       "n": 45,
+       "rate": 0.489,
+       "ci95": [
+        0.35,
+        0.63
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "credited_precision": {
+       "k": 23,
+       "n": 25,
+       "rate": 0.92,
+       "ci95": [
+        0.75,
+        0.978
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "abstained": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 29,
+       "n": 30,
+       "rate": 0.967,
+       "ci95": [
+        0.833,
+        0.994
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 17,
+       "n": 90,
+       "rate": 0.189,
+       "ci95": [
+        0.121,
+        0.282
+       ]
+      },
+      "credited_precision": {
+       "k": 17,
+       "n": 17,
+       "rate": 1.0,
+       "ci95": [
+        0.816,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 90,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.041
+       ]
+      },
+      "abstained": {
+       "k": 73,
+       "n": 90,
+       "rate": 0.811,
+       "ci95": [
+        0.718,
+        0.879
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 90,
+       "rate": 0.022,
+       "ci95": [
+        0.006,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 420,
+      "unavailable": 0,
+      "critical_rows": 105,
+      "false_credit": {
+       "k": 0,
+       "n": 105,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.035
+       ]
+      },
+      "critical_named": {
+       "k": 93,
+       "n": 105,
+       "rate": 0.886,
+       "ci95": [
+        0.811,
+        0.933
+       ]
+      },
+      "ordinary_rows": 315,
+      "ordinary_credited": {
+       "k": 61,
+       "n": 315,
+       "rate": 0.194,
+       "ci95": [
+        0.154,
+        0.241
+       ]
+      },
+      "credited_precision": {
+       "k": 61,
+       "n": 61,
+       "rate": 1.0,
+       "ci95": [
+        0.941,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 315,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.012
+       ]
+      },
+      "abstained": {
+       "k": 254,
+       "n": 315,
+       "rate": 0.806,
+       "ci95": [
+        0.759,
+        0.846
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 11,
+       "n": 315,
+       "rate": 0.035,
+       "ci95": [
+        0.02,
+        0.061
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 13,
+       "n": 15,
+       "rate": 0.867,
+       "ci95": [
+        0.621,
+        0.963
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "credited_precision": {
+       "k": 4,
+       "n": 4,
+       "rate": 1.0,
+       "ci95": [
+        0.51,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 41,
+       "n": 45,
+       "rate": 0.911,
+       "ci95": [
+        0.793,
+        0.965
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 10,
+       "n": 45,
+       "rate": 0.222,
+       "ci95": [
+        0.125,
+        0.363
+       ]
+      },
+      "credited_precision": {
+       "k": 10,
+       "n": 10,
+       "rate": 1.0,
+       "ci95": [
+        0.722,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 35,
+       "n": 45,
+       "rate": 0.778,
+       "ci95": [
+        0.637,
+        0.875
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 7,
+       "n": 45,
+       "rate": 0.156,
+       "ci95": [
+        0.077,
+        0.288
+       ]
+      },
+      "credited_precision": {
+       "k": 7,
+       "n": 7,
+       "rate": 1.0,
+       "ci95": [
+        0.646,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 38,
+       "n": 45,
+       "rate": 0.844,
+       "ci95": [
+        0.712,
+        0.923
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 7,
+       "n": 15,
+       "rate": 0.467,
+       "ci95": [
+        0.248,
+        0.699
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 9,
+       "n": 45,
+       "rate": 0.2,
+       "ci95": [
+        0.109,
+        0.338
+       ]
+      },
+      "credited_precision": {
+       "k": 9,
+       "n": 9,
+       "rate": 1.0,
+       "ci95": [
+        0.701,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 36,
+       "n": 45,
+       "rate": 0.8,
+       "ci95": [
+        0.662,
+        0.891
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 14,
+       "n": 45,
+       "rate": 0.311,
+       "ci95": [
+        0.195,
+        0.457
+       ]
+      },
+      "credited_precision": {
+       "k": 14,
+       "n": 14,
+       "rate": 1.0,
+       "ci95": [
+        0.785,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 31,
+       "n": 45,
+       "rate": 0.689,
+       "ci95": [
+        0.543,
+        0.805
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 27,
+       "n": 30,
+       "rate": 0.9,
+       "ci95": [
+        0.744,
+        0.965
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 31,
+       "n": 90,
+       "rate": 0.344,
+       "ci95": [
+        0.254,
+        0.447
+       ]
+      },
+      "credited_precision": {
+       "k": 31,
+       "n": 31,
+       "rate": 1.0,
+       "ci95": [
+        0.89,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 90,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.041
+       ]
+      },
+      "abstained": {
+       "k": 59,
+       "n": 90,
+       "rate": 0.656,
+       "ci95": [
+        0.553,
+        0.746
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 5,
+       "n": 90,
+       "rate": 0.056,
+       "ci95": [
+        0.024,
+        0.124
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 420,
+      "unavailable": 0,
+      "critical_rows": 105,
+      "false_credit": {
+       "k": 0,
+       "n": 105,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.035
+       ]
+      },
+      "critical_named": {
+       "k": 92,
+       "n": 105,
+       "rate": 0.876,
+       "ci95": [
+        0.8,
+        0.926
+       ]
+      },
+      "ordinary_rows": 315,
+      "ordinary_credited": {
+       "k": 115,
+       "n": 315,
+       "rate": 0.365,
+       "ci95": [
+        0.314,
+        0.42
+       ]
+      },
+      "credited_precision": {
+       "k": 114,
+       "n": 115,
+       "rate": 0.991,
+       "ci95": [
+        0.952,
+        0.998
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 315,
+       "rate": 0.003,
+       "ci95": [
+        0.001,
+        0.018
+       ]
+      },
+      "abstained": {
+       "k": 200,
+       "n": 315,
+       "rate": 0.635,
+       "ci95": [
+        0.58,
+        0.686
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 20,
+       "n": 315,
+       "rate": 0.063,
+       "ci95": [
+        0.041,
+        0.096
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 12,
+       "n": 15,
+       "rate": 0.8,
+       "ci95": [
+        0.548,
+        0.93
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 24,
+       "n": 45,
+       "rate": 0.533,
+       "ci95": [
+        0.391,
+        0.671
+       ]
+      },
+      "credited_precision": {
+       "k": 24,
+       "n": 24,
+       "rate": 1.0,
+       "ci95": [
+        0.862,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 21,
+       "n": 45,
+       "rate": 0.467,
+       "ci95": [
+        0.329,
+        0.609
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 23,
+       "n": 45,
+       "rate": 0.511,
+       "ci95": [
+        0.37,
+        0.65
+       ]
+      },
+      "credited_precision": {
+       "k": 23,
+       "n": 23,
+       "rate": 1.0,
+       "ci95": [
+        0.857,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 22,
+       "n": 45,
+       "rate": 0.489,
+       "ci95": [
+        0.35,
+        0.63
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 45,
+       "n": 45,
+       "rate": 1.0,
+       "ci95": [
+        0.921,
+        1.0
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 9,
+       "n": 15,
+       "rate": 0.6,
+       "ci95": [
+        0.357,
+        0.802
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 17,
+       "n": 45,
+       "rate": 0.378,
+       "ci95": [
+        0.251,
+        0.524
+       ]
+      },
+      "credited_precision": {
+       "k": 16,
+       "n": 17,
+       "rate": 0.941,
+       "ci95": [
+        0.73,
+        0.99
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "abstained": {
+       "k": 28,
+       "n": 45,
+       "rate": 0.622,
+       "ci95": [
+        0.476,
+        0.749
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "credited_precision": {
+       "k": 20,
+       "n": 20,
+       "rate": 1.0,
+       "ci95": [
+        0.839,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "v2_test": {
+   "rows": 600,
+   "variants": {
+    "baseline": {
+     "plain": {
+      "rows": 240,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 51,
+       "n": 60,
+       "rate": 0.85,
+       "ci95": [
+        0.739,
+        0.919
+       ]
+      },
+      "ordinary_rows": 180,
+      "ordinary_credited": {
+       "k": 105,
+       "n": 180,
+       "rate": 0.583,
+       "ci95": [
+        0.51,
+        0.653
+       ]
+      },
+      "credited_precision": {
+       "k": 96,
+       "n": 105,
+       "rate": 0.914,
+       "ci95": [
+        0.845,
+        0.954
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 9,
+       "n": 180,
+       "rate": 0.05,
+       "ci95": [
+        0.027,
+        0.092
+       ]
+      },
+      "abstained": {
+       "k": 75,
+       "n": 180,
+       "rate": 0.417,
+       "ci95": [
+        0.347,
+        0.49
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 6,
+       "n": 180,
+       "rate": 0.033,
+       "ci95": [
+        0.015,
+        0.071
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 600,
+      "unavailable": 0,
+      "critical_rows": 150,
+      "false_credit": {
+       "k": 0,
+       "n": 150,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.025
+       ]
+      },
+      "critical_named": {
+       "k": 128,
+       "n": 150,
+       "rate": 0.853,
+       "ci95": [
+        0.788,
+        0.901
+       ]
+      },
+      "ordinary_rows": 450,
+      "ordinary_credited": {
+       "k": 266,
+       "n": 450,
+       "rate": 0.591,
+       "ci95": [
+        0.545,
+        0.636
+       ]
+      },
+      "credited_precision": {
+       "k": 240,
+       "n": 266,
+       "rate": 0.902,
+       "ci95": [
+        0.861,
+        0.932
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 26,
+       "n": 450,
+       "rate": 0.058,
+       "ci95": [
+        0.04,
+        0.083
+       ]
+      },
+      "abstained": {
+       "k": 184,
+       "n": 450,
+       "rate": 0.409,
+       "ci95": [
+        0.364,
+        0.455
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 17,
+       "n": 450,
+       "rate": 0.038,
+       "ci95": [
+        0.024,
+        0.06
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 13,
+       "n": 15,
+       "rate": 0.867,
+       "ci95": [
+        0.621,
+        0.963
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 27,
+       "n": 45,
+       "rate": 0.6,
+       "ci95": [
+        0.455,
+        0.73
+       ]
+      },
+      "credited_precision": {
+       "k": 27,
+       "n": 27,
+       "rate": 1.0,
+       "ci95": [
+        0.875,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 18,
+       "n": 45,
+       "rate": 0.4,
+       "ci95": [
+        0.27,
+        0.545
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 23,
+       "n": 45,
+       "rate": 0.511,
+       "ci95": [
+        0.37,
+        0.65
+       ]
+      },
+      "credited_precision": {
+       "k": 21,
+       "n": 23,
+       "rate": 0.913,
+       "ci95": [
+        0.732,
+        0.976
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "abstained": {
+       "k": 22,
+       "n": 45,
+       "rate": 0.489,
+       "ci95": [
+        0.35,
+        0.63
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 45,
+       "rate": 0.067,
+       "ci95": [
+        0.023,
+        0.179
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 27,
+       "n": 45,
+       "rate": 0.6,
+       "ci95": [
+        0.455,
+        0.73
+       ]
+      },
+      "credited_precision": {
+       "k": 21,
+       "n": 27,
+       "rate": 0.778,
+       "ci95": [
+        0.592,
+        0.894
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 6,
+       "n": 45,
+       "rate": 0.133,
+       "ci95": [
+        0.063,
+        0.262
+       ]
+      },
+      "abstained": {
+       "k": 18,
+       "n": 45,
+       "rate": 0.4,
+       "ci95": [
+        0.27,
+        0.545
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 7,
+       "n": 15,
+       "rate": 0.467,
+       "ci95": [
+        0.248,
+        0.699
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 27,
+       "n": 45,
+       "rate": 0.6,
+       "ci95": [
+        0.455,
+        0.73
+       ]
+      },
+      "credited_precision": {
+       "k": 22,
+       "n": 27,
+       "rate": 0.815,
+       "ci95": [
+        0.633,
+        0.918
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 45,
+       "rate": 0.111,
+       "ci95": [
+        0.048,
+        0.235
+       ]
+      },
+      "abstained": {
+       "k": 18,
+       "n": 45,
+       "rate": 0.4,
+       "ci95": [
+        0.27,
+        0.545
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 29,
+       "n": 30,
+       "rate": 0.967,
+       "ci95": [
+        0.833,
+        0.994
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 57,
+       "n": 90,
+       "rate": 0.633,
+       "ci95": [
+        0.53,
+        0.726
+       ]
+      },
+      "credited_precision": {
+       "k": 53,
+       "n": 57,
+       "rate": 0.93,
+       "ci95": [
+        0.833,
+        0.972
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 4,
+       "n": 90,
+       "rate": 0.044,
+       "ci95": [
+        0.017,
+        0.109
+       ]
+      },
+      "abstained": {
+       "k": 33,
+       "n": 90,
+       "rate": 0.367,
+       "ci95": [
+        0.274,
+        0.47
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 90,
+       "rate": 0.011,
+       "ci95": [
+        0.002,
+        0.06
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "plain": {
+      "rows": 240,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 55,
+       "n": 60,
+       "rate": 0.917,
+       "ci95": [
+        0.819,
+        0.964
+       ]
+      },
+      "ordinary_rows": 180,
+      "ordinary_credited": {
+       "k": 68,
+       "n": 180,
+       "rate": 0.378,
+       "ci95": [
+        0.31,
+        0.45
+       ]
+      },
+      "credited_precision": {
+       "k": 63,
+       "n": 68,
+       "rate": 0.926,
+       "ci95": [
+        0.839,
+        0.968
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 180,
+       "rate": 0.028,
+       "ci95": [
+        0.012,
+        0.063
+       ]
+      },
+      "abstained": {
+       "k": 112,
+       "n": 180,
+       "rate": 0.622,
+       "ci95": [
+        0.55,
+        0.69
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 7,
+       "n": 180,
+       "rate": 0.039,
+       "ci95": [
+        0.019,
+        0.078
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 600,
+      "unavailable": 0,
+      "critical_rows": 150,
+      "false_credit": {
+       "k": 0,
+       "n": 150,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.025
+       ]
+      },
+      "critical_named": {
+       "k": 138,
+       "n": 150,
+       "rate": 0.92,
+       "ci95": [
+        0.865,
+        0.954
+       ]
+      },
+      "ordinary_rows": 450,
+      "ordinary_credited": {
+       "k": 189,
+       "n": 450,
+       "rate": 0.42,
+       "ci95": [
+        0.375,
+        0.466
+       ]
+      },
+      "credited_precision": {
+       "k": 172,
+       "n": 189,
+       "rate": 0.91,
+       "ci95": [
+        0.861,
+        0.943
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 17,
+       "n": 450,
+       "rate": 0.038,
+       "ci95": [
+        0.024,
+        0.06
+       ]
+      },
+      "abstained": {
+       "k": 261,
+       "n": 450,
+       "rate": 0.58,
+       "ci95": [
+        0.534,
+        0.625
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 22,
+       "n": 450,
+       "rate": 0.049,
+       "ci95": [
+        0.033,
+        0.073
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 22,
+       "n": 45,
+       "rate": 0.489,
+       "ci95": [
+        0.35,
+        0.63
+       ]
+      },
+      "credited_precision": {
+       "k": 22,
+       "n": 22,
+       "rate": 1.0,
+       "ci95": [
+        0.851,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 23,
+       "n": 45,
+       "rate": 0.511,
+       "ci95": [
+        0.37,
+        0.65
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 17,
+       "n": 45,
+       "rate": 0.378,
+       "ci95": [
+        0.251,
+        0.524
+       ]
+      },
+      "credited_precision": {
+       "k": 17,
+       "n": 17,
+       "rate": 1.0,
+       "ci95": [
+        0.816,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 28,
+       "n": 45,
+       "rate": 0.622,
+       "ci95": [
+        0.476,
+        0.749
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 23,
+       "n": 45,
+       "rate": 0.511,
+       "ci95": [
+        0.37,
+        0.65
+       ]
+      },
+      "credited_precision": {
+       "k": 18,
+       "n": 23,
+       "rate": 0.783,
+       "ci95": [
+        0.581,
+        0.903
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 45,
+       "rate": 0.111,
+       "ci95": [
+        0.048,
+        0.235
+       ]
+      },
+      "abstained": {
+       "k": 22,
+       "n": 45,
+       "rate": 0.489,
+       "ci95": [
+        0.35,
+        0.63
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 9,
+       "n": 15,
+       "rate": 0.6,
+       "ci95": [
+        0.357,
+        0.802
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 18,
+       "n": 45,
+       "rate": 0.4,
+       "ci95": [
+        0.27,
+        0.545
+       ]
+      },
+      "credited_precision": {
+       "k": 13,
+       "n": 18,
+       "rate": 0.722,
+       "ci95": [
+        0.491,
+        0.875
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 45,
+       "rate": 0.111,
+       "ci95": [
+        0.048,
+        0.235
+       ]
+      },
+      "abstained": {
+       "k": 27,
+       "n": 45,
+       "rate": 0.6,
+       "ci95": [
+        0.455,
+        0.73
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 6,
+       "n": 45,
+       "rate": 0.133,
+       "ci95": [
+        0.063,
+        0.262
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 30,
+       "n": 30,
+       "rate": 1.0,
+       "ci95": [
+        0.886,
+        1.0
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 41,
+       "n": 90,
+       "rate": 0.456,
+       "ci95": [
+        0.357,
+        0.558
+       ]
+      },
+      "credited_precision": {
+       "k": 39,
+       "n": 41,
+       "rate": 0.951,
+       "ci95": [
+        0.839,
+        0.987
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 90,
+       "rate": 0.022,
+       "ci95": [
+        0.006,
+        0.077
+       ]
+      },
+      "abstained": {
+       "k": 49,
+       "n": 90,
+       "rate": 0.544,
+       "ci95": [
+        0.442,
+        0.643
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 90,
+       "rate": 0.011,
+       "ci95": [
+        0.002,
+        0.06
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "plain": {
+      "rows": 240,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 51,
+       "n": 60,
+       "rate": 0.85,
+       "ci95": [
+        0.739,
+        0.919
+       ]
+      },
+      "ordinary_rows": 180,
+      "ordinary_credited": {
+       "k": 30,
+       "n": 180,
+       "rate": 0.167,
+       "ci95": [
+        0.119,
+        0.228
+       ]
+      },
+      "credited_precision": {
+       "k": 29,
+       "n": 30,
+       "rate": 0.967,
+       "ci95": [
+        0.833,
+        0.994
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 180,
+       "rate": 0.006,
+       "ci95": [
+        0.001,
+        0.031
+       ]
+      },
+      "abstained": {
+       "k": 150,
+       "n": 180,
+       "rate": 0.833,
+       "ci95": [
+        0.772,
+        0.881
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 6,
+       "n": 180,
+       "rate": 0.033,
+       "ci95": [
+        0.015,
+        0.071
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 600,
+      "unavailable": 0,
+      "critical_rows": 150,
+      "false_credit": {
+       "k": 0,
+       "n": 150,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.025
+       ]
+      },
+      "critical_named": {
+       "k": 134,
+       "n": 150,
+       "rate": 0.893,
+       "ci95": [
+        0.834,
+        0.933
+       ]
+      },
+      "ordinary_rows": 450,
+      "ordinary_credited": {
+       "k": 77,
+       "n": 450,
+       "rate": 0.171,
+       "ci95": [
+        0.139,
+        0.209
+       ]
+      },
+      "credited_precision": {
+       "k": 76,
+       "n": 77,
+       "rate": 0.987,
+       "ci95": [
+        0.93,
+        0.998
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 450,
+       "rate": 0.002,
+       "ci95": [
+        0.0,
+        0.012
+       ]
+      },
+      "abstained": {
+       "k": 373,
+       "n": 450,
+       "rate": 0.829,
+       "ci95": [
+        0.791,
+        0.861
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 15,
+       "n": 450,
+       "rate": 0.033,
+       "ci95": [
+        0.02,
+        0.054
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 5,
+       "n": 45,
+       "rate": 0.111,
+       "ci95": [
+        0.048,
+        0.235
+       ]
+      },
+      "credited_precision": {
+       "k": 5,
+       "n": 5,
+       "rate": 1.0,
+       "ci95": [
+        0.566,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 40,
+       "n": 45,
+       "rate": 0.889,
+       "ci95": [
+        0.765,
+        0.952
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 5,
+       "n": 45,
+       "rate": 0.111,
+       "ci95": [
+        0.048,
+        0.235
+       ]
+      },
+      "credited_precision": {
+       "k": 5,
+       "n": 5,
+       "rate": 1.0,
+       "ci95": [
+        0.566,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 40,
+       "n": 45,
+       "rate": 0.889,
+       "ci95": [
+        0.765,
+        0.952
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 6,
+       "n": 45,
+       "rate": 0.133,
+       "ci95": [
+        0.063,
+        0.262
+       ]
+      },
+      "credited_precision": {
+       "k": 6,
+       "n": 6,
+       "rate": 1.0,
+       "ci95": [
+        0.61,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 39,
+       "n": 45,
+       "rate": 0.867,
+       "ci95": [
+        0.738,
+        0.937
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 10,
+       "n": 15,
+       "rate": 0.667,
+       "ci95": [
+        0.417,
+        0.848
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "credited_precision": {
+       "k": 4,
+       "n": 4,
+       "rate": 1.0,
+       "ci95": [
+        0.51,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 41,
+       "n": 45,
+       "rate": 0.911,
+       "ci95": [
+        0.793,
+        0.965
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 30,
+       "n": 30,
+       "rate": 1.0,
+       "ci95": [
+        0.886,
+        1.0
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 27,
+       "n": 90,
+       "rate": 0.3,
+       "ci95": [
+        0.215,
+        0.401
+       ]
+      },
+      "credited_precision": {
+       "k": 27,
+       "n": 27,
+       "rate": 1.0,
+       "ci95": [
+        0.875,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 90,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.041
+       ]
+      },
+      "abstained": {
+       "k": 63,
+       "n": 90,
+       "rate": 0.7,
+       "ci95": [
+        0.599,
+        0.785
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 90,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.041
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "plain": {
+      "rows": 240,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 55,
+       "n": 60,
+       "rate": 0.917,
+       "ci95": [
+        0.819,
+        0.964
+       ]
+      },
+      "ordinary_rows": 180,
+      "ordinary_credited": {
+       "k": 62,
+       "n": 180,
+       "rate": 0.344,
+       "ci95": [
+        0.279,
+        0.416
+       ]
+      },
+      "credited_precision": {
+       "k": 61,
+       "n": 62,
+       "rate": 0.984,
+       "ci95": [
+        0.914,
+        0.997
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 180,
+       "rate": 0.006,
+       "ci95": [
+        0.001,
+        0.031
+       ]
+      },
+      "abstained": {
+       "k": 118,
+       "n": 180,
+       "rate": 0.656,
+       "ci95": [
+        0.584,
+        0.721
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 7,
+       "n": 180,
+       "rate": 0.039,
+       "ci95": [
+        0.019,
+        0.078
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 600,
+      "unavailable": 0,
+      "critical_rows": 150,
+      "false_credit": {
+       "k": 0,
+       "n": 150,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.025
+       ]
+      },
+      "critical_named": {
+       "k": 138,
+       "n": 150,
+       "rate": 0.92,
+       "ci95": [
+        0.865,
+        0.954
+       ]
+      },
+      "ordinary_rows": 450,
+      "ordinary_credited": {
+       "k": 149,
+       "n": 450,
+       "rate": 0.331,
+       "ci95": [
+        0.289,
+        0.376
+       ]
+      },
+      "credited_precision": {
+       "k": 146,
+       "n": 149,
+       "rate": 0.98,
+       "ci95": [
+        0.942,
+        0.993
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 450,
+       "rate": 0.007,
+       "ci95": [
+        0.002,
+        0.019
+       ]
+      },
+      "abstained": {
+       "k": 301,
+       "n": 450,
+       "rate": 0.669,
+       "ci95": [
+        0.624,
+        0.711
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 22,
+       "n": 450,
+       "rate": 0.049,
+       "ci95": [
+        0.033,
+        0.073
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 19,
+       "n": 45,
+       "rate": 0.422,
+       "ci95": [
+        0.29,
+        0.567
+       ]
+      },
+      "credited_precision": {
+       "k": 19,
+       "n": 19,
+       "rate": 1.0,
+       "ci95": [
+        0.832,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 26,
+       "n": 45,
+       "rate": 0.578,
+       "ci95": [
+        0.433,
+        0.71
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "correction": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 16,
+       "n": 45,
+       "rate": 0.356,
+       "ci95": [
+        0.232,
+        0.502
+       ]
+      },
+      "credited_precision": {
+       "k": 16,
+       "n": 16,
+       "rate": 1.0,
+       "ci95": [
+        0.806,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 29,
+       "n": 45,
+       "rate": 0.644,
+       "ci95": [
+        0.498,
+        0.768
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 45,
+       "n": 45,
+       "rate": 1.0,
+       "ci95": [
+        0.921,
+        1.0
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ambiguous": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 9,
+       "n": 15,
+       "rate": 0.6,
+       "ci95": [
+        0.357,
+        0.802
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 15,
+       "n": 45,
+       "rate": 0.333,
+       "ci95": [
+        0.214,
+        0.479
+       ]
+      },
+      "credited_precision": {
+       "k": 13,
+       "n": 15,
+       "rate": 0.867,
+       "ci95": [
+        0.621,
+        0.963
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "abstained": {
+       "k": 30,
+       "n": 45,
+       "rate": 0.667,
+       "ci95": [
+        0.521,
+        0.786
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 6,
+       "n": 45,
+       "rate": 0.133,
+       "ci95": [
+        0.063,
+        0.262
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 30,
+       "n": 30,
+       "rate": 1.0,
+       "ci95": [
+        0.886,
+        1.0
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 37,
+       "n": 90,
+       "rate": 0.411,
+       "ci95": [
+        0.315,
+        0.514
+       ]
+      },
+      "credited_precision": {
+       "k": 37,
+       "n": 37,
+       "rate": 1.0,
+       "ci95": [
+        0.906,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 90,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.041
+       ]
+      },
+      "abstained": {
+       "k": 53,
+       "n": 90,
+       "rate": 0.589,
+       "ci95": [
+        0.486,
+        0.685
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 90,
+       "rate": 0.011,
+       "ci95": [
+        0.002,
+        0.06
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "v3_test": {
+   "rows": 300,
+   "variants": {
+    "baseline": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 26,
+       "n": 30,
+       "rate": 0.867,
+       "ci95": [
+        0.703,
+        0.947
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 54,
+       "n": 90,
+       "rate": 0.6,
+       "ci95": [
+        0.497,
+        0.695
+       ]
+      },
+      "credited_precision": {
+       "k": 51,
+       "n": 54,
+       "rate": 0.944,
+       "ci95": [
+        0.849,
+        0.981
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 90,
+       "rate": 0.033,
+       "ci95": [
+        0.011,
+        0.093
+       ]
+      },
+      "abstained": {
+       "k": 36,
+       "n": 90,
+       "rate": 0.4,
+       "ci95": [
+        0.305,
+        0.503
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 7,
+       "n": 90,
+       "rate": 0.078,
+       "ci95": [
+        0.038,
+        0.152
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 300,
+      "unavailable": 0,
+      "critical_rows": 75,
+      "false_credit": {
+       "k": 0,
+       "n": 75,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.049
+       ]
+      },
+      "critical_named": {
+       "k": 68,
+       "n": 75,
+       "rate": 0.907,
+       "ci95": [
+        0.82,
+        0.954
+       ]
+      },
+      "ordinary_rows": 225,
+      "ordinary_credited": {
+       "k": 137,
+       "n": 225,
+       "rate": 0.609,
+       "ci95": [
+        0.544,
+        0.67
+       ]
+      },
+      "credited_precision": {
+       "k": 129,
+       "n": 137,
+       "rate": 0.942,
+       "ci95": [
+        0.889,
+        0.97
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 8,
+       "n": 225,
+       "rate": 0.036,
+       "ci95": [
+        0.018,
+        0.069
+       ]
+      },
+      "abstained": {
+       "k": 88,
+       "n": 225,
+       "rate": 0.391,
+       "ci95": [
+        0.33,
+        0.456
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 10,
+       "n": 225,
+       "rate": 0.044,
+       "ci95": [
+        0.024,
+        0.08
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "credited_precision": {
+       "k": 22,
+       "n": 25,
+       "rate": 0.88,
+       "ci95": [
+        0.7,
+        0.958
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 45,
+       "rate": 0.067,
+       "ci95": [
+        0.023,
+        0.179
+       ]
+      },
+      "abstained": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 26,
+       "n": 45,
+       "rate": 0.578,
+       "ci95": [
+        0.433,
+        0.71
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 26,
+       "rate": 0.962,
+       "ci95": [
+        0.811,
+        0.993
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "abstained": {
+       "k": 19,
+       "n": 45,
+       "rate": 0.422,
+       "ci95": [
+        0.29,
+        0.567
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 32,
+       "n": 45,
+       "rate": 0.711,
+       "ci95": [
+        0.566,
+        0.823
+       ]
+      },
+      "credited_precision": {
+       "k": 31,
+       "n": 32,
+       "rate": 0.969,
+       "ci95": [
+        0.843,
+        0.994
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "abstained": {
+       "k": 13,
+       "n": 45,
+       "rate": 0.289,
+       "ci95": [
+        0.177,
+        0.434
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 28,
+       "n": 30,
+       "rate": 0.933,
+       "ci95": [
+        0.787,
+        0.982
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 41,
+       "n": 90,
+       "rate": 0.456,
+       "ci95": [
+        0.357,
+        0.558
+       ]
+      },
+      "credited_precision": {
+       "k": 38,
+       "n": 41,
+       "rate": 0.927,
+       "ci95": [
+        0.806,
+        0.975
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 90,
+       "rate": 0.033,
+       "ci95": [
+        0.011,
+        0.093
+       ]
+      },
+      "abstained": {
+       "k": 49,
+       "n": 90,
+       "rate": 0.544,
+       "ci95": [
+        0.442,
+        0.643
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 6,
+       "n": 90,
+       "rate": 0.067,
+       "ci95": [
+        0.031,
+        0.138
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 300,
+      "unavailable": 0,
+      "critical_rows": 75,
+      "false_credit": {
+       "k": 0,
+       "n": 75,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.049
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 75,
+       "rate": 0.947,
+       "ci95": [
+        0.871,
+        0.979
+       ]
+      },
+      "ordinary_rows": 225,
+      "ordinary_credited": {
+       "k": 106,
+       "n": 225,
+       "rate": 0.471,
+       "ci95": [
+        0.407,
+        0.536
+       ]
+      },
+      "credited_precision": {
+       "k": 100,
+       "n": 106,
+       "rate": 0.943,
+       "ci95": [
+        0.882,
+        0.974
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 6,
+       "n": 225,
+       "rate": 0.027,
+       "ci95": [
+        0.012,
+        0.057
+       ]
+      },
+      "abstained": {
+       "k": 119,
+       "n": 225,
+       "rate": 0.529,
+       "ci95": [
+        0.464,
+        0.593
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 12,
+       "n": 225,
+       "rate": 0.053,
+       "ci95": [
+        0.031,
+        0.091
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 21,
+       "n": 45,
+       "rate": 0.467,
+       "ci95": [
+        0.329,
+        0.609
+       ]
+      },
+      "credited_precision": {
+       "k": 19,
+       "n": 21,
+       "rate": 0.905,
+       "ci95": [
+        0.711,
+        0.973
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "abstained": {
+       "k": 24,
+       "n": 45,
+       "rate": 0.533,
+       "ci95": [
+        0.391,
+        0.671
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 19,
+       "n": 45,
+       "rate": 0.422,
+       "ci95": [
+        0.29,
+        0.567
+       ]
+      },
+      "credited_precision": {
+       "k": 19,
+       "n": 19,
+       "rate": 1.0,
+       "ci95": [
+        0.832,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 26,
+       "n": 45,
+       "rate": 0.578,
+       "ci95": [
+        0.433,
+        0.71
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 45,
+       "rate": 0.556,
+       "ci95": [
+        0.412,
+        0.691
+       ]
+      },
+      "credited_precision": {
+       "k": 24,
+       "n": 25,
+       "rate": 0.96,
+       "ci95": [
+        0.805,
+        0.993
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "abstained": {
+       "k": 20,
+       "n": 45,
+       "rate": 0.444,
+       "ci95": [
+        0.309,
+        0.588
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 28,
+       "n": 30,
+       "rate": 0.933,
+       "ci95": [
+        0.787,
+        0.982
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 14,
+       "n": 90,
+       "rate": 0.156,
+       "ci95": [
+        0.095,
+        0.244
+       ]
+      },
+      "credited_precision": {
+       "k": 14,
+       "n": 14,
+       "rate": 1.0,
+       "ci95": [
+        0.785,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 90,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.041
+       ]
+      },
+      "abstained": {
+       "k": 76,
+       "n": 90,
+       "rate": 0.844,
+       "ci95": [
+        0.756,
+        0.905
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 10,
+       "n": 90,
+       "rate": 0.111,
+       "ci95": [
+        0.061,
+        0.193
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 300,
+      "unavailable": 0,
+      "critical_rows": 75,
+      "false_credit": {
+       "k": 0,
+       "n": 75,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.049
+       ]
+      },
+      "critical_named": {
+       "k": 72,
+       "n": 75,
+       "rate": 0.96,
+       "ci95": [
+        0.889,
+        0.986
+       ]
+      },
+      "ordinary_rows": 225,
+      "ordinary_credited": {
+       "k": 41,
+       "n": 225,
+       "rate": 0.182,
+       "ci95": [
+        0.137,
+        0.238
+       ]
+      },
+      "credited_precision": {
+       "k": 41,
+       "n": 41,
+       "rate": 1.0,
+       "ci95": [
+        0.914,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 225,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.017
+       ]
+      },
+      "abstained": {
+       "k": 184,
+       "n": 225,
+       "rate": 0.818,
+       "ci95": [
+        0.762,
+        0.863
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 11,
+       "n": 225,
+       "rate": 0.049,
+       "ci95": [
+        0.028,
+        0.085
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "credited_precision": {
+       "k": 4,
+       "n": 4,
+       "rate": 1.0,
+       "ci95": [
+        0.51,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 41,
+       "n": 45,
+       "rate": 0.911,
+       "ci95": [
+        0.793,
+        0.965
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 7,
+       "n": 45,
+       "rate": 0.156,
+       "ci95": [
+        0.077,
+        0.288
+       ]
+      },
+      "credited_precision": {
+       "k": 7,
+       "n": 7,
+       "rate": 1.0,
+       "ci95": [
+        0.646,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 38,
+       "n": 45,
+       "rate": 0.844,
+       "ci95": [
+        0.712,
+        0.923
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 45,
+       "rate": 0.022,
+       "ci95": [
+        0.004,
+        0.116
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 16,
+       "n": 45,
+       "rate": 0.356,
+       "ci95": [
+        0.232,
+        0.502
+       ]
+      },
+      "credited_precision": {
+       "k": 16,
+       "n": 16,
+       "rate": 1.0,
+       "ci95": [
+        0.806,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 29,
+       "n": 45,
+       "rate": 0.644,
+       "ci95": [
+        0.498,
+        0.768
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "plain": {
+      "rows": 120,
+      "unavailable": 0,
+      "critical_rows": 30,
+      "false_credit": {
+       "k": 0,
+       "n": 30,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.114
+       ]
+      },
+      "critical_named": {
+       "k": 28,
+       "n": 30,
+       "rate": 0.933,
+       "ci95": [
+        0.787,
+        0.982
+       ]
+      },
+      "ordinary_rows": 90,
+      "ordinary_credited": {
+       "k": 35,
+       "n": 90,
+       "rate": 0.389,
+       "ci95": [
+        0.295,
+        0.492
+       ]
+      },
+      "credited_precision": {
+       "k": 34,
+       "n": 35,
+       "rate": 0.971,
+       "ci95": [
+        0.855,
+        0.995
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 90,
+       "rate": 0.011,
+       "ci95": [
+        0.002,
+        0.06
+       ]
+      },
+      "abstained": {
+       "k": 55,
+       "n": 90,
+       "rate": 0.611,
+       "ci95": [
+        0.508,
+        0.705
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 6,
+       "n": 90,
+       "rate": 0.067,
+       "ci95": [
+        0.031,
+        0.138
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 300,
+      "unavailable": 0,
+      "critical_rows": 75,
+      "false_credit": {
+       "k": 0,
+       "n": 75,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.049
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 75,
+       "rate": 0.947,
+       "ci95": [
+        0.871,
+        0.979
+       ]
+      },
+      "ordinary_rows": 225,
+      "ordinary_credited": {
+       "k": 76,
+       "n": 225,
+       "rate": 0.338,
+       "ci95": [
+        0.279,
+        0.402
+       ]
+      },
+      "credited_precision": {
+       "k": 75,
+       "n": 76,
+       "rate": 0.987,
+       "ci95": [
+        0.929,
+        0.998
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 225,
+       "rate": 0.004,
+       "ci95": [
+        0.001,
+        0.025
+       ]
+      },
+      "abstained": {
+       "k": 149,
+       "n": 225,
+       "rate": 0.662,
+       "ci95": [
+        0.598,
+        0.721
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 12,
+       "n": 225,
+       "rate": 0.053,
+       "ci95": [
+        0.031,
+        0.091
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "negation": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 17,
+       "n": 45,
+       "rate": 0.378,
+       "ci95": [
+        0.251,
+        0.524
+       ]
+      },
+      "credited_precision": {
+       "k": 17,
+       "n": 17,
+       "rate": 1.0,
+       "ci95": [
+        0.816,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 28,
+       "n": 45,
+       "rate": 0.622,
+       "ci95": [
+        0.476,
+        0.749
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 4,
+       "n": 45,
+       "rate": 0.089,
+       "ci95": [
+        0.035,
+        0.207
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "incomplete": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 15,
+       "n": 15,
+       "rate": 1.0,
+       "ci95": [
+        0.796,
+        1.0
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 45,
+       "n": 45,
+       "rate": 1.0,
+       "ci95": [
+        0.921,
+        1.0
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 2,
+       "n": 45,
+       "rate": 0.044,
+       "ci95": [
+        0.012,
+        0.148
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "asr_style": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 15,
+      "false_credit": {
+       "k": 0,
+       "n": 15,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.204
+       ]
+      },
+      "critical_named": {
+       "k": 14,
+       "n": 15,
+       "rate": 0.933,
+       "ci95": [
+        0.702,
+        0.988
+       ]
+      },
+      "ordinary_rows": 45,
+      "ordinary_credited": {
+       "k": 24,
+       "n": 45,
+       "rate": 0.533,
+       "ci95": [
+        0.391,
+        0.671
+       ]
+      },
+      "credited_precision": {
+       "k": 24,
+       "n": 24,
+       "rate": 1.0,
+       "ci95": [
+        0.862,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "abstained": {
+       "k": 21,
+       "n": 45,
+       "rate": 0.467,
+       "ci95": [
+        0.329,
+        0.609
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 45,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.079
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "adv_tuning": {
+   "rows": 71,
+   "variants": {
+    "baseline": {
+     "critical_evasive": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 53,
+       "n": 71,
+       "rate": 0.746,
+       "ci95": [
+        0.634,
+        0.833
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 53,
+       "n": 71,
+       "rate": 0.746,
+       "ci95": [
+        0.634,
+        0.833
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "critical_evasive": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 71,
+       "rate": 1.0,
+       "ci95": [
+        0.949,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 71,
+       "rate": 1.0,
+       "ci95": [
+        0.949,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "critical_evasive": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 71,
+       "rate": 1.0,
+       "ci95": [
+        0.949,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 71,
+       "rate": 1.0,
+       "ci95": [
+        0.949,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "critical_evasive": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 71,
+       "rate": 1.0,
+       "ci95": [
+        0.949,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 71,
+      "unavailable": 0,
+      "critical_rows": 71,
+      "false_credit": {
+       "k": 0,
+       "n": 71,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.051
+       ]
+      },
+      "critical_named": {
+       "k": 71,
+       "n": 71,
+       "rate": 1.0,
+       "ci95": [
+        0.949,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "adv_holdout": {
+   "rows": 48,
+   "variants": {
+    "baseline": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 28,
+       "n": 48,
+       "rate": 0.583,
+       "ci95": [
+        0.443,
+        0.712
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 28,
+       "n": 48,
+       "rate": 0.583,
+       "ci95": [
+        0.443,
+        0.712
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 48,
+       "rate": 1.0,
+       "ci95": [
+        0.926,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 48,
+       "rate": 1.0,
+       "ci95": [
+        0.926,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 48,
+       "rate": 1.0,
+       "ci95": [
+        0.926,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 48,
+       "rate": 1.0,
+       "ci95": [
+        0.926,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 48,
+       "rate": 1.0,
+       "ci95": [
+        0.926,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 48,
+       "rate": 1.0,
+       "ci95": [
+        0.926,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "adv_holdout2": {
+   "rows": 60,
+   "variants": {
+    "baseline": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 33,
+       "n": 60,
+       "rate": 0.55,
+       "ci95": [
+        0.425,
+        0.669
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 33,
+       "n": 60,
+       "rate": 0.55,
+       "ci95": [
+        0.425,
+        0.669
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 57,
+       "n": 60,
+       "rate": 0.95,
+       "ci95": [
+        0.863,
+        0.983
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 57,
+       "n": 60,
+       "rate": 0.95,
+       "ci95": [
+        0.863,
+        0.983
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 60,
+       "n": 60,
+       "rate": 1.0,
+       "ci95": [
+        0.94,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 60,
+       "n": 60,
+       "rate": 1.0,
+       "ci95": [
+        0.94,
+        1.0
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 57,
+       "n": 60,
+       "rate": 0.95,
+       "ci95": [
+        0.863,
+        0.983
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 57,
+       "n": 60,
+       "rate": 0.95,
+       "ci95": [
+        0.863,
+        0.983
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "adv_holdout3": {
+   "rows": 48,
+   "variants": {
+    "baseline": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 3,
+       "n": 48,
+       "rate": 0.062,
+       "ci95": [
+        0.021,
+        0.168
+       ]
+      },
+      "critical_named": {
+       "k": 22,
+       "n": 48,
+       "rate": 0.458,
+       "ci95": [
+        0.326,
+        0.597
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 3,
+       "n": 48,
+       "rate": 0.062,
+       "ci95": [
+        0.021,
+        0.168
+       ]
+      },
+      "critical_named": {
+       "k": 22,
+       "n": 48,
+       "rate": 0.458,
+       "ci95": [
+        0.326,
+        0.597
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "embedding": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 32,
+       "n": 48,
+       "rate": 0.667,
+       "ci95": [
+        0.525,
+        0.783
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 32,
+       "n": 48,
+       "rate": 0.667,
+       "ci95": [
+        0.525,
+        0.783
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "tfidf": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 39,
+       "n": 48,
+       "rate": 0.812,
+       "ci95": [
+        0.681,
+        0.898
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 39,
+       "n": 48,
+       "rate": 0.812,
+       "ci95": [
+        0.681,
+        0.898
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    },
+    "ensemble": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 32,
+       "n": 48,
+       "rate": 0.667,
+       "ci95": [
+        0.525,
+        0.783
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 32,
+       "n": 48,
+       "rate": 0.667,
+       "ci95": [
+        0.525,
+        0.783
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     }
+    }
+   }
+  },
+  "challenge_v4": {
+   "rows": 110,
+   "variants": {
+    "baseline": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 5,
+       "n": 60,
+       "rate": 0.083,
+       "ci95": [
+        0.036,
+        0.181
+       ]
+      },
+      "critical_named": {
+       "k": 33,
+       "n": 60,
+       "rate": 0.55,
+       "ci95": [
+        0.425,
+        0.669
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 110,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 5,
+       "n": 60,
+       "rate": 0.083,
+       "ci95": [
+        0.036,
+        0.181
+       ]
+      },
+      "critical_named": {
+       "k": 33,
+       "n": 60,
+       "rate": 0.55,
+       "ci95": [
+        0.425,
+        0.669
+       ]
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 34,
+       "n": 38,
+       "rate": 0.895,
+       "ci95": [
+        0.759,
+        0.958
+       ]
+      },
+      "credited_precision": {
+       "k": 29,
+       "n": 34,
+       "rate": 0.853,
+       "ci95": [
+        0.699,
+        0.936
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 38,
+       "rate": 0.132,
+       "ci95": [
+        0.058,
+        0.273
+       ]
+      },
+      "abstained": {
+       "k": 4,
+       "n": 38,
+       "rate": 0.105,
+       "ci95": [
+        0.042,
+        0.241
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 9,
+       "n": 12,
+       "rate": 0.75,
+       "ci95": [
+        0.468,
+        0.911
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 38,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 34,
+       "n": 38,
+       "rate": 0.895,
+       "ci95": [
+        0.759,
+        0.958
+       ]
+      },
+      "credited_precision": {
+       "k": 29,
+       "n": 34,
+       "rate": 0.853,
+       "ci95": [
+        0.699,
+        0.936
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 38,
+       "rate": 0.132,
+       "ci95": [
+        0.058,
+        0.273
+       ]
+      },
+      "abstained": {
+       "k": 4,
+       "n": 38,
+       "rate": 0.105,
+       "ci95": [
+        0.042,
+        0.241
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 9,
+       "n": 12,
+       "rate": 0.75,
+       "ci95": [
+        0.468,
+        0.911
+       ]
+      }
+     }
+    },
+    "embedding": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 1,
+       "n": 60,
+       "rate": 0.017,
+       "ci95": [
+        0.003,
+        0.089
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 60,
+       "rate": 0.8,
+       "ci95": [
+        0.682,
+        0.882
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 110,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 1,
+       "n": 60,
+       "rate": 0.017,
+       "ci95": [
+        0.003,
+        0.089
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 60,
+       "rate": 0.8,
+       "ci95": [
+        0.682,
+        0.882
+       ]
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 28,
+       "n": 38,
+       "rate": 0.737,
+       "ci95": [
+        0.58,
+        0.85
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 28,
+       "rate": 0.893,
+       "ci95": [
+        0.728,
+        0.963
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 38,
+       "rate": 0.079,
+       "ci95": [
+        0.027,
+        0.208
+       ]
+      },
+      "abstained": {
+       "k": 10,
+       "n": 38,
+       "rate": 0.263,
+       "ci95": [
+        0.15,
+        0.42
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 7,
+       "n": 12,
+       "rate": 0.583,
+       "ci95": [
+        0.32,
+        0.807
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 38,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 28,
+       "n": 38,
+       "rate": 0.737,
+       "ci95": [
+        0.58,
+        0.85
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 28,
+       "rate": 0.893,
+       "ci95": [
+        0.728,
+        0.963
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 38,
+       "rate": 0.079,
+       "ci95": [
+        0.027,
+        0.208
+       ]
+      },
+      "abstained": {
+       "k": 10,
+       "n": 38,
+       "rate": 0.263,
+       "ci95": [
+        0.15,
+        0.42
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 7,
+       "n": 12,
+       "rate": 0.583,
+       "ci95": [
+        0.32,
+        0.807
+       ]
+      }
+     }
+    },
+    "tfidf": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 46,
+       "n": 60,
+       "rate": 0.767,
+       "ci95": [
+        0.646,
+        0.856
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 110,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 46,
+       "n": 60,
+       "rate": 0.767,
+       "ci95": [
+        0.646,
+        0.856
+       ]
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 19,
+       "n": 38,
+       "rate": 0.5,
+       "ci95": [
+        0.348,
+        0.652
+       ]
+      },
+      "credited_precision": {
+       "k": 18,
+       "n": 19,
+       "rate": 0.947,
+       "ci95": [
+        0.754,
+        0.991
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 38,
+       "rate": 0.026,
+       "ci95": [
+        0.005,
+        0.135
+       ]
+      },
+      "abstained": {
+       "k": 19,
+       "n": 38,
+       "rate": 0.5,
+       "ci95": [
+        0.348,
+        0.652
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 38,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 19,
+       "n": 38,
+       "rate": 0.5,
+       "ci95": [
+        0.348,
+        0.652
+       ]
+      },
+      "credited_precision": {
+       "k": 18,
+       "n": 19,
+       "rate": 0.947,
+       "ci95": [
+        0.754,
+        0.991
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 38,
+       "rate": 0.026,
+       "ci95": [
+        0.005,
+        0.135
+       ]
+      },
+      "abstained": {
+       "k": 19,
+       "n": 38,
+       "rate": 0.5,
+       "ci95": [
+        0.348,
+        0.652
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     }
+    },
+    "ensemble": {
+     "critical_evasive": {
+      "rows": 60,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 60,
+       "rate": 0.8,
+       "ci95": [
+        0.682,
+        0.882
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 110,
+      "unavailable": 0,
+      "critical_rows": 60,
+      "false_credit": {
+       "k": 0,
+       "n": 60,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.06
+       ]
+      },
+      "critical_named": {
+       "k": 48,
+       "n": 60,
+       "rate": 0.8,
+       "ci95": [
+        0.682,
+        0.882
+       ]
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 26,
+       "n": 38,
+       "rate": 0.684,
+       "ci95": [
+        0.525,
+        0.809
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 26,
+       "rate": 0.962,
+       "ci95": [
+        0.811,
+        0.993
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 38,
+       "rate": 0.026,
+       "ci95": [
+        0.005,
+        0.135
+       ]
+      },
+      "abstained": {
+       "k": 12,
+       "n": 38,
+       "rate": 0.316,
+       "ci95": [
+        0.191,
+        0.475
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 38,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 38,
+      "ordinary_credited": {
+       "k": 26,
+       "n": 38,
+       "rate": 0.684,
+       "ci95": [
+        0.525,
+        0.809
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 26,
+       "rate": 0.962,
+       "ci95": [
+        0.811,
+        0.993
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 38,
+       "rate": 0.026,
+       "ci95": [
+        0.005,
+        0.135
+       ]
+      },
+      "abstained": {
+       "k": 12,
+       "n": 38,
+       "rate": 0.316,
+       "ci95": [
+        0.191,
+        0.475
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 38,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.092
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     }
+    }
+   }
+  }
+ },
+ "latency_ms": {
+  "baseline": {
+   "median": 103.17,
+   "p95": 253.85
+  },
+  "embedding": {
+   "median": 81.0,
+   "p95": 156.31
+  },
+  "tfidf": {
+   "median": 0.17,
+   "p95": 0.32
+  },
+  "ensemble": {
+   "median": 93.97,
+   "p95": 175.36
+  }
+ },
+ "challenge_v4_scored_with": "heads built by tools/bench/build_safe_heads.py on 18 October 2026; ensemble gate with the denial, hypothetical and report patterns of server/classify/assertion.py (the incomplete-speech pattern was added afterwards and flags no sentence of the set, tools/ci/test_classifier_regression.py); the figures of the other sets in this file were re-scored with the final code",
+ "non_assertive_flagged_on_v2_dev": {
+  "flagged": 61,
+  "of": 420
+ }
+}

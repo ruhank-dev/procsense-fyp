@@ -1,0 +1,724 @@
+{
+ "learners_per_family_and_seed": 200,
+ "sessions": 12,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "scenarios": {
+  "default": "mastery uniform between 0.30 and 0.95 (the original experiment)",
+  "few_deficits": "most behaviours strong (about 0.85), three behaviours weak (0.25 to 0.50)",
+  "broad_weakness": "every behaviour between 0.35 and 0.65",
+  "strong": "every behaviour between 0.60 and 0.98"
+ },
+ "measures": [
+  "gain (five weakest at the start)",
+  "gain_weakest3",
+  "gain_all"
+ ],
+ "families": {
+  "default": {
+   "means": {
+    "elo": {
+     "gain": 0.1475,
+     "gain_weakest3": 0.1638,
+     "gain_all": 0.0775
+    },
+    "rules": {
+     "gain": 0.1346,
+     "gain_weakest3": 0.1451,
+     "gain_all": 0.0685
+    },
+    "gain": {
+     "gain": 0.1593,
+     "gain_weakest3": 0.1703,
+     "gain_all": 0.0885
+    },
+    "bandit": {
+     "gain": 0.1039,
+     "gain_weakest3": 0.1075,
+     "gain_all": 0.0667
+    },
+    "random": {
+     "gain": 0.1122,
+     "gain_weakest3": 0.1175,
+     "gain_all": 0.0688
+    },
+    "oracle": {
+     "gain": 0.1911,
+     "gain_weakest3": 0.2095,
+     "gain_all": 0.0931
+    }
+   },
+   "paired_vs_elo": {
+    "rules": {
+     "gain": {
+      "mean": -0.0128,
+      "ci95": [
+       -0.0175,
+       -0.0081
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0187,
+      "ci95": [
+       -0.0261,
+       -0.0115
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.009,
+      "ci95": [
+       -0.0102,
+       -0.0078
+      ],
+      "better": false
+     }
+    },
+    "gain": {
+     "gain": {
+      "mean": 0.0118,
+      "ci95": [
+       0.0069,
+       0.0166
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0065,
+      "ci95": [
+       -0.0008,
+       0.0136
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": 0.0111,
+      "ci95": [
+       0.0101,
+       0.0121
+      ],
+      "better": true
+     }
+    },
+    "bandit": {
+     "gain": {
+      "mean": -0.0435,
+      "ci95": [
+       -0.0481,
+       -0.0391
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0563,
+      "ci95": [
+       -0.0632,
+       -0.0499
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0108,
+      "ci95": [
+       -0.012,
+       -0.0096
+      ],
+      "better": false
+     }
+    },
+    "random": {
+     "gain": {
+      "mean": -0.0353,
+      "ci95": [
+       -0.0392,
+       -0.031
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0463,
+      "ci95": [
+       -0.0531,
+       -0.0397
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0087,
+      "ci95": [
+       -0.0098,
+       -0.0074
+      ],
+      "better": false
+     }
+    },
+    "oracle": {
+     "gain": {
+      "mean": 0.0436,
+      "ci95": [
+       0.0402,
+       0.0473
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0457,
+      "ci95": [
+       0.0402,
+       0.0515
+      ],
+      "better": true
+     },
+     "gain_all": {
+      "mean": 0.0156,
+      "ci95": [
+       0.0147,
+       0.0166
+      ],
+      "better": true
+     }
+    }
+   },
+   "oracle_headroom_over_elo": 0.0436
+  },
+  "few_deficits": {
+   "means": {
+    "elo": {
+     "gain": 0.137,
+     "gain_weakest3": 0.1969,
+     "gain_all": 0.0494
+    },
+    "rules": {
+     "gain": 0.131,
+     "gain_weakest3": 0.1877,
+     "gain_all": 0.0462
+    },
+    "gain": {
+     "gain": 0.1458,
+     "gain_weakest3": 0.208,
+     "gain_all": 0.0547
+    },
+    "bandit": {
+     "gain": 0.0792,
+     "gain_weakest3": 0.103,
+     "gain_all": 0.0378
+    },
+    "random": {
+     "gain": 0.0852,
+     "gain_weakest3": 0.1131,
+     "gain_all": 0.0389
+    },
+    "oracle": {
+     "gain": 0.1843,
+     "gain_weakest3": 0.2817,
+     "gain_all": 0.0577
+    }
+   },
+   "paired_vs_elo": {
+    "rules": {
+     "gain": {
+      "mean": -0.006,
+      "ci95": [
+       -0.0092,
+       -0.0028
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0092,
+      "ci95": [
+       -0.0147,
+       -0.0037
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0032,
+      "ci95": [
+       -0.0039,
+       -0.0025
+      ],
+      "better": false
+     }
+    },
+    "gain": {
+     "gain": {
+      "mean": 0.0089,
+      "ci95": [
+       0.0058,
+       0.0118
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0111,
+      "ci95": [
+       0.006,
+       0.0163
+      ],
+      "better": true
+     },
+     "gain_all": {
+      "mean": 0.0053,
+      "ci95": [
+       0.0048,
+       0.0058
+      ],
+      "better": true
+     }
+    },
+    "bandit": {
+     "gain": {
+      "mean": -0.0577,
+      "ci95": [
+       -0.0616,
+       -0.054
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0939,
+      "ci95": [
+       -0.1001,
+       -0.0878
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0116,
+      "ci95": [
+       -0.0124,
+       -0.0107
+      ],
+      "better": false
+     }
+    },
+    "random": {
+     "gain": {
+      "mean": -0.0518,
+      "ci95": [
+       -0.0553,
+       -0.0483
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0838,
+      "ci95": [
+       -0.0897,
+       -0.078
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0105,
+      "ci95": [
+       -0.0113,
+       -0.0097
+      ],
+      "better": false
+     }
+    },
+    "oracle": {
+     "gain": {
+      "mean": 0.0473,
+      "ci95": [
+       0.0449,
+       0.0497
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0848,
+      "ci95": [
+       0.0806,
+       0.089
+      ],
+      "better": true
+     },
+     "gain_all": {
+      "mean": 0.0083,
+      "ci95": [
+       0.0078,
+       0.0088
+      ],
+      "better": true
+     }
+    }
+   },
+   "oracle_headroom_over_elo": 0.0473
+  },
+  "broad_weakness": {
+   "means": {
+    "elo": {
+     "gain": 0.1361,
+     "gain_weakest3": 0.1418,
+     "gain_all": 0.0986
+    },
+    "rules": {
+     "gain": 0.1077,
+     "gain_weakest3": 0.1123,
+     "gain_all": 0.0798
+    },
+    "gain": {
+     "gain": 0.1471,
+     "gain_weakest3": 0.148,
+     "gain_all": 0.112
+    },
+    "bandit": {
+     "gain": 0.1089,
+     "gain_weakest3": 0.1116,
+     "gain_all": 0.091
+    },
+    "random": {
+     "gain": 0.1109,
+     "gain_weakest3": 0.1126,
+     "gain_all": 0.0909
+    },
+    "oracle": {
+     "gain": 0.1687,
+     "gain_weakest3": 0.1759,
+     "gain_all": 0.1186
+    }
+   },
+   "paired_vs_elo": {
+    "rules": {
+     "gain": {
+      "mean": -0.0284,
+      "ci95": [
+       -0.0341,
+       -0.0224
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0294,
+      "ci95": [
+       -0.0376,
+       -0.0206
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0188,
+      "ci95": [
+       -0.0203,
+       -0.0172
+      ],
+      "better": false
+     }
+    },
+    "gain": {
+     "gain": {
+      "mean": 0.0111,
+      "ci95": [
+       0.005,
+       0.0167
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0062,
+      "ci95": [
+       -0.0016,
+       0.0144
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": 0.0134,
+      "ci95": [
+       0.0122,
+       0.0147
+      ],
+      "better": true
+     }
+    },
+    "bandit": {
+     "gain": {
+      "mean": -0.0272,
+      "ci95": [
+       -0.0318,
+       -0.0223
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0302,
+      "ci95": [
+       -0.0365,
+       -0.0233
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0076,
+      "ci95": [
+       -0.0089,
+       -0.0061
+      ],
+      "better": false
+     }
+    },
+    "random": {
+     "gain": {
+      "mean": -0.0252,
+      "ci95": [
+       -0.0298,
+       -0.0204
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0292,
+      "ci95": [
+       -0.0356,
+       -0.0224
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0076,
+      "ci95": [
+       -0.0091,
+       -0.0061
+      ],
+      "better": false
+     }
+    },
+    "oracle": {
+     "gain": {
+      "mean": 0.0326,
+      "ci95": [
+       0.0287,
+       0.0367
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0341,
+      "ci95": [
+       0.0287,
+       0.0397
+      ],
+      "better": true
+     },
+     "gain_all": {
+      "mean": 0.02,
+      "ci95": [
+       0.0189,
+       0.0212
+      ],
+      "better": true
+     }
+    }
+   },
+   "oracle_headroom_over_elo": 0.0326
+  },
+  "strong": {
+   "means": {
+    "elo": {
+     "gain": 0.0843,
+     "gain_weakest3": 0.0902,
+     "gain_all": 0.0448
+    },
+    "rules": {
+     "gain": 0.0795,
+     "gain_weakest3": 0.086,
+     "gain_all": 0.0409
+    },
+    "gain": {
+     "gain": 0.094,
+     "gain_weakest3": 0.0995,
+     "gain_all": 0.0504
+    },
+    "bandit": {
+     "gain": 0.0597,
+     "gain_weakest3": 0.0617,
+     "gain_all": 0.037
+    },
+    "random": {
+     "gain": 0.0635,
+     "gain_weakest3": 0.0661,
+     "gain_all": 0.0382
+    },
+    "oracle": {
+     "gain": 0.1109,
+     "gain_weakest3": 0.1227,
+     "gain_all": 0.0523
+    }
+   },
+   "paired_vs_elo": {
+    "rules": {
+     "gain": {
+      "mean": -0.0048,
+      "ci95": [
+       -0.0072,
+       -0.0021
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0042,
+      "ci95": [
+       -0.0079,
+       -0.0004
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0038,
+      "ci95": [
+       -0.0045,
+       -0.0032
+      ],
+      "better": false
+     }
+    },
+    "gain": {
+     "gain": {
+      "mean": 0.0097,
+      "ci95": [
+       0.0073,
+       0.0123
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0093,
+      "ci95": [
+       0.0058,
+       0.013
+      ],
+      "better": true
+     },
+     "gain_all": {
+      "mean": 0.0056,
+      "ci95": [
+       0.0052,
+       0.0061
+      ],
+      "better": true
+     }
+    },
+    "bandit": {
+     "gain": {
+      "mean": -0.0246,
+      "ci95": [
+       -0.0272,
+       -0.022
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0285,
+      "ci95": [
+       -0.0319,
+       -0.0251
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0078,
+      "ci95": [
+       -0.0085,
+       -0.0071
+      ],
+      "better": false
+     }
+    },
+    "random": {
+     "gain": {
+      "mean": -0.0208,
+      "ci95": [
+       -0.0232,
+       -0.0184
+      ],
+      "better": false
+     },
+     "gain_weakest3": {
+      "mean": -0.0241,
+      "ci95": [
+       -0.0275,
+       -0.0205
+      ],
+      "better": false
+     },
+     "gain_all": {
+      "mean": -0.0066,
+      "ci95": [
+       -0.0072,
+       -0.0059
+      ],
+      "better": false
+     }
+    },
+    "oracle": {
+     "gain": {
+      "mean": 0.0266,
+      "ci95": [
+       0.0247,
+       0.0287
+      ],
+      "better": true
+     },
+     "gain_weakest3": {
+      "mean": 0.0325,
+      "ci95": [
+       0.0299,
+       0.0354
+      ],
+      "better": true
+     },
+     "gain_all": {
+      "mean": 0.0075,
+      "ci95": [
+       0.0071,
+       0.008
+      ],
+      "better": true
+     }
+    }
+   },
+   "oracle_headroom_over_elo": 0.0266
+  }
+ },
+ "pooled": {
+  "rules": {
+   "gain": -0.013,
+   "gain_weakest3": -0.0154,
+   "gain_all": -0.0087
+  },
+  "gain": {
+   "gain": 0.0104,
+   "gain_weakest3": 0.0083,
+   "gain_all": 0.0088
+  },
+  "bandit": {
+   "gain": -0.0383,
+   "gain_weakest3": -0.0522,
+   "gain_all": -0.0094
+  },
+  "random": {
+   "gain": -0.0333,
+   "gain_weakest3": -0.0458,
+   "gain_all": -0.0083
+  },
+  "oracle": {
+   "gain": 0.0375,
+   "gain_weakest3": 0.0493,
+   "gain_all": 0.0129
+  }
+ },
+ "better_than_elo_in_every_family": {
+  "rules": false,
+  "gain": true,
+  "bandit": false,
+  "random": false,
+  "oracle": true
+ }
+}

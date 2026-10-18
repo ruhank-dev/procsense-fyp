@@ -1,0 +1,23 @@
+{
+ "measured_on": "18 October 2026, 14:26 UTC",
+ "ollama": "0.40.5",
+ "machine": "desktop, GTX 1660 SUPER 6 GB",
+ "4b": {
+  "model": "qwen3.5:4b-q4_K_M",
+  "disk_gb": 3.32,
+  "loaded_gb": 3.14,
+  "gpu_share": "100 percent",
+  "load_s": 8.3,
+  "tokens_per_s": 47.3,
+  "call_s": 1.02
+ },
+ "9b": {
+  "model": "qwen3.5:9b-q4_K_M",
+  "disk_gb": 6.55,
+  "loaded_gb": 6.26,
+  "gpu_share": "57 percent",
+  "load_s": 17.4,
+  "tokens_per_s": 9.2,
+  "call_s": 3.84
+ }
+}

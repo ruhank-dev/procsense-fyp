@@ -55,7 +55,7 @@ class Gate(unittest.TestCase):
 
     def test_a_feature_is_on_only_when_every_suite_passed(self):
         for name, f in self.FEATURES.items():
-            self.assertEqual(f["enabled"], all(s["status"] == "PASS" for s in f["suites"]) and bool(f["suites"]), name)
+            self.assertEqual(f["enabled"], all(s["status"] == "PASS" for s in f["suites"]) and bool(f["suites"]) and not f.get("informational"), name)      # an informational feature is recorded and never switched on
 
     def test_the_classifier_features_are_off_and_synthetic_evidence_cannot_switch_anything_on(self):
         for name, f in self.FEATURES.items():

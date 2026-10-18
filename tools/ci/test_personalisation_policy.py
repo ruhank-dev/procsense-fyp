@@ -142,7 +142,7 @@ class Interpreter(unittest.TestCase):
 
         def handler(request):
             if request.url.path == "/api/tags":
-                return httpx.Response(200, json={"models": [{"name": "qwen3.5:9b-q4_K_M", "digest": "d9"}]})
+                return httpx.Response(200, json={"models": [{"name": "qwen3.5:4b-q4_K_M", "digest": "d9"}]})
             return httpx.Response(200, json={"message": {"content": json.dumps(answer)}})
         return C.OllamaClient(transport=httpx.MockTransport(handler))
 
@@ -152,7 +152,7 @@ class Interpreter(unittest.TestCase):
     def test_a_grounded_hypothesis_is_kept_as_a_hypothesis(self):
         from personalisation import interpreter as I
         ok = {"hypotheses": [{"competencies": ["b03", "b05"], "evidence": ["e-b03", "e-b05"], "confidence": "medium", "text": "Both may depend on asking the patient enough questions."}]}
-        hyps = I.Interpreter(self.host(ok), model="qwen3.5:9b-q4_K_M").propose(self.model(), {"b03": "Clarifies unclear information"})
+        hyps = I.Interpreter(self.host(ok), model="qwen3.5:4b-q4_K_M").propose(self.model(), {"b03": "Clarifies unclear information"})
         self.assertEqual(len(hyps), 1)
         self.assertEqual((hyps[0].status, hyps[0].competencies), ("open", ["b03", "b05"]))
 
@@ -207,7 +207,60 @@ class Experiment(unittest.TestCase):
         won = [k for k, v in rec["paired"].items() if v["better"]]
         adopted = json.loads((ROOT / "content" / "generation" / "policy.json").read_text(encoding="utf-8"))
         self.assertEqual(adopted["bandit"]["adopted"], "bandit_minus_rules" in won)
-        self.assertIn(adopted["default"], ("rules", "elo"))
+        self.assertEqual(adopted["rules"]["adopted"], "rules_minus_elo" in won)
+        self.assertIn(adopted["default"], ("gain", "elo"))
+        self.assertEqual(adopted["fallback"], "elo")
+
+    def test_gain_is_the_default_only_because_the_study_says_it_beat_elo_in_every_family(self):
+        study = json.loads((ROOT / "docs" / "research" / "personalisation_study.json").read_text(encoding="utf-8"))
+        adopted = json.loads((ROOT / "content" / "generation" / "policy.json").read_text(encoding="utf-8"))
+        beat_everywhere = all(study["families"][f]["paired_vs_elo"]["gain"]["gain"]["better"] for f in study["scenarios"])
+        self.assertEqual(study["better_than_elo_in_every_family"]["gain"], beat_everywhere)
+        self.assertEqual(adopted["gain"]["adopted"], beat_everywhere)
+        self.assertEqual(adopted["default"] == "gain", beat_everywhere)
+
+    def test_the_study_is_fair_it_has_a_random_floor_and_an_oracle_ceiling_and_nothing_beats_the_oracle(self):
+        study = json.loads((ROOT / "docs" / "research" / "personalisation_study.json").read_text(encoding="utf-8"))
+        self.assertGreaterEqual(len(study["scenarios"]), 4)
+        for fam in study["scenarios"]:
+            means = study["families"][fam]["means"]
+            self.assertGreater(means["oracle"]["gain"], means["random"]["gain"], fam)
+            self.assertTrue(all(means[n]["gain"] <= means["oracle"]["gain"] + 1e-9 for n in means), fam)
+
+    def test_the_gain_policy_is_deterministic_and_the_study_is_reproducible(self):
+        a = experiment.study(learners=6, sessions=6, seeds=(1,))
+        b = experiment.study(learners=6, sessions=6, seeds=(1,))
+        self.assertEqual(a, b)
+
+
+class GainTargeting(unittest.TestCase):
+    def test_the_dimension_with_the_most_room_is_chosen_and_one_very_weak_behaviour_is_not_diluted(self):
+        small = next(d for d in TABLES.dimensions if len(d.weak_behaviours) == 1)
+        big = next(d for d in TABLES.dimensions if len(d.weak_behaviours) >= 4)
+        rows = [(b, 5, 0) for d in TABLES.dimensions if d is not big for b in d.weak_behaviours] + [(b, 3, 2) for b in big.weak_behaviours]
+        m = trained(rows)
+        c = P.GainPolicy(TABLES).choose(m, [])
+        self.assertEqual(c.dimension, big.id)
+        self.assertEqual(c.policy, "gain")
+        m2 = trained([(b, 5, 0) for d in TABLES.dimensions if d is not small for b in d.weak_behaviours] + [(small.weak_behaviours[0], 0, 5)])
+        self.assertEqual(P.GainPolicy(TABLES).choose(m2, []).dimension, small.id)
+
+    def test_derive_uses_the_learner_model_under_gain_and_elo_otherwise_and_falls_back_on_thin_history(self):
+        import random
+        rng = random.Random(3)
+        bs = sorted(b for d in TABLES.dimensions for b in d.weak_behaviours)
+        hist = [ob.SessionRecord("X", "P0", {b: (rng.randint(1, 5), rng.randint(0, 3)) for b in rng.sample(bs, 8)}) for _ in range(5)]
+        req = {"request_id": "0123456789abcdef", "scenario": "S1", "level": "advanced", "seed": 5}
+        gain, elo = ob.derive(req, hist, TABLES, None, policy="gain"), ob.derive(req, hist, TABLES, None, policy="elo")
+        self.assertEqual((gain["basis"], elo["basis"]), ("learner_model", "ratings"))
+        self.assertEqual(ob.derive(req, hist, TABLES, None, policy="gain"), gain)                          # deterministic
+        thin = ob.derive(req, hist[:1], TABLES, None, policy="gain")
+        self.assertEqual(thin["basis"], "default_objectives")                                                 # below min_sessions the standard objectives, as before
+        focus = ob.derive({**req, "focus": [bs[0]]}, hist, TABLES, None, policy="gain")
+        self.assertEqual(focus["basis"], "focus_requested")                                                   # a requested focus is never overridden
+
+    def test_an_unreadable_policy_file_means_elo(self):
+        self.assertEqual(ob.targeting_policy(ROOT / "no" / "such" / "file.json"), "elo")
 
 
 if __name__ == "__main__":

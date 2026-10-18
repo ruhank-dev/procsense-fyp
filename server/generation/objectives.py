@@ -94,8 +94,36 @@ class Ratings:
         return sorted(self.rated, key=lambda b: (self.of(b), b))[:n]
 
 
-def derive(request: dict, history: list[SessionRecord], tables: Tables, recent_fingerprints: list[str] | None = None) -> dict:
-    """Objectives v1 for an accepted request (one that has a seed and a request id) and the trainee's finished sessions in order."""
+POLICY = ROOT / "content" / "generation" / "policy.json"
+
+
+def targeting_policy(path: Path = POLICY) -> str:
+    """The policy that picks the behaviours to exercise: "gain" (learner model, expected gain) or "elo" (the engine's ratings, the baseline and the fallback). Read from content/generation/policy.json, where a
+    person sets it from the recorded study (docs/research/personalisation_study.json); anything unreadable means "elo"."""
+    try:
+        return "gain" if json.loads(path.read_text(encoding="utf-8")).get("default") == "gain" else "elo"
+    except (OSError, ValueError):
+        return "elo"
+
+
+def learner_model_targets(history: list[SessionRecord], tables: Tables, n: int = TOP) -> list[str]:
+    """The behaviours the expected-gain policy (personalisation/policy.py GainPolicy) would exercise next, or [] when it cannot say (the Elo selection then decides). Practice only; deterministic for the same history."""
+    try:
+        try:
+            from personalisation import learner_model as LM, policy as P
+        except ImportError:
+            from server.personalisation import learner_model as LM, policy as P
+        model = LM.LearnerModel()
+        for s in history:
+            model.update({"competencies": [{"behaviour": b, "credits": c, "penalties": p} for b, (c, p) in sorted(s.behaviours.items()) if c + p > 0], "errors": []})
+        choice = P.GainPolicy(tables).choose(model, [])
+        return [b for b in choice.behaviours if tables.for_behaviour(b)][:n]
+    except Exception:                                                # the fallback is the Elo selection; a failure here must never stop a request
+        return []
+
+
+def derive(request: dict, history: list[SessionRecord], tables: Tables, recent_fingerprints: list[str] | None = None, policy: str | None = None) -> dict:
+    """Objectives v1 for an accepted request (one that has a seed and a request id) and the trainee's finished sessions in order. `policy` overrides content/generation/policy.json ("elo" or "gain")."""
     ratings = Ratings.from_history(history, tables)
     focus = [f for f in request.get("focus", [])]
     recent_spines = [s.case for s in history[-3:]]
@@ -106,6 +134,9 @@ def derive(request: dict, history: list[SessionRecord], tables: Tables, recent_f
         basis, behaviours = "default_objectives", []
     else:
         basis, behaviours = "ratings", ratings.weakest()
+        targeted = learner_model_targets(history, tables) if (policy or targeting_policy()) == "gain" else []
+        if targeted:
+            basis, behaviours = "learner_model", targeted
     competencies = [{"behaviour": b, "rating": round(ratings.of(b), 3), "times_rated": ratings.rated.get(b, 0)} for b in behaviours][:TOP]
     dims: list[str] = []
     for b in behaviours:

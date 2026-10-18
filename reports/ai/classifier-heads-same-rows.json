@@ -1,0 +1,50 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "rows": {
+  "v3_test_sample": 100,
+  "adversarial_holdout3": 48
+ },
+ "embedding_head": {
+  "v3_test_sample": {
+   "accuracy": 0.93,
+   "macro_f1": 0.928,
+   "critical_rows_named_ordinary": 0,
+   "critical_rows_credited": 0
+  },
+  "adversarial_holdout3": {
+   "accuracy": 0.667,
+   "macro_f1": 0.731,
+   "critical_rows_named_ordinary": 12,
+   "critical_rows_credited": 0
+  }
+ },
+ "tfidf_head": {
+  "v3_test_sample": {
+   "accuracy": 0.89,
+   "macro_f1": 0.882,
+   "critical_rows_named_ordinary": 0,
+   "critical_rows_credited": 0
+  },
+  "adversarial_holdout3": {
+   "accuracy": 0.812,
+   "macro_f1": 0.834,
+   "critical_rows_named_ordinary": 5,
+   "critical_rows_credited": 0
+  }
+ },
+ "ensemble_gate": {
+  "v3_test_sample": {
+   "accuracy": 0.93,
+   "macro_f1": 0.928,
+   "critical_rows_named_ordinary": 0,
+   "critical_rows_credited": 0
+  },
+  "adversarial_holdout3": {
+   "accuracy": 0.667,
+   "macro_f1": 0.731,
+   "critical_rows_named_ordinary": 12,
+   "critical_rows_credited": 0
+  }
+ }
+}

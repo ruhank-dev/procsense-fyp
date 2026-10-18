@@ -8,7 +8,7 @@ Everything a caller needs to trust or distrust the answer is in the reply: wheth
 answers with something that is not the JSON asked for gives `ok = False` and an `error` code; the caller then uses its fallback (a template, a pooled package, a pre-rendered line). No exception leaves this
 module for an ordinary model failure. The client keeps no prompts and decides nothing: prompts live in prompts/ (prompts.py), validation in the callers.
 
-Options follow ADR-0010: the 4B model for live work with thinking off, the 9B model for offline batch work; context 4096 unless a caller asks for more; sampling settings are the model card's non-thinking set.
+Options follow ADR-0010: the 4B model for live work and, since ADR-0017, for the offline batch prompts too, thinking off; context 4096 unless a caller asks for more; sampling settings are the model card's non-thinking set.
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ import httpx
 
 DEFAULT_URL = "http://127.0.0.1:11434"
 LIVE_MODEL = "qwen3.5:4b-q4_K_M"
-BATCH_MODEL = "qwen3.5:9b-q4_K_M"
+BATCH_MODEL = "qwen3.5:4b-q4_K_M"                # ADR-0017: the offline "batch" prompts run on the 4B model too (measured equal or better, a sixth of the time); the 9B is an optional evaluation cross-check
 SAMPLING = {"temperature": 0.7, "top_p": 0.8, "top_k": 20}
 ERRORS = ("UNREACHABLE", "TIMEOUT", "HTTP_ERROR", "NOT_JSON", "EMPTY", "MODEL_MISSING")
 

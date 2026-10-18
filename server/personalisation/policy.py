@@ -75,6 +75,25 @@ class RulePolicy:
         return Choice(best, (weak or by_need)[:3], why, 1.0, "rules")
 
 
+class GainPolicy:
+    """Expected-gain targeting (investigation of 18 October 2026, third session): the dimension whose behaviours have the most room to improve, counting the SUM of the squared shortfall of what it trains
+    (a behaviour at 0.3 counts nearly four times a behaviour at 0.7, and a dimension that trains many behaviours counts all of them), not the mean as RulePolicy does. A behaviour with no evidence counts at the prior
+    (shortfall one half). There is no spacing rule: practising raises the mean, so the sum falls and another dimension takes over. Deterministic and explainable like the rules."""
+
+    def __init__(self, tables):
+        self.tables = tables
+
+    def scores(self, model) -> dict[str, float]:
+        return {d.id: sum((1.0 - model.mastery(b).mean) ** 2 for b in d.weak_behaviours) for d in self.tables.dimensions}
+
+    def choose(self, model, recent: list[str]) -> Choice:
+        scores = self.scores(model)
+        best = sorted((-v, k) for k, v in scores.items())[0][1]
+        d = next(x for x in self.tables.dimensions if x.id == best)
+        by_need = sorted(d.weak_behaviours, key=lambda b: (model.mastery(b).mean, b))
+        return Choice(best, by_need[:3], f"the most room to improve: {by_need[0]} at {model.mastery(by_need[0]).mean:.2f} (score {scores[best]:.2f})", 1.0, "gain")
+
+
 class BanditPolicy:
     def __init__(self, tables, seed: int = 0, explore: float = EXPLORE_FLOOR, max_share: float = MAX_SHARE):
         self.tables = tables

@@ -13,6 +13,7 @@ unless these three give insufficient results and the extra cost is justified.
 | Benchmark script, leakage checks, freeze step, tests | Done: `tools/bench/` |
 | Embedding model | `all-minilm:22m` verified and pulled (below) |
 | **Independent dev and test text and labels** | **BLOCKED on people** (below). Nothing has been written, labelled or generated to stand in for them. |
+| Credit-path safety (3 of 48 evasive critical sentences were credited under ordinary acts) | **Fixed on synthetic sets, 18 Oct 2026 (third session):** two-head ensemble gate, hard negatives, assertion check, frozen challenge set v4 scored once, permanent regression suite in CI: [safety_gate.md](safety_gate.md), ADR-0016. The classifier stays OFF. |
 | Winner chosen | **No.** Results so far are smoke tests on the old synthetic set and say nothing about real trainees: [smoke_results.md](smoke_results.md). |
 
 ## What the old data can and cannot show

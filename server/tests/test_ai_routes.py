@@ -115,11 +115,11 @@ def test_the_embedding_backend_credits_an_ordinary_act_and_never_a_critical_one_
     assert (r.json()["credited"], r.json()["source"], r.json()["error"]) == (False, "unavailable", "EMBEDDING_UNAVAILABLE")
 
 
-def test_the_default_classifier_is_the_embedding_head_and_a_missing_head_credits_nothing(monkeypatch, tmp_path):
-    from server.classify import embedding
+def test_the_default_classifier_is_the_two_head_ensemble_and_a_missing_head_credits_nothing(monkeypatch, tmp_path):
+    from server.classify import ensemble
     config.get_settings.cache_clear()
     classify_router.get_classifier.cache_clear()
-    assert isinstance(classify_router.get_classifier(), embedding.EmbeddingActClassifier)
+    assert isinstance(classify_router.get_classifier(), ensemble.EnsembleActClassifier)
     classify_router.get_classifier.cache_clear()
     monkeypatch.setattr(classify_router, "load_head", lambda: (_ for _ in ()).throw(FileNotFoundError("no head")))
     r = classify_router.get_classifier().classify("What about your last meal?")

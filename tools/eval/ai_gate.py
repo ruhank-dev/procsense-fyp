@@ -47,7 +47,8 @@ def build(results_dir: Path = RESULTS) -> dict:
         suites = [evaluate(s, results_dir) for s in feat["suites"]]
         statuses = {s["status"] for s in suites}
         status = "PASS" if statuses == {"PASS"} else "FAIL" if "FAIL" in statuses else "SKIPPED"
-        out["features"][name] = {"label": feat["label"], "status": status, "enabled": status == "PASS", "suites": suites}
+        informational = bool(feat.get("informational"))             # recorded for information: it can pass or fail, but it never switches anything on
+        out["features"][name] = {"label": feat["label"], "status": status, "enabled": status == "PASS" and not informational, **({"informational": True} if informational else {}), "suites": suites}
     return out
 
 

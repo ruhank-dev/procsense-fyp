@@ -27,9 +27,11 @@ def rates(per: dict, key_n: str = "n") -> dict:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="qwen3.5:9b-q4_K_M")
+    ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--clean-limit", type=int, default=0, help="score only the first N clean cases for false alarms (default: all, or half of them with --limit); used to compare two models on the same cases")
     ap.add_argument("--timeout", type=float, default=300.0)
+    ap.add_argument("--out", default="", help="write the result here instead of artifacts/ai-bench/critic-eval[-v2].json")
     ap.add_argument("--set", choices=["v1", "v2"], default="v1", help="v1: the first seeded set; v2: the held-out set worded differently (DT-217), scored once per critic version")
     a = ap.parse_args()
     import inconsistency_set as I
@@ -79,7 +81,7 @@ if __name__ == "__main__":
             k["union_before_rules"] += base_old or hit
         if n % 10 == 0:
             print(f"  {n}/{len(members)} members, {round(time.monotonic() - started)} s", flush=True)
-    clean = data["clean"][: max(10, len(data["clean"]) // 2)] if a.limit else data["clean"]
+    clean = data["clean"][: a.clean_limit] if a.clean_limit else (data["clean"][: max(10, len(data["clean"]) // 2)] if a.limit else data["clean"])
     alarms = {"raw": 0, "verified": 0}
     baseline_alarms = 0
     for cid in clean:
@@ -93,7 +95,7 @@ if __name__ == "__main__":
            "note_rules": "baseline is the rule-based checks INCLUDING the side-of-body and denied-pain rules added in server/generation/consistency.py (they were written after the first critic run showed the model missed those two kinds); baseline_before_rules is the baseline the critic was first measured against. The plan's +20 points was set against the earlier baseline.",
            "note": "recall and critic_false_alarm_rate are those of the verified critic, the one the pipeline runs; raw is the first pass alone",
            "seconds": round(time.monotonic() - started)}
-    path = ROOT / "artifacts" / "ai-bench" / ("critic-eval.json" if a.set == "v1" else "critic-eval-v2.json")
+    path = Path(a.out) if a.out else ROOT / "artifacts" / "ai-bench" / ("critic-eval.json" if a.set == "v1" else "critic-eval-v2.json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k not in ("by_kind",)}, indent=1))

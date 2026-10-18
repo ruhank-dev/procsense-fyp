@@ -64,10 +64,61 @@
     }
    ]
   },
+  "classifier_safety": {
+   "label": "Safety of the credit path of the communication classifier (two-head ensemble gate, hard negatives, assertion check) on SYNTHETIC sets (model-written, AI-judged, NOT independent; recorded for information, switches nothing on: the `classifier` feature still needs the independent set)",
+   "status": "PASS",
+   "enabled": false,
+   "informational": true,
+   "suites": [
+    {
+     "id": "classifier_safety.no_false_credit_challenge_v4",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_adversarial_set_4",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_v2_test",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_v3_holdout",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v4",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_safety.credited_precision_challenge_v4",
+     "status": "PASS",
+     "got": 0.962,
+     "needs": ">= 0.9"
+    },
+    {
+     "id": "classifier_safety.credited_precision_v3_holdout",
+     "status": "PASS",
+     "got": 0.987,
+     "needs": ">= 0.9"
+    }
+   ]
+  },
   "classifier_synthetic": {
    "label": "Communication act classifier on SYNTHETIC styles (model-written and model-labelled, NOT independent; recorded for information, switches nothing on)",
    "status": "FAIL",
    "enabled": false,
+   "informational": true,
    "suites": [
     {
      "id": "classifier_synthetic.macro_f1",
@@ -99,6 +150,7 @@
    "label": "Communication act classifier on the AI-JUDGED synthetic sets v2 and v3 (model-written, labelled by two configurations of one local AI judge, NOT independent; recorded for information, switches nothing on)",
    "status": "FAIL",
    "enabled": false,
+   "informational": true,
    "suites": [
     {
      "id": "classifier_synthetic2.macro_f1",
@@ -272,6 +324,49 @@
      "status": "PASS",
      "got": 0.803,
      "needs": ">= 0.6"
+    }
+   ]
+  },
+  "order_fallback": {
+   "label": "Language-model fallback of the spoken-order grammar (a suggestion that is read back; nothing is released without a yes). SYNTHETIC paraphrases by one author, NOT independent",
+   "status": "FAIL",
+   "enabled": false,
+   "suites": [
+    {
+     "id": "order_fallback.no_release_without_confirmation",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "order_fallback.accuracy",
+     "status": "FAIL",
+     "got": 0.705,
+     "needs": ">= 0.95"
+    },
+    {
+     "id": "order_fallback.gain_over_grammar",
+     "status": "PASS",
+     "got": 0.705,
+     "needs": ">= 0.166"
+    },
+    {
+     "id": "order_fallback.wrong_item_offered",
+     "status": "FAIL",
+     "got": 0.148,
+     "needs": "<= 0.05"
+    },
+    {
+     "id": "order_fallback.non_orders_not_offered",
+     "status": "PASS",
+     "got": 0.0,
+     "needs": "<= 0.1"
+    },
+    {
+     "id": "order_fallback.latency_p95_ms",
+     "status": "FAIL",
+     "got": 12210,
+     "needs": "<= 3000.0"
     }
    ]
   },

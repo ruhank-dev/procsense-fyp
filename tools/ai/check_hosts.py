@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "server"))
-WANTED = {"qwen3.5:4b-q4_K_M": "live", "qwen3.5:9b-q4_K_M": "batch", "all-minilm:22m": "embeddings (the communication classifier)"}
+WANTED = {"qwen3.5:4b-q4_K_M": "live and offline batch (ADR-0017; the 9B is an optional evaluation cross-check and is not required)", "all-minilm:22m": "embeddings (the communication classifier)"}
 REGISTER = ROOT / "docs" / "research" / "licence_provenance_register.md"
 PIPER = ROOT / "build" / "voice-tools"
 PROBE_SCHEMA = {"type": "object", "required": ["ok"], "additionalProperties": False, "properties": {"ok": {"type": "boolean"}}}

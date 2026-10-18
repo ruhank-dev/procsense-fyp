@@ -1,0 +1,99 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "rows": 71,
+ "grammar_only": {
+  "orders": 61,
+  "correct": 0.066,
+  "wrong": 0.0,
+  "menu": 0.934,
+  "non_orders": 10,
+  "false_offer": 0.0,
+  "released_without_confirmation": 0,
+  "latency_ms_p50": 112,
+  "latency_ms_p95": 254,
+  "by_kind": {
+   "home_medicine": "0/5",
+   "medicine": "0/16",
+   "place": "0/7",
+   "staff": "4/7",
+   "test": "0/26"
+  },
+  "wrong_examples": []
+ },
+ "with_fallback": {
+  "orders": 61,
+  "correct": 0.705,
+  "wrong": 0.148,
+  "menu": 0.148,
+  "non_orders": 10,
+  "false_offer": 0.0,
+  "released_without_confirmation": 0,
+  "latency_ms_p50": 6054,
+  "latency_ms_p95": 12210,
+  "by_kind": {
+   "home_medicine": "4/5",
+   "medicine": "12/16",
+   "place": "6/7",
+   "staff": "5/7",
+   "test": "16/26"
+  },
+  "wrong_examples": [
+   {
+    "said": "is there any sign of inflammation in her blood",
+    "wanted": "crp",
+    "heard": "fbc",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "make sure blood is ready in case we need to transfuse",
+    "wanted": "group_and_save",
+    "heard": "TR-IV-FLUIDS",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "what is his sugar right now",
+    "wanted": "glucose_fingerprick",
+    "heard": "glucose",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "the magnet scan please",
+    "wanted": "mri",
+    "heard": "mri",
+    "intent": "REQUEST_TRANSPORT"
+   },
+   {
+    "said": "something for the sickness",
+    "wanted": "TR-ANTIEMETIC",
+    "heard": "TR-IV-FLUIDS",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "an antibiotic to cover the operation",
+    "wanted": "TR-ABX-PROPHYLAXIS",
+    "heard": "TR-ABX-S2",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "something sugary for him to drink",
+    "wanted": "TR-FAST-SUGAR",
+    "heard": "TR-IV-GLUCOSE",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "she should not take her warfarin tomorrow",
+    "wanted": "anticoagulant",
+    "heard": "warfarin",
+    "intent": "HOLD_MED"
+   }
+  ]
+ },
+ "limit": "61 paraphrases and 10 non-orders written by one author; real trainees and recogniser errors are not modelled (DC-08 on the Quest)",
+ "regression": {
+  "changed_where_the_grammar_already_answered": 0,
+  "unchanged": 265
+ },
+ "gain_points": 63.9
+}

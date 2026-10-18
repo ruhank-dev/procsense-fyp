@@ -1,0 +1,115 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "spine_prompt_version": null,
+  "shortlist": 5,
+  "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+  "requests": 20,
+  "arms": {
+    "solver": {
+      "served": 20,
+      "passed_gate": 20,
+      "coverage_mean": 0.746,
+      "difficulty_mean": 0.957,
+      "distinct_block_sets": 20,
+      "distinct_stories": 11,
+      "seconds_p50": 0.2,
+      "seconds_max": 0.4,
+      "model_plans_used": 0,
+      "rounds_mean": null
+    },
+    "planner": {
+      "served": 20,
+      "passed_gate": 20,
+      "coverage_mean": 0.895,
+      "difficulty_mean": 0.957,
+      "distinct_block_sets": 20,
+      "distinct_stories": 7,
+      "seconds_p50": 11.9,
+      "seconds_max": 47.9,
+      "model_plans_used": 17,
+      "rounds_mean": 1.06
+    }
+  },
+  "sample_reasons": [
+    {
+      "request": 1,
+      "spine": "VAR-S2-PD",
+      "reasons": {
+        "spine": "VAR-S2-PD is the first case in the list and its objectives of managing sepsis, antibiotics/fluids, and source control best match the target difficulty rating.",
+        "blocks": "The patient is a 34-year-old warehouse supervisor named Danish Baig who recently drank alcohol and has no previous anaesthetic history."
+      }
+    },
+    {
+      "request": 2,
+      "spine": "VAR-S1-J",
+      "reasons": {
+        "spine": "This case addresses the objective of clarifying conflicting information regarding a haemolysed sample causing false potassium elevation in a well patient.",
+        "blocks": "This patient is a Mr Bilal Khan, an electrician who had cataract surgery with local anaesthetic years ago and has a history of penicillin anaphylaxis."
+      }
+    },
+    {
+      "request": 3,
+      "spine": "VAR-S2-PD",
+      "reasons": {
+        "spine": "This case best matches the target difficulty of 999 by incorporating complex history and a high cognitive workload through rapidly changing NEWS2 scores.",
+        "blocks": "This patient is a 34-year-old Mr Danish Qureshi, a warehouse supervisor who has never smoked or drank alcohol and has no prior anaesthetic problems."
+      }
+    },
+    {
+      "request": 4,
+      "spine": "STK-S1-D",
+      "reasons": {
+        "spine": "This case best matches the target difficulty of 1001 by combining high-risk sepsis with an obstructed bile duct, effectively addressing all three required dimensions: unexpected events (acute cholangitis), competing priorities (sepsis vs. b",
+        "blocks": "Mrs Mehwish Qureshi, a retired shopkeeper who stopped smoking years ago but had an occasional drink last night, has had no previous anaesthetics except for tonsil removal at age seven."
+      }
+    },
+    {
+      "request": 5,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case matches the target difficulty and objectives by combining complex history (penicillin anaphylaxis) with communication challenges regarding allergy-safe antibiotics.",
+        "blocks": "The patient is a 34-year-old male software tester with a history of occasional alcohol consumption and previous cataract surgery under local anaesthetic."
+      }
+    },
+    {
+      "request": 7,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case is the first in the list, making it the best fit for the complex history, cognitive workload, and communication challenges objectives compared to the subsequent options.",
+        "blocks": "Usman Sheikh, a 38-year-old warehouse supervisor with an occasional drinking habit and no previous anaesthetic problems."
+      }
+    },
+    {
+      "request": 8,
+      "spine": "VAR-S1-PB",
+      "reasons": {
+        "spine": "This case fits the objectives best as it combines complex handover with environmental interruptions regarding an unexpected diagnosis.",
+        "blocks": "Farzana Baig is a retired shopkeeper who had a caesarean section years ago, drinks occasionally, and has a history of penicillin anaphylaxis."
+      }
+    },
+    {
+      "request": 9,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case best matches the target difficulty of 1004 by combining communication challenges regarding a specific allergy history with more complex sepsis management.",
+        "blocks": "This patient is a 35-year-old male driver with a history of hernia repair, who presents as an occasional smoker."
+      }
+    },
+    {
+      "request": 10,
+      "spine": "STK-S1-D",
+      "reasons": {
+        "spine": "This case fits the objectives and target difficulty best as it addresses complex handover, communication challenges, and cognitive workload with a high-risk sepsis scenario.",
+        "blocks": "Mrs Mehwish Baig is a retired shopkeeper who had cataract surgery with local anaesthetic in the past and drinks occasionally."
+      }
+    },
+    {
+      "request": 11,
+      "spine": "STK-S2-B",
+      "reasons": {
+        "spine": "This case best exercises the objectives by combining urgent source control with a critical competing priority of managing penicillin anaphylaxis in a patient with sepsis.",
+        "blocks": "Ravi Sheikh is a 34-year-old software tester who is an ex-smoker with a history of cataract surgery and no prior anaesthetic problems."
+      }
+    }
+  ]
+}

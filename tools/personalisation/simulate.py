@@ -18,8 +18,18 @@ if __name__ == "__main__":
     ap.add_argument("--sessions", type=int, default=12)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--study", action="store_true", help="the fair multi-family comparison with a random floor and an oracle ceiling (docs/research/personalisation_study.json); --learners is per family and seed")
+    ap.add_argument("--seeds", type=int, default=3)
     a = ap.parse_args()
     from personalisation import experiment
+    if a.study:
+        result = experiment.study(a.learners, a.sessions, tuple(range(1, a.seeds + 1)))
+        print(json.dumps(result["pooled"], indent=1), result["better_than_elo_in_every_family"])
+        if a.write:
+            out = ROOT / "docs" / "research" / "personalisation_study.json"
+            out.write_text(json.dumps(result, indent=1) + "\n", encoding="utf-8", newline="\n")
+            print("wrote", out.relative_to(ROOT))
+        sys.exit(0)
     result = experiment.run(a.learners, a.sessions, a.seed)
     print(json.dumps(result, indent=2))
     if a.write:

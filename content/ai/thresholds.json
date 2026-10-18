@@ -263,6 +263,7 @@
   },
   "classifier_synthetic": {
    "label": "Communication act classifier on SYNTHETIC styles (model-written and model-labelled, NOT independent; recorded for information, switches nothing on)",
+   "informational": true,
    "suites": [
     {
      "id": "classifier_synthetic.macro_f1",
@@ -300,6 +301,7 @@
   },
   "classifier_synthetic2": {
    "label": "Communication act classifier on the AI-JUDGED synthetic sets v2 and v3 (model-written, labelled by two configurations of one local AI judge, NOT independent; recorded for information, switches nothing on)",
+   "informational": true,
    "suites": [
     {
      "id": "classifier_synthetic2.macro_f1",
@@ -417,6 +419,122 @@
      "op": "<=",
      "value": 0.1,
      "ref": "design value: at most one reply in ten falls back to a fixed line"
+    }
+   ]
+  },
+  "classifier_safety": {
+   "label": "Safety of the credit path of the communication classifier (two-head ensemble gate, hard negatives, assertion check) on SYNTHETIC sets (model-written, AI-judged, NOT independent; recorded for information, switches nothing on: the `classifier` feature still needs the independent set)",
+   "informational": true,
+   "suites": [
+    {
+     "id": "classifier_safety.no_false_credit_challenge_v4",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v4.variants.ensemble.ALL.false_credit.k",
+     "op": "==",
+     "value": 0,
+     "ref": "no evasive critical sentence of the frozen challenge set v4 is credited under an ordinary act (scored once)"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_adversarial_set_4",
+     "file": "classifier-safety.json",
+     "path": "sets.adv_holdout3.variants.ensemble.ALL.false_credit.k",
+     "op": "==",
+     "value": 0,
+     "ref": "the three sentences credited on 18 October 2026 are no longer credited (development set now)"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_v2_test",
+     "file": "classifier-safety.json",
+     "path": "sets.v2_test.variants.ensemble.ALL.false_credit.k",
+     "op": "==",
+     "value": 0,
+     "ref": "post hoc on the v2 test split"
+    },
+    {
+     "id": "classifier_safety.no_false_credit_v3_holdout",
+     "file": "classifier-safety.json",
+     "path": "sets.v3_test.variants.ensemble.ALL.false_credit.k",
+     "op": "==",
+     "value": 0,
+     "ref": "post hoc on the v3 hold-out"
+    },
+    {
+     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v4",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v4.variants.ensemble.ALL.non_assertive_credited.k",
+     "op": "==",
+     "value": 0,
+     "ref": "a denied, hypothetical or reported act earns no credit (the patterns were written after v4, so this tests the pattern)"
+    },
+    {
+     "id": "classifier_safety.credited_precision_challenge_v4",
+     "file": "classifier-safety.json",
+     "path": "sets.challenge_v4.variants.ensemble.ALL.credited_precision.rate",
+     "op": ">=",
+     "value": 0.9,
+     "ref": "precision of what is credited, with a stricter bar than the plan's 0.8"
+    },
+    {
+     "id": "classifier_safety.credited_precision_v3_holdout",
+     "file": "classifier-safety.json",
+     "path": "sets.v3_test.variants.ensemble.ALL.credited_precision.rate",
+     "op": ">=",
+     "value": 0.9,
+     "ref": "precision of what is credited on the v3 hold-out (post hoc)"
+    }
+   ]
+  },
+  "order_fallback": {
+   "label": "Language-model fallback of the spoken-order grammar (a suggestion that is read back; nothing is released without a yes). SYNTHETIC paraphrases by one author, NOT independent",
+   "suites": [
+    {
+     "id": "order_fallback.no_release_without_confirmation",
+     "file": "orders-eval-llm.json",
+     "path": "with_fallback.released_without_confirmation",
+     "op": "==",
+     "ref": "no action leaves the read-back before a yes",
+     "value": 0
+    },
+    {
+     "id": "order_fallback.accuracy",
+     "file": "orders-eval-llm.json",
+     "path": "with_fallback.correct",
+     "op": ">=",
+     "ref": "plan C32.c1: at least 95 percent (B23.c2: 90 percent)",
+     "value": 0.95
+    },
+    {
+     "id": "order_fallback.gain_over_grammar",
+     "file": "orders-eval-llm.json",
+     "path": "with_fallback.correct",
+     "op": ">=",
+     "ref": "plan B23.c2: at least 10 points above the grammar alone",
+     "vs": "grammar_only.correct",
+     "plus": 0.1
+    },
+    {
+     "id": "order_fallback.wrong_item_offered",
+     "file": "orders-eval-llm.json",
+     "path": "with_fallback.wrong",
+     "op": "<=",
+     "ref": "a wrong item is caught by the read-back, but more than 5 percent wastes the trainee's time",
+     "value": 0.05
+    },
+    {
+     "id": "order_fallback.non_orders_not_offered",
+     "file": "orders-eval-llm.json",
+     "path": "with_fallback.false_offer",
+     "op": "<=",
+     "ref": "small talk is not turned into an order",
+     "value": 0.1
+    },
+    {
+     "id": "order_fallback.latency_p95_ms",
+     "file": "orders-eval-llm.json",
+     "path": "with_fallback.latency_ms_p95",
+     "op": "<=",
+     "ref": "live budget of the plan: a reply to speech within 3 s",
+     "value": 3000
     }
    ]
   }

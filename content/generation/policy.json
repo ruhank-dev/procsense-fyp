@@ -1,7 +1,19 @@
 {
-  "note": "Which policy chooses the dimension of the next generated case (p1-personalisation-s03). Set from docs/research/personalisation_simulation.json by a person; a policy is adopted only if its paired interval against the one it would replace is above zero. tests/ci/test_personalisation_policy.py checks this file agrees with the recorded result.",
-  "default": "elo",
-  "rules": {"adopted": false, "why": "in the simulation of 200 learners over 12 sessions the learner-model rules did not beat the engine's Elo selection (paired difference -0.0085, 95 percent interval -0.0172 to -0.0003); they stay available for their explanations and their handling of uncertainty (a hypothesis is never acted on as a fact) and are not the default"},
-  "bandit": {"adopted": false, "why": "Thompson sampling was worse than the rules and than Elo in the same simulation (-0.0349 and -0.0433); it is not adopted and no real trainee is exposed to exploration"},
-  "evidence": "docs/research/personalisation_simulation.json"
+  "note": "Which policy chooses the behaviours and dimension of the next generated case (p1-personalisation-s03, s05; server/generation/objectives.py reads `default`). Set from docs/research/personalisation_study.json by a person; a policy is adopted only if its paired interval against Elo is above zero in EVERY fixed learner family of the study. The engine's Elo selection stays the baseline and the fallback: it decides whenever the learner-model policy cannot say (fewer than min_sessions sessions, a requested focus, an error) and when `default` is set back to \"elo\". tools/ci/test_personalisation_policy.py checks this file agrees with the recorded study.",
+  "default": "gain",
+  "rules": {
+    "adopted": false,
+    "why": "in the study the learner-model rules (mean shortfall of a dimension, which dilutes one very weak behaviour among several strong ones) did not beat the engine's Elo selection in any family and were worse in most (pooled -0.013); they stay available for their explanations and their handling of uncertainty (a hypothesis is never acted on as a fact) and are not the default"
+  },
+  "bandit": {
+    "adopted": false,
+    "why": "Thompson sampling was no better than choosing a dimension at random in the study (pooled -0.038 against Elo, random -0.033): 12 sessions over 8 arms are too few to learn from; it is not adopted and no real trainee is exposed to exploration"
+  },
+  "evidence": "docs/research/personalisation_study.json",
+  "fallback": "elo",
+  "gain": {
+    "adopted": true,
+    "why": "expected-gain targeting (the dimension with the largest summed squared shortfall of what it trains) beat Elo in all four fixed learner families of the study, 600 simulated learners each, on the five weakest behaviours: default +0.0118 (+0.0069 to +0.0166); few_deficits +0.0089 (+0.0058 to +0.0118); broad_weakness +0.0111 (+0.0050 to +0.0167); strong +0.0097 (+0.0073 to +0.0123). It captures between a fifth and a third of what an oracle that knows the true mastery could add over Elo (headroom 0.027 to 0.047 depending on the family). Simulation only: it assumes the learning law of server/personalisation/simulate.py and says nothing yet about real trainees (EX-05)."
+  },
+  "earlier_evidence": "docs/research/personalisation_simulation.json (the 18 October 2026 first comparison: rules -0.0085, bandit -0.0433 against Elo)"
 }

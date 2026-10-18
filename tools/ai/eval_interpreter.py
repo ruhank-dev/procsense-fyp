@@ -1,4 +1,4 @@
-"""Measures the performance interpreter against random picks (p1-personalisation-s04): `uv run --project tools tools/ai/eval_interpreter.py --model qwen3.5:9b-q4_K_M --learners 24`.
+"""Measures the performance interpreter against random picks (p1-personalisation-s04): `uv run --project tools tools/ai/eval_interpreter.py --model qwen3.5:4b-q4_K_M --learners 24`.
 
 Simulated learners have a hidden cause: one or two of the eight difficulty dimensions are weak, which makes every behaviour that dimension trains weak (the others are mostly fine). Each learner plays 5 sessions
 of random cases; the model then reads the profile and proposes hypotheses (production code: server/personalisation/interpreter.py). After 3 more sessions the tracker marks each hypothesis confirmed
@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / "server"))
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="qwen3.5:9b-q4_K_M")
+    ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--learners", type=int, default=24)
     ap.add_argument("--timeout", type=float, default=300.0)
     ap.add_argument("--version", type=int, default=None, help="prompt version of personalisation.interpret (default: the latest)")
