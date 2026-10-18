@@ -1,0 +1,121 @@
+{
+ "holdout2": {
+  "rows": 60,
+  "unavailable": 0,
+  "by_kind": {
+   "allergy": {
+    "rows": 10,
+    "right_critical_act": 6,
+    "other_not_credited": 4,
+    "credited_as_ordinary": 0
+   },
+   "identity": {
+    "rows": 10,
+    "right_critical_act": 8,
+    "other_not_credited": 2,
+    "credited_as_ordinary": 0
+   },
+   "consent": {
+    "rows": 10,
+    "right_critical_act": 6,
+    "other_not_credited": 4,
+    "credited_as_ordinary": 0
+   },
+   "fasting": {
+    "rows": 10,
+    "right_critical_act": 4,
+    "other_not_credited": 6,
+    "credited_as_ordinary": 0
+   },
+   "worsening": {
+    "rows": 10,
+    "right_critical_act": 9,
+    "other_not_credited": 1,
+    "credited_as_ordinary": 0
+   },
+   "handover": {
+    "rows": 10,
+    "right_critical_act": 6,
+    "other_not_credited": 4,
+    "credited_as_ordinary": 0
+   }
+  },
+  "credited_as_ordinary": [],
+  "credited_as_ordinary_count": 0,
+  "head_critical_mass_max": 0.02,
+  "head_trained_on_rows": 1940,
+  "head_file": "content/assessment/act_head.json",
+  "set": "holdout2",
+  "synthetic": true,
+  "independent": false
+ },
+ "holdout3": {
+  "rows": 48,
+  "unavailable": 0,
+  "by_kind": {
+   "allergy": {
+    "rows": 7,
+    "right_critical_act": 3,
+    "other_not_credited": 4,
+    "credited_as_ordinary": 0
+   },
+   "identity": {
+    "rows": 8,
+    "right_critical_act": 5,
+    "other_not_credited": 2,
+    "credited_as_ordinary": 1
+   },
+   "consent": {
+    "rows": 8,
+    "right_critical_act": 4,
+    "other_not_credited": 4,
+    "credited_as_ordinary": 0
+   },
+   "fasting": {
+    "rows": 7,
+    "right_critical_act": 3,
+    "other_not_credited": 3,
+    "credited_as_ordinary": 1
+   },
+   "worsening": {
+    "rows": 7,
+    "right_critical_act": 6,
+    "other_not_credited": 1,
+    "credited_as_ordinary": 0
+   },
+   "handover": {
+    "rows": 11,
+    "right_critical_act": 7,
+    "other_not_credited": 3,
+    "credited_as_ordinary": 1
+   }
+  },
+  "credited_as_ordinary": [
+   {
+    "id": "ADD014",
+    "text": "Show me the sticker on your arm and read it aloud.",
+    "act": "EXPLAIN_ACTION",
+    "confidence": 0.851
+   },
+   {
+    "id": "ADD029",
+    "text": "He sipped a coffee with milk before he came.",
+    "act": "ANSWER_QUESTION",
+    "confidence": 0.727
+   },
+   {
+    "id": "ADD048",
+    "text": "Please come and see him within twenty minutes.",
+    "act": "ANSWER_QUESTION",
+    "confidence": 0.585
+   }
+  ],
+  "credited_as_ordinary_count": 3,
+  "head_critical_mass_max": 0.02,
+  "head_trained_on_rows": 1940,
+  "head_file": "content/assessment/act_head.json",
+  "set": "holdout3",
+  "synthetic": true,
+  "independent": false
+ }
+}

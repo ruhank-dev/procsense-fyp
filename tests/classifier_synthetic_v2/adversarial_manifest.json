@@ -1,0 +1,9 @@
+{
+ "note": "SHA-256 of the adversarial critical-content sets. The sets are never edited after a score is reported; a new set is a new file (docs/research/datasets/synthetic/SD-011). holdout2 and holdout3 were written on 18 October 2026, second session; holdout3 after the cues of version 4.",
+ "files": {
+  "adversarial_critical.json": "fcaeab22c9eb2e1c44098f013455cb247b90ccbf208f3ee869ec9635d111e564",
+  "adversarial_critical_holdout.json": "4f4ffb8b2b89f0a43fd2f164d699124ecf3a970567a0689f1bde2f7f98fa7e2d",
+  "adversarial_critical_holdout2.json": "bc1a51f0f44b055fdfdcf4097f31d89152a3c7565435b98fd34eb47e9eb7981b",
+  "adversarial_critical_holdout3.json": "b2698354d8216e4396067c9293b9a88cf889e8b77fd88a037a0003d3326f75c4"
+ }
+}

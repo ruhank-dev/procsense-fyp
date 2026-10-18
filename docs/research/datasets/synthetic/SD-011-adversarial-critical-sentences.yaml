@@ -1,17 +1,17 @@
 id: SD-011
-title: Evasive sentences that touch critical content (a tuning set and a hold-out)
+title: Evasive sentences that touch critical content (a tuning set and three hold-outs)
 synthetic: true
 purpose: "To count how often the speech classifier would credit a sentence about an allergy, an identity check, consent, the fasting state, a worsening sign or a structured handover under an ordinary act when the words avoid the obvious cues, and to measure the guards against it."
 generator: {path: tools/bench/adversarial_critical.py, version: "1", command: "uv run --project tools tools/bench/adversarial_critical.py --set tuning --write"}
 seed: "none: written by the language model that built the tooling"
-source: "71 sentences (the tuning set, used to choose the cues of version 3) and 48 more with different wording written before that change (the hold-out), each labelled with the critical act it performs."
+source: "71 sentences (the tuning set, used to choose the cues of version 3), 48 more with different wording written before that change (hold-out 1), 60 written on 18 October 2026 before the cues of version 4 (hold-out 2, tuning evidence for version 4 once seen), and 48 written after version 4 (hold-out 3, the only set no cue was chosen from), each labelled with the critical act it performs."
 method: "Authored by the builder before any v2 benchmark was run; the classifier is run on each sentence and the ones credited under an ordinary act are counted."
 constraints: "Every sentence is about critical content; the hold-out was not used to choose a cue, but has the same author, so it shows generalisation only to that author's other wordings."
-validation: "tools/ci/test_synthetic3.py counts with a stand-in classifier; the real figures are in reports/ai/classifier-adversarial.json (8 and 7 before the changes, 0 and 0 after)."
+validation: "tools/ci/test_synthetic3.py counts with a stand-in classifier; the figures are in reports/ai/classifier-adversarial.json (tuning and hold-out 1: 8 and 7 credited under ordinary acts before the changes, 0 and 0 after), reports/ai/classifier-adversarial-fresh.json (hold-out 2: 2 credited before the cue change, 0 after; hold-out 3: 3 of 48 credited under ordinary acts with the shipped head) and reports/ai/classifier-guard-only.json (the cues without any classifier: 13 percent of hold-out 3). tools/ci/test_guard_eval.py keeps the four files frozen (adversarial_manifest.json)."
 review: Not reviewed by a person.
 labels: The critical act each sentence performs (STATE_ALLERGY, CONFIRM_IDENTITY, CONSENT_SIGN, HANDOVER_CRITICAL_ELEMENT or SBAR_ELEMENT) and its kind.
 model_use: tools/bench/adversarial_critical.py; the critical-content guard of server/classify/guard.py and the critical-mass cap.
 use: dev_only
-files: [tests/classifier_synthetic_v2/adversarial_critical.json, tests/classifier_synthetic_v2/adversarial_critical_holdout.json]
-rows: {tests/classifier_synthetic_v2/adversarial_critical.json: {rows: 71}, tests/classifier_synthetic_v2/adversarial_critical_holdout.json: {rows: 48}}
+files: [tests/classifier_synthetic_v2/adversarial_critical.json, tests/classifier_synthetic_v2/adversarial_critical_holdout.json, tests/classifier_synthetic_v2/adversarial_critical_holdout2.json, tests/classifier_synthetic_v2/adversarial_critical_holdout3.json]
+rows: {tests/classifier_synthetic_v2/adversarial_critical.json: {rows: 71}, tests/classifier_synthetic_v2/adversarial_critical_holdout.json: {rows: 48}, tests/classifier_synthetic_v2/adversarial_critical_holdout2.json: {rows: 60}, tests/classifier_synthetic_v2/adversarial_critical_holdout3.json: {rows: 48}}
 licence: The project's own content

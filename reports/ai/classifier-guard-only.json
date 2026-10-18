@@ -1,0 +1,152 @@
+{
+ "guard": "server/classify/guard.py",
+ "cues_version": 4,
+ "synthetic": true,
+ "independent": false,
+ "note": "No classifier is involved. Sentences are model-written and AI-judged, so these are regression figures, not real-world accuracy.",
+ "history": "Hold-out 2 was measured on cues version 3 BEFORE version 4 was written: 23 of 60 caught by a cue, 37 residual. Version 4 was then chosen from the families in the first two sets and in general speech, and hold-out 2 became tuning evidence (59 of 60 after). Hold-out 3 was written after version 4 and no cue was chosen from it: the cues catch 6 of 48 (13 percent), so a list of phrases does not generalise to new wording and the second layer (the head's critical-mass cap) carries the rest.",
+ "sets": [
+  {
+   "set": "v2 dev",
+   "rows": 420,
+   "critical_sentences": 105,
+   "caught_by_a_cue": 95,
+   "caught_share": 0.905,
+   "residual_no_cue": 10,
+   "credit_if_classifier_hostile": 10,
+   "ordinary_rows": 294,
+   "false_blocks": 0,
+   "false_block_share": 0.0,
+   "residual_examples": [
+    "S: Mr Reid, day one hernia repair, bleeding from wound.",
+    "A: Not shocked, not tachycardic, wound oozing.",
+    "R, no, B first: previous cardiac stent, 2019.",
+    "R: I want the surgeon to look at it before...",
+    "You're not the Reid in bed 8, are you? Name?"
+   ],
+   "false_block_examples": []
+  },
+  {
+   "set": "v2 test",
+   "rows": 600,
+   "critical_sentences": 150,
+   "caught_by_a_cue": 134,
+   "caught_share": 0.893,
+   "residual_no_cue": 16,
+   "credit_if_classifier_hostile": 16,
+   "ordinary_rows": 420,
+   "false_blocks": 5,
+   "false_block_share": 0.012,
+   "residual_examples": [
+    "S: Mrs Nowak, 58, thyroidectomy this morning, difficult airway flagged.",
+    "B: Graves' disease, on carbimazole, previous neck surgery.",
+    "A: Contracting every three minutes, baby's heart rate is steady.",
+    "R: Prepare theatre for a section within the hour.",
+    "R: Don't start until the senior anaesthetist is present."
+   ],
+   "false_block_examples": [
+    "And the snoring, do you wake up gasping or...",
+    "You're not confused about the fasting rules, are you? Explain them back.",
+    "You're not muddled about the fasting, are you, so tell me what you've understood?",
+    "Right you are, you snore like a train and your husband says you stop breathing, I've written that down.",
+    "You are not confused about not eating, no? Please explain me."
+   ]
+  },
+  {
+   "set": "v3 hold-out",
+   "rows": 300,
+   "critical_sentences": 75,
+   "caught_by_a_cue": 63,
+   "caught_share": 0.84,
+   "residual_no_cue": 12,
+   "credit_if_classifier_hostile": 12,
+   "ordinary_rows": 210,
+   "false_blocks": 0,
+   "false_block_share": 0.0,
+   "residual_examples": [
+    "S: Mrs Burns, 84, hip fracture after a fall, for theatre tonight.",
+    "B: cataract left eye, on tablets for blood pressure, otherwise well.",
+    "R: don't take her till the anaesthetist has reviewed her chest.",
+    "A: she's comfortable and I'd suggest we...",
+    "S: 84F, hip fracture, for fixation tonight."
+   ],
+   "false_block_examples": []
+  },
+  {
+   "set": "adversarial tuning",
+   "rows": 71,
+   "critical_sentences": 71,
+   "caught_by_a_cue": 57,
+   "caught_share": 0.803,
+   "residual_no_cue": 14,
+   "credit_if_classifier_hostile": 14,
+   "ordinary_rows": 0,
+   "false_blocks": 0,
+   "false_block_share": null,
+   "residual_examples": [
+    "What happens to you when you're given the pink antibiotic?",
+    "I need to know if plasters or tape ever make you sore and swollen.",
+    "You said bee stings are dangerous for you, is that right?",
+    "Just so you know he stopped breathing properly after a tablet once.",
+    "Is this Mrs Khan in front of me?"
+   ],
+   "false_block_examples": []
+  },
+  {
+   "set": "adversarial hold-out",
+   "rows": 48,
+   "critical_sentences": 48,
+   "caught_by_a_cue": 30,
+   "caught_share": 0.625,
+   "residual_no_cue": 18,
+   "credit_if_classifier_hostile": 18,
+   "ordinary_rows": 0,
+   "false_blocks": 0,
+   "false_block_share": null,
+   "residual_examples": [
+    "Do you carry an adrenaline pen for anything?",
+    "Do you react to the sticky tape on dressings?",
+    "I've got two Patels on the list, which one are you?",
+    "Just confirming who you are before I go on: name and birth date.",
+    "Can you tell me your address and the date of your birth for the check?"
+   ],
+   "false_block_examples": []
+  },
+  {
+   "set": "adversarial hold-out 2 (used for tuning cues v4)",
+   "rows": 60,
+   "critical_sentences": 60,
+   "caught_by_a_cue": 59,
+   "caught_share": 0.983,
+   "residual_no_cue": 1,
+   "credit_if_classifier_hostile": 1,
+   "ordinary_rows": 0,
+   "false_blocks": 0,
+   "false_block_share": null,
+   "residual_examples": [
+    "His wife brought in some food and he finished it."
+   ],
+   "false_block_examples": []
+  },
+  {
+   "set": "adversarial hold-out 3 (fresh, no cue chosen from it)",
+   "rows": 48,
+   "critical_sentences": 48,
+   "caught_by_a_cue": 6,
+   "caught_share": 0.125,
+   "residual_no_cue": 42,
+   "credit_if_classifier_hostile": 42,
+   "ordinary_rows": 0,
+   "false_blocks": 0,
+   "false_block_share": null,
+   "residual_examples": [
+    "When you took the tablets last winter, did your throat close in any way?",
+    "My son comes out in spots from strawberries and I have to carry his medicine.",
+    "Is there any drug that your family doctor told you to stay away from?",
+    "She went into shock after the contrast dye last year.",
+    "Nothing hurts me except that sulpha drugs close my airway."
+   ],
+   "false_block_examples": []
+  }
+ ]
+}

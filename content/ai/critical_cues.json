@@ -1,5 +1,5 @@
 {
- "note": "Words and phrases that mark a sentence as carrying critical content (allergy, identity, consent, fasting state, a worsening sign, a structured handover). If a classifier names a NON-critical act for such a sentence, the sentence is not credited as that act: speech can never earn credit for a critical item, and a sentence that touches one is not allowed to earn credit under another act by being mislabelled. The sentence is still recorded. Lower-case regular expressions; reviewed with the act taxonomy (content/assessment/taxonomy.json). Version 2 (17 October 2026, after the first synthetic test run found seven sentences about an allergy reaction, a consent question and a handover that the language model still credited under ordinary acts): the allergens of content/ai/lexicon.json are cues too (loaded by guard.py), and the handover and consent cues cover \"that's the background\", \"my suggestion\" and \"all right to go ahead\". These were added after the synthetic test split was scored, so the as-scored numbers in reports/ai/classifier-bench-synthetic.json are those of version 1 and the effect of version 2 is reported separately as post hoc. Found by the classifier benchmark: the language model credited critical sentences under non-critical acts (docs/research/classifier_benchmark/qwen_critical_cases.md). Version 3 (18 October 2026): cues for the evasive wordings of tests/classifier_synthetic_v2/adversarial_critical.json (the tuning set; its sentences are listed in docs/research/classifier_benchmark), added after the v2 test split was scored once; the companion hold-out adversarial_critical_holdout.json was written before this change and is the check on whether the new cues generalise. The cost of the cues (credit removed from sentences that are not critical) is reported next to the gain. Two allergy cues ('foods you shouldn't have', 'made you poorly') were added after the one critical sentence the v3 hold-out still credited under an ordinary act was seen, so the v3 figures with them are post hoc.",
+ "note": "Words and phrases that mark a sentence as carrying critical content (allergy, identity, consent, fasting state, a worsening sign, a structured handover). If a classifier names a NON-critical act for such a sentence, the sentence is not credited as that act: speech can never earn credit for a critical item, and a sentence that touches one is not allowed to earn credit under another act by being mislabelled. The sentence is still recorded. Lower-case regular expressions; reviewed with the act taxonomy (content/assessment/taxonomy.json). Version 2 (17 October 2026, after the first synthetic test run found seven sentences about an allergy reaction, a consent question and a handover that the language model still credited under ordinary acts): the allergens of content/ai/lexicon.json are cues too (loaded by guard.py), and the handover and consent cues cover \"that's the background\", \"my suggestion\" and \"all right to go ahead\". These were added after the synthetic test split was scored, so the as-scored numbers in reports/ai/classifier-bench-synthetic.json are those of version 1 and the effect of version 2 is reported separately as post hoc. Found by the classifier benchmark: the language model credited critical sentences under non-critical acts (docs/research/classifier_benchmark/qwen_critical_cases.md). Version 3 (18 October 2026): cues for the evasive wordings of tests/classifier_synthetic_v2/adversarial_critical.json (the tuning set; its sentences are listed in docs/research/classifier_benchmark), added after the v2 test split was scored once; the companion hold-out adversarial_critical_holdout.json was written before this change and is the check on whether the new cues generalise. The cost of the cues (credit removed from sentences that are not critical) is reported next to the gain. Two allergy cues ('foods you shouldn't have', 'made you poorly') were added after the one critical sentence the v3 hold-out still credited under an ordinary act was seen, so the v3 figures with them are post hoc. Version 4 (18 October 2026, second session): families of wording added from the residuals of the two first adversarial sets and from general speech patterns (permission and acceptance questions, name and birth wording, skin and swelling words, food and drink verbs with food nouns, falling-observation wording, requests and background phrases). A third set, adversarial_critical_holdout2.json, written before this change, had the guard alone catch 23 of 60 before it; the figures after it are reported next to that and that set must be treated as used for tuning from now on: a fourth set, adversarial_critical_holdout3.json, was written after the change and scored once.",
  "cues": {
   "allergy": [
    "allerg",
@@ -20,7 +20,20 @@
    "came out in",
    "(brought|made) you (come )?out in",
    "(medicines?|foods?|drugs?|tablets?)\\b[^.?!]{0,40}\\b(shouldn'?t|should not|mustn'?t|must not)\\b",
-   "made you (poorly|ill|sick|itch|wheez)"
+   "made you (poorly|ill|sick|itch|wheez)",
+   "\\bblotch",
+   "\\brefuses?\\b",
+   "went numb",
+   "puffed up",
+   "\\bwheez",
+   "\\bitch",
+   "\\bstung\\b",
+   "swollen (face|lips?|mouth|tongue|eyes?)",
+   "made you ill",
+   "\\bin lumps\\b",
+   "\\bshellfish\\b",
+   "\\bpeanuts?\\b",
+   "serious problem for"
   ],
   "identity": [
    "wrist ?band",
@@ -43,7 +56,19 @@
    "label on your wrist",
    "strap (round|around) your wrist",
    "card before we start",
-   "state your name"
+   "state your name",
+   "\\bright (person|patient)\\b",
+   "belongs? to (you|the person)",
+   "similar names",
+   "\\bspell your\\b",
+   "\\bsurname\\b",
+   "\\bfirst name\\b",
+   "came into the world",
+   "(give|tell) me yours? in full",
+   "who you (say )?you are",
+   "\\bwere born\\b",
+   "\\bborn\\b[^.?!]{0,20}\\b(year|day|date)",
+   "the person in front of me"
   ],
   "consent": [
    "consent",
@@ -68,7 +93,19 @@
    "\\ba yes from you\\b",
    "want us to (proceed|go on|carry on|continue)",
    "(carry|go|press) on with the (op|operation|surgery|anaesthetic|procedure)",
-   "are you comfortable with us"
+   "are you comfortable with us",
+   "\\bdo you accept\\b",
+   "(are you|you'?re) (happy|willing|comfortable|content|ready)\\b[^.?!]{0,30}\\b(go|start|proceed|continue|begin|ahead|operat)",
+   "your (permission|approval|agreement|go-?ahead)",
+   "put your (name|signature)",
+   "change your mind",
+   "do you want (us )?to (operate|go ahead)",
+   "\\bi'?d like your\\b",
+   "(do i have|is it) (a |your )(yes|okay|ok)\\b",
+   "forcing you",
+   "show (that )?you agree",
+   "understood what\\b[^.?!]{0,40}\\binvolves",
+   "permission to (take|operate|start|proceed)"
   ],
   "fasting": [
    "\\bfasted\\b",
@@ -81,7 +118,14 @@
    "\\bnot empty\\b",
    "stomach isn'?t empty",
    "full breakfast",
-   "last meal was"
+   "last meal was",
+   "\\b(ate|eaten|eating|drank|drunk|had|finished|took|snuck)\\b[^.?!]{0,40}\\b(sandwich|toast|biscuit|tea|juice|yoghurt|yogurt|gum|food|drink|meal|supper|dinner|lunch|breakfast|porridge|snack|sweets?|chocolate|fizzy|butter)\\b",
+   "chewing gum",
+   "by mouth",
+   "\\bsips? of\\b",
+   "passed (her|his|their) lips",
+   "food in (it|his|her)",
+   "late (supper|dinner)"
   ],
   "worsening": [
    "deteriorat",
@@ -100,7 +144,22 @@
    "not responding",
    "drifting off",
    "\\bconfused\\b",
-   "getting (sicker|worse)"
+   "getting (sicker|worse)",
+   "(blood pressure|\\bbp\\b)[^.?!]{0,30}(dropp|fall|low|down)",
+   "\\bsweaty\\b",
+   "\\bweaker\\b",
+   "slipping away",
+   "\\bfaint(ing)?\\b",
+   "stopped passing urine",
+   "\\brigid\\b",
+   "bleeding through",
+   "barely feel",
+   "breathing\\b[^.?!]{0,30}\\b(noisier|faster|slower|laboured|slowly)",
+   "(saturations?|sats|oxygen)\\b[^.?!]{0,30}\\b(eighties|seventies|low|falling)",
+   "more confused",
+   "says (he|she) feels terrible",
+   "\\bpale\\b",
+   "won'?t wake"
   ],
   "handover": [
    "^(situation|background|assessment|recommendation)\\b",
@@ -122,7 +181,21 @@
    "going forward",
    "\\bmy (read|overall impression)\\b",
    "in terms of next steps",
-   "overall i think"
+   "overall i think",
+   "what i (would|'d) like\\b",
+   "i would be grateful",
+   "would like from you",
+   "\\bas for (her|his|the) (history|background)",
+   "story so far",
+   "where things stand",
+   "\\bmy reading of\\b",
+   "led up to",
+   "\\bmy (worry|concern)\\b",
+   "\\bif i may\\b",
+   "\\bi'?d be grateful\\b",
+   "i would like (the|a|someone)\\b",
+   "\\bregistrar could\\b"
   ]
- }
+ },
+ "version": 4
 }

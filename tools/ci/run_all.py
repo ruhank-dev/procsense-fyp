@@ -281,6 +281,7 @@ def main(argv: list[str]) -> int:
         ("model benchmark harness works against a fake Ollama (contexts never hold unearned facts, scoring, reports)", lambda: run(["uv", "run", "--project", "tools", "tools/ai/test_benchmark.py"])),
         ("drug availability: registration is never stock, synthetic is never live, stale is unknown", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_availability.py"])),
         ("availability flags cover every medicine group and name a permitted source", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_availability.py", "--check"])),
+        ("critical-content guard measured without any classifier; adversarial sets frozen", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_guard_eval.py"])),
         ("candidate model rules (a gated model needs recorded terms; a switch needs measured parity and a blind rating)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_model_candidate.py"])),
         ("remote CI status classifier (a run GitHub never started is not a pass)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_remote_status.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
