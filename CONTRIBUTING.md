@@ -53,4 +53,4 @@ Read the failing `FAIL` block from `task ci`, or the failed job in the GitHub Ac
 
 ## Honest limits
 
-GitHub cannot enforce rules on this private repository on the free plan, so the hook is a local safeguard (it can be bypassed with `--no-verify`) and GitHub Actions only detects problems after a push. See [docs/CI.md](docs/CI.md) and [docs/TEAM_GIT_WORKFLOW.md](docs/TEAM_GIT_WORKFLOW.md).
+While GitHub Actions cannot start jobs (account billing limit since 18 Oct 2026) `task ci` is the required validation; `uv run --project tools tools/ci/remote_status.py` shows its last local result next to GitHub's runs and marks runs that never started (docs/CI.md). GitHub cannot enforce rules on this private repository on the free plan, so the hook is a local safeguard (it can be bypassed with `--no-verify`) and GitHub Actions only detects problems after a push. See [docs/CI.md](docs/CI.md) and [docs/TEAM_GIT_WORKFLOW.md](docs/TEAM_GIT_WORKFLOW.md).

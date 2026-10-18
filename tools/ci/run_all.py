@@ -96,6 +96,18 @@ def preflight(quick: bool) -> list[str]:
     return [f"{tool} is not installed or not on PATH -> {cmd} (then restart the terminal)" for tool, cmd in need.items() if not shutil.which(tool)]
 
 
+def record_local_run(passed: int, total: int, quick: bool) -> None:
+    """Write .local-ci/last-run.json (git-ignored): what this machine's CI said, for which commit. tools/ci/remote_status.py prints it next to GitHub's runs."""
+    import datetime
+    import json
+    sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    dirty = bool(subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT, capture_output=True, text=True).stdout.strip())
+    out = ROOT / ".local-ci"
+    out.mkdir(exist_ok=True)
+    stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    (out / "last-run.json").write_text(json.dumps({"commit": sha, "dirty": dirty, "quick": quick, "passed": passed, "total": total, "utc": stamp}, indent=1) + "\n", encoding="utf-8")
+
+
 def main(argv: list[str]) -> int:
     quick = "--quick" in argv
     missing = preflight(quick)
@@ -267,6 +279,7 @@ def main(argv: list[str]) -> int:
         ("task doctor reads the wanted versions from the repository and reports missing tools", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_doctor.py"])),
         ("repo backup bundles every branch and tag, restores by clone and prunes old copies", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_repo_backup.py"])),
         ("model benchmark harness works against a fake Ollama (contexts never hold unearned facts, scoring, reports)", lambda: run(["uv", "run", "--project", "tools", "tools/ai/test_benchmark.py"])),
+        ("remote CI status classifier (a run GitHub never started is not a pass)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_remote_status.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),
     ]
     results = []
@@ -278,6 +291,7 @@ def main(argv: list[str]) -> int:
         if not ok:
             print("\n".join("        " + line for line in out.strip().splitlines()[-25:]))
     failed = [n for n, ok in results if not ok]
+    record_local_run(len(results) - len(failed), len(results), quick)
     print(f"\n{len(results) - len(failed)}/{len(results)} checks passed" + (f"; failed: {', '.join(failed)}" if failed else ""))
     return 1 if failed else 0
 

@@ -201,6 +201,23 @@ Two workflows are not checks: `.github/workflows/publish-image.yml` builds the s
 
 **First run on GitHub, 14 October 2026.** Main was checked by GitHub for the first time and four things failed that never failed on a laptop: the grounding validator tests ran the engine in a job that had not built it (the job now builds it); `dotnet format` found an imports-order error in `SessionLog.cs` that the Windows check missed (fixed, and the Windows run now also runs `dotnet format style`); the verification tests ran the real engine under the service's file-size limit without the .NET setting the image sets (the service now starts the engine with it, wherever it runs); and the browser test assumed the page records a report look exactly once (DT-164). The workflow also runs on pushes to `myt1x54/**` branches now, so a change is checked on GitHub before it reaches main.
 
+## While GitHub Actions is unavailable (from 18 October 2026): local CI is the required validation
+
+**What happened.** The runs for pushes `e245cc9` and `88efea6` (and the scheduled and main-guard runs after them) show the annotation *"The job was not started because recent account payments have failed or your spending limit needs to be increased."* Every job of those runs has zero steps: GitHub refused to start any job, so **no check of the code ran remotely**. This is an account limit, not a failure of the code. Earlier runs, up to `e517f67`, ran and passed. The owner decided (18 Oct 2026) not to pay or upgrade; payment is not a prerequisite for any work.
+
+**Required path until remote runs return.** Run `task ci` (the pre-push hook runs it on the exact commit and refuses the push if anything is red). It runs every check `ci.yml` runs, in the same order (the list in `tools/ci/run_all.py` is kept in step with the workflow, section 6b). Its Linux/Windows split is the one thing a single machine cannot reproduce; the engine hashes were identical on both on 09 Oct 2026 and the golden files are the cross-platform guard.
+
+**Keep the two results apart.** `task ci` writes `.local-ci/last-run.json` (git-ignored: commit, whether the tree had uncommitted changes, passed/total, UTC time). `uv run --project tools tools/ci/remote_status.py` prints that next to GitHub's recent runs, each classified as `passed`, `failed`, `skipped` or `never_started`. A `never_started` run is never reported as a pass. Reports and commit notes must say "local CI" or "GitHub Actions" and name which.
+
+**Free options that exist (read from GitHub's billing documentation on 18 Oct 2026; re-check before relying):**
+
+| Option | Verdict |
+|---|---|
+| Wait for the monthly allowance | A private repository on the Free plan gets 2,000 GitHub-hosted minutes a month; without a valid payment method, usage is blocked once that is used up. The annotation says payments failed, so the account state, not only the quota, must be looked at by the owner in Settings → Billing. Nothing is bought by looking. |
+| Make the repository public | Standard hosted runners are free for public repositories, but this would publish unpublished research, content and history. Not done; an owner decision, not an engineering one. |
+| Self-hosted runner on a team machine | Documented as free to use. It would run this repository's workflow code on that machine and needs a registration token from the repository's settings; the Windows leg and the Postgres service would need Docker there. Not installed: it is a persistent service on a personal machine and the owner has not asked for it. If wanted: Settings → Actions → Runners → New self-hosted runner, add the label to `runs-on`, keep it to trusted pushes only. |
+| Third-party free CI | Not assumed free; none verified, none used. |
+
 ## Backup and monitor
 `.github/workflows/backup.yml` (nightly) dumps the application tables with `pg_dump` from the `postgres:17` image, encrypts the file (`server/scripts/backup.py`, key in the repository secret `BACKUP_KEY`), restores it into a throwaway PostgreSQL and compares row counts, then keeps it 14 days as a private artifact; `.github/workflows/monitor.yml` (daily) fails when the database is over 80% of the free 500 MB. Both open an issue on failure. Their code is tested by `server/tests/test_backup.py` in the backend tests. See `server/RUNBOOK.md`, Backup and restore.
 

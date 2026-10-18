@@ -3326,3 +3326,22 @@ _Session: 1f9a53f2_
 Yes start on them go
 (The owner confirmed the work queue of the previous message: safety, the AI-judged classifier evaluation, the reconciliation of every Ruhan-owned P1 and P2 step and the planned AI features, the unmet performance targets, and continuous commit and push.)
 ``````
+
+## 166. 18 October 2026 (exact time not captured)
+_Session: 1f9a53f2_
+
+``````text
+Continue ProcSense implementation; read INSTRUCTIONS.md first, work end to end, commit and push each coherent stage, never force-push, no paid services, no fabricated approval, participants, hardware or benchmark results, English only for all speech work.
+1. GitHub Actions: we will not upgrade or pay. Find the exact reason runs were blocked, make local CI the documented required validation, check free GitHub-native alternatives honestly, keep local and remote results separate, never report an Actions run that did not occur as passing.
+2. Reconcile again the 7 done-but-off, 11 partly done, 9 blocked and 2 trigger-not-met Ruhan-owned P1/P2 items against source, tests and criteria; finish what is feasible, use valid free/synthetic/offline alternatives for blockers, tick checkboxes only when the documented criteria are met (a checkbox is a status marker, not an approval request), keep unmet human/hardware/account/licence items open.
+3. Classifier: reproducible fair comparison of TF-IDF, embeddings and Qwen on fixed deduplicated splits (macro-F1, per-class, confusion, critical false-credit, latency, resources), adversarial tests, deterministic guards evaluated separately, record generators/labellers/judges, say synthetic is not independent validation, keep gates OFF unless acceptance is met, replay all critical regressions.
+4. Learning systems and dialogue: finish the implementation, synthetic English scenarios (normal, abnormal, ambiguous, contradictory, adversarial), simulated evaluator labelled as simulation, deterministic checks, seeded offline evaluations, a checklist for Sannan's headset tests, no invented participant results.
+5. Pulse and hardware: disk space was freed; use the desktop GPU as the baseline, no laptop benchmarks, implement and test what is feasible, record exact blockers, Quest steps are Sannan's.
+6. Remove Urdu speech completely from the whole repository (plans, generators, registries, context, tests, scripts), search again and justify any remaining match.
+7. MedGemma: read the official Health AI Developer Foundations terms and access flow; do not accept terms on the owner's behalf or bypass eligibility; prepare provider-independent integration and offline tests; claim no access or inference until verified.
+8. Drug availability: investigate DRAP sources and terms, never treat registration as stock, provider interface plus a labelled synthetic provider, live source only if permitted, no scraping or undocumented endpoints.
+9. Model adaptation: explicit measurable trigger criteria and a repeatable trigger check; run the smallest reversible experiment only if the trigger is met.
+10. Keep feature gates and clinical safety: deterministic scoring is authoritative, models cannot grant critical credit, features stay OFF when acceptance or permission is unmet.
+11. Final verification: full local CI, regenerate derived files, Urdu search, diff review, commit and push each stage, final report with commits, test counts, GitHub Actions runs that never occurred, before/after metrics, gates, task counts, Sannan's checklist, remaining user actions.
+(The prompt was pasted at full length; this entry keeps its numbered requirements, shortened.)
+``````
