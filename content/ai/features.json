@@ -77,6 +77,73 @@
     }
    ]
   },
+  "classifier_synthetic2": {
+   "label": "Communication act classifier on the AI-JUDGED synthetic sets v2 and v3 (model-written, labelled by two configurations of one local AI judge, NOT independent; recorded for information, switches nothing on)",
+   "status": "FAIL",
+   "enabled": false,
+   "suites": [
+    {
+     "id": "classifier_synthetic2.macro_f1",
+     "status": "PASS",
+     "got": 0.792,
+     "needs": ">= 0.75"
+    },
+    {
+     "id": "classifier_synthetic2.credited_precision",
+     "status": "PASS",
+     "got": 0.858,
+     "needs": ">= 0.8"
+    },
+    {
+     "id": "classifier_synthetic2.no_critical_credited",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_macro_f1",
+     "status": "PASS",
+     "got": 0.842,
+     "needs": ">= 0.75"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_credited_precision",
+     "status": "PASS",
+     "got": 0.942,
+     "needs": ">= 0.8"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_no_critical_credited",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_no_critical_misrouted",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_synthetic2.adversarial_tuning",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_synthetic2.adversarial_holdout",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_synthetic2.independent_evidence",
+     "status": "FAIL",
+     "got": false,
+     "needs": "== 1.0"
+    }
+   ]
+  },
   "critic": {
    "label": "Text consistency critic",
    "status": "PASS",
@@ -137,6 +204,25 @@
      "status": "PASS",
      "got": 0.842,
      "needs": ">= 0.787"
+    }
+   ]
+  },
+  "multi_agent": {
+   "label": "Three characters answering one trainee turn (the patient written from earned facts, two staff choosing approved lines in one call)",
+   "status": "PASS",
+   "enabled": true,
+   "suites": [
+    {
+     "id": "multi_agent.all_three_p95_s",
+     "status": "PASS",
+     "got": 3.77,
+     "needs": "<= 4.0"
+    },
+    {
+     "id": "multi_agent.no_fallbacks",
+     "status": "PASS",
+     "got": 0.0,
+     "needs": "<= 0.1"
     }
    ]
   },

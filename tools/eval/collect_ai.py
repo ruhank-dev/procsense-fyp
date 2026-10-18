@@ -135,6 +135,37 @@ def section_classifier() -> list[str]:
             "The guard against crediting critical sentences was extended after the test split was scored, so its figures in brackets are post hoc. The independent set (docs/research/classifier_benchmark) is still blocked on people, so the classifier stays off in production (content/ai/features.json).", ""]
 
 
+def section_classifier_v2() -> list[str]:
+    d = load("classifier-bench-synthetic2.json")
+    if d is None:
+        return []
+    lat = load("classifier-latency.json") or {}
+    rows = []
+    for name, c in d["candidates"].items():
+        asr = " / ".join(pct(v["accuracy"]) for v in c.get("asr_copies", {}).values()) or "n/a"
+        ms = (lat.get(name) or {}).get("p50_ms")
+        rows.append(f"| {name} | {c['macro_f1']} ({c['macro_f1_ci95'][0]} to {c['macro_f1_ci95'][1]}) | {c['credited']} / {c['credited_precision']} | {c['false_credits']} | {pct(c['abstained_share'])} | {c['critical_acts_credited_from_speech']} | "
+                    f"{c['critical_said_but_credited_as_other_act']} | {c['macro_f1_on_certain_rows_only']} | {asr} | {'n/a' if ms is None else str(ms) + ' ms'} |")
+    diffs = [f"| {k} | {v['macro_f1_difference']} | {v['ci95'][0]} to {v['ci95'][1]} |" for k, v in d["paired_macro_f1_differences"].items()]
+    out = ["## Communication act classifier on the AI-judged synthetic set v2 (NOT independent, NOT validated)", "", d["provenance"], "",
+           f"Rows: {d['rows']['train']} train, {d['rows']['dev']} dev, {d['rows']['test']} test (scored once), {d['rows'].get('asr', 0)} recogniser copies of plain test sentences. Leakage: {d['leakage']}.", "",
+           "| Candidate | Macro-F1 (95% interval) | Credited / precision | False credits | Not credited | Critical acts credited from speech | A critical act said, credited as another act | Macro-F1 on the rows both judges agreed with | Recogniser copies, clean / telephone band | Latency p50 (quiet machine) |",
+           "|---|---|---|---|---|---|---|---|---|---|"] + rows + ["", "| Paired comparison | Macro-F1 difference | 95% interval |", "|---|---|---|"] + diffs + ["", f"Verdict: {d['verdict']}", ""]
+    h = load("classifier-holdout-v3.json")
+    if h:
+        def row(label, c):
+            return f"| {label} | {c['macro_f1']} | {c['credited']} / {c['credited_precision']} | {c['false_credits']} | {pct(c['not_credited_share'])} | {c['critical_acts_credited_from_speech']} | {c['critical_said_but_credited_as_other_act']} of {c['critical_said_total']} |"
+        out += ["### Fresh hold-out v3 (300 sentences written and judged after the v2 test was scored once)", "", "| Head | Macro-F1 | Credited / precision | False credits | Not credited | Critical acts credited from speech | Critical sentences credited under an ordinary act |", "|---|---|---|---|---|---|---|",
+                row("shipped (v2 training, cues v3, critical-mass cap 0.02)", h["shipped_head"]), row("v2 head without the cap", h["v2_head_without_mass_guard"]), row("the head shipped on 17 October (v1 training)", h["v1_head_17_oct"]), row("TF-IDF, same training", h["tfidf_logreg"]), "",
+                f"On the v2 test split, post hoc, the shipped head credits {h['v2_test_post_hoc']['shipped_head']['credited']} sentences at precision {h['v2_test_post_hoc']['shipped_head']['credited_precision']} with {h['v2_test_post_hoc']['shipped_head']['critical_said_but_credited_as_other_act']} critical sentences under an ordinary act (as scored: {d['candidates']['embeddings_logreg']['credited']}, {d['candidates']['embeddings_logreg']['credited_precision']}, {d['candidates']['embeddings_logreg']['critical_said_but_credited_as_other_act']}).", ""]
+    a = load("classifier-adversarial.json")
+    if a:
+        s = a["shipped_head_with_cues_v3_and_mass_guard"]
+        out += ["### Evasive critical sentences", "", f"Sentences that touch an allergy, identity, consent, the fasting state, a worsening sign or a handover in words that avoid the obvious ones would be credited under an ordinary act: before any change {a['before_any_change_17_oct']['tuning']['credited_as_ordinary_count']} of {a['before_any_change_17_oct']['tuning']['rows']} (tuning set) and {a['before_any_change_17_oct']['holdout']['credited_as_ordinary_count']} of {a['before_any_change_17_oct']['holdout']['rows']} (hold-out); with the shipped head, the version 3 cues and the critical-mass cap: {s['tuning']['credited_as_ordinary_count']} and {s['holdout']['credited_as_ordinary_count']}. The hold-out was written by the same author before the cues were chosen, so it shows generalisation only to that author's other wordings.", ""]
+    out += ["Limit: every sentence was written by the model that built the tooling and the labels are the authors' intent checked by two configurations of one local AI judge, settled where both disagreed with the intent by the same builder, who sided with the intent in nearly every case (the adjudication is not an independent check). No person wrote, labelled or reviewed a row. TF-IDF is equal to or ahead of the embedding head on both sets, so the embeddings have shown no advantage here. The independent set is still blocked on people, so the classifier stays off in production (content/ai/features.json).", ""]
+    return out
+
+
 def section_dialogue() -> list[str]:
     d = load("dialogue-eval.json")
     if d is None:
@@ -188,12 +219,13 @@ def section_multiagent() -> list[str]:
     return ["## Three characters answering one trainee turn (one model, one request at a time)", "", f"Model {d['model']}, {d['turns']} turns, characters {', '.join(d['characters'])}.", "", "| Measure | Value |", "|---|---|",
             f"| First reply p50 / p95 | {d['first_reply_s']['p50']} s / {d['first_reply_s']['p95']} s |", f"| All three replies p50 / p95 | {d['all_three_s']['p50']} s / {d['all_three_s']['p95']} s |",
             f"| All three within {d['budget_s']} s | {pct(d['all_three_within_budget'])} |", f"| Replies that fell back to a fixed line | {pct(d['fallback_share'])} |", f"| Target met (p95 of all three under {d['budget_s']} s) | {'yes' if d['meets_target'] else 'no'} |", "",
-            f"Limit: {d['limit']}. {d['reading']}.", ""]
+            f"Staff: {d.get('staff', 'write a reply')}. " + "".join(f"Before: {k.replace('_', ' ')}, all three p95 {v['all_three_s']['p95']} s. " for k, v in d.get("baselines", {}).items()), "",
+            f"Limit: {d['limit']}. {d['reading']}." + (f" {d['note']}" if d.get("note") else ""), ""]
 
 
 def build() -> str:
     parts = ["# AI evaluation (generated)", "", "Generated by `tools/eval/collect_ai.py` from the result files in `reports/ai/`; do not edit. Each section names the model and its digest, and each states what the measure does not show.", ""]
-    for fn in (section_narrative, section_planner, section_interpreter, section_critic, section_classifier, section_dialogue, section_debrief, section_voice, section_redteam, section_multiagent, section_gateway, section_personalisation, section_novelty):
+    for fn in (section_narrative, section_planner, section_interpreter, section_critic, section_classifier, section_classifier_v2, section_dialogue, section_debrief, section_voice, section_redteam, section_multiagent, section_gateway, section_personalisation, section_novelty):
         parts += fn()
     return "\n".join(parts).rstrip("\n") + "\n"
 

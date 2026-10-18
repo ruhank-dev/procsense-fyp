@@ -73,9 +73,9 @@ Rows: 800 train, 100 dev, 200 test, 268 recogniser copies of test sentences. Lea
 
 | Candidate | Macro-F1 (95% interval) | Credited / precision | False credits | Not credited | Critical acts credited from speech | A critical act said, credited as another act | Recogniser copies, clean / telephone band | Latency p50, one sentence, quiet machine |
 |---|---|---|---|---|---|---|---|---|
-| tfidf_logreg | 0.78 (0.709 to 0.826) | 68 / 0.882 | 8 | 66.0% | 0 | 1 (before the guard 1; post hoc, guard v2: 0) | 77.6% / 77.6% | 1.39 ms |
-| embeddings_logreg | 0.809 (0.742 to 0.858) | 83 / 0.916 | 7 | 58.5% | 0 | 1 (before the guard 2; post hoc, guard v2: 0) | 73.9% / 76.1% | 26.93 ms |
-| qwen_3_5_4b | 0.654 (0.575 to 0.71) | 97 / 0.68 | 31 | 51.5% | 0 | 7 (before the guard 18; post hoc, guard v2: 0) | 65.7% / 64.2% | 2248.11 ms |
+| tfidf_logreg | 0.78 (0.709 to 0.826) | 68 / 0.882 | 8 | 66.0% | 0 | 1 (before the guard 1; post hoc, guard v2: 0) | 77.6% / 77.6% | 0.81 ms |
+| embeddings_logreg | 0.809 (0.742 to 0.858) | 83 / 0.916 | 7 | 58.5% | 0 | 1 (before the guard 2; post hoc, guard v2: 0) | 73.9% / 76.1% | 15.61 ms |
+| qwen_3_5_4b | 0.654 (0.575 to 0.71) | 97 / 0.68 | 31 | 51.5% | 0 | 7 (before the guard 18; post hoc, guard v2: 0) | 65.7% / 64.2% | 2507.23 ms |
 
 | Paired comparison | Macro-F1 difference | 95% interval |
 |---|---|---|
@@ -88,6 +88,43 @@ Intervals: 95% percentile intervals from 1000 resamples of the test rows, recomp
 Verdict: SYNTHETIC GENERALISATION CHECK, NOT INDEPENDENT (model-written, model-labelled): embeddings_logreg has the highest macro-F1, ahead of tfidf_logreg by 0.029 (paired interval [-0.042, 0.097]): not separated on this data. It says nothing about real trainee speech.
 
 Limit: every sentence and label was written by the model that built the tooling, in eight simulated styles (two in the test split); no person wrote, labelled or reviewed anything. This is a check across writing styles, not evidence about real trainee speech. The guard against crediting critical sentences was extended after the test split was scored, so its figures in brackets are post hoc. The independent set (docs/research/classifier_benchmark) is still blocked on people, so the classifier stays off in production (content/ai/features.json).
+
+## Communication act classifier on the AI-judged synthetic set v2 (NOT independent, NOT validated)
+
+SYNTHETIC, AI-JUDGED, NOT INDEPENDENT: twelve simulated author profiles write the v2 sentences (train R1-R6, dev D1-D3, test E1-E3, no profile or scenario group shared between splits); labels are the author's intent, checked by two configurations of one local AI judge and settled by the builder where both judges disagreed with the intent; no person wrote, labelled or reviewed any row. Training also uses the old template set and the v1 synthetic set (already scored, never v2 dev or test). A generalisation check, not evidence about real trainee speech.
+
+Rows: 1940 train, 420 dev, 600 test (scored once), 480 recogniser copies of plain test sentences. Leakage: {'cut_token_overlap': 0.8, 'cut_embedding_cosine': 0.9, 'dev_rows_with_near_duplicate_in_train': 1, 'dev_share_with_near_duplicate_in_train': 0.002, 'test_rows_with_near_duplicate_in_train': 1, 'test_share_with_near_duplicate_in_train': 0.002, 'dev_test_near_duplicate_pairs': 0, 'dev_share_with_embedding_cosine_ge_0.9_in_train': 0.033, 'test_share_with_embedding_cosine_ge_0.9_in_train': 0.025}.
+
+| Candidate | Macro-F1 (95% interval) | Credited / precision | False credits | Not credited | Critical acts credited from speech | A critical act said, credited as another act | Macro-F1 on the rows both judges agreed with | Recogniser copies, clean / telephone band | Latency p50 (quiet machine) |
+|---|---|---|---|---|---|---|---|---|---|
+| tfidf_logreg | 0.816 (0.781 to 0.845) | 355 / 0.845 | 55 | 40.8% | 0 | 2 | 0.859 | 83.8% / 83.8% | 0.81 ms |
+| embeddings_logreg | 0.792 (0.757 to 0.822) | 346 / 0.858 | 49 | 42.3% | 0 | 5 | 0.84 | 76.7% / 75.8% | 15.61 ms |
+| qwen_3_5_4b | 0.654 (0.618 to 0.684) | 408 / 0.699 | 123 | 32.0% | 0 | 10 | 0.766 | 67.9% / 64.6% | 2507.23 ms |
+
+| Paired comparison | Macro-F1 difference | 95% interval |
+|---|---|---|
+| tfidf_logreg minus embeddings_logreg | 0.024 | -0.014 to 0.061 |
+| tfidf_logreg minus qwen_3_5_4b | 0.162 | 0.118 to 0.204 |
+| embeddings_logreg minus qwen_3_5_4b | 0.138 | 0.097 to 0.183 |
+
+Verdict: SYNTHETIC GENERALISATION CHECK, NOT INDEPENDENT (model-written, model-labelled): tfidf_logreg has the highest macro-F1, ahead of embeddings_logreg by 0.024 (paired interval [-0.014, 0.061]): not separated on this data. It says nothing about real trainee speech.
+
+### Fresh hold-out v3 (300 sentences written and judged after the v2 test was scored once)
+
+| Head | Macro-F1 | Credited / precision | False credits | Not credited | Critical acts credited from speech | Critical sentences credited under an ordinary act |
+|---|---|---|---|---|---|---|
+| shipped (v2 training, cues v3, critical-mass cap 0.02) | 0.842 | 137 / 0.942 | 8 | 54.3% | 0 | 0 of 75 |
+| v2 head without the cap | 0.842 | 174 / 0.914 | 15 | 42.0% | 0 | 0 of 75 |
+| the head shipped on 17 October (v1 training) | 0.742 | 116 / 0.862 | 16 | 61.3% | 0 | 0 of 75 |
+| TF-IDF, same training | 0.892 | 171 / 0.942 | 10 | 43.0% | 0 | 1 of 75 |
+
+On the v2 test split, post hoc, the shipped head credits 266 sentences at precision 0.902 with 0 critical sentences under an ordinary act (as scored: 346, 0.858, 5).
+
+### Evasive critical sentences
+
+Sentences that touch an allergy, identity, consent, the fasting state, a worsening sign or a handover in words that avoid the obvious ones would be credited under an ordinary act: before any change 8 of 71 (tuning set) and 7 of 48 (hold-out); with the shipped head, the version 3 cues and the critical-mass cap: 0 and 0. The hold-out was written by the same author before the cues were chosen, so it shows generalisation only to that author's other wordings.
+
+Limit: every sentence was written by the model that built the tooling and the labels are the authors' intent checked by two configurations of one local AI judge, settled where both disagreed with the intent by the same builder, who sided with the intent in nearly every case (the adjudication is not an independent check). No person wrote, labelled or reviewed a row. TF-IDF is equal to or ahead of the embedding head on both sets, so the embeddings have shown no advantage here. The independent set is still blocked on people, so the classifier stays off in production (content/ai/features.json).
 
 ## Patient dialogue
 
@@ -153,13 +190,15 @@ Model qwen3.5:4b-q4_K_M, 12 turns, characters patient, nurse, anaesthesia.
 
 | Measure | Value |
 |---|---|
-| First reply p50 / p95 | 2.32 s / 2.6 s |
-| All three replies p50 / p95 | 6.91 s / 7.14 s |
-| All three within 4.0 s | 0.0% |
+| First reply p50 / p95 | 1.84 s / 2.22 s |
+| All three replies p50 / p95 | 3.4 s / 3.77 s |
+| All three within 4.0 s | 100.0% |
 | Replies that fell back to a fixed line | 0.0% |
-| Target met (p95 of all three under 4.0 s) | no |
+| Target met (p95 of all three under 4.0 s) | yes |
 
-Limit: staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running. one model answers one request at a time, so three characters answer in turn; compare all_three_s with the budget before deciding how much the ReactionQueue must hide.
+Staff: choose approved lines in one call. Before: written staff replies 17 oct busy machine, all three p95 7.14 s. Before: written staff replies 18 oct quiet machine, all three p95 5.85 s. Before: staff choose a line each in own call 18 oct, all three p95 4.14 s. Before: written staff replies parallel requests 18 oct, all three p95 5.62 s. 
+
+Limit: staff replies carry no case facts; twelve fixed trainee turns; measured with whatever else was running. one model answers one request at a time, so three characters answer in turn; compare all_three_s with the budget before deciding how much the ReactionQueue must hide. The patient reply is written by the model from the earned facts (server/dialogue Dialogue.reply); the nurse and the anaesthetist both choose an approved line of their own closed intent list in ONE short model call (Dialogue.pick_many) and speak the pre-rendered line, so nothing a model writes is spoken for staff. 12 fixed trainee turns on the 6 GB desktop, one model, one request at a time. The staff speak fixed lines, which is the price of the budget: with written staff replies the same measurement is 5.9 s (target 4 s, not met).
 
 ## Gateway under load (one model slot)
 

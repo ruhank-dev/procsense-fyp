@@ -37,12 +37,12 @@ The 4B model fits wholly on the 6 GB card and answers in about a second; the 9B 
 
 | Run | Result | File |
 |---|---|---|
-| BT4 debrief rewrite (qwen3.5:4b-q4_K_M, 16 sessions) | accepted 69%, within 8 s 62%, p50 7.4 s | reports/ai/debrief-eval.json |
-| BT5 composition (qwen3.5:9b-q4_K_M, 20 requests) | planner served 19 of 20, coverage 0.685 against the solver's 0.746, p50 30.0 s | reports/ai/planner-eval.json |
+| BT4 debrief rewrite (qwen3.5:4b-q4_K_M, 48 sessions) | accepted 94%, within 8 s 90%, p50 4.5 s | reports/ai/debrief-eval.json |
+| BT5 composition (qwen3.5:9b-q4_K_M, 20 requests) | planner served 20 of 20, coverage 0.877 against the solver's 0.746, p50 37.5 s | reports/ai/planner-eval.json |
 | BT6 judge, the text critic (qwen3.5:4b-q4_K_M, 214 seeded cases) | recall 69%, false alarms 4% | reports/ai/critic-eval.json |
 | Dialogue (qwen3.5:4b-q4_K_M, 12 cases) | p50 1.87 s, p95 2.32 s, word leaks 0 | reports/ai/dialogue-eval.json |
-| Three characters in turn (qwen3.5:4b-q4_K_M) | first reply p95 2.6 s, all three p95 7.14 s | reports/ai/multiagent-eval.json |
-| Performance interpreter (qwen3.5:9b-q4_K_M, 20 learners) | confirmed 68% against 70% for random picks | reports/ai/interpreter-eval.json |
+| Three characters in turn (qwen3.5:4b-q4_K_M) | first reply p95 2.22 s, all three p95 3.77 s | reports/ai/multiagent-eval.json |
+| Performance interpreter (qwen3.5:9b-q4_K_M, 20 learners) | confirmed 84% against 74% for random picks | reports/ai/interpreter-eval.json |
 
 ## Default per task on this desktop
 

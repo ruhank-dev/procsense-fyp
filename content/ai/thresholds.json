@@ -265,6 +265,112 @@
      "ref": "a critical sentence must not earn credit under another act (benchmark finding)"
     }
    ]
+  },
+  "classifier_synthetic2": {
+   "label": "Communication act classifier on the AI-JUDGED synthetic sets v2 and v3 (model-written, labelled by two configurations of one local AI judge, NOT independent; recorded for information, switches nothing on)",
+   "suites": [
+    {
+     "id": "classifier_synthetic2.macro_f1",
+     "file": "classifier-bench-synthetic2.json",
+     "path": "candidates.embeddings_logreg.macro_f1",
+     "op": ">=",
+     "value": 0.75,
+     "ref": "plan: below macro-F1 0.75 the classifier stays switched off (v2 test, as scored once)"
+    },
+    {
+     "id": "classifier_synthetic2.credited_precision",
+     "file": "classifier-bench-synthetic2.json",
+     "path": "candidates.embeddings_logreg.credited_precision",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "plan: precision 0.8 on what is credited (v2 test, as scored once)"
+    },
+    {
+     "id": "classifier_synthetic2.no_critical_credited",
+     "file": "classifier-bench-synthetic2.json",
+     "path": "candidates.embeddings_logreg.critical_acts_credited_from_speech",
+     "op": "==",
+     "value": 0,
+     "ref": "plan: critical acts never credited from speech (v2 test)"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_macro_f1",
+     "file": "classifier-holdout-v3.json",
+     "path": "shipped_head.macro_f1",
+     "op": ">=",
+     "value": 0.75,
+     "ref": "the shipped head on the fresh v3 hold-out written after the v2 test was scored"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_credited_precision",
+     "file": "classifier-holdout-v3.json",
+     "path": "shipped_head.credited_precision",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "the shipped head on the fresh v3 hold-out"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_no_critical_credited",
+     "file": "classifier-holdout-v3.json",
+     "path": "shipped_head.critical_acts_credited_from_speech",
+     "op": "==",
+     "value": 0,
+     "ref": "plan: critical acts never credited from speech (v3 hold-out)"
+    },
+    {
+     "id": "classifier_synthetic2.holdout_no_critical_misrouted",
+     "file": "classifier-holdout-v3.json",
+     "path": "shipped_head.critical_said_but_credited_as_other_act",
+     "op": "==",
+     "value": 0,
+     "ref": "a critical sentence must not earn credit under another act (v3 hold-out; the last cue was added after seeing it, so post hoc)"
+    },
+    {
+     "id": "classifier_synthetic2.adversarial_tuning",
+     "file": "classifier-adversarial.json",
+     "path": "shipped_head_with_cues_v3_and_mass_guard.tuning.credited_as_ordinary_count",
+     "op": "==",
+     "value": 0,
+     "ref": "evasive critical sentences (the set the cues were chosen from)"
+    },
+    {
+     "id": "classifier_synthetic2.adversarial_holdout",
+     "file": "classifier-adversarial.json",
+     "path": "shipped_head_with_cues_v3_and_mass_guard.holdout.credited_as_ordinary_count",
+     "op": "==",
+     "value": 0,
+     "ref": "evasive critical sentences written before the cue change (same author, so only a partial check)"
+    },
+    {
+     "id": "classifier_synthetic2.independent_evidence",
+     "file": "classifier-holdout-v3.json",
+     "path": "valid_for_claims",
+     "op": "==",
+     "value": true,
+     "ref": "owner rule: no claim from synthetic or AI-judged data; this suite cannot pass until an independent set exists (docs/research/classifier_benchmark)"
+    }
+   ]
+  },
+  "multi_agent": {
+   "label": "Three characters answering one trainee turn (the patient written from earned facts, two staff choosing approved lines in one call)",
+   "suites": [
+    {
+     "id": "multi_agent.all_three_p95_s",
+     "file": "multiagent-eval.json",
+     "path": "all_three_s.p95",
+     "op": "<=",
+     "value": 4.0,
+     "ref": "plan p2-ai-advanced-simulation-s03: p95 under 4 s with three roles"
+    },
+    {
+     "id": "multi_agent.no_fallbacks",
+     "file": "multiagent-eval.json",
+     "path": "fallback_share",
+     "op": "<=",
+     "value": 0.1,
+     "ref": "design value: at most one reply in ten falls back to a fixed line"
+    }
+   ]
   }
  }
 }

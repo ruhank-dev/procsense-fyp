@@ -112,10 +112,11 @@
    "now": "PARTLY",
    "evidence": [
     "content/assessment/taxonomy.json",
-    "tests/classifier_synthetic/manifest.json",
-    "tests/classifier_synthetic_v2/manifest.json"
+    "tests/classifier_synthetic_v2/manifest.json",
+    "tests/classifier_synthetic_v3/manifest.json",
+    "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md"
    ],
-   "measured": "two synthetic sets (v1 800 rows, v2 1,860 rows, AI-judged, leakage-checked, never called independent)",
+   "measured": "three synthetic sets, the two new ones AI-judged by two configurations of one model (kappa 0.84 to 0.85 between them), frozen, leakage-checked, never called independent; the adjudicator is the same builder and sided with the intent in nearly every case",
    "open": "The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)"
   },
   "p1-ai-language-s07": {
@@ -125,10 +126,13 @@
    "evidence": [
     "server/classify/embedding.py",
     "content/assessment/act_head.json",
-    "docs/decisions/ADR-0012-communication-act-classifier-embeddings-head.md"
+    "content/ai/critical_cues.json",
+    "reports/ai/classifier-bench-synthetic2.json",
+    "reports/ai/classifier-holdout-v3.json",
+    "reports/ai/classifier-adversarial.json"
    ],
-   "measured": "see the classifier section of docs/report/ai-eval.md",
-   "open": "The production gate needs the independent set (classifier.independent_evidence is SKIPPED, so the classifier is off in production)"
+   "measured": "v2 test scored once: TF-IDF 0.816, embeddings 0.792, Qwen 0.654 macro-F1 (TF-IDF minus embeddings not separated); fresh v3: shipped head 0.842, TF-IDF 0.892; critical acts credited from speech 0 everywhere; critical sentences under an ordinary act 5 to 0 (v2 test, post hoc) and 0 (v3); evasive sets 8 and 7 to 0 and 0",
+   "open": "The production gate needs the independent set (classifier.independent_evidence is SKIPPED, so the classifier is off); the embeddings have shown no advantage over TF-IDF, to be revisited on real speech (ADR-0013)"
   },
   "p1-ai-language-s08": {
    "owner": "Ruhan",
@@ -795,13 +799,15 @@
   "p2-ai-advanced-simulation-s03": {
    "owner": "Ruhan",
    "before": "Measured, not built",
-   "now": "DONE_GATE_OFF",
+   "now": "DONE",
    "evidence": [
     "tools/ai/eval_multiagent.py",
+    "server/dialogue/dialogue.py",
+    "prompts/dialogue/staff_pick_many_v1.txt",
     "reports/ai/multiagent-eval.json"
    ],
-   "measured": "see the three-character section of docs/report/ai-eval.md",
-   "open": "see the report"
+   "measured": "patient written, two staff choosing approved lines in one call: all three p95 3.77 s against 4 s, 100 percent of turns within 4 s, 0 fallbacks; written staff replies 5.85 s; qwen3.5 does not support parallel requests; the multi_agent gate passes",
+   "open": "Staff speak fixed approved lines (the price of the budget); the Unity side that plays three voices is Sannan's"
   },
   "p2-ai-advanced-simulation-s04": {
    "owner": "Ruhan",
@@ -849,9 +855,10 @@
    "now": "DONE_GATE_OFF",
    "evidence": [
     "server/classify/embedding.py",
-    "content/assessment/act_head.json"
+    "content/assessment/act_head.json",
+    "reports/ai/classifier-bench-synthetic2.json"
    ],
-   "measured": "the small classifier is the embeddings and logistic-regression head; see the classifier section of docs/report/ai-eval.md",
+   "measured": "the small classifier is the embeddings and logistic-regression head; see p1-ai-language-s07",
    "open": "The independent set (see p1-ai-language-s07)"
   },
   "p2-ai-extensions-s04": {
