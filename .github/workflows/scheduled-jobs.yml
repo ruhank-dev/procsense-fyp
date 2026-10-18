@@ -19,7 +19,7 @@ permissions:
 jobs:
   call:
     name: Call the service
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
       SERVICE_URL: ${{ secrets.SERVICE_URL }}

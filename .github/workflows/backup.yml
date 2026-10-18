@@ -22,16 +22,16 @@ concurrency:
 jobs:
   backup:
     name: Dump, encrypt, prove the restore
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       BACKUP_DATABASE_URL: ${{ secrets.MIGRATION_DATABASE_URL }}
       BACKUP_KEY: ${{ secrets.BACKUP_KEY }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true
           cache-dependency-glob: server/uv.lock
@@ -82,7 +82,7 @@ jobs:
     name: Open an issue when the backup failed
     needs: backup
     if: ${{ always() && needs.backup.result == 'failure' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       issues: write

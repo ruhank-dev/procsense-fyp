@@ -15,14 +15,14 @@ permissions:
 jobs:
   size:
     name: Database size and connections
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
       BACKUP_DATABASE_URL: ${{ secrets.MIGRATION_DATABASE_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true
           cache-dependency-glob: server/uv.lock
@@ -38,7 +38,7 @@ jobs:
     name: Open an issue when the monitor failed
     needs: size
     if: ${{ always() && needs.size.result == 'failure' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       issues: write

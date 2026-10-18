@@ -24,7 +24,8 @@ permissions:
 jobs:
   image:
     name: Build and push the image
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    # the repository is public: a deploy (which holds the secrets) follows only a CI run that was a push to main of THIS repository, never a pull request from a fork whose branch is also called main
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository)
     uses: ./.github/workflows/publish-image.yml
     with:
       sha: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -37,7 +38,7 @@ jobs:
   deploy:
     name: Migrate, deploy and check
     needs: image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
       contents: read
@@ -48,7 +49,7 @@ jobs:
       RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
       MIGRATION_DATABASE_URL: ${{ secrets.MIGRATION_DATABASE_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
@@ -63,7 +64,7 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v10
         if: steps.setup.outputs.ready == 'true'
         with:
           enable-cache: true
@@ -100,7 +101,7 @@ jobs:
     name: Open an issue when something failed
     needs: [image, deploy]
     if: ${{ always() && (needs.image.result == 'failure' || needs.deploy.result == 'failure') }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       issues: write
