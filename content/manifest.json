@@ -1,13 +1,14 @@
 {
  "schema": 1,
- "content_hash": "6375185dfc75c32e2516122ee4a2d46d6ada8d7f8a66360ade9229d68d0af4c1",
- "files": 670,
- "bytes": 19991394,
+ "content_hash": "fc5c4503b6d4b74c5ea98c8d4e670a0185513189946cafbc7b7b39a2b9594e16",
+ "files": 675,
+ "bytes": 19997483,
  "per_folder": {
   "(root)": 64,
-  "ai": 6,
+  "ai": 7,
   "assessment": 5,
   "attributions": 1,
+  "availability": 4,
   "behaviour": 3,
   "blocks": 258,
   "case_files": 53,
@@ -75,6 +76,10 @@
    "bytes": 3860,
    "sha256": "7ebfd2e9150fad0f2646141358e5c9ea0cd51806ec1989ea9f20293b90453986"
   },
+  "ai/model_candidates.json": {
+   "bytes": 2092,
+   "sha256": "170a6cf622799229e68d5fef78aa451d7d00eba1eae300220bb4b007d2780f48"
+  },
   "ai/persona.json": {
    "bytes": 701,
    "sha256": "4919423b0ed05600bf6556e38d82edb3677aba63ef9ce55d74b6c4ae17f2b324"
@@ -106,6 +111,22 @@
   "attributions/attributions.json": {
    "bytes": 13060,
    "sha256": "9eaf1c34e6c634167fac2a48499f4983b09eda0b10169a0d23a81e1738b2ab49"
+  },
+  "availability/config.json": {
+   "bytes": 348,
+   "sha256": "ba66385e47e121120e5e8c768e5b865e3b7ecf4e9538208fcf892c18f3220671"
+  },
+  "availability/medicine_availability.csv": {
+   "bytes": 1752,
+   "sha256": "76c20b833868d9ce866b1e4c7d62b8d307bf7248c91835d57d89a93d84a062d0"
+  },
+  "availability/permitted_sources.json": {
+   "bytes": 1306,
+   "sha256": "830df8084841929ddb70259bf9a3e55b633fe916473b0142303fadbce933356c"
+  },
+  "availability/synthetic_demo.json": {
+   "bytes": 591,
+   "sha256": "2c128237986ded297227d0e14ec1deb3da68dc4b26eda9e3b021d4c30286c8de"
   },
   "bedside_results.csv": {
    "bytes": 2032,

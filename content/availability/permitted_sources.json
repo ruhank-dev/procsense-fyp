@@ -1,0 +1,20 @@
+{
+  "sources": [],
+  "excluded": [
+    {
+      "id": "dra-registered-drugs",
+      "name": "DRAP registered pharmaceutical and biological drug products database",
+      "url": "https://www.dra.gov.pk/news_updates/regulatory_updates/updated-database-of-pharmaceutical-and-biological-drug-product/",
+      "kind": "registration_register",
+      "why_excluded": "Lists registration, not stock; the public version is published 'for reference purposes only' and 'is subject to a disclaimer' (read 18 Oct 2026). Registration is never turned into availability."
+    },
+    {
+      "id": "dra-shortage-reporting",
+      "name": "DRAP public and hospital medicine shortage reporting",
+      "url": "https://www.dra.gov.pk/drug-availability/",
+      "kind": "report_entry_point",
+      "why_excluded": "A form for reporting shortages, with no published dataset, API or reuse terms (read 18 Oct 2026). Rights are reserved by DRAP."
+    }
+  ],
+  "how_to_add": "A source is added only with: its name, the URL of the terms or the written permission, the uses it allows (it must include teaching_display), its kind (pharmacist_supplied or licensed_feed) and the attribution to show. Then supply a CSV (medicine_id,status,observed_on,source_id), set live_enabled to true in config.json, and the freshness rule applies."
+}

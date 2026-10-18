@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "note": "Language models that may replace the default for a task, and what must be true before one can be run. A gated model is never downloaded or switched on by a tool: the person who holds the account accepts the terms, then records it here.",
+  "baseline": {"model": "qwen3.5:4b-q4_K_M", "role": "live dialogue, classification alternative, staff replies, debrief rewrite"},
+  "candidates": [
+    {
+      "id": "medgemma-4b-it",
+      "model": "medgemma-4b-it-q4",
+      "family": "MedGemma (Health AI Developer Foundations)",
+      "source": "https://huggingface.co/google/medgemma-4b-it",
+      "official_pages": [
+        "https://developers.google.com/health-ai-developer-foundations/medgemma",
+        "https://developers.google.com/health-ai-developer-foundations/faqs"
+      ],
+      "parameters_b": 4,
+      "weights_format": "safetensors, bfloat16 (quantised derivatives exist on the model page)",
+      "estimated_vram_mb_q4": 3500,
+      "gated": true,
+      "terms": {
+        "name": "Health AI Developer Foundations terms of use and Prohibited Use Policy",
+        "accepted_by": null,
+        "accepted_on": null,
+        "account_holder_eligibility_confirmed": false
+      },
+      "how_to_enable": "The account holder signs in to Hugging Face, reads the terms on the model page, confirms they are entitled to accept them, accepts, and records name and UTC date in this file; then pull a quantised build, load it into Ollama under the model name above and run tools/ai/model_candidate.py compare.",
+      "notes": "A developer model: the publisher says it is not clinical-grade and needs validation for each use. It may be more eager to give clinical advice; the no-advice and dose-policy rejections are part of the comparison."
+    }
+  ],
+  "switch_rule": {
+    "valid_json_rate_not_below_baseline": true,
+    "grounding_earned_pass_not_below_baseline": true,
+    "grounding_withheld_pass_not_below_baseline": true,
+    "request_p50_ratio_max": 1.5,
+    "gpu_share_min": 1.0,
+    "blind_rating_required": true,
+    "blind_rating_min_samples": 50
+  }
+}

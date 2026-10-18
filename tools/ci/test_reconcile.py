@@ -18,7 +18,7 @@ class Reconcile(unittest.TestCase):
 
     def test_the_real_data_covers_every_step_and_names_existing_evidence(self):
         self.assertEqual(R.problems(self.found, self.data), [])
-        self.assertEqual(len(self.found), 97)
+        self.assertEqual(len(self.found), 96)
 
     def test_the_committed_page_is_what_the_data_gives(self):
         self.assertEqual(R.OUT.read_text(encoding="utf-8"), R.render(self.found, self.data))

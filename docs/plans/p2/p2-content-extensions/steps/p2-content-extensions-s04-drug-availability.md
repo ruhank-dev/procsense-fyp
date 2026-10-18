@@ -14,6 +14,12 @@ Local realism for Pakistani hospitals: trainees shouldn't be taught plans built 
 3. DailyMed used only to fill contraindication/warning text when openFDA lacks it — no doses.
 4. Reviewer confirms flags; unavailable drugs shown with a note in the debrief/explain text.
 
+## Status (18 October 2026)
+
+- **Built:** the provider interface, a labelled synthetic provider, a validated file provider for a permitted source, freshness and the on/off switch (`server/availability/`, `content/availability/`, 10 tests in `tools/ci/test_availability.py`), and an availability flag with a source and date for each of the 41 medicine groups (`content/availability/medicine_availability.csv`, `tools/content/build_availability.py --check` in CI).
+- **Result:** every flag is `unknown` with source `none`, because the DRAP registered-drug database lists registration, not stock, and is published for reference only, and DRAP's availability page publishes no dataset or terms (`docs/research/drug_availability.md`). Registration is never read as stock; live availability stays off.
+- **Not done:** real flags need a permitted source (a named pharmacist's list or a licensed feed) and the person who supplies it; the DailyMed backup text part is unchanged and unbuilt. The step's 'reviewer confirms flags' has nothing to confirm yet.
+
 ## Verification
 Every medicine row has an availability flag with a source; reviewer approval recorded.
 

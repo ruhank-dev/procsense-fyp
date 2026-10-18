@@ -1,0 +1,11 @@
+{
+  "synthetic": true,
+  "note": "Invented values for demonstrations and tests of the availability code. They say nothing about any hospital or pharmacy and are served only in demo mode, always labelled.",
+  "max_age_days": 30,
+  "rows": [
+    {"medicine_id": "warfarin", "status": "available", "observed_on": "2026-10-18"},
+    {"medicine_id": "dabigatran", "status": "unavailable", "observed_on": "2026-10-18"},
+    {"medicine_id": "glp1", "status": "unavailable", "observed_on": "2026-10-18"},
+    {"medicine_id": "insulin_long", "status": "available", "observed_on": "2026-10-18"}
+  ]
+}

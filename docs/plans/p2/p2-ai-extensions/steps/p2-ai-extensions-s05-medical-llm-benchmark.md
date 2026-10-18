@@ -18,6 +18,12 @@ A medical model might ground better or sound more natural — switch only on mea
 
 - **Not started:** the MedGemma terms must be accepted by the owner first (DT-212); the general benchmark harness (`tools/ai/benchmark.py`) can run it afterwards.
 
+## Status (18 October 2026)
+
+- **Built:** the candidate registry and decision rule (`content/ai/model_candidates.json`, `tools/ai/model_candidate.py`, 7 tests in `tools/ci/test_model_candidate.py`): a gated model stays `terms_not_recorded` until the account holder records acceptance, and a switch needs equal or better valid JSON, grounding (earned and withheld), speed and full residency on the card, plus a blind rating of at least 50 samples by people.
+- **Research:** the official pages and the model card were read on 18 Oct 2026 (R-041). The repository is gated; the pages read do not state who may accept the terms. Nothing was accepted on the owner's behalf and nothing was downloaded.
+- **Not done:** the MedGemma runs (b0, b1, b2, the production evaluations and the no-advice check) and the blind rating. `uv run --project tools tools/ai/model_candidate.py status` prints the next step.
+
 ## Verification
 Comparison table + ADR update; switch only if grounding/quality improve without breaking latency.
 
