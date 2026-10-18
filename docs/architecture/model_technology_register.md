@@ -308,7 +308,7 @@ Every number above that is not marked measured is an expectation to be confirmed
 | EXT-OLLAMA | Ollama | model runtime | MIT | installed on the desktop (0.40.5, 16 Oct 2026) | https://ollama.com/blog/structured-outputs | CMP-LLM; OFF-08 |
 | EXT-QWEN3 | Qwen3 models | model weights | Apache-2.0 | not downloaded | https://huggingface.co/Qwen/Qwen3-8B | MC-01; MC-02; MC-04; MC-12 |
 | EXT-FWHISPER | faster-whisper | ASR library | MIT | not installed | https://github.com/SYSTRAN/faster-whisper | CMP-ASR |
-| EXT-PIPER | Piper TTS | TTS engine | MIT (archived); successor GPL-3.0; each voice has its own licence (only en_GB-cori-high is allowed so far) | not installed | https://github.com/rhasspy/piper | CMP-TTS |
+| EXT-PIPER | Piper TTS | TTS engine | MIT (archived); successor GPL-3.0; each voice has its own licence (the British voices are allowed for academic, non-commercial use except en_GB-alan-medium, not read) | not installed | https://github.com/rhasspy/piper | CMP-TTS |
 | EXT-NEUROKIT2 | NeuroKit2 | signal library | MIT | not installed | https://github.com/neuropsychology/NeuroKit | LG-08 |
 | EXT-DATASKETCH | datasketch | similarity library | MIT | not installed | https://github.com/ekzhu/datasketch | LG-13 |
 | EXT-SCIPY | numpy and scipy | numeric libraries | BSD-3-Clause | numpy in tools environment; scipy to confirm | https://scipy.org | LG-07 |
