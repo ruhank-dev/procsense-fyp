@@ -63,7 +63,7 @@ class Settings(BaseSettings):
     asr_model: str = "small.en"                  # speech recognition (p1-voice-input-s01): faster-whisper, an optional dependency (uv sync --extra asr)
     asr_device: str = "auto"
     ai_features_override: str = ""               # features forced on for development and tests ("all" or names); empty in production: the evaluation gate decides (content/ai/features.json)
-    classifier_backend: str = "embeddings"       # "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
+    classifier_backend: str = "embeddings"       # "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json), "tfidf" (word features + logistic regression in plain Python, content/assessment/act_head_tfidf.json: no service call) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
     embed_model: str = "all-minilm:22m"          # the Ollama embedding model the head was trained on; changing it needs a new head
     ai_live_timeout_seconds: float = 20.0
     ai_batch_timeout_seconds: float = 600.0

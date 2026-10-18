@@ -117,6 +117,7 @@ Verdict: SYNTHETIC GENERALISATION CHECK, NOT INDEPENDENT (model-written, model-l
 | v2 head without the cap | 0.842 | 174 / 0.914 | 15 | 42.0% | 0 | 0 of 75 |
 | the head shipped on 17 October (v1 training) | 0.742 | 116 / 0.862 | 16 | 61.3% | 0 | 0 of 75 |
 | TF-IDF, same training | 0.892 | 171 / 0.942 | 10 | 43.0% | 0 | 1 of 75 |
+| TF-IDF plain-Python head with its critical-mass cap 0.01 (act_head_tfidf.json) | 0.892 | 53 / 0.981 | 1 | 82.3% | 0 | 0 of 75 |
 
 On the v2 test split, post hoc, the shipped head credits 266 sentences at precision 0.902 with 0 critical sentences under an ordinary act (as scored: 346, 0.858, 5).
 

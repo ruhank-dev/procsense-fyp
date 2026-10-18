@@ -100,7 +100,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--head", default="")
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     ap.add_argument("--out", default="")
-    ap.add_argument("--candidate", choices=["embeddings", "tfidf"], default="embeddings")
+    ap.add_argument("--candidate", choices=["embeddings", "tfidf", "tfidf_head"], default="embeddings", help="tfidf: the benchmark's scikit-learn candidate; tfidf_head: the plain-Python head the service runs (content/assessment/act_head_tfidf.json or --head)")
     a = ap.parse_args(argv)
     rows, manifest_sha = frozen_rows(SETS[a.data], a.split)
     if a.candidate == "tfidf":
@@ -112,12 +112,14 @@ def main(argv: list[str]) -> int:
         if a.out:
             Path(a.out).write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8", newline="\n")
         return 0
-    head_path = Path(a.head) if a.head else BC.ROOT / "content" / "assessment" / "act_head.json"
+    head_path = Path(a.head) if a.head else BC.ROOT / "content" / "assessment" / ("act_head_tfidf.json" if a.candidate == "tfidf_head" else "act_head.json")
     head = load_head(head_path)
     out = {"set": a.data, "split": a.split, "set_manifest_sha256": manifest_sha, "head_file": head_path.relative_to(ROOT).as_posix() if head_path.is_relative_to(ROOT) else str(head_path),
            "head_sha256": hashlib.sha256(head_path.read_bytes()).hexdigest(), "head_trained_on_rows": head.get("trained_on_rows"), "critical_mass_max": head.get("critical_mass_max"),
            "valid_for_claims": False, "independent": False, "provenance": "model-written, AI-judged synthetic hold-out; not independent and not real-world validation"}
-    out.update(score(EmbeddingActClassifier(OllamaEmbedder(a.ollama), head), rows))
+    from classify.tfidf import TfidfActClassifier as PlainTfidf
+    out["candidate"] = a.candidate
+    out.update(score(PlainTfidf(head) if a.candidate == "tfidf_head" else EmbeddingActClassifier(OllamaEmbedder(a.ollama), head), rows))
     print(json.dumps({k: v for k, v in out.items() if k not in ("per_class", "by_bucket")}, indent=1))
     if a.out:
         Path(a.out).write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8", newline="\n")

@@ -234,7 +234,24 @@
    "head_trained_on_rows": 1940,
    "critical_mass_max": null
   },
-  "note": "the v2 test split was scored once (reports/ai/classifier-bench-synthetic2.json, as scored); these two rows apply the cues of version 3 and the critical-mass cap to the same predictions of the same head and are therefore post hoc"
+  "note": "the v2 test split was scored once (reports/ai/classifier-bench-synthetic2.json, as scored); these two rows apply the cues of version 3 and the critical-mass cap to the same predictions of the same head and are therefore post hoc",
+  "tfidf_head_plain_python": {
+   "rows": 600,
+   "macro_f1": 0.816,
+   "accuracy": 0.82,
+   "credited": 103,
+   "credited_precision": 0.961,
+   "false_credits": 4,
+   "not_credited_share": 0.828,
+   "critical_acts_credited_from_speech": 0,
+   "critical_said_but_credited_as_other_act": 0,
+   "critical_said_total": 150,
+   "macro_f1_on_rows_both_judges_agreed_with": 0.859,
+   "rows_both_judges_agreed_with": 433,
+   "head_sha256": "8219d5a6f4a4adc81439c9365092264a8a7d1289f3cfb8bd1af365a3bf2191c9",
+   "head_trained_on_rows": 1940,
+   "critical_mass_max": 0.01
+  }
  },
  "v2_head_without_mass_guard_before_the_two_late_cues": {
   "rows": 300,
@@ -336,5 +353,23 @@
   "head_trained_on_rows": 1940,
   "C": 100
  },
- "note_comparison": "All rows marked without \"before the two late cues\" use the cue file as shipped, so the comparison between heads is like for like. TF-IDF is trained on the same 1,940 rows, C chosen on v2 dev, per-act thresholds tuned on v2 dev, the same regular-expression guard; it has no critical-mass cap."
+ "note_comparison": "All rows marked without \"before the two late cues\" use the cue file as shipped, so the comparison between heads is like for like. TF-IDF is trained on the same 1,940 rows, C chosen on v2 dev, per-act thresholds tuned on v2 dev, the same regular-expression guard; it has no critical-mass cap.",
+ "tfidf_head_plain_python": {
+  "rows": 300,
+  "macro_f1": 0.892,
+  "accuracy": 0.893,
+  "credited": 53,
+  "credited_precision": 0.981,
+  "false_credits": 1,
+  "not_credited_share": 0.823,
+  "critical_acts_credited_from_speech": 0,
+  "critical_said_but_credited_as_other_act": 0,
+  "critical_said_total": 75,
+  "macro_f1_on_rows_both_judges_agreed_with": 0.922,
+  "rows_both_judges_agreed_with": 200,
+  "head_sha256": "8219d5a6f4a4adc81439c9365092264a8a7d1289f3cfb8bd1af365a3bf2191c9",
+  "head_trained_on_rows": 1940,
+  "critical_mass_max": 0.01,
+  "note": "content/assessment/act_head_tfidf.json run by server/classify/tfidf.py (no scikit-learn): the same predictions as the scikit-learn candidate (largest probability difference 2e-06 on 420 dev sentences); the critical-mass cap tuned on v2 dev by the same rule (zero critical sentences credited under an ordinary act on dev) is 0.01 for this head and removes most credit, so the credited count is far lower than the scikit-learn candidate without a cap"
+ }
 }

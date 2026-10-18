@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field
 from server import ai_features
 from server.classify.classifier import ActClassifier, Result
 from server.classify.embedding import EmbeddingActClassifier, HeadError, OllamaEmbedder, load_head
+from server.classify.tfidf import TfidfActClassifier
 from server.config import Settings, get_settings
 from server.llm import client as client_mod
 from server.middleware.audit import AiCallRecord, audited
@@ -49,6 +50,8 @@ def get_classifier():
     if s.classifier_backend == "llm":
         return ActClassifier(client_mod.OllamaClient(s.ollama_url) if s.ollama_url else None)
     try:
+        if s.classifier_backend == "tfidf":
+            return TfidfActClassifier()
         return EmbeddingActClassifier(OllamaEmbedder(s.ollama_url, s.embed_model) if s.ollama_url else None, load_head())
     except (OSError, ValueError, KeyError, HeadError):
         return _Down("CLASSIFIER_HEAD_UNAVAILABLE")

@@ -242,6 +242,7 @@ def main(argv: list[str]) -> int:
         ("red team of the validator", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_redteam.py"])),
         ("synthetic diverse classifier set is current (model-written, NOT independent)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/synthetic.py", "check"])),
         ("synthetic v2 classifier set is current (model-written, AI-judged, NOT independent)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/synthetic2.py", "check"])),
+        ("plain-Python TF-IDF classifier and its head (arithmetic, safety rules, committed head)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_classifier_tfidf.py"])),
         ("synthetic v3 hold-out is current (model-written, AI-judged, NOT independent)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/synthetic3.py", "check"])),
         ("synthetic v3 hold-out and adversarial critical-content tests", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_synthetic3.py"])),
         ("synthetic v2 classifier set tests (structure, scenario groups, leakage, flags, adjudications)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_synthetic2.py"])),
