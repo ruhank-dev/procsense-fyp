@@ -291,6 +291,7 @@ def main(argv: list[str]) -> int:
         ("classifier comparison page is current (per class, confusions, who did what; synthetic and AI-judged)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/classifier_report.py", "--check"])),
         ("AI-judged relation precision proxy (never the hand-labelled gate)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_kb_judge.py"])),
         ("seeded generation requests: refused with a reason or served with a sealed, reproducible package, never an error", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_request_fuzz.py"])),
+        ("safety principles hold across layers (critical credit, deterministic checks before any model, features off while unmet)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_safety_invariants.py"])),
         ("candidate model rules (a gated model needs recorded terms; a switch needs measured parity and a blind rating)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_model_candidate.py"])),
         ("remote CI status classifier (a run GitHub never started is not a pass)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_remote_status.py"])),
         ("pre-push hook behaves (isolated test repo)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_pre_push_hook.py"])),

@@ -209,6 +209,24 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void T_EM1c_no_critical_act_is_credited_from_speech_at_any_confidence_in_any_step_of_any_behaviour()
+        {
+            Assert.NotEmpty(Tables.CriticalActs);
+            int tried = 0;
+            foreach (var act in Tables.CriticalActs)
+                foreach (var behaviour in Tables.Behaviours)
+                    foreach (var step in behaviour.Steps)
+                    {
+                        var store = new EvidenceStore(Tables);
+                        var r = store.Submit(act, "any", "a confident sentence said aloud", 1.0, step, new[] { 1 });
+                        Assert.False(r.Accepted, act + " in " + step + " of " + behaviour.Id);
+                        foreach (var b in Tables.Behaviours) Assert.Empty(store.Credited(b.Id));
+                        tried++;
+                    }
+            Assert.True(tried >= Tables.CriticalActs.Count, "the loop ran");
+        }
+
+        [Fact]
         public void T_EM1b_a_confident_sbar_element_in_a_handover_step_is_recorded_but_never_credited_to_b11()
         {
             var b11 = Tables.Behaviours.First(b => b.Id == "b11");
