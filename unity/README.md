@@ -97,9 +97,38 @@ These are Editor-verified foundations. The headset comfort comparison and questi
 
 ## Room navigation
 
-`Sys_Core` owns the one Session, EventSystem, PlayerRig and RoomLoader. It remains loaded while room scenes are loaded/unloaded additively. `DevOnly` remains available in the Editor. A fresh Boot load starts a new session; room navigation preserves it. The bay has a framed door on its right wall marked **CORRIDOR**. In the corridor, **PATIENT BAY** is on the left near the arrival end and **OPERATING THEATRE** is on the right at the far end. The OT return door is on its front wall. Click the door's smaller **Enter** control with the mouse or controller UI ray. Use WASD to approach doors. Door leaves, frames, frosted observation insets, hardware and fixed signs are visual dressing over the existing solid shells; room travel still uses the fade transition.
+The bay, corridor and operating theatre now occupy adjoining world space. After
+sign-in, `RoomLoader` preloads all three additive scenes before releasing
+locomotion and the door handles. One `Sys_Core` owns the Session, EventSystem
+and PlayerRig throughout. The MPFB patient, attached sensors and loose equipment
+stay in place when you leave and return.
 
-Each transition fades to black over 0.3 seconds, validates a room arrival anchor, places the same rig and unloads the previous room, then fades back in. Movement and repeated requests are held during the transition. Missing/blocked arrivals keep the previous room and show a message on its panels. CT/MRI and ultrasound doors show **No trainee access** and stay blocked by solid walls. These are trainee navigation controls; they issue no clinical action and do not transfer the patient. The OT has a segmented padded table, overhead lamp, anaesthesia presentation unit, Mayo stand, trolley and supply cupboard. These new furniture props are static presentation assets; clinical controls/readiness remain separate work.
+Approach the bay's **CORRIDOR** door, point at or reach for either pull handle,
+hold **grip**, and move the controller to swing it. Release to leave it in place.
+The same door can be opened from the corridor side. While holding a handle,
+**trigger/Activate** offers assisted open/close; keep holding until it has moved
+to the desired position. Use the left stick or ordinary walking to pass through
+the opening. The corridor's **OPERATING THEATRE** door works the same way.
+These physical doors create no Enter panel, fade, teleport or scene unload.
+They swing up to 105 degrees either way, remain solid while shut and stop their
+commanded swing when the player capsule occupies the arc. CT/MRI and ultrasound
+remain restricted, with solid walls and no grabbable access handle.
+
+`RoomLayout` supplies each room's authored coordinate space. Crossing into a room
+updates the active environment and in-room teleport validation. Only one global
+clinical directional light is active. Lighting/probes/reflections are baked at
+the connected world positions. The corridor root is translated; the OT root is
+translated and rotated. Work on room content in its local coordinates. The
+one-time `ContinuousHospitalSetup` migration preserves authored content and
+refuses to run again on an already connected room. Do not regenerate prototype
+scenes to update or inspect this layout.
+
+The existing `RequestRoom` method is retained for explicit developer/test
+relocation, including its comfort fade and safe-arrival checks. Physical handles
+never call it; ordinary doorway travel is continuous. Teleport pads retain their
+own comfort fade. Room navigation issues no clinical action or patient transfer.
+Quest handle reach/feel and sustained performance with three resident scenes
+still require device review.
 
 ## Editing and regeneration
 

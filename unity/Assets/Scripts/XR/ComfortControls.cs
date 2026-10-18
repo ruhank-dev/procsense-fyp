@@ -115,7 +115,8 @@ namespace ProcSense.VR.XR
             if (Keyboard.current.f7Key.wasPressedThisFrame)
             {
                 var rig = GetComponent<XROrigin>();
-                var anchors = FindObjectsByType<SafeTeleportAnchor>().OrderBy(a => a.name).ToArray();
+                var room = FindAnyObjectByType<ProcSense.VR.Boot.RoomLoader>();
+                var anchors = FindObjectsByType<SafeTeleportAnchor>().Where(a => room != null && a.gameObject.scene.name == room.CurrentRoom).OrderBy(a => a.name).ToArray();
                 for (int i = 0; i < anchors.Length; i++)
                 {
                     var next = anchors[_nextAnchor++ % anchors.Length];

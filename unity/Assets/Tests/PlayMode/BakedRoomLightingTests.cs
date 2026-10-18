@@ -56,7 +56,7 @@ namespace ProcSense.Tests.PlayMode
                     Assert.IsFalse(loader.Busy, "Lighting data must not stall room loading");
                 }
                 for (int frame = 0; frame < 3; frame++) yield return null;
-                int expectedProbes = name == "PatientBay" ? 60 : 108;
+                const int expectedProbes = 60 + 108 + 108; // One shared multi-scene bake.
                 var scene = SceneManager.GetSceneByName(name);
                 deadline = Time.realtimeSinceStartup + 2;
                 while (LightProbes.GetSharedLightProbesForScene(scene) == null && Time.realtimeSinceStartup < deadline)
@@ -68,12 +68,13 @@ namespace ProcSense.Tests.PlayMode
                 Assert.IsNotNull(LightmapSettings.lightProbes, name + " must load its baked probe data");
                 var roomProbes = LightProbes.GetSharedLightProbesForScene(scene);
                 Assert.IsNotNull(roomProbes, name);
-                Assert.That(roomProbes.countSelf, Is.EqualTo(expectedProbes), name + ": room must load its own baked probe set");
-                Assert.AreEqual(1, new[] { "PatientBay", "Corridor", "OT" }.Count(n => SceneManager.GetSceneByName(n).isLoaded), "Source room must be unloaded");
+                Assert.That(roomProbes.countSelf, Is.EqualTo(expectedProbes), name + ": resident rooms share the connected bake");
+                Assert.AreEqual(3, new[] { "PatientBay", "Corridor", "OT" }.Count(n => SceneManager.GetSceneByName(n).isLoaded), "Adjoining rooms stay loaded");
                 var floor = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<MeshRenderer>()).Single(r => r.name == "Floor");
                 Assert.That(floor.lightmapIndex, Is.InRange(0, LightmapSettings.lightmaps.Length - 1));
                 Assert.IsNotNull(LightmapSettings.lightmaps[floor.lightmapIndex].lightmapColor);
-                LightProbes.GetInterpolatedProbe(new Vector3(0, 1.3f, 0), null, out var sample);
+                var layout = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<RoomLayout>()).Single();
+                LightProbes.GetInterpolatedProbe(layout.transform.TransformPoint(new Vector3(0, 1.3f, 0)), null, out var sample);
                 var colors = new Color[1]; sample.Evaluate(new[] { Vector3.up }, colors);
                 Assert.IsFalse(float.IsNaN(colors[0].r) || float.IsInfinity(colors[0].r));
                 Assert.That(colors[0].maxColorComponent, Is.GreaterThan(.01f), "Movable props must receive baked room illumination");

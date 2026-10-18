@@ -33,6 +33,12 @@ namespace ProcSense.EditorTools
             camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = Hex("C9D8D8");
             camera.transform.position = name == "PatientBay" ? new Vector3(1.85f, 1.65f, -1.65f) : name == "Corridor" ? new Vector3(1.15f, 1.65f, -4.4f) : new Vector3(2.85f, 1.65f, -2.85f);
             camera.transform.LookAt(name == "PatientBay" ? new Vector3(-.4f, 1.35f, .65f) : name == "Corridor" ? new Vector3(0, 1.45f, 3) : new Vector3(-.5f, 1.35f, .5f));
+            var layout = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<ProcSense.VR.Boot.RoomLayout>()).FirstOrDefault();
+            if (layout != null)
+            {
+                camera.transform.position = layout.transform.TransformPoint(camera.transform.position);
+                camera.transform.rotation = layout.transform.rotation * camera.transform.rotation;
+            }
             var target = RenderTexture.GetTemporary(1400, 900, 24);
             var previous = RenderTexture.active; Texture2D image = null;
             try

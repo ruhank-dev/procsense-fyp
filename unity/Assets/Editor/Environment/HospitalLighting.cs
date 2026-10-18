@@ -112,11 +112,13 @@ namespace ProcSense.EditorTools
             if (Lightmapping.isRunning) throw new InvalidOperationException("Bake still running");
             var scene = SceneManager.GetActiveScene();
             if (scene.name != name || LightmapSettings.lightmaps.Length == 0 || Lightmapping.lightingDataAsset == null) throw new InvalidOperationException("No completed bake for requested room");
-            var reflection = scene.GetRootGameObjects().Single(g => g.name == "Hospital lighting").GetComponentInChildren<ReflectionProbe>();
+            var reflection = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<Transform>())
+                .Single(g => g.name == "Hospital lighting").GetComponentInChildren<ReflectionProbe>();
             string path = Folder + "/" + name + " reflection.exr";
             if (!Lightmapping.BakeReflectionProbe(reflection, path)) throw new InvalidOperationException("Reflection capture failed");
             reflection.bakedTexture = AssetDatabase.LoadAssetAtPath<Cubemap>(path);
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+            Directory.CreateDirectory("Temp/LightingReview");
             string image = HospitalFinishes.Capture(name); File.Copy(image, "Temp/LightingReview/" + name + "-after.png", true);
             return new { room = name, lightmaps = LightmapSettings.lightmaps.Length, lightProbes = LightmapSettings.lightProbes?.count, reflection = reflection.bakedTexture != null, image };
         }

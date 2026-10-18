@@ -16,6 +16,8 @@ namespace ProcSense.VR.Boot
         public string CurrentRoom { get; private set; } = "PatientBay";
         public bool Busy { get; private set; }
         public string LastError { get; private set; } = "";
+        public bool Continuous { get; private set; }
+        private readonly List<RoomLayout> _layouts = new List<RoomLayout>();
         private XROrigin _rig;
         private LocomotionFade _fade;
         private bool _cancelled;
@@ -33,6 +35,21 @@ namespace ProcSense.VR.Boot
         private IEnumerator Start()
         {
             while (!SceneManager.GetSceneByName(CurrentRoom).isLoaded) yield return null;
+            Continuous = SceneManager.GetSceneByName(CurrentRoom).GetRootGameObjects()
+                .Any(g => g.GetComponentInChildren<RoomLayout>() != null);
+            if (Continuous)
+            {
+                foreach (var name in new[] { "PatientBay", "Corridor", "OT" })
+                {
+                    if (SceneManager.GetSceneByName(name).isLoaded) continue;
+                    if (!Application.CanStreamedLevelBeLoaded(name))
+                    { LastError = "An adjoining room is unavailable. Its doors remain locked."; continue; }
+                    yield return SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+                }
+                _layouts.AddRange(FindObjectsByType<RoomLayout>());
+                // Additive probe sets require retetrahedralization at their authored world positions.
+                if (LightmapSettings.lightProbes != null) LightProbes.Tetrahedralize();
+            }
             // Boot is a service shell: the visible room owns ambient lighting and baked probes.
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentRoom));
             if (_rig == null) _rig = FindAnyObjectByType<XROrigin>();
@@ -54,6 +71,29 @@ namespace ProcSense.VR.Boot
             _initializing = false;
             RestoreMovement();
             Busy = false;
+            UpdateLighting();
+        }
+
+        private void Update()
+        {
+            if (!Continuous || Busy || _rig == null || _rig.Camera == null) return;
+            foreach (var layout in _layouts)
+            {
+                if (layout == null || layout.gameObject.scene.name == CurrentRoom || !layout.Contains(_rig.Camera.transform.position)) continue;
+                CurrentRoom = layout.gameObject.scene.name;
+                SceneManager.SetActiveScene(layout.gameObject.scene);
+                UpdateLighting();
+                break;
+            }
+        }
+
+        private void UpdateLighting()
+        {
+            if (!Continuous) return;
+            // Directional lights affect every loaded scene. Keep one clinical key, not three.
+            foreach (var light in FindObjectsByType<Light>(FindObjectsInactive.Include))
+                if (light.type == LightType.Directional && light.name == "Soft clinical key")
+                    light.enabled = light.gameObject.scene.name == CurrentRoom;
         }
 
         public void InitializeOpenedRoom(Scene room)
@@ -69,6 +109,7 @@ namespace ProcSense.VR.Boot
             _rig.transform.position = anchor.transform.position;
             _rig.transform.rotation = Quaternion.Euler(0, anchor.transform.eulerAngles.y, 0);
             controller.enabled = true;
+            UpdateLighting();
         }
 
         public bool RequestRoom(string room)
@@ -113,7 +154,7 @@ namespace ProcSense.VR.Boot
                     if (loadedHere && destination.isLoaded) yield return SceneManager.UnloadSceneAsync(destination);
                     yield break;
                 }
-                if (source.isLoaded)
+                if (source.isLoaded && !Continuous)
                     foreach (var root in source.GetRootGameObjects())
                     { _sourceRoots[root] = root.activeSelf; root.SetActive(false); }
                 Physics.SyncTransforms();
@@ -139,8 +180,9 @@ namespace ProcSense.VR.Boot
                     Physics.SyncTransforms();
                     SceneManager.SetActiveScene(destination);
                     CurrentRoom = room;
-                    if (source.isLoaded) yield return SceneManager.UnloadSceneAsync(source);
+                    if (source.isLoaded && !Continuous) yield return SceneManager.UnloadSceneAsync(source);
                     _sourceRoots.Clear();
+                    UpdateLighting();
                 }
                 yield return Fade(0);
             }
