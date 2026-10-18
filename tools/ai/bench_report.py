@@ -115,7 +115,7 @@ def build() -> str:
            "| Live dialogue, classification alternative, staff replies, debrief rewrite | qwen3.5:4b-q4_K_M | fits the card, about 1 s per request, structured output and grounding measured above |",
            "| Offline batch: scenario composition, narrative, critic, interpreter, analytics explanations | qwen3.5:9b-q4_K_M | better wording, slow (about 12 tokens a second), acceptable offline |",
            "| Communication-act classification | all-minilm:22m embeddings + logistic regression | 22M parameters, no card needed (ADR-0012); the 4B model stays as an alternative |",
-           "| Speech recognition | faster-whisper small.en on the processor | measured word error rate in reports/ai/asr-wer.json |",
+           "| Speech recognition | faster-whisper small.en on the card (int8_float16, beside the resident 4B model; the processor is the fallback) | 0.58 s for a 3 to 7 s clip against 5.9 s on the processor; word error rate 0.085 on rendered lines and 0.217 on real mock consultations (reports/ai/asr-wer.json, asr-primock57.json) |",
            "| Speech output | Piper en_GB-cori-high on the processor | first sentence 2.19 s at the 95th percentile on a quiet processor |", ""]
     return "\n".join(out)
 

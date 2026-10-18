@@ -16,7 +16,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-asr = ["faster-whisper>=1.1"]            # speech recognition; not in the hosted image, which has no GPU
+asr = ["faster-whisper>=1.1", "av>=11,<17"]            # speech recognition; not in the hosted image, which has no GPU. PyAV 17 and later breaks faster-whisper 1.2 (metadata_errors), so it is capped
+asr-gpu = ["faster-whisper>=1.1", "av>=11,<17", "nvidia-cublas-cu12", "nvidia-cudnn-cu12"]            # the same on the desktop card (Windows: the CUDA libraries come from these packages)
 
 [dependency-groups]
 dev = [

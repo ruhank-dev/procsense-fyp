@@ -200,6 +200,30 @@
      "op": "<=",
      "value": 0.25,
      "ref": "design value on clean synthetic speech; a test on real speech is open (DT-205)"
+    },
+    {
+     "id": "asr.latency_3_to_7s",
+     "file": "asr-wer.json",
+     "path": "seconds_per_clip_3_to_7s_p50",
+     "op": "<=",
+     "value": 0.7,
+     "ref": "p1-voice-input-s01 T-ASR1: a 5 s clip in 0.7 s; median of the 3 to 7 s synthetic clips on the card beside the resident 4B model (0.58 s)"
+    },
+    {
+     "id": "asr.wer_primock57",
+     "file": "asr-primock57.json",
+     "path": "small_en-cuda-int8_float16.wer",
+     "op": "<=",
+     "value": 0.25,
+     "ref": "the same 0.25 line on real mock consultations (PriMock57, CC BY 4.0; actors, British accents): 0.217"
+    },
+    {
+     "id": "asr.latency_primock_4_to_6s",
+     "file": "asr-primock57.json",
+     "path": "small_en-cuda-int8_float16.seconds_for_4_to_6s_clips_p50",
+     "op": "<=",
+     "value": 0.7,
+     "ref": "the same 0.7 s on 91 real utterances of 4 to 6 s: 0.699 s, a pass by a millisecond; the 95th percentile is 1.02 s"
     }
    ]
   },

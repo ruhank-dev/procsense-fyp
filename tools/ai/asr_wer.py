@@ -77,6 +77,7 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="auto")
     ap.add_argument("--compute", default="int8")
     ap.add_argument("--limit", type=int, default=60)
+    ap.add_argument("--report", default="", help="also write the result to this file (reports/ai/asr-wer.json is the one the AI gate reads)")
     a = ap.parse_args()
     add_cuda_dlls()
     from asr.service import AsrService
@@ -96,12 +97,14 @@ if __name__ == "__main__":
         worst.append((e / max(n, 1), f.stem, cat[f.stem]["text"], r.text))
     worst.sort(reverse=True)
     out = {"model": a.model, "device": a.device, "compute": a.compute, "clips": len(files), "reference_words": words, "wer": round(errs / words, 4), "low_confidence_share": round(low / len(files), 3),
-           "seconds_per_clip_p50": round(statistics.median(secs), 2), "seconds_per_clip_max": round(max(secs), 2), "clip_seconds_p50": round(statistics.median(lengths), 2),
-           "seconds_per_clip_3_to_7s_p50": round(statistics.median([x for x, n in zip(secs, lengths) if 3 <= n <= 7] or [0]), 2), "clips_3_to_7s": sum(3 <= n <= 7 for n in lengths), "warmed_up": True, "worst": worst[:8],
+           "seconds_per_clip_p50": round(statistics.median(secs), 3), "seconds_per_clip_max": round(max(secs), 3), "clip_seconds_p50": round(statistics.median(lengths), 2),
+           "seconds_per_clip_3_to_7s_p50": round(statistics.median([x for x, n in zip(secs, lengths) if 3 <= n <= 7] or [0]), 3), "clips_3_to_7s": sum(3 <= n <= 7 for n in lengths), "warmed_up": True, "worst": worst[:8],
            "limit": "synthetic clean speech from one rendered voice: an upper bound, not a test on accented trainees in a noisy room"}
     path = ROOT / "artifacts" / "ai-bench" / f"asr-wer-{a.model.replace('/', '_')}-{a.device}-{a.compute}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if a.report:
+        Path(a.report).write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({k: v for k, v in out.items() if k != "worst"}))
     for w, i, ref, hyp in worst[:4]:
         print(f"  {w:.2f} {i}\n    ref: {ref}\n    hyp: {hyp}")

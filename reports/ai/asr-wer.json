@@ -1,13 +1,17 @@
 {
   "model": "small.en",
-  "device": "cpu",
-  "compute": "int8",
+  "device": "cuda",
+  "compute": "int8_float16",
   "clips": 40,
   "reference_words": 236,
-  "wer": 0.0932,
+  "wer": 0.0847,
   "low_confidence_share": 0.0,
-  "seconds_per_clip_p50": 9.29,
-  "seconds_per_clip_max": 14.26,
+  "seconds_per_clip_p50": 0.5,
+  "seconds_per_clip_max": 0.97,
+  "clip_seconds_p50": 2.24,
+  "seconds_per_clip_3_to_7s_p50": 0.58,
+  "clips_3_to_7s": 11,
+  "warmed_up": true,
   "worst": [
     [
       0.5,
@@ -34,12 +38,6 @@
       "Pity at 8 0 0."
     ],
     [
-      0.3,
-      "PAT-VAR-S1-G-PREGNANCY",
-      "Last period 2 weeks ago; she agrees to a test.",
-      "Last period two weeks ago, she agrees to attest."
-    ],
-    [
       0.25,
       "PAT-VAR-S1-H-COMPLAINT",
       "Attacks of pain under the ribs after fatty meals.",
@@ -56,6 +54,12 @@
       "PAT-VAR-S2-G-PREGNANCY",
       "Last period 2 weeks ago.",
       "Last period two weeks ago."
+    ],
+    [
+      0.2,
+      "PAT-VAR-S2-D-IDENTITY",
+      "Zainab Anwar, fourteenth of August 1998.",
+      "Sennep Anwar, 14th August 1998."
     ]
   ],
   "limit": "synthetic clean speech from one rendered voice: an upper bound, not a test on accented trainees in a noisy room"

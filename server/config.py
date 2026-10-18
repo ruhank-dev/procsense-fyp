@@ -61,7 +61,8 @@ class Settings(BaseSettings):
     ai_rate_per_hour: int = 600                  # model calls per person per hour, in memory
     ai_queue_wait_seconds: float = 5.0           # how long a request waits for the one model slot before the fallback signal (a 6 GB GPU runs one model call at a time)
     asr_model: str = "small.en"                  # speech recognition (p1-voice-input-s01): faster-whisper, an optional dependency (uv sync --extra asr)
-    asr_device: str = "auto"
+    asr_device: str = "auto"                     # "cuda" on the desktop with a card (needs the asr-gpu extra on Windows), "cpu" otherwise
+    asr_compute: str = "int8"                    # "int8_float16" on the card: 0.57 s for a 3 to 7 s clip beside the resident 4B model, against 6 s on the processor (reports/ai/asr-wer.json)
     ai_features_override: str = ""               # features forced on for development and tests ("all" or names); empty in production: the evaluation gate decides (content/ai/features.json)
     classifier_backend: str = "embeddings"       # "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json), "tfidf" (word features + logistic regression in plain Python, content/assessment/act_head_tfidf.json: no service call) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
     embed_model: str = "all-minilm:22m"          # the Ollama embedding model the head was trained on; changing it needs a new head

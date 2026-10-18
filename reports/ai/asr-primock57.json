@@ -1,0 +1,71 @@
+{
+ "small_en-cuda-int8_float16": {
+  "corpus": "PriMock57 (Babylon Health), CC BY 4.0, https://github.com/babylonhealth/primock57",
+  "files": [
+   "day1_consultation01_doctor.wav",
+   "day1_consultation01_patient.wav",
+   "day1_consultation02_doctor.wav",
+   "day1_consultation02_patient.wav",
+   "day1_consultation03_doctor.wav",
+   "day1_consultation03_patient.wav",
+   "day1_consultation04_doctor.wav",
+   "day1_consultation04_patient.wav",
+   "day1_consultation05_doctor.wav",
+   "day1_consultation05_patient.wav"
+  ],
+  "model": "small.en",
+  "device": "cuda",
+  "compute": "int8_float16",
+  "clips": 257,
+  "reference_words": 4155,
+  "wer": 0.2166,
+  "wer_doctor": 0.2344,
+  "wer_patient": 0.1826,
+  "clip_seconds_p50": 4.93,
+  "seconds_per_clip_p50": 0.698,
+  "seconds_per_clip_p95": 1.021,
+  "seconds_for_4_to_6s_clips_p50": 0.699,
+  "clips_4_to_6s": 91,
+  "warmed_up": true,
+  "worst": [
+   [
+    11.42,
+    "day1_consultation03_doctor",
+    "OK, alright. Um and and you're feeling otherwise OK. So, for example your um",
+    "Okay, alright, and you're feeling otherwise okay, so for example, your um, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling okay, you're feeling"
+   ],
+   [
+    1.0,
+    "day1_consultation05_doctor",
+    "No, OK. Alright. Um,",
+    "No. Okay. All right."
+   ],
+   [
+    1.0,
+    "day1_consultation02_patient",
+    "Uh, mostly like my chest, my, my hands, my arms. Like, like really, it's it's super annoying. Like it's itching a lot, like all the time. And",
+    "Thank you very much."
+   ],
+   [
+    0.8,
+    "day1_consultation02_doctor",
+    "Mm. No no, OK. That's OK. Um",
+    "Mmm, no, no, no, okay, that's okay. Um..."
+   ],
+   [
+    0.75,
+    "day1_consultation04_doctor",
+    "No, you don't feel blocked, or any discharge coming out of your ears?",
+    "You know, you don't feel blocked or anything, it's just coming after you, it is."
+   ],
+   [
+    0.62,
+    "day1_consultation03_doctor",
+    "Any difficulty with balance, your balance or coordination?",
+    "And then you need to balance your balance or coordination."
+   ]
+  ],
+  "method": "utterances of 2 to 15 s with at least 3 reference words, fillers removed from the reference and the hypothesis, unintelligible and cross-talk utterances skipped",
+  "limit": "actors in mock consultations over video calls, British accents; not a noisy ward and not Pakistani trainees (DT-205)"
+ }
+}

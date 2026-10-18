@@ -9,8 +9,26 @@
     {
      "id": "asr.wer_synthetic",
      "status": "PASS",
-     "got": 0.0932,
+     "got": 0.0847,
      "needs": "<= 0.25"
+    },
+    {
+     "id": "asr.latency_3_to_7s",
+     "status": "PASS",
+     "got": 0.58,
+     "needs": "<= 0.7"
+    },
+    {
+     "id": "asr.wer_primock57",
+     "status": "PASS",
+     "got": 0.2166,
+     "needs": "<= 0.25"
+    },
+    {
+     "id": "asr.latency_primock_4_to_6s",
+     "status": "PASS",
+     "got": 0.699,
+     "needs": "<= 0.7"
     }
    ]
   },

@@ -34,7 +34,7 @@ class AsrOut(BaseModel):
 @lru_cache
 def get_asr() -> AsrService:
     s = get_settings()
-    return AsrService(s.asr_model, s.asr_device)
+    return AsrService(s.asr_model, s.asr_device, s.asr_compute)
 
 
 @router.post("/asr/organisations/{organisation_id}/transcribe", response_model=AsrOut)

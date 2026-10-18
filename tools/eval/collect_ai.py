@@ -193,6 +193,13 @@ def section_voice() -> list[str]:
     a = load("asr-wer.json")
     out += ["| Measure | Value |", "|---|---|"]
     out.append("| Word error rate of the recogniser on rendered voice lines | not run |" if a is None else f"| Word error rate ({a['model']} on {a['device']}, {a['clips']} clips) | {a['wer']} |")
+    if a is not None and "seconds_per_clip_3_to_7s_p50" in a:
+        out.append(f"| Speech to text, median for {a['clips_3_to_7s']} clips of 3 to 7 s ({a['device']}, {a['compute']}, beside the resident 4B model) | {a['seconds_per_clip_3_to_7s_p50']} s (target 0.7 s) |")
+    pm = load("asr-primock57.json")
+    if pm:
+        for k, v in pm.items():
+            out.append(f"| Real mock consultations (PriMock57, CC BY 4.0; actors, British accents): word error rate on {v['clips']} utterances, doctors {v['wer_doctor']}, patients {v['wer_patient']} ({k}) | {v['wer']} |")
+            out.append(f"| ... speech to text, median for {v['clips_4_to_6s']} utterances of 4 to 6 s, and the 95th percentile of all | {v['seconds_for_4_to_6s_clips_p50']} s, {v['seconds_per_clip_p95']} s |")
     t = load("tts-latency.json")
     out.append("| First spoken sentence, 95th percentile | not run |" if t is None else f"| First spoken sentence, 95th percentile ({t['sentences']} sentences) | {t['first_sentence_seconds']} s (median {t['p50_seconds']} s; worst of {len(t.get('runs', [1]))} runs, Piper kept alive) |")
     o = load("orders-eval.json")

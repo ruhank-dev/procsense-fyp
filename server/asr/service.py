@@ -58,6 +58,19 @@ def decode(audio: bytes) -> tuple[tuple[bytes, float] | None, str]:
     return (p.stdout, (len(p.stdout) - 44) / (2 * SAMPLE_RATE)), ""
 
 
+def add_cuda_dlls() -> None:
+    """On Windows the CUDA libraries CTranslate2 needs come from the pip packages of the asr-gpu extra (nvidia-cublas-cu12, nvidia-cudnn-cu12) and sit under site-packages/nvidia; make them findable. Does nothing elsewhere or without them."""
+    if not hasattr(os, "add_dll_directory"):
+        return
+    try:
+        import nvidia
+    except ImportError:
+        return
+    for base in nvidia.__path__:
+        for sub in Path(base).glob("*/bin"):
+            os.add_dll_directory(str(sub))
+
+
 class AsrService:
     def __init__(self, model_name: str = "small.en", device: str = "auto", compute_type: str = "int8", model_factory=None):
         self.model_name, self.device, self.compute_type = model_name, device, compute_type
@@ -71,6 +84,7 @@ class AsrService:
             if self._factory is not None:
                 self._model = self._factory()
             else:
+                add_cuda_dlls()
                 from faster_whisper import WhisperModel          # the optional dependency
                 self._model = WhisperModel(self.model_name, device=self.device, compute_type=self.compute_type)
         return self._model

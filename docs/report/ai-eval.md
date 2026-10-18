@@ -161,7 +161,10 @@ Limit: the validator knows the engine's event words only; an event that is not o
 
 | Measure | Value |
 |---|---|
-| Word error rate (small.en on cpu, 40 clips) | 0.0932 |
+| Word error rate (small.en on cuda, 40 clips) | 0.0847 |
+| Speech to text, median for 11 clips of 3 to 7 s (cuda, int8_float16, beside the resident 4B model) | 0.58 s (target 0.7 s) |
+| Real mock consultations (PriMock57, CC BY 4.0; actors, British accents): word error rate on 257 utterances, doctors 0.2344, patients 0.1826 (small_en-cuda-int8_float16) | 0.2166 |
+| ... speech to text, median for 91 utterances of 4 to 6 s, and the 95th percentile of all | 0.699 s, 1.021 s |
 | First spoken sentence, 95th percentile (12 sentences) | 2.19 s (median 1.37 s; worst of 3 runs, Piper kept alive) |
 | Spoken orders parsed to the right target (702 phrasings, mild recogniser-like errors) | 84.0% |
 | ... to a wrong target (the read-back catches these) | 0.4% |
