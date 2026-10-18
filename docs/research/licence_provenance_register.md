@@ -4,7 +4,7 @@ Every dataset, model, library and voice that ProcSense uses or plans to use, wit
 
 Decision words: **ALLOWED** (use freely), **ALLOWED WITH CONDITIONS** (follow the conditions column), **NOT USED** (not needed or not checked), **REJECTED** (terms conflict with our use), **VERIFY** (terms not re-read yet; read them before the item is installed).
 
-ProcSense is meant to be sold to organisations (p1-backend), so a **non-commercial** licence (NC) conflicts with our use, as does a **no-derivatives** one (ND). Share-alike (SA) is a condition, not a conflict, as long as only what is allowed is shipped.
+**ProcSense is a final-year project, not a product for sale** (decision of the team, 18 Oct 2026, recorded by Abdul Moiz). So a **non-commercial** (NC) or research-only licence fits our use: it is a condition (academic, non-commercial use only), not a conflict. A **no-derivatives** licence (ND) still conflicts, because cropping, labelling and re-encoding are derivatives. Share-alike (SA) is a condition. If ProcSense is ever offered for sale, every row marked "academic, non-commercial use only" must be read again first.
 
 **Refresh of 16 October 2026 (p1-dataset-analysis-s01):** every licence page below was re-read on that day (R-013 to R-029 in the research log) unless the Checked column says otherwise. `tools/data/licence_register_check.py` (in CI) fails when an id of the pipeline JSON (`datasets`, `model_catalog`, `external_dependencies`) or of the dataset register has no row here, when a decision word is not one of the five, or when a row has no date.
 
@@ -12,14 +12,14 @@ ProcSense is meant to be sold to organisations (p1-backend), so a **non-commerci
 
 | ID | Item | Licence | Decision | What the repository holds | Conditions and notes | Checked |
 |---|---|---|---|---|---|---|
-| DS-0001 | VitalDB | CC BY 4.0 for the PhysioNet release (VitalDB 1.0.0); CC BY-NC-SA 4.0 with a data use agreement for the vitaldb.net open dataset and API | ALLOWED WITH CONDITIONS | Aggregates only (`tools/data/derived/vitaldb_noise.json`) | Use the **PhysioNet** release, with attribution. Our aggregates were read through the vitaldb.net API, whose terms are non-commercial and limit use to research and development: re-derive them from the PhysioNet release before any commercial use (DT-183) | 2026-10-16 (R-013, R-014) |
+| DS-0001 | VitalDB | CC BY 4.0 for the PhysioNet release (VitalDB 1.0.0); CC BY-NC-SA 4.0 with a data use agreement for the vitaldb.net open dataset and API | ALLOWED WITH CONDITIONS | Aggregates only (`tools/data/derived/vitaldb_noise.json`) | Attribution; academic, non-commercial use only (ProcSense is a final-year project, decision of 18 Oct 2026). Our aggregates were read through the vitaldb.net API (CC BY-NC-SA 4.0, research and development use): that fits a final-year project, and only aggregate statistics are kept, never the data. The PhysioNet release (CC BY 4.0) is the copy to use if the project is ever sold (DT-183, closed as not needed) | 2026-10-16 (R-013, R-014) |
 | DS-0002 | PTB-XL 1.0.3 | CC BY 4.0 | ALLOWED WITH CONDITIONS | Templates and selected strips (derived) | Attribution | 2026-10-16 (R-015) |
 | DS-0003 | MIMIC-IV Clinical Demo 2.2 | ODbL 1.0 | ALLOWED WITH CONDITIONS | Aggregate percentiles only (derived) | Attribution; share-alike applies to a derived database, so only aggregate statistics are kept; reference and tests only | 2026-10-16 (R-016) |
 | DS-0004 | MIMIC-IV-ED Demo 2.2 | ODbL 1.0 | ALLOWED WITH CONDITIONS | Aggregates only (derived) | As DS-0003 | 2026-10-16 (R-016) |
 | DS-0005 | UIdataGB v2 (Gallblader Diseases Dataset) | CC BY 4.0 | ALLOWED WITH CONDITIONS | Selected images (raw, selected) | Attribution | 2026-10-16 (R-017) |
 | DS-0006 | NIH ChestX-ray14 | NIH Clinical Center terms: "no restrictions on the use", with a link, a citation and an acknowledgement | ALLOWED WITH CONDITIONS | Selected images (raw, selected) | Link to the NIH download site, cite the CVPR 2017 paper, acknowledge the NIH Clinical Center as the data provider. The NIH Box page itself is script-driven; the terms were read in the Google Cloud documentation | 2026-10-16 (R-018) |
 | DS-0007 | openFDA drug labels | CC0 1.0 | ALLOWED | Extract (wording, derived) | None required | 2026-10-16 (R-019) |
-| DS-0008 | Regensburg Pediatric Appendicitis | CC BY-NC 4.0 | REJECTED | Nothing | Non-commercial; also children only, so unsuitable for the adult S2 cases anyway | 2026-10-16 (R-020) |
+| DS-0008 | Regensburg Pediatric Appendicitis | CC BY-NC 4.0 | NOT USED | Nothing | Children only, so unsuitable for the adult S2 cases; the non-commercial licence would allow academic use | 2026-10-16 (R-020) |
 | DS-0009 | PriMock57 | CC BY 4.0 | NOT USED | Nothing | Allowed with attribution if the speech-recognition evaluation ever needs it (decision of 10 Oct 2026: not needed); its audio would not be committed | 2026-10-16 (R-021) |
 | DS-0010 | Mozilla Common Voice | not read: since October 2025 only distributed through Mozilla Data Collective under that site's terms | NOT USED | Nothing | Read the dataset's own terms on Mozilla Data Collective before any use (the page could not be read: script-driven) | 2026-10-16 (R-022) |
 | DS-0011 | ProcSense labelled synthetic images | ProcSense generated | ALLOWED | Images | Always labelled synthetic (ADR-0003); the painted CT and MRI findings sit on AMOS slices, so DS-0014's attribution applies to those | 2026-10-16 (own work) |
@@ -37,7 +37,7 @@ ProcSense is meant to be sold to organisations (p1-backend), so a **non-commerci
 | MC-02 (baseline only) | Qwen3 4B (`qwen3:4b`, digest 359d7dd4bcda; a thinking-2507 build) | Apache-2.0 | ALLOWED WITH CONDITIONS | No | Kept only as the benchmark comparison; **removed from the desktop on 17 October 2026** at the owner's request | 2026-10-16 (R-003, R-025) |
 | MC-03, MC-07 | Sentence embedding model `all-minilm:22m` (digest 1b226e2802db; sentence-transformers/all-MiniLM-L6-v2 converted by Ollama, F16, 22.6M parameters, 46 MB, 384 dimensions, 256 word pieces) | Apache-2.0 | ALLOWED WITH CONDITIONS | No (downloaded by the runtime) | Keep the licence notice; the classifier head `content/assessment/act_head.json` records the model name and is only valid for it | 2026-10-17 (R-039) |
 | MC-05 | Whisper weights via faster-whisper | MIT (weights and code) | ALLOWED | No | Keep the licence notice | 2026-10-16 (R-024) |
-| MC-06 | Piper voices | per voice: see Voices below | ALLOWED WITH CONDITIONS | No | Only a voice marked ALLOWED below may be bundled or used to render lines | 2026-10-16 (R-026) |
+| MC-06 | Piper voices | per voice: see Voices below | ALLOWED WITH CONDITIONS | No | Only a voice marked ALLOWED or ALLOWED WITH CONDITIONS below may be bundled or used to render lines, with its conditions | 2026-10-16 (R-026) |
 | MC-07 | Embedding model (only if needed) | to choose | VERIFY | No | Lexical retrieval (BM25, own code) first; read the model's licence if one is added | — (not chosen) |
 | MC-08 | Numeric generation (seeded distributions and a Gaussian copula) | own code on numpy and scipy (BSD-3-Clause) | ALLOWED | Code; parameter packs cite their profiles and dataset ids | The parameters come from aggregates only (DS-0001, DS-0003, DS-0004), so their conditions apply to the packs | 2026-10-16 (R-024) |
 | MC-09 | ECG traces and strips | own code; NeuroKit2 (MIT); PTB-XL strips (CC BY 4.0) | ALLOWED WITH CONDITIONS | Selected strips and templates | PTB-XL attribution (DS-0002) | 2026-10-16 (R-015, R-024) |
@@ -50,19 +50,19 @@ ProcSense is meant to be sold to organisations (p1-backend), so a **non-commerci
 
 ## Voices
 
-The Piper voices that speak British English (the cases are set in a UK hospital). A voice's model card names the recordings it was trained on, and most were fine-tuned from a US voice, whose own recordings then matter too: the US `lessac` voice is trained on the Blizzard 2013 Lessac data, licensed for research only with every commercial use excluded, and the US `ryan` voice on RyanSpeech, CC BY-NC-SA 4.0. Whether a model fine-tuned from such a voice is bound by those terms is a question for a qualified person (DT-184); until then only a voice with no non-commercial data behind it is allowed.
+The Piper voices that speak British English (the cases are set in a UK hospital). A voice's model card names the recordings it was trained on, and most were fine-tuned from a US voice, whose own recordings then matter too: the US `lessac` voice is trained on the Blizzard 2013 Lessac data, licensed for research only with every commercial use excluded, and the US `ryan` voice on RyanSpeech, CC BY-NC-SA 4.0. Because ProcSense is a final-year project (decision of 18 Oct 2026), research-only and non-commercial terms behind a voice are met, so these voices are allowed for academic, non-commercial use, with each set of recordings' own conditions (DT-184, closed by that decision; it reopens if the project is ever sold).
 
 | Voice (Piper id) | Recordings and their licence | Fine-tuned from | Decision | Conditions and notes | Checked |
 |---|---|---|---|---|---|
 | en_GB-cori-high | LibriVox, public domain | none (trained from scratch) | ALLOWED | The only British voice with no restricted data behind it; credit "Cori (Bryce Beattie), LibriVox" as a courtesy | 2026-10-16 (R-026) |
-| en_GB-alba-medium | Edinburgh DataShare 10283/3270, CC BY 4.0 | lessac (research only) | VERIFY | Blocked by the base voice (DT-184) | 2026-10-16 (R-026) |
-| en_GB-vctk-medium | VCTK, Edinburgh DataShare 10283/3443, CC BY 4.0 | lessac (research only) | VERIFY | As alba | 2026-10-16 (R-026) |
-| en_GB-aru-medium | University of Liverpool ARU speech corpus, CC BY 4.0 | lessac (research only) | VERIFY | As alba | 2026-10-16 (R-026) |
-| en_GB-jenny_dioco-medium | Jenny (Dioco) dataset: commercial use permitted; the voice must be credited as "Jenny (Dioco)" where practical | lessac (research only) | VERIFY | As alba; the credit would be needed too | 2026-10-16 (R-026) |
-| en_GB-northern_english_male-medium | OpenSLR 83, CC BY-SA 4.0 | lessac (research only) | VERIFY | As alba; share-alike would apply to the voice | 2026-10-16 (R-026) |
-| en_GB-southern_english_female-low | OpenSLR 83, CC BY-SA 4.0 | ryan (CC BY-NC-SA 4.0) | VERIFY | Non-commercial base (DT-184) | 2026-10-16 (R-026) |
-| en_GB-semaine-medium | DFKI SEMAINE data, CC BY-NC-SA 4.0 | — | REJECTED | Non-commercial recordings | 2026-10-16 (R-026) |
-| en_GB-alan-medium | Mimic 3 voice `apope` ("see URL", not read) | lessac (research only) | VERIFY | Recordings' licence not read; blocked by the base voice too | 2026-10-16 (R-026) |
+| en_GB-alba-medium | Edinburgh DataShare 10283/3270, CC BY 4.0 | lessac (research only) | ALLOWED WITH CONDITIONS | Attribution; academic, non-commercial use only (ProcSense is a final-year project, decision of 18 Oct 2026) | 2026-10-16 (R-026) |
+| en_GB-vctk-medium | VCTK, Edinburgh DataShare 10283/3443, CC BY 4.0 | lessac (research only) | ALLOWED WITH CONDITIONS | As alba | 2026-10-16 (R-026) |
+| en_GB-aru-medium | University of Liverpool ARU speech corpus, CC BY 4.0 | lessac (research only) | ALLOWED WITH CONDITIONS | As alba | 2026-10-16 (R-026) |
+| en_GB-jenny_dioco-medium | Jenny (Dioco) dataset: commercial use permitted; the voice must be credited as "Jenny (Dioco)" where practical | lessac (research only) | ALLOWED WITH CONDITIONS | As alba, and credit the voice as "Jenny (Dioco)" | 2026-10-16 (R-026) |
+| en_GB-northern_english_male-medium | OpenSLR 83, CC BY-SA 4.0 | lessac (research only) | ALLOWED WITH CONDITIONS | As alba; share-alike applies to the voice and what is made from it | 2026-10-16 (R-026) |
+| en_GB-southern_english_female-low | OpenSLR 83, CC BY-SA 4.0 | ryan (CC BY-NC-SA 4.0) | ALLOWED WITH CONDITIONS | Attribution; share-alike; academic, non-commercial use only (ProcSense is a final-year project, decision of 18 Oct 2026) | 2026-10-16 (R-026) |
+| en_GB-semaine-medium | DFKI SEMAINE data, CC BY-NC-SA 4.0 | — | ALLOWED WITH CONDITIONS | Attribution; share-alike; academic, non-commercial use only (ProcSense is a final-year project, decision of 18 Oct 2026) | 2026-10-16 (R-026) |
+| en_GB-alan-medium | Mimic 3 voice `apope` ("see URL", not read) | lessac (research only) | VERIFY | The recordings' licence was not read: read it before using the voice | 2026-10-16 (R-026) |
 
 ## Libraries and runtimes
 
