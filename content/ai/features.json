@@ -137,6 +137,18 @@
      "needs": "== 0.0"
     },
     {
+     "id": "classifier_synthetic2.adversarial_fresh_2",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "classifier_synthetic2.adversarial_fresh_3",
+     "status": "FAIL",
+     "got": 3,
+     "needs": "== 0.0"
+    },
+    {
      "id": "classifier_synthetic2.independent_evidence",
      "status": "FAIL",
      "got": false,

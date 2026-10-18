@@ -34,3 +34,7 @@ The 6 GB desktop card holds the 4B model for live work and is shared with the ev
 - **Trigger:** half met. The gap exists; the data to close it does not, so the track cannot start. This is the documented negative result the step's verification allows ("finding agreement at least 90 percent and rater accuracy under 70 percent, **or a documented negative result**"): not attempted, for want of licensed training data, not for want of effort.
 - **What would reopen it:** a licensed dataset (open licence that allows derivatives) holding at least one of the 29 findings with labels, a named reviewer to rate real against generated pictures, and a free or rented GPU. The cheapest first step is not a generator but a search for such data; candidates found should be entered in the dataset register with their licence before anything is trained.
 - **Meanwhile:** the painted findings stay labelled synthetic and practice-mode only (ADR-0003); a case that needs a real picture of one of these findings is not built.
+
+## Repeatable check
+
+`uv run --project tools tools/ai/adaptation_trigger.py --check` counts the 29 findings from `docs/research/imaging_gaps.md` and tests the other conditions (licensed training examples, held-out set, free card) from `content/ai/adaptation_triggers.json`; the result is `docs/research/adaptation_trigger_check.md`. It reports 'trigger not met' today and fails CI if a track ever says met without an experiment record.

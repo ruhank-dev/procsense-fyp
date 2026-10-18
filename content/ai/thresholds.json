@@ -342,6 +342,22 @@
      "ref": "evasive critical sentences written before the cue change (same author, so only a partial check)"
     },
     {
+     "id": "classifier_synthetic2.adversarial_fresh_2",
+     "file": "classifier-adversarial-fresh.json",
+     "path": "holdout2.credited_as_ordinary_count",
+     "op": "==",
+     "value": 0,
+     "ref": "hold-out 2 was used for tuning the cues of version 4 once seen; recorded for information"
+    },
+    {
+     "id": "classifier_synthetic2.adversarial_fresh_3",
+     "file": "classifier-adversarial-fresh.json",
+     "path": "holdout3.credited_as_ordinary_count",
+     "op": "==",
+     "value": 0,
+     "ref": "hold-out 3 is the only adversarial set no cue was chosen from: fresh critical sentences credited under an ordinary act must be 0 (it is 3 of 48 today)"
+    },
+    {
      "id": "classifier_synthetic2.independent_evidence",
      "file": "classifier-holdout-v3.json",
      "path": "valid_for_claims",

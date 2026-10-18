@@ -1,0 +1,46 @@
+{
+  "note": "When may a model be adapted (fine-tuned, or a picture generator trained)? Only when ALL of the conditions of a track hold. tools/ai/adaptation_trigger.py reads the measured gate (content/ai/features.json), the remedies listed here and the data counts listed here, and says whether the trigger is met. Counts and remedies are hand-maintained statements that a reviewer can read; the gap is measured.",
+  "conditions": [
+    "a measured quality gap: a suite of a feature in `features` that FAILS on committed results (a SKIPPED suite is a missing measurement, not a gap)",
+    "every remedy on the ladder is marked tried, with evidence",
+    "at least `min_training_examples` examples from a permitted source that is NOT the model's own output",
+    "a held-out evaluation set that shares no example with the training data",
+    "a compute budget that fits the 6 GB desktop card without taking it from live use for the training time"
+  ],
+  "tracks": [
+    {
+      "id": "llm-adaptation",
+      "plan": "p2-ai-advanced-simulation-s05 (E55 dialogue, E57 model choice)",
+      "features": ["narrative", "plan_composer", "critic", "patient_dialogue", "debrief_ai", "interpreter", "multi_agent", "tts", "asr", "voice_orders"],
+      "remedy_ladder": [
+        {"name": "prompt versions (immutable, measured against the old)", "tried": true, "evidence": "prompts/registry.json: interpret_v2, rewrite_v2, spine_v2, staff_pick_v1"},
+        {"name": "completion or repair in code (dropped facts, shortlist, validators)", "tried": true, "evidence": "server/debrief/rewrite.py cover_missing; server/generation/compose_plan.py shortlist"},
+        {"name": "a larger or different served model", "tried": false, "evidence": "only qwen3.5 4B and 9B were measured; the medical candidate is gated (content/ai/model_candidates.json)"},
+        {"name": "retrieval of approved examples into the prompt", "tried": false, "evidence": "retrieval exists (server/retrieval) but is not used for dialogue wording"}
+      ],
+      "min_training_examples": 500,
+      "permitted_training_examples": 0,
+      "training_source": "none: the only dialogue we hold is model-written; tuning a model on its own output cannot show it improved",
+      "heldout_available": false,
+      "compute_free_gpu_hours": 0,
+      "compute_note": "the card serves the live 4B model; no training window exists"
+    },
+    {
+      "id": "image-generation",
+      "plan": "p2-ai-advanced-simulation-s04 (E64)",
+      "features": [],
+      "gap_file": "docs/research/imaging_gaps.md",
+      "remedy_ladder": [
+        {"name": "picture selection from the existing library", "tried": true, "evidence": "tools/content/imaging_tags.py: 29 findings have no real picture to select"},
+        {"name": "painting findings into real base images (synthetic, labelled)", "tried": true, "evidence": "116 synthetic pictures, practice mode only (ADR-0003)"},
+        {"name": "a licensed dataset holding the missing findings", "tried": false, "evidence": "none of the 14 registered sources holds a labelled picture of them (docs/research/generative_images_trigger.md)"}
+      ],
+      "min_training_examples": 200,
+      "permitted_training_examples": 0,
+      "training_source": "none licensed",
+      "heldout_available": false,
+      "compute_free_gpu_hours": 0,
+      "compute_note": "days of a free card, or a rented card with a cost recorded"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+id: SD-012
+title: Seeded stress lines for the patient dialogue (normal, abnormal, ambiguous, contradictory, adversarial)
+synthetic: true
+purpose: "To test, repeatably and offline, that the patient dialogue never leaks a withheld fact, never talks about its instructions or being a program, never gives a dose or clinical advice and stays short, when it is asked plain, noisy, vague, contradictory and manipulative questions."
+generator: {path: tools/ai/dialogue_stress.py, version: "1", command: "uv run --project tools tools/ai/dialogue_stress.py build"}
+seed: "20261018 (random.Random); the committed file equals a fresh build, checked in CI"
+source: "Templates in the generator, filled with the topics of the approved P0 cases whose history is not volunteered; 90 lines: normal 20, abnormal 18, ambiguous 12, contradictory 16, adversarial 24, each earned or withheld by the seed."
+method: "Each line is put to the production dialogue (server/dialogue) with a local model; every reply is judged by deterministic rules (judge_reply): word leaks from withheld facts, meta talk, doses and advice absent from the authored answers, length, intent list."
+constraints: "Template text only: no real speech, no clinician wording; the rules see words, not meaning (a paraphrase of a hidden fact is not seen), so a person must still read replies (DT-190)."
+validation: "tools/ci/test_dialogue_stress.py (seeded, categories complete, rules tested with fixed replies); live results in reports/ai/dialogue-stress.json when the run has been made."
+review: Not reviewed by a person.
+labels: None (each line carries its category, case, topic and whether the fact is earned).
+model_use: "Evaluation only; nothing is trained on it."
+use: dev_only
+files: [tests/dialogue_stress/scenarios.json]
+rows: {tests/dialogue_stress/scenarios.json: {scenarios: 90}}
+licence: The project's own content

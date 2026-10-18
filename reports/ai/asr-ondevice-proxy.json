@@ -1,0 +1,102 @@
+{
+ "sherpa-onnx-whisper-tiny.en": {
+  "model": "sherpa-onnx-whisper-tiny.en",
+  "kind": "whisper",
+  "threads": 2,
+  "clips": 40,
+  "reference_words": 236,
+  "wer": 0.2034,
+  "real_time_factor_p50": 0.135,
+  "real_time_factor_max": 0.238,
+  "worst": [
+   [
+    1.0,
+    "PAT-VAR-S2-PD-ALLERGIES",
+    "None.",
+    "non"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S2-PC-PAST_HISTORY",
+    "No illnesses.",
+    "No little nesses."
+   ],
+   [
+    1.0,
+    "PAT-VAR-S2-F-HERBAL",
+    "None.",
+    "non"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S1-PB-ALCOHOL",
+    "None.",
+    "non"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S1-J-MEDICINES",
+    "None.",
+    "non"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S1-J-ALLERGIES",
+    "None.",
+    "non"
+   ]
+  ],
+  "platform": "desktop processor (x86-64), NOT the Quest",
+  "limit": "same synthetic clean clips as reports/ai/asr-wer.json (server small.en: WER 0.0932); latency on the headset, thermal and frame cost are not measured (Sannan, DT-205)"
+ },
+ "sherpa-onnx-streaming-zipformer-en-20M-2023-02-17-mobile": {
+  "model": "sherpa-onnx-streaming-zipformer-en-20M-2023-02-17-mobile",
+  "kind": "zipformer",
+  "threads": 2,
+  "clips": 40,
+  "reference_words": 236,
+  "wer": 0.4915,
+  "real_time_factor_p50": 0.04,
+  "real_time_factor_max": 0.053,
+  "worst": [
+   [
+    1.2,
+    "PAT-VAR-S2-D-IDENTITY",
+    "Zainab Anwar, fourteenth of August 1998.",
+    "NWAR FOURTEENTH OF AUGUST NINETEEN O NINETY EIGHT"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S2-PD-ALLERGIES",
+    "None.",
+    "ON"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S2-PC-PAST_HISTORY",
+    "No illnesses.",
+    "S"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S2-F-HERBAL",
+    "None.",
+    "ON"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S2-B-LAST_DRINK",
+    "Tea at 08:00.",
+    "'S ARROW"
+   ],
+   [
+    1.0,
+    "PAT-VAR-S1-PB-SMOKING",
+    "Never.",
+    ""
+   ]
+  ],
+  "platform": "desktop processor (x86-64), NOT the Quest",
+  "limit": "same synthetic clean clips as reports/ai/asr-wer.json (server small.en: WER 0.0932); latency on the headset, thermal and frame cost are not measured (Sannan, DT-205)"
+ }
+}
