@@ -45,7 +45,7 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-16 | AI debrief and grounded feedback | Blocked | PH-07 | — | D38; D46; D47; E56 |
 | PH-17 | Evaluation harness, adversarial testing and switch-off gate | Planned | PH-07 | — | B19; E50; E51; E55 |
 | PH-18 | Learning analytics and adaptive enhancements | Proposed new feature | PH-16; PH-12; PH-23 | — | B22; D39; D40; D41; D42; D44; D45; E52 |
-| PH-19 | Advanced research features | Proposed new feature | PH-13; PH-15; PH-17 | — | E48; E49; E59; E60; E61; E63 |
+| PH-19 | Advanced research features | Proposed new feature | PH-13; PH-15; PH-17 | — | E48; E49; E60; E61; E63 |
 | PH-20 | AI infrastructure and dual-GPU benchmark | Planned | PH-01 | — | E69 |
 | PH-21 | Labelling programme | Planned | PH-01 | — | — |
 | PH-22 | Scenario knowledge base and AI composer | Partially implemented | PH-03; PH-05; PH-20 | — | A66 |
@@ -306,14 +306,14 @@ Patterns, coaching, calibration, reasoning fingerprint, progression, investigati
 
 ### PH-19 — Advanced research features
 
-Digital twin, multi-agent lab, retrieval extensions, Urdu, trained classifier, medical LLM benchmark, on-device ASR.
+Digital twin, multi-agent lab, retrieval extensions, trained classifier, medical LLM benchmark, on-device ASR.
 
 | Field | Value |
 |---|---|
 | Status | Proposed new feature |
 | Depends on | PH-13; PH-15; PH-17 |
-| Tasks (plan steps) | p2-ai-advanced-simulation-s02; p2-ai-advanced-simulation-s03; p2-ai-extensions-s01; p2-ai-extensions-s02; p2-ai-extensions-s03; p2-ai-extensions-s04; p2-ai-extensions-s05 |
-| Features | E48; E49; E59; E60; E61; E63 |
+| Tasks (plan steps) | p2-ai-advanced-simulation-s02; p2-ai-advanced-simulation-s03; p2-ai-extensions-s01; p2-ai-extensions-s02; p2-ai-extensions-s03; p2-ai-extensions-s05 |
+| Features | E48; E49; E60; E61; E63 |
 | Deliverables | research prototypes |
 | Acceptance | defined per step |
 | Blockers | 6 GB VRAM limits concurrent models; one shared model needed; human-labelled set; terms acceptance by the owner |
@@ -453,7 +453,6 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | E56 | Difficulty explanation to the trainee | PH-16 | p1-scenario-composer-difficulty-s04 |
 | E57 | LLM serving and benchmark | PH-07 | p1-ai-language-s02 |
 | E58 | Retrieval over approved content (RAG) | PH-05 | p1-live-scenario-generation-s02; p2-ai-extensions-s02 |
-| E59 | Urdu and multilingual language | PH-19 | p2-ai-extensions-s04 |
 | E60 | P2 small trained classifier | PH-19 | p2-ai-extensions-s03 |
 | E61 | Medical LLM benchmark (for example MedGemma) | PH-19 | p2-ai-extensions-s05 |
 | E62 | Backend and AI gateway | PH-06 | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 |

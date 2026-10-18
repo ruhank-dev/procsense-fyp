@@ -9,7 +9,7 @@ _Last reviewed 12 October 2026 (UTC). Hand-written; `tools/plans/check_planning_
 - A VR training simulator (Meta Quest 2/3, Unity 6) for pre-operative preparation: the trainee takes an invented patient from arrival to the WHO Time Out in two scenarios, S1 (planned gallbladder removal) and S2 (emergency appendix removal). Educational only; not a medical device. All patients are invented.
 - A deterministic C# engine (`src/ProcSense.Core`) decides every state change and every score. Content is data (`content/`), built by Python tools (`tools/`) and traced to sources (`docs/research/`).
 - AI is planned in stages and is never the decider: rules decide, AI interprets and phrases, and nothing unchecked reaches a trainee ([ADR-0005](decisions/ADR-0005-ai-boundaries-and-staging.md)).
-- The newest planning work (12 October 2026, **planning only, nothing implemented**) covers 69 AI features, dataset-driven live scenario generation, trainee personalisation, and a 24-phase roadmap: start at [architecture/README.md](architecture/README.md).
+- The newest planning work (12 October 2026, **planning only, nothing implemented**) covers 68 AI features, dataset-driven live scenario generation, trainee personalisation, and a 24-phase roadmap: start at [architecture/README.md](architecture/README.md).
 - Remote: https://github.com/ruhank-dev/procsense-fyp, branch `main`. Teammates push straight to `main` after `task ci` (no pull requests).
 
 ## 2. Start here: "I want to know…"
@@ -34,7 +34,7 @@ _Last reviewed 12 October 2026 (UTC). Hand-written; `tools/plans/check_planning_
 | Path | What it holds | Authoritative for |
 |---|---|---|
 | [index.md](index.md) | This page | Where things are |
-| [architecture/](architecture/README.md) | The AI and live-generation planning set: canonical `procsense_full_pipeline.json`, 69 feature plans, registry, live generation spec, dataset matrix, model register, roadmap, coverage audit, Synverk flows (`flows/`), Mermaid and Cytoscape exports, integration and testing plans, JSON guide | Anything about AI features, generation, personalisation, hardware, the roadmap phases PH-01 to PH-24 |
+| [architecture/](architecture/README.md) | The AI and live-generation planning set: canonical `procsense_full_pipeline.json`, 68 feature plans, registry, live generation spec, dataset matrix, model register, roadmap, coverage audit, Synverk flows (`flows/`), Mermaid and Cytoscape exports, integration and testing plans, JSON guide | Anything about AI features, generation, personalisation, hardware, the roadmap phases PH-01 to PH-24 |
 | [plans/](plans/README.md) | Tiers `p0/ p1/ p2/` → phases → step files (What, Why, How, Verification, Files, Dependencies, Common issues); `milestones.md` is generated; [working-model.md](plans/working-model.md), [phase-review.md](plans/phase-review.md) | What to build, in what order, with what acceptance |
 | [decisions/](decisions/) | Architecture decision records ADR-0001 to ADR-0012 | Why a rule or design was chosen |
 | [research/](research/README.md) | Proof of truth: source register, dataset register and cards (`datasets/`), licence and provenance register, research log, issues, clinician questions, review packs, glossary and teaching-script checks, equipment sheets (`equipment/`), behaviour and physiology notes (`behaviour/`, `physio-plots/`), quoted official sources (`official_quotes/`) | Every clinical value, dataset, licence and web source |

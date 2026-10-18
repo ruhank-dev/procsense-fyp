@@ -24,7 +24,7 @@ produce many phrasings; a wrong match or a false mismatch would silently break S
 ## How to implement
 1. `src/ProcSense.Core/Workflow/Steps/SpokenIdentity.cs`: `Normalise(text)`, `Extract(text) → SpokenFields { Name tokens, Date?, Mrn?, Flags }`, `Compare(extracted, identity) → FieldResult`.
    Pure functions, no culture-dependent calls (invariant culture, ordinal comparisons).
-2. Word tables (day/ordinal words, month names, number words, honorifics, filler words) in a small `Language` class now; moved to `content/language/en.json` when a second language arrives (P2 Urdu — see p2-ai-extensions).
+2. Word tables (day/ordinal words, month names, number words, honorifics, filler words) in a small `Language` class now; kept English only (owner decision, 18 Oct 2026: no second language).
 3. `IdentityCheck` uses `SpokenIdentity` for the spoken source; wristband and notes comparisons stay structural.
 4. Date-format convention (`DD/MM` default) in content with a register row (institution decision, evidence type C/D).
 5. Test matrix (table-driven, 40+ phrasings): the same patient said many ways → `Match`; wrong day, wrong month, wrong year, wrong surname, swapped given/family name → `Mismatch`; name only → `Missing`; "3/4/1984" → `Ambiguous`.

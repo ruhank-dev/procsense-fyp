@@ -12,7 +12,7 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 | MC-02 | Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off (think false), num_ctx 4096, kept loaded; Qwen3.5 2B if the p95 latency target is missed | Planned |
 | MC-03 | Communication act classification (C35, C37, E60) | LLM, then trained (P2 only) | Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1) | Blocked |
 | MC-04 | Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off; texts that can be written once are pre-generated offline by Qwen3.5 9B and approved before use | Blocked |
-| MC-05 | Speech recognition (C31 to C35, E59, E63) | pretrained | faster-whisper medium.en int8 on the desktop GPU, vocabulary prompt from content | Planned |
+| MC-05 | Speech recognition (C31 to C35, E63) | pretrained | faster-whisper medium.en int8 on the desktop GPU, vocabulary prompt from content | Planned |
 | MC-06 | Text-to-speech (C31, C34) | pretrained | pre-rendered lines for fixed lines; Piper archived MIT release for live lines, voice licence checked per voice | Planned |
 | MC-07 | Retrieval (E58, LG-03) | retrieval | BM25 + tag filter | Planned |
 | MC-08 | Numeric generation (B14, B20, B21) | statistical | seeded truncated distributions + Gaussian copula | Partially implemented |
@@ -102,7 +102,7 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 | Why not something simpler | Template debrief is built and always shown first; AI adds tone and explanation only. |
 | Status | Blocked |
 
-## MC-05 — Speech recognition (C31 to C35, E59, E63)
+## MC-05 — Speech recognition (C31 to C35, E63)
 
 | Field | Value |
 |---|---|

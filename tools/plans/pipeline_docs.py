@@ -18,7 +18,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parents[2]
 ARCH = ROOT / "docs" / "architecture"
 SRC = ARCH / "procsense_full_pipeline.json"
-PLANS = "../plans/features"                 # relative to ARCH: the canonical home of the 69 feature plans
+PLANS = "../plans/features"                 # relative to ARCH: the canonical home of the 68 feature plans
 sys.path.insert(0, str(Path(__file__).parent))
 from validate_pipeline import coverage  # noqa: E402
 
@@ -43,7 +43,7 @@ def feature_registry(doc, nodes) -> str:
     feats = sorted((n for n in nodes.values() if n["type"] == "feature"), key=lambda f: fid_key(f["id"]))
     phases = {p["id"]: p for p in doc["phases"]}
     out = ["# ProcSense AI feature registry", "", HEAD, "",
-           "Every AI-related feature found in the plans, the code and this planning update, one entry each (69 features: A1 to E65, plus A66, D67, D68 and E69 added in the second pass). Overlapping features are kept separate and cross-referenced, not merged. "
+           "Every AI-related feature found in the plans, the code and this planning update, one entry each (68 features: A1 to E65 except one number, the Urdu-speech feature, which the owner retired on 18 October 2026, plus A66, D67, D68 and E69 added in the second pass). Overlapping features are kept separate and cross-referenced, not merged. "
            "**Status** is the feature as a whole; **AI status** is only its model-driven part, so deterministic work is never counted as AI. Statuses: " + ", ".join(doc["legend"]["statuses"]) + ".", "",
            "Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is built (12 October 2026).", "", "## Summary", ""]
     by = defaultdict(int)

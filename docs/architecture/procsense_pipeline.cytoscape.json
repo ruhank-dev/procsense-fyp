@@ -1886,17 +1886,6 @@
   {
    "group": "nodes",
    "data": {
-    "id": "E59",
-    "label": "E59 Urdu and multilingual language",
-    "type": "feature",
-    "status": "Deferred",
-    "parent": "g_feat_E"
-   },
-   "classes": "feature"
-  },
-  {
-   "group": "nodes",
-   "data": {
     "id": "E60",
     "label": "E60 P2 small trained classifier",
     "type": "feature",
@@ -6318,42 +6307,6 @@
     "id": "E360",
     "source": "E58",
     "target": "OFF-04",
-    "type": "depends_on",
-    "label": "",
-    "cycle": false
-   },
-   "classes": "depends_on"
-  },
-  {
-   "group": "edges",
-   "data": {
-    "id": "E361",
-    "source": "E59",
-    "target": "CMP-ASR",
-    "type": "realised_by",
-    "label": "",
-    "cycle": false
-   },
-   "classes": "realised_by"
-  },
-  {
-   "group": "edges",
-   "data": {
-    "id": "E362",
-    "source": "E59",
-    "target": "C33",
-    "type": "depends_on",
-    "label": "",
-    "cycle": false
-   },
-   "classes": "depends_on"
-  },
-  {
-   "group": "edges",
-   "data": {
-    "id": "E363",
-    "source": "E59",
-    "target": "C24",
     "type": "depends_on",
     "label": "",
     "cycle": false

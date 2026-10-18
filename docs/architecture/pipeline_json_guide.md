@@ -33,7 +33,7 @@ Derived files: [feature_registry.md](feature_registry.md), [live_generation_spec
 | `fallback_paths` | FB-01 to FB-10. |
 | `open_questions` | OQ-01 to OQ-08; none blocks development. |
 
-**Ids.** Dataset and model nodes share their id with their catalogue entry on purpose (the node is the graph handle of the entry). Feature ids run A1 to E65 and then A66, D67, D68, E69 (added in the second pass), with the letter giving the category; they are never renumbered. Task ids are plan step ids, so every task has a step file under `docs/plans`.
+**Ids.** Dataset and model nodes share their id with their catalogue entry on purpose (the node is the graph handle of the entry). Feature ids run A1 to E65 (one number, the Urdu-speech feature, was retired on 18 October 2026 and is not reused) and then A66, D67, D68, E69 (added in the second pass), with the letter giving the category; they are never renumbered. Task ids are plan step ids, so every task has a step file under `docs/plans`.
 
 **Statuses.** Implemented and tested · Implemented but incompletely tested · Partially implemented · Planned · Blocked · Deferred · Proposed new feature · Superseded or rejected. A feature's `status` is the whole feature; `ai_status` is only its model-driven part.
 
@@ -101,7 +101,7 @@ The schema allows at most 30 nodes, 60 edges and 6 notes per flowchart (read 12 
 | `02-models-and-stages.json` | Models MC-01 to MC-13 and the stages that use them | 25 / 14 |
 | `03-components-and-stages.json` | Existing and planned components and the stages they serve | 27 / 22 |
 | `04-roadmap-phases.json` | Phases PH-01 to PH-24 with dependencies and the critical path | 24 / 40 |
-| `05` to `09-features-*.json` | The 69 features by category A to E, with their dependencies | 14 to 19 per file |
+| `05` to `09-features-*.json` | The 68 features by category A to E, with their dependencies | 14 to 19 per file |
 
 How the JSON maps to the format: a box's `label` is its id in the canonical JSON (features: id, tier, phase), `title` a short name, `text` the status plus the first sentence of the description and the feature plans that trace to it, `tone` the status (mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred), `actor` a fixed icon per node type or stage. Edges come from the JSON's flow edges; edges to nodes outside a diagram are dropped, so use the Cytoscape export when you need every edge. The generator raises an error rather than cutting content if a diagram would break a limit.
 

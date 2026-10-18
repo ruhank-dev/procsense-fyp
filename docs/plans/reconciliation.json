@@ -864,16 +864,6 @@
    "measured": "the small classifier is the embeddings and logistic-regression head; see p1-ai-language-s07",
    "open": "The independent set (see p1-ai-language-s07)"
   },
-  "p2-ai-extensions-s04": {
-   "owner": "Ruhan with participants",
-   "before": "Not started",
-   "now": "BLOCKED",
-   "evidence": [
-    "tools/ai/asr_wer.py"
-   ],
-   "measured": "",
-   "open": "Urdu speech needs consented Urdu recordings and a recogniser benchmark on them (DT-212)"
-  },
   "p2-ai-extensions-s05": {
    "owner": "Ruhan",
    "before": "Not started",

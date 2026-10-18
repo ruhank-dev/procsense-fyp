@@ -3800,41 +3800,6 @@ p1-ai-language-s07.
 Training on LLM labels can copy the LLM's mistakes — evaluate only on the human-labelled test split.
 
 
-#### p2-ai-extensions-s04 — Urdu / Urdu-English speech
-
-- [ ] Self-verification and Sannan manual acceptance recorded.
-
-Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s04-urdu-speech.md). Initial status: Planned; no implementation acceptance claimed.
-
-**What**
-
-ASR + TTS support for Urdu and code-switched speech via TTS augmentation + small consented recordings (no suitable free dataset known).
-
-**How to implement**
-
-1. Consented data collection; WER evaluation.
-2. Scope: Urdu and Urdu-English code-switching for patient questions/answers (trainee speech first); no translation of clinical content without review.
-3. Data: consented recordings from volunteers (consent form, speaker IDs, no identifiers), plus TTS-augmented Urdu prompts; dataset card.
-4. Evaluate Whisper multilingual on the set (WER per language mix); vocabulary prompt with transliterated medical terms.
-5. TTS: check available Urdu voices for the offline pipeline; record terms.
-
-**Verification**
-
-WER by category recorded; dataset card complete; ADR on whether Urdu input ships.
-
-**Files changed**
-
-`data/urdu/*` (dev-only, consented), `tools/voice/urdu_eval.py`, dataset card, `docs/decisions/ADR-xxxx-urdu.md`.
-
-**Dependencies**
-
-p1-voice-input-s01.
-
-**Common issues**
-
-Code-switched speech confuses language detection → force multilingual decoding and evaluate per mix category.
-
-
 #### p2-ai-extensions-s05 — Medical LLM benchmark (EXP-P2AI-3)
 
 - [ ] Self-verification and Sannan manual acceptance recorded.

@@ -8,12 +8,12 @@ Computed from the pipeline JSON by the same function the validator uses (`covera
 
 | Measure | Count | Share |
 |---|---|---|
-| Features | 69 | 100% |
-| Complete implementation plans | 69 | 100% |
-| Mapped to concrete, phased tasks | 69 | 100% |
-| Acceptance criteria on every capability | 69 | 100% |
-| Capability plans | 105 | — |
-| of which AI capabilities | 65 | — |
+| Features | 68 | 100% |
+| Complete implementation plans | 68 | 100% |
+| Mapped to concrete, phased tasks | 68 | 100% |
+| Acceptance criteria on every capability | 68 | 100% |
+| Capability plans | 104 | — |
+| of which AI capabilities | 64 | — |
 
 ## Gaps
 
@@ -84,7 +84,6 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | E56 | Difficulty explanation to the trainee | Planned | hybrid | 1 (1) | yes | p1-scenario-composer-difficulty-s04 | PH-16 | [E56](../plans/features/E56.md) |
 | E57 | LLM serving and benchmark | Partially implemented | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-language-s02 | PH-07 | [E57](../plans/features/E57.md) |
 | E58 | Retrieval over approved content (RAG) | Partially implemented | hybrid | 1 (1) | yes | p1-live-scenario-generation-s02; p2-ai-extensions-s02 | PH-05 | [E58](../plans/features/E58.md) |
-| E59 | Urdu and multilingual language | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s04 | PH-19 | [E59](../plans/features/E59.md) |
 | E60 | P2 small trained classifier | Partially implemented | ai | 1 (1) | yes | p2-ai-extensions-s03 | PH-19 | [E60](../plans/features/E60.md) |
 | E61 | Medical LLM benchmark (for example MedGemma) | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s05 | PH-19 | [E61](../plans/features/E61.md) |
 | E62 | Backend and AI gateway | Partially implemented | deterministic | 1 (0) | yes | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 | PH-06 | [E62](../plans/features/E62.md) |

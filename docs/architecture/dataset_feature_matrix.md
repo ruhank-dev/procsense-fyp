@@ -17,7 +17,7 @@ What each dataset and content table is, what is known about its normal and abnor
 | DS-0007 | openFDA Drug Label API live API | CC0 1.0 | IN USE | drug label text | Contraindication and boxed-warning wording for medicine groups (never doses). | tools/data/derived/openfda_label_safety.json | ST-MEDS | A3 |
 | DS-0008 | Regensburg Pediatric Appendicitis UCI 938 | CC BY-NC 4.0 | REJECTED | paediatric appendicitis scores | None (licence not confirmed; paediatric). | none | — | — |
 | DS-0009 | PriMock57 n/a | CC BY 4.0 | NOT NEEDED | mock consultation audio | Considered for ASR evaluation; decided not needed (10 Oct 2026). | none | — | C33 |
-| DS-0010 | Mozilla Common Voice n/a | not read (only through Mozilla Data Collective since October 2025) | NOT NEEDED | crowd speech | Considered for accent robustness; decided not needed. | none | — | C33; E59 |
+| DS-0010 | Mozilla Common Voice n/a | not read (only through Mozilla Data Collective since October 2025) | NOT NEEDED | crowd speech | Considered for accent robustness; decided not needed. | none | — | C33 |
 | DS-0011 | ProcSense labelled synthetic images repository | ProcSense generated | IN USE (DRAFT) | ultrasound, ECG pictures, free-air film | Labelled stand-ins where no real image exists (ADR-0003). | content/images | OFF-06; LG-08 | B15; B16; B17 |
 | DS-0012 | ProcSense authored EMR distractor identities repository | ProcSense authored | DRAFT | invented patient identities | Search-the-right-patient task. | content/emr_distractors.csv | ST-EMR | A3; A7 |
 | DS-0013 | Indiana University Chest X-ray (Open-i) n/a | CC BY-NC-ND 4.0 | REJECTED | chest X-ray with reports | None (no-derivatives licence conflicts with cropping and annotation). | none | — | — |
@@ -36,7 +36,7 @@ What each dataset and content table is, what is known about its normal and abnor
 | DS-0007 | Not a patient dataset. | None beyond the existing extract. | None. |
 | DS-0008 | n/a | None; revisit only if a paediatric case is added. | Non-commercial licence; children only. |
 | DS-0009 | n/a | Revisit for C33 accent and domain WER if own recordings are insufficient. | Attribution if ever used; audio not committed. |
-| DS-0010 | n/a | Revisit for C33 and E59 (Urdu). | Read the Mozilla Data Collective terms before any use. |
+| DS-0010 | n/a | Revisit for C33. | Read the Mozilla Data Collective terms before any use. |
 | DS-0011 | Each picture labelled synthetic with its intended finding. | Quality grading alongside real images (p1-dataset-analysis-s04). | Must stay labelled synthetic. |
 | DS-0012 | n/a | Name pool for generated profiles (A3). | Invented names only. |
 | DS-0013 | n/a | None. | Do not use. |

@@ -2760,7 +2760,6 @@
         "features": [
           "C31",
           "C33",
-          "E59",
           "E63",
           "E69"
         ],
@@ -2768,7 +2767,6 @@
         "plans": [
           "docs/plans/features/C31.md",
           "docs/plans/features/C33.md",
-          "docs/plans/features/E59.md",
           "docs/plans/features/E63.md",
           "docs/plans/features/E69.md"
         ]
@@ -3438,13 +3436,11 @@
       "traced_to": {
         "kind": "direct",
         "features": [
-          "C33",
-          "E59"
+          "C33"
         ],
         "steps": [],
         "plans": [
-          "docs/plans/features/C33.md",
-          "docs/plans/features/E59.md"
+          "docs/plans/features/C33.md"
         ]
       }
     },
@@ -3602,7 +3598,6 @@
           "E49",
           "E54",
           "E57",
-          "E59",
           "E65"
         ],
         "steps": [],
@@ -3708,7 +3703,7 @@
       "label": "MC-05 Speech recognition",
       "group": "g_models",
       "status": "Partially implemented",
-      "description": "Speech recognition (C31 to C35, E59, E63)",
+      "description": "Speech recognition (C31 to C35, E63)",
       "model_ref": "MC-05",
       "traced_to": {
         "kind": "direct",
@@ -3717,7 +3712,6 @@
           "C32",
           "C33",
           "C35",
-          "E59",
           "E63",
           "E69"
         ],
@@ -3727,7 +3721,6 @@
           "docs/plans/features/C32.md",
           "docs/plans/features/C33.md",
           "docs/plans/features/C35.md",
-          "docs/plans/features/E59.md",
           "docs/plans/features/E63.md",
           "docs/plans/features/E69.md"
         ]
@@ -14534,161 +14527,6 @@
       }
     },
     {
-      "id": "E59",
-      "type": "feature",
-      "label": "Urdu and multilingual language",
-      "category": "Platform, evaluation and advanced research",
-      "group": "g_feat_E",
-      "kind": "ai",
-      "status": "Deferred",
-      "ai_status": "Deferred",
-      "description": "Urdu speech and language tables for spoken identity and dialogue.",
-      "evidence": [],
-      "lineage": [
-        "p2-ai-extensions-s04",
-        "DT-033"
-      ],
-      "method": "Pretrained multilingual ASR and LLM.",
-      "llm_first_classification": "Pretrained.",
-      "model_refs": [
-        "MC-05",
-        "MC-02"
-      ],
-      "dataset_refs": [],
-      "realised_by": [
-        "CMP-ASR"
-      ],
-      "depends_on": [
-        "C33",
-        "C24"
-      ],
-      "overlaps": [],
-      "inputs": [],
-      "outputs": [],
-      "deterministic_guard": "Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails.",
-      "fallback": "English only.",
-      "tests_planned": [
-        "Urdu WER set"
-      ],
-      "acceptance": "Defined in P2.",
-      "blockers": [],
-      "risks": [
-        "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
-      ],
-      "tasks": [
-        "p2-ai-extensions-s04"
-      ],
-      "phase": "PH-19",
-      "tier": "P2",
-      "plan": {
-        "user_experience": "Trainees can speak Urdu or mixed Urdu-English with patients, as on a real ward in Pakistan.",
-        "exists": [
-          "nothing"
-        ],
-        "missing": [
-          "multilingual ASR evaluation",
-          "Urdu persona and lexicon",
-          "spoken identity tables (DT-033)"
-        ],
-        "deterministic_foundation": "English pipeline.",
-        "ai_questions": {
-          "what_ai_does": "Recognise and answer in Urdu.",
-          "why_ai_is_useful": "Realism for local trainees.",
-          "method_split": "Pretrained multilingual ASR (Whisper multilingual) and multilingual LLM; deterministic lexicon tables.",
-          "deterministic_still_needed": "Lexicon, validator per language.",
-          "ai_implemented": "None.",
-          "ai_missing": "All.",
-          "must_build": "Urdu test set, prompts, validator lexicon.",
-          "better_than_baseline": "WER and answer quality versus English-only."
-        },
-        "capabilities": [
-          {
-            "id": "E59.c1",
-            "name": "Urdu ASR and dialogue",
-            "kind": "AI (pretrained)",
-            "status": "Deferred",
-            "purpose": "Urdu.",
-            "method": "Whisper multilingual + Qwen3.5 (multilingual).",
-            "models": [
-              "MC-05",
-              "MC-02"
-            ],
-            "data": [
-              "DS-0010"
-            ],
-            "input_schema": "Urdu audio",
-            "output_schema": "text + reply",
-            "flow": [
-              "ASR",
-              "dialogue",
-              "validator with Urdu lexicon"
-            ],
-            "validation": "Urdu probe set.",
-            "failure_handling": {
-              "errors": "Timeout or server error: one retry, then English; logged with prompt version and model digest.",
-              "hallucinations": "Output must match a JSON schema whose enums are approved ids; the grounding validator rejects invented drugs, values, diagnoses, events and hidden facts.",
-              "inconsistency": "Output is cross-checked against the structured case or facts it was given; any mismatch rejects it.",
-              "model_unavailable": "Feature switch reports off; English. The session never waits on the model.",
-              "invalid_input": "Inputs are schema-validated before the model is called; invalid input is a 4xx with field errors."
-            },
-            "tests": [
-              "Urdu WER set"
-            ],
-            "metrics": [
-              "WER"
-            ],
-            "baseline_comparison": "English only.",
-            "acceptance": "WER under 25 percent on the Urdu set.",
-            "hardware": {
-              "gtx1660": "faster-whisper small.en or medium.en with int8 is expected to fit beside a 4B LLM on the desktop (upstream lists large-v2 int8 at about 2.9 GB); exact VRAM to be measured.",
-              "rtx4050": "Possible, but competes with Unity rendering; prefer the desktop or CPU int8 small.en.",
-              "ram": "CPU fallback with small.en int8 on the Ryzen 5 2600 (6 cores) is expected to be near real time; to be measured.",
-              "latency": "Under 1.5 s from end of speech to text.",
-              "deployment": "Part of the inference service; push-to-talk audio streamed from Unity."
-            },
-            "tasks": [
-              "p2-ai-extensions-s04"
-            ]
-          }
-        ],
-        "integration": {
-          "unity": "Language setting.",
-          "backend": "ASR, gateway.",
-          "simulation_state": "None.",
-          "other_features": "C24, C33."
-        },
-        "prerequisites": [
-          "English voice working",
-          "Urdu recordings"
-        ],
-        "status_rationale": "Deferred to P2 because the English pipeline comes first (DT-033).",
-        "reassessment": "Keep in PH-19.",
-        "staged_versions": {
-          "initial": "Text Urdu.",
-          "future": "Speech."
-        },
-        "deliverables": [
-          "Urdu set"
-        ],
-        "definition_of_done": [
-          "met"
-        ],
-        "status_history": []
-      },
-      "traced_to": {
-        "kind": "direct",
-        "features": [
-          "E59"
-        ],
-        "steps": [
-          "p2-ai-extensions-s04"
-        ],
-        "plans": [
-          "docs/plans/features/E59.md"
-        ]
-      }
-    },
-    {
       "id": "E60",
       "type": "feature",
       "label": "P2 small trained classifier",
@@ -18831,8 +18669,7 @@
       "label": "not needed",
       "traced_to": {
         "features": [
-          "C33",
-          "E59"
+          "C33"
         ],
         "steps": [
           "p1-dataset-analysis-s01"
@@ -23324,56 +23161,6 @@
       }
     },
     {
-      "id": "E361",
-      "source": "E59",
-      "target": "CMP-ASR",
-      "type": "realised_by",
-      "label": "",
-      "traced_to": {
-        "features": [
-          "E59"
-        ],
-        "steps": [
-          "p2-ai-extensions-s04"
-        ]
-      }
-    },
-    {
-      "id": "E362",
-      "source": "E59",
-      "target": "C33",
-      "type": "depends_on",
-      "label": "",
-      "traced_to": {
-        "features": [
-          "C33",
-          "E59"
-        ],
-        "steps": [
-          "p1-ai-infrastructure-s01",
-          "p1-voice-input-s01",
-          "p2-ai-extensions-s04"
-        ]
-      }
-    },
-    {
-      "id": "E363",
-      "source": "E59",
-      "target": "C24",
-      "type": "depends_on",
-      "label": "",
-      "traced_to": {
-        "features": [
-          "C24",
-          "E59"
-        ],
-        "steps": [
-          "p1-ai-language-s04",
-          "p2-ai-extensions-s04"
-        ]
-      }
-    },
-    {
       "id": "E364",
       "source": "E60",
       "target": "LG-17",
@@ -24095,11 +23882,10 @@
       "use": "Considered for accent robustness; decided not needed.",
       "derived": "none",
       "normal_abnormal": "n/a",
-      "planned_analysis": "Revisit for C33 and E59 (Urdu).",
+      "planned_analysis": "Revisit for C33.",
       "feeds": [],
       "features": [
-        "C33",
-        "E59"
+        "C33"
       ],
       "restrictions": "Read the Mozilla Data Collective terms before any use."
     },
@@ -24277,7 +24063,7 @@
     },
     {
       "id": "MC-05",
-      "purpose": "Speech recognition (C31 to C35, E59, E63)",
+      "purpose": "Speech recognition (C31 to C35, E63)",
       "candidates": [
         "faster-whisper small.en / medium.en (MIT)",
         "faster-whisper large-v2/v3 int8 (about 2.9 GB VRAM for large-v2 int8 beam 5, upstream benchmark)"
@@ -24986,7 +24772,7 @@
     {
       "id": "PH-19",
       "name": "Advanced research features",
-      "objective": "Digital twin, multi-agent lab, retrieval extensions, Urdu, trained classifier, medical LLM benchmark, on-device ASR.",
+      "objective": "Digital twin, multi-agent lab, retrieval extensions, trained classifier, medical LLM benchmark, on-device ASR.",
       "depends_on": [
         "PH-13",
         "PH-15",
@@ -25005,13 +24791,11 @@
         "p2-ai-extensions-s01",
         "p2-ai-extensions-s02",
         "p2-ai-extensions-s03",
-        "p2-ai-extensions-s04",
         "p2-ai-extensions-s05"
       ],
       "features": [
         "E48",
         "E49",
-        "E59",
         "E60",
         "E61",
         "E63"

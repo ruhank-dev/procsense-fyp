@@ -7,7 +7,7 @@ The trainee can speak: push-to-talk speech recognition, voice orders with read-b
 
 ## Scope
 - **In:** ASR service on the server, Quest voice client (push-to-talk, subtitles), voice-order parser + read-back flow, live TTS, speech datasets for evaluation.
-- **Out:** on-device ASR, Urdu (P2).
+- **Out:** on-device ASR (P2). The product is English only (owner decision, 18 Oct 2026).
 
 ## Decisions
 | Decision | Chosen | Alternatives | Why | Revisit if |
