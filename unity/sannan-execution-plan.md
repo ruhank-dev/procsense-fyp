@@ -535,7 +535,7 @@ Double actions → debounce select events; Observable null on first frame → cr
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-vr-platform/steps/p0-vr-platform-s04-scene-structure-loading.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-vr-platform/steps/✅%20p0-vr-platform-s04-scene-structure-loading.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -569,7 +569,7 @@ Observable null on first frame → create the Session in `Awake` before views (B
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-vr-platform/steps/p0-vr-platform-s05-locomotion-comfort.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-vr-platform/steps/✅%20p0-vr-platform-s05-locomotion-comfort.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -926,7 +926,7 @@ Leave clear paths between table, machines and door for NPCs.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-environment-rooms/steps/p0-environment-rooms-s07-corridor-doors.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-environment-rooms/steps/✅%20p0-environment-rooms-s07-corridor-doors.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -960,7 +960,7 @@ NavMesh through doors must exist for patient/porter but the trainee's teleport a
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-environment-rooms/steps/p0-environment-rooms-s08-greybox-ot.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-environment-rooms/steps/✅%20p0-environment-rooms-s08-greybox-ot.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -996,7 +996,7 @@ Keep anchor names stable — s06 depends on them.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/p0-blender-equipment-s01-blender-pipeline-setup.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/✅%20p0-blender-equipment-s01-blender-pipeline-setup.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -1099,7 +1099,7 @@ Bounding-box scale checks fail for items with cables/tubing — measure the main
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/p0-blender-equipment-s04-pilot-assets-quality-bar.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/✅%20p0-blender-equipment-s04-pilot-assets-quality-bar.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -1135,7 +1135,7 @@ Don't start other assets until the bar is approved.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/p0-blender-equipment-s05-unity-import-pipeline.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/✅%20p0-blender-equipment-s05-unity-import-pipeline.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -2744,7 +2744,7 @@ Lines in two places drift apart → the catalogue is generated from content only
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-voice-audio/steps/p0-voice-audio-s02-offline-tts.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-voice-audio/steps/✅%20p0-voice-audio-s02-offline-tts.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3144,7 +3144,7 @@ Reviewer time is the bottleneck — prioritise items affecting P0 cases and spli
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-evaluation-performance/steps/p0-evaluation-performance-s07-attributions-user-guide.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-evaluation-performance/steps/✅%20p0-evaluation-performance-s07-attributions-user-guide.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3389,7 +3389,7 @@ Specimen label text must be live (patient name from Core) so the 'read aloud inc
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-voice-input/steps/p1-voice-input-s01-asr-service.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-voice-input/steps/✅%20p1-voice-input-s01-asr-service.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3597,7 +3597,7 @@ Solver slow on tight templates → order slots by tightness and memoise dead end
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/p1-scenario-composer-difficulty-s03-stage-a-proposals.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/✅%20p1-scenario-composer-difficulty-s03-stage-a-proposals.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3701,7 +3701,7 @@ Composed cases that look alike → bias the solver toward rarely used blocks and
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s01-on-device-asr.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/✅%20p2-ai-extensions-s01-on-device-asr.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 

@@ -33,7 +33,7 @@ class PromptError(ValueError):
 class Prompt:
     id: str
     version: int
-    role: str                      # "live" (4B, thinking off) or "batch" (9B)
+    role: str                      # "live" or "batch" (both run on the 4B, thinking off; ADR-0017, ADR-0019)
     system: str
     user: str
     variables: tuple[str, ...]

@@ -20,7 +20,7 @@ Understand every dataset and content table well enough to design generators that
 | [p1-dataset-analysis-s03](steps/✅%20p1-dataset-analysis-s03-waveform-profiles.md) | Waveform profiles: ECG and monitor signals |
 | [p1-dataset-analysis-s04](steps/✅%20p1-dataset-analysis-s04-image-tagging.md) | Image library tagging and quality grading |
 | [p1-dataset-analysis-s05](steps/✅%20p1-dataset-analysis-s05-parameter-packs-eval-sets.md) | Generator parameter packs and evaluation sets |
-| [p1-dataset-analysis-s06](steps/p1-dataset-analysis-s06-scenario-knowledge-base.md) | Scenario knowledge base: relations from tables, cases, walkthrough and datasets (A66) |
+| [p1-dataset-analysis-s06](steps/✅%20p1-dataset-analysis-s06-scenario-knowledge-base.md) | Scenario knowledge base: relations from tables, cases, walkthrough and datasets (A66) |
 
 ## Exit
 Every step's verification passes and `uv run --project tools tools/plans/validate_pipeline.py` still passes with the stage statuses updated.

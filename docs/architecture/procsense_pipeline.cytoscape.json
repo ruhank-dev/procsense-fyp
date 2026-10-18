@@ -1284,7 +1284,7 @@
     "id": "A4",
     "label": "A4 Mixed (multi-problem) case generation",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1295,7 +1295,7 @@
     "id": "A5",
     "label": "A5 Dynamic events (selection and generated variants)",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1317,7 +1317,7 @@
     "id": "A7",
     "label": "A7 Adversarial (trap) scenario generation for trainees",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1328,7 +1328,7 @@
     "id": "A8",
     "label": "A8 Branching scenario paths",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1383,7 +1383,7 @@
     "id": "A13",
     "label": "A13 Provenance and reproducibility of generated scenarios",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Partially implemented",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1768,7 +1768,7 @@
     "id": "E48",
     "label": "E48 Patient Digital Twin",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -1779,7 +1779,7 @@
     "id": "E49",
     "label": "E49 Multi-Agent Clinical Simulation Lab",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -1900,7 +1900,7 @@
     "id": "E61",
     "label": "E61 Medical LLM benchmark (for example MedGemma)",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Partially implemented",
     "parent": "g_feat_E"
    },
    "classes": "feature"

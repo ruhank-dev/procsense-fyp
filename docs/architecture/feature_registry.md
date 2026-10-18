@@ -26,16 +26,16 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-04 | P1 | [plan](../plans/features/A1.md) |
 | A2 | Live dataset-driven scenario generation | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-05 | P1 | [plan](../plans/features/A2.md) |
 | A3 | Patient profile generation | hybrid | Implemented and tested | Implemented and tested | PH-08 | P1 | [plan](../plans/features/A3.md) |
-| A4 | Mixed (multi-problem) case generation | hybrid | Partially implemented | Planned | PH-05 | P1 | [plan](../plans/features/A4.md) |
-| A5 | Dynamic events (selection and generated variants) | hybrid | Partially implemented | Planned | PH-10 | P1 | [plan](../plans/features/A5.md) |
+| A4 | Mixed (multi-problem) case generation | hybrid | Implemented but incompletely tested | Planned | PH-05 | P1 | [plan](../plans/features/A4.md) |
+| A5 | Dynamic events (selection and generated variants) | hybrid | Implemented but incompletely tested | Planned | PH-10 | P1 | [plan](../plans/features/A5.md) |
 | A6 | Novelty control and scenario fingerprinting | deterministic | Implemented and tested | Implemented and tested | PH-11 | P1 | [plan](../plans/features/A6.md) |
-| A7 | Adversarial (trap) scenario generation for trainees | hybrid | Partially implemented | Planned | PH-11 | P1 | [plan](../plans/features/A7.md) |
-| A8 | Branching scenario paths | deterministic | Partially implemented | Planned | PH-10 | P1 | [plan](../plans/features/A8.md) |
+| A7 | Adversarial (trap) scenario generation for trainees | hybrid | Implemented but incompletely tested | Planned | PH-11 | P1 | [plan](../plans/features/A7.md) |
+| A8 | Branching scenario paths | deterministic | Implemented but incompletely tested | Planned | PH-10 | P1 | [plan](../plans/features/A8.md) |
 | A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-11 | P1 | [plan](../plans/features/A9.md) |
 | A10 | Validation, repair and rejection | deterministic | Implemented and tested | Implemented and tested | PH-10 | P1 | [plan](../plans/features/A10.md) |
 | A11 | Difficulty control in generation | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-05 | P1 | [plan](../plans/features/A11.md) |
 | A12 | Recombination of case components | deterministic | Implemented but incompletely tested | Implemented but incompletely tested | PH-04 | P1 | [plan](../plans/features/A12.md) |
-| A13 | Provenance and reproducibility of generated scenarios | deterministic | Implemented but incompletely tested | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A13.md) |
+| A13 | Provenance and reproducibility of generated scenarios | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A13.md) |
 | A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-22 | P1 | [plan](../plans/features/A66.md) |
 | B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B14.md) |
 | B15 | ECG generation and variation | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B15.md) |
@@ -73,8 +73,8 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | D47 | Evidence-based feedback | hybrid | Implemented and tested | Implemented and tested | PH-16 | P1 | [plan](../plans/features/D47.md) |
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Implemented and tested | Implemented and tested | PH-23 | P1 | [plan](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Implemented and tested | Implemented and tested | PH-23 | P1 | [plan](../plans/features/D68.md) |
-| E48 | Patient Digital Twin | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E48.md) |
-| E49 | Multi-Agent Clinical Simulation Lab | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E49.md) |
+| E48 | Patient Digital Twin | hybrid | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E48.md) |
+| E49 | Multi-Agent Clinical Simulation Lab | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | hybrid | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E51.md) |
 | E52 | Investigation analytics | deterministic | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/E52.md) |
@@ -85,7 +85,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | E57 | LLM serving and benchmark | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-07 | P1 | [plan](../plans/features/E57.md) |
 | E58 | Retrieval over approved content (RAG) | hybrid | Implemented and tested | Implemented and tested | PH-05 | P1 | [plan](../plans/features/E58.md) |
 | E60 | P2 small trained classifier | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E60.md) |
-| E61 | Medical LLM benchmark (for example MedGemma) | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E61.md) |
+| E61 | Medical LLM benchmark (for example MedGemma) | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E61.md) |
 | E62 | Backend and AI gateway | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-06 | P1 | [plan](../plans/features/E62.md) |
 | E63 | On-device speech recognition | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | ai | Deferred | Deferred | PH-24 | P2 | [plan](../plans/features/E64.md) |
@@ -185,7 +185,7 @@ Combine two or more problems (for example sepsis with a penicillin allergy) unde
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
+| Status | Implemented but incompletely tested |
 | AI status | Planned |
 | Evidence (what exists) | stacked case files (STK-*) authored by hand; content problem ladder (6 types, 7 rungs); content/case_files/STK-S1-A.json; tests/golden/STK-S1-A_correct_p1.expected.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | p1-case-library-extended (6 stacked cases); DT-092 |
@@ -213,7 +213,7 @@ Unexpected events during the session. Built: EventDirector with 7 approved event
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
+| Status | Implemented but incompletely tested |
 | AI status | Planned |
 | Evidence (what exists) | src/ProcSense.Core/Events/EventDirector.cs; EventDirectorTests; src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs; content/extension/intra_op_events.json; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | p0-physiology-events-behaviour s08, s09; DT-087 |
@@ -269,7 +269,7 @@ Scenarios built to tempt a known error: look-alike patients, haemolysed potassiu
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
+| Status | Implemented but incompletely tested |
 | AI status | Planned |
 | Evidence (what exists) | content/emr_distractors.csv; VAR-S1-J case file; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | DT-094 |
@@ -297,7 +297,7 @@ Different consequences for different choices. Built: beginner versus advanced be
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Partially implemented |
+| Status | Implemented but incompletely tested |
 | AI status | Planned |
 | Evidence (what exists) | SessionOptions.Level; content/whatif_bindings.csv; content/decision_rules.csv; src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/compose_plan.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
 | Lineage (existing ids) | DT-087 |
@@ -437,7 +437,7 @@ Every generated package records seed, pack versions, prompt versions, model dige
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Implemented but incompletely tested |
+| Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
 | Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py |
 | Lineage (existing ids) | — |
@@ -1509,8 +1509,8 @@ A patient model whose physiology, history and responses persist and evolve acros
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Implemented but incompletely tested |
-| AI status | Implemented but incompletely tested |
+| Status | Partially implemented |
+| AI status | Partially implemented |
 | Evidence (what exists) | src/ProcSense.Core/Physiology/LitePhysio.cs; src/ProcSense.Core/Twin/PatientTwin.cs; tests/ProcSense.Core.Tests/PatientTwinTests.cs; docs/testing/SANNAN_EXTERNAL_TESTING.md |
 | Lineage (existing ids) | p1-pulse-physiology |
 | Method | Deterministic physiology + generated profile; LLM voice. |
@@ -1537,8 +1537,8 @@ Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-ta
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Implemented but incompletely tested |
-| AI status | Implemented but incompletely tested |
+| Status | Partially implemented |
+| AI status | Partially implemented |
 | Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json; server/dialogue/dialogue.py; prompts/dialogue/staff_pick_many_v1.txt; docs/testing/SANNAN_EXTERNAL_TESTING.md |
 | Lineage (existing ids) | — |
 | Method | Multiple LLM roles orchestrated by the ReactionQueue. |
@@ -1845,8 +1845,8 @@ Compare a medical model with the general default. MedGemma is gated under Health
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Implemented but incompletely tested |
-| AI status | Implemented but incompletely tested |
+| Status | Partially implemented |
+| AI status | Partially implemented |
 | Evidence (what exists) | tools/ai/model_candidate.py; content/ai/model_candidates.json; tools/ci/test_model_candidate.py; docs/research/model_benchmarks.md |
 | Lineage (existing ids) | p2-ai-extensions-s05 |
 | Method | Benchmark. |

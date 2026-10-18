@@ -44,7 +44,7 @@ def build() -> str:
           "| Label | the author's intent | the author's intent |",
           "| Checked the label, blind | qwen3.5:4b, two configurations (J1 zero-shot, temperature 0; J2 reworded rubric, shuffled label order, temperature 0.3) | the same two |",
           "| Settled rows both judges disagreed with the intent on | the builder's language model (not independent: it sided with the intent in 137 of 139 rows) | the same (45 of 46) |",
-          "| Cross-check added later | qwen3.5:9b (J3), labels untouched | the same |",
+          "| Cross-check added later | qwen3.5:9b (J3, historical: retired 19 October 2026), labels untouched | the same |",
           "| Evaluated | TF-IDF + LR (scikit-learn), embeddings + LR head, Qwen 3.5 4B zero-shot, each tuned on dev only; test scored once | the shipped embedding head and the plain-Python TF-IDF head |",
           "| People | none | none |", ""]
     if d:
@@ -98,7 +98,7 @@ def build() -> str:
               f"| Hold-out 2 (tuning evidence for the cues of version 4 once seen) | {f['holdout2']['rows']} | {f['holdout2']['credited_as_ordinary_count']} |", f"| Hold-out 3 (fresh: no cue was chosen from it) | {f['holdout3']['rows']} | {f['holdout3']['credited_as_ordinary_count']} |", ""]
     j = load("classifier-cross-judge.json")
     if j:
-        L += ["## Cross-check by a larger labeller (qwen3.5:9b, labels untouched)", "", "| Set | Rows | Agreement with the final label | with J1 | with J2 | Disagreements | Involving a critical act |", "|---|---|---|---|---|---|---|"]
+        L += ["## Cross-check by a larger labeller (qwen3.5:9b, historical, retired; labels untouched)", "", "| Set | Rows | Agreement with the final label | with J1 | with J2 | Disagreements | Involving a critical act |", "|---|---|---|---|---|---|---|"]
         for name, s in j["sets"].items():
             if s.get("status") == "incomplete":
                 continue

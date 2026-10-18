@@ -97,7 +97,7 @@ tasks:
       - uv run --project tools tools/bench/safety_report.py
 
   model-compare:
-    desc: Regenerate the Qwen 3.5 4B against 9B page (docs/research/model_4b_vs_9b.md) from the committed result files
+    desc: Regenerate the historical Qwen 3.5 4B against 9B page (docs/research/model_4b_vs_9b.md) from the committed result files
     cmds:
       - uv run --project tools tools/ai/model_compare.py
 

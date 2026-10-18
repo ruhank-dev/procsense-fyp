@@ -1,7 +1,7 @@
 """Tick steps whose documented criteria are met: `uv run --project tools tools/plans/tick.py [--apply] [STEP_ID ...]` (owner instruction, 18 October 2026).
 
 A tick is the leading check mark in a step file's name. By the owner's instruction of 18 October 2026 it is a status marker the engineer sets when the step's own verification is satisfied by evidence in the repository; it
-is not a request for a manual approval. A step is tickable here only if docs/plans/reconciliation.json says DONE (not ENG_DONE, PARTLY, BLOCKED, DONE_GATE_OFF or RESEARCH_NEGATIVE: those have an open external part),
+is not a request for a manual approval. A step is tickable here only if docs/plans/reconciliation.json says DONE, or ENG_DONE with `"implementation": "complete"` (owner's rule of 19 October 2026: the tick records that the engineering is complete and tested; the external acceptance that remains is kept apart in docs/testing/SANNAN_EXTERNAL_TESTING.md and the entry's `external`). PARTLY, BLOCKED, DONE_GATE_OFF, RESEARCH_NEGATIVE and an ENG_DONE without that field are not tickable,
 every evidence path exists, and it is not ticked yet. With no ids, every tickable step is listed (and ticked with --apply). Ticking renames the file (git mv) and rewrites the links to it in the tracked
 text files; regenerate the plan index (tools/plans/milestones.py) and the reconciliation page afterwards. It never unticks a step.
 """
@@ -26,7 +26,7 @@ def tickable() -> list[str]:
     if R.problems(found, data):
         raise SystemExit("reconciliation has problems: run tools/plans/reconcile.py")
     entries = R.entries_of(found, data)
-    return [s for s in sorted(found) if entries[s]["now"] == "DONE" and not found[s]["approved"]]
+    return [s for s in sorted(found) if R.implementation_complete(entries[s]) and not found[s]["approved"]]
 
 
 def link_forms(old: str) -> tuple[str, str]:

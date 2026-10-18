@@ -21,7 +21,7 @@ import httpx
 
 DEFAULT_URL = "http://127.0.0.1:11434"
 LIVE_MODEL = "qwen3.5:4b-q4_K_M"
-BATCH_MODEL = "qwen3.5:4b-q4_K_M"                # ADR-0017: the offline "batch" prompts run on the 4B model too (measured equal or better, a sixth of the time); the 9B is an optional evaluation cross-check
+BATCH_MODEL = "qwen3.5:4b-q4_K_M"                # ADR-0017: the offline "batch" prompts run on the 4B model too (measured equal or better, a sixth of the time); the 9B was retired (ADR-0019)
 SAMPLING = {"temperature": 0.7, "top_p": 0.8, "top_k": 20}
 ERRORS = ("UNREACHABLE", "TIMEOUT", "HTTP_ERROR", "NOT_JSON", "EMPTY", "MODEL_MISSING")
 

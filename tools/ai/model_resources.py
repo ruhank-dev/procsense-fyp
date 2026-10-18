@@ -1,6 +1,6 @@
 """Size, memory, load time and speed of the two local models, measured through Ollama (`uv run --project tools tools/ai/model_resources.py`; writes reports/ai/model-resources.json).
 
-For each of qwen3.5:4b-q4_K_M and qwen3.5:9b-q4_K_M: disk size (/api/tags), the model unloaded, then a cold call whose `load_duration` is the load time, the memory and the share on the GPU while loaded (/api/ps), the generation speed
+For qwen3.5:4b-q4_K_M (the only model since ADR-0019; the committed result also holds the historical 9B figures): disk size (/api/tags), the model unloaded, then a cold call whose `load_duration` is the load time, the memory and the share on the GPU while loaded (/api/ps), the generation speed
 (`eval_count` over `eval_duration` of a 200-token answer) and the median of five short structured calls (the shape of the gateway's calls). Run it when nothing else uses the GPU; the numbers are for THIS desktop only
 (GTX 1660 SUPER, 6 GB). It changes nothing in the repository except the result file.
 """
@@ -17,7 +17,7 @@ import httpx
 
 ROOT = Path(__file__).resolve().parents[2]
 URL = "http://127.0.0.1:11434"
-MODELS = {"4b": "qwen3.5:4b-q4_K_M", "9b": "qwen3.5:9b-q4_K_M"}
+MODELS = {"4b": "qwen3.5:4b-q4_K_M"}               # the 9B was measured once (reports/ai/model-resources.json, historical) and retired (ADR-0019)
 SCHEMA = {"type": "object", "required": ["act"], "additionalProperties": False, "properties": {"act": {"enum": ["ASK_TOPIC", "REASSURE", "NONE"]}}}
 
 

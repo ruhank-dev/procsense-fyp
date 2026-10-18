@@ -19,7 +19,7 @@ Nothing in the planning update was implemented; sections 1 to 6 below are the au
 
 Done with the owner's approval; **no AI feature is built on these models yet (no code calls a model)**. Decision and reasons: [ADR-0010](decisions/ADR-0010-local-models-qwen35-live-and-batch.md).
 
-* **Installed on the desktop (GTX 1660 SUPER):** Ollama 0.40.5; `qwen3.5:4b-q4_K_M` (live work, thinking off), `qwen3.5:9b-q4_K_M` (offline batch work), `qwen3:4b` (comparison baseline only). The laptop is not set up.
+* **Installed on the desktop (GTX 1660 SUPER):** Ollama 0.40.5; `qwen3.5:4b-q4_K_M` (live work, thinking off), `qwen3:4b` (comparison baseline only). The laptop is not set up.
 * **Measured on the idle desktop** (`tools/ai/benchmark.py`, 4096 context, schema output, one machine and one prompt shape): the 4B is 100 percent on the GPU, about 59 tokens per second, p50 1.01 s and p95 1.15 s for a 50-token patient reply; the 9B is 57 percent on the GPU, about 12 tokens per second, about 5 s for the same reply, so it is batch only. Structured output was valid 100 of 100 (4B) and 40 of 40 (9B). Speech recognition and the Unity Editor were not loaded.
 * **What the numbers do not show:** quality. The validator reads text only; reading the replies found a few made-up denials ("I don't smoke") that it cannot catch (DT-190). A blind human rating is pending (DT-187).
 * **Still to do:** the laptop, co-residency with speech recognition and Unity, thinking-on runs, debrief, composition and judge tests (DT-188).

@@ -15,7 +15,7 @@
       "remedy_ladder": [
         {"name": "prompt versions (immutable, measured against the old)", "tried": true, "evidence": "prompts/registry.json: interpret_v2, rewrite_v2, spine_v2, staff_pick_v1"},
         {"name": "completion or repair in code (dropped facts, shortlist, validators)", "tried": true, "evidence": "server/debrief/rewrite.py cover_missing; server/generation/compose_plan.py shortlist"},
-        {"name": "a larger or different served model", "tried": false, "evidence": "only qwen3.5 4B and 9B were measured; the medical candidate is gated (content/ai/model_candidates.json)"},
+        {"name": "a larger or different served model", "tried": false, "evidence": "only qwen3.5 4B and (historically, retired) 9B were measured; the medical candidate is gated (content/ai/model_candidates.json)"},
         {"name": "retrieval of approved examples into the prompt", "tried": false, "evidence": "retrieval exists (server/retrieval) but is not used for dialogue wording"}
       ],
       "min_training_examples": 500,

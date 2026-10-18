@@ -1,11 +1,11 @@
 """A third labeller of a different size, as a cross-model check of the synthetic classifier sets: `uv run --project tools tools/bench/cross_judge.py run|report`.
 
-    run [--set v2dev|v2test|v3test ...] [--limit N]   label the sentences blind with qwen3.5:9b (J3: the J1 prompt and rubric, temperature 0); resumable; writes <set folder>/cross_judge/J3_<split>.jsonl
+    run [--set v2dev|v2test|v3test ...] [--limit N]   label the sentences blind with qwen3.5:4b (J4: the J1 rubric at temperature 0, a third 4B configuration; J3, the earlier qwen3.5:9b labels, stays as a historical file); resumable; writes <set folder>/cross_judge/J4_<split>.jsonl
     report                                             agreement of J3 with the final label of each set and with the judges J1 and J2, the labels it disagrees on, and the rows to read; writes
                                                        reports/ai/classifier-cross-judge.json and docs/research/classifier_benchmark/cross_judge_disagreements.md
 
 Who did what, for every row of these sets (also in the report): the SENTENCE was written by the builder's language model in a simulated author profile; the LABEL is that author's intent, checked blind by J1 and J2
-(qwen3.5:4b, two configurations), settled by the builder's language model when both judges disagreed with the intent; J3 (qwen3.5:9b) is the cross-model check added here and is NOT used to change any label, because a
+(qwen3.5:4b, two configurations), settled by the builder's language model when both judges disagreed with the intent; J3 (qwen3.5:9b, historical: the 9B was retired on 19 October 2026, ADR-0019) and J4 (qwen3.5:4b) are cross-checks added later and is NOT used to change any label, because a
 change would unfreeze a set that was scored. No person wrote, labelled or reviewed any row. J3 is from the same model family as J1 and J2, so agreement is not independence; disagreement is a list of rows a person should read.
 """
 from __future__ import annotations
@@ -20,7 +20,7 @@ for sub in ("server", "tools/bench"):
     sys.path.insert(0, str(ROOT / sub))
 import synthetic2 as S2  # noqa: E402
 
-MODEL = "qwen3.5:9b-q4_K_M"
+MODEL = "qwen3.5:4b-q4_K_M"             # ADR-0019: the 9B is retired; J3 files made by it are historical
 V2, V3 = ROOT / "tests" / "classifier_synthetic_v2", ROOT / "tests" / "classifier_synthetic_v3"
 SETS = {"v2dev": (V2, "dev"), "v2test": (V2, "test"), "v3test": (V3, "test")}
 REPORT = ROOT / "reports" / "ai" / "classifier-cross-judge.json"
@@ -39,7 +39,7 @@ def run(names: list[str], limit: int) -> None:
     for name in names:
         folder, split = SETS[name]
         data = rows_of(folder, split)
-        path = folder / "cross_judge" / f"J3_{split}.jsonl"
+        path = folder / "cross_judge" / f"J4_{split}.jsonl"
         path.parent.mkdir(exist_ok=True)
         done = {json.loads(line)["id"] for line in path.read_text(encoding="utf-8").splitlines() if line.strip()} if path.exists() else set()
         todo = [r for r in data if r["id"] not in done][: limit or None]
@@ -54,7 +54,7 @@ def run(names: list[str], limit: int) -> None:
                         act, conf = v["act"], float(v["confidence"])
                     except (ValueError, KeyError):
                         pass
-                f.write(json.dumps({"id": r["id"], "judge": "J3", "model": MODEL, "act": act, "confidence": conf, "ms": rep.latency_ms}, sort_keys=True) + "\n")
+                f.write(json.dumps({"id": r["id"], "judge": "J4", "model": MODEL, "act": act, "confidence": conf, "ms": rep.latency_ms}, sort_keys=True) + "\n")
                 f.flush()
                 if n % 50 == 0:
                     print(f"  {name}: {n}/{len(todo)} in {round(time.monotonic() - t0)} s", flush=True)

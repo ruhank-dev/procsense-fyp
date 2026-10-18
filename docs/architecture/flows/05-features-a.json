@@ -33,7 +33,7 @@
       "actor": "agent",
       "label": "A4 P1 PH-05",
       "title": "Mixed (multi-problem) case generation",
-      "text": "Partly built. Combine two or more problems (for example sepsis with a penicillin allergy) under the stacked-case rules…2 capability plans.",
+      "text": "Built, part tested. Combine two or more problems (for example sepsis with a penicillin allergy) under the stacked-case rules…2 capability plans.",
       "tone": "sun"
     },
     {
@@ -41,7 +41,7 @@
       "actor": "agent",
       "label": "A5 P1 PH-10",
       "title": "Dynamic events",
-      "text": "Partly built. Unexpected events during the session.2 capability plans.",
+      "text": "Built, part tested. Unexpected events during the session.2 capability plans.",
       "tone": "sun"
     },
     {
@@ -57,7 +57,7 @@
       "actor": "agent",
       "label": "A7 P1 PH-11",
       "title": "Adversarial trap scenarios",
-      "text": "Partly built. Scenarios built to tempt a known error: look-alike patients, haemolysed potassium, a misleading handover…2 capability plans. Needs D40.",
+      "text": "Built, part tested. Scenarios built to tempt a known error: look-alike patients, haemolysed potassium, a misleading handover…2 capability plans. Needs D40.",
       "tone": "sun"
     },
     {
@@ -65,7 +65,7 @@
       "actor": "gear",
       "label": "A8 P1 PH-10",
       "title": "Branching scenario paths",
-      "text": "Partly built. Different consequences for different choices.2 capability plans.",
+      "text": "Built, part tested. Different consequences for different choices.2 capability plans.",
       "tone": "sun"
     },
     {
@@ -105,7 +105,7 @@
       "actor": "gear",
       "label": "A13 P1 PH-11",
       "title": "Provenance and reproducibility",
-      "text": "Built, part tested. Every generated package records seed, pack versions, prompt versions, model digests, content manifest hash…1 capability plans.",
+      "text": "Partly built. Every generated package records seed, pack versions, prompt versions, model digests, content manifest hash, repair log…1 capability plans.",
       "tone": "sun"
     },
     {

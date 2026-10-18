@@ -253,6 +253,7 @@
    "who": "Sannan, with the supervisor who supplies the hospital room models",
    "needs": "the supervisor's base hospital room models (empty shells), Unity project, Quest",
    "steps": [
+    "p0-environment-rooms-s01",
     "p0-environment-rooms-s02",
     "p0-environment-rooms-s03",
     "p0-environment-rooms-s04",
@@ -306,6 +307,7 @@
    "who": "Sannan",
    "needs": "Unity project, Quest, 3 to 5 testers for the usability passes",
    "steps": [
+    "p0-vr-interaction-ui-s01",
     "p0-vr-interaction-ui-s02",
     "p0-vr-interaction-ui-s03",
     "p0-vr-interaction-ui-s04",
@@ -325,6 +327,9 @@
    "who": "Sannan",
    "needs": "Unity project, Quest 2 and 3",
    "steps": [
+    "p0-vr-platform-s03",
+    "p0-vr-platform-s02",
+    "p0-vr-platform-s01",
     "p0-vr-platform-s04",
     "p0-vr-platform-s05",
     "p0-vr-platform-s06",

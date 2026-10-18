@@ -106,14 +106,14 @@ def build() -> str:
            "**Not done, and why:** the laptop (RTX 4050) was not available to this session; Unity (with the VR scene) and the speech recogniser were not loaded beside the model, so the shared-GPU frame-time cost is unknown; the desktop serving the laptop over the LAN was not run; BT3, the blind human rating of wording, needs people. "
            "The default model per task below is therefore a desktop-only recommendation.", "",
            "## BT0: speed and memory (dialogue-shaped request, 200-token prompt)", ""] + b0_table() + [
-           "", "The 4B model fits wholly on the 6 GB card and answers in about a second; the 9B model is partly on the processor (about 12 tokens a second) and is used only for offline batch work (ADR-0010).", "",
+           "", "The 4B model fits wholly on the 6 GB card and answers in about a second; the 9B model measured here was partly on the processor (about 12 tokens a second); it was retired on 19 October 2026 and the 4B runs the offline batch work too (ADR-0017, ADR-0019).", "",
            "## BT1: structured output (valid JSON with an intent from the real role list)", ""] + b1_table() + [
            "", "## BT2: grounding (the same question asked once with the fact earned and once withheld; every reply goes through the grounding validator)", ""] + b2_table() + [
            "", "## Production-code evaluations (BT4 to BT6 and the later features)", ""] + production_runs() + [
            "", "## Default per task on this desktop", "",
            "| Task | Model | Why |", "|---|---|---|",
            "| Live dialogue, classification alternative, staff replies, debrief rewrite | qwen3.5:4b-q4_K_M | fits the card, about 1 s per request, structured output and grounding measured above |",
-           "| Offline batch: scenario composition, narrative, critic, interpreter, analytics explanations | qwen3.5:9b-q4_K_M | better wording, slow (about 12 tokens a second), acceptable offline |",
+           "| Offline batch: scenario composition, narrative, critic, interpreter, analytics explanations | qwen3.5:4b-q4_K_M | equal or better on every gate, a sixth of the time (ADR-0017); the 9B was retired (ADR-0019) |",
            "| Communication-act classification | all-minilm:22m embeddings + logistic regression | 22M parameters, no card needed (ADR-0012); the 4B model stays as an alternative |",
            "| Speech recognition | faster-whisper small.en on the card (int8_float16, beside the resident 4B model; the processor is the fallback) | 0.58 s for a 3 to 7 s clip against 5.9 s on the processor; word error rate 0.085 on rendered lines and 0.217 on real mock consultations (reports/ai/asr-wer.json, asr-primock57.json) |",
            "| Speech output | Piper en_GB-cori-high on the processor | first sentence 2.19 s at the 95th percentile on a quiet processor |", ""]
