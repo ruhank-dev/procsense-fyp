@@ -150,6 +150,16 @@ tasks:
     cmds:
       - uv run --project tools tools/ci/run_all.py {{.CLI_ARGS}}
 
+  ci-status:
+    desc: Last local CI result next to GitHub's recent runs (a run that never started is shown as never_started, not as a pass)
+    cmds:
+      - uv run --project tools tools/ci/remote_status.py
+
+  pulse-check:
+    desc: Validate the Pulse mapping and recorded traces and rebuild the parity page from them (no Pulse needed)
+    cmds:
+      - uv run --project tools tools/ci/test_pulse.py
+
   content-validate:
     desc: Check every content file against its schema and the source register (proof of truth)
     cmds:
