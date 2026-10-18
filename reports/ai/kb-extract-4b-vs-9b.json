@@ -1,0 +1,31 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "hand_labelled": false,
+ "design": "The same knowledge-base extraction (tools/kb/extract_relations.py, same sources and prompt) was run with each model; both sets of relations were judged by the SAME judge, qwen3.5:9b (tools/kb/judge_relations.py, two judging configurations, 'both' = supported in both). The 4B set was also judged by the 4B (second row of the file). The judge is the 9B and so may favour its own output, which makes the result conservative for the 4B.",
+ "4b": {
+  "relations": 86,
+  "supported_by_both": 26,
+  "precision_both": 0.302,
+  "supported_by_either": 45,
+  "precision_either": 0.523,
+  "kappa": 0.546
+ },
+ "9b": {
+  "relations": 87,
+  "supported_by_both": 21,
+  "precision_both": 0.241,
+  "supported_by_either": 46,
+  "precision_either": 0.529,
+  "kappa": 0.4
+ },
+ "4b_judged_by_4b": {
+  "relations": 86,
+  "supported_by_both": 27,
+  "precision_both": 0.314,
+  "supported_by_either": 43,
+  "precision_either": 0.5,
+  "kappa": 0.62
+ },
+ "limit": "A proxy: precision against people (EX-10) is not measured; neither extractor reaches the 0.8 gate on this proxy."
+}

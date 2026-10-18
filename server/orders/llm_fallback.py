@@ -11,8 +11,11 @@ The intent comes from the kind of item (a test is ordered, a medicine requested,
 from __future__ import annotations
 
 import difflib
+import functools
+import json
 import re
 from dataclasses import dataclass
+from pathlib import Path
 
 try:
     from llm import gateway
@@ -21,12 +24,34 @@ except ImportError:
     from server.llm import gateway
     from server.orders.grammar import Entry, TRIGGERS, clean
 
+ROOT = Path(__file__).resolve().parents[2]
 LIST_SIZE = 140
-MIN_CONFIDENCE = 0.6
+MIN_CONFIDENCE = 0.9
 KINDS = ("test", "medicine", "home_medicine", "place", "staff")
 INTENT_OF_KIND = {"test": "ORDER_TEST", "medicine": "REQUEST_MEDICATION", "home_medicine": "HOLD_MED", "place": "REQUEST_TRANSPORT", "staff": "CALL_STAFF"}
 HOLD_WORDS = TRIGGERS["HOLD_MED"] + ("leave out", "leave off", "left off", "left out", "not take", "no", "should not", "needs stopping", "stopping")
 KIND_WORDS = {"test": "test or scan", "medicine": "medicine, fluid or oxygen", "home_medicine": "medicine the patient takes at home", "place": "place to take the patient", "staff": "member of staff"}
+
+
+@functools.lru_cache(maxsize=1)
+def _glosses() -> dict[tuple[str, str], str]:
+    """A short note of what each item shows or does, made from the content (nothing typed twice): a test names its kind and what it measures, a medicine the effects the physiology tables give it, a place what can be done there."""
+    out: dict[tuple[str, str], str] = {}
+    inv = json.loads((ROOT / "content" / "investigations" / "investigations.json").read_text(encoding="utf-8"))
+    for t in inv["tests"]:
+        out[("test", t["id"])] = f"{t['kind']} investigation; shows {', '.join(t['analytes'][:5])}" if t.get("analytes") else f"{t['kind']} investigation"
+    tre = json.loads((ROOT / "content" / "treatments.json").read_text(encoding="utf-8"))
+    for t in tre["treatments"]:
+        eff = [e.replace("EFF-", "").replace("-", " ").lower() for e in t.get("effects", [])]
+        out[("medicine", t["id"])] = (f"{t['kind']}; effect: {', '.join(eff)}" if eff else f"{t['kind']} given to the patient")
+    loc = json.loads((ROOT / "content" / "locations" / "locations.json").read_text(encoding="utf-8"))
+    for p in loc["locations"]:
+        out[("place", p["id"])] = f"a place; offers {', '.join(p.get('capabilities', [])) or 'care'}"
+    return out
+
+
+def gloss(e: Entry) -> str:
+    return _glosses().get((e.kind, e.target), KIND_WORDS[e.kind])
 
 
 @dataclass
@@ -66,9 +91,30 @@ def schema(ids: list[str]) -> dict:
             "properties": {"target": {"enum": ids + ["NONE"]}, "confidence": {"type": "number", "minimum": 0, "maximum": 1}}}
 
 
+def kind_schema() -> dict:
+    return {"type": "object", "required": ["kind"], "additionalProperties": False, "properties": {"kind": {"enum": list(KINDS) + ["NONE"]}}}
+
+
+MOVES = tuple(w for w in TRIGGERS["REQUEST_TRANSPORT"]) + ("take him", "take her", "send him", "send her", "wheel", "move him", "move her", "return", "transfer", "porter", "go to", "up to", "down to")
+
+
 class OrderMapper:
-    def __init__(self, client, model: str | None = None, timeout: float | None = None):
-        self.client, self.model, self.timeout = client, model, timeout
+    """`two_stage` (the default) first asks which KIND of thing is wanted (five kinds and NONE), then chooses among the items of that kind only, each with a note of what it does; the single call of the first version
+    (`two_stage=False`) chose among every item at once. A place that is also a test (CT, MRI, ultrasound, X-ray) is a place only when the sentence moves the patient."""
+
+    def __init__(self, client, model: str | None = None, timeout: float | None = None, two_stage: bool = True):
+        self.client, self.model, self.timeout, self.two_stage = client, model, timeout, two_stage
+
+    def _kind(self, text: str) -> str | None:
+        r = gateway.run(self.client, "orders.kind", {"heard": text}, schema=kind_schema(), model=self.model, timeout=self.timeout, retries=0, task="orders_kind")
+        if not r.ok or r.value["kind"] == "NONE":
+            return None
+        k = r.value["kind"]
+        if k == "home_medicine" and not is_hold(text):
+            k = "medicine"
+        if k == "place" and not any(w in text for w in MOVES):
+            k = "test"
+        return k
 
     def map(self, transcript: str, vocab: list[Entry]) -> Mapped | None:
         if self.client is None:

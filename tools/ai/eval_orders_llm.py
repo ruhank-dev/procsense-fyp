@@ -24,11 +24,11 @@ sys.path.insert(0, str(ROOT / "tools" / "ai"))
 SET = ROOT / "tests" / "orders"
 
 
-def load_rows() -> list[dict]:
+def load_rows(name: str = "paraphrases.json") -> list[dict]:
     manifest = json.loads((SET / "manifest.json").read_text(encoding="utf-8"))
-    if hashlib.sha256((SET / "paraphrases.json").read_bytes()).hexdigest() != manifest["files"]["paraphrases.json"]:
-        raise SystemExit("REFUSED: tests/orders/paraphrases.json does not match its frozen hash")
-    return json.loads((SET / "paraphrases.json").read_text(encoding="utf-8"))["rows"]
+    if hashlib.sha256((SET / name).read_bytes()).hexdigest() != manifest["files"][name]:
+        raise SystemExit(f"REFUSED: tests/orders/{name} does not match its frozen hash")
+    return json.loads((SET / name).read_text(encoding="utf-8"))["rows"]
 
 
 def score(rows: list[dict], make) -> dict:
@@ -91,7 +91,12 @@ def main() -> int:
     ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--skip-regression", action="store_true")
+    ap.add_argument("--single-stage", action="store_true", help="the first version: one call choosing among every item")
+    ap.add_argument("--final", action="store_true", help="score the frozen second set (tests/orders/paraphrases_v2.json) ONCE; refuses a second time")
     a = ap.parse_args()
+    lock = ROOT / "artifacts" / "ai-bench" / "orders-v2-used.json"
+    if a.final and lock.exists():
+        raise SystemExit(f"REFUSED: the frozen set paraphrases_v2.json was already scored ({lock.relative_to(ROOT).as_posix()}); a second look would make it a development set")
     from server.llm import client as C
     from server.orders.grammar import ReadBack, vocabulary
     from server.orders.llm_fallback import OrderMapper
@@ -99,17 +104,20 @@ def main() -> int:
     if a.model not in client.models():
         raise SystemExit(f"{a.model} is not installed")
     vocab = vocabulary()
-    mapper = OrderMapper(client, model=a.model, timeout=30.0)
-    rows = load_rows()
+    mapper = OrderMapper(client, model=a.model, timeout=30.0, two_stage=not a.single_stage)
+    rows = load_rows("paraphrases_v2.json" if a.final else "paraphrases.json")
     ReadBack(vocab, mapper).hear("warm up the model with one order please")
-    out = {"model": a.model, "synthetic": True, "independent": False, "rows": len(rows), "grammar_only": score(rows, lambda: ReadBack(vocab)), "with_fallback": score(rows, lambda: ReadBack(vocab, mapper)),
+    out = {"model": a.model, "synthetic": True, "independent": False, "set": "paraphrases_v2.json (frozen, scored once)" if a.final else "paraphrases.json (development set: its failures were analysed)", "two_stage": not a.single_stage, "rows": len(rows), "grammar_only": score(rows, lambda: ReadBack(vocab)), "with_fallback": score(rows, lambda: ReadBack(vocab, mapper)),
            "limit": "61 paraphrases and 10 non-orders written by one author; real trainees and recogniser errors are not modelled (DC-08 on the Quest)"}
     if not a.skip_regression:
         out["regression"] = regression(lambda: ReadBack(vocab), lambda: ReadBack(vocab, mapper))
     out["gain_points"] = round(100 * (out["with_fallback"]["correct"] - out["grammar_only"]["correct"]), 1)
     print(json.dumps({k: v for k, v in out.items() if k not in ("limit",)}, indent=1))
     if a.write:
-        p = ROOT / "reports" / "ai" / "orders-eval-llm.json"
+        p = ROOT / "reports" / "ai" / ("orders-eval-llm-v2.json" if a.final else "orders-eval-llm-dev.json" if not a.single_stage else "orders-eval-llm.json")
+        if a.final:
+            lock.parent.mkdir(parents=True, exist_ok=True)
+            lock.write_text(json.dumps({"scored": "once", "result": p.name}) + chr(10), encoding="utf-8")
         p.write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8", newline="\n")
         print("wrote", p.relative_to(ROOT).as_posix())
     return 0

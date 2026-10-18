@@ -1,0 +1,462 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Second set of spoken-order paraphrases, written by the builder on 18 October 2026 (fourth session) BEFORE the failure analysis of the first set and any change to the fallback; scored once per final candidate. Same author as the first set: a measure of generalisation to that author's wordings only. 'none' lines are not orders.",
+ "rows": [
+  {
+   "id": "OQ001",
+   "text": "could we see how many red cells she has",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ002",
+   "text": "I'd like to look for infection markers in the blood",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ003",
+   "text": "check the kidney function and potassium",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ004",
+   "text": "see whether the liver is upset",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ005",
+   "text": "long term diabetes control please",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ006",
+   "text": "how quickly does his blood clot",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ007",
+   "text": "keep some blood back in case he bleeds",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ008",
+   "text": "test for blood poisoning",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ009",
+   "text": "is the pancreas inflamed",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ010",
+   "text": "how low are her iron levels",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ011",
+   "text": "is the thyroid under active",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ012",
+   "text": "did she have an anaphylactic reaction, test the blood for it",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ013",
+   "text": "check if she could be expecting",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ014",
+   "text": "a quick test on the urine with a strip",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ015",
+   "text": "finger prick for his blood sugar",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ016",
+   "text": "look at the electrical tracing of the heart",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ017",
+   "text": "what does she weigh",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ018",
+   "text": "ask the snoring and tiredness questions",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ019",
+   "text": "scan the abdomen with the probe",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ020",
+   "text": "cross sectional scan of his belly",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ021",
+   "text": "magnetic imaging of the pelvis",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ022",
+   "text": "scan to see the bile duct and pancreas",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ023",
+   "text": "picture of the lungs",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OQ024",
+   "text": "paracetamol is not enough, something to take the edge off the pain",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ025",
+   "text": "an ibuprofen-like drug for the inflammation",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ026",
+   "text": "morphine for the severe pain",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ027",
+   "text": "she feels sick and might vomit",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ028",
+   "text": "a bag of fluid into the vein",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ029",
+   "text": "antibiotic before the knife goes in",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ030",
+   "text": "strong antibiotics for the burst appendix",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ031",
+   "text": "extra steroid because of her long term tablets",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ032",
+   "text": "the blood thinning injection to stop clots in the legs",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ033",
+   "text": "adrenaline for the allergic shock",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ034",
+   "text": "something sweet by mouth for the low sugar",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ035",
+   "text": "dextrose through the cannula, he cannot swallow",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ036",
+   "text": "bring the potassium down",
+   "kind": "medicine",
+   "target": "TR-HYPERKALAEMIA",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ037",
+   "text": "an antidote for the opioid overdose",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ038",
+   "text": "start the full sepsis treatment",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ039",
+   "text": "give him some oxygen through a mask",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OQ040",
+   "text": "don't give the sugar tablets this morning",
+   "kind": "home_medicine",
+   "target": "metformin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OQ041",
+   "text": "the warfarin should be stopped",
+   "kind": "home_medicine",
+   "target": "anticoagulant",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OQ042",
+   "text": "skip her morning insulin",
+   "kind": "home_medicine",
+   "target": "insulin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OQ043",
+   "text": "hold off on the blood pressure tablet ramipril",
+   "kind": "home_medicine",
+   "target": "ramipril",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OQ044",
+   "text": "send him down to the CT department",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ045",
+   "text": "transfer her to the x ray room",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ046",
+   "text": "wheel the patient to the ultrasound department",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ047",
+   "text": "move her up to the operating theatre",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ048",
+   "text": "return him to the ward",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ049",
+   "text": "into the MRI machine",
+   "kind": "place",
+   "target": "mri",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ050",
+   "text": "take her to the bay",
+   "kind": "place",
+   "target": "patient_bay",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OQ051",
+   "text": "get the surgeon to come and see him",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OQ052",
+   "text": "fetch the doctor who does the anaesthetics",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OQ053",
+   "text": "tell the consultant",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OQ054",
+   "text": "I need a nurse at the bedside",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OQ055",
+   "text": "ring for the porter",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OZ01",
+   "text": "the patient looks comfortable",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ02",
+   "text": "can you tell me your name",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ03",
+   "text": "I'll explain the operation in a moment",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ04",
+   "text": "wonderful, thank you",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ05",
+   "text": "what time is the list starting",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ06",
+   "text": "the family are in the corridor",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ07",
+   "text": "so how are you feeling today",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ08",
+   "text": "she says the pain is better",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ09",
+   "text": "let me read the notes first",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ10",
+   "text": "I think we are ready",
+   "kind": null,
+   "target": null,
+   "intent": null
+  }
+ ]
+}

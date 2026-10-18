@@ -84,6 +84,11 @@ def run(n: int, model: str) -> dict:
 def main(argv: list[str]) -> int:
     n = int(argv[argv.index("--n") + 1]) if "--n" in argv else 100
     model = argv[argv.index("--model") + 1] if "--model" in argv else MODEL
+    global REPORT
+    if "--queue" in argv:
+        X.QUEUE = Path(argv[argv.index("--queue") + 1])                      # judge another queue than the committed one
+    if "--out" in argv:
+        REPORT = Path(argv[argv.index("--out") + 1])
     out = run(n, model)
     REPORT.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({k: v for k, v in out.items() if k != "split_judgements"}, indent=1))

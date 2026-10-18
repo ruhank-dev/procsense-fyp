@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT / "tools" / "ai"))
 QUEUE = ROOT / "content" / "kb" / "review_queue.json"
 APPROVED = ROOT / "content" / "kb" / "approved_llm_relations.json"
 WALKTHROUGH = ROOT / "docs" / "context" / "ProcSense_Medical_Walkthrough_v5_1.md"
-DEFAULT_MODEL = "qwen3.5:9b-q4_K_M"
+DEFAULT_MODEL = "qwen3.5:4b-q4_K_M"
 PREDICATES = ["indicates", "requires", "increases_risk_of", "contraindicates", "leads_to", "is_a_sign_of", "should_be_checked_with"]
 SCHEMA = {"type": "object", "properties": {"relations": {"type": "array", "items": {"type": "object", "properties": {
     "subject": {"type": "string"}, "predicate": {"enum": PREDICATES}, "object": {"type": "string"}, "quote": {"type": "string"}}, "required": ["subject", "predicate", "object", "quote"]}}}, "required": ["relations"]}
@@ -161,8 +161,11 @@ def approve(ids: list[str], by: str) -> int:
 
 
 def main(argv: list[str]) -> int:
+    global QUEUE
     sys.stdout.reconfigure(encoding="utf-8")
     opt = lambda k, d=None: argv[argv.index(k) + 1] if k in argv else d   # noqa: E731
+    if opt("--queue"):
+        QUEUE = Path(opt("--queue"))                                        # write (or read) another queue file, for example to compare two models without touching the committed queue
     if "--sheet" in argv:
         sys.stdout.write(sheet(json.loads(QUEUE.read_text(encoding="utf-8")), int(opt("--sheet"))))
         return 0

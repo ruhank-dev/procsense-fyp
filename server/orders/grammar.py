@@ -32,7 +32,7 @@ NO = {"no", "nope", "cancel", "stop", "wrong", "not that"}
 
 TRIGGERS = {
     "HOLD_MED": ("hold", "withhold", "stop the", "omit", "do not give", "dont give", "don't give", "skip"),
-    "REQUEST_TRANSPORT": ("transport", "porter", "transfer", "take the patient", "move the patient", "send the patient", "take her to", "take him to"),
+    "REQUEST_TRANSPORT": ("transport", "porter", "transfer", "take the patient", "move the patient", "send the patient", "take her to", "take him to", "send him", "send her", "wheel", "move him", "move her", "take them to", "send them"),
     "CALL_STAFF": ("call", "bleep", "phone", "page", "get the", "ask the", "ring", "i need the", "escalate to"),
     "REQUEST_MEDICATION": ("give", "start", "administer", "request", "prescribe", "i would like to give", "can i have", "set up"),
     "ORDER_TEST": ("order", "request", "send", "take", "get me", "can i have", "could i get", "could i have", "i would like", "check", "run"),

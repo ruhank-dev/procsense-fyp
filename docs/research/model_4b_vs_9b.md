@@ -43,3 +43,13 @@ Every production task that was compared is equal or better with the 4B model and
 
 Not measured, and so not claimed: a blind human rating of the wording of the two models (EX-02); the laptop (EX-09); 4B and 9B with thinking on; the 9B on the debrief rewrite (the debrief gate was measured with the 4B only). The knowledge-base extraction comparison is in the section below when it was run.
 
+## Knowledge-base relation extraction (offline)
+
+| | 4B | 9B |
+|---|---|---|
+| Relations extracted | 86 | 87 |
+| Supported by both AI judges | 26 | 21 |
+| Precision by both judges | 0.302 | 0.241 |
+
+Both sets were judged by the same 9B judge (it may favour its own output, which is conservative for the 4B); relations supported by either judging configuration: 0.523 (4B) against 0.529 (9B). The judges are AI, so this is a proxy, not the labelled precision the step requires (EX-10); neither model reaches 0.8 on it. Decision: the extractor defaults to the 4B (ADR-0017).
+

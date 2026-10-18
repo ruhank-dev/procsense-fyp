@@ -103,7 +103,7 @@ def render() -> str:
     if kb:
         L += ["## Knowledge-base relation extraction (offline)", "", "| | 4B | 9B |", "|---|---|---|", f"| Relations extracted | {kb['4b']['relations']} | {kb['9b']['relations']} |",
               f"| Supported by both AI judges | {kb['4b']['supported_by_both']} | {kb['9b']['supported_by_both']} |", f"| Precision by both judges | {kb['4b']['precision_both']} | {kb['9b']['precision_both']} |", "",
-              "The judges are AI (qwen3.5:4b in two configurations), so this is a proxy, not the labelled precision the step requires (EX-10).", ""]
+              f"Both sets were judged by the same 9B judge (it may favour its own output, which is conservative for the 4B); relations supported by either judging configuration: {kb['4b']['precision_either']} (4B) against {kb['9b']['precision_either']} (9B). The judges are AI, so this is a proxy, not the labelled precision the step requires (EX-10); neither model reaches 0.8 on it. Decision: the extractor defaults to the 4B (ADR-0017).", ""]
     return "\n".join(L) + "\n"
 
 

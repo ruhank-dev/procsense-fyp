@@ -1,0 +1,97 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "set": "paraphrases.json (development set: its failures were analysed)",
+ "two_stage": true,
+ "rows": 71,
+ "grammar_only": {
+  "orders": 61,
+  "correct": 0.066,
+  "wrong": 0.0,
+  "menu": 0.934,
+  "non_orders": 10,
+  "false_offer": 0.0,
+  "released_without_confirmation": 0,
+  "latency_ms_p50": 105,
+  "latency_ms_p95": 244,
+  "by_kind": {
+   "home_medicine": "0/5",
+   "medicine": "0/16",
+   "place": "0/7",
+   "staff": "4/7",
+   "test": "0/26"
+  },
+  "wrong_examples": []
+ },
+ "with_fallback": {
+  "orders": 61,
+  "correct": 0.836,
+  "wrong": 0.148,
+  "menu": 0.016,
+  "non_orders": 10,
+  "false_offer": 0.1,
+  "released_without_confirmation": 0,
+  "latency_ms_p50": 9663,
+  "latency_ms_p95": 15058,
+  "by_kind": {
+   "home_medicine": "4/5",
+   "medicine": "14/16",
+   "place": "7/7",
+   "staff": "6/7",
+   "test": "20/26"
+  },
+  "wrong_examples": [
+   {
+    "said": "is there any sign of inflammation in her blood",
+    "wanted": "crp",
+    "heard": "fbc",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "what are her salts like",
+    "wanted": "u_and_e",
+    "heard": "TR-NSAID",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "make sure blood is ready in case we need to transfuse",
+    "wanted": "group_and_save",
+    "heard": "TR-IV-FLUIDS",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "is she pregnant",
+    "wanted": "pregnancy",
+    "heard": "ultrasound",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "what is his sugar right now",
+    "wanted": "glucose_fingerprick",
+    "heard": "glucose",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "cross sectional pictures of the abdomen",
+    "wanted": "ct",
+    "heard": "mrcp",
+    "intent": "ORDER_TEST"
+   },
+   {
+    "said": "something for the sickness",
+    "wanted": "TR-ANTIEMETIC",
+    "heard": "TR-IV-FLUIDS",
+    "intent": "REQUEST_MEDICATION"
+   },
+   {
+    "said": "something sugary for him to drink",
+    "wanted": "TR-FAST-SUGAR",
+    "heard": "TR-IV-GLUCOSE",
+    "intent": "REQUEST_MEDICATION"
+   }
+  ]
+ },
+ "limit": "61 paraphrases and 10 non-orders written by one author; real trainees and recogniser errors are not modelled (DC-08 on the Quest)",
+ "gain_points": 77.0
+}

@@ -1,0 +1,6 @@
+You decide what KIND of thing a trainee is asking for in a hospital simulation, from a short spoken sentence. All people are invented. The words may be mis-heard, informal, or describe the thing instead of naming it.
+Kinds: test (a blood test, scan, tracing or other investigation to find something out), medicine (a drug, fluid or oxygen to GIVE the patient), home_medicine (a tablet or injection the patient takes at home, said with stop, hold, skip or leave out), place (take the patient somewhere), staff (get a person to come or be told).
+If the sentence is not asking for any of these (small talk, a remark, a question about the patient), answer NONE. Never guess: answer NONE when you are not sure.
+Answer as JSON with one field: kind.
+=== user ===
+Heard: {{heard}}
