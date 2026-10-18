@@ -1,0 +1,157 @@
+{
+ "relations": 87,
+ "supported_by_both": 19,
+ "precision_both": 0.218,
+ "supported_by_either": 39,
+ "precision_either": 0.448,
+ "kappa": 0.502,
+ "split_judgements": [
+  {
+   "id": "llm.517566baa5ef",
+   "subject": "SGLT2 inhibitor",
+   "predicate": "increases_risk_of",
+   "object": "ketoacidosis",
+   "quote": "SGLT2 inhibitor taken today; ketones 0.9: risk of ketoacidosis"
+  },
+  {
+   "id": "llm.2179c54863d8",
+   "subject": "sulfonylurea",
+   "predicate": "leads_to",
+   "object": "Hypoglycaemia",
+   "quote": "Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting"
+  },
+  {
+   "id": "llm.f04e1197df38",
+   "subject": "ECG",
+   "predicate": "is_a_sign_of",
+   "object": "atrial fibrillation",
+   "quote": "the ECG shows atrial fibrillation"
+  },
+  {
+   "id": "llm.9741c4273af6",
+   "subject": "left lateral tilt",
+   "predicate": "is_a_sign_of",
+   "object": "about 20 weeks",
+   "quote": "left lateral tilt from about 20 weeks"
+  },
+  {
+   "id": "llm.07d966a1d40c",
+   "subject": "planned operation",
+   "predicate": "indicates",
+   "object": "antibiotic",
+   "quote": "Low-risk planned operation: an antibiotic"
+  },
+  {
+   "id": "llm.17c8e3824c77",
+   "subject": "perforation",
+   "predicate": "increases_risk_of",
+   "object": "maternal and fetal risk",
+   "quote": "Perforation increases maternal and fetal risk"
+  },
+  {
+   "id": "llm.9e415b8d3795",
+   "subject": "womb",
+   "predicate": "leads_to",
+   "object": "appendix up",
+   "quote": "the womb pushes the appendix up"
+  },
+  {
+   "id": "llm.560d45637079",
+   "subject": "Disability",
+   "predicate": "is_a_sign_of",
+   "object": "D in ABCDE",
+   "quote": "Disability (D in ABCDE): it can deteriorate within minutes to confusion or a seizure, and is quick and simple to treat"
+  },
+  {
+   "id": "llm.121017a45b21",
+   "subject": "false result likely",
+   "predicate": "requires",
+   "object": "repeated urgently",
+   "quote": "make a false result likely; it must still be repeated urgently"
+  },
+  {
+   "id": "llm.cecf2493a440",
+   "subject": "infection of the duct",
+   "predicate": "is_a_sign_of",
+   "object": "cholangitis",
+   "quote": "Watch for infection of the duct (cholangitis)"
+  },
+  {
+   "id": "llm.49568e976fa4",
+   "subject": "penicillin",
+   "predicate": "leads_to",
+   "object": "collapse",
+   "quote": "In 2015 penicillin caused throat swelling and collapse"
+  },
+  {
+   "id": "llm.7f5a64ccf4b0",
+   "subject": "HbA1c",
+   "predicate": "is_a_sign_of",
+   "object": "irrelevant in S2",
+   "quote": "HbA1c unreliable (irrelevant in S2)"
+  },
+  {
+   "id": "llm.a80bb1a4e097",
+   "subject": "a 9 mm duct",
+   "predicate": "indicates",
+   "object": "duct stone",
+   "quote": "Jaundice, cholestatic liver tests and a 9 mm duct make a duct stone likely"
+  },
+  {
+   "id": "llm.9d40459be824",
+   "subject": "acute kidney injury",
+   "predicate": "indicates",
+   "object": "creatinine 178",
+   "quote": "Acute kidney injury (creatinine 178, baseline 112)"
+  },
+  {
+   "id": "llm.42cce682898e",
+   "subject": "acute kidney injury",
+   "predicate": "indicates",
+   "object": "baseline 112",
+   "quote": "Acute kidney injury (creatinine 178, baseline 112)"
+  },
+  {
+   "id": "llm.233a659323d1",
+   "subject": "thalassaemia trait",
+   "predicate": "indicates",
+   "object": "anaemia",
+   "quote": "Anaemia explained by thalassaemia trait"
+  },
+  {
+   "id": "llm.0506920204bd",
+   "subject": "penicillin",
+   "predicate": "leads_to",
+   "object": "throat swelling",
+   "quote": "In 2015 penicillin caused throat swelling and collapse"
+  },
+  {
+   "id": "llm.891b89b96c36",
+   "subject": "bleeding risk",
+   "predicate": "is_a_sign_of",
+   "object": "anticoagulant still active",
+   "quote": "Anticoagulant still active: bleeding risk at surgery"
+  },
+  {
+   "id": "llm.f4366f6dd489",
+   "subject": "positive",
+   "predicate": "indicates",
+   "object": "pregnancy",
+   "quote": "The urine pregnancy test is positive"
+  },
+  {
+   "id": "llm.91d8360721d6",
+   "subject": "rate controlled",
+   "predicate": "indicates",
+   "object": "atrial fibrillation",
+   "quote": "Known atrial fibrillation, rate controlled"
+  }
+ ],
+ "judge_model": "qwen3.5:4b-q4_K_M",
+ "extraction_model": "qwen3.5:9b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "hand_labelled": false,
+ "gate_0_8_met": false,
+ "note": "A proxy for the step's gate, not the gate: that needs 100 relations labelled by people. Judges are the same family as the extractor."
+}

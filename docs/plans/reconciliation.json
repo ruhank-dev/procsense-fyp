@@ -370,13 +370,17 @@
   "p1-dataset-analysis-s06": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "content/kb/relations.json",
-    "tools/ci/test_kb.py"
+    "tools/ci/test_kb.py",
+    "tools/kb/judge_relations.py",
+    "reports/ai/kb-relations-ai-judged.json",
+    "tools/ci/test_kb_judge.py"
    ],
-   "measured": "grounding of model relations, review gate and score are tested",
-   "open": "The relation labels the precision gate needs (100 relations, two labellers) need people (DT-203)"
+   "measured": "99 passages: 137 proposed, 87 kept by the deterministic quote check, none approved; AI-judged proxy precision 0.22 to 0.45 (judges also reject correct relations)",
+   "open": "The precision gate needs 100 relations labelled by people; the AI-judged proxy (0.22 supported by both judges, 0.45 by either) is unreliable and not the gate",
+   "external": "two people labelling 100 relations (DT-203, DT-114) and a keyword-baseline recall set"
   },
   "p1-evaluation-s01": {
    "owner": "Ruhan",

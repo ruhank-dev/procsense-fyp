@@ -19,6 +19,12 @@ The AI composer must learn relationships from evidence instead of drawing indepe
 
 - **Labelling:** the relation labels the precision gate needs (100 relations, two labellers) can be made with `tools/labelling/label.py --kind relation`; the labellers are still the open need (DT-114, DT-210).
 
+## Status (18 October 2026, second session)
+
+- **Extraction run:** qwen3.5:9b over 99 passages of the case files: 137 relations proposed, 87 kept after the deterministic check (the quote appears word for word, both ends appear in it), 50 dropped; none is in the knowledge base (all `llm_unreviewed`).
+- **AI-judged proxy for the precision gate** (`tools/kb/judge_relations.py`, two configurations of qwen3.5:4b, blind, same model family, NOT the hand-labelled gate): 19 of 87 (0.22) supported by both judges, 39 (0.45) by either, kappa 0.50. Reading the split rows shows the judges also reject relations that are right (an SGLT2 inhibitor raising the risk of ketoacidosis), so the proxy under-states precision and cannot be trusted as a number; it says the extraction is nowhere near safe to approve unread.
+- **Not done:** the gate itself, 100 relations labelled by two people (`extract_relations.py --sheet 100`), and recall against a keyword baseline.
+
 ## Verification
 Every relation has a source; extraction precision at least 0.8 on 100 hand-labelled relations and recall above a keyword baseline; importer `--check` passes.
 
