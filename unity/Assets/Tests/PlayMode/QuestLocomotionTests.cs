@@ -34,17 +34,17 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot();
             var rig = Object.FindAnyObjectByType<XROrigin>();
             RigLocomotionSettings.Apply(rig, true, false);
-            var managers = rig.GetComponentsInChildren<ControllerInputActionManager>();
+            var managers = rig.GetComponentsInChildren<ControllerInputActionManager>(true);   // inactive too, as RigLocomotionSettings.Apply sets them: with no headset (batch tests) the controllers are inactive
             Assert.IsTrue(managers.Single(m => m.name == "Left Controller").smoothMotionEnabled);
             Assert.IsFalse(managers.Single(m => m.name == "Left Controller").uiScrollingEnabled);
             Assert.IsFalse(managers.Single(m => m.name == "Right Controller").smoothMotionEnabled);
             Assert.IsTrue(managers.Single(m => m.name == "Right Controller").uiScrollingEnabled);
             Assert.IsTrue(managers.All(m => !m.smoothTurnEnabled));
-            var move = rig.GetComponentInChildren<DynamicMoveProvider>();
+            var move = rig.GetComponentInChildren<DynamicMoveProvider>(true);
             Assert.IsTrue(move.enabled && move.enableStrafe && !move.enableFly);
             Assert.AreEqual(1.5f, move.moveSpeed);
             Assert.AreEqual(XRInputValueReader.InputSourceMode.Unused, move.rightHandMoveInput.inputSourceMode);
-            Assert.AreEqual(45, rig.GetComponentInChildren<SnapTurnProvider>().turnAmount);
+            Assert.AreEqual(45, rig.GetComponentInChildren<SnapTurnProvider>(true).turnAmount);
             Assert.IsTrue(rig.GetComponentsInChildren<ContinuousTurnProvider>(true).All(p => !p.enabled));
         }
 
@@ -54,7 +54,7 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot();
             var rig = Object.FindAnyObjectByType<XROrigin>();
             RigLocomotionSettings.Apply(rig, true, false);
-            var move = rig.GetComponentInChildren<DynamicMoveProvider>();
+            var move = rig.GetComponentInChildren<DynamicMoveProvider>(true);
             var reader = move.leftHandMoveInput; var mode = reader.inputSourceMode;
             var rooms = Object.FindAnyObjectByType<RoomLoader>();
             var blocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -119,7 +119,7 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot();
             var rig = Object.FindAnyObjectByType<XROrigin>(); RigLocomotionSettings.Apply(rig, true, false);
             var controls = rig.GetComponent<ComfortControls>(); var rooms = Object.FindAnyObjectByType<RoomLoader>();
-            var move = rig.GetComponentInChildren<DynamicMoveProvider>();
+            var move = rig.GetComponentInChildren<DynamicMoveProvider>(true);
             Assert.IsTrue(rooms.RequestRoom("Corridor")); yield return null;
             Assert.IsFalse(move.enabled);
             bool seated = controls.Seated;
