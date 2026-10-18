@@ -8,7 +8,7 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 
 | ID | Purpose | Class | Default | Status |
 |---|---|---|---|---|
-| MC-01 | Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50) | LLM | Qwen3.5 9B (qwen3.5:9b-q4_K_M) on the desktop GPU with CPU offload, offline batch only, JSON-schema format, thinking on where the benchmark shows a gain | Planned |
+| MC-01 | Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off, offline batch and service use, JSON-schema format (ADR-0017: measured equal or better than the 9B on every gate-bearing task, 3 to 6 times faster; the 9B is an optional evaluation cross-check) | Planned |
 | MC-02 | Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off (think false), num_ctx 4096, kept loaded; Qwen3.5 2B if the p95 latency target is missed | Planned |
 | MC-03 | Communication act classification (C35, C37, E60) | LLM, then trained (P2 only) | Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1) | Blocked |
 | MC-04 | Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off; texts that can be written once are pre-generated offline by Qwen3.5 9B and approved before use | Blocked |
@@ -19,18 +19,18 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 | MC-09 | ECG traces and strips (B15) | statistical / parametric | real strips; NeuroKit2 for rate and noise variants | Partially implemented |
 | MC-10 | Medical image selection (B16, B17) | deterministic retrieval | tag retrieval | Partially implemented |
 | MC-11 | Novelty fingerprints (A6, LG-13) | deterministic | weighted Jaccard; datasketch when history exceeds a few thousand | Proposed new feature |
-| MC-12 | Scenario quality judge (A9, E51) | LLM | Qwen3.5 9B judge (thinking on), advisory only, offline batch; it never approves a scenario | Proposed new feature |
+| MC-12 | Scenario quality judge (A9, E51) | LLM | Qwen3.5 4B judge, advisory only, offline batch; it never approves a scenario (the 9B is an optional cross-check) | Proposed new feature |
 | MC-13 | Medical LLM benchmark (E61) | LLM | none (benchmark only) | Deferred |
 
 ## MC-01 — Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50)
 
 | Field | Value |
 |---|---|
-| Candidates | Qwen3.5 9B (qwen3.5:9b-q4_K_M, 6.6 GB, thinking on where the benchmark shows a gain); Qwen3.5 4B (qwen3.5:4b-q4_K_M, 3.3 GB); Qwen3 4B (qwen3:4b, a thinking-2507 build, kept only as the comparison baseline); Optional alternative, not required: a hosted Qwen3.5 397B-A17B for offline composition only (about 0.30 USD in and 1.93 USD out per million tokens on third-party trackers, 16 Oct 2026) |
-| Default | Qwen3.5 9B (qwen3.5:9b-q4_K_M) on the desktop GPU with CPU offload, offline batch only, JSON-schema format, thinking on where the benchmark shows a gain |
+| Candidates | Qwen3.5 4B (qwen3.5:4b-q4_K_M, 3.3 GB): the default since ADR-0017; Qwen3.5 9B (qwen3.5:9b-q4_K_M, 6.6 GB, thinking on where the benchmark shows a gain); Qwen3 4B (qwen3:4b, a thinking-2507 build, kept only as the comparison baseline); Optional alternative, not required: a hosted Qwen3.5 397B-A17B for offline composition only (about 0.30 USD in and 1.93 USD out per million tokens on third-party trackers, 16 Oct 2026) |
+| Default | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off, offline batch and service use, JSON-schema format (ADR-0017: measured equal or better than the 9B on every gate-bearing task, 3 to 6 times faster; the 9B is an optional evaluation cross-check) |
 | Method class | LLM |
 | Hardware | 6 GB GPU (GTX 1660 SUPER here; RTX 4050 laptop in the plan) |
-| Latency | offline batch, minutes per composition (measured 16 Oct 2026: about 12 tokens per second, and a 150-word planning answer in thinking mode used a whole 1800-token budget in 162 s); never run in a session |
+| Latency | offline batch and service use: plan composer 12 s per case, interpreter 17 s per learner, patient wording 1.6 s per line (p50, 18 Oct 2026, docs/research/model_4b_vs_9b.md) |
 | Local or remote | local (Ollama); remote API optional and off by default |
 | Internet | not at run time |
 | Privacy | no real patient data is ever sent; synthetic content only |
@@ -247,7 +247,7 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 | Field | Value |
 |---|---|
 | Candidates | Qwen3.5 9B (qwen3.5:9b-q4_K_M), thinking on, advisory; Qwen3.5 4B (qwen3.5:4b-q4_K_M) as the faster fallback |
-| Default | Qwen3.5 9B judge (thinking on), advisory only, offline batch; it never approves a scenario |
+| Default | Qwen3.5 4B judge, advisory only, offline batch; it never approves a scenario (the 9B is an optional cross-check) |
 | Method class | LLM |
 | Hardware | 6 GB GPU |
 | Latency | offline batch, minutes per case (not a session feature) |

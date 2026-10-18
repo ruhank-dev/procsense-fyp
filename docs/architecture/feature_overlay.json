@@ -1,0 +1,608 @@
+{
+ "note": "Hand-kept overlay of the feature implementation matrix (tools/plans/feature_matrix.py): the runtime path of each feature, the test files that cover it and the feature gates (content/ai/features.json) that switch it. Every path in backticks and every test file must exist; the matrix tool checks them. Statuses and counts are derived from the reconciliation, never typed here.",
+ "features": {
+  "A1": {
+   "runtime": "`tools/composer/blocks.py` and `solve.py` build and combine blocks, `tools/composer/stage_b.py` validates, `server/generation/compose_plan.py` proposes plans to the pipeline",
+   "tests": [
+    "tools/composer/test_composer.py",
+    "tools/composer/test_solver.py",
+    "tools/ci/test_generation_skeleton.py"
+   ],
+   "gates": [
+    "plan_composer"
+   ]
+  },
+  "A2": {
+   "runtime": "`server/generation/pipeline.py` (objectives, skeleton, numbers, media, gate, repair, novelty, package) served by `server/routers/scenario_packages.py`; the engine plays the package (`src/ProcSense.Core` ScenarioPackage)",
+   "tests": [
+    "tools/ci/test_generation_live.py",
+    "tools/ci/test_generation_package.py",
+    "tests/ProcSense.Core.Tests/ScenarioPackageTests.cs",
+    "tests/ProcSense.Core.Tests/ScenarioPackageVerifyTests.cs"
+   ],
+   "gates": [
+    "plan_composer",
+    "narrative"
+   ]
+  },
+  "A3": {
+   "runtime": "patient identity blocks (`tools/composer/blocks.py`: DEM, NAME, SOC, PSH, ALG) and numeric profile (`server/generation/numeric.py`) with the narrator (`server/generation/narrative.py`) rewording the patient's lines",
+   "tests": [
+    "tools/composer/test_solver.py",
+    "tools/ci/test_profile_numeric.py",
+    "tools/ci/test_generation_numeric.py"
+   ],
+   "gates": [
+    "narrative"
+   ]
+  },
+  "A4": {
+   "runtime": "the 20 stacked cases (`content/case_files`) and the multi-problem composition engine (`tools/composer/multiproblem.py`, rules in `tools/composer/composition/rules.json`); new combinations are DRAFT planning fixtures, not cases",
+   "tests": [
+    "tools/composer/test_multiproblem.py",
+    "tools/ci/test_stacked_partd.py"
+   ],
+   "gates": []
+  },
+  "A5": {
+   "runtime": "`src/ProcSense.Core` EventDirector and the intra-operative and sepsis subsystems fire events from data in `content/events`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/EventDirectorTests.cs",
+    "tests/ProcSense.Core.Tests/TheatreExtensionTests.cs",
+    "tests/ProcSense.Core.Tests/SepsisTests.cs"
+   ],
+   "gates": []
+  },
+  "A6": {
+   "runtime": "`server/generation/novelty.py` fingerprints every candidate at three levels and the pipeline retries or labels low novelty",
+   "tests": [
+    "tools/ci/test_generation_novelty.py"
+   ],
+   "gates": []
+  },
+  "A7": {
+   "runtime": "trap fairness metrics of `server/generation/quality.py` and the trap block VAR-S1-J (`content/case_files/VAR-S1-J.json`); the AI-worded traps are not built",
+   "tests": [
+    "tools/ci/test_generation_quality.py",
+    "tools/ci/test_variant_facts.py"
+   ],
+   "gates": []
+  },
+  "A8": {
+   "runtime": "`src/ProcSense.Core` CaseGraph and session level options choose branches deterministically",
+   "tests": [
+    "tests/ProcSense.Core.Tests/CaseGraphTests.cs",
+    "tests/ProcSense.Core.Tests/VariantTests.cs"
+   ],
+   "gates": []
+  },
+  "A9": {
+   "runtime": "`server/generation/quality.py` scores every package before it is served",
+   "tests": [
+    "tools/ci/test_generation_quality.py"
+   ],
+   "gates": []
+  },
+  "A10": {
+   "runtime": "`server/generation/package.py` and `repair.py` validate, repair within a budget or reject to the library pool; Stage B for composed cases",
+   "tests": [
+    "tools/ci/test_generation_package.py",
+    "tools/composer/test_composer.py"
+   ],
+   "gates": []
+  },
+  "A11": {
+   "runtime": "`server/generation/objectives.py` (Elo or learner-model targeting) and `src/ProcSense.Core/Difficulty`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/DifficultyTests.cs",
+    "tests/ProcSense.Core.Tests/DifficultyVectorTests.cs",
+    "tools/ci/test_generation_contracts.py",
+    "tools/ci/test_personalisation_policy.py"
+   ],
+   "gates": []
+  },
+  "A12": {
+   "runtime": "`tools/composer/solve.py` recombines blocks under requires and excludes",
+   "tests": [
+    "tools/composer/test_solver.py"
+   ],
+   "gates": []
+  },
+  "A13": {
+   "runtime": "package provenance and reproducibility key (`server/generation/package.py`) verified by the service (`server/verification`) and the engine (`ScenarioPackageVerify`)",
+   "tests": [
+    "tools/ci/test_generation_package.py",
+    "tests/ProcSense.Core.Tests/ScenarioPackageVerifyTests.cs",
+    "server/tests/test_verification.py"
+   ],
+   "gates": []
+  },
+  "B14": {
+   "runtime": "`server/generation/numeric.py`, `joint.py` and the packs built from datasets",
+   "tests": [
+    "tools/ci/test_generation_numeric.py",
+    "tools/ci/test_generation_joint.py",
+    "tools/ci/test_generation_packs.py"
+   ],
+   "gates": []
+  },
+  "B15": {
+   "runtime": "ECG selection and variation in `server/generation/media.py` from the ECG packs",
+   "tests": [
+    "tools/ci/test_generation_media.py"
+   ],
+   "gates": []
+  },
+  "B16": {
+   "runtime": "ultrasound selection in `server/generation/media.py` from the licensed picture index",
+   "tests": [
+    "tools/ci/test_generation_media.py"
+   ],
+   "gates": []
+  },
+  "B17": {
+   "runtime": "chest X-ray, CT and MRI selection in `server/generation/media.py`",
+   "tests": [
+    "tools/ci/test_generation_media.py"
+   ],
+   "gates": []
+  },
+  "B18": {
+   "runtime": "`server/generation/crossmodal.py`, `consistency.py` and the model critic `critic.py` gate every package",
+   "tests": [
+    "tools/ci/test_generation_crossmodal.py",
+    "tools/ci/test_generation_consistency.py"
+   ],
+   "gates": [
+    "critic"
+   ]
+  },
+  "B19": {
+   "runtime": "`tools/synth` publishes datasets only with a complete card",
+   "tests": [
+    "tools/ci/test_synth_cards.py",
+    "tools/ci/test_synthetic2.py",
+    "tools/ci/test_synthetic3.py"
+   ],
+   "gates": []
+  },
+  "B20": {
+   "runtime": "session noise options in `src/ProcSense.Core` (SessionOptions.Noise)",
+   "tests": [
+    "tests/ProcSense.Core.Tests/NoiseSessionTests.cs"
+   ],
+   "gates": []
+  },
+  "B21": {
+   "runtime": "`src/ProcSense.Core` ResultGenerator repeats and trends results",
+   "tests": [
+    "tests/ProcSense.Core.Tests/ResultGeneratorTests.cs"
+   ],
+   "gates": []
+  },
+  "B22": {
+   "runtime": "teaching interpretation of investigations in `server/analytics/interpreter.py`",
+   "tests": [
+    "tools/ci/test_analytics.py"
+   ],
+   "gates": []
+  },
+  "B23": {
+   "runtime": "`src/ProcSense.Core` Discovery and Investigations subsystems",
+   "tests": [
+    "tests/ProcSense.Core.Tests/DiscoveryTests.cs",
+    "tests/ProcSense.Core.Tests/InvestigationsTests.cs"
+   ],
+   "gates": []
+  },
+  "C24": {
+   "runtime": "`server/dialogue/dialogue.py` behind the AI gateway (`server/routers/ai_gateway.py`) with the grounding validator",
+   "tests": [
+    "server/tests/test_ai_routes.py",
+    "tools/ci/test_dialogue_stress.py",
+    "tools/ci/test_llm.py"
+   ],
+   "gates": [
+    "patient_dialogue"
+   ]
+  },
+  "C25": {
+   "runtime": "`Dialogue.pick` in `server/dialogue/dialogue.py` speaks only approved nurse lines",
+   "tests": [
+    "tools/ci/test_llm.py",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "multi_agent"
+   ]
+  },
+  "C26": {
+   "runtime": "`Dialogue.pick` for the anaesthetist's approved intents",
+   "tests": [
+    "tools/ci/test_llm.py",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "multi_agent"
+   ]
+  },
+  "C27": {
+   "runtime": "`Dialogue.pick` for the surgeon's approved lines",
+   "tests": [
+    "tools/ci/test_llm.py",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "multi_agent"
+   ]
+  },
+  "C28": {
+   "runtime": "`Dialogue.pick` for the porter's approved lines",
+   "tests": [
+    "tools/ci/test_llm.py",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "multi_agent"
+   ]
+  },
+  "C29": {
+   "runtime": "`content/ai/persona.json` and the narrator keep a patient's manner consistent",
+   "tests": [
+    "tools/ci/test_llm.py",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "narrative",
+    "patient_dialogue"
+   ]
+  },
+  "C30": {
+   "runtime": "`src/ProcSense.Core/AIContext/ContextBuilder.cs` builds the context from earned facts only",
+   "tests": [
+    "tests/ProcSense.Core.Tests/ContextBuilderTests.cs",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "patient_dialogue"
+   ]
+  },
+  "C31": {
+   "runtime": "server recogniser (`server/asr/service.py`), orders (`server/orders/grammar.py`) and speech output (`server/tts/engine.py`) are built and measured; the Quest push-to-talk client is Sannan's",
+   "tests": [
+    "server/tests/test_asr.py",
+    "server/tests/test_orders.py",
+    "server/tests/test_tts.py"
+   ],
+   "gates": [
+    "asr",
+    "tts",
+    "voice_orders"
+   ]
+  },
+  "C32": {
+   "runtime": "`server/orders/grammar.py` parses spoken commands; the Quest client is Sannan's",
+   "tests": [
+    "server/tests/test_orders.py"
+   ],
+   "gates": [
+    "voice_orders"
+   ]
+  },
+  "C33": {
+   "runtime": "`server/asr/service.py` (faster-whisper small.en on the card)",
+   "tests": [
+    "server/tests/test_asr.py",
+    "tools/ci/test_asr_proxy_report.py"
+   ],
+   "gates": [
+    "asr"
+   ]
+  },
+  "C34": {
+   "runtime": "`server/tts/engine.py` (persistent Piper)",
+   "tests": [
+    "server/tests/test_tts.py",
+    "tools/ci/test_voice_render.py"
+   ],
+   "gates": [
+    "tts"
+   ]
+  },
+  "C35": {
+   "runtime": "`server/orders/grammar.py` with read-back confirmation",
+   "tests": [
+    "server/tests/test_orders.py"
+   ],
+   "gates": [
+    "voice_orders"
+   ]
+  },
+  "C36": {
+   "runtime": "`content/assessment/taxonomy.json` and `mapping.json` with `src/ProcSense.Core/Scoring/Evidence.cs`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/ScoringTests.cs",
+    "tools/ci/test_classifier_embedding.py"
+   ],
+   "gates": []
+  },
+  "C37": {
+   "runtime": "`server/classify` (ensemble of an embedding head and a TF-IDF head, hard negatives, assertion check) behind `server/routers/classify.py`; the engine refuses critical acts from speech",
+   "tests": [
+    "tools/ci/test_classifier_regression.py",
+    "tools/ci/test_classifier_embedding.py",
+    "tools/ci/test_classifier_tfidf.py",
+    "tools/ci/test_guard_eval.py",
+    "server/tests/test_ai_routes.py"
+   ],
+   "gates": [
+    "classifier",
+    "classifier_safety"
+   ]
+  },
+  "D38": {
+   "runtime": "`server/debrief/rewrite.py` rewords the deterministic debrief and refuses any rewrite that changes a fact",
+   "tests": [
+    "server/tests/test_ai_routes.py",
+    "tools/ci/test_llm.py"
+   ],
+   "gates": [
+    "debrief_ai"
+   ]
+  },
+  "D39": {
+   "runtime": "hint and coaching text from the engine (`Session.PracticeAids`) and `server/analytics/next_case.py`; in-session hint views are Unity",
+   "tests": [
+    "tests/ProcSense.Core.Tests/AssessmentModeTests.cs",
+    "tools/ci/test_analytics.py"
+   ],
+   "gates": []
+  },
+  "D40": {
+   "runtime": "`server/analytics/patterns.py` and the engine's PatternTests",
+   "tests": [
+    "tools/ci/test_analytics.py",
+    "tests/ProcSense.Core.Tests/PatternTests.cs"
+   ],
+   "gates": []
+  },
+  "D41": {
+   "runtime": "`server/analytics/calibration.py`",
+   "tests": [
+    "tools/ci/test_analytics.py"
+   ],
+   "gates": []
+  },
+  "D42": {
+   "runtime": "`server/analytics/reasoning.py`",
+   "tests": [
+    "tools/ci/test_analytics.py"
+   ],
+   "gates": []
+  },
+  "D43": {
+   "runtime": "`src/ProcSense.Core/Difficulty` Elo ratings and selector",
+   "tests": [
+    "tests/ProcSense.Core.Tests/DifficultyTests.cs",
+    "tests/ProcSense.Core.Tests/DifficultyVectorTests.cs"
+   ],
+   "gates": []
+  },
+  "D44": {
+   "runtime": "`server/personalisation` policies and `server/generation/objectives.py` (expected-gain targeting with Elo fallback)",
+   "tests": [
+    "tools/ci/test_personalisation_policy.py",
+    "tools/ci/test_personalisation_model.py"
+   ],
+   "gates": [
+    "interpreter"
+   ]
+  },
+  "D45": {
+   "runtime": "`server/analytics/progression.py`",
+   "tests": [
+    "tools/ci/test_analytics.py"
+   ],
+   "gates": []
+  },
+  "D46": {
+   "runtime": "missed-step explanations in the deterministic debrief (`src/ProcSense.Core/Scoring/Debrief.cs`) reworded by `server/debrief/rewrite.py`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/ScoringTests.cs",
+    "server/tests/test_ai_routes.py"
+   ],
+   "gates": [
+    "debrief_ai"
+   ]
+  },
+  "D47": {
+   "runtime": "`DebriefFacts` with log references (`src/ProcSense.Core/Scoring`) are what the rewrite is checked against",
+   "tests": [
+    "tests/ProcSense.Core.Tests/ScoringTests.cs",
+    "tests/ProcSense.Core.Tests/GroundingValidatorTests.cs"
+   ],
+   "gates": [
+    "debrief_ai"
+   ]
+  },
+  "E48": {
+   "runtime": "`src/ProcSense.Core` patient twin and the recorded Pulse traces",
+   "tests": [
+    "tests/ProcSense.Core.Tests/PatientTwinTests.cs",
+    "tests/ProcSense.Core.Tests/PulseTraceTests.cs",
+    "tools/ci/test_pulse.py"
+   ],
+   "gates": []
+  },
+  "E49": {
+   "runtime": "`Dialogue.pick_many` in `server/dialogue/dialogue.py`; the three-voice host in Unity is Sannan's",
+   "tests": [
+    "tools/ci/test_llm.py",
+    "tools/ci/test_dialogue_stress.py"
+   ],
+   "gates": [
+    "multi_agent"
+   ]
+  },
+  "E50": {
+   "runtime": "`tools/redteam/run.py` attacks the grounding validator",
+   "tests": [
+    "tools/ci/test_redteam.py",
+    "tools/ci/test_safety_invariants.py"
+   ],
+   "gates": []
+  },
+  "E51": {
+   "runtime": "`server/generation/quality.py` evaluation run offline over batches",
+   "tests": [
+    "tools/ci/test_generation_quality.py"
+   ],
+   "gates": []
+  },
+  "E52": {
+   "runtime": "`server/analytics` investigation analytics",
+   "tests": [
+    "tools/ci/test_analytics.py"
+   ],
+   "gates": []
+  },
+  "E53": {
+   "runtime": "`src/ProcSense.Core` grounding validator and `server/validation`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/GroundingValidatorTests.cs",
+    "tools/ci/test_safety_invariants.py"
+   ],
+   "gates": []
+  },
+  "E54": {
+   "runtime": "`src/ProcSense.Core/AIContext/ContextBuilder.cs`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/ContextBuilderTests.cs"
+   ],
+   "gates": []
+  },
+  "E55": {
+   "runtime": "`tools/eval/ai_gate.py` and `collect_ai.py`; `server/ai_features.py` honours the gate",
+   "tests": [
+    "tools/ci/test_ai_gate.py",
+    "server/tests/test_ai_features.py"
+   ],
+   "gates": []
+  },
+  "E56": {
+   "runtime": "template difficulty explanation in `src/ProcSense.Core/Difficulty` and `content/difficulty`",
+   "tests": [
+    "tests/ProcSense.Core.Tests/DifficultyTests.cs"
+   ],
+   "gates": []
+  },
+  "E57": {
+   "runtime": "`server/llm` client and gateway; `tools/ai/benchmark.py`; Ollama on the desktop",
+   "tests": [
+    "tools/ai/test_benchmark.py",
+    "tools/ci/test_llm.py",
+    "server/tests/test_ai_gateway.py"
+   ],
+   "gates": []
+  },
+  "E58": {
+   "runtime": "`server/retrieval` and `server/generation/retrieve.py`",
+   "tests": [
+    "tools/ci/test_retrieval.py",
+    "tools/ci/test_generation_retrieve.py"
+   ],
+   "gates": []
+  },
+  "E60": {
+   "runtime": "the embedding head is the trained classifier; gated off (see C37)",
+   "tests": [
+    "tools/ci/test_classifier_embedding.py",
+    "tools/ci/test_classifier_regression.py"
+   ],
+   "gates": [
+    "classifier"
+   ]
+  },
+  "E61": {
+   "runtime": "`tools/ai/model_candidate.py` and `content/ai/model_candidates.json`; nothing is downloaded or accepted",
+   "tests": [
+    "tools/ci/test_model_candidate.py"
+   ],
+   "gates": []
+  },
+  "E62": {
+   "runtime": "`server` FastAPI service, AI gateway and routers",
+   "tests": [
+    "server/tests/test_ai_gateway.py",
+    "server/tests/test_sessions_api.py",
+    "server/tests/test_accounts_api.py",
+    "server/tests/test_ai_routes.py"
+   ],
+   "gates": []
+  },
+  "E63": {
+   "runtime": "desktop proxy of two candidate recognisers (`tools/ai/asr_ondevice_proxy.py`); the Quest measurement is DC-04",
+   "tests": [
+    "tools/ci/test_asr_proxy_report.py"
+   ],
+   "gates": []
+  },
+  "E64": {
+   "runtime": "`tools/ai/adaptation_trigger.py` checks the trigger for generative images; not met",
+   "tests": [
+    "tools/ci/test_adaptation_trigger.py"
+   ],
+   "gates": []
+  },
+  "E65": {
+   "runtime": "`tools/ai/adaptation_trigger.py` checks the trigger for fine-tuning; not met",
+   "tests": [
+    "tools/ci/test_adaptation_trigger.py"
+   ],
+   "gates": []
+  },
+  "A66": {
+   "runtime": "`tools/kb` builds and judges the relation graph (`content/kb`); precision needs people (EX-10)",
+   "tests": [
+    "tools/ci/test_kb.py",
+    "tools/ci/test_kb_judge.py"
+   ],
+   "gates": []
+  },
+  "D67": {
+   "runtime": "`server/personalisation/learner_model.py` and `evidence.py`",
+   "tests": [
+    "tools/ci/test_personalisation_model.py",
+    "tools/ci/test_personalisation_evidence.py"
+   ],
+   "gates": [
+    "interpreter"
+   ]
+  },
+  "D68": {
+   "runtime": "`server/personalisation/policy.py` (rules, expected gain, bandit) chosen in `content/generation/policy.json` and read by `server/generation/objectives.py`",
+   "tests": [
+    "tools/ci/test_personalisation_policy.py"
+   ],
+   "gates": []
+  },
+  "E69": {
+   "runtime": "`tools/ai/check_hosts.py`, `benchmark.py` and `docs/architecture/deployment.md`; the laptop is EX-09",
+   "tests": [
+    "tools/ai/test_benchmark.py",
+    "tools/ci/test_doctor.py"
+   ],
+   "gates": []
+  }
+ },
+ "not_built": {
+  "A4.c2": "Interacting-problem proposals by the plan composer are not built: the composer proposes a story and blocks, not secondary problems with an interaction rationale; stacked cases come from the authored library and the composition engine (tools/composer/multiproblem.py).",
+  "A5.c2": "Context-fitting event selection by the model is not built: events are chosen by the engine's EventDirector from data; the planner has no events field.",
+  "A7.c2": "The misleading-wording writer is not built: traps use the authored trap block (VAR-S1-J) with the deterministic fairness check; no model writes misdirection.",
+  "A8.c2": "Branch-point proposals by the planner are not built: what-if branches come from the engine's library; the planner has no branches field.",
+  "A9.c2": "The LLM quality judge is not built: scenario quality is the deterministic metric set; the judge needs the human-rated calibration set (EX-15).",
+  "A12.c2": "Compatibility suggestions (co-occurrence mining with model notes) are not built; blocks carry requires and excludes written by hand.",
+  "B23.c2": "Built and measured, below its acceptance, gate `order_fallback` OFF: the model fallback of the order grammar (server/orders/llm_fallback.py, route server/routers/orders.py) read back the right item for 70.5 percent of 61 paraphrased orders against 6.6 percent for the grammar alone (plan: 90 percent), offered a wrong item for 14.8 percent, and took 6 s per call (reports/ai/orders-eval-llm.json). It stays off; the grammar and the menu are unchanged.",
+  "C32.c1": "Built and measured, below its acceptance, gate `order_fallback` OFF (see B23.c2: 70.5 percent against the plan's 95); the server route and read-back are on. The Quest voice client is Sannan's (DC-08)."
+ }
+}

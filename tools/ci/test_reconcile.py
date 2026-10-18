@@ -1,4 +1,4 @@
-"""The reconciliation page (tools/plans/reconcile.py): it covers every P1 and P2 step, names only evidence that exists, and each kind of mistake in its data is caught."""
+"""The reconciliation page (tools/plans/reconcile.py): it covers every P0, P1 and P2 step, names only evidence that exists, and each kind of mistake in its data is caught."""
 import copy
 import json
 import sys
@@ -18,7 +18,7 @@ class Reconcile(unittest.TestCase):
 
     def test_the_real_data_covers_every_step_and_names_existing_evidence(self):
         self.assertEqual(R.problems(self.found, self.data), [])
-        self.assertEqual(len(self.found), 96)
+        self.assertEqual({t: sum(1 for f in self.found.values() if f["tier"] == t) for t in ("p0", "p1", "p2")}, {"p0": 173, "p1": 77, "p2": 19})          # 269 steps, as docs/plans/milestones.md counts them
 
     def test_the_committed_page_is_what_the_data_gives(self):
         self.assertEqual(R.OUT.read_text(encoding="utf-8"), R.render(self.found, self.data))

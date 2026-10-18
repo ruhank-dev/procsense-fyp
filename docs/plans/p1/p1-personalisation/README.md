@@ -19,7 +19,7 @@ Learn from each trainee's recorded performance and change the substance of futur
 | [p1-personalisation-s02](steps/✅%20p1-personalisation-s02-learner-model.md) | Bayesian learner model |
 | [p1-personalisation-s03](steps/✅%20p1-personalisation-s03-targeting-policy.md) | Targeting policy: from rules to a contextual bandit |
 | [p1-personalisation-s04](steps/✅%20p1-personalisation-s04-performance-interpreter.md) | LLM performance interpreter |
-| [p1-personalisation-s05](steps/p1-personalisation-s05-explanation-evaluation.md) | Why-this-scenario explanations and personalisation evaluation |
+| [p1-personalisation-s05](steps/✅%20p1-personalisation-s05-explanation-evaluation.md) | Why-this-scenario explanations and personalisation evaluation |
 
 ## Exit
 Every step's verification passes and `uv run --project tools tools/plans/validate_pipeline.py` still passes with the stage statuses updated.

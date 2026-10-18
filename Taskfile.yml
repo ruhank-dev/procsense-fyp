@@ -81,6 +81,37 @@ tasks:
     cmds:
       - uv run --project tools tools/composer/cli.py {{.CLI_ARGS}}
 
+  compose-multiproblem:
+    desc: Compose new multi-problem case structures by the walkthrough 14B.5 recipe from approved problems (tests/composition/compositions.json; synthetic DRAFT fixtures, not clinically validated)
+    cmds:
+      - uv run --project tools tools/composer/multiproblem.py {{.CLI_ARGS}}
+
+  classifier-safety:
+    desc: Score the credit path of the communication classifier on every labelled set (needs Ollama with all-minilm:22m; the frozen challenge set v4 only with -- --final, once) and write reports/ai/classifier-safety.json
+    cmds:
+      - uv run --project tools tools/bench/safety_gate.py --write {{.CLI_ARGS}}
+
+  classifier-safety-page:
+    desc: Regenerate docs/research/classifier_benchmark/safety_gate.md from the result files
+    cmds:
+      - uv run --project tools tools/bench/safety_report.py
+
+  model-compare:
+    desc: Regenerate the Qwen 3.5 4B against 9B page (docs/research/model_4b_vs_9b.md) from the committed result files
+    cmds:
+      - uv run --project tools tools/ai/model_compare.py
+
+  external-testing:
+    desc: Regenerate the single external-testing handoff (docs/testing/SANNAN_EXTERNAL_TESTING.md) and link it from the step files
+    cmds:
+      - uv run --project tools tools/plans/external_testing.py --link-steps
+
+  feature-matrix:
+    desc: Regenerate the feature implementation matrix of the 68 plans and sync the pipeline JSON statuses, then the generated plans
+    cmds:
+      - uv run --project tools tools/plans/feature_matrix.py --sync-json
+      - uv run --project tools tools/plans/pipeline_docs.py
+
   blocks:
     desc: Rebuild the composer's block library, tag vocabulary and templates from the case files (content/blocks, content/templates)
     cmds:
@@ -95,6 +126,11 @@ tasks:
     desc: Check every plain line of the catalogue has a rendered file of sane length at the target loudness (-16 LUFS)
     cmds:
       - uv run --project tools tools/voice/render.py --check
+
+  report-experiments:
+    desc: Regenerate the experiments chapter of the report (docs/report/experiments.md) from the phase READMEs
+    cmds:
+      - uv run --project tools tools/eval/collect_experiments.py
 
   attributions:
     desc: Regenerate docs/ATTRIBUTIONS.md and the in-app credits (content/attributions/attributions.json) from the registers

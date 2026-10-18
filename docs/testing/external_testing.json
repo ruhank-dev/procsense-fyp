@@ -1,0 +1,841 @@
+{
+ "written": "18 October 2026 (third session)",
+ "owner": "Sannan (Unity, XR, 3D, UI, builds, headset). Items that need other people or accounts are in their own sections and say who must do them; Sannan cannot give consent, labelling, clinical or licence authority on anyone's behalf.",
+ "result_form": {
+  "file": "docs/testing/results/<ID>.md (put logs, screenshots and videos in docs/testing/results/<ID>/ beside it)",
+  "fields": [
+   "ID",
+   "date and time (UTC)",
+   "who ran it",
+   "device, OS version, build id and git commit (or the account, person or machine for a non-device item)",
+   "result: PASS | FAIL | NOT RUN",
+   "numbers measured against the pass rule",
+   "evidence file names",
+   "notes and anything that surprised you"
+  ],
+  "rule": "An item is passed only by a result file whose first lines read `Result: PASS` and that names the commit, the device or person and the numbers. Do not tick a step on a verbal report. A result file that says FAIL keeps the step open and is the reproduction recipe: attach the log and say which pass-rule line failed."
+ },
+ "defaults": {
+  "who_device": "Sannan",
+  "evidence_device": "The result file; the Unity Profiler or OVR Metrics export; the exported session log (`.jsonl`) for any playthrough; a screenshot or short video of the failing moment; the build id and `git rev-parse HEAD`.",
+  "failure": "Write `Result: FAIL`, copy the failing line of the pass rule, attach the log and the exported session, and tell the engineer (Ruhan) the commit. A failing session log replays headless with `task sim -- replay --log <file>`, which is how the engineer reproduces it."
+ },
+ "device_checks": [
+  {
+   "id": "DC-01",
+   "title": "Frame-time cost with the local model and the recogniser running beside the simulation",
+   "steps": [
+    "p1-ai-infrastructure-s02",
+    "p1-ai-language-s02"
+   ],
+   "needs": "The desktop with the VR scene (Editor play mode or a PC build) and Ollama running; a Quest linked to the PC if the scene is streamed",
+   "prepared": [
+    "tools/ai/benchmark.py",
+    "docs/research/model_benchmarks.md"
+   ],
+   "procedure": [
+    "Start the VR scene with no model loaded; record 2 minutes of frame time (Unity Profiler or OVR Metrics: average and 99th percentile frame ms).",
+    "In a terminal run: ollama run qwen3.5:4b-q4_K_M \"hello\" so the 4B model is loaded, then repeat the 2-minute recording while `uv run --project tools tools/ai/benchmark.py b0 --model qwen3.5:4b-q4_K_M --runs 20` runs.",
+    "Repeat with the speech recogniser busy (the voice client sending a clip every 10 seconds).",
+    "Write the three pairs of frame-time numbers and the BT0 line of the benchmark in the result file."
+   ],
+   "pass_rule": "Average frame time stays within the headset's refresh budget (13.9 ms at 72 Hz) in all three runs, and the 99th percentile does not exceed 1.5 times the budget. If it does not, write which run failed; the model then runs on the laptop (ADR-0010).",
+   "who": "Sannan",
+   "after": "Ruhan records the three frame-time pairs in docs/research/model_benchmarks.md and, if the pass rule holds, ticks p1-ai-infrastructure-s02 and p1-ai-language-s02 with tools/plans/tick.py; if it fails the live model moves to the laptop (ADR-0010) and the step stays ENG_DONE."
+  },
+  {
+   "id": "DC-02",
+   "title": "Fetch and play a generated scenario package (practice mode) and refuse it in assessment",
+   "steps": [
+    "p1-live-scenario-generation-s10"
+   ],
+   "needs": "The Unity app, the backend service (docker compose or the cloud service), and a user account",
+   "prepared": [
+    "tests/golden_generated/generated_VAR-S1-A.package.json",
+    "tests/golden_generated/generated_VAR-S1-A.actions.json",
+    "tests/golden_generated/generated_VAR-S1-A.expected.json",
+    "server/routers/scenario_packages.py",
+    "tools/golden/generated.py"
+   ],
+   "procedure": [
+    "Upload a package: PUT /scenario-packages/{package_hash} with the exact bytes of tests/golden_generated/generated_VAR-S1-A.package.json; the address hash is the SHA-256 of those bytes (`sha256sum`), as server/routers/scenario_packages.py requires.",
+    "In the Unity app choose Practice, then Generated case; confirm the case loads and the patient banner says it is a generated practice case.",
+    "Play the actions of generated_VAR-S1-A.actions.json by hand (or through the replay tool) and compare the end state with generated_VAR-S1-A.expected.json.",
+    "Choose Assessment mode and try to open the same package."
+   ],
+   "pass_rule": "Practice: the case loads and the end state equals the expected file. Assessment: the app refuses the package with the gate's message and plays nothing.",
+   "who": "Sannan",
+   "after": "Ruhan ticks p1-live-scenario-generation-s10 with tools/plans/tick.py; DT-221 loses this check."
+  },
+  {
+   "id": "DC-03",
+   "title": "Wrong-path playthroughs of the 16 P1 cases on the headset",
+   "steps": [
+    "p1-case-library-extended-s04"
+   ],
+   "needs": "Quest 2 or 3 with the current Unity build",
+   "prepared": [
+    "tests/golden/STK-S1-A_dangerous_p1.actions.json",
+    "tests/golden/STK-S1-A_dangerous_p1.expected.json",
+    "tools/golden/paths.py",
+    "docs/research/review-packs/2026-10-18-composed.md"
+   ],
+   "procedure": [
+    "For each of the 16 P1 cases take the files tests/golden/<case>_{correct,novice,dangerous,edge}_p1.actions.json; play each list of actions in the headset (or feed it through the replay tool on the device).",
+    "Record the final session file and compare its end state, result and the list of penalty items with tests/golden/<case>_<path>_p1.expected.json.",
+    "Replay each recorded VR session in the Core (`dotnet run --project src/ProcSense.Cli -- verify --log <session>.jsonl`) and keep the verdict.",
+    "Record one 2-minute video of one dangerous path for the reviewer."
+   ],
+   "pass_rule": "All 64 runs reach the expected end state and result; every verify verdict is 'verified'. A mismatch is a bug in the Unity side or the Core; attach the session file.",
+   "who": "Sannan",
+   "after": "Ruhan ticks p1-case-library-extended-s04; the reviewer videos go to the clinical reviewer (optional under ADR-0008)."
+  },
+  {
+   "id": "DC-04",
+   "title": "On-device speech recognition on the Quest (EXP-P2AI-1)",
+   "steps": [
+    "p2-ai-extensions-s01"
+   ],
+   "needs": "Quest 3 and Quest 2; the sherpa-onnx Android build; the model files named in ADR-0014",
+   "prepared": [
+    "docs/decisions/ADR-0014-on-device-recogniser-candidates.md",
+    "tools/ai/asr_ondevice_proxy.py",
+    "reports/ai/asr-ondevice-proxy.json",
+    "build/voice"
+   ],
+   "procedure": [
+    "Build a minimal Quest app with sherpa-onnx (Android arm64) and Whisper tiny.en int8 (sherpa-onnx-whisper-tiny.en from the release asr-models); push-to-talk, show the text.",
+    "Play the 40 clips of the proxy (every 7th file of build/voice, in name order; tools/ai/asr_ondevice_proxy.py prints the same list) through the headset microphone path or inject them as audio.",
+    "Compute the word error rate with tools/ai/asr_wer.py's normalisation (import wer and norm) and record the seconds to text for a 5 s clip.",
+    "Repeat while the simulation scene is running; note temperature and any frame drops."
+   ],
+   "pass_rule": "WER at or under 0.25 on the 40 clips, text within 1.5 s of the end of a 5 s clip, no frame-time breach of DC-01's budget. Otherwise the server path stays the only path (ADR-0014).",
+   "who": "Sannan",
+   "after": "Ruhan updates ADR-0014 from 'proposed' with the measured latency, thermal and frame cost and decides which recogniser ships; p2-ai-extensions-s01 is ticked."
+  },
+  {
+   "id": "DC-05",
+   "title": "Pulse physiology engine on the Quest (ARM64) if the PC build succeeded",
+   "steps": [
+    "p1-pulse-physiology-s01",
+    "p1-pulse-physiology-s02",
+    "p1-pulse-physiology-s03"
+   ],
+   "needs": "Quest 3; the Pulse C# bindings built for Android ARM64 (see tools/pulse/README.md for the PC build record)",
+   "prepared": [
+    "tools/pulse/README.md"
+   ],
+   "procedure": [
+    "Follow tools/pulse/README.md, section 'Steps still to do' (it states what the PC build produced and what is missing for ARM64: the C# bindings for Android arm64 and a Unity project).",
+    "Run the dehydration scenario for 5 simulated minutes at the frame rate of the app and record milliseconds per frame (average and maximum)."
+   ],
+   "pass_rule": "At most 3 ms per frame on average (the guide's target). If it fails, Pulse runs on the server or not at all, per the README decision.",
+   "who": "Sannan",
+   "after": "Ruhan records the cost in tools/pulse/README.md and ticks p1-pulse-physiology-s01 to s03 where the pass rule holds; if the Quest cannot run Pulse the recorded-run adapter stays the shipped path."
+  },
+  {
+   "id": "DC-06",
+   "title": "Intra-operative event cards and the recovery bay scene",
+   "steps": [
+    "p1-theatre-extension-s02",
+    "p1-theatre-extension-s03",
+    "p1-theatre-extension-s04"
+   ],
+   "needs": "Quest with the current Unity build, practice mode",
+   "prepared": [
+    "content/extension/intra_op_events.json",
+    "content/handover/recovery_required.json",
+    "tests/ProcSense.Core.Tests/TheatreExtensionTests.cs"
+   ],
+   "procedure": [
+    "Play a case through the Time Out in practice mode; confirm one of the four events appears as a card that shows the label 'ProcSense educational extension'.",
+    "Answer it with a teamwork action, a wrong action and no action in three runs; compare the credit, the minor item and the major item with the tests in TheatreExtensionTests.cs.",
+    "Reach Sign Out and hand over in the recovery bay: confirm the 12 items of recovery_required.json can each be said or chosen, and that omitting one gives the item the file names.",
+    "Try the same in assessment mode; the events must not appear."
+   ],
+   "pass_rule": "The label is visible on every card; the three answers give the credited, minor and major outcomes; the 12 items are reachable; nothing appears in assessment.",
+   "who": "Sannan",
+   "after": "Ruhan ticks p1-theatre-extension-s02, s03 and s04; the owner's tick on s04 is replaced by the engineer's."
+  },
+  {
+   "id": "DC-07",
+   "title": "Three characters speaking in turn, and a follow-up encounter with the same patient",
+   "steps": [
+    "p2-ai-advanced-simulation-s02",
+    "p2-ai-advanced-simulation-s03"
+   ],
+   "needs": "Quest with the current Unity build, the backend with the local model reachable",
+   "prepared": [
+    "tools/ai/eval_multiagent.py",
+    "reports/ai/multiagent-eval.json",
+    "src/ProcSense.Core/Twin/PatientTwin.cs"
+   ],
+   "procedure": [
+    "Ask one question that the patient, the nurse and the anaesthetist all answer; time from the end of the question to the start of the third voice.",
+    "Finish an encounter, then start the follow-up from the patient twin snapshot; confirm the patient remembers the first encounter's earned facts and nothing else."
+   ],
+   "pass_rule": "All three voices start within 4 s (95th percentile over 10 questions); the follow-up shows exactly the earned facts.",
+   "who": "Sannan",
+   "after": "Ruhan ticks p2-ai-advanced-simulation-s02 and s03."
+  },
+  {
+   "id": "DC-08",
+   "title": "Push-to-talk voice client, voice orders with read-back and live speech output (English only)",
+   "steps": [
+    "p1-ai-infrastructure-s05",
+    "p1-voice-input-s02"
+   ],
+   "needs": "Quest with the current Unity build; the backend with the recogniser (faster-whisper small.en) and Piper reachable",
+   "prepared": [
+    "content/voice/catalogue.json",
+    "reports/ai/orders-eval.json",
+    "reports/ai/tts-latency.json",
+    "server/orders/llm_fallback.py",
+    "server/orders/ticket.py",
+    "server/routers/asr.py",
+    "server/routers/orders.py",
+    "server/routers/tts.py",
+    "tools/ai/eval_orders.py"
+   ],
+   "procedure": [
+    "The Quest client sends the recogniser's text to the order route: `POST /orders/organisations/{id}/hear` with {\"text\"}; it receives a read-back sentence and a signed `ticket`, or a clarifying question, or the menu (nothing is released by this call). The trainee's spoken answer goes to `POST /orders/organisations/{id}/confirm` with {\"ticket\", \"spoken\"}; only a yes returns the action, a no cancels, anything else leaves the question open (server/routers/orders.py, tested in server/tests/test_orders_route.py).",
+    "Hold push-to-talk and say five orders from content/voice/catalogue.json (for example 'Give 500 millilitres of saline'); confirm the read-back is spoken and the order is only placed after the trainee confirms. Say two of them in your own words with no trigger word (for example 'get a trace of his heart'); the model fallback (feature gate order_fallback, only if it is ON in content/ai/features.json) may offer the item; the read-back and the yes are the same.",
+    "Say three sentences the recogniser should reject (silence, a cough, an order for a drug that does not exist); confirm the app shows 'Say again' or the menu and places nothing.",
+    "Ask the patient three questions; time from the end of speech to the first spoken word of the reply (the target is 2.5 s at the 95th percentile, measured over at least 20 questions).",
+    "Pull the network cable or stop the service; confirm the menu path still works for every action."
+   ],
+   "pass_rule": "Orders are placed only after read-back confirmation; rejected speech places nothing; 95th percentile speech-to-first-word at or under 2.5 s over 20 questions; the menu always works without the service.",
+   "who": "Sannan",
+   "after": "Ruhan ticks p1-ai-infrastructure-s05 and p1-voice-input-s02."
+  }
+ ],
+ "unity_groups": [
+  {
+   "id": "UX-P0-BLENDER",
+   "title": "Blender equipment assets: import into Unity as working prefabs, approve the looks",
+   "who": "Sannan",
+   "needs": "Unity project, Quest, Blender 4.5.14 (`task blender-doctor`)",
+   "steps": [
+    "p0-blender-equipment-s01",
+    "p0-blender-equipment-s04",
+    "p0-blender-equipment-s05",
+    "p0-blender-equipment-s06",
+    "p0-blender-equipment-s07",
+    "p0-blender-equipment-s08",
+    "p0-blender-equipment-s09",
+    "p0-blender-equipment-s10",
+    "p0-blender-equipment-s11",
+    "p0-blender-equipment-s12",
+    "p0-blender-equipment-s13",
+    "p0-blender-equipment-s14",
+    "p0-blender-equipment-s15"
+   ]
+  },
+  {
+   "id": "UX-P0-CHAR",
+   "title": "Characters: patient models, clinical signs, staff avatars, animation, escort",
+   "who": "Sannan",
+   "needs": "Unity project, Quest",
+   "steps": [
+    "p0-characters-s01",
+    "p0-characters-s02",
+    "p0-characters-s03",
+    "p0-characters-s04",
+    "p0-characters-s05",
+    "p0-characters-s06",
+    "p0-characters-s07",
+    "p0-characters-s08"
+   ]
+  },
+  {
+   "id": "UX-P0-ENV",
+   "title": "Rooms: the supervisor's hospital model, lighting, anchors, patient bay, theatre, corridor",
+   "who": "Sannan, with the supervisor who supplies the hospital room models",
+   "needs": "the supervisor's base hospital room models (empty shells), Unity project, Quest",
+   "steps": [
+    "p0-environment-rooms-s02",
+    "p0-environment-rooms-s03",
+    "p0-environment-rooms-s04",
+    "p0-environment-rooms-s05",
+    "p0-environment-rooms-s06",
+    "p0-environment-rooms-s07",
+    "p0-environment-rooms-s08"
+   ]
+  },
+  {
+   "id": "UX-P0-DIAG",
+   "title": "Diagnostic transitions in Unity: doors, patient trips, lab samples, report hand-back, wait overlay",
+   "who": "Sannan",
+   "needs": "Unity project (Play Mode), Quest",
+   "steps": [
+    "p0-diagnostic-transitions-s02",
+    "p0-diagnostic-transitions-s03",
+    "p0-diagnostic-transitions-s04",
+    "p0-diagnostic-transitions-s05",
+    "p0-diagnostic-transitions-s06"
+   ]
+  },
+  {
+   "id": "UX-P0-EMR",
+   "title": "Patient folder and EMR screens in Unity",
+   "who": "Sannan",
+   "needs": "Unity project (Play Mode), Quest",
+   "steps": [
+    "p0-patient-records-emr-s02",
+    "p0-patient-records-emr-s03",
+    "p0-patient-records-emr-s04",
+    "p0-patient-records-emr-s05",
+    "p0-patient-records-emr-s06"
+   ]
+  },
+  {
+   "id": "UX-P0-VOICE",
+   "title": "Voice playback, subtitles, lip sync, ambience and the nurse's wristband lines",
+   "who": "Sannan",
+   "needs": "Unity project (Play Mode), Quest, the rendered audio (`task voice-render`)",
+   "steps": [
+    "p0-voice-audio-s03",
+    "p0-voice-audio-s04",
+    "p0-voice-audio-s05",
+    "p0-voice-audio-s06"
+   ]
+  },
+  {
+   "id": "UX-P0-VRUI",
+   "title": "VR interaction and UI: equipment, tablet, monitor, results, checklist board, debrief, accessibility, usability",
+   "who": "Sannan",
+   "needs": "Unity project, Quest, 3 to 5 testers for the usability passes",
+   "steps": [
+    "p0-vr-interaction-ui-s02",
+    "p0-vr-interaction-ui-s03",
+    "p0-vr-interaction-ui-s04",
+    "p0-vr-interaction-ui-s05",
+    "p0-vr-interaction-ui-s06",
+    "p0-vr-interaction-ui-s07",
+    "p0-vr-interaction-ui-s08",
+    "p0-vr-interaction-ui-s09",
+    "p0-vr-interaction-ui-s10",
+    "p0-vr-interaction-ui-s11",
+    "p0-vr-interaction-ui-s12"
+   ]
+  },
+  {
+   "id": "UX-P0-VRPLAT",
+   "title": "VR platform: scene structure, locomotion and comfort, SceneDirector, Quest builds and profiling, Unity MCP experiment",
+   "who": "Sannan",
+   "needs": "Unity project, Quest 2 and 3",
+   "steps": [
+    "p0-vr-platform-s04",
+    "p0-vr-platform-s05",
+    "p0-vr-platform-s06",
+    "p0-vr-platform-s07",
+    "p0-vr-platform-s08"
+   ]
+  },
+  {
+   "id": "UX-P0-SCEN",
+   "title": "The 16 scenario cases played on the Quest, replayed headless",
+   "who": "Sannan, with a medical reviewer for the video (optional under ADR-0008)",
+   "needs": "Quest with the current build; `task sim -- replay`",
+   "steps": [
+    "p0-scenario-s1-s01",
+    "p0-scenario-s1-s02",
+    "p0-scenario-s1-s03",
+    "p0-scenario-s1-s04",
+    "p0-scenario-s1-s05",
+    "p0-scenario-s1-s06",
+    "p0-scenario-s2-s01",
+    "p0-scenario-s2-s02",
+    "p0-scenario-s2-s03",
+    "p0-scenario-s2-s04",
+    "p0-scenario-s2-s05",
+    "p0-scenario-s2-s06"
+   ]
+  },
+  {
+   "id": "UX-P0-ASSESS",
+   "title": "Assessment-mode gate in Unity",
+   "who": "Sannan",
+   "needs": "Unity project, Quest",
+   "steps": [
+    "p0-evaluation-performance-s04"
+   ]
+  },
+  {
+   "id": "UX-P0-GUIDE",
+   "title": "A new user completes Step 1 from the user guide alone",
+   "who": "Sannan arranges a teammate who has never used ProcSense",
+   "needs": "a teammate who has not used ProcSense, a headset, docs/USER_GUIDE.md",
+   "steps": [
+    "p0-evaluation-performance-s07"
+   ]
+  },
+  {
+   "id": "UX-P0-EVAL",
+   "title": "P0 evaluation: Quest replay check, weekly profiling, usability study, clinical review, release, demo",
+   "who": "Sannan, the owner, participants and a clinician (participants and the realism review: EX-05)",
+   "needs": "Quest, participants with consent, a clinician for the realism review (optional under ADR-0008), the signing key for the APK",
+   "steps": [
+    "p0-evaluation-performance-s01",
+    "p0-evaluation-performance-s03",
+    "p0-evaluation-performance-s05",
+    "p0-evaluation-performance-s06",
+    "p0-evaluation-performance-s08",
+    "p0-evaluation-performance-s09"
+   ]
+  },
+  {
+   "id": "UX-P1-BACKEND",
+   "title": "Quest sign-in with a device code and the offline upload queue (both ticked by the owner under the earlier rule; the headset behaviour is re-checked here)",
+   "who": "Sannan (Quest side); the service side is Moiz's and has its own tests in CI",
+   "needs": "Quest, the hosted service",
+   "steps": [
+    "p1-backend-s03",
+    "p1-backend-s10"
+   ]
+  }
+ ],
+ "other_items": [
+  {
+   "id": "EX-01",
+   "title": "Independent communication-act set: authors, second labeller, adjudicator, then the independent run",
+   "kind": "people",
+   "who": "The owner arranges at least four people who are not the builder: two authors per split (dev and test authors differ), a second labeller for the critical rows, a third person to adjudicate. Whoever wrote the generator or the taxonomy must not write or label rows.",
+   "steps": [
+    "p1-ai-language-s06",
+    "p1-ai-language-s07",
+    "p2-ai-extensions-s03",
+    "p1-ai-infrastructure-s04"
+   ],
+   "needs": "People; the scenario cards `docs/research/classifier_benchmark/cards_dev.csv` and `cards_test.csv`; `tools/bench/dataset.py`; `uv` with scikit-learn; Ollama with all-minilm:22m",
+   "prepared": [
+    "docs/research/classifier_benchmark/README.md",
+    "docs/research/classifier_benchmark/annotation_guide.md",
+    "tools/bench/dataset.py",
+    "tools/bench/bench_classifier.py",
+    "tools/labelling/label.py",
+    "docs/research/labelling/guidelines.md"
+   ],
+   "procedure": [
+    "Read docs/research/classifier_benchmark/annotation_guide.md. Each author writes the sentences for their cards (100 dev, 200 test, about 1.5 hours each), in their own words, without seeing the other author's.",
+    "Run `uv run --project tools tools/bench/dataset.py label-sheet dev` (and test) to make the blind sheet for the second labeller: card id and text only, no act. The second labeller fills the 100 critical rows and a quarter of the others (about 1 hour).",
+    "Where the two labels differ, a third person (not one of the two) decides. Do not let the builder settle a disagreement.",
+    "Freeze the set with `uv run --project tools tools/bench/dataset.py freeze` (it refuses without independent authors, labels and an adjudicator).",
+    "Run `uv run --project tools --with scikit-learn tools/bench/bench_classifier.py --data independent` once; the test split is scored once (a lock file records it). Then `uv run --project tools tools/bench/classifier_report.py` to regenerate the comparison page.",
+    "Save reports/ai/classifier-bench-independent.json; run `uv run --project tools tools/eval/ai_gate.py` to recompute content/ai/features.json."
+   ],
+   "pass_rule": "classifier-bench-independent.json exists with `valid_for_claims: true`; macro-F1 and credited-precision lower bounds meet the thresholds in content/ai/thresholds.json; critical acts credited from speech = 0; critical sentences credited under an ordinary act = 0. The gate then turns the `classifier` feature on by itself; nobody edits features.json by hand.",
+   "evidence": [
+    "The frozen set (tests/classifier_independent/ with its manifest)",
+    "reports/ai/classifier-bench-independent.json",
+    "the names and roles of the people (recorded in the manifest, never invented)",
+    "the regenerated comparison page"
+   ],
+   "after": "The engineer reads the result, records it in ADR-0013, regenerates the gate and ticks p1-ai-language-s06 and (if the gate turns on) p1-ai-language-s07 and p2-ai-extensions-s03. If the thresholds are missed the classifier stays off and the report says by how much."
+  },
+  {
+   "id": "EX-02",
+   "title": "Blind rating of model replies (BT3) and of rewritten patient wording",
+   "kind": "people",
+   "who": "Ruhan (about 20 minutes) for BT3; a second reader for wording faithfulness",
+   "steps": [
+    "p1-ai-infrastructure-s02",
+    "p1-ai-language-s02"
+   ],
+   "needs": "The saved B2 results in artifacts/ai-bench (git-ignored; regenerate with `tools/ai/benchmark.py b2` if absent); a reader who does not know which model wrote which reply",
+   "prepared": [
+    "tools/ai/benchmark.py",
+    "docs/research/model_benchmarks.md",
+    "reports/ai/narrative-4b.json",
+    "reports/ai/narrative-9b.json"
+   ],
+   "procedure": [
+    "Run `uv run --project tools tools/ai/benchmark.py blind <the saved b2 result files>` to get the sheet with the model names hidden.",
+    "Score naturalness and groundedness 1 to 5 and safety yes/no for about 60 replies, then open the key.",
+    "For the rewritten wording, read the accepted before/after pairs in reports/ai/narrative-*.json and mark each as faithful or not."
+   ],
+   "pass_rule": "Proposed by the engineer on 18 October 2026 (the plan names the rating but no number): no reply is marked unsafe; the live model (qwen3.5:4b-q4_K_M) scores at least 3.5 of 5 for naturalness and for groundedness and is not more than 0.5 below the 9B model on either; at least 95 percent of accepted rewritten lines are marked faithful. T-LLM1 and T-LLM2 are already measured by machine.",
+   "evidence": [
+    "the filled sheet and the key",
+    "the two numbers per model",
+    "the list of unfaithful pairs"
+   ],
+   "after": "Ruhan records the result in docs/research/model_benchmarks.md and ticks the two steps; a lower score reopens the model choice in ADR-0010."
+  },
+  {
+   "id": "EX-03",
+   "title": "Blind comparison of the AI plan composer with the solver alone (40 cases, two raters)",
+   "kind": "people",
+   "who": "Two raters who do not know which arm made which case; the owner arranges them",
+   "steps": [
+    "p1-live-scenario-generation-s13",
+    "p1-scenario-composer-difficulty-s03"
+   ],
+   "needs": "Two raters, `uv`, the generated cases",
+   "prepared": [
+    "tools/ai/eval_planner.py",
+    "tools/eval/blind_compare.py"
+   ],
+   "procedure": [
+    "Run `uv run --project tools tools/eval/blind_compare.py make --cases 40 --seed 1` to write the blind sheet (docs/testing/results/EX-03/sheet.csv) and the private key (docs/testing/results/EX-03/key.json, do not open it).",
+    "Each rater scores every case 1 to 5 for coherence and for fit to the stated objectives, independently, in their own copy of the sheet.",
+    "Run `uv run --project tools tools/eval/blind_compare.py analyse --a rater_a.csv --b rater_b.csv` to open the key and get the paired difference with its interval and the agreement between raters."
+   ],
+   "pass_rule": "From the step: coherence and objective coverage higher than solver-only, paired, p under 0.05 (the analysis reports the paired difference and its 95 percent interval, which must lie above zero), at an equal Stage B pass rate. The engineer adds that the weighted kappa between the raters must be at least 0.4 or the result is reported as unreliable. Otherwise the solver remains the default and the finding is recorded.",
+   "evidence": [
+    "both filled sheets",
+    "the analysis output",
+    "the names and roles of the raters (never invented)"
+   ],
+   "after": "The engineer ticks both steps if the criterion is met, or records the negative result and keeps the solver as default."
+  },
+  {
+   "id": "EX-04",
+   "title": "Listening test of the rendered voice lines (EXP-VOX-1) and review of the drafted lines",
+   "kind": "people",
+   "who": "A person who listens (about 30 minutes) and a reviewer of the 24 drafted lines",
+   "steps": [
+    "p0-voice-audio-s01",
+    "p0-voice-audio-s02",
+    "p0-voice-audio-s06"
+   ],
+   "needs": "`task voice-render` (Piper and ffmpeg installed per tools/voice/README.md)",
+   "prepared": [
+    "tools/voice/README.md",
+    "tools/voice/pronunciations.json",
+    "content/voice/spoken_variants.json",
+    "content/voice/nurse_wristband.json"
+   ],
+   "procedure": [
+    "Run `task voice-render`, then play build/voice/*.ogg.",
+    "Mark each role (patient, nurse, anaesthetist, surgeon, porter) acceptable or not and write down every word said wrongly; add those to tools/voice/pronunciations.json.",
+    "Mark each of the 24 drafted lines approved or reword it (DT-181); a clinician reads the allergy reaction line."
+   ],
+   "pass_rule": "Every role is marked acceptable, or a fix list exists and has been applied and re-listened; every drafted line is approved or reworded.",
+   "evidence": [
+    "the listening notes",
+    "the pronunciation changes",
+    "the line review"
+   ],
+   "after": "The engineer records EXP-VOX-1 in the voice-audio README and updates the step."
+  },
+  {
+   "id": "EX-05",
+   "title": "Study with participants: learning effect and AI-dialogue A/B, usability study, realism review",
+   "kind": "people",
+   "who": "The supervisor must agree the protocols; a clinician writes the quiz questions; 12 participants give informed consent. Only the people concerned can give consent; nobody consents on another's behalf.",
+   "steps": [
+    "p1-evaluation-s03",
+    "p1-evaluation-s04",
+    "p1-personalisation-s05"
+   ],
+   "needs": "Supervisor's agreement, ethics or institutional approval as the supervisor requires, a clinician, 12 participants, headsets",
+   "prepared": [
+    "docs/plans/p1/p1-evaluation/protocols/learning-effect.md",
+    "docs/plans/p1/p1-evaluation/protocols/ai-dialogue-ab.md",
+    "tools/eval/analyse_study.py",
+    "content/eval/quiz_candidates.json",
+    "docs/research/personalisation_study.json"
+   ],
+   "procedure": [
+    "The supervisor agrees both protocols (they are drafts) and confirms what approval the study needs.",
+    "A clinician turns the 46 candidate claims in content/eval/quiz_candidates.json into questions with wrong answers.",
+    "Recruit 12 participants, obtain written consent as the protocol says, run the sessions, and save the raw session logs.",
+    "Run `uv run --project tools tools/eval/analyse_study.py` on the real data."
+   ],
+   "pass_rule": "As written in each protocol; the learning-effect study reports the paired change with its interval; the AI-dialogue A/B reports preference and safety flags; personalised targeting is adopted only if it beats Elo with a paired interval above zero on the real data.",
+   "evidence": [
+    "signed consents held by the owner (not committed)",
+    "pseudonymised raw logs",
+    "the analysis output"
+   ],
+   "after": "The engineer ticks the steps that meet their criteria and records a negative result honestly."
+  },
+  {
+   "id": "EX-06",
+   "title": "Consented speech recordings of the team and of accented trainees in a noisy room",
+   "kind": "people",
+   "who": "Each speaker gives their own consent; the owner organises",
+   "steps": [
+    "p1-voice-input-s01",
+    "p1-ai-infrastructure-s01"
+   ],
+   "needs": "Speakers, a microphone, the rules in docs/research/labelling/consent_and_storage.md",
+   "prepared": [
+    "docs/research/labelling/consent_and_storage.md",
+    "tools/ai/asr_wer.py",
+    "reports/ai/asr-primock57.json"
+   ],
+   "procedure": [
+    "Each speaker reads the consent text and signs; keep the signatures with the owner, never in the repository.",
+    "Record clips as the storage rules say, with a reference transcript.",
+    "Run `uv run --project tools tools/ai/asr_wer.py` on the clips for the server recogniser."
+   ],
+   "pass_rule": "Word error rate on the consented clips is at most 0.25 overall and the result is reported per speaker group (the asr gate thresholds in content/ai/thresholds.json).",
+   "evidence": [
+    "the WER output",
+    "the consent register (kept by the owner)"
+   ],
+   "after": "The engineer ticks p1-voice-input-s01 and records the number in ADR-0014."
+  },
+  {
+   "id": "EX-07",
+   "title": "MedGemma terms: the account holder accepts, then the comparison runs",
+   "kind": "account",
+   "who": "The Hugging Face account holder, who must be entitled to accept the terms. Nobody else may accept for them.",
+   "steps": [
+    "p2-ai-extensions-s05"
+   ],
+   "needs": "A Hugging Face account, disk space, the laptop or desktop GPU",
+   "prepared": [
+    "content/ai/model_candidates.json",
+    "tools/ai/model_candidate.py"
+   ],
+   "procedure": [
+    "Read the Health AI Developer Foundations terms and Prohibited Use Policy on the model page; confirm you are entitled to accept them; accept.",
+    "Record your name and the UTC date in content/ai/model_candidates.json (`terms.accepted_by`, `accepted_on`, `account_holder_eligibility_confirmed`).",
+    "Pull a 4-bit build into Ollama under the model name in the registry; run `uv run --project tools tools/ai/benchmark.py b0 --model <name>` and b1, b2; run `uv run --project tools tools/ai/model_candidate.py compare --candidate medgemma-4b-it`.",
+    "Rate 50 samples blind (two raters) and pass the counts with `--blind`."
+   ],
+   "pass_rule": "model_candidate.py prints SWITCH (parity or better on valid JSON, grounding earned and withheld, speed, and the blind rating). INCONCLUSIVE or NO_SWITCH keeps qwen3.5:4b-q4_K_M.",
+   "evidence": [
+    "the registry change",
+    "the benchmark files",
+    "the compare output",
+    "the blind counts"
+   ],
+   "after": "The engineer updates ADR-0010 and the model register."
+  },
+  {
+   "id": "EX-08",
+   "title": "Drug availability: a named pharmacist's list or a licensed feed that permits teaching display",
+   "kind": "permission",
+   "who": "The owner finds a source whose terms permit display; a pharmacist or the feed's licensor grants it",
+   "steps": [
+    "p2-content-extensions-s04"
+   ],
+   "needs": "A permitted source (see docs/research/drug_availability.md: the DRAP registers list registration, not stock, and are for reference only)",
+   "prepared": [
+    "docs/research/drug_availability.md",
+    "content/availability"
+   ],
+   "procedure": [
+    "Obtain the written permission or licence for the list or feed.",
+    "Record it in docs/research/licence_provenance_register.md.",
+    "Add a provider as docs/research/drug_availability.md describes and switch live availability on."
+   ],
+   "pass_rule": "A provider with a recorded permission returns availability flags for the content medicines; flags from a source that is not permitted stay `unknown` with source `none`.",
+   "evidence": [
+    "the permission or licence text",
+    "the provider test output"
+   ],
+   "after": "The engineer ticks p2-content-extensions-s04."
+  },
+  {
+   "id": "EX-09",
+   "title": "Laptop (RTX 4050) as the second inference host",
+   "kind": "device",
+   "who": "Whoever has the laptop (the owner or Sannan)",
+   "steps": [
+    "p1-ai-infrastructure-s01",
+    "p1-ai-infrastructure-s02"
+   ],
+   "needs": "The laptop with the NVIDIA driver, Ollama, the repository, the models",
+   "prepared": [
+    "tools/ai/check_hosts.py",
+    "tools/ai/benchmark.py",
+    "docs/architecture/deployment.md"
+   ],
+   "procedure": [
+    "Install Ollama; `ollama pull qwen3.5:4b-q4_K_M`; `ollama pull all-minilm:22m`.",
+    "Run `task check-hosts` and save the output.",
+    "Run `uv run --project tools tools/ai/benchmark.py b0 --model qwen3.5:4b-q4_K_M --runs 20` and b1.",
+    "Serve the model over the LAN and run b0 from the desktop against it."
+   ],
+   "pass_rule": "check_hosts reports Ollama, the models and the card; the 4B model answers over the LAN at p95 under 3 s.",
+   "evidence": [
+    "check_hosts output",
+    "benchmark files",
+    "GPU model and driver version"
+   ],
+   "after": "The engineer adds the laptop rows to docs/research/model_benchmarks.md and ticks the steps that depend only on it (the owner has set the desktop as the baseline, so the laptop never blocks software work)."
+  },
+  {
+   "id": "EX-10",
+   "title": "Relations of the scenario knowledge base labelled by two people",
+   "kind": "people",
+   "who": "Two labellers and, for disagreements, a third",
+   "steps": [
+    "p1-dataset-analysis-s06"
+   ],
+   "needs": "People; tools/labelling/label.py",
+   "prepared": [
+    "tools/labelling/label.py",
+    "tools/kb/extract_relations.py",
+    "tools/kb/judge_relations.py",
+    "reports/ai/kb-relations-ai-judged.json"
+   ],
+   "procedure": [
+    "Make the sheet: `uv run --project tools tools/labelling/label.py sheet --kind relation --items <relations.jsonl> --out sheet.csv` for 100 relations.",
+    "Two labellers mark each relation correct, wrong or unclear without seeing each other's sheet.",
+    "`label.py agreement`, then a third person settles every disagreement (`label.py adjudicate`), then `label.py freeze`."
+   ],
+   "pass_rule": "From the step and p1-ai-infrastructure-s04: kappa at least 0.6, extraction precision at least 0.8 on the 100 hand-labelled relations, and recall above a keyword baseline (the AI-judged proxy is not the gate).",
+   "evidence": [
+    "both sheets",
+    "the agreement output",
+    "the adjudicated final file"
+   ],
+   "after": "The engineer ticks p1-dataset-analysis-s06 or removes the relations that fail."
+  },
+  {
+   "id": "EX-11",
+   "title": "Real sessions for the weekly report",
+   "kind": "people",
+   "who": "Trainees using the app with consent, through the hosted service",
+   "steps": [
+    "p1-backend-s05"
+   ],
+   "needs": "Real sessions uploaded to the service",
+   "prepared": [
+    "server/routers"
+   ],
+   "procedure": [
+    "After real sessions exist, open the weekly report page for the organisation.",
+    "Compare it with `task sim -- report` for one of the sessions."
+   ],
+   "pass_rule": "The page renders from real rows and matches the command-line report for the same session.",
+   "evidence": [
+    "a screenshot",
+    "the two reports"
+   ],
+   "after": "The engineer ticks p1-backend-s05."
+  },
+  {
+   "id": "EX-12",
+   "title": "Content approved for assessment",
+   "kind": "owner",
+   "who": "The owner decides which cases and events may be assessed; a clinician is optional under ADR-0008",
+   "steps": [
+    "p0-evaluation-performance-s04"
+   ],
+   "needs": "The owner's decision",
+   "prepared": [
+    "tests/ProcSense.Core.Tests/AssessmentModeTests.cs",
+    "docs/deferred-tasks.md"
+   ],
+   "procedure": [
+    "Choose the cases and events for assessment.",
+    "Raise their status to APPROVED_FOR_ASSESSMENT in the case files with the approval record."
+   ],
+   "pass_rule": "Assessment mode loads exactly those cases and events and refuses the rest with the item id.",
+   "evidence": [
+    "the approval record",
+    "task ci green"
+   ],
+   "after": "Closes DT-177."
+  },
+  {
+   "id": "EX-13",
+   "title": "New multi-problem cases: authored values",
+   "kind": "owner",
+   "who": "The content author (Ruhan or Moiz) writes each value from the sourced tables with a source row; a medical reviewer is optional",
+   "steps": [
+    "p2-content-extensions-s02"
+   ],
+   "needs": "Sourced tables; the composition fixtures in tests/composition/compositions.json",
+   "prepared": [
+    "tools/composer/multiproblem.py",
+    "tests/composition/compositions.json",
+    "tools/composer/composition/rules.json"
+   ],
+   "procedure": [
+    "Pick a composition from tests/composition/compositions.json.",
+    "Author the case file value by value, adding a source-register row for each new value.",
+    "Run Stage B (`uv run --project tools tools/composer/stage_b.py --all`) and the golden runs."
+   ],
+   "pass_rule": "The authored case passes Stage B and the golden runs and is marked practice-only.",
+   "evidence": [
+    "the case file",
+    "source-register rows",
+    "Stage B output"
+   ],
+   "after": "The engineer ticks the step when at least one authored combination is in the practice pool."
+  },
+  {
+   "id": "EX-15",
+   "title": "100 scenario ratings by two raters (labelling programme)",
+   "kind": "people",
+   "who": "Two raters and a third person for disagreements; not the builder",
+   "steps": [
+    "p1-ai-infrastructure-s04"
+   ],
+   "needs": "People; tools/labelling/label.py; 100 generated scenarios to rate",
+   "prepared": [
+    "tools/labelling/label.py",
+    "docs/research/labelling/guidelines.md"
+   ],
+   "procedure": [
+    "`uv run --project tools tools/labelling/label.py sheet --kind scenario --items <scenarios.jsonl> --out sheet.csv` for 100 scenarios.",
+    "Two raters score each 1 to 5 without seeing each other's sheet.",
+    "`label.py agreement --kind scenario` (quadratic-weighted kappa), a third person adjudicates, then `label.py freeze`."
+   ],
+   "pass_rule": "Quadratic-weighted kappa at least 0.6 and the splits frozen (with EX-01 and EX-10 this completes the 300 utterances, 100 scenarios and 100 relations of p1-ai-infrastructure-s04).",
+   "evidence": [
+    "both sheets",
+    "the agreement output",
+    "the frozen set"
+   ],
+   "after": "The engineer uses the ratings to calibrate the scenario-quality judge (A9) and ticks p1-ai-infrastructure-s04 once EX-01, EX-10 and this item have passed."
+  },
+  {
+   "id": "EX-14",
+   "title": "Demo recording",
+   "kind": "device",
+   "who": "Sannan, on the headset",
+   "steps": [
+    "p0-evaluation-performance-s09"
+   ],
+   "needs": "Quest with the release build",
+   "prepared": [
+    "docs/report/README.md"
+   ],
+   "procedure": [
+    "Record the two runs in the demo script of docs/report/README.md."
+   ],
+   "pass_rule": "Both runs recorded and reviewed by the owner.",
+   "evidence": [
+    "the video file name and where it is stored"
+   ],
+   "after": "The owner reviews; the engineer ticks the step."
+  },
+  {
+   "id": "EX-16",
+   "title": "Reopening conditions of the two research steps whose trigger is not met",
+   "kind": "permission",
+   "who": "The owner, a licensor of a labelled image dataset, a reviewer, and whoever supplies approved or real dialogue data",
+   "steps": [
+    "p2-ai-advanced-simulation-s04",
+    "p2-ai-advanced-simulation-s05"
+   ],
+   "needs": "A licensed dataset holding one of the 29 findings that have synthetic pictures only, a reviewer and a free GPU card (image adaptation); a quality gap that survives prompt and code remedies plus 500 permitted dialogue examples, a held-out set and a compute window (language-model adaptation)",
+   "prepared": [
+    "tools/ai/adaptation_trigger.py",
+    "docs/research/adaptation_trigger_check.md",
+    "docs/research/generative_images_trigger.md",
+    "docs/research/llm_adaptation_trigger.md"
+   ],
+   "procedure": [
+    "Run `uv run --project tools tools/ai/adaptation_trigger.py` to see which of the conditions are met today (CI runs it too).",
+    "When an item the report lists as missing is supplied (a licensed dataset with its terms recorded in docs/research/licence_provenance_register.md, or approved dialogue data), run the command again.",
+    "Only when the report says the trigger is met does the step become work."
+   ],
+   "pass_rule": "adaptation_trigger.py reports every condition of the step as met; until then the step stays analysed, trigger not met, and no model is trained.",
+   "evidence": [
+    "the trigger report",
+    "the licence record"
+   ],
+   "after": "The engineer plans the adaptation experiment as the step describes and changes its status."
+  }
+ ]
+}

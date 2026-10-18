@@ -9,56 +9,56 @@
       "actor": "agent",
       "label": "C24 P1 PH-13",
       "title": "Patient dialogue",
-      "text": "Partly built. Free questions answered in the patient's voice.2 capability plans. Needs E53, E54, E57.",
-      "tone": "sun"
+      "text": "Built. Free questions answered in the patient's voice.2 capability plans. Needs E53, E54, E57.",
+      "tone": "mint"
     },
     {
       "id": "C25",
       "actor": "agent",
       "label": "C25 P1 PH-13",
       "title": "Nurse dialogue",
-      "text": "Partly built. Built: nurse wristband engine and fixed lines.1 capability plans. Needs E57.",
-      "tone": "sun"
+      "text": "Built. Built: nurse wristband engine and fixed lines.1 capability plans. Needs E57.",
+      "tone": "mint"
     },
     {
       "id": "C26",
       "actor": "agent",
       "label": "C26 P1 PH-13",
       "title": "Anaesthetist dialogue",
-      "text": "Partly built. Approved intents exist for anaesthesia; AI replies planned.1 capability plans. Needs E57.",
-      "tone": "sun"
+      "text": "Built. Approved intents exist for anaesthesia; AI replies planned.1 capability plans. Needs E57.",
+      "tone": "mint"
     },
     {
       "id": "C27",
       "actor": "agent",
       "label": "C27 P1 PH-13",
       "title": "Surgeon dialogue",
-      "text": "Partly built. Approved intents exist for the surgeon; AI replies planned.1 capability plans. Needs E57.",
-      "tone": "sun"
+      "text": "Built. Approved intents exist for the surgeon; AI replies planned.1 capability plans. Needs E57.",
+      "tone": "mint"
     },
     {
       "id": "C28",
       "actor": "agent",
       "label": "C28 P1 PH-13",
       "title": "Porter dialogue",
-      "text": "Partly built. Approved intents exist for the porter; AI replies planned.1 capability plans. Needs E57.",
-      "tone": "sun"
+      "text": "Built. Approved intents exist for the porter; AI replies planned.1 capability plans. Needs E57.",
+      "tone": "mint"
     },
     {
       "id": "C29",
       "actor": "agent",
       "label": "C29 P1 PH-13",
       "title": "Persona system",
-      "text": "Partly built. Persona tags per character (anxiety, health literacy, talkativeness, language) that shape wording, never facts.2 capability plans. Needs E57.",
-      "tone": "sun"
+      "text": "Built. Persona tags per character (anxiety, health literacy, talkativeness, language) that shape wording, never facts.2 capability plans. Needs E57.",
+      "tone": "mint"
     },
     {
       "id": "C30",
       "actor": "agent",
       "label": "C30 P1 PH-13",
       "title": "Context-aware and reactive dialogue",
-      "text": "Partly built. Characters react to what is happening (a falling saturation, a wrong drug) through the reaction queue.1 capability plans. Needs E54, E57.",
-      "tone": "sun"
+      "text": "Built. Characters react to what is happening (a falling saturation, a wrong drug) through the reaction queue.1 capability plans. Needs E54, E57.",
+      "tone": "mint"
     },
     {
       "id": "C31",
@@ -73,15 +73,15 @@
       "actor": "agent",
       "label": "C32 P1 PH-14",
       "title": "Voice commands",
-      "text": "Partly built. Short spoken commands mapped to verbs (open results, call nurse).1 capability plans.",
-      "tone": "sun"
+      "text": "Planned. Short spoken commands mapped to verbs (open results, call nurse).1 capability plans.",
+      "tone": "blue"
     },
     {
       "id": "C33",
       "actor": "model",
       "label": "C33 P1 PH-14",
       "title": "Speech-to-text",
-      "text": "Partly built. faster-whisper on the desktop GPU with a vocabulary prompt built from content.1 capability plans. Needs E62.",
+      "text": "Built, part tested. faster-whisper on the desktop GPU with a vocabulary prompt built from content.1 capability plans. Needs E62.",
       "tone": "sun"
     },
     {
@@ -89,7 +89,7 @@
       "actor": "model",
       "label": "C34 P1 PH-14",
       "title": "Text-to-speech",
-      "text": "Partly built. Pre-rendered lines offline (P0) and live TTS for generated lines (P1).1 capability plans.",
+      "text": "Built, part tested. Pre-rendered lines offline (P0) and live TTS for generated lines (P1).1 capability plans.",
       "tone": "sun"
     },
     {
@@ -97,23 +97,23 @@
       "actor": "agent",
       "label": "C35 P1 PH-14",
       "title": "Voice orders and read-back",
-      "text": "Partly built. Spoken orders (drug, dose, route) read back by the nurse before acting; closed-loop communication is assessed.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Spoken orders (drug, dose, route) read back by the nurse before acting; closed-loop communication is assessed.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "C36",
       "actor": "gear",
       "label": "C36 P1 PH-15",
       "title": "Communication acts",
-      "text": "Built. The acts the classifier reports and how the evidence store weighs them.1 capability plans.",
-      "tone": "mint"
+      "text": "Built, part tested. The acts the classifier reports and how the evidence store weighs them.1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "C37",
       "actor": "model",
       "label": "C37 P1 PH-15",
       "title": "Communication classifier",
-      "text": "Partly built. Classify trainee utterances into acts.1 capability plans. Needs E57, B19.",
+      "text": "Built, part tested. Classify trainee utterances into acts.1 capability plans. Needs E57, B19.",
       "tone": "sun"
     }
   ],

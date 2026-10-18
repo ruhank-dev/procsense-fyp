@@ -9,7 +9,7 @@
       "actor": "agent",
       "label": "E48 P2 PH-19",
       "title": "Patient Digital Twin",
-      "text": "Partly built. A patient model whose physiology, history and responses persist and evolve across the session and repeat sessions.2 capability plans. Needs A3, B14.",
+      "text": "Built, part tested. A patient model whose physiology, history and responses persist and evolve across the session and repeat sessions.2 capability plans. Needs A3, B14.",
       "tone": "sun"
     },
     {
@@ -17,7 +17,7 @@
       "actor": "model",
       "label": "E49 P2 PH-19",
       "title": "Multi-Agent Clinical Simulation Lab",
-      "text": "Partly built. Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-taking…1 capability plans. Needs C25, C26, C27…",
+      "text": "Built, part tested. Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-taking…1 capability plans. Needs C25, C26, C27…",
       "tone": "sun"
     },
     {
@@ -25,24 +25,24 @@
       "actor": "agent",
       "label": "E50 P1 PH-17",
       "title": "Adversarial generator",
-      "text": "Partly built. Generate attacks on the system: jailbreak questions, disclosure probes, broken scenarios.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Generate attacks on the system: jailbreak questions, disclosure probes, broken scenarios.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "E51",
       "actor": "agent",
       "label": "E51 P1 PH-17",
       "title": "Scenario Quality Evaluator (offline batch)",
-      "text": "Proposed. Run quality metrics and the judge over batches of generated scenarios to tune packs, prompts and thresholds.1 capability plans. Needs A9.",
-      "tone": "aqua"
+      "text": "Built. Run quality metrics and the judge over batches of generated scenarios to tune packs, prompts and thresholds.1 capability plans. Needs A9.",
+      "tone": "mint"
     },
     {
       "id": "E52",
       "actor": "gear",
       "label": "E52 P2 PH-18",
       "title": "Investigation analytics",
-      "text": "Proposed. Which tests trainees order, when, how often unnecessarily, and yield per test.2 capability plans.",
-      "tone": "aqua"
+      "text": "Built. Which tests trainees order, when, how often unnecessarily, and yield per test.2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "E53",
@@ -65,23 +65,23 @@
       "actor": "gear",
       "label": "E55 P1 PH-17",
       "title": "AI evaluation harness and switch-off gate",
-      "text": "Built. Weekly evaluation runs; any AI feature below its threshold is switched off in ai_features.yaml.1 capability plans.",
-      "tone": "mint"
+      "text": "Built, part tested. Weekly evaluation runs; any AI feature below its threshold is switched off in ai_features.yaml.1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "E56",
       "actor": "agent",
       "label": "E56 P1 PH-16",
       "title": "Difficulty explanation to the trainee",
-      "text": "Planned. Why this case was chosen, from the selector's facts; template first, LLM variant behind the validator.1 capability plans. Needs D43.",
-      "tone": "blue"
+      "text": "Built. Why this case was chosen, from the selector's facts; template first, LLM variant behind the validator.1 capability plans. Needs D43.",
+      "tone": "mint"
     },
     {
       "id": "E57",
       "actor": "model",
       "label": "E57 P1 PH-07",
       "title": "LLM serving and benchmark",
-      "text": "Partly built. Serve candidate models locally, measure latency, VRAM and schema validity, choose defaults.1 capability plans.",
+      "text": "Built, part tested. Serve candidate models locally, measure latency, VRAM and schema validity, choose defaults.1 capability plans.",
       "tone": "sun"
     },
     {
@@ -89,15 +89,15 @@
       "actor": "agent",
       "label": "E58 P1 PH-05",
       "title": "Retrieval over approved content (RAG)",
-      "text": "Partly built. Retrieval for generation context (LG-03) and, later, grounded explanations.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Retrieval for generation context (LG-03) and, later, grounded explanations.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "E60",
       "actor": "model",
       "label": "E60 P2 PH-19",
       "title": "P2 small trained classifier",
-      "text": "Partly built. The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split…1 capability plans. Needs C37, B19.",
+      "text": "Built, part tested. The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split…1 capability plans. Needs C37, B19.",
       "tone": "sun"
     },
     {
@@ -105,24 +105,24 @@
       "actor": "model",
       "label": "E61 P2 PH-19",
       "title": "Medical LLM benchmark (for example MedGemma)",
-      "text": "Deferred. Compare a medical model with the general default.1 capability plans.",
-      "tone": "grey"
+      "text": "Built, part tested. Compare a medical model with the general default.1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "E62",
       "actor": "gear",
       "label": "E62 P1 PH-06",
       "title": "Backend and AI gateway",
-      "text": "Partly built. FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard…1 capability plans.",
-      "tone": "sun"
+      "text": "Built. FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with server-side verification, reports and dashboard…1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "E63",
       "actor": "model",
       "label": "E63 P2 PH-19",
       "title": "On-device speech recognition",
-      "text": "Planned. ASR on the headset for latency and offline use.1 capability plans. Needs C33.",
-      "tone": "blue"
+      "text": "Built, part tested. ASR on the headset for latency and offline use.1 capability plans. Needs C33.",
+      "tone": "sun"
     },
     {
       "id": "E64",
@@ -145,7 +145,7 @@
       "actor": "gear",
       "label": "E69 P1 PH-20",
       "title": "AI inference and dual-GPU deployment",
-      "text": "Partly built. Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology and fallbacks.1 capability plans.",
+      "text": "Built, part tested. Inference service, benchmark on the GTX 1660 SUPER desktop and RTX 4050 laptop with Unity running, topology…1 capability plans.",
       "tone": "sun"
     }
   ],

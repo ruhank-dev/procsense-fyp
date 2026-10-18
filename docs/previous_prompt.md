@@ -3345,3 +3345,27 @@ Continue ProcSense implementation; read INSTRUCTIONS.md first, work end to end, 
 11. Final verification: full local CI, regenerate derived files, Urdu search, diff review, commit and push each stage, final report with commits, test counts, GitHub Actions runs that never occurred, before/after metrics, gates, task counts, Sannan's checklist, remaining user actions.
 (The prompt was pasted at full length; this entry keeps its numbered requirements, shortened.)
 ``````
+
+## 167. 18 October 2026 (exact time not captured)
+_Session: b9c36c34_
+
+``````text
+cache instructions.md and agents.md and (the owner then pasted the task below)
+Continue ProcSense FYP from the latest origin/main; an end-to-end implementation and verification task, not another audit. Read INSTRUCTIONS.md and every applicable instruction, inspect branch, worktree, latest remote, P0/P1/P2 plans, all feature plans, the registry, architecture, tests, the previous reconciliation and the Sannan handoff first.
+1. Classifier: fix the critical-action scoring failures (3 of 48 fresh critical sentences credited under ordinary acts, the cue list alone catching 6 of 48): reproduce on the exact production path, trace every stage, regression tests first, resolve judge disagreements by task definitions and deterministic constraints; deterministic action-based scoring stays authoritative and no classifier, LLM, recogniser, critic or judge may grant critical credit; handle negation, uncertainty, hypotheticals, reported speech, denials, wrong side, contradictions and incomplete actions; fail safely; keep legitimate credit; improve accuracy systematically (labels, calibration, abstention, TF-IDF, embeddings, Qwen 4B and 9B, hybrids, hard negatives, ablations, quantisation) keeping the simplest approach that works; trustworthy evaluation (fixed splits, leakage checks, a frozen final set, per-class metrics, confusion matrices, critical false-credit rate, latency, memory, intervals, provenance of judges; synthetic is not independent validation); decide whether Qwen 3.5 4B can replace 9B under equal conditions with a stated decision rule; keep the classifier and classifier-dependent credit OFF until the real acceptance criteria are met.
+2. Complete every Ruhan-owned P0, P1 and P2 task (not only the 96 steps of the previous report): the 6 done-but-not-ticked, 24 engineering-complete, 2 partly done, 2 trigger-not-met and anything newly found; tick only with evidence; reconcile duplicates and counts.
+3. Audit and implement all 69 feature plans: a feature-by-feature matrix (plan ID, required behaviour, source files, tests, result, gate, external dependency) that drives implementation; integrate into existing P0-P2 tasks or create docs/plans/p3/ only for genuinely additional scope; remove the Urdu speech feature from every canonical source and generator.
+4. Create the permanent Sannan handoff docs/testing/SANNAN_EXTERNAL_TESTING.md (or update the canonical file): every external test, hardware check and acceptance dependency of P0, P1, P2 and the feature plans (DC-01 to DC-08, device playthroughs, Pulse, on-device speech, human labelling, participants, consent, account holders, licences, permitted sources), each with ID, purpose, who, requirements, exact steps, pass and fail criteria, evidence, where to save it, how to report a failure and what happens after it passes; linked from the task files and feature plans.
+5. Multi-problem content composition engine with synthetic labelled fixtures; investigate why personalised targeting did not beat Elo (fair, reproducible, representative evaluation; keep Elo unless an alternative wins on held-out scenarios without cherry-picking); finish every other engineering-complete item without labelling external gates as passed.
+6. Free CI and housekeeping: reliable local CI, verify GitHub Actions on the final commit, inspect Dependabot PRs 24 to 27 and the workflow runner labels in source, no paid services, no secrets or large artefacts in commits.
+7. Final validation and delivery: run all P0 to P2 and feature tests and full local CI, classifier comparisons and safety suites, real 4B against 9B runs, verify every checkbox and all feature plans, search for obsolete Urdu references and stale counts, review the diff, commit and push every coherent tested stage (no force-push), then a concise evidence-based report (commits, test counts, Actions status, classifier root cause and before/after metrics, 4B against 9B table and decision, status of the feature plans, P0 to P2 counts, the Sannan handoff path and what remains).
+Working rules: no paid services, no destructive Git, preserve unrelated changes and stashes, English only, label synthetic data, never fabricate results or tick unmet criteria.
+(The prompt was pasted at full length; this entry keeps its numbered requirements, shortened.)
+``````
+
+## 168. 18 October 2026 (exact time not captured)
+_Session: b9c36c34_
+
+``````text
+Continue with the implementation priorities in the original prompt. Keep progress summaries concise, maintain the canonical task files as your source of truth, and work through each stage without repeating completed audits. Do not stop at planning or documentation when implementation remains possible.
+``````

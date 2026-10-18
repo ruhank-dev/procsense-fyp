@@ -1031,7 +1031,7 @@ Blender's Python API changes between versions — pin it.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/p0-blender-equipment-s02-helper-library.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/✅%20p0-blender-equipment-s02-helper-library.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -1065,7 +1065,7 @@ Normals inverted after boolean ops → recalculate outside in the helper.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/p0-blender-equipment-s03-validate-preview.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-blender-equipment/steps/✅%20p0-blender-equipment-s03-validate-preview.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 

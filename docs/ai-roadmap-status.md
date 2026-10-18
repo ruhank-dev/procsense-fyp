@@ -35,7 +35,7 @@ The owner told the project to implement the P1 and P2 plan modules that are the 
 
 ## 0e. Update of 18 October 2026 (targets, safety, the AI-judged classifier evaluation)
 
-Built and measured by the engineer under the owner's instruction (details and numbers in `docs/report/ai-eval.md`, the step notes and `docs/plans/ruhan-p1-p2-reconciliation.md`, which states for each of the 97 P1 and P2 steps what exists and what is open):
+Built and measured by the engineer under the owner's instruction (details and numbers in `docs/report/ai-eval.md`, the step notes and `docs/plans/task-reconciliation.md`, which states for each of the 97 P1 and P2 steps what exists and what is open):
 
 * **Safety:** the side of the body and denied pain are now checked by plain code on every generated package, with no model (`server/generation/consistency.py`; 36 of 36 denied pains and 28 of 29 flipped sides on the seeded set, no flag on any authored case); critical sentences are never credited from speech and, with the new guards, none of the evasive critical sentences written for the check is credited under an ordinary act.
 * **Targets that were unmet and now pass:** live speech 2.19 s (target 2.5); AI debrief 93.8 percent accepted, 89.6 percent within 8 s on 48 sessions; plan composer 20 of 20 served at coverage 0.877 against 0.746; performance interpreter 84.2 against 73.7 percent for random picks (simulated learners); text critic +62.7 points over the rules on a held-out set, false alarms 3.8 percent; three characters 3.77 s (target 4) with the two staff choosing approved lines in one call. Each was measured before and after, with the earlier numbers kept in the result files.
@@ -45,18 +45,29 @@ Built and measured by the engineer under the owner's instruction (details and nu
 
 **The gate now switches on:** asr, critic, debrief_ai, interpreter, multi_agent, narrative, patient_dialogue, plan_composer, tts, voice_orders. **Off:** classifier (SKIPPED: the independent set does not exist), classifier_synthetic and classifier_synthetic2 (recorded for information; the second's independent-evidence suite cannot pass by design).
 
-## 0f. Update of 18 October 2026, second session (CI without Actions, Urdu retired, Pulse built, speech on the card, fresh adversarial sets)
+## 0g. Update of 18 October 2026, third session (classifier safety, 4B instead of 9B, handoff, matrix)
+
+Every number is in the file named beside it; synthetic and AI-judged material is labelled and is not validation.
+
+* **Classifier:** the 3 of 48 false credits are fixed (0/48) by a two-head agreement rule, hard negatives and an assertion check; a frozen challenge set (scored once) went from 5/60 to 0/60; permanent regression suite in CI; the classifier stays OFF (`docs/research/classifier_benchmark/safety_gate.md`, ADR-0016, EX-01).
+* **Models:** the 4B replaces the 9B in every production path (`docs/research/model_4b_vs_9b.md`, ADR-0017). Qwen is not a classifier (macro-F1 0.59 and 0.80 on the same sentences against 0.93 for the head).
+* **Reconciliation:** all 269 steps (`docs/plans/task-reconciliation.md`); the single outside-testing page is `docs/testing/SANNAN_EXTERNAL_TESTING.md` (37 items).
+* **Features:** `docs/architecture/feature_implementation_matrix.md`: of 68 plans 41 are complete, 14 engineering complete with an external acceptance pending, 7 partly built (seven AI capabilities that no step built, DT-224), 3 built and gated off, 1 owned by others, 2 research with the trigger not met. The pipeline JSON statuses follow the reconciliation.
+* **Built:** the multi-problem composition engine (DT-220: authored values missing), expected-gain targeting as the practice default with Elo as fallback (`docs/research/personalisation_study.json`), the spoken-order route with signed tickets and a model fallback that is gated OFF (70.5 percent against the plan's 90 to 95).
+* **Gate:** on: asr, critic, debrief_ai, interpreter, multi_agent, narrative, patient_dialogue, plan_composer, tts, voice_orders. Off: classifier (no independent set), order_fallback (below its acceptance), and the informational classifier_safety, classifier_synthetic, classifier_synthetic2.
+
+## 0f. Update of 18 October 2026, second session (CI without Actions, one language feature retired, Pulse built, speech on the card, fresh adversarial sets)
 
 Measured or built by the engineer under the owner's instructions; every number is in the file named beside it. Synthetic and AI-judged material is labelled as such everywhere and is not validation.
 
 * **CI:** GitHub Actions cannot start jobs (the account's payments failed or its spending limit was reached: no check of the code ran remotely for the pushes after `e517f67`). Nothing was bought. `task ci` is the required validation, `tools/ci/remote_status.py` keeps local and remote results apart, a run that never started is never a pass (docs/CI.md).
-* **Scope:** Urdu speech was retired by the owner (feature, step, plan and deferred item removed; 68 feature plans remain; Change Report 117). The product is English only.
+* **Scope:** The retired language feature (owner decision, Change Report 117) is removed (feature, step, plan and deferred item; 68 feature plans remain; Change Report 117). The product is English only.
 * **Pulse:** built and run on this desktop with free tools (recipe and fixes in `tools/pulse/README.md`); four scenarios recorded; the adapter replays a recorded run behind `IPhysiologyEngine` (11 C# tests, all 142 golden runs with a trace selected); LitePhysio stays the default (9 of 27 comparisons agree in direction; the main effect of each action does). Quest cost: Sannan, DC-05.
 * **Speech:** the recogniser runs on the card beside the resident 4B model: 0.58 s for a 3 to 7 s clip (target 0.7; 5.9 s on the processor). On 257 utterances of real mock consultations (PriMock57, CC BY 4.0, actors, British accents) the word error rate is 0.217 (doctors 0.234, patients 0.183). On-device candidates on the same clips: Whisper tiny.en 0.203, a 20M Zipformer 0.49 (ADR-0014, proposed; headset: DC-04).
 * **Classifier:** still off, and the picture is less rosy than the numbers of 17 October: on 48 FRESH evasive critical sentences the full path credits 3 under an ordinary act and the cue list alone catches 6; the cues are a floor, not the protection (`reports/ai/classifier-guard-only.json`, ADR-0013). A different-size labeller (qwen3.5:9b, J3) cross-checked the v3 hold-out: it agrees with the final label on 0.80 of 300 sentences (0.85 with J1, 0.80 with J2); 59 disagreements, 14 involving a critical act, listed in `docs/research/classifier_benchmark/cross_judge_disagreements.md`; on the v2 test split (600 sentences) it agrees with the final label on 0.822 (107 disagreements, 24 involving a critical act). The v2 dev split was not cross-checked.
 * **Dialogue:** 90 seeded stress lines (normal, abnormal, ambiguous, contradictory, adversarial): 90 pass the reply rules after the leak rule was refined once (SD-012), median 1.86 s, p95 2.39 s.
 * **Gates and triggers:** `tools/ai/adaptation_trigger.py` (CI) says neither the language-model nor the picture adaptation trigger is met; MedGemma is gated and unaccepted (`content/ai/model_candidates.json`); drug availability sits behind providers with live off (`docs/research/drug_availability.md`).
-* **Steps:** 48 steps ticked because their own criteria are met; 23 are "engineering done, external acceptance pending" with who is needed; the page is `docs/plans/ruhan-p1-p2-reconciliation.md`; headset tests: `docs/plans/sannan-device-checks.md`.
+* **Steps:** 48 steps ticked because their own criteria are met; 23 are "engineering done, external acceptance pending" with who is needed; the page is `docs/plans/task-reconciliation.md`; headset tests: `docs/plans/sannan-device-checks.md`.
 
 ## 0d. Update of 17 October 2026 (the AI features are built; what the gate says)
 

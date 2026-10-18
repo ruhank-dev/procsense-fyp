@@ -37,6 +37,7 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `server/` | FastAPI + PostgreSQL (Supabase) backend (P1, milestone M17) |
 | `tools/` | Python content/validation tools; `tools/blender/` procedural equipment scripts (later) |
 | `docs/plans/` | Plan: tiers `p0/ p1/ p2/` → phases → steps — start at `docs/plans/README.md` |
+| `docs/testing/` | [Everything that needs Sannan or another outside actor](docs/testing/SANNAN_EXTERNAL_TESTING.md): headset checks, Unity/3D/VR acceptance, people, accounts, permissions, with exact steps and pass rules |
 | `docs/research/` | Proof of truth: source register, dataset register, open medical issues |
 | `docs/CI.md` | Every CI/CD check, what it guards, and the roadmap of checks to add |
 | `docs/deferred-tasks.md` | Register of postponed, outstanding and blocked work |
@@ -75,6 +76,10 @@ Required for `task ci`: Git, .NET SDK, uv, Task (and Docker for the backend test
 | `task doctor` | `uv run --no-project tools/doctor.py`: every tool, the version wanted and found, and how to install what is missing |
 | `task setup` | `git config core.hooksPath .githooks` + tool check — installs the pre-push hook (runs `task ci` before `main` is updated) |
 | `task ci` | `uv run --project tools tools/ci/run_all.py` — every check CI runs, locally |
+| `task external-testing` | `uv run --project tools tools/plans/external_testing.py --link-steps` — regenerates the external-testing handoff from its data, the reconciliation and the result files |
+| `task feature-matrix` | syncs the pipeline JSON statuses from the reconciliation and regenerates the feature implementation matrix and the 68 plans |
+| `task classifier-safety` | scores the credit path of the communication classifier on every labelled set (`docs/research/classifier_benchmark/safety_gate.md`) |
+| `task compose-multiproblem` | composes new multi-problem case structures by the walkthrough recipe (synthetic DRAFT fixtures, not cases) |
 | `task plans-index` | `uv run --project tools tools/plans/milestones.py` — rebuilds `docs/plans/milestones.md` from the step files and checks step references |
 | `task data-fetch` | downloads the open source datasets the pictures are built from (about 3 GB, git-ignored; **only needed to rebuild**: every generated picture, report and table is already committed). See `tools/data/README.md` |
 | `task data-check` / `task data-rebuild` | verifies the downloaded data against its manifest / rebuilds every generated picture, report, table and register from it |

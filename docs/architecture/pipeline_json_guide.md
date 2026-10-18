@@ -33,7 +33,7 @@ Derived files: [feature_registry.md](feature_registry.md), [live_generation_spec
 | `fallback_paths` | FB-01 to FB-10. |
 | `open_questions` | OQ-01 to OQ-08; none blocks development. |
 
-**Ids.** Dataset and model nodes share their id with their catalogue entry on purpose (the node is the graph handle of the entry). Feature ids run A1 to E65 (one number, the Urdu-speech feature, was retired on 18 October 2026 and is not reused) and then A66, D67, D68, E69 (added in the second pass), with the letter giving the category; they are never renumbered. Task ids are plan step ids, so every task has a step file under `docs/plans`.
+**Ids.** Dataset and model nodes share their id with their catalogue entry on purpose (the node is the graph handle of the entry). Feature ids run A1 to E65 (one number, a language feature, was retired on 18 October 2026 (Change Report decision 117) and is not reused) and then A66, D67, D68, E69 (added in the second pass), with the letter giving the category; they are never renumbered. Task ids are plan step ids, so every task has a step file under `docs/plans`.
 
 **Statuses.** Implemented and tested · Implemented but incompletely tested · Partially implemented · Planned · Blocked · Deferred · Proposed new feature · Superseded or rejected. A feature's `status` is the whole feature; `ai_status` is only its model-driven part.
 

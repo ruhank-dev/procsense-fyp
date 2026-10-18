@@ -1,7 +1,7 @@
-"""The task-by-task reconciliation of the P1 and P2 steps (`docs/plans/ruhan-p1-p2-reconciliation.md`): `uv run --project tools tools/plans/reconcile.py [--check]`.
+"""The task-by-task reconciliation of ALL steps of P0, P1 and P2 (`docs/plans/task-reconciliation.md`): `uv run --project tools tools/plans/reconcile.py [--check]`.
 
 A checkmark in a step file (the leading tick of its file name) used to record the owner's APPROVAL, not that the work behind it exists, and a step with no tick may be fully built; since 18 October 2026 it is set by tools/plans/tick.py for DONE steps. This tool therefore
-reads two things and puts them side by side: what the step files say (found on disk: every step of every P1 and P2 phase) and `docs/plans/reconciliation.json`, a hand-written statement for each step of who
+reads two things and puts them side by side: what the step files say (found on disk: every step of every P0, P1 and P2 phase) and `docs/plans/reconciliation.json`, a hand-written statement for each step of who
 owns it, what was recorded before the 18 October 2026 work, what is true now, the files that prove it, the measured acceptance result and what is still open. The tool refuses to run if a step has no entry, if
 an entry names a step that does not exist, if an evidence path does not exist, or if a status is outside the vocabulary, so the table cannot rot silently; --check also fails when the committed page differs
 from what the files give. It changes no step file; ticking is done by tools/plans/tick.py and only for a step this data calls DONE.
@@ -13,7 +13,8 @@ Status vocabulary (`now`):
   PARTLY                 the part that needs no one else is NOT yet all done; the rest is named in `open`
   BLOCKED                nothing can be built before the named input (a person, a device, a licence, disk space) exists
   RESEARCH_NEGATIVE      a research step whose trigger was analysed and is not met; the analysis is the deliverable
-  NOT_RUHAN              owned by someone else; listed so the table is complete, not reconciled here
+  APPROVED               a P0 step the owner ticked under the earlier rule (generated, no entry needed); it was not re-audited against its acceptance criteria here
+  NOT_RUHAN              owned by someone else; listed so the table is complete, not reconciled here; its acceptance is listed for them in docs/testing/SANNAN_EXTERNAL_TESTING.md
 Standard library only.
 """
 from __future__ import annotations
@@ -28,26 +29,35 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "docs" / "plans" / "reconciliation.json"
-OUT = ROOT / "docs" / "plans" / "ruhan-p1-p2-reconciliation.md"
-STATUSES = {"DONE", "DONE_GATE_OFF", "ENG_DONE", "PARTLY", "BLOCKED", "RESEARCH_NEGATIVE", "NOT_RUHAN"}
-LABEL = {"DONE": "Done", "DONE_GATE_OFF": "Done, feature off", "ENG_DONE": "Engineering done, external acceptance pending", "PARTLY": "Partly done", "BLOCKED": "Blocked", "RESEARCH_NEGATIVE": "Analysed, trigger not met", "NOT_RUHAN": "Not Ruhan's"}
+OUT = ROOT / "docs" / "plans" / "task-reconciliation.md"
+STATUSES = {"APPROVED", "DONE", "DONE_GATE_OFF", "ENG_DONE", "PARTLY", "BLOCKED", "RESEARCH_NEGATIVE", "NOT_RUHAN"}
+LABEL = {"APPROVED": "Approved by the owner (earlier rule)", "DONE": "Done", "DONE_GATE_OFF": "Done, feature off", "ENG_DONE": "Engineering done, external acceptance pending", "PARTLY": "Partly done", "BLOCKED": "Blocked", "RESEARCH_NEGATIVE": "Analysed, trigger not met", "NOT_RUHAN": "Not Ruhan's"}
 
 
 def steps() -> dict[str, dict]:
     out = {}
-    for tier in ("p1", "p2"):
+    for tier in ("p0", "p1", "p2"):
         for phase in sorted(glob.glob(str(ROOT / "docs" / "plans" / tier / "*" / "steps" / "*.md"))):
             name = os.path.basename(phase)
             approved = name.startswith("✅")
             sid = re.match(r"(.+?-s\d{2})", name.replace("✅ ", "")).group(1)
             title = Path(phase).read_text(encoding="utf-8").splitlines()[0].lstrip("# ").split(" — ", 1)[-1]
-            out[sid] = {"approved": approved, "title": title, "file": Path(phase).relative_to(ROOT / "docs" / "plans").as_posix()}
+            out[sid] = {"approved": approved, "title": title, "tier": tier, "file": Path(phase).relative_to(ROOT / "docs" / "plans").as_posix()}
     return out
+
+
+def entries_of(found: dict[str, dict], data: dict) -> dict[str, dict]:
+    """The hand-written entries plus a generated APPROVED entry for every ticked P0 step that has none (the owner's tick is the only record it has)."""
+    entries = dict(data["steps"])
+    for sid, f in found.items():
+        if sid not in entries and f["tier"] == "p0" and f["approved"]:
+            entries[sid] = {"owner": "-", "before": "Ticked by the owner", "now": "APPROVED", "evidence": [f"docs/plans/{f['file']}"], "measured": "approved by the owner under the earlier rule; not re-audited here"}
+    return entries
 
 
 def problems(found: dict[str, dict], data: dict) -> list[str]:
     out = []
-    entries = data["steps"]
+    entries = entries_of(found, data)
     out += [f"no entry for step {s}" for s in sorted(set(found) - set(entries))]
     out += [f"entry for {s}, which is not a step" for s in sorted(set(entries) - set(found))]
     for s, e in entries.items():
@@ -66,18 +76,25 @@ def problems(found: dict[str, dict], data: dict) -> list[str]:
 
 
 def render(found: dict[str, dict], data: dict) -> str:
-    entries = data["steps"]
-    ours = [s for s in sorted(found) if entries[s]["now"] != "NOT_RUHAN"]
-    count = {k: sum(1 for s in ours if entries[s]["now"] == k) for k in LABEL if k != "NOT_RUHAN"}
-    lines = ["# Reconciliation of the P1 and P2 steps", "",
+    entries = entries_of(found, data)
+    approved = [s for s in sorted(found) if entries[s]["now"] == "APPROVED"]
+    ours = [s for s in sorted(found) if entries[s]["now"] not in ("NOT_RUHAN", "APPROVED")]
+    count = {k: sum(1 for s in ours if entries[s]["now"] == k) for k in LABEL if k not in ("NOT_RUHAN", "APPROVED")}
+    per_tier = ", ".join(f"{t.upper()} {sum(1 for f in found.values() if f['tier'] == t)} ({sum(1 for f in found.values() if f['tier'] == t and f['approved'])} ticked)" for t in ("p0", "p1", "p2"))
+    lines = ["# Reconciliation of all P0, P1 and P2 steps", "",
              f"_Generated by `tools/plans/reconcile.py` from the step files and `docs/plans/reconciliation.json`; do not edit by hand. Written {data['written']}._", "",
              "A tick on a step file is a status marker: until 18 October 2026 it recorded the owner's approval and could be set without the work behind it; since the owner's instruction of that day the engineer sets it with `tools/plans/tick.py` only for a step this page calls Done, with evidence that exists. This page states, step by step, what exists and how it was checked. Owners follow `docs/plans/working-model.md` and the Team Board (Ruhan: Core, physiology, events, checklist engine, main AI; Sannan: Unity, XR, 3D, UI, builds; Moiz: the service, database and dashboard).", "",
-             f"**{len(ours)} steps are Ruhan's or shared** ({', '.join(f'{LABEL[k]} {v}' for k, v in count.items() if v)}); {len(found) - len(ours)} more belong to others and are listed at the end.", "",
+             f"**{len(found)} steps in all** ({per_tier}). **{len(ours)} are Ruhan's or shared and reconciled below** ({', '.join(f'{LABEL[k]} {v}' for k, v in count.items() if v)}); {len(approved)} P0 steps were ticked by the owner under the earlier rule and are listed by phase after the table; the rest belong to others and are listed at the end.", "",
              "| Step | Approved (tick) | Before 18 Oct | Now | Evidence | Measured or tested | Still open and who it needs |", "|---|---|---|---|---|---|---|"]
     for s in ours:
         e = entries[s]
         ev = "<br>".join(f"`{p}`" for p in e["evidence"][:4])
         lines.append(f"| [{s}]({found[s]['file'].replace(' ', '%20')}) {found[s]['title'][:60]} | {'yes' if found[s]['approved'] else 'no'} | {e['before']} | **{LABEL[e['now']]}** | {ev} | {e['measured']} | {e.get('open', '')}{(' **Needs:** ' + e['external']) if e.get('external') else ''} |")
+    by_phase: dict[str, list[str]] = {}
+    for s in approved:
+        by_phase.setdefault(re.sub(r"-s\d+$", "", s), []).append(s.rsplit("-", 1)[1])
+    lines += ["", f"## P0 steps ticked by the owner under the earlier rule ({len(approved)})", "", "Each carries the owner's approval; none was re-audited against its acceptance criteria in this reconciliation. A future audit that finds a gap reopens the step.", ""]
+    lines += [f"* {ph}: {', '.join(ids)}" for ph, ids in sorted(by_phase.items())]
     others = [s for s in sorted(found) if entries[s]["now"] == "NOT_RUHAN"]
     lines += ["", "## Steps owned by others (not reconciled here)", "", "| Step | Owner | Approved (tick) | Note |", "|---|---|---|---|"]
     for s in others:
@@ -95,7 +112,7 @@ def main(argv: list[str]) -> int:
     text = render(found, data)
     if "--check" in argv:
         if not OUT.exists() or OUT.read_text(encoding="utf-8") != text:
-            print("docs/plans/ruhan-p1-p2-reconciliation.md is out of date: run tools/plans/reconcile.py")
+            print("docs/plans/task-reconciliation.md is out of date: run tools/plans/reconcile.py")
             return 1
         print(f"reconciliation current ({len(found)} steps)")
         return 0

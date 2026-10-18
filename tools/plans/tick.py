@@ -25,7 +25,8 @@ def tickable() -> list[str]:
     found, data = R.steps(), json.loads(R.DATA.read_text(encoding="utf-8"))
     if R.problems(found, data):
         raise SystemExit("reconciliation has problems: run tools/plans/reconcile.py")
-    return [s for s in sorted(found) if data["steps"][s]["now"] == "DONE" and not found[s]["approved"]]
+    entries = R.entries_of(found, data)
+    return [s for s in sorted(found) if entries[s]["now"] == "DONE" and not found[s]["approved"]]
 
 
 def link_forms(old: str) -> tuple[str, str]:

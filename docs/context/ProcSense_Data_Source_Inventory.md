@@ -1,6 +1,6 @@
 <!-- Converted from ProcSense_Data_Source_Inventory.csv — every row and column kept as a Markdown table; line breaks inside a cell shown as <br>; | and \ escaped. Format conversion only: no summarising, rewriting or correction. -->
 
-> **Project addendum (09 Oct 2026 — not part of the converted document).** The working registers are now `docs/research/source_register.csv` (proof of truth, one row per clinical value) and `docs/research/dataset_register.csv`; this inventory remains the original list of data needs. Decision history: `ProcSense_Change_Report.md` §G.
+> **Project addendum (09 Oct 2026 — not part of the converted document).** The working registers are now `docs/research/source_register.csv` (proof of truth, one row per clinical value) and `docs/research/dataset_register.csv`; this inventory remains the original list of data needs. Decision history: `ProcSense_Change_Report.md` §G. (1) English only (owner decision 18 Oct 2026, Change Report decision 117): the original text below that plans a second spoken language (inventory row D64) is SUPERSEDED and is not built.
 
 # ProcSense_Data_Source_Inventory.csv
 

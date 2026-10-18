@@ -21,6 +21,11 @@ Spoken orders teach closed-loop communication, but speech recognition makes mist
 - **Measured** (`tools/ai/eval_orders.py`): 702 phrasings with mild recogniser-like corruption: parsed to the right target 84.0 percent, to a wrong target 0.4 percent (the read-back catches these), clarification or menu 15.5 percent; actions released without a confirmation: 0.
 - **Not built:** the language-model fallback and a hold-medicine engine verb (DT-208), the Unity read-back (Sannan).
 
+## Status (18 October 2026, third session)
+
+- **Route:** `POST /orders/organisations/{id}/hear` and `/confirm` (`server/routers/orders.py`) expose the read-back to the headset: a hearing returns the read-back sentence and a signed single-use ticket (`server/orders/ticket.py`), a yes releases only the action in the ticket, a no cancels, anything else leaves it open; audited, rate limited, `voice_orders` gate. Tests: `server/tests/test_orders_route.py`, `tools/ci/test_orders_fallback.py`.
+- **Model fallback (B23.c2, C32.c1):** `server/orders/llm_fallback.py` lets the 4B model suggest an item for a transcript with no order in it; it chooses from the closed list of content items, the suggestion is read back like any other and nothing is released without a yes. Measured on 61 paraphrased orders (synthetic, one author, `tests/orders/paraphrases.json`): right item read back 70.5 percent against 6.6 percent for the grammar alone, a wrong item 14.8 percent, 0 of 10 non-orders turned into orders, 0 released without confirmation, 6 s per call. The plan wants 90 to 95 percent and a reply in 3 s, so the gate `order_fallback` is OFF and the route uses the grammar alone (`reports/ai/orders-eval-llm.json`).
+
 ## Verification
 T-VO1–T-VO4 pass; no Core action without confirmation (log check).
 

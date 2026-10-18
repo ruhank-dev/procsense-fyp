@@ -9,79 +9,79 @@
       "actor": "gear",
       "label": "B14 P1 PH-09",
       "title": "Dataset-driven numeric generation",
-      "text": "Partly built. Lab values and vital signs that are realistic for the condition: conditioned distributions, linked analytes, trends…2 capability plans.",
-      "tone": "sun"
+      "text": "Built. Lab values and vital signs that are realistic for the condition: conditioned distributions, linked analytes, trends and repeats.2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "B15",
       "actor": "gear",
       "label": "B15 P1 PH-09",
       "title": "ECG generation and variation",
-      "text": "Partly built. ECG strips and the monitor trace that match the case's rhythm, rate and potassium.2 capability plans.",
-      "tone": "sun"
+      "text": "Built. ECG strips and the monitor trace that match the case's rhythm, rate and potassium.2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "B16",
       "actor": "gear",
       "label": "B16 P1 PH-09",
       "title": "Ultrasound selection and synthesis",
-      "text": "Partly built. Ultrasound pictures that match the findings.3 capability plans.",
-      "tone": "sun"
+      "text": "Built. Ultrasound pictures that match the findings.3 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "B17",
       "actor": "gear",
       "label": "B17 P1 PH-09",
       "title": "Chest X-ray, CT and MRI selection",
-      "text": "Partly built. Built: 10 real NIH chest X-rays (attribution), AMOS CT/MRI slices with painted labelled findings, reports per picture.2 capability plans.",
-      "tone": "sun"
+      "text": "Built. Built: 10 real NIH chest X-rays (attribution), AMOS CT/MRI slices with painted labelled findings, reports per picture.2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "B18",
       "actor": "gear",
       "label": "B18 P1 PH-10",
       "title": "Cross-modal consistency",
-      "text": "Partly built. All modalities agree (LG-09).2 capability plans. Needs A10.",
-      "tone": "sun"
+      "text": "Built. All modalities agree (LG-09).2 capability plans. Needs A10.",
+      "tone": "mint"
     },
     {
       "id": "B19",
       "actor": "agent",
       "label": "B19 P1 PH-17",
       "title": "Synthetic evaluation datasets",
-      "text": "Partly built. Labelled synthetic sets with data cards for evaluating classifiers, dialogue and generation.1 capability plans. Needs E57.",
-      "tone": "sun"
+      "text": "Built. Labelled synthetic sets with data cards for evaluating classifiers, dialogue and generation.1 capability plans. Needs E57.",
+      "tone": "mint"
     },
     {
       "id": "B20",
       "actor": "gear",
       "label": "B20 P1 PH-09",
       "title": "Anomalies and artefacts",
-      "text": "Partly built. Haemolysed samples, motion artefact on the monitor, a missing result, a mislabelled sample, as both realistic noise…2 capability plans.",
-      "tone": "sun"
+      "text": "Built. Haemolysed samples, motion artefact on the monitor, a missing result, a mislabelled sample, as both realistic noise…2 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "B21",
       "actor": "gear",
       "label": "B21 P1 PH-09",
       "title": "Result variation (repeats, trends, timing)",
-      "text": "Partly built. Repeat results that move plausibly, trends over the session, result turnaround times.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Repeat results that move plausibly, trends over the session, result turnaround times.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "B22",
       "actor": "model",
       "label": "B22 P2 PH-18",
       "title": "Investigation Interpreter (teaching aid)",
-      "text": "Partly built. After a result is viewed (practice mode, or in the debrief), explain what it shows and why it matters…1 capability plans. Needs E53, E57.",
-      "tone": "sun"
+      "text": "Built. After a result is viewed (practice mode, or in the debrief), explain what it shows and why it matters…1 capability plans. Needs E53, E57.",
+      "tone": "mint"
     },
     {
       "id": "B23",
       "actor": "gear",
       "label": "B23 P0 PH-04",
       "title": "Investigation discovery",
-      "text": "Partly built. Problems are revealed by the result, examination or question that discovers them.2 capability plans.",
+      "text": "Built, part tested. Problems are revealed by the result, examination or question that discovers them.2 capability plans.",
       "tone": "sun"
     }
   ],

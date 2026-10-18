@@ -1,7 +1,7 @@
 """Project-rule checks that no compiler or unit test covers. Standard library only.
 
 Usage (from repo root):  task check     or     uv run --project tools tools/ci/repo_checks.py [check ...]
-Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards, no-tool-attributions, engine-version
+Checks: core-rules, hygiene, docs-links, deferred-register, prompt-history, steps, team-guards, no-tool-attributions, engine-version, english-only
 Exit code 0 = all pass, 1 = at least one failure. Add a new check here (and a row in docs/CI.md) whenever a new rule appears.
 """
 import re
@@ -265,6 +265,23 @@ def check_no_tool_attributions() -> list[str]:
     return problems
 
 
+# --- english-only: the product is English only (owner, 18 Oct 2026, Change Report 117); no plan, feature, registry, generator, code or content file may plan a second spoken language ---
+# The word is assembled from pieces so this file does not match itself. History is allowed where it is history: the prompt history and docs/context (converted originals, the Change Report decision log).
+RETIRED_LANGUAGE = re.compile("ur" + "du", re.IGNORECASE)
+RETIRED_ALLOWED_PREFIXES = ("docs/context/", "docs/previous_prompt.md", "tools/ci/repo_checks.py")
+
+
+def check_english_only() -> list[str]:
+    problems = []
+    for p in tracked_files():
+        rel = p.relative_to(ROOT).as_posix()
+        if rel.startswith(RETIRED_ALLOWED_PREFIXES) or p.suffix.lower() in {".png", ".jpg", ".pdf", ".fbx", ".blend", ".wav", ".ogg", ".dll", ".exe", ".onnx", ".bin"}:
+            continue
+        if RETIRED_LANGUAGE.search(read(p)):
+            problems.append(f"{rel}: names the retired second spoken language; the product is English only (Change Report decision 117)")
+    return problems
+
+
 # --- engine-version: CoreInfo.Version moves whenever the golden hashes move (DT-174); rule and fix in tools/ci/engine_version.py ---
 def check_engine_version() -> list[str]:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -282,6 +299,7 @@ CHECKS = {
     "team-guards": check_team_guards,
     "no-tool-attributions": check_no_tool_attributions,
     "engine-version": check_engine_version,
+    "english-only": check_english_only,
 }
 
 

@@ -9,16 +9,16 @@
       "actor": "agent",
       "label": "D38 P1 PH-16",
       "title": "AI debrief",
-      "text": "Partly built. Template debrief built; AI rewrite planned behind the validator (LG-19).1 capability plans. Needs E53, E57.",
-      "tone": "sun"
+      "text": "Built. Template debrief built; AI rewrite planned behind the validator (LG-19).1 capability plans. Needs E53, E57.",
+      "tone": "mint"
     },
     {
       "id": "D39",
       "actor": "agent",
       "label": "D39 P2 PH-18",
       "title": "Coaching",
-      "text": "Partly built. Built: deterministic hints (HintTexts, simulation-workflow s05).1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Built: deterministic hints (HintTexts, simulation-workflow s05).1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D40",
@@ -57,8 +57,8 @@
       "actor": "model",
       "label": "D44 P2 PH-18",
       "title": "AI enhancement to adaptive difficulty",
-      "text": "Partly built. Separate from D43: suggest which competencies to target next using patterns (D40) and explain the choice.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Separate from D43: suggest which competencies to target next using patterns (D40) and explain the choice.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D45",
@@ -73,32 +73,32 @@
       "actor": "agent",
       "label": "D46 P1 PH-16",
       "title": "Missed-step explanation",
-      "text": "Partly built. Built: template debrief lists missed items with log references.1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Built: template debrief lists missed items with log references.1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D47",
       "actor": "agent",
       "label": "D47 P1 PH-16",
       "title": "Evidence-based feedback",
-      "text": "Partly built. Every feedback line cites the log event and the source (SR id).1 capability plans.",
-      "tone": "sun"
+      "text": "Built. Every feedback line cites the log event and the source (SR id).1 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D67",
       "actor": "agent",
       "label": "D67 P1 PH-23",
       "title": "Trainee learning profile",
-      "text": "Partly built. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty…3 capability plans.",
-      "tone": "sun"
+      "text": "Built. Evidence-based model of each trainee's mastery, demonstrated weaknesses and trends with uncertainty…3 capability plans.",
+      "tone": "mint"
     },
     {
       "id": "D68",
       "actor": "agent",
       "label": "D68 P1 PH-23",
       "title": "Personalised scenario targeting",
-      "text": "Partly built. Uses the learning profile to choose objectives and scenario features that change the substance of the next case…3 capability plans.",
-      "tone": "sun"
+      "text": "Built. Uses the learning profile to choose objectives and scenario features that change the substance of the next case…3 capability plans.",
+      "tone": "mint"
     }
   ],
   "edges": [

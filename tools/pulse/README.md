@@ -53,5 +53,5 @@ Total: about 1,220 build steps; about two hours of wall time including the faile
 
 ## Steps still to do (not engineering)
 
-1. On the Quest: a blank Unity 6 project with the C# bindings, ARM64 IL2CPP, measure (`docs/plans/sannan-device-checks.md`, DC-05). Only needed if Pulse is to run on the headset; the recorded-run design does not need it.
+1. On the Quest: a blank Unity 6 project with the C# bindings, ARM64 IL2CPP, measure (`docs/testing/SANNAN_EXTERNAL_TESTING.md`, DC-05). Only needed if Pulse is to run on the headset; the recorded-run design does not need it.
 2. A reviewer's choice between the curves (optional).
