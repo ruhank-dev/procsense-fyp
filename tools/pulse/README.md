@@ -13,6 +13,8 @@ Status, 18 October 2026 (second session): **the PC build works, four scenarios w
 
 ## The PC build (done 18 October 2026)
 
+Inspected before building (18 October 2026): NVIDIA GeForce GTX 1660 SUPER, 6144 MiB, driver 610.88 (the hardware baseline for every measurement; the laptop was not used); AMD Ryzen 5 2600; 534 GB disk with 123 GB free before and 110 GB after the build and the models downloaded in this session; no C++ compiler, CMake or Java present at the start. Pulse itself runs on the processor; the card is not used by it.
+
 Machine: the development desktop (Windows 11, a Ryzen 5 2600 with 6 cores and 12 threads, shared with other work, 123 GB free after the owner freed space). No Visual Studio was installed, so the free open-source toolchain was used: CMake 4.4.4 and Ninja (winget, user scope), MinGW-w64 GCC 16.2 (WinLibs, winget), a portable Temurin JDK 17 (the data generation needs Java), and a Python 3.13 virtual environment with `numpy pandas matplotlib openpyxl formulas dataframe_image scipy plottable pip`. Sources: `git clone --depth 1 --branch stable https://gitlab.kitware.com/physiology/engine.git` (commit 5e29e5b, Pulse 4.4.0), kept outside the repository.
 
 ```
