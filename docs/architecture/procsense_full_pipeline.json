@@ -7659,7 +7659,9 @@
         "server/generation/reports.py",
         "server/generation/critic.py",
         "server/generation/consistency.py",
-        "tools/ci/test_generation_consistency.py"
+        "tools/ci/test_generation_consistency.py",
+        "reports/ai/critic-eval-v2.json",
+        "tests/generation/text_inconsistencies_v2.json"
       ],
       "lineage": [],
       "method": "Rule table VR-CM-*.",
@@ -12863,12 +12865,14 @@
       "category": "Platform, evaluation and advanced research",
       "group": "g_feat_E",
       "kind": "ai",
-      "status": "Proposed new feature",
-      "ai_status": "Proposed new feature",
+      "status": "Partially implemented",
+      "ai_status": "Partially implemented",
       "description": "Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-taking, all reading the same deterministic state.",
       "evidence": [
         "tools/ai/eval_multiagent.py",
-        "reports/ai/multiagent-eval.json"
+        "reports/ai/multiagent-eval.json",
+        "server/dialogue/dialogue.py",
+        "prompts/dialogue/staff_pick_many_v1.txt"
       ],
       "lineage": [],
       "method": "Multiple LLM roles orchestrated by the ReactionQueue.",
@@ -14203,7 +14207,9 @@
         "Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026",
         "BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored)",
         "tools/ai/check_hosts.py",
-        "docs/report/ai-eval.md"
+        "docs/report/ai-eval.md",
+        "docs/research/model_benchmarks.md",
+        "tools/ai/bench_report.py"
       ],
       "lineage": [
         "p1-ai-language-s02",
@@ -15890,7 +15896,8 @@
         "Elo ratings and history exist",
         "server/personalisation/evidence.py",
         "server/personalisation/learner_model.py",
-        "server/personalisation/interpreter.py"
+        "server/personalisation/interpreter.py",
+        "prompts/personalisation/interpret_v2.txt"
       ],
       "lineage": [],
       "method": "Beta-binomial or BKT posteriors + pattern detection + LLM interpreter.",

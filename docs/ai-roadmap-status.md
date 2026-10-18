@@ -33,6 +33,18 @@ The owner told the project to implement the P1 and P2 plan modules that are the 
 * **Scenario knowledge base (A66, OFF-10): partly built.** 836 sourced relations and an offline extraction tool with quote checking and a review gate (`tools/kb/`, `content/kb/`). The extraction precision gate (0.8 on 100 hand-labelled relations) is not measured: it needs a labeller (DT-114). No model relation is in the base.
 * **Still true:** no live session calls a model; rules decide, AI proposes.
 
+## 0e. Update of 18 October 2026 (targets, safety, the AI-judged classifier evaluation)
+
+Built and measured by the engineer under the owner's instruction (details and numbers in `docs/report/ai-eval.md`, the step notes and `docs/plans/ruhan-p1-p2-reconciliation.md`, which states for each of the 97 P1 and P2 steps what exists and what is open):
+
+* **Safety:** the side of the body and denied pain are now checked by plain code on every generated package, with no model (`server/generation/consistency.py`; 36 of 36 denied pains and 28 of 29 flipped sides on the seeded set, no flag on any authored case); critical sentences are never credited from speech and, with the new guards, none of the evasive critical sentences written for the check is credited under an ordinary act.
+* **Targets that were unmet and now pass:** live speech 2.19 s (target 2.5); AI debrief 93.8 percent accepted, 89.6 percent within 8 s on 48 sessions; plan composer 20 of 20 served at coverage 0.877 against 0.746; performance interpreter 84.2 against 73.7 percent for random picks (simulated learners); text critic +62.7 points over the rules on a held-out set, false alarms 3.8 percent; three characters 3.77 s (target 4) with the two staff choosing approved lines in one call. Each was measured before and after, with the earlier numbers kept in the result files.
+* **The classifier:** evaluated on two AI-judged synthetic sets (model-written, labelled by two configurations of one local model, contested rows settled by the same builder: **not independent, not validation**). TF-IDF equals or beats the embedding head on both (0.816 and 0.792 on the v2 test scored once; 0.892 and 0.842 on a fresh hold-out); Qwen is far behind (0.654). A retrained head, a critical-mass cap and a longer cue list took the critical sentences credited under an ordinary act from 5 to 0 (v2 test, post hoc) and to 0 on the fresh hold-out. It stays off.
+* **Core and cases:** a patient twin (`src/ProcSense.Core/Twin`, 7 tests), wrong-path goldens for the 16 P1 cases (142 goldens, engine 0.0.8), LOINC and ICD-11 code tables with a check in CI.
+* **Analysed, not built, with the reason:** Pulse (no compiler, no CMake, 23 GB free: DT-207), generative images (no licensed data holds the missing findings), model adaptation (cheaper remedies work), MedGemma (the owner must accept the terms), Urdu (consented recordings), on-device speech (the Quest), drug availability (the registry forbids citation).
+
+**The gate now switches on:** asr, critic, debrief_ai, interpreter, multi_agent, narrative, patient_dialogue, plan_composer, tts, voice_orders. **Off:** classifier (SKIPPED: the independent set does not exist), classifier_synthetic and classifier_synthetic2 (recorded for information; the second's independent-evidence suite cannot pass by design).
+
 ## 0d. Update of 17 October 2026 (the AI features are built; what the gate says)
 
 Built by the engineer under the owner's instruction, each with tests in CI and a measured result in `reports/ai/` (the generated page is `docs/report/ai-eval.md`):

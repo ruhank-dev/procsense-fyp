@@ -12,11 +12,11 @@ Planning only: nothing below marked Planned, Proposed, Blocked or Deferred is bu
 |---|---|
 | Implemented and tested | 9 |
 | Implemented but incompletely tested | 0 |
-| Partially implemented | 47 |
+| Partially implemented | 48 |
 | Planned | 3 |
 | Blocked | 0 |
 | Deferred | 4 |
-| Proposed new feature | 6 |
+| Proposed new feature | 5 |
 | Superseded or rejected | 0 |
 
 Each feature's complete implementation plan (user experience, existing versus missing, the seven AI questions, separate capability plans with schemas, flow, validation, failure handling, tests, metrics, baseline, acceptance, both-GPU hardware notes and tasks) is in [`../plans/features/<ID>.md`](../plans/features/); coverage is audited in [feature_coverage_audit.md](feature_coverage_audit.md).
@@ -74,7 +74,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Partially implemented | Partially implemented | PH-23 | P1 | [plan](../plans/features/D68.md) |
 | E48 | Patient Digital Twin | hybrid | Partially implemented | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E48.md) |
-| E49 | Multi-Agent Clinical Simulation Lab | ai | Proposed new feature | Proposed new feature | PH-19 | P2 | [plan](../plans/features/E49.md) |
+| E49 | Multi-Agent Clinical Simulation Lab | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Partially implemented | Partially implemented | PH-17 | P1 | [plan](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | hybrid | Proposed new feature | Proposed new feature | PH-17 | P1 | [plan](../plans/features/E51.md) |
 | E52 | Investigation analytics | deterministic | Proposed new feature | Not applicable (deterministic feature) | PH-18 | P2 | [plan](../plans/features/E52.md) |
@@ -610,7 +610,7 @@ All modalities agree (LG-09). Built: 12 contradiction types in Stage B.
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/contradictions.json; server/generation/crossmodal.py; server/generation/reports.py; server/generation/critic.py; server/generation/consistency.py; tools/ci/test_generation_consistency.py |
+| Evidence (what exists) | content/contradictions.json; server/generation/crossmodal.py; server/generation/reports.py; server/generation/critic.py; server/generation/consistency.py; tools/ci/test_generation_consistency.py; reports/ai/critic-eval-v2.json; tests/generation/text_inconsistencies_v2.json |
 | Lineage (existing ids) | — |
 | Method | Rule table VR-CM-*. |
 | LLM-first classification | LLM judge advisory only. |
@@ -1454,7 +1454,7 @@ Evidence-based model of each trainee's mastery, demonstrated weaknesses and tren
 | Kind (AI or deterministic) | hybrid |
 | Status | Partially implemented |
 | AI status | Partially implemented |
-| Evidence (what exists) | Elo ratings and history exist; server/personalisation/evidence.py; server/personalisation/learner_model.py; server/personalisation/interpreter.py |
+| Evidence (what exists) | Elo ratings and history exist; server/personalisation/evidence.py; server/personalisation/learner_model.py; server/personalisation/interpreter.py; prompts/personalisation/interpret_v2.txt |
 | Lineage (existing ids) | — |
 | Method | Beta-binomial or BKT posteriors + pattern detection + LLM interpreter. |
 | LLM-first classification | LLM interprets summaries; mastery is statistical. |
@@ -1538,9 +1538,9 @@ Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-ta
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Proposed new feature |
-| AI status | Proposed new feature |
-| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json |
+| Status | Partially implemented |
+| AI status | Partially implemented |
+| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json; server/dialogue/dialogue.py; prompts/dialogue/staff_pick_many_v1.txt |
 | Lineage (existing ids) | — |
 | Method | Multiple LLM roles orchestrated by the ReactionQueue. |
 | LLM-first classification | LLM roles; orchestration deterministic. |
@@ -1764,7 +1764,7 @@ Serve candidate models locally, measure latency, VRAM and schema validity, choos
 | Kind (AI or deterministic) | ai |
 | Status | Partially implemented |
 | AI status | Partially implemented |
-| Evidence (what exists) | tools/ai/benchmark.py; tools/ai/test_benchmark.py; Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026; BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored); tools/ai/check_hosts.py; docs/report/ai-eval.md |
+| Evidence (what exists) | tools/ai/benchmark.py; tools/ai/test_benchmark.py; Ollama 0.40.5 with qwen3.5:4b-q4_K_M, qwen3.5:9b-q4_K_M and qwen3:4b installed on the desktop, 16 Oct 2026; BT0 to BT2 measured on the idle desktop 16 Oct 2026 (results in artifacts/ai-bench, git-ignored); tools/ai/check_hosts.py; docs/report/ai-eval.md; docs/research/model_benchmarks.md; tools/ai/bench_report.py |
 | Lineage (existing ids) | p1-ai-language-s02; DT-096 |
 | Method | Ollama with JSON-schema format. |
 | LLM-first classification | Infrastructure for every LLM feature. |
