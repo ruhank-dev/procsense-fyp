@@ -1,0 +1,17 @@
+id: SD-013
+title: Seeded requests to the live scenario generator (normal, boundary, ambiguous, contradictory, adversarial)
+synthetic: true
+purpose: "To show, repeatably and offline, that the generation entry (request contract and pipeline) refuses what it should refuse with a reason, and for everything it accepts ends in a sealed, gate-passing, reproducible package or the documented fallback, whatever the request looks like."
+generator: {path: tools/generation/request_fuzz.py, version: "1", command: "uv run --project tools tools/generation/request_fuzz.py build"}
+seed: "20261018 (random.Random); the committed file equals a fresh build, checked in CI"
+source: "108 requests built by the script: 36 valid, 15 at the edges of every field, 13 with optional fields left out or maximal, 11 contradictory (assessment mode, unknown behaviours, a scenario or level that does not exist), 33 adversarial (wrong types, extra fields, injection strings, hostile or huge values)."
+method: "Each request goes to contracts.accept_request and, if accepted, to pipeline.generate with no model; invariants are checked in code (a 400 or 409 names its field or mode; a package is sealed, passes package.validate and has the same SHA-256 when the same request is made again; otherwise the pool fallback)."
+constraints: "Requests only: no clinical content is created or judged here, and the package gate is the one the product uses."
+validation: "tools/ci/test_request_fuzz.py: the set is seeded, every kind is present, and the run breaks no invariant (108 requests, 63 served, 45 refused, 0 fallbacks, 0 breaks, 19 s). Requests with a focus no table knows are served with the standard objectives and an explanation, which the generator already states."
+review: Not reviewed by a person.
+labels: The expected outcome of each request (served, refused, refused with 409, or served or refused).
+model_use: "None: the pipeline is run without a model, so the check covers the deterministic baseline every model step falls back to."
+use: dev_only
+files: [tests/generation/request_fuzz.json]
+rows: {tests/generation/request_fuzz.json: {requests: 108}}
+licence: The project's own content

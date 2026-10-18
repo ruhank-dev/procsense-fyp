@@ -1003,12 +1003,13 @@
   "p2-content-extensions-s02": {
    "owner": "Ruhan",
    "before": "No status recorded",
-   "now": "BLOCKED",
+   "now": "PARTLY",
    "evidence": [
-    "tools/composer/solve.py"
+    "tools/composer/solve.py",
+    "tools/composer/blocks.py"
    ],
-   "measured": "",
-   "open": "New multi-problem combinations need a named clinician's approval before they enter the pool"
+   "measured": "the 14 composed practice cases (p1-scenario-composer-difficulty-s05) are variations of approved stories; none is a new combination of problems",
+   "open": "Not built. A clinician's approval is NOT the blocker (ADR-0008 makes it optional); the work is authoring: the composer varies who the patient is and never the clinical story, so each new multi-problem combination needs every value written from sourced tables, with a source row each, then Stage B and golden runs (DT-220)"
   },
   "p2-content-extensions-s03": {
    "owner": "Ruhan",

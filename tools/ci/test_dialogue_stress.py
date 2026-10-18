@@ -51,6 +51,18 @@ class Rules(unittest.TestCase):
         self.assertIn("LONG", judge("pain " * 61))
         self.assertIn("INTENT", judge("fine", intent="reveal_all"))
 
+    def test_a_common_word_shared_with_a_withheld_fact_is_not_a_leak_but_a_specific_one_is(self):
+        hidden = ["I had sips of water four hours ago."]
+        self.assertEqual(S.judge_reply("About four hours, I think.", "answer_question", ALLOWED, "q", hidden, [], frozenset({"hours", "about"})), [])
+        self.assertEqual(S.judge_reply("Only sips of water.", "answer_question", ALLOWED, "q", hidden, [], frozenset({"hours"})) [0][:4], "LEAK")
+
+    def test_common_words_are_those_of_at_least_three_cases(self):
+        cases = [{"history": [{"answer": "I never smoked", "variant": None}]}] * 3 + [{"history": [{"answer": "warfarin daily", "variant": None}]}]
+        c = S.common_words(cases)
+        self.assertIn("never", c)
+        self.assertIn("smoked", c)
+        self.assertNotIn("warfarin", c)
+
     def test_a_dose_the_authored_answers_contain_is_allowed(self):
         S_ = S.judge_reply("I take 5 mg every day.", "answer_question", ALLOWED, "q", [], ["I take 5 mg every day."])
         self.assertEqual(S_, [])

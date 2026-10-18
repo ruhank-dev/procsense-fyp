@@ -297,6 +297,12 @@
      "status": "PASS",
      "got": 2318,
      "needs": "<= 3000.0"
+    },
+    {
+     "id": "dialogue.stress_rules",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
     }
    ]
   },

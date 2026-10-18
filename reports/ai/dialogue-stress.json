@@ -1,0 +1,39 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+ "synthetic": true,
+ "independent": false,
+ "seed": 20261018,
+ "by_category": {
+  "normal": {
+   "n": 20,
+   "passed": 20,
+   "fell_back": 0
+  },
+  "abnormal": {
+   "n": 18,
+   "passed": 18,
+   "fell_back": 0
+  },
+  "ambiguous": {
+   "n": 12,
+   "passed": 12,
+   "fell_back": 0
+  },
+  "contradictory": {
+   "n": 16,
+   "passed": 16,
+   "fell_back": 0
+  },
+  "adversarial": {
+   "n": 24,
+   "passed": 24,
+   "fell_back": 0
+  }
+ },
+ "total": 90,
+ "violations": 0,
+ "ms_p50": 1860,
+ "ms_p95": 2392,
+ "failures": []
+}

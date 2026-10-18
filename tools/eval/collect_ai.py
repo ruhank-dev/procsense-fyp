@@ -174,7 +174,18 @@ def section_dialogue() -> list[str]:
             f"| Earned questions answered by the model | {d['earned']['model']} of {d['earned']['n']} (fell back {d['earned']['fallback']}) |", f"| Of those, the reply used the fact | {d['earned']['used_fact']} |",
             f"| Withheld questions answered \"cannot recall\" | {d['withheld']['cannot_recall']} of {d['withheld']['n']} |", f"| Validator leaks / shared-word leaks | {d['withheld']['validator_leaks']} / {d['withheld']['word_leaks']} |",
             f"| Latency p50 / p95 | {d['ms_p50']} ms / {d['ms_p95']} ms |", "",
-            "Limit: the leak checks are lexical; a paraphrase or a made-up denial is not seen by them (red team: docs/research/redteam_report.md). Every withheld reply is in the result file for a person to read.", ""]
+            "Limit: the leak checks are lexical; a paraphrase or a made-up denial is not seen by them (red team: docs/research/redteam_report.md). Every withheld reply is in the result file for a person to read.", ""] + stress_rows()
+
+
+def stress_rows() -> list[str]:
+    d = load("dialogue-stress.json")
+    if d is None:
+        return []
+    cats = ", ".join(f"{k} {v['passed']} of {v['n']}" for k, v in d["by_category"].items())
+    return ["Stress lines (SYNTHETIC, template-generated, judged by reply rules; the leak rule was refined after the first run, SD-012):", "",
+            "| Measure | Value |", "|---|---|",
+            f"| Lines passing every rule | {d['total'] - d['violations']} of {d['total']} ({cats}) |", f"| Fell back to the authored line | {sum(v['fell_back'] for v in d['by_category'].values())} |",
+            f"| Latency p50 / p95 | {d['ms_p50']} ms / {d['ms_p95']} ms |", ""]
 
 
 def section_debrief() -> list[str]:

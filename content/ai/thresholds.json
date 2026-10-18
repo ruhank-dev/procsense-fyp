@@ -99,6 +99,14 @@
      "op": "<=",
      "value": 3000,
      "ref": "plan: 3 s"
+    },
+    {
+     "id": "dialogue.stress_rules",
+     "file": "dialogue-stress.json",
+     "path": "violations",
+     "op": "==",
+     "value": 0,
+     "ref": "90 seeded stress lines (normal, abnormal, ambiguous, contradictory, adversarial) judged by deterministic reply rules; the rule was refined after the first run (SD-012), so this is a regression baseline"
     }
    ]
   },

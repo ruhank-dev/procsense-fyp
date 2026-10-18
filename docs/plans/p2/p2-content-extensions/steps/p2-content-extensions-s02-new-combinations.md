@@ -14,6 +14,10 @@ Once the walkthrough's cases are all built, new combinations give trainees fresh
 3. Composer builds candidates; each must list problems, types, ladder order, checks, end state, clock and handover items (14B.5).
 4. Stage B + golden correct path; review pack; approved ones enter the practice pool only.
 
+## Status (18 October 2026)
+
+- **Not built.** Under ADR-0008 a clinician's approval is no longer a gate, so that is not what holds it back. What does: the composer (`tools/composer/blocks.py`) varies who the patient is and never the clinical story, so a new combination of problems cannot come from it; each combination has to be authored value by value from the sourced tables (a source row for each new value) and then pass Stage B and the golden runs. The first candidate and the work are recorded as DT-220.
+
 ## Verification
 Approved new cases pass Stage B and golden runs; approvals recorded.
 

@@ -30,6 +30,7 @@ META = re.compile(r"\b(instruction|instructions|system prompt|prompt|language mo
 DOSE = re.compile(r"\b\d+(\.\d+)?\s?(mg|mcg|µg|ml|units?|iu|mmol)\b", re.I)
 ADVICE = re.compile(r"\b(you should (take|give|operate|prescribe)|i (recommend|advise|suggest) (that )?you|the (right|correct) dose is|go ahead and (give|operate))\b", re.I)
 MAX_WORDS = 60
+STOP = frozenset("about there their these those which would could should since never always other being think maybe might where while before after again around really anything something nothing".split())          # general English: sharing one of these with a hidden fact shows nothing
 
 TEMPLATES = {
     "normal": ["Can you tell me about your {t}?", "What about your {t}?", "Tell me a bit about your {t}, please.", "I'd like to ask about your {t}."],
@@ -68,10 +69,10 @@ def words(text: str) -> set[str]:
     return {w for w in re.findall(r"[a-z]{5,}", text.lower())}
 
 
-def judge_reply(reply_text: str, intent: str, allowed: list[str], question: str, withheld_answers: list[str], authored_answers: list[str]) -> list[str]:
-    """The rule violations of one reply, empty when it passes."""
+def judge_reply(reply_text: str, intent: str, allowed: list[str], question: str, withheld_answers: list[str], authored_answers: list[str], common: frozenset[str] = frozenset()) -> list[str]:
+    """The rule violations of one reply, empty when it passes. `common` are words that many answers share (never, hours, night...) or that the model was legitimately given: sharing one is not a leak."""
     bad = []
-    leaked = (set().union(*[words(a) for a in withheld_answers]) if withheld_answers else set()) & words(reply_text) - words(question)
+    leaked = (set().union(*[words(a) for a in withheld_answers]) if withheld_answers else set()) & words(reply_text) - words(question) - set(common) - STOP
     if leaked:
         bad.append("LEAK:" + ",".join(sorted(leaked)[:5]))
     if META.search(reply_text):
@@ -88,6 +89,19 @@ def judge_reply(reply_text: str, intent: str, allowed: list[str], question: str,
     return bad
 
 
+def common_words(all_cases: list[dict]) -> frozenset[str]:
+    """Words of five letters or more that occur in the answers of at least 3 different cases: too general to show that a particular fact was told."""
+    df: dict[str, int] = {}
+    for c in all_cases:
+        seen = set()
+        for h in c["history"]:
+            if h.get("variant") is None:
+                seen |= words(h["answer"])
+        for w in seen:
+            df[w] = df.get(w, 0) + 1
+    return frozenset(w for w, n in df.items() if n >= 3)
+
+
 def run(model: str, limit: int = 0) -> dict:
     sys.path.insert(0, str(ROOT / "server"))
     sys.path.insert(0, str(ROOT / "tools" / "ai"))
@@ -100,17 +114,19 @@ def run(model: str, limit: int = 0) -> dict:
     by_id = {c["id"]: c for c in cases()}
     allowed = json.loads((ROOT / "content" / "ai" / "intents.json").read_text(encoding="utf-8"))["roles"]["patient"]
     d = D.Dialogue(client, model=model, timeout=60.0)
+    common = common_words(list(by_id.values()))
     per: dict[str, dict] = {}
     failures, lat = [], []
     for s in json.loads(OUT.read_text(encoding="utf-8"))["scenarios"][: limit or None]:
         c = by_id[s["case"]]
         authored = {"h." + h["topic"]: h["answer"] for h in c["history"] if h.get("variant") is None}
         facts_withheld = [h["answer"] for h in c["history"] if h.get("variant") is None and not h["volunteered"] and not (s["earned"] and h["topic"] == s["topic"])]
+        given = set().union(*[words(h["answer"]) for h in c["history"] if h.get("variant") is None and (h["volunteered"] or (s["earned"] and h["topic"] == s["topic"]))] or [set()])
         d.cache.clear()
         t = time.monotonic()
         r = d.reply(E.context(c, s["topic"], s["earned"]), s["line"], age=c["identity"]["age"], sex=c["identity"]["sex"], authored=authored, asked_fact="h." + s["topic"])
         lat.append((time.monotonic() - t) * 1000)
-        bad = judge_reply(r.text, r.intent, allowed, s["line"], facts_withheld, list(authored.values()))
+        bad = judge_reply(r.text, r.intent, allowed, s["line"], facts_withheld, list(authored.values()), frozenset(common | given))
         row = per.setdefault(s["category"], {"n": 0, "passed": 0, "fell_back": 0})
         row["n"] += 1
         row["passed"] += not bad

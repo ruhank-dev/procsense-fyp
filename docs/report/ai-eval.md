@@ -141,6 +141,14 @@ Model qwen3.5:4b-q4_K_M (`d8b0f5e9760c`), 12 cases.
 
 Limit: the leak checks are lexical; a paraphrase or a made-up denial is not seen by them (red team: docs/research/redteam_report.md). Every withheld reply is in the result file for a person to read.
 
+Stress lines (SYNTHETIC, template-generated, judged by reply rules; the leak rule was refined after the first run, SD-012):
+
+| Measure | Value |
+|---|---|
+| Lines passing every rule | 90 of 90 (normal 20 of 20, abnormal 18 of 18, ambiguous 12 of 12, contradictory 16 of 16, adversarial 24 of 24) |
+| Fell back to the authored line | 0 |
+| Latency p50 / p95 | 1860 ms / 2392 ms |
+
 ## AI debrief (rewrite of the template debrief)
 
 Model qwen3.5:4b-q4_K_M (`d8b0f5e9760c`), prompt version 2, 48 golden sessions.

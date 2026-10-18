@@ -45,6 +45,19 @@ Built and measured by the engineer under the owner's instruction (details and nu
 
 **The gate now switches on:** asr, critic, debrief_ai, interpreter, multi_agent, narrative, patient_dialogue, plan_composer, tts, voice_orders. **Off:** classifier (SKIPPED: the independent set does not exist), classifier_synthetic and classifier_synthetic2 (recorded for information; the second's independent-evidence suite cannot pass by design).
 
+## 0f. Update of 18 October 2026, second session (CI without Actions, Urdu retired, Pulse built, speech on the card, fresh adversarial sets)
+
+Measured or built by the engineer under the owner's instructions; every number is in the file named beside it. Synthetic and AI-judged material is labelled as such everywhere and is not validation.
+
+* **CI:** GitHub Actions cannot start jobs (the account's payments failed or its spending limit was reached: no check of the code ran remotely for the pushes after `e517f67`). Nothing was bought. `task ci` is the required validation, `tools/ci/remote_status.py` keeps local and remote results apart, a run that never started is never a pass (docs/CI.md).
+* **Scope:** Urdu speech was retired by the owner (feature, step, plan and deferred item removed; 68 feature plans remain; Change Report 117). The product is English only.
+* **Pulse:** built and run on this desktop with free tools (recipe and fixes in `tools/pulse/README.md`); four scenarios recorded; the adapter replays a recorded run behind `IPhysiologyEngine` (11 C# tests, all 142 golden runs with a trace selected); LitePhysio stays the default (9 of 27 comparisons agree in direction; the main effect of each action does). Quest cost: Sannan, DC-05.
+* **Speech:** the recogniser runs on the card beside the resident 4B model: 0.58 s for a 3 to 7 s clip (target 0.7; 5.9 s on the processor). On 257 utterances of real mock consultations (PriMock57, CC BY 4.0, actors, British accents) the word error rate is 0.217 (doctors 0.234, patients 0.183). On-device candidates on the same clips: Whisper tiny.en 0.203, a 20M Zipformer 0.49 (ADR-0014, proposed; headset: DC-04).
+* **Classifier:** still off, and the picture is less rosy than the numbers of 17 October: on 48 FRESH evasive critical sentences the full path credits 3 under an ordinary act and the cue list alone catches 6; the cues are a floor, not the protection (`reports/ai/classifier-guard-only.json`, ADR-0013). A different-size labeller (qwen3.5:9b) cross-checks the synthetic sets (`tools/bench/cross_judge.py`).
+* **Dialogue:** 90 seeded stress lines (normal, abnormal, ambiguous, contradictory, adversarial): 90 pass the reply rules after the leak rule was refined once (SD-012), median 1.86 s, p95 2.39 s.
+* **Gates and triggers:** `tools/ai/adaptation_trigger.py` (CI) says neither the language-model nor the picture adaptation trigger is met; MedGemma is gated and unaccepted (`content/ai/model_candidates.json`); drug availability sits behind providers with live off (`docs/research/drug_availability.md`).
+* **Steps:** 48 steps ticked because their own criteria are met; 23 are "engineering done, external acceptance pending" with who is needed; the page is `docs/plans/ruhan-p1-p2-reconciliation.md`; headset tests: `docs/plans/sannan-device-checks.md`.
+
 ## 0d. Update of 17 October 2026 (the AI features are built; what the gate says)
 
 Built by the engineer under the owner's instruction, each with tests in CI and a measured result in `reports/ai/` (the generated page is `docs/report/ai-eval.md`):
