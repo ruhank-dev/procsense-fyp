@@ -9,6 +9,7 @@ namespace ProcSense.VR.Boot
         public string Title = "Corridor";
         public bool Restricted;
         public bool ArchitecturalSign;
+        public string Connection;
         private UnityEngine.UI.Button _button;
         private TMPro.TMP_Text _status;
         private RoomLoader _loader;
@@ -16,6 +17,7 @@ namespace ProcSense.VR.Boot
 
         private void Start()
         {
+            if (!string.IsNullOrEmpty(Connection)) return; // Physical handle; no Enter panel.
             if (ArchitecturalSign)
             {
                 // The room name/access notice are authored on the physical door.
@@ -45,6 +47,12 @@ namespace ProcSense.VR.Boot
         public void Enter()
         {
             if (Restricted) return;
+            if (!string.IsNullOrEmpty(Connection))
+            {
+                foreach (var door in FindObjectsByType<SwingDoor>())
+                    if (door.Connection == Connection) { door.Toggle(); return; }
+                return;
+            }
             if (_loader == null) _loader = FindAnyObjectByType<RoomLoader>();
             if (_loader != null) _loader.RequestRoom(Destination);
         }

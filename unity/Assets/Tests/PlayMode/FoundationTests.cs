@@ -74,7 +74,8 @@ namespace ProcSense.Tests.PlayMode
             var body = rig.GetComponentInChildren<XRBodyTransformer>();
             Assert.IsTrue(controller.enabled);
             Assert.IsTrue(body.useCharacterControllerIfExists);
-            var starts = new[] { new Vector3(0, 0, -1.4f), new Vector3(1.8f, 0, 1.4f), new Vector3(-2, 0, -1.4f), new Vector3(2, 0, -1.4f) };
+            // The hygiene cabinet occupies the old left/front corner; start the wall probe on clear floor.
+            var starts = new[] { new Vector3(0, 0, -1.4f), new Vector3(1.8f, 0, 1.4f), new Vector3(-2, 0, .55f), new Vector3(2, 0, -1.4f) };
             var directions = new[] { Vector3.back, Vector3.forward, Vector3.left, Vector3.right };
             for (int wall = 0; wall < starts.Length; wall++)
             {
@@ -153,6 +154,12 @@ namespace ProcSense.Tests.PlayMode
             {
                 simulator.keyboardXTranslateAction = reference;
                 action.Enable();
+                // Traverse between the tablet and new front-wall fixtures, rather than into the sink.
+                var capsule = rig.GetComponent<CharacterController>();
+                capsule.enabled = false;
+                rig.transform.position = new Vector3(0, 0, -.95f);
+                capsule.enabled = true;
+                Physics.SyncTransforms();
                 var headStart = rig.transform.InverseTransformPoint(rig.Camera.transform.position);
                 InputSystem.QueueStateEvent(device, new GamepadState { leftStick = Vector2.left });
                 float finish = Time.time + 2.5f;

@@ -5,8 +5,6 @@ using Unity.XR.CoreUtils;
 using UnityEditor;
 using UnityEditor.XR.Management;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 namespace ProcSense.EditorTools
 {
@@ -114,27 +112,7 @@ namespace ProcSense.EditorTools
         public static void ApplyLocomotion(XROrigin rig)
         {
             bool login = rig.GetComponentInParent<BootLoader>() != null;
-            bool sticks = EditorInputSettings.ThumbstickMovement && !login;
-            foreach (var manager in rig.GetComponentsInChildren<ControllerInputActionManager>(true))
-            {
-                manager.smoothMotionEnabled = sticks && manager.name == "Left Controller";
-                manager.smoothTurnEnabled = false;
-            }
-            foreach (var move in rig.GetComponentsInChildren<DynamicMoveProvider>(true))
-            {
-                move.moveSpeed = 1.5f;
-                move.enableFly = false;
-                move.enableStrafe = true;
-                move.leftHandMovementDirection = DynamicMoveProvider.MovementDirection.HeadRelative;
-                move.enabled = !login;
-            }
-            foreach (var turn in rig.GetComponentsInChildren<ContinuousTurnProvider>(true)) turn.enabled = false;
-            foreach (var turn in rig.GetComponentsInChildren<SnapTurnProvider>(true))
-            {
-                turn.turnAmount = 45;
-                turn.enableTurnAround = false;
-                turn.enabled = !login;
-            }
+            RigLocomotionSettings.Apply(rig, EditorInputSettings.ThumbstickMovement, login);
         }
     }
 }

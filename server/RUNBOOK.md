@@ -43,7 +43,7 @@ The one project holds real trainee data, so before the first real trainee signs 
 ## When something stops
 | Symptom | Cause | Do this |
 |---|---|---|
-| The dashboard says the project is paused | Free projects pause after 1 week of inactivity | Open the project in the dashboard and choose Restore. Wait a few minutes. Until the keep-alive exists (`p1-backend-s13`), open the project every few days. |
+| The dashboard says the project is paused | Free projects pause after 1 week of inactivity | Open the project in the dashboard and choose Restore. Wait a few minutes. Then find out why the keep-alive stopped: the Scheduled jobs workflow failed, or GitHub disabled the scheduled workflows after 60 days without a commit (see the exit list). |
 | The first request to the service takes about a minute | Render's free service sleeps after 15 minutes idle and wakes in about a minute | Wait and retry. The headset's upload queue already retries. Wake it before a demonstration by opening `/health`. |
 | An invitation email does not arrive | Wrong sender settings, Gmail refused the login, or the message went to spam | Check the spam folder, then Supabase > Logs; recreate the Gmail app password if needed. |
 | Prepared statement errors from the database | The app is connected through the transaction pooler with prepared statements on | Switch them off for that connection (s01). |
@@ -76,7 +76,7 @@ The image is built on GitHub (`.github/workflows/publish-image.yml`: the Linux e
 6. **First people:** sign in on the web page once, `task server-admin -- grant-platform-admin --user-id <id>`, `task server-admin -- create-organisation ...`, then add the others (People page, or `add-member`). Each person ticks the first consent box once.
 7. **Scheduled jobs:** GitHub > Settings > Secrets and variables > Actions: `SERVICE_URL` and `INTERNAL_KEY` (the same value as on Render); optional `RENDER_DEPLOY_HOOK` makes every new image deploy by itself. `.github/workflows/scheduled-jobs.yml` then wakes the service, touches the database and runs the verification sweep every 3 hours and the retention clean-up daily, and fails (and emails) when the service does not answer.
 8. **Prove it:** `task demo-session`, then `task headset-sim -- --url <address> --file demo_session.jsonl`; approve the code on the web page; the status should become `verified`. `server/DEMO.md` is the checklist for a demonstration.
-Not yet in place: the free-plan exit list (the rest of p1-backend-s13, DT-160). The 1,000-session load test passed on 16 Oct 2026 (EXP-BE-3 in docs/plans/p1/p1-backend/README.md; rerun with `task server-load-test -- --database-url <a local database>`). The nightly backup and the size monitor exist: see Backup and restore.
+The free-plan exit list is in Free-plan limits and the exit list (below). The 1,000-session load test passed on 16 Oct 2026 (EXP-BE-3 in docs/plans/p1/p1-backend/README.md; rerun with `task server-load-test -- --database-url <a local database>`). The nightly backup and the size monitor exist: see Backup and restore.
 
 ## Backup and restore
 The free plan keeps no backups, so the nightly job is the only copy of the data.
@@ -133,14 +133,24 @@ A headset asks `POST /auth/device/start`, shows the code, and a person signed in
 3. **Gmail app password:** revoke it in the Google account and create a new one; update Supabase's SMTP form.
 4. **After any leak** (a key in git, chat or a screenshot): rotate first, then clean up. Deleting from git history does not make a leaked key safe.
 
-## Free-plan limits (checked 13 October 2026)
-| Service | Limit | Source |
-|---|---|---|
-| Supabase Free | 2 active projects per person, 500 MB database and 500 MB memory per project, 50,000 monthly active users, 5 GB egress, pauses after 1 week of inactivity, no automatic backups | supabase.com/pricing |
-| Supabase built-in email | 2 messages an hour, only to team members, no delivery guarantee; invitations and password sign-up need custom SMTP (30 an hour once set) | supabase.com/docs/guides/auth/auth-smtp |
-| Render free web service | Sleeps after 15 minutes idle (about 1 minute to wake), 750 free hours a month, no persistent disk, may restart at any time, not for production; free Postgres expires after 30 days (not used) | render.com/docs/free |
+## Free-plan limits and the exit list (checked 18 October 2026)
+ProcSense is a final-year project and runs on free plans only (decision of 18 Oct 2026). For each limit: what we use now, what watches it, when to act and what to do. Paying is the last step, not the first; it is the owner's decision.
+
+| Service and limit | Our use now | Watched by | Act when | What to do |
+|---|---|---|---|---|
+| **Supabase database: 500 MB** | 1,000 sessions take about 20.8 MB (about 12 KB each with their score rows, EXP-BE-3), so about 32,000 sessions fit | The Database monitor workflow (daily; opens an issue at 80%) | The monitor's issue (400 MB) | First shorten the retention period (an organisation can choose 6 months; the stored log and report page go, the results stay). If that is not enough: Supabase Pro (from USD 25 a month: 8 GB, daily backups kept 7 days, no pausing), or move to another PostgreSQL (the nightly backup restores into any PostgreSQL 17: the drill in Backup and restore) |
+| **Supabase pauses a project after 7 days of inactivity** | The Scheduled jobs workflow calls `/health/db` (a database query), the verification sweep and, daily, the retention clean-up: at least 8 database calls a day (checked 18 Oct 2026: runs #23 and #24 green, `/health/db` 8 ms) | The Scheduled jobs workflow fails and emails when the service or the database does not answer | It fails two days running, or the project shows as paused | Restore the project in the dashboard (When something stops), then fix the scheduled workflow |
+| **GitHub disables scheduled workflows in a public repository after 60 days without activity** | The keep-alive, the nightly backup and the monitor are all scheduled workflows | Nobody: GitHub does it silently | Before a break of more than about 6 weeks with no commit (for example after the final evaluation) | Push any small commit before the break; after one, open Actions and choose **Enable workflow** for Scheduled jobs, Nightly backup and Database monitor, then run the backup by hand |
+| **Supabase egress: 5 GB a month** | Small: uploads, dashboards and exports of a few MB | Supabase's Usage page | 80% | Export less often; Supabase Pro includes 250 GB |
+| **Supabase: no automatic backups** | The Nightly backup workflow: an encrypted dump, its restore proved each night, kept 14 days | The workflow opens an issue when a backup fails or shrinks by half | Any failure | Run the backup by hand (Actions, Nightly backup, Run workflow) the same day |
+| **Supabase built-in email: 2 an hour** | Custom SMTP (Gmail app password), 30 an hour | Invitations not arriving | Many invitations at once | Send them over several hours, or another SMTP provider |
+| **Render free web service: sleeps after 15 minutes idle; 750 instance hours a month per workspace; outbound bandwidth and build minutes have monthly included amounts, and without a payment method the service is suspended or builds stop when they run out; may restart at any time** | One service; it wakes in about 33 s (measured 16 Oct 2026); sleeping hours do not count | The Deploy workflow and `/health` | Before a demonstration (to avoid the wake-up), or a suspension notice from Render | Open `/health` two minutes before a demonstration. Do **not** add a ping to keep it awake: that spends the 750 hours. If Render suspends it: run the same image on a team laptop with Docker for the demonstration, or the cheapest paid Render instance (owner's decision; the price was not read today) |
+| **GitHub Actions** | Free and unlimited on standard runners while the repository is public (since 18 Oct 2026). A private repository gets 2,000 minutes a month on GitHub Free, which ProcSense used up in about five days | The workflow runs | The repository becomes private again | Run CI only on main and pull requests (the local `task ci` and the pre-push hook check every branch), or a self-hosted runner on a team machine |
+| **Git LFS: 10 GiB storage and 10 GiB download bandwidth a month, counted on the owner's account (also for a public repository); with a USD 0 budget it is blocked for the rest of the month when used up** | 13 files, 44 MB (lighting and the patient's idle animation). CI does not download LFS files | Nobody automatically | Storage over about 5 GiB, or many fresh clones in a month | Keep only what the build needs in LFS; never switch on `lfs: true` in a CI checkout |
+
+Sources read on 18 Oct 2026: supabase.com/pricing, render.com/docs/free, docs.github.com (Actions billing, Git LFS billing, disabling and enabling workflows).
 
 ## Open items
 - Ruhan and Sannan accept the Supabase invitation; Ruhan becomes administrator and a second owner of every account.
 - A Render workspace for ProcSense and the service (end of s01); the way Render receives the code is decided with Ruhan (CI-built image preferred).
-- Done: the calendar reminder to open `procsense-dev` every few days until the keep-alive exists (Moiz).
+- Done: the calendar reminder to open `procsense-dev` every few days until the keep-alive existed (Moiz); the keep-alive runs since 15 Oct 2026, so the reminder is no longer needed.

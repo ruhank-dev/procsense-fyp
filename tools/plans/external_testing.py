@@ -11,6 +11,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -83,6 +84,11 @@ def all_items(data: dict) -> list[dict]:
     return [dict(i, group="device") for i in data["device_checks"]] + [dict(i, group="unity", kind="unity") for i in data["unity_groups"]] + [dict(i, group="other") for i in data["other_items"]]
 
 
+def git_ignored(rel: str) -> bool:
+    """True when git ignores the path: a generated output, not a file the repository holds."""
+    return subprocess.run(["git", "check-ignore", "-q", "--no-index", rel], cwd=ROOT).returncode == 0
+
+
 def problems(data: dict, recon: dict, steps: dict[str, dict]) -> list[str]:
     out = []
     items = all_items(data)
@@ -95,7 +101,7 @@ def problems(data: dict, recon: dict, steps: dict[str, dict]) -> list[str]:
             if s not in steps:
                 out.append(f"{it['id']}: {s} is not a step")
         for p in it.get("prepared", []):
-            if not (ROOT / p).exists():
+            if not (ROOT / p).exists() and not git_ignored(p):   # a git-ignored output (such as build/voice) is made by a task on the tester's machine, so a clone cannot have it
                 out.append(f"{it['id']}: prepared file {p} does not exist")
         for key in (("title", "needs", "pass_rule") if it["group"] != "unity" else ("title", "needs", "who")):
             if not it.get(key):

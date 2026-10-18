@@ -12,6 +12,7 @@ namespace ProcSense.VR.ActionEmitters
 {
     /// <summary>Physical placement sends actions; accepted public log entries drive the pose, including tablet and scene reload.</summary>
     [RequireComponent(typeof(XRGrabInteractable))]
+    [DefaultExecutionOrder(-10)]
     public sealed class SensorAttachment : ActionEmitter, IXRSelectFilter
     {
         [SerializeField] private XRSocketInteractor destination;
@@ -163,6 +164,18 @@ namespace ProcSense.VR.ActionEmitters
                     }
                     transform.SetPositionAndRotation(restingPlace.position, restingPlace.rotation);
                     Physics.SyncTransforms();
+                }
+                if (_attached && destination.attachTransform != null)
+                {
+                    // Follow a moving patient bone in the same LateUpdate, including offset grab anchors.
+                    var attach = _grab.GetAttachTransform(destination);
+                    var target = destination.attachTransform;
+                    transform.rotation = target.rotation * Quaternion.Inverse(attach.rotation) * transform.rotation;
+                    transform.position += target.position - attach.position;
+                    var pose = new Pose(transform.position, transform.rotation);
+                    _grab.SetTargetPose(pose);
+                    var body = GetComponent<Rigidbody>();
+                    if (body != null) { body.position = pose.position; body.rotation = pose.rotation; }
                 }
                 _returnHome = false;
                 if (wrappedVisual != null)

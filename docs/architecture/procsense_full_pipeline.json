@@ -23931,7 +23931,7 @@
    "id": "EXT-PIPER",
    "name": "Piper TTS",
    "kind": "TTS engine",
-   "licence": "MIT (archived); successor GPL-3.0; each voice has its own licence (only en_GB-cori-high is allowed so far)",
+   "licence": "MIT (archived); successor GPL-3.0; each voice has its own licence (the British voices are allowed for academic, non-commercial use except en_GB-alan-medium, not read)",
    "url": "https://github.com/rhasspy/piper",
    "status": "not installed",
    "used_by": [
@@ -24049,7 +24049,7 @@
     "B14",
     "B20"
    ],
-   "restrictions": "Attribution required. Take the data from the PhysioNet release: the vitaldb.net copy is non-commercial, research and development only (re-derive the aggregates: DT-183)."
+   "restrictions": "Attribution; academic, non-commercial use (the vitaldb.net copy is CC BY-NC-SA 4.0; ProcSense is a final-year project). The PhysioNet release (CC BY 4.0) if the project is ever sold."
   },
   {
    "id": "DS-0002",
@@ -24179,7 +24179,7 @@
    "name": "Regensburg Pediatric Appendicitis",
    "version": "UCI 938",
    "licence": "CC BY-NC 4.0",
-   "status": "REJECTED",
+   "status": "NOT USED",
    "modality": "paediatric appendicitis scores",
    "use": "None (licence not confirmed; paediatric).",
    "derived": "none",
@@ -24187,7 +24187,7 @@
    "planned_analysis": "None; revisit only if a paediatric case is added.",
    "feeds": [],
    "features": [],
-   "restrictions": "Non-commercial licence; children only."
+   "restrictions": "Children only; the non-commercial licence would allow academic use."
   },
   {
    "id": "DS-0009",
