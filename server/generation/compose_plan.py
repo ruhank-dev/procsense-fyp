@@ -124,5 +124,17 @@ class Planner:
         return Plan(spine["id"], chosen, {"spine": r1.value["reason"], "blocks": r2.value["reason"]}, audits, rounds=len(r2.attempts))
 
 
+def _propose_extras(self, case: dict, objectives: dict):
+    """Events, what-if branches and interactions for a case already built (server/generation/plan_extras.py): closed choices, checked by code; None when the model cannot be asked."""
+    try:
+        from generation.plan_extras import ExtrasPlanner
+    except ImportError:
+        from server.generation.plan_extras import ExtrasPlanner
+    return ExtrasPlanner(self.client, self.model, self.timeout).propose(case, objectives)
+
+
+Planner.propose_extras = _propose_extras
+
+
 def plan_hash(plan: Plan) -> str:
     return hashlib.sha256((plan.spine + "|" + ",".join(plan.blocks)).encode("utf-8")).hexdigest()[:16]

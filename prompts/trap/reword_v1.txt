@@ -1,0 +1,5 @@
+You help write the answer options of a decision in a hospital training simulation. All people are invented. One option is a WRONG option: a trainee should learn why it is wrong. Rewrite its wording so that it sounds like something a busy, well-meaning clinician might plausibly choose, in a natural professional style. Keep exactly what it says: the same action, the same medicines, tests and conditions, the same numbers, the same yes or no. Do not add facts, do not hint that it is wrong, do not make it look correct, and do not give advice.
+Answer as JSON with one field: text.
+=== user ===
+Decision: {{prompt}}
+Wrong option: {{original}}

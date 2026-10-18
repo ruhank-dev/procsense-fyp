@@ -139,6 +139,13 @@ def build_skeleton(objectives: dict, index: retrieve.Index, cases: list[dict], t
         numeric_log = numeric.vary_numbers(card, objectives["seed"] if numeric_seed is None else numeric_seed, packs.LabPack(), packs.load("vitals"), _news2()) if vary_numbers else []
         picked = media.select_media(card, spine["id"], objectives["seed"] if media_seed is None else media_seed)
         picked["defects"] = media.check_media(card, picked)
+        if planner is not None and hasattr(planner, "propose_extras") and not force_spine:
+            extras = planner.propose_extras(card, objectives)                       # events, branches and interactions: closed choices, checked by code (plan_extras.validate)
+            if extras:
+                plan_info = {**plan_info, "extras": extras}
+                if extras["interactions"]:
+                    from . import plan_extras
+                    plan_extras.apply_to_case(card, extras["interactions"])
         slots: dict[str, list[str]] = {}
         for b in choice.blocks:
             slots.setdefault(b["type"], []).append(b["id"])

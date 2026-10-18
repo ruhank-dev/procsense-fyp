@@ -29,6 +29,7 @@ class Context:
     critic: object | None = None                # generation.critic.Critic, or None: no model review of the free text
     planner: object | None = None               # generation.compose_plan.Planner, or None: the deterministic choice of story and blocks
     narrator: object | None = None              # generation.narrative.Narrator, or None: the patient keeps the authored words
+    trap_writer: object | None = None           # generation.trap_writer.TrapWriter, or None: the wrong options keep the authored words
 
     def discovery(self, spine: str) -> list[dict]:
         return skeleton.discovery_rules(spine) if self.discovery_all is None else [r for r in self.discovery_all if r["case"] == spine]
@@ -47,6 +48,8 @@ def _candidate(objectives: dict, ctx: Context, serial: int, **kw) -> tuple[dict,
     sk = skeleton.build_skeleton(objectives, ctx.index, ctx.cases, ctx.tables, ctx.behaviour_labels, ctx.library, serial, planner=ctx.planner, **kw)
     if ctx.narrator is not None:
         sk["narrative"] = ctx.narrator.apply(sk["case"], objectives["seed"])         # words only; the gate below checks the changed case again
+    if ctx.trap_writer is not None:
+        sk["trap_wording"] = ctx.trap_writer.apply(sk["case"], objectives["seed"])   # the text of wrong options only; ids, correct flags and consequences are untouched and the gate checks the case again
     return sk, novelty.levels_of(sk["case"], sk["media"])
 
 

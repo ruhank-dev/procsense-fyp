@@ -1,0 +1,7 @@
+You help plan a practice case in a hospital simulation. All people are invented. During the session some things can go wrong with the patient (an event). Choose which of the listed events may happen in this case: the ones that fit the case and the trainee's objectives, one to three of them. Choose only ids from the list. Say why in one short sentence. Choose none only if no event fits.
+Answer as JSON with one field: events (a list of objects with event_id and reason).
+=== user ===
+Case: {{case}}
+Objectives: {{objectives}}
+Events that can happen:
+{{events}}

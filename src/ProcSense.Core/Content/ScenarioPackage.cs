@@ -15,6 +15,8 @@ namespace ProcSense.Core.Content
 
         public string CaseId { get; }
         public string? Spine { get; }
+        /// <summary>The events the package plans for a practice session (comma separated event ids from provenance.plan.events), or empty: every approved event may fire.</summary>
+        public string PlannedEvents { get; }
         /// <summary>SHA-256 of the package text (line endings normalised): the value a host gives the session as its package hash.</summary>
         public string PackageHash { get; }
 
@@ -30,6 +32,11 @@ namespace ProcSense.Core.Content
             if (c.Str("status") != ContentGate.GeneratedPracticeOnly) throw new ContentException("package.case.status: the case in a package is " + ContentGate.GeneratedPracticeOnly);
             if (c.Str("created_by") != "composer") throw new ContentException("package.case.created_by: a package holds a composed case");
             Spine = c.Obj("composition").Str("spine");
+            var planned = new List<string>();
+            var prov = root.Has("provenance") ? root.ObjOrNull("provenance") : null;
+            var plan = prov != null && prov.Has("plan") ? prov.ObjOrNull("plan") : null;
+            if (plan != null && plan.Has("events")) foreach (var e in plan.Arr("events")) planned.Add(new JsonObj(e, "package.provenance.plan.events").Str("event_id"));
+            PlannedEvents = string.Join(",", planned);
             _caseJson = MiniJson.Write(caseNode);
         }
 

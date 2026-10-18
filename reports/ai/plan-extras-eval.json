@@ -1,0 +1,218 @@
+{
+  "synthetic": false,
+  "model": "qwen3.5:4b-q4_K_M",
+  "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+  "cases": 53,
+  "cases_with_eligible_events": 53,
+  "cases_with_interaction_candidates": 24,
+  "proposals_made": 53,
+  "refused_by_validation": 0,
+  "cases_with_events": 48,
+  "share_cases_with_interaction": 0.453,
+  "baseline_share_cases_with_interaction": 0.453,
+  "cases_with_interactions": 24,
+  "model_chose_no_interaction_despite_candidates": 0,
+  "ineligible_events_in_final_proposals": 0,
+  "event_use": {
+    "E-FAST-BREATHING": 24,
+    "E-HIGH-HR": 36,
+    "E-HYPERSENSITIVITY": 5,
+    "E-LOW-BP": 25,
+    "E-LOW-HR": 3,
+    "E-LOW-OXYGEN": 15,
+    "E-SLOW-BREATHING": 5
+  },
+  "seconds_p50": 10.2,
+  "seconds_p95": 21.0,
+  "samples_for_human_rating": [
+    {
+      "case": "SC-1",
+      "events": [
+        {
+          "event_id": "E-HYPERSENSITIVITY",
+          "whatif_id": "w29",
+          "reason": "The patient has a history of severe penicillin allergy and is currently receiving antibiotics for sepsis, making an allergic reaction a high-risk event."
+        },
+        {
+          "event_id": "E-LOW-BP",
+          "whatif_id": "w01",
+          "reason": "The patient presents with hypotension (BP 94/58) due to sepsis and poor circulation, which is expected to worsen during the case."
+        }
+      ],
+      "interactions": [
+        {
+          "pair": "sc1.aki+sc1.sepsis",
+          "problems": [
+            "sc1.aki",
+            "sc1.sepsis"
+          ],
+          "reason": "Showing these together helps the trainee recognize that elevated creatinine, lactate, and white blood cell count are shared findings indicating sepsis-induced acute kidney injury."
+        }
+      ]
+    },
+    {
+      "case": "SC-10",
+      "events": [
+        {
+          "event_id": "E-HIGH-HR",
+          "whatif_id": "w03",
+          "reason": "This event simulates pain response which aligns with the objective of prioritizing pain relief before surgery."
+        },
+        {
+          "event_id": "E-FAST-BREATHING",
+          "whatif_id": "w08",
+          "reason": "This event represents acute distress caused by severe abdominal pain, reinforcing the need for immediate intervention and communication strategies."
+        }
+      ],
+      "interactions": []
+    },
+    {
+      "case": "SC-11",
+      "events": [
+        {
+          "event_id": "E-HIGH-HR",
+          "whatif_id": "w03",
+          "reason": "The patient's NEWS2 score of 8 and confusion due to sepsis typically present with tachycardia as a compensatory mechanism."
+        },
+        {
+          "event_id": "E-LOW-OXYGEN",
+          "whatif_id": "w07",
+          "reason": "Sepsis-induced tissue hypoperfusion and potential underlying respiratory compromise often lead to desaturation in such cases."
+        },
+        {
+          "event_id": "E-FAST-BREATHING",
+          "whatif_id": "w08",
+          "reason": "Confusion and sepsis frequently cause increased work of breathing and tachypnea as part of the systemic inflammatory response."
+        }
+      ],
+      "interactions": [
+        {
+          "pair": "sc11.capacity+sc11.sepsis",
+          "problems": [
+            "sc11.capacity",
+            "sc11.sepsis"
+          ],
+          "reason": "This pair is crucial because the sepsis diagnosis and loss of capacity are directly linked by the same underlying finding of a perforated appendix with free fluid, which explains both the patient's se"
+        }
+      ]
+    },
+    {
+      "case": "SC-12",
+      "events": [
+        {
+          "event_id": "E-LOW-HR",
+          "whatif_id": "w04",
+          "reason": "Low potassium due to hemolysis can lead to bradycardia, aligning with the objective of recognizing electrolyte-induced cardiac changes."
+        },
+        {
+          "event_id": "E-FAST-BREATHING",
+          "whatif_id": "w08",
+          "reason": "Hypoxia from hemolytic anemia may cause tachypnea and rapid breathing as a compensatory mechanism."
+        }
+      ],
+      "interactions": [
+        {
+          "pair": "sc12.k+sc12.na",
+          "problems": [
+            "sc12.k",
+            "sc12.na"
+          ],
+          "reason": "Demonstrating how haemolysis causes falsely elevated potassium while masking the true severity of sodium depletion."
+        }
+      ]
+    },
+    {
+      "case": "SC-13",
+      "events": [
+        {
+          "event_id": "E-HIGH-HR",
+          "whatif_id": "w03",
+          "reason": "The patient's unexplained anaemia and ongoing warfarin use with an elevated INR create a high risk for internal bleeding, which often manifests as tachycardia (high heart rate) as a compensatory hemod"
+        },
+        {
+          "event_id": "E-LOW-BP",
+          "whatif_id": "w01",
+          "reason": "Active bleeding due to uncontrolled warfarin therapy and anaemia can lead to significant blood loss, resulting in hypotension (low blood pressure)."
+        }
+      ],
+      "interactions": []
+    },
+    {
+      "case": "SC-14",
+      "events": [
+        {
+          "event_id": "E-HIGH-HR",
+          "whatif_id": "w03",
+          "reason": "The patient's heart rate is already rising from 104 to 122 bpm, which aligns with the objective of assessing deterioration before surgery."
+        },
+        {
+          "event_id": "E-LOW-BP",
+          "whatif_id": "w01",
+          "reason": "Given the rapid rise in heart rate and high fever in a patient with suspected appendicitis, hypotension is a plausible complication indicating worsening sepsis requiring immediate intervention."
+        },
+        {
+          "event_id": "E-FAST-BREATHING",
+          "whatif_id": "w08",
+          "reason": "The combination of tachycardia, high fever, and rising heart rate suggests respiratory distress or compensatory mechanisms, making rapid breathing a likely accompanying event."
+        }
+      ],
+      "interactions": []
+    },
+    {
+      "case": "SC-15",
+      "events": [
+        {
+          "event_id": "E-HYPERSENSITIVITY",
+          "whatif_id": "w29",
+          "reason": "This event directly tests the trainee's ability to recognize and manage anaphylaxis in a patient with a known new antibiotic allergy."
+        },
+        {
+          "event_id": "E-LOW-BP",
+          "whatif_id": "w01",
+          "reason": "Hypotension is a common progression of anaphylactic shock, requiring the trainee to confirm stability after adrenaline administration and manage ongoing hemodynamic support."
+        }
+      ],
+      "interactions": [
+        {
+          "pair": "sc15.anaes+sc15.time",
+          "problems": [
+            "sc15.anaes",
+            "sc15.time"
+          ],
+          "reason": "Both findings rely on the same abnormal Tryptase result, which indicates an allergic reaction requiring coordinated management between anesthesia and surgical planning."
+        }
+      ]
+    },
+    {
+      "case": "SC-16",
+      "events": [
+        {
+          "event_id": "E-HIGH-HR",
+          "whatif_id": "w03",
+          "reason": "The patient's likely aspiration risk and airway compromise due to delayed stomach emptying may trigger a stress response or pre-existing anxiety, leading to tachycardia."
+        },
+        {
+          "event_id": "E-LOW-OXYGEN",
+          "whatif_id": "w07",
+          "reason": "Given the high STOP-BANG score (indicating sleep apnea) and the aspiration risk from delayed gastric emptying, the patient may develop hypoxia during induction."
+        },
+        {
+          "event_id": "E-SLOW-BREATHING",
+          "whatif_id": "w09",
+          "reason": "Airway obstruction caused by the bloat or sedation effects on a patient with severe sleep apnea can result in inadequate respiratory effort and slow breathing."
+        }
+      ],
+      "interactions": [
+        {
+          "pair": "sc16.glp+sc16.osa",
+          "problems": [
+            "sc16.glp",
+            "sc16.osa"
+          ],
+          "reason": "Both findings indicate high risks of aspiration and airway compromise, necessitating referral to the anaesthetist."
+        }
+      ]
+    }
+  ],
+  "note": "Proxies only: the validator decides what is allowed; whether the chosen events/interactions are relevant to the case is a human rating (EX-03)."
+}

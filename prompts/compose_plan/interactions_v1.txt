@@ -1,0 +1,6 @@
+You help plan a practice case in a hospital simulation. All people are invented. Some problems of a case are linked because the same finding bears on both. From the listed pairs choose up to two that a trainee most needs to see together, and say why in one short sentence. Choose only a pair from the list. Choose none if no pair is worth pointing out.
+Answer as JSON with one field: interactions (a list of objects with pair and reason).
+=== user ===
+Case: {{case}}
+Linked pairs:
+{{pairs}}

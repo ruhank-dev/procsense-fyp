@@ -54,7 +54,7 @@ internal static class Commands
         var content = ContentLoader.Load(Reader(o), caseId);
         if (Guard(o, content, caseId, mode) is { } refused) return refused;
         var script = ActionScript.Parse(File.ReadAllText(Need(o, "actions")));
-        var options = new SessionOptions(Enum.Parse<TrainingLevel>(o.GetValueOrDefault("level", "beginner"), true), o.GetValueOrDefault("variant", ""), o.ContainsKey("noise"), o.GetValueOrDefault("pulse-trace", ""));
+        var options = new SessionOptions(Enum.Parse<TrainingLevel>(o.GetValueOrDefault("level", "beginner"), true), o.GetValueOrDefault("variant", ""), o.ContainsKey("noise"), o.GetValueOrDefault("pulse-trace", ""), o.GetValueOrDefault("events", ScenarioOf(o)?.PlannedEvents ?? ""));
         var session = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content), options);
         SessionFile.Play(session, script);
 

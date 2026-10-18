@@ -79,6 +79,11 @@ namespace ProcSense.Core.Events
             session.DirectorStep = this;
             _tables = _fixedTables ?? _content.Events;
             _library = _tables.For(session.Mode);
+            if (session.Mode == SessionMode.Practice && session.PlannedEvents.Length > 0)                       // the case plans which events may fire (practice only); an id the library does not know is simply never met
+            {
+                var planned = new HashSet<string>(session.PlannedEvents.Split(','), StringComparer.Ordinal);
+                _library = _library.Where(d => planned.Contains(d.Id)).ToList();
+            }
             _rng = session.Random.Stream("events");
             _anyWatching = _library.Count > 0 || _schedule.Count > 0;
         }

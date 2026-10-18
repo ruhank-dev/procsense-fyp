@@ -52,16 +52,33 @@ def assemble(skeleton: dict, objectives: dict, index: retrieve.Index, models: li
         pkg["provenance"]["plan"] = {"method": "model", "rounds": plan["rounds"], "reasons": plan["reasons"]}
     elif plan:
         pkg["provenance"]["plan"] = {"method": "solver", "why": plan.get("why", "")}
+    extras = plan.get("extras")
+    if extras:
+        models = list(models or [])
+        seen = {(x["model"], x["model_digest"]) for x in extras["audit"] if x["outcome"] == "ok"}
+        models += [{"role": "plan_extras", "name": m, "digest": d} for m, d in sorted(seen)]
+        pkg["provenance"].setdefault("prompts", {}).update({f"{x['prompt_id']}@{x['prompt_version']}": x["prompt_sha256"] for x in extras["audit"]})
+        pkg["provenance"].setdefault("plan", {"method": plan.get("method", "solver")})
+        pkg["provenance"]["plan"]["events"] = extras["events"]
+        pkg["provenance"]["plan"]["interactions"] = extras["interactions"]
+        pkg["provenance"]["stages"].append("LG-04")
     nar = skeleton.get("narrative")
     if nar and any(x["method"] == "model" for x in nar["lines"]):
         pkg["narrative"] = {"persona": nar["persona"], "lines": nar["lines"]}
         seen = {(a["model"], a["model_digest"]) for a in nar["audit"] if a["outcome"] == "ok"}
         models = (models or []) + [{"role": "narrative", "name": m, "digest": d} for m, d in sorted(seen)]
-        pkg["provenance"]["prompts"] = {f"{a['prompt_id']}@{a['prompt_version']}": a["prompt_sha256"] for a in nar["audit"]}
+        pkg["provenance"].setdefault("prompts", {}).update({f"{a['prompt_id']}@{a['prompt_version']}": a["prompt_sha256"] for a in nar["audit"]})
         pkg["provenance"]["stages"].append("LG-06")
         pkg["quality"]["narrative_audit"] = [{k: a[k] for k in ("task", "latency_ms", "attempts", "outcome", "input_hash", "output_hash")} for a in nar["audit"]]
     elif nar:
         pkg["narrative"] = {"persona": nar["persona"], "lines": nar["lines"]}
+    trap = skeleton.get("trap_wording")
+    if trap and any(x["method"] == "model" for x in trap["lines"]):
+        pkg["trap_wording"] = {"lines": trap["lines"]}
+        seen = {(a["model"], a["model_digest"]) for a in trap["audit"] if a["outcome"] == "ok"}
+        models = (models or []) + [{"role": "trap_writer", "name": m, "digest": d} for m, d in sorted(seen)]
+        pkg["provenance"].setdefault("prompts", {}).update({f"{a['prompt_id']}@{a['prompt_version']}": a["prompt_sha256"] for a in trap["audit"]})
+        pkg["provenance"]["stages"].append("LG-06")
     if models:
         pkg["provenance"]["models"] = models
     pkg["media"] = skeleton.get("media", {"slots": []})
