@@ -1,27 +1,31 @@
 {
- "written": "18 October 2026",
+ "written": "18 October 2026 (second session)",
  "steps": {
   "p1-ai-infrastructure-s01": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "DONE",
+   "now": "ENG_DONE",
    "evidence": [
     "tools/ai/check_hosts.py",
     "docs/architecture/deployment.md"
    ],
-   "measured": "check_hosts finds Ollama, the two models and the card; unit tests in tools/ai/test_benchmark.py"
+   "measured": "check_hosts finds Ollama, the two models and the card on the desktop; unit tests in tools/ai/test_benchmark.py",
+   "external": "the laptop (RTX 4050), or the owner dropping the second machine from the step",
+   "open": "The step verifies both machines; only the desktop has been checked"
   },
   "p1-ai-infrastructure-s02": {
    "owner": "Ruhan",
    "before": "Open (desktop BT0 to BT2 only)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "tools/ai/benchmark.py",
     "tools/ai/bench_report.py",
     "docs/research/model_benchmarks.md"
    ],
    "measured": "4B 58.6 tokens/s wholly on the card, 9B 11.7 tokens/s at 57 percent on the card; 100 percent valid JSON; grounding 59 of 60 and 60 of 60 (4B)",
-   "open": "The laptop (RTX 4050) alone, with Unity and the recogniser loaded, served over the LAN, thinking-on runs and the blind human rating (BT3): needs the laptop and raters (DT-113, DT-187, DT-188)"
+   "open": "The laptop (RTX 4050) alone, with Unity and the recogniser loaded, served over the LAN, thinking-on runs and the blind human rating (BT3). The owner (18 Oct 2026) set the desktop as the baseline and said laptop benchmarks must not block software work",
+   "external": "the laptop, Unity beside the model (Sannan, check DC-01) and blind raters (BT3)"
   },
   "p1-ai-infrastructure-s03": {
    "owner": "Ruhan",
@@ -35,14 +39,15 @@
   "p1-ai-infrastructure-s04": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tools/labelling/label.py",
     "tools/ci/test_labelling.py",
     "docs/research/labelling/guidelines.md"
    ],
    "measured": "agreement (Cohen kappa and quadratic-weighted kappa), adjudication and frozen splits tested",
-   "open": "The labelling itself needs two people per item and an adjudicator (DT-203)"
+   "open": "The labelling itself needs two people per item and an adjudicator (DT-203)",
+   "external": "two labellers per item and an adjudicator (DT-203)"
   },
   "p1-ai-infrastructure-s05": {
    "owner": "Ruhan",
@@ -51,8 +56,7 @@
    "evidence": [
     "docs/architecture/unity_ai_hooks.md"
    ],
-   "measured": "twelve hooks with inputs, outputs, timeouts and fallbacks written against the gateway routes",
-   "open": "The Unity side of the hooks is Sannan's (voice client, DT-205)"
+   "measured": "twelve hooks with inputs, outputs, timeouts and fallbacks written against the gateway routes"
   },
   "p1-ai-language-s01": {
    "owner": "Ruhan",
@@ -67,13 +71,15 @@
   "p1-ai-language-s02": {
    "owner": "Ruhan",
    "before": "Built 17 Oct, measured on the desktop",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "tools/ai/benchmark.py",
     "docs/research/model_benchmarks.md"
    ],
    "measured": "see p1-ai-infrastructure-s02: speed, structured output and grounding for qwen3.5 4B and 9B",
-   "open": "The laptop and Unity runs and the human rating of wording (DT-113, DT-203)"
+   "open": "The laptop and Unity runs and the human rating of wording (DT-113, DT-203)",
+   "external": "the laptop, Unity beside the model (Sannan, DC-01) and raters of wording"
   },
   "p1-ai-language-s03": {
    "owner": "Ruhan",
@@ -109,15 +115,18 @@
   "p1-ai-language-s06": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (synthetic only)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "tools/bench/cross_judge.py",
+    "tests/classifier_synthetic_v2/adversarial_manifest.json",
     "content/assessment/taxonomy.json",
     "tests/classifier_synthetic_v2/manifest.json",
     "tests/classifier_synthetic_v3/manifest.json",
     "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md"
    ],
-   "measured": "three synthetic sets, the two new ones AI-judged by two configurations of one model (kappa 0.84 to 0.85 between them), frozen, leakage-checked, never called independent; the adjudicator is the same builder and sided with the intent in nearly every case",
-   "open": "The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)"
+   "measured": "three synthetic sets AI-judged by two configurations of one model (kappa 0.84 to 0.85), frozen, leakage-checked, never called independent; a different-size cross-check labeller (J3, qwen3.5:9b) and four frozen adversarial sets added; the adjudicator is the builder and sided with the intent in nearly every case",
+   "open": "The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)",
+   "external": "real authors, a second labeller and an adjudicator for the independent set (docs/research/classifier_benchmark)"
   },
   "p1-ai-language-s07": {
    "owner": "Ruhan",
@@ -129,9 +138,11 @@
     "content/ai/critical_cues.json",
     "reports/ai/classifier-bench-synthetic2.json",
     "reports/ai/classifier-holdout-v3.json",
-    "reports/ai/classifier-adversarial.json"
+    "reports/ai/classifier-adversarial.json",
+    "reports/ai/classifier-guard-only.json",
+    "reports/ai/classifier-adversarial-fresh.json"
    ],
-   "measured": "v2 test scored once: TF-IDF 0.816, embeddings 0.792, Qwen 0.654 macro-F1 (TF-IDF minus embeddings not separated); fresh v3: shipped head 0.842, TF-IDF 0.892; critical acts credited from speech 0 everywhere; critical sentences under an ordinary act 5 to 0 (v2 test, post hoc) and 0 (v3); evasive sets 8 and 7 to 0 and 0",
+   "measured": "v2 test scored once: TF-IDF 0.816, embeddings 0.792, Qwen 0.654 macro-F1 (TF-IDF minus embeddings not separated); fresh v3: shipped head 0.842, TF-IDF 0.892; critical acts credited from speech 0 everywhere; on fresh evasive sentences the full path credits 3 of 48 (hold-out 3) under an ordinary act and the cue list alone catches 6 of 48 (guard-only report)",
    "open": "The production gate needs the independent set (classifier.independent_evidence is SKIPPED, so the classifier is off); the embeddings have shown no advantage over TF-IDF, to be revisited on real speech (ADR-0013)"
   },
   "p1-ai-language-s08": {
@@ -189,7 +200,7 @@
   "p1-backend-s05": {
    "owner": "Ruhan",
    "before": "Built (no status recorded)",
-   "now": "DONE",
+   "now": "ENG_DONE",
    "evidence": [
     "server/middleware/audit.py",
     "server/models/ai_call.py",
@@ -197,7 +208,8 @@
     "server/tests/test_ai_audit.py"
    ],
    "measured": "T-AU1 to T-AU3 in server/tests/test_ai_audit.py: one row per AI request, no text stored, under 5 ms added",
-   "open": "The weekly report page renders from real rows only after real sessions exist"
+   "open": "The weekly report page renders from real rows only after real sessions exist",
+   "external": "real sessions: the weekly report renders from real rows only once real sessions exist"
   },
   "p1-backend-s06": {
    "owner": "Ruhan",
@@ -295,13 +307,15 @@
   "p1-case-library-extended-s04": {
    "owner": "Ruhan (headless), Sannan (headset)",
    "before": "No status recorded",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "tools/golden/paths.py",
     "tests/golden/STK-S1-A_dangerous_p1.expected.json"
    ],
    "measured": "16 P1 cases now have correct, novice, dangerous and edge goldens (142 golden runs, all pass; paths.py --check proves each path behaves as promised)",
-   "open": "The Quest playthrough, replay of the VR session and the reviewer video (Sannan); the maternity and minor-consent cases need a clinician's institutional review"
+   "open": "The Quest playthrough, replay of the VR session and the reviewer video (Sannan, DC-03)",
+   "external": "Sannan: the Quest playthroughs (check DC-03)"
   },
   "p1-dataset-analysis-s01": {
    "owner": "Ruhan",
@@ -387,25 +401,27 @@
   "p1-evaluation-s03": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (tooling)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tools/eval/analyse_study.py",
     "tools/ci/test_study_analysis.py",
     "docs/plans/p1/p1-evaluation/protocols/learning-effect.md"
    ],
    "measured": "paired differences, effect sizes, bootstrap and exact sign-flip tests tested on simulated data; simulated tables cannot enter the results folder",
-   "open": "The supervisor's agreement, a clinician for the quiz questions and 12 participants (DT-206)"
+   "open": "The supervisor's agreement, a clinician for the quiz questions and 12 participants (DT-206)",
+   "external": "the supervisor's agreement, 12 participants and a clinician for the quiz questions (DT-206)"
   },
   "p1-evaluation-s04": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (tooling)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tools/eval/analyse_study.py",
     "docs/plans/p1/p1-evaluation/protocols/ai-dialogue-ab.md"
    ],
    "measured": "the decision rule is fixed beforehand and tested",
-   "open": "The supervisor's agreement and participants (DT-206)"
+   "open": "The supervisor's agreement and participants (DT-206)",
+   "external": "the supervisor's agreement and participants (DT-206)"
   },
   "p1-live-scenario-generation-s01": {
    "owner": "Ruhan",
@@ -502,13 +518,15 @@
   "p1-live-scenario-generation-s10": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (Core)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "server/generation/package.py",
     "tools/ci/test_generation_package.py"
    ],
    "measured": "the Core plays a generated package; the gate refuses it in assessment",
-   "open": "The Unity side that fetches and plays a package is Sannan's"
+   "open": "The Unity side that fetches and plays a package is Sannan's",
+   "external": "Sannan: the Unity fetch and play of a package (check DC-02)"
   },
   "p1-live-scenario-generation-s11": {
    "owner": "Ruhan",
@@ -533,14 +551,15 @@
   "p1-live-scenario-generation-s13": {
    "owner": "Ruhan",
    "before": "Built 17 Oct, gate failing",
-   "now": "DONE",
+   "now": "ENG_DONE",
    "evidence": [
     "server/generation/compose_plan.py",
     "prompts/compose_plan/spine_v2.txt",
     "reports/ai/planner-eval.json"
    ],
    "measured": "shortlist = the solver pool, spine prompt v2: 20 of 20 served, coverage 0.877 against the solver 0.746; the gate passes and the feature is on (offline tool, 37.5 s a request)",
-   "open": "The blind comparison by two raters on 40 cases (DT-203)"
+   "open": "The blind comparison by two raters on 40 cases (DT-203)",
+   "external": "two blind raters on 40 cases (DT-203)"
   },
   "p1-live-scenario-generation-s14": {
    "owner": "Ruhan",
@@ -612,11 +631,12 @@
   "p1-personalisation-s05": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "DONE",
+   "now": "PARTLY",
    "evidence": [
     "server/personalisation/explain.py"
    ],
-   "measured": "template explanation from the facts of the choice"
+   "measured": "zero ungrounded explanation claims (tests); the simulation reports the paired differences and says personalised practice did not beat Elo",
+   "open": "The second criterion is not met: in the simulation of 200 learners personalised targeting did not improve the weakest behaviours more than the engine's Elo selection (rules -0.0085, interval [-0.0172, -0.0003]; bandit -0.0433); flatter and steeper weights and less exploration did not help. The pilot with real trainees is p1-evaluation-s03 (DT-206)"
   },
   "p1-pulse-physiology-s01": {
    "owner": "Ruhan",
@@ -671,13 +691,14 @@
   "p1-scenario-composer-difficulty-s03": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (as the plan composer)",
-   "now": "DONE",
+   "now": "ENG_DONE",
    "evidence": [
     "server/generation/compose_plan.py",
     "reports/ai/planner-eval.json"
    ],
-   "measured": "see p1-live-scenario-generation-s13",
-   "open": "the blind human comparison (DT-203)"
+   "measured": "19 distinct block sets in 20 proposals (T-SA3 asks 12), 20 of 20 served; see p1-live-scenario-generation-s13",
+   "open": "the blind human comparison (DT-203)",
+   "external": "two blind raters (DT-203)"
   },
   "p1-scenario-composer-difficulty-s04": {
    "owner": "Ruhan",
@@ -714,24 +735,28 @@
   "p1-theatre-extension-s02": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs",
     "content/extension/intra_op_events.json"
    ],
    "measured": "4 labelled events, practice mode only, 11 tests in TheatreExtensionTests",
-   "open": "A clinician must review the 4 events (they are labelled ProcSense educational extension)"
+   "open": "The Unity event cards are Sannan's (DC-06). No clinician has read the 4 events; under ADR-0008 that is not a gate, and the cards carry the visible label",
+   "external": "Sannan: the event cards in the scene (DC-06)"
   },
   "p1-theatre-extension-s03": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs",
     "content/handover/recovery_required.json"
    ],
    "measured": "12 required handover items sourced, practice mode only, tested",
-   "open": "A clinician must review the 12 items; the recovery bay scene is Sannan's"
+   "open": "The recovery bay scene and the nurse avatar are Sannan's (DC-06). No clinician has read the 12 items; under ADR-0008 that is not a gate",
+   "external": "Sannan: the recovery bay scene and nurse avatar (DC-06)"
   },
   "p1-theatre-extension-s04": {
    "owner": "Sannan",
@@ -743,13 +768,13 @@
   "p1-voice-input-s01": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "DONE",
+   "now": "PARTLY",
    "evidence": [
     "server/asr/service.py",
     "reports/ai/asr-wer.json"
    ],
    "measured": "word error rate 9.3 percent against the 25 percent limit; the gate passes and the feature is on",
-   "open": "Accented trainees in a noisy room (DT-205)"
+   "open": "The step asks for 5 s of speech to text in 0.7 s: measured 9.29 s per clip on the processor (the gate checked only the error rate); being re-measured on the card. EXP-VOX-3 asks for PriMock57 and consented recordings; accented trainees in a noisy room (DT-205)"
   },
   "p1-voice-input-s02": {
    "owner": "Sannan",
@@ -791,35 +816,41 @@
   "p2-ai-advanced-simulation-s02": {
    "owner": "Ruhan",
    "before": "Not built (research)",
-   "now": "DONE",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "src/ProcSense.Core/Twin/PatientTwin.cs",
     "tests/ProcSense.Core.Tests/PatientTwinTests.cs"
    ],
    "measured": "7 tests: snapshot, hash, follow-up card, the carried state replays to the same snapshot; the 142 golden runs are untouched",
-   "open": "The Unity host does not offer a follow-up encounter yet (Sannan); a Pulse-driven twin waits for DT-207"
+   "open": "The Unity host does not offer a follow-up encounter yet (Sannan); a Pulse-driven twin waits for DT-207",
+   "external": "Sannan: a Unity host that offers the follow-up encounter (DC-07); a Pulse-driven twin waits for the Pulse result"
   },
   "p2-ai-advanced-simulation-s03": {
    "owner": "Ruhan",
    "before": "Measured, not built",
-   "now": "DONE",
+   "now": "ENG_DONE",
    "evidence": [
+    "docs/plans/sannan-device-checks.md",
     "tools/ai/eval_multiagent.py",
     "server/dialogue/dialogue.py",
     "prompts/dialogue/staff_pick_many_v1.txt",
     "reports/ai/multiagent-eval.json"
    ],
    "measured": "patient written, two staff choosing approved lines in one call: all three p95 3.77 s against 4 s, 100 percent of turns within 4 s, 0 fallbacks; written staff replies 5.85 s; qwen3.5 does not support parallel requests; the multi_agent gate passes",
-   "open": "Staff speak fixed approved lines (the price of the budget); the Unity side that plays three voices is Sannan's"
+   "open": "Staff speak fixed approved lines (the price of the budget); the Unity side that plays three voices is Sannan's",
+   "external": "Sannan: playing three voices in the scene (DC-07)"
   },
   "p2-ai-advanced-simulation-s04": {
    "owner": "Ruhan",
    "before": "Not started",
    "now": "RESEARCH_NEGATIVE",
    "evidence": [
+    "tools/ai/adaptation_trigger.py",
+    "docs/research/adaptation_trigger_check.md",
     "docs/research/generative_images_trigger.md"
    ],
-   "measured": "29 findings have synthetic pictures only, none of the 14 registered sources holds a labelled picture of them",
+   "measured": "the repeatable trigger check reports not met (29 findings have synthetic pictures only, but no licensed data, held-out set or free card); none of the 14 registered sources holds a labelled picture of them",
    "open": "Reopens with a licensed dataset holding one of those findings, a reviewer and a GPU (DT-212)"
   },
   "p2-ai-advanced-simulation-s05": {
@@ -827,20 +858,26 @@
    "before": "Not started",
    "now": "RESEARCH_NEGATIVE",
    "evidence": [
+    "tools/ai/adaptation_trigger.py",
+    "docs/research/adaptation_trigger_check.md",
     "docs/research/llm_adaptation_trigger.md"
    ],
-   "measured": "every remaining quality gap has a cheaper remedy that is built or being measured",
+   "measured": "the generated trigger check (CI) finds no failing quality suite for any language-model feature and none of the other four conditions (remedies, 500 permitted examples, held-out set, compute window)",
    "open": "Reopens when a gap survives prompt and code remedies and real or approved dialogue exists to learn from (DT-212)"
   },
   "p2-ai-extensions-s01": {
    "owner": "Ruhan with Sannan",
    "before": "Not started",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
-    "docs/architecture/deployment.md"
+    "tools/ai/asr_ondevice_proxy.py",
+    "reports/ai/asr-ondevice-proxy.json",
+    "docs/decisions/ADR-0014-on-device-recogniser-candidates.md",
+    "docs/plans/sannan-device-checks.md"
    ],
-   "measured": "",
-   "open": "On-device recognition needs the Quest and an ARM build (Sannan, DT-205)"
+   "measured": "desktop proxy on the server recogniser's clips with its own error-rate code: tiny.en passes the 0.25 line, the Zipformer does not; nothing about the Quest is claimed",
+   "open": "The headset measurement. A desktop proxy exists: Whisper tiny.en int8 WER 0.2034, Zipformer 20M 0.4915 against the server small.en 0.0932 on the same 40 clips (ADR-0014, proposed)",
+   "external": "Sannan with a Quest 3 and Quest 2: the ARM build, latency, thermal and frame cost (check DC-04)"
   },
   "p2-ai-extensions-s02": {
    "owner": "Ruhan",
@@ -867,12 +904,16 @@
   "p2-ai-extensions-s05": {
    "owner": "Ruhan",
    "before": "Not started",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
+    "tools/ai/model_candidate.py",
+    "content/ai/model_candidates.json",
+    "tools/ci/test_model_candidate.py",
     "docs/research/model_benchmarks.md"
    ],
-   "measured": "the general benchmark of the two Qwen models is done",
-   "open": "MedGemma needs the owner to accept its terms (DT-212); nothing was downloaded"
+   "measured": "registry and decision rule built (7 tests): a gated model stays unusable until terms are recorded, a switch needs measured parity and a blind rating of 50; official pages read (R-041)",
+   "open": "MedGemma is gated: nothing was accepted on the owner's behalf or downloaded. After the terms are recorded, the runs, the no-advice check and the blind rating remain",
+   "external": "the account holder reading and accepting the MedGemma terms (content/ai/model_candidates.json), then the runs and a blind rating of 50 samples"
   },
   "p2-ai-learning-analytics-s01": {
    "owner": "Ruhan",
@@ -971,12 +1012,16 @@
   "p2-content-extensions-s04": {
    "owner": "Ruhan",
    "before": "No status recorded",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
+    "server/availability/service.py",
+    "content/availability/medicine_availability.csv",
+    "docs/research/drug_availability.md",
     "content/medicines.csv"
    ],
-   "measured": "",
-   "open": "The DRAP registry states it may not be used as a reference for research or citation; availability flags need an allowed source or a named pharmacist (DT-212)"
+   "measured": "provider interface, synthetic and validated file providers, freshness and switch (10 tests); a flag with source and date for each of the 41 medicine groups, checked in CI",
+   "open": "No permitted source exists: the DRAP registers list registration, not stock, and are published for reference only. Every flag is unknown with source none; live availability is off",
+   "external": "a named pharmacist's list or a licensed feed that permits teaching display (docs/research/drug_availability.md)"
   }
  }
 }

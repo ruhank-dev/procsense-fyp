@@ -3252,7 +3252,7 @@ Numbers in the report must come from recorded results — never typed in (INSTRU
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-theatre-extension/steps/p1-theatre-extension-s01-step15-sign-out.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-theatre-extension/steps/✅%20p1-theatre-extension-s01-step15-sign-out.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3457,7 +3457,7 @@ Microphone silent on Quest → RECORD_AUDIO in the manifest and runtime permissi
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-voice-input/steps/p1-voice-input-s03-voice-orders.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-voice-input/steps/✅%20p1-voice-input-s03-voice-orders.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3492,7 +3492,7 @@ Brand names → synonym table.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-voice-input/steps/p1-voice-input-s04-live-tts.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-voice-input/steps/✅%20p1-voice-input-s04-live-tts.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3529,7 +3529,7 @@ Live TTS on the same GPU as the LLM can stall replies — place TTS on the deskt
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/p1-scenario-composer-difficulty-s01-blocks-templates.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/✅%20p1-scenario-composer-difficulty-s01-blocks-templates.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3562,7 +3562,7 @@ Blocks invented 'to fill gaps' break proof of truth — every block must cite th
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/p1-scenario-composer-difficulty-s02-solver-cards-cli.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/✅%20p1-scenario-composer-difficulty-s02-solver-cards-cli.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3631,7 +3631,7 @@ Low diversity → raise temperature and penalise duplicate block sets; proposals
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/p1-scenario-composer-difficulty-s04-difficulty-explanation.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/✅%20p1-scenario-composer-difficulty-s04-difficulty-explanation.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3664,7 +3664,7 @@ An LLM rewording that changes a number or dimension is rejected by the validator
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/p1-scenario-composer-difficulty-s05-composed-cases-approval.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-scenario-composer-difficulty/steps/✅%20p1-scenario-composer-difficulty-s05-composed-cases-approval.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3736,7 +3736,7 @@ On-device models compete with rendering for CPU/thermal headroom — measure dur
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s02-retrieval.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/✅%20p2-ai-extensions-s02-retrieval.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 

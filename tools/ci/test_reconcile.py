@@ -45,8 +45,17 @@ class Reconcile(unittest.TestCase):
     def test_a_tick_is_not_taken_for_proof(self):
         # every step the page calls blocked, partly done or off carries a reason, whether or not the owner ticked it
         for s, e in self.data["steps"].items():
-            if e["now"] in ("PARTLY", "BLOCKED", "DONE_GATE_OFF"):
+            if e["now"] in ("PARTLY", "BLOCKED", "DONE_GATE_OFF", "ENG_DONE"):
                 self.assertTrue(e.get("open"), s)
+
+    def test_engineering_done_names_who_the_external_acceptance_needs(self):
+        for s, e in self.data["steps"].items():
+            if e["now"] == "ENG_DONE":
+                self.assertTrue(e.get("external"), s)
+        d = copy.deepcopy(self.data)
+        some = next(s for s, e in d["steps"].items() if e["now"] == "ENG_DONE")
+        d["steps"][some].pop("external")
+        self.assertTrue(any("ENG_DONE must say" in p for p in R.problems(self.found, d)))
 
 
 if __name__ == "__main__":

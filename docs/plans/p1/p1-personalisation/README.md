@@ -15,10 +15,10 @@ Learn from each trainee's recorded performance and change the substance of futur
 
 | Step | Title |
 |---|---|
-| [p1-personalisation-s01](steps/p1-personalisation-s01-evidence-schema.md) | Session evidence record |
-| [p1-personalisation-s02](steps/p1-personalisation-s02-learner-model.md) | Bayesian learner model |
-| [p1-personalisation-s03](steps/p1-personalisation-s03-targeting-policy.md) | Targeting policy: from rules to a contextual bandit |
-| [p1-personalisation-s04](steps/p1-personalisation-s04-performance-interpreter.md) | LLM performance interpreter |
+| [p1-personalisation-s01](steps/✅%20p1-personalisation-s01-evidence-schema.md) | Session evidence record |
+| [p1-personalisation-s02](steps/✅%20p1-personalisation-s02-learner-model.md) | Bayesian learner model |
+| [p1-personalisation-s03](steps/✅%20p1-personalisation-s03-targeting-policy.md) | Targeting policy: from rules to a contextual bandit |
+| [p1-personalisation-s04](steps/✅%20p1-personalisation-s04-performance-interpreter.md) | LLM performance interpreter |
 | [p1-personalisation-s05](steps/p1-personalisation-s05-explanation-evaluation.md) | Why-this-scenario explanations and personalisation evaluation |
 
 ## Exit

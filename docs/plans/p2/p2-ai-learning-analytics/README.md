@@ -15,12 +15,12 @@ Turn session histories into learning insight: patterns, coaching, confidence cal
 
 | Step | Title |
 |---|---|
-| [p2-ai-learning-analytics-s01](steps/p2-ai-learning-analytics-s01-patterns-coaching.md) | Performance patterns and coaching (D39, D40) |
-| [p2-ai-learning-analytics-s02](steps/p2-ai-learning-analytics-s02-confidence-calibration.md) | Confidence calibration coach (D41) |
-| [p2-ai-learning-analytics-s03](steps/p2-ai-learning-analytics-s03-reasoning-fingerprint.md) | Clinical Reasoning Fingerprint (D42) |
-| [p2-ai-learning-analytics-s04](steps/p2-ai-learning-analytics-s04-progression-investigations.md) | Progression and investigation analytics (D45, E52) |
-| [p2-ai-learning-analytics-s05](steps/p2-ai-learning-analytics-s05-investigation-interpreter.md) | Investigation Interpreter (B22) |
-| [p2-ai-learning-analytics-s06](steps/p2-ai-learning-analytics-s06-ai-adaptive-difficulty.md) | AI enhancement to adaptive difficulty (D44) |
+| [p2-ai-learning-analytics-s01](steps/✅%20p2-ai-learning-analytics-s01-patterns-coaching.md) | Performance patterns and coaching (D39, D40) |
+| [p2-ai-learning-analytics-s02](steps/✅%20p2-ai-learning-analytics-s02-confidence-calibration.md) | Confidence calibration coach (D41) |
+| [p2-ai-learning-analytics-s03](steps/✅%20p2-ai-learning-analytics-s03-reasoning-fingerprint.md) | Clinical Reasoning Fingerprint (D42) |
+| [p2-ai-learning-analytics-s04](steps/✅%20p2-ai-learning-analytics-s04-progression-investigations.md) | Progression and investigation analytics (D45, E52) |
+| [p2-ai-learning-analytics-s05](steps/✅%20p2-ai-learning-analytics-s05-investigation-interpreter.md) | Investigation Interpreter (B22) |
+| [p2-ai-learning-analytics-s06](steps/✅%20p2-ai-learning-analytics-s06-ai-adaptive-difficulty.md) | AI enhancement to adaptive difficulty (D44) |
 
 ## Exit
 Every step's verification passes and `uv run --project tools tools/plans/validate_pipeline.py` still passes with the stage statuses updated.
