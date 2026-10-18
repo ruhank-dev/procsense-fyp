@@ -14,7 +14,7 @@ You work on your own branch, merge the latest `main` into it, run **`task ci`** 
 | Pre-push hook (`.githooks/pre-push`, installed by `task setup`) | Before `main` is updated it runs `task ci`, refuses force-pushes and deleting `main`, and requires a clean working tree that is exactly the commit being pushed | It lives on your machine. `git push --no-verify` or removing `core.hooksPath` skips it. It is not server-side enforcement |
 | GitHub Actions CI (`ci.yml`) | Runs the same checks on Linux **and** Windows after every push to `main` | It runs **after** the push: it can detect a bad commit, not stop it |
 | Main guard (`main-guard.yml`) | Opens an issue naming the commit and author if CI fails on `main`, or if `main` is force-pushed | Also after the fact |
-| GitHub branch protection | **Not available**: this is a private repository on the free plan, and GitHub refuses it | So write-access users *can* push to `main` without any check, if they bypass the hook. This workflow depends on everyone following it |
+| GitHub branch protection | **Available since the repository became public (18 Oct 2026) but not switched on**: the owner's decision of 9 Oct 2026 is direct pushes with no approvals; rulesets can be enabled in Settings, Rules, with an owner bypass | So write-access users *can* push to `main` without any check, if they bypass the hook. This workflow depends on everyone following it |
 
 Never force-push. Never use `--no-verify` except in the emergency case in section E.
 
