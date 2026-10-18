@@ -24,6 +24,9 @@ def host(answer):
     def h(request):
         if request.url.path == "/api/tags":
             return httpx.Response(200, json={"models": []})
+        if '"kind"' in json.dumps(json.loads(request.content).get("format", {})):                   # the kind stage of the mapper: answered consistently with the item the test wants chosen
+            tgt = answer.get("target", "NONE")
+            return httpx.Response(200, json={"message": {"content": json.dumps({"kind": tgt.split(":")[0] if ":" in tgt else "NONE"})}})
         return httpx.Response(200, json={"message": {"content": json.dumps(answer)}})
     return client_mod.OllamaClient(transport=httpx.MockTransport(h))
 
