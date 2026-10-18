@@ -1,0 +1,17 @@
+id: SD-010
+title: Held-out text inconsistencies for the critic, worded differently from the first set
+synthetic: true
+purpose: "To measure the model critic fairly after deterministic rules saturated the first seeded set (SD-001): 134 contradictions of 7 kinds worded without the lexicon's words, written after the rules and frozen before any critic run."
+generator: {path: tools/generation/inconsistency_set_v2.py, version: "1", command: "uv run --project tools tools/generation/inconsistency_set_v2.py --write"}
+seed: "none: deterministic; the wording rotates by the position of the case in id order"
+source: "The authored cases with one sentence of one line changed or added: an allergen the lexicon lacks, the operation described without lexicon words, a condition denied, tests said to be normal, a pregnancy in a man, an age said in other words; plus 26 unchanged clean cases as the false-alarm control."
+method: "Built by the script from the authored cases; scored once per critic version by tools/ai/eval_critic.py --set v2, never reworded after a result."
+constraints: "Held out: the wording is not edited after seeing a result (a new set is a new file); each member changes one sentence of one line; the structured case is untouched."
+validation: "tools/ci/test_generation_consistency.py: the committed file equals the builder's output and the rule-based baseline finds under 25 percent of it (8.2 percent measured)."
+review: Not reviewed by a person; written by the builder, not by a clinician, so it measures blunt contradictions only.
+labels: The kind and the changed line of each member.
+model_use: tools/ai/eval_critic.py --set v2; the gate suite critic.recall_gain.
+use: dev_only
+files: [tests/generation/text_inconsistencies_v2.json]
+rows: {tests/generation/text_inconsistencies_v2.json: {members: 134, clean: 26}}
+licence: The project's own content

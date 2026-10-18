@@ -1,7 +1,7 @@
 id: SD-002
 title: Golden runs of generated cases
 synthetic: true
-purpose: Six generated practice cases, each with the correct-path script of the case it keeps the story of and the engine's expected hashes, so the engine plays generated content identically on every platform.
+purpose: Fourteen generated practice cases (8 S1, 6 S2), each with the correct-path script of the case it keeps the story of and the engine's expected hashes, so the engine plays generated content identically on every platform.
 generator: {path: tools/golden/generated.py, version: "1", command: "uv run --project tools tools/golden/generated.py make"}
 seed: "the first request seed (from 0) whose generated case keeps the named approved case"
 source: The approved case files and the composer's blocks, through the generation pipeline.
@@ -13,5 +13,5 @@ labels: None.
 model_use: none (engine regression tests)
 use: dev_only
 files: [tests/golden_generated]
-rows: {tests/golden_generated: {"glob:*.package.json": 6, "glob:*.expected.json": 6}}
+rows: {tests/golden_generated: {"glob:*.package.json": 14, "glob:*.expected.json": 14}}
 licence: The project's own content

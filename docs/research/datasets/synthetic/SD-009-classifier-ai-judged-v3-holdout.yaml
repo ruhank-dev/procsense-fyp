@@ -1,0 +1,17 @@
+id: SD-009
+title: Communication act sentences, version 3, a fresh hold-out (model-written, AI-judged, NOT independent)
+synthetic: true
+purpose: "To measure the changes made to the classifier after the version 2 test split had been scored once (a retrained head, a critical-mass cap, a longer cue list) on sentences nobody has tuned against: 300 new sentences from three new author profiles in two new scenario groups."
+generator: {path: tools/bench/synthetic3.py, version: "1", command: "uv run --project tools tools/bench/synthetic3.py freeze"}
+seed: "none: the sentences were written by the language model that built the tooling"
+source: "Three simulated author profiles (F1, F2, F3), 5 sentences for each of the 20 labels each, in scenario groups G9 (hip fracture and trauma) and G10 (eye day case); committed before any model saw them."
+method: "The same two AI judge configurations and rubric as version 2; 46 contested rows settled by the builder, who sided with the intent in 45 of them."
+constraints: "No sentence repeats the old template set, version 1 or version 2 (token overlap 0.8 or more is refused); every row says synthetic true and independent false; each head is scored once."
+validation: "Checked in CI (tools/bench/synthetic3.py check; tools/ci/test_synthetic3.py). Kappa between the two judge configurations 0.81. The adjudication is NOT an independent check."
+review: Not reviewed by a person.
+labels: The author's intent, replaced by the adjudicated label in 1 row; judge_1, judge_2 and judge_status are kept on every row.
+model_use: tools/bench/score_head.py --data v3 (the shipped head, the head of 17 October, the head without the critical-mass cap, TF-IDF); results in reports/ai/classifier-holdout-v3.json.
+use: dev_only
+files: [tests/classifier_synthetic_v3/test.jsonl, tests/classifier_synthetic_v3/manifest.json]
+rows: {tests/classifier_synthetic_v3/manifest.json: {rows: 1}}
+licence: The project's own content

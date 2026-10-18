@@ -1,0 +1,17 @@
+id: SD-008
+title: Communication act sentences, version 2, in twelve simulated writing styles (model-written, AI-judged, NOT independent)
+synthetic: true
+purpose: "To go on evaluating the communication act classifier while no human authors or labellers can be arranged: a larger and more varied set (train, dev and test sharing no author profile and no scenario group) with negation, self-correction, incomplete speech, ambiguity and recogniser-style noise, labelled by two AI judge configurations, so that three classifiers can be compared and the guards against crediting critical speech measured. It is not validation and says nothing about real trainee speech."
+generator: {path: tools/bench/synthetic2.py, version: "1", command: "uv run --project tools tools/bench/synthetic2.py freeze"}
+seed: "none: the sentences were written by the language model that built the tooling; the judges run at temperature 0 (J1) and 0.3 with seed 7 (J2)"
+source: "Twelve simulated author profiles (R1 to R6 train, D1 to D3 dev, E1 to E3 test) wrote 840 + 420 + 600 sentences for the 20 labels of content/assessment/taxonomy.json in scenario groups G1 to G8 that are never shared between splits; committed before any model scored dev or test."
+method: "Two configurations of qwen3.5:4b label every dev and test sentence blind from a written rubric (the tie-break order of the annotation guide); rows where both judges agree with each other against the author's intent are settled in adjudication.txt by the builder, who read them without the intent; train sentences are not judged (intent only); 480 recogniser copies of the plain test sentences."
+constraints: "No profile or scenario group is in two splits; no near-duplicate (token overlap 0.8 or more) crosses a split; every row says synthetic true and independent false; the test split is scored once (a lock file); the manifest says valid_for_claims false."
+validation: "Checked in CI (tools/bench/synthetic2.py check: the files equal what the sources and judgements give; tools/ci/test_synthetic2.py). Kappa between the two judge configurations 0.84 (dev) and 0.85 (test); with the authors' intent 0.76 to 0.77. The adjudicator is the same model as the author and agreed with the intent in 137 of 139 contested rows, so the adjudication is NOT an independent check."
+review: Not reviewed by a person.
+labels: The author's intent, replaced by the adjudicated label in the 2 rows where the builder disagreed with the intent; judge_1, judge_2 and judge_status (certain, uncertain, adjudicated, intent_only) are kept on every row.
+model_use: tools/bench/bench_classifier.py --data synthetic2 (three candidates); the embedding head content/assessment/act_head.json is trained on the train split, the old template set and the v1 synthetic set and its thresholds and critical-mass cap tuned on dev; tools/bench/score_head.py.
+use: dev_only
+files: [tests/classifier_synthetic_v2/train.jsonl, tests/classifier_synthetic_v2/dev.jsonl, tests/classifier_synthetic_v2/test.jsonl, tests/classifier_synthetic_v2/asr_test.jsonl, tests/classifier_synthetic_v2/manifest.json, tests/classifier_synthetic_v2/README.md]
+rows: {tests/classifier_synthetic_v2/manifest.json: {rows: 3}}
+licence: The project's own content
