@@ -48,7 +48,7 @@ Launch Quest Link or Air Link inside the headset before pressing Play in Unity. 
 
 Choose **ProcSense > Development > Play input > Quest headset and controllers**, **Keyboard and mouse**, or **Automatic detection** before Play. The choices are remembered locally per checkout. Headset mode excludes the simulator even if Link is unavailable; keyboard/mouse mode temporarily prevents desktop XR startup, so a connected headset cannot take over. Automatic mode uses XR when active and otherwise falls back to simulation. The original desktop XR initialization flag is restored after Play, without saving project settings. These choices do not change standalone APK input.
 
-Choose **ProcSense > Development > Movement > Thumbsticks - left move, right snap turn** for small spaces: left stick moves at 1.5 m/s relative to head direction; right stick snap-turns 45 degrees. Collision and existing transition freezes remain active. **Room-scale and teleport** restores teleport locomotion instead of continuous stick movement. Head/hand tracking stays active in both modes. Movement is disabled on the temporary login rig. Choices apply on the next Play and cannot be switched mid-session. Keyboard/mouse FPS movement remains available in simulator mode. A standalone APK retains its existing Android XR/locomotion configuration.
+Choose **ProcSense > Development > Movement > Thumbsticks - left move, right snap turn** for small spaces: left stick moves at 1.5 m/s relative to head direction; right stick snap-turns 45 degrees. Collision and existing transition freezes remain active. **Room-scale and teleport** restores teleport locomotion instead of continuous stick movement. Head/hand tracking stays active in both modes. Movement is disabled on the temporary login rig. Choices apply on the next Play and cannot be switched mid-session. Keyboard/mouse FPS movement remains available in simulator mode. Standalone Quest builds default to left-stick walking and right-stick snap turning independently of Editor preferences.
 
 Physical monitoring is now installed beside the bed. Grab the probe or cuff from the sensor tray and release it at the matching finger/arm placeholder. The probe reveals live permitted readings while attached. Press **START BP** on the monitor to request a timed BP cycle; removing the cuff cancels an unfinished cycle. Tablet attach/remove buttons remain synchronized with the props. The arm/finger geometry is a temporary stand-in, not the final patient character. See the [sensor workflow and remaining limits](../tools/blender/README.md#bedside-sensor-extension).
 
@@ -58,9 +58,40 @@ The current room and UI remain prototypes. Final visual quality, animations, sea
 
 ## Teleport and comfort controls
 
+Standalone login freezes movement/gravity on its temporary rig while retaining
+head/controller tracking. The form waits for a tracked head pose, appears level
+1.6 m ahead at the user's current seated/standing eye height, and repositions
+after a tracking-origin recenter. It stays in world space while typing.
+The VR form opens a controller-ray keyboard on the email field: point and pull
+the trigger to type; select Password or use **Next field** to switch. Shift,
+symbols, Space, Backspace and Clear are available. Passwords stay masked unless
+Show is selected. This in-app keyboard needs no Meta keyboard-overlay SDK and
+is removed with the launch rig after successful sign-in. Desktop login keeps
+its normal mouse/physical-keyboard interface.
+
 Blue pads are teleport destinations at the bay tablet, bedside and exit, and at the OT station/exit. The corridor floor permits teleporting within clear supported space. Controller teleport rays use the Starter Assets teleport input; aim at a pad or the corridor floor and release/select to travel. Invalid targets cannot be selected. A short fade covers movement, and destinations are rechecked for obstruction before relocation. Teleports and room transitions cannot overlap.
 
-Controller locomotion defaults to teleport and 45° snap-turn; 180° turnaround and smooth-turn/movement actions are disabled. Desktop collision-safe WASD walking is retained. With Game focused, **F7** cycles the current room's pads, **[ / ]** turn left/right, and **F6** toggles seated calibration. The prototype **MOVEMENT** displays have been removed from the rooms. The underlying calibration/30° or 45° configuration APIs remain; headset users currently keep the default 45° turn and standing offset until a dedicated settings surface is provided. Sit first before Editor calibration: it adjusts the camera/controller floor offset to a virtual eye height of 1.6 m, without moving the clinical patient or changing Core state. Returning to standing restores the previous offset; settings survive room navigation. Recalibrate after changing physical posture or tracking setup.
+On Quest, **left stick** walks/strafe-moves relative to your head direction and
+**right stick left/right** snap-turns 45 degrees. Right-side teleport remains
+available. The right stick cannot drive continuous movement; smooth turning,
+flight and 180-degree turnaround are disabled. Walking uses the existing capsule
+collisions and pauses during room/teleport transitions and login. Left-stick
+walking stays available while pointing at UI; the right controller retains UI
+scrolling mediation.
+
+The clinical rig requests floor tracking. Once tracking and the room are ready,
+a low seated eye height (below 1.45 m) is calibrated once to a 1.6 m virtual eye
+height; a standing pose retains its actual height. **Y on the left controller**
+toggles this seated-height assistance, on a fresh press only. It is a height
+calibration control, not a crouch animation. Head/hand tracking and physical
+crouching still work. Changes are blocked during login, room loading and
+teleporting; calibration survives room navigation. Toggle assistance off before
+standing up, then recalibrate if needed.
+
+Desktop collision-safe WASD walking is retained. With Game focused, **F7** cycles
+room pads, **[ / ]** turn and **F6** remains the Editor seated-calibration shortcut.
+The old MOVEMENT panels remain removed; no keyboard is needed for Quest height
+adjustment. The existing 30/45-degree configuration APIs remain available.
 
 These are Editor-verified foundations. The headset comfort comparison and questionnaire with at least three testers, seated reach/readability and Quest frame-time measurements remain pending device access.
 

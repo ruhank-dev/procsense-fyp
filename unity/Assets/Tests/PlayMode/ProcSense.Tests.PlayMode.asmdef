@@ -1,7 +1,7 @@
 {
   "name": "ProcSense.Tests.PlayMode",
   "rootNamespace": "ProcSense.Tests.PlayMode",
-  "references": ["ProcSense.Core", "ProcSense.VR", "UnityEngine.TestRunner", "UnityEditor.TestRunner", "Unity.TextMeshPro", "UnityEngine.UI", "Unity.XR.CoreUtils", "Unity.XR.Interaction.Toolkit", "Unity.InputSystem"],
+  "references": ["ProcSense.Core", "ProcSense.VR", "UnityEngine.TestRunner", "UnityEditor.TestRunner", "Unity.TextMeshPro", "UnityEngine.UI", "Unity.XR.CoreUtils", "Unity.XR.Interaction.Toolkit", "Unity.InputSystem", "Unity.XR.Interaction.Toolkit.Samples.StarterAssets"],
   "overrideReferences": true,
   "precompiledReferences": ["nunit.framework.dll"],
   "defineConstraints": ["UNITY_INCLUDE_TESTS"],

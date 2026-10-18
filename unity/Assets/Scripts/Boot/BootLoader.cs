@@ -44,8 +44,13 @@ namespace ProcSense.VR.Boot
             var events = new GameObject("Login EventSystem", typeof(EventSystem), typeof(XRUIInputModule));
             events.transform.SetParent(shell.transform, false);
             var rig = Instantiate(loginRigPrefab, shell.transform);
+            // The launch scene has no floor. Keep physical head/hand tracking,
+            // but never run the application's movement or gravity here.
+            LoginPresentation.FreezeRig(rig);
             foreach (var comfort in rig.GetComponentsInChildren<ProcSense.VR.XR.ComfortPanel>(true)) comfort.enabled = false;
-            if (!UnityEngine.XR.XRSettings.isDeviceActive)
+            bool headset = Application.platform == RuntimePlatform.Android || UnityEngine.XR.XRSettings.isDeviceActive
+                || (Application.isEditor && ProcSense.VR.XR.EditorInputSettings.Mode == ProcSense.VR.XR.EditorInputSettings.InputMode.Headset);
+            if (!headset)
             {
                 // Desktop text fields need mouse/keyboard focus without competing XR pointers.
                 events.GetComponent<XRUIInputModule>().enabled = false;
@@ -66,20 +71,7 @@ namespace ProcSense.VR.Boot
                 if (view == null) Debug.LogError("Login prefab has no form; workspace remains locked.");
                 while (true) yield return null;
             }
-            var canvas = view.GetComponent<Canvas>();
-            if (UnityEngine.XR.XRSettings.isDeviceActive)
-            {
-                canvas.renderMode = RenderMode.WorldSpace;
-                canvas.worldCamera = camera;
-                view.transform.SetPositionAndRotation(camera.transform.position + camera.transform.forward * 1.8f, camera.transform.rotation);
-                view.transform.localScale = Vector3.one * .0011f;
-            }
-            else
-            {
-                canvas.renderMode = RenderMode.ScreenSpaceCamera;
-                canvas.worldCamera = camera;
-                canvas.planeDistance = .3f;
-            }
+            view.gameObject.AddComponent<LoginPresentation>().Configure(camera, view, headset);
             while (!view.Completed) yield return null;
             Destroy(shell);
             // Tear down the launch rig/EventSystem before loading the application rig.
