@@ -27,6 +27,22 @@ class UploadReply(BaseModel):
     status_url: str
 
 
+class PackageRequest(BaseModel):
+    """What the headset asks for: a pre-generated package for a scenario family and level. The lists name stories the trainee has already met."""
+    scenario: Literal["S1", "S2"]
+    level: Literal["beginner", "advanced"]
+    exclude_spines: list[str] = []
+    exclude_fingerprints: list[str] = []
+
+
+class PackageOffer(BaseModel):
+    package_hash: str
+    scenario: str
+    level: str
+    case_id: str
+    spine: str
+
+
 class PackageReply(BaseModel):
     package_hash: str
     outcome: Literal["stored", "already_stored"]

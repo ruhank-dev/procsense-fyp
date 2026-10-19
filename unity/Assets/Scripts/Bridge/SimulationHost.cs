@@ -30,6 +30,8 @@ namespace ProcSense.VR.Bridge
         public static SimulationHost Instance { get; private set; }
 
         public Session Session { get; private set; }
+        /// <summary>The content the running session was built from (the speech interpretation reads the behaviour windows from it).</summary>
+        public ContentPackage Content { get; private set; }
         public ObservableState Observable { get; private set; }
         public bool Paused { get; private set; }
         public string PauseReason { get; private set; } = "";
@@ -77,7 +79,7 @@ namespace ProcSense.VR.Bridge
                 return;
             }
             Instance = this;
-            if (config != null && Session == null) StartSession(config.caseId, (ulong)config.seed, config.mode);
+            if (config != null && Session == null) StartSession(config.caseId, (ulong)config.seed, ModeChoice.For(config.mode));
         }
 
         private void OnDestroy()
@@ -100,7 +102,9 @@ namespace ProcSense.VR.Bridge
             if (!load.Package.Cases.ContainsKey(caseId))
                 throw new ContentException("the case " + caseId + " cannot be played in " + mode.ToString().ToLowerInvariant() + " mode: " + string.Join("; ", load.Excluded.Select(e => e.Reason)));
             var content = load.Package;
+            Content = content;
             Session = new Session(content.Cases[caseId], seed, mode, (SubsystemFactory ?? Subsystems.Default)(content), options);
+            ModeChoice.Lock();                                            // from here to the end of the session the mode cannot be changed from a menu
             SessionId = Guid.NewGuid().ToString();
             ContentVersion = VersionOf(reader);
             _ended = false;
@@ -180,6 +184,7 @@ namespace ProcSense.VR.Bridge
             string file = SaveSessionLog();
             if (file == null) return null;
             _ended = true;
+            ModeChoice.Unlock();
             SessionUploader.Enqueue(SessionId, file);
             SessionEnded?.Invoke(SessionId);
             return file;

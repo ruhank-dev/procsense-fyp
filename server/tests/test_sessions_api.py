@@ -266,3 +266,50 @@ def test_the_status_of_a_session_is_seen_by_its_owner_and_the_supervisors_of_its
     assert api.client.get(f"{setup.url(setup.org_b)}/{sid}", headers=setup.h(setup.outsider_b)).status_code == 404   # another organisation
     assert api.client.get(url, headers={}).status_code == 401
     assert api.client.get(f"{setup.url()}/{uuid.uuid4()}", headers=setup.h(setup.trainee)).status_code == 404
+
+
+# ---------------------------------------------------------------- DT-199: the headset fetches a generated package
+
+def _pool(tmp_path, spine="spine-a", fingerprint="fp-a", scenario="S1", level="beginner", tamper=False):
+    pkg = {"schema": "scenario_package.v1", "id": "GEN-1", "case": {"id": "GEN-S1-0001-001"}, "facts": ["a"]}
+    raw = (json.dumps(pkg, indent=2) + "\n").encode()
+    (tmp_path / "GEN-1.package.json").write_bytes(raw + (b" " if tamper else b""))
+    index = {"version": 1, "content_hash": "x", "packages": [{"id": "GEN-1", "scenario": scenario, "level": level, "spine": spine, "fingerprint": fingerprint, "file": "GEN-1.package.json", "sha256": hashlib.sha256(raw).hexdigest()}], "skipped": []}
+    (tmp_path / "index.json").write_text(json.dumps(index), encoding="utf-8")
+    return raw
+
+
+def test_a_stored_package_is_fetched_by_its_hash_and_nothing_else_is_served(api, setup):
+    raw, digest = _package_bytes()
+    assert api.client.get(f"/scenario-packages/{digest}", headers=setup.h(setup.trainee)).status_code == 404
+    api.client.put(f"/scenario-packages/{digest}", content=raw, headers=setup.h(setup.trainee))
+    got = api.client.get(f"/scenario-packages/{digest}", headers=setup.h(setup.other_trainee))
+    assert got.status_code == 200 and got.content == raw and hashlib.sha256(got.content).hexdigest() == digest and got.headers["etag"] == f'"{digest}"'
+    assert api.client.get("/scenario-packages/not-a-hash", headers=setup.h(setup.trainee)).status_code == 422
+    assert api.client.get(f"/scenario-packages/{digest}").status_code in (401, 403)                       # no sign-in, no package
+
+
+def test_the_next_package_comes_from_the_pool_checked_stored_and_fetchable(api, setup, tmp_path, monkeypatch):
+    from server import config
+    monkeypatch.setenv("PACKAGE_POOL_DIR", str(tmp_path))
+    config.get_settings.cache_clear()
+    raw = _pool(tmp_path)
+    r = api.client.post("/scenario-packages/next", json={"scenario": "S1", "level": "beginner"}, headers=api.headers(setup.trainee))
+    assert r.status_code == 200
+    offer = r.json()
+    assert offer["package_hash"] == hashlib.sha256(raw).hexdigest() and offer["case_id"] == "GEN-S1-0001-001" and offer["spine"] == "spine-a"
+    assert api.client.get(f"/scenario-packages/{offer['package_hash']}", headers=setup.h(setup.trainee)).content == raw
+    # the story the trainee has met is skipped, another family or level has none, a changed file is never served
+    assert api.client.post("/scenario-packages/next", json={"scenario": "S1", "level": "beginner", "exclude_spines": ["spine-a"]}, headers=api.headers(setup.trainee)).json()["detail"] == {"code": "pool_empty"}
+    assert api.client.post("/scenario-packages/next", json={"scenario": "S2", "level": "beginner"}, headers=api.headers(setup.trainee)).status_code == 404
+    _pool(tmp_path, tamper=True)
+    assert api.client.post("/scenario-packages/next", json={"scenario": "S1", "level": "beginner"}, headers=api.headers(setup.trainee)).status_code == 404
+    assert api.client.post("/scenario-packages/next", json={"scenario": "S9", "level": "beginner"}, headers=api.headers(setup.trainee)).status_code == 422
+
+
+def test_without_a_pool_the_answer_is_503_no_pool(api, setup, monkeypatch):
+    from server import config
+    monkeypatch.setenv("PACKAGE_POOL_DIR", "")
+    config.get_settings.cache_clear()
+    r = api.client.post("/scenario-packages/next", json={"scenario": "S1", "level": "beginner"}, headers=api.headers(setup.trainee))
+    assert r.status_code == 503 and r.json()["detail"] == {"code": "no_pool"}, r.text

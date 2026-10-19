@@ -3,6 +3,7 @@ using NUnit.Framework;
 using ProcSense.Core;
 using ProcSense.Core.Content;
 using ProcSense.VR.Bridge;
+using ProcSense.VR.Views;
 using UnityEngine;
 
 namespace ProcSense.Tests.EditMode
@@ -78,6 +79,69 @@ namespace ProcSense.Tests.EditMode
                 Object.DestroyImmediate(holder.gameObject);
             }
             finally { Object.DestroyImmediate(host.gameObject); }
+        }
+
+        [Test]
+        public void The_mode_can_be_chosen_before_a_session_and_not_during_it()
+        {
+            ModeChoice.Reset();
+            try
+            {
+                Assert.AreEqual(SessionMode.Practice, ModeChoice.For(SessionMode.Practice));              // nothing chosen: the configuration decides
+                Assert.IsTrue(ModeChoice.Choose(SessionMode.Assessment));
+                Assert.AreEqual(SessionMode.Assessment, ModeChoice.For(SessionMode.Practice));
+                var host = Host(SessionMode.Practice, "VAR-S1-A");                                          // starting a session locks the choice
+                try
+                {
+                    Assert.IsTrue(ModeChoice.Locked);
+                    Assert.IsFalse(ModeChoice.Choose(SessionMode.Practice));
+                    Assert.AreEqual(SessionMode.Assessment, ModeChoice.Chosen);
+                }
+                finally { Object.DestroyImmediate(host.gameObject); }
+                ModeChoice.Unlock();                                                                        // what EndSession does
+                Assert.IsTrue(ModeChoice.Choose(SessionMode.Practice));
+            }
+            finally { ModeChoice.Reset(); }
+        }
+
+        [Test]
+        public void A_refused_start_does_not_lock_the_choice()
+        {
+            ModeChoice.Reset();
+            var host = new GameObject("host").AddComponent<SimulationHost>();
+            try
+            {
+                Assert.Throws<ContentException>(() => host.StartSession("VAR-S1-A", 42, SessionMode.Assessment, Real()));        // no case is approved for assessment yet
+                Assert.IsFalse(ModeChoice.Locked);
+            }
+            finally { Object.DestroyImmediate(host.gameObject); ModeChoice.Reset(); }
+        }
+
+        [Test]
+        public void The_chooser_sets_the_mode_before_a_session_and_is_disabled_during_one()
+        {
+            ModeChoice.Reset();
+            var go = new GameObject("chooser");
+            var view = go.AddComponent<ModeChooserView>();
+            SimulationHost host = null;
+            try
+            {
+                view.Build();
+                view.Refresh();
+                Assert.IsTrue(view.PracticeButton.interactable && view.AssessmentButton.interactable);
+                view.AssessmentButton.onClick.Invoke();
+                Assert.AreEqual(SessionMode.Assessment, ModeChoice.Chosen);
+                view.PracticeButton.onClick.Invoke();
+                Assert.AreEqual(SessionMode.Practice, ModeChoice.Chosen);
+                host = Host(SessionMode.Practice, "VAR-S1-A");
+                view.Refresh();
+                Assert.IsFalse(view.PracticeButton.interactable);
+                Assert.IsFalse(view.AssessmentButton.interactable);
+                StringAssert.Contains("cannot be changed", view.StatusText);
+                view.AssessmentButton.onClick.Invoke();                                                     // a click on a disabled button's handler still changes nothing
+                Assert.AreEqual(SessionMode.Practice, ModeChoice.Chosen);
+            }
+            finally { if (host != null) Object.DestroyImmediate(host.gameObject); Object.DestroyImmediate(go); ModeChoice.Reset(); }
         }
     }
 }

@@ -33,6 +33,12 @@ def package_exists(db: DbSession, package_hash: str) -> bool:
     return db.scalar(select(ScenarioPackage.hash).where(ScenarioPackage.hash == package_hash)) is not None
 
 
+def get_package(db: DbSession, package_hash: str) -> bytes | None:
+    """The stored bytes of a package, or None."""
+    blob = db.scalar(select(ScenarioPackage.package_gz).where(ScenarioPackage.hash == package_hash))
+    return gzip.decompress(blob) if blob is not None else None
+
+
 def store_package(db: DbSession, package_hash: str, raw: bytes) -> bool:
     """Stores a package once. Returns False when it was already there."""
     inserted = db.execute(insert(ScenarioPackage).values(hash=package_hash, package_gz=gzip.compress(raw, compresslevel=6, mtime=0), size_bytes=len(raw))

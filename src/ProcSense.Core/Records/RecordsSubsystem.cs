@@ -118,6 +118,9 @@ namespace ProcSense.Core.Records
         /// <summary>The EMR's new-document badges per tab (p0-patient-records-emr-s05).</summary>
         public Badges Badges => _badges;
 
+        /// <summary>The EMR tabs in the order the record defines them (id and label), for a view that draws them.</summary>
+        public IReadOnlyList<EmrTab> Tabs => Tables.Tabs;
+
         /// <summary>The EMR's ward list (the case patient and the distractors), by name.</summary>
         public IReadOnlyList<RecordPatient> Patients => _patients;
 
