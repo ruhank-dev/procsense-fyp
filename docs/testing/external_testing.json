@@ -229,7 +229,7 @@
    "needs": "Quest with the current Unity build and the SpeechInterpretation script wired into the scene; the backend with the recogniser, the interpretation route and the dialogue route reachable; the speech_interpretation gate may stay OFF for steps 1 to 4 (the route then answers the menu) and is switched on only on a test server for step 5",
    "prepared": [
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
-    "docs/plans/p1/p1-ai-language/steps/p1-ai-language-s12-clarify-abstain-fallback.md",
+    "docs/plans/p1/p1-ai-language/steps/✅ p1-ai-language-s12-clarify-abstain-fallback.md",
     "docs/architecture/unity_ai_hooks.md",
     "unity/Assets/Scripts/Voice/SpeechInterpretation.cs",
     "unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs",
