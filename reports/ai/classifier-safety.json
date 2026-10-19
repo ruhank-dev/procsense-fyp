@@ -18664,2371 +18664,6 @@
     }
    }
   },
-  "challenge_v6": {
-   "rows": 130,
-   "variants": {
-    "baseline": {
-     "critical_evasive": {
-      "rows": 48,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 3,
-       "n": 48,
-       "rate": 0.062,
-       "ci95": [
-        0.021,
-        0.168
-       ]
-      },
-      "critical_named": {
-       "k": 30,
-       "n": 48,
-       "rate": 0.625,
-       "ci95": [
-        0.484,
-        0.748
-       ]
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "ALL": {
-      "rows": 130,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 3,
-       "n": 48,
-       "rate": 0.062,
-       "ci95": [
-        0.021,
-        0.168
-       ]
-      },
-      "critical_named": {
-       "k": 30,
-       "n": 48,
-       "rate": 0.625,
-       "ci95": [
-        0.484,
-        0.748
-       ]
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 56,
-       "n": 70,
-       "rate": 0.8,
-       "ci95": [
-        0.692,
-        0.877
-       ]
-      },
-      "credited_precision": {
-       "k": 51,
-       "n": 56,
-       "rate": 0.911,
-       "ci95": [
-        0.807,
-        0.961
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 5,
-       "n": 70,
-       "rate": 0.071,
-       "ci95": [
-        0.031,
-        0.157
-       ]
-      },
-      "abstained": {
-       "k": 14,
-       "n": 70,
-       "rate": 0.2,
-       "ci95": [
-        0.123,
-        0.308
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 2,
-       "n": 12,
-       "rate": 0.167,
-       "ci95": [
-        0.047,
-        0.448
-       ]
-      }
-     },
-     "ordinary_hard": {
-      "rows": 70,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 56,
-       "n": 70,
-       "rate": 0.8,
-       "ci95": [
-        0.692,
-        0.877
-       ]
-      },
-      "credited_precision": {
-       "k": 51,
-       "n": 56,
-       "rate": 0.911,
-       "ci95": [
-        0.807,
-        0.961
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 5,
-       "n": 70,
-       "rate": 0.071,
-       "ci95": [
-        0.031,
-        0.157
-       ]
-      },
-      "abstained": {
-       "k": 14,
-       "n": 70,
-       "rate": 0.2,
-       "ci95": [
-        0.123,
-        0.308
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "non_assertive": {
-      "rows": 12,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 2,
-       "n": 12,
-       "rate": 0.167,
-       "ci95": [
-        0.047,
-        0.448
-       ]
-      }
-     }
-    },
-    "embedding": {
-     "critical_evasive": {
-      "rows": 48,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 37,
-       "n": 48,
-       "rate": 0.771,
-       "ci95": [
-        0.635,
-        0.867
-       ]
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "ALL": {
-      "rows": 130,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 37,
-       "n": 48,
-       "rate": 0.771,
-       "ci95": [
-        0.635,
-        0.867
-       ]
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 48,
-       "n": 70,
-       "rate": 0.686,
-       "ci95": [
-        0.57,
-        0.782
-       ]
-      },
-      "credited_precision": {
-       "k": 45,
-       "n": 48,
-       "rate": 0.938,
-       "ci95": [
-        0.832,
-        0.979
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "abstained": {
-       "k": 22,
-       "n": 70,
-       "rate": 0.314,
-       "ci95": [
-        0.218,
-        0.43
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 1,
-       "n": 12,
-       "rate": 0.083,
-       "ci95": [
-        0.015,
-        0.354
-       ]
-      }
-     },
-     "ordinary_hard": {
-      "rows": 70,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 48,
-       "n": 70,
-       "rate": 0.686,
-       "ci95": [
-        0.57,
-        0.782
-       ]
-      },
-      "credited_precision": {
-       "k": 45,
-       "n": 48,
-       "rate": 0.938,
-       "ci95": [
-        0.832,
-        0.979
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "abstained": {
-       "k": 22,
-       "n": 70,
-       "rate": 0.314,
-       "ci95": [
-        0.218,
-        0.43
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "non_assertive": {
-      "rows": 12,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 1,
-       "n": 12,
-       "rate": 0.083,
-       "ci95": [
-        0.015,
-        0.354
-       ]
-      }
-     }
-    },
-    "tfidf": {
-     "critical_evasive": {
-      "rows": 48,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 42,
-       "n": 48,
-       "rate": 0.875,
-       "ci95": [
-        0.753,
-        0.941
-       ]
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "ALL": {
-      "rows": 130,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 42,
-       "n": 48,
-       "rate": 0.875,
-       "ci95": [
-        0.753,
-        0.941
-       ]
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 25,
-       "n": 70,
-       "rate": 0.357,
-       "ci95": [
-        0.255,
-        0.474
-       ]
-      },
-      "credited_precision": {
-       "k": 25,
-       "n": 25,
-       "rate": 1.0,
-       "ci95": [
-        0.867,
-        1.0
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 70,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.052
-       ]
-      },
-      "abstained": {
-       "k": 45,
-       "n": 70,
-       "rate": 0.643,
-       "ci95": [
-        0.526,
-        0.745
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     },
-     "ordinary_hard": {
-      "rows": 70,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 25,
-       "n": 70,
-       "rate": 0.357,
-       "ci95": [
-        0.255,
-        0.474
-       ]
-      },
-      "credited_precision": {
-       "k": 25,
-       "n": 25,
-       "rate": 1.0,
-       "ci95": [
-        0.867,
-        1.0
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 70,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.052
-       ]
-      },
-      "abstained": {
-       "k": 45,
-       "n": 70,
-       "rate": 0.643,
-       "ci95": [
-        0.526,
-        0.745
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "non_assertive": {
-      "rows": 12,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     }
-    },
-    "hybrid": {
-     "critical_evasive": {
-      "rows": 48,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 40,
-       "n": 48,
-       "rate": 0.833,
-       "ci95": [
-        0.704,
-        0.913
-       ]
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "ALL": {
-      "rows": 130,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 40,
-       "n": 48,
-       "rate": 0.833,
-       "ci95": [
-        0.704,
-        0.913
-       ]
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 52,
-       "n": 70,
-       "rate": 0.743,
-       "ci95": [
-        0.63,
-        0.831
-       ]
-      },
-      "credited_precision": {
-       "k": 49,
-       "n": 52,
-       "rate": 0.942,
-       "ci95": [
-        0.844,
-        0.98
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "abstained": {
-       "k": 18,
-       "n": 70,
-       "rate": 0.257,
-       "ci95": [
-        0.169,
-        0.37
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     },
-     "ordinary_hard": {
-      "rows": 70,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 52,
-       "n": 70,
-       "rate": 0.743,
-       "ci95": [
-        0.63,
-        0.831
-       ]
-      },
-      "credited_precision": {
-       "k": 49,
-       "n": 52,
-       "rate": 0.942,
-       "ci95": [
-        0.844,
-        0.98
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "abstained": {
-       "k": 18,
-       "n": 70,
-       "rate": 0.257,
-       "ci95": [
-        0.169,
-        0.37
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "non_assertive": {
-      "rows": 12,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     }
-    },
-    "ensemble_v1": {
-     "critical_evasive": {
-      "rows": 48,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 37,
-       "n": 48,
-       "rate": 0.771,
-       "ci95": [
-        0.635,
-        0.867
-       ]
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "ALL": {
-      "rows": 130,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 37,
-       "n": 48,
-       "rate": 0.771,
-       "ci95": [
-        0.635,
-        0.867
-       ]
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 44,
-       "n": 70,
-       "rate": 0.629,
-       "ci95": [
-        0.511,
-        0.732
-       ]
-      },
-      "credited_precision": {
-       "k": 43,
-       "n": 44,
-       "rate": 0.977,
-       "ci95": [
-        0.882,
-        0.996
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "abstained": {
-       "k": 26,
-       "n": 70,
-       "rate": 0.371,
-       "ci95": [
-        0.268,
-        0.489
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     },
-     "ordinary_hard": {
-      "rows": 70,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 44,
-       "n": 70,
-       "rate": 0.629,
-       "ci95": [
-        0.511,
-        0.732
-       ]
-      },
-      "credited_precision": {
-       "k": 43,
-       "n": 44,
-       "rate": 0.977,
-       "ci95": [
-        0.882,
-        0.996
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "abstained": {
-       "k": 26,
-       "n": 70,
-       "rate": 0.371,
-       "ci95": [
-        0.268,
-        0.489
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 3,
-       "n": 70,
-       "rate": 0.043,
-       "ci95": [
-        0.015,
-        0.119
-       ]
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "non_assertive": {
-      "rows": 12,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     }
-    },
-    "ensemble": {
-     "critical_evasive": {
-      "rows": 48,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 40,
-       "n": 48,
-       "rate": 0.833,
-       "ci95": [
-        0.704,
-        0.913
-       ]
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "ALL": {
-      "rows": 130,
-      "unavailable": 0,
-      "critical_rows": 48,
-      "false_credit": {
-       "k": 0,
-       "n": 48,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.074
-       ]
-      },
-      "critical_named": {
-       "k": 40,
-       "n": 48,
-       "rate": 0.833,
-       "ci95": [
-        0.704,
-        0.913
-       ]
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 49,
-       "n": 70,
-       "rate": 0.7,
-       "ci95": [
-        0.585,
-        0.795
-       ]
-      },
-      "credited_precision": {
-       "k": 48,
-       "n": 49,
-       "rate": 0.98,
-       "ci95": [
-        0.893,
-        0.996
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "abstained": {
-       "k": 21,
-       "n": 70,
-       "rate": 0.3,
-       "ci95": [
-        0.205,
-        0.415
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     },
-     "ordinary_hard": {
-      "rows": 70,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 70,
-      "ordinary_credited": {
-       "k": 49,
-       "n": 70,
-       "rate": 0.7,
-       "ci95": [
-        0.585,
-        0.795
-       ]
-      },
-      "credited_precision": {
-       "k": 48,
-       "n": 49,
-       "rate": 0.98,
-       "ci95": [
-        0.893,
-        0.996
-       ]
-      },
-      "wrong_action_credit": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "abstained": {
-       "k": 21,
-       "n": 70,
-       "rate": 0.3,
-       "ci95": [
-        0.205,
-        0.415
-       ]
-      },
-      "ordinary_read_as_critical": {
-       "k": 1,
-       "n": 70,
-       "rate": 0.014,
-       "ci95": [
-        0.003,
-        0.077
-       ]
-      },
-      "non_assertive_rows": 0,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      }
-     },
-     "non_assertive": {
-      "rows": 12,
-      "unavailable": 0,
-      "critical_rows": 0,
-      "false_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "critical_named": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_rows": 0,
-      "ordinary_credited": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "credited_precision": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "wrong_action_credit": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "abstained": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "ordinary_read_as_critical": {
-       "k": 0,
-       "n": 0,
-       "rate": null,
-       "ci95": null
-      },
-      "non_assertive_rows": 12,
-      "non_assertive_credited": {
-       "k": 0,
-       "n": 12,
-       "rate": 0.0,
-       "ci95": [
-        0.0,
-        0.243
-       ]
-      }
-     }
-    }
-   },
-   "per_class": {
-    "baseline": {
-     "ACKNOWLEDGE_EMOTION": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "ACKNOWLEDGE_FACT": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "ANSWER_QUESTION": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "ASK_TOPIC": {
-      "precision": 0.4,
-      "recall": 0.8,
-      "f1": 0.533,
-      "support": 5
-     },
-     "CHECK_UNDERSTANDING": {
-      "precision": 0.385,
-      "recall": 1.0,
-      "f1": 0.556,
-      "support": 5
-     },
-     "CLARIFY": {
-      "precision": 0.75,
-      "recall": 0.6,
-      "f1": 0.667,
-      "support": 5
-     },
-     "CLOSED_LOOP": {
-      "precision": 1.0,
-      "recall": 0.6,
-      "f1": 0.75,
-      "support": 5
-     },
-     "CONFIRM_IDENTITY": {
-      "precision": 0.778,
-      "recall": 0.875,
-      "f1": 0.824,
-      "support": 8
-     },
-     "CONSENT_SIGN": {
-      "precision": 0.75,
-      "recall": 0.75,
-      "f1": 0.75,
-      "support": 8
-     },
-     "ESCALATE_SPEECH": {
-      "precision": 0.714,
-      "recall": 1.0,
-      "f1": 0.833,
-      "support": 5
-     },
-     "EXPLAIN_ACTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_PROCEDURE": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "EXPLAIN_TEST": {
-      "precision": 0.625,
-      "recall": 1.0,
-      "f1": 0.769,
-      "support": 5
-     },
-     "HANDOVER_CRITICAL_ELEMENT": {
-      "precision": 0.733,
-      "recall": 0.688,
-      "f1": 0.71,
-      "support": 16
-     },
-     "NONE": {
-      "precision": 0.5,
-      "recall": 0.083,
-      "f1": 0.143,
-      "support": 12
-     },
-     "REASSURE": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "REPORT_FAULT": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "SBAR_ELEMENT": {
-      "precision": 1.0,
-      "recall": 0.5,
-      "f1": 0.667,
-      "support": 8
-     },
-     "STATE_ALLERGY": {
-      "precision": 0.667,
-      "recall": 0.25,
-      "f1": 0.364,
-      "support": 8
-     },
-     "VOICE_ORDER": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "_macro_f1": 0.713
-    },
-    "embedding": {
-     "ACKNOWLEDGE_EMOTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "ACKNOWLEDGE_FACT": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "ANSWER_QUESTION": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "ASK_TOPIC": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "CHECK_UNDERSTANDING": {
-      "precision": 0.4,
-      "recall": 0.8,
-      "f1": 0.533,
-      "support": 5
-     },
-     "CLARIFY": {
-      "precision": 1.0,
-      "recall": 0.6,
-      "f1": 0.75,
-      "support": 5
-     },
-     "CLOSED_LOOP": {
-      "precision": 0.75,
-      "recall": 0.6,
-      "f1": 0.667,
-      "support": 5
-     },
-     "CONFIRM_IDENTITY": {
-      "precision": 0.8,
-      "recall": 1.0,
-      "f1": 0.889,
-      "support": 8
-     },
-     "CONSENT_SIGN": {
-      "precision": 0.667,
-      "recall": 0.75,
-      "f1": 0.706,
-      "support": 8
-     },
-     "ESCALATE_SPEECH": {
-      "precision": 0.714,
-      "recall": 1.0,
-      "f1": 0.833,
-      "support": 5
-     },
-     "EXPLAIN_ACTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_PROCEDURE": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "EXPLAIN_TEST": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "HANDOVER_CRITICAL_ELEMENT": {
-      "precision": 0.632,
-      "recall": 0.75,
-      "f1": 0.686,
-      "support": 16
-     },
-     "NONE": {
-      "precision": 0.5,
-      "recall": 0.083,
-      "f1": 0.143,
-      "support": 12
-     },
-     "REASSURE": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "REPORT_FAULT": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "SBAR_ELEMENT": {
-      "precision": 1.0,
-      "recall": 0.5,
-      "f1": 0.667,
-      "support": 8
-     },
-     "STATE_ALLERGY": {
-      "precision": 0.875,
-      "recall": 0.875,
-      "f1": 0.875,
-      "support": 8
-     },
-     "VOICE_ORDER": {
-      "precision": 0.714,
-      "recall": 1.0,
-      "f1": 0.833,
-      "support": 5
-     },
-     "_macro_f1": 0.762
-    },
-    "tfidf": {
-     "ACKNOWLEDGE_EMOTION": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "ACKNOWLEDGE_FACT": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "ANSWER_QUESTION": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "ASK_TOPIC": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "CHECK_UNDERSTANDING": {
-      "precision": 0.714,
-      "recall": 1.0,
-      "f1": 0.833,
-      "support": 5
-     },
-     "CLARIFY": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "CLOSED_LOOP": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "CONFIRM_IDENTITY": {
-      "precision": 0.8,
-      "recall": 1.0,
-      "f1": 0.889,
-      "support": 8
-     },
-     "CONSENT_SIGN": {
-      "precision": 0.875,
-      "recall": 0.875,
-      "f1": 0.875,
-      "support": 8
-     },
-     "ESCALATE_SPEECH": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_ACTION": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "EXPLAIN_PROCEDURE": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_TEST": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "HANDOVER_CRITICAL_ELEMENT": {
-      "precision": 0.684,
-      "recall": 0.812,
-      "f1": 0.743,
-      "support": 16
-     },
-     "NONE": {
-      "precision": 1.0,
-      "recall": 0.25,
-      "f1": 0.4,
-      "support": 12
-     },
-     "REASSURE": {
-      "precision": 1.0,
-      "recall": 0.6,
-      "f1": 0.75,
-      "support": 5
-     },
-     "REPORT_FAULT": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "SBAR_ELEMENT": {
-      "precision": 1.0,
-      "recall": 0.75,
-      "f1": 0.857,
-      "support": 8
-     },
-     "STATE_ALLERGY": {
-      "precision": 0.8,
-      "recall": 1.0,
-      "f1": 0.889,
-      "support": 8
-     },
-     "VOICE_ORDER": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "_macro_f1": 0.854
-    },
-    "hybrid": {
-     "ACKNOWLEDGE_EMOTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "ACKNOWLEDGE_FACT": {
-      "precision": 0.625,
-      "recall": 1.0,
-      "f1": 0.769,
-      "support": 5
-     },
-     "ANSWER_QUESTION": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "ASK_TOPIC": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "CHECK_UNDERSTANDING": {
-      "precision": 0.5,
-      "recall": 1.0,
-      "f1": 0.667,
-      "support": 5
-     },
-     "CLARIFY": {
-      "precision": 0.6,
-      "recall": 0.6,
-      "f1": 0.6,
-      "support": 5
-     },
-     "CLOSED_LOOP": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "CONFIRM_IDENTITY": {
-      "precision": 0.727,
-      "recall": 1.0,
-      "f1": 0.842,
-      "support": 8
-     },
-     "CONSENT_SIGN": {
-      "precision": 0.75,
-      "recall": 0.75,
-      "f1": 0.75,
-      "support": 8
-     },
-     "ESCALATE_SPEECH": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "EXPLAIN_ACTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_PROCEDURE": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "EXPLAIN_TEST": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "HANDOVER_CRITICAL_ELEMENT": {
-      "precision": 0.706,
-      "recall": 0.75,
-      "f1": 0.727,
-      "support": 16
-     },
-     "NONE": {
-      "precision": 1.0,
-      "recall": 0.083,
-      "f1": 0.154,
-      "support": 12
-     },
-     "REASSURE": {
-      "precision": 0.75,
-      "recall": 0.6,
-      "f1": 0.667,
-      "support": 5
-     },
-     "REPORT_FAULT": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "SBAR_ELEMENT": {
-      "precision": 1.0,
-      "recall": 0.75,
-      "f1": 0.857,
-      "support": 8
-     },
-     "STATE_ALLERGY": {
-      "precision": 0.889,
-      "recall": 1.0,
-      "f1": 0.941,
-      "support": 8
-     },
-     "VOICE_ORDER": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "_macro_f1": 0.805
-    },
-    "ensemble_v1": {
-     "ACKNOWLEDGE_EMOTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "ACKNOWLEDGE_FACT": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "ANSWER_QUESTION": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "ASK_TOPIC": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "CHECK_UNDERSTANDING": {
-      "precision": 0.4,
-      "recall": 0.8,
-      "f1": 0.533,
-      "support": 5
-     },
-     "CLARIFY": {
-      "precision": 1.0,
-      "recall": 0.6,
-      "f1": 0.75,
-      "support": 5
-     },
-     "CLOSED_LOOP": {
-      "precision": 0.75,
-      "recall": 0.6,
-      "f1": 0.667,
-      "support": 5
-     },
-     "CONFIRM_IDENTITY": {
-      "precision": 0.8,
-      "recall": 1.0,
-      "f1": 0.889,
-      "support": 8
-     },
-     "CONSENT_SIGN": {
-      "precision": 0.667,
-      "recall": 0.75,
-      "f1": 0.706,
-      "support": 8
-     },
-     "ESCALATE_SPEECH": {
-      "precision": 0.714,
-      "recall": 1.0,
-      "f1": 0.833,
-      "support": 5
-     },
-     "EXPLAIN_ACTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_PROCEDURE": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "EXPLAIN_TEST": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "HANDOVER_CRITICAL_ELEMENT": {
-      "precision": 0.632,
-      "recall": 0.75,
-      "f1": 0.686,
-      "support": 16
-     },
-     "NONE": {
-      "precision": 0.5,
-      "recall": 0.083,
-      "f1": 0.143,
-      "support": 12
-     },
-     "REASSURE": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "REPORT_FAULT": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "SBAR_ELEMENT": {
-      "precision": 1.0,
-      "recall": 0.5,
-      "f1": 0.667,
-      "support": 8
-     },
-     "STATE_ALLERGY": {
-      "precision": 0.875,
-      "recall": 0.875,
-      "f1": 0.875,
-      "support": 8
-     },
-     "VOICE_ORDER": {
-      "precision": 0.714,
-      "recall": 1.0,
-      "f1": 0.833,
-      "support": 5
-     },
-     "_macro_f1": 0.762
-    },
-    "ensemble": {
-     "ACKNOWLEDGE_EMOTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "ACKNOWLEDGE_FACT": {
-      "precision": 0.625,
-      "recall": 1.0,
-      "f1": 0.769,
-      "support": 5
-     },
-     "ANSWER_QUESTION": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "ASK_TOPIC": {
-      "precision": 0.667,
-      "recall": 0.8,
-      "f1": 0.727,
-      "support": 5
-     },
-     "CHECK_UNDERSTANDING": {
-      "precision": 0.5,
-      "recall": 1.0,
-      "f1": 0.667,
-      "support": 5
-     },
-     "CLARIFY": {
-      "precision": 0.6,
-      "recall": 0.6,
-      "f1": 0.6,
-      "support": 5
-     },
-     "CLOSED_LOOP": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "CONFIRM_IDENTITY": {
-      "precision": 0.727,
-      "recall": 1.0,
-      "f1": 0.842,
-      "support": 8
-     },
-     "CONSENT_SIGN": {
-      "precision": 0.75,
-      "recall": 0.75,
-      "f1": 0.75,
-      "support": 8
-     },
-     "ESCALATE_SPEECH": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "EXPLAIN_ACTION": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "EXPLAIN_PROCEDURE": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1": 0.889,
-      "support": 5
-     },
-     "EXPLAIN_TEST": {
-      "precision": 0.833,
-      "recall": 1.0,
-      "f1": 0.909,
-      "support": 5
-     },
-     "HANDOVER_CRITICAL_ELEMENT": {
-      "precision": 0.706,
-      "recall": 0.75,
-      "f1": 0.727,
-      "support": 16
-     },
-     "NONE": {
-      "precision": 1.0,
-      "recall": 0.083,
-      "f1": 0.154,
-      "support": 12
-     },
-     "REASSURE": {
-      "precision": 0.75,
-      "recall": 0.6,
-      "f1": 0.667,
-      "support": 5
-     },
-     "REPORT_FAULT": {
-      "precision": 0.8,
-      "recall": 0.8,
-      "f1": 0.8,
-      "support": 5
-     },
-     "SBAR_ELEMENT": {
-      "precision": 1.0,
-      "recall": 0.75,
-      "f1": 0.857,
-      "support": 8
-     },
-     "STATE_ALLERGY": {
-      "precision": 0.889,
-      "recall": 1.0,
-      "f1": 0.941,
-      "support": 8
-     },
-     "VOICE_ORDER": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1": 1.0,
-      "support": 5
-     },
-     "_macro_f1": 0.805
-    }
-   }
-  },
   "challenge_v5": {
    "rows": 135,
    "variants": {
@@ -23393,38 +21028,2403 @@
      "_macro_f1": 0.858
     }
    }
+  },
+  "challenge_v6": {
+   "rows": 130,
+   "variants": {
+    "baseline": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 3,
+       "n": 48,
+       "rate": 0.062,
+       "ci95": [
+        0.021,
+        0.168
+       ]
+      },
+      "critical_named": {
+       "k": 30,
+       "n": 48,
+       "rate": 0.625,
+       "ci95": [
+        0.484,
+        0.748
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 130,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 3,
+       "n": 48,
+       "rate": 0.062,
+       "ci95": [
+        0.021,
+        0.168
+       ]
+      },
+      "critical_named": {
+       "k": 30,
+       "n": 48,
+       "rate": 0.625,
+       "ci95": [
+        0.484,
+        0.748
+       ]
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 56,
+       "n": 70,
+       "rate": 0.8,
+       "ci95": [
+        0.692,
+        0.877
+       ]
+      },
+      "credited_precision": {
+       "k": 51,
+       "n": 56,
+       "rate": 0.911,
+       "ci95": [
+        0.807,
+        0.961
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 70,
+       "rate": 0.071,
+       "ci95": [
+        0.031,
+        0.157
+       ]
+      },
+      "abstained": {
+       "k": 14,
+       "n": 70,
+       "rate": 0.2,
+       "ci95": [
+        0.123,
+        0.308
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 2,
+       "n": 12,
+       "rate": 0.167,
+       "ci95": [
+        0.047,
+        0.448
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 70,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 56,
+       "n": 70,
+       "rate": 0.8,
+       "ci95": [
+        0.692,
+        0.877
+       ]
+      },
+      "credited_precision": {
+       "k": 51,
+       "n": 56,
+       "rate": 0.911,
+       "ci95": [
+        0.807,
+        0.961
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 5,
+       "n": 70,
+       "rate": 0.071,
+       "ci95": [
+        0.031,
+        0.157
+       ]
+      },
+      "abstained": {
+       "k": 14,
+       "n": 70,
+       "rate": 0.2,
+       "ci95": [
+        0.123,
+        0.308
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 2,
+       "n": 12,
+       "rate": 0.167,
+       "ci95": [
+        0.047,
+        0.448
+       ]
+      }
+     }
+    },
+    "embedding": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 37,
+       "n": 48,
+       "rate": 0.771,
+       "ci95": [
+        0.635,
+        0.867
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 130,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 37,
+       "n": 48,
+       "rate": 0.771,
+       "ci95": [
+        0.635,
+        0.867
+       ]
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 48,
+       "n": 70,
+       "rate": 0.686,
+       "ci95": [
+        0.57,
+        0.782
+       ]
+      },
+      "credited_precision": {
+       "k": 45,
+       "n": 48,
+       "rate": 0.938,
+       "ci95": [
+        0.832,
+        0.979
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "abstained": {
+       "k": 22,
+       "n": 70,
+       "rate": 0.314,
+       "ci95": [
+        0.218,
+        0.43
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 1,
+       "n": 12,
+       "rate": 0.083,
+       "ci95": [
+        0.015,
+        0.354
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 70,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 48,
+       "n": 70,
+       "rate": 0.686,
+       "ci95": [
+        0.57,
+        0.782
+       ]
+      },
+      "credited_precision": {
+       "k": 45,
+       "n": 48,
+       "rate": 0.938,
+       "ci95": [
+        0.832,
+        0.979
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "abstained": {
+       "k": 22,
+       "n": 70,
+       "rate": 0.314,
+       "ci95": [
+        0.218,
+        0.43
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 1,
+       "n": 12,
+       "rate": 0.083,
+       "ci95": [
+        0.015,
+        0.354
+       ]
+      }
+     }
+    },
+    "tfidf": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 42,
+       "n": 48,
+       "rate": 0.875,
+       "ci95": [
+        0.753,
+        0.941
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 130,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 42,
+       "n": 48,
+       "rate": 0.875,
+       "ci95": [
+        0.753,
+        0.941
+       ]
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 70,
+       "rate": 0.357,
+       "ci95": [
+        0.255,
+        0.474
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 25,
+       "rate": 1.0,
+       "ci95": [
+        0.867,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 70,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.052
+       ]
+      },
+      "abstained": {
+       "k": 45,
+       "n": 70,
+       "rate": 0.643,
+       "ci95": [
+        0.526,
+        0.745
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 70,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 25,
+       "n": 70,
+       "rate": 0.357,
+       "ci95": [
+        0.255,
+        0.474
+       ]
+      },
+      "credited_precision": {
+       "k": 25,
+       "n": 25,
+       "rate": 1.0,
+       "ci95": [
+        0.867,
+        1.0
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 70,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.052
+       ]
+      },
+      "abstained": {
+       "k": 45,
+       "n": 70,
+       "rate": 0.643,
+       "ci95": [
+        0.526,
+        0.745
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     }
+    },
+    "hybrid": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 40,
+       "n": 48,
+       "rate": 0.833,
+       "ci95": [
+        0.704,
+        0.913
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 130,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 40,
+       "n": 48,
+       "rate": 0.833,
+       "ci95": [
+        0.704,
+        0.913
+       ]
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 52,
+       "n": 70,
+       "rate": 0.743,
+       "ci95": [
+        0.63,
+        0.831
+       ]
+      },
+      "credited_precision": {
+       "k": 49,
+       "n": 52,
+       "rate": 0.942,
+       "ci95": [
+        0.844,
+        0.98
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "abstained": {
+       "k": 18,
+       "n": 70,
+       "rate": 0.257,
+       "ci95": [
+        0.169,
+        0.37
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 70,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 52,
+       "n": 70,
+       "rate": 0.743,
+       "ci95": [
+        0.63,
+        0.831
+       ]
+      },
+      "credited_precision": {
+       "k": 49,
+       "n": 52,
+       "rate": 0.942,
+       "ci95": [
+        0.844,
+        0.98
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "abstained": {
+       "k": 18,
+       "n": 70,
+       "rate": 0.257,
+       "ci95": [
+        0.169,
+        0.37
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     }
+    },
+    "ensemble_v1": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 37,
+       "n": 48,
+       "rate": 0.771,
+       "ci95": [
+        0.635,
+        0.867
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 130,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 37,
+       "n": 48,
+       "rate": 0.771,
+       "ci95": [
+        0.635,
+        0.867
+       ]
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 44,
+       "n": 70,
+       "rate": 0.629,
+       "ci95": [
+        0.511,
+        0.732
+       ]
+      },
+      "credited_precision": {
+       "k": 43,
+       "n": 44,
+       "rate": 0.977,
+       "ci95": [
+        0.882,
+        0.996
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "abstained": {
+       "k": 26,
+       "n": 70,
+       "rate": 0.371,
+       "ci95": [
+        0.268,
+        0.489
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 70,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 44,
+       "n": 70,
+       "rate": 0.629,
+       "ci95": [
+        0.511,
+        0.732
+       ]
+      },
+      "credited_precision": {
+       "k": 43,
+       "n": 44,
+       "rate": 0.977,
+       "ci95": [
+        0.882,
+        0.996
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "abstained": {
+       "k": 26,
+       "n": 70,
+       "rate": 0.371,
+       "ci95": [
+        0.268,
+        0.489
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 3,
+       "n": 70,
+       "rate": 0.043,
+       "ci95": [
+        0.015,
+        0.119
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     }
+    },
+    "ensemble": {
+     "critical_evasive": {
+      "rows": 48,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 40,
+       "n": 48,
+       "rate": 0.833,
+       "ci95": [
+        0.704,
+        0.913
+       ]
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "ALL": {
+      "rows": 130,
+      "unavailable": 0,
+      "critical_rows": 48,
+      "false_credit": {
+       "k": 0,
+       "n": 48,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.074
+       ]
+      },
+      "critical_named": {
+       "k": 40,
+       "n": 48,
+       "rate": 0.833,
+       "ci95": [
+        0.704,
+        0.913
+       ]
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 49,
+       "n": 70,
+       "rate": 0.7,
+       "ci95": [
+        0.585,
+        0.795
+       ]
+      },
+      "credited_precision": {
+       "k": 48,
+       "n": 49,
+       "rate": 0.98,
+       "ci95": [
+        0.893,
+        0.996
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "abstained": {
+       "k": 21,
+       "n": 70,
+       "rate": 0.3,
+       "ci95": [
+        0.205,
+        0.415
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     },
+     "ordinary_hard": {
+      "rows": 70,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 70,
+      "ordinary_credited": {
+       "k": 49,
+       "n": 70,
+       "rate": 0.7,
+       "ci95": [
+        0.585,
+        0.795
+       ]
+      },
+      "credited_precision": {
+       "k": 48,
+       "n": 49,
+       "rate": 0.98,
+       "ci95": [
+        0.893,
+        0.996
+       ]
+      },
+      "wrong_action_credit": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "abstained": {
+       "k": 21,
+       "n": 70,
+       "rate": 0.3,
+       "ci95": [
+        0.205,
+        0.415
+       ]
+      },
+      "ordinary_read_as_critical": {
+       "k": 1,
+       "n": 70,
+       "rate": 0.014,
+       "ci95": [
+        0.003,
+        0.077
+       ]
+      },
+      "non_assertive_rows": 0,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      }
+     },
+     "non_assertive": {
+      "rows": 12,
+      "unavailable": 0,
+      "critical_rows": 0,
+      "false_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "critical_named": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_rows": 0,
+      "ordinary_credited": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "credited_precision": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "wrong_action_credit": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "abstained": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "ordinary_read_as_critical": {
+       "k": 0,
+       "n": 0,
+       "rate": null,
+       "ci95": null
+      },
+      "non_assertive_rows": 12,
+      "non_assertive_credited": {
+       "k": 0,
+       "n": 12,
+       "rate": 0.0,
+       "ci95": [
+        0.0,
+        0.243
+       ]
+      }
+     }
+    }
+   },
+   "per_class": {
+    "baseline": {
+     "ACKNOWLEDGE_EMOTION": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "ACKNOWLEDGE_FACT": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "ANSWER_QUESTION": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "ASK_TOPIC": {
+      "precision": 0.4,
+      "recall": 0.8,
+      "f1": 0.533,
+      "support": 5
+     },
+     "CHECK_UNDERSTANDING": {
+      "precision": 0.385,
+      "recall": 1.0,
+      "f1": 0.556,
+      "support": 5
+     },
+     "CLARIFY": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.667,
+      "support": 5
+     },
+     "CLOSED_LOOP": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.75,
+      "support": 5
+     },
+     "CONFIRM_IDENTITY": {
+      "precision": 0.778,
+      "recall": 0.875,
+      "f1": 0.824,
+      "support": 8
+     },
+     "CONSENT_SIGN": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "support": 8
+     },
+     "ESCALATE_SPEECH": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "support": 5
+     },
+     "EXPLAIN_ACTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_PROCEDURE": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "EXPLAIN_TEST": {
+      "precision": 0.625,
+      "recall": 1.0,
+      "f1": 0.769,
+      "support": 5
+     },
+     "HANDOVER_CRITICAL_ELEMENT": {
+      "precision": 0.733,
+      "recall": 0.688,
+      "f1": 0.71,
+      "support": 16
+     },
+     "NONE": {
+      "precision": 0.5,
+      "recall": 0.083,
+      "f1": 0.143,
+      "support": 12
+     },
+     "REASSURE": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "REPORT_FAULT": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "SBAR_ELEMENT": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.667,
+      "support": 8
+     },
+     "STATE_ALLERGY": {
+      "precision": 0.667,
+      "recall": 0.25,
+      "f1": 0.364,
+      "support": 8
+     },
+     "VOICE_ORDER": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "_macro_f1": 0.713
+    },
+    "embedding": {
+     "ACKNOWLEDGE_EMOTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "ACKNOWLEDGE_FACT": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "ANSWER_QUESTION": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "ASK_TOPIC": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "CHECK_UNDERSTANDING": {
+      "precision": 0.4,
+      "recall": 0.8,
+      "f1": 0.533,
+      "support": 5
+     },
+     "CLARIFY": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.75,
+      "support": 5
+     },
+     "CLOSED_LOOP": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.667,
+      "support": 5
+     },
+     "CONFIRM_IDENTITY": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.889,
+      "support": 8
+     },
+     "CONSENT_SIGN": {
+      "precision": 0.667,
+      "recall": 0.75,
+      "f1": 0.706,
+      "support": 8
+     },
+     "ESCALATE_SPEECH": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "support": 5
+     },
+     "EXPLAIN_ACTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_PROCEDURE": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "EXPLAIN_TEST": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "HANDOVER_CRITICAL_ELEMENT": {
+      "precision": 0.632,
+      "recall": 0.75,
+      "f1": 0.686,
+      "support": 16
+     },
+     "NONE": {
+      "precision": 0.5,
+      "recall": 0.083,
+      "f1": 0.143,
+      "support": 12
+     },
+     "REASSURE": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "REPORT_FAULT": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "SBAR_ELEMENT": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.667,
+      "support": 8
+     },
+     "STATE_ALLERGY": {
+      "precision": 0.875,
+      "recall": 0.875,
+      "f1": 0.875,
+      "support": 8
+     },
+     "VOICE_ORDER": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "support": 5
+     },
+     "_macro_f1": 0.762
+    },
+    "tfidf": {
+     "ACKNOWLEDGE_EMOTION": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "ACKNOWLEDGE_FACT": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "ANSWER_QUESTION": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "ASK_TOPIC": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "CHECK_UNDERSTANDING": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "support": 5
+     },
+     "CLARIFY": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "CLOSED_LOOP": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "CONFIRM_IDENTITY": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.889,
+      "support": 8
+     },
+     "CONSENT_SIGN": {
+      "precision": 0.875,
+      "recall": 0.875,
+      "f1": 0.875,
+      "support": 8
+     },
+     "ESCALATE_SPEECH": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_ACTION": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "EXPLAIN_PROCEDURE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_TEST": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "HANDOVER_CRITICAL_ELEMENT": {
+      "precision": 0.684,
+      "recall": 0.812,
+      "f1": 0.743,
+      "support": 16
+     },
+     "NONE": {
+      "precision": 1.0,
+      "recall": 0.25,
+      "f1": 0.4,
+      "support": 12
+     },
+     "REASSURE": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.75,
+      "support": 5
+     },
+     "REPORT_FAULT": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "SBAR_ELEMENT": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857,
+      "support": 8
+     },
+     "STATE_ALLERGY": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.889,
+      "support": 8
+     },
+     "VOICE_ORDER": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "_macro_f1": 0.854
+    },
+    "hybrid": {
+     "ACKNOWLEDGE_EMOTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "ACKNOWLEDGE_FACT": {
+      "precision": 0.625,
+      "recall": 1.0,
+      "f1": 0.769,
+      "support": 5
+     },
+     "ANSWER_QUESTION": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "ASK_TOPIC": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "CHECK_UNDERSTANDING": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.667,
+      "support": 5
+     },
+     "CLARIFY": {
+      "precision": 0.6,
+      "recall": 0.6,
+      "f1": 0.6,
+      "support": 5
+     },
+     "CLOSED_LOOP": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "CONFIRM_IDENTITY": {
+      "precision": 0.727,
+      "recall": 1.0,
+      "f1": 0.842,
+      "support": 8
+     },
+     "CONSENT_SIGN": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "support": 8
+     },
+     "ESCALATE_SPEECH": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "EXPLAIN_ACTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_PROCEDURE": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "EXPLAIN_TEST": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "HANDOVER_CRITICAL_ELEMENT": {
+      "precision": 0.706,
+      "recall": 0.75,
+      "f1": 0.727,
+      "support": 16
+     },
+     "NONE": {
+      "precision": 1.0,
+      "recall": 0.083,
+      "f1": 0.154,
+      "support": 12
+     },
+     "REASSURE": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.667,
+      "support": 5
+     },
+     "REPORT_FAULT": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "SBAR_ELEMENT": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857,
+      "support": 8
+     },
+     "STATE_ALLERGY": {
+      "precision": 0.889,
+      "recall": 1.0,
+      "f1": 0.941,
+      "support": 8
+     },
+     "VOICE_ORDER": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "_macro_f1": 0.805
+    },
+    "ensemble_v1": {
+     "ACKNOWLEDGE_EMOTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "ACKNOWLEDGE_FACT": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "ANSWER_QUESTION": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "ASK_TOPIC": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "CHECK_UNDERSTANDING": {
+      "precision": 0.4,
+      "recall": 0.8,
+      "f1": 0.533,
+      "support": 5
+     },
+     "CLARIFY": {
+      "precision": 1.0,
+      "recall": 0.6,
+      "f1": 0.75,
+      "support": 5
+     },
+     "CLOSED_LOOP": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.667,
+      "support": 5
+     },
+     "CONFIRM_IDENTITY": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.889,
+      "support": 8
+     },
+     "CONSENT_SIGN": {
+      "precision": 0.667,
+      "recall": 0.75,
+      "f1": 0.706,
+      "support": 8
+     },
+     "ESCALATE_SPEECH": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "support": 5
+     },
+     "EXPLAIN_ACTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_PROCEDURE": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "EXPLAIN_TEST": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "HANDOVER_CRITICAL_ELEMENT": {
+      "precision": 0.632,
+      "recall": 0.75,
+      "f1": 0.686,
+      "support": 16
+     },
+     "NONE": {
+      "precision": 0.5,
+      "recall": 0.083,
+      "f1": 0.143,
+      "support": 12
+     },
+     "REASSURE": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "REPORT_FAULT": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "SBAR_ELEMENT": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.667,
+      "support": 8
+     },
+     "STATE_ALLERGY": {
+      "precision": 0.875,
+      "recall": 0.875,
+      "f1": 0.875,
+      "support": 8
+     },
+     "VOICE_ORDER": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "support": 5
+     },
+     "_macro_f1": 0.762
+    },
+    "ensemble": {
+     "ACKNOWLEDGE_EMOTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "ACKNOWLEDGE_FACT": {
+      "precision": 0.625,
+      "recall": 1.0,
+      "f1": 0.769,
+      "support": 5
+     },
+     "ANSWER_QUESTION": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "ASK_TOPIC": {
+      "precision": 0.667,
+      "recall": 0.8,
+      "f1": 0.727,
+      "support": 5
+     },
+     "CHECK_UNDERSTANDING": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.667,
+      "support": 5
+     },
+     "CLARIFY": {
+      "precision": 0.6,
+      "recall": 0.6,
+      "f1": 0.6,
+      "support": 5
+     },
+     "CLOSED_LOOP": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "CONFIRM_IDENTITY": {
+      "precision": 0.727,
+      "recall": 1.0,
+      "f1": 0.842,
+      "support": 8
+     },
+     "CONSENT_SIGN": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "support": 8
+     },
+     "ESCALATE_SPEECH": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "EXPLAIN_ACTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "EXPLAIN_PROCEDURE": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 5
+     },
+     "EXPLAIN_TEST": {
+      "precision": 0.833,
+      "recall": 1.0,
+      "f1": 0.909,
+      "support": 5
+     },
+     "HANDOVER_CRITICAL_ELEMENT": {
+      "precision": 0.706,
+      "recall": 0.75,
+      "f1": 0.727,
+      "support": 16
+     },
+     "NONE": {
+      "precision": 1.0,
+      "recall": 0.083,
+      "f1": 0.154,
+      "support": 12
+     },
+     "REASSURE": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.667,
+      "support": 5
+     },
+     "REPORT_FAULT": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 5
+     },
+     "SBAR_ELEMENT": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857,
+      "support": 8
+     },
+     "STATE_ALLERGY": {
+      "precision": 0.889,
+      "recall": 1.0,
+      "f1": 0.941,
+      "support": 8
+     },
+     "VOICE_ORDER": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+     },
+     "_macro_f1": 0.805
+    }
+   }
   }
  },
  "latency_ms": {
   "baseline": {
-   "median": 27.02,
-   "p95": 42.37
+   "median": 14.56,
+   "p95": 18.35
   },
   "embedding": {
-   "median": 23.88,
-   "p95": 32.39
+   "median": 14.67,
+   "p95": 19.95
   },
   "tfidf": {
-   "median": 0.15,
-   "p95": 0.29
+   "median": 0.1,
+   "p95": 0.2
   },
   "hybrid": {
-   "median": 24.09,
-   "p95": 58.41
+   "median": 14.56,
+   "p95": 17.99
   },
   "ensemble_v1": {
-   "median": 21.42,
-   "p95": 25.26
+   "median": 14.78,
+   "p95": 19.32
   },
   "ensemble": {
-   "median": 20.92,
-   "p95": 26.98
+   "median": 15.76,
+   "p95": 22.0
   }
  },
  "challenge_v5_scored_with": "hybrid head and TF-IDF head built by tools/bench/build_safe_heads.py in the fourth session, assertion rules of server/classify/assertion.py, cap 0.05; v5 was written before the false-reject analysis",
  "challenge_v6_scored_with": "hybrid head trained with the v4 critical rows added as hard negatives (tools/bench/build_safe_heads.py, fifth session), cue list version 5, assertion rules of server/classify/assertion.py, critical-mass cap of the head file; v6 was written before any change of that session and was never shown to a model or a tuning step",
  "non_assertive_flagged_on_v2_dev": {
-  "flagged": 61,
+  "flagged": 63,
   "of": 420
  }
 }

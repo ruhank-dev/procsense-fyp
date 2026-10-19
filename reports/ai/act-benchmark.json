@@ -1,0 +1,652 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "split": "test",
+ "rows": 488,
+ "dataset_manifest_sha256": "910a0d90dc92d61a",
+ "approaches": {
+  "A_rules": {
+   "categories": {
+    "actor_change": {
+     "n": 56,
+     "credited": 2,
+     "abstained": 54,
+     "false_credit": 2,
+     "false_credit_rate": 0.036
+    },
+    "asr_error": {
+     "n": 56,
+     "credited": 15,
+     "abstained": 41,
+     "recall": 0.268,
+     "wrong_act_credit": 0
+    },
+    "critical": {
+     "n": 30,
+     "credited": 0,
+     "abstained": 30,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "critical_asr": {
+     "n": 10,
+     "credited": 0,
+     "abstained": 10,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "hypothetical": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "incomplete": {
+     "n": 28,
+     "credited": 0,
+     "abstained": 28,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "intention": {
+     "n": 48,
+     "credited": 2,
+     "abstained": 46,
+     "false_credit": 2,
+     "false_credit_rate": 0.042
+    },
+    "negation": {
+     "n": 56,
+     "credited": 1,
+     "abstained": 55,
+     "false_credit": 1,
+     "false_credit_rate": 0.018
+    },
+    "none": {
+     "n": 8,
+     "credited": 0,
+     "abstained": 8,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "paraphrase": {
+     "n": 84,
+     "credited": 35,
+     "abstained": 49,
+     "recall": 0.417,
+     "wrong_act_credit": 0
+    },
+    "reported": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    }
+   },
+   "totals": {
+    "critical_false_credit": 0,
+    "critical_rows": 40,
+    "non_assertive_false_credit": 5,
+    "non_assertive_rows": 300,
+    "legitimate_recall": 0.357,
+    "legitimate_credited": 50,
+    "legitimate_rows": 140,
+    "credited_precision": 0.909,
+    "credited_total": 55,
+    "abstention_rate_on_legitimate": 0.643,
+    "status_errors": 5
+   },
+   "latency_ms": {
+    "median": 0.1,
+    "p95": 0.27
+   },
+   "model_calls": 0,
+   "refusal_reasons": {
+    "NO_RULE": 400,
+    "credited": 55,
+    "CRITICAL_CUE": 20,
+    "NON_ASSERTIVE": 13
+   }
+  },
+  "B_retrieval_plus_status": {
+   "categories": {
+    "actor_change": {
+     "n": 56,
+     "credited": 3,
+     "abstained": 53,
+     "false_credit": 3,
+     "false_credit_rate": 0.054
+    },
+    "asr_error": {
+     "n": 56,
+     "credited": 24,
+     "abstained": 32,
+     "recall": 0.375,
+     "wrong_act_credit": 3
+    },
+    "critical": {
+     "n": 30,
+     "credited": 0,
+     "abstained": 30,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "critical_asr": {
+     "n": 10,
+     "credited": 0,
+     "abstained": 10,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "hypothetical": {
+     "n": 56,
+     "credited": 5,
+     "abstained": 51,
+     "false_credit": 5,
+     "false_credit_rate": 0.089
+    },
+    "incomplete": {
+     "n": 28,
+     "credited": 0,
+     "abstained": 28,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "intention": {
+     "n": 48,
+     "credited": 12,
+     "abstained": 36,
+     "false_credit": 12,
+     "false_credit_rate": 0.25
+    },
+    "negation": {
+     "n": 56,
+     "credited": 20,
+     "abstained": 36,
+     "false_credit": 20,
+     "false_credit_rate": 0.357
+    },
+    "none": {
+     "n": 8,
+     "credited": 0,
+     "abstained": 8,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "paraphrase": {
+     "n": 84,
+     "credited": 50,
+     "abstained": 34,
+     "recall": 0.571,
+     "wrong_act_credit": 2
+    },
+    "reported": {
+     "n": 56,
+     "credited": 1,
+     "abstained": 55,
+     "false_credit": 1,
+     "false_credit_rate": 0.018
+    }
+   },
+   "totals": {
+    "critical_false_credit": 0,
+    "critical_rows": 40,
+    "non_assertive_false_credit": 41,
+    "non_assertive_rows": 300,
+    "legitimate_recall": 0.493,
+    "legitimate_credited": 74,
+    "legitimate_rows": 140,
+    "credited_precision": 0.6,
+    "credited_total": 115,
+    "abstention_rate_on_legitimate": 0.471,
+    "status_errors": 41
+   },
+   "latency_ms": {
+    "median": 1.09,
+    "p95": 3.3
+   },
+   "model_calls": 0,
+   "refusal_reasons": {
+    "HEAD_REFUSED": 356,
+    "credited": 115,
+    "STATUS": 17
+   }
+  },
+  "C_model_validated": {
+   "categories": {
+    "actor_change": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "asr_error": {
+     "n": 56,
+     "credited": 9,
+     "abstained": 47,
+     "recall": 0.125,
+     "wrong_act_credit": 2
+    },
+    "critical": {
+     "n": 30,
+     "credited": 1,
+     "abstained": 29,
+     "false_credit": 1,
+     "false_credit_rate": 0.033
+    },
+    "critical_asr": {
+     "n": 10,
+     "credited": 2,
+     "abstained": 8,
+     "false_credit": 2,
+     "false_credit_rate": 0.2
+    },
+    "hypothetical": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "incomplete": {
+     "n": 28,
+     "credited": 0,
+     "abstained": 28,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "intention": {
+     "n": 48,
+     "credited": 0,
+     "abstained": 48,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "negation": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "none": {
+     "n": 8,
+     "credited": 0,
+     "abstained": 8,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "paraphrase": {
+     "n": 84,
+     "credited": 24,
+     "abstained": 60,
+     "recall": 0.214,
+     "wrong_act_credit": 6
+    },
+    "reported": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    }
+   },
+   "totals": {
+    "critical_false_credit": 3,
+    "critical_rows": 40,
+    "non_assertive_false_credit": 0,
+    "non_assertive_rows": 300,
+    "legitimate_recall": 0.178,
+    "legitimate_credited": 33,
+    "legitimate_rows": 140,
+    "credited_precision": 0.694,
+    "credited_total": 36,
+    "abstention_rate_on_legitimate": 0.764,
+    "status_errors": 0
+   },
+   "latency_ms": {
+    "median": 3048.2,
+    "p95": 3172.11
+   },
+   "model_calls": 488,
+   "refusal_reasons": {
+    "MODEL_NONE": 235,
+    "MODEL_ASSERTION": 208,
+    "credited": 36,
+    "CRITICAL_CUE": 4,
+    "MODEL_ACTOR": 3,
+    "EVIDENCE_NOT_IN_SENTENCE": 1,
+    "NON_ASSERTIVE": 1
+   }
+  },
+  "C2_rules_then_model": {
+   "categories": {
+    "actor_change": {
+     "n": 56,
+     "credited": 2,
+     "abstained": 54,
+     "false_credit": 2,
+     "false_credit_rate": 0.036
+    },
+    "asr_error": {
+     "n": 56,
+     "credited": 17,
+     "abstained": 39,
+     "recall": 0.304,
+     "wrong_act_credit": 0
+    },
+    "critical": {
+     "n": 30,
+     "credited": 1,
+     "abstained": 29,
+     "false_credit": 1,
+     "false_credit_rate": 0.033
+    },
+    "critical_asr": {
+     "n": 10,
+     "credited": 1,
+     "abstained": 9,
+     "false_credit": 1,
+     "false_credit_rate": 0.1
+    },
+    "hypothetical": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "incomplete": {
+     "n": 28,
+     "credited": 0,
+     "abstained": 28,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "intention": {
+     "n": 48,
+     "credited": 3,
+     "abstained": 45,
+     "false_credit": 3,
+     "false_credit_rate": 0.062
+    },
+    "negation": {
+     "n": 56,
+     "credited": 1,
+     "abstained": 55,
+     "false_credit": 1,
+     "false_credit_rate": 0.018
+    },
+    "none": {
+     "n": 8,
+     "credited": 0,
+     "abstained": 8,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "paraphrase": {
+     "n": 84,
+     "credited": 47,
+     "abstained": 37,
+     "recall": 0.524,
+     "wrong_act_credit": 3
+    },
+    "reported": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    }
+   },
+   "totals": {
+    "critical_false_credit": 2,
+    "critical_rows": 40,
+    "non_assertive_false_credit": 6,
+    "non_assertive_rows": 300,
+    "legitimate_recall": 0.436,
+    "legitimate_credited": 64,
+    "legitimate_rows": 140,
+    "credited_precision": 0.847,
+    "credited_total": 72,
+    "abstention_rate_on_legitimate": 0.543,
+    "status_errors": 6
+   },
+   "latency_ms": {
+    "median": 3030.29,
+    "p95": 3141.56
+   },
+   "model_calls": 400,
+   "refusal_reasons": {
+    "MODEL_NONE": 229,
+    "MODEL_ASSERTION": 148,
+    "credited": 72,
+    "CRITICAL_CUE": 22,
+    "NON_ASSERTIVE": 13,
+    "MODEL_ACTOR": 3,
+    "EVIDENCE_NOT_IN_SENTENCE": 1
+   }
+  },
+  "E_existing_gate": {
+   "categories": {
+    "actor_change": {
+     "n": 56,
+     "credited": 3,
+     "abstained": 53,
+     "false_credit": 3,
+     "false_credit_rate": 0.054
+    },
+    "asr_error": {
+     "n": 56,
+     "credited": 23,
+     "abstained": 33,
+     "recall": 0.375,
+     "wrong_act_credit": 2
+    },
+    "critical": {
+     "n": 30,
+     "credited": 0,
+     "abstained": 30,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "critical_asr": {
+     "n": 10,
+     "credited": 0,
+     "abstained": 10,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "hypothetical": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "incomplete": {
+     "n": 28,
+     "credited": 0,
+     "abstained": 28,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "intention": {
+     "n": 48,
+     "credited": 12,
+     "abstained": 36,
+     "false_credit": 12,
+     "false_credit_rate": 0.25
+    },
+    "negation": {
+     "n": 56,
+     "credited": 6,
+     "abstained": 50,
+     "false_credit": 6,
+     "false_credit_rate": 0.107
+    },
+    "none": {
+     "n": 8,
+     "credited": 0,
+     "abstained": 8,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "paraphrase": {
+     "n": 84,
+     "credited": 47,
+     "abstained": 37,
+     "recall": 0.536,
+     "wrong_act_credit": 2
+    },
+    "reported": {
+     "n": 56,
+     "credited": 1,
+     "abstained": 55,
+     "false_credit": 1,
+     "false_credit_rate": 0.018
+    }
+   },
+   "totals": {
+    "critical_false_credit": 0,
+    "critical_rows": 40,
+    "non_assertive_false_credit": 22,
+    "non_assertive_rows": 300,
+    "legitimate_recall": 0.472,
+    "legitimate_credited": 70,
+    "legitimate_rows": 140,
+    "credited_precision": 0.717,
+    "credited_total": 92,
+    "abstention_rate_on_legitimate": 0.5,
+    "status_errors": 22
+   },
+   "latency_ms": {
+    "median": 1.0,
+    "p95": 1.38
+   },
+   "model_calls": 0,
+   "refusal_reasons": {
+    "NO_ACT": 356,
+    "credited": 92,
+    "NON_ASSERTIVE": 24,
+    "HEADS_DISAGREE": 16
+   }
+  },
+  "F_existing_gate_plus_status": {
+   "categories": {
+    "actor_change": {
+     "n": 56,
+     "credited": 3,
+     "abstained": 53,
+     "false_credit": 3,
+     "false_credit_rate": 0.054
+    },
+    "asr_error": {
+     "n": 56,
+     "credited": 23,
+     "abstained": 33,
+     "recall": 0.375,
+     "wrong_act_credit": 2
+    },
+    "critical": {
+     "n": 30,
+     "credited": 0,
+     "abstained": 30,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "critical_asr": {
+     "n": 10,
+     "credited": 0,
+     "abstained": 10,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "hypothetical": {
+     "n": 56,
+     "credited": 0,
+     "abstained": 56,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "incomplete": {
+     "n": 28,
+     "credited": 0,
+     "abstained": 28,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "intention": {
+     "n": 48,
+     "credited": 12,
+     "abstained": 36,
+     "false_credit": 12,
+     "false_credit_rate": 0.25
+    },
+    "negation": {
+     "n": 56,
+     "credited": 6,
+     "abstained": 50,
+     "false_credit": 6,
+     "false_credit_rate": 0.107
+    },
+    "none": {
+     "n": 8,
+     "credited": 0,
+     "abstained": 8,
+     "false_credit": 0,
+     "false_credit_rate": 0.0
+    },
+    "paraphrase": {
+     "n": 84,
+     "credited": 47,
+     "abstained": 37,
+     "recall": 0.536,
+     "wrong_act_credit": 2
+    },
+    "reported": {
+     "n": 56,
+     "credited": 1,
+     "abstained": 55,
+     "false_credit": 1,
+     "false_credit_rate": 0.018
+    }
+   },
+   "totals": {
+    "critical_false_credit": 0,
+    "critical_rows": 40,
+    "non_assertive_false_credit": 22,
+    "non_assertive_rows": 300,
+    "legitimate_recall": 0.472,
+    "legitimate_credited": 70,
+    "legitimate_rows": 140,
+    "credited_precision": 0.717,
+    "credited_total": 92,
+    "abstention_rate_on_legitimate": 0.5,
+    "status_errors": 22
+   },
+   "latency_ms": {
+    "median": 1.02,
+    "p95": 3.26
+   },
+   "model_calls": 0,
+   "refusal_reasons": {
+    "NO_ACT": 356,
+    "credited": 92,
+    "NON_ASSERTIVE": 24,
+    "HEADS_DISAGREE": 16
+   }
+  }
+ },
+ "ollama_resident_models": [
+  {
+   "name": "qwen3.5:4b-q4_K_M",
+   "size_mb": 3140,
+   "vram_mb": 3140
+  }
+ ],
+ "python_rss_mb": 206
+}

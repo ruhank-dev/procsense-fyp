@@ -344,12 +344,12 @@ Per-act F1 of the NAMED act (credit not applied; support in brackets) and macro-
 
 | Variant | Median latency (ms) | 95th percentile (ms) |
 |---|---|---|
-| Shipped head at the start of the third session | 27.02 | 42.37 |
-| Rebuilt embedding head alone | 23.88 | 32.39 |
-| Rebuilt TF-IDF head alone | 0.15 | 0.29 |
-| Hybrid head alone (embedding + words) | 24.09 | 58.41 |
-| Embedding head and TF-IDF head agree (the third-session design, with the rebuilt heads) | 21.42 | 25.26 |
-| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 20.92 | 26.98 |
+| Shipped head at the start of the third session | 14.56 | 18.35 |
+| Rebuilt embedding head alone | 14.67 | 19.95 |
+| Rebuilt TF-IDF head alone | 0.1 | 0.2 |
+| Hybrid head alone (embedding + words) | 14.56 | 17.99 |
+| Embedding head and TF-IDF head agree (the third-session design, with the rebuilt heads) | 14.78 | 19.32 |
+| Current gate (hybrid head and TF-IDF head agree; what the service runs) | 15.76 | 22.0 |
 
 The embedding call dominates (a 46 MB model through Ollama); the TF-IDF head adds well under a millisecond and no service. Memory: the TF-IDF head is a 2 MB JSON file; no extra model is loaded.
 
@@ -363,10 +363,10 @@ Same rows for every system: a stratified sample of the v3 hold-out (5 per act, f
 | qwen3.5:4b-q4_K_M | adversarial set 4 | 48 | 0.479 | 0.628 | 24 | 22 | 3332 / 3997 |
 | qwen3.5:9b-q4_K_M | v3 hold-out sample | 100 | 0.82 | 0.803 | 5 | 3 | 9173 / 10135 |
 | qwen3.5:9b-q4_K_M | adversarial set 4 | 48 | 0.583 | 0.736 | 20 | 16 | 10371 / 14431 |
-| Embedding head (all-minilm:22m + logistic regression) | v3 hold-out sample | 100 | 0.93 | 0.928 | 0 | - | 23.88 / 32.39 |
-| Embedding head (all-minilm:22m + logistic regression) | adversarial set 4 | 48 | 0.667 | 0.731 | 12 | - | 23.88 / 32.39 |
-| TF-IDF head | v3 hold-out sample | 100 | 0.89 | 0.882 | 0 | - | 0.15 / 0.29 |
-| TF-IDF head | adversarial set 4 | 48 | 0.812 | 0.834 | 5 | - | 0.15 / 0.29 |
+| Embedding head (all-minilm:22m + logistic regression) | v3 hold-out sample | 100 | 0.93 | 0.928 | 0 | - | 14.67 / 19.95 |
+| Embedding head (all-minilm:22m + logistic regression) | adversarial set 4 | 48 | 0.667 | 0.731 | 12 | - | 14.67 / 19.95 |
+| TF-IDF head | v3 hold-out sample | 100 | 0.89 | 0.882 | 0 | - | 0.1 / 0.2 |
+| TF-IDF head | adversarial set 4 | 48 | 0.812 | 0.834 | 5 | - | 0.1 / 0.2 |
 
 Credited critical sentences after the gate (the ensemble): v3 sample 0, adversarial set 4 0.
 

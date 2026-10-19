@@ -144,6 +144,21 @@
       "gateway": false
     },
     {
+      "id": "classify.interpret",
+      "version": 1,
+      "role": "live",
+      "file": "classify/interpret_v1.txt",
+      "sha256": "57b6bc317b18b348b8ab32859641d7b62d3fee6de79e4bd66f524edda60e69a5",
+      "schema": null,
+      "variables": [
+        "acts",
+        "sentence"
+      ],
+      "num_predict": 120,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "dialogue.patient",
       "version": 1,
       "role": "live",

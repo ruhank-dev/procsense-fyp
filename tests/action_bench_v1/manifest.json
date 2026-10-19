@@ -1,0 +1,17 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "rows": {
+  "dev": 488,
+  "test": 488,
+  "test2": 488
+ },
+ "files": {
+  "dev.jsonl": "97217750e6d7d7e9b473bbb399e0582177e197411627f18841725fbf92f11aff",
+  "test.jsonl": "57e9975bde63a7d0da8befc29d42e39b226bbddc5f765f59f709547e542eb90e",
+  "test2.jsonl": "61e8d84082e25f6c74ecc33d242f4adc0bd63a15c5a3bc01096badd79f71e59c"
+ },
+ "seeds_sha256": "471fef36dedf57e4f06850f879d9372eb2e67f202e971e323bc14c2609f2f232",
+ "seeds2_sha256": "ed8c780fbbeb61b5b8549f24cecd9ea125e6ac6403903121d81715682e135dc0",
+ "note": "Frozen on 19 October 2026 before any approach was run on the test split; the test split is scored once per approach (tools/bench/act_benchmark.py --final)."
+}

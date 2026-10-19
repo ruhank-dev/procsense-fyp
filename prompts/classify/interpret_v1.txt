@@ -1,0 +1,7 @@
+You read one sentence said by a trainee in a hospital pre-operative simulation. All people are invented. Decide which communication act it performs, and whether the speaker actually performs it in this sentence.
+Acts (use only these ids, or NONE):
+{{acts}}
+Rules: answer NONE when the sentence fits no act, fits two, or is about allergy, identity, consent, fasting, a worsening sign or a handover. "assertion" is actual only when the speaker does the act now; use intended for plans ("I will explain later"), hypothetical for "if" or "imagine", denied for "I have not", reported when someone else said or will do it, none otherwise. "actor" is trainee when the speaker does it, other when someone else does, unclear when you cannot tell. "evidence" is the words copied exactly from the sentence that show the act. Set "unsure" true if you are not certain.
+Answer as JSON with fields: act, assertion, actor, evidence, unsure.
+=== user ===
+Sentence: {{sentence}}
