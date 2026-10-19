@@ -10,8 +10,8 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 
 | Status | Features |
 |---|---|
-| Implemented and tested | 41 |
-| Implemented but incompletely tested | 19 |
+| Implemented and tested | 40 |
+| Implemented but incompletely tested | 20 |
 | Partially implemented | 5 |
 | Planned | 1 |
 | Blocked | 0 |
@@ -47,7 +47,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | B21 | Result variation (repeats, trends, timing) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | ai | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/B22.md) |
 | B23 | Investigation discovery | deterministic | Implemented but incompletely tested | Planned | PH-04 | P0 | [plan](../plans/features/B23.md) |
-| C24 | Patient dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C24.md) |
+| C24 | Patient dialogue | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-13 | P1 | [plan](../plans/features/C24.md) |
 | C25 | Nurse dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C25.md) |
 | C26 | Anaesthetist dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C26.md) |
 | C27 | Surgeon dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C27.md) |
@@ -131,7 +131,7 @@ Generate a fresh, coherent, validated scenario for each practice session from th
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs |
+| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs; unity/Assets/Scripts/Sync/PackageClient.cs; unity/Assets/Scripts/Sync/PackageSessionStarter.cs; unity/Assets/Tests/EditMode/PackageClientTests.cs; server/routers/scenario_packages.py; server/tests/test_sessions_api.py |
 | Lineage (existing ids) | new (this planning update, 12 Oct 2026); extends A1 |
 | Method | Hybrid: deterministic selection and validation, statistical numbers, retrieval of media; the AI composer (LLM with retrieval over the scenario knowledge base) proposes the scenario plan and the LLM writes the narrative, all constrained by the solver and validators. |
 | LLM-first classification | LLM-first examined per stage; it is used only where language is the product (narrative, persona). Values, media and decisions use statistical, retrieval or rule methods because they must be calibrated, licensed and reproducible. |
@@ -439,7 +439,7 @@ Every generated package records seed, pack versions, prompt versions, model dige
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs |
+| Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs; unity/Assets/Scripts/Sync/PackageClient.cs; unity/Assets/Scripts/Sync/PackageSessionStarter.cs; unity/Assets/Tests/EditMode/PackageClientTests.cs; server/routers/scenario_packages.py; server/tests/test_sessions_api.py |
 | Lineage (existing ids) | — |
 | Method | Canonical JSON and hashing; LLM output stored in the package (never regenerated on replay). |
 | LLM-first classification | Not an AI task. |
@@ -777,9 +777,9 @@ Free questions answered in the patient's voice. Built: fixed history questions w
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Implemented and tested |
-| AI status | Implemented and tested |
-| Evidence (what exists) | history step (approved); src/ProcSense.Core/AIContext/ContextBuilder.cs; server/dialogue/dialogue.py; server/routers/dialogue.py; tools/ai/eval_dialogue.py; reports/ai/dialogue-eval.json |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
+| Evidence (what exists) | history step (approved); src/ProcSense.Core/AIContext/ContextBuilder.cs; server/dialogue/dialogue.py; server/routers/dialogue.py; tools/ai/eval_dialogue.py; reports/ai/dialogue-eval.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; reports/ai/dialogue-stress.json; server/tests/test_dialogue_safety.py; docs/architecture/unity_ai_hooks.md |
 | Lineage (existing ids) | p1-ai-language-s04; DT-096 |
 | Method | LLM with persona prompt and per-role context; hidden facts never in context. |
 | LLM-first classification | LLM fits; free conversation is a language task. |
@@ -792,9 +792,9 @@ Free questions answered in the patient's voice. Built: fixed history questions w
 | Fallback | Menu of fixed history questions. |
 | Tests planned | disclosure probes (100+); persona consistency; latency |
 | Acceptance | Zero hidden-fact disclosures on the probe set; p95 under 3 s. |
-| Blockers | — |
+| Blockers | external acceptance: DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | paraphrased leak of a hidden fact (context excludes hidden facts; validator is lexical); persona drift |
-| Tasks | p1-ai-language-s04 |
+| Tasks | p1-ai-language-s04; p1-ai-language-s13 |
 | Phase | PH-13 Dialogue and personas |
 | Tier | P1 |
 
@@ -975,22 +975,22 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 | Kind (AI or deterministic) | ai |
 | Status | Partially implemented |
 | AI status | Partially implemented |
-| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md; server/tts/engine.py; reports/ai/tts-latency.json |
+| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md; server/tts/engine.py; reports/ai/tts-latency.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; server/routers/orders.py; unity/Assets/Scripts/Voice/SpeechInterpretation.cs; unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs; unity/Assets/Scripts/Bridge/SimulationHost.cs; server/interpret/decide.py; tools/ci/test_interpretation_regression.py; server/tests/test_interpret_api.py |
 | Lineage (existing ids) | p1-voice-input; p0-voice-audio |
 | Method | faster-whisper + LLM + TTS. |
 | LLM-first classification | Each part is a pretrained model; no training. |
 | Models | MC-05; MC-02; MC-06 |
 | Data | — |
 | Realised by (pipeline nodes) | CMP-ASR; CMP-TTS; LG-17 |
-| Depends on | C33; C34; C24 |
+| Depends on | C33; C34; C24; C37 |
 | Overlaps | — |
 | Deterministic guard | Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails. |
 | Fallback | Text and menus with subtitles. |
 | Tests planned | round-trip latency; accent tests |
 | Acceptance | p95 round trip under 4 s. |
-| Blockers | external acceptance: DC-08 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
-| Tasks | p1-voice-input-s02; p1-voice-input-s04 |
+| Tasks | p1-voice-input-s02; p1-voice-input-s04; p1-ai-language-s12 |
 | Phase | PH-14 Voice |
 | Tier | P1 |
 
@@ -1016,7 +1016,7 @@ Short spoken commands mapped to verbs (open results, call nurse).
 | Fallback | Controller menu. |
 | Tests planned | command accuracy |
 | Acceptance | At least 95 percent of scripted commands map correctly. |
-| Blockers | external acceptance: DC-08 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-voice-input-s02 |
 | Phase | PH-14 Voice |
@@ -1115,7 +1115,7 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tools/ci/test_bench.py; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md |
+| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tools/ci/test_bench.py; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md |
 | Lineage (existing ids) | p1-ai-language-s06 |
 | Method | Taxonomy + rules. |
 | LLM-first classification | Not a model task. |
@@ -1136,29 +1136,29 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 
 ### C37 — Communication classifier
 
-Classify trainee utterances into acts. P1: served LLM with an enum schema; P2: small trained classifier (E60).
+Interpret trainee utterances as communication acts against the real scenario state (ADR-0022): the engine builds the context (running steps, eligible objectives, pending question or read-back, recent turns, acts already accepted); the retained classifier gate (ADR-0020) proposes candidates restricted to the eligible objectives; deterministic validation (eligibility, status, critical exclusion, evidence span, duplicates) decides what may be offered; the engine's EvidenceStore accepts or refuses. Uncertain: one clarification, then the menu. P2: a small trained classifier (E60) only if it beats the gate on the independent set.
 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | server/classify/embedding.py; server/classify/guard.py; content/assessment/act_head.json; tools/bench/bench_classifier.py; reports/ai/classifier-bench-synthetic.json; tools/labelling/label.py; tools/ci/test_labelling.py; docs/research/labelling/guidelines.md; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; content/assessment/taxonomy.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; content/ai/critical_cues.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/classify/ensemble.py; server/classify/assertion.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tools/ci/test_classifier_regression.py; tests/classifier_challenge_v4/challenge.json; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md |
+| Evidence (what exists) | server/classify/embedding.py; server/classify/guard.py; content/assessment/act_head.json; tools/bench/bench_classifier.py; reports/ai/classifier-bench-synthetic.json; tools/labelling/label.py; tools/ci/test_labelling.py; docs/research/labelling/guidelines.md; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; content/assessment/taxonomy.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; content/ai/critical_cues.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/classify/ensemble.py; server/classify/assertion.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tools/ci/test_classifier_regression.py; tests/classifier_challenge_v4/challenge.json; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; docs/research/rubric_evaluator.md; docs/research/nli_zero_shot.md; reports/ai/rubric-latency.json; src/ProcSense.Core/Scoring/Evidence.cs; src/ProcSense.Core/AIContext/ContextBuilder.cs; content/assessment/mapping.json; server/routers/classify.py; docs/architecture/unity_ai_hooks.md; server/routers/orders.py; server/dialogue/dialogue.py; server/routers/dialogue.py; reports/ai/dialogue-stress.json; tools/bench/act_benchmark.py; tools/bench/rubric_labelling_kit.py; docs/testing/independent_labelling_protocol.md; src/ProcSense.Core/Speech/InterpretationContext.cs; src/ProcSense.Core/Speech/InterpretationContextBuilder.cs; src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs; tests/ProcSense.Core.Tests/InterpretationContextTests.cs; server/schemas/interpretation_context.json; server/interpret/decide.py; server/interpret/validate.py; server/interpret/status.py; server/routers/interpret.py; server/schemas/interpret.py; content/ai/interpret_phrases.json; tools/ci/test_interpretation_regression.py; server/tests/test_interpret_api.py; unity/Assets/Scripts/Voice/SpeechInterpretation.cs; unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs; unity/Assets/Scripts/Bridge/SimulationHost.cs; server/tests/test_dialogue_safety.py; tools/bench/interpretation_bench.py; tools/bench/interpretation_latency.py; tools/bench/interpretation_report.py; tools/ci/test_interpretation_bench.py; reports/ai/interpretation-bench-dev.json; reports/ai/interpretation-bench-test.json; reports/ai/interpretation-bench-test2.json; reports/ai/interpretation-latency.json; docs/research/interpretation_benchmark.md; content/ai/thresholds.json; content/ai/features.json |
 | Lineage (existing ids) | p1-ai-language-s06, s07; DT-097 |
-| Method | LLM zero/few-shot with enum schema. |
-| LLM-first classification | LLM first (no training, no labelled training set needed); trained model only in P2 if LLM latency or accuracy is insufficient. |
+| Method | Embedding + TF-IDF classifier gate (ADR-0020) as candidate generator, restricted to the objectives eligible in the current state; deterministic status and validation; no language model in the live path (ADR-0022). |
+| LLM-first classification | Measured, not assumed: the served 4B model was evaluated as classifier (ADR-0017, ADR-0020) and as a rubric evaluator over all objectives (docs/research/rubric_evaluator.md): it is slower than the live budget (3.4 s median, 4.1 s p95 against 0.79 s left in the voice round trip) and credited critical sentences under ordinary acts; the trained heads are the live candidate generator. The model stays an offline experiment. |
 | Models | MC-03 |
 | Data | — |
 | Realised by (pipeline nodes) | LG-17 |
-| Depends on | C36; E57; B19 |
+| Depends on | C36; E57; B19; E54 |
 | Overlaps | — |
 | Deterministic guard | Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails. |
-| Fallback | Menu choice of act. |
-| Tests planned | macro-F1 on frozen human-labelled split |
-| Acceptance | Switched off below macro-F1 0.75. |
-| Blockers | external acceptance: EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
-| Risks | labelled set not available (DT-097); critical acts misclassified (never credited from AI alone) |
-| Tasks | p1-ai-language-s06; p1-ai-language-s07 |
+| Fallback | One clarification question, then the menu of the eligible objectives' actions; any service failure gives the menu. |
+| Tests planned | macro-F1 on frozen human-labelled split; context-conditioned benchmark: in-window, out-of-window, pending question and read-back (p1-ai-language-s14); regression: confusion pairs, negation, hypothetical, intention, reported, other speaker, incomplete, critical content, duplicates (p1-ai-language-s11); end-to-end latency with cold start and model contention |
+| Acceptance | speech_interpretation gate (PENDING owner approval, DT-229): on the independent set 0 critical and 0 out-of-window false credits, non-assertive false credit at most 1 percent, credited precision at least 0.95, legitimate recall at least 0.50 and not below the classifier route, interpretation p95 at most 300 ms; else off. |
+| Blockers | external acceptance: DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Risks | labelled set not available (DT-097); critical acts misclassified (never credited from AI alone); recall limited to about half of the legitimate synthetic sentences (ADR-0020); context conditioning untested on human-written dialogue (EX-01) |
+| Tasks | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14 |
 | Phase | PH-15 Communication acts and classifier |
 | Tier | P1 |
 
@@ -1707,7 +1707,7 @@ Weekly evaluation runs; any AI feature below its threshold is switched off in ai
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented and tested |
-| Evidence (what exists) | tools/eval/ai_gate.py; content/ai/thresholds.json; content/ai/features.json; server/ai_features.py; tools/ci/test_ai_gate.py; docs/report/ai-eval.md; tools/eval/collect_ai.py; tools/eval/analyse_study.py |
+| Evidence (what exists) | tools/eval/ai_gate.py; content/ai/thresholds.json; content/ai/features.json; server/ai_features.py; tools/ci/test_ai_gate.py; docs/report/ai-eval.md; tools/eval/collect_ai.py; tools/eval/analyse_study.py; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; tools/bench/act_benchmark.py; tools/bench/rubric_labelling_kit.py; docs/testing/independent_labelling_protocol.md; reports/ai/rubric-latency.json; tools/bench/interpretation_bench.py; tools/bench/interpretation_latency.py; tools/bench/interpretation_report.py; tools/ci/test_interpretation_bench.py; reports/ai/interpretation-bench-dev.json; reports/ai/interpretation-bench-test.json; reports/ai/interpretation-bench-test2.json; reports/ai/interpretation-latency.json; docs/research/interpretation_benchmark.md |
 | Lineage (existing ids) | p1-ai-language-s09; p1-evaluation-s02, s04 |
 | Method | Harness. |
 | LLM-first classification | Not AI. |
@@ -1720,9 +1720,9 @@ Weekly evaluation runs; any AI feature below its threshold is switched off in ai
 | Fallback | Feature off. |
 | Tests planned | harness self-test |
 | Acceptance | Every AI feature has a threshold and an off switch. |
-| Blockers | external acceptance: EX-05 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-05 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
-| Tasks | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04 |
+| Tasks | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04; p1-ai-language-s14 |
 | Phase | PH-17 Evaluation harness, adversarial testing and switch-off gate |
 | Tier | P1 |
 

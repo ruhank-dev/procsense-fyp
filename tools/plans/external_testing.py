@@ -137,6 +137,13 @@ def readiness(item: dict, recon: dict, steps: dict[str, dict]) -> tuple[str, lis
     return ("PARTLY READY" if done else "NOT READY"), todo
 
 
+def built_lines(i: dict) -> list[str]:
+    """What the engineer built and unit-tested for an item, kept apart from the physical test itself (which is NOT RUN until the named person does it)."""
+    if not i.get("built_and_unit_tested"):
+        return []
+    return ["**Built and unit-tested by the engineer** (this is NOT the physical test; the item is NOT RUN until you do it):", ""] + [f"* {x}" for x in i["built_and_unit_tested"]] + [""]
+
+
 def render(data: dict, recon: dict, steps: dict[str, dict]) -> str:
     items = all_items(data)
     status = {i["id"]: result_of(i["id"]) for i in items}
@@ -151,7 +158,7 @@ def render(data: dict, recon: dict, steps: dict[str, dict]) -> str:
          f"**{len(items)} items**: {count('device')} headset checks (DC), {count('unity')} Unity, 3D and VR acceptance groups for the P0 plan (UX), {count('other')} items for other people, accounts, permissions and the owner (EX). "
          f"Status: {sum(1 for i in items if status[i['id']][0] == 'PASS')} PASS, {sum(1 for i in items if status[i['id']][0] == 'FAIL')} FAIL, {sum(1 for i in items if status[i['id']][0] == 'NOT RUN')} NOT RUN, {sum(1 for i in items if status[i['id']][0] == 'BLOCKED')} BLOCKED (the engineering it would test is not built yet).",
          f"Readiness of the engineering behind the items: {sum(1 for i in items if ready[i['id']][0] == 'READY')} READY to run, {sum(1 for i in items if ready[i['id']][0] == 'PARTLY READY')} PARTLY READY (run the steps listed as implemented; the others wait for their implementation), {sum(1 for i in items if ready[i['id']][0] == 'NOT READY')} NOT READY.", "",
-         "Status words: `NOT RUN` (implemented, waiting for the person), `BLOCKED` (the implementation it would test is not finished, so running it would prove nothing), `PASS`, `FAIL`. A tick on a step file means the engineering is complete and tested; it does NOT mean the item below passed. Only a result file with `Result: PASS` does.", "",
+         "Status words: `NOT RUN` (implemented, waiting for the person), `BLOCKED` (NOT RUN as well: the implementation it would test is not finished, so running it would prove nothing), `PASS`, `FAIL`. A tick on a step file means the engineering is complete and tested; it does NOT mean the item below passed. Only a result file with `Result: PASS` does.", "",
          "## 1. How to use this page", "",
          "1. Find your item in the table in section 2. Each item names the steps it closes, what it needs, the procedure, the pass rule and the evidence to keep.",
          "2. Do the procedure exactly. Do not skip a line because it looks obvious; a skipped line is a missing measurement.",
@@ -174,6 +181,7 @@ def render(data: dict, recon: dict, steps: dict[str, dict]) -> str:
         L += [f"  * `{p}`" for p in i["prepared"]]
         L += ["", "Procedure:", ""] + [f"{n}. {t}" for n, t in enumerate(i["procedure"], 1)] + ["", f"**Pass rule:** {i['pass_rule']}", "", f"**Evidence to collect:** {i.get('evidence') or data['defaults']['evidence_device']}",
               f"**Save it in:** `docs/testing/results/{i['id']}.md` and `docs/testing/results/{i['id']}/`.", f"**After it passes:** {i['after']}", f"**Readiness:** {ready[i['id']][0]}" + (f" (not implemented yet: {', '.join(ready[i['id']][1])})" if ready[i['id']][1] else " (every step it closes is implemented and ticked)"), "**Actual result and notes:** none recorded; fill the result file, not this page.", f"**Status:** {status[i['id']][0]}", ""]
+        L += built_lines(i)
     L += ["## 4. Unity, 3D and VR acceptance of the P0 plan", "",
           "The engine half of these steps is built and tested by machine (see the reconciliation page); what remains is the Unity scene, prop, screen or headset half. For each step: open the step file, follow its **How to implement**, then do exactly what its **Verification** says and "
           "write one row per step in the group's result file (step id, date, device and build, PASS or FAIL, numbers, evidence). A step passes only when its verification line is true on the device named in the row.", ""]
@@ -184,6 +192,7 @@ def render(data: dict, recon: dict, steps: dict[str, dict]) -> str:
             e = recon["steps"].get(s, {})
             L.append(f"| [{s}](../{steps[s]['file'].replace(' ', '%20')}) {steps[s]['title'][:70]} | {e.get('now', '-')}{' (ticked)' if steps[s]['ticked'] else ''} | {steps[s]['verification'][:600].replace('|', '/')} |")
         L.append("")
+        L += built_lines(i)
     L += ["## 5. Items for other people, accounts, permissions and the owner", "",
           "Sannan cannot give consent, labelling, clinical or licence authority on anyone's behalf. Each item says who must act. The item stays open until that person's result file exists.", ""]
     for kind, heading in (("people", "5a. People: raters, labellers, listeners, participants"), ("account", "5b. Account holders"), ("permission", "5c. Permissions and licences"), ("owner", "5d. Owner decisions and authoring"), ("device", "5e. Other machines and recordings")):

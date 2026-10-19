@@ -10,7 +10,7 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 |---|---|---|---|---|
 | MC-01 | Scenario composition narrative and Stage A proposals (A1, A2, A3, A7, B19, E50) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off, offline batch and service use, JSON-schema format (ADR-0017: measured equal or better than the 9B on every gate-bearing task, 3 to 6 times faster; the 9B is an optional evaluation cross-check) | Planned |
 | MC-02 | Character dialogue (patient, staff, multi-agent) (C24 to C30, E48, E49) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off (think false), num_ctx 4096, kept loaded; Qwen3.5 2B if the p95 latency target is missed | Planned |
-| MC-03 | Communication act classification (C35, C37, E60) | LLM, then trained (P2 only) | Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1) | Blocked |
+| MC-03 | Communication act classification (C35, C37, E60) | trained heads + deterministic validation; LLM offline only | Embedding + TF-IDF classifier gate as candidate generator, restricted to the eligible objectives; no language model in the live path (ADR-0022) | Blocked |
 | MC-04 | Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56) | LLM | Qwen3.5 4B (qwen3.5:4b-q4_K_M), thinking off; texts that can be written once are pre-generated offline by Qwen3.5 9B and approved before use | Blocked |
 | MC-05 | Speech recognition (C31 to C35, E63) | pretrained | faster-whisper medium.en int8 on the desktop GPU, vocabulary prompt from content | Planned |
 | MC-06 | Text-to-speech (C31, C34) | pretrained | pre-rendered lines for fixed lines; Piper archived MIT release for live lines, voice licence checked per voice | Planned |
@@ -66,20 +66,20 @@ Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both ben
 
 | Field | Value |
 |---|---|
-| Candidates | Qwen3.5 4B (qwen3.5:4b-q4_K_M); Qwen3.5 2B (qwen3.5:2b); P2: a fine-tuned small encoder (E60) |
-| Default | Qwen3.5 4B, thinking off, enum output with confidence from deterministic thresholds (served LLM, P1) |
-| Method class | LLM, then trained (P2 only) |
+| Candidates | Embedding (all-minilm:22m) + TF-IDF heads with deterministic guards (ADR-0016, ADR-0020); Qwen3.5 4B (qwen3.5:4b-q4_K_M) rubric evaluator, offline only (ADR-0022); P2: a fine-tuned small encoder (E60) |
+| Default | Embedding + TF-IDF classifier gate as candidate generator, restricted to the eligible objectives; no language model in the live path (ADR-0022) |
+| Method class | trained heads + deterministic validation; LLM offline only |
 | Hardware | 6 GB GPU |
-| Latency | under 1.5 s |
+| Latency | about 15 ms for the gate including the embedding call (measured 19 Oct 2026); the 4B rubric evaluator 3.4 s median, 4.1 s p95 (too slow for the 0.79 s left in the voice round trip) |
 | Local or remote | local |
 | Internet | no |
 | Privacy | trainee speech text stays local |
 | Licence | Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026) |
-| Structured output | enum of acts plus confidence |
-| Evaluation | macro-F1 on frozen human-labelled split; critical-act guard |
+| Structured output | ranked acts with probabilities; decision schema of the interpretation service |
+| Evaluation | tests/action_bench_v1 (synthetic, preliminary) with and without context; the independent set (EX-01) decides the gate |
 | Cost | none |
 | Fallback | menu choice of act |
-| Why not something simpler | Keyword rules miss paraphrase; but rules remain the guard for critical acts. |
+| Why not something simpler | Keyword rules credit about half as many legitimate sentences (ADR-0020); the rules stay as validation. |
 | Status | Blocked |
 
 ## MC-04 — Debrief rewrite, coaching, explanations (D38, D39, D40 to D47, B22, E56)

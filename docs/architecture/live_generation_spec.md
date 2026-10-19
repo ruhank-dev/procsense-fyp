@@ -416,13 +416,13 @@ The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LiteP
 
 ### LG-17 Action interpretation
 
-Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR then the communication-act extractor (LLM, P1) to a structured act with confidence. Low-confidence or critical acts are never credited from the model alone.
+Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR, then the context-aware interpretation of ADR-0022: the engine's context (running steps, eligible objectives, pending question, recent turns), the classifier gate as candidate generator, deterministic validation, a decision (evidence, clarify, abstain, menu) and the engine's EvidenceStore. Critical acts and non-performed sentences are never credited from speech.
 
 | Field | Value |
 |---|---|
 | Inputs | VR events; menu choices; speech audio or typed text |
-| Outputs | SimAction (verb, target, channel, params) or CommAct with confidence |
-| Component | Unity ActionEmitters (exist); server/asr (planned); server/classify (planned) |
+| Outputs | SimAction (verb, target, channel, params); speech_evidence action (act, behaviour, span, status) accepted or refused by EvidenceStore |
+| Component | Unity ActionEmitters (exist); server/asr (exists); server/classify (exists, gated off); server/interpret and src/ProcSense.Core/Speech (planned, p1-ai-language-s10 to s12) |
 | Method | Deterministic mapping; ASR (faster-whisper); LLM act extraction with enum schema; P2 small trained classifier. |
 | Method class | hybrid |
 | Data dependencies | content/assessment/mapping.json; content/ai/intents.json |
@@ -548,6 +548,7 @@ Every generated value and asset is checked against these categories and cross-mo
 | VR-CM-TIMELINE | cross-modal | Event times are ordered and consistent with the clock and turnaround times. | LG-09 |
 | VR-CM-NARRATIVE | cross-modal | The narrative never states a value, drug or diagnosis absent from the structured case (grounding validator). | LG-06 |
 | VR-CM-ALLERGY-MED | cross-modal | No prescribed or suggested medicine belongs to an allergy group unless the block teaches that clash. | LG-09 |
+| VR-S-SPEECH-EVIDENCE | speech | Speech evidence is accepted only for a non-critical, eligible act (its behaviour window contains a running step), asserted by the trainee, with a span of the utterance, once per behaviour and utterance; it can never satisfy a behaviour's actions (ADR-0022). | LG-17 |
 
 ## 6. Novelty and reproducibility
 
@@ -589,7 +590,7 @@ Fresh means a coherent, evidence-informed combination this trainee has not met; 
 | FB-04 | LG-08 | no asset with the needed tags | written-only result or block swap | If the test has no written-only form, LG-12 swaps the block. |
 | FB-05 | LG-13 | no novel candidate after 5 attempts | most novel valid candidate | Logged as low novelty. |
 | FB-06 | LG-15 | backend unreachable or hash mismatch | ST-POOL then library | Offline-first. |
-| FB-07 | LG-17 | ASR or classifier down or low confidence | menus and typed input | Critical acts never credited from AI alone. |
+| FB-07 | LG-17 | ASR, embedder or interpretation service down, timeout, malformed answer, low confidence or two close candidates | one clarification question, then the menu of the eligible objectives' actions; typed input | Critical acts and non-performed sentences are never credited from speech; a service failure credits nothing and the session never waits (ADR-0022). |
 | FB-08 | LG-19 | debrief model down or validator failure | template debrief | Template is always produced first. |
 | FB-09 | LG-11 | judge unavailable | deterministic metrics only | Logged. |
 | FB-10 | LG-03 | empty retrieval for an objective | drop the objective; family template if all drop | Logged. |

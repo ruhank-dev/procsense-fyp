@@ -43,6 +43,7 @@ namespace ProcSense.Core.Workflow
             new Events.EventDirector(content),
             new Diagnostics.DiagnosticsLoop(content),
             new Records.RecordsSubsystem(content),
+            new Speech.SpeechEvidenceSubsystem(),
         };
     }
 }

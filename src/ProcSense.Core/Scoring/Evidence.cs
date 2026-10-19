@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ProcSense.Core.Logging;
+using ProcSense.Core.Speech;
 
 namespace ProcSense.Core.Scoring
 {
@@ -18,36 +20,67 @@ namespace ProcSense.Core.Scoring
     /// </summary>
     public sealed class EvidenceStore
     {
-        public const string CriticalNeedsAction = "CRITICAL_NEEDS_DETERMINISTIC_EVIDENCE", LowConfidence = "LOW_CONFIDENCE", ContextMismatch = "CONTEXT_MISMATCH", UnknownAct = "UNKNOWN_ACT";
+        public const string CriticalNeedsAction = "CRITICAL_NEEDS_DETERMINISTIC_EVIDENCE", LowConfidence = "LOW_CONFIDENCE", ContextMismatch = "CONTEXT_MISMATCH", UnknownAct = "UNKNOWN_ACT", DuplicateBehaviour = "DUPLICATE_BEHAVIOUR", DuplicateUtterance = "DUPLICATE_UTTERANCE", NoRunningStep = "NO_RUNNING_STEP";
 
         private readonly ScoreTables _t;
         private readonly List<EvidenceRecord> _records = new List<EvidenceRecord>();
+        private readonly HashSet<string> _utterances = new HashSet<string>(StringComparer.Ordinal);
 
         public EvidenceStore(ScoreTables tables) { _t = tables; }
 
         public IReadOnlyList<EvidenceRecord> Records => _records;
 
-        /// <summary>Adds deterministic evidence for every accepted action in the log that is evidence for a behaviour (one record per behaviour it serves). Safe to call again: it adds only what is new.</summary>
+        /// <summary>Adds deterministic evidence for every accepted action in the log that is evidence for a behaviour (one record per behaviour it serves), and submits every accepted <c>speech_evidence</c> entry through <see cref="Submit(string, string, string, double, IReadOnlyCollection{int}, IReadOnlyList{int})"/> with the workflow steps the engine stamped on it. Safe to call again: it adds only what is new.</summary>
         public void FromLog(SessionLog log)
         {
-            var done = new HashSet<int>(_records.Where(r => r.Source == "deterministic").SelectMany(r => r.LogRefs));
+            var done = new HashSet<int>(_records.SelectMany(r => r.LogRefs));
             foreach (var e in log.Entries)
             {
                 if (!e.Accepted || done.Contains(e.Seq)) continue;
+                if (e.Verb == SpeechEvidenceSubsystem.Verb) { SubmitFromEntry(e); continue; }
                 foreach (var b in _t.Behaviours.Where(x => x.Actions.Contains(e.Verb)))
                     _records.Add(new EvidenceRecord(_records.Count, "deterministic", b.Id, e.Verb, e.Params.TryGetValue("topic", out var topic) ? topic : "", "", null, new[] { e.Seq }, true, ""));
             }
         }
 
-        /// <summary>A classified act from speech. <paramref name="step"/> is the workflow step number the trainee is in, used for the context check.</summary>
-        public EvidenceRecord Submit(string act, string topic, string span, double confidence, int step, IReadOnlyList<int> logRefs)
+        private void SubmitFromEntry(LogEntry e)
         {
-            var behaviour = _t.Behaviours.FirstOrDefault(b => b.AiActs.Contains(act));
+            var steps = new List<int>();
+            var effect = e.Effects.FirstOrDefault(x => x.StartsWith(SpeechEvidenceSubsystem.StepsEffect, StringComparison.Ordinal));
+            if (effect != null)
+                foreach (var part in effect.Substring(SpeechEvidenceSubsystem.StepsEffect.Length).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    if (int.TryParse(part, NumberStyles.Integer, CultureInfo.InvariantCulture, out var n)) steps.Add(n);
+            string utterance = e.Params.TryGetValue(SpeechEvidenceSubsystem.UtteranceParam, out var u) ? u : "";
+            double confidence = e.Params.TryGetValue(SpeechEvidenceSubsystem.ConfidenceParam, out var c) && double.TryParse(c, NumberStyles.Float, CultureInfo.InvariantCulture, out var d) ? d : 0;
+            string act = e.Params.TryGetValue(SpeechEvidenceSubsystem.ActParam, out var a) ? a : "", span = e.Params.TryGetValue(SpeechEvidenceSubsystem.SpanParam, out var sp) ? sp : "";
+            var refs = new[] { e.Seq };
+            if (utterance.Length > 0 && !_utterances.Add(utterance))
+            {
+                _records.Add(new EvidenceRecord(_records.Count, "ai", "", act, "", span, confidence, refs, false, DuplicateUtterance));
+                return;
+            }
+            Submit(act, "", span, confidence, steps, refs);
+        }
+
+        /// <summary>A classified act from speech. <paramref name="step"/> is the workflow step number the trainee is in, used for the context check.</summary>
+        public EvidenceRecord Submit(string act, string topic, string span, double confidence, int step, IReadOnlyList<int> logRefs) => Submit(act, topic, span, confidence, new[] { step }, logRefs);
+
+        /// <summary>
+        /// A classified act from speech, judged against ALL the workflow steps the trainee is in (parallel tracks can run several). The behaviour is the one that lists the act and whose step window contains a running step
+        /// (CLARIFY and ESCALATE_SPEECH belong to two behaviours); with none, the first behaviour that lists it names the reason. Refused, in this order: unknown act, critical act, low confidence, outside every window, a behaviour already credited from speech.
+        /// Only <c>ai_acts</c> can be credited here: nothing in this method can satisfy a behaviour's <c>actions</c>.
+        /// </summary>
+        public EvidenceRecord Submit(string act, string topic, string span, double confidence, IReadOnlyCollection<int> steps, IReadOnlyList<int> logRefs)
+        {
+            var candidates = _t.Behaviours.Where(b => b.AiActs.Contains(act)).ToList();
+            var behaviour = candidates.FirstOrDefault(b => b.Steps.Any(steps.Contains)) ?? candidates.FirstOrDefault();
             EvidenceRecord record;
             if (behaviour == null) record = new EvidenceRecord(_records.Count, "ai", "", act, topic, span, confidence, logRefs, false, UnknownAct);
             else if (_t.CriticalActs.Contains(act)) record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, false, CriticalNeedsAction);
             else if (confidence < _t.ThresholdFor(act)) record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, false, LowConfidence);
-            else if (!behaviour.Steps.Contains(step)) record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, false, ContextMismatch + ": " + act + " belongs to steps " + string.Join(",", behaviour.Steps) + ", not " + step.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            else if (steps.Count == 0) record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, false, NoRunningStep);
+            else if (!behaviour.Steps.Any(steps.Contains)) record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, false, ContextMismatch + ": " + act + " belongs to steps " + string.Join(",", behaviour.Steps) + ", not " + string.Join(",", steps.Select(n => n.ToString(CultureInfo.InvariantCulture))));
+            else if (_records.Any(r => r.Source == "ai" && r.Accepted && r.Behaviour == behaviour.Id)) record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, false, DuplicateBehaviour);
             else record = new EvidenceRecord(_records.Count, "ai", behaviour.Id, act, topic, span, confidence, logRefs, true, "");
             _records.Add(record);
             return record;

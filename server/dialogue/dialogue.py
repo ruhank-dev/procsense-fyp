@@ -67,6 +67,9 @@ class Dialogue:
               fallback_lines: dict[str, str] | None = None, asked_fact: str | None = None) -> Reply:
         authored, fallback_lines = authored or {}, fallback_lines or {}
         shown = [f for f in ctx["facts"] if f.get("disclosable_now")]
+        if sum(c.isalpha() for c in question) < 2:                       # silence, a cough or recogniser noise: no model call, a request to say it again (p1-ai-language-s13)
+            intent = "cannot_recall" if role == "patient" else ctx["allowed_intents"][0]
+            return Reply(authored.get("clarify", CLARIFY) if role == "patient" else fallback_lines.get(intent, CLARIFY), intent, [], "fallback", ["EMPTY_INPUT"])
         key = (role, ctx.get("case", ""), tuple(f["id"] for f in shown), question.strip().lower())
         if key in self.cache:
             r = self.cache[key]

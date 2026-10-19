@@ -483,6 +483,54 @@
     }
    ]
   },
+  "speech_interpretation": {
+   "label": "Context-aware interpretation of trainee speech as evidence (ADR-0022)",
+   "status": "SKIPPED",
+   "enabled": false,
+   "suites": [
+    {
+     "id": "speech_interpretation.critical_false_credit",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    },
+    {
+     "id": "speech_interpretation.out_of_window_false_credit",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    },
+    {
+     "id": "speech_interpretation.non_assertive_false_credit_rate",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    },
+    {
+     "id": "speech_interpretation.credited_precision",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    },
+    {
+     "id": "speech_interpretation.legitimate_recall_not_below_route",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    },
+    {
+     "id": "speech_interpretation.legitimate_recall_floor",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    },
+    {
+     "id": "speech_interpretation.latency_p95_ms",
+     "status": "PASS",
+     "got": 24.5,
+     "needs": "<= 300.0"
+    },
+    {
+     "id": "speech_interpretation.independent_evidence",
+     "status": "SKIPPED",
+     "why": "no result file interpretation-bench-independent.json"
+    }
+   ]
+  },
   "trap_writer": {
    "label": "Trap wording writer (A7.c2): a model rewords wrong options; lexical checks and fairness are machine-checked, plausibility above the authored wording is a human rating (EX-03), NOT measured",
    "status": "SKIPPED",

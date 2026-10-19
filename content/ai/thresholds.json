@@ -643,6 +643,75 @@
      "ref": "plan A7.c2: plausibility higher than the template; no result file exists, so SKIPPED and the feature stays off"
     }
    ]
+  },
+  "speech_interpretation": {
+   "label": "Context-aware interpretation of trainee speech as evidence (ADR-0022)",
+   "suites": [
+    {
+     "id": "speech_interpretation.critical_false_credit",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.critical_false_credit",
+     "op": "==",
+     "value": 0,
+     "ref": "no critical sentence is offered as evidence, in any context; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.out_of_window_false_credit",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.out_of_window_false_credit",
+     "op": "==",
+     "value": 0,
+     "ref": "no act is offered outside its behaviour window; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.non_assertive_false_credit_rate",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.non_assertive_false_credit_rate",
+     "op": "<=",
+     "value": 0.01,
+     "ref": "at most 1 percent of denied, planned, imagined, reported, other-speaker or broken-off sentences offered; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.credited_precision",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.credited_precision",
+     "op": ">=",
+     "value": 0.95,
+     "ref": "what is offered is right at least 95 percent of the time; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.legitimate_recall_not_below_route",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.legitimate_recall",
+     "op": ">=",
+     "vs": "gate_inputs.route_legitimate_recall",
+     "ref": "legitimate recall not below the classifier route's on the same rows; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.legitimate_recall_floor",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.legitimate_recall",
+     "op": ">=",
+     "value": 0.5,
+     "ref": "at least half of the legitimate sentences are offered; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.latency_p95_ms",
+     "file": "interpretation-latency.json",
+     "path": "warm_while_4b_generates_ms.whole.p95",
+     "op": "<=",
+     "value": 300,
+     "ref": "interpretation p95 at most 300 ms while the 4B model is generating, measured on the desktop; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+    },
+    {
+     "id": "speech_interpretation.independent_evidence",
+     "file": "interpretation-bench-independent.json",
+     "path": "gate_inputs.valid_for_claims",
+     "op": "==",
+     "value": true,
+     "ref": "owner rule: no claim from synthetic or self-labelled data; the independent set needs authors, two annotators and an adjudicator (docs/testing/independent_labelling_protocol.md, EX-01)"
+    }
+   ]
   }
  }
 }

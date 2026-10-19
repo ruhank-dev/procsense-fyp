@@ -194,6 +194,9 @@ namespace ProcSense.Core
         /// <summary>Stages started, finished or skipped and interrupts raised or resolved, with sim steps.</summary>
         public IReadOnlyList<Workflow.GraphEvent> FlowHistory => Flow?.History ?? (IReadOnlyList<Workflow.GraphEvent>)System.Array.Empty<Workflow.GraphEvent>();
 
+        /// <summary>The workflow step numbers the trainee is in now (active stages not stopped by an interrupt); empty without a flow map. Speech evidence is judged against these.</summary>
+        public IReadOnlyList<int> RunningSteps => Flow?.RunningSteps() ?? (IReadOnlyList<int>)System.Array.Empty<int>();
+
         /// <summary>Every stage of this scenario's map and its state (for the scorer and tests; the trainee only sees <see cref="ObservableState.Flow"/>).</summary>
         public IReadOnlyList<Observation.FlowStageStatus> FlowStages => Flow?.Stages() ?? (IReadOnlyList<Observation.FlowStageStatus>)System.Array.Empty<Observation.FlowStageStatus>();
 

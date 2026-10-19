@@ -1,0 +1,809 @@
+{
+ "split": "test2",
+ "rows": 488,
+ "synthetic": true,
+ "independent": false,
+ "counts": {
+  "legitimate": 140,
+  "adversarial": 300,
+  "critical": 40
+ },
+ "classifier_route_as_served": {
+  "offers": 72,
+  "offers_right": 69,
+  "credited_precision": "69/72",
+  "legitimate_recall": "69/140",
+  "legitimate_offered_under_another_act": 3,
+  "critical_false_credit": "0/40",
+  "non_assertive_false_credit": "0/300",
+  "non_assertive_by_category": {},
+  "label_view_core": {
+   "n": 188,
+   "accuracy": 0.367,
+   "macro_f1": 0.442
+  },
+  "per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 0.778,
+    "recall": 0.7,
+    "f1": 0.737,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 0.8,
+    "recall": 0.4,
+    "f1": 0.533,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   }
+  },
+  "confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ABSTAIN": 6,
+    "ACKNOWLEDGE_EMOTION": 4
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 4,
+    "ABSTAIN": 6
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 5,
+    "ABSTAIN": 5
+   },
+   "ASK_TOPIC": {
+    "ABSTAIN": 9,
+    "ASK_TOPIC": 1
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 7,
+    "ABSTAIN": 3
+   },
+   "CLARIFY": {
+    "CLARIFY": 8,
+    "CHECK_UNDERSTANDING": 2
+   },
+   "CLOSED_LOOP": {
+    "ABSTAIN": 6,
+    "CLOSED_LOOP": 4
+   },
+   "CONFIRM_IDENTITY": {
+    "ABSTAIN": 8
+   },
+   "CONSENT_SIGN": {
+    "ABSTAIN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ESCALATE_SPEECH": 6,
+    "ABSTAIN": 4
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 8,
+    "ABSTAIN": 2
+   },
+   "EXPLAIN_PROCEDURE": {
+    "ABSTAIN": 5,
+    "EXPLAIN_PROCEDURE": 5
+   },
+   "EXPLAIN_TEST": {
+    "ABSTAIN": 6,
+    "EXPLAIN_TEST": 4
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "NONE": {
+    "ABSTAIN": 8
+   },
+   "REASSURE": {
+    "ABSTAIN": 6,
+    "REASSURE": 4
+   },
+   "REPORT_FAULT": {
+    "ABSTAIN": 5,
+    "REPORT_FAULT": 5
+   },
+   "SBAR_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "STATE_ALLERGY": {
+    "ABSTAIN": 8
+   },
+   "VOICE_ORDER": {
+    "ABSTAIN": 5,
+    "VOICE_ORDER": 4,
+    "EXPLAIN_TEST": 1
+   }
+  }
+ },
+ "classifier_route_after_window_rule": {
+  "offers": 69,
+  "offers_right": 69,
+  "credited_precision": "69/69",
+  "legitimate_recall": "69/140",
+  "legitimate_offered_under_another_act": 0,
+  "critical_false_credit": "0/40",
+  "non_assertive_false_credit": "0/300",
+  "non_assertive_by_category": {},
+  "label_view_core": {
+   "n": 188,
+   "accuracy": 0.367,
+   "macro_f1": 0.448
+  },
+  "per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   }
+  },
+  "confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ABSTAIN": 6,
+    "ACKNOWLEDGE_EMOTION": 4
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 4,
+    "ABSTAIN": 6
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 5,
+    "ABSTAIN": 5
+   },
+   "ASK_TOPIC": {
+    "ABSTAIN": 9,
+    "ASK_TOPIC": 1
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 7,
+    "ABSTAIN": 3
+   },
+   "CLARIFY": {
+    "CLARIFY": 8,
+    "ABSTAIN": 2
+   },
+   "CLOSED_LOOP": {
+    "ABSTAIN": 6,
+    "CLOSED_LOOP": 4
+   },
+   "CONFIRM_IDENTITY": {
+    "ABSTAIN": 8
+   },
+   "CONSENT_SIGN": {
+    "ABSTAIN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ESCALATE_SPEECH": 6,
+    "ABSTAIN": 4
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 8,
+    "ABSTAIN": 2
+   },
+   "EXPLAIN_PROCEDURE": {
+    "ABSTAIN": 5,
+    "EXPLAIN_PROCEDURE": 5
+   },
+   "EXPLAIN_TEST": {
+    "ABSTAIN": 6,
+    "EXPLAIN_TEST": 4
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "NONE": {
+    "ABSTAIN": 8
+   },
+   "REASSURE": {
+    "ABSTAIN": 6,
+    "REASSURE": 4
+   },
+   "REPORT_FAULT": {
+    "ABSTAIN": 5,
+    "REPORT_FAULT": 5
+   },
+   "SBAR_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "STATE_ALLERGY": {
+    "ABSTAIN": 8
+   },
+   "VOICE_ORDER": {
+    "ABSTAIN": 6,
+    "VOICE_ORDER": 4
+   }
+  }
+ },
+ "interpretation_in_window": {
+  "offers": 69,
+  "offers_right": 69,
+  "credited_precision": "69/69",
+  "legitimate_recall": "69/140",
+  "legitimate_offered_under_another_act": 0,
+  "critical_false_credit": "0/40",
+  "non_assertive_false_credit": "0/300",
+  "non_assertive_by_category": {},
+  "label_view_core": {
+   "n": 188,
+   "accuracy": 0.367,
+   "macro_f1": 0.448
+  },
+  "per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   }
+  },
+  "confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ABSTAIN": 6,
+    "ACKNOWLEDGE_EMOTION": 4
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 4,
+    "ABSTAIN": 6
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 5,
+    "ABSTAIN": 5
+   },
+   "ASK_TOPIC": {
+    "ABSTAIN": 9,
+    "ASK_TOPIC": 1
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 7,
+    "ABSTAIN": 3
+   },
+   "CLARIFY": {
+    "CLARIFY": 8,
+    "ABSTAIN": 2
+   },
+   "CLOSED_LOOP": {
+    "ABSTAIN": 6,
+    "CLOSED_LOOP": 4
+   },
+   "CONFIRM_IDENTITY": {
+    "ABSTAIN": 8
+   },
+   "CONSENT_SIGN": {
+    "ABSTAIN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ESCALATE_SPEECH": 6,
+    "ABSTAIN": 4
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 8,
+    "ABSTAIN": 2
+   },
+   "EXPLAIN_PROCEDURE": {
+    "ABSTAIN": 5,
+    "EXPLAIN_PROCEDURE": 5
+   },
+   "EXPLAIN_TEST": {
+    "ABSTAIN": 6,
+    "EXPLAIN_TEST": 4
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "NONE": {
+    "ABSTAIN": 8
+   },
+   "REASSURE": {
+    "ABSTAIN": 6,
+    "REASSURE": 4
+   },
+   "REPORT_FAULT": {
+    "ABSTAIN": 5,
+    "REPORT_FAULT": 5
+   },
+   "SBAR_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "STATE_ALLERGY": {
+    "ABSTAIN": 8
+   },
+   "VOICE_ORDER": {
+    "ABSTAIN": 6,
+    "VOICE_ORDER": 4
+   }
+  },
+  "legitimate_decisions": {
+   "ABSTAIN": 60,
+   "OFFER_EVIDENCE": 69,
+   "MENU": 11
+  },
+  "clarification_rate_legit": "0/140",
+  "abstention_rate_legit": "60/140",
+  "menu_rate_legit": "11/140",
+  "legitimate_rejection_rate": "71/140",
+  "reasons_for_missed_legit": {
+   "CRITICAL_MASS": 55,
+   "CRITICAL_TOPIC": 11,
+   "NOT_ELIGIBLE": 3,
+   "NO_ACT": 1,
+   "GATE_NOT_CREDITED": 1
+  }
+ },
+ "out_of_window": {
+  "legitimate_rows_with_an_outside_step": 140,
+  "interpretation_offered_the_rows_own_act": 0,
+  "interpretation_offered_any_act": 0,
+  "route_as_served_would_offer_its_credited_act": 72,
+  "route_after_window_rule_offered_the_rows_own_act": 0
+ },
+ "without_pending_question_or_readback": {
+  "rows": 20,
+  "interpretation_offered_the_rows_own_act": 0,
+  "with_the_context_offered_the_rows_own_act": 9,
+  "route_credited_the_rows_own_act": 9
+ },
+ "critical": {
+  "offered_in_any_condition": 0,
+  "menu_with_verified_action_pointer": 39,
+  "rows": 40
+ },
+ "gate_inputs": {
+  "note": "numbers the speech_interpretation gate reads (content/ai/thresholds.json); on this synthetic split they are recorded for information only: the gate reads interpretation-bench-independent.json, which does not exist until the independent set is scored (EX-01)",
+  "critical_false_credit": 0,
+  "out_of_window_false_credit": 0,
+  "non_assertive_false_credit_rate": 0.0,
+  "credited_precision": 1.0,
+  "legitimate_recall": 0.4929,
+  "route_legitimate_recall": 0.4929,
+  "valid_for_claims": false
+ },
+ "examples": {
+  "wrong_offers": [],
+  "missed_legitimate": [
+   {
+    "id": "AB-u0001",
+    "text": "How is your energy during the day?",
+    "act": "ASK_TOPIC",
+    "category": "paraphrase",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0002",
+    "text": "Have you been feeling tired?",
+    "act": "ASK_TOPIC",
+    "category": "paraphrase",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0015",
+    "text": "any poblems with your enrgy lately",
+    "act": "ASK_TOPIC",
+    "category": "asr_error",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0016",
+    "text": "have you beenfeelng tired",
+    "act": "ASK_TOPIC",
+    "category": "asr_error",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0017",
+    "text": "Do you have any trouble swallowing?",
+    "act": "ASK_TOPIC",
+    "category": "paraphrase",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0018",
+    "text": "Is swallowing difficult for you?",
+    "act": "ASK_TOPIC",
+    "category": "paraphrase",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0019",
+    "text": "Can you swallow comfortably?",
+    "act": "ASK_TOPIC",
+    "category": "paraphrase",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   },
+   {
+    "id": "AB-u0031",
+    "text": "can you swallow comfortably",
+    "act": "ASK_TOPIC",
+    "category": "asr_error",
+    "route": null,
+    "decision": "ABSTAIN",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS"
+    ],
+    "clarify": []
+   }
+  ]
+ },
+ "example_counts": {
+  "wrong_offers": 0,
+  "missed_legitimate": 71
+ },
+ "embedding_model": "all-minilm:22m"
+}

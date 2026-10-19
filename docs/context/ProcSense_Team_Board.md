@@ -145,9 +145,11 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 
 **🟢 Ruhan**
 - [ ] Decision engine: 5 outcomes + master decision (B-R12/B-R17)
+- [x] Speech interpretation against the scenario state (ADR-0022, built and tested 19 Oct; headset and independent evidence outstanding): engine context and eligibility (p1-ai-language-s10), `/interpret` service with deterministic validation (s11), clarification and menu fallback with the Unity script (s12), dialogue safety (s13), benchmark and the `speech_interpretation` gate, OFF (s14)
 
 **🔵 Sannan**
 - [ ] Order panel, tubes + bedside labelling, results panel with H/L + comments + phone (B-S9/S10)
+- [ ] Wire the SpeechInterpretation script (built 19 Oct) into the scene and run headset check DC-09 (`docs/testing/SANNAN_EXTERNAL_TESTING.md`)
 
 **🟠 Moiz**
 - [ ] Lab realism: artefacts, critical calls, acknowledgement blocker (B-M13)

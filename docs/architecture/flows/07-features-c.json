@@ -9,8 +9,8 @@
       "actor": "agent",
       "label": "C24 P1 PH-13",
       "title": "Patient dialogue",
-      "text": "Built. Free questions answered in the patient's voice.2 capability plans. Needs E53, E54, E57.",
-      "tone": "mint"
+      "text": "Built, part tested. Free questions answered in the patient's voice.3 capability plans. Needs E53, E54, E57.",
+      "tone": "sun"
     },
     {
       "id": "C25",
@@ -113,7 +113,7 @@
       "actor": "model",
       "label": "C37 P1 PH-15",
       "title": "Communication classifier",
-      "text": "Built, part tested. Classify trainee utterances into acts.1 capability plans. Needs E57, B19.",
+      "text": "Built, part tested. Interpret trainee utterances as communication acts against the real scenario state (ADR-0022)…3 capability plans. Needs E57, B19, E54.",
       "tone": "sun"
     }
   ],
@@ -132,6 +132,10 @@
     },
     {
       "from": "C24",
+      "to": "C31"
+    },
+    {
+      "from": "C37",
       "to": "C31"
     },
     {

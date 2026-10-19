@@ -18,7 +18,7 @@ class Reconcile(unittest.TestCase):
 
     def test_the_real_data_covers_every_step_and_names_existing_evidence(self):
         self.assertEqual(R.problems(self.found, self.data), [])
-        self.assertEqual({t: sum(1 for f in self.found.values() if f["tier"] == t) for t in ("p0", "p1", "p2")}, {"p0": 173, "p1": 77, "p2": 19})          # 269 steps, as docs/plans/milestones.md counts them
+        self.assertEqual({t: sum(1 for f in self.found.values() if f["tier"] == t) for t in ("p0", "p1", "p2")}, {"p0": 173, "p1": 82, "p2": 19})          # 274 steps, as docs/plans/milestones.md counts them (269 before the five speech interpretation steps of 19 Oct 2026)
 
     def test_the_committed_page_is_what_the_data_gives(self):
         self.assertEqual(R.OUT.read_text(encoding="utf-8"), R.render(self.found, self.data))

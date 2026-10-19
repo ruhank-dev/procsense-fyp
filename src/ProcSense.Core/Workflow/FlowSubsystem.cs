@@ -68,6 +68,9 @@ namespace ProcSense.Core.Workflow
         /// <summary>Every stage of the scenario map with its state: waiting, active, suspended (active but stopped by an interrupt), done or skipped.</summary>
         public IReadOnlyList<FlowStageStatus> Stages() => _runs.Select(Status).ToList();
 
+        /// <summary>The workflow step numbers (1 to 15) of the stages that are active and not suspended by an interrupt, ascending: where the trainee is now. Speech evidence is judged against these (ADR-0022).</summary>
+        public IReadOnlyList<int> RunningSteps() => _runs.Where(x => x.State == FlowState.Active && !IsSuspended(x)).SelectMany(x => x.Def.Steps).Distinct().OrderBy(n => n).ToList();
+
         /// <summary>What the tablet shows: the stages running or stopped right now, interrupts first, then by stage number.</summary>
         internal IReadOnlyList<FlowStageStatus> Running()
         {

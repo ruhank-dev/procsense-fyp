@@ -1504,7 +1504,7 @@
     "id": "C24",
     "label": "C24 Patient dialogue",
     "type": "feature",
-    "status": "Implemented and tested",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -6588,6 +6588,30 @@
     "cycle": false
    },
    "classes": "realised_by"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E387",
+    "source": "C31",
+    "target": "C37",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
+  },
+  {
+   "group": "edges",
+   "data": {
+    "id": "E388",
+    "source": "C37",
+    "target": "E54",
+    "type": "depends_on",
+    "label": "",
+    "cycle": false
+   },
+   "classes": "depends_on"
   }
  ]
 }

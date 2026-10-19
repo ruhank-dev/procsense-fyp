@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://procsense.local/schemas/interpretation_context.json",
+  "title": "InterpretationContext v1 (p1-ai-language-s10, ADR-0022)",
+  "description": "What the engine tells the interpretation service about ONE trainee utterance. Made by src/ProcSense.Core/Speech/InterpretationContextBuilder.cs from the running session; read by server/schemas/interpret.py (ContextIn). Holds no hidden fact, expected answer, score or hint. The engine test InterpretationContextTests and tools/ci/test_interpretation_regression.py both compare their keys with this list.",
+  "type": "object",
+  "required": ["case", "scenario", "mode", "steps", "eligible", "accepted", "patient_question_pending", "readback_pending", "last_turns", "speaker", "addressee"],
+  "additionalProperties": false,
+  "properties": {
+    "case": {"type": "string"},
+    "scenario": {"type": "string"},
+    "mode": {"enum": ["practice", "assessment"]},
+    "steps": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 15}, "description": "the workflow steps of the running flow stages; empty means nothing is eligible"},
+    "eligible": {"type": "array", "items": {"type": "object", "required": ["act", "behaviour", "critical"], "additionalProperties": false, "properties": {"act": {"type": "string"}, "behaviour": {"type": "string"}, "critical": {"type": "boolean"}}}},
+    "accepted": {"type": "array", "items": {"type": "string"}, "description": "behaviours already credited from speech in this session"},
+    "patient_question_pending": {"type": "boolean", "description": "the consent subsystem's pending patient question"},
+    "readback_pending": {"type": "boolean", "description": "a critical result waits for acknowledgement (flag critical.unacknowledged); false where the engine records nothing"},
+    "last_turns": {"type": "array", "maxItems": 4, "items": {"type": "object", "required": ["speaker", "text"], "properties": {"speaker": {"type": "string"}, "text": {"type": "string", "maxLength": 300}}}},
+    "speaker": {"const": "trainee"},
+    "addressee": {"type": "string"}
+  }
+}

@@ -232,7 +232,7 @@ Patient and staff dialogue, persona, reactive lines.
 | Features | C24; C25; C26; C27; C28; C29; C30 |
 | Deliverables | dialogue service |
 | Acceptance | disclosure probes zero escapes |
-| Blockers | — |
+| Blockers | external acceptance: DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-14 — Voice
 
@@ -246,21 +246,21 @@ ASR, voice commands, voice orders with read-back, TTS.
 | Features | C31; C32; C33; C34; C35 |
 | Deliverables | ASR service; voice client |
 | Acceptance | WER and latency targets |
-| Blockers | external acceptance: DC-08 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-06, EX-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-06, EX-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-15 — Communication acts and classifier
 
-Taxonomy, labelled set, LLM classifier.
+Taxonomy, classifier gate, and context-aware interpretation of trainee speech with deterministic validation (ADR-0022).
 
 | Field | Value |
 |---|---|
 | Status | Blocked |
 | Depends on | PH-07; PH-21 |
-| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07 |
+| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14 |
 | Features | C36; C37 |
-| Deliverables | labelled set; classifier |
-| Acceptance | macro-F1 0.75 or switched off |
-| Blockers | external acceptance: EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Deliverables | labelled set; classifier; interpretation context; interpretation service; clarification and fallback; context-conditioned benchmark and speech_interpretation gate |
+| Acceptance | classifier: macro-F1 0.75 on the independent set or switched off; speech_interpretation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off |
+| Blockers | external acceptance: DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-16 — AI debrief and grounded feedback
 
@@ -288,7 +288,7 @@ Harness, red-team generator, synthetic sets, batch quality evaluator.
 | Features | B19; E50; E51; E55 |
 | Deliverables | harness; ai_features.yaml |
 | Acceptance | every AI feature has a threshold |
-| Blockers | external acceptance: EX-05 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-05 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-18 — Learning analytics and adaptive enhancements
 
@@ -416,20 +416,20 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | B21 | Result variation (repeats, trends, timing) | PH-09 | p1-live-scenario-generation-s05 |
 | B22 | Investigation Interpreter (teaching aid) | PH-18 | p2-ai-learning-analytics-s05 |
 | B23 | Investigation discovery | PH-04 | p0-case-library-s05; p1-live-scenario-generation-s03 |
-| C24 | Patient dialogue | PH-13 | p1-ai-language-s04 |
+| C24 | Patient dialogue | PH-13 | p1-ai-language-s04; p1-ai-language-s13 |
 | C25 | Nurse dialogue | PH-13 | p1-ai-language-s05 |
 | C26 | Anaesthetist dialogue | PH-13 | p1-ai-language-s05 |
 | C27 | Surgeon dialogue | PH-13 | p1-ai-language-s05 |
 | C28 | Porter dialogue | PH-13 | p1-ai-language-s05 |
 | C29 | Persona system | PH-13 | p1-live-scenario-generation-s04; p1-ai-language-s04 |
 | C30 | Context-aware and reactive dialogue | PH-13 | p1-ai-language-s05 |
-| C31 | Voice interaction (end to end) | PH-14 | p1-voice-input-s02; p1-voice-input-s04 |
+| C31 | Voice interaction (end to end) | PH-14 | p1-voice-input-s02; p1-voice-input-s04; p1-ai-language-s12 |
 | C32 | Voice commands | PH-14 | p1-voice-input-s02 |
 | C33 | Speech-to-text | PH-14 | p1-voice-input-s01 |
 | C34 | Text-to-speech | PH-14 | p0-voice-audio-s02; p1-voice-input-s04 |
 | C35 | Voice orders and read-back | PH-14 | p1-voice-input-s03 |
 | C36 | Communication acts (taxonomy and evidence mapping) | PH-15 | p1-ai-language-s06 |
-| C37 | Communication classifier | PH-15 | p1-ai-language-s06; p1-ai-language-s07 |
+| C37 | Communication classifier | PH-15 | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14 |
 | D38 | AI debrief | PH-16 | p1-ai-language-s08 |
 | D39 | Coaching (in-session hints and between-session advice) | PH-18 | p2-ai-learning-analytics-s01 |
 | D40 | Performance pattern analysis | PH-18 | p2-ai-learning-analytics-s01 |
@@ -449,7 +449,7 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | E52 | Investigation analytics | PH-18 | p2-ai-learning-analytics-s04 |
 | E53 | Grounding validator | PH-01 | p1-ai-language-s01 |
 | E54 | Context builder and reaction queue | PH-01 | p1-ai-language-s03 |
-| E55 | AI evaluation harness and switch-off gate | PH-17 | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04 |
+| E55 | AI evaluation harness and switch-off gate | PH-17 | p1-ai-language-s09; p1-evaluation-s02; p1-evaluation-s04; p1-ai-language-s14 |
 | E56 | Difficulty explanation to the trainee | PH-16 | p1-scenario-composer-difficulty-s04 |
 | E57 | LLM serving and benchmark | PH-07 | p1-ai-language-s02 |
 | E58 | Retrieval over approved content (RAG) | PH-05 | p1-live-scenario-generation-s02; p2-ai-extensions-s02 |

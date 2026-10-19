@@ -43,14 +43,24 @@ class EnsembleActClassifier:
         self.model = f"{self.embedding.model}+tfidf"
 
     def classify(self, sentence: str) -> Result:
-        r = self.embedding.classify(sentence)
-        if r.source == "unavailable":
-            return r
+        return self.classify_with_probs(sentence)[0]
+
+    def classify_with_probs(self, sentence: str) -> tuple[Result, dict[str, float]]:
+        """The same decision as `classify` (one embedding call, nothing different), with the first reader's probability for every act, for callers that rank candidates (server/interpret). Empty probabilities when the embedder is unavailable."""
+        first = self.embedding
+        if first.embedder is None:
+            return Result("NONE", 0.0, False, "unavailable", error="NO_MODEL"), {}
+        vec = first.embedder(sentence)
+        if vec is None or len(vec) != first.dim:
+            return Result("NONE", 0.0, False, "unavailable", error="EMBEDDING_UNAVAILABLE"), {}
+        probs = first.probabilities_of(vec, sentence)
+        act = max(probs, key=probs.get)
+        credited = first.credit_allowed(act, probs[act], sentence, first.critical_mass(probs))
         refused = ""
-        if r.credited:
+        if credited:
             other = self.tfidf.classify(sentence)
-            if other.act != r.act:
+            if other.act != act:
                 refused = f"HEADS_DISAGREE:{other.act}"
             elif (kind := non_assertive(sentence)):
                 refused = f"NON_ASSERTIVE:{kind}"
-        return Result(r.act, r.confidence, r.credited and not refused, "ensemble", r.critical, "", refused)
+        return Result(act, probs[act], credited and not refused, "ensemble", act in self.critical, "", refused), probs
