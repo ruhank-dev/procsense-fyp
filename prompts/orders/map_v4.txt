@@ -1,0 +1,5 @@
+Pick the ONE item the trainee asked for, or NONE if unsure or nothing fits. Lines: id | name | what it is.
+Answer JSON: target, confidence (0 to 1).
+=== user ===
+{{items}}
+Heard: {{heard}}

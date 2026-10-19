@@ -27,6 +27,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[2]
 LIST_SIZE = 140
+DETAIL_TOP = 8                      # the compact variant gives a note to this many items
 RERANK_K = LIST_SIZE               # every item of the chosen kind stays on offer (a described order shares no word with its item); the re-ranking only orders them
 MIN_CONFIDENCE = 0.5                 # a floor only: the stated confidence does not separate right from wrong (reports/ai/orders-eval-llm-v2.json), agreement of two readings decides
 KINDS = ("test", "medicine", "home_medicine", "place", "staff")
@@ -52,8 +53,12 @@ def _glosses() -> dict[tuple[str, str], str]:
     return out
 
 
-def gloss(e: Entry) -> str:
-    return _glosses().get((e.kind, e.target), KIND_WORDS[e.kind])
+def gloss(e: Entry, lean: bool = False) -> str:
+    g = _glosses().get((e.kind, e.target), KIND_WORDS[e.kind])
+    if lean and e.kind == "test" and "; shows " in g:                      # fewer words per line: the first three analytes are enough to tell a test from its neighbour, and every token costs about 3 ms of prompt evaluation on the desktop card
+        head, tail = g.split("; shows ", 1)
+        g = head.replace(" investigation", "") + "; " + ", ".join(tail.split(", ")[:3])
+    return g
 
 
 @dataclass
@@ -140,11 +145,14 @@ class OrderMapper:
     """`two_stage` (the default) first asks which KIND of thing is wanted (five kinds and NONE), then chooses among the items of that kind only, each with a note of what it does; the single call of the first version
     (`two_stage=False`) chose among every item at once. A place that is also a test (CT, MRI, ultrasound, X-ray) is a place only when the sentence moves the patient."""
 
-    def __init__(self, client, model: str | None = None, timeout: float | None = None, two_stage: bool = True):
-        self.client, self.model, self.timeout, self.two_stage = client, model, timeout, two_stage
+    def __init__(self, client, model: str | None = None, timeout: float | None = None, two_stage: bool = True, lean: bool | int = False):
+        """`lean` (ADR-0021, latency): the shorter kind prompt (orders.kind@2), the list-first map prompt (orders.map@3), shorter notes, and the items listed in a fixed order (the re-ranking still decides what the second reading must agree with) so the host can reuse the evaluated list between hearings."""
+        self.client, self.model, self.timeout, self.two_stage, self.lean = client, model, timeout, two_stage, bool(lean)
+        self.short = lean == 3                       # lean=3: compact and the shortest prompts (orders.kind@3, orders.map@4)
+        self.compact = lean in (2, 3)                      # lean=2: only the DETAIL_TOP items the re-ranker likes best carry a note; the rest are listed by name alone (about half the prompt tokens)
 
     def _kind(self, text: str) -> str | None:
-        r = gateway.run(self.client, "orders.kind", {"heard": text}, schema=kind_schema(), model=self.model, timeout=self.timeout, retries=0, task="orders_kind")
+        r = gateway.run(self.client, "orders.kind", {"heard": text}, schema=kind_schema(), model=self.model, timeout=self.timeout, retries=0, task="orders_kind", version=(3 if self.short else 2) if self.lean else None)
         if not r.ok or r.value["kind"] == "NONE":
             return None
         k = r.value["kind"]
@@ -154,10 +162,10 @@ class OrderMapper:
             k = "test"
         return k
 
-    def _ask(self, text: str, cands: list[Entry]) -> tuple[str, float] | None:
+    def _ask(self, text: str, cands: list[Entry], detailed: set[str] | None = None) -> tuple[str, float] | None:
         ids = [f"{e.kind}:{e.target}" for e in cands]
-        items = chr(10).join(f"{i} | {e.label} | {gloss(e)}" for i, e in zip(ids, cands))
-        r = gateway.run(self.client, "orders.map", {"heard": text, "items": items}, schema=schema(ids), model=self.model, timeout=self.timeout, retries=0, task="orders_map", version=2)
+        items = chr(10).join(f"{i} | {e.label} | {gloss(e, self.lean)}" if detailed is None or i in detailed else f"{i} | {e.label}" for i, e in zip(ids, cands))
+        r = gateway.run(self.client, "orders.map", {"heard": text, "items": items}, schema=schema(ids), model=self.model, timeout=self.timeout, retries=0, task="orders_map", version=(4 if self.short else 3) if self.lean else 2)
         if not r.ok:
             return None
         pick = r.value["target"]
@@ -177,13 +185,15 @@ class OrderMapper:
         if self.two_stage and kind is None:                           # the kind stage is also the guard against turning small talk into an order: tried without it (fifth session, second pass) the share of non-orders offered rose from 0 to 20 percent on a development set for 2 points of recall
             return None
         ranked = rerank(text, [e for e in pool if kind is None or e.kind == kind] or pool, vocab)[:RERANK_K]
-        first = self._ask(text, ranked)
+        shown = sorted(ranked, key=lambda e: (e.kind, e.target)) if self.lean else ranked
+        detailed = {f"{e.kind}:{e.target}" for e in ranked[:DETAIL_TOP if not self.short else 6]} if self.compact else None
+        first = self._ask(text, shown, detailed)
         if first is None or first[0] == "NONE" or first[1] < MIN_CONFIDENCE:
             return None
         ids = [f"{e.kind}:{e.target}" for e in ranked]
         pick = first[0]
         if pick != ids[0]:                                           # the re-ranker disagrees with the model: ask again with the order reversed and accept only the same item twice
-            second = self._ask(text, list(reversed(ranked)))
+            second = self._ask(text, list(reversed(shown)), detailed)
             if second is None or second[0] == "NONE" or second[0] not in ids:
                 return None
             if second[0] != pick:                                      # two readings, two items: the trainee chooses (a question, not an order)

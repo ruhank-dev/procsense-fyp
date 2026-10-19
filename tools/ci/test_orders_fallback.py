@@ -172,5 +172,31 @@ class Agreement(unittest.TestCase):
         self.assertEqual(bad, [])
 
 
+class Variants(unittest.TestCase):
+    """The latency candidates (ADR-0021) keep the kind stage, the closed list, the agreement rule and the refusal of small talk; only the prompt text and the notes differ."""
+
+    def test_every_candidate_reads_back_a_described_test_and_releases_nothing_before_a_yes(self):
+        for lean in (False, True, 2, 3):
+            rb = ReadBack(VOCAB, LF.OrderMapper(host({"target": "test:ecg", "confidence": 0.9}), lean=lean))
+            h = rb.hear("get a trace of his heart")
+            self.assertEqual((h.status, h.slots["target"], h.source), ("confirm", "ecg", "model"), lean)
+            self.assertEqual(rb.released, [], lean)
+
+    def test_every_candidate_gives_the_menu_when_the_kind_stage_says_none_or_the_model_is_down(self):
+        for lean in (False, True, 2, 3):
+            for client in (host({"target": "NONE", "confidence": 0.9}), down()):
+                rb = ReadBack(VOCAB, LF.OrderMapper(client, lean=lean))
+                self.assertEqual(rb.hear("the porter is on his break").status, "menu", lean)
+
+    def test_the_compact_prompt_gives_notes_to_the_best_ranked_items_only(self):
+        seen = []
+        rb = ReadBack(VOCAB, LF.OrderMapper(host({"target": "test:ecg", "confidence": 0.9}, seen), lean=2))
+        rb.hear("get a trace of his heart")
+        listing = [m["content"] for b in seen for m in b["messages"] if "List:" in m["content"]][0]
+        lines = [l for l in listing.splitlines() if " | " in l]
+        self.assertGreater(len(lines), 8)
+        self.assertEqual(sum(1 for l in lines if l.count(" | ") >= 2), LF.DETAIL_TOP)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

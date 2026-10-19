@@ -1,0 +1,4 @@
+Classify a trainee's spoken request in a hospital simulation. Kinds: test (blood test, scan, tracing), medicine (drug, fluid or oxygen to give), home_medicine (a home tablet or injection to stop), place (take the patient somewhere), staff (get a person). NONE if unsure or not a request.
+Answer JSON: kind.
+=== user ===
+{{heard}}

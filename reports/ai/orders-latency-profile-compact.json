@@ -1,0 +1,33 @@
+{
+ "label": "compact",
+ "hearings": 16,
+ "calls": 31,
+ "calls_per_hearing": 1.94,
+ "hearing_ms_median": 3254,
+ "hearing_ms_p95": 3534,
+ "python_outside_host_calls_ms_median": 140.9,
+ "by_call_type": {
+  "kind": {
+   "n": 16,
+   "wall_ms": 844.7,
+   "host_total_ms": 843.3,
+   "load_ms": 6.3,
+   "prompt_eval_ms": 678.5,
+   "prompt_tokens": 138.0,
+   "generation_ms": 109.9,
+   "generation_tokens": 7.0,
+   "overhead_ms": 1.7
+  },
+  "map": {
+   "n": 15,
+   "wall_ms": 2271.9,
+   "host_total_ms": 2270.9,
+   "load_ms": 6.5,
+   "prompt_eval_ms": 1817.5,
+   "prompt_tokens": 428,
+   "generation_ms": 386.7,
+   "generation_tokens": 23,
+   "overhead_ms": 1.4
+  }
+ }
+}

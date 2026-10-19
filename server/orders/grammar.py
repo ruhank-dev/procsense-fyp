@@ -104,7 +104,10 @@ def matches(text: str, vocab: list[Entry], kinds: tuple[str, ...]) -> list[tuple
             for e in vocab:
                 if e.kind not in kinds:
                     continue
-                score = difflib.SequenceMatcher(None, gram, e.phrase).ratio()
+                sm = difflib.SequenceMatcher(None, gram, e.phrase)
+                if sm.real_quick_ratio() < FUZZY or sm.quick_ratio() < FUZZY:
+                    continue                                     # cheap upper bounds of ratio(): the same result, without the full comparison
+                score = sm.ratio()
                 if score >= FUZZY and (e.target not in best or score > best[e.target][0]):
                     best[e.target] = (score, e)
     return sorted(best.values(), key=lambda x: -x[0])

@@ -1,0 +1,148 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v4": {
+   "file": "paraphrases_v4.json",
+   "rows": 64,
+   "frozen_scored_now": false,
+   "second_look": true,
+   "grammar": {
+    "orders": 54,
+    "correct": 0.278,
+    "wrong": 0.0,
+    "menu": 0.722,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 21,
+    "latency_ms_p95": 41,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "3/16",
+     "place": "4/6",
+     "staff": "4/5",
+     "test": "2/23"
+    },
+    "wrong_examples": []
+   },
+   "legacy": {
+    "orders": 54,
+    "correct": 0.87,
+    "wrong": 0.093,
+    "menu": 0.037,
+    "non_orders": 10,
+    "false_offer": 0.5,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 4329,
+    "latency_ms_p95": 5202,
+    "by_kind": {
+     "home_medicine": "3/4",
+     "medicine": "15/16",
+     "place": "5/6",
+     "staff": "5/5",
+     "test": "19/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "keep a sample of blood aside for a transfusion",
+      "wanted": "group_and_save",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "an MRI of the pelvis",
+      "wanted": "mri",
+      "heard": "mri",
+      "intent": "REQUEST_TRANSPORT"
+     },
+     {
+      "said": "a scan of the bile ducts with magnetic resonance",
+      "wanted": "mrcp",
+      "heard": "TR-IV-FLUIDS",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "something to stop the vomiting",
+      "wanted": "TR-ANTIEMETIC",
+      "heard": "metoclopramide",
+      "intent": "HOLD_MED"
+     },
+     {
+      "said": "stop the blood thinner before surgery",
+      "wanted": "anticoagulant",
+      "heard": "dabigatran",
+      "intent": "HOLD_MED"
+     }
+    ]
+   },
+   "current": {
+    "orders": 54,
+    "correct": 0.741,
+    "wrong": 0.037,
+    "menu": 0.222,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 4,
+    "clarify_questions_containing_the_right_item": 2,
+    "latency_ms_p50": 3791,
+    "latency_ms_p95": 7312,
+    "by_kind": {
+     "home_medicine": "3/4",
+     "medicine": "10/16",
+     "place": "6/6",
+     "staff": "5/5",
+     "test": "16/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "something to stop the vomiting",
+      "wanted": "TR-ANTIEMETIC",
+      "heard": "metoclopramide",
+      "intent": "HOLD_MED"
+     },
+     {
+      "said": "a sugary drink for the low sugar",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   },
+   "short": {
+    "orders": 54,
+    "correct": 0.852,
+    "wrong": 0.019,
+    "menu": 0.13,
+    "non_orders": 10,
+    "false_offer": 0.2,
+    "released_without_confirmation": 0,
+    "clarify_questions": 3,
+    "clarify_questions_containing_the_right_item": 3,
+    "latency_ms_p50": 2690,
+    "latency_ms_p95": 5401,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "12/16",
+     "place": "6/6",
+     "staff": "5/5",
+     "test": "21/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "something to stop the vomiting",
+      "wanted": "TR-ANTIEMETIC",
+      "heard": "metoclopramide",
+      "intent": "HOLD_MED"
+     }
+    ]
+   }
+  }
+ }
+}

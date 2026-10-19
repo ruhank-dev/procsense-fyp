@@ -1,0 +1,265 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "paraphrases": {
+   "file": "paraphrases.json",
+   "rows": 71,
+   "frozen_scored_now": false,
+   "grammar": {
+    "orders": 61,
+    "correct": 0.082,
+    "wrong": 0.0,
+    "menu": 0.918,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 29,
+    "latency_ms_p95": 83,
+    "by_kind": {
+     "home_medicine": "0/5",
+     "medicine": "0/16",
+     "place": "1/7",
+     "staff": "4/7",
+     "test": "0/26"
+    },
+    "wrong_examples": []
+   },
+   "current": {
+    "orders": 61,
+    "correct": 0.557,
+    "wrong": 0.016,
+    "menu": 0.426,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 8,
+    "clarify_questions_containing_the_right_item": 6,
+    "latency_ms_p50": 3584,
+    "latency_ms_p95": 6981,
+    "by_kind": {
+     "home_medicine": "3/5",
+     "medicine": "11/16",
+     "place": "6/7",
+     "staff": "5/7",
+     "test": "9/26"
+    },
+    "wrong_examples": [
+     {
+      "said": "she should not take her warfarin tomorrow",
+      "wanted": "anticoagulant",
+      "heard": "warfarin",
+      "intent": "HOLD_MED"
+     }
+    ]
+   },
+   "lean": {
+    "orders": 61,
+    "correct": 0.689,
+    "wrong": 0.016,
+    "menu": 0.295,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 2,
+    "clarify_questions_containing_the_right_item": 2,
+    "latency_ms_p50": 3551,
+    "latency_ms_p95": 6413,
+    "by_kind": {
+     "home_medicine": "3/5",
+     "medicine": "12/16",
+     "place": "6/7",
+     "staff": "6/7",
+     "test": "15/26"
+    },
+    "wrong_examples": [
+     {
+      "said": "she should not take her warfarin tomorrow",
+      "wanted": "anticoagulant",
+      "heard": "warfarin",
+      "intent": "HOLD_MED"
+     }
+    ]
+   }
+  },
+  "v2": {
+   "file": "paraphrases_v2.json",
+   "rows": 65,
+   "frozen_scored_now": false,
+   "grammar": {
+    "orders": 55,
+    "correct": 0.182,
+    "wrong": 0.0,
+    "menu": 0.818,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 28,
+    "latency_ms_p95": 50,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "1/16",
+     "place": "4/7",
+     "staff": "2/5",
+     "test": "1/23"
+    },
+    "wrong_examples": []
+   },
+   "current": {
+    "orders": 55,
+    "correct": 0.709,
+    "wrong": 0.018,
+    "menu": 0.273,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 4,
+    "clarify_questions_containing_the_right_item": 4,
+    "latency_ms_p50": 3530,
+    "latency_ms_p95": 6947,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "13/16",
+     "place": "7/7",
+     "staff": "5/5",
+     "test": "12/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "how low are her iron levels",
+      "wanted": "ferritin",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     }
+    ]
+   },
+   "lean": {
+    "orders": 55,
+    "correct": 0.691,
+    "wrong": 0.0,
+    "menu": 0.309,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 3645,
+    "latency_ms_p95": 6488,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "14/16",
+     "place": "7/7",
+     "staff": "5/5",
+     "test": "10/23"
+    },
+    "wrong_examples": []
+   }
+  },
+  "v3": {
+   "file": "paraphrases_v3.json",
+   "rows": 66,
+   "frozen_scored_now": false,
+   "grammar": {
+    "orders": 56,
+    "correct": 0.089,
+    "wrong": 0.018,
+    "menu": 0.893,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 27,
+    "latency_ms_p95": 59,
+    "by_kind": {
+     "home_medicine": "0/4",
+     "medicine": "1/16",
+     "place": "2/6",
+     "staff": "1/5",
+     "test": "1/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   },
+   "current": {
+    "orders": 56,
+    "correct": 0.625,
+    "wrong": 0.054,
+    "menu": 0.321,
+    "non_orders": 10,
+    "false_offer": 0.1,
+    "released_without_confirmation": 0,
+    "clarify_questions": 4,
+    "clarify_questions_containing_the_right_item": 4,
+    "latency_ms_p50": 3865,
+    "latency_ms_p95": 7028,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "11/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "12/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "I want to know if there is an infection brewing, a quick inflammatory blood marker",
+      "wanted": "crp",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "is his blood too thin or too thick",
+      "wanted": "clotting",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   },
+   "lean": {
+    "orders": 56,
+    "correct": 0.714,
+    "wrong": 0.018,
+    "menu": 0.268,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 3500,
+    "latency_ms_p95": 6166,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "10/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "18/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   }
+  }
+ }
+}

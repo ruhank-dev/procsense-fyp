@@ -318,6 +318,64 @@
       "gateway": false
     },
     {
+      "id": "orders.kind",
+      "version": 2,
+      "role": "live",
+      "file": "orders/kind_v2.txt",
+      "sha256": "b8d374b81e7aabcad55bd6e87f28718af39a5cd4dc3bc2a03b56a0ac31161a7d",
+      "schema": null,
+      "variables": [
+        "heard"
+      ],
+      "num_predict": 30,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "orders.map",
+      "version": 3,
+      "role": "live",
+      "file": "orders/map_v3.txt",
+      "sha256": "b760c759a2967ae7d659d33e37f7a87acc76be1fb1c7bf0944ef5d291cc2f691",
+      "schema": null,
+      "variables": [
+        "heard",
+        "items"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "orders.kind",
+      "version": 3,
+      "role": "live",
+      "file": "orders/kind_v3.txt",
+      "sha256": "cf0f7b2552b47c629c64f8280bb37c3d0ba0c55d0ced619996b9aee080ea6021",
+      "schema": null,
+      "variables": [
+        "heard"
+      ],
+      "num_predict": 30,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "orders.map",
+      "version": 4,
+      "role": "live",
+      "file": "orders/map_v4.txt",
+      "sha256": "9c8deea433567e3fda4d086440328d7f02103162f4c63008863d12df888149de",
+      "schema": null,
+      "variables": [
+        "heard",
+        "items"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "judge.scenario",
       "version": 1,
       "role": "batch",

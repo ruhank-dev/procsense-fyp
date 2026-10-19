@@ -1,0 +1,201 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "paraphrases": {
+   "file": "paraphrases.json",
+   "rows": 71,
+   "frozen_scored_now": false,
+   "compact": {
+    "orders": 61,
+    "correct": 0.656,
+    "wrong": 0.016,
+    "menu": 0.328,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 2,
+    "clarify_questions_containing_the_right_item": 2,
+    "latency_ms_p50": 3247,
+    "latency_ms_p95": 5798,
+    "by_kind": {
+     "home_medicine": "3/5",
+     "medicine": "12/16",
+     "place": "6/7",
+     "staff": "6/7",
+     "test": "13/26"
+    },
+    "wrong_examples": [
+     {
+      "said": "she should not take her warfarin tomorrow",
+      "wanted": "anticoagulant",
+      "heard": "warfarin",
+      "intent": "HOLD_MED"
+     }
+    ]
+   },
+   "short": {
+    "orders": 61,
+    "correct": 0.803,
+    "wrong": 0.016,
+    "menu": 0.18,
+    "non_orders": 10,
+    "false_offer": 0.1,
+    "released_without_confirmation": 0,
+    "clarify_questions": 4,
+    "clarify_questions_containing_the_right_item": 4,
+    "latency_ms_p50": 2626,
+    "latency_ms_p95": 4894,
+    "by_kind": {
+     "home_medicine": "3/5",
+     "medicine": "15/16",
+     "place": "6/7",
+     "staff": "6/7",
+     "test": "19/26"
+    },
+    "wrong_examples": [
+     {
+      "said": "she should not take her warfarin tomorrow",
+      "wanted": "anticoagulant",
+      "heard": "warfarin",
+      "intent": "HOLD_MED"
+     }
+    ]
+   }
+  },
+  "v2": {
+   "file": "paraphrases_v2.json",
+   "rows": 65,
+   "frozen_scored_now": false,
+   "compact": {
+    "orders": 55,
+    "correct": 0.709,
+    "wrong": 0.0,
+    "menu": 0.291,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 3290,
+    "latency_ms_p95": 5742,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "13/16",
+     "place": "7/7",
+     "staff": "5/5",
+     "test": "12/23"
+    },
+    "wrong_examples": []
+   },
+   "short": {
+    "orders": 55,
+    "correct": 0.855,
+    "wrong": 0.018,
+    "menu": 0.127,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 3,
+    "clarify_questions_containing_the_right_item": 3,
+    "latency_ms_p50": 2630,
+    "latency_ms_p95": 5078,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "16/16",
+     "place": "7/7",
+     "staff": "5/5",
+     "test": "17/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "scan to see the bile duct and pancreas",
+      "wanted": "mrcp",
+      "heard": "mri",
+      "intent": "ORDER_TEST"
+     }
+    ]
+   }
+  },
+  "v3": {
+   "file": "paraphrases_v3.json",
+   "rows": 66,
+   "frozen_scored_now": false,
+   "compact": {
+    "orders": 56,
+    "correct": 0.714,
+    "wrong": 0.036,
+    "menu": 0.25,
+    "non_orders": 10,
+    "false_offer": 0.1,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 3325,
+    "latency_ms_p95": 5663,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "9/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "19/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "reverse the opiate",
+      "wanted": "TR-NALOXONE",
+      "heard": "TR-OPIOID",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   },
+   "short": {
+    "orders": 56,
+    "correct": 0.804,
+    "wrong": 0.054,
+    "menu": 0.143,
+    "non_orders": 10,
+    "false_offer": 0.1,
+    "released_without_confirmation": 0,
+    "clarify_questions": 2,
+    "clarify_questions_containing_the_right_item": 2,
+    "latency_ms_p50": 2683,
+    "latency_ms_p95": 5144,
+    "by_kind": {
+     "home_medicine": "1/4",
+     "medicine": "12/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "22/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "an anti inflammatory pain tablet",
+      "wanted": "TR-NSAID",
+      "heard": "TR-PARACETAMOL",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "reverse the opiate",
+      "wanted": "TR-NALOXONE",
+      "heard": "TR-OPIOID",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   }
+  }
+ }
+}
