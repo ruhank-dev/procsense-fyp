@@ -184,7 +184,7 @@ namespace ProcSense.VR.Views
         {
             SetText(_clock, s.ClockTime);
             SetText(_hint, SimulationHost.Instance != null && SimulationHost.Instance.Paused
-                ? HintTexts.For("SESSION_PAUSED") : HintTexts.For(s.LastRejection));
+                ? HintTexts.For("SESSION_PAUSED") : ModeGate.Practice(HintTexts.For(s.LastRejection)));
 
             if (s.DisclosedFacts.Count != _factCount)
             {

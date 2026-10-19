@@ -50,6 +50,9 @@ namespace ProcSense.VR.Bridge
         /// <summary>The version of the content this session was played with (written into the header; the service can only verify a version it holds).</summary>
         public string ContentVersion { get; private set; } = "unversioned";
 
+        /// <summary>SHA-256 of the generated scenario package this session plays (line endings normalised), or empty for an authored case. Written to the session header so the server can replay the session against the same package.</summary>
+        public string PackageHash { get; private set; } = "";
+
         /// <summary>Test seam: where session files are saved (default: the application's data folder, `sessions`).</summary>
         public static string SessionsDirectoryOverride { get; set; }
 
@@ -88,15 +91,16 @@ namespace ProcSense.VR.Bridge
             if (paused) SaveSessionLog();
         }
 
-        public void StartSession(string caseId, ulong seed, SessionMode mode, IContentReader reader = null)
+        public void StartSession(string caseId, ulong seed, SessionMode mode, IContentReader reader = null, SessionOptions options = null)
         {
+            PackageHash = "";
             reader = reader ?? UnityContentReader.ForThisPlatform();
             // the mode decides what may be loaded: assessment plays only a case approved for assessment (p0-evaluation-performance-s04); the service refuses the rest too
             var load = ContentMode.Load(reader, mode, false, caseId);
             if (!load.Package.Cases.ContainsKey(caseId))
                 throw new ContentException("the case " + caseId + " cannot be played in " + mode.ToString().ToLowerInvariant() + " mode: " + string.Join("; ", load.Excluded.Select(e => e.Reason)));
             var content = load.Package;
-            Session = new Session(content.Cases[caseId], seed, mode, (SubsystemFactory ?? Subsystems.Default)(content));
+            Session = new Session(content.Cases[caseId], seed, mode, (SubsystemFactory ?? Subsystems.Default)(content), options);
             SessionId = Guid.NewGuid().ToString();
             ContentVersion = VersionOf(reader);
             _ended = false;
@@ -111,6 +115,20 @@ namespace ProcSense.VR.Bridge
         }
 
         /// <summary>Moves simulated time forward. Core runs whole 0.5 s steps and carries the remainder.</summary>
+        /// <summary>
+        /// Plays a generated scenario package (p1-live-scenario-generation-s10): the package is a content folder of one case file put in front of the real content, exactly as the command line does it. The case keeps the review status
+        /// GENERATED_PRACTICE_ONLY, so the same mode gate that every case passes refuses it in assessment mode (a ContentException). The events the package plans are given to the session, which restricts practice-mode events to them.
+        /// Returns the package hash that SaveSessionLog writes into the header.
+        /// </summary>
+        public string StartFromPackage(string packageText, ulong seed, SessionMode mode, IContentReader real = null)
+        {
+            var package = new ScenarioPackageReader(packageText);
+            var composite = new CompositeContentReader(package, real ?? UnityContentReader.ForThisPlatform());
+            StartSession(package.CaseId, seed, mode, composite, new SessionOptions(PlannedEvents: package.PlannedEvents));
+            PackageHash = package.PackageHash;
+            return PackageHash;
+        }
+
         public void Tick(double dt)
         {
             if (Session == null || Paused) return;
@@ -151,7 +169,7 @@ namespace ProcSense.VR.Bridge
             string dir = SessionsDirectoryOverride ?? Path.Combine(Application.persistentDataPath, "sessions");
             Directory.CreateDirectory(dir);
             string file = Path.Combine(dir, Session.Case.Id + "_" + Session.Seed + "_" + SessionId + ".jsonl");
-            File.WriteAllText(file, SessionFile.Write(Session, new SessionMeta(SessionId, ContentVersion)));
+            File.WriteAllText(file, SessionFile.Write(Session, new SessionMeta(SessionId, ContentVersion, PackageHash)));
             return file;
         }
 
