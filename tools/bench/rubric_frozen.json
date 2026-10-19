@@ -1,0 +1,23 @@
+{
+ "note": "Frozen on 19 October 2026 after dev-subset prompt selection (every 3rd dev row, 163 rows); test and test2 were not scored before this file existed.",
+ "model": "qwen3.5:4b-q4_K_M",
+ "variant": "clartb",
+ "think": false,
+ "options": {
+  "temperature": 0,
+  "seed": 7,
+  "num_predict": 160,
+  "num_ctx": 2048
+ },
+ "max_findings": 2,
+ "system_prompt_sha256": "dc18d424836af21a043c20fd660fea705c3638b6a1df365387f55349e7b79455",
+ "schema_sha256": "e886d2da56c465274834d7af5a39b1d943a9556406b674ecd2be9532d13b9d9d",
+ "selection_log_dev_subset_163_rows": {
+  "full (definitions + one yes/no example each + tie-breaks)": "checked on 2 sentences only: 1,377 prompt tokens, 3.5-4 s, read 'Do you sleep well at night?' as hypothetical; dropped",
+  "lean (no examples, tie-breaks)": "objective F1 0.469 (P 0.864 R 0.322), median 3.46 s",
+  "min (definitions only)": "F1 0.512 (P 0.815 R 0.373), median 2.64 s, 2/13 critical sentences credited under an ordinary act without the guards, 3 answers cut at the token cap",
+  "clar (min + clarifications written from min's dev failures)": "F1 0.585 (P 0.660 R 0.525), median 3.12 s, 4/13 critical credited under an ordinary act without the guards",
+  "clartb (clar + the annotation rubric's tie-breaks)": "F1 0.619 (P 0.789 R 0.508), median 3.38 s, 0/13 critical credited under an ordinary act; CHOSEN (best F1 with no critical content read as an ordinary act)"
+ },
+ "caveat": "59 positive decisions on the subset: differences between variants are small-sample and not significant."
+}

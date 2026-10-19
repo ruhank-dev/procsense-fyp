@@ -1,0 +1,29 @@
+{
+ "experiment": "Option A: zero-shot NLI, no fine-tuning (19 October 2026)",
+ "model": "facebook/bart-large-mnli",
+ "revision": "",
+ "revision_note": "left empty: the latest snapshot is downloaded and its commit hash is recorded in every result file (meta.revision); pin it here once chosen",
+ "mode": "single_label",
+ "mode_reason": "the 20 labels are mutually exclusive (rubric: one label per sentence, first rule that fits); fixed from the ontology before any split was scored",
+ "max_length": 128,
+ "hypothesis_template": "The speaker {definition}.",
+ "hypothesis_overrides": {
+  "NONE": "The speech is small talk, thinking aloud or noise."
+ },
+ "override_reason": {
+  "NONE": "the definition 'Speech that shows none of the acts above (small talk, thinking aloud, noise)' refers to 'the acts above', which is meaningless to an entailment model; the parenthesis of the same definition is used instead. This is a limitation of the ontology wording, not a new canonical definition."
+ },
+ "abstention_rule": {
+  "description": "Chosen on the dev split only, fixed before test and test2 are scored: abstain (no label) when the top softmax score is below TAU, where TAU is the smallest value on a 0.01 grid for which the accuracy of the ANSWERED dev rows (actual-status rows, 20-way) is at least 0.80, the same bar as the credit gate's credited precision (MIN_PRECISION). Abstention is reported separately from the label NONE.",
+  "target_answered_accuracy": 0.8
+ },
+ "credit_rule": {
+  "description": "The existing gate's policy is reused unchanged: a critical label or NONE is never credited (classify.classifier.credit_allowed semantics); an ordinary label is credited when its score reaches the per-label threshold that classify.classifier.calibrate finds on the dev split for credited precision 0.8 (the same function and the same bar the production heads use), and, in the guarded variant, no critical-content cue (classify.guard) matches and the sentence is not non-assertive (classify.assertion). The production gate's critical-mass cap and second-reader agreement need class probabilities of a trained head and a second head; they have no counterpart here and are not applied."
+ },
+ "ground_truth": {
+  "source": "tests/action_bench_v1 (synthetic; labels follow from the construction, no model labelled any row)",
+  "core_rows": "status 'actual': the label is the family's act (a critical act for critical rows, NONE for the small-talk rows)",
+  "adversarial_rows": "status denied, intended, hypothetical, reported, other_actor or incomplete: no credit is the correct outcome; for 20-way label accuracy the derived label is NONE, the rubric's rule 10 ('a sentence saying the speaker has NOT yet done something is NONE') extended to the other non-performed statuses, reported as DERIVED and kept apart from the core rows"
+ },
+ "independent_human_labelled_data": "none exists in the repository (EX-01, EX-18 are open); nothing reported here is independent validation"
+}

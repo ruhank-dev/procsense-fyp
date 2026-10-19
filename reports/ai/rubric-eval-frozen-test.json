@@ -1,0 +1,1470 @@
+{
+ "tag": "frozen",
+ "split": "test",
+ "rows": 488,
+ "stride": 1,
+ "call_health": {
+  "calls": 488,
+  "transport_errors": {},
+  "not_json_or_schema": 1,
+  "truncated_at_token_cap": 1,
+  "thinking_present": 0,
+  "findings_defects": {
+   "SUPPORTED_BUT_NOT_ACTUAL_TRAINEE": 15,
+   "DUPLICATE_OBJECTIVE": 2,
+   "EVIDENCE_NOT_IN_UTTERANCE": 2
+  },
+  "rows_with_any_defect": 20
+ },
+ "objective_level": {
+  "decisions": 9272,
+  "tp": 77,
+  "fp": 31,
+  "fn": 103,
+  "precision": 0.713,
+  "recall": 0.428,
+  "f1": 0.535,
+  "macro_f1_over_objectives_with_support": 0.465,
+  "per_objective": {
+   "ASK_TOPIC": {
+    "tp": 4,
+    "fp": 6,
+    "fn": 6,
+    "precision": 0.4,
+    "recall": 0.4,
+    "f1": 0.4
+   },
+   "CLARIFY": {
+    "tp": 10,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "ANSWER_QUESTION": {
+    "tp": 0,
+    "fp": 1,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "EXPLAIN_PROCEDURE": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "EXPLAIN_TEST": {
+    "tp": 9,
+    "fp": 1,
+    "fn": 1,
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1": 0.9
+   },
+   "EXPLAIN_ACTION": {
+    "tp": 9,
+    "fp": 11,
+    "fn": 1,
+    "precision": 0.45,
+    "recall": 0.9,
+    "f1": 0.6
+   },
+   "CHECK_UNDERSTANDING": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "ACKNOWLEDGE_EMOTION": {
+    "tp": 7,
+    "fp": 2,
+    "fn": 3,
+    "precision": 0.778,
+    "recall": 0.7,
+    "f1": 0.737
+   },
+   "REASSURE": {
+    "tp": 6,
+    "fp": 4,
+    "fn": 4,
+    "precision": 0.6,
+    "recall": 0.6,
+    "f1": 0.6
+   },
+   "ACKNOWLEDGE_FACT": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 4,
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75
+   },
+   "CLOSED_LOOP": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 9,
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182
+   },
+   "ESCALATE_SPEECH": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "REPORT_FAULT": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 4,
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75
+   },
+   "SBAR_ELEMENT": {
+    "tp": 4,
+    "fp": 0,
+    "fn": 4,
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667
+   },
+   "VOICE_ORDER": {
+    "tp": 1,
+    "fp": 5,
+    "fn": 9,
+    "precision": 0.167,
+    "recall": 0.1,
+    "f1": 0.125
+   },
+   "CONFIRM_IDENTITY": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 2,
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1": 0.857
+   },
+   "STATE_ALLERGY": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 8,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "CONSENT_SIGN": {
+    "tp": 5,
+    "fp": 0,
+    "fn": 3,
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1": 0.769
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "tp": 3,
+    "fp": 1,
+    "fn": 5,
+    "precision": 0.75,
+    "recall": 0.375,
+    "f1": 0.5
+   }
+  }
+ },
+ "label_view_core": {
+  "rows": 188,
+  "rubric_first_supported_else_NONE": {
+   "n": 188,
+   "accuracy": 0.452,
+   "macro_f1": 0.459
+  },
+  "baseline_head": {
+   "n": 188,
+   "accuracy": 0.803,
+   "macro_f1": 0.796
+  },
+  "rubric_per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 0.875,
+    "recall": 0.7,
+    "f1": 0.778,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 0.4,
+    "recall": 0.4,
+    "f1": 0.4,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1": 0.857,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1": 0.769,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 0.562,
+    "recall": 0.9,
+    "f1": 0.692,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1": 0.9,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.75,
+    "recall": 0.375,
+    "f1": 0.5,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.092,
+    "recall": 1.0,
+    "f1": 0.168,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 0.667,
+    "recall": 0.6,
+    "f1": 0.632,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 0.2,
+    "recall": 0.1,
+    "f1": 0.133,
+    "support": 10
+   }
+  },
+  "baseline_per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 0.889,
+    "recall": 0.8,
+    "f1": 0.842,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 0.667,
+    "recall": 0.8,
+    "f1": 0.727,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 0.75,
+    "recall": 0.9,
+    "f1": 0.818,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 0.667,
+    "recall": 0.4,
+    "f1": 0.5,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 0.692,
+    "recall": 0.9,
+    "f1": 0.783,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1": 0.857,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 0.545,
+    "recall": 0.75,
+    "f1": 0.632,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 0.778,
+    "recall": 0.7,
+    "f1": 0.737,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 0.714,
+    "recall": 1.0,
+    "f1": 0.833,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.455,
+    "recall": 0.625,
+    "f1": 0.526,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.778,
+    "recall": 0.875,
+    "f1": 0.824,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 0.714,
+    "recall": 0.5,
+    "f1": 0.588,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 1.0,
+    "recall": 0.875,
+    "f1": 0.933,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   }
+  },
+  "rubric_confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 7,
+    "NONE": 1,
+    "REASSURE": 2
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 6,
+    "NONE": 3,
+    "ANSWER_QUESTION": 1
+   },
+   "ANSWER_QUESTION": {
+    "NONE": 8,
+    "EXPLAIN_ACTION": 1,
+    "REASSURE": 1
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 4,
+    "NONE": 6
+   },
+   "CHECK_UNDERSTANDING": {
+    "ASK_TOPIC": 2,
+    "NONE": 8
+   },
+   "CLARIFY": {
+    "CLARIFY": 10
+   },
+   "CLOSED_LOOP": {
+    "VOICE_ORDER": 3,
+    "EXPLAIN_TEST": 1,
+    "EXPLAIN_ACTION": 1,
+    "NONE": 3,
+    "HANDOVER_CRITICAL_ELEMENT": 1,
+    "CLOSED_LOOP": 1
+   },
+   "CONFIRM_IDENTITY": {
+    "CONFIRM_IDENTITY": 6,
+    "NONE": 2
+   },
+   "CONSENT_SIGN": {
+    "NONE": 3,
+    "CONSENT_SIGN": 5
+   },
+   "ESCALATE_SPEECH": {
+    "VOICE_ORDER": 1,
+    "NONE": 8,
+    "ACKNOWLEDGE_EMOTION": 1
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 9,
+    "NONE": 1
+   },
+   "EXPLAIN_PROCEDURE": {
+    "NONE": 5,
+    "EXPLAIN_ACTION": 5
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 9,
+    "NONE": 1
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 3,
+    "NONE": 5
+   },
+   "NONE": {
+    "NONE": 8
+   },
+   "REASSURE": {
+    "REASSURE": 6,
+    "NONE": 4
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 6,
+    "NONE": 4
+   },
+   "SBAR_ELEMENT": {
+    "SBAR_ELEMENT": 4,
+    "NONE": 4
+   },
+   "STATE_ALLERGY": {
+    "NONE": 4,
+    "ASK_TOPIC": 4
+   },
+   "VOICE_ORDER": {
+    "NONE": 9,
+    "VOICE_ORDER": 1
+   }
+  },
+  "baseline_confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 8,
+    "NONE": 1,
+    "HANDOVER_CRITICAL_ELEMENT": 1
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 8,
+    "EXPLAIN_PROCEDURE": 2
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 9,
+    "CONSENT_SIGN": 1
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 4,
+    "ASK_TOPIC": 2,
+    "CLARIFY": 4
+   },
+   "CLARIFY": {
+    "CLARIFY": 9,
+    "CHECK_UNDERSTANDING": 1
+   },
+   "CLOSED_LOOP": {
+    "EXPLAIN_TEST": 4,
+    "CLOSED_LOOP": 6
+   },
+   "CONFIRM_IDENTITY": {
+    "CONFIRM_IDENTITY": 6,
+    "REASSURE": 1,
+    "CONSENT_SIGN": 1
+   },
+   "CONSENT_SIGN": {
+    "CONSENT_SIGN": 6,
+    "CHECK_UNDERSTANDING": 1,
+    "REASSURE": 1
+   },
+   "ESCALATE_SPEECH": {
+    "ESCALATE_SPEECH": 10
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "ANSWER_QUESTION": 2,
+    "EXPLAIN_PROCEDURE": 7,
+    "EXPLAIN_ACTION": 1
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 5,
+    "CONSENT_SIGN": 3
+   },
+   "NONE": {
+    "NONE": 7,
+    "HANDOVER_CRITICAL_ELEMENT": 1
+   },
+   "REASSURE": {
+    "REASSURE": 5,
+    "ACKNOWLEDGE_EMOTION": 1,
+    "NONE": 1,
+    "ANSWER_QUESTION": 2,
+    "ACKNOWLEDGE_FACT": 1
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 10
+   },
+   "SBAR_ELEMENT": {
+    "SBAR_ELEMENT": 4,
+    "HANDOVER_CRITICAL_ELEMENT": 4
+   },
+   "STATE_ALLERGY": {
+    "STATE_ALLERGY": 7,
+    "ASK_TOPIC": 1
+   },
+   "VOICE_ORDER": {
+    "VOICE_ORDER": 10
+   }
+  }
+ },
+ "by_category": {
+  "actor_change": {
+   "n": 56,
+   "named_act_supported (WRONG)": 2,
+   "any_objective_supported (WRONG)": 2,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "asr_error": {
+   "n": 56,
+   "named_act_supported": 19,
+   "other_objective_also_supported": 7,
+   "no_objective_supported": 30,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "critical": {
+   "n": 30,
+   "named_act_supported": 14,
+   "other_objective_also_supported": 2,
+   "no_objective_supported": 14,
+   "critical_content_supported_under_an_ordinary_objective": 2,
+   "has_uncertain": 0
+  },
+  "critical_asr": {
+   "n": 10,
+   "named_act_supported": 4,
+   "other_objective_also_supported": 2,
+   "no_objective_supported": 4,
+   "critical_content_supported_under_an_ordinary_objective": 2,
+   "has_uncertain": 0
+  },
+  "hypothetical": {
+   "n": 56,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "incomplete": {
+   "n": 28,
+   "named_act_supported (WRONG)": 2,
+   "any_objective_supported (WRONG)": 4,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 5
+  },
+  "intention": {
+   "n": 48,
+   "named_act_supported (WRONG)": 1,
+   "any_objective_supported (WRONG)": 1,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "negation": {
+   "n": 56,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "none": {
+   "n": 8,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "paraphrase": {
+   "n": 84,
+   "named_act_supported": 40,
+   "other_objective_also_supported": 13,
+   "no_objective_supported": 31,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "reported": {
+   "n": 56,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  }
+ },
+ "credit": {
+  "baseline_gate_as_served": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 23,
+     "recall": "21/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 47,
+     "recall": "45/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "66/140",
+   "credited_total": 70,
+   "credited_precision": "66/70"
+  },
+  "rubric_credit_only": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 2,
+     "false_credit": "2/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 26,
+     "recall": "19/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 2,
+     "false_credit": "2/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 2,
+     "false_credit": "2/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 4,
+     "false_credit": "4/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 1,
+     "false_credit": "1/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 52,
+     "recall": "40/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "4/40",
+   "adversarial_false_credit": "7/300",
+   "legitimate_credit_recall": "59/140",
+   "credited_total": 89,
+   "credited_precision": "59/89"
+  },
+  "rubric_credit_plus_production_guards": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 26,
+     "recall": "19/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 1,
+     "false_credit": "1/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 1,
+     "false_credit": "1/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 52,
+     "recall": "40/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "2/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "59/140",
+   "credited_total": 80,
+   "credited_precision": "59/80"
+  },
+  "rubric_AND_baseline_gate": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 10,
+     "recall": "10/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 27,
+     "recall": "27/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "37/140",
+   "credited_total": 37,
+   "credited_precision": "37/37"
+  }
+ },
+ "abstention_coverage": {
+  "rows_without_usable_decision": 6,
+  "of": 488
+ },
+ "latency_ms": {
+  "wall": {
+   "n": 487,
+   "median": 3363,
+   "p95": 3880,
+   "max": 5076
+  },
+  "prompt_eval": {
+   "n": 487,
+   "median": 2136,
+   "p95": 2144,
+   "max": 2154
+  },
+  "generation": {
+   "n": 487,
+   "median": 1189,
+   "p95": 1701,
+   "max": 2897
+  },
+  "prompt_tokens_median": 1089,
+  "output_tokens_median": 56,
+  "output_tokens_p95": 89,
+  "first_call_excluded": true,
+  "baseline_gate_ms": {
+   "median": 14.5,
+   "p95": 19.1,
+   "n": 488,
+   "note": "includes the call to the embedding model; measured on the same desktop"
+  }
+ },
+ "examples": {
+  "model_wrong_legit_not_supported": [
+   {
+    "id": "AB-t0002",
+    "text": "Why have you come to see us?",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "hypothetical",
+      "evidence": "\"Why have you come to see us?\"",
+      "evidence_in_utterance": true,
+      "reason": "HYPOTHETICAL"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0016",
+    "text": "why have you come to see us",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "reported",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "OTHER_SPEAKER"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0018",
+    "text": "Can you manage the stairs at home?",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "hypothetical",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "HYPOTHETICAL"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0019",
+    "text": "How are you with stairs?",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "hypothetical",
+      "evidence": "\"How are you with stairs?\"",
+      "evidence_in_utterance": true,
+      "reason": "HYPOTHETICAL"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0031",
+    "text": "how are you with stars",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "hypothetical",
+      "evidence": "how are you with stars",
+      "evidence_in_utterance": true,
+      "reason": "HYPOTHETICAL"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0032",
+    "text": "are you able to climb a flight of stirs",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "hypothetical",
+      "evidence": "are you able to climb a flight of stirs",
+      "evidence_in_utterance": true,
+      "reason": "HYPOTHETICAL"
+     }
+    ]
+   }
+  ],
+  "model_wrong_adversarial_supported": [
+   {
+    "id": "AB-t0126",
+    "text": "A mask will give you oxygen and then I should -",
+    "truth": "EXPLAIN_PROCEDURE",
+    "status": "incomplete",
+    "category": "incomplete",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"A mask will give you oxygen\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0170",
+    "text": "The consultant is about to clip the sensor on your finger.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "other_actor",
+    "category": "actor_change",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"The consultant is about to clip the sensor on your finger\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0172",
+    "text": "I am just clipping and then I should -",
+    "truth": "EXPLAIN_ACTION",
+    "status": "incomplete",
+    "category": "incomplete",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "I am just clipping and then I should -",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0184",
+    "text": "The consultant is about to raise the head of your bed.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "other_actor",
+    "category": "actor_change",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "The consultant is about to raise the head of your bed.",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0250",
+    "text": "You seem upset, and and then I should -",
+    "truth": "ACKNOWLEDGE_EMOTION",
+    "status": "incomplete",
+    "category": "incomplete",
+    "supported": [
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "findings": [
+     {
+      "objective": "ACKNOWLEDGE_EMOTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "You seem upset",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     },
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "I should -",
+      "evidence_in_utterance": true,
+      "reason": "FUTURE_INTENT"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0259",
+    "text": "Shortly I shall tell you not to worry.",
+    "truth": "REASSURE",
+    "status": "intended",
+    "category": "intention",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "not to worry",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "model_critical_under_ordinary": [
+   {
+    "id": "AB-t0444",
+    "text": "was there a drug that left you struggling to breathe",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical_asr",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"was there a drug that left you struggling to breathe\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0445",
+    "text": "Which medicines are you not able to have?",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"Which medicines are you not able to have?\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0447",
+    "text": "Tell me the medicines that do not agree with you.",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"Tell me the medicines\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-t0448",
+    "text": "which mdiines are you not able to have",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical_asr",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "which mdiines are you not able to have",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "gate_wrong_credit": [
+   {
+    "id": "AB-t0067",
+    "text": "You won't have a drip afterwards.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"You won't have a drip afterwards\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_ACTION"
+   },
+   {
+    "id": "AB-t0079",
+    "text": "you won't have adrip afterwards",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"you won't have adrip afterwards\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "REASSURE"
+   },
+   {
+    "id": "AB-t0113",
+    "text": "A mask will give you oxygen while you go to sleep.",
+    "truth": "EXPLAIN_PROCEDURE",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"A mask will give you oxygen while you go to sleep\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_ACTION"
+   },
+   {
+    "id": "AB-t0114",
+    "text": "You breathe oxygen through a mask as you drift off.",
+    "truth": "EXPLAIN_PROCEDURE",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"You breathe oxygen through a mask as you drift off\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_ACTION"
+   },
+   {
+    "id": "AB-t0115",
+    "text": "First you breathe oxygen from a mask.",
+    "truth": "EXPLAIN_PROCEDURE",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"First you breathe oxygen from a mask\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_ACTION"
+   },
+   {
+    "id": "AB-t0127",
+    "text": "first you breathe oygen from mask",
+    "truth": "EXPLAIN_PROCEDURE",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"first you breathe oygen from mask\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_ACTION"
+   }
+  ],
+  "gate_missed_legit": []
+ },
+ "example_counts": {
+  "model_wrong_legit_not_supported": 81,
+  "model_wrong_adversarial_supported": 7,
+  "model_critical_under_ordinary": 4,
+  "gate_wrong_credit": 21,
+  "gate_missed_legit": 0
+ }
+}

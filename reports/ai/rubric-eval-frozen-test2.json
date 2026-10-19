@@ -1,0 +1,1494 @@
+{
+ "tag": "frozen",
+ "split": "test2",
+ "rows": 488,
+ "stride": 1,
+ "call_health": {
+  "calls": 488,
+  "transport_errors": {},
+  "not_json_or_schema": 0,
+  "truncated_at_token_cap": 0,
+  "thinking_present": 0,
+  "findings_defects": {
+   "SUPPORTED_BUT_NOT_ACTUAL_TRAINEE": 17
+  },
+  "rows_with_any_defect": 17
+ },
+ "objective_level": {
+  "decisions": 9272,
+  "tp": 81,
+  "fp": 40,
+  "fn": 99,
+  "precision": 0.669,
+  "recall": 0.45,
+  "f1": 0.538,
+  "macro_f1_over_objectives_with_support": 0.483,
+  "per_objective": {
+   "ASK_TOPIC": {
+    "tp": 8,
+    "fp": 9,
+    "fn": 2,
+    "precision": 0.471,
+    "recall": 0.8,
+    "f1": 0.593
+   },
+   "CLARIFY": {
+    "tp": 7,
+    "fp": 0,
+    "fn": 3,
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824
+   },
+   "ANSWER_QUESTION": {
+    "tp": 0,
+    "fp": 1,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "EXPLAIN_PROCEDURE": {
+    "tp": 0,
+    "fp": 3,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "EXPLAIN_TEST": {
+    "tp": 10,
+    "fp": 1,
+    "fn": 0,
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952
+   },
+   "EXPLAIN_ACTION": {
+    "tp": 9,
+    "fp": 12,
+    "fn": 1,
+    "precision": 0.429,
+    "recall": 0.9,
+    "f1": 0.581
+   },
+   "CHECK_UNDERSTANDING": {
+    "tp": 4,
+    "fp": 0,
+    "fn": 6,
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571
+   },
+   "ACKNOWLEDGE_EMOTION": {
+    "tp": 8,
+    "fp": 1,
+    "fn": 2,
+    "precision": 0.889,
+    "recall": 0.8,
+    "f1": 0.842
+   },
+   "REASSURE": {
+    "tp": 3,
+    "fp": 4,
+    "fn": 7,
+    "precision": 0.429,
+    "recall": 0.3,
+    "f1": 0.353
+   },
+   "ACKNOWLEDGE_FACT": {
+    "tp": 7,
+    "fp": 1,
+    "fn": 3,
+    "precision": 0.875,
+    "recall": 0.7,
+    "f1": 0.778
+   },
+   "CLOSED_LOOP": {
+    "tp": 1,
+    "fp": 0,
+    "fn": 9,
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182
+   },
+   "ESCALATE_SPEECH": {
+    "tp": 2,
+    "fp": 0,
+    "fn": 8,
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333
+   },
+   "REPORT_FAULT": {
+    "tp": 6,
+    "fp": 6,
+    "fn": 4,
+    "precision": 0.5,
+    "recall": 0.6,
+    "f1": 0.545
+   },
+   "SBAR_ELEMENT": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 8,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "VOICE_ORDER": {
+    "tp": 2,
+    "fp": 0,
+    "fn": 8,
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333
+   },
+   "CONFIRM_IDENTITY": {
+    "tp": 5,
+    "fp": 0,
+    "fn": 3,
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1": 0.769
+   },
+   "STATE_ALLERGY": {
+    "tp": 2,
+    "fp": 0,
+    "fn": 6,
+    "precision": 1.0,
+    "recall": 0.25,
+    "f1": 0.4
+   },
+   "CONSENT_SIGN": {
+    "tp": 3,
+    "fp": 0,
+    "fn": 5,
+    "precision": 1.0,
+    "recall": 0.375,
+    "f1": 0.545
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "tp": 4,
+    "fp": 2,
+    "fn": 4,
+    "precision": 0.667,
+    "recall": 0.5,
+    "f1": 0.571
+   }
+  }
+ },
+ "label_view_core": {
+  "rows": 188,
+  "rubric_first_supported_else_NONE": {
+   "n": 188,
+   "accuracy": 0.473,
+   "macro_f1": 0.486
+  },
+  "baseline_head": {
+   "n": 188,
+   "accuracy": 0.872,
+   "macro_f1": 0.871
+  },
+  "rubric_per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 0.5,
+    "recall": 0.8,
+    "f1": 0.615,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1": 0.769,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 1.0,
+    "recall": 0.375,
+    "f1": 0.545,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 0.5,
+    "recall": 0.9,
+    "f1": 0.643,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.667,
+    "recall": 0.5,
+    "f1": 0.571,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.101,
+    "recall": 1.0,
+    "f1": 0.184,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 0.5,
+    "recall": 0.3,
+    "f1": 0.375,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 0.75,
+    "recall": 0.6,
+    "f1": 0.667,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 1.0,
+    "recall": 0.25,
+    "f1": 0.4,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 10
+   }
+  },
+  "baseline_per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1": 0.9,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 0.875,
+    "recall": 0.7,
+    "f1": 0.778,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 0.833,
+    "recall": 1.0,
+    "f1": 0.909,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 0.889,
+    "recall": 1.0,
+    "f1": 0.941,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.571,
+    "recall": 1.0,
+    "f1": 0.727,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.857,
+    "recall": 0.75,
+    "f1": 0.8,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.455,
+    "recall": 0.625,
+    "f1": 0.526,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.7,
+    "recall": 0.875,
+    "f1": 0.778,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 0.778,
+    "recall": 0.7,
+    "f1": 0.737,
+    "support": 10
+   }
+  },
+  "rubric_confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 8,
+    "NONE": 2
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 7,
+    "NONE": 3
+   },
+   "ANSWER_QUESTION": {
+    "REASSURE": 3,
+    "NONE": 4,
+    "EXPLAIN_PROCEDURE": 3
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 8,
+    "NONE": 2
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 4,
+    "NONE": 2,
+    "ASK_TOPIC": 4
+   },
+   "CLARIFY": {
+    "CLARIFY": 7,
+    "NONE": 3
+   },
+   "CLOSED_LOOP": {
+    "CLOSED_LOOP": 1,
+    "NONE": 7,
+    "HANDOVER_CRITICAL_ELEMENT": 1,
+    "ANSWER_QUESTION": 1
+   },
+   "CONFIRM_IDENTITY": {
+    "CONFIRM_IDENTITY": 5,
+    "NONE": 3
+   },
+   "CONSENT_SIGN": {
+    "NONE": 5,
+    "CONSENT_SIGN": 3
+   },
+   "ESCALATE_SPEECH": {
+    "NONE": 8,
+    "ESCALATE_SPEECH": 2
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 9,
+    "NONE": 1
+   },
+   "EXPLAIN_PROCEDURE": {
+    "EXPLAIN_ACTION": 9,
+    "NONE": 1
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 4,
+    "NONE": 4
+   },
+   "NONE": {
+    "NONE": 8
+   },
+   "REASSURE": {
+    "REASSURE": 3,
+    "NONE": 7
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 6,
+    "NONE": 4
+   },
+   "SBAR_ELEMENT": {
+    "REPORT_FAULT": 2,
+    "NONE": 5,
+    "HANDOVER_CRITICAL_ELEMENT": 1
+   },
+   "STATE_ALLERGY": {
+    "STATE_ALLERGY": 2,
+    "NONE": 2,
+    "ASK_TOPIC": 4
+   },
+   "VOICE_ORDER": {
+    "NONE": 8,
+    "VOICE_ORDER": 2
+   }
+  },
+  "baseline_confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 9,
+    "NONE": 1
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 8,
+    "HANDOVER_CRITICAL_ELEMENT": 2
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 9,
+    "SBAR_ELEMENT": 1
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 7,
+    "ACKNOWLEDGE_EMOTION": 1,
+    "VOICE_ORDER": 2
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 10
+   },
+   "CLARIFY": {
+    "CLARIFY": 8,
+    "CHECK_UNDERSTANDING": 2
+   },
+   "CLOSED_LOOP": {
+    "CLOSED_LOOP": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "CONFIRM_IDENTITY": 8
+   },
+   "CONSENT_SIGN": {
+    "CONSENT_SIGN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ESCALATE_SPEECH": 10
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "EXPLAIN_PROCEDURE": 7,
+    "STATE_ALLERGY": 3
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 8
+   },
+   "NONE": {
+    "NONE": 6,
+    "SBAR_ELEMENT": 1,
+    "CONFIRM_IDENTITY": 1
+   },
+   "REASSURE": {
+    "REASSURE": 7,
+    "HANDOVER_CRITICAL_ELEMENT": 1,
+    "SBAR_ELEMENT": 2
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 10
+   },
+   "SBAR_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 3,
+    "SBAR_ELEMENT": 5
+   },
+   "STATE_ALLERGY": {
+    "STATE_ALLERGY": 7,
+    "ASK_TOPIC": 1
+   },
+   "VOICE_ORDER": {
+    "VOICE_ORDER": 7,
+    "SBAR_ELEMENT": 2,
+    "EXPLAIN_TEST": 1
+   }
+  }
+ },
+ "by_category": {
+  "actor_change": {
+   "n": 56,
+   "named_act_supported (WRONG)": 1,
+   "any_objective_supported (WRONG)": 1,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "asr_error": {
+   "n": 56,
+   "named_act_supported": 22,
+   "other_objective_also_supported": 9,
+   "no_objective_supported": 25,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 1
+  },
+  "critical": {
+   "n": 30,
+   "named_act_supported": 12,
+   "other_objective_also_supported": 4,
+   "no_objective_supported": 14,
+   "critical_content_supported_under_an_ordinary_objective": 4,
+   "has_uncertain": 0
+  },
+  "critical_asr": {
+   "n": 10,
+   "named_act_supported": 2,
+   "other_objective_also_supported": 3,
+   "no_objective_supported": 5,
+   "critical_content_supported_under_an_ordinary_objective": 2,
+   "has_uncertain": 0
+  },
+  "hypothetical": {
+   "n": 56,
+   "named_act_supported (WRONG)": 3,
+   "any_objective_supported (WRONG)": 5,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 6
+  },
+  "incomplete": {
+   "n": 28,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 5
+  },
+  "intention": {
+   "n": 48,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "negation": {
+   "n": 56,
+   "named_act_supported (WRONG)": 1,
+   "any_objective_supported (WRONG)": 1,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "none": {
+   "n": 8,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "paraphrase": {
+   "n": 84,
+   "named_act_supported": 45,
+   "other_objective_also_supported": 12,
+   "no_objective_supported": 27,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "reported": {
+   "n": 56,
+   "named_act_supported (WRONG)": 4,
+   "any_objective_supported (WRONG)": 5,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  }
+ },
+ "credit": {
+  "baseline_gate_as_served": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 24,
+     "recall": "23/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 48,
+     "recall": "46/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "69/140",
+   "credited_total": 72,
+   "credited_precision": "69/72"
+  },
+  "rubric_credit_only": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 1,
+     "false_credit": "1/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 30,
+     "recall": "22/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 4,
+     "false_credit": "4/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 2,
+     "false_credit": "2/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 5,
+     "false_credit": "5/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 1,
+     "false_credit": "1/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 57,
+     "recall": "45/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 5,
+     "false_credit": "5/56"
+    }
+   },
+   "critical_false_credit": "6/40",
+   "adversarial_false_credit": "12/300",
+   "legitimate_credit_recall": "67/140",
+   "credited_total": 105,
+   "credited_precision": "67/105"
+  },
+  "rubric_credit_plus_production_guards": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 30,
+     "recall": "22/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 4,
+     "false_credit": "4/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 2,
+     "false_credit": "2/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 57,
+     "recall": "45/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "6/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "67/140",
+   "credited_total": 93,
+   "credited_precision": "67/93"
+  },
+  "rubric_AND_baseline_gate": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 10,
+     "recall": "10/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 26,
+     "recall": "26/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "36/140",
+   "credited_total": 36,
+   "credited_precision": "36/36"
+  }
+ },
+ "abstention_coverage": {
+  "rows_without_usable_decision": 12,
+  "of": 488
+ },
+ "latency_ms": {
+  "wall": {
+   "n": 487,
+   "median": 3366,
+   "p95": 3916,
+   "max": 4825
+  },
+  "prompt_eval": {
+   "n": 487,
+   "median": 2139,
+   "p95": 2147,
+   "max": 2429
+  },
+  "generation": {
+   "n": 487,
+   "median": 1181,
+   "p95": 1724,
+   "max": 2645
+  },
+  "prompt_tokens_median": 1090,
+  "output_tokens_median": 55,
+  "output_tokens_p95": 90,
+  "first_call_excluded": true,
+  "baseline_gate_ms": {
+   "median": 14.6,
+   "p95": 19.8,
+   "n": 488,
+   "note": "includes the call to the embedding model; measured on the same desktop"
+  }
+ },
+ "examples": {
+  "model_wrong_legit_not_supported": [
+   {
+    "id": "AB-u0019",
+    "text": "Can you swallow comfortably?",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "hypothetical",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "HYPOTHETICAL"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0031",
+    "text": "can you swallow comfortably",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "FUTURE_INTENT"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0048",
+    "text": "flutters how doyou mean",
+    "truth": "CLARIFY",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ACKNOWLEDGE_EMOTION",
+      "verdict": "UNCERTAIN",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "flutters how doyou mean",
+      "evidence_in_utterance": true,
+      "reason": "AMBIGUOUS"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0049",
+    "text": "I missed the middle of that, could you go over it again?",
+    "truth": "CLARIFY",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "CLARIFY",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "\"could you go over it again\"",
+      "evidence_in_utterance": true,
+      "reason": "FUTURE_INTENT"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0063",
+    "text": "could you go back over what you just said",
+    "truth": "CLARIFY",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "CLARIFY",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "\"could you go back over what you just said\"",
+      "evidence_in_utterance": true,
+      "reason": "FUTURE_INTENT"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0065",
+    "text": "Yes, you can have a family member wait for you.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"Yes, you can have a family member wait for you\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "model_wrong_adversarial_supported": [
+   {
+    "id": "AB-u0166",
+    "text": "Say I were to press on your belly, how would that sound?",
+    "truth": "EXPLAIN_ACTION",
+    "status": "hypothetical",
+    "category": "hypothetical",
+    "supported": [
+     "EXPLAIN_TEST"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_TEST",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "Say I were to press on your belly, how would that sound?",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0167",
+    "text": "Picture me trying to press on your belly.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "hypothetical",
+    "category": "hypothetical",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "Picture me trying to press on your belly.",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0168",
+    "text": "Apparently the porter pressed on your belly.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "reported",
+    "category": "reported",
+    "supported": [
+     "REPORT_FAULT"
+    ],
+    "findings": [
+     {
+      "objective": "REPORT_FAULT",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "Apparently the porter pressed on your belly.",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0171",
+    "text": "The anaesthetist can press on your belly instead.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "other_actor",
+    "category": "actor_change",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"The anaesthetist can press on your belly instead\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0181",
+    "text": "Picture me trying to check your pulse.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "hypothetical",
+    "category": "hypothetical",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "Picture me trying to check your pulse.",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0224",
+    "text": "Sorry, I never got to acknowledge your worry.",
+    "truth": "ACKNOWLEDGE_EMOTION",
+    "status": "denied",
+    "category": "negation",
+    "supported": [
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "findings": [
+     {
+      "objective": "ACKNOWLEDGE_EMOTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"acknowledge your worry\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "model_critical_under_ordinary": [
+   {
+    "id": "AB-u0444",
+    "text": "has a plaster ever left skin redand sore",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical_asr",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "has a plaster ever left skin redand sore",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0446",
+    "text": "Are there foods that make you ill?",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"Are there foods that make you ill?\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0447",
+    "text": "Tell me about foods that disagree with you badly.",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "Tell me about foods that disagree with you badly.",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0448",
+    "text": "is there a food you have to stay away from for heath",
+    "truth": "STATE_ALLERGY",
+    "status": "actual",
+    "category": "critical_asr",
+    "supported": [
+     "ASK_TOPIC"
+    ],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"is there a food you have to stay away from for heath\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0465",
+    "text": "I am ringing about a lady whose temperature has gone up.",
+    "truth": "SBAR_ELEMENT",
+    "status": "actual",
+    "category": "critical",
+    "supported": [
+     "REPORT_FAULT"
+    ],
+    "findings": [
+     {
+      "objective": "REPORT_FAULT",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "ringing about a lady whose temperature has gone up",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-u0466",
+    "text": "I'm calling about a patient with a rising temperature.",
+    "truth": "SBAR_ELEMENT",
+    "status": "actual",
+    "category": "critical",
+    "supported": [
+     "REPORT_FAULT"
+    ],
+    "findings": [
+     {
+      "objective": "REPORT_FAULT",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "I'm calling about a patient with a rising temperature.",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "gate_wrong_credit": [
+   {
+    "id": "AB-u0065",
+    "text": "Yes, you can have a family member wait for you.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"Yes, you can have a family member wait for you\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "REASSURE"
+   },
+   {
+    "id": "AB-u0080",
+    "text": "yes you canhave a family member wait for you",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "yes you canhave a family member wait for you",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "REASSURE"
+   },
+   {
+    "id": "AB-u0081",
+    "text": "No, it will not leave a large scar.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"No, it will not leave a large scar.\", ",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "REASSURE"
+   },
+   {
+    "id": "AB-u0082",
+    "text": "The scar will only be small.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"The scar will only be small\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_PROCEDURE"
+   },
+   {
+    "id": "AB-u0083",
+    "text": "You will have a few small marks, not a big scar.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"You will have a few small marks, not a big scar.\", ",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_PROCEDURE"
+   },
+   {
+    "id": "AB-u0095",
+    "text": "no it will not leave large scar",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"no it will not leave large scar\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_PROCEDURE"
+   }
+  ],
+  "gate_missed_legit": []
+ },
+ "example_counts": {
+  "model_wrong_legit_not_supported": 73,
+  "model_wrong_adversarial_supported": 12,
+  "model_critical_under_ordinary": 6,
+  "gate_wrong_credit": 26,
+  "gate_missed_legit": 0
+ }
+}

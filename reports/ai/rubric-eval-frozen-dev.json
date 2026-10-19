@@ -1,0 +1,1308 @@
+{
+ "tag": "frozen",
+ "split": "dev",
+ "rows": 488,
+ "stride": 1,
+ "call_health": {
+  "calls": 488,
+  "transport_errors": {},
+  "not_json_or_schema": 0,
+  "truncated_at_token_cap": 0,
+  "thinking_present": 0,
+  "findings_defects": {
+   "EVIDENCE_NOT_IN_UTTERANCE": 2,
+   "SUPPORTED_BUT_NOT_ACTUAL_TRAINEE": 7
+  },
+  "rows_with_any_defect": 9
+ },
+ "objective_level": {
+  "decisions": 9272,
+  "tp": 99,
+  "fp": 23,
+  "fn": 81,
+  "precision": 0.811,
+  "recall": 0.55,
+  "f1": 0.656,
+  "macro_f1_over_objectives_with_support": 0.603,
+  "per_objective": {
+   "ASK_TOPIC": {
+    "tp": 7,
+    "fp": 1,
+    "fn": 3,
+    "precision": 0.875,
+    "recall": 0.7,
+    "f1": 0.778
+   },
+   "CLARIFY": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 1,
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947
+   },
+   "ANSWER_QUESTION": {
+    "tp": 0,
+    "fp": 1,
+    "fn": 10,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "EXPLAIN_PROCEDURE": {
+    "tp": 2,
+    "fp": 3,
+    "fn": 8,
+    "precision": 0.4,
+    "recall": 0.2,
+    "f1": 0.267
+   },
+   "EXPLAIN_TEST": {
+    "tp": 10,
+    "fp": 1,
+    "fn": 0,
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952
+   },
+   "EXPLAIN_ACTION": {
+    "tp": 9,
+    "fp": 10,
+    "fn": 1,
+    "precision": 0.474,
+    "recall": 0.9,
+    "f1": 0.621
+   },
+   "CHECK_UNDERSTANDING": {
+    "tp": 8,
+    "fp": 1,
+    "fn": 2,
+    "precision": 0.889,
+    "recall": 0.8,
+    "f1": 0.842
+   },
+   "ACKNOWLEDGE_EMOTION": {
+    "tp": 7,
+    "fp": 0,
+    "fn": 3,
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824
+   },
+   "REASSURE": {
+    "tp": 8,
+    "fp": 5,
+    "fn": 2,
+    "precision": 0.615,
+    "recall": 0.8,
+    "f1": 0.696
+   },
+   "ACKNOWLEDGE_FACT": {
+    "tp": 4,
+    "fp": 0,
+    "fn": 6,
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571
+   },
+   "CLOSED_LOOP": {
+    "tp": 2,
+    "fp": 0,
+    "fn": 8,
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333
+   },
+   "ESCALATE_SPEECH": {
+    "tp": 5,
+    "fp": 0,
+    "fn": 5,
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667
+   },
+   "REPORT_FAULT": {
+    "tp": 5,
+    "fp": 0,
+    "fn": 5,
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667
+   },
+   "SBAR_ELEMENT": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 8,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+   },
+   "VOICE_ORDER": {
+    "tp": 3,
+    "fp": 0,
+    "fn": 7,
+    "precision": 1.0,
+    "recall": 0.3,
+    "f1": 0.462
+   },
+   "CONFIRM_IDENTITY": {
+    "tp": 8,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "STATE_ALLERGY": {
+    "tp": 6,
+    "fp": 0,
+    "fn": 2,
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1": 0.857
+   },
+   "CONSENT_SIGN": {
+    "tp": 5,
+    "fp": 0,
+    "fn": 3,
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1": 0.769
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "tp": 1,
+    "fp": 1,
+    "fn": 7,
+    "precision": 0.5,
+    "recall": 0.125,
+    "f1": 0.2
+   }
+  }
+ },
+ "label_view_core": {
+  "rows": 188,
+  "rubric_first_supported_else_NONE": {
+   "n": 188,
+   "accuracy": 0.569,
+   "macro_f1": 0.586
+  },
+  "baseline_head": {
+   "n": 188,
+   "accuracy": 0.941,
+   "macro_f1": 0.941
+  },
+  "rubric_per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 0.875,
+    "recall": 0.7,
+    "f1": 0.778,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 0.889,
+    "recall": 0.8,
+    "f1": 0.842,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.333,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 1.0,
+    "recall": 0.625,
+    "f1": 0.769,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 0.562,
+    "recall": 0.9,
+    "f1": 0.692,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 0.4,
+    "recall": 0.2,
+    "f1": 0.267,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.5,
+    "recall": 0.125,
+    "f1": 0.2,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.114,
+    "recall": 1.0,
+    "f1": 0.205,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 0.615,
+    "recall": 0.8,
+    "f1": 0.696,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1": 0.857,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.3,
+    "f1": 0.462,
+    "support": 10
+   }
+  },
+  "baseline_per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1": 0.9,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 0.833,
+    "recall": 1.0,
+    "f1": 0.909,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.727,
+    "recall": 1.0,
+    "f1": 0.842,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.8,
+    "recall": 1.0,
+    "f1": 0.889,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1": 0.857,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   }
+  },
+  "rubric_confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 7,
+    "REASSURE": 3
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 4,
+    "NONE": 4,
+    "ASK_TOPIC": 1,
+    "CHECK_UNDERSTANDING": 1
+   },
+   "ANSWER_QUESTION": {
+    "REASSURE": 2,
+    "EXPLAIN_PROCEDURE": 3,
+    "NONE": 5
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 7,
+    "NONE": 3
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 8,
+    "NONE": 2
+   },
+   "CLARIFY": {
+    "CLARIFY": 9,
+    "NONE": 1
+   },
+   "CLOSED_LOOP": {
+    "CLOSED_LOOP": 2,
+    "NONE": 8
+   },
+   "CONFIRM_IDENTITY": {
+    "CONFIRM_IDENTITY": 8
+   },
+   "CONSENT_SIGN": {
+    "NONE": 3,
+    "CONSENT_SIGN": 5
+   },
+   "ESCALATE_SPEECH": {
+    "NONE": 5,
+    "ESCALATE_SPEECH": 5
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 9,
+    "EXPLAIN_TEST": 1
+   },
+   "EXPLAIN_PROCEDURE": {
+    "EXPLAIN_ACTION": 7,
+    "NONE": 1,
+    "EXPLAIN_PROCEDURE": 2
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "NONE": 7,
+    "HANDOVER_CRITICAL_ELEMENT": 1
+   },
+   "NONE": {
+    "NONE": 8
+   },
+   "REASSURE": {
+    "REASSURE": 8,
+    "NONE": 2
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 5,
+    "NONE": 5
+   },
+   "SBAR_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 1,
+    "NONE": 7
+   },
+   "STATE_ALLERGY": {
+    "STATE_ALLERGY": 6,
+    "NONE": 2
+   },
+   "VOICE_ORDER": {
+    "NONE": 7,
+    "VOICE_ORDER": 3
+   }
+  },
+  "baseline_confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 8,
+    "NONE": 1,
+    "CLARIFY": 1
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 10
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 9,
+    "NONE": 1
+   },
+   "CLARIFY": {
+    "CLARIFY": 9,
+    "HANDOVER_CRITICAL_ELEMENT": 1
+   },
+   "CLOSED_LOOP": {
+    "CLOSED_LOOP": 8,
+    "ANSWER_QUESTION": 1,
+    "VOICE_ORDER": 1
+   },
+   "CONFIRM_IDENTITY": {
+    "CONFIRM_IDENTITY": 8
+   },
+   "CONSENT_SIGN": {
+    "CONSENT_SIGN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ESCALATE_SPEECH": 10
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "EXPLAIN_PROCEDURE": 8,
+    "EXPLAIN_ACTION": 2
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 9,
+    "ESCALATE_SPEECH": 1
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "HANDOVER_CRITICAL_ELEMENT": 8
+   },
+   "NONE": {
+    "NONE": 8
+   },
+   "REASSURE": {
+    "REASSURE": 10
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 10
+   },
+   "SBAR_ELEMENT": {
+    "SBAR_ELEMENT": 6,
+    "HANDOVER_CRITICAL_ELEMENT": 2
+   },
+   "STATE_ALLERGY": {
+    "STATE_ALLERGY": 8
+   },
+   "VOICE_ORDER": {
+    "VOICE_ORDER": 10
+   }
+  }
+ },
+ "by_category": {
+  "actor_change": {
+   "n": 56,
+   "named_act_supported (WRONG)": 1,
+   "any_objective_supported (WRONG)": 1,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "asr_error": {
+   "n": 56,
+   "named_act_supported": 26,
+   "other_objective_also_supported": 8,
+   "no_objective_supported": 22,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "critical": {
+   "n": 30,
+   "named_act_supported": 14,
+   "other_objective_also_supported": 1,
+   "no_objective_supported": 15,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "critical_asr": {
+   "n": 10,
+   "named_act_supported": 6,
+   "other_objective_also_supported": 0,
+   "no_objective_supported": 4,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "hypothetical": {
+   "n": 56,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 1
+  },
+  "incomplete": {
+   "n": 28,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 6
+  },
+  "intention": {
+   "n": 48,
+   "named_act_supported (WRONG)": 1,
+   "any_objective_supported (WRONG)": 1,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "negation": {
+   "n": 56,
+   "named_act_supported (WRONG)": 1,
+   "any_objective_supported (WRONG)": 1,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "none": {
+   "n": 8,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "paraphrase": {
+   "n": 84,
+   "named_act_supported": 53,
+   "other_objective_also_supported": 10,
+   "no_objective_supported": 21,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  },
+  "reported": {
+   "n": 56,
+   "named_act_supported (WRONG)": 0,
+   "any_objective_supported (WRONG)": 0,
+   "critical_content_supported_under_an_ordinary_objective": 0,
+   "has_uncertain": 0
+  }
+ },
+ "credit": {
+  "baseline_gate_as_served": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 29,
+     "recall": "29/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 54,
+     "recall": "54/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "83/140",
+   "credited_total": 83,
+   "credited_precision": "83/83"
+  },
+  "rubric_credit_only": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 1,
+     "false_credit": "1/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 34,
+     "recall": "26/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 1,
+     "false_credit": "1/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 1,
+     "false_credit": "1/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 63,
+     "recall": "53/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "3/300",
+   "legitimate_credit_recall": "79/140",
+   "credited_total": 100,
+   "credited_precision": "79/100"
+  },
+  "rubric_credit_plus_production_guards": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 34,
+     "recall": "26/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 63,
+     "recall": "53/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "79/140",
+   "credited_total": 97,
+   "credited_precision": "79/97"
+  },
+  "rubric_AND_baseline_gate": {
+   "by_category": {
+    "actor_change": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "asr_error": {
+     "rows": 56,
+     "credited": 16,
+     "recall": "16/56"
+    },
+    "critical": {
+     "rows": 30,
+     "credited": 0,
+     "false_credit": "0/30"
+    },
+    "critical_asr": {
+     "rows": 10,
+     "credited": 0,
+     "false_credit": "0/10"
+    },
+    "hypothetical": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "incomplete": {
+     "rows": 28,
+     "credited": 0,
+     "false_credit": "0/28"
+    },
+    "intention": {
+     "rows": 48,
+     "credited": 0,
+     "false_credit": "0/48"
+    },
+    "negation": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    },
+    "none": {
+     "rows": 8,
+     "credited": 0,
+     "false_credit": "0/8"
+    },
+    "paraphrase": {
+     "rows": 84,
+     "credited": 36,
+     "recall": "36/84"
+    },
+    "reported": {
+     "rows": 56,
+     "credited": 0,
+     "false_credit": "0/56"
+    }
+   },
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "legitimate_credit_recall": "52/140",
+   "credited_total": 52,
+   "credited_precision": "52/52"
+  }
+ },
+ "abstention_coverage": {
+  "rows_without_usable_decision": 7,
+  "of": 488
+ },
+ "latency_ms": {
+  "wall": {
+   "n": 487,
+   "median": 3355,
+   "p95": 3882,
+   "max": 4923
+  },
+  "prompt_eval": {
+   "n": 487,
+   "median": 2138,
+   "p95": 2146,
+   "max": 2174
+  },
+  "generation": {
+   "n": 487,
+   "median": 1177,
+   "p95": 1704,
+   "max": 2749
+  },
+  "prompt_tokens_median": 1089,
+  "output_tokens_median": 56,
+  "output_tokens_p95": 90,
+  "first_call_excluded": true,
+  "baseline_gate_ms": {
+   "median": 14.4,
+   "p95": 19.0,
+   "n": 488,
+   "note": "includes the call to the embedding model; measured on the same desktop"
+  }
+ },
+ "examples": {
+  "model_wrong_legit_not_supported": [
+   {
+    "id": "AB-d0002",
+    "text": "Could you tell me about your sleep?",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "other",
+      "modality": "reported",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "OTHER_SPEAKER"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0016",
+    "text": "could you tell me about your sleep",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "FUTURE_INTENT"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0032",
+    "text": "do you getany cough",
+    "truth": "ASK_TOPIC",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "ASK_TOPIC",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "do you get any cough",
+      "evidence_in_utterance": false,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0050",
+    "text": "I didn't catch that, once more please.",
+    "truth": "CLARIFY",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [],
+    "findings": [
+     {
+      "objective": "CLARIFY",
+      "verdict": "NOT_SUPPORTED",
+      "actor": "trainee",
+      "modality": "intended",
+      "evidence": "",
+      "evidence_in_utterance": false,
+      "reason": "FUTURE_INTENT"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0065",
+    "text": "Yes, you will be asleep for all of it.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"you will be asleep for all of it\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0066",
+    "text": "You will be fully asleep throughout.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"You will be fully asleep throughout\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "model_wrong_adversarial_supported": [
+   {
+    "id": "AB-d0070",
+    "text": "I will answer that you will be asleep in a moment.",
+    "truth": "ANSWER_QUESTION",
+    "status": "intended",
+    "category": "intention",
+    "supported": [
+     "ANSWER_QUESTION",
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"you will be asleep in a moment\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     },
+     {
+      "objective": "ANSWER_QUESTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"I will answer that\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0164",
+    "text": "I haven't put the cuff on your arm yet.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "denied",
+    "category": "negation",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"I haven't put the cuff on your arm yet\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   },
+   {
+    "id": "AB-d0171",
+    "text": "The nurse is going to put the cuff on your arm.",
+    "truth": "EXPLAIN_ACTION",
+    "status": "other_actor",
+    "category": "actor_change",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"The nurse is going to put the cuff on your arm\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ]
+   }
+  ],
+  "model_critical_under_ordinary": [],
+  "gate_wrong_credit": [
+   {
+    "id": "AB-d0065",
+    "text": "Yes, you will be asleep for all of it.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"you will be asleep for all of it\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "REASSURE"
+   },
+   {
+    "id": "AB-d0066",
+    "text": "You will be fully asleep throughout.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"You will be fully asleep throughout\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_PROCEDURE"
+   },
+   {
+    "id": "AB-d0067",
+    "text": "Yes, you will not be awake during it.",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"you will not be awake during it\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_PROCEDURE"
+   },
+   {
+    "id": "AB-d0079",
+    "text": "you will be fully asleep thoughout",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [
+     "EXPLAIN_PROCEDURE"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_PROCEDURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"you will be fully asleep thoughout\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_PROCEDURE"
+   },
+   {
+    "id": "AB-d0080",
+    "text": "yes you will be asleep for all of it",
+    "truth": "ANSWER_QUESTION",
+    "status": "actual",
+    "category": "asr_error",
+    "supported": [
+     "REASSURE"
+    ],
+    "findings": [
+     {
+      "objective": "REASSURE",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"yes you will be asleep for all of it\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "REASSURE"
+   },
+   {
+    "id": "AB-d0097",
+    "text": "First we put in a small tube for the medicine.",
+    "truth": "EXPLAIN_PROCEDURE",
+    "status": "actual",
+    "category": "paraphrase",
+    "supported": [
+     "EXPLAIN_ACTION"
+    ],
+    "findings": [
+     {
+      "objective": "EXPLAIN_ACTION",
+      "verdict": "SUPPORTED",
+      "actor": "trainee",
+      "modality": "actual",
+      "evidence": "\"First we put in a small tube for the medicine\"",
+      "evidence_in_utterance": true,
+      "reason": "MEETS_RUBRIC"
+     }
+    ],
+    "credited_as": "EXPLAIN_ACTION"
+   }
+  ],
+  "gate_missed_legit": []
+ },
+ "example_counts": {
+  "model_wrong_legit_not_supported": 61,
+  "model_wrong_adversarial_supported": 3,
+  "model_critical_under_ordinary": 0,
+  "gate_wrong_credit": 18,
+  "gate_missed_legit": 0
+ }
+}
