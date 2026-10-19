@@ -1,0 +1,362 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "paraphrases": {
+   "file": "paraphrases.json",
+   "rows": 71,
+   "frozen_scored_now": false,
+   "grammar": {
+    "orders": 61,
+    "correct": 0.082,
+    "wrong": 0.0,
+    "menu": 0.918,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 104,
+    "latency_ms_p95": 236,
+    "by_kind": {
+     "home_medicine": "0/5",
+     "medicine": "0/16",
+     "place": "1/7",
+     "staff": "4/7",
+     "test": "0/26"
+    },
+    "wrong_examples": []
+   },
+   "legacy": {
+    "orders": 61,
+    "correct": 0.82,
+    "wrong": 0.082,
+    "menu": 0.098,
+    "non_orders": 10,
+    "false_offer": 0.3,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 4824,
+    "latency_ms_p95": 9678,
+    "by_kind": {
+     "home_medicine": "4/5",
+     "medicine": "14/16",
+     "place": "6/7",
+     "staff": "6/7",
+     "test": "20/26"
+    },
+    "wrong_examples": [
+     {
+      "said": "is there any sign of inflammation in her blood",
+      "wanted": "crp",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "make sure blood is ready in case we need to transfuse",
+      "wanted": "group_and_save",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "cross sectional pictures of the abdomen",
+      "wanted": "ct",
+      "heard": "ct",
+      "intent": "REQUEST_TRANSPORT"
+     },
+     {
+      "said": "something sugary for him to drink",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "she should not take her warfarin tomorrow",
+      "wanted": "anticoagulant",
+      "heard": "warfarin",
+      "intent": "HOLD_MED"
+     }
+    ]
+   },
+   "current": {
+    "orders": 61,
+    "correct": 0.656,
+    "wrong": 0.049,
+    "menu": 0.295,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 5,
+    "clarify_questions_containing_the_right_item": 4,
+    "latency_ms_p50": 3699,
+    "latency_ms_p95": 6901,
+    "by_kind": {
+     "home_medicine": "3/5",
+     "medicine": "13/16",
+     "place": "6/7",
+     "staff": "6/7",
+     "test": "12/26"
+    },
+    "wrong_examples": [
+     {
+      "said": "cross sectional pictures of the abdomen",
+      "wanted": "ct",
+      "heard": "mri",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "she should not take her warfarin tomorrow",
+      "wanted": "anticoagulant",
+      "heard": "warfarin",
+      "intent": "HOLD_MED"
+     },
+     {
+      "said": "can someone fetch the gas doctor",
+      "wanted": "anaesthetist",
+      "heard": "surgeon",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   }
+  },
+  "v2": {
+   "file": "paraphrases_v2.json",
+   "rows": 65,
+   "frozen_scored_now": false,
+   "grammar": {
+    "orders": 55,
+    "correct": 0.182,
+    "wrong": 0.0,
+    "menu": 0.818,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 132,
+    "latency_ms_p95": 218,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "1/16",
+     "place": "4/7",
+     "staff": "2/5",
+     "test": "1/23"
+    },
+    "wrong_examples": []
+   },
+   "legacy": {
+    "orders": 55,
+    "correct": 0.836,
+    "wrong": 0.073,
+    "menu": 0.091,
+    "non_orders": 10,
+    "false_offer": 0.2,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 4334,
+    "latency_ms_p95": 4566,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "15/16",
+     "place": "7/7",
+     "staff": "5/5",
+     "test": "17/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "keep some blood back in case he bleeds",
+      "wanted": "group_and_save",
+      "heard": "TR-IV-FLUIDS",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "cross sectional scan of his belly",
+      "wanted": "ct",
+      "heard": "mri",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "paracetamol is not enough, something to take the edge off the pain",
+      "wanted": "TR-PARACETAMOL",
+      "heard": "TR-OPIOID",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "don't give the sugar tablets this morning",
+      "wanted": "metformin",
+      "heard": "TR-FAST-SUGAR",
+      "intent": "HOLD_MED"
+     }
+    ]
+   },
+   "current": {
+    "orders": 55,
+    "correct": 0.673,
+    "wrong": 0.055,
+    "menu": 0.273,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 3,
+    "clarify_questions_containing_the_right_item": 3,
+    "latency_ms_p50": 3726,
+    "latency_ms_p95": 6701,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "13/16",
+     "place": "7/7",
+     "staff": "4/5",
+     "test": "11/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "test for blood poisoning",
+      "wanted": "lactate_cultures",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "how low are her iron levels",
+      "wanted": "ferritin",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "strong antibiotics for the burst appendix",
+      "wanted": "TR-ABX-S2",
+      "heard": "TR-SEPSIS-BUNDLE",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   }
+  },
+  "v3": {
+   "file": "paraphrases_v3.json",
+   "rows": 66,
+   "frozen_scored_now": false,
+   "grammar": {
+    "orders": 56,
+    "correct": 0.089,
+    "wrong": 0.018,
+    "menu": 0.893,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 134,
+    "latency_ms_p95": 279,
+    "by_kind": {
+     "home_medicine": "0/4",
+     "medicine": "1/16",
+     "place": "2/6",
+     "staff": "1/5",
+     "test": "1/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   },
+   "legacy": {
+    "orders": 56,
+    "correct": 0.821,
+    "wrong": 0.125,
+    "menu": 0.054,
+    "non_orders": 10,
+    "false_offer": 0.4,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 4318,
+    "latency_ms_p95": 4800,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "13/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "21/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "magnetic resonance of the head",
+      "wanted": "mri",
+      "heard": "mri",
+      "intent": "REQUEST_TRANSPORT"
+     },
+     {
+      "said": "a simple painkiller by the drip",
+      "wanted": "TR-PARACETAMOL",
+      "heard": "TR-OPIOID",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "something opioid for the pain, he is in agony",
+      "wanted": "TR-OPIOID",
+      "heard": "TR-PARACETAMOL",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "orange juice for his hypo",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "she must not have the metformin on the morning of surgery",
+      "wanted": "metformin",
+      "heard": "TR-ABX-PROPHYLAXIS",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "withhold the blood thinner",
+      "wanted": "anticoagulant",
+      "heard": "clopidogrel",
+      "intent": "HOLD_MED"
+     },
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   },
+   "current": {
+    "orders": 56,
+    "correct": 0.643,
+    "wrong": 0.018,
+    "menu": 0.339,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 3,
+    "clarify_questions_containing_the_right_item": 3,
+    "latency_ms_p50": 3755,
+    "latency_ms_p95": 6756,
+    "by_kind": {
+     "home_medicine": "3/4",
+     "medicine": "11/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "12/25"
+    },
+    "wrong_examples": [
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   }
+  }
+ }
+}

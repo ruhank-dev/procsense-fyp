@@ -1,0 +1,113 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v4": {
+   "file": "paraphrases_v4.json",
+   "rows": 64,
+   "frozen_scored_now": true,
+   "grammar": {
+    "orders": 54,
+    "correct": 0.278,
+    "wrong": 0.0,
+    "menu": 0.722,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 104,
+    "latency_ms_p95": 212,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "3/16",
+     "place": "4/6",
+     "staff": "4/5",
+     "test": "2/23"
+    },
+    "wrong_examples": []
+   },
+   "legacy": {
+    "orders": 54,
+    "correct": 0.833,
+    "wrong": 0.074,
+    "menu": 0.093,
+    "non_orders": 10,
+    "false_offer": 0.7,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 4296,
+    "latency_ms_p95": 4575,
+    "by_kind": {
+     "home_medicine": "3/4",
+     "medicine": "14/16",
+     "place": "6/6",
+     "staff": "5/5",
+     "test": "17/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "is the infection marker raised",
+      "wanted": "crp",
+      "heard": "fbc",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "an MRI of the pelvis",
+      "wanted": "mri",
+      "heard": "mri",
+      "intent": "REQUEST_TRANSPORT"
+     },
+     {
+      "said": "something to stop the vomiting",
+      "wanted": "TR-ANTIEMETIC",
+      "heard": "TR-ANTIEMETIC",
+      "intent": "HOLD_MED"
+     },
+     {
+      "said": "a sugary drink for the low sugar",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   },
+   "current": {
+    "orders": 54,
+    "correct": 0.778,
+    "wrong": 0.037,
+    "menu": 0.185,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 3,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 3570,
+    "latency_ms_p95": 6566,
+    "by_kind": {
+     "home_medicine": "4/4",
+     "medicine": "10/16",
+     "place": "6/6",
+     "staff": "5/5",
+     "test": "17/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "something to stop the vomiting",
+      "wanted": "TR-ANTIEMETIC",
+      "heard": "TR-ANTIEMETIC",
+      "intent": "HOLD_MED"
+     },
+     {
+      "said": "a sugary drink for the low sugar",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   }
+  }
+ }
+}
