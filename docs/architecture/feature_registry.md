@@ -131,7 +131,7 @@ Generate a fresh, coherent, validated scenario for each practice session from th
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py |
+| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs |
 | Lineage (existing ids) | new (this planning update, 12 Oct 2026); extends A1 |
 | Method | Hybrid: deterministic selection and validation, statistical numbers, retrieval of media; the AI composer (LLM with retrieval over the scenario knowledge base) proposes the scenario plan and the LLM writes the narrative, all constrained by the solver and validators. |
 | LLM-first classification | LLM-first examined per stage; it is used only where language is the product (narrative, persona). Values, media and decisions use statistical, retrieval or rule methods because they must be calibrated, licensed and reproducible. |
@@ -439,7 +439,7 @@ Every generated package records seed, pack versions, prompt versions, model dige
 | Kind (AI or deterministic) | deterministic |
 | Status | Partially implemented |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py |
+| Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs |
 | Lineage (existing ids) | — |
 | Method | Canonical JSON and hashing; LLM output stored in the package (never regenerated on replay). |
 | LLM-first classification | Not an AI task. |
@@ -1087,7 +1087,7 @@ Spoken orders (drug, dose, route) read back by the nurse before acting; closed-l
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented and tested |
 | AI status | Implemented and tested |
-| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py; reports/ai/orders-eval.json; server/routers/orders.py; server/orders/ticket.py; server/orders/llm_fallback.py; server/tests/test_orders_route.py; tools/ci/test_orders_fallback.py; tests/orders/paraphrases.json; reports/ai/orders-eval-llm-v2.json; tests/orders/paraphrases_v2.json; reports/ai/orders-eval-llm-v3.json; tests/orders/paraphrases_v3.json |
+| Evidence (what exists) | server/orders/grammar.py; server/orders/synonyms.csv; tools/ai/eval_orders.py; reports/ai/orders-eval.json; server/routers/orders.py; server/orders/ticket.py; server/orders/llm_fallback.py; server/tests/test_orders_route.py; tools/ci/test_orders_fallback.py; tests/orders/paraphrases.json; reports/ai/orders-eval-llm-v2.json; tests/orders/paraphrases_v2.json; reports/ai/orders-eval-llm-v3.json; tests/orders/paraphrases_v3.json; reports/ai/orders-mapper-compare-v4.json; tests/orders/paraphrases_v4.json |
 | Lineage (existing ids) | p1-voice-input-s03 |
 | Method | ASR + slot grammar + deterministic read-back check. |
 | LLM-first classification | Slots must be exact; grammar first, LLM for unmatched phrasing. |
@@ -1115,7 +1115,7 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tools/ci/test_bench.py; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md |
+| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tools/ci/test_bench.py; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md |
 | Lineage (existing ids) | p1-ai-language-s06 |
 | Method | Taxonomy + rules. |
 | LLM-first classification | Not a model task. |
@@ -1128,7 +1128,7 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 | Fallback | n/a |
 | Tests planned | evidence guard tests |
 | Acceptance | Guard tests pass. |
-| Blockers | external acceptance: EX-01, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
 | Tasks | p1-ai-language-s06 |
 | Phase | PH-15 Communication acts and classifier |
@@ -1143,7 +1143,7 @@ Classify trainee utterances into acts. P1: served LLM with an enum schema; P2: s
 | Kind (AI or deterministic) | ai |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | server/classify/embedding.py; server/classify/guard.py; content/assessment/act_head.json; tools/bench/bench_classifier.py; reports/ai/classifier-bench-synthetic.json; tools/labelling/label.py; tools/ci/test_labelling.py; docs/research/labelling/guidelines.md; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; content/assessment/taxonomy.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; content/ai/critical_cues.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/classify/ensemble.py; server/classify/assertion.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tools/ci/test_classifier_regression.py; tests/classifier_challenge_v4/challenge.json |
+| Evidence (what exists) | server/classify/embedding.py; server/classify/guard.py; content/assessment/act_head.json; tools/bench/bench_classifier.py; reports/ai/classifier-bench-synthetic.json; tools/labelling/label.py; tools/ci/test_labelling.py; docs/research/labelling/guidelines.md; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; content/assessment/taxonomy.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; content/ai/critical_cues.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/classify/ensemble.py; server/classify/assertion.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tools/ci/test_classifier_regression.py; tests/classifier_challenge_v4/challenge.json; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md |
 | Lineage (existing ids) | p1-ai-language-s06, s07; DT-097 |
 | Method | LLM zero/few-shot with enum schema. |
 | LLM-first classification | LLM first (no training, no labelled training set needed); trained model only in P2 if LLM latency or accuracy is insufficient. |
@@ -1156,7 +1156,7 @@ Classify trainee utterances into acts. P1: served LLM with an enum schema; P2: s
 | Fallback | Menu choice of act. |
 | Tests planned | macro-F1 on frozen human-labelled split |
 | Acceptance | Switched off below macro-F1 0.75. |
-| Blockers | external acceptance: EX-01, EX-15, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | labelled set not available (DT-097); critical acts misclassified (never credited from AI alone) |
 | Tasks | p1-ai-language-s06; p1-ai-language-s07 |
 | Phase | PH-15 Communication acts and classifier |

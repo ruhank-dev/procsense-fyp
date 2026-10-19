@@ -4248,7 +4248,9 @@
     "reports/ai/plan-extras-eval.json",
     "reports/ai/trap-writer-eval.json",
     "tools/ci/test_plan_extras.py",
-    "tools/ci/test_trap_writer.py"
+    "tools/ci/test_trap_writer.py",
+    "unity/Assets/Scripts/Bridge/SimulationHost.cs",
+    "unity/Assets/Tests/EditMode/PackageSessionTests.cs"
    ],
    "lineage": [
     "new (this planning update, 12 Oct 2026)",
@@ -6734,7 +6736,9 @@
     "tools/ci/test_generation_novelty.py",
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "server/generation/package.py",
-    "tools/ci/test_generation_package.py"
+    "tools/ci/test_generation_package.py",
+    "unity/Assets/Scripts/Bridge/SimulationHost.cs",
+    "unity/Assets/Tests/EditMode/PackageSessionTests.cs"
    ],
    "lineage": [],
    "method": "Canonical JSON and hashing; LLM output stored in the package (never regenerated on replay).",
@@ -10789,7 +10793,9 @@
     "reports/ai/orders-eval-llm-v2.json",
     "tests/orders/paraphrases_v2.json",
     "reports/ai/orders-eval-llm-v3.json",
-    "tests/orders/paraphrases_v3.json"
+    "tests/orders/paraphrases_v3.json",
+    "reports/ai/orders-mapper-compare-v4.json",
+    "tests/orders/paraphrases_v4.json"
    ],
    "lineage": [
     "p1-voice-input-s03"
@@ -10955,7 +10961,10 @@
     "tests/classifier_synthetic_v2/adversarial_manifest.json",
     "tests/classifier_synthetic_v2/manifest.json",
     "tests/classifier_synthetic_v3/manifest.json",
-    "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md"
+    "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md",
+    "reports/ai/act-benchmark.json",
+    "reports/ai/act-benchmark-test2.json",
+    "docs/decisions/ADR-0020-act-recognition-architecture.md"
    ],
    "lineage": [
     "p1-ai-language-s06"
@@ -10979,7 +10988,7 @@
    ],
    "acceptance": "Guard tests pass.",
    "blockers": [
-    "external acceptance: EX-01, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
@@ -11124,7 +11133,10 @@
     "reports/ai/classifier-safety.json",
     "docs/research/classifier_benchmark/safety_gate.md",
     "tools/ci/test_classifier_regression.py",
-    "tests/classifier_challenge_v4/challenge.json"
+    "tests/classifier_challenge_v4/challenge.json",
+    "reports/ai/act-benchmark.json",
+    "reports/ai/act-benchmark-test2.json",
+    "docs/decisions/ADR-0020-act-recognition-architecture.md"
    ],
    "lineage": [
     "p1-ai-language-s06, s07",
@@ -11154,7 +11166,7 @@
    ],
    "acceptance": "Switched off below macro-F1 0.75.",
    "blockers": [
-    "external acceptance: EX-01, EX-15, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "labelled set not available (DT-097)",

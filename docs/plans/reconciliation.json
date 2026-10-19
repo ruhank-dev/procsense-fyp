@@ -126,9 +126,12 @@
     "content/assessment/taxonomy.json",
     "tests/classifier_synthetic_v2/manifest.json",
     "tests/classifier_synthetic_v3/manifest.json",
-    "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md"
+    "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md",
+    "reports/ai/act-benchmark.json",
+    "reports/ai/act-benchmark-test2.json",
+    "docs/decisions/ADR-0020-act-recognition-architecture.md"
    ],
-   "measured": "three synthetic sets AI-judged by two configurations of one model (kappa 0.84 to 0.85), frozen, leakage-checked, never called independent; a different-size cross-check labeller (J3, qwen3.5:9b) and four frozen adversarial sets added; the adjudicator is the builder and sided with the intent in nearly every case",
+   "measured": "three synthetic sets AI-judged by two configurations of one model (kappa 0.84 to 0.85), frozen, leakage-checked, never called independent; a different-size cross-check labeller (J3, qwen3.5:9b) and four frozen adversarial sets added; the adjudicator is the builder and sided with the intent in nearly every case. 19 Oct (fifth session): the act benchmark (tests/action_bench_v1) scored five approaches on two frozen splits; the retained gate with a widened assertion check credited 0 of 40 critical and 0 of 300 non-assertive sentences on the second split (recall 0.49, precision 0.96); the model-based approaches credited 2 or 3 of 40 critical sentences (reports/ai/act-benchmark*.json, ADR-0020)",
    "open": "The classifier safety criteria are NOT met: the frozen set v5 credited 1 of 48 critical sentences; the independent set (EX-01) does not exist. The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)",
    "external": "real authors, a second labeller and an adjudicator for the independent set (docs/research/classifier_benchmark)"
   },
@@ -542,10 +545,12 @@
    "evidence": [
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "server/generation/package.py",
-    "tools/ci/test_generation_package.py"
+    "tools/ci/test_generation_package.py",
+    "unity/Assets/Scripts/Bridge/SimulationHost.cs",
+    "unity/Assets/Tests/EditMode/PackageSessionTests.cs"
    ],
-   "measured": "the Core plays a generated package; the gate refuses it in assessment",
-   "open": "The Unity client that fetches and plays a generated package does not exist (no fetch or package code under unity/); the server, the engine and the headless play are done and tested. The Unity side that fetches and plays a package is Sannan's",
+   "measured": "the Core plays a generated package; the gate refuses it in assessment. Unity EditMode (batch mode, Unity 6000.5.10f1, 19 Oct 2026): 64 of 64 passed, including the 3 package tests",
+   "open": "The Unity bridge is BUILT and EditMode-tested (SimulationHost.StartFromPackage, package hash in the session header, refusal in assessment; unity/Assets/Tests/EditMode/PackageSessionTests.cs, 3 tests, 19 Oct 2026). Still not built: the Unity HTTP client that fetches a package, and the server HTTP endpoint and image (DT-199); the picture display (DT-198). The Unity side that fetches and plays a package is Sannan's",
    "external": "Sannan: the Unity fetch and play of a package (check DC-02)"
   },
   "p1-live-scenario-generation-s11": {
@@ -846,10 +851,10 @@
     "tools/ci/test_orders_fallback.py",
     "tests/orders/paraphrases.json",
     "tests/orders/paraphrases_v2.json",
-    "reports/ai/orders-eval-llm-v3.json",
-    "tests/orders/paraphrases_v3.json"
+    "reports/ai/orders-mapper-compare-v4.json",
+    "tests/orders/paraphrases_v4.json"
    ],
-   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on. The model fallback (B23.c2, C32.c1) is built but BELOW its acceptance and OFF: frozen third set (66 rows, scored once) 58.9 percent correct, 10.7 percent wrong, 1 of 10 non-orders offered, about 4.5 s a call (reports/ai/orders-eval-llm-v3.json); the single-call mapper had scored 76.4 percent correct and 18.2 percent wrong on the second set (historical)"
+   "measured": "no action released without a read-back confirmation; the gate passes and the feature is on. The model fallback (B23.c2, C32.c1) is built but BELOW its acceptance and OFF: on a frozen fourth set (64 rows, scored once) 77.8 percent correct, 3.7 percent wrong, no non-order offered, 6.6 s p95 (reports/ai/orders-mapper-compare-v4.json, ADR-0021)"
   },
   "p1-voice-input-s04": {
    "owner": "Ruhan",
@@ -1425,10 +1430,12 @@
    "now": "PARTLY",
    "evidence": [
     "tests/ProcSense.Core.Tests/AssessmentModeTests.cs",
-    "tests/golden/VAR-S1-A_assessment.expected.json"
+    "tests/golden/VAR-S1-A_assessment.expected.json",
+    "unity/Assets/Scripts/Bridge/ModeGate.cs",
+    "unity/Assets/Tests/EditMode/ModeGateTests.cs"
    ],
    "measured": "AssessmentModeTests (7): only assessment-approved content loads, fixed case order, no hints or helpers, critical items logged strictly, header says assessment, no verb changes the mode; golden run VAR-S1-A_assessment",
-   "open": "The Unity half is not built: ModeGate.cs and the mode choice from the main menu; the engine half (Session.PracticeAids) is done and tested. The Unity half: ModeGate.cs hiding practice-only UI through Session.PracticeAids, the mode chosen only from the main menu, the debrief showing the mode; and the headset check. No case or event is approved for assessment yet, so assessment mode plays nothing until content is approved for assessment",
+   "open": "The central mode check is BUILT and EditMode-tested (unity/Assets/Scripts/Bridge/ModeGate.cs, PracticeOnly component, the tablet's practice hint goes through it; ModeGateTests, 3 tests, 19 Oct 2026). Still not built: the mode chosen only from the main-menu scene, the PracticeOnly component put on the scene's hint chip, consent tracker and nurse prompts, and the debrief screen showing the mode label (scene work, Sannan). The Unity half: ModeGate.cs hiding practice-only UI through Session.PracticeAids, the mode chosen only from the main menu, the debrief showing the mode; and the headset check. No case or event is approved for assessment yet, so assessment mode plays nothing until content is approved for assessment",
    "external": "Sannan: the Unity mode gate and the headset check (check UX-P0-ASSESS); content approved for assessment is the owner's decision (DT-177)"
   },
   "p0-evaluation-performance-s05": {

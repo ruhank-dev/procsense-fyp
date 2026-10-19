@@ -43,5 +43,6 @@ This step has acceptance that only a person, device or account outside the engin
 
 * [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent communication-act set: authors, second labeller, adjudicator, then the independent run
 * [EX-18](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-18): A second author for the spoken-order paraphrases and for the next classifier challenge set
+* [EX-19](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-19): Public assertion data (n2c2 2010) as a supplementary check of the status vocabulary
 
 <!-- external-testing:end -->

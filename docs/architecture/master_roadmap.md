@@ -260,7 +260,7 @@ Taxonomy, labelled set, LLM classifier.
 | Features | C36; C37 |
 | Deliverables | labelled set; classifier |
 | Acceptance | macro-F1 0.75 or switched off |
-| Blockers | external acceptance: EX-01, EX-15, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-18 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-16 — AI debrief and grounded feedback
 

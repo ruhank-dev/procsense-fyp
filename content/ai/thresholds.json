@@ -537,49 +537,49 @@
    "suites": [
     {
      "id": "order_fallback.no_release_without_confirmation",
-     "file": "orders-eval-llm-v3.json",
-     "path": "with_fallback.released_without_confirmation",
+     "file": "orders-mapper-compare-v4.json",
+     "path": "sets.v4.current.released_without_confirmation",
      "op": "==",
      "ref": "no action leaves the read-back before a yes",
      "value": 0
     },
     {
      "id": "order_fallback.accuracy",
-     "file": "orders-eval-llm-v3.json",
-     "path": "with_fallback.correct",
+     "file": "orders-mapper-compare-v4.json",
+     "path": "sets.v4.current.correct",
      "op": ">=",
      "ref": "plan C32.c1: at least 95 percent (B23.c2: 90 percent)",
      "value": 0.95
     },
     {
      "id": "order_fallback.gain_over_grammar",
-     "file": "orders-eval-llm-v3.json",
-     "path": "with_fallback.correct",
+     "file": "orders-mapper-compare-v4.json",
+     "path": "sets.v4.current.correct",
      "op": ">=",
      "ref": "plan B23.c2: at least 10 points above the grammar alone",
-     "vs": "grammar_only.correct",
+     "vs": "sets.v4.grammar.correct",
      "plus": 0.1
     },
     {
      "id": "order_fallback.wrong_item_offered",
-     "file": "orders-eval-llm-v3.json",
-     "path": "with_fallback.wrong",
+     "file": "orders-mapper-compare-v4.json",
+     "path": "sets.v4.current.wrong",
      "op": "<=",
      "ref": "a wrong item is caught by the read-back, but more than 5 percent wastes the trainee's time",
      "value": 0.05
     },
     {
      "id": "order_fallback.non_orders_not_offered",
-     "file": "orders-eval-llm-v3.json",
-     "path": "with_fallback.false_offer",
+     "file": "orders-mapper-compare-v4.json",
+     "path": "sets.v4.current.false_offer",
      "op": "<=",
      "ref": "small talk is not turned into an order",
      "value": 0.1
     },
     {
      "id": "order_fallback.latency_p95_ms",
-     "file": "orders-eval-llm-v3.json",
-     "path": "with_fallback.latency_ms_p95",
+     "file": "orders-mapper-compare-v4.json",
+     "path": "sets.v4.current.latency_ms_p95",
      "op": "<=",
      "ref": "live budget of the plan: a reply to speech within 3 s",
      "value": 3000

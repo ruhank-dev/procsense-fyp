@@ -901,6 +901,31 @@
     "the engineer's one-shot result files"
    ],
    "after": "The engineer records the result in DT-224 and ADR-0018; a feature gate flips only when every suite of it passes."
+  },
+  {
+   "id": "EX-19",
+   "title": "Public assertion data (n2c2 2010) as a supplementary check of the status vocabulary",
+   "kind": "account",
+   "who": "The account holder who registers at n2c2.dbmi.hms.harvard.edu and reads and signs the data use agreement (the owner or the supervisor); nobody else may accept it for them",
+   "steps": [
+    "p1-ai-language-s06"
+   ],
+   "needs": "A registered n2c2 account and the signed agreement; the data may not be shared with third parties",
+   "prepared": [
+    "docs/research/public_assertion_resources.md",
+    "tools/bench/act_benchmark.py"
+   ],
+   "procedure": [
+    "Read docs/research/public_assertion_resources.md and the agreement on the n2c2 data-use-agreement page; decide whether the project may sign it.",
+    "If signed: download the 2010 assertion data to a folder outside the repository (never commit it), and tell the engineer.",
+    "The engineer maps present/absent/possible/hypothetical/conditional/someone-else to the benchmark statuses and runs the status vocabulary against it as a supplementary check, reporting it apart from every ProcSense result."
+   ],
+   "pass_rule": "There is no pass rule: the data are clinical notes, not first-person speech, and cannot establish the safety of the classifier (ADR-0020). The item is optional; skipping it blocks nothing.",
+   "evidence": [
+    "the signed agreement (kept by the account holder, not committed)",
+    "the engineer's supplementary report"
+   ],
+   "after": "The engineer records the supplementary result in docs/research/public_assertion_resources.md; no feature gate reads it."
   }
  ]
 }
