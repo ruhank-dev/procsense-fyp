@@ -2,6 +2,13 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0m. Update of 20 October 2026 (Ollama Cloud semantic reader: release candidate behind OFF switches)
+
+* **Platform:** Ollama Cloud is the chosen inference platform (ADR-0024). Verified 20 Oct: the cloud route enforces no JSON schema (official page and a controlled test), so structured output is Pydantic-validated, strict, never repaired, with bounded retries and a fallback to the shipped decision. No Ministral model and no Qwen3.5 397B are in the cloud list.
+* **Pipeline:** the model is a reader whose SUPPORTED finding is a candidate behind the shipped deterministic checks and the head's critical-mass cap; critical topics and non-performed sentences never reach it; the model can veto an offer; the engine's evidence store stays the authority. 62 tests and 17 mutants.
+* **Measured, synthetic, by replay:** 0 critical, 0 adversarial and 0 out-of-window offers on dev, test and test2; recall 88, 75, 75 of 140 against 95, 76, 79 for the shipped path; strict validity of recorded replies 92.2, 91.4, 78.3 percent. Recall (85%) and schema (99.5%) targets NOT MET; the cap and the cue menu set the recall ceiling (DT-238).
+* **Not done:** the model comparison and the live run (DT-237, need approval), the privacy decision (DT-236), independent validation (EX-01), real audio, Quest (Sannan). `speech_interpretation` and `interpret_llm_enabled` stay OFF.
+
 ## 0l. Update of 20 October 2026 (Ollama Cloud `gemma4:31b` as a semantic reader: experiment only)
 
 * **Experiment, not a decision:** `docs/research/cloud_gemma_rubric.md` (numbers in `reports/ai/cloud-gemma-rubric.json`, adapter `tools/bench/cloud_eval.py`). On `tests/action_bench_v1` dev, test and test2, Gemma with the production guards credited 118, 121 and 111 of 140 legitimate sentences against the benchmark baseline gate's 83, 66 and 69 (not the shipped interpretation path, which reaches 95, 76 and 79 and was never combined with Gemma), but on test2 the guards alone let 3 of 40 critical and 1 of 300 adversarial sentences through; the guards are only as good as their word lists.

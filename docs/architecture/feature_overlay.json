@@ -358,7 +358,9 @@
     "tools/ci/test_recall_fixes.py",
     "tools/ci/test_safety_hardening.py",
     "tools/ci/test_mutation_safety.py",
-    "tools/ci/test_safety_review_kit.py"
+    "tools/ci/test_safety_review_kit.py",
+    "server/tests/test_semantic_reader.py",
+    "server/tests/test_semantic_interpreter.py"
    ],
    "gates": [
     "classifier",

@@ -1,5 +1,7 @@
 # Ollama Cloud `gemma4:31b` as a context-conditioned semantic reader: dev, test and test2 (20 October 2026)
 
+**Later work:** the integrated pipeline built on these findings (strict validation, the cap as a veto, fallback) is `docs/research/semantic_reader_pipeline.md` and ADR-0024; this page stays the historical record of the experiment.
+
 **Status: EXPERIMENT, development only, not wired to anything.** Synthetic, builder-written labels; no independent human review (EX-01); not clinically validated; no audio, Quest or headset test; not ready for live scoring. `speech_interpretation` stays OFF. Production guards, thresholds, prompts, benchmark labels and the frozen safety final set were not changed and not read. Every figure below is read from `reports/ai/cloud-gemma-rubric.json`, which `tools/bench/cloud_summary.py` computes from the raw replies (`artifacts/ai-bench/rubric/cloud-*.jsonl`, git-ignored; their sha256 prefixes are in the JSON).
 
 ## 1. Question and method

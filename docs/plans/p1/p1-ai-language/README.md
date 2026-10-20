@@ -2,6 +2,8 @@
 
 **Tier:** P1 · **Builds on:** p1-backend, p0-scoring-debrief, p0-physiology-events-behaviour · **Feeds:** p1-voice-input, p1-scenario-composer-difficulty
 
+> **Plan update, 20 Oct 2026 (fourth, s18, ADR-0024):** step s18 adds an Ollama Cloud semantic reader behind strict structured-output validation and the existing deterministic checks, off by default; the integrated pipeline is not better than the shipped path on recall, the model comparison and live run await approval, privacy and independent validation are open.
+>
 > **Plan update, 20 Oct 2026 (third, s17):** step s17 prepares the blind human review of the unsafe-speech sheet (kit, protocol, adjudication), audits the sets and the ten remaining final-split failures without changing the frozen candidate, designs the audio-to-transcript evaluation and extends the mutation tests. Nothing was reviewed, recorded or run on a headset; gate OFF.
 >
 > **Plan update, 20 Oct 2026 (second, ADR-0023):** step s16 audits the speech-safety layers, measures unsafe speech on metamorphic sets with provenance, widens the assertion layer, makes the engine check the waiting question and read-back itself and mutation-tests every critical check (`docs/research/unsafe_speech_safety.md`). Synthetic, no human review; gate OFF; EX-01 part B and the headset checks outstanding.

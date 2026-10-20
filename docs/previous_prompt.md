@@ -3496,3 +3496,18 @@ Continue from b1726b8 (unsafe-speech hardening). Do not change the safety cap, t
 Return: the review protocol, readiness status, label-quality findings, frozen-test protections, remaining risks and exact next release blockers; speech_interpretation stays OFF.
 (This entry keeps the requirements, shortened.)
 ``````
+
+## 178. 20 October 2026, 12:30 PM UTC (time of logging; the prompt arrived shortly before)
+_Session: b9c36c34_
+
+``````text
+ProcSense - Complete Ollama Cloud AI Speech Interpretation Implementation. Take the speech interpretation from its current state to an extensively tested release candidate on the chosen platform, Ollama Cloud (not self-hosting, not another provider); not another exploratory experiment.
+1 Inspect the real starting point (commits cb85431 and 2f82fb7 local and unpushed; do not duplicate existing code; no Dependabot PR 24 to 27 merges; no reset, clean, force-push or amend).
+2 Verify the Ollama Cloud catalogue and exact identifiers; compare a bounded shortlist of at most three (Gemma baseline plus the most promising alternatives) on this task; reuse comparable results; no material billable run without approval; choose one model on evidence and stop model shopping.
+3 Structured output: check the actual cloud route for native schema support; Pydantic as the canonical schema; strict validation, never repair (no fence stripping, no coerced enums); bounded retries; safe abstention and fallback; regression tests for the fenced and out-of-range failures and for malformed, truncated, wrong-typed, duplicate, fabricated-evidence and timeout cases.
+4 Implement the real pipeline: minimum authoritative context, untrusted speech, versioned schema, provider interface, mock and deterministic providers; the model is only an interpreter; the deterministic safety, scenario-state and scoring authority stays; critical actions never credited from speech; the AND-baseline is not a permanent requirement; keep speech_interpretation OFF.
+5 Acceptance criteria stated (recall 85 percent, precision 95 percent, zero critical and adversarial false credits, schema 99.5 percent, latency and availability), reported separately with denominators; synthetic results provisional; frozen final set not read.
+6 Edge-case and scenario-state tests, a regression test before each fix; update all affected plans and Markdown (provider, model, schema, pipeline, privacy, acceptance, status) and reconcile at the end; run all checks; keep changes reviewable; no push without approval; no AI attribution lines.
+Final deliverable: selected model and evidence (or the blocker), candidates and exclusions, structured-output findings, architecture, before and after metrics with denominators, tests and checks, limitations, remaining human, privacy, audio and Quest validation, changed files and commits, flag OFF, documents reconciled.
+(This entry keeps the requirements, shortened.)
+``````

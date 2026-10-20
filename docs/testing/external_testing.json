@@ -229,7 +229,8 @@
     "p1-voice-input-s02",
     "p1-ai-language-s15",
     "p1-ai-language-s16",
-    "p1-ai-language-s17"
+    "p1-ai-language-s17",
+    "p1-ai-language-s18"
    ],
    "needs": "Quest with the current Unity build and the SpeechInterpretation script wired into the scene; the backend with the recogniser, the interpretation route and the dialogue route reachable; the speech_interpretation gate may stay OFF for steps 1 to 4 (the route then answers the menu) and is switched on only on a test server for step 5",
    "prepared": [
@@ -254,7 +255,8 @@
     "Stop the interpretation service; confirm the menu appears within the timeout and play continues.",
     "Time 20 utterances from the end of speech to the app's response (evidence, clarification or menu); record the 95th percentile.",
     "Expected since the engine checks the session itself (p1-ai-language-s16): if the app offers speech evidence for ANSWER_QUESTION with no patient question waiting, or for CLOSED_LOOP with no critical result waiting for read-back, the engine REJECTS the logged speech_evidence action (reason NO_PENDING_QUESTION or NO_READBACK_PENDING) and nothing is credited; this is correct, note it, do not report it as a fault.",
-    "Observation for the audio-to-transcript evaluation (not a pass or fail, docs/testing/asr_safety_evaluation.md): say five sentences with a negation or a self-correction (\"I haven't asked about your allergies yet\", \"I explained it, no wait, I didn't\") into push-to-talk; write down, for each, what you said and what the transcript showed, and what the app did. A transcript that lost the negation is a finding for part C, not a failure of this check."
+    "Observation for the audio-to-transcript evaluation (not a pass or fail, docs/testing/asr_safety_evaluation.md): say five sentences with a negation or a self-correction (\"I haven't asked about your allergies yet\", \"I explained it, no wait, I didn't\") into push-to-talk; write down, for each, what you said and what the transcript showed, and what the app did. A transcript that lost the negation is a finding for part C, not a failure of this check.",
+    "Semantic reader (p1-ai-language-s18): with `INTERPRET_LLM_ENABLED=false` (the shipped state) nothing changes. Only on a TEST server, with synthetic sentences and never real trainee speech, and only after the owner approves the privacy decision (DT-236): turn it on and confirm that a fenced or slow model reply falls back to the shipped decision (menu or abstention, never a new credit), that critical topics and refused sentences cause no model call, and note the response time. NOT RUN."
    ],
    "pass_rule": "No speech evidence with the gate off; with the gate on, only in-window, performed, non-critical acts are recorded, each once; critical topics and non-performed sentences are never credited; at most one clarification, then the menu; patient replies stay approved; the menu works without the service; the 95th percentile response time is recorded (the 4 s round-trip target of C31 is the reference).",
    "who": "Sannan",
@@ -473,7 +475,8 @@
     "p1-ai-language-s14",
     "p1-ai-language-s15",
     "p1-ai-language-s16",
-    "p1-ai-language-s17"
+    "p1-ai-language-s17",
+    "p1-ai-language-s18"
    ],
    "needs": "People; the scenario cards `docs/research/classifier_benchmark/cards_dev.csv` and `cards_test.csv`; `tools/bench/dataset.py`; `uv` with scikit-learn; Ollama with all-minilm:22m",
    "prepared": [
@@ -500,7 +503,10 @@
     "docs/research/safety_set_audit.md",
     "tests/safety_challenge/frozen.json",
     "docs/testing/asr_safety_evaluation.md",
-    "docs/research/dt233_final_failures.md"
+    "docs/research/dt233_final_failures.md",
+    "tools/bench/semantic_eval.py",
+    "docs/research/semantic_reader_pipeline.md",
+    "docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md"
    ],
    "procedure": [
     "Read docs/research/classifier_benchmark/annotation_guide.md. Each author writes the sentences for their cards (100 dev, 200 test, about 1.5 hours each), in their own words, without seeing the other author's.",
@@ -510,7 +516,8 @@
     "Run `uv run --project tools --with scikit-learn tools/bench/bench_classifier.py --data independent` once; the test split is scored once (a lock file records it). Then `uv run --project tools tools/bench/classifier_report.py` to regenerate the comparison page.",
     "Save reports/ai/classifier-bench-independent.json; run `uv run --project tools tools/eval/ai_gate.py` to recompute content/ai/features.json.",
     "Part B (unsafe speech, p1-ai-language-s16): follow docs/testing/safety_challenge_review.md. Two reviewers fill the blind sheet tests/safety_challenge/review_sheet.csv (no system output on it), an adjudicator settles differences, new authors add independent items for each unsafe family, the merged set is frozen (SHA-256) and the configuration frozen (the `configuration` block of tools/bench/safety_eval.py) BEFORE the single scored run; report counts with Wilson intervals, by family, baseline 4a2ed00 against the candidate.",
-    "Part B kit commands (p1-ai-language-s17): `uv run --project tools tools/bench/safety_review_kit.py package --out <folder outside the repository>` writes one blind file per reviewer (id, sentence, situation, act_in_question, label, note; own order; no expected label, template, category, seed, split or system output); the reviewers fill `label` and `note` alone; `agree` writes the adjudication sheet (differences and unclear rows, with the two labels only); the adjudicator fills `adjudicated_label`; `merge` refuses to run without every adjudication and writes an override file with the label-error rate of the by-construction labels. Record the roles, dates and file hashes in docs/testing/results/EX-01-part-b.md. Part C (audio to transcript, docs/testing/asr_safety_evaluation.md) is a design only, not run."
+    "Part B kit commands (p1-ai-language-s17): `uv run --project tools tools/bench/safety_review_kit.py package --out <folder outside the repository>` writes one blind file per reviewer (id, sentence, situation, act_in_question, label, note; own order; no expected label, template, category, seed, split or system output); the reviewers fill `label` and `note` alone; `agree` writes the adjudication sheet (differences and unclear rows, with the two labels only); the adjudicator fills `adjudicated_label`; `merge` refuses to run without every adjudication and writes an override file with the label-error rate of the by-construction labels. Record the roles, dates and file hashes in docs/testing/results/EX-01-part-b.md. Part C (audio to transcript, docs/testing/asr_safety_evaluation.md) is a design only, not run.",
+    "Semantic reader (p1-ai-language-s18): score the independent set with the FROZEN pipeline (model identifier, prompt wording, schema version, cap and thresholds recorded) once, with `tools/bench/semantic_eval.py` against the integrated pipeline, and report schema compliance (first attempt and after the retry), recall, credited precision, critical and adversarial false credits, latency percentiles and tokens next to the shipped path on the same items. The acceptance targets are engineering targets, PENDING the owner."
    ],
    "pass_rule": "classifier-bench-independent.json exists with `valid_for_claims: true`; macro-F1 and credited-precision lower bounds meet the thresholds in content/ai/thresholds.json; critical acts credited from speech = 0; critical sentences credited under an ordinary act = 0. The gate then turns the `classifier` feature on by itself; nobody edits features.json by hand.",
    "evidence": [

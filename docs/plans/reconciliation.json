@@ -381,6 +381,34 @@
    "external": "EX-01 (people: two reviewers, an adjudicator, authors, speakers for part C); Sannan: DC-08 and DC-09 (NOT RUN)",
    "implementation": "complete"
   },
+  "p1-ai-language-s18": {
+   "owner": "Ruhan",
+   "before": "Planned 20 Oct 2026 (ADR-0024); nothing of this step existed before",
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md",
+    "docs/research/semantic_reader_pipeline.md",
+    "server/interpret/semantic.py",
+    "server/interpret/llm/schema.py",
+    "server/interpret/llm/strict.py",
+    "server/interpret/llm/provider.py",
+    "server/interpret/llm/reader.py",
+    "server/interpret/llm/prompt.py",
+    "server/tests/test_semantic_reader.py",
+    "server/tests/test_semantic_interpreter.py",
+    "server/tests/test_semantic_eval_tool.py",
+    "tools/bench/semantic_eval.py",
+    "reports/ai/semantic-replay-cloud-gemma31b-full-head-dev.json",
+    "reports/ai/semantic-replay-cloud-gemma31b-full-head-test.json",
+    "reports/ai/semantic-replay-cloud-gemma31b-full-head-test2.json",
+    "tools/ci/mutation_safety.py",
+    "tools/ci/test_mutation_safety.py"
+   ],
+   "measured": "20 Oct 2026, synthetic and preliminary. Structured output on the cloud route: unsupported (official page; 6 of 6 non-conforming replies with format and response_format on gemma4:31b). 62 server tests pass without the cloud; 17 mutants of the new code killed. Integrated pipeline replayed on the recorded Gemma replies of tests/action_bench_v1 (strict validation, shipped fallback): dev / test / test2 recall 88 / 75 / 75 of 140 against 95 / 76 / 79 for the shipped path, credited precision 88/89, 75/75, 75/75, critical false credit 0/40, adversarial 0/300, out-of-window offers 0 on all three; strict validity of the recorded replies 92.2 / 91.4 / 78.3 percent (fences 36 / 38 / 104). Acceptance: recall 85 percent NOT MET, schema 99.5 percent NOT MET on recorded replies (live retry unmeasured); safety criteria met on synthetic rows only",
+   "open": "NOT done: the bounded model comparison (gemma4:31b, deepseek-v4.1-flash, mistral-large-4) and a live schema-compliance run (DT-237, need the owner's approval of the usage); the privacy and consent decision for sending trainee speech to a third party (DT-236); an independent critical-content signal to lift the recall ceiling set by the critical-mass cap (DT-238); independent validation (EX-01); real audio; the headset checks (DC-08, DC-09, NOT RUN)",
+   "external": "EX-01 (people); privacy review (owner); Sannan: DC-08 and DC-09 (NOT RUN)",
+   "implementation": "complete"
+  },
   "p1-backend-s01": {
    "owner": "Moiz",
    "before": "Approved (tick)",

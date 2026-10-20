@@ -147,6 +147,7 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 - [ ] Decision engine: 5 outcomes + master decision (B-R12/B-R17)
 - [x] Speech interpretation against the scenario state (ADR-0022, built and tested 19 Oct; headset and independent evidence outstanding): engine context and eligibility (p1-ai-language-s10), `/interpret` service with deterministic validation (s11), clarification and menu fallback with the Unity script (s12), dialogue safety (s13), benchmark and the `speech_interpretation` gate, OFF (s14)
 - [x] Speech recall and unsafe-speech hardening (p1-ai-language-s15, s16; ADR-0022 addendum, ADR-0023; built and tested 20 Oct, synthetic): engine thresholds from the classifier head, cap 0.05, audit of every layer, metamorphic sets, mutation-tested guards, the engine checks the waiting question and read-back; independent review (EX-01 part B) and the headset checks outstanding, gate OFF
+- [x] Ollama Cloud semantic reader behind strict validation (p1-ai-language-s18, ADR-0024; built and tested 20 Oct, behind two OFF switches; recall not better than the shipped path; model comparison, live run, privacy decision, independent review and the headset checks outstanding)
 
 **🔵 Sannan**
 - [ ] Order panel, tubes + bedside labelling, results panel with H/L + comments + phone (B-S9/S10)

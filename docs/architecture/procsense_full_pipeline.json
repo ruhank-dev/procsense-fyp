@@ -11318,7 +11318,22 @@
     "tools/bench/safety_frozen.py",
     "tests/safety_challenge/frozen.json",
     "tools/ci/test_safety_review_kit.py",
-    "reports/ai/safety/set-audit.json"
+    "reports/ai/safety/set-audit.json",
+    "docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md",
+    "docs/research/semantic_reader_pipeline.md",
+    "server/interpret/semantic.py",
+    "server/interpret/llm/schema.py",
+    "server/interpret/llm/strict.py",
+    "server/interpret/llm/provider.py",
+    "server/interpret/llm/reader.py",
+    "server/interpret/llm/prompt.py",
+    "server/tests/test_semantic_reader.py",
+    "server/tests/test_semantic_interpreter.py",
+    "server/tests/test_semantic_eval_tool.py",
+    "tools/bench/semantic_eval.py",
+    "reports/ai/semantic-replay-cloud-gemma31b-full-head-dev.json",
+    "reports/ai/semantic-replay-cloud-gemma31b-full-head-test.json",
+    "reports/ai/semantic-replay-cloud-gemma31b-full-head-test2.json"
    ],
    "lineage": [
     "p1-ai-language-s06, s07",
@@ -11358,7 +11373,8 @@
     "labelled set not available (DT-097)",
     "critical acts misclassified (never credited from AI alone)",
     "recall: about 45 to 56 percent of legitimate synthetic sentences are accepted after the 20 Oct 2026 follow-up (the remaining misses are critical mass at or above 0.05, act confusions and cue ambiguity); the revised cap (0.05) and the calibrated engine thresholds were judged only on synthetic sentences (EX-01, DT-231)",
-    "unsafe speech: on a final split not used for any change the engine still accepted 10 of 407 must-not-credit rows (2.5 percent, CI 1.3 to 4.5) after the 20 Oct 2026 hardening (41 of 407 before); a recogniser that drops a negation cannot be refused by any text rule; every label is by construction and no person has reviewed the sets (EX-01, DT-233, DT-234)"
+    "unsafe speech: on a final split not used for any change the engine still accepted 10 of 407 must-not-credit rows (2.5 percent, CI 1.3 to 4.5) after the 20 Oct 2026 hardening (41 of 407 before); a recogniser that drops a negation cannot be refused by any text rule; every label is by construction and no person has reviewed the sets (EX-01, DT-233, DT-234)",
+    "semantic reader: the cloud route enforces no schema (strict validation, 8 to 22 percent of recorded replies were malformed on first attempt), the pipeline did not beat the shipped path on recall (-7, -1, -4 of 140) because the critical-mass cap and the critical-cue menu set the ceiling, trainee speech would leave the machine, labels are synthetic (ADR-0024)"
    ],
    "tasks": [
     "p1-ai-language-s06",
@@ -11370,7 +11386,8 @@
     "p1-ai-language-s14",
     "p1-ai-language-s15",
     "p1-ai-language-s16",
-    "p1-ai-language-s17"
+    "p1-ai-language-s17",
+    "p1-ai-language-s18"
    ],
    "phase": "PH-15",
    "tier": "P1",
@@ -11391,7 +11408,8 @@
      "independent human-labelled set (EX-01)",
      "independent evaluation of the revised critical-mass cap and the calibrated engine thresholds (p1-ai-language-s15, DT-231, EX-01)",
      "independent human review and the independent run of the unsafe-speech sets, and the residual mechanisms found by the one-time scoring of the final split (p1-ai-language-s16, EX-01, DT-233, DT-234)",
-     "blind human review and the independent run of the unsafe-speech sheet, the audio-to-transcript evaluation (design only), and a fresh final set for any fix of the DT-233 mechanisms (p1-ai-language-s17, EX-01, DT-233, DT-234, DT-235)"
+     "blind human review and the independent run of the unsafe-speech sheet, the audio-to-transcript evaluation (design only), and a fresh final set for any fix of the DT-233 mechanisms (p1-ai-language-s17, EX-01, DT-233, DT-234, DT-235)",
+     "model comparison and live schema-compliance measurement of the Ollama Cloud semantic reader, privacy decision, an independent critical-content signal, independent validation (p1-ai-language-s18, DT-236, DT-237, DT-238, EX-01)"
     ],
     "deterministic_foundation": "Eligibility from the behaviour windows of content/assessment/mapping.json, assertion status, critical exclusion, evidence span and duplicate checks, and the engine's EvidenceStore as the only authority.",
     "ai_questions": {
@@ -11411,7 +11429,7 @@
       "kind": "AI (LLM)",
       "status": "Implemented but incompletely tested",
       "purpose": "Propose acts for a sentence; never credits.",
-      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022). Critical-mass cap 0.05 and the engine's calibrated evidence thresholds since 20 Oct 2026 (p1-ai-language-s15). Unsafe-speech hardening 20 Oct 2026: wider assertion kinds, the engine checks the waiting question and read-back itself, reason-coded audit, mutation-tested guards (p1-ai-language-s16, ADR-0023).",
+      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022). Critical-mass cap 0.05 and the engine's calibrated evidence thresholds since 20 Oct 2026 (p1-ai-language-s15). Unsafe-speech hardening 20 Oct 2026: wider assertion kinds, the engine checks the waiting question and read-back itself, reason-coded audit, mutation-tested guards (p1-ai-language-s16, ADR-0023). Ollama Cloud semantic reader behind strict Pydantic validation and the same deterministic checks, OFF by default (p1-ai-language-s18, ADR-0024).",
       "models": [
        "MC-03"
       ],
@@ -11452,7 +11470,8 @@
        "p1-ai-language-s07",
        "p1-ai-infrastructure-s04",
        "p1-ai-language-s15",
-       "p1-ai-language-s16"
+       "p1-ai-language-s16",
+       "p1-ai-language-s18"
       ]
      },
      {
@@ -11605,6 +11624,10 @@
      {
       "date": "2026-10-20",
       "change": "Review readiness and audit (p1-ai-language-s17): blind review kit, set audit, frozen-test protections, DT-233 mechanism audit, audio evaluation design, mutation tests extended to route fallbacks and the store end to end; frozen candidate unchanged; no human review, no Quest check, gate OFF."
+     },
+     {
+      "date": "2026-10-20",
+      "change": "Ollama Cloud semantic reader (p1-ai-language-s18): strict structured output, provider interface, integrated pipeline, 62 tests and 17 mutants, replay evidence on dev, test and test2; recall not better than the shipped path, model comparison and live run await approval; both switches OFF."
      }
     ]
    },
@@ -25429,7 +25452,8 @@
     "p1-ai-language-s14",
     "p1-ai-language-s15",
     "p1-ai-language-s16",
-    "p1-ai-language-s17"
+    "p1-ai-language-s17",
+    "p1-ai-language-s18"
    ],
    "features": [
     "C36",
