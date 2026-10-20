@@ -26,10 +26,20 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[2]
 MAPPING = ROOT / "content" / "assessment" / "mapping.json"
+INTERPRET_VERSION = "interpret-2026-10-20.2"       # the rule set behind a decision (audit rows carry it); bump when a rule changes
 CLARIFY_LIMIT = 1
 CLARIFY_TOP_MIN, CLARIFY_SECOND_MIN, PENDING_ANSWER_MIN = 0.35, 0.15, 0.25
 CRITICAL_ACT_CUE = {"CONFIRM_IDENTITY": "identity", "STATE_ALLERGY": "allergy", "CONSENT_SIGN": "consent", "HANDOVER_CRITICAL_ELEMENT": "handover", "SBAR_ELEMENT": "handover"}
 SAFETY_PREFIXES = ("NOT_PERFORMED", "CRITICAL", "NOT_ELIGIBLE", "ALREADY_ACCEPTED", "QUESTION_NOT_PERFORMING_ACT", "NO_PENDING_QUESTION", "NO_READBACK_PENDING")
+
+
+def reason_codes(reasons: list[str], decision: str = "") -> list[str]:
+    """Audit-safe codes for a decision's reasons (server/middleware/audit.py keeps only A-Z, 0-9 and _): "NOT_PERFORMED:denied" -> "NOT_PERFORMED_DENIED". Reasons are rule names, statuses and act names, never words of the utterance; a decision with none is named by the decision itself."""
+    out = []
+    for r in reasons or [decision or "NO_REASON"]:
+        code = "".join(c if c.isalnum() else "_" for c in str(r).upper()).strip("_")[:40] or "NO_REASON"
+        out.append(code if code[0].isalpha() else "R_" + code[:38])
+    return out
 
 
 def _mapping() -> dict:
@@ -41,6 +51,15 @@ def menu_for(context) -> list[dict]:
     m, steps = _mapping(), set(context.steps)
     ids = {e.behaviour for e in context.eligible} | {b for b, v in m.items() if steps & set(v["steps"]) and v["actions"]}
     return [{"behaviour": b, "label": m[b]["label"], "actions": list(m[b]["actions"])} for b in sorted(ids) if m[b]["actions"]]
+
+
+def safe_interpret(interpreter, context, utterance: str, utterance_id: str, clarifications_used: int = 0) -> tuple[dict, bool]:
+    """interpreter.interpret, but a failure of the classifier or the embedder is the menu with no evidence, never an error (returns (decision, failed)). `except Exception` on purpose: a cancellation (asyncio.CancelledError, KeyboardInterrupt) is not caught, so it
+    propagates and no decision, and so no offer, comes out of a request that was cancelled."""
+    try:
+        return interpreter.interpret(context, utterance, utterance_id, clarifications_used), False
+    except Exception:
+        return {"decision": "MENU", "reasons": ["INTERPRET_ERROR"], "evidence": None, "clarify": "", "options": [], "menu": menu_for(context), "points_to": [], "source": "interpret"}, True
 
 
 class Interpreter:

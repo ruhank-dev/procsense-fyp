@@ -1,0 +1,1628 @@
+{
+ "split": "challenge",
+ "name": "baseline-4a2ed00",
+ "configuration": {
+  "implementation": "artifacts\\baseline-4a2ed00",
+  "service_files": {
+   "server/classify/assertion.py": "adff81ba43df9105",
+   "server/classify/ensemble.py": "f7722194cf309b8a",
+   "server/classify/embedding.py": "3d2d50ec0d9c03ba",
+   "server/classify/hybrid.py": "3364c1296148c106",
+   "server/classify/tfidf.py": "f7823aa4ad8d374b",
+   "server/classify/guard.py": "6785f249e846f753",
+   "server/interpret/decide.py": "5d3090b02b99ddce",
+   "server/interpret/validate.py": "c9b02036b75e73ef",
+   "server/interpret/status.py": "58ec48d4a67eedf8",
+   "content/assessment/act_head_hybrid.json": "009bd079f057b2d9",
+   "content/assessment/mapping.json": "2f6ef6fc54fe752f",
+   "content/ai/critical_cues.json": "558b3c424ff66835",
+   "content/ai/interpret_phrases.json": "940cf94636204d3f",
+   "content/ai/lexicon.json": "7ebfd2e9150fad0f"
+  },
+  "engine_files": {
+   "src/ProcSense.Core/Scoring/Evidence.cs": "6cbf51c3b507b80e",
+   "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs": "0157a60665d44882",
+   "src/ProcSense.Cli/Commands.cs": "b6bdf4fb7e838e23"
+  },
+  "interpret_version": "pre-versioned (4a2ed00 or earlier)",
+  "critical_mass_max": 0.05,
+  "embedding_model": "all-minilm:22m",
+  "checkout_commit": "4a2ed00ce96feb414149ed6a5bac705e89f381c5",
+  "checkout_dirty_in_code_paths": true,
+  "command": "tools/.venv/Scripts/python.exe tools/bench/safety_eval.py --split <split> --name <name> [--impl DIR] --write"
+ },
+ "synthetic": true,
+ "independent": false,
+ "labels": "provisional, by construction",
+ "rows": 507,
+ "seconds": 3.4,
+ "expected": {
+  "ambiguous_review": 42,
+  "no_credit": 395,
+  "credit_allowed": 70
+ },
+ "session_pairs_not_applicable": 10,
+ "unsafe_credit": {
+  "credited": 64,
+  "of": 385,
+  "rate": 0.1662,
+  "wilson95": [
+   0.1324,
+   0.2067
+  ],
+  "note": "rows that must never be credited and were credited by the engine in some view; zero on a finite synthetic set is not zero risk"
+ },
+ "engine_backstop_credit": {
+  "credited": 0,
+  "of": 18,
+  "note": "session pair with a STALE context: only the engine's own duplicate rule remains"
+ },
+ "critical": {
+  "credited": 0,
+  "of": 28
+ },
+ "out_of_window": {
+  "credited": 0,
+  "of": 14
+ },
+ "legitimate": {
+  "credited_right_act": 34,
+  "of": 70,
+  "rate": 0.4857,
+  "wilson95": [
+   0.3725,
+   0.6005
+  ],
+  "credited_under_another_act": 1
+ },
+ "credited_precision": {
+  "right": 34,
+  "credited": 99,
+  "rate": 0.3434,
+  "wilson95": [
+   0.2573,
+   0.4412
+  ],
+  "note": "rows credited (once each) and, of them, those that were performed acts credited under the right act"
+ },
+ "decisions": {
+  "legitimate": {
+   "ABSTAIN": 25,
+   "OFFER_EVIDENCE": 35,
+   "MENU": 10
+  },
+  "must_not_credit": {
+   "ABSTAIN": 258,
+   "MENU": 58,
+   "OFFER_EVIDENCE": 65,
+   "CLARIFY": 4
+  }
+ },
+ "ambiguous_review": {
+  "rows": 42,
+  "credited": 13,
+  "by_category": {
+   "asr_negation_lost": [
+    7,
+    14
+   ],
+   "mixed_critical": [
+    0,
+    14
+   ],
+   "negation_scope": [
+    6,
+    14
+   ]
+  }
+ },
+ "by_category": {
+  "asr_negation_lost": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 7
+  },
+  "combination": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 4,
+   "backstop_credited": 0
+  },
+  "contentless": {
+   "expected": "no_credit",
+   "rows": 6,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_claim": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_negated": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_plain": {
+   "expected": "no_credit",
+   "rows": 15,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_behaviour": {
+   "expected": "no_credit",
+   "rows": 8,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_first": {
+   "expected": "credit_allowed",
+   "rows": 28,
+   "credited_right_act": 18
+  },
+  "duplicate_utterance": {
+   "expected": "no_credit",
+   "rows": 10,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "false_completion": {
+   "expected": "no_credit",
+   "rows": 3,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "future": {
+   "expected": "no_credit",
+   "rows": 40,
+   "credited": 12,
+   "backstop_credited": 0
+  },
+  "hedged": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 4,
+   "backstop_credited": 0
+  },
+  "hypothetical": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 5,
+   "backstop_credited": 0
+  },
+  "incomplete": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 1,
+   "backstop_credited": 0
+  },
+  "mixed_critical": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 0
+  },
+  "natural": {
+   "expected": "credit_allowed",
+   "rows": 28,
+   "credited_right_act": 10
+  },
+  "negation": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 6,
+   "backstop_credited": 0
+  },
+  "negation_scope": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 6
+  },
+  "no_context": {
+   "expected": "no_credit",
+   "rows": 2,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "other_person": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 2,
+   "backstop_credited": 0
+  },
+  "out_of_window": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "plain": {
+   "expected": "credit_allowed",
+   "rows": 14,
+   "credited_right_act": 6
+  },
+  "question_advice": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 7,
+   "backstop_credited": 0
+  },
+  "question_statement": {
+   "expected": "no_credit",
+   "rows": 11,
+   "credited": 4,
+   "backstop_credited": 0
+  },
+  "quoted": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 9,
+   "backstop_credited": 0
+  },
+  "retraction": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 5,
+   "backstop_credited": 0
+  },
+  "unfinished": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 5,
+   "backstop_credited": 0
+  }
+ },
+ "combinations_by_template": {
+  "X11": {
+   "credited": 0,
+   "of": 14
+  },
+  "X3": {
+   "credited": 4,
+   "of": 14
+  },
+  "X4": {
+   "credited": 0,
+   "of": 14
+  },
+  "X8": {
+   "credited": 0,
+   "of": 14
+  }
+ },
+ "refusal_reasons_for_must_not_credit": {
+  "CRITICAL_MASS": 347,
+  "CRITICAL_TOPIC": 91,
+  "GATE_NOT_CREDITED": 41,
+  "NOT_PERFORMED": 39,
+  "NO_ACT": 20,
+  "OFFER_EVIDENCE": 15,
+  "ALREADY_ACCEPTED": 14,
+  "NO_ELIGIBLE_OBJECTIVE": 14,
+  "QUESTION_NOT_PERFORMING_ACT": 6,
+  "NOT_ELIGIBLE": 3,
+  "NO_PENDING_QUESTION": 2
+ },
+ "false_rejection_reasons": {
+  "CRITICAL_MASS": 14,
+  "CRITICAL_TOPIC": 10,
+  "GATE_NOT_CREDITED": 5,
+  "QUESTION_NOT_PERFORMING_ACT": 3,
+  "NO_PENDING_QUESTION": 2,
+  "NOT_ELIGIBLE": 1,
+  "OFFER_EVIDENCE": 1
+ },
+ "latency_ms": {
+  "p50": 1.33,
+  "p95": 1.69,
+  "max": 17.84,
+  "n": 880
+ },
+ "errors": 0,
+ "failures": [
+  {
+   "id": "c00030",
+   "text": "If the nurse told you that your family could wait, then I don't need to.",
+   "category": "combination",
+   "template": "X3",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00034",
+   "text": "If the nurse read back the fluid rate, then I don't need to.",
+   "category": "combination",
+   "template": "X3",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00037",
+   "text": "If the nurse explained the recovery area, then I don't need to.",
+   "category": "combination",
+   "template": "X3",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00038",
+   "text": "If the nurse explained the urine test, then I don't need to.",
+   "category": "combination",
+   "template": "X3",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00164",
+   "text": "I am going to ask you to say what the operation is for after the break.",
+   "category": "future",
+   "template": "F3",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00165",
+   "text": "I am going to check which arm you mean after the break.",
+   "category": "future",
+   "template": "F3",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00166",
+   "text": "I am going to read back the fluid rate after the break.",
+   "category": "future",
+   "template": "F3",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00168",
+   "text": "I am going to put the clip on your finger now after the break.",
+   "category": "future",
+   "template": "F3",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00170",
+   "text": "I am going to explain the urine test after the break.",
+   "category": "future",
+   "template": "F3",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00174",
+   "text": "Next I plan to acknowledge how hard the wait is.",
+   "category": "future",
+   "template": "F4",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00182",
+   "text": "Next I plan to explain the urine test.",
+   "category": "future",
+   "template": "F4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00184",
+   "text": "Next I plan to report the broken bell.",
+   "category": "future",
+   "template": "F4",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00192",
+   "text": "I promise I will read back the fluid rate once the paperwork is done.",
+   "category": "future",
+   "template": "F9",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00196",
+   "text": "I promise I will explain the urine test once the paperwork is done.",
+   "category": "future",
+   "template": "F9",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00197",
+   "text": "I promise I will reassure you about pain control once the paperwork is done.",
+   "category": "future",
+   "template": "F9",
+   "act": "REASSURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00198",
+   "text": "I promise I will report the broken bell once the paperwork is done.",
+   "category": "future",
+   "template": "F9",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00202",
+   "text": "I think I might have told you that your family can wait, I'm not sure.",
+   "category": "hedged",
+   "template": "U5",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00205",
+   "text": "I think I might have checked which arm you meant, I'm not sure.",
+   "category": "hedged",
+   "template": "U5",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00210",
+   "text": "I think I might have explained the urine test, I'm not sure.",
+   "category": "hedged",
+   "template": "U5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00212",
+   "text": "I think I might have reported the broken bell, I'm not sure.",
+   "category": "hedged",
+   "template": "U5",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00230",
+   "text": "I would tell you that your family can wait if there were time.",
+   "category": "hypothetical",
+   "template": "H4",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00236",
+   "text": "I would put the clip on your finger now if there were time.",
+   "category": "hypothetical",
+   "template": "H4",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00237",
+   "text": "I would explain the recovery area if there were time.",
+   "category": "hypothetical",
+   "template": "H4",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00238",
+   "text": "I would explain the urine test if there were time.",
+   "category": "hypothetical",
+   "template": "H4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00240",
+   "text": "I would report the broken bell if there were time.",
+   "category": "hypothetical",
+   "template": "H4",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00249",
+   "text": "Um can someone get the, sorry, where was I",
+   "category": "incomplete",
+   "template": "I2",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00312",
+   "text": "I forgot to acknowledge how hard the wait is.",
+   "category": "negation",
+   "template": "N4",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00314",
+   "text": "I forgot to tell you that your family can wait.",
+   "category": "negation",
+   "template": "N4",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00317",
+   "text": "I forgot to check which arm you mean.",
+   "category": "negation",
+   "template": "N4",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00320",
+   "text": "I forgot to put the clip on your finger now.",
+   "category": "negation",
+   "template": "N4",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00322",
+   "text": "I forgot to explain the urine test.",
+   "category": "negation",
+   "template": "N4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00324",
+   "text": "I forgot to report the broken bell.",
+   "category": "negation",
+   "template": "N4",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00352",
+   "text": "My colleague explained the urine test before I came in.",
+   "category": "other_person",
+   "template": "A3",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00366",
+   "text": "The doctor before me explained the urine test.",
+   "category": "other_person",
+   "template": "A4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00404",
+   "text": "Do I need to read back the fluid rate?",
+   "category": "question_advice",
+   "template": "R3",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00412",
+   "text": "Please remember to acknowledge how hard the wait is.",
+   "category": "question_advice",
+   "template": "R4",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00414",
+   "text": "Please remember to tell you that your family can wait.",
+   "category": "question_advice",
+   "template": "R4",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00418",
+   "text": "Please remember to read back the fluid rate.",
+   "category": "question_advice",
+   "template": "R4",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00420",
+   "text": "Please remember to put the clip on your finger now.",
+   "category": "question_advice",
+   "template": "R4",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00422",
+   "text": "Please remember to explain the urine test.",
+   "category": "question_advice",
+   "template": "R4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00424",
+   "text": "Please remember to report the broken bell.",
+   "category": "question_advice",
+   "template": "R4",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00429",
+   "text": "Would it be right to say that so fluids at a hundred millilitres an hour, confirmed?",
+   "category": "question_statement",
+   "template": "R9",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00430",
+   "text": "Would it be right to say that can someone get the surgical registrar to come down?",
+   "category": "question_statement",
+   "template": "R9",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00431",
+   "text": "Would it be right to say that now I'm putting a small clip on your finger?",
+   "category": "question_statement",
+   "template": "R9",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00435",
+   "text": "Would it be right to say that nothing happens when you press the bell in bay two?",
+   "category": "question_statement",
+   "template": "R9",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00437",
+   "text": "I heard someone say, I know the waiting has been difficult for you.",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00443",
+   "text": "I heard someone say, So fluids at a hundred millilitres an hour, confirmed.",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00444",
+   "text": "I heard someone say, Can someone get the surgical registrar to come down?",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00445",
+   "text": "I heard someone say, Now I'm putting a small clip on your finger.",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00446",
+   "text": "I heard someone say, You wake up in recovery with a nurse beside you.",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00447",
+   "text": "I heard someone say, We test the sample for signs of a water infection.",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00448",
+   "text": "I heard someone say, You will have pain relief as soon as you need it.",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "REASSURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00450",
+   "text": "I heard someone say, Can we have a portable chest film?",
+   "category": "quoted",
+   "template": "Q3",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00461",
+   "text": "The script reads: \"We test the sample for signs of a water infection.\"",
+   "category": "quoted",
+   "template": "Q4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00479",
+   "text": "I know the waiting has been difficult for you. Wait, that was the wrong patient.",
+   "category": "retraction",
+   "template": "C6",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00486",
+   "text": "Can someone get the surgical registrar to come down? Wait, that was the wrong patient.",
+   "category": "retraction",
+   "template": "C6",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00487",
+   "text": "Now I'm putting a small clip on your finger. Wait, that was the wrong patient.",
+   "category": "retraction",
+   "template": "C6",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00489",
+   "text": "We test the sample for signs of a water infection. Wait, that was the wrong patient.",
+   "category": "retraction",
+   "template": "C6",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00492",
+   "text": "Can we have a portable chest film? Wait, that was the wrong patient.",
+   "category": "retraction",
+   "template": "C6",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00493",
+   "text": "I was supposed to acknowledge how hard the wait is but I ran out of time.",
+   "category": "unfinished",
+   "template": "U2",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00495",
+   "text": "I was supposed to tell you that your family can wait but I ran out of time.",
+   "category": "unfinished",
+   "template": "U2",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00501",
+   "text": "I was supposed to put the clip on your finger now but I ran out of time.",
+   "category": "unfinished",
+   "template": "U2",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00503",
+   "text": "I was supposed to explain the urine test but I ran out of time.",
+   "category": "unfinished",
+   "template": "U2",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "c00505",
+   "text": "I was supposed to report the broken bell but I ran out of time.",
+   "category": "unfinished",
+   "template": "U2",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  }
+ ]
+}

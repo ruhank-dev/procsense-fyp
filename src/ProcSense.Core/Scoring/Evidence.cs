@@ -53,13 +53,19 @@ namespace ProcSense.Core.Scoring
             string utterance = e.Params.TryGetValue(SpeechEvidenceSubsystem.UtteranceParam, out var u) ? u : "";
             double confidence = e.Params.TryGetValue(SpeechEvidenceSubsystem.ConfidenceParam, out var c) && double.TryParse(c, NumberStyles.Float, CultureInfo.InvariantCulture, out var d) ? d : 0;
             string act = e.Params.TryGetValue(SpeechEvidenceSubsystem.ActParam, out var a) ? a : "", span = e.Params.TryGetValue(SpeechEvidenceSubsystem.SpanParam, out var sp) ? sp : "";
-            var refs = new[] { e.Seq };
+            SubmitUtterance(utterance, act, span, confidence, steps, new[] { e.Seq });
+        }
+
+        /// <summary>One interpreted utterance: the same utterance id is judged once (a repeat is refused as DUPLICATE_UTTERANCE and credits nothing), then <see cref="Submit(string, string, string, double, IReadOnlyCollection{int}, IReadOnlyList{int})"/> decides. The path of a logged <c>speech_evidence</c> action and of the headless <c>evidence-check</c> command.</summary>
+        public EvidenceRecord SubmitUtterance(string utterance, string act, string span, double confidence, IReadOnlyCollection<int> steps, IReadOnlyList<int> logRefs)
+        {
             if (utterance.Length > 0 && !_utterances.Add(utterance))
             {
-                _records.Add(new EvidenceRecord(_records.Count, "ai", "", act, "", span, confidence, refs, false, DuplicateUtterance));
-                return;
+                var dup = new EvidenceRecord(_records.Count, "ai", "", act, "", span, confidence, logRefs, false, DuplicateUtterance);
+                _records.Add(dup);
+                return dup;
             }
-            Submit(act, "", span, confidence, steps, refs);
+            return Submit(act, "", span, confidence, steps, logRefs);
         }
 
         /// <summary>A classified act from speech. <paramref name="step"/> is the workflow step number the trainee is in, used for the context check.</summary>

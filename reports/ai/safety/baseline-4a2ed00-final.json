@@ -1,0 +1,1169 @@
+{
+ "split": "final",
+ "name": "baseline-4a2ed00",
+ "configuration": {
+  "implementation": "artifacts\\baseline-4a2ed00",
+  "service_files": {
+   "server/classify/assertion.py": "adff81ba43df9105",
+   "server/classify/ensemble.py": "f7722194cf309b8a",
+   "server/classify/embedding.py": "3d2d50ec0d9c03ba",
+   "server/classify/hybrid.py": "3364c1296148c106",
+   "server/classify/tfidf.py": "f7823aa4ad8d374b",
+   "server/classify/guard.py": "6785f249e846f753",
+   "server/interpret/decide.py": "5d3090b02b99ddce",
+   "server/interpret/validate.py": "c9b02036b75e73ef",
+   "server/interpret/status.py": "58ec48d4a67eedf8",
+   "content/assessment/act_head_hybrid.json": "009bd079f057b2d9",
+   "content/assessment/mapping.json": "2f6ef6fc54fe752f",
+   "content/ai/critical_cues.json": "558b3c424ff66835",
+   "content/ai/interpret_phrases.json": "940cf94636204d3f",
+   "content/ai/lexicon.json": "7ebfd2e9150fad0f"
+  },
+  "engine_files": {
+   "src/ProcSense.Core/Scoring/Evidence.cs": "6cbf51c3b507b80e",
+   "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs": "0157a60665d44882",
+   "src/ProcSense.Cli/Commands.cs": "b6bdf4fb7e838e23"
+  },
+  "interpret_version": "pre-versioned (4a2ed00 or earlier)",
+  "critical_mass_max": 0.05,
+  "embedding_model": "all-minilm:22m",
+  "checkout_commit": "4a2ed00ce96feb414149ed6a5bac705e89f381c5",
+  "checkout_dirty_in_code_paths": true,
+  "command": "tools/.venv/Scripts/python.exe tools/bench/safety_eval.py --split <split> --name <name> [--impl DIR] --write"
+ },
+ "synthetic": true,
+ "independent": false,
+ "labels": "provisional, by construction",
+ "rows": 513,
+ "seconds": 11.9,
+ "expected": {
+  "ambiguous_review": 28,
+  "no_credit": 420,
+  "credit_allowed": 65
+ },
+ "session_pairs_not_applicable": 13,
+ "unsafe_credit": {
+  "credited": 41,
+  "of": 407,
+  "rate": 0.1007,
+  "wilson95": [
+   0.0751,
+   0.1338
+  ],
+  "note": "rows that must never be credited and were credited by the engine in some view; zero on a finite synthetic set is not zero risk"
+ },
+ "engine_backstop_credit": {
+  "credited": 0,
+  "of": 13,
+  "note": "session pair with a STALE context: only the engine's own duplicate rule remains"
+ },
+ "critical": {
+  "credited": 0,
+  "of": 28
+ },
+ "out_of_window": {
+  "credited": 0,
+  "of": 14
+ },
+ "legitimate": {
+  "credited_right_act": 36,
+  "of": 65,
+  "rate": 0.5538,
+  "wilson95": [
+   0.4334,
+   0.6683
+  ],
+  "credited_under_another_act": 0
+ },
+ "credited_precision": {
+  "right": 36,
+  "credited": 77,
+  "rate": 0.4675,
+  "wilson95": [
+   0.3603,
+   0.5779
+  ],
+  "note": "rows credited (once each) and, of them, those that were performed acts credited under the right act"
+ },
+ "decisions": {
+  "legitimate": {
+   "OFFER_EVIDENCE": 36,
+   "MENU": 9,
+   "ABSTAIN": 20
+  },
+  "must_not_credit": {
+   "ABSTAIN": 300,
+   "MENU": 60,
+   "OFFER_EVIDENCE": 41,
+   "CLARIFY": 6
+  }
+ },
+ "ambiguous_review": {
+  "rows": 28,
+  "credited": 7,
+  "by_category": {
+   "asr_negation_lost": [
+    7,
+    14
+   ],
+   "mixed_critical": [
+    0,
+    14
+   ]
+  }
+ },
+ "by_category": {
+  "asr_negation_lost": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 7
+  },
+  "combination": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 6,
+   "backstop_credited": 0
+  },
+  "contentless": {
+   "expected": "no_credit",
+   "rows": 6,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_claim": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_other": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_plain": {
+   "expected": "no_credit",
+   "rows": 15,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_behaviour": {
+   "expected": "no_credit",
+   "rows": 6,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_first": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 13
+  },
+  "duplicate_utterance": {
+   "expected": "no_credit",
+   "rows": 7,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "false_completion": {
+   "expected": "no_credit",
+   "rows": 3,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "future": {
+   "expected": "no_credit",
+   "rows": 40,
+   "credited": 5,
+   "backstop_credited": 0
+  },
+  "hedged": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 2,
+   "backstop_credited": 0
+  },
+  "hypothetical": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "incomplete": {
+   "expected": "no_credit",
+   "rows": 13,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "mixed_critical": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 0
+  },
+  "natural": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 16
+  },
+  "negation": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 3,
+   "backstop_credited": 0
+  },
+  "no_context": {
+   "expected": "no_credit",
+   "rows": 2,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "other_person": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 1,
+   "backstop_credited": 0
+  },
+  "out_of_window": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "plain": {
+   "expected": "credit_allowed",
+   "rows": 13,
+   "credited_right_act": 7
+  },
+  "question_advice": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 7,
+   "backstop_credited": 0
+  },
+  "question_statement": {
+   "expected": "no_credit",
+   "rows": 11,
+   "credited": 2,
+   "backstop_credited": 0
+  },
+  "quoted": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 5,
+   "backstop_credited": 0
+  },
+  "reported": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 1,
+   "backstop_credited": 0
+  },
+  "retraction": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 8,
+   "backstop_credited": 0
+  },
+  "unfinished": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 1,
+   "backstop_credited": 0
+  }
+ },
+ "combinations_by_template": {
+  "X12": {
+   "credited": 0,
+   "of": 14
+  },
+  "X5": {
+   "credited": 0,
+   "of": 14
+  },
+  "X6": {
+   "credited": 5,
+   "of": 14
+  },
+  "X9": {
+   "credited": 1,
+   "of": 14
+  }
+ },
+ "refusal_reasons_for_must_not_credit": {
+  "CRITICAL_MASS": 394,
+  "CRITICAL_TOPIC": 94,
+  "NOT_PERFORMED": 74,
+  "GATE_NOT_CREDITED": 28,
+  "NO_ACT": 26,
+  "NO_ELIGIBLE_OBJECTIVE": 14,
+  "ALREADY_ACCEPTED": 13,
+  "QUESTION_NOT_PERFORMING_ACT": 13,
+  "NOT_ELIGIBLE": 12,
+  "OFFER_EVIDENCE": 12,
+  "NO_PENDING_QUESTION": 1,
+  "NO_READBACK_PENDING": 1
+ },
+ "false_rejection_reasons": {
+  "CRITICAL_MASS": 19,
+  "CRITICAL_TOPIC": 9,
+  "NO_PENDING_QUESTION": 1
+ },
+ "latency_ms": {
+  "p50": 13.89,
+  "p95": 19.67,
+  "max": 1362.83,
+  "n": 897
+ },
+ "errors": 0,
+ "failures": [
+  {
+   "id": "f01626",
+   "text": "I wondered whether I should ask about help at home.",
+   "category": "combination",
+   "template": "X6",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01628",
+   "text": "I wondered whether I should check when it hurts.",
+   "category": "combination",
+   "template": "X6",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01631",
+   "text": "I wondered whether I should look at your throat now.",
+   "category": "combination",
+   "template": "X6",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01633",
+   "text": "I wondered whether I should explain the heart tracing.",
+   "category": "combination",
+   "template": "X6",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01634",
+   "text": "I wondered whether I should reassure you that you will not be alone.",
+   "category": "combination",
+   "template": "X6",
+   "act": "REASSURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01637",
+   "text": "Nobody has acknowledged that you are upset yet.",
+   "category": "combination",
+   "template": "X9",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01749",
+   "text": "We should look at your throat now at some point.",
+   "category": "future",
+   "template": "F5",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01751",
+   "text": "We should explain the heart tracing at some point.",
+   "category": "future",
+   "template": "F5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01752",
+   "text": "We should reassure you that you will not be alone at some point.",
+   "category": "future",
+   "template": "F5",
+   "act": "REASSURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01754",
+   "text": "We should call the porter at some point.",
+   "category": "future",
+   "template": "F5",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01778",
+   "text": "I intend to reassure you that you will not be alone before we finish.",
+   "category": "future",
+   "template": "F8",
+   "act": "REASSURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REASSURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01784",
+   "text": "I probably asked about help at home earlier, I can't remember.",
+   "category": "hedged",
+   "template": "U6",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01785",
+   "text": "I probably checked how you would take your tablets earlier, I can't remember.",
+   "category": "hedged",
+   "template": "U6",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01896",
+   "text": "I have not had the chance to ask about help at home.",
+   "category": "negation",
+   "template": "N5",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01903",
+   "text": "I have not had the chance to explain the heart tracing.",
+   "category": "negation",
+   "template": "N5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01915",
+   "text": "I didn't actually look at your throat now.",
+   "category": "negation",
+   "template": "N6",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01933",
+   "text": "Somebody else explained the heart tracing.",
+   "category": "other_person",
+   "template": "A5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01983",
+   "text": "The guidance says to check how you will take your tablets.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01984",
+   "text": "The guidance says to check when it hurts.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01985",
+   "text": "The guidance says to confirm the oxygen order.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01987",
+   "text": "The guidance says to look at your throat now.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01989",
+   "text": "The guidance says to explain the heart tracing.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01993",
+   "text": "Why would anyone acknowledge that you are upset?",
+   "category": "question_advice",
+   "template": "R6",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01996",
+   "text": "Why would anyone ask about help at home?",
+   "category": "question_advice",
+   "template": "R6",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02010",
+   "text": "Why do we say that understood, oxygen up to four litres, I'll tell you once it's on?",
+   "category": "question_statement",
+   "template": "R10",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02017",
+   "text": "Why do we say that please call the porter to take him to theatre?",
+   "category": "question_statement",
+   "template": "R10",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02019",
+   "text": "My notes say, \"Thank you, so no appendix since childhood.\"",
+   "category": "quoted",
+   "template": "Q7",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02024",
+   "text": "My notes say, \"Got it, four litres, will report when done.\"",
+   "category": "quoted",
+   "template": "Q7",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02027",
+   "text": "My notes say, \"We operate through keyhole cuts with a camera.\"",
+   "category": "quoted",
+   "template": "Q7",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02028",
+   "text": "My notes say, \"The ECG draws the electrical pattern of the heart.\"",
+   "category": "quoted",
+   "template": "Q7",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02031",
+   "text": "My notes say, \"Get a porter to collect the patient, please.\"",
+   "category": "quoted",
+   "template": "Q7",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02056",
+   "text": "I was told that the team explained the heart tracing.",
+   "category": "reported",
+   "template": "Q6",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02074",
+   "text": "It is understandable to be annoyed by the delay. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02075",
+   "text": "Thank you, so no appendix since childhood. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02078",
+   "text": "Tell me how you will manage your tablets in the morning. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02080",
+   "text": "Got it, four litres, will report when done. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02082",
+   "text": "Open wide please, I am looking at your throat. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02083",
+   "text": "We operate through keyhole cuts with a camera. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02084",
+   "text": "The ECG draws the electrical pattern of the heart. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02087",
+   "text": "Get a porter to collect the patient, please. No, sorry, ignore that.",
+   "category": "retraction",
+   "template": "C5",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f02096",
+   "text": "I was about to look at your throat now when the alarm went off.",
+   "category": "unfinished",
+   "template": "U1",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,523 @@
+{
+ "split": "final",
+ "name": "s16",
+ "configuration": {
+  "implementation": "C:\\Users\\RUHAN\\Downloads\\procsense-fyp-main\\procsense-fyp-main",
+  "service_files": {
+   "server/classify/assertion.py": "98ab63e7f9ca27ad",
+   "server/classify/ensemble.py": "f7722194cf309b8a",
+   "server/classify/embedding.py": "3d2d50ec0d9c03ba",
+   "server/classify/hybrid.py": "3364c1296148c106",
+   "server/classify/tfidf.py": "f7823aa4ad8d374b",
+   "server/classify/guard.py": "6785f249e846f753",
+   "server/interpret/decide.py": "bc1ffc5e7488d17c",
+   "server/interpret/validate.py": "c9b02036b75e73ef",
+   "server/interpret/status.py": "58ec48d4a67eedf8",
+   "content/assessment/act_head_hybrid.json": "009bd079f057b2d9",
+   "content/assessment/mapping.json": "2f6ef6fc54fe752f",
+   "content/ai/critical_cues.json": "558b3c424ff66835",
+   "content/ai/interpret_phrases.json": "940cf94636204d3f",
+   "content/ai/lexicon.json": "7ebfd2e9150fad0f"
+  },
+  "engine_files": {
+   "src/ProcSense.Core/Scoring/Evidence.cs": "6cbf51c3b507b80e",
+   "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs": "0157a60665d44882",
+   "src/ProcSense.Cli/Commands.cs": "b6bdf4fb7e838e23"
+  },
+  "interpret_version": "interpret-2026-10-20.2",
+  "critical_mass_max": 0.05,
+  "embedding_model": "all-minilm:22m",
+  "checkout_commit": "4a2ed00ce96feb414149ed6a5bac705e89f381c5",
+  "checkout_dirty_in_code_paths": true,
+  "command": "tools/.venv/Scripts/python.exe tools/bench/safety_eval.py --split <split> --name <name> [--impl DIR] --write"
+ },
+ "synthetic": true,
+ "independent": false,
+ "labels": "provisional, by construction",
+ "rows": 513,
+ "seconds": 3.4,
+ "expected": {
+  "ambiguous_review": 28,
+  "no_credit": 420,
+  "credit_allowed": 65
+ },
+ "session_pairs_not_applicable": 13,
+ "unsafe_credit": {
+  "credited": 10,
+  "of": 407,
+  "rate": 0.0246,
+  "wilson95": [
+   0.0134,
+   0.0446
+  ],
+  "note": "rows that must never be credited and were credited by the engine in some view; zero on a finite synthetic set is not zero risk"
+ },
+ "engine_backstop_credit": {
+  "credited": 0,
+  "of": 13,
+  "note": "session pair with a STALE context: only the engine's own duplicate rule remains"
+ },
+ "critical": {
+  "credited": 0,
+  "of": 28
+ },
+ "out_of_window": {
+  "credited": 0,
+  "of": 14
+ },
+ "legitimate": {
+  "credited_right_act": 36,
+  "of": 65,
+  "rate": 0.5538,
+  "wilson95": [
+   0.4334,
+   0.6683
+  ],
+  "credited_under_another_act": 0
+ },
+ "credited_precision": {
+  "right": 36,
+  "credited": 46,
+  "rate": 0.7826,
+  "wilson95": [
+   0.6443,
+   0.8774
+  ],
+  "note": "rows credited (once each) and, of them, those that were performed acts credited under the right act"
+ },
+ "decisions": {
+  "legitimate": {
+   "OFFER_EVIDENCE": 36,
+   "MENU": 9,
+   "ABSTAIN": 20
+  },
+  "must_not_credit": {
+   "ABSTAIN": 333,
+   "MENU": 60,
+   "OFFER_EVIDENCE": 10,
+   "CLARIFY": 4
+  }
+ },
+ "ambiguous_review": {
+  "rows": 28,
+  "credited": 7,
+  "by_category": {
+   "asr_negation_lost": [
+    7,
+    14
+   ],
+   "mixed_critical": [
+    0,
+    14
+   ]
+  }
+ },
+ "by_category": {
+  "asr_negation_lost": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 7
+  },
+  "combination": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 1,
+   "backstop_credited": 0
+  },
+  "contentless": {
+   "expected": "no_credit",
+   "rows": 6,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_claim": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_other": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_plain": {
+   "expected": "no_credit",
+   "rows": 15,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_behaviour": {
+   "expected": "no_credit",
+   "rows": 6,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_first": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 13
+  },
+  "duplicate_utterance": {
+   "expected": "no_credit",
+   "rows": 7,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "false_completion": {
+   "expected": "no_credit",
+   "rows": 3,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "future": {
+   "expected": "no_credit",
+   "rows": 40,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "hedged": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 2,
+   "backstop_credited": 0
+  },
+  "hypothetical": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "incomplete": {
+   "expected": "no_credit",
+   "rows": 13,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "mixed_critical": {
+   "expected": "ambiguous_review",
+   "rows": 14,
+   "credited": 0
+  },
+  "natural": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 16
+  },
+  "negation": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 2,
+   "backstop_credited": 0
+  },
+  "no_context": {
+   "expected": "no_credit",
+   "rows": 2,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "other_person": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "out_of_window": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "plain": {
+   "expected": "credit_allowed",
+   "rows": 13,
+   "credited_right_act": 7
+  },
+  "question_advice": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 5,
+   "backstop_credited": 0
+  },
+  "question_statement": {
+   "expected": "no_credit",
+   "rows": 11,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "quoted": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "reported": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "retraction": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "unfinished": {
+   "expected": "no_credit",
+   "rows": 14,
+   "credited": 0,
+   "backstop_credited": 0
+  }
+ },
+ "combinations_by_template": {
+  "X12": {
+   "credited": 0,
+   "of": 14
+  },
+  "X5": {
+   "credited": 0,
+   "of": 14
+  },
+  "X6": {
+   "credited": 1,
+   "of": 14
+  },
+  "X9": {
+   "credited": 0,
+   "of": 14
+  }
+ },
+ "refusal_reasons_for_must_not_credit": {
+  "CRITICAL_MASS": 394,
+  "NOT_PERFORMED": 162,
+  "CRITICAL_TOPIC": 94,
+  "NO_ACT": 26,
+  "GATE_NOT_CREDITED": 14,
+  "NO_ELIGIBLE_OBJECTIVE": 14,
+  "NOT_ELIGIBLE": 13,
+  "ALREADY_ACCEPTED": 13,
+  "OFFER_EVIDENCE": 12,
+  "NO_PENDING_QUESTION": 1,
+  "NO_READBACK_PENDING": 1
+ },
+ "false_rejection_reasons": {
+  "CRITICAL_MASS": 19,
+  "CRITICAL_TOPIC": 9,
+  "NO_PENDING_QUESTION": 1
+ },
+ "latency_ms": {
+  "p50": 1.32,
+  "p95": 1.76,
+  "max": 22.74,
+  "n": 897
+ },
+ "errors": 0,
+ "failures": [
+  {
+   "id": "f01631",
+   "text": "I wondered whether I should look at your throat now.",
+   "category": "combination",
+   "template": "X6",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01784",
+   "text": "I probably asked about help at home earlier, I can't remember.",
+   "category": "hedged",
+   "template": "U6",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01785",
+   "text": "I probably checked how you would take your tablets earlier, I can't remember.",
+   "category": "hedged",
+   "template": "U6",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01896",
+   "text": "I have not had the chance to ask about help at home.",
+   "category": "negation",
+   "template": "N5",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01903",
+   "text": "I have not had the chance to explain the heart tracing.",
+   "category": "negation",
+   "template": "N5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01983",
+   "text": "The guidance says to check how you will take your tablets.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01984",
+   "text": "The guidance says to check when it hurts.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01985",
+   "text": "The guidance says to confirm the oxygen order.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01987",
+   "text": "The guidance says to look at your throat now.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "f01989",
+   "text": "The guidance says to explain the heart tracing.",
+   "category": "question_advice",
+   "template": "R5",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  }
+ ]
+}

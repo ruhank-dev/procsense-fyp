@@ -1,0 +1,330 @@
+{
+ "split": "dev",
+ "name": "s16",
+ "configuration": {
+  "implementation": "C:\\Users\\RUHAN\\Downloads\\procsense-fyp-main\\procsense-fyp-main",
+  "service_files": {
+   "server/classify/assertion.py": "875eefac696bdc6c",
+   "server/classify/ensemble.py": "f7722194cf309b8a",
+   "server/classify/embedding.py": "3d2d50ec0d9c03ba",
+   "server/classify/hybrid.py": "3364c1296148c106",
+   "server/classify/tfidf.py": "f7823aa4ad8d374b",
+   "server/classify/guard.py": "6785f249e846f753",
+   "server/interpret/decide.py": "bc1ffc5e7488d17c",
+   "server/interpret/validate.py": "c9b02036b75e73ef",
+   "server/interpret/status.py": "58ec48d4a67eedf8",
+   "content/assessment/act_head_hybrid.json": "009bd079f057b2d9",
+   "content/assessment/mapping.json": "2f6ef6fc54fe752f",
+   "content/ai/critical_cues.json": "558b3c424ff66835",
+   "content/ai/interpret_phrases.json": "940cf94636204d3f",
+   "content/ai/lexicon.json": "7ebfd2e9150fad0f"
+  },
+  "engine_files": {
+   "src/ProcSense.Core/Scoring/Evidence.cs": "6cbf51c3b507b80e",
+   "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs": "0157a60665d44882",
+   "src/ProcSense.Cli/Commands.cs": "b6bdf4fb7e838e23"
+  },
+  "interpret_version": "interpret-2026-10-20.2",
+  "critical_mass_max": 0.05,
+  "embedding_model": "all-minilm:22m",
+  "checkout_commit": "4a2ed00ce96feb414149ed6a5bac705e89f381c5",
+  "checkout_dirty_in_code_paths": true,
+  "command": "tools/.venv/Scripts/python.exe tools/bench/safety_eval.py --split <split> --name <name> [--impl DIR] --write"
+ },
+ "synthetic": true,
+ "independent": false,
+ "labels": "provisional, by construction",
+ "rows": 1059,
+ "seconds": 5.0,
+ "expected": {
+  "ambiguous_review": 112,
+  "no_credit": 841,
+  "credit_allowed": 106
+ },
+ "session_pairs_not_applicable": 13,
+ "unsafe_credit": {
+  "credited": 0,
+  "of": 828,
+  "rate": 0.0,
+  "wilson95": [
+   0.0,
+   0.0046
+  ],
+  "note": "rows that must never be credited and were credited by the engine in some view; zero on a finite synthetic set is not zero risk"
+ },
+ "engine_backstop_credit": {
+  "credited": 0,
+  "of": 41,
+  "note": "session pair with a STALE context: only the engine's own duplicate rule remains"
+ },
+ "critical": {
+  "credited": 0,
+  "of": 29
+ },
+ "out_of_window": {
+  "credited": 0,
+  "of": 27
+ },
+ "legitimate": {
+  "credited_right_act": 82,
+  "of": 106,
+  "rate": 0.7736,
+  "wilson95": [
+   0.6852,
+   0.8429
+  ],
+  "credited_under_another_act": 0
+ },
+ "credited_precision": {
+  "right": 82,
+  "credited": 82,
+  "rate": 1.0,
+  "wilson95": [
+   0.9552,
+   1.0
+  ],
+  "note": "rows credited (once each) and, of them, those that were performed acts credited under the right act"
+ },
+ "decisions": {
+  "legitimate": {
+   "OFFER_EVIDENCE": 82,
+   "ABSTAIN": 23,
+   "CLARIFY": 1
+  },
+  "must_not_credit": {
+   "ABSTAIN": 730,
+   "MENU": 94,
+   "OFFER_EVIDENCE": 4
+  }
+ },
+ "ambiguous_review": {
+  "rows": 112,
+  "credited": 23,
+  "by_category": {
+   "asr_negation_lost": [
+    18,
+    28
+   ],
+   "mixed_critical": [
+    0,
+    28
+   ],
+   "negation_scope": [
+    5,
+    28
+   ],
+   "retraction": [
+    0,
+    28
+   ]
+  }
+ },
+ "by_category": {
+  "asr_negation_lost": {
+   "expected": "ambiguous_review",
+   "rows": 28,
+   "credited": 18
+  },
+  "combination": {
+   "expected": "no_credit",
+   "rows": 112,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "contentless": {
+   "expected": "no_credit",
+   "rows": 9,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_claim": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_future": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_plain": {
+   "expected": "no_credit",
+   "rows": 15,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_behaviour": {
+   "expected": "no_credit",
+   "rows": 23,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_first": {
+   "expected": "credit_allowed",
+   "rows": 54,
+   "credited_right_act": 41
+  },
+  "duplicate_utterance": {
+   "expected": "no_credit",
+   "rows": 18,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "false_completion": {
+   "expected": "no_credit",
+   "rows": 4,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "future": {
+   "expected": "no_credit",
+   "rows": 84,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "hedged": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "hypothetical": {
+   "expected": "no_credit",
+   "rows": 84,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "incomplete": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "mixed_critical": {
+   "expected": "ambiguous_review",
+   "rows": 28,
+   "credited": 0
+  },
+  "natural": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 21
+  },
+  "negation": {
+   "expected": "no_credit",
+   "rows": 54,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "negation_scope": {
+   "expected": "ambiguous_review",
+   "rows": 28,
+   "credited": 5
+  },
+  "no_context": {
+   "expected": "no_credit",
+   "rows": 4,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "other_person": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "out_of_window": {
+   "expected": "no_credit",
+   "rows": 27,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "plain": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 20
+  },
+  "question_advice": {
+   "expected": "no_credit",
+   "rows": 84,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "question_statement": {
+   "expected": "no_credit",
+   "rows": 21,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "quoted": {
+   "expected": "no_credit",
+   "rows": 55,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "reported": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "retraction": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "unfinished": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  }
+ },
+ "combinations_by_template": {
+  "X1": {
+   "credited": 0,
+   "of": 28
+  },
+  "X10": {
+   "credited": 0,
+   "of": 28
+  },
+  "X2": {
+   "credited": 0,
+   "of": 28
+  },
+  "X7": {
+   "credited": 0,
+   "of": 28
+  }
+ },
+ "refusal_reasons_for_must_not_credit": {
+  "CRITICAL_MASS": 699,
+  "NOT_PERFORMED": 546,
+  "CRITICAL_TOPIC": 164,
+  "NOT_ELIGIBLE": 41,
+  "NO_ACT": 38,
+  "OFFER_EVIDENCE": 37,
+  "ALREADY_ACCEPTED": 30,
+  "NO_ELIGIBLE_OBJECTIVE": 27,
+  "NO_PENDING_QUESTION": 2,
+  "NO_READBACK_PENDING": 2,
+  "GATE_NOT_CREDITED": 1
+ },
+ "false_rejection_reasons": {
+  "CRITICAL_MASS": 16,
+  "GATE_NOT_CREDITED": 5,
+  "NOT_PERFORMED": 3
+ },
+ "latency_ms": {
+  "p50": 1.36,
+  "p95": 1.72,
+  "max": 18.26,
+  "n": 1915
+ },
+ "errors": 0,
+ "failures": []
+}

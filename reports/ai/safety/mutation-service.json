@@ -1,0 +1,643 @@
+{
+ "mutants": [
+  {
+   "mutant": "V1_validate_critical_entry",
+   "guard": "validate no longer refuses an eligible critical entry",
+   "killed": true,
+   "expected_to_change": [
+    "L01_validate_refuses_a_critical_act"
+   ],
+   "changed": [
+    "L01_validate_refuses_a_critical_act"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "S01a_critical_act_from_gate",
+    "S01b_critical_sbar_act_from_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "V2_validate_status",
+   "guard": "validate no longer refuses a question for a statement act or a non-performed status",
+   "killed": true,
+   "expected_to_change": [
+    "L02_validate_refuses_a_denied_sentence",
+    "L03_validate_refuses_a_question_for_a_statement_act",
+    "S03_negated_sentence",
+    "S04_statement_act_asked_as_question"
+   ],
+   "changed": [
+    "L02_validate_refuses_a_denied_sentence",
+    "L03_validate_refuses_a_question_for_a_statement_act",
+    "S03_negated_sentence",
+    "S04_statement_act_asked_as_question"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "V3_validate_eligibility",
+   "guard": "validate offers an act that no running behaviour window lists",
+   "killed": true,
+   "expected_to_change": [
+    "L04_validate_refuses_an_ineligible_act",
+    "S05_outside_the_behaviour_window"
+   ],
+   "changed": [
+    "L04_validate_refuses_an_ineligible_act",
+    "S05_outside_the_behaviour_window"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "V4_validate_pending_question",
+   "guard": "validate offers ANSWER_QUESTION with no patient question waiting",
+   "killed": true,
+   "expected_to_change": [
+    "L05_validate_needs_a_waiting_question",
+    "S06_answer_without_a_waiting_question"
+   ],
+   "changed": [
+    "L05_validate_needs_a_waiting_question",
+    "S06_answer_without_a_waiting_question"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "V5_validate_readback",
+   "guard": "validate offers CLOSED_LOOP with no read-back waiting",
+   "killed": true,
+   "expected_to_change": [
+    "L06_validate_needs_a_waiting_readback",
+    "S07_readback_without_a_waiting_result"
+   ],
+   "changed": [
+    "L06_validate_needs_a_waiting_readback",
+    "S07_readback_without_a_waiting_result"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "V6_validate_already_accepted",
+   "guard": "validate offers a behaviour the session already credited",
+   "killed": true,
+   "expected_to_change": [
+    "L07_validate_refuses_a_credited_behaviour",
+    "S08_behaviour_already_credited"
+   ],
+   "changed": [
+    "L07_validate_refuses_a_credited_behaviour",
+    "S08_behaviour_already_credited"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "V7_validate_gate_required",
+   "guard": "validate no longer needs the classifier gate to have credited the act",
+   "killed": true,
+   "expected_to_change": [
+    "L08_validate_needs_the_gate",
+    "S09_gate_did_not_credit"
+   ],
+   "changed": [
+    "L08_validate_needs_the_gate",
+    "S09_gate_did_not_credit",
+    "S12a_first_clarification",
+    "S12b_second_clarification"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "D1_decide_critical_branch",
+   "guard": "decide no longer sends a critical cue or critical act to the menu",
+   "killed": true,
+   "expected_to_change": [
+    "S02_critical_cue_with_ordinary_act"
+   ],
+   "changed": [
+    "S01a_critical_act_from_gate",
+    "S01b_critical_sbar_act_from_gate",
+    "S02_critical_cue_with_ordinary_act"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": [
+    "S01a_critical_act_from_gate",
+    "S01b_critical_sbar_act_from_gate"
+   ]
+  },
+  {
+   "mutant": "D2_decide_cap_recheck",
+   "guard": "decide no longer re-checks the critical-mass cap",
+   "killed": true,
+   "expected_to_change": [
+    "S10_critical_mass_over_the_cap"
+   ],
+   "changed": [
+    "S10_critical_mass_over_the_cap"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "G01_cap_blocked_unsafe_real_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "D3_decide_unavailable",
+   "guard": "decide offers although the classifier was unavailable",
+   "killed": true,
+   "expected_to_change": [
+    "S11_classifier_unavailable"
+   ],
+   "changed": [
+    "S11_classifier_unavailable"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "D4_decide_clarify_limit",
+   "guard": "decide asks more than one clarification",
+   "killed": true,
+   "expected_to_change": [
+    "S12b_second_clarification"
+   ],
+   "changed": [
+    "S12b_second_clarification"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "D5_decide_status_ignored",
+   "guard": "decide judges every utterance as actual (the status check)",
+   "killed": true,
+   "expected_to_change": [
+    "S03_negated_sentence",
+    "S04_statement_act_asked_as_question"
+   ],
+   "changed": [
+    "S03_negated_sentence",
+    "S04_statement_act_asked_as_question"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "G02_non_performed_real_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "D6_safe_interpret_swallow",
+   "guard": "a failing classifier is no longer turned into the menu",
+   "killed": true,
+   "expected_to_change": [
+    "S16_classifier_raises"
+   ],
+   "changed": [
+    "S16_classifier_raises"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "E1_gate_assertion",
+   "guard": "the gate no longer applies the assertion layer",
+   "killed": true,
+   "expected_to_change": [
+    "L15_gate_assertion_blocks_non_performed"
+   ],
+   "changed": [
+    "L15_gate_assertion_blocks_non_performed"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "G02_non_performed_real_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "E2_gate_agreement",
+   "guard": "the gate no longer needs the TF-IDF head to agree",
+   "killed": true,
+   "expected_to_change": [
+    "L18_gate_needs_the_tfidf_head_to_agree"
+   ],
+   "changed": [
+    "L18_gate_needs_the_tfidf_head_to_agree"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "H1_gate_cap",
+   "guard": "the gate no longer applies the critical-mass cap",
+   "killed": true,
+   "expected_to_change": [
+    "L14_gate_cap_blocks_the_cap_sentences"
+   ],
+   "changed": [
+    "L14_gate_cap_blocks_the_cap_sentences"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "G01_cap_blocked_unsafe_real_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "H2_gate_cue",
+   "guard": "the gate no longer applies the critical-content cue",
+   "killed": true,
+   "expected_to_change": [
+    "L19_gate_cue_on_an_ordinary_looking_embedding"
+   ],
+   "changed": [
+    "L19_gate_cue_on_an_ordinary_looking_embedding"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "G03_critical_sentences_real_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "A1_assertion_layer",
+   "guard": "the assertion layer recognises nothing",
+   "killed": true,
+   "expected_to_change": [
+    "L09_status_of_names_a_denial",
+    "L10_status_of_names_a_hypothetical",
+    "L12_assertion_layer_names_other_kinds",
+    "S03_negated_sentence"
+   ],
+   "changed": [
+    "G02_non_performed_real_gate",
+    "L09_status_of_names_a_denial",
+    "L10_status_of_names_a_hypothetical",
+    "L12_assertion_layer_names_other_kinds",
+    "L15_gate_assertion_blocks_non_performed",
+    "S03_negated_sentence"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": [
+    "G02_non_performed_real_gate"
+   ]
+  },
+  {
+   "mutant": "A2_assertion_other_actor",
+   "guard": "the assertion layer no longer names another person who did it",
+   "killed": true,
+   "expected_to_change": [
+    "L12_assertion_layer_names_other_kinds"
+   ],
+   "changed": [
+    "L12_assertion_layer_names_other_kinds"
+   ],
+   "missing": [],
+   "masked_unchanged": [],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "K1_cue_regexes",
+   "guard": "the critical-content cues match nothing",
+   "killed": true,
+   "expected_to_change": [
+    "L13_critical_cue",
+    "S02_critical_cue_with_ordinary_act"
+   ],
+   "changed": [
+    "L13_critical_cue",
+    "L19_gate_cue_on_an_ordinary_looking_embedding",
+    "S02_critical_cue_with_ordinary_act"
+   ],
+   "missing": [],
+   "masked_unchanged": [
+    "G03_critical_sentences_real_gate"
+   ],
+   "masked_but_changed": []
+  },
+  {
+   "mutant": "DBL_critical",
+   "guard": "validate AND decide stop refusing a critical act",
+   "killed": true,
+   "expected_to_change": [
+    "S01b_critical_sbar_act_from_gate"
+   ],
+   "changed": [
+    "L01_validate_refuses_a_critical_act",
+    "S01a_critical_act_from_gate",
+    "S01b_critical_sbar_act_from_gate",
+    "S02_critical_cue_with_ordinary_act"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "S01b_critical_sbar_act_from_gate": "CRITICAL_NEEDS_DETERMINISTIC_EVIDENCE"
+   },
+   "expected_engine_verdict": "CRITICAL_NEEDS_DETERMINISTIC_EVIDENCE"
+  },
+  {
+   "mutant": "DBL_cap",
+   "guard": "the gate AND decide stop applying the critical-mass cap",
+   "killed": true,
+   "expected_to_change": [
+    "G01_cap_blocked_unsafe_real_gate"
+   ],
+   "changed": [
+    "G01_cap_blocked_unsafe_real_gate",
+    "L14_gate_cap_blocks_the_cap_sentences",
+    "S10_critical_mass_over_the_cap"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "G01_cap_blocked_unsafe_real_gate": 8
+   },
+   "expected_engine_verdict": "accepted"
+  },
+  {
+   "mutant": "DBL_assertion",
+   "guard": "the gate's assertion layer AND the interpreter's status check are gone",
+   "killed": true,
+   "expected_to_change": [
+    "G02_non_performed_real_gate"
+   ],
+   "changed": [
+    "G02_non_performed_real_gate",
+    "L15_gate_assertion_blocks_non_performed",
+    "S03_negated_sentence",
+    "S04_statement_act_asked_as_question"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "G02_non_performed_real_gate": 34
+   },
+   "expected_engine_verdict": "accepted"
+  },
+  {
+   "mutant": "DBL_assertion_patterns",
+   "guard": "the assertion layer recognises nothing (it serves both)",
+   "killed": true,
+   "expected_to_change": [
+    "G02_non_performed_real_gate"
+   ],
+   "changed": [
+    "G02_non_performed_real_gate",
+    "L09_status_of_names_a_denial",
+    "L10_status_of_names_a_hypothetical",
+    "L12_assertion_layer_names_other_kinds",
+    "L15_gate_assertion_blocks_non_performed",
+    "S03_negated_sentence",
+    "S04_statement_act_asked_as_question"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "G02_non_performed_real_gate": 34
+   },
+   "expected_engine_verdict": "accepted"
+  },
+  {
+   "mutant": "DBL_window",
+   "guard": "validate stops checking the behaviour window",
+   "killed": true,
+   "expected_to_change": [
+    "S05_outside_the_behaviour_window"
+   ],
+   "changed": [
+    "L04_validate_refuses_an_ineligible_act",
+    "S05_outside_the_behaviour_window"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "S05_outside_the_behaviour_window": "CONTEXT_MISMATCH"
+   },
+   "expected_engine_verdict": "CONTEXT_MISMATCH"
+  },
+  {
+   "mutant": "DBL_duplicate",
+   "guard": "validate stops refusing a behaviour already credited",
+   "killed": true,
+   "expected_to_change": [
+    "S08_behaviour_already_credited"
+   ],
+   "changed": [
+    "L07_validate_refuses_a_credited_behaviour",
+    "S08_behaviour_already_credited"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "S08_behaviour_already_credited": "accepted"
+   },
+   "expected_engine_verdict": "accepted"
+  },
+  {
+   "mutant": "ET1_answer_needs_a_waiting_question",
+   "guard": "the engine no longer checks that a patient question is waiting before logging ANSWER_QUESTION evidence",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET2_readback_needs_a_waiting_result",
+   "guard": "the engine no longer checks that a read-back is waiting before logging CLOSED_LOOP evidence",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET3_confidence_range",
+   "guard": "the engine accepts a confidence outside 0 to 1",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET4_steps_stamped_by_the_engine",
+   "guard": "the engine no longer stamps the workflow steps on the logged action",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "EN1_engine_critical",
+   "guard": "the store no longer refuses a critical act",
+   "killed": true,
+   "expected_to_change": [
+    "E01_critical_act_offered"
+   ],
+   "changed": [
+    "E01_critical_act_offered",
+    "E09_SBAR_ELEMENT"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "E01_critical_act_offered": "accepted"
+   },
+   "expected_engine_verdict": {
+    "E01_critical_act_offered": "accepted"
+   }
+  },
+  {
+   "mutant": "EN2_engine_threshold",
+   "guard": "the store no longer applies the per-act confidence threshold",
+   "killed": true,
+   "expected_to_change": [
+    "E03_below_the_act_threshold"
+   ],
+   "changed": [
+    "E03_below_the_act_threshold"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "E03_below_the_act_threshold": "accepted"
+   },
+   "expected_engine_verdict": {
+    "E03_below_the_act_threshold": "accepted"
+   }
+  },
+  {
+   "mutant": "EN3_engine_no_running_step",
+   "guard": "the store accepts evidence with no running step",
+   "killed": true,
+   "expected_to_change": [
+    "E04_no_running_step"
+   ],
+   "changed": [
+    "E04_no_running_step"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "E04_no_running_step": "CONTEXT_MISMATCH"
+   },
+   "expected_engine_verdict": {
+    "E04_no_running_step": "CONTEXT_MISMATCH"
+   }
+  },
+  {
+   "mutant": "EN4_engine_window",
+   "guard": "the store no longer checks the behaviour window",
+   "killed": true,
+   "expected_to_change": [
+    "E05_outside_the_window"
+   ],
+   "changed": [
+    "E05_outside_the_window"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "E05_outside_the_window": "accepted"
+   },
+   "expected_engine_verdict": {
+    "E05_outside_the_window": "accepted"
+   }
+  },
+  {
+   "mutant": "EN5_engine_duplicate_behaviour",
+   "guard": "the store credits a behaviour twice from speech",
+   "killed": true,
+   "expected_to_change": [
+    "E06b_same_behaviour_again",
+    "S14b_same_behaviour_again_stale_context"
+   ],
+   "changed": [
+    "E06b_same_behaviour_again",
+    "S14b_same_behaviour_again_stale_context"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "E06b_same_behaviour_again": "accepted",
+    "S14b_same_behaviour_again_stale_context": "accepted"
+   },
+   "expected_engine_verdict": {
+    "E06b_same_behaviour_again": "accepted",
+    "S14b_same_behaviour_again_stale_context": "accepted"
+   }
+  },
+  {
+   "mutant": "EN6_engine_duplicate_utterance",
+   "guard": "the store credits the same utterance twice",
+   "killed": true,
+   "expected_to_change": [
+    "E07d_same_utterance_id_for_another_behaviour"
+   ],
+   "changed": [
+    "E07b_same_utterance_id_again",
+    "E07d_same_utterance_id_for_another_behaviour",
+    "S15b_same_utterance_id_again_stale_context"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "E07d_same_utterance_id_for_another_behaviour": "accepted"
+   },
+   "expected_engine_verdict": {
+    "E07d_same_utterance_id_for_another_behaviour": "accepted"
+   }
+  },
+  {
+   "mutant": "BOTH_critical",
+   "guard": "validate, decide AND the store stop refusing a critical act",
+   "killed": true,
+   "expected_to_change": [
+    "S01b_critical_sbar_act_from_gate"
+   ],
+   "changed": [
+    "E01_critical_act_offered",
+    "E09_SBAR_ELEMENT",
+    "L01_validate_refuses_a_critical_act",
+    "S01a_critical_act_from_gate",
+    "S01b_critical_sbar_act_from_gate",
+    "S02_critical_cue_with_ordinary_act"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "S01b_critical_sbar_act_from_gate": "accepted"
+   },
+   "expected_engine_verdict": "accepted"
+  },
+  {
+   "mutant": "BOTH_window",
+   "guard": "validate AND the store stop checking the behaviour window",
+   "killed": true,
+   "expected_to_change": [
+    "S05_outside_the_behaviour_window"
+   ],
+   "changed": [
+    "E05_outside_the_window",
+    "L04_validate_refuses_an_ineligible_act",
+    "S05_outside_the_behaviour_window"
+   ],
+   "missing": [],
+   "engine_verdicts": {
+    "S05_outside_the_behaviour_window": "accepted"
+   },
+   "expected_engine_verdict": "accepted"
+  }
+ ]
+}

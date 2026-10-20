@@ -355,7 +355,9 @@
     "server/tests/test_interpret_api.py",
     "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
     "unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs",
-    "tools/ci/test_recall_fixes.py"
+    "tools/ci/test_recall_fixes.py",
+    "tools/ci/test_safety_hardening.py",
+    "tools/ci/test_mutation_safety.py"
    ],
    "gates": [
     "classifier",

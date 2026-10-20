@@ -11286,7 +11286,30 @@
     "tools/content/build_scoring.py",
     "src/ProcSense.Cli/Commands.cs",
     "reports/ai/recall-confirm-test.json",
-    "reports/ai/recall-confirm-test2.json"
+    "reports/ai/recall-confirm-test2.json",
+    "docs/decisions/ADR-0023-unsafe-speech-hardening.md",
+    "docs/research/safety_layers_audit.md",
+    "docs/research/unsafe_speech_safety.md",
+    "docs/testing/safety_challenge_review.md",
+    "tools/bench/metamorph.py",
+    "tools/bench/safety_eval.py",
+    "tools/ci/mutation_safety.py",
+    "tools/ci/test_safety_hardening.py",
+    "tools/ci/test_mutation_safety.py",
+    "reports/ai/safety/s16-final.json",
+    "tests/safety_challenge/taxonomy.json",
+    "tests/safety_challenge/manifest.json",
+    "tests/safety_challenge/review_sheet.csv",
+    "tests/safety_challenge/regression_cases.json",
+    "tools/bench/safety_seeds.py",
+    "tools/bench/safety_regression.py",
+    "tools/bench/safety_review_sheet.py",
+    "tools/bench/unsafe_speech_report.py",
+    "tools/ci/safety_scenarios.py",
+    "reports/ai/safety/baseline-4a2ed00-final.json",
+    "reports/ai/safety/s16-dev.json",
+    "reports/ai/safety/s16-challenge.json",
+    "reports/ai/safety/mutation-service.json"
    ],
    "lineage": [
     "p1-ai-language-s06, s07",
@@ -11325,7 +11348,8 @@
    "risks": [
     "labelled set not available (DT-097)",
     "critical acts misclassified (never credited from AI alone)",
-    "recall: about 45 to 56 percent of legitimate synthetic sentences are accepted after the 20 Oct 2026 follow-up (the remaining misses are critical mass at or above 0.05, act confusions and cue ambiguity); the revised cap (0.05) and the calibrated engine thresholds were judged only on synthetic sentences (EX-01, DT-231)"
+    "recall: about 45 to 56 percent of legitimate synthetic sentences are accepted after the 20 Oct 2026 follow-up (the remaining misses are critical mass at or above 0.05, act confusions and cue ambiguity); the revised cap (0.05) and the calibrated engine thresholds were judged only on synthetic sentences (EX-01, DT-231)",
+    "unsafe speech: on a final split not used for any change the engine still accepted 10 of 407 must-not-credit rows (2.5 percent, CI 1.3 to 4.5) after the 20 Oct 2026 hardening (41 of 407 before); a recogniser that drops a negation cannot be refused by any text rule; every label is by construction and no person has reviewed the sets (EX-01, DT-233, DT-234)"
    ],
    "tasks": [
     "p1-ai-language-s06",
@@ -11335,7 +11359,8 @@
     "p1-ai-language-s12",
     "p1-ai-language-s13",
     "p1-ai-language-s14",
-    "p1-ai-language-s15"
+    "p1-ai-language-s15",
+    "p1-ai-language-s16"
    ],
    "phase": "PH-15",
    "tier": "P1",
@@ -11354,7 +11379,8 @@
      "clarification, menu fallback and failure handling, Unity half (s12)",
      "context-conditioned benchmark, end-to-end latency, speech_interpretation gate (s14)",
      "independent human-labelled set (EX-01)",
-     "independent evaluation of the revised critical-mass cap and the calibrated engine thresholds (p1-ai-language-s15, DT-231, EX-01)"
+     "independent evaluation of the revised critical-mass cap and the calibrated engine thresholds (p1-ai-language-s15, DT-231, EX-01)",
+     "independent human review and the independent run of the unsafe-speech sets, and the residual mechanisms found by the one-time scoring of the final split (p1-ai-language-s16, EX-01, DT-233, DT-234)"
     ],
     "deterministic_foundation": "Eligibility from the behaviour windows of content/assessment/mapping.json, assertion status, critical exclusion, evidence span and duplicate checks, and the engine's EvidenceStore as the only authority.",
     "ai_questions": {
@@ -11374,7 +11400,7 @@
       "kind": "AI (LLM)",
       "status": "Implemented but incompletely tested",
       "purpose": "Propose acts for a sentence; never credits.",
-      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022). Critical-mass cap 0.05 and the engine's calibrated evidence thresholds since 20 Oct 2026 (p1-ai-language-s15).",
+      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022). Critical-mass cap 0.05 and the engine's calibrated evidence thresholds since 20 Oct 2026 (p1-ai-language-s15). Unsafe-speech hardening 20 Oct 2026: wider assertion kinds, the engine checks the waiting question and read-back itself, reason-coded audit, mutation-tested guards (p1-ai-language-s16, ADR-0023).",
       "models": [
        "MC-03"
       ],
@@ -11414,7 +11440,8 @@
        "p1-ai-language-s06",
        "p1-ai-language-s07",
        "p1-ai-infrastructure-s04",
-       "p1-ai-language-s15"
+       "p1-ai-language-s15",
+       "p1-ai-language-s16"
       ]
      },
      {
@@ -11559,6 +11586,10 @@
      {
       "date": "2026-10-20",
       "change": "Recall follow-up (p1-ai-language-s15): the claim that the critical-mass cap causes most misses was traced and confirmed with a qualification; cap 0.03 to 0.05, engine thresholds exported from the head, assertion-layer holes closed; synthetic, gate OFF."
+     },
+     {
+      "date": "2026-10-20",
+      "change": "Unsafe-speech hardening (p1-ai-language-s16): audit of every layer, metamorphic sets with provenance, assertion layer widened and generalised, engine re-checks the waiting question and read-back, reason-coded audit rows, mutation tests for every critical check; final split 41/407 to 10/407 unsafe credit, legitimate credit unchanged; synthetic, no human review, gate OFF."
      }
     ]
    },
@@ -25381,7 +25412,8 @@
     "p1-ai-language-s12",
     "p1-ai-language-s13",
     "p1-ai-language-s14",
-    "p1-ai-language-s15"
+    "p1-ai-language-s15",
+    "p1-ai-language-s16"
    ],
    "features": [
     "C36",

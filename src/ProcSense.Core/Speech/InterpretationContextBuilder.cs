@@ -26,8 +26,14 @@ namespace ProcSense.Core.Speech
             var accepted = store.Records.Where(r => r.Source == "ai" && r.Accepted).Select(r => r.Behaviour).Distinct().OrderBy(x => x, StringComparer.Ordinal).ToList();
             var kept = turns.Skip(Math.Max(0, turns.Count - MaxTurns)).Select(t => new ContextTurn(t.Speaker, t.Text.Length > MaxTurnChars ? t.Text.Substring(0, MaxTurnChars) : t.Text)).ToList();
             return new InterpretationContext(s.Case.Id, s.Case.Scenario, s.Mode.ToString().ToLowerInvariant(), steps, EligibleFor(tables, steps), accepted,
-                s.Consent != null && s.Consent.Pending.Count > 0, s.Patient.Clinical.HasFlag(ResultReviewSubsystem.CriticalFlag), kept, "trainee", addressee);
+                PatientQuestionPending(s), ReadbackPending(s), kept, "trainee", addressee);
         }
+
+        /// <summary>A patient question is waiting for an answer: the consent discussion has a question pending. The one definition the context and the speech-evidence check share (DT-232: no other engine event opens a question yet).</summary>
+        public static bool PatientQuestionPending(Session s) => s.Consent != null && s.Consent.Pending.Count > 0;
+
+        /// <summary>A critical result is waiting to be acknowledged, so a read-back can be given. The one definition the context and the speech-evidence check share.</summary>
+        public static bool ReadbackPending(Session s) => s.Patient.Clinical.HasFlag(ResultReviewSubsystem.CriticalFlag);
 
         /// <summary>The acts a behaviour window allows at the given steps, in the order of the mapping file; an act listed by two behaviours appears once per behaviour whose window contains a step.</summary>
         public static IReadOnlyList<EligibleAct> EligibleFor(ScoreTables tables, IReadOnlyCollection<int> steps)

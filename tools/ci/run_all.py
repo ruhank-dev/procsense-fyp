@@ -24,6 +24,15 @@ def run(cmd: list[str], fail_if_in_output: str | None = None) -> tuple[bool, str
     return ok, out
 
 
+def run_all_of(commands: list[list[str]]) -> tuple[bool, str]:
+    """several commands as one check: ok only if every one is ok; the output of all of them is kept."""
+    ok, out = True, ""
+    for cmd in commands:
+        good, text = run(cmd)
+        ok, out = ok and good, out + text
+    return ok, out
+
+
 def replay_round_trip() -> tuple[bool, str]:
     with tempfile.TemporaryDirectory() as tmp:
         out = str(Path(tmp) / "run.json")
@@ -255,6 +264,11 @@ def main(argv: list[str]) -> int:
         ("speech interpretation (ADR-0022): eligible acts offered with their context, out-of-window, non-performed and critical never, hostile and failing classifiers, one clarification then the menu (real gate, no service)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_interpretation_regression.py"])),
         ("recall follow-up (ADR-0022): the cap revision and the engine thresholds are the recorded ones, 28 legitimate paraphrases offered and 84 counterexamples refused (and named by the assertion layer), the sentences only the cap guards stay guarded", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_recall_fixes.py"])),
         ("recall diagnosis page is current (generated from reports/ai/recall-*.json)", lambda: run(["uv", "run", "--project", "tools", "tools/bench/recall_report.py", "--check"])),
+        ("unsafe-speech hardening (ADR-0023): the 190 sentences the unchanged 4a2ed00 credited are named as not performed, minimal pairs keep the legitimate neighbour, reason codes hold no words, a failing classifier is the menu, the sets reproduce and never cross a split, the taxonomy is complete", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_safety_hardening.py"])),
+        ("unsafe-speech sets, regression cases, blind review sheet and report page are current (generated; synthetic, provisional labels, no human review)", lambda: run_all_of([
+            ["uv", "run", "--project", "tools", "tools/bench/metamorph.py", "--check"], ["uv", "run", "--project", "tools", "tools/bench/safety_regression.py", "--check"],
+            ["uv", "run", "--project", "tools", "tools/bench/safety_review_sheet.py", "--check"], ["uv", "run", "--project", "tools", "tools/bench/unsafe_speech_report.py", "--check"]])),
+        ("mutation tests of the speech-safety guards (ADR-0023): each critical check disabled in a copy of the code, the decision and the engine store's verdict must change; single, double and engine mutants (about 8 minutes, builds engine copies)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_mutation_safety.py"])),
         ("speech interpretation benchmark and gate (ADR-0022): the state given to a row comes from the mapping, results labelled synthetic, the page is what the results give, the gate reads the independent file and stays off", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_interpretation_bench.py"])),
         ("interpretation benchmark page is current", lambda: run(["uv", "run", "--project", "tools", "tools/bench/interpretation_report.py", "--check"])),
         ("communication classifier: embedding head fits the taxonomy and the mapping, critical acts never credited, the critical-content guard, the model's critical misroutes replayed", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_classifier_embedding.py"])),

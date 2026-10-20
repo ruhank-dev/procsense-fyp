@@ -31,7 +31,7 @@ namespace ProcSense.Core.Tests
         private static EvidenceStore Evidence(Session s) { var st = new EvidenceStore(Tables); st.FromLog(s.Log); return st; }
 
         /// <summary>An ordinary act that is eligible in the session's current state, or null when the state allows none.</summary>
-        private static EligibleAct? AnyOrdinary(Session s) => InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").Eligible.FirstOrDefault(e => !e.Critical);
+        private static EligibleAct? AnyOrdinary(Session s) => InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").Eligible.FirstOrDefault(e => !e.Critical && e.Act != "ANSWER_QUESTION" && e.Act != "CLOSED_LOOP");   // those two need a waiting question or read-back in the session
 
         [Fact]
         public void Eligibility_follows_the_behaviour_windows_of_the_mapping_step_by_step()
@@ -85,6 +85,20 @@ namespace ProcSense.Core.Tests
             Assert.Equal(SpeechEvidenceSubsystem.StepsEffect + string.Join(",", s.RunningSteps), Assert.Single(o.Effects));
             Assert.Equal(before, s.Observable.ToJson());
             Assert.Contains(s.Log.Entries, e => e.Verb == SpeechEvidenceSubsystem.Verb && e.Accepted);
+        }
+
+        [Fact]
+        public void An_answer_needs_a_waiting_question_and_a_read_back_a_waiting_result_in_the_session_itself()
+        {
+            var s = Start();
+            Assert.Equal(SpeechEvidenceSubsystem.NoPendingQuestion, Say(s, "ANSWER_QUESTION", "u1").RejectReason);                       // a client claiming a waiting question it was not given
+            Assert.Equal(SpeechEvidenceSubsystem.NoReadbackPending, Say(s, "CLOSED_LOOP", "u2").RejectReason);
+            Assert.DoesNotContain(s.Log.Entries, e => e.Verb == SpeechEvidenceSubsystem.Verb && e.Accepted);
+            Assert.Empty(Evidence(s).Records);
+            s.Patient.Clinical.SetFlag(ProcSense.Core.Workflow.Steps.ResultReviewSubsystem.CriticalFlag);
+            Assert.True(InterpretationContextBuilder.ReadbackPending(s));                                                             // the definition the check shares with the context (the result-review step owns the flag in play, so the logged path is exercised there)
+            Assert.Equal(SpeechEvidenceSubsystem.NoPendingQuestion, Say(s, "ANSWER_QUESTION", "u4").RejectReason);                      // still no question
+            Assert.True(Say(s, "ASK_TOPIC", "u5").Accepted);                                                                         // other acts need no waiting state
         }
 
         [Fact]

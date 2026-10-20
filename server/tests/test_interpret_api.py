@@ -64,12 +64,16 @@ def test_an_eligible_act_is_offered_as_evidence_and_the_audit_holds_no_text(worl
     (row,) = rows(world.api)
     assert (row.task, row.validation, row.fallback) == ("interpret", "passed", False)
     assert "bed" not in (row.output_ref or "") and "bed" not in (row.input_hash or "")
+    assert list(row.reasons) == ["OFFER_EVIDENCE"] and row.prompt_id.startswith("interpret-")        # the rule set behind the decision, no words
 
 
 def test_the_same_sentence_outside_its_window_is_not_offered(world):
     j = world.post({"context": context(steps=(2,)), "utterance": TEXT, "utterance_id": "u-2"}).json()
     assert (j["decision"], j["evidence"]) == ("ABSTAIN", None)
     assert "NOT_ELIGIBLE" in j["reasons"]
+    row = rows(world.api)[-1]                                          # a refusal keeps its reason codes in the audit row (counts by cause), and still holds no words
+    assert (row.validation, row.output_ref) == ("failed", "ABSTAIN") and "NOT_ELIGIBLE" in list(row.reasons)
+    assert "bed" not in " ".join(row.reasons) and "bed" not in (row.output_ref or "")
 
 
 def test_with_the_gate_closed_the_answer_is_the_menu_and_the_fallback_is_audited(world, monkeypatch):

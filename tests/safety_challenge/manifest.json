@@ -1,0 +1,147 @@
+{
+ "version": "metamorph-1",
+ "synthetic": true,
+ "independent": false,
+ "rows": 2079,
+ "labels": "by construction (builder), PROVISIONAL",
+ "per_split": {
+  "dev": {
+   "ambiguous_review": 112,
+   "no_credit": 841,
+   "credit_allowed": 106
+  },
+  "challenge": {
+   "ambiguous_review": 42,
+   "no_credit": 395,
+   "credit_allowed": 70
+  },
+  "final": {
+   "ambiguous_review": 28,
+   "no_credit": 420,
+   "credit_allowed": 65
+  }
+ },
+ "per_category": {
+  "dev": {
+   "asr_negation_lost": 28,
+   "combination": 112,
+   "contentless": 9,
+   "critical_claim": 5,
+   "critical_future": 5,
+   "critical_plain": 15,
+   "duplicate_behaviour": 27,
+   "duplicate_first": 54,
+   "duplicate_utterance": 27,
+   "false_completion": 4,
+   "future": 84,
+   "hedged": 56,
+   "hypothetical": 84,
+   "incomplete": 28,
+   "mixed_critical": 28,
+   "natural": 26,
+   "negation": 54,
+   "negation_scope": 28,
+   "no_context": 4,
+   "other_person": 56,
+   "out_of_window": 27,
+   "plain": 26,
+   "question_advice": 84,
+   "question_statement": 21,
+   "quoted": 55,
+   "reported": 28,
+   "retraction": 56,
+   "unfinished": 28
+  },
+  "challenge": {
+   "asr_negation_lost": 14,
+   "combination": 56,
+   "contentless": 6,
+   "critical_claim": 5,
+   "critical_negated": 5,
+   "critical_plain": 15,
+   "duplicate_behaviour": 14,
+   "duplicate_first": 28,
+   "duplicate_utterance": 14,
+   "false_completion": 3,
+   "future": 40,
+   "hedged": 14,
+   "hypothetical": 28,
+   "incomplete": 14,
+   "mixed_critical": 14,
+   "natural": 28,
+   "negation": 28,
+   "negation_scope": 14,
+   "no_context": 2,
+   "other_person": 28,
+   "out_of_window": 14,
+   "plain": 14,
+   "question_advice": 28,
+   "question_statement": 11,
+   "quoted": 28,
+   "retraction": 28,
+   "unfinished": 14
+  },
+  "final": {
+   "asr_negation_lost": 14,
+   "combination": 56,
+   "contentless": 6,
+   "critical_claim": 5,
+   "critical_other": 5,
+   "critical_plain": 15,
+   "duplicate_behaviour": 13,
+   "duplicate_first": 26,
+   "duplicate_utterance": 13,
+   "false_completion": 3,
+   "future": 40,
+   "hedged": 28,
+   "hypothetical": 28,
+   "incomplete": 13,
+   "mixed_critical": 14,
+   "natural": 26,
+   "negation": 28,
+   "no_context": 2,
+   "other_person": 28,
+   "out_of_window": 14,
+   "plain": 13,
+   "question_advice": 28,
+   "question_statement": 11,
+   "quoted": 14,
+   "reported": 28,
+   "retraction": 28,
+   "unfinished": 14
+  }
+ },
+ "review": {
+  "PENDING_HUMAN_REVIEW": 267,
+  "AUTO_PROVISIONAL": 1812
+ },
+ "leakage": {
+  "challenge": {
+   "max_word_overlap_with_dev": 0.714,
+   "closest_pair": [
+    "I ask for the surgical registrar.",
+    "I ask for the anaesthetic registrar."
+   ]
+  },
+  "final": {
+   "max_word_overlap_with_dev": 0.714,
+   "closest_pair": [
+    "I acknowledge that you are upset.",
+    "I acknowledge that you are frightened."
+   ]
+  },
+  "seed_families_crossing_splits": [],
+  "templates_crossing_splits": []
+ },
+ "dropped_near_duplicates_of_action_bench": 23,
+ "action_bench_max_overlap_kept": {
+  "dev": 0.778,
+  "challenge": 0.778,
+  "final": 0.75
+ },
+ "hashes": {
+  "dev": "d97955d256a9f82d8c4ca57a9209c5c6ebb03f6648aebcdfd57aa6c24bd059c4",
+  "challenge": "82ec7cc772ece3b6f92739ba084535359d1d9dcaae2dcb44e159efcc3a2fd474",
+  "final": "6c66984e4e40593f6631ae701cd6cb68ce835ef83f5e9702419cda036a7b7ddf"
+ }
+}

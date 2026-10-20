@@ -26,8 +26,8 @@ from classify import assertion as NEW  # noqa: E402
 BEFORE_COMMIT = "2f9aa0a"
 
 
-def load_before():
-    text = subprocess.run(["git", "show", f"{BEFORE_COMMIT}:server/classify/assertion.py"], capture_output=True, text=True, encoding="utf-8", cwd=str(ROOT), check=True).stdout
+def load_before(commit=BEFORE_COMMIT):
+    text = subprocess.run(["git", "show", f"{commit}:server/classify/assertion.py"], capture_output=True, text=True, encoding="utf-8", cwd=str(ROOT), check=True).stdout
     tmp = Path(tempfile.mkdtemp()) / "assertion_before.py"
     tmp.write_text(text, encoding="utf-8")
     spec = importlib.util.spec_from_file_location("assertion_before", tmp)
@@ -49,14 +49,20 @@ def sets() -> dict[str, list[str]]:
     rc = json.loads((ROOT / "tests" / "classifier_regression" / "recall_cases.json").read_text(encoding="utf-8"))["rows"]
     out["regression: legitimate paraphrases"] = [r["text"] for r in rc if r["group"] in ("legit_paraphrase", "legit_recovered_by_cap")]
     out["regression: counterexamples (denied, plan, hypothetical, reported, other speaker, broken off)"] = [r["text"] for r in rc if r["group"].startswith("counter_") and r["group"] != "counter_ambiguous"]
+    for sp in ("dev", "challenge"):                    # the unsafe-speech sets (a legitimate row is a performed, non-critical sentence)
+        rows = [json.loads(l) for l in (ROOT / "tests" / "safety_challenge" / f"{sp}.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+        out[f"safety {sp}: legitimate rows"] = [r["text"] for r in rows if r["expected"] == "credit_allowed"]
+        out[f"safety {sp}: must-not-credit rows"] = [r["text"] for r in rows if r["expected"] == "no_credit"]
     return out
 
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--before", default=BEFORE_COMMIT, help="commit whose assertion layer is the comparison (default 2f9aa0a, the recall follow-up; 4a2ed00 for the unsafe-speech hardening)")
+    ap.add_argument("--out", default="recall-assertion-diff.json")
     a = ap.parse_args(argv)
-    old = load_before()
+    old = load_before(a.before)
     res = {}
     for name, texts in sets().items():
         newly, lost = [], []
@@ -71,13 +77,13 @@ def main(argv: list[str]) -> int:
                 lost.append({"text": t, "was": o})
         res[name] = {"sentences": len(texts), "flagged_before": flagged_old, "flagged_now": flagged_new, "newly_flagged": len(newly), "no_longer_flagged": len(lost), "newly_flagged_examples": newly[:6], "no_longer_flagged_examples": lost[:6]}
     legit_new = sum(v["newly_flagged"] for k, v in res.items() if "legitimate" in k or "ordinary" in k or "paraphrases" in k)
-    out = {"before": BEFORE_COMMIT, "sets": res, "legitimate_sentences_newly_flagged": legit_new}
+    out = {"before": a.before, "sets": res, "legitimate_sentences_newly_flagged": legit_new}
     for k, v in res.items():
         print(f"{k}: {v['sentences']} sentences; flagged before {v['flagged_before']}, now {v['flagged_now']} (newly {v['newly_flagged']}, no longer {v['no_longer_flagged']})")
     print("legitimate sentences newly flagged:", legit_new)
     if a.write:
-        (ROOT / "reports" / "ai" / "recall-assertion-diff.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8", newline="\n")
-        print("wrote reports/ai/recall-assertion-diff.json")
+        (ROOT / "reports" / "ai" / a.out).write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8", newline="\n")
+        print("wrote reports/ai/" + a.out)
     return 0
 
 

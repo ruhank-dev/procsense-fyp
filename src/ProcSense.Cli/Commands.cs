@@ -60,12 +60,18 @@ internal static class Commands
             tables = new ProcSense.Core.Scoring.ScoreTables(tables.Behaviours, tables.Rules, tables.Points, tables.Weights, tables.DefaultThreshold, per, tables.CriticalActs, tables.Sentences);
         }
         var verdicts = new List<string>();
+        var stores = new Dictionary<string, ProcSense.Core.Scoring.EvidenceStore>();
         foreach (var item in offers)
         {
             var d = (Dictionary<string, object?>)item!;
             var steps = ((List<object?>)d["steps"]!).Select(x => (int)Convert.ToInt64(x, CultureInfo.InvariantCulture)).ToList();
-            var store = new ProcSense.Core.Scoring.EvidenceStore(tables);
-            var r = store.Submit((string)d["act"]!, "", "", Convert.ToDouble(d["confidence"], CultureInfo.InvariantCulture), steps, new[] { 0 });
+            // an offer with a "group" shares one store with the others of that group, in file order (a session: duplicates are judged against what came before); one without gets a fresh store
+            string group = d.TryGetValue("group", out var g) && g is string gs ? gs : "";
+            ProcSense.Core.Scoring.EvidenceStore store;
+            if (group.Length == 0) store = new ProcSense.Core.Scoring.EvidenceStore(tables);
+            else if (!stores.TryGetValue(group, out store!)) stores[group] = store = new ProcSense.Core.Scoring.EvidenceStore(tables);
+            string utterance = d.TryGetValue("utterance", out var u) && u is string us ? us : "";
+            var r = store.SubmitUtterance(utterance, (string)d["act"]!, "", Convert.ToDouble(d["confidence"], CultureInfo.InvariantCulture), steps, new[] { 0 });
             verdicts.Add($"{{\"id\":\"{d["id"]}\",\"accepted\":{(r.Accepted ? "true" : "false")},\"reason\":\"{r.Reason.Replace("\"", "'")}\",\"behaviour\":\"{r.Behaviour}\"}}");
         }
         string text = "[" + string.Join(",\n", verdicts) + "]\n";

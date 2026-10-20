@@ -1,0 +1,2272 @@
+{
+ "note": "must-not-credit sentences that 4a2ed00 credited through the engine (tools/bench/safety_eval.py baseline run); each must now be named as not performed by the assertion layer. Synthetic, builder-written, provisional labels.",
+ "baseline_commit": "4a2ed00",
+ "rows": [
+  {
+   "id": "d00552",
+   "split": "dev",
+   "category": "combination",
+   "template": "X1",
+   "text": "I won't take your pulse now until later, if at all.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00593",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not note that you stopped smoking.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00596",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not tell you that you will feel no pain.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00598",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not ask about your bowels.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00599",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not ask you to repeat the eating instructions.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00601",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not ask you to go back over that.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00602",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not ask what you mean by strange.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00603",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not read back the paracetamol order.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00604",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not confirm I will tell you when the bloods are sent.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00606",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not ask for the consultant.",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00611",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not explain the blood count.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00615",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not report the oxygen fault at bed four.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00616",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not report the faulty pump.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00618",
+   "split": "dev",
+   "category": "combination",
+   "template": "X2",
+   "text": "The tutor said I should not ask for a recovery bed.",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00627",
+   "split": "dev",
+   "category": "combination",
+   "template": "X7",
+   "text": "I might ask you to repeat the eating instructions later if you want me to.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00630",
+   "split": "dev",
+   "category": "combination",
+   "template": "X7",
+   "text": "I might ask what you mean by strange later if you want me to.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00631",
+   "split": "dev",
+   "category": "combination",
+   "template": "X7",
+   "text": "I might read back the paracetamol order later if you want me to.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00653",
+   "split": "dev",
+   "category": "contentless",
+   "template": "Z1",
+   "text": "Thank you.",
+   "act": "",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00835",
+   "split": "dev",
+   "category": "future",
+   "template": "F2",
+   "text": "Do you want me to ask about your bowels?",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00836",
+   "split": "dev",
+   "category": "future",
+   "template": "F2",
+   "text": "Do you want me to ask you to repeat the eating instructions?",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00837",
+   "split": "dev",
+   "category": "future",
+   "template": "F2",
+   "text": "Do you want me to check that the explanation was clear?",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00839",
+   "split": "dev",
+   "category": "future",
+   "template": "F2",
+   "text": "Do you want me to ask what you mean by strange?",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00840",
+   "split": "dev",
+   "category": "future",
+   "template": "F2",
+   "text": "Do you want me to read back the paracetamol order?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00841",
+   "split": "dev",
+   "category": "future",
+   "template": "F2",
+   "text": "Do you want me to confirm I will tell you when the bloods are sent?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00856",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's acknowledge that you are frightened tomorrow.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00858",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's note that you stopped smoking tomorrow.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00862",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's ask about your appetite tomorrow.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00863",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's ask about your bowels tomorrow.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00864",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's ask you to repeat the eating instructions tomorrow.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00866",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's ask you to go back over that tomorrow.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00867",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's ask what you mean by strange tomorrow.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00868",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's read back the paracetamol order tomorrow.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00882",
+   "split": "dev",
+   "category": "future",
+   "template": "F7",
+   "text": "Let's order a urine sample tomorrow.",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00886",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I noted that you had stopped smoking.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00887",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I noted where you lived.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00889",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I told you that you would feel no pain.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00892",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I asked you to repeat the eating instructions.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00895",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I asked what you meant by strange.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00896",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I read back the paracetamol order.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00899",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I asked for the consultant.",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00903",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I explained how you would go to sleep.",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00904",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I explained the blood count.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00908",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I reported the oxygen fault at bed four.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00909",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U4",
+   "text": "Maybe I reported the faulty pump.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00914",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone noted that you had stopped smoking.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00916",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone told you that you could go home tonight.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00919",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone asked about your bowels.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00922",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone asked you to go back over that.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00923",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone asked what you meant by strange.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00927",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone asked for the consultant.",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00931",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone explained how you would go to sleep.",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00932",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone explained the blood count.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d00937",
+   "split": "dev",
+   "category": "hedged",
+   "template": "U7",
+   "text": "I'm pretty sure someone reported the faulty pump.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01207",
+   "split": "dev",
+   "category": "other_person",
+   "template": "A1",
+   "text": "The nurse asked what you meant by strange.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01226",
+   "split": "dev",
+   "category": "other_person",
+   "template": "A2",
+   "text": "He noted that you had stopped smoking earlier.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01235",
+   "split": "dev",
+   "category": "other_person",
+   "template": "A2",
+   "text": "He asked what you meant by strange earlier.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01310",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I note that you stopped smoking?",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01314",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I ask about your appetite?",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01315",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I ask about your bowels?",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01316",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I ask you to repeat the eating instructions?",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01319",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I ask what you mean by strange?",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01321",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I confirm I will tell you when the bloods are sent?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01323",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I ask for the consultant?",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01325",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I take your pulse now?",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01334",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R1",
+   "text": "Should I order a urine sample?",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01336",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to acknowledge that you are frightened.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01338",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to note that you stopped smoking.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01340",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to tell you that you can go home tonight.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01342",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to ask about your appetite.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01343",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to ask about your bowels.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01347",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to ask what you mean by strange.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01348",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to read back the paracetamol order.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01349",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to confirm I will tell you when the bloods are sent.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01351",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to ask for the consultant.",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01352",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to examine your abdomen now.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01361",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to report the faulty pump.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01362",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R2",
+   "text": "Someone ought to order a urine sample.",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01366",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R7",
+   "text": "Is it necessary to note that you stopped smoking?",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01370",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R7",
+   "text": "Is it necessary to ask about your appetite?",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01371",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R7",
+   "text": "Is it necessary to ask about your bowels?",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01372",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R7",
+   "text": "Is it necessary to ask you to repeat the eating instructions?",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01375",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R7",
+   "text": "Is it necessary to ask what you mean by strange?",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01376",
+   "split": "dev",
+   "category": "question_advice",
+   "template": "R7",
+   "text": "Is it necessary to read back the paracetamol order?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01392",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that anyone would feel scared in your position?",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01393",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that you seem very tense, and that is natural?",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01395",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that thank you, so you live on the second floor?",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01398",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that can you say back what I asked you to do tonight?",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01400",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that understood, I'll let you know when the bloods are sent?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01401",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that i'm not happy with this, I need my senior now?",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01403",
+   "split": "dev",
+   "category": "question_statement",
+   "template": "R8",
+   "text": "Is it true that i am just going to take your pulse?",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01416",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"Thank you, so you live on the second floor.\"",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01421",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"Can you say back what I asked you to do tonight?\"",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01422",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"Does that explanation make sense to you?\"",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01423",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"I lost you at the end, can you say it again?\"",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01424",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"What does a funny feeling mean to you?\"",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01425",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"So that's paracetamol, one gram, given now.\"",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01426",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"Understood, I'll let you know when the bloods are sent.\"",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01427",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"Can you ask the anaesthetic registrar to come?\"",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01428",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"I'm not happy with this, I need my senior now.\"",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01432",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"The anaesthetist will give you medicine through the drip to make you sleep.\"",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01433",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"This sample tells us how much haemoglobin you have.\"",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01434",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"The x ray shows us the shape of your chest.\"",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01439",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q1",
+   "text": "The tutor said, \"Can someone send a urine specimen?\"",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01451",
+   "split": "dev",
+   "category": "quoted",
+   "template": "Q2",
+   "text": "In the video she says \"I lost you at the end, can you say it again?\"",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01471",
+   "split": "dev",
+   "category": "reported",
+   "template": "Q8",
+   "text": "I read that someone noted that you had stopped smoking yesterday.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01472",
+   "split": "dev",
+   "category": "reported",
+   "template": "Q8",
+   "text": "I read that someone noted where you lived yesterday.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01474",
+   "split": "dev",
+   "category": "reported",
+   "template": "Q8",
+   "text": "I read that someone told you that you would feel no pain yesterday.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01480",
+   "split": "dev",
+   "category": "reported",
+   "template": "Q8",
+   "text": "I read that someone asked what you meant by strange yesterday.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01497",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I acknowledged that you were frightened, no wait, I didn't.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01499",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I noted that you had stopped smoking, no wait, I didn't.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01500",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I noted where you lived, no wait, I didn't.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01503",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I asked about your appetite, no wait, I didn't.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01504",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I asked about your bowels, no wait, I didn't.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01505",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I asked you to repeat the eating instructions, no wait, I didn't.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01508",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I asked what you meant by strange, no wait, I didn't.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01512",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I asked for the consultant, no wait, I didn't.",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01516",
+   "split": "dev",
+   "category": "retraction",
+   "template": "C1",
+   "text": "I explained how you would go to sleep, no wait, I didn't.",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01553",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to acknowledge that you are frightened, but then I got distracted.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01555",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to note that you stopped smoking, but then I got distracted.",
+   "act": "ACKNOWLEDGE_FACT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01559",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to ask about your appetite, but then I got distracted.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01560",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to ask about your bowels, but then I got distracted.",
+   "act": "ASK_TOPIC",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01561",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to ask you to repeat the eating instructions, but then I got distracted.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01564",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to ask what you mean by strange, but then I got distracted.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01565",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to read back the paracetamol order, but then I got distracted.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01566",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to confirm I will tell you when the bloods are sent, but then I got distracted.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "d01569",
+   "split": "dev",
+   "category": "unfinished",
+   "template": "U3",
+   "text": "I wanted to examine your abdomen now, but then I got distracted.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00030",
+   "split": "challenge",
+   "category": "combination",
+   "template": "X3",
+   "text": "If the nurse told you that your family could wait, then I don't need to.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00034",
+   "split": "challenge",
+   "category": "combination",
+   "template": "X3",
+   "text": "If the nurse read back the fluid rate, then I don't need to.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00037",
+   "split": "challenge",
+   "category": "combination",
+   "template": "X3",
+   "text": "If the nurse explained the recovery area, then I don't need to.",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00038",
+   "split": "challenge",
+   "category": "combination",
+   "template": "X3",
+   "text": "If the nurse explained the urine test, then I don't need to.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00164",
+   "split": "challenge",
+   "category": "future",
+   "template": "F3",
+   "text": "I am going to ask you to say what the operation is for after the break.",
+   "act": "CHECK_UNDERSTANDING",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00165",
+   "split": "challenge",
+   "category": "future",
+   "template": "F3",
+   "text": "I am going to check which arm you mean after the break.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00166",
+   "split": "challenge",
+   "category": "future",
+   "template": "F3",
+   "text": "I am going to read back the fluid rate after the break.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00168",
+   "split": "challenge",
+   "category": "future",
+   "template": "F3",
+   "text": "I am going to put the clip on your finger now after the break.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00170",
+   "split": "challenge",
+   "category": "future",
+   "template": "F3",
+   "text": "I am going to explain the urine test after the break.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00174",
+   "split": "challenge",
+   "category": "future",
+   "template": "F4",
+   "text": "Next I plan to acknowledge how hard the wait is.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00182",
+   "split": "challenge",
+   "category": "future",
+   "template": "F4",
+   "text": "Next I plan to explain the urine test.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00184",
+   "split": "challenge",
+   "category": "future",
+   "template": "F4",
+   "text": "Next I plan to report the broken bell.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00192",
+   "split": "challenge",
+   "category": "future",
+   "template": "F9",
+   "text": "I promise I will read back the fluid rate once the paperwork is done.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00196",
+   "split": "challenge",
+   "category": "future",
+   "template": "F9",
+   "text": "I promise I will explain the urine test once the paperwork is done.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00197",
+   "split": "challenge",
+   "category": "future",
+   "template": "F9",
+   "text": "I promise I will reassure you about pain control once the paperwork is done.",
+   "act": "REASSURE",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00198",
+   "split": "challenge",
+   "category": "future",
+   "template": "F9",
+   "text": "I promise I will report the broken bell once the paperwork is done.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00202",
+   "split": "challenge",
+   "category": "hedged",
+   "template": "U5",
+   "text": "I think I might have told you that your family can wait, I'm not sure.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00205",
+   "split": "challenge",
+   "category": "hedged",
+   "template": "U5",
+   "text": "I think I might have checked which arm you meant, I'm not sure.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00210",
+   "split": "challenge",
+   "category": "hedged",
+   "template": "U5",
+   "text": "I think I might have explained the urine test, I'm not sure.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00212",
+   "split": "challenge",
+   "category": "hedged",
+   "template": "U5",
+   "text": "I think I might have reported the broken bell, I'm not sure.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00230",
+   "split": "challenge",
+   "category": "hypothetical",
+   "template": "H4",
+   "text": "I would tell you that your family can wait if there were time.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00236",
+   "split": "challenge",
+   "category": "hypothetical",
+   "template": "H4",
+   "text": "I would put the clip on your finger now if there were time.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00237",
+   "split": "challenge",
+   "category": "hypothetical",
+   "template": "H4",
+   "text": "I would explain the recovery area if there were time.",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00238",
+   "split": "challenge",
+   "category": "hypothetical",
+   "template": "H4",
+   "text": "I would explain the urine test if there were time.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00240",
+   "split": "challenge",
+   "category": "hypothetical",
+   "template": "H4",
+   "text": "I would report the broken bell if there were time.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00249",
+   "split": "challenge",
+   "category": "incomplete",
+   "template": "I2",
+   "text": "Um can someone get the, sorry, where was I",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00312",
+   "split": "challenge",
+   "category": "negation",
+   "template": "N4",
+   "text": "I forgot to acknowledge how hard the wait is.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00314",
+   "split": "challenge",
+   "category": "negation",
+   "template": "N4",
+   "text": "I forgot to tell you that your family can wait.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00317",
+   "split": "challenge",
+   "category": "negation",
+   "template": "N4",
+   "text": "I forgot to check which arm you mean.",
+   "act": "CLARIFY",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00320",
+   "split": "challenge",
+   "category": "negation",
+   "template": "N4",
+   "text": "I forgot to put the clip on your finger now.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00322",
+   "split": "challenge",
+   "category": "negation",
+   "template": "N4",
+   "text": "I forgot to explain the urine test.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00324",
+   "split": "challenge",
+   "category": "negation",
+   "template": "N4",
+   "text": "I forgot to report the broken bell.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00352",
+   "split": "challenge",
+   "category": "other_person",
+   "template": "A3",
+   "text": "My colleague explained the urine test before I came in.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00366",
+   "split": "challenge",
+   "category": "other_person",
+   "template": "A4",
+   "text": "The doctor before me explained the urine test.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00404",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R3",
+   "text": "Do I need to read back the fluid rate?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00412",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R4",
+   "text": "Please remember to acknowledge how hard the wait is.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00414",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R4",
+   "text": "Please remember to tell you that your family can wait.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00418",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R4",
+   "text": "Please remember to read back the fluid rate.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00420",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R4",
+   "text": "Please remember to put the clip on your finger now.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00422",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R4",
+   "text": "Please remember to explain the urine test.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00424",
+   "split": "challenge",
+   "category": "question_advice",
+   "template": "R4",
+   "text": "Please remember to report the broken bell.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00429",
+   "split": "challenge",
+   "category": "question_statement",
+   "template": "R9",
+   "text": "Would it be right to say that so fluids at a hundred millilitres an hour, confirmed?",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00430",
+   "split": "challenge",
+   "category": "question_statement",
+   "template": "R9",
+   "text": "Would it be right to say that can someone get the surgical registrar to come down?",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00431",
+   "split": "challenge",
+   "category": "question_statement",
+   "template": "R9",
+   "text": "Would it be right to say that now I'm putting a small clip on your finger?",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00435",
+   "split": "challenge",
+   "category": "question_statement",
+   "template": "R9",
+   "text": "Would it be right to say that nothing happens when you press the bell in bay two?",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00437",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, I know the waiting has been difficult for you.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00443",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, So fluids at a hundred millilitres an hour, confirmed.",
+   "act": "CLOSED_LOOP",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00444",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, Can someone get the surgical registrar to come down?",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00445",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, Now I'm putting a small clip on your finger.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00446",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, You wake up in recovery with a nurse beside you.",
+   "act": "EXPLAIN_PROCEDURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00447",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, We test the sample for signs of a water infection.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00448",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, You will have pain relief as soon as you need it.",
+   "act": "REASSURE",
+   "credited_by_4a2ed00_in": [
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00450",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q3",
+   "text": "I heard someone say, Can we have a portable chest film?",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00461",
+   "split": "challenge",
+   "category": "quoted",
+   "template": "Q4",
+   "text": "The script reads: \"We test the sample for signs of a water infection.\"",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00479",
+   "split": "challenge",
+   "category": "retraction",
+   "template": "C6",
+   "text": "I know the waiting has been difficult for you. Wait, that was the wrong patient.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00486",
+   "split": "challenge",
+   "category": "retraction",
+   "template": "C6",
+   "text": "Can someone get the surgical registrar to come down? Wait, that was the wrong patient.",
+   "act": "ESCALATE_SPEECH",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00487",
+   "split": "challenge",
+   "category": "retraction",
+   "template": "C6",
+   "text": "Now I'm putting a small clip on your finger. Wait, that was the wrong patient.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00489",
+   "split": "challenge",
+   "category": "retraction",
+   "template": "C6",
+   "text": "We test the sample for signs of a water infection. Wait, that was the wrong patient.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00492",
+   "split": "challenge",
+   "category": "retraction",
+   "template": "C6",
+   "text": "Can we have a portable chest film? Wait, that was the wrong patient.",
+   "act": "VOICE_ORDER",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00493",
+   "split": "challenge",
+   "category": "unfinished",
+   "template": "U2",
+   "text": "I was supposed to acknowledge how hard the wait is but I ran out of time.",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00495",
+   "split": "challenge",
+   "category": "unfinished",
+   "template": "U2",
+   "text": "I was supposed to tell you that your family can wait but I ran out of time.",
+   "act": "ANSWER_QUESTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00501",
+   "split": "challenge",
+   "category": "unfinished",
+   "template": "U2",
+   "text": "I was supposed to put the clip on your finger now but I ran out of time.",
+   "act": "EXPLAIN_ACTION",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00503",
+   "split": "challenge",
+   "category": "unfinished",
+   "template": "U2",
+   "text": "I was supposed to explain the urine test but I ran out of time.",
+   "act": "EXPLAIN_TEST",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  },
+  {
+   "id": "c00505",
+   "split": "challenge",
+   "category": "unfinished",
+   "template": "U2",
+   "text": "I was supposed to report the broken bell but I ran out of time.",
+   "act": "REPORT_FAULT",
+   "credited_by_4a2ed00_in": [
+    "in_window",
+    "permissive"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+{
+ "note": "The final split is scored once per configuration (a lock). After the scoring, comment lines of server/classify/assertion.py were edited (no behaviour), so the file hash recorded in s16-final.json (98ab63e7f9ca27ad) differs from the committed file (see configuration of s16-dev.json). To show the behaviour is the same, the committed code was run on the final split once more WITHOUT writing a result or acting on it (a reproducibility check, not a second look): all 897 (row, view) results, including decision, offer, reasons, engine verdict and credited act, are identical to s16-final-raw.json.",
+ "compared": 897,
+ "differences": 0,
+ "date": "2026-10-20"
+}

@@ -1,0 +1,20 @@
+{
+ "note": "The challenge split was written before the implementation was changed and was looked at once, after the changes that the DEVELOPMENT failures called for (no challenge sentence was consulted for them). The first two rows were measured by tools/bench/safety_eval.py on the working tree at those two moments (the baseline row is reproducible from baseline-4a2ed00-challenge.json; the first-pass row is a recorded figure whose raw file was not retained because the tree changed afterwards). The third row is reproducible from s16-challenge.json but is NOT independent: the mechanisms behind the 40 remaining failures were generalised after looking at them.",
+ "steps": [
+  {
+   "step": "unchanged 4a2ed00",
+   "unsafe_credit": "64/385 (16.6%)",
+   "legitimate": "34/70"
+  },
+  {
+   "step": "first pass: patterns written from the development failures only (the first look at the challenge split)",
+   "unsafe_credit": "40/385 (10.4%)",
+   "legitimate": "34/70"
+  },
+  {
+   "step": "second pass: the mechanisms behind those 40 generalised (candidate s16; challenge now development)",
+   "unsafe_credit": "0/385 (0.0%)",
+   "legitimate": "34/70"
+  }
+ ]
+}

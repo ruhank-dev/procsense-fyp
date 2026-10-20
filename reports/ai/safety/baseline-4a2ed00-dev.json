@@ -1,0 +1,2937 @@
+{
+ "split": "dev",
+ "name": "baseline-4a2ed00",
+ "configuration": {
+  "implementation": "artifacts\\baseline-4a2ed00",
+  "service_files": {
+   "server/classify/assertion.py": "adff81ba43df9105",
+   "server/classify/ensemble.py": "f7722194cf309b8a",
+   "server/classify/embedding.py": "3d2d50ec0d9c03ba",
+   "server/classify/hybrid.py": "3364c1296148c106",
+   "server/classify/tfidf.py": "f7823aa4ad8d374b",
+   "server/classify/guard.py": "6785f249e846f753",
+   "server/interpret/decide.py": "5d3090b02b99ddce",
+   "server/interpret/validate.py": "c9b02036b75e73ef",
+   "server/interpret/status.py": "58ec48d4a67eedf8",
+   "content/assessment/act_head_hybrid.json": "009bd079f057b2d9",
+   "content/assessment/mapping.json": "2f6ef6fc54fe752f",
+   "content/ai/critical_cues.json": "558b3c424ff66835",
+   "content/ai/interpret_phrases.json": "940cf94636204d3f",
+   "content/ai/lexicon.json": "7ebfd2e9150fad0f"
+  },
+  "engine_files": {
+   "src/ProcSense.Core/Scoring/Evidence.cs": "6cbf51c3b507b80e",
+   "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs": "0157a60665d44882",
+   "src/ProcSense.Cli/Commands.cs": "b6bdf4fb7e838e23"
+  },
+  "interpret_version": "pre-versioned (4a2ed00 or earlier)",
+  "critical_mass_max": 0.05,
+  "embedding_model": "all-minilm:22m",
+  "checkout_commit": "4a2ed00ce96feb414149ed6a5bac705e89f381c5",
+  "checkout_dirty_in_code_paths": true,
+  "command": "tools/.venv/Scripts/python.exe tools/bench/safety_eval.py --split <split> --name <name> [--impl DIR] --write"
+ },
+ "synthetic": true,
+ "independent": false,
+ "labels": "provisional, by construction",
+ "rows": 1059,
+ "seconds": 4.8,
+ "expected": {
+  "ambiguous_review": 112,
+  "no_credit": 841,
+  "credit_allowed": 106
+ },
+ "session_pairs_not_applicable": 13,
+ "unsafe_credit": {
+  "credited": 126,
+  "of": 828,
+  "rate": 0.1522,
+  "wilson95": [
+   0.1293,
+   0.1782
+  ],
+  "note": "rows that must never be credited and were credited by the engine in some view; zero on a finite synthetic set is not zero risk"
+ },
+ "engine_backstop_credit": {
+  "credited": 0,
+  "of": 41,
+  "note": "session pair with a STALE context: only the engine's own duplicate rule remains"
+ },
+ "critical": {
+  "credited": 0,
+  "of": 29
+ },
+ "out_of_window": {
+  "credited": 0,
+  "of": 27
+ },
+ "legitimate": {
+  "credited_right_act": 82,
+  "of": 106,
+  "rate": 0.7736,
+  "wilson95": [
+   0.6852,
+   0.8429
+  ],
+  "credited_under_another_act": 0
+ },
+ "credited_precision": {
+  "right": 82,
+  "credited": 208,
+  "rate": 0.3942,
+  "wilson95": [
+   0.3303,
+   0.462
+  ],
+  "note": "rows credited (once each) and, of them, those that were performed acts credited under the right act"
+ },
+ "decisions": {
+  "legitimate": {
+   "OFFER_EVIDENCE": 82,
+   "ABSTAIN": 23,
+   "CLARIFY": 1
+  },
+  "must_not_credit": {
+   "ABSTAIN": 600,
+   "MENU": 94,
+   "OFFER_EVIDENCE": 130,
+   "CLARIFY": 4
+  }
+ },
+ "ambiguous_review": {
+  "rows": 112,
+  "credited": 24,
+  "by_category": {
+   "asr_negation_lost": [
+    18,
+    28
+   ],
+   "mixed_critical": [
+    0,
+    28
+   ],
+   "negation_scope": [
+    6,
+    28
+   ],
+   "retraction": [
+    0,
+    28
+   ]
+  }
+ },
+ "by_category": {
+  "asr_negation_lost": {
+   "expected": "ambiguous_review",
+   "rows": 28,
+   "credited": 18
+  },
+  "combination": {
+   "expected": "no_credit",
+   "rows": 112,
+   "credited": 17,
+   "backstop_credited": 0
+  },
+  "contentless": {
+   "expected": "no_credit",
+   "rows": 9,
+   "credited": 1,
+   "backstop_credited": 0
+  },
+  "critical_claim": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_future": {
+   "expected": "no_credit",
+   "rows": 5,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "critical_plain": {
+   "expected": "no_credit",
+   "rows": 15,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_behaviour": {
+   "expected": "no_credit",
+   "rows": 23,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "duplicate_first": {
+   "expected": "credit_allowed",
+   "rows": 54,
+   "credited_right_act": 41
+  },
+  "duplicate_utterance": {
+   "expected": "no_credit",
+   "rows": 18,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "false_completion": {
+   "expected": "no_credit",
+   "rows": 4,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "future": {
+   "expected": "no_credit",
+   "rows": 84,
+   "credited": 15,
+   "backstop_credited": 0
+  },
+  "hedged": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 20,
+   "backstop_credited": 0
+  },
+  "hypothetical": {
+   "expected": "no_credit",
+   "rows": 84,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "incomplete": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "mixed_critical": {
+   "expected": "ambiguous_review",
+   "rows": 28,
+   "credited": 0
+  },
+  "natural": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 21
+  },
+  "negation": {
+   "expected": "no_credit",
+   "rows": 54,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "negation_scope": {
+   "expected": "ambiguous_review",
+   "rows": 28,
+   "credited": 6
+  },
+  "no_context": {
+   "expected": "no_credit",
+   "rows": 4,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "other_person": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 3,
+   "backstop_credited": 0
+  },
+  "out_of_window": {
+   "expected": "no_credit",
+   "rows": 27,
+   "credited": 0,
+   "backstop_credited": 0
+  },
+  "plain": {
+   "expected": "credit_allowed",
+   "rows": 26,
+   "credited_right_act": 20
+  },
+  "question_advice": {
+   "expected": "no_credit",
+   "rows": 84,
+   "credited": 27,
+   "backstop_credited": 0
+  },
+  "question_statement": {
+   "expected": "no_credit",
+   "rows": 21,
+   "credited": 7,
+   "backstop_credited": 0
+  },
+  "quoted": {
+   "expected": "no_credit",
+   "rows": 55,
+   "credited": 14,
+   "backstop_credited": 0
+  },
+  "reported": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 4,
+   "backstop_credited": 0
+  },
+  "retraction": {
+   "expected": "no_credit",
+   "rows": 56,
+   "credited": 9,
+   "backstop_credited": 0
+  },
+  "unfinished": {
+   "expected": "no_credit",
+   "rows": 28,
+   "credited": 9,
+   "backstop_credited": 0
+  }
+ },
+ "combinations_by_template": {
+  "X1": {
+   "credited": 1,
+   "of": 28
+  },
+  "X10": {
+   "credited": 0,
+   "of": 28
+  },
+  "X2": {
+   "credited": 13,
+   "of": 28
+  },
+  "X7": {
+   "credited": 3,
+   "of": 28
+  }
+ },
+ "refusal_reasons_for_must_not_credit": {
+  "CRITICAL_MASS": 699,
+  "NOT_PERFORMED": 224,
+  "CRITICAL_TOPIC": 164,
+  "GATE_NOT_CREDITED": 44,
+  "NO_ACT": 38,
+  "OFFER_EVIDENCE": 37,
+  "NOT_ELIGIBLE": 35,
+  "QUESTION_NOT_PERFORMING_ACT": 32,
+  "ALREADY_ACCEPTED": 30,
+  "NO_ELIGIBLE_OBJECTIVE": 27,
+  "NO_READBACK_PENDING": 4,
+  "NO_PENDING_QUESTION": 2
+ },
+ "false_rejection_reasons": {
+  "CRITICAL_MASS": 16,
+  "GATE_NOT_CREDITED": 5,
+  "NOT_PERFORMED": 3
+ },
+ "latency_ms": {
+  "p50": 1.33,
+  "p95": 1.69,
+  "max": 20.98,
+  "n": 1915
+ },
+ "errors": 0,
+ "failures": [
+  {
+   "id": "d00552",
+   "text": "I won't take your pulse now until later, if at all.",
+   "category": "combination",
+   "template": "X1",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00593",
+   "text": "The tutor said I should not note that you stopped smoking.",
+   "category": "combination",
+   "template": "X2",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00596",
+   "text": "The tutor said I should not tell you that you will feel no pain.",
+   "category": "combination",
+   "template": "X2",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00598",
+   "text": "The tutor said I should not ask about your bowels.",
+   "category": "combination",
+   "template": "X2",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00599",
+   "text": "The tutor said I should not ask you to repeat the eating instructions.",
+   "category": "combination",
+   "template": "X2",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00601",
+   "text": "The tutor said I should not ask you to go back over that.",
+   "category": "combination",
+   "template": "X2",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00602",
+   "text": "The tutor said I should not ask what you mean by strange.",
+   "category": "combination",
+   "template": "X2",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00603",
+   "text": "The tutor said I should not read back the paracetamol order.",
+   "category": "combination",
+   "template": "X2",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00604",
+   "text": "The tutor said I should not confirm I will tell you when the bloods are sent.",
+   "category": "combination",
+   "template": "X2",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00606",
+   "text": "The tutor said I should not ask for the consultant.",
+   "category": "combination",
+   "template": "X2",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00611",
+   "text": "The tutor said I should not explain the blood count.",
+   "category": "combination",
+   "template": "X2",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00615",
+   "text": "The tutor said I should not report the oxygen fault at bed four.",
+   "category": "combination",
+   "template": "X2",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00616",
+   "text": "The tutor said I should not report the faulty pump.",
+   "category": "combination",
+   "template": "X2",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00618",
+   "text": "The tutor said I should not ask for a recovery bed.",
+   "category": "combination",
+   "template": "X2",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00627",
+   "text": "I might ask you to repeat the eating instructions later if you want me to.",
+   "category": "combination",
+   "template": "X7",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00630",
+   "text": "I might ask what you mean by strange later if you want me to.",
+   "category": "combination",
+   "template": "X7",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00631",
+   "text": "I might read back the paracetamol order later if you want me to.",
+   "category": "combination",
+   "template": "X7",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00653",
+   "text": "Thank you.",
+   "category": "contentless",
+   "template": "Z1",
+   "act": "",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00835",
+   "text": "Do you want me to ask about your bowels?",
+   "category": "future",
+   "template": "F2",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00836",
+   "text": "Do you want me to ask you to repeat the eating instructions?",
+   "category": "future",
+   "template": "F2",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00837",
+   "text": "Do you want me to check that the explanation was clear?",
+   "category": "future",
+   "template": "F2",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00839",
+   "text": "Do you want me to ask what you mean by strange?",
+   "category": "future",
+   "template": "F2",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00840",
+   "text": "Do you want me to read back the paracetamol order?",
+   "category": "future",
+   "template": "F2",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00841",
+   "text": "Do you want me to confirm I will tell you when the bloods are sent?",
+   "category": "future",
+   "template": "F2",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00856",
+   "text": "Let's acknowledge that you are frightened tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00858",
+   "text": "Let's note that you stopped smoking tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00862",
+   "text": "Let's ask about your appetite tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00863",
+   "text": "Let's ask about your bowels tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00864",
+   "text": "Let's ask you to repeat the eating instructions tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00866",
+   "text": "Let's ask you to go back over that tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00867",
+   "text": "Let's ask what you mean by strange tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00868",
+   "text": "Let's read back the paracetamol order tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00882",
+   "text": "Let's order a urine sample tomorrow.",
+   "category": "future",
+   "template": "F7",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00886",
+   "text": "Maybe I noted that you had stopped smoking.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00887",
+   "text": "Maybe I noted where you lived.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00889",
+   "text": "Maybe I told you that you would feel no pain.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00892",
+   "text": "Maybe I asked you to repeat the eating instructions.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00895",
+   "text": "Maybe I asked what you meant by strange.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00896",
+   "text": "Maybe I read back the paracetamol order.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00899",
+   "text": "Maybe I asked for the consultant.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00903",
+   "text": "Maybe I explained how you would go to sleep.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00904",
+   "text": "Maybe I explained the blood count.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00908",
+   "text": "Maybe I reported the oxygen fault at bed four.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00909",
+   "text": "Maybe I reported the faulty pump.",
+   "category": "hedged",
+   "template": "U4",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00914",
+   "text": "I'm pretty sure someone noted that you had stopped smoking.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00916",
+   "text": "I'm pretty sure someone told you that you could go home tonight.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00919",
+   "text": "I'm pretty sure someone asked about your bowels.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00922",
+   "text": "I'm pretty sure someone asked you to go back over that.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00923",
+   "text": "I'm pretty sure someone asked what you meant by strange.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00927",
+   "text": "I'm pretty sure someone asked for the consultant.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00931",
+   "text": "I'm pretty sure someone explained how you would go to sleep.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00932",
+   "text": "I'm pretty sure someone explained the blood count.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d00937",
+   "text": "I'm pretty sure someone reported the faulty pump.",
+   "category": "hedged",
+   "template": "U7",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01207",
+   "text": "The nurse asked what you meant by strange.",
+   "category": "other_person",
+   "template": "A1",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01226",
+   "text": "He noted that you had stopped smoking earlier.",
+   "category": "other_person",
+   "template": "A2",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01235",
+   "text": "He asked what you meant by strange earlier.",
+   "category": "other_person",
+   "template": "A2",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01310",
+   "text": "Should I note that you stopped smoking?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01314",
+   "text": "Should I ask about your appetite?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01315",
+   "text": "Should I ask about your bowels?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01316",
+   "text": "Should I ask you to repeat the eating instructions?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01319",
+   "text": "Should I ask what you mean by strange?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01321",
+   "text": "Should I confirm I will tell you when the bloods are sent?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01323",
+   "text": "Should I ask for the consultant?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01325",
+   "text": "Should I take your pulse now?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01334",
+   "text": "Should I order a urine sample?",
+   "category": "question_advice",
+   "template": "R1",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01336",
+   "text": "Someone ought to acknowledge that you are frightened.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01338",
+   "text": "Someone ought to note that you stopped smoking.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01340",
+   "text": "Someone ought to tell you that you can go home tonight.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ANSWER_QUESTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01342",
+   "text": "Someone ought to ask about your appetite.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01343",
+   "text": "Someone ought to ask about your bowels.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01347",
+   "text": "Someone ought to ask what you mean by strange.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01348",
+   "text": "Someone ought to read back the paracetamol order.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01349",
+   "text": "Someone ought to confirm I will tell you when the bloods are sent.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01351",
+   "text": "Someone ought to ask for the consultant.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01352",
+   "text": "Someone ought to examine your abdomen now.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01361",
+   "text": "Someone ought to report the faulty pump.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "REPORT_FAULT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "REPORT_FAULT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01362",
+   "text": "Someone ought to order a urine sample.",
+   "category": "question_advice",
+   "template": "R2",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01366",
+   "text": "Is it necessary to note that you stopped smoking?",
+   "category": "question_advice",
+   "template": "R7",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01370",
+   "text": "Is it necessary to ask about your appetite?",
+   "category": "question_advice",
+   "template": "R7",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01371",
+   "text": "Is it necessary to ask about your bowels?",
+   "category": "question_advice",
+   "template": "R7",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01372",
+   "text": "Is it necessary to ask you to repeat the eating instructions?",
+   "category": "question_advice",
+   "template": "R7",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01375",
+   "text": "Is it necessary to ask what you mean by strange?",
+   "category": "question_advice",
+   "template": "R7",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01376",
+   "text": "Is it necessary to read back the paracetamol order?",
+   "category": "question_advice",
+   "template": "R7",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01392",
+   "text": "Is it true that anyone would feel scared in your position?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01393",
+   "text": "Is it true that you seem very tense, and that is natural?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01395",
+   "text": "Is it true that thank you, so you live on the second floor?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01398",
+   "text": "Is it true that can you say back what I asked you to do tonight?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01400",
+   "text": "Is it true that understood, I'll let you know when the bloods are sent?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01401",
+   "text": "Is it true that i'm not happy with this, I need my senior now?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01403",
+   "text": "Is it true that i am just going to take your pulse?",
+   "category": "question_statement",
+   "template": "R8",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01416",
+   "text": "The tutor said, \"Thank you, so you live on the second floor.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01421",
+   "text": "The tutor said, \"Can you say back what I asked you to do tonight?\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01422",
+   "text": "The tutor said, \"Does that explanation make sense to you?\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01423",
+   "text": "The tutor said, \"I lost you at the end, can you say it again?\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01424",
+   "text": "The tutor said, \"What does a funny feeling mean to you?\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01425",
+   "text": "The tutor said, \"So that's paracetamol, one gram, given now.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01426",
+   "text": "The tutor said, \"Understood, I'll let you know when the bloods are sent.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01427",
+   "text": "The tutor said, \"Can you ask the anaesthetic registrar to come?\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01428",
+   "text": "The tutor said, \"I'm not happy with this, I need my senior now.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01432",
+   "text": "The tutor said, \"The anaesthetist will give you medicine through the drip to make you sleep.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_PROCEDURE",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01433",
+   "text": "The tutor said, \"This sample tells us how much haemoglobin you have.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01434",
+   "text": "The tutor said, \"The x ray shows us the shape of your chest.\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "EXPLAIN_TEST",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_TEST",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01439",
+   "text": "The tutor said, \"Can someone send a urine specimen?\"",
+   "category": "quoted",
+   "template": "Q1",
+   "act": "VOICE_ORDER",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "VOICE_ORDER",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01451",
+   "text": "In the video she says \"I lost you at the end, can you say it again?\"",
+   "category": "quoted",
+   "template": "Q2",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01471",
+   "text": "I read that someone noted that you had stopped smoking yesterday.",
+   "category": "reported",
+   "template": "Q8",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01472",
+   "text": "I read that someone noted where you lived yesterday.",
+   "category": "reported",
+   "template": "Q8",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01474",
+   "text": "I read that someone told you that you would feel no pain yesterday.",
+   "category": "reported",
+   "template": "Q8",
+   "act": "ANSWER_QUESTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01480",
+   "text": "I read that someone asked what you meant by strange yesterday.",
+   "category": "reported",
+   "template": "Q8",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01497",
+   "text": "I acknowledged that you were frightened, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01499",
+   "text": "I noted that you had stopped smoking, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01500",
+   "text": "I noted where you lived, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01503",
+   "text": "I asked about your appetite, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01504",
+   "text": "I asked about your bowels, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01505",
+   "text": "I asked you to repeat the eating instructions, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01508",
+   "text": "I asked what you meant by strange, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01512",
+   "text": "I asked for the consultant, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "ESCALATE_SPEECH",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ESCALATE_SPEECH",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01516",
+   "text": "I explained how you would go to sleep, no wait, I didn't.",
+   "category": "retraction",
+   "template": "C1",
+   "act": "EXPLAIN_PROCEDURE",
+   "views": [
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01553",
+   "text": "I wanted to acknowledge that you are frightened, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_EMOTION",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01555",
+   "text": "I wanted to note that you stopped smoking, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "ACKNOWLEDGE_FACT",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ACKNOWLEDGE_FACT",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01559",
+   "text": "I wanted to ask about your appetite, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01560",
+   "text": "I wanted to ask about your bowels, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "ASK_TOPIC",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "ASK_TOPIC",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01561",
+   "text": "I wanted to ask you to repeat the eating instructions, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "CHECK_UNDERSTANDING",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CHECK_UNDERSTANDING",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01564",
+   "text": "I wanted to ask what you mean by strange, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "CLARIFY",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLARIFY",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01565",
+   "text": "I wanted to read back the paracetamol order, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01566",
+   "text": "I wanted to confirm I will tell you when the bloods are sent, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "CLOSED_LOOP",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "CLOSED_LOOP",
+     "engine": "accepted"
+    }
+   ]
+  },
+  {
+   "id": "d01569",
+   "text": "I wanted to examine your abdomen now, but then I got distracted.",
+   "category": "unfinished",
+   "template": "U3",
+   "act": "EXPLAIN_ACTION",
+   "views": [
+    {
+     "view": "in_window",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    },
+    {
+     "view": "permissive",
+     "decision": "OFFER_EVIDENCE",
+     "offer": "EXPLAIN_ACTION",
+     "engine": "accepted"
+    }
+   ]
+  }
+ ]
+}

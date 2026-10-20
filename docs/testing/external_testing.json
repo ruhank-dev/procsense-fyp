@@ -225,7 +225,8 @@
     "p1-ai-language-s12",
     "p1-ai-language-s13",
     "p1-voice-input-s02",
-    "p1-ai-language-s15"
+    "p1-ai-language-s15",
+    "p1-ai-language-s16"
    ],
    "needs": "Quest with the current Unity build and the SpeechInterpretation script wired into the scene; the backend with the recogniser, the interpretation route and the dialogue route reachable; the speech_interpretation gate may stay OFF for steps 1 to 4 (the route then answers the menu) and is switched on only on a test server for step 5",
    "prepared": [
@@ -465,7 +466,8 @@
     "p1-ai-infrastructure-s04",
     "p1-ai-language-s11",
     "p1-ai-language-s14",
-    "p1-ai-language-s15"
+    "p1-ai-language-s15",
+    "p1-ai-language-s16"
    ],
    "needs": "People; the scenario cards `docs/research/classifier_benchmark/cards_dev.csv` and `cards_test.csv`; `tools/bench/dataset.py`; `uv` with scikit-learn; Ollama with all-minilm:22m",
    "prepared": [
@@ -481,7 +483,12 @@
     "docs/research/interpretation_benchmark.md",
     "tools/bench/recall_eval.py",
     "docs/research/recall_diagnosis.md",
-    "tools/bench/recall_frozen.json"
+    "tools/bench/recall_frozen.json",
+    "docs/testing/safety_challenge_review.md",
+    "tests/safety_challenge/review_sheet.csv",
+    "tools/bench/safety_review_sheet.py",
+    "tools/bench/safety_eval.py",
+    "tools/bench/metamorph.py"
    ],
    "procedure": [
     "Read docs/research/classifier_benchmark/annotation_guide.md. Each author writes the sentences for their cards (100 dev, 200 test, about 1.5 hours each), in their own words, without seeing the other author's.",
@@ -489,7 +496,8 @@
     "Where the two labels differ, a third person (not one of the two) decides. Do not let the builder settle a disagreement.",
     "Freeze the set with `uv run --project tools tools/bench/dataset.py freeze` (it refuses without independent authors, labels and an adjudicator).",
     "Run `uv run --project tools --with scikit-learn tools/bench/bench_classifier.py --data independent` once; the test split is scored once (a lock file records it). Then `uv run --project tools tools/bench/classifier_report.py` to regenerate the comparison page.",
-    "Save reports/ai/classifier-bench-independent.json; run `uv run --project tools tools/eval/ai_gate.py` to recompute content/ai/features.json."
+    "Save reports/ai/classifier-bench-independent.json; run `uv run --project tools tools/eval/ai_gate.py` to recompute content/ai/features.json.",
+    "Part B (unsafe speech, p1-ai-language-s16): follow docs/testing/safety_challenge_review.md. Two reviewers fill the blind sheet tests/safety_challenge/review_sheet.csv (no system output on it), an adjudicator settles differences, new authors add independent items for each unsafe family, the merged set is frozen (SHA-256) and the configuration frozen (the `configuration` block of tools/bench/safety_eval.py) BEFORE the single scored run; report counts with Wilson intervals, by family, baseline 4a2ed00 against the candidate."
    ],
    "pass_rule": "classifier-bench-independent.json exists with `valid_for_claims: true`; macro-F1 and credited-precision lower bounds meet the thresholds in content/ai/thresholds.json; critical acts credited from speech = 0; critical sentences credited under an ordinary act = 0. The gate then turns the `classifier` feature on by itself; nobody edits features.json by hand.",
    "evidence": [

@@ -2,6 +2,12 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0j. Update of 20 October 2026 (unsafe-speech hardening: measure, refuse by named layer, mutation-test)
+
+* **Audit and taxonomy:** every safety layer was read against the code (`docs/research/safety_layers_audit.md`); unsafe speech was classed into categories with the expected decision, the safeguards, the residual risk and the tests (`tests/safety_challenge/taxonomy.json`). The recall tests missed a disabled `validate` because overlapping guards mask each other.
+* **Measured on 2,079 metamorphic rows** (seed, template and expected outcome on every row; split by seed family and template; labels by construction, PROVISIONAL, ambiguous or clinically relevant rows PENDING_HUMAN_REVIEW): the unchanged `4a2ed00` let 15 to 17 percent of must-not-credit rows through to the engine's evidence store on development and challenge. Changes: wider assertion kinds, the engine checks the waiting question and read-back itself, reason-coded audit rows, mutation-tested guards; cap and thresholds unchanged.
+* **Result, synthetic and preliminary:** final split scored once per configuration with no change after seeing it: 41/407 to 10/407 must-not-credit rows credited, legitimate credit unchanged. Not zero. Development and challenge zeros are not generalisation (used for changes). No person has reviewed any row; independent validation (EX-01, DT-233, DT-234) and headset checks (DC-08, DC-09, NOT RUN, Sannan) are open; `speech_interpretation` stays OFF.
+
 ## 0i. Update of 20 October 2026 (legitimate speech recall: diagnosis first)
 
 * **Traced, not assumed:** every missed legitimate row went through every stage (`docs/research/recall_diagnosis.md`). The critical-mass cap is the primary cause of 58 to 76 percent of the misses, but it blocks nine unsafe sentences when removed, so it was raised only to the largest value the safety panel supports (0.03 to 0.05, margin 1.5 times). A second cause was downstream: the engine's evidence store used a placeholder 0.8 threshold and refused evidence the gate had credited; it now holds the classifier's calibrated thresholds.
