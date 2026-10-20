@@ -75,7 +75,7 @@ class MockProvider:
         self.replies, self.calls = list(replies), []
 
     def complete(self, system: str, user: str, schema: dict | None = None, key: str = "", timeout: float | None = None) -> ProviderResult:
-        self.calls.append({"system": system, "user": user, "key": key})
+        self.calls.append({"system": system, "user": user, "key": key, "timeout": timeout})
         r = self.replies[min(len(self.calls) - 1, len(self.replies) - 1)]
         if isinstance(r, Exception):
             raise r

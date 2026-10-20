@@ -30,7 +30,7 @@ def get_interpreter(clf=Depends(get_classifier), settings: Settings = Depends(ge
     key = settings.interpret_llm_api_key.get_secret_value()
     base = settings.interpret_llm_base_url or settings.ollama_url
     provider = OllamaCloudProvider(settings.interpret_llm_model, base, key, timeout=settings.interpret_llm_timeout_seconds)
-    return SemanticInterpreter(clf, SemanticReader(provider, settings.interpret_llm_max_attempts, settings.interpret_llm_budget_ms))
+    return SemanticInterpreter(clf, SemanticReader(provider, settings.interpret_llm_max_attempts, settings.interpret_llm_budget_ms, settings.interpret_llm_timeout_seconds))
 
 
 def _menu(body: InterpretIn, reason: str) -> InterpretOut:

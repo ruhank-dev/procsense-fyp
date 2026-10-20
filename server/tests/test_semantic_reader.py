@@ -174,6 +174,15 @@ class TestReader:
         o = SemanticReader(MockProvider([RuntimeError("down")])).read(None, UTT)
         assert o.status == "UNAVAILABLE" and o.codes[0].startswith("PROVIDER_RAISED")
 
+    def test_one_stalled_attempt_cannot_use_the_whole_budget_so_the_retry_still_has_time(self):
+        # found in the live run of 20 Oct 2026: the first attempt was given the entire 12 s budget and four stalls left nothing for the retry
+        mp = MockProvider([ProviderResult(error="TIMEOUT"), reply()])
+        o = SemanticReader(mp, max_attempts=2, budget_ms=12000, call_timeout=8.0).read(None, UTT)
+        assert mp.calls[0]["timeout"] <= 8.0 and o.status == "VALID" and o.attempts == 2
+        mp = MockProvider([reply()])
+        SemanticReader(mp, budget_ms=3000, call_timeout=8.0).read(None, UTT)
+        assert mp.calls[0]["timeout"] <= 3.0                                           # a small budget still wins over the per-call limit
+
     def test_tokens_and_time_are_summed_across_attempts(self):
         mp = MockProvider([ProviderResult(text="```x```", done_reason="stop", prompt_tokens=100, output_tokens=7, wall_ms=300, answered_by="m"), ProviderResult(text=reply(), done_reason="stop", prompt_tokens=100, output_tokens=9, wall_ms=200, answered_by="m")])
         o = SemanticReader(mp).read(None, UTT)

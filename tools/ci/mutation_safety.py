@@ -130,6 +130,7 @@ SEMANTIC: list[tuple[str, str, list[Edit]]] = [
     ("SV6_actual_trainee", "SUPPORTED by someone else or for a negated act is accepted", [(ST, "if f.actor != \"trainee\" or f.modality != \"actual\":", "if False:")]),
     ("SR1_quota_signal_retried", "a 401, 402, 403 or 429 is retried", [(RD, "if r.status in NO_RETRY_HTTP or not (r.error in RETRY_TRANSPORT or (r.status >= 500)):", "if False:")]),
     ("SR2_semantic_rejection_retried", "a semantic rejection is retried (retries are for format problems only)", [(RD, "if e.code not in RETRY_FORMAT:", "if False:")]),
+    ("SR3_per_call_timeout", "one stalled attempt may use the whole budget, leaving no time for the retry", [(RD, "timeout=max(0.5, min(self.call_timeout, left_ms / 1000)))", "timeout=max(0.5, left_ms / 1000))")]),
     ("SC1_default_on", "the semantic reader is on by default", [(CF, "interpret_llm_enabled: bool = False", "interpret_llm_enabled: bool = True")]),
 ]
 

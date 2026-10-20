@@ -1,0 +1,530 @@
+{
+ "split": "dev",
+ "rows": 488,
+ "synthetic": true,
+ "independent": false,
+ "counts": {
+  "legitimate": 140,
+  "adversarial": 300,
+  "critical": 40
+ },
+ "replay": "cloud-gemma31b-full",
+ "confidence_mode": "head",
+ "reader": {
+  "rows_read": 141,
+  "rows_in_benchmark": 488,
+  "model_requested": "gemma4:31b-cloud",
+  "answered_by": [
+   "gemma4:31b"
+  ],
+  "provider_calls": 141,
+  "stopped": "",
+  "first_attempt": {
+   "VALID": 137,
+   "ERROR:TIMEOUT": 4
+  },
+  "first_attempt_valid_rate": 0.9716,
+  "retried_rows": 0,
+  "retry_rate": 0.0,
+  "final": {
+   "VALID": 137,
+   "ERROR:TIMEOUT": 4
+  },
+  "final_valid_rate": 0.9716,
+  "prompt_tokens": 186307,
+  "output_tokens": 6391,
+  "tokens_total": 192698,
+  "truncated_replies": 0,
+  "wall_ms": {
+   "median": 895,
+   "p95": 1302,
+   "max": 1530,
+   "n": 137
+  },
+  "provider_errors": {
+   "TIMEOUT": 4
+  },
+  "pipeline_decisions_with_a_reading": {
+   "VALID": 157,
+   "UNAVAILABLE": 4
+  }
+ },
+ "interpretation_in_window": {
+  "offers": 93,
+  "offers_right": 92,
+  "credited_precision": "92/93",
+  "legitimate_recall": "92/140",
+  "legitimate_offered_under_another_act": 1,
+  "critical_false_credit": "0/40",
+  "non_assertive_false_credit": "0/300",
+  "non_assertive_by_category": {},
+  "label_view_core": {
+   "n": 188,
+   "accuracy": 0.489,
+   "macro_f1": 0.544
+  },
+  "per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 1.0,
+    "recall": 0.3,
+    "f1": 0.462,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.4,
+    "f1": 0.571,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.7,
+    "f1": 0.824,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   }
+  },
+  "confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 6,
+    "ABSTAIN": 4
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 7,
+    "ABSTAIN": 3
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 7,
+    "ABSTAIN": 3
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 3,
+    "ABSTAIN": 7
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 6,
+    "ABSTAIN": 4
+   },
+   "CLARIFY": {
+    "CLARIFY": 8,
+    "ABSTAIN": 2
+   },
+   "CLOSED_LOOP": {
+    "CLOSED_LOOP": 4,
+    "ABSTAIN": 6
+   },
+   "CONFIRM_IDENTITY": {
+    "ABSTAIN": 8
+   },
+   "CONSENT_SIGN": {
+    "ABSTAIN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ABSTAIN": 3,
+    "ESCALATE_SPEECH": 7
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "ABSTAIN": 3,
+    "EXPLAIN_ACTION": 1,
+    "EXPLAIN_PROCEDURE": 6
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 7,
+    "ABSTAIN": 3
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "NONE": {
+    "ABSTAIN": 8
+   },
+   "REASSURE": {
+    "ABSTAIN": 2,
+    "REASSURE": 8
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 7,
+    "ABSTAIN": 3
+   },
+   "SBAR_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "STATE_ALLERGY": {
+    "ABSTAIN": 8
+   },
+   "VOICE_ORDER": {
+    "VOICE_ORDER": 6,
+    "ABSTAIN": 4
+   }
+  },
+  "legitimate_decisions": {
+   "OFFER_EVIDENCE": 93,
+   "ABSTAIN": 42,
+   "MENU": 5
+  },
+  "clarification_rate_legit": "0/140",
+  "abstention_rate_legit": "42/140",
+  "menu_rate_legit": "5/140",
+  "offered_by_service_but_refused_by_engine": {
+   "legitimate": 0,
+   "all_rows": 0
+  },
+  "legitimate_rejection_rate": "47/140",
+  "reasons_for_missed_legit": {
+   "CRITICAL_MASS": 62,
+   "LLM_CANDIDATE_REFUSED": 33,
+   "LLM_BELOW_EVIDENCE_THRESHOLD": 6,
+   "CRITICAL_TOPIC": 5,
+   "GATE_NOT_CREDITED": 4,
+   "NOT_ELIGIBLE": 3,
+   "AMBIGUOUS": 2,
+   "LLM_UNAVAILABLE": 2
+  }
+ },
+ "classifier_route_as_served": {
+  "offers": 83,
+  "offers_right": 83,
+  "credited_precision": "83/83",
+  "legitimate_recall": "83/140",
+  "legitimate_offered_under_another_act": 0,
+  "critical_false_credit": "0/40",
+  "non_assertive_false_credit": "0/300",
+  "non_assertive_by_category": {},
+  "label_view_core": {
+   "n": 188,
+   "accuracy": 0.441,
+   "macro_f1": 0.503
+  },
+  "per_class": {
+   "ACKNOWLEDGE_EMOTION": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "ACKNOWLEDGE_FACT": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "ANSWER_QUESTION": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947,
+    "support": 10
+   },
+   "ASK_TOPIC": {
+    "precision": 1.0,
+    "recall": 0.3,
+    "f1": 0.462,
+    "support": 10
+   },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "CLARIFY": {
+    "precision": 1.0,
+    "recall": 0.8,
+    "f1": 0.889,
+    "support": 10
+   },
+   "CLOSED_LOOP": {
+    "precision": 1.0,
+    "recall": 0.1,
+    "f1": 0.182,
+    "support": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "CONSENT_SIGN": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "ESCALATE_SPEECH": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "EXPLAIN_ACTION": {
+    "precision": 1.0,
+    "recall": 0.9,
+    "f1": 0.947,
+    "support": 10
+   },
+   "EXPLAIN_PROCEDURE": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "EXPLAIN_TEST": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "NONE": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "REASSURE": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "REPORT_FAULT": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "support": 10
+   },
+   "SBAR_ELEMENT": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "STATE_ALLERGY": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 8
+   },
+   "VOICE_ORDER": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.667,
+    "support": 10
+   }
+  },
+  "confusion": {
+   "ACKNOWLEDGE_EMOTION": {
+    "ACKNOWLEDGE_EMOTION": 8,
+    "ABSTAIN": 2
+   },
+   "ACKNOWLEDGE_FACT": {
+    "ACKNOWLEDGE_FACT": 5,
+    "ABSTAIN": 5
+   },
+   "ANSWER_QUESTION": {
+    "ANSWER_QUESTION": 9,
+    "ABSTAIN": 1
+   },
+   "ASK_TOPIC": {
+    "ASK_TOPIC": 3,
+    "ABSTAIN": 7
+   },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 6,
+    "ABSTAIN": 4
+   },
+   "CLARIFY": {
+    "CLARIFY": 8,
+    "ABSTAIN": 2
+   },
+   "CLOSED_LOOP": {
+    "ABSTAIN": 9,
+    "CLOSED_LOOP": 1
+   },
+   "CONFIRM_IDENTITY": {
+    "ABSTAIN": 8
+   },
+   "CONSENT_SIGN": {
+    "ABSTAIN": 8
+   },
+   "ESCALATE_SPEECH": {
+    "ABSTAIN": 4,
+    "ESCALATE_SPEECH": 6
+   },
+   "EXPLAIN_ACTION": {
+    "EXPLAIN_ACTION": 9,
+    "ABSTAIN": 1
+   },
+   "EXPLAIN_PROCEDURE": {
+    "EXPLAIN_PROCEDURE": 6,
+    "ABSTAIN": 4
+   },
+   "EXPLAIN_TEST": {
+    "EXPLAIN_TEST": 5,
+    "ABSTAIN": 5
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "NONE": {
+    "ABSTAIN": 8
+   },
+   "REASSURE": {
+    "ABSTAIN": 4,
+    "REASSURE": 6
+   },
+   "REPORT_FAULT": {
+    "REPORT_FAULT": 6,
+    "ABSTAIN": 4
+   },
+   "SBAR_ELEMENT": {
+    "ABSTAIN": 8
+   },
+   "STATE_ALLERGY": {
+    "ABSTAIN": 8
+   },
+   "VOICE_ORDER": {
+    "VOICE_ORDER": 5,
+    "ABSTAIN": 5
+   }
+  }
+ },
+ "out_of_window": {
+  "legitimate_rows_with_an_outside_step": 140,
+  "interpretation_offered_the_rows_own_act": 0,
+  "interpretation_offered_any_act": 0,
+  "route_as_served_would_offer_its_credited_act": 83,
+  "route_after_window_rule_offered_the_rows_own_act": 0
+ },
+ "without_pending_question_or_readback": {
+  "rows": 20,
+  "interpretation_offered_the_rows_own_act": 0,
+  "with_the_context_offered_the_rows_own_act": 11,
+  "route_credited_the_rows_own_act": 10
+ },
+ "critical": {
+  "offered_in_any_condition": 0,
+  "menu_with_verified_action_pointer": 40,
+  "rows": 40
+ },
+ "gate_inputs": {
+  "note": "numbers the speech_interpretation gate reads (content/ai/thresholds.json); on this synthetic split they are recorded for information only: the gate reads interpretation-bench-independent.json, which does not exist until the independent set is scored (EX-01)",
+  "critical_false_credit": 0,
+  "out_of_window_false_credit": 0,
+  "non_assertive_false_credit_rate": 0.0,
+  "credited_precision": 0.9892,
+  "legitimate_recall": 0.6571,
+  "route_legitimate_recall": 0.5929,
+  "valid_for_claims": false
+ },
+ "note": "Integrated pipeline by replay of recorded raw replies (strict validation, fallback to the shipped decision); synthetic builder-written labels; baseline tuned on parts of these splits; not independent validation."
+}

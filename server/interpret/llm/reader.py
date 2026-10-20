@@ -1,4 +1,4 @@
-"""The semantic reader: one utterance in, a validated `Reading` or a safe failure out. Bounded: at most `max_attempts` provider calls and a total wall budget; a retry happens only after a FORMAT rejection (fence, not JSON, text around the object, schema, truncated) or a transient transport error (timeout, HTTP 5xx), never after a semantic rejection, and
+"""The semantic reader: one utterance in, a validated `Reading` or a safe failure out. Bounded: at most `max_attempts` provider calls, each limited to `call_timeout` seconds, and a total wall budget (a first attempt that stalls for the whole budget would leave no room for the retry: found in the live run of 20 Oct, 4 of 141 calls); a retry happens only after a FORMAT rejection (fence, not JSON, text around the object, schema, truncated) or a transient transport error (timeout, HTTP 5xx), never after a semantic rejection, and
 never changes the rubric (the retry adds one fixed sentence naming the format problem; no model text is echoed back). A reply that fails validation after the last attempt, a timeout, a 401/402/403/429, an unreachable host or an unconfigured provider is `UNAVAILABLE` or `INVALID`: the caller falls back, nothing is repaired and nothing is credited."""
 from __future__ import annotations
 
@@ -29,8 +29,8 @@ class ReadOutcome:
 
 
 class SemanticReader:
-    def __init__(self, provider: Provider, max_attempts: int = 2, budget_ms: int = 12000):
-        self.provider, self.max_attempts, self.budget_ms = provider, max(1, max_attempts), budget_ms
+    def __init__(self, provider: Provider, max_attempts: int = 2, budget_ms: int = 12000, call_timeout: float = 8.0):
+        self.provider, self.max_attempts, self.budget_ms, self.call_timeout = provider, max(1, max_attempts), budget_ms, call_timeout
         self._system = P.full_system_prompt()
         self._schema = json_schema(P.objective_ids())
 
@@ -41,7 +41,7 @@ class SemanticReader:
             if attempt > 1 and left_ms <= 0:
                 break
             try:
-                r: ProviderResult = self.provider.complete(self._system, P.user_prompt(context, utterance, retry_code), self._schema, key=key, timeout=max(0.5, left_ms / 1000))
+                r: ProviderResult = self.provider.complete(self._system, P.user_prompt(context, utterance, retry_code), self._schema, key=key, timeout=max(0.5, min(self.call_timeout, left_ms / 1000)))
             except Exception as e:                       # a provider that raises is unavailable, never a crash of the request
                 out.codes.append("PROVIDER_RAISED:" + type(e).__name__)
                 out.attempts = attempt
