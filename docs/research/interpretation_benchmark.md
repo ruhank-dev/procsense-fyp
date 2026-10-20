@@ -12,31 +12,31 @@ The benchmark rows carry no scenario state, so `tools/bench/interpretation_bench
 |---|---|---|---|---|---|---|---|
 | dev | Classifier route, as served (no state) | 83 | 83 | 83/83 | 83/140 | 0/40 | 0/300 |
 | dev | Classifier route, then the engine's window rule | 83 | 83 | 83/83 | 83/140 | 0/40 | 0/300 |
-| dev | Interpretation path (state given) | 83 | 83 | 83/83 | 83/140 | 0/40 | 0/300 |
+| dev | Interpretation path, shipped (cap 0.05, evidence accepted by the engine) | 96 | 95 | 95/96 | 95/140 | 0/40 | 0/300 |
 | test | Classifier route, as served (no state) | 70 | 66 | 66/70 | 66/140 | 0/40 | 0/300 |
 | test | Classifier route, then the engine's window rule | 66 | 66 | 66/66 | 66/140 | 0/40 | 0/300 |
-| test | Interpretation path (state given) | 66 | 66 | 66/66 | 66/140 | 0/40 | 0/300 |
+| test | Interpretation path, shipped (cap 0.05, evidence accepted by the engine) | 76 | 76 | 76/76 | 76/140 | 0/40 | 0/300 |
 | test2 | Classifier route, as served (no state) | 72 | 69 | 69/72 | 69/140 | 0/40 | 0/300 |
 | test2 | Classifier route, then the engine's window rule | 69 | 69 | 69/69 | 69/140 | 0/40 | 0/300 |
-| test2 | Interpretation path (state given) | 69 | 69 | 69/69 | 69/140 | 0/40 | 0/300 |
+| test2 | Interpretation path, shipped (cap 0.05, evidence accepted by the engine) | 79 | 79 | 79/79 | 79/140 | 0/40 | 0/300 |
 
-The interpretation path offers exactly what the classifier route offers once the engine's window rule is applied: it does not raise legitimate recall. Its gains are refusals the route cannot make without state:
+On 19 October 2026 the interpretation path equalled the classifier route after the engine's window rule (it removed credit, never added it). On 20 October 2026 two changes were made on evidence (`docs/research/recall_diagnosis.md`): the head's critical-mass cap went from 0.03 to 0.05 and the engine's per-act evidence thresholds became the classifier's own calibrated thresholds (the 0.8 placeholder had been refusing evidence the gate credited). The rows above count evidence ACCEPTED by the engine. The refusals the route cannot make without state are unchanged:
 
 | Split | Legitimate rows put outside their window | Route would credit | Route after the engine's window rule | Interpretation offered the row's own act | Rows needing a waiting question or read-back | Route credited | Interpretation without the context | Interpretation with it |
 |---|---|---|---|---|---|---|---|---|
-| dev | 140 | 83 | 0 | 0 | 20 | 10 | 0 | 10 |
+| dev | 140 | 83 | 0 | 0 | 20 | 10 | 0 | 13 |
 | test | 140 | 70 | 0 | 0 | 20 | 7 | 0 | 7 |
-| test2 | 140 | 72 | 0 | 0 | 20 | 9 | 0 | 9 |
+| test2 | 140 | 72 | 0 | 0 | 20 | 9 | 0 | 10 |
 
 ## Decisions on the 140 legitimate rows (state given)
 
 | Split | Offered as evidence | Clarification | Abstained | Menu | Legitimate rejection (neither offered nor asked) | Why the missed ones were missed |
 |---|---|---|---|---|---|---|
-| dev | 83 | 2 | 50 | 5 | 55/140 | CRITICAL_MASS 47, CRITICAL_TOPIC 5, GATE_NOT_CREDITED 3, AMBIGUOUS 2, NO_ACT 2 |
-| test | 66 | 3 | 67 | 4 | 71/140 | CRITICAL_MASS 60, GATE_NOT_CREDITED 4, CRITICAL_TOPIC 4, NOT_ELIGIBLE 4, AMBIGUOUS 3, NO_ACT 2 |
-| test2 | 69 | 0 | 60 | 11 | 71/140 | CRITICAL_MASS 55, CRITICAL_TOPIC 11, NOT_ELIGIBLE 3, NO_ACT 1, GATE_NOT_CREDITED 1 |
+| dev | 96 | 2 | 37 | 5 | 42/140 | CRITICAL_MASS 32, CRITICAL_TOPIC 5, GATE_NOT_CREDITED 5, AMBIGUOUS 2, NO_ACT 2 |
+| test | 76 | 4 | 56 | 4 | 60/140 | CRITICAL_MASS 42, GATE_NOT_CREDITED 10, NOT_ELIGIBLE 6, CRITICAL_TOPIC 4, AMBIGUOUS 4, NO_ACT 2, HEADS_DISAGREE:EXPLAIN_PROCEDURE 1, HEADS_DISAGREE:CHECK_UNDERSTANDING 1 |
+| test2 | 79 | 0 | 50 | 11 | 61/140 | CRITICAL_MASS 42, CRITICAL_TOPIC 11, NOT_ELIGIBLE 5, GATE_NOT_CREDITED 2, HEADS_DISAGREE:CLARIFY 2, NO_ACT 1 |
 
-Most missed legitimate sentences are refused by the classifier gate's critical-mass cap (the head gives 2 percent or more to a critical act), not by the context rules. That cap is the safety rule that removes about half of the legitimate credit (ADR-0020); relaxing it is not justified without independent data.
+Most of the sentences still missed are refused by the classifier gate's critical-mass cap, now 0.05 (the head gives 5 percent or more to a critical act), not by the context rules. Removing the cap would let 10 sentences of evasive critical content or non-performed speech through (`reports/ai/recall-safety-panel.json`), and no signal the path has separates them from the legitimate sentences that sit at the same critical mass; see the diagnosis.
 
 ## Critical content
 
@@ -52,13 +52,13 @@ Most missed legitimate sentences are refused by the classifier gate's critical-m
 |---|---|---|---|
 | dev | Classifier route, as served (no state) | 0.441 | 0.503 |
 | dev | Classifier route, then the engine's window rule | 0.441 | 0.503 |
-| dev | Interpretation path (state given) | 0.441 | 0.503 |
+| dev | Interpretation path, shipped (cap 0.05, evidence accepted by the engine) | 0.505 | 0.554 |
 | test | Classifier route, as served (no state) | 0.351 | 0.418 |
 | test | Classifier route, then the engine's window rule | 0.351 | 0.426 |
-| test | Interpretation path (state given) | 0.351 | 0.426 |
+| test | Interpretation path, shipped (cap 0.05, evidence accepted by the engine) | 0.404 | 0.471 |
 | test2 | Classifier route, as served (no state) | 0.367 | 0.442 |
 | test2 | Classifier route, then the engine's window rule | 0.367 | 0.448 |
-| test2 | Interpretation path (state given) | 0.367 | 0.448 |
+| test2 | Interpretation path, shipped (cap 0.05, evidence accepted by the engine) | 0.42 | 0.488 |
 
 Accuracy here counts an abstention as wrong, so it measures coverage as much as correctness. Per-class precision, recall and F1 and the confusion matrices of every system are in the JSON reports.
 
@@ -66,16 +66,16 @@ Accuracy here counts an abstention as wrong, so it measures coverage as much as 
 
 **Wrong offers** (0 in test2): none.
 
-**Missed legitimate sentences** (71 in test2; first 8):
+**Missed legitimate sentences** (61 in test2; first 8):
 
-* "How is your energy during the day?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['CRITICAL_MASS']; the route credited: None
+* "How is your energy during the day?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['GATE_NOT_CREDITED']; the route credited: None
 * "Have you been feeling tired?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['CRITICAL_MASS']; the route credited: None
 * "any poblems with your enrgy lately" - truth ASK_TOPIC (asr_error); ABSTAIN ['CRITICAL_MASS']; the route credited: None
 * "have you beenfeelng tired" - truth ASK_TOPIC (asr_error); ABSTAIN ['CRITICAL_MASS']; the route credited: None
 * "Do you have any trouble swallowing?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['CRITICAL_MASS']; the route credited: None
 * "Is swallowing difficult for you?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['CRITICAL_MASS']; the route credited: None
-* "Can you swallow comfortably?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['CRITICAL_MASS']; the route credited: None
-* "can you swallow comfortably" - truth ASK_TOPIC (asr_error); ABSTAIN ['CRITICAL_MASS']; the route credited: None
+* "Can you swallow comfortably?" - truth ASK_TOPIC (paraphrase); ABSTAIN ['NOT_ELIGIBLE', 'HEADS_DISAGREE:CLARIFY']; the route credited: None
+* "can you swallow comfortably" - truth ASK_TOPIC (asr_error); ABSTAIN ['NOT_ELIGIBLE', 'HEADS_DISAGREE:CLARIFY']; the route credited: None
 
 ## Latency (this desktop: GTX 1660 SUPER, Ryzen 5 2600; the headset and Unity were not measured)
 
@@ -94,7 +94,7 @@ From committed reports, not re-measured: recognition p95 1.021 s, the grounded p
 ## Limits
 
 * Synthetic rows from one author family, labelled by construction; the state of each row is derived from the engine's rule, not recorded from play. No independent human-labelled set exists (EX-01, EX-18); nothing here shows how the path behaves on real trainee speech.
-* The interpretation path's recall equals the classifier route's: the context rules remove credit, never add it. Raising recall needs a better candidate generator or a relaxed critical-mass rule, and either needs the independent set to be judged.
+* The context rules remove credit, never add it; the recall gain over the classifier route comes from the revised cap and the engine thresholds (docs/research/recall_diagnosis.md), whose safety was judged on synthetic panels. The acts ANSWER_QUESTION and CLOSED_LOOP are offered only with a waiting patient question or a critical result awaiting acknowledgement, which the benchmark ASSUMES for those rows; the real engine records the second rarely, so the gain on CLOSED_LOOP rows is not evidence of the same gain in play.
 * The Qwen 4B evaluator was NOT used (docs/research/rubric_evaluator.md); it is out of the live path (ADR-0022). Context-conditioned Qwen was therefore still not measured with real per-row context.
 * Latency is one desktop; the headset, the microphone chain, Unity and the laptop were not measured.
 

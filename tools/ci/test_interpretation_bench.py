@@ -55,12 +55,16 @@ class Results(unittest.TestCase):
             self.assertFalse(d["gate_inputs"]["valid_for_claims"])
             self.assertEqual((d["counts"]["legitimate"], d["counts"]["adversarial"], d["counts"]["critical"]), (140, 300, 40))
 
-    def test_the_interpretation_never_offers_more_than_the_route_after_the_window_rule_and_never_a_critical_act(self):
+    def test_the_interpretation_accepts_no_critical_no_non_performed_and_no_out_of_window_evidence_and_is_at_least_as_precise_as_the_route(self):
         for s in ("dev", "test", "test2"):
             d = json.loads((R / f"interpretation-bench-{s}.json").read_text(encoding="utf-8"))
-            self.assertLessEqual(d["interpretation_in_window"]["offers"], d["classifier_route_as_served"]["offers"])
+            ip, route = d["interpretation_in_window"], d["classifier_route_as_served"]
             self.assertEqual(d["critical"]["offered_in_any_condition"], 0)
             self.assertEqual(d["out_of_window"]["interpretation_offered_any_act"], 0)
+            self.assertEqual(ip["non_assertive_false_credit"].split("/")[0], "0")
+            self.assertGreaterEqual(ip["offers_right"] / ip["offers"], 0.98)                                            # credited precision stays at or above 0.98 (dev: 95/96, the one EXPLAIN_ACTION / EXPLAIN_PROCEDURE tie; test and test2: all right)
+            self.assertLessEqual(ip["legitimate_offered_under_another_act"], 1)
+            self.assertGreaterEqual(ip["offers_right"], route["offers_right"])                                          # and recovers at least as many legitimate sentences as the route
 
     def test_the_page_is_what_the_result_files_give(self):
         self.assertEqual((ROOT / "docs" / "research" / "interpretation_benchmark.md").read_text(encoding="utf-8"), REPORT.render())

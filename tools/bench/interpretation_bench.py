@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT / "tools" / "bench"))
 from classify.embedding import OllamaEmbedder  # noqa: E402
 from classify.ensemble import EnsembleActClassifier  # noqa: E402
 from interpret.decide import Interpreter  # noqa: E402
+import engine_acceptance as E  # noqa: E402
 import nli_compare as NC  # noqa: E402
 import nli_zero_shot as N  # noqa: E402
 
@@ -100,11 +101,19 @@ def run(split: str, url: str) -> dict:
         item["route_after_window_rule"] = route if (route is not None and (route in CRITICAL or not window_of(route) or set(window_of(route)) & set(conds["in_window"].steps))) else None
         for name, c in conds.items():
             o = interp.interpret(c, r["text"], r["id"], 0)
-            item[name] = {"decision": o["decision"], "offer": offered(o), "reasons": o["reasons"], "clarify": o["options"], "points_to": o["points_to"]}
+            item[name] = {"decision": o["decision"], "offered_by_service": offered(o), "offer": offered(o), "reasons": o["reasons"], "clarify": o["options"], "points_to": o["points_to"],
+                          "confidence": o["evidence"]["confidence"] if o["decision"] == "OFFER_EVIDENCE" else None, "steps": c.steps}
         if "out_of_window" in conds and route is not None:
             item["route_out_of_window"] = route if (route in CRITICAL or not window_of(route) or set(window_of(route)) & set(conds["out_of_window"].steps)) else None
         res.append(item)
     emb.save()
+    # what the ENGINE accepts: every offer is run through the engine's own EvidenceStore (CLI evidence-check); from here on `offer` means accepted evidence, `offered_by_service` what the service offered
+    pend = [(it, name) for it in res for name in ("in_window", "out_of_window", "no_context") if name in it and it[name]["offered_by_service"]]
+    verdicts = E.accept([{"id": f"{it['id']}|{name}", "act": it[name]["offered_by_service"], "confidence": it[name]["confidence"], "steps": it[name]["steps"]} for it, name in pend])
+    for (it, name), v in zip(pend, verdicts):
+        it[name]["engine"] = "accepted" if v["accepted"] else v["reason"]
+        if not v["accepted"]:
+            it[name]["offer"] = None
     return {"rows": res, "emb_model": emb.model}
 
 
@@ -140,6 +149,7 @@ def summarise(split: str, data: dict) -> dict:
     out["interpretation_in_window"]["clarification_rate_legit"] = rate(dec["CLARIFY"], len(legit))
     out["interpretation_in_window"]["abstention_rate_legit"] = rate(dec["ABSTAIN"], len(legit))
     out["interpretation_in_window"]["menu_rate_legit"] = rate(dec["MENU"], len(legit))
+    out["interpretation_in_window"]["offered_by_service_but_refused_by_engine"] = {"legitimate": sum(1 for r in legit if r["in_window"]["offered_by_service"] and not r["in_window"]["offer"]), "all_rows": sum(1 for r in rows if r["in_window"]["offered_by_service"] and not r["in_window"]["offer"])}
     out["interpretation_in_window"]["legitimate_rejection_rate"] = rate(len(legit) - dec["OFFER_EVIDENCE"] - dec["CLARIFY"], len(legit))
     out["interpretation_in_window"]["reasons_for_missed_legit"] = dict(collections.Counter(x for r in legit if r["in_window"]["offer"] != r["act"] for x in r["in_window"]["reasons"]).most_common(8))
     # context rules

@@ -435,18 +435,18 @@
   }
  },
  "interpretation_in_window": {
-  "offers": 83,
-  "offers_right": 83,
-  "credited_precision": "83/83",
-  "legitimate_recall": "83/140",
-  "legitimate_offered_under_another_act": 0,
+  "offers": 96,
+  "offers_right": 95,
+  "credited_precision": "95/96",
+  "legitimate_recall": "95/140",
+  "legitimate_offered_under_another_act": 1,
   "critical_false_credit": "0/40",
   "non_assertive_false_credit": "0/300",
   "non_assertive_by_category": {},
   "label_view_core": {
    "n": 188,
-   "accuracy": 0.441,
-   "macro_f1": 0.503
+   "accuracy": 0.505,
+   "macro_f1": 0.554
   },
   "per_class": {
    "ACKNOWLEDGE_EMOTION": {
@@ -457,8 +457,8 @@
    },
    "ACKNOWLEDGE_FACT": {
     "precision": 1.0,
-    "recall": 0.5,
-    "f1": 0.667,
+    "recall": 0.6,
+    "f1": 0.75,
     "support": 10
    },
    "ANSWER_QUESTION": {
@@ -487,8 +487,8 @@
    },
    "CLOSED_LOOP": {
     "precision": 1.0,
-    "recall": 0.1,
-    "f1": 0.182,
+    "recall": 0.4,
+    "f1": 0.571,
     "support": 10
    },
    "CONFIRM_IDENTITY": {
@@ -505,26 +505,26 @@
    },
    "ESCALATE_SPEECH": {
     "precision": 1.0,
-    "recall": 0.6,
-    "f1": 0.75,
+    "recall": 0.7,
+    "f1": 0.824,
     "support": 10
    },
    "EXPLAIN_ACTION": {
-    "precision": 1.0,
-    "recall": 0.9,
-    "f1": 0.947,
+    "precision": 0.909,
+    "recall": 1.0,
+    "f1": 0.952,
     "support": 10
    },
    "EXPLAIN_PROCEDURE": {
     "precision": 1.0,
-    "recall": 0.6,
-    "f1": 0.75,
+    "recall": 0.7,
+    "f1": 0.824,
     "support": 10
    },
    "EXPLAIN_TEST": {
     "precision": 1.0,
-    "recall": 0.5,
-    "f1": 0.667,
+    "recall": 0.7,
+    "f1": 0.824,
     "support": 10
    },
    "HANDOVER_CRITICAL_ELEMENT": {
@@ -541,8 +541,8 @@
    },
    "REASSURE": {
     "precision": 1.0,
-    "recall": 0.6,
-    "f1": 0.75,
+    "recall": 0.8,
+    "f1": 0.889,
     "support": 10
    },
    "REPORT_FAULT": {
@@ -565,8 +565,8 @@
    },
    "VOICE_ORDER": {
     "precision": 1.0,
-    "recall": 0.5,
-    "f1": 0.667,
+    "recall": 0.6,
+    "f1": 0.75,
     "support": 10
    }
   },
@@ -576,8 +576,8 @@
     "ABSTAIN": 2
    },
    "ACKNOWLEDGE_FACT": {
-    "ACKNOWLEDGE_FACT": 5,
-    "ABSTAIN": 5
+    "ACKNOWLEDGE_FACT": 6,
+    "ABSTAIN": 4
    },
    "ANSWER_QUESTION": {
     "ANSWER_QUESTION": 9,
@@ -596,8 +596,8 @@
     "ABSTAIN": 2
    },
    "CLOSED_LOOP": {
-    "ABSTAIN": 9,
-    "CLOSED_LOOP": 1
+    "CLOSED_LOOP": 4,
+    "ABSTAIN": 6
    },
    "CONFIRM_IDENTITY": {
     "ABSTAIN": 8
@@ -606,20 +606,20 @@
     "ABSTAIN": 8
    },
    "ESCALATE_SPEECH": {
-    "ABSTAIN": 4,
-    "ESCALATE_SPEECH": 6
+    "ABSTAIN": 3,
+    "ESCALATE_SPEECH": 7
    },
    "EXPLAIN_ACTION": {
-    "EXPLAIN_ACTION": 9,
-    "ABSTAIN": 1
+    "EXPLAIN_ACTION": 10
    },
    "EXPLAIN_PROCEDURE": {
-    "EXPLAIN_PROCEDURE": 6,
-    "ABSTAIN": 4
+    "EXPLAIN_PROCEDURE": 7,
+    "EXPLAIN_ACTION": 1,
+    "ABSTAIN": 2
    },
    "EXPLAIN_TEST": {
-    "EXPLAIN_TEST": 5,
-    "ABSTAIN": 5
+    "EXPLAIN_TEST": 7,
+    "ABSTAIN": 3
    },
    "HANDOVER_CRITICAL_ELEMENT": {
     "ABSTAIN": 8
@@ -628,8 +628,8 @@
     "ABSTAIN": 8
    },
    "REASSURE": {
-    "ABSTAIN": 4,
-    "REASSURE": 6
+    "ABSTAIN": 2,
+    "REASSURE": 8
    },
    "REPORT_FAULT": {
     "REPORT_FAULT": 6,
@@ -642,24 +642,28 @@
     "ABSTAIN": 8
    },
    "VOICE_ORDER": {
-    "VOICE_ORDER": 5,
-    "ABSTAIN": 5
+    "VOICE_ORDER": 6,
+    "ABSTAIN": 4
    }
   },
   "legitimate_decisions": {
-   "OFFER_EVIDENCE": 83,
-   "ABSTAIN": 50,
+   "OFFER_EVIDENCE": 96,
+   "ABSTAIN": 37,
    "MENU": 5,
    "CLARIFY": 2
   },
   "clarification_rate_legit": "2/140",
-  "abstention_rate_legit": "50/140",
+  "abstention_rate_legit": "37/140",
   "menu_rate_legit": "5/140",
-  "legitimate_rejection_rate": "55/140",
+  "offered_by_service_but_refused_by_engine": {
+   "legitimate": 0,
+   "all_rows": 0
+  },
+  "legitimate_rejection_rate": "42/140",
   "reasons_for_missed_legit": {
-   "CRITICAL_MASS": 47,
+   "CRITICAL_MASS": 32,
    "CRITICAL_TOPIC": 5,
-   "GATE_NOT_CREDITED": 3,
+   "GATE_NOT_CREDITED": 5,
    "AMBIGUOUS": 2,
    "NO_ACT": 2
   }
@@ -674,7 +678,7 @@
  "without_pending_question_or_readback": {
   "rows": 20,
   "interpretation_offered_the_rows_own_act": 0,
-  "with_the_context_offered_the_rows_own_act": 10,
+  "with_the_context_offered_the_rows_own_act": 13,
   "route_credited_the_rows_own_act": 10
  },
  "critical": {
@@ -687,13 +691,25 @@
   "critical_false_credit": 0,
   "out_of_window_false_credit": 0,
   "non_assertive_false_credit_rate": 0.0,
-  "credited_precision": 1.0,
-  "legitimate_recall": 0.5929,
+  "credited_precision": 0.9896,
+  "legitimate_recall": 0.6786,
   "route_legitimate_recall": 0.5929,
   "valid_for_claims": false
  },
  "examples": {
-  "wrong_offers": [],
+  "wrong_offers": [
+   {
+    "id": "AB-d0098",
+    "text": "We start by placing a small line in your arm.",
+    "act": "EXPLAIN_PROCEDURE",
+    "category": "paraphrase",
+    "route": null,
+    "decision": "OFFER_EVIDENCE",
+    "offer": "EXPLAIN_ACTION",
+    "reasons": [],
+    "clarify": []
+   }
+  ],
   "missed_legitimate": [
    {
     "id": "AB-d0003",
@@ -802,8 +818,8 @@
   ]
  },
  "example_counts": {
-  "wrong_offers": 0,
-  "missed_legitimate": 57
+  "wrong_offers": 1,
+  "missed_legitimate": 45
  },
  "embedding_model": "all-minilm:22m"
 }

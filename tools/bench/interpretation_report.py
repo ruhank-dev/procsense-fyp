@@ -10,7 +10,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parents[2]
 R = ROOT / "reports" / "ai"
 OUT = ROOT / "docs" / "research" / "interpretation_benchmark.md"
-SYSTEMS = (("classifier_route_as_served", "Classifier route, as served (no state)"), ("classifier_route_after_window_rule", "Classifier route, then the engine's window rule"), ("interpretation_in_window", "Interpretation path (state given)"))
+SYSTEMS = (("classifier_route_as_served", "Classifier route, as served (no state)"), ("classifier_route_after_window_rule", "Classifier route, then the engine's window rule"), ("interpretation_in_window", "Interpretation path, shipped (cap 0.05, evidence accepted by the engine)"))
 
 
 def render() -> str:
@@ -28,7 +28,7 @@ def render() -> str:
         for k, name in SYSTEMS:
             v = d[k]
             L.append(f"| {s} | {name} | {v['offers']} | {v['offers_right']} | {v['credited_precision']} | {v['legitimate_recall']} | {v['critical_false_credit']} | {v['non_assertive_false_credit']} |")
-    L += ["", "The interpretation path offers exactly what the classifier route offers once the engine's window rule is applied: it does not raise legitimate recall. Its gains are refusals the route cannot make without state:", "",
+    L += ["", "On 19 October 2026 the interpretation path equalled the classifier route after the engine's window rule (it removed credit, never added it). On 20 October 2026 two changes were made on evidence (`docs/research/recall_diagnosis.md`): the head's critical-mass cap went from 0.03 to 0.05 and the engine's per-act evidence thresholds became the classifier's own calibrated thresholds (the 0.8 placeholder had been refusing evidence the gate credited). The rows above count evidence ACCEPTED by the engine. The refusals the route cannot make without state are unchanged:", "",
           "| Split | Legitimate rows put outside their window | Route would credit | Route after the engine's window rule | Interpretation offered the row's own act | Rows needing a waiting question or read-back | Route credited | Interpretation without the context | Interpretation with it |", "|---|---|---|---|---|---|---|---|---|"]
     for s, d in D.items():
         o, w = d["out_of_window"], d["without_pending_question_or_readback"]
@@ -38,7 +38,7 @@ def render() -> str:
         i = d["interpretation_in_window"]
         dec = i["legitimate_decisions"]
         L.append(f"| {s} | {dec.get('OFFER_EVIDENCE', 0)} | {dec.get('CLARIFY', 0)} | {dec.get('ABSTAIN', 0)} | {dec.get('MENU', 0)} | {i['legitimate_rejection_rate']} | {', '.join(f'{k} {v}' for k, v in i['reasons_for_missed_legit'].items())} |")
-    L += ["", "Most missed legitimate sentences are refused by the classifier gate's critical-mass cap (the head gives 2 percent or more to a critical act), not by the context rules. That cap is the safety rule that removes about half of the legitimate credit (ADR-0020); relaxing it is not justified without independent data.", "",
+    L += ["", "Most of the sentences still missed are refused by the classifier gate's critical-mass cap, now 0.05 (the head gives 5 percent or more to a critical act), not by the context rules. Removing the cap would let 10 sentences of evasive critical content or non-performed speech through (`reports/ai/recall-safety-panel.json`), and no signal the path has separates them from the legitimate sentences that sit at the same critical mass; see the diagnosis.", "",
           "## Critical content", "", "| Split | Critical rows | Offered in any context | Menu pointing at the verified actions |", "|---|---|---|---|"]
     for s, d in D.items():
         c = d["critical"]
@@ -72,7 +72,7 @@ def render() -> str:
           f"From committed reports, not re-measured: recognition p95 {v['asr_p95_s']} s, the grounded patient reply p95 {v['patient_reply_p95_s']} s, the first spoken sentence p95 {v['first_spoken_sentence_p95_s']} s. The interpretation runs beside the reply, not in it. The sum of those three p95s is {v['reply_path_sum_of_p95s_s']} s against the {v['round_trip_target_p95_s']} s target; a sum of percentiles is an upper bound, and the real figure is device check DC-08 (Sannan). This work does not change that path.", "",
           "## Limits", "",
           "* Synthetic rows from one author family, labelled by construction; the state of each row is derived from the engine's rule, not recorded from play. No independent human-labelled set exists (EX-01, EX-18); nothing here shows how the path behaves on real trainee speech.",
-          "* The interpretation path's recall equals the classifier route's: the context rules remove credit, never add it. Raising recall needs a better candidate generator or a relaxed critical-mass rule, and either needs the independent set to be judged.",
+          "* The context rules remove credit, never add it; the recall gain over the classifier route comes from the revised cap and the engine thresholds (docs/research/recall_diagnosis.md), whose safety was judged on synthetic panels. The acts ANSWER_QUESTION and CLOSED_LOOP are offered only with a waiting patient question or a critical result awaiting acknowledgement, which the benchmark ASSUMES for those rows; the real engine records the second rarely, so the gain on CLOSED_LOOP rows is not evidence of the same gain in play.",
           "* The Qwen 4B evaluator was NOT used (docs/research/rubric_evaluator.md); it is out of the live path (ADR-0022). Context-conditioned Qwen was therefore still not measured with real per-row context.",
           "* Latency is one desktop; the headset, the microphone chain, Unity and the laptop were not measured.", ""]
     return "\n".join(L) + "\n"

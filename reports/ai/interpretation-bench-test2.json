@@ -436,24 +436,24 @@
   }
  },
  "interpretation_in_window": {
-  "offers": 69,
-  "offers_right": 69,
-  "credited_precision": "69/69",
-  "legitimate_recall": "69/140",
+  "offers": 79,
+  "offers_right": 79,
+  "credited_precision": "79/79",
+  "legitimate_recall": "79/140",
   "legitimate_offered_under_another_act": 0,
   "critical_false_credit": "0/40",
   "non_assertive_false_credit": "0/300",
   "non_assertive_by_category": {},
   "label_view_core": {
    "n": 188,
-   "accuracy": 0.367,
-   "macro_f1": 0.448
+   "accuracy": 0.42,
+   "macro_f1": 0.488
   },
   "per_class": {
    "ACKNOWLEDGE_EMOTION": {
     "precision": 1.0,
-    "recall": 0.4,
-    "f1": 0.571,
+    "recall": 0.6,
+    "f1": 0.75,
     "support": 10
    },
    "ACKNOWLEDGE_FACT": {
@@ -476,8 +476,8 @@
    },
    "CHECK_UNDERSTANDING": {
     "precision": 1.0,
-    "recall": 0.7,
-    "f1": 0.824,
+    "recall": 0.9,
+    "f1": 0.947,
     "support": 10
    },
    "CLARIFY": {
@@ -488,8 +488,8 @@
    },
    "CLOSED_LOOP": {
     "precision": 1.0,
-    "recall": 0.4,
-    "f1": 0.571,
+    "recall": 0.5,
+    "f1": 0.667,
     "support": 10
    },
    "CONFIRM_IDENTITY": {
@@ -506,8 +506,8 @@
    },
    "ESCALATE_SPEECH": {
     "precision": 1.0,
-    "recall": 0.6,
-    "f1": 0.75,
+    "recall": 0.7,
+    "f1": 0.824,
     "support": 10
    },
    "EXPLAIN_ACTION": {
@@ -524,8 +524,8 @@
    },
    "EXPLAIN_TEST": {
     "precision": 1.0,
-    "recall": 0.4,
-    "f1": 0.571,
+    "recall": 0.7,
+    "f1": 0.824,
     "support": 10
    },
    "HANDOVER_CRITICAL_ELEMENT": {
@@ -548,8 +548,8 @@
    },
    "REPORT_FAULT": {
     "precision": 1.0,
-    "recall": 0.5,
-    "f1": 0.667,
+    "recall": 0.6,
+    "f1": 0.75,
     "support": 10
    },
    "SBAR_ELEMENT": {
@@ -573,8 +573,8 @@
   },
   "confusion": {
    "ACKNOWLEDGE_EMOTION": {
-    "ABSTAIN": 6,
-    "ACKNOWLEDGE_EMOTION": 4
+    "ACKNOWLEDGE_EMOTION": 6,
+    "ABSTAIN": 4
    },
    "ACKNOWLEDGE_FACT": {
     "ACKNOWLEDGE_FACT": 4,
@@ -589,16 +589,16 @@
     "ASK_TOPIC": 1
    },
    "CHECK_UNDERSTANDING": {
-    "CHECK_UNDERSTANDING": 7,
-    "ABSTAIN": 3
+    "CHECK_UNDERSTANDING": 9,
+    "ABSTAIN": 1
    },
    "CLARIFY": {
     "CLARIFY": 8,
     "ABSTAIN": 2
    },
    "CLOSED_LOOP": {
-    "ABSTAIN": 6,
-    "CLOSED_LOOP": 4
+    "ABSTAIN": 5,
+    "CLOSED_LOOP": 5
    },
    "CONFIRM_IDENTITY": {
     "ABSTAIN": 8
@@ -607,8 +607,8 @@
     "ABSTAIN": 8
    },
    "ESCALATE_SPEECH": {
-    "ESCALATE_SPEECH": 6,
-    "ABSTAIN": 4
+    "ESCALATE_SPEECH": 7,
+    "ABSTAIN": 3
    },
    "EXPLAIN_ACTION": {
     "EXPLAIN_ACTION": 8,
@@ -619,8 +619,8 @@
     "EXPLAIN_PROCEDURE": 5
    },
    "EXPLAIN_TEST": {
-    "ABSTAIN": 6,
-    "EXPLAIN_TEST": 4
+    "EXPLAIN_TEST": 7,
+    "ABSTAIN": 3
    },
    "HANDOVER_CRITICAL_ELEMENT": {
     "ABSTAIN": 8
@@ -633,8 +633,8 @@
     "REASSURE": 4
    },
    "REPORT_FAULT": {
-    "ABSTAIN": 5,
-    "REPORT_FAULT": 5
+    "ABSTAIN": 4,
+    "REPORT_FAULT": 6
    },
    "SBAR_ELEMENT": {
     "ABSTAIN": 8
@@ -648,20 +648,25 @@
    }
   },
   "legitimate_decisions": {
-   "ABSTAIN": 60,
-   "OFFER_EVIDENCE": 69,
+   "ABSTAIN": 50,
+   "OFFER_EVIDENCE": 79,
    "MENU": 11
   },
   "clarification_rate_legit": "0/140",
-  "abstention_rate_legit": "60/140",
+  "abstention_rate_legit": "50/140",
   "menu_rate_legit": "11/140",
-  "legitimate_rejection_rate": "71/140",
+  "offered_by_service_but_refused_by_engine": {
+   "legitimate": 0,
+   "all_rows": 0
+  },
+  "legitimate_rejection_rate": "61/140",
   "reasons_for_missed_legit": {
-   "CRITICAL_MASS": 55,
+   "CRITICAL_MASS": 42,
    "CRITICAL_TOPIC": 11,
-   "NOT_ELIGIBLE": 3,
-   "NO_ACT": 1,
-   "GATE_NOT_CREDITED": 1
+   "NOT_ELIGIBLE": 5,
+   "GATE_NOT_CREDITED": 2,
+   "HEADS_DISAGREE:CLARIFY": 2,
+   "NO_ACT": 1
   }
  },
  "out_of_window": {
@@ -674,7 +679,7 @@
  "without_pending_question_or_readback": {
   "rows": 20,
   "interpretation_offered_the_rows_own_act": 0,
-  "with_the_context_offered_the_rows_own_act": 9,
+  "with_the_context_offered_the_rows_own_act": 10,
   "route_credited_the_rows_own_act": 9
  },
  "critical": {
@@ -688,7 +693,7 @@
   "out_of_window_false_credit": 0,
   "non_assertive_false_credit_rate": 0.0,
   "credited_precision": 1.0,
-  "legitimate_recall": 0.4929,
+  "legitimate_recall": 0.5643,
   "route_legitimate_recall": 0.4929,
   "valid_for_claims": false
  },
@@ -704,7 +709,7 @@
     "decision": "ABSTAIN",
     "offer": null,
     "reasons": [
-     "CRITICAL_MASS"
+     "GATE_NOT_CREDITED"
     ],
     "clarify": []
    },
@@ -782,7 +787,8 @@
     "decision": "ABSTAIN",
     "offer": null,
     "reasons": [
-     "CRITICAL_MASS"
+     "NOT_ELIGIBLE",
+     "HEADS_DISAGREE:CLARIFY"
     ],
     "clarify": []
    },
@@ -795,7 +801,8 @@
     "decision": "ABSTAIN",
     "offer": null,
     "reasons": [
-     "CRITICAL_MASS"
+     "NOT_ELIGIBLE",
+     "HEADS_DISAGREE:CLARIFY"
     ],
     "clarify": []
    }
@@ -803,7 +810,7 @@
  },
  "example_counts": {
   "wrong_offers": 0,
-  "missed_legitimate": 71
+  "missed_legitimate": 61
  },
  "embedding_model": "all-minilm:22m"
 }

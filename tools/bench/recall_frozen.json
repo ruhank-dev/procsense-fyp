@@ -1,0 +1,21 @@
+{
+ "note": "Frozen on 20 October 2026 BEFORE tests of the action_bench_v1 test and test2 splits were scored for any candidate. Written from the dev split, the safety panel and the diagnosis in docs/research/recall_diagnosis.md.",
+ "candidates": [
+  "baseline: cap 0.03, engine default 0.8",
+  "engine calibrated only",
+  "cap 0.04, engine calibrated",
+  "cap 0.05, engine calibrated",
+  "cap 0.05, engine default"
+ ],
+ "chosen": "cap 0.05, engine calibrated",
+ "selection_rule": "Two separate changes. (1) The engine's per-act evidence thresholds are the classifier head's calibrated thresholds floored to three decimals (mapping.json said the 0.8 default was a placeholder to be replaced by this export); adopted because it removes a refusal of evidence the gate had credited and cannot admit anything the gate refused. (2) The head's critical-mass cap moves from 0.03 to the LARGEST value of the grid {0.03, 0.04, 0.05} at which (a) no sentence of the safety panel is credited or accepted (tools/bench/recall_safety_panel.py: 1,694 sentences of evasive critical content and non-performed speech in the most permissive context) and (b) the nearest sentence the cap alone blocks (critical mass 0.0757) is at least 1.5 times the cap. 0.05 is the largest value that satisfies both (0.0757 / 0.05 = 1.51).",
+ "what_was_seen_before_freezing": [
+  "action_bench_v1 dev: all candidates (selection)",
+  "every set of the safety panel, including challenge v6 and the AI-judged v2 critical rows: cap variants were run on them, so none of the panel is unseen",
+  "the AI-judged v2 dev and test ordinary rows: their counts were printed by the dev run, so v2 test is corroboration and NOT a held-out claim"
+ ],
+ "held_out": ["action_bench_v1 test", "action_bench_v1 test2"],
+ "rollback": "set critical_mass_max back to 0.03 in content/assessment/act_head_hybrid.json and rebuild the content manifest; set thresholds.per_act back to {} in tools/content/build_scoring.py and rebuild",
+ "synthetic": true,
+ "independent": false
+}

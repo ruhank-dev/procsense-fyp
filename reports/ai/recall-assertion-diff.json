@@ -1,0 +1,135 @@
+{
+ "before": "2f9aa0a",
+ "sets": {
+  "bench dev: legitimate rows": {
+   "sentences": 140,
+   "flagged_before": 0,
+   "flagged_now": 0,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "bench dev: non-performed rows": {
+   "sentences": 300,
+   "flagged_before": 294,
+   "flagged_now": 296,
+   "newly_flagged": 2,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [
+    {
+     "text": "I didn't say anxiety is normal.",
+     "now": "denied"
+    },
+    {
+     "text": "I didn't say it is routine.",
+     "now": "denied"
+    }
+   ],
+   "no_longer_flagged_examples": []
+  },
+  "bench test: legitimate rows": {
+   "sentences": 140,
+   "flagged_before": 0,
+   "flagged_now": 0,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "bench test: non-performed rows": {
+   "sentences": 300,
+   "flagged_before": 300,
+   "flagged_now": 300,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "bench test2: legitimate rows": {
+   "sentences": 140,
+   "flagged_before": 0,
+   "flagged_now": 0,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "bench test2: non-performed rows": {
+   "sentences": 300,
+   "flagged_before": 297,
+   "flagged_now": 298,
+   "newly_flagged": 1,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [
+    {
+     "text": "No, I did not say most people do well.",
+     "now": "denied"
+    }
+   ],
+   "no_longer_flagged_examples": []
+  },
+  "AI-judged v2 dev: ordinary rows (plain, recogniser-style)": {
+   "sentences": 126,
+   "flagged_before": 1,
+   "flagged_now": 1,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "AI-judged v2 test: ordinary rows (plain, recogniser-style)": {
+   "sentences": 252,
+   "flagged_before": 0,
+   "flagged_now": 0,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "regression: legitimate paraphrases": {
+   "sentences": 41,
+   "flagged_before": 0,
+   "flagged_now": 0,
+   "newly_flagged": 0,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [],
+   "no_longer_flagged_examples": []
+  },
+  "regression: counterexamples (denied, plan, hypothetical, reported, other speaker, broken off)": {
+   "sentences": 84,
+   "flagged_before": 64,
+   "flagged_now": 84,
+   "newly_flagged": 20,
+   "no_longer_flagged": 0,
+   "newly_flagged_examples": [
+    {
+     "text": "The radiographer will explain the scan to you.",
+     "now": "reported"
+    },
+    {
+     "text": "I'll reassure you properly after the consent form.",
+     "now": "intended"
+    },
+    {
+     "text": "If I said you were in good hands, would that help?",
+     "now": "hypothetical"
+    },
+    {
+     "text": "I'll order the ECG after the handover.",
+     "now": "intended"
+    },
+    {
+     "text": "I'll call the senior in a few minutes.",
+     "now": "intended"
+    },
+    {
+     "text": "I'll explain the operation once you have signed.",
+     "now": "intended"
+    }
+   ],
+   "no_longer_flagged_examples": []
+  }
+ },
+ "legitimate_sentences_newly_flagged": 0
+}

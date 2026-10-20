@@ -1,0 +1,609 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "context": "most permissive: every step running, patient question and read-back waiting",
+ "cap_variants": {
+  "cap 0.03 (shipped)": {
+   "trained: adversarial_critical + holdout + holdout2": {
+    "rows": 179,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "trained: challenge v4 critical_evasive": {
+    "rows": 60,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: adversarial_critical_holdout3": {
+    "rows": 48,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: challenge v5 critical_evasive": {
+    "rows": 48,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "final: challenge v6 critical_evasive": {
+    "rows": 48,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "non-assertive: challenge v4 + v5 + v6": {
+    "rows": 36,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: AI-judged v2 dev critical-labelled rows": {
+    "rows": 105,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "scored-before: AI-judged v2 test critical-labelled rows": {
+    "rows": 150,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   }
+  },
+  "cap removed": {
+   "trained: adversarial_critical + holdout + holdout2": {
+    "rows": 179,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "trained: challenge v4 critical_evasive": {
+    "rows": 60,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: adversarial_critical_holdout3": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "The reason for my call is that the family are anxious and want a senior opinion.",
+      "truth": "SBAR_ELEMENT",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.0978
+     }
+    ],
+    "leak_masses": [
+     0.0978
+    ]
+   },
+   "tuned-on: challenge v5 critical_evasive": {
+    "rows": 48,
+    "leaks": 2,
+    "examples": [
+     {
+      "text": "Nothing to eat or drink since midnight, is that right?",
+      "truth": "HANDOVER_CRITICAL_ELEMENT",
+      "offered": "ASK_TOPIC",
+      "critical_mass": 0.0913
+     },
+     {
+      "text": "Did you have breakfast this morning?",
+      "truth": "HANDOVER_CRITICAL_ELEMENT",
+      "offered": "ASK_TOPIC",
+      "critical_mass": 0.2662
+     }
+    ],
+    "leak_masses": [
+     0.0913,
+     0.2662
+    ]
+   },
+   "final: challenge v6 critical_evasive": {
+    "rows": 48,
+    "leaks": 2,
+    "examples": [
+     {
+      "text": "Would you initial each box to show you have read it?",
+      "truth": "CONSENT_SIGN",
+      "offered": "CHECK_UNDERSTANDING",
+      "critical_mass": 0.0757
+     },
+     {
+      "text": "Remember the blood thinner was stopped three days ago.",
+      "truth": "HANDOVER_CRITICAL_ELEMENT",
+      "offered": "ACKNOWLEDGE_FACT",
+      "critical_mass": 0.3186
+     }
+    ],
+    "leak_masses": [
+     0.0757,
+     0.3186
+    ]
+   },
+   "non-assertive: challenge v4 + v5 + v6": {
+    "rows": 36,
+    "leaks": 2,
+    "examples": [
+     {
+      "text": "I would have explained the risks but she interrupted me.",
+      "truth": "NONE",
+      "offered": "CHECK_UNDERSTANDING",
+      "critical_mass": 0.1219
+     },
+     {
+      "text": "I am not about to repeat the check, we did it earlier.",
+      "truth": "NONE",
+      "offered": "CLARIFY",
+      "critical_mass": 0.1332
+     }
+    ],
+    "leak_masses": [
+     0.1219,
+     0.1332
+    ]
+   },
+   "tuned-on: AI-judged v2 dev critical-labelled rows": {
+    "rows": 105,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "scored-before: AI-judged v2 test critical-labelled rows": {
+    "rows": 150,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "R: Don't start until the senior anaesthetist is present.",
+      "truth": "SBAR_ELEMENT",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.1249
+     }
+    ],
+    "leak_masses": [
+     0.1249
+    ]
+   },
+   "bench dev: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: non-performed rows": {
+    "rows": 300,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Let the senior nurse say most people do well.",
+      "truth": "REASSURE",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.0949
+     }
+    ],
+    "leak_masses": [
+     0.0949
+    ]
+   }
+  },
+  "cap 0.05": {
+   "trained: adversarial_critical + holdout + holdout2": {
+    "rows": 179,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "trained: challenge v4 critical_evasive": {
+    "rows": 60,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: adversarial_critical_holdout3": {
+    "rows": 48,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: challenge v5 critical_evasive": {
+    "rows": 48,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "final: challenge v6 critical_evasive": {
+    "rows": 48,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "non-assertive: challenge v4 + v5 + v6": {
+    "rows": 36,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: AI-judged v2 dev critical-labelled rows": {
+    "rows": 105,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "scored-before: AI-judged v2 test critical-labelled rows": {
+    "rows": 150,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   }
+  },
+  "cap 0.10": {
+   "trained: adversarial_critical + holdout + holdout2": {
+    "rows": 179,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "trained: challenge v4 critical_evasive": {
+    "rows": 60,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: adversarial_critical_holdout3": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "The reason for my call is that the family are anxious and want a senior opinion.",
+      "truth": "SBAR_ELEMENT",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.0978
+     }
+    ],
+    "leak_masses": [
+     0.0978
+    ]
+   },
+   "tuned-on: challenge v5 critical_evasive": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Nothing to eat or drink since midnight, is that right?",
+      "truth": "HANDOVER_CRITICAL_ELEMENT",
+      "offered": "ASK_TOPIC",
+      "critical_mass": 0.0913
+     }
+    ],
+    "leak_masses": [
+     0.0913
+    ]
+   },
+   "final: challenge v6 critical_evasive": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Would you initial each box to show you have read it?",
+      "truth": "CONSENT_SIGN",
+      "offered": "CHECK_UNDERSTANDING",
+      "critical_mass": 0.0757
+     }
+    ],
+    "leak_masses": [
+     0.0757
+    ]
+   },
+   "non-assertive: challenge v4 + v5 + v6": {
+    "rows": 36,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: AI-judged v2 dev critical-labelled rows": {
+    "rows": 105,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "scored-before: AI-judged v2 test critical-labelled rows": {
+    "rows": 150,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: non-performed rows": {
+    "rows": 300,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Let the senior nurse say most people do well.",
+      "truth": "REASSURE",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.0949
+     }
+    ],
+    "leak_masses": [
+     0.0949
+    ]
+   }
+  },
+  "cap 0.20": {
+   "trained: adversarial_critical + holdout + holdout2": {
+    "rows": 179,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "trained: challenge v4 critical_evasive": {
+    "rows": 60,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "tuned-on: adversarial_critical_holdout3": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "The reason for my call is that the family are anxious and want a senior opinion.",
+      "truth": "SBAR_ELEMENT",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.0978
+     }
+    ],
+    "leak_masses": [
+     0.0978
+    ]
+   },
+   "tuned-on: challenge v5 critical_evasive": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Nothing to eat or drink since midnight, is that right?",
+      "truth": "HANDOVER_CRITICAL_ELEMENT",
+      "offered": "ASK_TOPIC",
+      "critical_mass": 0.0913
+     }
+    ],
+    "leak_masses": [
+     0.0913
+    ]
+   },
+   "final: challenge v6 critical_evasive": {
+    "rows": 48,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Would you initial each box to show you have read it?",
+      "truth": "CONSENT_SIGN",
+      "offered": "CHECK_UNDERSTANDING",
+      "critical_mass": 0.0757
+     }
+    ],
+    "leak_masses": [
+     0.0757
+    ]
+   },
+   "non-assertive: challenge v4 + v5 + v6": {
+    "rows": 36,
+    "leaks": 2,
+    "examples": [
+     {
+      "text": "I would have explained the risks but she interrupted me.",
+      "truth": "NONE",
+      "offered": "CHECK_UNDERSTANDING",
+      "critical_mass": 0.1219
+     },
+     {
+      "text": "I am not about to repeat the check, we did it earlier.",
+      "truth": "NONE",
+      "offered": "CLARIFY",
+      "critical_mass": 0.1332
+     }
+    ],
+    "leak_masses": [
+     0.1219,
+     0.1332
+    ]
+   },
+   "tuned-on: AI-judged v2 dev critical-labelled rows": {
+    "rows": 105,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "scored-before: AI-judged v2 test critical-labelled rows": {
+    "rows": 150,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "R: Don't start until the senior anaesthetist is present.",
+      "truth": "SBAR_ELEMENT",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.1249
+     }
+    ],
+    "leak_masses": [
+     0.1249
+    ]
+   },
+   "bench dev: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench dev: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test: non-performed rows": {
+    "rows": 300,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: critical rows": {
+    "rows": 40,
+    "leaks": 0,
+    "examples": [],
+    "leak_masses": []
+   },
+   "bench test2: non-performed rows": {
+    "rows": 300,
+    "leaks": 1,
+    "examples": [
+     {
+      "text": "Let the senior nurse say most people do well.",
+      "truth": "REASSURE",
+      "offered": "ESCALATE_SPEECH",
+      "critical_mass": 0.0949
+     }
+    ],
+    "leak_masses": [
+     0.0949
+    ]
+   }
+  }
+ }
+}

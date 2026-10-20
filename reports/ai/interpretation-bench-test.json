@@ -437,30 +437,30 @@
   }
  },
  "interpretation_in_window": {
-  "offers": 66,
-  "offers_right": 66,
-  "credited_precision": "66/66",
-  "legitimate_recall": "66/140",
+  "offers": 76,
+  "offers_right": 76,
+  "credited_precision": "76/76",
+  "legitimate_recall": "76/140",
   "legitimate_offered_under_another_act": 0,
   "critical_false_credit": "0/40",
   "non_assertive_false_credit": "0/300",
   "non_assertive_by_category": {},
   "label_view_core": {
    "n": 188,
-   "accuracy": 0.351,
-   "macro_f1": 0.426
+   "accuracy": 0.404,
+   "macro_f1": 0.471
   },
   "per_class": {
    "ACKNOWLEDGE_EMOTION": {
     "precision": 1.0,
-    "recall": 0.7,
-    "f1": 0.824,
+    "recall": 1.0,
+    "f1": 1.0,
     "support": 10
    },
    "ACKNOWLEDGE_FACT": {
     "precision": 1.0,
-    "recall": 0.4,
-    "f1": 0.571,
+    "recall": 0.6,
+    "f1": 0.75,
     "support": 10
    },
    "ANSWER_QUESTION": {
@@ -471,20 +471,20 @@
    },
    "ASK_TOPIC": {
     "precision": 1.0,
-    "recall": 0.1,
-    "f1": 0.182,
-    "support": 10
-   },
-   "CHECK_UNDERSTANDING": {
-    "precision": 1.0,
     "recall": 0.2,
     "f1": 0.333,
     "support": 10
    },
+   "CHECK_UNDERSTANDING": {
+    "precision": 1.0,
+    "recall": 0.3,
+    "f1": 0.462,
+    "support": 10
+   },
    "CLARIFY": {
     "precision": 1.0,
-    "recall": 0.7,
-    "f1": 0.824,
+    "recall": 0.8,
+    "f1": 0.889,
     "support": 10
    },
    "CLOSED_LOOP": {
@@ -507,8 +507,8 @@
    },
    "ESCALATE_SPEECH": {
     "precision": 1.0,
-    "recall": 0.5,
-    "f1": 0.667,
+    "recall": 0.6,
+    "f1": 0.75,
     "support": 10
    },
    "EXPLAIN_ACTION": {
@@ -519,8 +519,8 @@
    },
    "EXPLAIN_PROCEDURE": {
     "precision": 1.0,
-    "recall": 0.3,
-    "f1": 0.462,
+    "recall": 0.4,
+    "f1": 0.571,
     "support": 10
    },
    "EXPLAIN_TEST": {
@@ -574,28 +574,27 @@
   },
   "confusion": {
    "ACKNOWLEDGE_EMOTION": {
-    "ACKNOWLEDGE_EMOTION": 7,
-    "ABSTAIN": 3
+    "ACKNOWLEDGE_EMOTION": 10
    },
    "ACKNOWLEDGE_FACT": {
-    "ACKNOWLEDGE_FACT": 4,
-    "ABSTAIN": 6
+    "ACKNOWLEDGE_FACT": 6,
+    "ABSTAIN": 4
    },
    "ANSWER_QUESTION": {
     "ANSWER_QUESTION": 4,
     "ABSTAIN": 6
    },
    "ASK_TOPIC": {
-    "ASK_TOPIC": 1,
-    "ABSTAIN": 9
-   },
-   "CHECK_UNDERSTANDING": {
-    "CHECK_UNDERSTANDING": 2,
+    "ASK_TOPIC": 2,
     "ABSTAIN": 8
    },
+   "CHECK_UNDERSTANDING": {
+    "CHECK_UNDERSTANDING": 3,
+    "ABSTAIN": 7
+   },
    "CLARIFY": {
-    "CLARIFY": 7,
-    "ABSTAIN": 3
+    "CLARIFY": 8,
+    "ABSTAIN": 2
    },
    "CLOSED_LOOP": {
     "ABSTAIN": 7,
@@ -608,16 +607,16 @@
     "ABSTAIN": 8
    },
    "ESCALATE_SPEECH": {
-    "ESCALATE_SPEECH": 5,
-    "ABSTAIN": 5
+    "ESCALATE_SPEECH": 6,
+    "ABSTAIN": 4
    },
    "EXPLAIN_ACTION": {
     "EXPLAIN_ACTION": 5,
     "ABSTAIN": 5
    },
    "EXPLAIN_PROCEDURE": {
-    "ABSTAIN": 7,
-    "EXPLAIN_PROCEDURE": 3
+    "ABSTAIN": 6,
+    "EXPLAIN_PROCEDURE": 4
    },
    "EXPLAIN_TEST": {
     "EXPLAIN_TEST": 9,
@@ -649,22 +648,28 @@
    }
   },
   "legitimate_decisions": {
-   "OFFER_EVIDENCE": 66,
-   "ABSTAIN": 67,
+   "OFFER_EVIDENCE": 76,
+   "ABSTAIN": 56,
    "MENU": 4,
-   "CLARIFY": 3
+   "CLARIFY": 4
   },
-  "clarification_rate_legit": "3/140",
-  "abstention_rate_legit": "67/140",
+  "clarification_rate_legit": "4/140",
+  "abstention_rate_legit": "56/140",
   "menu_rate_legit": "4/140",
-  "legitimate_rejection_rate": "71/140",
+  "offered_by_service_but_refused_by_engine": {
+   "legitimate": 0,
+   "all_rows": 0
+  },
+  "legitimate_rejection_rate": "60/140",
   "reasons_for_missed_legit": {
-   "CRITICAL_MASS": 60,
-   "GATE_NOT_CREDITED": 4,
+   "CRITICAL_MASS": 42,
+   "GATE_NOT_CREDITED": 10,
+   "NOT_ELIGIBLE": 6,
    "CRITICAL_TOPIC": 4,
-   "NOT_ELIGIBLE": 4,
-   "AMBIGUOUS": 3,
-   "NO_ACT": 2
+   "AMBIGUOUS": 4,
+   "NO_ACT": 2,
+   "HEADS_DISAGREE:EXPLAIN_PROCEDURE": 1,
+   "HEADS_DISAGREE:CHECK_UNDERSTANDING": 1
   }
  },
  "out_of_window": {
@@ -691,7 +696,7 @@
   "out_of_window_false_credit": 0,
   "non_assertive_false_credit_rate": 0.0,
   "credited_precision": 1.0,
-  "legitimate_recall": 0.4714,
+  "legitimate_recall": 0.5429,
   "route_legitimate_recall": 0.4714,
   "valid_for_claims": false
  },
@@ -764,19 +769,6 @@
     "clarify": []
    },
    {
-    "id": "AB-t0018",
-    "text": "Can you manage the stairs at home?",
-    "act": "ASK_TOPIC",
-    "category": "paraphrase",
-    "route": null,
-    "decision": "ABSTAIN",
-    "offer": null,
-    "reasons": [
-     "CRITICAL_MASS"
-    ],
-    "clarify": []
-   },
-   {
     "id": "AB-t0019",
     "text": "How are you with stairs?",
     "act": "ASK_TOPIC",
@@ -801,12 +793,25 @@
      "CRITICAL_MASS"
     ],
     "clarify": []
+   },
+   {
+    "id": "AB-t0032",
+    "text": "are you able to climb a flight of stirs",
+    "act": "ASK_TOPIC",
+    "category": "asr_error",
+    "route": null,
+    "decision": "MENU",
+    "offer": null,
+    "reasons": [
+     "CRITICAL_TOPIC"
+    ],
+    "clarify": []
    }
   ]
  },
  "example_counts": {
   "wrong_offers": 0,
-  "missed_legitimate": 74
+  "missed_legitimate": 64
  },
  "embedding_model": "all-minilm:22m"
 }
