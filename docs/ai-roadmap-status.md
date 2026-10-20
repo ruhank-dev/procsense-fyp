@@ -2,6 +2,11 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0l. Update of 20 October 2026 (Ollama Cloud `gemma4:31b` as a semantic reader: experiment only)
+
+* **Experiment, not a decision:** `docs/research/cloud_gemma_rubric.md` (numbers in `reports/ai/cloud-gemma-rubric.json`, adapter `tools/bench/cloud_eval.py`). On `tests/action_bench_v1` dev, test and test2, Gemma with the production guards credited 118, 121 and 111 of 140 legitimate sentences against the benchmark baseline gate's 83, 66 and 69 (not the shipped interpretation path, which reaches 95, 76 and 79 and was never combined with Gemma), but on test2 the guards alone let 3 of 40 critical and 1 of 300 adversarial sentences through; the guards are only as good as their word lists.
+* **Only the form "Gemma AND baseline gate" showed no observed unsafe credit** (0/40 and 0/300 on all three splits) and it credits fewer legitimate sentences than the baseline alone (73, 60 and 57 of 140); it is a research candidate at most. Synthetic builder-written labels, no independent review (EX-01), a baseline tuned on these splits, test2 previously used by the Qwen experiment, 7 to 21 percent fenced (strict-malformed) replies, cloud latency and privacy open. `speech_interpretation` stays OFF; no audio, Quest or clinical claim.
+
 ## 0k. Update of 20 October 2026 (unsafe-speech work: review readiness, no new result)
 
 * **Prepared, not performed:** a blind review kit (packaging, check, agreement, adjudication, merge into an override file), the protocol and its readiness table (`docs/testing/safety_challenge_review.md`), an audit of the sets (every label provisional; none independently reviewed), a design for the audio-to-transcript evaluation (`docs/testing/asr_safety_evaluation.md`, not run, not validated).
