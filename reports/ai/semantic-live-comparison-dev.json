@@ -1,0 +1,141 @@
+{
+ "note": "Live runs, dev split of tests/action_bench_v1 (488 rows; 140 legitimate, 300 adversarial, 40 critical), the production reader and pipeline, confidence mode head, 8 s per attempt, hard caps 220 calls and 450,000 tokens per model. Gemma ran before the per-attempt timeout fix (its 4 timeouts used the whole 12 s budget); the two others ran after it. Synthetic builder-written labels; development evidence only.",
+ "shipped_path_dev": {
+  "legitimate_recall": "95/140",
+  "credited_precision": "95/96"
+ },
+ "models": [
+  {
+   "model_requested": "gemma4:31b-cloud",
+   "answered_by": [
+    "gemma4:31b"
+   ],
+   "rows_sent_to_model": 141,
+   "provider_calls": 141,
+   "first_attempt": {
+    "VALID": 137,
+    "ERROR:TIMEOUT": 4
+   },
+   "first_attempt_valid_rate": 0.9716,
+   "retried_rows": 0,
+   "final": {
+    "VALID": 137,
+    "ERROR:TIMEOUT": 4
+   },
+   "final_valid_rate": 0.9716,
+   "provider_timeouts": 4,
+   "tokens": {
+    "prompt": 186307,
+    "output": 6391,
+    "total": 192698
+   },
+   "wall_ms": {
+    "median": 895,
+    "p95": 1302,
+    "max": 1530,
+    "n": 137
+   },
+   "offers": 93,
+   "credited_precision": "92/93",
+   "legitimate_recall": "92/140",
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "out_of_window_offers": 0,
+   "decisions_on_legitimate_rows": {
+    "OFFER_EVIDENCE": 93,
+    "ABSTAIN": 42,
+    "MENU": 5
+   }
+  },
+  {
+   "model_requested": "gpt-oss:120b-cloud",
+   "answered_by": [
+    "gpt-oss:120b"
+   ],
+   "rows_sent_to_model": 141,
+   "provider_calls": 141,
+   "first_attempt": {
+    "VALID": 140,
+    "EVIDENCE_NOT_IN_UTTERANCE": 1
+   },
+   "first_attempt_valid_rate": 0.9929,
+   "retried_rows": 0,
+   "final": {
+    "VALID": 140,
+    "EVIDENCE_NOT_IN_UTTERANCE": 1
+   },
+   "final_valid_rate": 0.9929,
+   "provider_timeouts": 0,
+   "tokens": {
+    "prompt": 195574,
+    "output": 22784,
+    "total": 218358
+   },
+   "wall_ms": {
+    "median": 1000,
+    "p95": 1472,
+    "max": 3558,
+    "n": 141
+   },
+   "offers": 81,
+   "credited_precision": "79/81",
+   "legitimate_recall": "79/140",
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "out_of_window_offers": 0,
+   "decisions_on_legitimate_rows": {
+    "OFFER_EVIDENCE": 81,
+    "ABSTAIN": 54,
+    "MENU": 5
+   }
+  },
+  {
+   "model_requested": "nemotron-3-super:cloud",
+   "answered_by": [
+    "nemotron-3-super"
+   ],
+   "rows_sent_to_model": 141,
+   "provider_calls": 185,
+   "first_attempt": {
+    "ERROR:TIMEOUT": 22,
+    "VALID": 112,
+    "SUPPORTED_NOT_ACTUAL_TRAINEE": 1,
+    "EVIDENCE_NOT_IN_UTTERANCE": 1,
+    "SCHEMA": 5
+   },
+   "first_attempt_valid_rate": 0.7943,
+   "retried_rows": 5,
+   "final": {
+    "ERROR:TIMEOUT": 22,
+    "VALID": 116,
+    "SUPPORTED_NOT_ACTUAL_TRAINEE": 1,
+    "EVIDENCE_NOT_IN_UTTERANCE": 1,
+    "SCHEMA": 1
+   },
+   "final_valid_rate": 0.8227,
+   "provider_timeouts": 61,
+   "tokens": {
+    "prompt": 178817,
+    "output": 53233,
+    "total": 232050
+   },
+   "wall_ms": {
+    "median": 3538,
+    "p95": 7482,
+    "max": 7952,
+    "n": 124
+   },
+   "offers": 90,
+   "credited_precision": "88/90",
+   "legitimate_recall": "88/140",
+   "critical_false_credit": "0/40",
+   "adversarial_false_credit": "0/300",
+   "out_of_window_offers": 0,
+   "decisions_on_legitimate_rows": {
+    "OFFER_EVIDENCE": 90,
+    "ABSTAIN": 45,
+    "MENU": 5
+   }
+  }
+ ]
+}

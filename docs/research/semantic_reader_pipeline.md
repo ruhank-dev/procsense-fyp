@@ -69,9 +69,28 @@ See the table in ADR-0024: recall NOT MET (live dev 92/140); precision, critical
 * **Pipeline result (dev, 488 rows; 140 legitimate, 300 adversarial, 40 critical):** offers 93; credited precision 92/93; legitimate recall **92/140**; critical false credit 0/40; adversarial false credit 0/300; out-of-window offers 0. Shipped path on the same rows: 95/140 at 95/96; replay of the recordings: 88/140 at 88/89. Decisions: 93 offers, 42 abstentions, 5 menus.
 * Reading: with the format instruction the reader's output is reliably valid, the safety counts are unchanged (0 observed), and recall is still below the shipped path (-3) and far from 85 percent: the cap and the critical-cue menu set the ceiling (section 4). One split, one run, synthetic labels.
 
+**6.5 Free-plan comparison (20 Oct, approved follow-up).** The owner asked for the strongest additional models reachable on the CURRENT free allowance. Access was verified per model against the account (a one-word smoke call each; the catalogue alone proves nothing): `gpt-oss:120b`, `nemotron-3-super`, `beam` and `nemotron-3-nano:30b` all answered (HTTP 200) through the signed-in relay (`gpt-oss:120b-cloud`, `nemotron-3-super:cloud`, `beam:cloud`, `nemotron-3-nano:30b-cloud`); the smoke calls used 24 to 74 prompt tokens and 20 to 72 output tokens each. The first two in the owner's priority order were evaluated; `beam` (temporary free access, unknown behaviour) and `nemotron-3-nano:30b` (smaller, expected weaker) were NOT, because neither gave a clear reason after the first comparison. Expected usage was one dev pass of about 186k to 196k prompt tokens plus 6k to 50k output tokens (141 rows reach the model); hard caps 220 calls and 450,000 tokens per model; the actual figures stayed below the estimate. Same 488 dev rows, prompt, strict validation, deterministic checks, confidence mode and scoring for all three; one run each; `reports/ai/semantic-live-comparison-dev.json`.
+
+| | `gemma4:31b` (baseline) | `gpt-oss:120b` | `nemotron-3-super` |
+|---|---|---|---|
+| rows sent to the model / provider calls | 141 / 141 | 141 / 141 | 141 / 185 |
+| first-attempt valid | 137/141 (97.2%); 137/137 of replies received | 140/141 (99.3%) | 112/141 (79.4%); 22 final timeouts, 6 invalid |
+| final valid after the retry | 137/141 (97.2%) | 140/141 (99.3%) | 116/141 (82.3%) |
+| retried rows / provider timeouts | 0 / 4 (before the timeout fix) | 0 / 0 | 5 / 61 of 185 calls |
+| latency median / p95 / max (answered calls) | 895 / 1,302 / 1,530 ms | 1,000 / 1,472 / 3,558 ms | 3,538 / 7,482 / 7,952 ms |
+| tokens (prompt + output = total) | 186,307 + 6,391 = 192,698 | 195,574 + 22,784 = 218,358 | 178,817 + 53,233 = 232,050 |
+| offers / credited precision | 93 / 92/93 | 81 / 79/81 | 90 / 88/90 |
+| **legitimate recall (of 140)** | **92/140 (65.7%)** | 79/140 (56.4%) | 88/140 (62.9%) |
+| critical false credit (of 40) | 0/40 | 0/40 | 0/40 |
+| adversarial false credit (of 300) | 0/300 | 0/300 | 0/300 |
+| out-of-window offers | 0 | 0 | 0 |
+Shipped path on the same rows: 95/140 at 95/96. Actual allowance consumption: not exposed to the tool; the combined 450,408 tokens of the two new runs is about 1.2 percent at the earlier measured rate (1.7 percent per 626k Gemma tokens), which may differ per model: the owner's usage page is the authority.
+
+**Ranking and decision.** (1) `gemma4:31b`: highest recall, lowest latency and fewest tokens, 0 observed unsafe offers; its only schema failures were 4 timeouts of a defect fixed afterwards. (2) `gpt-oss:120b`: the most schema-reliable (140/141, no timeout) but 13 sentences lower recall, more reasoning tokens, no safety gain. (3) `nemotron-3-super`: recall between the two, but 3.5 s median and 7.5 s p95 latency, 22 requests lost to timeouts and a 79 percent first-attempt validity: not usable at an interactive budget. Safety is identical (0 observed) because the deterministic checks, not the model, carry it. **Gemma remains the strongest viable free option; no replacement is recommended; no model is ready** (recall target 85 percent NOT MET by all; Gemma's requests fall at 97.2 percent against the 99.5 percent schema target because of the timeouts). The comparison was not expanded: no clear reason remained, and the ceiling on recall is the critical-mass cap, not the reader (DT-238). Caveat: Gemma ran before the per-attempt timeout fix, the others after it; synthetic builder-written labels; one run per model; no significance claim.
+
 **6.3 Selection state.** No model was compared, so no winner was chosen and none can be recommended on comparative evidence. On the evidence available `gemma4:31b` is the only shortlisted model that is reachable on the free plan, is schema-reliable under the new instruction (137/137), answers fast (p95 1.3 s) and has an outcome with no observed unsafe credit; it is kept as the provisional working target. **No candidate is ready:** recall misses its target (65.7 percent on dev) and it stays below the shipped path. The criteria were not lowered and no guard was weakened.
 
-**6.4 Still not done:** the privacy and consent decision (DT-236), an independent critical-content signal (DT-238), independent labels (EX-01), real audio, the Quest checks (Sannan, DC-08, DC-09), a live run on `test` and `test2`, and any comparison with another free-plan model (needs approval).
+**6.4 Still not done:** any further model (needs approval), the privacy and consent decision (DT-236), an independent critical-content signal (DT-238), independent labels (EX-01), real audio, the Quest checks (Sannan, DC-08, DC-09), a live run on `test` and `test2`, and any comparison with another free-plan model (needs approval).
 
 ## 7. Reproduce
 ```
