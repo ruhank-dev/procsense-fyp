@@ -52,3 +52,7 @@ The patients in every case are made up, so no patient data is involved. The peop
 ## Terms for customers (to be drafted)
 
 The terms between ProcSense and a customer organisation (who is responsible for what, what the customer promises its trainees, how a customer leaves and what happens to its data) are not written yet. They need a qualified person (DT-127).
+
+## Semantic reader on Ollama Cloud (p1-ai-language-s18, ADR-0024), off by default
+
+When `INTERPRET_LLM_ENABLED` is set, the transcribed sentence of a trainee, at most four earlier turns of the dialogue, the running scenario steps and the approved objective definitions are sent to Ollama Cloud (a third-party processor) to obtain a reading. Ollama states that it processes cloud prompts and responses to answer requests and does not use them to train models (https://docs.ollama.com/cloud); that statement has not been reviewed here. The service never sends a name, an identifier or a credential in the prompt, stores no text of the exchange (the audit row keeps a hash, reason codes, the model name and the rule-set version), and sends nothing for sentences that the local checks already refuse (critical topics, denials, plans, reports, quotations). The setting is OFF; enabling it needs a privacy and consent decision by a qualified person (DT-127, DT-236), and real trainee speech must not be sent before that decision.

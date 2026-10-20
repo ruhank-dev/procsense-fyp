@@ -1,5 +1,5 @@
 """Mutation tests of the speech-safety guards (p1-ai-language-s16, ADR-0023): each critical check is DISABLED in a copy of the code and the final outcome (the interpretation path's decision AND the engine EvidenceStore's verdict) must change.
-Machinery and catalogue: tools/ci/mutation_safety.py; the scenarios: tools/ci/safety_scenarios.py. `python tools/ci/test_mutation_safety.py` (about 12 minutes: a copy and a run per mutant, an engine build per engine mutant, one incremental test build per subsystem mutant; the engine part needs `dotnet`).
+Machinery and catalogue: tools/ci/mutation_safety.py; the scenarios: tools/ci/safety_scenarios.py. `python tools/ci/test_mutation_safety.py` (about 16 minutes: a copy and a run per mutant, an engine build per engine mutant, one incremental test build per subsystem mutant; the engine part needs `dotnet`).
 
 What is pinned, and why it is not the same as the recall tests:
   * the unmutated outcomes (every refusal refused, the positive controls accepted) so a mutant is compared with a known good run;
@@ -110,6 +110,14 @@ class EngineGuards(unittest.TestCase):
 def _db_url() -> str:
     import os
     return os.environ.get("TEST_DATABASE_URL", "postgresql://postgres:postgres@localhost:54329/procsense_test")
+
+
+class SemanticGuards(unittest.TestCase):
+    def test_every_guard_of_the_semantic_reader_is_caught_by_a_server_test(self):
+        r = M.run_semantic_tests()
+        self.assertEqual(r["baseline"]["exit"], 0, r["baseline"]["tail"])
+        for mid, desc, edits in M.SEMANTIC:
+            self.assertTrue(r[mid]["killed"], f"{mid}: {desc} - no semantic test failed")
 
 
 def _db_up() -> bool:

@@ -108,6 +108,57 @@ ROUTE: list[tuple[str, str, list[Edit]]] = [
 ]
 
 
+# ---- the semantic reader (server/interpret/llm, server/interpret/semantic.py), mutated in a copy of server/ and judged by the DB-free server tests test_semantic_reader.py and test_semantic_interpreter.py
+SI = "server/interpret/semantic.py"
+ST = "server/interpret/llm/strict.py"
+RD = "server/interpret/llm/reader.py"
+CF = "server/config.py"
+SEMANTIC: list[tuple[str, str, list[Edit]]] = [
+    ("SM1_candidate_validation", "a model candidate skips the deterministic validation (window, waiting state, already credited)", [(SI, "reasons = validate(act, context, utterance, status, True, require_gate=False)", "reasons = []")]),
+    ("SM2_cap_veto", "a model candidate ignores the head's critical-mass cap", [(SI, "if cap is not None and mass >= cap:", "if False:")]),
+    ("SM3_engine_threshold", "a model candidate is offered below the engine's evidence threshold", [(SI, "elif confidence < floor:", "elif False:")]),
+    ("SM4_status_before_model", "a non-performed sentence is sent to the model and may be credited", [(SI, "if status not in (\"actual\", \"question\"):", "if False:")]),
+    ("SM5_critical_objective", "a critical objective named by the model is not turned into the menu", [(SI, "if any(f.objective in critical for f in supported):", "if False:")]),
+    ("SM6_invalid_reading_falls_back", "an invalid or unavailable reading is not handled as a fallback", [(SI, "if read.status != \"VALID\":", "if False:")]),
+    ("SM7_multiple_supported", "several supported objectives are not abstained", [(SI, "if len(supported) > 1:", "if False:")]),
+    ("SM8_model_veto", "a model that does not support the offered act no longer vetoes it", [(SI, "if offered:                                                    # the model does not support what the gate offered: veto", "if False:")]),
+    ("SV1_fence_rejected", "a code-fenced reply is accepted by the validator", [(ST, "if body.startswith(\"```\") or body.endswith(\"```\"):", "if False:")]),
+    ("SV2_truncated_rejected", "a reply that stopped for length is accepted", [(ST, "if done_reason is not None and done_reason != \"stop\":", "if False:")]),
+    ("SV3_text_around_rejected", "text around the JSON object is accepted", [(ST, "if body[end:].strip():", "if False:")]),
+    ("SV4_evidence_in_utterance", "evidence that is not in the utterance is accepted for a SUPPORTED finding", [(ST, "if len(norm(f.evidence)) < 2 or norm(f.evidence) not in nu:", "if False:")]),
+    ("SV5_unknown_objective", "an objective outside the approved identifiers is accepted", [(ST, "if f.objective not in ids:", "if False:")]),
+    ("SV6_actual_trainee", "SUPPORTED by someone else or for a negated act is accepted", [(ST, "if f.actor != \"trainee\" or f.modality != \"actual\":", "if False:")]),
+    ("SR1_quota_signal_retried", "a 401, 402, 403 or 429 is retried", [(RD, "if r.status in NO_RETRY_HTTP or not (r.error in RETRY_TRANSPORT or (r.status >= 500)):", "if False:")]),
+    ("SR2_semantic_rejection_retried", "a semantic rejection is retried (retries are for format problems only)", [(RD, "if e.code not in RETRY_FORMAT:", "if False:")]),
+    ("SC1_default_on", "the semantic reader is on by default", [(CF, "interpret_llm_enabled: bool = False", "interpret_llm_enabled: bool = True")]),
+]
+
+
+def run_semantic_tests() -> dict:
+    import os
+    py = ROOT / "server" / ".venv" / ("Scripts" if os.name == "nt" else "bin") / ("python.exe" if os.name == "nt" else "python")
+    out = {}
+
+    def one(edits):
+        with tempfile.TemporaryDirectory(dir=ROOT / "artifacts", ignore_cleanup_errors=True) as t:
+            d = Path(t)
+            shutil.copytree(ROOT / "server", d / "server", ignore=shutil.ignore_patterns(".venv", "__pycache__"))
+            for item in ("content/assessment", "content/ai", "tools/bench/rubric_eval.py"):
+                src = ROOT / item
+                (d / item).parent.mkdir(parents=True, exist_ok=True)
+                shutil.copytree(src, d / item) if src.is_dir() else shutil.copy2(src, d / item)
+            apply(d, edits)
+            p = subprocess.run([str(py), "-m", "pytest", str(d / "server" / "tests" / "test_semantic_reader.py"), str(d / "server" / "tests" / "test_semantic_interpreter.py"), "-q", "-x", "-p", "no:cacheprovider"],
+                               capture_output=True, text=True, encoding="utf-8", cwd=str(d), env={**os.environ, "PYTHONPATH": str(d)})
+            return p.returncode, (p.stdout + p.stderr)[-300:]
+    code, tail = one([])
+    out["baseline"] = {"exit": code, "tail": tail}
+    for mid, desc, edits in SEMANTIC:
+        code, tail = one(edits)
+        out[mid] = {"exit": code, "killed": code != 0, "tail": tail}
+    return out
+
+
 def run_route_tests() -> dict:
     """each route mutant in its own copy of server/ (no .venv), judged by pytest in the server environment; the unmutated copy must pass first."""
     import os
@@ -275,6 +326,11 @@ def main(argv):
             raise RuntimeError("the unmutated engine tests do not pass in the copy: " + tres["baseline"]["tail"])
         for mid, desc, edits in ENGINE_TESTS:
             rows.append({"mutant": mid, "guard": desc, "killed": tres[mid]["killed"], "expected_to_change": ["dotnet test InterpretationContextTests"], "changed": [], "missing": [] if tres[mid]["killed"] else ["a failing test"]})
+        sres = run_semantic_tests()
+        if sres["baseline"]["exit"] != 0:
+            raise RuntimeError("the unmutated semantic tests do not pass in the copy: " + sres["baseline"]["tail"])
+        for mid, desc, edits in SEMANTIC:
+            rows.append({"mutant": mid, "guard": desc, "killed": sres[mid]["killed"], "expected_to_change": ["pytest test_semantic_*"], "changed": [], "missing": [] if sres[mid]["killed"] else ["a failing test"]})
         rres = run_route_tests()
         if rres["baseline"]["exit"] != 0:
             raise RuntimeError("the unmutated route tests do not pass in the copy (is the PostgreSQL container up?): " + rres["baseline"]["tail"])

@@ -11,6 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from server import ai_features
 from server.config import Settings, get_settings
 from server.interpret.decide import INTERPRET_VERSION, Interpreter, menu_for, reason_codes, safe_interpret
+from server.interpret.semantic import SEMANTIC_VERSION
 from server.middleware.audit import AiCallRecord, audited
 from server.routers import ai_gateway
 from server.routers.classify import get_classifier
@@ -19,8 +20,17 @@ from server.schemas.interpret import InterpretIn, InterpretOut
 router = APIRouter(tags=["interpretation"])
 
 
-def get_interpreter(clf=Depends(get_classifier)) -> Interpreter:
-    return Interpreter(clf)
+def get_interpreter(clf=Depends(get_classifier), settings: Settings = Depends(get_settings)):
+    """The shipped gate-based interpreter; with `interpret_llm_enabled` (off by default) the semantic interpreter, which asks an Ollama Cloud model for a candidate reading behind the same deterministic checks and falls back to the shipped decision on any failure (ADR-0024)."""
+    if not settings.interpret_llm_enabled:
+        return Interpreter(clf)
+    from server.interpret.llm.provider import OllamaCloudProvider
+    from server.interpret.llm.reader import SemanticReader
+    from server.interpret.semantic import SemanticInterpreter
+    key = settings.interpret_llm_api_key.get_secret_value()
+    base = settings.interpret_llm_base_url or settings.ollama_url
+    provider = OllamaCloudProvider(settings.interpret_llm_model, base, key, timeout=settings.interpret_llm_timeout_seconds)
+    return SemanticInterpreter(clf, SemanticReader(provider, settings.interpret_llm_max_attempts, settings.interpret_llm_budget_ms))
 
 
 def _menu(body: InterpretIn, reason: str) -> InterpretOut:
@@ -47,6 +57,9 @@ def interpret(body: InterpretIn, call: AiCallRecord = Depends(audited("interpret
         call.fell_back("INTERPRET_ERROR")
         return _menu(body, "INTERPRET_ERROR")
     call.set_model(getattr(interpreter.clf, "model", None) or "none")
+    reading = getattr(interpreter, "last_reading", None)
+    if reading is not None:                                                  # which model read the utterance and how the reading went: codes and counts only, never the words
+        call.set_prompt(SEMANTIC_VERSION, context_id=(reading.model or "")[:60])
     if any(r in ("NO_RANKING", "CLASSIFIER_UNAVAILABLE", "NO_MODEL", "EMBEDDING_UNAVAILABLE") for r in out["reasons"]):
         call.fell_back(out["reasons"][0])
     else:

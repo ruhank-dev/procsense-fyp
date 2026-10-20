@@ -1,0 +1,2 @@
+"""A large-language-model READER for the interpretation path (p1-ai-language-s18, ADR-0024): a provider interface (Ollama Cloud, mock, replay), a versioned Pydantic schema, a prompt built from the approved objectives and the engine's context, a STRICT validator that never repairs a reply, and a reader with bounded retries.
+A reading is a candidate interpretation. It never credits anything: server/interpret/semantic.py applies the deterministic checks and the engine's evidence store still decides."""
