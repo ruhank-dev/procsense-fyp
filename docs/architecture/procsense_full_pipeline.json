@@ -11309,7 +11309,16 @@
     "reports/ai/safety/baseline-4a2ed00-final.json",
     "reports/ai/safety/s16-dev.json",
     "reports/ai/safety/s16-challenge.json",
-    "reports/ai/safety/mutation-service.json"
+    "reports/ai/safety/mutation-service.json",
+    "docs/testing/asr_safety_evaluation.md",
+    "docs/research/safety_set_audit.md",
+    "docs/research/dt233_final_failures.md",
+    "tools/bench/safety_review_kit.py",
+    "tools/bench/safety_set_audit.py",
+    "tools/bench/safety_frozen.py",
+    "tests/safety_challenge/frozen.json",
+    "tools/ci/test_safety_review_kit.py",
+    "reports/ai/safety/set-audit.json"
    ],
    "lineage": [
     "p1-ai-language-s06, s07",
@@ -11343,7 +11352,7 @@
    ],
    "acceptance": "speech_interpretation gate (PENDING owner approval, DT-229): on the independent set 0 critical and 0 out-of-window false credits, non-assertive false credit at most 1 percent, credited precision at least 0.95, legitimate recall at least 0.50 and not below the classifier route, interpretation p95 at most 300 ms; else off.",
    "blockers": [
-    "external acceptance: DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: DC-08, DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "labelled set not available (DT-097)",
@@ -11360,7 +11369,8 @@
     "p1-ai-language-s13",
     "p1-ai-language-s14",
     "p1-ai-language-s15",
-    "p1-ai-language-s16"
+    "p1-ai-language-s16",
+    "p1-ai-language-s17"
    ],
    "phase": "PH-15",
    "tier": "P1",
@@ -11380,7 +11390,8 @@
      "context-conditioned benchmark, end-to-end latency, speech_interpretation gate (s14)",
      "independent human-labelled set (EX-01)",
      "independent evaluation of the revised critical-mass cap and the calibrated engine thresholds (p1-ai-language-s15, DT-231, EX-01)",
-     "independent human review and the independent run of the unsafe-speech sets, and the residual mechanisms found by the one-time scoring of the final split (p1-ai-language-s16, EX-01, DT-233, DT-234)"
+     "independent human review and the independent run of the unsafe-speech sets, and the residual mechanisms found by the one-time scoring of the final split (p1-ai-language-s16, EX-01, DT-233, DT-234)",
+     "blind human review and the independent run of the unsafe-speech sheet, the audio-to-transcript evaluation (design only), and a fresh final set for any fix of the DT-233 mechanisms (p1-ai-language-s17, EX-01, DT-233, DT-234, DT-235)"
     ],
     "deterministic_foundation": "Eligibility from the behaviour windows of content/assessment/mapping.json, assertion status, critical exclusion, evidence span and duplicate checks, and the engine's EvidenceStore as the only authority.",
     "ai_questions": {
@@ -11590,6 +11601,10 @@
      {
       "date": "2026-10-20",
       "change": "Unsafe-speech hardening (p1-ai-language-s16): audit of every layer, metamorphic sets with provenance, assertion layer widened and generalised, engine re-checks the waiting question and read-back, reason-coded audit rows, mutation tests for every critical check; final split 41/407 to 10/407 unsafe credit, legitimate credit unchanged; synthetic, no human review, gate OFF."
+     },
+     {
+      "date": "2026-10-20",
+      "change": "Review readiness and audit (p1-ai-language-s17): blind review kit, set audit, frozen-test protections, DT-233 mechanism audit, audio evaluation design, mutation tests extended to route fallbacks and the store end to end; frozen candidate unchanged; no human review, no Quest check, gate OFF."
      }
     ]
    },
@@ -25413,7 +25428,8 @@
     "p1-ai-language-s13",
     "p1-ai-language-s14",
     "p1-ai-language-s15",
-    "p1-ai-language-s16"
+    "p1-ai-language-s16",
+    "p1-ai-language-s17"
    ],
    "features": [
     "C36",

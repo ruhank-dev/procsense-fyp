@@ -486,6 +486,116 @@
    "missing": []
   },
   {
+   "mutant": "ET_EN1_engine_critical",
+   "guard": "the store no longer refuses a critical act (end to end through the session log)",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET_EN2_engine_threshold",
+   "guard": "the store no longer applies the per-act confidence threshold (end to end through the session log)",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET_EN3_engine_no_running_step",
+   "guard": "the store accepts evidence with no running step (end to end through the session log)",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET_EN4_engine_window",
+   "guard": "the store no longer checks the behaviour window (end to end through the session log)",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET_EN5_engine_duplicate_behaviour",
+   "guard": "the store credits a behaviour twice from speech (end to end through the session log)",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "ET_EN6_engine_duplicate_utterance",
+   "guard": "the store credits the same utterance twice (end to end through the session log)",
+   "killed": true,
+   "expected_to_change": [
+    "dotnet test InterpretationContextTests"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "RT1_feature_flag",
+   "guard": "the route ignores the speech_interpretation switch",
+   "killed": true,
+   "expected_to_change": [
+    "pytest test_interpret_api"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "RT2_busy_slot",
+   "guard": "the route proceeds when the model slot is busy",
+   "killed": true,
+   "expected_to_change": [
+    "pytest test_interpret_api"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "RT3_failure_is_the_menu",
+   "guard": "a failing classifier is no longer recorded and answered as the menu",
+   "killed": true,
+   "expected_to_change": [
+    "pytest test_interpret_api"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "RT4_reason_codes",
+   "guard": "the audit row keeps no reason code",
+   "killed": true,
+   "expected_to_change": [
+    "pytest test_interpret_api"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
+   "mutant": "RT5_refusal_marked_passed",
+   "guard": "a refusal is audited as passed",
+   "killed": true,
+   "expected_to_change": [
+    "pytest test_interpret_api"
+   ],
+   "changed": [],
+   "missing": []
+  },
+  {
    "mutant": "EN1_engine_critical",
    "guard": "the store no longer refuses a critical act",
    "killed": true,

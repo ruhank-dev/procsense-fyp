@@ -2,6 +2,13 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0k. Update of 20 October 2026 (unsafe-speech work: review readiness, no new result)
+
+* **Prepared, not performed:** a blind review kit (packaging, check, agreement, adjudication, merge into an override file), the protocol and its readiness table (`docs/testing/safety_challenge_review.md`), an audit of the sets (every label provisional; none independently reviewed), a design for the audio-to-transcript evaluation (`docs/testing/asr_safety_evaluation.md`, not run, not validated).
+* **Frozen:** the candidate, the sets and the final results are pinned (`tests/safety_challenge/frozen.json`); the ten final-split failures (DT-233) are explained as four closed-list or window mechanisms and left unfixed; a fix needs a development set and a fresh final set.
+* **Tests:** mutation coverage now includes the route fallbacks and audit rules against PostgreSQL and the evidence store end to end through the session log (49 mutants); the Unity client is not mutation-run.
+* **Open:** reviewers and an adjudicator (EX-01), the independent run, the audio evaluation (DT-235), the Quest checks (DC-08, DC-09, NOT RUN); `speech_interpretation` stays OFF.
+
 ## 0j. Update of 20 October 2026 (unsafe-speech hardening: measure, refuse by named layer, mutation-test)
 
 * **Audit and taxonomy:** every safety layer was read against the code (`docs/research/safety_layers_audit.md`); unsafe speech was classed into categories with the expected decision, the safeguards, the residual risk and the tests (`tests/safety_challenge/taxonomy.json`). The recall tests missed a disabled `validate` because overlapping guards mask each other.

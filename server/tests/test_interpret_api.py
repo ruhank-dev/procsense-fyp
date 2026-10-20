@@ -116,3 +116,24 @@ def test_a_bad_body_is_refused_with_field_errors(world):
 
 def test_every_ai_route_starts_an_audit_record(world):
     assert audit.unaudited_ai_routes(world.api.client.app) == []
+
+
+def test_a_busy_model_slot_gives_the_menu_and_no_evidence(world, monkeypatch):
+    from server.routers import ai_gateway
+    monkeypatch.setenv("AI_QUEUE_WAIT_SECONDS", "0.05")
+    config.get_settings.cache_clear()
+    assert ai_gateway._slot.acquire(timeout=1)
+    try:
+        j = world.post({"context": context(), "utterance": TEXT, "utterance_id": "u-busy"}).json()
+    finally:
+        ai_gateway._slot.release()
+        config.get_settings.cache_clear()
+    assert (j["decision"], j["reasons"], j["evidence"]) == ("MENU", ["MODEL_BUSY"], None)
+    assert rows(world.api)[-1].fallback_reason == "MODEL_BUSY"
+
+
+def test_a_critical_sentence_is_the_menu_with_its_reason_code_in_the_audit(world):
+    j = world.post({"context": context(), "utterance": "Who am I speaking to, and when's your birthday?", "utterance_id": "u-crit"}).json()
+    assert (j["decision"], j["evidence"]) == ("MENU", None)
+    row = rows(world.api)[-1]
+    assert (row.validation, row.output_ref) == ("failed", "MENU") and "CRITICAL_TOPIC" in list(row.reasons)

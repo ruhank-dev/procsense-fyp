@@ -58,6 +58,34 @@ Proposed in this step, **PENDING the owner's approval, rationale given, not wire
 
 Can: failure rates of the frozen configuration on unfamiliar human-written speech with human labels, by family; label quality of the synthetic sets. Cannot: how real trainees speak in a headset, recognition accuracy of the real microphone chain (Sannan's DC-08 and DC-09, NOT RUN), clinical acceptance, or any rate for unseen speech from a finite set (zero failures in N items bounds the rate at about 3/N with 95 percent confidence, no more).
 
-## 7. Status
+## 7. Operational procedure with the kit (`tools/bench/safety_review_kit.py`, tested by `tools/ci/test_safety_review_kit.py`)
 
-Prepared (this step): the sets, taxonomy, generator, evaluator, blind review sheet, mutation tests, this protocol. **Not done:** any human review, the independent run, owner approval of the proposals above, Quest testing. The `speech_interpretation` gate stays OFF.
+Blindness is enforced by the files, not by trust:
+
+* **What a reviewer receives:** only `reviewer_a.csv` or `reviewer_b.csv`, written by `package` from the sheet: `id, sentence, situation, act_in_question, label, note`. Each reviewer gets their own random order. The kit refuses to write or read a reviewer file whose header holds anything else, and its test fails if a file contains `credit_allowed`-style expected labels, review status, template, category, seed, split, a prediction or a model decision. Row ids carry a split letter (`d`, `c`, `f`) and no more.
+* **What a reviewer must not receive or ask for:** the `.jsonl` sets (they hold the expected labels), `tests/safety_challenge/taxonomy.json` (it names the expected decision of each category), `reports/ai/safety/*` (predictions, reasons, engine verdicts), `docs/research/unsafe_speech_safety.md`, `docs/research/dt233_final_failures.md`, this repository's tests. Give the two reviewers `content/assessment/taxonomy.json` (approved definitions), rule 10 of `tests/classifier_synthetic_v2/rubric.md`, the mapping windows, and the question in section 3, copied into a handout; nothing else.
+* **Steps:**
+  1. Owner: `uv run --project tools tools/bench/safety_review_kit.py package --out <folder outside the repository>`; send each file to one reviewer by a channel that does not include the other.
+  2. Reviewers label alone, no discussion, no search of the repository, no model. `check --file F --who a` lets a reviewer (or the owner) see missing rows, invalid labels and `unclear` without a note; it changes nothing.
+  3. Owner: `agree --a A --b B --out <folder>` prints raw agreement and Cohen's kappa (and the label counts) and writes `adjudication.csv`: only the rows that differ, and rows either reviewer marked `unclear`, with the two labels and no key and no system output.
+  4. Adjudicator (a third person; not a reviewer, not the builder, not the owner of the generator) fills `adjudicated_label` for each row. They see the two labels and the sentence and situation; they do not see the key. A row the adjudicator also marks `unclear` is EXCLUDED from every pass or fail count and counted in the report.
+  5. Owner: `merge --a A --b B --adj ADJ --out <file>`. Only now is the construction label read. The kit refuses to merge while any difference lacks an adjudicated label, when the two reviewer files are the same, or when a reviewer file fails `check`. The output is an override file: the label-error rate of the by-construction labels by split and by template, the excluded rows, and the rows whose reviewed label differs from the construction. The generator and the sets are never edited.
+  6. The owner records who filled each role, the dates and the files' sha256 in `docs/testing/results/EX-01-part-b.md`. Only that record can make a label "independently reviewed" (and the sets' `independent` flag stays false until Part B's authors and annotators also exist).
+* **Ambiguity rule:** `unclear` is a legitimate answer and costs nothing. Rows that were `ambiguous_review` by construction (about 6 percent of the sheet) are expected to be `unclear` or to split the reviewers; they stay excluded and reported, never counted as passes. A disagreement is never resolved by the builder, by majority of two, or by looking at the system's decision.
+* **What the review result is allowed to change:** the labels used to score (through the override file) and the reported label-error rate. It does not change the frozen candidate, the final-set hash or any past result.
+
+## 8. Readiness status (20 October 2026)
+
+| item | status |
+|---|---|
+| Sheet (560 rows), blind packaging, check, agreement, adjudication, merge and override file | **READY** (built and tested with toy data only; no real review result exists) |
+| Reviewers A and B, adjudicator, authors for Part B | **BLOCKED**: people not named (owner) |
+| Label review (Part A) | **NOT RUN** |
+| Independent run (Part B) | **NOT RUN**, blocked on authors, annotators, adjudicator |
+| Audio-to-transcript evaluation (Part C, `docs/testing/asr_safety_evaluation.md`) | **DESIGN ONLY**, not run, not validated |
+| Acceptance additions of section 5 | **PENDING** the owner (DT-229) |
+| Quest and headset checks (DC-08, DC-09; Sannan) | **NOT RUN** |
+| Gate `speech_interpretation` | **OFF** |
+
+## 9. Status
+Prepared: the sets, taxonomy, generator, evaluator, blind review sheet and kit, mutation tests, this protocol. **Not done:** any human review, the independent run, owner approval of the proposals above, Quest testing. The `speech_interpretation` gate stays OFF.

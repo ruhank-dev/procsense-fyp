@@ -137,6 +137,15 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void Evidence_with_no_running_step_is_refused_for_that_reason_not_as_a_window_mismatch()
+        {
+            var act = Tables.Behaviours.SelectMany(b => b.AiActs).First(a => !Tables.CriticalActs.Contains(a));
+            var rec = new EvidenceStore(Tables).Submit(act, "", "words", 0.99, new int[0], new[] { 0 });
+            Assert.False(rec.Accepted);
+            Assert.Equal(EvidenceStore.NoRunningStep, rec.Reason);
+        }
+
+        [Fact]
         public void The_same_utterance_cannot_be_credited_twice()
         {
             var s = Start();

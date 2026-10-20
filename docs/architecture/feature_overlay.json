@@ -357,7 +357,8 @@
     "unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs",
     "tools/ci/test_recall_fixes.py",
     "tools/ci/test_safety_hardening.py",
-    "tools/ci/test_mutation_safety.py"
+    "tools/ci/test_mutation_safety.py",
+    "tools/ci/test_safety_review_kit.py"
    ],
    "gates": [
     "classifier",

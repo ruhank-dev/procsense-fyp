@@ -1,5 +1,5 @@
 """Mutation tests of the speech-safety guards (p1-ai-language-s16, ADR-0023): each critical check is DISABLED in a copy of the code and the final outcome (the interpretation path's decision AND the engine EvidenceStore's verdict) must change.
-Machinery and catalogue: tools/ci/mutation_safety.py; the scenarios: tools/ci/safety_scenarios.py. `python tools/ci/test_mutation_safety.py` (about 8 minutes: a copy and a run per mutant, an engine build per engine mutant, one incremental test build per subsystem mutant; the engine part needs `dotnet`).
+Machinery and catalogue: tools/ci/mutation_safety.py; the scenarios: tools/ci/safety_scenarios.py. `python tools/ci/test_mutation_safety.py` (about 12 minutes: a copy and a run per mutant, an engine build per engine mutant, one incremental test build per subsystem mutant; the engine part needs `dotnet`).
 
 What is pinned, and why it is not the same as the recall tests:
   * the unmutated outcomes (every refusal refused, the positive controls accepted) so a mutant is compared with a known good run;
@@ -105,6 +105,32 @@ class EngineGuards(unittest.TestCase):
     def test_with_the_service_guards_gone_too_a_critical_act_and_an_out_of_window_act_are_credited(self):
         for bid, desc, service, engine_id, scenario in M.BOTH:
             self.assertEqual(self.res["both"][bid]["engine"], "accepted", bid)
+
+
+def _db_url() -> str:
+    import os
+    return os.environ.get("TEST_DATABASE_URL", "postgresql://postgres:postgres@localhost:54329/procsense_test")
+
+
+def _db_up() -> bool:
+    import os
+    import socket
+    if os.environ.get("TEST_DATABASE_URL"):
+        return True
+    try:
+        socket.create_connection(("localhost", 54329), timeout=1).close()       # the throwaway PostgreSQL of tools/ci/server_tests.py
+        return True
+    except OSError:
+        return False
+
+
+@unittest.skipUnless(_db_up(), "needs the PostgreSQL of tools/ci/server_tests.py (running on port 54329) or TEST_DATABASE_URL; the route tests are mutation-run where the database is available")
+class RouteGuards(unittest.TestCase):
+    def test_the_route_fallbacks_and_audit_rules_are_each_caught_by_a_route_test(self):
+        r = M.run_route_tests()
+        self.assertEqual(r["baseline"]["exit"], 0, r["baseline"]["tail"])
+        for mid, desc, edits in M.ROUTE:
+            self.assertTrue(r[mid]["killed"], f"{mid}: {desc} - no route test failed")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,36 @@
+{
+ "note": "Frozen on 20 October 2026 (p1-ai-language-s17) for the candidate `s16` scored on the final split of tests/safety_challenge. See tools/bench/safety_frozen.py for the rule.",
+ "critical_mass_max": 0.05,
+ "interpret_version": "interpret-2026-10-20.2",
+ "sets": {
+  "tests/safety_challenge/dev.jsonl": "d97955d256a9f82d8c4ca57a9209c5c6ebb03f6648aebcdfd57aa6c24bd059c4",
+  "tests/safety_challenge/challenge.jsonl": "82ec7cc772ece3b6f92739ba084535359d1d9dcaae2dcb44e159efcc3a2fd474",
+  "tests/safety_challenge/final.jsonl": "6c66984e4e40593f6631ae701cd6cb68ce835ef83f5e9702419cda036a7b7ddf",
+  "tests/safety_challenge/manifest.json": "a40affe1e2ce0dd61cfd240c19b03adde5b8feb4ab0a3a0f2704577b2a649039",
+  "tests/safety_challenge/taxonomy.json": "3824bb4b1fbffd367da42408cc02877cbb5223ec38267fdfc6e1366c175a5b8f"
+ },
+ "final_results": {
+  "reports/ai/safety/baseline-4a2ed00-final.json": "f4d8b85eba892bdf6ac440eed6ec68768b4c5a7a380fc70ccc9c9645c695e617",
+  "reports/ai/safety/baseline-4a2ed00-final-raw.json": "6af7e7a25ab76513d29a14aed5f55232a9d35eb8de1700bdf9e8b2ca8cccb75e",
+  "reports/ai/safety/s16-final.json": "71acd84dd99061a161abeb1a9dbcb747ee403e25a36c19d538d0d4a0824e535f",
+  "reports/ai/safety/s16-final-raw.json": "47faee1aa377410b23f083574d30f6afd2416bfe066b4896223d59b0b575f09a",
+  "reports/ai/safety/s16-final-reproduction.json": "f2750187801122658f1875bf72075a910859414709adf7206a7e685d279317de"
+ },
+ "candidate_files": {
+  "server/classify/assertion.py": "875eefac696bdc6cdd65948324ae9589292881801c9057e0e62fd9844024866e",
+  "server/classify/ensemble.py": "f7722194cf309b8a1155bfc0b78ccf1d67de38dc3e91f45b25263dcb5ac1555d",
+  "server/classify/embedding.py": "3d2d50ec0d9c03bac3109c4daf3a5463840ce2665563a3efc14431a158e45c0b",
+  "server/classify/hybrid.py": "3364c1296148c106528757213d6204a1f3387aad5193e3026d30cd768de2391d",
+  "server/classify/tfidf.py": "f7823aa4ad8d374bc8619169ec0317abb25e53cfab04bac9a61f3c8b33002196",
+  "server/classify/guard.py": "6785f249e846f7534529b2587df418ebbb6e910486042c99d84516a3ff34ce95",
+  "server/interpret/decide.py": "bc1ffc5e7488d17cc7c2a9ebaf910f31524e50bf92f44f22f53d03cbed02be0b",
+  "server/interpret/validate.py": "c9b02036b75e73ef994b362c8d0231edb1985a28130241ec003f27cda94e9fed",
+  "server/interpret/status.py": "58ec48d4a67eedf854fc3ccaf462b42d40faffb949298f4780040fa7126f0fd0",
+  "content/assessment/act_head_hybrid.json": "009bd079f057b2d9d1e6d9fa93e0d27423a413d25c4811cf0b94be00a9f1d1d5",
+  "content/assessment/mapping.json": "2f6ef6fc54fe752f3dce9ca0fd7543c0d69ee7d9ba482468f3bf724f9464f083",
+  "content/ai/critical_cues.json": "558b3c424ff66835253efa2fc9c0edbe0d7be712f1028981bf850ffca4d9ac82",
+  "content/ai/interpret_phrases.json": "940cf94636204d3f63eee5288b8a6cd1c86e6ca6034c1444901513f022ccfa14",
+  "content/ai/lexicon.json": "7ebfd2e9150fad0f2646141358e5c9ea0cd51806ec1989ea9f20293b90453986",
+  "content/ai/thresholds.json": "2fa8ca1147725bb8c6996994e82c284af4407dfa5c7d6f3ad3c2189394d0b90f"
+ }
+}

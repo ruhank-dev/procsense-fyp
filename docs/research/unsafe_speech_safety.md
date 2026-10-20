@@ -191,6 +191,17 @@ Each guard was disabled in a copy of the code (`tools/ci/mutation_safety.py`) an
 | `ET2_readback_needs_a_waiting_result` | the engine no longer checks that a read-back is waiting before logging CLOSED_LOOP evidence | yes | - |
 | `ET3_confidence_range` | the engine accepts a confidence outside 0 to 1 | yes | - |
 | `ET4_steps_stamped_by_the_engine` | the engine no longer stamps the workflow steps on the logged action | yes | - |
+| `ET_EN1_engine_critical` | the store no longer refuses a critical act (end to end through the session log) | yes | - |
+| `ET_EN2_engine_threshold` | the store no longer applies the per-act confidence threshold (end to end through the session log) | yes | - |
+| `ET_EN3_engine_no_running_step` | the store accepts evidence with no running step (end to end through the session log) | yes | - |
+| `ET_EN4_engine_window` | the store no longer checks the behaviour window (end to end through the session log) | yes | - |
+| `ET_EN5_engine_duplicate_behaviour` | the store credits a behaviour twice from speech (end to end through the session log) | yes | - |
+| `ET_EN6_engine_duplicate_utterance` | the store credits the same utterance twice (end to end through the session log) | yes | - |
+| `RT1_feature_flag` | the route ignores the speech_interpretation switch | yes | - |
+| `RT2_busy_slot` | the route proceeds when the model slot is busy | yes | - |
+| `RT3_failure_is_the_menu` | a failing classifier is no longer recorded and answered as the menu | yes | - |
+| `RT4_reason_codes` | the audit row keeps no reason code | yes | - |
+| `RT5_refusal_marked_passed` | a refusal is audited as passed | yes | - |
 | `EN1_engine_critical` | the store no longer refuses a critical act | yes | E01: accepted |
 | `EN2_engine_threshold` | the store no longer applies the per-act confidence threshold | yes | E03: accepted |
 | `EN3_engine_no_running_step` | the store accepts evidence with no running step | yes | E04: CONTEXT_MISMATCH |
@@ -200,7 +211,7 @@ Each guard was disabled in a copy of the code (`tools/ci/mutation_safety.py`) an
 | `BOTH_critical` | validate, decide AND the store stop refusing a critical act | yes | S01b: accepted |
 | `BOTH_window` | validate AND the store stop checking the behaviour window | yes | S05: accepted |
 
-38 of 38 mutants killed. Reading: when the critical-mass cap's two copies are removed, 8 of the 9 sentences only the cap holds back are ACCEPTED by the engine; when the assertion layer's two uses are removed, 34 of 84 non-performed counterexamples are accepted; a critical act and an out-of-window act are refused by the engine's own checks even with every service guard gone, and accepted only when an engine check is removed too.
+49 of 49 mutants killed. Reading: when the critical-mass cap's two copies are removed, 8 of the 9 sentences only the cap holds back are ACCEPTED by the engine; when the assertion layer's two uses are removed, 34 of 84 non-performed counterexamples are accepted; a critical act and an out-of-window act are refused by the engine's own checks even with every service guard gone, and accepted only when an engine check is removed too.
 
 ## 7. What this does and does not establish
 

@@ -2,6 +2,8 @@
 
 **Tier:** P1 · **Builds on:** p1-backend, p0-scoring-debrief, p0-physiology-events-behaviour · **Feeds:** p1-voice-input, p1-scenario-composer-difficulty
 
+> **Plan update, 20 Oct 2026 (third, s17):** step s17 prepares the blind human review of the unsafe-speech sheet (kit, protocol, adjudication), audits the sets and the ten remaining final-split failures without changing the frozen candidate, designs the audio-to-transcript evaluation and extends the mutation tests. Nothing was reviewed, recorded or run on a headset; gate OFF.
+>
 > **Plan update, 20 Oct 2026 (second, ADR-0023):** step s16 audits the speech-safety layers, measures unsafe speech on metamorphic sets with provenance, widens the assertion layer, makes the engine check the waiting question and read-back itself and mutation-tests every critical check (`docs/research/unsafe_speech_safety.md`). Synthetic, no human review; gate OFF; EX-01 part B and the headset checks outstanding.
 >
 > **Plan update, 20 Oct 2026:** step s15 diagnoses and improves legitimate speech recall: the engine's evidence thresholds follow the classifier's calibrated thresholds, the critical-mass cap moved from 0.03 to 0.05 on evidence, and the assertion layer's holes were closed (`docs/research/recall_diagnosis.md`). Gate OFF; independent evaluation (EX-01) outstanding.

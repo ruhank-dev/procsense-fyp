@@ -1,0 +1,684 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "reviewed_label_overrides_present": false,
+ "rows": {
+  "dev": 1059,
+  "challenge": 507,
+  "final": 513
+ },
+ "labels": {
+  "dev": {
+   "expected": {
+    "ambiguous_review": 112,
+    "no_credit": 841,
+    "credit_allowed": 106
+   },
+   "review_status": {
+    "PENDING_HUMAN_REVIEW": 141,
+    "AUTO_PROVISIONAL": 918
+   }
+  },
+  "challenge": {
+   "expected": {
+    "ambiguous_review": 42,
+    "no_credit": 395,
+    "credit_allowed": 70
+   },
+   "review_status": {
+    "PENDING_HUMAN_REVIEW": 70,
+    "AUTO_PROVISIONAL": 437
+   }
+  },
+  "final": {
+   "expected": {
+    "ambiguous_review": 28,
+    "no_credit": 420,
+    "credit_allowed": 65
+   },
+   "review_status": {
+    "PENDING_HUMAN_REVIEW": 56,
+    "AUTO_PROVISIONAL": 457
+   }
+  }
+ },
+ "coverage": {
+  "asr_negation_lost": {
+   "dev": 28,
+   "challenge": 14,
+   "final": 14
+  },
+  "combination": {
+   "dev": 112,
+   "challenge": 56,
+   "final": 56
+  },
+  "contentless": {
+   "dev": 9,
+   "challenge": 6,
+   "final": 6
+  },
+  "critical_claim": {
+   "dev": 5,
+   "challenge": 5,
+   "final": 5
+  },
+  "critical_future": {
+   "dev": 5,
+   "challenge": 0,
+   "final": 0
+  },
+  "critical_negated": {
+   "dev": 0,
+   "challenge": 5,
+   "final": 0
+  },
+  "critical_other": {
+   "dev": 0,
+   "challenge": 0,
+   "final": 5
+  },
+  "critical_plain": {
+   "dev": 15,
+   "challenge": 15,
+   "final": 15
+  },
+  "duplicate_behaviour": {
+   "dev": 27,
+   "challenge": 14,
+   "final": 13
+  },
+  "duplicate_first": {
+   "dev": 54,
+   "challenge": 28,
+   "final": 26
+  },
+  "duplicate_utterance": {
+   "dev": 27,
+   "challenge": 14,
+   "final": 13
+  },
+  "false_completion": {
+   "dev": 4,
+   "challenge": 3,
+   "final": 3
+  },
+  "future": {
+   "dev": 84,
+   "challenge": 40,
+   "final": 40
+  },
+  "hedged": {
+   "dev": 56,
+   "challenge": 14,
+   "final": 28
+  },
+  "hypothetical": {
+   "dev": 84,
+   "challenge": 28,
+   "final": 28
+  },
+  "incomplete": {
+   "dev": 28,
+   "challenge": 14,
+   "final": 13
+  },
+  "mixed_critical": {
+   "dev": 28,
+   "challenge": 14,
+   "final": 14
+  },
+  "natural": {
+   "dev": 26,
+   "challenge": 28,
+   "final": 26
+  },
+  "negation": {
+   "dev": 54,
+   "challenge": 28,
+   "final": 28
+  },
+  "negation_scope": {
+   "dev": 28,
+   "challenge": 14,
+   "final": 0
+  },
+  "no_context": {
+   "dev": 4,
+   "challenge": 2,
+   "final": 2
+  },
+  "other_person": {
+   "dev": 56,
+   "challenge": 28,
+   "final": 28
+  },
+  "out_of_window": {
+   "dev": 27,
+   "challenge": 14,
+   "final": 14
+  },
+  "plain": {
+   "dev": 26,
+   "challenge": 14,
+   "final": 13
+  },
+  "question_advice": {
+   "dev": 84,
+   "challenge": 28,
+   "final": 28
+  },
+  "question_statement": {
+   "dev": 21,
+   "challenge": 11,
+   "final": 11
+  },
+  "quoted": {
+   "dev": 55,
+   "challenge": 28,
+   "final": 14
+  },
+  "reported": {
+   "dev": 28,
+   "challenge": 0,
+   "final": 28
+  },
+  "retraction": {
+   "dev": 56,
+   "challenge": 28,
+   "final": 28
+  },
+  "unfinished": {
+   "dev": 28,
+   "challenge": 14,
+   "final": 14
+  }
+ },
+ "categories_missing_from_a_split": {
+  "critical_future": [
+   "challenge",
+   "final"
+  ],
+  "critical_negated": [
+   "dev",
+   "final"
+  ],
+  "critical_other": [
+   "dev",
+   "challenge"
+  ],
+  "negation_scope": [
+   "final"
+  ],
+  "reported": [
+   "challenge"
+  ]
+ },
+ "categories_under_20_rows_in_a_split": {
+  "asr_negation_lost": {
+   "challenge": 14,
+   "final": 14
+  },
+  "contentless": {
+   "dev": 9,
+   "challenge": 6,
+   "final": 6
+  },
+  "critical_claim": {
+   "dev": 5,
+   "challenge": 5,
+   "final": 5
+  },
+  "critical_future": {
+   "dev": 5
+  },
+  "critical_negated": {
+   "challenge": 5
+  },
+  "critical_other": {
+   "final": 5
+  },
+  "critical_plain": {
+   "dev": 15,
+   "challenge": 15,
+   "final": 15
+  },
+  "duplicate_behaviour": {
+   "challenge": 14,
+   "final": 13
+  },
+  "duplicate_utterance": {
+   "challenge": 14,
+   "final": 13
+  },
+  "false_completion": {
+   "dev": 4,
+   "challenge": 3,
+   "final": 3
+  },
+  "hedged": {
+   "challenge": 14
+  },
+  "incomplete": {
+   "challenge": 14,
+   "final": 13
+  },
+  "mixed_critical": {
+   "challenge": 14,
+   "final": 14
+  },
+  "negation_scope": {
+   "challenge": 14
+  },
+  "no_context": {
+   "dev": 4,
+   "challenge": 2,
+   "final": 2
+  },
+  "out_of_window": {
+   "challenge": 14,
+   "final": 14
+  },
+  "plain": {
+   "challenge": 14,
+   "final": 13
+  },
+  "question_statement": {
+   "challenge": 11,
+   "final": 11
+  },
+  "quoted": {
+   "final": 14
+  },
+  "unfinished": {
+   "challenge": 14,
+   "final": 14
+  }
+ },
+ "taxonomy_ids_without_rows": [],
+ "templates_per_category_per_split": {
+  "asr_negation_lost": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "combination": {
+   "dev": 4,
+   "challenge": 4,
+   "final": 4
+  },
+  "contentless": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "critical_claim": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "critical_future": {
+   "dev": 1,
+   "challenge": 0,
+   "final": 0
+  },
+  "critical_negated": {
+   "dev": 0,
+   "challenge": 1,
+   "final": 0
+  },
+  "critical_other": {
+   "dev": 0,
+   "challenge": 0,
+   "final": 1
+  },
+  "critical_plain": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "duplicate_behaviour": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "duplicate_first": {
+   "dev": 2,
+   "challenge": 2,
+   "final": 2
+  },
+  "duplicate_utterance": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "false_completion": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "future": {
+   "dev": 3,
+   "challenge": 3,
+   "final": 3
+  },
+  "hedged": {
+   "dev": 2,
+   "challenge": 1,
+   "final": 2
+  },
+  "hypothetical": {
+   "dev": 3,
+   "challenge": 2,
+   "final": 2
+  },
+  "incomplete": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "mixed_critical": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "natural": {
+   "dev": 1,
+   "challenge": 2,
+   "final": 2
+  },
+  "negation": {
+   "dev": 2,
+   "challenge": 2,
+   "final": 2
+  },
+  "negation_scope": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 0
+  },
+  "no_context": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "other_person": {
+   "dev": 2,
+   "challenge": 2,
+   "final": 2
+  },
+  "out_of_window": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "plain": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "question_advice": {
+   "dev": 3,
+   "challenge": 2,
+   "final": 2
+  },
+  "question_statement": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  },
+  "quoted": {
+   "dev": 2,
+   "challenge": 2,
+   "final": 1
+  },
+  "reported": {
+   "dev": 1,
+   "challenge": 0,
+   "final": 2
+  },
+  "retraction": {
+   "dev": 2,
+   "challenge": 2,
+   "final": 2
+  },
+  "unfinished": {
+   "dev": 1,
+   "challenge": 1,
+   "final": 1
+  }
+ },
+ "duplicates": {
+  "exact_within_split_same_condition": {
+   "dev": 26,
+   "challenge": 0,
+   "final": 13
+  },
+  "exact_text_in_more_than_one_split": 0,
+  "examples": []
+ },
+ "nearest_dev_neighbour_word_overlap": {
+  "challenge": {
+   "median": 0.286,
+   "p95": 0.429,
+   "max": 0.714,
+   "ge_0_6": 1,
+   "ge_0_7": 1,
+   "rows": 507
+  },
+  "final": {
+   "median": 0.273,
+   "p95": 0.455,
+   "max": 0.714,
+   "ge_0_6": 5,
+   "ge_0_7": 1,
+   "rows": 513
+  }
+ },
+ "seed_families_crossing_splits": [],
+ "templates_crossing_splits": [],
+ "identical_wording_frames_shared_between_splits": {
+  "dev/challenge": 1,
+  "dev/final": 1,
+  "challenge/final": 1
+ },
+ "frame_similarity_to_dev": {
+  "challenge": {
+   "frames": 26,
+   "frames_with_word_overlap_ge_0_6_to_a_dev_frame": 1,
+   "median_overlap": 0.333
+  },
+  "final": {
+   "frames": 27,
+   "frames_with_word_overlap_ge_0_6_to_a_dev_frame": 4,
+   "median_overlap": 0.5
+  }
+ },
+ "construction_artefacts": [
+  {
+   "template": "D2",
+   "kind": "seed lowered into a frame it does not fit",
+   "rows": 1,
+   "example": "So the pain comes when you take a breath, is that right?"
+  },
+  {
+   "template": "F2",
+   "kind": "'to tell you that you' (clumsy verb phrase)",
+   "rows": 2,
+   "example": "Do you want me to tell you that you can go home tonight?"
+  },
+  {
+   "template": "F8",
+   "kind": "'to tell you that you' (clumsy verb phrase)",
+   "rows": 2,
+   "example": "I intend to tell you that you can have water before we finish."
+  },
+  {
+   "template": "N5",
+   "kind": "'to tell you that you' (clumsy verb phrase)",
+   "rows": 2,
+   "example": "I have not had the chance to tell you that you can have water."
+  },
+  {
+   "template": "P2",
+   "kind": "repeated word",
+   "rows": 1,
+   "example": "Right, so so fluids at a hundred millilitres an hour, confirmed."
+  },
+  {
+   "template": "R2",
+   "kind": "'to tell you that you' (clumsy verb phrase)",
+   "rows": 2,
+   "example": "Someone ought to tell you that you can go home tonight."
+  },
+  {
+   "template": "R5",
+   "kind": "'to tell you that you' (clumsy verb phrase)",
+   "rows": 2,
+   "example": "The guidance says to tell you that you can have water."
+  },
+  {
+   "template": "R7",
+   "kind": "'to tell you that you' (clumsy verb phrase)",
+   "rows": 2,
+   "example": "Is it necessary to tell you that you can go home tonight?"
+  },
+  {
+   "template": "R8",
+   "kind": "seed lowered into a frame it does not fit",
+   "rows": 2,
+   "example": "Is it true that thank you, so you live on the second floor?"
+  },
+  {
+   "template": "R9",
+   "kind": "seed lowered into a frame it does not fit",
+   "rows": 2,
+   "example": "Would it be right to say that right, you had lunch at midday and nothing since?"
+  }
+ ],
+ "label_risk_templates": [
+  {
+   "template": "N7",
+   "rows": {
+    "dev": 28,
+    "challenge": 0,
+    "final": 0
+   },
+   "why": "negation scoping a reason: the act IS performed; label ambiguous by design"
+  },
+  {
+   "template": "N8",
+   "rows": {
+    "dev": 0,
+    "challenge": 14,
+    "final": 0
+   },
+   "why": "'not that I forgot, I did': the act IS performed"
+  },
+  {
+   "template": "C4",
+   "rows": {
+    "dev": 28,
+    "challenge": 0,
+    "final": 0
+   },
+   "why": "self-repair that reverses itself"
+  },
+  {
+   "template": "M1",
+   "rows": {
+    "dev": 28,
+    "challenge": 14,
+    "final": 14
+   },
+   "why": "ordinary act beside a critical claim"
+  },
+  {
+   "template": "E1",
+   "rows": {
+    "dev": 28,
+    "challenge": 14,
+    "final": 14
+   },
+   "why": "recogniser dropped the negation: the transcript reads as performed"
+  },
+  {
+   "template": "D2",
+   "rows": {
+    "dev": 54,
+    "challenge": 28,
+    "final": 26
+   },
+   "why": "second wording of one behaviour: no_credit only because one behaviour is credited once; a person judging only the words would say credit_allowed"
+  },
+  {
+   "template": "D1",
+   "rows": {
+    "dev": 54,
+    "challenge": 28,
+    "final": 26
+   },
+   "why": "a repeat of the same utterance: no_credit only because of the session"
+  },
+  {
+   "template": "W1",
+   "rows": {
+    "dev": 27,
+    "challenge": 14,
+    "final": 14
+   },
+   "why": "the words are correct; no_credit only because of the step window"
+  },
+  {
+   "template": "W2",
+   "rows": {
+    "dev": 4,
+    "challenge": 2,
+    "final": 2
+   },
+   "why": "the words are correct; no_credit only because no question or read-back is waiting"
+  },
+  {
+   "template": "R10",
+   "rows": {
+    "dev": 0,
+    "challenge": 0,
+    "final": 11
+   },
+   "why": "'why do we say that X?' asks about a fact; an explanation may still be performed"
+  },
+  {
+   "template": "Q5",
+   "rows": {
+    "dev": 0,
+    "challenge": 0,
+    "final": 14
+   },
+   "why": "'apparently the nurse did X': reporting, but a trainee relaying it to a patient may be answering"
+  },
+  {
+   "template": "A2",
+   "rows": {
+    "dev": 28,
+    "challenge": 0,
+    "final": 0
+   },
+   "why": "'he X earlier': 'he' may be the patient or a colleague; ASR-free text cannot say"
+  }
+ ],
+ "situation_dependent_labels": {
+  "rows_whose_no_credit_label_comes_from_the_situation_not_the_words": 171
+ },
+ "authorship": {
+  "seed_families": 102,
+  "authors": "one (the builder, a language model)",
+  "templates": 98,
+  "human_authored_rows": 0,
+  "human_reviewed_rows": 0
+ },
+ "sheet": {
+  "rows": 560,
+  "sha256": "bd0f64d186be74a1"
+ },
+ "pending_human_review_rows": 267
+}

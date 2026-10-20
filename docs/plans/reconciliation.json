@@ -356,6 +356,31 @@
    "external": "EX-01 (people: reviewers, adjudicator, new authors); Sannan: DC-08 and DC-09 (NOT RUN)",
    "implementation": "complete"
   },
+  "p1-ai-language-s17": {
+   "owner": "Ruhan",
+   "before": "Planned 20 Oct 2026 (ADR-0023 follow-up); nothing of this step existed before",
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/testing/safety_challenge_review.md",
+    "docs/testing/asr_safety_evaluation.md",
+    "docs/research/safety_set_audit.md",
+    "docs/research/dt233_final_failures.md",
+    "tools/bench/safety_review_kit.py",
+    "tools/bench/safety_set_audit.py",
+    "tools/bench/safety_frozen.py",
+    "tests/safety_challenge/frozen.json",
+    "tools/ci/test_safety_review_kit.py",
+    "tools/ci/mutation_safety.py",
+    "tools/ci/test_mutation_safety.py",
+    "server/tests/test_interpret_api.py",
+    "reports/ai/safety/set-audit.json",
+    "reports/ai/safety/mutation-service.json"
+   ],
+   "measured": "20 Oct 2026, preparation and audit only; no new safety result. Blind review kit (package, check, agree, merge) tested with toy data, 7 of 7 tests; set audit generated from the committed sets (provisional builder-written labels: 2,079 rows, 0 independently reviewed, 267 PENDING_HUMAN_REVIEW, 560-row sheet; no seed family or template crosses a split; 39 plain/first-of-pair sentence duplicates inside splits; wording frames shared between splits 1; 4 of 27 final frames overlap a development frame at 0.6 or more); frozen-test protections pin the sets, the final results and the candidate files; the ten final-split failures of DT-233 reduced to four closed-list or window mechanisms and a development-only plan; mutation tests extended to 49 mutants (route fallbacks and audit rules on PostgreSQL, store checks end to end through the session log, the no-running-step test added); frozen candidate, cap 0.05 and thresholds unchanged",
+   "open": "NOT done: any human review (reviewers, adjudicator not named), the independent run (EX-01 part B), the audio-to-transcript evaluation (EX-01 part C, design only), a fix for the DT-233 mechanisms (needs a fresh set), owner approval of the acceptance proposals (DT-229), Unity client mutation testing (not possible without a Unity-free runner), the headset checks (DC-08, DC-09, NOT RUN)",
+   "external": "EX-01 (people: two reviewers, an adjudicator, authors, speakers for part C); Sannan: DC-08 and DC-09 (NOT RUN)",
+   "implementation": "complete"
+  },
   "p1-backend-s01": {
    "owner": "Moiz",
    "before": "Approved (tick)",

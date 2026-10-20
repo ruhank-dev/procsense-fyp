@@ -3480,3 +3480,19 @@ ProcSense - Comprehensive Unsafe-Speech Safety Hardening. Continue from commit 4
 Final deliverable: confirmed vulnerabilities and false-rejection causes, taxonomy and coverage, changes and tests, mutation results, baseline-against-candidate metrics with raw counts, readiness and blockers, updated plans and docs, commit and CI status, what remains unproven and why live scoring stays OFF.
 (This entry keeps the requirements, shortened.)
 ``````
+
+## 177. 20 October 2026, 9:30 AM UTC (time of logging; the prompt arrived shortly before)
+_Session: b9c36c34_
+
+``````text
+Continue from b1726b8 (unsafe-speech hardening). Do not change the safety cap, thresholds or final-split-targeted rules in this phase.
+1 Prepare and document the blind review of the 560-row EX-01 part B sheet: reviewers see no predictions, expected labels or model decisions before labelling; define adjudication for disagreements and ambiguous cases; invent no completed human-review results.
+2 Audit label quality, category coverage, duplicate and template leakage and split independence in tests/safety_challenge; preserve the final set; distinguish provisional builder-written labels from independently reviewed labels.
+3 Audit the ten remaining final-split failures (DT-233) without changing the frozen candidate or tuning on them; document suspected mechanisms and a development-only evaluation plan.
+4 Design a separate audio-to-transcript safety evaluation (ASR negation loss, self-corrections, uncertainty); keep it apart from the text evaluation; not validated until tested.
+5 Fix remaining mutation gaps, especially end-to-end engine safety and error and fallback behaviour; do not claim the Unity client is mutation-tested.
+6 Update EX-01, DT-234, DT-229, canonical plans, feature plans, research documentation and Sannan's DC-08 and DC-09 handoff; keep unperformed human review and Quest checks NOT RUN or BLOCKED.
+7 Preserve all work; run relevant tests and full CI if code changes; no reset, clean or force-push; commit and push only after checks pass; verify CI on the exact commit.
+Return: the review protocol, readiness status, label-quality findings, frozen-test protections, remaining risks and exact next release blockers; speech_interpretation stays OFF.
+(This entry keeps the requirements, shortened.)
+``````

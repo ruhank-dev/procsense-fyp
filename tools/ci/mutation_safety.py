@@ -93,6 +93,46 @@ ENGINE_TESTS: list[tuple[str, str, list[Edit]]] = [
 ]
 
 
+# the same store checks, judged END TO END by the engine unit tests (a speech_evidence action applied to a Session, the log, EvidenceStore.FromLog), not by the CLI `evidence-check` shortcut
+for _mid, _desc, _edits, _scen in ENGINE:
+    ENGINE_TESTS.append(("ET_" + _mid, _desc + " (end to end through the session log)", _edits))
+
+# ---- the interpretation route (server/routers/interpret.py), mutated in a copy of server/ and judged by server/tests/test_interpret_api.py on the real PostgreSQL (needs TEST_DATABASE_URL, or the Docker container of tools/ci/server_tests.py)
+RT = "server/routers/interpret.py"
+ROUTE: list[tuple[str, str, list[Edit]]] = [
+    ("RT1_feature_flag", "the route ignores the speech_interpretation switch", [(RT, "    if not ai_features.enabled(\"speech_interpretation\"):", "    if False:")]),
+    ("RT2_busy_slot", "the route proceeds when the model slot is busy", [(RT, "    if not ai_gateway._slot.acquire(timeout=settings.ai_queue_wait_seconds):", "    if not (ai_gateway._slot.acquire(timeout=settings.ai_queue_wait_seconds) or True):")]),
+    ("RT3_failure_is_the_menu", "a failing classifier is no longer recorded and answered as the menu", [(RT, "    if failed:", "    if False:")]),
+    ("RT4_reason_codes", "the audit row keeps no reason code", [(RT, "reason_codes(out[\"reasons\"], out[\"decision\"])", "[]")]),
+    ("RT5_refusal_marked_passed", "a refusal is audited as passed", [(RT, "out[\"decision\"] == \"OFFER_EVIDENCE\"", "True")]),
+]
+
+
+def run_route_tests() -> dict:
+    """each route mutant in its own copy of server/ (no .venv), judged by pytest in the server environment; the unmutated copy must pass first."""
+    import os
+    url = os.environ.get("TEST_DATABASE_URL", "postgresql://postgres:postgres@localhost:54329/procsense_test")
+    py = ROOT / "server" / ".venv" / ("Scripts" if os.name == "nt" else "bin") / ("python.exe" if os.name == "nt" else "python")
+    out = {}
+
+    def one(edits):
+        with tempfile.TemporaryDirectory(dir=ROOT / "artifacts", ignore_cleanup_errors=True) as t:
+            d = Path(t)
+            shutil.copytree(ROOT / "server", d / "server", ignore=shutil.ignore_patterns(".venv", "__pycache__"))
+            for item in ("content/assessment", "content/ai", "tests/classifier_regression"):
+                shutil.copytree(ROOT / item, d / item)
+            apply(d, edits)
+            p = subprocess.run([str(py), "-m", "pytest", str(d / "server" / "tests" / "test_interpret_api.py"), "-q", "-x", "-p", "no:cacheprovider"], capture_output=True, text=True, encoding="utf-8", cwd=str(d),
+                               env={**os.environ, "TEST_DATABASE_URL": url, "REQUIRE_DB": "1", "PYTHONPATH": str(d)})
+            return p.returncode, (p.stdout + p.stderr)[-400:]
+    code, tail = one([])
+    out["baseline"] = {"exit": code, "tail": tail}
+    for mid, desc, edits in ROUTE:
+        code, tail = one(edits)
+        out[mid] = {"exit": code, "killed": code != 0, "tail": tail}
+    return out
+
+
 def run_engine_tests() -> dict:
     """one copy of src, content and the engine tests; each mutant applied, built, tested and restored; the unmutated copy must pass first."""
     out = {}
@@ -235,6 +275,11 @@ def main(argv):
             raise RuntimeError("the unmutated engine tests do not pass in the copy: " + tres["baseline"]["tail"])
         for mid, desc, edits in ENGINE_TESTS:
             rows.append({"mutant": mid, "guard": desc, "killed": tres[mid]["killed"], "expected_to_change": ["dotnet test InterpretationContextTests"], "changed": [], "missing": [] if tres[mid]["killed"] else ["a failing test"]})
+        rres = run_route_tests()
+        if rres["baseline"]["exit"] != 0:
+            raise RuntimeError("the unmutated route tests do not pass in the copy (is the PostgreSQL container up?): " + rres["baseline"]["tail"])
+        for mid, desc, edits in ROUTE:
+            rows.append({"mutant": mid, "guard": desc, "killed": rres[mid]["killed"], "expected_to_change": ["pytest test_interpret_api"], "changed": [], "missing": [] if rres[mid]["killed"] else ["a failing test"]})
         eres = run_engine(res["baseline"])
         for mid, desc, edits, scen in ENGINE:
             v = eres["single"][mid]
