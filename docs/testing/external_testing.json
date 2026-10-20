@@ -224,7 +224,8 @@
     "p1-ai-language-s11",
     "p1-ai-language-s12",
     "p1-ai-language-s13",
-    "p1-voice-input-s02"
+    "p1-voice-input-s02",
+    "p1-ai-language-s15"
    ],
    "needs": "Quest with the current Unity build and the SpeechInterpretation script wired into the scene; the backend with the recogniser, the interpretation route and the dialogue route reachable; the speech_interpretation gate may stay OFF for steps 1 to 4 (the route then answers the menu) and is switched on only on a test server for step 5",
    "prepared": [
@@ -463,7 +464,8 @@
     "p2-ai-extensions-s03",
     "p1-ai-infrastructure-s04",
     "p1-ai-language-s11",
-    "p1-ai-language-s14"
+    "p1-ai-language-s14",
+    "p1-ai-language-s15"
    ],
    "needs": "People; the scenario cards `docs/research/classifier_benchmark/cards_dev.csv` and `cards_test.csv`; `tools/bench/dataset.py`; `uv` with scikit-learn; Ollama with all-minilm:22m",
    "prepared": [
@@ -476,7 +478,10 @@
     "tools/bench/rubric_labelling_kit.py",
     "docs/testing/independent_labelling_protocol.md",
     "tools/bench/interpretation_bench.py",
-    "docs/research/interpretation_benchmark.md"
+    "docs/research/interpretation_benchmark.md",
+    "tools/bench/recall_eval.py",
+    "docs/research/recall_diagnosis.md",
+    "tools/bench/recall_frozen.json"
    ],
    "procedure": [
     "Read docs/research/classifier_benchmark/annotation_guide.md. Each author writes the sentences for their cards (100 dev, 200 test, about 1.5 hours each), in their own words, without seeing the other author's.",

@@ -219,7 +219,7 @@
     "tools/ci/test_interpretation_regression.py",
     "server/tests/test_interpret_api.py"
    ],
-   "measured": "19 Oct 2026: /interpret built; candidates are the retained classifier gate's own decision (classify_with_probs, identical decisions), context only removes. tools/ci/test_interpretation_regression.py 17 of 17 pass with the real heads (a mutant without the validation is caught by 9 of the 17); server route tests 7 of 7 pass on PostgreSQL (server suite 333 passed, 1 skipped). On the synthetic benchmark the path offers exactly what the route offers after the engine's window rule (test 66 of 66 right, test2 69 of 69) with 0 critical, 0 non-assertive and 0 out-of-window offers",
+   "measured": "19 Oct 2026: /interpret built; candidates are the retained classifier gate's own decision (classify_with_probs, identical decisions), context only removes. tools/ci/test_interpretation_regression.py 17 of 17 pass with the real heads (a mutant without the validation is caught by 9 of the 17); server route tests 7 of 7 pass on PostgreSQL (server suite 333 passed, 1 skipped). On the synthetic benchmark the path offers exactly what the route offers after the engine's window rule (test 66 of 66 right, test2 69 of 69) with 0 critical, 0 non-assertive and 0 out-of-window offers. Update 20 Oct 2026: the path now accepts 76 of 140 (test) and 79 of 140 (test2) right sentences after the recall follow-up (p1-ai-language-s15); the figures above are those of 19 Oct",
    "open": "Built and tested; the gate speech_interpretation is OFF and SKIPPED because the independent set (EX-01) does not exist. Recall does not rise (66 of 140 on test, 69 of 140 on test2): most misses are the classifier gate's critical-mass cap, not the context rules. Synthetic results can never switch the gate on",
    "external": "EX-01 (the independent set the gate reads); the owner approves the thresholds (DT-229)",
    "implementation": "complete"
@@ -278,9 +278,42 @@
     "content/ai/features.json",
     "docs/testing/independent_labelling_protocol.md"
    ],
-   "measured": "19 Oct 2026: context-conditioned benchmark (the state of each row derived from the engine's windows): the interpretation path equals the classifier route after the engine's window rule (test 66 of 66 right, 66 of 140 legitimate; test2 69 of 69, 69 of 140) and removes the route's wrong credits (4 of 70 on test, 3 of 72 on test2); 0 critical, 0 non-assertive and 0 out-of-window offers; critical rows get the menu with the verified actions (38 of 40 on test, 39 of 40 on test2). Latency: one interpretation median 16 ms, p95 30 ms alone and 24.5 ms p95 while the 4B model generates; a patient reply goes from 576 ms to 676 ms median under continuous interpretation load; the embedding model cold-starts in under 2 seconds. Gate speech_interpretation defined with its suites, SKIPPED and OFF. Synthetic, not independent",
+   "measured": "19 Oct 2026: context-conditioned benchmark (the state of each row derived from the engine's windows): the interpretation path equals the classifier route after the engine's window rule (test 66 of 66 right, 66 of 140 legitimate; test2 69 of 69, 69 of 140) and removes the route's wrong credits (4 of 70 on test, 3 of 72 on test2); 0 critical, 0 non-assertive and 0 out-of-window offers; critical rows get the menu with the verified actions (38 of 40 on test, 39 of 40 on test2). Latency: one interpretation median 16 ms, p95 30 ms alone and 24.5 ms p95 while the 4B model generates; a patient reply goes from 576 ms to 676 ms median under continuous interpretation load; the embedding model cold-starts in under 2 seconds. Gate speech_interpretation defined with its suites, SKIPPED and OFF. Synthetic, not independent. Update 20 Oct 2026: the benchmark counts evidence accepted by the engine and reports the shipped configuration (cap 0.05, calibrated engine thresholds); see p1-ai-language-s15",
    "open": "Built and measured on synthetic rows; the gate stays OFF. The thresholds are the engineer's proposal and wait for the owner (DT-229). The context rules were not shown to help recall; the independent set is the only evidence that can switch the gate on",
    "external": "EX-01 (the independent set; people); the owner approves the gate thresholds (DT-229)",
+   "implementation": "complete"
+  },
+  "p1-ai-language-s15": {
+   "owner": "Ruhan",
+   "before": "Planned 20 Oct 2026 (ADR-0022 addendum); nothing of this step existed before",
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
+    "docs/research/recall_diagnosis.md",
+    "tools/bench/recall_diagnosis.py",
+    "tools/bench/recall_eval.py",
+    "tools/bench/recall_safety_panel.py",
+    "tools/bench/recall_frozen.json",
+    "tools/bench/recall_cap_revision.json",
+    "tools/bench/assertion_diff.py",
+    "tools/bench/recall_report.py",
+    "tools/bench/engine_acceptance.py",
+    "tools/ci/test_recall_fixes.py",
+    "tests/classifier_regression/recall_cases.json",
+    "server/classify/assertion.py",
+    "content/assessment/mapping.json",
+    "content/assessment/act_head_hybrid.json",
+    "tools/content/build_scoring.py",
+    "src/ProcSense.Cli/Commands.cs",
+    "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
+    "reports/ai/recall-eval-test.json",
+    "reports/ai/recall-eval-test2.json",
+    "reports/ai/recall-confirm-test.json",
+    "reports/ai/recall-confirm-test2.json"
+   ],
+   "measured": "20 Oct 2026, synthetic and preliminary: cap primary cause of 58 to 76 percent of missed legitimate rows (dev 44 of 58, test 45 of 77, test2 52 of 73), sole blocker of 34 to 50 percent; without the cap nine unsafe panel sentences are offered. Held-out action_bench splits scored once: evidence accepted by the engine for the right act 63 to 76 of 140 (test) and 67 to 79 of 140 (test2), credited precision 76/76 and 79/79, 0 critical, 0 non-assertive, 0 out-of-window and 0 panel sentences accepted; the shipped configuration (with the assertion fixes) accepts exactly the same sentences on a labelled second look. tools/ci/test_recall_fixes.py 12 of 12 pass (28 paraphrases offered, 84 counterexamples refused and named by the assertion layer); engine suite 1,323 of 1,323 pass",
+   "open": "NOT done: independent validation of the revised cap (0.05) and the calibrated engine thresholds on the independent human-labelled set (EX-01, DT-231); real-play signals for ANSWER_QUESTION and CLOSED_LOOP (DT-232); the headset checks (DC-08, DC-09, NOT RUN). Remaining misses: critical mass at or above 0.05 (same as unsafe sentences), act confusions, cue ambiguity",
+   "external": "EX-01 (the independent set; people); Sannan: DC-08 and DC-09 (NOT RUN)",
    "implementation": "complete"
   },
   "p1-backend-s01": {

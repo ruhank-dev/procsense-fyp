@@ -21,3 +21,6 @@ On the synthetic sets: false credit 3/48 to 0/48 on the failing set and 5/60 to 
 
 ## Revisit if
 The independent set exists (EX-01): re-run the benchmark on it and revisit the gate; a new critical wording is credited in the field or on a new frozen set; the embedding model is replaced (the heads must be rebuilt); a trained semantic second guard (entailment) is measured to beat the TF-IDF head as second reader.
+
+## Addendum, 20 October 2026
+The hybrid head's critical-mass cap, chosen here as 0.03, was revised to 0.05 (`content/assessment/act_head_hybrid.json`, block `critical_mass_tuning.revision`; evidence in `docs/research/recall_diagnosis.md`); a rebuild keeps the revision (`tools/bench/recall_cap_revision.json`).

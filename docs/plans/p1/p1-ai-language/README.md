@@ -2,6 +2,8 @@
 
 **Tier:** P1 · **Builds on:** p1-backend, p0-scoring-debrief, p0-physiology-events-behaviour · **Feeds:** p1-voice-input, p1-scenario-composer-difficulty
 
+> **Plan update, 20 Oct 2026:** step s15 diagnoses and improves legitimate speech recall: the engine's evidence thresholds follow the classifier's calibrated thresholds, the critical-mass cap moved from 0.03 to 0.05 on evidence, and the assertion layer's holes were closed (`docs/research/recall_diagnosis.md`). Gate OFF; independent evaluation (EX-01) outstanding.
+>
 > **Plan update, 19 Oct 2026 (ADR-0022):** steps s10 to s14 add the context-aware interpretation of trainee speech: the engine builds the context and decides eligibility (s10), the `/interpret` service validates the classifier gate's candidates deterministically (s11), clarification and menu fallback with the Unity half (s12), dialogue safety with voice in front (s13), the context-conditioned benchmark and the `speech_interpretation` gate, OFF (s14). Qwen 4B stays out of the live path (rubric evaluator NO-GO, `docs/research/rubric_evaluator.md`).
 >
 > **Progress, 12 Oct 2026:** s01 (the grounding validator, Python and C# twin with shared vectors) and s03 (the per-character read-only context and the reaction queue) are built and tested and approved by the owner (12 Oct 2026). s02 and s04 to s09 need a served model, human labellers or the backend and are blocked or pending (DT-096, DT-097). The full audit is `docs/ai-roadmap-status.md`; the rule is ADR-0005.

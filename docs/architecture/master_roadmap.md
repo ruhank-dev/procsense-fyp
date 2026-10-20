@@ -256,7 +256,7 @@ Taxonomy, classifier gate, and context-aware interpretation of trainee speech wi
 |---|---|
 | Status | Blocked |
 | Depends on | PH-07; PH-21 |
-| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14 |
+| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15 |
 | Features | C36; C37 |
 | Deliverables | labelled set; classifier; interpretation context; interpretation service; clarification and fallback; context-conditioned benchmark and speech_interpretation gate |
 | Acceptance | classifier: macro-F1 0.75 on the independent set or switched off; speech_interpretation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off |
@@ -429,7 +429,7 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | C34 | Text-to-speech | PH-14 | p0-voice-audio-s02; p1-voice-input-s04 |
 | C35 | Voice orders and read-back | PH-14 | p1-voice-input-s03 |
 | C36 | Communication acts (taxonomy and evidence mapping) | PH-15 | p1-ai-language-s06 |
-| C37 | Communication classifier | PH-15 | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14 |
+| C37 | Communication classifier | PH-15 | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15 |
 | D38 | AI debrief | PH-16 | p1-ai-language-s08 |
 | D39 | Coaching (in-session hints and between-session advice) | PH-18 | p2-ai-learning-analytics-s01 |
 | D40 | Performance pattern analysis | PH-18 | p2-ai-learning-analytics-s01 |

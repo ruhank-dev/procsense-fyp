@@ -37,7 +37,7 @@ Status words: `NOT RUN` (implemented, waiting for the person), `BLOCKED` (NOT RU
 | [DC-06](#dc-06) | Intra-operative event cards and the recovery bay scene | Sannan | p1-theatre-extension-s02, p1-theatre-extension-s03, p1-theatre-extension-s04 | - | NOT READY | BLOCKED |
 | [DC-07](#dc-07) | Three characters speaking in turn, and a follow-up encounter with the same patient | Sannan | p2-ai-advanced-simulation-s02, p2-ai-advanced-simulation-s03 | E48, E49 | NOT READY | BLOCKED |
 | [DC-08](#dc-08) | Push-to-talk voice client, voice orders with read-back and live speech output (English only) | Sannan | p1-ai-infrastructure-s05, p1-voice-input-s02 | C31, C32 | PARTLY READY | NOT RUN |
-| [DC-09](#dc-09) | Spoken communication interpreted against the scenario state: evidence, clarification, menu fallback and no credit for critical or non-performed speech (English only) | Sannan | p1-ai-language-s10, p1-ai-language-s11, p1-ai-language-s12, p1-ai-language-s13, p1-voice-input-s02 | C24, C31, C32, C37 | PARTLY READY | NOT RUN |
+| [DC-09](#dc-09) | Spoken communication interpreted against the scenario state: evidence, clarification, menu fallback and no credit for critical or non-performed speech (English only) | Sannan | p1-ai-language-s10, p1-ai-language-s11, p1-ai-language-s12, p1-ai-language-s13, p1-voice-input-s02, p1-ai-language-s15 | C24, C31, C32, C37 | PARTLY READY | NOT RUN |
 | [UX-P0-BLENDER](#ux-p0-blender) | Blender equipment assets: import into Unity as working prefabs, approve the looks | Sannan | p0-blender-equipment-s01, p0-blender-equipment-s04, p0-blender-equipment-s05, p0-blender-equipment-s06, p0-blender-equipment-s07, p0-blender-equipment-s08 ... | - | PARTLY READY | NOT RUN |
 | [UX-P0-CHAR](#ux-p0-char) | Characters: patient models, clinical signs, staff avatars, animation, escort | Sannan | p0-characters-s01, p0-characters-s02, p0-characters-s03, p0-characters-s04, p0-characters-s05, p0-characters-s06 ... | - | NOT READY | BLOCKED |
 | [UX-P0-ENV](#ux-p0-env) | Rooms: the supervisor's hospital model, lighting, anchors, patient bay, theatre, corridor | Sannan, with the supervisor who supplies the hospital room models | p0-environment-rooms-s01, p0-environment-rooms-s02, p0-environment-rooms-s03, p0-environment-rooms-s04, p0-environment-rooms-s05, p0-environment-rooms-s06 ... | - | PARTLY READY | NOT RUN |
@@ -51,7 +51,7 @@ Status words: `NOT RUN` (implemented, waiting for the person), `BLOCKED` (NOT RU
 | [UX-P0-GUIDE](#ux-p0-guide) | A new user completes Step 1 from the user guide alone | Sannan arranges a teammate who has never used ProcSense | p0-evaluation-performance-s07 | - | READY | NOT RUN |
 | [UX-P0-EVAL](#ux-p0-eval) | P0 evaluation: Quest replay check, weekly profiling, usability study, clinical review, release, demo | Sannan, the owner, participants and a clinician (participants and the realism review: EX-0 | p0-evaluation-performance-s01, p0-evaluation-performance-s03, p0-evaluation-performance-s05, p0-evaluation-performance-s06, p0-evaluation-performance-s08, p0-evaluation-performance-s09 | - | NOT READY | BLOCKED |
 | [UX-P1-BACKEND](#ux-p1-backend) | Quest sign-in with a device code and the offline upload queue (both ticked by the owner under the earlier rule; the headset behaviour is re-checked here) | Sannan (Quest side); the service side is Moiz's and has its own tests in CI | p1-backend-s03, p1-backend-s10 | - | READY | NOT RUN |
-| [EX-01](#ex-01) | Independent communication-act set: authors, second labeller, adjudicator, then the independent run | The owner arranges at least four people who are not the builder: two authors per split (de | p1-ai-language-s06, p1-ai-language-s07, p2-ai-extensions-s03, p1-ai-infrastructure-s04, p1-ai-language-s11, p1-ai-language-s14 | C36, C37, E55, E60 | PARTLY READY | NOT RUN |
+| [EX-01](#ex-01) | Independent communication-act set: authors, second labeller, adjudicator, then the independent run | The owner arranges at least four people who are not the builder: two authors per split (de | p1-ai-language-s06, p1-ai-language-s07, p2-ai-extensions-s03, p1-ai-infrastructure-s04, p1-ai-language-s11, p1-ai-language-s14 ... | C36, C37, E55, E60 | PARTLY READY | NOT RUN |
 | [EX-02](#ex-02) | Blind rating of model replies (BT3) and of rewritten patient wording | Ruhan (about 20 minutes) for BT3; a second reader for wording faithfulness | p1-ai-infrastructure-s02, p1-ai-language-s02 | E57, E69 | READY | NOT RUN |
 | [EX-03](#ex-03) | Blind comparison of the AI plan composer with the solver alone (40 cases, two raters) | Two raters who do not know which arm made which case; the owner arranges them | p1-live-scenario-generation-s13, p1-scenario-composer-difficulty-s03 | A1 | PARTLY READY | NOT RUN |
 | [EX-04](#ex-04) | Listening test of the rendered voice lines (EXP-VOX-1) and review of the drafted lines | A person who listens (about 30 minutes) and a reviewer of the 24 drafted lines | p0-voice-audio-s01, p0-voice-audio-s02, p0-voice-audio-s06 | C34 | PARTLY READY | NOT RUN |
@@ -336,7 +336,7 @@ Procedure:
 * Who: Sannan
 * Why local CI cannot verify it: It needs a headset, a Unity build or a particular machine, which the desktop checks and GitHub Actions do not have.
 * Needs: Quest with the current Unity build and the SpeechInterpretation script wired into the scene; the backend with the recogniser, the interpretation route and the dialogue route reachable; the speech_interpretation gate may stay OFF for steps 1 to 4 (the route then answers the menu) and is switched on only on a test server for step 5
-* Closes steps: [p1-ai-language-s10](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s10-interpretation-context.md), [p1-ai-language-s11](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s11-interpretation-service.md), [p1-ai-language-s12](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s12-clarify-abstain-fallback.md), [p1-ai-language-s13](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s13-conversation-safety.md), [p1-voice-input-s02](../plans/p1/p1-voice-input/steps/p1-voice-input-s02-voice-client.md)
+* Closes steps: [p1-ai-language-s10](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s10-interpretation-context.md), [p1-ai-language-s11](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s11-interpretation-service.md), [p1-ai-language-s12](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s12-clarify-abstain-fallback.md), [p1-ai-language-s13](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s13-conversation-safety.md), [p1-voice-input-s02](../plans/p1/p1-voice-input/steps/p1-voice-input-s02-voice-client.md), [p1-ai-language-s15](../plans/p1/p1-ai-language/steps/p1-ai-language-s15-recall-follow-up.md)
 * Features: C24, C31, C32, C37 (plans in `docs/plans/features/<ID>.md`)
 * Prepared (already in the repository):
   * `docs/decisions/ADR-0022-context-aware-speech-interpretation.md`
@@ -688,7 +688,7 @@ Sannan cannot give consent, labelling, clinical or licence authority on anyone's
 * Who must act: The owner arranges at least four people who are not the builder: two authors per split (dev and test authors differ), a second labeller for the critical rows, a third person to adjudicate. Whoever wrote the generator or the taxonomy must not write or label rows.
 * Why local CI cannot verify it: It needs people's judgement, labelling or consent. No machine check can stand in for it, and an AI judge or a simulation is not human validation.
 * Needs: People; the scenario cards `docs/research/classifier_benchmark/cards_dev.csv` and `cards_test.csv`; `tools/bench/dataset.py`; `uv` with scikit-learn; Ollama with all-minilm:22m
-* Closes steps: [p1-ai-language-s06](../plans/p1/p1-ai-language/steps/p1-ai-language-s06-classifier-dataset.md), [p1-ai-language-s07](../plans/p1/p1-ai-language/steps/p1-ai-language-s07-classifier-model.md), [p2-ai-extensions-s03](../plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s03-small-classifier.md), [p1-ai-infrastructure-s04](../plans/p1/p1-ai-infrastructure/steps/✅%20p1-ai-infrastructure-s04-labelling-programme.md), [p1-ai-language-s11](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s11-interpretation-service.md), [p1-ai-language-s14](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s14-interpretation-benchmark-gate.md)
+* Closes steps: [p1-ai-language-s06](../plans/p1/p1-ai-language/steps/p1-ai-language-s06-classifier-dataset.md), [p1-ai-language-s07](../plans/p1/p1-ai-language/steps/p1-ai-language-s07-classifier-model.md), [p2-ai-extensions-s03](../plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s03-small-classifier.md), [p1-ai-infrastructure-s04](../plans/p1/p1-ai-infrastructure/steps/✅%20p1-ai-infrastructure-s04-labelling-programme.md), [p1-ai-language-s11](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s11-interpretation-service.md), [p1-ai-language-s14](../plans/p1/p1-ai-language/steps/✅%20p1-ai-language-s14-interpretation-benchmark-gate.md), [p1-ai-language-s15](../plans/p1/p1-ai-language/steps/p1-ai-language-s15-recall-follow-up.md)
 * Features: C36, C37, E55, E60
 * Prepared (already in the repository):
   * `docs/research/classifier_benchmark/README.md`
@@ -701,6 +701,9 @@ Sannan cannot give consent, labelling, clinical or licence authority on anyone's
   * `docs/testing/independent_labelling_protocol.md`
   * `tools/bench/interpretation_bench.py`
   * `docs/research/interpretation_benchmark.md`
+  * `tools/bench/recall_eval.py`
+  * `docs/research/recall_diagnosis.md`
+  * `tools/bench/recall_frozen.json`
 
 Procedure:
 
@@ -1255,7 +1258,7 @@ Procedure:
 
 ## 6. Coverage
 
-126 steps are named by at least one item. The check fails when a step whose reconciliation says an outside actor is still needed is not named here, so this page cannot silently lose a dependency.
+127 steps are named by at least one item. The check fails when a step whose reconciliation says an outside actor is still needed is not named here, so this page cannot silently lose a dependency.
 
 Not external (so not listed): steps whose reconciliation status is Done or Approved, and steps that only wait for the engineer.
 

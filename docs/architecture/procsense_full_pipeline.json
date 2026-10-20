@@ -11268,7 +11268,25 @@
     "reports/ai/interpretation-latency.json",
     "docs/research/interpretation_benchmark.md",
     "content/ai/thresholds.json",
-    "content/ai/features.json"
+    "content/ai/features.json",
+    "docs/research/recall_diagnosis.md",
+    "tools/bench/recall_diagnosis.py",
+    "tools/bench/recall_eval.py",
+    "tools/bench/recall_safety_panel.py",
+    "tools/ci/test_recall_fixes.py",
+    "reports/ai/recall-eval-test.json",
+    "reports/ai/recall-eval-test2.json",
+    "tools/bench/recall_frozen.json",
+    "tools/bench/recall_cap_revision.json",
+    "tools/bench/assertion_diff.py",
+    "tools/bench/recall_report.py",
+    "tools/bench/engine_acceptance.py",
+    "tests/classifier_regression/recall_cases.json",
+    "content/assessment/act_head_hybrid.json",
+    "tools/content/build_scoring.py",
+    "src/ProcSense.Cli/Commands.cs",
+    "reports/ai/recall-confirm-test.json",
+    "reports/ai/recall-confirm-test2.json"
    ],
    "lineage": [
     "p1-ai-language-s06, s07",
@@ -11307,7 +11325,7 @@
    "risks": [
     "labelled set not available (DT-097)",
     "critical acts misclassified (never credited from AI alone)",
-    "recall limited to about half of the legitimate synthetic sentences (ADR-0020); context conditioning untested on human-written dialogue (EX-01)"
+    "recall: about 45 to 56 percent of legitimate synthetic sentences are accepted after the 20 Oct 2026 follow-up (the remaining misses are critical mass at or above 0.05, act confusions and cue ambiguity); the revised cap (0.05) and the calibrated engine thresholds were judged only on synthetic sentences (EX-01, DT-231)"
    ],
    "tasks": [
     "p1-ai-language-s06",
@@ -11316,7 +11334,8 @@
     "p1-ai-language-s11",
     "p1-ai-language-s12",
     "p1-ai-language-s13",
-    "p1-ai-language-s14"
+    "p1-ai-language-s14",
+    "p1-ai-language-s15"
    ],
    "phase": "PH-15",
    "tier": "P1",
@@ -11334,7 +11353,8 @@
      "interpretation service with deterministic validation and decisions (s11)",
      "clarification, menu fallback and failure handling, Unity half (s12)",
      "context-conditioned benchmark, end-to-end latency, speech_interpretation gate (s14)",
-     "independent human-labelled set (EX-01)"
+     "independent human-labelled set (EX-01)",
+     "independent evaluation of the revised critical-mass cap and the calibrated engine thresholds (p1-ai-language-s15, DT-231, EX-01)"
     ],
     "deterministic_foundation": "Eligibility from the behaviour windows of content/assessment/mapping.json, assertion status, critical exclusion, evidence span and duplicate checks, and the engine's EvidenceStore as the only authority.",
     "ai_questions": {
@@ -11354,7 +11374,7 @@
       "kind": "AI (LLM)",
       "status": "Implemented but incompletely tested",
       "purpose": "Propose acts for a sentence; never credits.",
-      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022).",
+      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022). Critical-mass cap 0.05 and the engine's calibrated evidence thresholds since 20 Oct 2026 (p1-ai-language-s15).",
       "models": [
        "MC-03"
       ],
@@ -11393,7 +11413,8 @@
       "tasks": [
        "p1-ai-language-s06",
        "p1-ai-language-s07",
-       "p1-ai-infrastructure-s04"
+       "p1-ai-infrastructure-s04",
+       "p1-ai-language-s15"
       ]
      },
      {
@@ -11534,6 +11555,10 @@
      {
       "date": "2026-10-19",
       "change": "Context-aware interpretation with deterministic validation chosen (ADR-0022); Qwen 4B kept out of the live path (rubric evaluator NO-GO); NLI zero-shot rejected."
+     },
+     {
+      "date": "2026-10-20",
+      "change": "Recall follow-up (p1-ai-language-s15): the claim that the critical-mass cap causes most misses was traced and confirmed with a qualification; cap 0.03 to 0.05, engine thresholds exported from the head, assertion-layer holes closed; synthetic, gate OFF."
      }
     ]
    },
@@ -25355,7 +25380,8 @@
     "p1-ai-language-s11",
     "p1-ai-language-s12",
     "p1-ai-language-s13",
-    "p1-ai-language-s14"
+    "p1-ai-language-s14",
+    "p1-ai-language-s15"
    ],
    "features": [
     "C36",

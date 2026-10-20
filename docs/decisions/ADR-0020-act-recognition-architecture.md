@@ -34,3 +34,6 @@ The classifier stays OFF. What is established: on synthetic, constructed data fr
 
 ## Revisit if
 An independent set exists; a second author's sentences show a different picture; a model with a calibrated critical-content detector appears; the critical-mass guard is replaced by a dedicated detector (P3-04).
+
+## Addendum, 20 October 2026
+The retained gate (decision 3) was changed on evidence in the recall follow-up of ADR-0022: the head's critical-mass cap went from 0.03 to 0.05 and the assertion check gained a shared speaker-role list, a wider class of delay markers and first-person conditionals; the previous behaviour, the evidence and the rollback are in `docs/research/recall_diagnosis.md` and `tools/bench/recall_frozen.json`. The 0/40 critical and 0/300 non-assertive figures above were re-measured on the revised gate (still 0).
