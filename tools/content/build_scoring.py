@@ -14,6 +14,7 @@ The builder fails if an item id found in the source code or the content has no r
 from __future__ import annotations
 
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -22,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RUBRIC = ROOT / "content" / "scoring" / "rubric.json"
 MAPPING = ROOT / "content" / "assessment" / "mapping.json"
 TEMPLATES = ROOT / "content" / "debrief" / "templates.json"
+HEAD = ROOT / "content" / "assessment" / "act_head_hybrid.json"
 REF = "SR-2864"          # the 22 behaviours and what is evidence for each (guide section 81)
 REF_RUBRIC = "SR-2865"   # points, weights, threshold and sentences (design values)
 
@@ -146,13 +148,20 @@ def build() -> dict[Path, str]:
     }
     mapping = {
         "behaviours": BEHAVIOURS,
-        "thresholds": {"default": 0.8, "per_act": {}, "note": "no classifier exists in P0; the default is the guide's example and is replaced by the calibration export when one exists"},
+        "thresholds": {"default": 0.8, "per_act": per_act_thresholds(), "note": "per-act evidence thresholds are the classifier head's calibrated credit thresholds (content/assessment/act_head_hybrid.json) floored to three decimals, exported by tools/content/build_scoring.py so the engine never refuses what the gate credited; the default 0.8 (the guide's example, provisional SR-2865) applies to an act the head does not credit"},
         "critical_acts": ["CONFIRM_IDENTITY", "STATE_ALLERGY", "CONSENT_SIGN", "HANDOVER_CRITICAL_ELEMENT", "SBAR_ELEMENT"],
         "refs": [REF, REF_RUBRIC],
     }
     templates = {"sentences": SENTENCES, "placeholders": ["label", "rule_id", "source"], "refs": [REF_RUBRIC]}
     dump = lambda d: json.dumps(d, indent=1, ensure_ascii=False) + "\n"
     return {RUBRIC: dump(rubric), MAPPING: dump(mapping), TEMPLATES: dump(templates)}
+
+
+def per_act_thresholds() -> dict[str, float]:
+    """The engine's per-act evidence thresholds: the classifier head's calibrated credit thresholds (content/assessment/act_head_hybrid.json, ADR-0016) FLOORED to three decimals. The interpretation offer carries its probability rounded to three decimals, so a threshold
+    rounded up could refuse evidence the gate credited; floored, the engine never refuses what the gate credited at its own threshold and never accepts below it. A critical act has no threshold (it is refused whatever its confidence)."""
+    head = json.loads(HEAD.read_text(encoding="utf-8"))
+    return {act: math.floor(t * 1000) / 1000 for act, t in sorted(head["thresholds"].items()) if t is not None}
 
 
 def critical_act_problems(mapping: dict) -> list[str]:

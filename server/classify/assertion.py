@@ -16,24 +16,34 @@ import re
 _VERBS = (r"(ask|asked|explain|explained|tell|told|check|checked|repeat|repeated|order|ordered|reassure|reassured|mention|mentioned|go over|went over|cover|covered|confirm|confirmed|request|requested|"
            r"clarif\w+|answer\w*|inform\w*|note[ds]?|acknowledg\w+|bleep\w*|clip\w*|rais\w+|lift\w*|put|listen\w*|press\w*|arrang\w+|send|read|call\w*|escalat\w+|report\w*|describ\w+|offer\w*|promis\w+|examin\w+|measur\w+|comfort\w*)")
 _VERBS_R = _VERBS.replace("|say|said", "")
+# Who else can be the one acting (one closed list for every pattern below; before 20 October 2026 four patterns each carried their own shorter copy, and "the technician will report the fault" was credited): ward, theatre, laboratory and imaging staff.
+_ROLES = (r"registrar|nurse|consultant|anaesthetist|anesthetist|surgeon|porter|doctor|dr\.? \w+|colleague|team|sister|technician|radiographer|sonographer|physio|physiotherapist|pharmacist|phlebotomist|midwife|matron|odp|hca|healthcare assistant|"
+          r"anaesthetic assistant|assistant|student|trainee|resident|specialist|senior|junior|engineer|manager|receptionist|ward clerk|chaplain|interpreter|lab|laboratory")
+_RANK = r"(senior |junior |duty |ward |theatre |charge |scrub |night |lead |on-call |on call )?"
+_THE_ROLE = rf"the {_RANK}({_ROLES})"                              # "the registrar", "the senior nurse"
+_WHO = rf"(the |a |my |our )?{_RANK}({_ROLES})"                    # the same, with the article optional
+_LATER = (r"in a moment|in a minute|in a bit|in (a|an|\d+|a few|a couple of|some) (minutes?|seconds?|moments?)|shortly|later|after (this|that|the|we|i|you|your|my|our)\b|once we start|give me a (minute|moment)|at some point|"
+          r"tomorrow|tonight|this (afternoon|evening)|next (week|time)|when i (have|get|am)|before we (go|start|begin)|once (i|we|you) (have|has|get|are|am)\b")
 _PATTERNS = [
     ("incomplete", re.compile(r"(\.\.\.|…|\s-)\s*$")),
     ("denied", re.compile(rf"\b(haven'?t|have not|hasn'?t|didn'?t|did not|never|won'?t|will not|not going to|am not going to|i'?m not going to|can'?t|cannot|wasn'?t going to|no longer)\b(\s+\w+){{0,3}}\s+{_VERBS}\b")),
     ("denied", re.compile(rf"\b(not (yet|now|today))\b(\s+\w+){{0,2}}\s+{_VERBS}\b")),
     ("denied", re.compile(rf"\b(was going to|meant to|about to|wanted to|intended to)\b(\s+\w+){{0,2}}\s+{_VERBS}\b[^.?!]{{0,40}}\b(but|then)\b[^.?!]{{0,25}}\b(forget|not|didn'?t|won'?t|never|can'?t|haven'?t|no time|no chance|out of time)")),
-    ("hypothetical", re.compile(r"\b(if i (were|was|had|did)\b|had i\b|were i to\b|(?<!can )(?<!only )imagine\b|pretend\b|what if\b|hypothetical)")),
+    ("hypothetical", re.compile(r"\b(if i (were|was|had|did|asked|said|told|explained|ordered|called|reassured|checked|mentioned)\b|had i\b|were i to\b|(?<!can )(?<!only )imagine\b|pretend\b|what if\b|hypothetical)")),
     ("hypothetical", re.compile(rf"\b(maybe|perhaps) (i|we) (should|could|ought to|might)\b[^.?!]{{0,60}}\b(but|though)\b[^.?!]{{0,20}}\b(won'?t|will not|not|don'?t)")),
-    ("reported", re.compile(rf"\b(he|she|they|the (nurse|registrar|doctor|consultant|surgeon|sister|anaesthetist|team)|someone|nobody|no one)\b(\s+\w+){{0,2}}\s+(said|says|told|tell|promised|will|would|asked|wants|wanted|is going to|was going to|has yet to)\b[^.?!]{{0,40}}\b{_VERBS}\b")),
+    ("reported", re.compile(rf"\b(he|she|they|{_THE_ROLE}|someone|nobody|no one)\b(\s+\w+){{0,2}}\s+(said|says|told|tell|promised|will|would|asked|wants|wanted|is going to|was going to|has yet to)\b[^.?!]{{0,40}}\b{_VERBS}\b")),
     ("reported", re.compile(r"\b(nobody|no one|nobody has|no one has)\b[^.?!]{0,30}\b(told|said|asked|explained|reassured)\b")),
-    ("reported", re.compile(r"\b(the nurse|the registrar|the doctor|the consultant|the surgeon|she|he|they) (said|says|told me|asked me|promised)\b[^.?!]{0,50}\b(later|tomorrow|afterwards|soon|yet)\b")),
+    ("reported", re.compile(rf"\b({_THE_ROLE}|she|he|they) (said|says|told me|asked me|promised)\b[^.?!]{{0,50}}\b(later|tomorrow|afterwards|soon|yet)\b")),
     # fifth session, from the failures of the first benchmark test split (tests/action_bench_v1): intentions that are put off, someone else doing the speaking, other ways of reporting and imagining
-    ("intended", re.compile(r"^(?=.*\b(in a moment|in a minute|shortly|later|after this|once we start|give me a (minute|moment)|in a bit|after we)\b).*\b(i'?ll|i will|i shall|i'?m planning to|i am planning to|i plan to|i intend to|planning to|intend to)\b")),
-    ("other_actor", re.compile(rf"\b(the |a |my |our )?(registrar|nurse|consultant|anaesthetist|surgeon|porter|doctor|dr\.? \w+|colleague|team|sister)\b[^.?!]{{0,25}}\b(will|is going to|is about to|are going to|can|should|shall|to)\b(\s+\w+){{0,3}}\s+{_VERBS}\b")),
+    ("intended", re.compile(rf"^(?=.*\b({_LATER})).*\b(i'?ll|i will|i shall|i'?m planning to|i am planning to|i plan to|i intend to|planning to|intend to)\b")),
+    ("other_actor", re.compile(rf"\b{_WHO}\b[^.?!]{{0,25}}\b(will|is going to|is about to|are going to|can|should|shall|to)\b(\s+\w+){{0,3}}\s+({_VERBS}|talk\w*|speak|discuss\w*|advis\w+)\b")),
     ("other_actor", re.compile(rf"\blet (the |a |my |our )?[a-z ]{{0,25}}?\b{_VERBS}\b")),
     ("reported", re.compile(r"\b(apparently|according to|i heard that|heard that|my colleague says|colleague says|the chart says)\b")),
     ("hypothetical", re.compile(r"\b(say|suppose|supposing) (that )?(i|we)\b|\bpicture (me|us)\b")),
-    ("denied", re.compile(r"\b(haven'?t|have not|hasn'?t|never|not going to|won'?t|will not)( yet| now)?\s+(said|say)\b")),
-    ("other_actor", re.compile(r"\b(registrar|nurse|consultant|anaesthetist|surgeon|porter|doctor|dr\.? \w+|colleague)\b[^.?!]{0,25}\b(will|is going to|is about to|can|should|to)\s+say\b")),
+    ("denied", re.compile(r"\b(haven'?t|have not|hasn'?t|never|not going to|won'?t|will not|didn'?t|did not)( yet| now)?\s+(said|say)\b")),
+    ("other_actor", re.compile(rf"\b({_ROLES})\b[^.?!]{{0,25}}\b(will|is going to|is about to|can|should|to)\s+say\b")),
+    # 20 October 2026 (recall follow-up, ADR-0022): a conditional that is stated or asked, not done ("If the suction were broken I would report it", "If you asked how long it takes, I would say an hour")
+    ("hypothetical", re.compile(r"^if\b[^.?!]{0,100}([, ]\s*(i|we|you|they|he|she|it|that|this)('d| would| could| might)\b|,\s*would\b|\bwhat would you\b)")),
 ]
 
 

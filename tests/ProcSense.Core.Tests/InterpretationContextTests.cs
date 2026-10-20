@@ -172,6 +172,24 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void The_engine_evidence_thresholds_are_the_classifiers_calibrated_ones_a_critical_act_has_none_and_the_boundary_is_exact()
+        {
+            Assert.Equal(14, Tables.Thresholds.Count);                                                                // every act the classifier head can credit
+            foreach (var kv in Tables.Thresholds)
+            {
+                Assert.InRange(kv.Value, 0.1, Tables.DefaultThreshold);                                               // calibrated, never above the old 0.8 placeholder
+                Assert.DoesNotContain(kv.Key, Tables.CriticalActs);                                                   // a critical act has no threshold: it is refused whatever its confidence
+                var behaviour = Tables.Behaviours.First(b => b.AiActs.Contains(kv.Key));
+                int step = behaviour.Steps[0];
+                var at = new EvidenceStore(Tables).Submit(kv.Key, "", "", kv.Value, new[] { step }, new[] { 1 });
+                Assert.True(at.Accepted, kv.Key + " at its threshold: " + at.Reason);                                 // evidence the gate credited at its own threshold is accepted
+                var below = new EvidenceStore(Tables).Submit(kv.Key, "", "", kv.Value - 0.001, new[] { step }, new[] { 1 });
+                Assert.Equal(EvidenceStore.LowConfidence, below.Reason);                                              // and one notch below is refused
+            }
+            Assert.Equal(0.8, Tables.DefaultThreshold);                                                               // the default still applies to an act the head does not credit
+        }
+
+        [Fact]
         public void A_critical_result_waiting_for_acknowledgement_and_a_pending_question_show_in_the_context()
         {
             var s = Start();

@@ -186,6 +186,10 @@ def main(argv: list[str]) -> int:
               "note": "Embedding and word features in one regression; the first reader of the credit gate, never trusted alone (server/classify/ensemble.py). Credit needs the act to be neither NONE nor critical, its probability to reach the threshold, no critical cue and a critical-act probability below critical_mass_max.",
               "critical_mass_max": cap_h if cap_h <= 1 else None,
               "critical_mass_tuning": {"split": "v2 dev (precision) and 96 held-out critical sentences (adversarial hold-out 3 and the critical rows of challenge v5, not in training)", "rule": "the TF-IDF head must name the same act; the cap is the largest of the grid at which no held-out critical sentence is credited", "grid": {str(k): v for k, v in tab_h.items()}, "held_out_false_credit_by_cap": {str(k): v for k, v in held_tab.items()}, "chosen": cap_h, "met_both_conditions": met_h}}
+    rev = json.loads((ROOT / "tools" / "bench" / "recall_cap_revision.json").read_text(encoding="utf-8"))        # 20 Oct 2026: the hybrid head's cap was raised by evidence the grid above does not see (tools/bench/recall_frozen.json); a rebuild keeps it
+    if rev["to"] > (hybrid["critical_mass_max"] or 0):
+        hybrid["critical_mass_max"], hybrid["critical_mass_tuning"]["revision"] = rev["to"], rev
+        cap_h = rev["to"]
     print(json.dumps({"rows": len(data["train"]), "embedding": {"C": c_e, "dev_macro_f1": round(f_e, 4), "cap": cap_e, "met": met_e}, "tfidf": {"C": c_t, "dev_macro_f1": round(f_t, 4), "cap": cap_t, "met": met_t}, "hybrid": {"C": c_h, "dev_macro_f1": round(f_h, 4), "cap": cap_h, "met": met_h}}, indent=1))
     if a.dry_run:
         tmp.unlink()

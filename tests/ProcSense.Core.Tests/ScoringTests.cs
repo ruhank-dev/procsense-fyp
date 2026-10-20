@@ -263,7 +263,8 @@ namespace ProcSense.Core.Tests
         public void T_EM3_a_low_confidence_act_is_recorded_but_not_credited_and_a_good_one_is()
         {
             var store = new EvidenceStore(Tables);
-            var low = store.Submit("CHECK_UNDERSTANDING", "consent", "so you understand?", 0.55, 9, new[] { 7 });
+            double threshold = Tables.ThresholdFor("CHECK_UNDERSTANDING");                                            // the classifier head's calibrated threshold, exported to mapping.json (20 Oct 2026)
+            var low = store.Submit("CHECK_UNDERSTANDING", "consent", "so you understand?", threshold - 0.01, 9, new[] { 7 });
             Assert.False(low.Accepted);
             Assert.Equal(EvidenceStore.LowConfidence, low.Reason);
             var good = store.Submit("CHECK_UNDERSTANDING", "consent", "can you tell me back what we agreed?", 0.88, 9, new[] { 8 });

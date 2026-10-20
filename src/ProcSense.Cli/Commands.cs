@@ -17,7 +17,8 @@ internal static class Commands
         "  procsense-sim report --log session.jsonl --out report.html [--json report.json] [--content dir] [--skip-integrity]\n" +
         "  procsense-sim next-case --history dir --trainee pseudonym [--mode practice|assessment] [--content dir]\n" +
         "  procsense-sim record-session --history dir --trainee pseudonym --facts report.json\n" +
-        "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]";
+        "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]\n" +
+        "  procsense-sim evidence-check --offers offers.json [--out verdicts.json] [--per-act thresholds.json] [--content dir]";
 
     public static int Run(string[] args)
     {
@@ -34,6 +35,7 @@ internal static class Commands
                 "next-case" => NextCase(opts),
                 "record-session" => RecordSession(opts),
                 "golden" => Golden(opts),
+                "evidence-check" => EvidenceCheck(opts),
                 _ => Fail($"unknown command '{args[0]}'\n{Usage}"),
             };
         }
@@ -41,6 +43,34 @@ internal static class Commands
         {
             return Fail(e.Message);
         }
+    }
+
+    /// <summary>
+    /// Runs offered speech evidence through the engine's own <see cref="ProcSense.Core.Scoring.EvidenceStore"/> (ADR-0022 follow-up): each offer in the file ({"id","act","confidence","steps":[...]}) is submitted to a fresh store, so one offer never changes another's answer,
+    /// and the verdict (accepted, reason, behaviour) is written as JSON. It measures what the engine would accept; it changes nothing and decides nothing.
+    /// </summary>
+    private static int EvidenceCheck(Dictionary<string, string> o)
+    {
+        var content = ContentLoader.Load(Reader(o), "VAR-S1-A");
+        var offers = (List<object?>)MiniJson.Parse(File.ReadAllText(Need(o, "offers")))!;
+        var tables = content.Scoring;
+        if (o.TryGetValue("per-act", out var perActPath))                  // a what-if: judge the same offers with other per-act thresholds (a JSON object, act to number); nothing is written
+        {
+            var per = ((Dictionary<string, object?>)MiniJson.Parse(File.ReadAllText(perActPath))!).ToDictionary(kv => kv.Key, kv => Convert.ToDouble(kv.Value, CultureInfo.InvariantCulture));
+            tables = new ProcSense.Core.Scoring.ScoreTables(tables.Behaviours, tables.Rules, tables.Points, tables.Weights, tables.DefaultThreshold, per, tables.CriticalActs, tables.Sentences);
+        }
+        var verdicts = new List<string>();
+        foreach (var item in offers)
+        {
+            var d = (Dictionary<string, object?>)item!;
+            var steps = ((List<object?>)d["steps"]!).Select(x => (int)Convert.ToInt64(x, CultureInfo.InvariantCulture)).ToList();
+            var store = new ProcSense.Core.Scoring.EvidenceStore(tables);
+            var r = store.Submit((string)d["act"]!, "", "", Convert.ToDouble(d["confidence"], CultureInfo.InvariantCulture), steps, new[] { 0 });
+            verdicts.Add($"{{\"id\":\"{d["id"]}\",\"accepted\":{(r.Accepted ? "true" : "false")},\"reason\":\"{r.Reason.Replace("\"", "'")}\",\"behaviour\":\"{r.Behaviour}\"}}");
+        }
+        string text = "[" + string.Join(",\n", verdicts) + "]\n";
+        if (o.TryGetValue("out", out var path)) File.WriteAllText(path, text); else Console.Write(text);
+        return 0;
     }
 
     private static int RunCase(Dictionary<string, string> o)
