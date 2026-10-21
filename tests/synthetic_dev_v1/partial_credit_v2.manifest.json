@@ -1,0 +1,24 @@
+{
+ "set": "partial_credit_v2",
+ "kind": "synthetic DEVELOPMENT evidence: 32 short AI-written items written and frozen before the revised prompt was run; evaluated once; not independent, not human-labelled",
+ "bands": {
+  "full": [
+   0.9,
+   1.0
+  ],
+  "partial": [
+   0.1,
+   0.9
+  ],
+  "wrong": [
+   0.0,
+   0.25
+  ],
+  "irrelevant": [
+   0.0,
+   0.1
+  ]
+ },
+ "n": 32,
+ "sha256": "2aec2d73773bca66dba64e289c885e6cb52c0d14e2fcadc750f2965bb69d5a4c"
+}

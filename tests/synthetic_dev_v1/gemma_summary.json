@@ -1,0 +1,1935 @@
+{
+ "n": 493,
+ "baseline_classifier": {
+  "view": "shipped classifier (baseline)",
+  "eligible": 176,
+  "no_credit": 317,
+  "legitimate_recall": [
+   84,
+   176,
+   0.4773
+  ],
+  "offered_precision": [
+   84,
+   99,
+   0.8485
+  ],
+  "credited_precision": [
+   84,
+   99,
+   0.8485
+  ],
+  "false_offers_on_no_credit": 13,
+  "false_credits_on_no_credit": 13,
+  "wrong_act_credits_on_eligible": 2,
+  "critical_items": 91,
+  "critical_false_offers": 0,
+  "critical_false_credits": 0,
+  "no_credit_rejection": [
+   304,
+   317,
+   0.959
+  ]
+ },
+ "gemma_raw": {
+  "view": "Gemma raw reading (no gate, no scoring; a single supported non-critical objective counts as an offer)",
+  "eligible": 176,
+  "no_credit": 317,
+  "legitimate_recall": [
+   140,
+   176,
+   0.7955
+  ],
+  "offered_precision": [
+   140,
+   219,
+   0.6393
+  ],
+  "credited_precision": [
+   140,
+   219,
+   0.6393
+  ],
+  "false_offers_on_no_credit": 74,
+  "false_credits_on_no_credit": 74,
+  "wrong_act_credits_on_eligible": 5,
+  "critical_items": 91,
+  "critical_false_offers": 3,
+  "critical_false_credits": 3,
+  "no_credit_rejection": [
+   243,
+   317,
+   0.7666
+  ]
+ },
+ "gemma_gated": {
+  "view": "Gemma + existing gates (offers, before the engine)",
+  "eligible": 176,
+  "no_credit": 317,
+  "legitimate_recall": [
+   77,
+   176,
+   0.4375
+  ],
+  "offered_precision": [
+   77,
+   79,
+   0.9747
+  ],
+  "credited_precision": [
+   77,
+   79,
+   0.9747
+  ],
+  "false_offers_on_no_credit": 2,
+  "false_credits_on_no_credit": 2,
+  "wrong_act_credits_on_eligible": 0,
+  "critical_items": 91,
+  "critical_false_offers": 0,
+  "critical_false_credits": 0,
+  "no_credit_rejection": [
+   315,
+   317,
+   0.9937
+  ]
+ },
+ "gemma_final": {
+  "view": "Gemma + gates + engine (final credit)",
+  "eligible": 176,
+  "no_credit": 317,
+  "legitimate_recall": [
+   77,
+   176,
+   0.4375
+  ],
+  "offered_precision": [
+   77,
+   79,
+   0.9747
+  ],
+  "credited_precision": [
+   77,
+   79,
+   0.9747
+  ],
+  "false_offers_on_no_credit": 2,
+  "false_credits_on_no_credit": 2,
+  "wrong_act_credits_on_eligible": 0,
+  "critical_items": 91,
+  "critical_false_offers": 0,
+  "critical_false_credits": 0,
+  "no_credit_rejection": [
+   315,
+   317,
+   0.9937
+  ]
+ },
+ "reader": {
+  "items": 493,
+  "status": {
+   "VALID": 486,
+   "INVALID": 7
+  },
+  "valid_rate": 0.9858,
+  "error_or_rejection_codes": {
+   "SCHEMA": 21
+  },
+  "retried_items": 14,
+  "provider_calls": 507,
+  "tokens": 722426,
+  "stopped": "",
+  "prompt_tokens": 697019,
+  "output_tokens": 25407,
+  "answered_by": [
+   "gemma4:31b"
+  ],
+  "wall_ms": {
+   "median": 690,
+   "p95": 1097,
+   "max": 7849,
+   "n": 507
+  },
+  "consulted_in_pipeline": 246,
+  "not_consulted_in_pipeline": 247,
+  "not_consulted_reasons": {
+   "shipped gate before the model: critical topic menu": 117,
+   "shipped assertion layer before the model (status denied)": 31,
+   "shipped assertion layer before the model (status hypothetical)": 22,
+   "shipped assertion layer before the model (status reported)": 21,
+   "shipped assertion layer before the model (status other_actor)": 19,
+   "shipped assertion layer before the model (status intended)": 18,
+   "shipped gate before the model: no eligible objective": 14,
+   "shipped assertion layer before the model (status contentless)": 4,
+   "shipped assertion layer before the model (status hedged)": 1
+  }
+ },
+ "by_objective": {
+  "baseline": {
+   "ACKNOWLEDGE_EMOTION": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     7,
+     14
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "ACKNOWLEDGE_FACT": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     7,
+     12
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "ANSWER_QUESTION": {
+    "n": 32,
+    "eligible": 12,
+    "recall": [
+     6,
+     12
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "ASK_TOPIC": {
+    "n": 27,
+    "eligible": 14,
+    "recall": [
+     4,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CHECK_UNDERSTANDING": {
+    "n": 22,
+    "eligible": 10,
+    "recall": [
+     5,
+     10
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CLARIFY": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     5,
+     12
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "CLOSED_LOOP": {
+    "n": 30,
+    "eligible": 11,
+    "recall": [
+     4,
+     11
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "CONFIRM_IDENTITY": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CONSENT_SIGN": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "ESCALATE_SPEECH": {
+    "n": 23,
+    "eligible": 11,
+    "recall": [
+     3,
+     11
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "EXPLAIN_ACTION": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     9,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "EXPLAIN_PROCEDURE": {
+    "n": 27,
+    "eligible": 15,
+    "recall": [
+     7,
+     15
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "EXPLAIN_TEST": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     8,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "NONE": {
+    "n": 54,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "REASSURE": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     4,
+     12
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "REPORT_FAULT": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     6,
+     12
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "SBAR_ELEMENT": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "STATE_ALLERGY": {
+    "n": 15,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "VOICE_ORDER": {
+    "n": 25,
+    "eligible": 13,
+    "recall": [
+     9,
+     13
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   }
+  },
+  "gemma_raw": {
+   "ACKNOWLEDGE_EMOTION": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     10,
+     14
+    ],
+    "false_offers": 5,
+    "false_credits": 5
+   },
+   "ACKNOWLEDGE_FACT": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     11,
+     12
+    ],
+    "false_offers": 9,
+    "false_credits": 9
+   },
+   "ANSWER_QUESTION": {
+    "n": 32,
+    "eligible": 12,
+    "recall": [
+     8,
+     12
+    ],
+    "false_offers": 10,
+    "false_credits": 10
+   },
+   "ASK_TOPIC": {
+    "n": 27,
+    "eligible": 14,
+    "recall": [
+     12,
+     14
+    ],
+    "false_offers": 6,
+    "false_credits": 6
+   },
+   "CHECK_UNDERSTANDING": {
+    "n": 22,
+    "eligible": 10,
+    "recall": [
+     9,
+     10
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "CLARIFY": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     9,
+     12
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "CLOSED_LOOP": {
+    "n": 30,
+    "eligible": 11,
+    "recall": [
+     7,
+     11
+    ],
+    "false_offers": 10,
+    "false_credits": 10
+   },
+   "CONFIRM_IDENTITY": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CONSENT_SIGN": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "ESCALATE_SPEECH": {
+    "n": 23,
+    "eligible": 11,
+    "recall": [
+     8,
+     11
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "EXPLAIN_ACTION": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     12,
+     14
+    ],
+    "false_offers": 7,
+    "false_credits": 7
+   },
+   "EXPLAIN_PROCEDURE": {
+    "n": 27,
+    "eligible": 15,
+    "recall": [
+     9,
+     15
+    ],
+    "false_offers": 4,
+    "false_credits": 4
+   },
+   "EXPLAIN_TEST": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     12,
+     14
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "NONE": {
+    "n": 54,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "REASSURE": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     11,
+     12
+    ],
+    "false_offers": 8,
+    "false_credits": 8
+   },
+   "REPORT_FAULT": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     11,
+     12
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "SBAR_ELEMENT": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "STATE_ALLERGY": {
+    "n": 15,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "VOICE_ORDER": {
+    "n": 25,
+    "eligible": 13,
+    "recall": [
+     11,
+     13
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   }
+  },
+  "gemma_final": {
+   "ACKNOWLEDGE_EMOTION": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     6,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "ACKNOWLEDGE_FACT": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     7,
+     12
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "ANSWER_QUESTION": {
+    "n": 32,
+    "eligible": 12,
+    "recall": [
+     4,
+     12
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "ASK_TOPIC": {
+    "n": 27,
+    "eligible": 14,
+    "recall": [
+     5,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CHECK_UNDERSTANDING": {
+    "n": 22,
+    "eligible": 10,
+    "recall": [
+     5,
+     10
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CLARIFY": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     4,
+     12
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CLOSED_LOOP": {
+    "n": 30,
+    "eligible": 11,
+    "recall": [
+     3,
+     11
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CONFIRM_IDENTITY": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "CONSENT_SIGN": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "ESCALATE_SPEECH": {
+    "n": 23,
+    "eligible": 11,
+    "recall": [
+     2,
+     11
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "EXPLAIN_ACTION": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     9,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "EXPLAIN_PROCEDURE": {
+    "n": 27,
+    "eligible": 15,
+    "recall": [
+     7,
+     15
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "EXPLAIN_TEST": {
+    "n": 26,
+    "eligible": 14,
+    "recall": [
+     7,
+     14
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "NONE": {
+    "n": 54,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "REASSURE": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     4,
+     12
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "REPORT_FAULT": {
+    "n": 24,
+    "eligible": 12,
+    "recall": [
+     6,
+     12
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "SBAR_ELEMENT": {
+    "n": 16,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "STATE_ALLERGY": {
+    "n": 15,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "VOICE_ORDER": {
+    "n": 25,
+    "eligible": 13,
+    "recall": [
+     8,
+     13
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   }
+  }
+ },
+ "by_situation": {
+  "baseline": {
+   "critical_topic_discussion": {
+    "n": 5,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "filler_or_noise_words": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "hypothetical": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "intended_later": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 7,
+    "false_credits": 7
+   },
+   "near_miss": {
+    "n": 11,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "negated": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "off_topic_statement": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "other_actor_does_it": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "performed": {
+    "n": 274,
+    "eligible": 176,
+    "recall": [
+     84,
+     176
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "reported_about_someone_else": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "small_talk": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "thinking_aloud": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   }
+  },
+  "gemma_raw": {
+   "critical_topic_discussion": {
+    "n": 5,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "filler_or_noise_words": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "hypothetical": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "intended_later": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "near_miss": {
+    "n": 11,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "negated": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 12,
+    "false_credits": 12
+   },
+   "off_topic_statement": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "other_actor_does_it": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 6,
+    "false_credits": 6
+   },
+   "performed": {
+    "n": 274,
+    "eligible": 176,
+    "recall": [
+     140,
+     176
+    ],
+    "false_offers": 49,
+    "false_credits": 49
+   },
+   "reported_about_someone_else": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 5,
+    "false_credits": 5
+   },
+   "small_talk": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "thinking_aloud": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   }
+  },
+  "gemma_final": {
+   "critical_topic_discussion": {
+    "n": 5,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "filler_or_noise_words": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "hypothetical": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "intended_later": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "near_miss": {
+    "n": 11,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "negated": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "off_topic_statement": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "other_actor_does_it": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "performed": {
+    "n": 274,
+    "eligible": 176,
+    "recall": [
+     77,
+     176
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "reported_about_someone_else": {
+    "n": 33,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "small_talk": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "thinking_aloud": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   }
+  }
+ },
+ "by_class": {
+  "baseline": {
+   "A": {
+    "n": 146,
+    "eligible": 146,
+    "recall": [
+     75,
+     146
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "B": {
+    "n": 44,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 1,
+    "false_credits": 1
+   },
+   "C": {
+    "n": 140,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 12,
+    "false_credits": 12
+   },
+   "D": {
+    "n": 54,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "E": {
+    "n": 30,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "F": {
+    "n": 49,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "G": {
+    "n": 30,
+    "eligible": 30,
+    "recall": [
+     9,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   }
+  },
+  "gemma_raw": {
+   "A": {
+    "n": 146,
+    "eligible": 146,
+    "recall": [
+     133,
+     146
+    ],
+    "false_offers": 5,
+    "false_credits": 5
+   },
+   "B": {
+    "n": 44,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 41,
+    "false_credits": 41
+   },
+   "C": {
+    "n": 140,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 28,
+    "false_credits": 28
+   },
+   "D": {
+    "n": 54,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 3,
+    "false_credits": 3
+   },
+   "E": {
+    "n": 30,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "F": {
+    "n": 49,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "G": {
+    "n": 30,
+    "eligible": 30,
+    "recall": [
+     7,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   }
+  },
+  "gemma_final": {
+   "A": {
+    "n": 146,
+    "eligible": 146,
+    "recall": [
+     77,
+     146
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "B": {
+    "n": 44,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "C": {
+    "n": 140,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   },
+   "D": {
+    "n": 54,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "E": {
+    "n": 30,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "F": {
+    "n": 49,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "G": {
+    "n": 30,
+    "eligible": 30,
+    "recall": [
+     0,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   }
+  }
+ },
+ "by_form": {
+  "baseline": {
+   "multi_clause": {
+    "n": 30,
+    "eligible": 30,
+    "recall": [
+     9,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "noise": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "question": {
+    "n": 57,
+    "eligible": 30,
+    "recall": [
+     16,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "request_or_instruction": {
+    "n": 28,
+    "eligible": 15,
+    "recall": [
+     4,
+     15
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "statement": {
+    "n": 370,
+    "eligible": 101,
+    "recall": [
+     55,
+     101
+    ],
+    "false_offers": 15,
+    "false_credits": 15
+   }
+  },
+  "gemma_raw": {
+   "multi_clause": {
+    "n": 30,
+    "eligible": 30,
+    "recall": [
+     7,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "noise": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "question": {
+    "n": 57,
+    "eligible": 30,
+    "recall": [
+     28,
+     30
+    ],
+    "false_offers": 8,
+    "false_credits": 8
+   },
+   "request_or_instruction": {
+    "n": 28,
+    "eligible": 15,
+    "recall": [
+     14,
+     15
+    ],
+    "false_offers": 8,
+    "false_credits": 8
+   },
+   "statement": {
+    "n": 370,
+    "eligible": 101,
+    "recall": [
+     91,
+     101
+    ],
+    "false_offers": 63,
+    "false_credits": 63
+   }
+  },
+  "gemma_final": {
+   "multi_clause": {
+    "n": 30,
+    "eligible": 30,
+    "recall": [
+     0,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "noise": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "question": {
+    "n": 57,
+    "eligible": 30,
+    "recall": [
+     16,
+     30
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "request_or_instruction": {
+    "n": 28,
+    "eligible": 15,
+    "recall": [
+     5,
+     15
+    ],
+    "false_offers": 0,
+    "false_credits": 0
+   },
+   "statement": {
+    "n": 370,
+    "eligible": 101,
+    "recall": [
+     56,
+     101
+    ],
+    "false_offers": 2,
+    "false_credits": 2
+   }
+  }
+ },
+ "contrast_sets": {
+  "n": 33,
+  "baseline_all_correct": 16,
+  "gemma_raw_all_correct": 19,
+  "gemma_final_all_correct": 22,
+  "per_set": {
+   "SET-ASK_TOPIC-0": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-ASK_TOPIC-1": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-CLARIFY-0": {
+    "baseline": false,
+    "raw": true,
+    "final": false
+   },
+   "SET-CLARIFY-1": {
+    "baseline": false,
+    "raw": true,
+    "final": true
+   },
+   "SET-ANSWER_QUESTION-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-ANSWER_QUESTION-1": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-EXPLAIN_PROCEDURE-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-EXPLAIN_PROCEDURE-1": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-EXPLAIN_TEST-0": {
+    "baseline": true,
+    "raw": false,
+    "final": true
+   },
+   "SET-EXPLAIN_TEST-1": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-EXPLAIN_ACTION-0": {
+    "baseline": true,
+    "raw": false,
+    "final": true
+   },
+   "SET-EXPLAIN_ACTION-1": {
+    "baseline": true,
+    "raw": false,
+    "final": true
+   },
+   "SET-CHECK_UNDERSTANDING-0": {
+    "baseline": true,
+    "raw": false,
+    "final": true
+   },
+   "SET-CHECK_UNDERSTANDING-1": {
+    "baseline": false,
+    "raw": true,
+    "final": false
+   },
+   "SET-ACKNOWLEDGE_EMOTION-0": {
+    "baseline": false,
+    "raw": false,
+    "final": true
+   },
+   "SET-ACKNOWLEDGE_EMOTION-1": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-REASSURE-0": {
+    "baseline": true,
+    "raw": false,
+    "final": true
+   },
+   "SET-REASSURE-1": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-ACKNOWLEDGE_FACT-0": {
+    "baseline": true,
+    "raw": false,
+    "final": true
+   },
+   "SET-ACKNOWLEDGE_FACT-1": {
+    "baseline": false,
+    "raw": false,
+    "final": false
+   },
+   "SET-CLOSED_LOOP-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-CLOSED_LOOP-1": {
+    "baseline": false,
+    "raw": true,
+    "final": false
+   },
+   "SET-ESCALATE_SPEECH-0": {
+    "baseline": false,
+    "raw": true,
+    "final": true
+   },
+   "SET-ESCALATE_SPEECH-1": {
+    "baseline": false,
+    "raw": true,
+    "final": true
+   },
+   "SET-REPORT_FAULT-0": {
+    "baseline": false,
+    "raw": true,
+    "final": true
+   },
+   "SET-REPORT_FAULT-1": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-VOICE_ORDER-0": {
+    "baseline": false,
+    "raw": true,
+    "final": true
+   },
+   "SET-VOICE_ORDER-1": {
+    "baseline": false,
+    "raw": true,
+    "final": false
+   },
+   "SET-CONFIRM_IDENTITY-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-STATE_ALLERGY-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-CONSENT_SIGN-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-HANDOVER_CRITICAL_ELEMENT-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   },
+   "SET-SBAR_ELEMENT-0": {
+    "baseline": true,
+    "raw": true,
+    "final": true
+   }
+  }
+ },
+ "multi_intent": {
+  "items": 30,
+  "credit_acts_total": 54,
+  "raw_credit_acts_covered": 52,
+  "raw_items_with_two_supported": 23,
+  "raw_items_all_credit_acts_covered": 28,
+  "final_credit_acts_credited": 0,
+  "baseline_credit_acts_credited": 9,
+  "final_stage": {
+   "shipped assertion layer before the model (status reported)": 2,
+   "model supported several objectives": 22,
+   "model candidate refused downstream (CRITICAL_MASS)": 2,
+   "shipped assertion layer before the model (status denied)": 2,
+   "model candidate below the evidence threshold": 1,
+   "shipped assertion layer before the model (status intended)": 1
+  }
+ },
+ "ineligible_b": {
+  "n": 44,
+  "baseline_offered": 1,
+  "gemma_raw_supported": 41,
+  "gemma_final_offered": 0,
+  "gemma_final_credited": 0,
+  "out_of_window": {
+   "n": 29,
+   "raw_supported_correct_act": 28,
+   "final_credited": 0
+  },
+  "state_absent": {
+   "n": 15,
+   "raw_supported_correct_act": 9,
+   "final_credited": 0
+  }
+ },
+ "raw_modality_by_situation": {
+  "performed": {
+   "SUPPORTED/actual/trainee": 176,
+   "no finding": 14
+  },
+  "negated": {
+   "SUPPORTED/actual/trainee": 11,
+   "NOT_SUPPORTED/negated/trainee": 11,
+   "NOT_SUPPORTED/intended/trainee": 3,
+   "no finding": 2,
+   "NOT_SUPPORTED/incomplete/trainee": 1
+  },
+  "intended_later": {
+   "NOT_SUPPORTED/intended/trainee": 26,
+   "SUPPORTED/actual/trainee": 2
+  },
+  "hypothetical": {
+   "NOT_SUPPORTED/hypothetical/trainee": 23,
+   "SUPPORTED/actual/trainee": 3,
+   "no finding": 2
+  },
+  "reported_about_someone_else": {
+   "NOT_SUPPORTED/reported/other": 18,
+   "SUPPORTED/actual/trainee": 5,
+   "reader invalid": 3,
+   "NOT_SUPPORTED/reported/trainee": 1,
+   "no finding": 1
+  },
+  "other_actor_does_it": {
+   "NOT_SUPPORTED/reported/other": 14,
+   "SUPPORTED/actual/trainee": 6,
+   "NOT_SUPPORTED/intended/other": 3,
+   "reader invalid": 3,
+   "no finding": 2
+  }
+ },
+ "eligible_understanding_vs_outcome": {
+  "Gemma raw correct -> not credited": 63,
+  "Gemma raw correct -> credited": 77,
+  "Gemma raw NOT correct -> not credited": 36
+ },
+ "eligible_gemma_correct_but_not_credited_by_stage": {
+  "model candidate refused downstream (CRITICAL_MASS)": 41,
+  "shipped gate before the model: critical topic menu": 7,
+  "model candidate below the evidence threshold": 5,
+  "shipped assertion layer before the model (status other_actor)": 3,
+  "model candidate refused downstream (NO_ACT)": 3,
+  "shipped assertion layer before the model (status denied)": 2,
+  "shipped assertion layer before the model (status reported)": 1,
+  "shipped assertion layer before the model (status intended)": 1
+ },
+ "eligible_gemma_raw_failures": {
+  "several supported (covers a gold act)": 29,
+  "wrong act supported": 5,
+  "several supported": 1,
+  "nothing supported": 1
+ },
+ "baseline_eligible_understanding_vs_outcome": {
+  "classifier head correct -> not credited": 59,
+  "classifier head correct -> credited": 84,
+  "classifier head NOT correct -> not credited": 33
+ },
+ "no_credit_raw_outcomes": {
+  "nothing supported (correct)": 148,
+  "names or supports a critical objective": 75,
+  "nothing supported": 12,
+  "falsely supports ACKNOWLEDGE_FACT": 9,
+  "falsely supports ANSWER_QUESTION": 8,
+  "falsely supports REASSURE": 7,
+  "reader unavailable or reply rejected (INVALID)": 7,
+  "falsely supports EXPLAIN_ACTION": 7,
+  "falsely supports CLOSED_LOOP": 7,
+  "falsely supports ASK_TOPIC": 6,
+  "falsely supports EXPLAIN_PROCEDURE": 6,
+  "falsely supports ACKNOWLEDGE_EMOTION": 5,
+  "falsely supports CLARIFY": 3,
+  "falsely supports EXPLAIN_TEST": 3,
+  "falsely supports CHECK_UNDERSTANDING": 3,
+  "falsely supports VOICE_ORDER": 3,
+  "supports an ordinary act on critical content": 3,
+  "falsely supports ESCALATE_SPEECH": 2,
+  "falsely supports REPORT_FAULT": 2,
+  "falsely supports REASSURE/EXPLAIN_PROCEDURE": 1
+ },
+ "no_credit_final_offers": [
+  {
+   "id": "SD1-0202",
+   "situation": "hypothetical",
+   "offer": "REASSURE",
+   "stage": "model agreed or supplied the candidate",
+   "raw": "falsely supports REASSURE",
+   "status_of": "actual",
+   "text": "If I tell you team do this every day, maybe you feel better."
+  },
+  {
+   "id": "SD1-0324",
+   "situation": "other_actor_does_it",
+   "offer": "VOICE_ORDER",
+   "stage": "model reply unusable, shipped decision kept (LLM_INVALID/LLM_SCHEMA)",
+   "raw": "reader unavailable or reply rejected (INVALID)",
+   "status_of": "actual",
+   "text": "Dan is asking the porter to bring the trolley for theatre."
+  }
+ ],
+ "no_credit_baseline_offers": [
+  {
+   "id": "SD1-0027",
+   "situation": "intended_later",
+   "offer": "CLARIFY",
+   "text": "I'll get you to say what you mean by dizzy in a sec, just let me finish writing this."
+  },
+  {
+   "id": "SD1-0033",
+   "situation": "intended_later",
+   "offer": "CLARIFY",
+   "text": "Your last answer was a bit too quiet for me, so once you've finished that thought I'll ask"
+  },
+  {
+   "id": "SD1-0077",
+   "situation": "performed",
+   "offer": "ACKNOWLEDGE_FACT",
+   "text": "Just so you know, the car park closes at six, in case your family are staying."
+  },
+  {
+   "id": "SD1-0172",
+   "situation": "intended_later",
+   "offer": "ACKNOWLEDGE_EMOTION",
+   "text": "I'll come back to how worried you are."
+  },
+  {
+   "id": "SD1-0180",
+   "situation": "reported_about_someone_else",
+   "offer": "ACKNOWLEDGE_EMOTION",
+   "text": "Sam said she told you it's understandable to feel nervous today."
+  },
+  {
+   "id": "SD1-0201",
+   "situation": "intended_later",
+   "offer": "REASSURE",
+   "text": "I will tell you soon that team do this operation every day."
+  },
+  {
+   "id": "SD1-0202",
+   "situation": "hypothetical",
+   "offer": "REASSURE",
+   "text": "If I tell you team do this every day, maybe you feel better."
+  },
+  {
+   "id": "SD1-0273",
+   "situation": "other_actor_does_it",
+   "offer": "ESCALATE_SPEECH",
+   "text": "The nurse is asking the anaesthetist to come and see this patient now."
+  },
+  {
+   "id": "SD1-0276",
+   "situation": "intended_later",
+   "offer": "ESCALATE_SPEECH",
+   "text": "I'm going to ask the senior nurse to come and help with this patient once I've finished th"
+  },
+  {
+   "id": "SD1-0279",
+   "situation": "other_actor_does_it",
+   "offer": "ESCALATE_SPEECH",
+   "text": "Jo will ask the senior nurse to come and help with this patient."
+  },
+  {
+   "id": "SD1-0293",
+   "situation": "intended_later",
+   "offer": "REPORT_FAULT",
+   "text": "I'm going to tell the nurse in charge that the suction at bed two isn't working, as soon a"
+  },
+  {
+   "id": "SD1-0315",
+   "situation": "intended_later",
+   "offer": "VOICE_ORDER",
+   "text": "I'm going to ask the nurse for a chest x-ray for this patient once she's free."
+  },
+  {
+   "id": "SD1-0324",
+   "situation": "other_actor_does_it",
+   "offer": "VOICE_ORDER",
+   "text": "Dan is asking the porter to bring the trolley for theatre."
+  }
+ ],
+ "gemma_final_decisions": {
+  "eligible": {
+   "ABSTAIN": 90,
+   "OFFER_EVIDENCE": 77,
+   "MENU": 9
+  },
+  "no_credit": {
+   "MENU": 109,
+   "ABSTAIN": 205,
+   "CLARIFY": 1,
+   "OFFER_EVIDENCE": 2
+  }
+ },
+ "final_stage_all_eligible_misses": {
+  "model candidate refused downstream (CRITICAL_MASS)": 42,
+  "model supported several objectives": 29,
+  "shipped gate before the model: critical topic menu": 9,
+  "model candidate below the evidence threshold": 5,
+  "shipped assertion layer before the model (status other_actor)": 3,
+  "model candidate refused downstream (NO_ACT)": 3,
+  "model candidate refused downstream (NOT_ELIGIBLE)": 2,
+  "shipped assertion layer before the model (status reported)": 2,
+  "shipped assertion layer before the model (status denied)": 2,
+  "model did not support (LLM_NONE_SUPPORTED)": 1,
+  "shipped assertion layer before the model (status intended)": 1
+ }
+}

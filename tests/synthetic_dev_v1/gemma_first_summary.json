@@ -1,0 +1,2870 @@
+{
+ "n": 493,
+ "model": "gemma4:31b-cloud",
+ "version": "gemma-first-v1",
+ "contract_hash": "3192ecb901fa1a4b8a67a58c4fe280292cb620ac8634fc437f6ce9fdb13fe662",
+ "reader": {
+  "status": {
+   "VALID": 493
+  },
+  "valid_rate": 1.0,
+  "codes": {
+   "SCHEMA": 3,
+   "FENCED": 1
+  },
+  "retried_items": 4,
+  "provider_calls": 497,
+  "tokens": 1229158,
+  "stopped": "",
+  "prompt_tokens": 1179442,
+  "output_tokens": 49716,
+  "tokens_per_item": 2493,
+  "wall_ms_per_call": {
+   "median": 2342,
+   "p95": 4675,
+   "max": 9849,
+   "n": 497
+  },
+  "run_wall_s": 426.1,
+  "workers": 3,
+  "timeouts": 0
+ },
+ "objective_identification": {
+  "items_with_a_performed_act": 274,
+  "exact_set_match": [
+   235,
+   274,
+   0.8577
+  ],
+  "per_act_recall": [
+   282,
+   298,
+   0.9463
+  ],
+  "per_act_precision_all_items": [
+   282,
+   337,
+   0.8368
+  ],
+  "by_class": {
+   "A": {
+    "n": 146,
+    "exact": 129
+   },
+   "B": {
+    "n": 44,
+    "exact": 37
+   },
+   "D": {
+    "n": 54,
+    "exact": 40
+   },
+   "G": {
+    "n": 30,
+    "exact": 29
+   }
+  },
+  "confusions": [
+   [
+    "ANSWER_QUESTION",
+    "ANSWER_QUESTION+REASSURE",
+    4
+   ],
+   [
+    "ACKNOWLEDGE_EMOTION",
+    "ACKNOWLEDGE_EMOTION+REASSURE",
+    3
+   ],
+   [
+    "HANDOVER_CRITICAL_ELEMENT",
+    "SBAR_ELEMENT",
+    3
+   ],
+   [
+    "ANSWER_QUESTION",
+    "none",
+    2
+   ],
+   [
+    "REASSURE",
+    "ANSWER_QUESTION",
+    2
+   ],
+   [
+    "HANDOVER_CRITICAL_ELEMENT",
+    "HANDOVER_CRITICAL_ELEMENT+SBAR_ELEMENT",
+    2
+   ],
+   [
+    "ASK_TOPIC",
+    "CLARIFY",
+    1
+   ],
+   [
+    "CLARIFY",
+    "ACKNOWLEDGE_FACT+CLARIFY",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "ANSWER_QUESTION+EXPLAIN_PROCEDURE",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "REASSURE",
+    1
+   ],
+   [
+    "EXPLAIN_PROCEDURE",
+    "EXPLAIN_TEST+REASSURE",
+    1
+   ],
+   [
+    "EXPLAIN_PROCEDURE",
+    "EXPLAIN_PROCEDURE+REASSURE",
+    1
+   ],
+   [
+    "EXPLAIN_PROCEDURE",
+    "none",
+    1
+   ],
+   [
+    "EXPLAIN_ACTION",
+    "CHECK_UNDERSTANDING+EXPLAIN_ACTION",
+    1
+   ],
+   [
+    "ACKNOWLEDGE_EMOTION",
+    "ACKNOWLEDGE_EMOTION+ACKNOWLEDGE_FACT",
+    1
+   ],
+   [
+    "CLOSED_LOOP",
+    "CLARIFY+CLOSED_LOOP",
+    1
+   ],
+   [
+    "ESCALATE_SPEECH",
+    "VOICE_ORDER",
+    1
+   ],
+   [
+    "ESCALATE_SPEECH",
+    "ACKNOWLEDGE_EMOTION+ESCALATE_SPEECH",
+    1
+   ],
+   [
+    "REPORT_FAULT",
+    "ESCALATE_SPEECH+REPORT_FAULT",
+    1
+   ],
+   [
+    "STATE_ALLERGY",
+    "ACKNOWLEDGE_FACT+STATE_ALLERGY",
+    1
+   ],
+   [
+    "CONSENT_SIGN",
+    "ANSWER_QUESTION+CONSENT_SIGN",
+    1
+   ],
+   [
+    "CONSENT_SIGN",
+    "CHECK_UNDERSTANDING",
+    1
+   ],
+   [
+    "CONSENT_SIGN",
+    "EXPLAIN_PROCEDURE",
+    1
+   ],
+   [
+    "HANDOVER_CRITICAL_ELEMENT",
+    "HANDOVER_CRITICAL_ELEMENT+VOICE_ORDER",
+    1
+   ],
+   [
+    "HANDOVER_CRITICAL_ELEMENT",
+    "ESCALATE_SPEECH+HANDOVER_CRITICAL_ELEMENT",
+    1
+   ],
+   [
+    "HANDOVER_CRITICAL_ELEMENT",
+    "ESCALATE_SPEECH+SBAR_ELEMENT",
+    1
+   ],
+   [
+    "HANDOVER_CRITICAL_ELEMENT",
+    "CONFIRM_IDENTITY",
+    1
+   ],
+   [
+    "SBAR_ELEMENT",
+    "SBAR_ELEMENT+VOICE_ORDER",
+    1
+   ],
+   [
+    "EXPLAIN_ACTION",
+    "EXPLAIN_ACTION+EXPLAIN_TEST",
+    1
+   ]
+  ]
+ },
+ "performed_vs_non_performed": {
+  "accuracy": 0.9594,
+  "performed_found": [
+   271,
+   274
+  ],
+  "non_performed_called_performed": [
+   17,
+   219
+  ],
+  "tp_fn_fp_tn": [
+   271,
+   3,
+   17,
+   202
+  ]
+ },
+ "performed_flag_by_situation": {
+  "critical_topic_discussion": {
+   "n": 5,
+   "called_performed": 0,
+   "invalid": 0
+  },
+  "filler_or_noise_words": {
+   "n": 8,
+   "called_performed": 0,
+   "invalid": 0
+  },
+  "hypothetical": {
+   "n": 33,
+   "called_performed": 2,
+   "invalid": 0
+  },
+  "intended_later": {
+   "n": 33,
+   "called_performed": 2,
+   "invalid": 0
+  },
+  "near_miss": {
+   "n": 11,
+   "called_performed": 2,
+   "invalid": 0
+  },
+  "negated": {
+   "n": 33,
+   "called_performed": 9,
+   "invalid": 0
+  },
+  "off_topic_statement": {
+   "n": 10,
+   "called_performed": 0,
+   "invalid": 0
+  },
+  "other_actor_does_it": {
+   "n": 33,
+   "called_performed": 1,
+   "invalid": 0
+  },
+  "performed": {
+   "n": 274,
+   "called_performed": 271,
+   "invalid": 0
+  },
+  "reported_about_someone_else": {
+   "n": 33,
+   "called_performed": 1,
+   "invalid": 0
+  },
+  "small_talk": {
+   "n": 10,
+   "called_performed": 0,
+   "invalid": 0
+  },
+  "thinking_aloud": {
+   "n": 10,
+   "called_performed": 0,
+   "invalid": 0
+  }
+ },
+ "modality_for_the_items_own_objective": {
+  "negated": {
+   "denied": 24,
+   "performed": 9
+  },
+  "intended_later": {
+   "intended_later": 31,
+   "performed": 2
+  },
+  "hypothetical": {
+   "hypothetical": 32,
+   "performed": 1
+  },
+  "reported_about_someone_else": {
+   "reported": 31,
+   "performed": 1,
+   "no finding": 1
+  },
+  "other_actor_does_it": {
+   "other_actor": 26,
+   "reported": 4,
+   "no finding": 2,
+   "performed": 1
+  }
+ },
+ "modality_summary_ordinary_non_performed": {
+  "exact": 120,
+  "family": 124,
+  "not_called_performed": 126,
+  "n": 140
+ },
+ "relevance_correctness_completeness_by_class": {
+  "A": {
+   "items": 146,
+   "with_a_finding_for_own_objective": 142,
+   "relevance": 3.0,
+   "correctness": 3.0,
+   "completeness": 2.93
+  },
+  "B": {
+   "items": 44,
+   "with_a_finding_for_own_objective": 39,
+   "relevance": 3.0,
+   "correctness": 3.0,
+   "completeness": 2.97
+  },
+  "C": {
+   "items": 140,
+   "with_a_finding_for_own_objective": 138,
+   "relevance": 2.91,
+   "correctness": 2.96,
+   "completeness": 2.53
+  },
+  "D": {
+   "items": 54,
+   "with_a_finding_for_own_objective": 47,
+   "relevance": 3.0,
+   "correctness": 3.0,
+   "completeness": 2.68
+  },
+  "E": {
+   "items": 30,
+   "with_a_finding_for_own_objective": 24,
+   "relevance": 2.92,
+   "correctness": 2.96,
+   "completeness": 2.29
+  },
+  "F": {
+   "items": 49,
+   "with_a_finding_for_own_objective": 0
+  },
+  "G": {
+   "items": 30,
+   "with_a_finding_for_own_objective": 30,
+   "relevance": 3.0,
+   "correctness": 3.0,
+   "completeness": 2.73
+  }
+ },
+ "grade_levels_on_performed_ordinary_A": {
+  "relevance": {
+   "3": 142
+  },
+  "correctness": {
+   "3": 142
+  },
+  "completeness": {
+   "3": 132,
+   "2": 10
+  }
+ },
+ "credit": {
+  "meaningful_ge_0.5": {
+   "threshold": 0.5,
+   "item_recall_any_gold_act": [
+    172,
+    176,
+    0.9773
+   ],
+   "item_recall_single_act_items": [
+    142,
+    146
+   ],
+   "per_act_recall": [
+    196,
+    200
+   ],
+   "precision_of_credited_acts": [
+    196,
+    237,
+    0.827
+   ],
+   "false_credit_acts_on_no_credit_items": 26,
+   "false_credit_items_on_no_credit": 26,
+   "wrong_or_extra_acts_on_eligible_items": 15,
+   "no_credit_rejection": [
+    291,
+    317,
+    0.918
+   ]
+  },
+  "full_ge_0.9": {
+   "threshold": 0.9,
+   "item_recall_any_gold_act": [
+    159,
+    176,
+    0.9034
+   ],
+   "item_recall_single_act_items": [
+    132,
+    146
+   ],
+   "per_act_recall": [
+    176,
+    200
+   ],
+   "precision_of_credited_acts": [
+    176,
+    209,
+    0.8421
+   ],
+   "false_credit_acts_on_no_credit_items": 24,
+   "false_credit_items_on_no_credit": 24,
+   "wrong_or_extra_acts_on_eligible_items": 9,
+   "no_credit_rejection": [
+    293,
+    317,
+    0.9243
+   ]
+  },
+  "any_ge_0.25": {
+   "threshold": 0.25,
+   "item_recall_any_gold_act": [
+    172,
+    176,
+    0.9773
+   ],
+   "item_recall_single_act_items": [
+    142,
+    146
+   ],
+   "per_act_recall": [
+    196,
+    200
+   ],
+   "precision_of_credited_acts": [
+    196,
+    237,
+    0.827
+   ],
+   "false_credit_acts_on_no_credit_items": 26,
+   "false_credit_items_on_no_credit": 26,
+   "wrong_or_extra_acts_on_eligible_items": 15,
+   "no_credit_rejection": [
+    291,
+    317,
+    0.918
+   ]
+  },
+  "any_ge_0.1": {
+   "threshold": 0.1,
+   "item_recall_any_gold_act": [
+    172,
+    176,
+    0.9773
+   ],
+   "item_recall_single_act_items": [
+    142,
+    146
+   ],
+   "per_act_recall": [
+    196,
+    200
+   ],
+   "precision_of_credited_acts": [
+    196,
+    237,
+    0.827
+   ],
+   "false_credit_acts_on_no_credit_items": 26,
+   "false_credit_items_on_no_credit": 26,
+   "wrong_or_extra_acts_on_eligible_items": 15,
+   "no_credit_rejection": [
+    291,
+    317,
+    0.918
+   ]
+  },
+  "any_positive": {
+   "threshold": 1e-09,
+   "item_recall_any_gold_act": [
+    172,
+    176,
+    0.9773
+   ],
+   "item_recall_single_act_items": [
+    142,
+    146
+   ],
+   "per_act_recall": [
+    196,
+    200
+   ],
+   "precision_of_credited_acts": [
+    196,
+    237,
+    0.827
+   ],
+   "false_credit_acts_on_no_credit_items": 26,
+   "false_credit_items_on_no_credit": 26,
+   "wrong_or_extra_acts_on_eligible_items": 15,
+   "no_credit_rejection": [
+    291,
+    317,
+    0.918
+   ]
+  }
+ },
+ "critical": {
+  "critical_items": 91,
+  "physical_credit_total_on_all_items": 0.0,
+  "items_with_physical_credit": 0,
+  "model_claims_physical_action_on_critical_items": 9,
+  "model_claims_physical_action_all_items": 89,
+  "ordinary_credit_ge_0.5_on_critical_items": 8,
+  "critical_items_with_ordinary_credit_any_positive": 8,
+  "critical_flag_set_on_critical_items": [
+   79,
+   91
+  ],
+  "critical_flag_set_on_non_critical_items": [
+   9,
+   402
+  ],
+  "critical_acts_recognised_in_class_D": [
+   47,
+   54
+  ],
+  "class_E_called_performed": [
+   0,
+   30
+  ]
+ },
+ "out_of_window_and_state": {
+  "n": 44,
+  "gemma_names_the_performed_act": 37,
+  "credited_by_the_graded_score (>=0.5)": 3,
+  "credited_if_the_window_state_gate_were_absent (>=0.5)": 42,
+  "out_of_window": {
+   "n": 29,
+   "gemma_right": 26,
+   "credited": 1
+  },
+  "state_absent": {
+   "n": 15,
+   "gemma_right": 11,
+   "credited": 2
+  }
+ },
+ "by_objective": {
+  "ACKNOWLEDGE_EMOTION": {
+   "n": 26,
+   "eligible": 14,
+   "recall_ge_0.5": [
+    14,
+    14
+   ],
+   "false_credit_items": 4,
+   "mean_max_ordinary_score": 0.538,
+   "baseline_recall": [
+    7,
+    14
+   ],
+   "baseline_false_credit_items": 2
+  },
+  "ACKNOWLEDGE_FACT": {
+   "n": 24,
+   "eligible": 12,
+   "recall_ge_0.5": [
+    12,
+    12
+   ],
+   "false_credit_items": 3,
+   "mean_max_ordinary_score": 0.625,
+   "baseline_recall": [
+    7,
+    12
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "ANSWER_QUESTION": {
+   "n": 32,
+   "eligible": 12,
+   "recall_ge_0.5": [
+    12,
+    12
+   ],
+   "false_credit_items": 6,
+   "mean_max_ordinary_score": 0.469,
+   "baseline_recall": [
+    6,
+    12
+   ],
+   "baseline_false_credit_items": 1
+  },
+  "ASK_TOPIC": {
+   "n": 27,
+   "eligible": 14,
+   "recall_ge_0.5": [
+    14,
+    14
+   ],
+   "false_credit_items": 5,
+   "mean_max_ordinary_score": 0.704,
+   "baseline_recall": [
+    4,
+    14
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "CHECK_UNDERSTANDING": {
+   "n": 22,
+   "eligible": 10,
+   "recall_ge_0.5": [
+    10,
+    10
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.5,
+   "baseline_recall": [
+    5,
+    10
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "CLARIFY": {
+   "n": 24,
+   "eligible": 12,
+   "recall_ge_0.5": [
+    12,
+    12
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.542,
+   "baseline_recall": [
+    5,
+    12
+   ],
+   "baseline_false_credit_items": 2
+  },
+  "CLOSED_LOOP": {
+   "n": 30,
+   "eligible": 11,
+   "recall_ge_0.5": [
+    11,
+    11
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.4,
+   "baseline_recall": [
+    4,
+    11
+   ],
+   "baseline_false_credit_items": 1
+  },
+  "CONFIRM_IDENTITY": {
+   "n": 16,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "CONSENT_SIGN": {
+   "n": 16,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.113,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "ESCALATE_SPEECH": {
+   "n": 23,
+   "eligible": 11,
+   "recall_ge_0.5": [
+    10,
+    11
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.478,
+   "baseline_recall": [
+    3,
+    11
+   ],
+   "baseline_false_credit_items": 3
+  },
+  "EXPLAIN_ACTION": {
+   "n": 26,
+   "eligible": 14,
+   "recall_ge_0.5": [
+    14,
+    14
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.615,
+   "baseline_recall": [
+    9,
+    14
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "EXPLAIN_PROCEDURE": {
+   "n": 27,
+   "eligible": 15,
+   "recall_ge_0.5": [
+    13,
+    15
+   ],
+   "false_credit_items": 3,
+   "mean_max_ordinary_score": 0.481,
+   "baseline_recall": [
+    7,
+    15
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "EXPLAIN_TEST": {
+   "n": 26,
+   "eligible": 14,
+   "recall_ge_0.5": [
+    14,
+    14
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.515,
+   "baseline_recall": [
+    8,
+    14
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "HANDOVER_CRITICAL_ELEMENT": {
+   "n": 16,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 3,
+   "mean_max_ordinary_score": 0.188,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "NONE": {
+   "n": 54,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.019,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "REASSURE": {
+   "n": 24,
+   "eligible": 12,
+   "recall_ge_0.5": [
+    11,
+    12
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.492,
+   "baseline_recall": [
+    4,
+    12
+   ],
+   "baseline_false_credit_items": 3
+  },
+  "REPORT_FAULT": {
+   "n": 24,
+   "eligible": 12,
+   "recall_ge_0.5": [
+    12,
+    12
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.5,
+   "baseline_recall": [
+    6,
+    12
+   ],
+   "baseline_false_credit_items": 1
+  },
+  "SBAR_ELEMENT": {
+   "n": 16,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.062,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "STATE_ALLERGY": {
+   "n": 15,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.067,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "VOICE_ORDER": {
+   "n": 25,
+   "eligible": 13,
+   "recall_ge_0.5": [
+    13,
+    13
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.52,
+   "baseline_recall": [
+    9,
+    13
+   ],
+   "baseline_false_credit_items": 2
+  }
+ },
+ "by_situation": {
+  "critical_topic_discussion": {
+   "n": 5,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "filler_or_noise_words": {
+   "n": 8,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "hypothetical": {
+   "n": 33,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.061,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 1
+  },
+  "intended_later": {
+   "n": 33,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.061,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 7
+  },
+  "near_miss": {
+   "n": 11,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.091,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "negated": {
+   "n": 33,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 9,
+   "mean_max_ordinary_score": 0.267,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "off_topic_statement": {
+   "n": 10,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "other_actor_does_it": {
+   "n": 33,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.03,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 3
+  },
+  "performed": {
+   "n": 274,
+   "eligible": 176,
+   "recall_ge_0.5": [
+    172,
+    176
+   ],
+   "false_credit_items": 24,
+   "mean_max_ordinary_score": 0.661,
+   "baseline_recall": [
+    84,
+    176
+   ],
+   "baseline_false_credit_items": 3
+  },
+  "reported_about_someone_else": {
+   "n": 33,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.03,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 1
+  },
+  "small_talk": {
+   "n": 10,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "thinking_aloud": {
+   "n": 10,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  }
+ },
+ "by_class": {
+  "A": {
+   "n": 146,
+   "eligible": 146,
+   "recall_ge_0.5": [
+    142,
+    146
+   ],
+   "false_credit_items": 14,
+   "mean_max_ordinary_score": 0.973,
+   "baseline_recall": [
+    75,
+    146
+   ],
+   "baseline_false_credit_items": 2
+  },
+  "B": {
+   "n": 44,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 3,
+   "mean_max_ordinary_score": 0.068,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 1
+  },
+  "C": {
+   "n": 140,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 15,
+   "mean_max_ordinary_score": 0.106,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 12
+  },
+  "D": {
+   "n": 54,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 7,
+   "mean_max_ordinary_score": 0.126,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "E": {
+   "n": 30,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.0,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "F": {
+   "n": 49,
+   "eligible": 0,
+   "recall_ge_0.5": [
+    0,
+    0
+   ],
+   "false_credit_items": 1,
+   "mean_max_ordinary_score": 0.02,
+   "baseline_recall": [
+    0,
+    0
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "G": {
+   "n": 30,
+   "eligible": 30,
+   "recall_ge_0.5": [
+    30,
+    30
+   ],
+   "false_credit_items": 0,
+   "mean_max_ordinary_score": 0.98,
+   "baseline_recall": [
+    9,
+    30
+   ],
+   "baseline_false_credit_items": 0
+  }
+ },
+ "by_form": {
+  "question": {
+   "n": 37,
+   "eligible": 30,
+   "recall_ge_0.5": [
+    30,
+    30
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.811,
+   "baseline_recall": [
+    16,
+    30
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "request_or_instruction": {
+   "n": 23,
+   "eligible": 15,
+   "recall_ge_0.5": [
+    15,
+    15
+   ],
+   "false_credit_items": 2,
+   "mean_max_ordinary_score": 0.696,
+   "baseline_recall": [
+    4,
+    15
+   ],
+   "baseline_false_credit_items": 0
+  },
+  "statement": {
+   "n": 130,
+   "eligible": 101,
+   "recall_ge_0.5": [
+    97,
+    101
+   ],
+   "false_credit_items": 13,
+   "mean_max_ordinary_score": 0.762,
+   "baseline_recall": [
+    55,
+    101
+   ],
+   "baseline_false_credit_items": 3
+  }
+ },
+ "contrast_sets": {
+  "n": 33,
+  "correct": 20,
+  "baseline_correct": 16,
+  "ordinary_correct": [
+   16,
+   28
+  ],
+  "critical_correct": [
+   4,
+   5
+  ],
+  "per_set": {
+   "SET-ASK_TOPIC-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 1.0,
+     "reported_about_someone_else": 1.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated",
+     "reported_about_someone_else"
+    ]
+   },
+   "SET-ASK_TOPIC-1": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-CLARIFY-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-CLARIFY-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ANSWER_QUESTION-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ANSWER_QUESTION-1": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 1.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "other_actor_does_it"
+    ]
+   },
+   "SET-EXPLAIN_PROCEDURE-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-EXPLAIN_PROCEDURE-1": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": false,
+    "performed_score": 0.8,
+    "non_performed_max_scores": {
+     "negated": 0.8,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-EXPLAIN_TEST-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-EXPLAIN_TEST-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-EXPLAIN_ACTION-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-EXPLAIN_ACTION-1": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-CHECK_UNDERSTANDING-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-CHECK_UNDERSTANDING-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ACKNOWLEDGE_EMOTION-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ACKNOWLEDGE_EMOTION-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-REASSURE-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 1.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "intended_later"
+    ]
+   },
+   "SET-REASSURE-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ACKNOWLEDGE_FACT-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 1.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated",
+     "intended_later"
+    ]
+   },
+   "SET-ACKNOWLEDGE_FACT-1": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 1.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "negated"
+    ]
+   },
+   "SET-CLOSED_LOOP-0": {
+    "critical": false,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 1.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": [
+     "hypothetical"
+    ]
+   },
+   "SET-CLOSED_LOOP-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ESCALATE_SPEECH-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-ESCALATE_SPEECH-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-REPORT_FAULT-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-REPORT_FAULT-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-VOICE_ORDER-0": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-VOICE_ORDER-1": {
+    "critical": false,
+    "correct": true,
+    "baseline_correct": false,
+    "performed_score": 1.0,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 1.0,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-CONFIRM_IDENTITY-0": {
+    "critical": true,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 0.25,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.25,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-STATE_ALLERGY-0": {
+    "critical": true,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 0.25,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.25,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-CONSENT_SIGN-0": {
+    "critical": true,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 0.25,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.25,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-HANDOVER_CRITICAL_ELEMENT-0": {
+    "critical": true,
+    "correct": false,
+    "baseline_correct": true,
+    "performed_score": 0.25,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.25,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   },
+   "SET-SBAR_ELEMENT-0": {
+    "critical": true,
+    "correct": true,
+    "baseline_correct": true,
+    "performed_score": 0.25,
+    "non_performed_max_scores": {
+     "negated": 0.0,
+     "intended_later": 0.0,
+     "hypothetical": 0.0,
+     "reported_about_someone_else": 0.0,
+     "other_actor_does_it": 0.0
+    },
+    "gap": 0.25,
+    "performed_called_performed": true,
+    "non_performed_called_performed": []
+   }
+  }
+ },
+ "multi_intent": {
+  "items": 30,
+  "credit_acts_total": 54,
+  "credit_acts_found_ge_0.5": 54,
+  "items_all_credit_acts_found": 30,
+  "items_returning_two_performed_acts": 25,
+  "performed_set_exact": 29,
+  "items_with_extra_credited_act": 0,
+  "mixed_6": [
+   {
+    "id": "0495",
+    "gold_performed": [
+     "EXPLAIN_ACTION"
+    ],
+    "gemma_performed": [
+     "EXPLAIN_ACTION",
+     "EXPLAIN_TEST"
+    ],
+    "credited": [
+     "EXPLAIN_ACTION"
+    ]
+   },
+   {
+    "id": "0496",
+    "gold_performed": [
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "gemma_performed": [
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "credited": [
+     "ACKNOWLEDGE_EMOTION"
+    ]
+   },
+   {
+    "id": "0497",
+    "gold_performed": [
+     "ASK_TOPIC"
+    ],
+    "gemma_performed": [
+     "ASK_TOPIC"
+    ],
+    "credited": [
+     "ASK_TOPIC"
+    ]
+   },
+   {
+    "id": "0498",
+    "gold_performed": [
+     "REPORT_FAULT"
+    ],
+    "gemma_performed": [
+     "REPORT_FAULT"
+    ],
+    "credited": [
+     "REPORT_FAULT"
+    ]
+   },
+   {
+    "id": "0499",
+    "gold_performed": [
+     "EXPLAIN_TEST"
+    ],
+    "gemma_performed": [
+     "EXPLAIN_TEST"
+    ],
+    "credited": [
+     "EXPLAIN_TEST"
+    ]
+   },
+   {
+    "id": "0500",
+    "gold_performed": [
+     "REASSURE"
+    ],
+    "gemma_performed": [
+     "REASSURE"
+    ],
+    "credited": [
+     "REASSURE"
+    ]
+   }
+  ],
+  "baseline_credit_acts_credited": 9
+ },
+ "score_distributions": {
+  "legitimate performed communication (class A: the expected objective's score)": {
+   "n": 146,
+   "mean": 0.959,
+   "median": 1.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 4,
+   "lt_0.1": 4,
+   "ge_0.5": 142,
+   "ge_0.9": 132,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    4,
+    0,
+    0,
+    0,
+    0,
+    10,
+    132
+   ]
+  },
+  "partially correct: class A items where Gemma graded correctness or completeness below 3 (score of the objective)": {
+   "n": 10,
+   "mean": 0.8,
+   "median": 0.8,
+   "min": 0.8,
+   "max": 0.8,
+   "zero": 0,
+   "lt_0.1": 0,
+   "ge_0.5": 10,
+   "ge_0.9": 0,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    10,
+    0
+   ]
+  },
+  "partially correct: hedged-content items (class A/B)": {
+   "n": 21,
+   "mean": 0.895,
+   "median": 1.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 1,
+   "lt_0.1": 1,
+   "ge_0.5": 20,
+   "ge_0.9": 14,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    6,
+    14
+   ]
+  },
+  "multi-intent mixed (performed act + a non-performed act): the performed act's score": {
+   "n": 6,
+   "mean": 0.967,
+   "median": 1.0,
+   "min": 0.8,
+   "max": 1.0,
+   "zero": 0,
+   "lt_0.1": 0,
+   "ge_0.5": 6,
+   "ge_0.9": 5,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    5
+   ]
+  },
+  "irrelevant / no-act speech (class F: highest ordinary score anywhere)": {
+   "n": 49,
+   "mean": 0.02,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 48,
+   "lt_0.1": 48,
+   "ge_0.5": 1,
+   "ge_0.9": 1,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    48,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "denied (ordinary C: highest ordinary score anywhere)": {
+   "n": 28,
+   "mean": 0.314,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 19,
+   "lt_0.1": 19,
+   "ge_0.5": 9,
+   "ge_0.9": 8,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    19,
+    0,
+    0,
+    0,
+    0,
+    1,
+    8
+   ]
+  },
+  "denied (ordinary C: score of the denied/planned/... objective itself)": {
+   "n": 28,
+   "mean": 0.314,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 19,
+   "lt_0.1": 19,
+   "ge_0.5": 9,
+   "ge_0.9": 8,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    19,
+    0,
+    0,
+    0,
+    0,
+    1,
+    8
+   ]
+  },
+  "intended-later (ordinary C: highest ordinary score anywhere)": {
+   "n": 28,
+   "mean": 0.071,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 26,
+   "lt_0.1": 26,
+   "ge_0.5": 2,
+   "ge_0.9": 2,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    26,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ]
+  },
+  "intended-later (ordinary C: score of the denied/planned/... objective itself)": {
+   "n": 28,
+   "mean": 0.071,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 26,
+   "lt_0.1": 26,
+   "ge_0.5": 2,
+   "ge_0.9": 2,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    26,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ]
+  },
+  "hypothetical (ordinary C: highest ordinary score anywhere)": {
+   "n": 28,
+   "mean": 0.071,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 26,
+   "lt_0.1": 26,
+   "ge_0.5": 2,
+   "ge_0.9": 2,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    26,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ]
+  },
+  "hypothetical (ordinary C: score of the denied/planned/... objective itself)": {
+   "n": 28,
+   "mean": 0.036,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 27,
+   "lt_0.1": 27,
+   "ge_0.5": 1,
+   "ge_0.9": 1,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    27,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "reported (ordinary C: highest ordinary score anywhere)": {
+   "n": 28,
+   "mean": 0.036,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 27,
+   "lt_0.1": 27,
+   "ge_0.5": 1,
+   "ge_0.9": 1,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    27,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "reported (ordinary C: score of the denied/planned/... objective itself)": {
+   "n": 28,
+   "mean": 0.036,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 27,
+   "lt_0.1": 27,
+   "ge_0.5": 1,
+   "ge_0.9": 1,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    27,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "another actor (ordinary C: highest ordinary score anywhere)": {
+   "n": 28,
+   "mean": 0.036,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 27,
+   "lt_0.1": 27,
+   "ge_0.5": 1,
+   "ge_0.9": 1,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    27,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "another actor (ordinary C: score of the denied/planned/... objective itself)": {
+   "n": 28,
+   "mean": 0.036,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 27,
+   "lt_0.1": 27,
+   "ge_0.5": 1,
+   "ge_0.9": 1,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    27,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "critical-topic discussion (class E: highest ordinary score; total incl. critical)": {
+   "n": 30,
+   "mean": 0.0,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "zero": 30,
+   "lt_0.1": 30,
+   "ge_0.5": 0,
+   "ge_0.9": 0,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    30,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "critical-topic discussion, class E: total item score (communication part of a critical objective included)": {
+   "n": 30,
+   "mean": 0.0,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 0,
+   "zero": 30,
+   "lt_0.1": 30,
+   "ge_0.5": 0,
+   "ge_0.9": 0,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    30,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "genuine critical claims without physical evidence (class D: total score; the communication part is at most 0.25)": {
+   "n": 54,
+   "mean": 0.356,
+   "median": 0.25,
+   "min": 0.2,
+   "max": 1.25,
+   "zero": 0,
+   "lt_0.1": 0,
+   "ge_0.5": 7,
+   "ge_0.9": 6,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    0,
+    0,
+    19,
+    28,
+    0,
+    1,
+    1
+   ]
+  },
+  "genuine critical claims: the communication score before the 0.25 weight (comm_credit)": {
+   "n": 54,
+   "mean": 0.889,
+   "median": 1.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 2,
+   "lt_0.1": 2,
+   "ge_0.5": 52,
+   "ge_0.9": 32,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    20,
+    32
+   ]
+  },
+  "out-of-window / state-ineligible performed speech (class B: highest ordinary score)": {
+   "n": 44,
+   "mean": 0.068,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "zero": 41,
+   "lt_0.1": 41,
+   "ge_0.5": 3,
+   "ge_0.9": 3,
+   "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+    41,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ]
+  }
+ },
+ "separation": {
+  "auc_legitimate_vs_non_performed_and_irrelevant": 0.9436,
+  "legitimate_median": 1.0,
+  "non_performed_irrelevant_median": 0.0,
+  "non_performed_irrelevant_ge_0.25": 16,
+  "non_performed_irrelevant_total": 189,
+  "legitimate_lt_0.5": 4,
+  "legitimate_total": 146
+ },
+ "baseline": {
+  "item_recall": [
+   84,
+   176
+  ],
+  "credited": 99,
+  "precision": [
+   84,
+   99
+  ],
+  "false_credits_on_no_credit": 13,
+  "wrong_act_on_eligible": 2,
+  "critical_false_offers": 0,
+  "critical_physical_completion": 0,
+  "no_credit_rejection": [
+   304,
+   317
+  ],
+  "multi_intent_acts": 9
+ },
+ "ablation_on_top_of_the_new_path": [
+  {
+   "variant": "B alone: Gemma + window/state gate + graded score (no old layer)",
+   "item_recall": [
+    172,
+    176
+   ],
+   "per_act_recall": [
+    196,
+    200
+   ],
+   "credited_acts": 237,
+   "precision": 0.827,
+   "false_credit_items_on_no_credit": 26,
+   "wrong_or_extra_acts": 15,
+   "credited_acts_on_critical_items": 8
+  },
+  {
+   "variant": "B without the window/state gate (what the deterministic gate adds)",
+   "item_recall": [
+    172,
+    176
+   ],
+   "per_act_recall": [
+    196,
+    200
+   ],
+   "credited_acts": 283,
+   "precision": 0.6926,
+   "false_credit_items_on_no_credit": 67,
+   "wrong_or_extra_acts": 18,
+   "credited_acts_on_critical_items": 9
+  },
+  {
+   "variant": "B + shipped assertion layer veto (status other than actual/question)",
+   "item_recall": [
+    164,
+    176
+   ],
+   "per_act_recall": [
+    187,
+    200
+   ],
+   "credited_acts": 215,
+   "precision": 0.8698,
+   "false_credit_items_on_no_credit": 13,
+   "wrong_or_extra_acts": 15,
+   "credited_acts_on_critical_items": 8
+  },
+  {
+   "variant": "B + critical cue veto (cue fired)",
+   "item_recall": [
+    169,
+    176
+   ],
+   "per_act_recall": [
+    193,
+    200
+   ],
+   "credited_acts": 226,
+   "precision": 0.854,
+   "false_credit_items_on_no_credit": 19,
+   "wrong_or_extra_acts": 14,
+   "credited_acts_on_critical_items": 2
+  },
+  {
+   "variant": "B + classifier critical reading veto (head says critical)",
+   "item_recall": [
+    167,
+    176
+   ],
+   "per_act_recall": [
+    191,
+    200
+   ],
+   "credited_acts": 224,
+   "precision": 0.8527,
+   "false_credit_items_on_no_credit": 18,
+   "wrong_or_extra_acts": 15,
+   "credited_acts_on_critical_items": 1
+  },
+  {
+   "variant": "B + critical-mass cap veto",
+   "item_recall": [
+    119,
+    176
+   ],
+   "per_act_recall": [
+    136,
+    200
+   ],
+   "credited_acts": 169,
+   "precision": 0.8047,
+   "false_credit_items_on_no_credit": 21,
+   "wrong_or_extra_acts": 12,
+   "credited_acts_on_critical_items": 8
+  },
+  {
+   "variant": "B + classifier agreement (head act must equal Gemma's act)",
+   "item_recall": [
+    142,
+    176
+   ],
+   "per_act_recall": [
+    142,
+    200
+   ],
+   "credited_acts": 156,
+   "precision": 0.9103,
+   "false_credit_items_on_no_credit": 13,
+   "wrong_or_extra_acts": 1,
+   "credited_acts_on_critical_items": 0
+  },
+  {
+   "variant": "B + ALL old classifier layers (assertion, cue, head-critical, cap, agreement)",
+   "item_recall": [
+    95,
+    176
+   ],
+   "per_act_recall": [
+    95,
+    200
+   ],
+   "credited_acts": 96,
+   "precision": 0.9896,
+   "false_credit_items_on_no_credit": 0,
+   "wrong_or_extra_acts": 1,
+   "credited_acts_on_critical_items": 0
+  }
+ ],
+ "what_if_unity_verified_critical_D": {
+  "n": 54,
+  "mean": 1.092,
+  "median": 1.0,
+  "min": 0.2,
+  "max": 2.0,
+  "zero": 0,
+  "lt_0.1": 0,
+  "ge_0.5": 53,
+  "ge_0.9": 52,
+  "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   45
+  ]
+ },
+ "eligible_misses": [
+  {
+   "id": "0093",
+   "objective": "EXPLAIN_PROCEDURE",
+   "cls": "A",
+   "gemma": {
+    "EXPLAIN_TEST": [
+     "performed",
+     3,
+     3,
+     3,
+     1.0
+    ],
+    "REASSURE": [
+     "performed",
+     3,
+     3,
+     2,
+     0.8
+    ]
+   },
+   "text": "Throughout the whole time you're in theatre, I believe you'll have monitors atta"
+  },
+  {
+   "id": "0098",
+   "objective": "EXPLAIN_PROCEDURE",
+   "cls": "A",
+   "gemma": {},
+   "text": "It's planned, not an emergency, so there's no rush."
+  },
+  {
+   "id": "0206",
+   "objective": "REASSURE",
+   "cls": "A",
+   "gemma": {
+    "ANSWER_QUESTION": [
+     "performed",
+     3,
+     3,
+     3,
+     0.0
+    ]
+   },
+   "text": "You'll have painkillers when you wake up."
+  },
+  {
+   "id": "0282",
+   "objective": "ESCALATE_SPEECH",
+   "cls": "A",
+   "gemma": {
+    "VOICE_ORDER": [
+     "performed",
+     3,
+     3,
+     3,
+     1.0
+    ]
+   },
+   "text": "I'd be grateful if the charge nurse could take over with this patient while I fe"
+  }
+ ],
+ "false_credits": [
+  {
+   "id": "0002",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "ASK_TOPIC"
+   ],
+   "text": "I realise I haven't asked yet whether you've had anything to eat or drink this m"
+  },
+  {
+   "id": "0004",
+   "situation": "hypothetical",
+   "cls": "C",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "If I were to ask whether you'd eaten or drunk anything this morning, I expect yo"
+  },
+  {
+   "id": "0005",
+   "situation": "reported_about_someone_else",
+   "cls": "C",
+   "credited": [
+    "ASK_TOPIC"
+   ],
+   "text": "Sam told me the team wanted to know whether you'd eaten or drunk anything this m"
+  },
+  {
+   "id": "0008",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "ASK_TOPIC"
+   ],
+   "text": "I'm afraid I haven't managed to ask you yet which regular medicines you take."
+  },
+  {
+   "id": "0024",
+   "situation": "performed",
+   "cls": "B",
+   "credited": [
+    "CLARIFY"
+   ],
+   "text": "Please tell me how bad is the pain now."
+  },
+  {
+   "id": "0026",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "CLARIFY"
+   ],
+   "text": "I still haven't asked what you actually mean by dizzy."
+  },
+  {
+   "id": "0037",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "A funny feeling after meals, hmm, could you tell me a bit more about what that f"
+  },
+  {
+   "id": "0059",
+   "situation": "other_actor_does_it",
+   "cls": "C",
+   "credited": [
+    "ANSWER_QUESTION"
+   ],
+   "text": "The nurse will tell you when you can eat after."
+  },
+  {
+   "id": "0063",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "You'll wake up in the recovery area, and I think there's always a nurse right be"
+  },
+  {
+   "id": "0064",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "Yes, I think the anaesthetist stay with you all the time."
+  },
+  {
+   "id": "0066",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "Some people do feel a bit sick afterwards, but we've got medicine that helps wit"
+  },
+  {
+   "id": "0071",
+   "situation": "performed",
+   "cls": "B",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "You'll be in recovery for about an hour, so don't worry if it feels like a long "
+  },
+  {
+   "id": "0076",
+   "situation": "performed",
+   "cls": "B",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "Don't worry about breakfast, they'll save it for you, so it'll be waiting when y"
+  },
+  {
+   "id": "0085",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "EXPLAIN_PROCEDURE"
+   ],
+   "text": "I haven't actually explained yet that the anaesthetic will put you to sleep for "
+  },
+  {
+   "id": "0093",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "EXPLAIN_TEST",
+    "REASSURE"
+   ],
+   "text": "Throughout the whole time you're in theatre, I believe you'll have monitors atta"
+  },
+  {
+   "id": "0094",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "After the operation you will wake in the recovery area, I understand, with a nur"
+  },
+  {
+   "id": "0125",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "EXPLAIN_ACTION"
+   ],
+   "text": "I have not yet told you that I will be placing a cuff on your arm to take your b"
+  },
+  {
+   "id": "0131",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "EXPLAIN_ACTION"
+   ],
+   "text": "I have not yet mentioned that I will be listening to your chest with the stethos"
+  },
+  {
+   "id": "0148",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "CHECK_UNDERSTANDING"
+   ],
+   "text": "I haven't asked you yet to say in your own words what's happening this morning."
+  },
+  {
+   "id": "0176",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "It's totally understandable to feel nervous today, anyone would."
+  },
+  {
+   "id": "0184",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "I recognise that you are frightened of waking up during the operation."
+  },
+  {
+   "id": "0186",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "I can hear you're anxious about the needle, and that's really normal."
+  },
+  {
+   "id": "0190",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "The long wait is making you anxious, I can tell, and honestly it'd make anyone a"
+  },
+  {
+   "id": "0195",
+   "situation": "intended_later",
+   "cls": "C",
+   "credited": [
+    "REASSURE"
+   ],
+   "text": "I'll tell you soon we'll look after you."
+  },
+  {
+   "id": "0217",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "I haven't noted yet that you take a daily tablet for your blood pressure."
+  },
+  {
+   "id": "0218",
+   "situation": "intended_later",
+   "cls": "C",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "I'll make a note in a moment that you take a daily tablet for blood pressure."
+  },
+  {
+   "id": "0223",
+   "situation": "negated",
+   "cls": "C",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "I have not yet noted that you had a chest infection last month."
+  },
+  {
+   "id": "0241",
+   "situation": "hypothetical",
+   "cls": "C",
+   "credited": [
+    "CLOSED_LOOP"
+   ],
+   "text": "If I read that back, um, I'd say two litres of oxygen."
+  },
+  {
+   "id": "0250",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "CLARIFY"
+   ],
+   "text": "Fluids at one hundred an hour, um, is that right?"
+  },
+  {
+   "id": "0282",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "VOICE_ORDER"
+   ],
+   "text": "I'd be grateful if the charge nurse could take over with this patient while I fe"
+  },
+  {
+   "id": "0286",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "ACKNOWLEDGE_EMOTION"
+   ],
+   "text": "Um, could you come and help, please? The patient is, well, quite distressed."
+  },
+  {
+   "id": "0291",
+   "situation": "performed",
+   "cls": "A",
+   "credited": [
+    "ESCALATE_SPEECH"
+   ],
+   "text": "Nurse, I just wanted to let you know that the suction at bed two isn't working, "
+  },
+  {
+   "id": "0364",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "text": "Right, so the penicillin brought you out in a rash."
+  },
+  {
+   "id": "0379",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "CHECK_UNDERSTANDING"
+   ],
+   "text": "Do you feel pushed into this? Sorry, do you feel at all pressured into having th"
+  },
+  {
+   "id": "0381",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "EXPLAIN_PROCEDURE"
+   ],
+   "text": "I should remind you that you may change your mind about the operation at any tim"
+  },
+  {
+   "id": "0384",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "VOICE_ORDER"
+   ],
+   "text": "Heads up, she's allergic to penicillin, so make sure that's flagged."
+  },
+  {
+   "id": "0391",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "ESCALATE_SPEECH"
+   ],
+   "text": "I need to flag something important: the name on his wristband doesn't match the "
+  },
+  {
+   "id": "0392",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "ESCALATE_SPEECH"
+   ],
+   "text": "His oxygen saturation has fallen from ninety-six to eighty-eight in the last few"
+  },
+  {
+   "id": "0413",
+   "situation": "performed",
+   "cls": "D",
+   "credited": [
+    "VOICE_ORDER"
+   ],
+   "text": "Recommendation: please keep him nil by mouth until the registrar has reviewed hi"
+  },
+  {
+   "id": "0465",
+   "situation": "near_miss",
+   "cls": "F",
+   "credited": [
+    "ESCALATE_SPEECH"
+   ],
+   "text": "I could do with a proper handover from the night shift about the cleaning rota."
+  }
+ ]
+}

@@ -1,0 +1,2426 @@
+{
+ "note": "Failure attribution on the dev split; analysis only, synthetic builder-written labels; see docs/research/failure_attribution.md",
+ "summary": {
+  "legitimate_rows": 140,
+  "A_guarded_ok": 118,
+  "A_raw_ok": 122,
+  "S_shipped_ok": 95,
+  "B_current_ok": 92
+ },
+ "rows_credited_by_A_and_lost_by_B": [
+  {
+   "id": "AB-d0003",
+   "text": "Do you sleep well at night?",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.4894,
+    "p_row_act": 0.4894,
+    "critical_mass": 0.1226,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.4894,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.0432
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0015",
+   "text": "do you sleep well at night",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.3769,
+    "p_row_act": 0.3769,
+    "critical_mass": 0.1247,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.3769,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.0461
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0017",
+   "text": "Do you get any cough?",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.5356,
+    "p_row_act": 0.5356,
+    "critical_mass": 0.4427,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.5356,
+    "top_critical_class": "STATE_ALLERGY",
+    "p_top_critical_class": 0.4408
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0018",
+   "text": "Have you had a cough recently?",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.9306,
+    "p_row_act": 0.9306,
+    "critical_mass": 0.0642,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.9306,
+    "top_critical_class": "STATE_ALLERGY",
+    "p_top_critical_class": 0.0632
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0019",
+   "text": "Tell me about any coughing.",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.7219,
+    "p_row_act": 0.7219,
+    "critical_mass": 0.2674,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.7219,
+    "top_critical_class": "STATE_ALLERGY",
+    "p_top_critical_class": 0.2651
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0031",
+   "text": "tell me about any coughing",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.6911,
+    "p_row_act": 0.6911,
+    "critical_mass": 0.2975,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.6911,
+    "top_critical_class": "STATE_ALLERGY",
+    "p_top_critical_class": 0.2958
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0032",
+   "text": "do you getany cough",
+   "act": "ASK_TOPIC",
+   "head": {
+    "top_act": "ASK_TOPIC",
+    "p_top": 0.5751,
+    "p_row_act": 0.5751,
+    "critical_mass": 0.2561,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.191,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "ASK_TOPIC",
+    "p_best_ordinary": 0.5751,
+    "top_critical_class": "STATE_ALLERGY",
+    "p_top_critical_class": 0.2369
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0035",
+   "text": "Heavy, in what way?",
+   "act": "CLARIFY",
+   "head": {
+    "top_act": "CLARIFY",
+    "p_top": 0.1996,
+    "p_row_act": 0.1996,
+    "critical_mass": 0.292,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.274,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "CLARIFY",
+    "p_best_ordinary": 0.1996,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.1903
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0048",
+   "text": "heavy in what way",
+   "act": "CLARIFY",
+   "head": {
+    "top_act": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top": 0.3069,
+    "p_row_act": 0.184,
+    "critical_mass": 0.3969,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.274,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "CLARIFY",
+    "p_best_ordinary": 0.184,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.3069
+   },
+   "cause": "critical-cue or critical-act menu (shipped, before the model)",
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ]
+  },
+  {
+   "id": "AB-d0097",
+   "text": "First we put in a small tube for the medicine.",
+   "act": "EXPLAIN_PROCEDURE",
+   "head": {
+    "top_act": "EXPLAIN_PROCEDURE",
+    "p_top": 0.9028,
+    "p_row_act": 0.9028,
+    "critical_mass": 0.0149,
+    "over_cap": false,
+    "engine_threshold_row_act": 0.592,
+    "gate_credited": true,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "EXPLAIN_PROCEDURE",
+    "p_best_ordinary": 0.9028,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0111
+   },
+   "cause": "head probability below the engine threshold",
+   "reasons": [
+    "LLM_BELOW_EVIDENCE_THRESHOLD"
+   ]
+  },
+  {
+   "id": "AB-d0099",
+   "text": "A small tube goes into your arm first.",
+   "act": "EXPLAIN_PROCEDURE",
+   "head": {
+    "top_act": "EXPLAIN_PROCEDURE",
+    "p_top": 0.5507,
+    "p_row_act": 0.5507,
+    "critical_mass": 0.0025,
+    "over_cap": false,
+    "engine_threshold_row_act": 0.592,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "EXPLAIN_PROCEDURE",
+    "p_best_ordinary": 0.5507,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0009
+   },
+   "cause": "head probability below the engine threshold",
+   "reasons": [
+    "GATE_NOT_CREDITED",
+    "AMBIGUOUS",
+    "LLM_BELOW_EVIDENCE_THRESHOLD"
+   ]
+  },
+  {
+   "id": "AB-d0143",
+   "text": "we take blud to look at your kiney function",
+   "act": "EXPLAIN_TEST",
+   "head": {
+    "top_act": "ESCALATE_SPEECH",
+    "p_top": 0.14,
+    "p_row_act": 0.0785,
+    "critical_mass": 0.1844,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.298,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ESCALATE_SPEECH",
+    "p_best_ordinary": 0.14,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.0629
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0159",
+   "text": "this can makes pictures of your abdomen",
+   "act": "EXPLAIN_TEST",
+   "head": {
+    "top_act": "EXPLAIN_TEST",
+    "p_top": 0.7597,
+    "p_row_act": 0.7597,
+    "critical_mass": 0.0814,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.298,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "EXPLAIN_TEST",
+    "p_best_ordinary": 0.7597,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0598
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0160",
+   "text": "the scan takes pictures of belly",
+   "act": "EXPLAIN_TEST",
+   "head": {
+    "top_act": "EXPLAIN_TEST",
+    "p_top": 0.7411,
+    "p_row_act": 0.7411,
+    "critical_mass": 0.1085,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.298,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "EXPLAIN_TEST",
+    "p_best_ordinary": 0.7411,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0858
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0190",
+   "text": "Is that clear so far?",
+   "act": "CHECK_UNDERSTANDING",
+   "head": {
+    "top_act": "CHECK_UNDERSTANDING",
+    "p_top": 0.7065,
+    "p_row_act": 0.7065,
+    "critical_mass": 0.1605,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.254,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "CHECK_UNDERSTANDING",
+    "p_best_ordinary": 0.7065,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0491
+   },
+   "cause": "schema/timeout of the model reply (fell back to the shipped refusal: CRITICAL_MASS)",
+   "reasons": [
+    "CRITICAL_MASS",
+    "LLM_UNAVAILABLE",
+    "LLM_TIMEOUT"
+   ]
+  },
+  {
+   "id": "AB-d0191",
+   "text": "Do you follow what I have said?",
+   "act": "CHECK_UNDERSTANDING",
+   "head": {
+    "top_act": "CHECK_UNDERSTANDING",
+    "p_top": 0.7083,
+    "p_row_act": 0.7083,
+    "critical_mass": 0.1216,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.254,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "CHECK_UNDERSTANDING",
+    "p_best_ordinary": 0.7083,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.1132
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0203",
+   "text": "is that clearso far",
+   "act": "CHECK_UNDERSTANDING",
+   "head": {
+    "top_act": "NONE",
+    "p_top": 0.3621,
+    "p_row_act": 0.0333,
+    "critical_mass": 0.4905,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.254,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "CHECK_UNDERSTANDING",
+    "p_best_ordinary": 0.0333,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.2064
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "NO_ACT",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0204",
+   "text": "do you follow what i have said",
+   "act": "CHECK_UNDERSTANDING",
+   "head": {
+    "top_act": "CHECK_UNDERSTANDING",
+    "p_top": 0.663,
+    "p_row_act": 0.663,
+    "critical_mass": 0.1415,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.254,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "question",
+    "assertion_kind": "",
+    "best_ordinary_act": "CHECK_UNDERSTANDING",
+    "p_best_ordinary": 0.663,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.1324
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0236",
+   "text": "i can see you are nrvos",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "head": {
+    "top_act": "ACKNOWLEDGE_EMOTION",
+    "p_top": 0.3993,
+    "p_row_act": 0.3993,
+    "critical_mass": 0.4367,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.39,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ACKNOWLEDGE_EMOTION",
+    "p_best_ordinary": 0.3993,
+    "top_critical_class": "CONFIRM_IDENTITY",
+    "p_top_critical_class": 0.3594
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0251",
+   "text": "it is natural to feelanxious before an operation",
+   "act": "ACKNOWLEDGE_EMOTION",
+   "head": {
+    "top_act": "ACKNOWLEDGE_EMOTION",
+    "p_top": 0.8243,
+    "p_row_act": 0.8243,
+    "critical_mass": 0.0538,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.39,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ACKNOWLEDGE_EMOTION",
+    "p_best_ordinary": 0.8243,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.0298
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0253",
+   "text": "You are in good hands here.",
+   "act": "REASSURE",
+   "head": {
+    "top_act": "REASSURE",
+    "p_top": 0.868,
+    "p_row_act": 0.868,
+    "critical_mass": 0.0638,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.457,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "REASSURE",
+    "p_best_ordinary": 0.868,
+    "top_critical_class": "CONFIRM_IDENTITY",
+    "p_top_critical_class": 0.032
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0271",
+   "text": "It is a routine operation for us.",
+   "act": "REASSURE",
+   "head": {
+    "top_act": "REASSURE",
+    "p_top": 0.7226,
+    "p_row_act": 0.7226,
+    "critical_mass": 0.0585,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.457,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "REASSURE",
+    "p_best_ordinary": 0.7226,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.0487
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0299",
+   "text": "i see you live alone",
+   "act": "ACKNOWLEDGE_FACT",
+   "head": {
+    "top_act": "ACKNOWLEDGE_FACT",
+    "p_top": 0.5591,
+    "p_row_act": 0.5591,
+    "critical_mass": 0.0886,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.182,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ACKNOWLEDGE_FACT",
+    "p_best_ordinary": 0.5591,
+    "top_critical_class": "CONFIRM_IDENTITY",
+    "p_top_critical_class": 0.0326
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0302",
+   "text": "Understood, it began on Tuesday.",
+   "act": "ACKNOWLEDGE_FACT",
+   "head": {
+    "top_act": "ACKNOWLEDGE_FACT",
+    "p_top": 0.5062,
+    "p_row_act": 0.5062,
+    "critical_mass": 0.0506,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.182,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ACKNOWLEDGE_FACT",
+    "p_best_ordinary": 0.5062,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0228
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0316",
+   "text": "understood it beganon tuesday",
+   "act": "ACKNOWLEDGE_FACT",
+   "head": {
+    "top_act": "CLARIFY",
+    "p_top": 0.4013,
+    "p_row_act": 0.0994,
+    "critical_mass": 0.0459,
+    "over_cap": false,
+    "engine_threshold_row_act": 0.182,
+    "gate_credited": false,
+    "gate_refused": "HEADS_DISAGREE:NONE",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "CLARIFY",
+    "p_best_ordinary": 0.4013,
+    "top_critical_class": "CONSENT_SIGN",
+    "p_top_critical_class": 0.0165
+   },
+   "cause": "head probability below the engine threshold",
+   "reasons": [
+    "GATE_NOT_CREDITED",
+    "LLM_BELOW_EVIDENCE_THRESHOLD"
+   ]
+  },
+  {
+   "id": "AB-d0318",
+   "text": "Reading back: a litre over four hours.",
+   "act": "CLOSED_LOOP",
+   "head": {
+    "top_act": "CLOSED_LOOP",
+    "p_top": 0.3285,
+    "p_row_act": 0.3285,
+    "critical_mass": 0.1439,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.315,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "CLOSED_LOOP",
+    "p_best_ordinary": 0.3285,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.1085
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0319",
+   "text": "To confirm, one litre over four hours.",
+   "act": "CLOSED_LOOP",
+   "head": {
+    "top_act": "ANSWER_QUESTION",
+    "p_top": 0.4711,
+    "p_row_act": 0.232,
+    "critical_mass": 0.0876,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.315,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ANSWER_QUESTION",
+    "p_best_ordinary": 0.4711,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.0804
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0329",
+   "text": "reading back a litre over four hours",
+   "act": "CLOSED_LOOP",
+   "head": {
+    "top_act": "VOICE_ORDER",
+    "p_top": 0.357,
+    "p_row_act": 0.195,
+    "critical_mass": 0.1157,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.315,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "VOICE_ORDER",
+    "p_best_ordinary": 0.357,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.0611
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0376",
+   "text": "this is beond what ican manage safely so i am calling the registrar",
+   "act": "ESCALATE_SPEECH",
+   "head": {
+    "top_act": "ESCALATE_SPEECH",
+    "p_top": 0.6863,
+    "p_row_act": 0.6863,
+    "critical_mass": 0.0979,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.463,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "ESCALATE_SPEECH",
+    "p_best_ordinary": 0.6863,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0601
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0393",
+   "text": "The monitor shows no trace at all.",
+   "act": "REPORT_FAULT",
+   "head": {
+    "top_act": "REPORT_FAULT",
+    "p_top": 0.5387,
+    "p_row_act": 0.5387,
+    "critical_mass": 0.0419,
+    "over_cap": false,
+    "engine_threshold_row_act": 0.747,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "REPORT_FAULT",
+    "p_best_ordinary": 0.5387,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.0309
+   },
+   "cause": "head probability below the engine threshold",
+   "reasons": [
+    "GATE_NOT_CREDITED",
+    "LLM_BELOW_EVIDENCE_THRESHOLD"
+   ]
+  },
+  {
+   "id": "AB-d0394",
+   "text": "The monitor trace has gone completely.",
+   "act": "REPORT_FAULT",
+   "head": {
+    "top_act": "REPORT_FAULT",
+    "p_top": 0.8622,
+    "p_row_act": 0.8622,
+    "critical_mass": 0.1017,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.747,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "REPORT_FAULT",
+    "p_best_ordinary": 0.8622,
+    "top_critical_class": "HANDOVER_CRITICAL_ELEMENT",
+    "p_top_critical_class": 0.0963
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0407",
+   "text": "mnitor shows no trace at all",
+   "act": "REPORT_FAULT",
+   "head": {
+    "top_act": "REPORT_FAULT",
+    "p_top": 0.5233,
+    "p_row_act": 0.5233,
+    "critical_mass": 0.1202,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.747,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "REPORT_FAULT",
+    "p_best_ordinary": 0.5233,
+    "top_critical_class": "STATE_ALLERGY",
+    "p_top_critical_class": 0.0657
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0427",
+   "text": "I want an ECG done straight away.",
+   "act": "VOICE_ORDER",
+   "head": {
+    "top_act": "VOICE_ORDER",
+    "p_top": 0.4854,
+    "p_row_act": 0.4854,
+    "critical_mass": 0.1264,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.153,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "VOICE_ORDER",
+    "p_best_ordinary": 0.4854,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.1143
+   },
+   "cause": "critical-mass cap",
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ]
+  },
+  {
+   "id": "AB-d0440",
+   "text": "i want an e c g done straigt away",
+   "act": "VOICE_ORDER",
+   "head": {
+    "top_act": "VOICE_ORDER",
+    "p_top": 0.2794,
+    "p_row_act": 0.2794,
+    "critical_mass": 0.1103,
+    "over_cap": true,
+    "engine_threshold_row_act": 0.153,
+    "gate_credited": false,
+    "gate_refused": "",
+    "cue": "",
+    "status": "actual",
+    "assertion_kind": "",
+    "best_ordinary_act": "VOICE_ORDER",
+    "p_best_ordinary": 0.2794,
+    "top_critical_class": "SBAR_ELEMENT",
+    "p_top_critical_class": 0.0577
+   },
+   "cause": "schema/timeout of the model reply (fell back to the shipped refusal: CRITICAL_MASS)",
+   "reasons": [
+    "CRITICAL_MASS",
+    "LLM_UNAVAILABLE",
+    "LLM_TIMEOUT"
+   ]
+  }
+ ],
+ "legitimate_rows": [
+  {
+   "id": "AB-d0001",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0002",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0003",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0015",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0016",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0017",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0018",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0019",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0031",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0032",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0033",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0034",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0035",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0047",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0048",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-cue or critical-act menu (shipped, before the model)",
+   "S_cause": "critical-cue or critical-act menu (shipped, before the model)"
+  },
+  {
+   "id": "AB-d0049",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0050",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0051",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0063",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0064",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0065",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0066",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "behaviour window / eligibility of the candidate act",
+   "S_cause": "gate did not credit (threshold, agreement or confusion) and nothing else added"
+  },
+  {
+   "id": "AB-d0067",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0079",
+   "A": false,
+   "S": true,
+   "B": false,
+   "B_cause": "behaviour window / eligibility of the candidate act",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0080",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0081",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0082",
+   "A": false,
+   "S": true,
+   "B": false,
+   "B_cause": "behaviour window / eligibility of the candidate act",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0083",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0095",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0096",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0097",
+   "A": true,
+   "S": true,
+   "B": false,
+   "B_cause": "head probability below the engine threshold",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0098",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0099",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "head probability below the engine threshold",
+   "S_cause": "gate did not credit (threshold, agreement or confusion) and nothing else added"
+  },
+  {
+   "id": "AB-d0111",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0112",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0113",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0114",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0115",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0127",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0128",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0129",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0130",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0131",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0143",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0144",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0145",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0146",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0147",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0159",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0160",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0161",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0162",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0163",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0173",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0174",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0175",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0176",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0177",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0187",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0188",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0189",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0190",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "schema/timeout of the model reply (fell back to the shipped refusal: CRITICAL_MASS)",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0191",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0203",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "head named no act"
+  },
+  {
+   "id": "AB-d0204",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0205",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0206",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0207",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0219",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0220",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0221",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0222",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0223",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0235",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0236",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0237",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0238",
+   "A": false,
+   "S": true,
+   "B": false,
+   "B_cause": "head probability below the engine threshold",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0239",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0251",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0252",
+   "A": false,
+   "S": true,
+   "B": false,
+   "B_cause": "head probability below the engine threshold",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0253",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0254",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0255",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0267",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0268",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0269",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0270",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0271",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0283",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0284",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0285",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0286",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0287",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0299",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0300",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0301",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0302",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0303",
+   "A": true,
+   "S": false,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "head named no act"
+  },
+  {
+   "id": "AB-d0315",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0316",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "head probability below the engine threshold",
+   "S_cause": "gate did not credit (threshold, agreement or confusion) and nothing else added"
+  },
+  {
+   "id": "AB-d0317",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0318",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0319",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0329",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0330",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0331",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0332",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0333",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0343",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0344",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0345",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-cue or critical-act menu (shipped, before the model)",
+   "S_cause": "critical-cue or critical-act menu (shipped, before the model)"
+  },
+  {
+   "id": "AB-d0346",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0347",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0359",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-cue or critical-act menu (shipped, before the model)",
+   "S_cause": "critical-cue or critical-act menu (shipped, before the model)"
+  },
+  {
+   "id": "AB-d0360",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0361",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0362",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0363",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0375",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0376",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0377",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0378",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0379",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0391",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0392",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0393",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "head probability below the engine threshold",
+   "S_cause": "gate did not credit (threshold, agreement or confusion) and nothing else added"
+  },
+  {
+   "id": "AB-d0394",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0395",
+   "A": false,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0407",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0408",
+   "A": true,
+   "S": false,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "gate did not credit (threshold, agreement or confusion) and nothing else added"
+  },
+  {
+   "id": "AB-d0409",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0410",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-cue or critical-act menu (shipped, before the model)",
+   "S_cause": "critical-cue or critical-act menu (shipped, before the model)"
+  },
+  {
+   "id": "AB-d0411",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0423",
+   "A": false,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-cue or critical-act menu (shipped, before the model)",
+   "S_cause": "critical-cue or critical-act menu (shipped, before the model)"
+  },
+  {
+   "id": "AB-d0424",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0425",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0426",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0427",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "critical-mass cap",
+   "S_cause": "critical-mass cap"
+  },
+  {
+   "id": "AB-d0439",
+   "A": true,
+   "S": true,
+   "B": true,
+   "B_cause": "offered",
+   "S_cause": "offered"
+  },
+  {
+   "id": "AB-d0440",
+   "A": true,
+   "S": false,
+   "B": false,
+   "B_cause": "schema/timeout of the model reply (fell back to the shipped refusal: CRITICAL_MASS)",
+   "S_cause": "critical-mass cap"
+  }
+ ],
+ "checks": {
+  "unsafe_rows_credited_by_raw_replies": 67,
+  "survive_the_earlier_guards": 6,
+  "checks": {
+   "over_cap": {
+    "rejects_raw_false_credits": 42,
+    "rejects_guarded_survivors": 6,
+    "blocks_legitimate_rows_credited_by_the_guarded_evaluator": 115
+   },
+   "below_engine_threshold": {
+    "rejects_raw_false_credits": 31,
+    "rejects_guarded_survivors": 4,
+    "blocks_legitimate_rows_credited_by_the_guarded_evaluator": 53
+   },
+   "head_top_differs": {
+    "rejects_raw_false_credits": 33,
+    "rejects_guarded_survivors": 5,
+    "blocks_legitimate_rows_credited_by_the_guarded_evaluator": 45
+   },
+   "gate_not_credited": {
+    "rejects_raw_false_credits": 67,
+    "rejects_guarded_survivors": 6,
+    "blocks_legitimate_rows_credited_by_the_guarded_evaluator": 140
+   },
+   "assertion_or_status": {
+    "rejects_raw_false_credits": 56,
+    "rejects_guarded_survivors": 0,
+    "blocks_legitimate_rows_credited_by_the_guarded_evaluator": 0
+   },
+   "critical_cue": {
+    "rejects_raw_false_credits": 5,
+    "rejects_guarded_survivors": 0,
+    "blocks_legitimate_rows_credited_by_the_guarded_evaluator": 6
+   }
+  },
+  "legit_rows_counted": 371,
+  "survivors": [
+   {
+    "split": "test2",
+    "id": "AB-u0256",
+    "category": "negation",
+    "text": "Sorry, I never got to say most people do well.",
+    "credited_act": "REASSURE",
+    "p_act": 0.144,
+    "critical_mass": 0.1053,
+    "top_critical_class": "CONFIRM_IDENTITY",
+    "model_reported_a_critical_objective": false
+   },
+   {
+    "split": "test2",
+    "id": "AB-u0445",
+    "category": "critical",
+    "text": "Is there a food you have to stay away from for your health?",
+    "credited_act": "ASK_TOPIC",
+    "p_act": 0.348,
+    "critical_mass": 0.5394,
+    "top_critical_class": "STATE_ALLERGY",
+    "model_reported_a_critical_objective": false
+   },
+   {
+    "split": "test2",
+    "id": "AB-u0448",
+    "category": "critical_asr",
+    "text": "is there a food you have to stay away from for heath",
+    "credited_act": "ASK_TOPIC",
+    "p_act": 0.245,
+    "critical_mass": 0.3296,
+    "top_critical_class": "STATE_ALLERGY",
+    "model_reported_a_critical_objective": false
+   },
+   {
+    "split": "test2",
+    "id": "AB-u0470",
+    "category": "critical",
+    "text": "My request is that someone sees her within the hour.",
+    "credited_act": "ESCALATE_SPEECH",
+    "p_act": 0.003,
+    "critical_mass": 0.7683,
+    "top_critical_class": "SBAR_ELEMENT",
+    "model_reported_a_critical_objective": false
+   },
+   {
+    "split": "test2",
+    "id": "AB-u0444",
+    "category": "critical_asr",
+    "text": "has a plaster ever left skin redand sore",
+    "credited_act": "ASK_TOPIC",
+    "p_act": 0.003,
+    "critical_mass": 0.9457,
+    "top_critical_class": "STATE_ALLERGY",
+    "model_reported_a_critical_objective": false
+   },
+   {
+    "split": "test2",
+    "id": "AB-u0471",
+    "category": "critical",
+    "text": "I'd like her to be reviewed within the hour.",
+    "credited_act": "VOICE_ORDER",
+    "p_act": 0.008,
+    "critical_mass": 0.9656,
+    "top_critical_class": "SBAR_ELEMENT",
+    "model_reported_a_critical_objective": false
+   }
+  ]
+ },
+ "critical_reading": {
+  "dev": {
+   "critical_rows": 40,
+   "critical_with_a_critical_objective_reported": 39,
+   "legitimate_rows": 140,
+   "legitimate_with_a_critical_objective_reported": 1
+  },
+  "test": {
+   "critical_rows": 40,
+   "critical_with_a_critical_objective_reported": 39,
+   "legitimate_rows": 140,
+   "legitimate_with_a_critical_objective_reported": 0
+  },
+  "test2": {
+   "critical_rows": 40,
+   "critical_with_a_critical_objective_reported": 35,
+   "legitimate_rows": 140,
+   "legitimate_with_a_critical_objective_reported": 2
+  }
+ },
+ "variants": {
+  "dev_live_replies": {
+   "current": {
+    "legit_recall": "92/140",
+    "credited_precision": "92/93",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   },
+   "V1": {
+    "legit_recall": "114/140",
+    "credited_precision": "114/116",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   },
+   "V2": {
+    "legit_recall": "113/140",
+    "credited_precision": "113/115",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   },
+   "V3": {
+    "legit_recall": "113/140",
+    "credited_precision": "113/115",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   }
+  },
+  "dev_recorded_strict_replies": {
+   "current": {
+    "legit_recall": "88/140",
+    "credited_precision": "88/89",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   },
+   "V1": {
+    "legit_recall": "111/140",
+    "credited_precision": "111/113",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   },
+   "V2": {
+    "legit_recall": "110/140",
+    "credited_precision": "110/112",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   },
+   "V3": {
+    "legit_recall": "110/140",
+    "credited_precision": "110/112",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ]
+   }
+  },
+  "test_recorded_strict_replies": {
+   "current": {
+    "legit_recall": "75/140",
+    "credited_precision": "75/75",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   },
+   "V1": {
+    "legit_recall": "95/140",
+    "credited_precision": "95/95",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   },
+   "V2": {
+    "legit_recall": "95/140",
+    "credited_precision": "95/95",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   },
+   "V3": {
+    "legit_recall": "95/140",
+    "credited_precision": "95/95",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   }
+  },
+  "test2_recorded_strict_replies": {
+   "current": {
+    "legit_recall": "75/140",
+    "credited_precision": "75/75",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   },
+   "V1": {
+    "legit_recall": "104/140",
+    "credited_precision": "104/105",
+    "critical_false_credit": "1/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": [
+     {
+      "id": "AB-u0448",
+      "category": "critical_asr",
+      "text": "is there a food you have to stay away from for heath",
+      "offer": "ASK_TOPIC"
+     }
+    ]
+   },
+   "V2": {
+    "legit_recall": "104/140",
+    "credited_precision": "104/104",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   },
+   "V3": {
+    "legit_recall": "103/140",
+    "credited_precision": "103/103",
+    "critical_false_credit": "0/40",
+    "adversarial_false_credit": "0/300",
+    "wrong_offers": []
+   }
+  }
+ }
+}

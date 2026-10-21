@@ -1,0 +1,29 @@
+{
+ "prompt_version": "gemma-eval-5",
+ "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+ "model": "gemma4:31b-cloud",
+ "data_sha256": {
+  "partial_credit.jsonl": "e7d653ef330f80725ab06a33aed87ce0dc96f90974748f81ef9dcc3c328b9942",
+  "partial_credit.manifest.json": "a4602b5d489ee20a6be6bce7031b9347d3ab95a996276db182c1c33446f3b513",
+  "acceptance.json": "a4278b70cd6b8ff78fff73a44d8526f60d62a20bea3d659a670e41846f827120"
+ },
+ "code_sha256": {
+  "server/evaluate/prompt.py": "75364db105543e84e250052a2611184fdc8ae13084ce6b9acdb506fb64d3933b",
+  "server/evaluate/examples.py": "0486ab8e534e1a3890b1707182d450c458435b9def5414a480f6df7cd6b2b59e",
+  "server/evaluate/wording.json": "f5a9830155315a3d378cd9e37e923f12eccc93def1063b28bb925a1d69954181",
+  "server/evaluate/contract.py": "2b94308141b9602e826ab09013d918716f816f9e834cffe828d9850d827c4260",
+  "server/evaluate/reader.py": "9875d41ec22e9656241702804c498db00e426485d7f996f1b910705df4ce7c37",
+  "server/evaluate/rubric.py": "685c1500b644caae8ecb3cea3a2566212a88c9ae31dd7d86a6a78d6535dd349d",
+  "server/evaluate/provider.py": "e78d205eaa8dc1f3a5bf62a257d862cf19e6f98b93af9c74b5830ba14c04bb65",
+  "server/evaluate/service.py": "a11d07d70ede0d65ee6a01a16f9ac7356f56c36a5219f649ea7a9a8e85957b6f",
+  "content/assessment/mapping.json": "4f8400ef7bc62760cc0e7b459b775cb2dcd89c93a487ec41dcad34d761c6f071",
+  "content/scoring/rubric.json": "b4193f7873d4f8a8f0cb21d7acace25bca948a99f279c845c348500b1e82d526",
+  "src/ProcSense.Core/Scoring/Evidence.cs": "3898a277bd817bfc87481974d814445c7010dbb3448b5bca7473690b35fc3b2a",
+  "src/ProcSense.Core/Scoring/CommunicationScorer.cs": "e13ba125ee6bf55d07d4bd6bfdcca9caa1c375e89fb7c57c6ec66ea948ec8050",
+  "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs": "bed093e3b1decd66316149a18215756187d22c431dff6d732367eb123cc43299",
+  "tools/synth_dev/evaluator_run.py": "ae4ec72a4af460a49f0798b758af7950a022628d375828eef7bf82cbe125f4d3",
+  "tools/synth_dev/engine_score.py": "e7bb217d4201db9cfea5f7491d2b5b67c6cddc4471be3400c88ba4510d8e8b3d"
+ },
+ "frozen_utc": "2026-10-21T19:20:33Z",
+ "note": "frozen before any model call on this set"
+}

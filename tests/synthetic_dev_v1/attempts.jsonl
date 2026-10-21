@@ -1,0 +1,23 @@
+{"id": "SD1-0001", "attempt": 1, "text": "So, have you had anything at all to eat or drink since you got up this morning, even a cup of tea?", "rejected_for": "leak_jaccard: too close to a historical sentence", "replaced_by_attempt": 2}
+{"id": "SD1-0053", "attempt": 1, "text": "The surgeon will tell you how long it takes.", "rejected_for": "leak_exact", "replaced_by_attempt": 2}
+{"id": "SD1-0101", "attempt": 1, "text": "This blood test checks your kidneys.", "rejected_for": "leak_exact", "replaced_by_attempt": 2}
+{"id": "SD1-0102", "attempt": 1, "text": "I haven't explained the kidney blood test.", "rejected_for": "leak_jaccard", "replaced_by_attempt": 2}
+{"id": "SD1-0103", "attempt": 1, "text": "I'll explain the kidney blood test shortly.", "rejected_for": "leak_embedding", "replaced_by_attempt": 2}
+{"id": "SD1-0104", "attempt": 1, "text": "Were I to explain the blood test, I'd mention kidneys.", "rejected_for": "set rewritten with 0101 for coherence", "replaced_by_attempt": 2}
+{"id": "SD1-0105", "attempt": 1, "text": "Sam said she explained the kidney test.", "rejected_for": "leak_jaccard", "replaced_by_attempt": 2}
+{"id": "SD1-0106", "attempt": 1, "text": "The nurse will explain the kidney blood test.", "rejected_for": "leak_embedding", "replaced_by_attempt": 2}
+{"id": "SD1-0128", "attempt": 1, "text": "The staff nurse said that she told you she was about to put a cuff on your arm.", "rejected_for": "leak_embedding", "replaced_by_attempt": 2}
+{"id": "SD1-0152", "attempt": 1, "text": "The nurse is going to ask you to say in your own words what's happening this morning.", "rejected_for": "leak_jaccard", "replaced_by_attempt": 2}
+{"id": "SD1-0336", "attempt": 1, "text": "Before we start, can you tell me your full name and date of birth, please?", "rejected_for": "leak_jaccard", "replaced_by_attempt": 2}
+{"id": "SD1-0345", "attempt": 1, "text": "Um, is the name on your wristband spelt correctly?", "rejected_for": "leak_jaccard", "replaced_by_attempt": 2}
+{"id": "SD1-0364", "attempt": 1, "text": "So penicillin gave you a rash, right.", "rejected_for": "leak_jaccard", "replaced_by_attempt": 2}
+{"id": "SD1-0441", "attempt": 1, "text": "Um.", "rejected_for": "leak_exact (a bare filler already occurs in a historical set)", "replaced_by_attempt": 2}
+{"id": "SD1-0446", "attempt": 1, "text": "Okay.", "rejected_for": "leak_exact", "replaced_by_attempt": 2}
+{"id": "SD1-0448", "attempt": 1, "text": "Hmm.", "rejected_for": "leak_exact", "replaced_by_attempt": 2}
+{"id": "SD1-0051", "attempt": 1, "text": "If I told you it takes an hour, you'd probably relax a bit.", "rejected_for": "length band: short style but 13 words", "replaced_by_attempt": 2}
+{"id": "SD1-0175", "attempt": 1, "text": "The sister will sit with you and talk about how worried you are.", "rejected_for": "length band: short style but 13 words", "replaced_by_attempt": 2}
+{"id": "SD1-0419", "attempt": 1, "text": "How do you tell someone a patient's getting worse?", "rejected_for": "form: specification says statement, attempt 1 was a question", "replaced_by_attempt": 2}
+{"id": "SD1-0420", "attempt": 1, "text": "What order should a handover go in?", "rejected_for": "form: specification says statement, attempt 1 was a question", "replaced_by_attempt": 2}
+{"id": "SD1-0345", "attempt": 2, "text": "Um, is your name spelt right on the wristband?", "rejected_for": "leak against a historical sentence", "replaced_by_attempt": 3}
+{"id": "SD1-0446", "attempt": 2, "text": "Okay, okay.", "rejected_for": "leak against a historical sentence", "replaced_by_attempt": 3}
+{"id": "SD1-0292", "attempt": 1, "text": "I haven't told the nurse that the suction at bed two isn't working, mostly because I'm still checking whether it really is faulty.", "rejected_for": "semantic self-review: a denial of reporting that itself asserts the fault to the colleague reads as a performed report", "replaced_by_attempt": 2}

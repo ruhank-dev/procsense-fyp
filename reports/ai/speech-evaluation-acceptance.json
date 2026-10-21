@@ -1,0 +1,40 @@
+{
+ "adr": "ADR-0025",
+ "note": "Flat inputs of the speech_evaluation gate, collected from two stored acceptance reports. Synthetic, AI-written and AI-reviewed, each set scored once against criteria fixed beforehand; not independent human validation, not real audio, not a headset result (DC-10, Sannan).",
+ "sources": {
+  "semantic_heldout_v2": {
+   "file": "reports/ai/speech-evaluation-heldout-v2.json",
+   "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+   "verdict": "NOT APPROVED (owner decision)",
+   "criteria_missed": [
+    "C5"
+   ]
+  },
+  "partial_credit_v3": {
+   "file": "reports/ai/speech-evaluation-partial-v3.json",
+   "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+   "verdict": "APPROVED"
+  }
+ },
+ "partial_credit_basis": "The partial-credit input is the fresh set v3 (84.4 percent, 27 of 32). Held-out v2 missed that single criterion by one item (25 of 32, three misses being the 160-character evidence limit, DT-247); the owner chose a contract fix and a fresh set (22 October 2026).",
+ "same_prompt_in_both_runs": true,
+ "final_verdict": "APPROVED",
+ "owner_decision_recorded": true,
+ "gate_inputs": {
+  "critical_physical_completions": 0.0,
+  "window_state_bypass_items": 0,
+  "legitimate_recall": 0.9896,
+  "credited_precision": 1.0,
+  "performed_vs_not_accuracy": 0.9918,
+  "valid_reply_rate": 1.0,
+  "median_latency_ms": 2343,
+  "non_performed_false_credit_rate": 0.0,
+  "unjustified_ordinary_credit_rate": 0.0,
+  "mixed_ordinary_recall": 1.0,
+  "multi_intent_act_recall": 1.0,
+  "multi_intent_extra_credit_items": 0,
+  "contrast_set_rate": 1.0,
+  "partial_in_band_rate": 0.8438,
+  "evidence_length_rejections": 0
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "set": "synthetic_heldout_v1",
+ "version": 1,
+ "kind": "Acceptance criteria of the final held-out run of the Gemma speech evaluator (ADR-0025). Written and hashed BEFORE the evaluator was run on the held-out set. The numbers are the engineering targets already recorded in the gate (content/ai/thresholds.json, DT-245) and the reference of the experiment of 21 Oct 2026; none was changed after the held-out sentences existed.",
+ "evidence_class": "AI-written and AI-reviewed synthetic held-out data. Not independent human validation, not real audio, not a headset result: the real Meta Quest and ASR end-to-end test (DC-09, Sannan) is a separate, later check.",
+ "rule": "APPROVED only if every criterion passes at the point estimate. If a blocking criterion fails the result is BLOCKED. If only non-blocking criteria miss, the result is NOT APPROVED and the owner decides; the evaluator, prompt and criteria are not changed to chase the numbers, and the held-out set is not scored a second time.",
+ "criteria": [
+  {"id": "A1", "name": "critical physical completions credited from speech", "metric": "critical_physical_completions", "op": "==", "value": 0, "blocking": true},
+  {"id": "A2", "name": "legitimate credit recall (final engine score at least 0.5)", "metric": "legitimate_recall", "op": ">=", "value": 0.90, "blocking": false},
+  {"id": "A3", "name": "credited precision (credited acts that are right)", "metric": "credited_precision", "op": ">=", "value": 0.95, "blocking": false},
+  {"id": "A4", "name": "items of non-performed sentences (negated, planned, hypothetical, reported, another actor) that earn credit", "metric": "non_performed_false_credit_items", "op": "==", "value": 0, "blocking": false},
+  {"id": "A5", "name": "critical-content items on which an ordinary objective earns credit", "metric": "ordinary_credit_on_critical_items", "op": "==", "value": 0, "blocking": false},
+  {"id": "A6", "name": "performed versus not performed understanding (accuracy)", "metric": "performed_vs_not_accuracy", "op": ">=", "value": 0.95, "blocking": false},
+  {"id": "A7", "name": "valid replies after the bounded retry", "metric": "valid_reply_rate", "op": ">=", "value": 0.995, "blocking": false},
+  {"id": "A8", "name": "controlled partial-credit items inside their expected band (full >= 0.9, partial 0.1 to 0.9, wrong <= 0.25, irrelevant <= 0.1)", "metric": "partial_in_band_rate", "op": ">=", "value": 0.80, "blocking": false},
+  {"id": "A9", "name": "median response time per utterance (ms), the voice round-trip reference of C31 being 4 s", "metric": "median_latency_ms", "op": "<=", "value": 4000, "blocking": false}
+ ],
+ "reported_without_pass_mark": ["objective accuracy", "per-act recall", "false credits by semantic category", "wrong or extra objectives", "multi-intent per-act recall", "contrast sets", "window and state items", "relevance/correctness/completeness distributions", "score distributions", "95th percentile latency", "tokens per item", "free-plan usage"],
+ "run": {"model": "gemma4:31b-cloud", "workers": 3, "max_attempts": 2, "max_calls": 450, "max_tokens": 2400000, "free_plan_only": true, "scored_runs_allowed": 1}
+}

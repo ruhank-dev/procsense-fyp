@@ -1,0 +1,504 @@
+{
+ "note": "RECORDED replies replayed through the real SemanticInterpreter (stage one active in both policies); synthetic builder-written rows; dev/test/test2 informed the design, exploratory; no cloud call",
+ "tables": {
+  "dev, live replies": {
+   "hard": {
+    "legit_recall": [
+     92,
+     140
+    ],
+    "credited_precision": [
+     92,
+     93
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ],
+    "recovered_vs_hard": null
+   },
+   "corroborated": {
+    "legit_recall": [
+     113,
+     140
+    ],
+    "credited_precision": [
+     113,
+     115
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ],
+    "recovered_vs_hard": {
+     "gained": [
+      "AB-d0003",
+      "AB-d0015",
+      "AB-d0017",
+      "AB-d0018",
+      "AB-d0019",
+      "AB-d0031",
+      "AB-d0032",
+      "AB-d0159",
+      "AB-d0160",
+      "AB-d0191",
+      "AB-d0204",
+      "AB-d0251",
+      "AB-d0253",
+      "AB-d0271",
+      "AB-d0299",
+      "AB-d0302",
+      "AB-d0318",
+      "AB-d0344",
+      "AB-d0376",
+      "AB-d0394",
+      "AB-d0427"
+     ],
+     "lost": [],
+     "head_probability_over_critical_mass": {
+      "n": 21,
+      "min": 1.21,
+      "median": 6.31,
+      "max": 15.32
+     }
+    }
+   }
+  },
+  "dev, recorded strict replies": {
+   "hard": {
+    "legit_recall": [
+     88,
+     140
+    ],
+    "credited_precision": [
+     88,
+     89
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ],
+    "recovered_vs_hard": null
+   },
+   "corroborated": {
+    "legit_recall": [
+     110,
+     140
+    ],
+    "credited_precision": [
+     110,
+     112
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [
+     {
+      "id": "AB-d0098",
+      "category": "paraphrase",
+      "text": "We start by placing a small line in your arm.",
+      "offer": "EXPLAIN_ACTION"
+     },
+     {
+      "id": "AB-d0112",
+      "category": "asr_error",
+      "text": "we start by placing a small line in your on",
+      "offer": "EXPLAIN_ACTION"
+     }
+    ],
+    "recovered_vs_hard": {
+     "gained": [
+      "AB-d0003",
+      "AB-d0015",
+      "AB-d0017",
+      "AB-d0018",
+      "AB-d0019",
+      "AB-d0031",
+      "AB-d0032",
+      "AB-d0159",
+      "AB-d0160",
+      "AB-d0190",
+      "AB-d0191",
+      "AB-d0204",
+      "AB-d0251",
+      "AB-d0253",
+      "AB-d0271",
+      "AB-d0299",
+      "AB-d0302",
+      "AB-d0318",
+      "AB-d0376",
+      "AB-d0394",
+      "AB-d0427",
+      "AB-d0440"
+     ],
+     "lost": [],
+     "head_probability_over_critical_mass": {
+      "n": 22,
+      "min": 1.21,
+      "median": 5.82,
+      "max": 15.32
+     }
+    }
+   }
+  },
+  "test, recorded strict replies": {
+   "hard": {
+    "legit_recall": [
+     75,
+     140
+    ],
+    "credited_precision": [
+     75,
+     75
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [],
+    "recovered_vs_hard": null
+   },
+   "corroborated": {
+    "legit_recall": [
+     95,
+     140
+    ],
+    "credited_precision": [
+     95,
+     95
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [],
+    "recovered_vs_hard": {
+     "gained": [
+      "AB-t0002",
+      "AB-t0003",
+      "AB-t0015",
+      "AB-t0016",
+      "AB-t0017",
+      "AB-t0035",
+      "AB-t0082",
+      "AB-t0095",
+      "AB-t0144",
+      "AB-t0173",
+      "AB-t0174",
+      "AB-t0177",
+      "AB-t0302",
+      "AB-t0315",
+      "AB-t0333",
+      "AB-t0343",
+      "AB-t0375",
+      "AB-t0377",
+      "AB-t0391",
+      "AB-t0394"
+     ],
+     "lost": [],
+     "head_probability_over_critical_mass": {
+      "n": 20,
+      "min": 1.01,
+      "median": 7.04,
+      "max": 14.35
+     }
+    }
+   }
+  },
+  "test2, recorded strict replies": {
+   "hard": {
+    "legit_recall": [
+     75,
+     140
+    ],
+    "credited_precision": [
+     75,
+     75
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [],
+    "recovered_vs_hard": null
+   },
+   "corroborated": {
+    "legit_recall": [
+     104,
+     140
+    ],
+    "credited_precision": [
+     104,
+     104
+    ],
+    "critical_offers_any_condition": [
+     0,
+     40
+    ],
+    "adversarial_offers_in_window": [
+     0,
+     300
+    ],
+    "adversarial_offers_any_condition": [
+     0,
+     300
+    ],
+    "out_of_window_offers_any_row": [
+     0,
+     448
+    ],
+    "out_of_window_offers_of_the_rows_own_act": [
+     0,
+     140
+    ],
+    "no_context_offers": [
+     0,
+     488
+    ],
+    "wrong_offers": [],
+    "recovered_vs_hard": {
+     "gained": [
+      "AB-u0002",
+      "AB-u0015",
+      "AB-u0016",
+      "AB-u0017",
+      "AB-u0018",
+      "AB-u0032",
+      "AB-u0131",
+      "AB-u0144",
+      "AB-u0160",
+      "AB-u0177",
+      "AB-u0187",
+      "AB-u0204",
+      "AB-u0253",
+      "AB-u0267",
+      "AB-u0299",
+      "AB-u0301",
+      "AB-u0302",
+      "AB-u0317",
+      "AB-u0319",
+      "AB-u0330",
+      "AB-u0346",
+      "AB-u0359",
+      "AB-u0360",
+      "AB-u0377",
+      "AB-u0378",
+      "AB-u0408",
+      "AB-u0409",
+      "AB-u0423",
+      "AB-u0424"
+     ],
+     "lost": [],
+     "head_probability_over_critical_mass": {
+      "n": 29,
+      "min": 1.24,
+      "median": 6.86,
+      "max": 16.14
+     }
+    }
+   }
+  }
+ },
+ "raw_false_credits": {
+  "rows": 67,
+  "by_category": {
+   "negation": 12,
+   "incomplete": 21,
+   "actor_change": 13,
+   "hypothetical": 1,
+   "reported": 9,
+   "critical": 7,
+   "intention": 1,
+   "critical_asr": 3
+  },
+  "results": {
+   "strict reply / hard": {
+    "rows_offered_in_any_condition": 0,
+    "offers": []
+   },
+   "strict reply / corroborated": {
+    "rows_offered_in_any_condition": 0,
+    "offers": []
+   },
+   "fenced reply, fence removed / hard": {
+    "rows_offered_in_any_condition": 0,
+    "offers": []
+   },
+   "fenced reply, fence removed / corroborated": {
+    "rows_offered_in_any_condition": 0,
+    "offers": []
+   }
+  }
+ }
+}

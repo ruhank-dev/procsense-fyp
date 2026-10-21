@@ -1,0 +1,907 @@
+{
+ "note": "bounded re-check, free plan; the rows whose prompt changed or that timed out in the earlier live run; synthetic dev rows",
+ "model": "gemma4:31b-cloud",
+ "calls": 25,
+ "tokens": 34321,
+ "stopped": "",
+ "latency_ms_median": 686.0,
+ "latency_ms_max": 1816,
+ "rows": [
+  {
+   "id": "AB-d0065",
+   "category": "paraphrase",
+   "act": "ANSWER_QUESTION",
+   "text": "Yes, you will be asleep for all of it.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0066",
+   "category": "paraphrase",
+   "act": "ANSWER_QUESTION",
+   "text": "You will be fully asleep throughout.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "GATE_NOT_CREDITED",
+     "AMBIGUOUS",
+     "NOT_ELIGIBLE",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_CANDIDATE"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0067",
+   "category": "paraphrase",
+   "act": "ANSWER_QUESTION",
+   "text": "Yes, you will not be awake during it.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0079",
+   "category": "asr_error",
+   "act": "ANSWER_QUESTION",
+   "text": "you will be fully asleep thoughout",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "NOT_ELIGIBLE",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0080",
+   "category": "asr_error",
+   "act": "ANSWER_QUESTION",
+   "text": "yes you will be asleep for all of it",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0081",
+   "category": "paraphrase",
+   "act": "ANSWER_QUESTION",
+   "text": "It usually takes about an hour.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0082",
+   "category": "paraphrase",
+   "act": "ANSWER_QUESTION",
+   "text": "The whole thing lasts roughly an hour.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "NOT_ELIGIBLE",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0083",
+   "category": "paraphrase",
+   "act": "ANSWER_QUESTION",
+   "text": "About an hour, give or take.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 2,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0095",
+   "category": "asr_error",
+   "act": "ANSWER_QUESTION",
+   "text": "it usally takes about an hour",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0096",
+   "category": "asr_error",
+   "act": "ANSWER_QUESTION",
+   "text": "about hour give or take",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": true,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "ANSWER_QUESTION",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "ANSWER_QUESTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "ANSWER_QUESTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0176",
+   "category": "paraphrase",
+   "act": "EXPLAIN_ACTION",
+   "text": "I will now listen to your chest.",
+   "context": {
+    "steps": [
+     3
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": "EXPLAIN_ACTION",
+    "reasons": [
+     "LLM_UNAVAILABLE",
+     "LLM_TIMEOUT"
+    ],
+    "live_error": "TIMEOUT"
+   },
+   "after": {
+    "offer": "EXPLAIN_ACTION",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "EXPLAIN_ACTION",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0190",
+   "category": "paraphrase",
+   "act": "CHECK_UNDERSTANDING",
+   "text": "Is that clear so far?",
+   "context": {
+    "steps": [
+     9
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "LLM_UNAVAILABLE",
+     "LLM_TIMEOUT"
+    ],
+    "live_error": "TIMEOUT"
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CHECK_UNDERSTANDING",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0317",
+   "category": "paraphrase",
+   "act": "CLOSED_LOOP",
+   "text": "Repeating that back: one litre over four hours.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": "CLOSED_LOOP",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "CLOSED_LOOP",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0318",
+   "category": "paraphrase",
+   "act": "CLOSED_LOOP",
+   "text": "Reading back: a litre over four hours.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0319",
+   "category": "paraphrase",
+   "act": "CLOSED_LOOP",
+   "text": "To confirm, one litre over four hours.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0329",
+   "category": "asr_error",
+   "act": "CLOSED_LOOP",
+   "text": "reading back a litre over four hours",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0330",
+   "category": "asr_error",
+   "act": "CLOSED_LOOP",
+   "text": "repeating that back one litre over four hours",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": "CLOSED_LOOP",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "CLOSED_LOOP",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0331",
+   "category": "paraphrase",
+   "act": "CLOSED_LOOP",
+   "text": "Understood, I will call you when the porter arrives.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": "CLOSED_LOOP",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "CLOSED_LOOP",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ],
+     [
+      "VOICE_ORDER",
+      "NOT_SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0332",
+   "category": "paraphrase",
+   "act": "CLOSED_LOOP",
+   "text": "Got it, I'll tell you once the porter is here.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "LLM_NONE_SUPPORTED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0333",
+   "category": "paraphrase",
+   "act": "CLOSED_LOOP",
+   "text": "Okay, I will let you know as soon as the porter comes.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "LLM_NONE_SUPPORTED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "EXPLAIN_ACTION",
+      "NOT_SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0343",
+   "category": "asr_error",
+   "act": "CLOSED_LOOP",
+   "text": "understood i will call you when the porter arrives",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": "CLOSED_LOOP",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": "CLOSED_LOOP",
+    "decision": "OFFER_EVIDENCE",
+    "reasons": [
+     "LLM_AGREES"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ],
+     [
+      "VOICE_ORDER",
+      "NOT_SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0344",
+   "category": "asr_error",
+   "act": "CLOSED_LOOP",
+   "text": "got it i'll tell you once theporter is here",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "live_error": ""
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "CLOSED_LOOP",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0440",
+   "category": "asr_error",
+   "act": "VOICE_ORDER",
+   "text": "i want an e c g done straigt away",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "CRITICAL_MASS",
+     "LLM_UNAVAILABLE",
+     "LLM_TIMEOUT"
+    ],
+    "live_error": "TIMEOUT"
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "CRITICAL_MASS",
+     "CRITICAL_MASS",
+     "LLM_CANDIDATE_REFUSED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": [
+     [
+      "VOICE_ORDER",
+      "SUPPORTED"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "AB-d0487",
+   "category": "none",
+   "act": "NONE",
+   "text": "I think it is going to rain.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "before": {
+    "offer": null,
+    "reasons": [
+     "NO_ACT",
+     "LLM_UNAVAILABLE",
+     "LLM_TIMEOUT"
+    ],
+    "live_error": "TIMEOUT"
+   },
+   "after": {
+    "offer": null,
+    "decision": "ABSTAIN",
+    "reasons": [
+     "NO_ACT",
+     "LLM_NONE_SUPPORTED"
+    ],
+    "reading_status": "VALID",
+    "attempts": 1,
+    "findings": []
+   }
+  }
+ ]
+}

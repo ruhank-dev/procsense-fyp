@@ -1,0 +1,24 @@
+{
+ "set": "partial_credit_v1",
+ "kind": "synthetic DEVELOPMENT evidence: 32 short AI-written items, one per (objective, band); expected bands fixed before the model was run; not independent, not human-labelled",
+ "bands": {
+  "full": [
+   0.9,
+   1.0
+  ],
+  "partial": [
+   0.1,
+   0.9
+  ],
+  "wrong": [
+   0.0,
+   0.25
+  ],
+  "irrelevant": [
+   0.0,
+   0.1
+  ]
+ },
+ "n": 32,
+ "sha256": "a774c13eeb974791a8cee7fdf407040824b12c1b4ab4877d0d49e74f5d56b911"
+}

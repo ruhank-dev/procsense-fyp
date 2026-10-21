@@ -1,0 +1,2104 @@
+{
+ "n": 493,
+ "eligible": 176,
+ "no_credit": 317,
+ "legitimate_recall_credited": [
+  84,
+  176,
+  0.4773
+ ],
+ "legitimate_recall_offered": [
+  84,
+  176,
+  0.4773
+ ],
+ "credited_precision": [
+  84,
+  99,
+  0.8485
+ ],
+ "offered_precision": [
+  84,
+  99,
+  0.8485
+ ],
+ "false_credits_on_no_credit_items": 13,
+ "false_offers_on_no_credit_items": 13,
+ "wrong_act_credits_on_eligible": 2,
+ "critical_items": 91,
+ "critical_false_offers": 0,
+ "critical_false_credits": 0,
+ "critical_decisions": {
+  "MENU": 85,
+  "ABSTAIN": 6
+ },
+ "no_credit_decisions": {
+  "MENU": 108,
+  "ABSTAIN": 195,
+  "OFFER_EVIDENCE": 13,
+  "CLARIFY": 1
+ },
+ "no_credit_rejection": [
+  304,
+  317,
+  0.959
+ ],
+ "eligible_decisions": {
+  "ABSTAIN": 75,
+  "OFFER_EVIDENCE": 86,
+  "MENU": 9,
+  "CLARIFY": 6
+ },
+ "by_objective": {
+  "ACKNOWLEDGE_EMOTION": {
+   "n": 26,
+   "eligible": 14,
+   "recall": [
+    7,
+    14
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "OFFER_EVIDENCE": 9,
+    "ABSTAIN": 15,
+    "MENU": 1,
+    "CLARIFY": 1
+   },
+   "failures": 9
+  },
+  "ACKNOWLEDGE_FACT": {
+   "n": 24,
+   "eligible": 12,
+   "recall": [
+    7,
+    12
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 7,
+    "ABSTAIN": 14,
+    "MENU": 3
+   },
+   "failures": 5
+  },
+  "ANSWER_QUESTION": {
+   "n": 32,
+   "eligible": 12,
+   "recall": [
+    6,
+    12
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "OFFER_EVIDENCE": 7,
+    "ABSTAIN": 23,
+    "CLARIFY": 1,
+    "MENU": 1
+   },
+   "failures": 7
+  },
+  "ASK_TOPIC": {
+   "n": 27,
+   "eligible": 14,
+   "recall": [
+    4,
+    14
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 19,
+    "MENU": 4,
+    "OFFER_EVIDENCE": 4
+   },
+   "failures": 10
+  },
+  "CHECK_UNDERSTANDING": {
+   "n": 22,
+   "eligible": 10,
+   "recall": [
+    5,
+    10
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 5,
+    "ABSTAIN": 14,
+    "MENU": 3
+   },
+   "failures": 5
+  },
+  "CLARIFY": {
+   "n": 24,
+   "eligible": 12,
+   "recall": [
+    5,
+    12
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "MENU": 3,
+    "ABSTAIN": 13,
+    "OFFER_EVIDENCE": 7,
+    "CLARIFY": 1
+   },
+   "failures": 9
+  },
+  "CLOSED_LOOP": {
+   "n": 30,
+   "eligible": 11,
+   "recall": [
+    4,
+    11
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "OFFER_EVIDENCE": 5,
+    "ABSTAIN": 22,
+    "MENU": 3
+   },
+   "failures": 7
+  },
+  "CONFIRM_IDENTITY": {
+   "n": 16,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 16
+   },
+   "failures": 0
+  },
+  "CONSENT_SIGN": {
+   "n": 16,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 16
+   },
+   "failures": 0
+  },
+  "ESCALATE_SPEECH": {
+   "n": 23,
+   "eligible": 11,
+   "recall": [
+    3,
+    11
+   ],
+   "false_offers": 3,
+   "false_credits": 3,
+   "decisions": {
+    "OFFER_EVIDENCE": 6,
+    "ABSTAIN": 14,
+    "MENU": 3
+   },
+   "failures": 11
+  },
+  "EXPLAIN_ACTION": {
+   "n": 26,
+   "eligible": 14,
+   "recall": [
+    9,
+    14
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 9,
+    "ABSTAIN": 16,
+    "CLARIFY": 1
+   },
+   "failures": 5
+  },
+  "EXPLAIN_PROCEDURE": {
+   "n": 27,
+   "eligible": 15,
+   "recall": [
+    7,
+    15
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 7,
+    "ABSTAIN": 16,
+    "MENU": 2,
+    "CLARIFY": 2
+   },
+   "failures": 8
+  },
+  "EXPLAIN_TEST": {
+   "n": 26,
+   "eligible": 14,
+   "recall": [
+    8,
+    14
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 8,
+    "ABSTAIN": 13,
+    "MENU": 5
+   },
+   "failures": 6
+  },
+  "HANDOVER_CRITICAL_ELEMENT": {
+   "n": 16,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 16
+   },
+   "failures": 0
+  },
+  "NONE": {
+   "n": 54,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 8,
+    "ABSTAIN": 46
+   },
+   "failures": 0
+  },
+  "REASSURE": {
+   "n": 24,
+   "eligible": 12,
+   "recall": [
+    4,
+    12
+   ],
+   "false_offers": 3,
+   "false_credits": 3,
+   "decisions": {
+    "OFFER_EVIDENCE": 7,
+    "ABSTAIN": 16,
+    "MENU": 1
+   },
+   "failures": 10
+  },
+  "REPORT_FAULT": {
+   "n": 24,
+   "eligible": 12,
+   "recall": [
+    6,
+    12
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "OFFER_EVIDENCE": 7,
+    "ABSTAIN": 16,
+    "CLARIFY": 1
+   },
+   "failures": 7
+  },
+  "SBAR_ELEMENT": {
+   "n": 16,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 16
+   },
+   "failures": 0
+  },
+  "STATE_ALLERGY": {
+   "n": 15,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 15
+   },
+   "failures": 0
+  },
+  "VOICE_ORDER": {
+   "n": 25,
+   "eligible": 13,
+   "recall": [
+    9,
+    13
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "OFFER_EVIDENCE": 11,
+    "ABSTAIN": 13,
+    "MENU": 1
+   },
+   "failures": 6
+  }
+ },
+ "by_situation": {
+  "critical_topic_discussion": {
+   "n": 5,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 2,
+    "ABSTAIN": 3
+   },
+   "failures": 0
+  },
+  "filler_or_noise_words": {
+   "n": 8,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 8
+   },
+   "failures": 0
+  },
+  "hypothetical": {
+   "n": 33,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "ABSTAIN": 23,
+    "MENU": 9,
+    "OFFER_EVIDENCE": 1
+   },
+   "failures": 1
+  },
+  "intended_later": {
+   "n": 33,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 7,
+   "false_credits": 7,
+   "decisions": {
+    "MENU": 6,
+    "ABSTAIN": 20,
+    "OFFER_EVIDENCE": 7
+   },
+   "failures": 7
+  },
+  "near_miss": {
+   "n": 11,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 6,
+    "MENU": 5
+   },
+   "failures": 0
+  },
+  "negated": {
+   "n": 33,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 7,
+    "ABSTAIN": 26
+   },
+   "failures": 0
+  },
+  "off_topic_statement": {
+   "n": 10,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 9,
+    "MENU": 1
+   },
+   "failures": 0
+  },
+  "other_actor_does_it": {
+   "n": 33,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 3,
+   "false_credits": 3,
+   "decisions": {
+    "MENU": 8,
+    "ABSTAIN": 21,
+    "CLARIFY": 1,
+    "OFFER_EVIDENCE": 3
+   },
+   "failures": 3
+  },
+  "performed": {
+   "n": 274,
+   "eligible": 176,
+   "recall": [
+    84,
+    176
+   ],
+   "false_offers": 3,
+   "false_credits": 3,
+   "decisions": {
+    "ABSTAIN": 117,
+    "OFFER_EVIDENCE": 87,
+    "MENU": 64,
+    "CLARIFY": 6
+   },
+   "failures": 93
+  },
+  "reported_about_someone_else": {
+   "n": 33,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "MENU": 15,
+    "ABSTAIN": 17,
+    "OFFER_EVIDENCE": 1
+   },
+   "failures": 1
+  },
+  "small_talk": {
+   "n": 10,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 10
+   },
+   "failures": 0
+  },
+  "thinking_aloud": {
+   "n": 10,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 10
+   },
+   "failures": 0
+  }
+ },
+ "by_class": {
+  "A": {
+   "n": 146,
+   "eligible": 146,
+   "recall": [
+    75,
+    146
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "ABSTAIN": 59,
+    "OFFER_EVIDENCE": 77,
+    "MENU": 9,
+    "CLARIFY": 1
+   },
+   "failures": 71
+  },
+  "B": {
+   "n": 44,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "ABSTAIN": 42,
+    "OFFER_EVIDENCE": 1,
+    "MENU": 1
+   },
+   "failures": 1
+  },
+  "C": {
+   "n": 140,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 12,
+   "false_credits": 12,
+   "decisions": {
+    "MENU": 20,
+    "ABSTAIN": 107,
+    "OFFER_EVIDENCE": 12,
+    "CLARIFY": 1
+   },
+   "failures": 12
+  },
+  "D": {
+   "n": 54,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 54
+   },
+   "failures": 0
+  },
+  "E": {
+   "n": 30,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 27,
+    "ABSTAIN": 3
+   },
+   "failures": 0
+  },
+  "F": {
+   "n": 49,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 43,
+    "MENU": 6
+   },
+   "failures": 0
+  },
+  "G": {
+   "n": 30,
+   "eligible": 30,
+   "recall": [
+    9,
+    30
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 16,
+    "OFFER_EVIDENCE": 9,
+    "CLARIFY": 5
+   },
+   "failures": 21
+  }
+ },
+ "by_form": {
+  "multi_clause": {
+   "n": 30,
+   "eligible": 30,
+   "recall": [
+    9,
+    30
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 16,
+    "OFFER_EVIDENCE": 9,
+    "CLARIFY": 5
+   },
+   "failures": 21
+  },
+  "noise": {
+   "n": 8,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 8
+   },
+   "failures": 0
+  },
+  "question": {
+   "n": 57,
+   "eligible": 30,
+   "recall": [
+    16,
+    30
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 19,
+    "OFFER_EVIDENCE": 16,
+    "MENU": 22
+   },
+   "failures": 14
+  },
+  "request_or_instruction": {
+   "n": 28,
+   "eligible": 15,
+   "recall": [
+    4,
+    15
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 17,
+    "OFFER_EVIDENCE": 4,
+    "MENU": 7
+   },
+   "failures": 11
+  },
+  "statement": {
+   "n": 370,
+   "eligible": 101,
+   "recall": [
+    55,
+    101
+   ],
+   "false_offers": 15,
+   "false_credits": 15,
+   "decisions": {
+    "MENU": 88,
+    "ABSTAIN": 210,
+    "OFFER_EVIDENCE": 70,
+    "CLARIFY": 2
+   },
+   "failures": 59
+  }
+ },
+ "by_style": {
+  "concise": {
+   "n": 84,
+   "eligible": 36,
+   "recall": [
+    15,
+    36
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "OFFER_EVIDENCE": 17,
+    "ABSTAIN": 44,
+    "CLARIFY": 3,
+    "MENU": 20
+   },
+   "failures": 22
+  },
+  "conversational": {
+   "n": 92,
+   "eligible": 24,
+   "recall": [
+    13,
+    24
+   ],
+   "false_offers": 5,
+   "false_credits": 5,
+   "decisions": {
+    "ABSTAIN": 54,
+    "MENU": 19,
+    "OFFER_EVIDENCE": 18,
+    "CLARIFY": 1
+   },
+   "failures": 16
+  },
+  "formal": {
+   "n": 54,
+   "eligible": 17,
+   "recall": [
+    10,
+    17
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 10,
+    "ABSTAIN": 32,
+    "MENU": 12
+   },
+   "failures": 7
+  },
+  "hesitant": {
+   "n": 37,
+   "eligible": 18,
+   "recall": [
+    13,
+    18
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 19,
+    "OFFER_EVIDENCE": 13,
+    "MENU": 5
+   },
+   "failures": 5
+  },
+  "indirect": {
+   "n": 42,
+   "eligible": 18,
+   "recall": [
+    5,
+    18
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "ABSTAIN": 28,
+    "OFFER_EVIDENCE": 7,
+    "MENU": 7
+   },
+   "failures": 14
+  },
+  "informal": {
+   "n": 65,
+   "eligible": 16,
+   "recall": [
+    7,
+    16
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "ABSTAIN": 35,
+    "MENU": 21,
+    "OFFER_EVIDENCE": 9
+   },
+   "failures": 11
+  },
+  "nonnative": {
+   "n": 53,
+   "eligible": 17,
+   "recall": [
+    8,
+    17
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "OFFER_EVIDENCE": 10,
+    "ABSTAIN": 23,
+    "MENU": 19,
+    "CLARIFY": 1
+   },
+   "failures": 11
+  },
+  "selfcorrect": {
+   "n": 30,
+   "eligible": 14,
+   "recall": [
+    8,
+    14
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 14,
+    "OFFER_EVIDENCE": 8,
+    "MENU": 8
+   },
+   "failures": 6
+  },
+  "verbose": {
+   "n": 36,
+   "eligible": 16,
+   "recall": [
+    5,
+    16
+   ],
+   "false_offers": 2,
+   "false_credits": 2,
+   "decisions": {
+    "ABSTAIN": 21,
+    "OFFER_EVIDENCE": 7,
+    "CLARIFY": 2,
+    "MENU": 6
+   },
+   "failures": 13
+  }
+ },
+ "by_tag": {
+  "safety_sensitive": {
+   "n": 91,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "MENU": 85,
+    "ABSTAIN": 6
+   },
+   "failures": 0
+  },
+  "hedged_content": {
+   "n": 28,
+   "eligible": 21,
+   "recall": [
+    12,
+    21
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "ABSTAIN": 14,
+    "OFFER_EVIDENCE": 13,
+    "CLARIFY": 1
+   },
+   "failures": 9
+  },
+  "context_reference": {
+   "n": 77,
+   "eligible": 34,
+   "recall": [
+    16,
+    34
+   ],
+   "false_offers": 3,
+   "false_credits": 3,
+   "decisions": {
+    "MENU": 7,
+    "ABSTAIN": 50,
+    "OFFER_EVIDENCE": 19,
+    "CLARIFY": 1
+   },
+   "failures": 20
+  },
+  "out_of_window": {
+   "n": 29,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 28,
+    "MENU": 1
+   },
+   "failures": 0
+  },
+  "state_absent": {
+   "n": 15,
+   "eligible": 0,
+   "recall": [
+    0,
+    0
+   ],
+   "false_offers": 1,
+   "false_credits": 1,
+   "decisions": {
+    "ABSTAIN": 14,
+    "OFFER_EVIDENCE": 1
+   },
+   "failures": 1
+  },
+  "question": {
+   "n": 57,
+   "eligible": 30,
+   "recall": [
+    16,
+    30
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 19,
+    "OFFER_EVIDENCE": 16,
+    "MENU": 22
+   },
+   "failures": 14
+  },
+  "escalation_handover": {
+   "n": 80,
+   "eligible": 24,
+   "recall": [
+    12,
+    24
+   ],
+   "false_offers": 5,
+   "false_credits": 5,
+   "decisions": {
+    "OFFER_EVIDENCE": 17,
+    "ABSTAIN": 27,
+    "MENU": 36
+   },
+   "failures": 17
+  },
+  "emotion_reassurance": {
+   "n": 50,
+   "eligible": 26,
+   "recall": [
+    11,
+    26
+   ],
+   "false_offers": 5,
+   "false_credits": 5,
+   "decisions": {
+    "OFFER_EVIDENCE": 16,
+    "ABSTAIN": 31,
+    "MENU": 2,
+    "CLARIFY": 1
+   },
+   "failures": 19
+  },
+  "explain_family": {
+   "n": 79,
+   "eligible": 43,
+   "recall": [
+    24,
+    43
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "OFFER_EVIDENCE": 24,
+    "ABSTAIN": 45,
+    "MENU": 7,
+    "CLARIFY": 3
+   },
+   "failures": 19
+  },
+  "multi_intent": {
+   "n": 30,
+   "eligible": 30,
+   "recall": [
+    9,
+    30
+   ],
+   "false_offers": 0,
+   "false_credits": 0,
+   "decisions": {
+    "ABSTAIN": 16,
+    "OFFER_EVIDENCE": 9,
+    "CLARIFY": 5
+   },
+   "failures": 21
+  }
+ },
+ "contrast_sets": {
+  "n": 33,
+  "all_correct": 16,
+  "performed_credited": 20,
+  "sets": {
+   "SET-ASK_TOPIC-0": {
+    "performed_member": "ABSTAIN:CRITICAL_MASS",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "MENU:CRITICAL_TOPIC",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": false
+   },
+   "SET-ASK_TOPIC-1": {
+    "performed_member": "ABSTAIN:CRITICAL_MASS",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:CRITICAL_MASS",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-CLARIFY-0": {
+    "performed_member": "MENU:CRITICAL_TOPIC",
+    "non_performed_offered": [
+     "intended_later"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-CLARIFY-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "intended_later"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-ANSWER_QUESTION-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_ELIGIBLE",
+     "intended_later": "ABSTAIN:NOT_ELIGIBLE",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "CLARIFY:GATE_NOT_CREDITED"
+    },
+    "all_correct": true
+   },
+   "SET-ANSWER_QUESTION-1": {
+    "performed_member": "ABSTAIN:NOT_PERFORMED:other_actor",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": false
+   },
+   "SET-EXPLAIN_PROCEDURE-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": true
+   },
+   "SET-EXPLAIN_PROCEDURE-1": {
+    "performed_member": "ABSTAIN:NO_PENDING_QUESTION",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": false
+   },
+   "SET-EXPLAIN_TEST-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   },
+   "SET-EXPLAIN_TEST-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:GATE_NOT_CREDITED",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   },
+   "SET-EXPLAIN_ACTION-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:NOT_PERFORMED:other_actor",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:other_actor"
+    },
+    "all_correct": true
+   },
+   "SET-EXPLAIN_ACTION-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": true
+   },
+   "SET-CHECK_UNDERSTANDING-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:CRITICAL_MASS",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": true
+   },
+   "SET-CHECK_UNDERSTANDING-1": {
+    "performed_member": "ABSTAIN:CRITICAL_MASS",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-ACKNOWLEDGE_EMOTION-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "intended_later"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-ACKNOWLEDGE_EMOTION-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "reported_about_someone_else"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "OFFER_EVIDENCE",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": false
+   },
+   "SET-REASSURE-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": true
+   },
+   "SET-REASSURE-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "intended_later",
+     "hypothetical"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "OFFER_EVIDENCE",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": false
+   },
+   "SET-ACKNOWLEDGE_FACT-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": true
+   },
+   "SET-ACKNOWLEDGE_FACT-1": {
+    "performed_member": "ABSTAIN:CRITICAL_MASS",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:CRITICAL_MASS",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-CLOSED_LOOP-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:other_actor"
+    },
+    "all_correct": true
+   },
+   "SET-CLOSED_LOOP-1": {
+    "performed_member": "MENU:CRITICAL_TOPIC",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:other_actor"
+    },
+    "all_correct": false
+   },
+   "SET-ESCALATE_SPEECH-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "other_actor_does_it"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:NOT_PERFORMED:other_actor",
+     "other_actor_does_it": "OFFER_EVIDENCE"
+    },
+    "all_correct": false
+   },
+   "SET-ESCALATE_SPEECH-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "intended_later",
+     "other_actor_does_it"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "OFFER_EVIDENCE"
+    },
+    "all_correct": false
+   },
+   "SET-REPORT_FAULT-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "intended_later"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "ABSTAIN:NOT_PERFORMED:reported",
+     "other_actor_does_it": "ABSTAIN:NOT_PERFORMED:reported"
+    },
+    "all_correct": false
+   },
+   "SET-REPORT_FAULT-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:CRITICAL_MASS",
+     "hypothetical": "ABSTAIN:NOT_PERFORMED:hypothetical",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": true
+   },
+   "SET-VOICE_ORDER-0": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "intended_later"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:CRITICAL_MASS",
+     "intended_later": "OFFER_EVIDENCE",
+     "hypothetical": "ABSTAIN:NOT_ELIGIBLE",
+     "reported_about_someone_else": "ABSTAIN:CRITICAL_MASS",
+     "other_actor_does_it": "ABSTAIN:CRITICAL_MASS"
+    },
+    "all_correct": false
+   },
+   "SET-VOICE_ORDER-1": {
+    "performed_member": "credited",
+    "non_performed_offered": [
+     "other_actor_does_it"
+    ],
+    "non_performed_decisions": {
+     "negated": "ABSTAIN:NOT_PERFORMED:denied",
+     "intended_later": "ABSTAIN:NOT_PERFORMED:intended",
+     "hypothetical": "ABSTAIN:CRITICAL_MASS",
+     "reported_about_someone_else": "ABSTAIN:NOT_PERFORMED:other_actor",
+     "other_actor_does_it": "OFFER_EVIDENCE"
+    },
+    "all_correct": false
+   },
+   "SET-CONFIRM_IDENTITY-0": {
+    "performed_member": "critical: MENU",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "MENU:CRITICAL_TOPIC",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   },
+   "SET-STATE_ALLERGY-0": {
+    "performed_member": "critical: MENU",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "MENU:CRITICAL_TOPIC",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   },
+   "SET-CONSENT_SIGN-0": {
+    "performed_member": "critical: MENU",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "MENU:CRITICAL_TOPIC",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   },
+   "SET-HANDOVER_CRITICAL_ELEMENT-0": {
+    "performed_member": "critical: MENU",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "MENU:CRITICAL_TOPIC",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   },
+   "SET-SBAR_ELEMENT-0": {
+    "performed_member": "critical: MENU",
+    "non_performed_offered": [],
+    "non_performed_decisions": {
+     "negated": "MENU:CRITICAL_TOPIC",
+     "intended_later": "MENU:CRITICAL_TOPIC",
+     "hypothetical": "MENU:CRITICAL_TOPIC",
+     "reported_about_someone_else": "MENU:CRITICAL_TOPIC",
+     "other_actor_does_it": "MENU:CRITICAL_TOPIC"
+    },
+    "all_correct": true
+   }
+  }
+ },
+ "multi_intent": {
+  "items": 30,
+  "credit_acts_total": 54,
+  "credit_acts_credited": 9,
+  "items_with_at_least_one_correct_credit": 9,
+  "items_with_two_credit_acts": 24,
+  "offers": {
+   "SD1-0471": [
+    null,
+    [
+     "ACKNOWLEDGE_EMOTION",
+     "REASSURE"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0472": [
+    "EXPLAIN_PROCEDURE",
+    [
+     "EXPLAIN_PROCEDURE",
+     "EXPLAIN_ACTION"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0473": [
+    null,
+    [
+     "EXPLAIN_PROCEDURE",
+     "CHECK_UNDERSTANDING"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0474": [
+    null,
+    [
+     "ASK_TOPIC",
+     "CLARIFY"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0475": [
+    null,
+    [
+     "ACKNOWLEDGE_FACT",
+     "ASK_TOPIC"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0476": [
+    "EXPLAIN_TEST",
+    [
+     "EXPLAIN_TEST",
+     "REASSURE"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0477": [
+    null,
+    [
+     "REPORT_FAULT",
+     "ESCALATE_SPEECH"
+    ],
+    "CLARIFY"
+   ],
+   "SD1-0478": [
+    null,
+    [
+     "VOICE_ORDER",
+     "ESCALATE_SPEECH"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0479": [
+    "VOICE_ORDER",
+    [
+     "CLOSED_LOOP",
+     "VOICE_ORDER"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0480": [
+    "ANSWER_QUESTION",
+    [
+     "ANSWER_QUESTION",
+     "REASSURE"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0481": [
+    "EXPLAIN_ACTION",
+    [
+     "EXPLAIN_ACTION",
+     "REASSURE"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0482": [
+    null,
+    [
+     "CLARIFY",
+     "ACKNOWLEDGE_FACT"
+    ],
+    "CLARIFY"
+   ],
+   "SD1-0483": [
+    null,
+    [
+     "EXPLAIN_PROCEDURE",
+     "EXPLAIN_TEST"
+    ],
+    "CLARIFY"
+   ],
+   "SD1-0484": [
+    null,
+    [
+     "ACKNOWLEDGE_EMOTION",
+     "ASK_TOPIC"
+    ],
+    "CLARIFY"
+   ],
+   "SD1-0485": [
+    "CHECK_UNDERSTANDING",
+    [
+     "ANSWER_QUESTION",
+     "CHECK_UNDERSTANDING"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0486": [
+    "REPORT_FAULT",
+    [
+     "ESCALATE_SPEECH",
+     "REPORT_FAULT"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0487": [
+    null,
+    [
+     "EXPLAIN_ACTION",
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "CLARIFY"
+   ],
+   "SD1-0488": [
+    null,
+    [
+     "REASSURE",
+     "CHECK_UNDERSTANDING"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0489": [
+    null,
+    [
+     "ASK_TOPIC",
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0490": [
+    null,
+    [
+     "EXPLAIN_TEST",
+     "CHECK_UNDERSTANDING"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0491": [
+    "VOICE_ORDER",
+    [
+     "VOICE_ORDER",
+     "CLOSED_LOOP"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0492": [
+    null,
+    [
+     "EXPLAIN_PROCEDURE",
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0493": [
+    null,
+    [
+     "ACKNOWLEDGE_FACT",
+     "REASSURE"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0494": [
+    "EXPLAIN_ACTION",
+    [
+     "CLARIFY",
+     "EXPLAIN_ACTION"
+    ],
+    "OFFER_EVIDENCE"
+   ],
+   "SD1-0495": [
+    null,
+    [
+     "EXPLAIN_ACTION"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0496": [
+    null,
+    [
+     "ACKNOWLEDGE_EMOTION"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0497": [
+    null,
+    [
+     "ASK_TOPIC"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0498": [
+    null,
+    [
+     "REPORT_FAULT"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0499": [
+    null,
+    [
+     "EXPLAIN_TEST"
+    ],
+    "ABSTAIN"
+   ],
+   "SD1-0500": [
+    null,
+    [
+     "REASSURE"
+    ],
+    "ABSTAIN"
+   ]
+  }
+ },
+ "ineligible_b": {
+  "n": 44,
+  "offered": 1,
+  "credited": 1,
+  "decisions": {
+   "ABSTAIN": 42,
+   "OFFER_EVIDENCE": 1,
+   "MENU": 1
+  },
+  "reasons": {
+   "CRITICAL_MASS": 15,
+   "NOT_ELIGIBLE": 13,
+   "NO_ELIGIBLE_OBJECTIVE": 9,
+   "NO_PENDING_QUESTION": 3,
+   "": 1,
+   "NO_READBACK_PENDING": 2,
+   "CRITICAL_TOPIC": 1
+  },
+  "out_of_window": {
+   "n": 29,
+   "offered": 0,
+   "credited": 0
+  },
+  "state_absent": {
+   "n": 15,
+   "offered": 1,
+   "credited": 1
+  }
+ },
+ "layer1_reading": {
+  "performed_items": 190,
+  "head_act_correct": 144,
+  "head_act_correct_rate": 0.7579,
+  "confusions": [
+   [
+    "CLOSED_LOOP",
+    "ACKNOWLEDGE_FACT",
+    3
+   ],
+   [
+    "CLARIFY",
+    "ASK_TOPIC",
+    2
+   ],
+   [
+    "ANSWER_QUESTION",
+    "EXPLAIN_PROCEDURE",
+    2
+   ],
+   [
+    "EXPLAIN_PROCEDURE",
+    "ANSWER_QUESTION",
+    2
+   ],
+   [
+    "EXPLAIN_PROCEDURE",
+    "REASSURE",
+    2
+   ],
+   [
+    "REASSURE",
+    "CHECK_UNDERSTANDING",
+    2
+   ],
+   [
+    "REASSURE",
+    "ANSWER_QUESTION",
+    2
+   ],
+   [
+    "CLOSED_LOOP",
+    "HANDOVER_CRITICAL_ELEMENT",
+    2
+   ],
+   [
+    "CLOSED_LOOP",
+    "VOICE_ORDER",
+    2
+   ],
+   [
+    "ESCALATE_SPEECH",
+    "VOICE_ORDER",
+    2
+   ],
+   [
+    "ASK_TOPIC",
+    "ANSWER_QUESTION",
+    1
+   ],
+   [
+    "CLARIFY",
+    "HANDOVER_CRITICAL_ELEMENT",
+    1
+   ],
+   [
+    "CLARIFY",
+    "VOICE_ORDER",
+    1
+   ],
+   [
+    "CLARIFY",
+    "CHECK_UNDERSTANDING",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "ESCALATE_SPEECH",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "NONE",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "REASSURE",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "ASK_TOPIC",
+    1
+   ],
+   [
+    "ANSWER_QUESTION",
+    "ACKNOWLEDGE_FACT",
+    1
+   ],
+   [
+    "EXPLAIN_TEST",
+    "EXPLAIN_ACTION",
+    1
+   ],
+   [
+    "EXPLAIN_TEST",
+    "SBAR_ELEMENT",
+    1
+   ],
+   [
+    "EXPLAIN_ACTION",
+    "EXPLAIN_PROCEDURE",
+    1
+   ],
+   [
+    "EXPLAIN_ACTION",
+    "NONE",
+    1
+   ],
+   [
+    "CHECK_UNDERSTANDING",
+    "EXPLAIN_PROCEDURE",
+    1
+   ],
+   [
+    "REASSURE",
+    "EXPLAIN_ACTION",
+    1
+   ],
+   [
+    "REASSURE",
+    "ACKNOWLEDGE_EMOTION",
+    1
+   ],
+   [
+    "ACKNOWLEDGE_FACT",
+    "ESCALATE_SPEECH",
+    1
+   ],
+   [
+    "CLOSED_LOOP",
+    "ESCALATE_SPEECH",
+    1
+   ],
+   [
+    "CLOSED_LOOP",
+    "EXPLAIN_ACTION",
+    1
+   ],
+   [
+    "ESCALATE_SPEECH",
+    "CHECK_UNDERSTANDING",
+    1
+   ],
+   [
+    "ESCALATE_SPEECH",
+    "SBAR_ELEMENT",
+    1
+   ],
+   [
+    "ESCALATE_SPEECH",
+    "CONSENT_SIGN",
+    1
+   ],
+   [
+    "REPORT_FAULT",
+    "NONE",
+    1
+   ],
+   [
+    "REPORT_FAULT",
+    "CHECK_UNDERSTANDING",
+    1
+   ],
+   [
+    "VOICE_ORDER",
+    "HANDOVER_CRITICAL_ELEMENT",
+    1
+   ]
+  ],
+  "head_credited_flag": {
+   "performed_items_head_credited": 105
+  }
+ },
+ "layer1_assertion_status": {
+  "performed": {
+   "question": 62,
+   "actual": 175,
+   "other_actor": 4,
+   "denied": 2,
+   "hypothetical": 1
+  },
+  "negated": {
+   "denied": 28
+  },
+  "intended_later": {
+   "intended": 18,
+   "actual": 10
+  },
+  "hypothetical": {
+   "hypothetical": 26,
+   "actual": 2
+  },
+  "reported_about_someone_else": {
+   "actual": 6,
+   "other_actor": 15,
+   "reported": 7
+  },
+  "other_actor_does_it": {
+   "reported": 14,
+   "other_actor": 6,
+   "actual": 8
+  }
+ },
+ "layer1_assertion_summary": {
+  "non_performed_items": 165,
+  "flagged_as_not_actual": 131,
+  "performed_items_wrongly_flagged": 4,
+  "performed_items": 190,
+  "non_performed_flag_rate": 0.7939
+ },
+ "layer1_critical": {
+  "critical_items": 91,
+  "cue_fired": 76,
+  "head_critical": 84,
+  "either": 88,
+  "reached_menu": 85,
+  "abstained": 6,
+  "abstain_reasons": {
+   "NO_ELIGIBLE_OBJECTIVE": 4,
+   "NO_ACT": 2
+  }
+ },
+ "critical_cue_on_non_critical": {
+  "non_critical_items_sent_to_menu": 32,
+  "of_which_eligible": 9,
+  "by_cue": {
+   "cue": 10,
+   "head": 22
+  }
+ },
+ "layer2_gate": {
+  "decisions": {
+   "ABSTAIN": 270,
+   "MENU": 117,
+   "OFFER_EVIDENCE": 99,
+   "CLARIFY": 7
+  },
+  "abstain_reasons": {
+   "CRITICAL_MASS": 120,
+   "NOT_PERFORMED:hypothetical": 11,
+   "GATE_NOT_CREDITED": 5,
+   "NOT_ELIGIBLE": 23,
+   "NOT_PERFORMED:denied": 22,
+   "NOT_PERFORMED:other_actor": 7,
+   "NOT_PERFORMED:reported": 10,
+   "NO_ACT": 36,
+   "NO_ELIGIBLE_OBJECTIVE": 17,
+   "NO_PENDING_QUESTION": 5,
+   "NOT_PERFORMED:intended": 10,
+   "NO_READBACK_PENDING": 2,
+   "QUESTION_NOT_PERFORMING_ACT": 2
+  },
+  "critical_mass_abstentions_on_eligible": 54,
+  "critical_mass_abstentions_total": 120
+ },
+ "layer3_scoring": {
+  "offers_sent_to_engine": 99,
+  "accepted": 99,
+  "refused": {}
+ },
+ "failures": {
+  "n": 105,
+  "by_type_and_layer": {
+   "abstained: critical mass | cap/gate (critical-mass cap)": 39,
+   "abstained: gate_not_credited | gate (head confidence/threshold or disagreement; head act ASK_TOPIC)": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read ANSWER_QUESTION for ASK_TOPIC); then critical_mass": 1,
+   "sent to the menu | critical-topic handling (critical cue)": 4,
+   "false credit | assertion/modality or objective confusion; the engine accepted it": 13,
+   "abstained or blocked after reading the wrong act | objective confusion (head read ASK_TOPIC for CLARIFY); then critical_mass": 1,
+   "sent to the menu | critical-topic handling (head says critical)": 5,
+   "abstained or blocked after reading the wrong act | objective confusion (head read VOICE_ORDER for CLARIFY); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read CHECK_UNDERSTANDING for CLARIFY); then critical_mass": 1,
+   "abstained: not_performed:other_actor | assertion/modality (status_of read a performed act as other_actor)": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_PROCEDURE for ANSWER_QUESTION); then not_eligible": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read ESCALATE_SPEECH for ANSWER_QUESTION); then critical_mass": 1,
+   "abstained: no act | semantic interpretation (head read NONE)": 3,
+   "abstained or blocked after reading the wrong act | objective confusion (head read ANSWER_QUESTION for EXPLAIN_PROCEDURE); then no_pending_question": 1,
+   "clarification asked instead of an offer | semantic interpretation (ambiguity between REASSURE/EXPLAIN_TEST)": 1,
+   "abstained: gate_not_credited | gate (head confidence/threshold or disagreement; head act EXPLAIN_PROCEDURE)": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read REASSURE for EXPLAIN_PROCEDURE); then not_eligible": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_ACTION for EXPLAIN_TEST); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_PROCEDURE for EXPLAIN_ACTION); then not_eligible": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_PROCEDURE for CHECK_UNDERSTANDING); then critical_mass": 1,
+   "abstained: gate_not_credited | gate (head confidence/threshold or disagreement; head act CHECK_UNDERSTANDING)": 1,
+   "abstained: gate_not_credited | gate (head confidence/threshold or disagreement; head act ACKNOWLEDGE_EMOTION)": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read CHECK_UNDERSTANDING for REASSURE); then critical_mass": 2,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_ACTION for REASSURE); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read ANSWER_QUESTION for REASSURE); then no_pending_question": 1,
+   "wrong act credited | objective confusion (semantic reading)": 2,
+   "abstained or blocked after reading the wrong act | objective confusion (head read VOICE_ORDER for CLOSED_LOOP); then not_eligible": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_ACTION for CLOSED_LOOP); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read CHECK_UNDERSTANDING for ESCALATE_SPEECH); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read VOICE_ORDER for ESCALATE_SPEECH); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read CHECK_UNDERSTANDING for REPORT_FAULT); then critical_mass": 1,
+   "abstained: not_performed:reported | assertion/modality (status_of read a performed act as reported)": 2,
+   "abstained: question is not performing | assertion/modality (question vs request)": 2,
+   "clarification asked instead of an offer | semantic interpretation (ambiguity between REPORT_FAULT/ESCALATE_SPEECH)": 1,
+   "clarification asked instead of an offer | semantic interpretation (ambiguity between ACKNOWLEDGE_FACT/CLARIFY)": 1,
+   "clarification asked instead of an offer | semantic interpretation (ambiguity between EXPLAIN_PROCEDURE/EXPLAIN_TEST)": 1,
+   "clarification asked instead of an offer | semantic interpretation (ambiguity between ASK_TOPIC/ACKNOWLEDGE_EMOTION)": 1,
+   "clarification asked instead of an offer | semantic interpretation (ambiguity between EXPLAIN_ACTION/ACKNOWLEDGE_EMOTION)": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read EXPLAIN_ACTION for CHECK_UNDERSTANDING/REASSURE); then critical_mass": 1,
+   "abstained or blocked after reading the wrong act | objective confusion (head read ESCALATE_SPEECH for ASK_TOPIC); then not_eligible": 1,
+   "abstained: not_performed:denied | assertion/modality (status_of read a performed act as denied)": 1,
+   "abstained: not_performed:intended | assertion/modality (status_of read a performed act as intended)": 1
+  },
+  "by_layer": {
+   "cap/gate": 39,
+   "gate": 4,
+   "objective confusion": 24,
+   "critical-topic handling": 9,
+   "assertion/modality or objective confusion; the engine accepted it": 13,
+   "assertion/modality": 7,
+   "semantic interpretation": 9
+  }
+ },
+ "structure": {
+  "interpret_exceptions": 0,
+  "malformed_outputs": 0,
+  "language_model_reader": "OFF (not part of the shipped default): no model output, so no model schema to violate",
+  "embedder": "all-minilm:22m"
+ },
+ "latency_ms": {
+  "interpret_total": {
+   "median": 1.2551999825518578,
+   "p95": 1.9949999987147748,
+   "max": 13.984100020024925,
+   "n": 493
+  },
+  "uncached_embedding_calls": {
+   "n": 0,
+   "median": null,
+   "p95": null,
+   "max": null
+  },
+  "timeouts_or_errors": 0
+ }
+}

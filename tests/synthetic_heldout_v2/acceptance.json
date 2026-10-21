@@ -1,0 +1,143 @@
+{
+ "set": "synthetic_heldout_v2",
+ "version": 1,
+ "kind": "Acceptance criteria of the FINAL held-out run (v2) of the Gemma speech evaluator (ADR-0025), written and hashed BEFORE the v2 specifications, sentences or any v2 model call existed. The core targets are the owner's and are not lowered. The two rules that replace the zero-tolerance marks of v1 (A4, A5) are derived from the approved semantics and explained in docs/decisions/ADR-0025-gemma-first-speech-evaluation.md (section 'Criteria for held-out v2'); they were written before v2 and are not changed after it.",
+ "evidence_class": "AI-written and AI-reviewed synthetic held-out data. Not independent human validation, not real audio, not a headset result: the real Meta Quest and ASR end-to-end validation (DC-10, Sannan) remains a separate, later check.",
+ "rule": "APPROVED only if every criterion passes at the point estimate. A failed blocking criterion is BLOCKED. If only non-blocking criteria miss, the result is NOT APPROVED and the owner decides. No second scored run, no automatic v3, no change to the evaluator, prompt, criteria or scoring after the run.",
+ "criteria": [
+  {
+   "id": "B1",
+   "name": "critical physical completions credited from speech",
+   "metric": "critical_physical_completions",
+   "op": "==",
+   "value": 0,
+   "blocking": true
+  },
+  {
+   "id": "B2",
+   "name": "engine window and state enforcement: items placed out of their behaviour window, or without the waiting question or read-back they need, on which the objective that specification names earns credit (a different objective that really is in window for the same words is judged by precision, not here)",
+   "metric": "window_state_bypass_items",
+   "op": "==",
+   "value": 0,
+   "blocking": true
+  },
+  {
+   "id": "C1",
+   "name": "legitimate credit recall (final engine score at least 0.5)",
+   "metric": "legitimate_recall",
+   "op": ">=",
+   "value": 0.9,
+   "blocking": false
+  },
+  {
+   "id": "C2",
+   "name": "credited precision (credited acts that are right)",
+   "metric": "credited_precision",
+   "op": ">=",
+   "value": 0.95,
+   "blocking": false
+  },
+  {
+   "id": "C3",
+   "name": "performed versus not performed understanding (accuracy)",
+   "metric": "performed_vs_not_accuracy",
+   "op": ">=",
+   "value": 0.95,
+   "blocking": false
+  },
+  {
+   "id": "C4",
+   "name": "valid structured replies after the bounded retry",
+   "metric": "valid_reply_rate",
+   "op": ">=",
+   "value": 0.995,
+   "blocking": false
+  },
+  {
+   "id": "C5",
+   "name": "controlled partial-credit items inside their expected band",
+   "metric": "partial_in_band_rate",
+   "op": ">=",
+   "value": 0.8,
+   "blocking": false
+  },
+  {
+   "id": "C6",
+   "name": "median response time per utterance (ms)",
+   "metric": "median_latency_ms",
+   "op": "<=",
+   "value": 4000,
+   "blocking": false
+  },
+  {
+   "id": "D1",
+   "name": "non-performed items (negated, planned, hypothetical, reported, another actor; ordinary and critical) that earn any credit: at most 1 percent of them",
+   "metric": "non_performed_false_credit_rate",
+   "op": "<=",
+   "value": 0.01,
+   "blocking": false
+  },
+  {
+   "id": "D2",
+   "name": "UNJUSTIFIED ordinary credit on critical-content items: an ordinary objective credited on an item whose specification lists no independent ordinary objective; at most 3 percent of the single-critical items (one item in about forty)",
+   "metric": "unjustified_ordinary_credit_rate",
+   "op": "<=",
+   "value": 0.03,
+   "blocking": false
+  },
+  {
+   "id": "D3",
+   "name": "JUSTIFIED mixed items (a critical act and an independent ordinary act both performed): the ordinary act is credited and the critical behaviour is not (recall of the independent ordinary act)",
+   "metric": "mixed_ordinary_recall",
+   "op": ">=",
+   "value": 0.8,
+   "blocking": false
+  },
+  {
+   "id": "E1",
+   "name": "multi-intent per-act recall (every performed objective of a multi-intent item credited)",
+   "metric": "multi_intent_act_recall",
+   "op": ">=",
+   "value": 0.9,
+   "blocking": false
+  },
+  {
+   "id": "E2",
+   "name": "multi-intent items that earn an extra, unlisted credit (at most one)",
+   "metric": "multi_intent_extra_credit_items",
+   "op": "<=",
+   "value": 1,
+   "blocking": false
+  },
+  {
+   "id": "E3",
+   "name": "contrast sets fully correct (every member right)",
+   "metric": "contrast_set_rate",
+   "op": ">=",
+   "value": 0.85,
+   "blocking": false
+  }
+ ],
+ "reported_without_pass_mark": [
+  "objective accuracy",
+  "per-act recall",
+  "false credits by semantic category",
+  "wrong or extra objectives",
+  "per-objective and per-situation results",
+  "relevance/correctness/completeness distributions",
+  "score distributions",
+  "95th percentile latency",
+  "tokens per item",
+  "free-plan usage",
+  "every ordinary credit on a critical-content item with the sentence and whether the specification justifies it"
+ ],
+ "run": {
+  "model": "gemma4:31b-cloud",
+  "workers": 3,
+  "max_attempts": 2,
+  "max_calls": 450,
+  "max_tokens": 2400000,
+  "free_plan_only": true,
+  "scored_runs_allowed": 1
+ }
+}

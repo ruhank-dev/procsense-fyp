@@ -1,0 +1,660 @@
+{
+ "note": "ONE bounded live run of the safety-panel sentences through the real SemanticInterpreter (corroborated policy); free plan; synthetic builder-written sentences; nothing tuned on the responses",
+ "summary": {
+  "open": {
+   "sentences": 12,
+   "model_called": 12,
+   "valid_reading": 12,
+   "reported_a_critical_objective": 4,
+   "supported_one_ordinary_objective_and_no_critical": 6,
+   "offered": 5,
+   "menu": 4,
+   "abstain": 3,
+   "retried": 0
+  },
+  "controls": {
+   "sentences": 8,
+   "model_called": 0,
+   "valid_reading": 0,
+   "reported_a_critical_objective": 0,
+   "supported_one_ordinary_objective_and_no_critical": 0,
+   "offered": 0,
+   "menu": 8,
+   "abstain": 0,
+   "retried": 0
+  },
+  "calls": 12,
+  "tokens": 17988,
+  "stopped": "",
+  "latency_ms_median": 700.5,
+  "latency_ms_max": 2169,
+  "not_called_because_not_reached": 8
+ },
+ "model": "gemma4:31b-cloud",
+ "calls": 12,
+ "tokens": 17988,
+ "stopped": "",
+ "max_calls": 30,
+ "max_tokens": 50000,
+ "rows": [
+  {
+   "role": "open",
+   "set": "tuned-on: adversarial_critical_holdout3",
+   "text": "The reason for my call is that the family are anxious and want a senior opinion.",
+   "truth": "SBAR_ELEMENT",
+   "critical_mass": 0.0978,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "ESCALATE_SPEECH",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [
+    "ESCALATE_SPEECH"
+   ],
+   "decision": "OFFER_EVIDENCE",
+   "offer": "ESCALATE_SPEECH",
+   "reasons": [
+    "LLM_CANDIDATE",
+    "CAP_CORROBORATED"
+   ],
+   "wall_ms": 939
+  },
+  {
+   "role": "open",
+   "set": "tuned-on: adversarial_critical_holdout3",
+   "text": "Please come and see him within twenty minutes.",
+   "truth": "SBAR_ELEMENT",
+   "critical_mass": 0.2081,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "VOICE_ORDER",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [
+    "VOICE_ORDER"
+   ],
+   "decision": "OFFER_EVIDENCE",
+   "offer": "VOICE_ORDER",
+   "reasons": [
+    "LLM_CANDIDATE",
+    "CAP_CORROBORATED"
+   ],
+   "wall_ms": 1709
+  },
+  {
+   "role": "open",
+   "set": "tuned-on: challenge v5 critical_evasive",
+   "text": "Nothing to eat or drink since midnight, is that right?",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.0913,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "ASK_TOPIC",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [
+    "ASK_TOPIC"
+   ],
+   "decision": "OFFER_EVIDENCE",
+   "offer": "ASK_TOPIC",
+   "reasons": [
+    "LLM_CANDIDATE",
+    "CAP_CORROBORATED"
+   ],
+   "wall_ms": 697
+  },
+  {
+   "role": "open",
+   "set": "tuned-on: challenge v5 critical_evasive",
+   "text": "Did you have breakfast this morning?",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.2662,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "ASK_TOPIC",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [
+    "ASK_TOPIC"
+   ],
+   "decision": "OFFER_EVIDENCE",
+   "offer": "ASK_TOPIC",
+   "reasons": [
+    "LLM_CANDIDATE",
+    "CAP_CORROBORATED"
+   ],
+   "wall_ms": 646
+  },
+  {
+   "role": "open",
+   "set": "final: challenge v6 critical_evasive",
+   "text": "Would you initial each box to show you have read it?",
+   "truth": "CONSENT_SIGN",
+   "critical_mass": 0.0757,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "CONSENT_SIGN",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": true,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC",
+    "LLM_NAMED_CRITICAL"
+   ],
+   "wall_ms": 1088
+  },
+  {
+   "role": "open",
+   "set": "final: challenge v6 critical_evasive",
+   "text": "Remember the blood thinner was stopped three days ago.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.3186,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "SBAR_ELEMENT",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": true,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC",
+    "LLM_NAMED_CRITICAL"
+   ],
+   "wall_ms": 688
+  },
+  {
+   "role": "open",
+   "set": "non-assertive: challenge v4 + v5 + v6",
+   "text": "I am not about to repeat the check, we did it earlier.",
+   "truth": "NONE",
+   "critical_mass": 0.1332,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "CONFIRM_IDENTITY",
+     "verdict": "NOT_SUPPORTED"
+    }
+   ],
+   "reported_critical": true,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC",
+    "LLM_NAMED_CRITICAL"
+   ],
+   "wall_ms": 2169
+  },
+  {
+   "role": "open",
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "R: Don't start until the senior anaesthetist is present.",
+   "truth": "SBAR_ELEMENT",
+   "critical_mass": 0.1249,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "VOICE_ORDER",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [
+    "VOICE_ORDER"
+   ],
+   "decision": "ABSTAIN",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_MASS",
+    "CRITICAL_MASS",
+    "LLM_CANDIDATE_REFUSED"
+   ],
+   "wall_ms": 620
+  },
+  {
+   "role": "open",
+   "set": "bench dev: non-performed rows",
+   "text": "The nurse said she said anxiety was normal.",
+   "truth": "ACKNOWLEDGE_EMOTION",
+   "critical_mass": 0.2095,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "REASSURE",
+     "verdict": "NOT_SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "ABSTAIN",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_MASS",
+    "LLM_NONE_SUPPORTED"
+   ],
+   "wall_ms": 701
+  },
+  {
+   "role": "open",
+   "set": "bench test: critical rows",
+   "text": "which mdiines are you not able to have",
+   "truth": "STATE_ALLERGY",
+   "critical_mass": 0.1334,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "STATE_ALLERGY",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": true,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC",
+    "LLM_NAMED_CRITICAL"
+   ],
+   "wall_ms": 647
+  },
+  {
+   "role": "open",
+   "set": "bench test: critical rows",
+   "text": "i need tobe sure you unerstand the risks and accept them",
+   "truth": "CONSENT_SIGN",
+   "critical_mass": 0.2482,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "CHECK_UNDERSTANDING",
+     "verdict": "SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [
+    "CHECK_UNDERSTANDING"
+   ],
+   "decision": "OFFER_EVIDENCE",
+   "offer": "CHECK_UNDERSTANDING",
+   "reasons": [
+    "LLM_CANDIDATE",
+    "CAP_CORROBORATED"
+   ],
+   "wall_ms": 700
+  },
+  {
+   "role": "open",
+   "set": "bench test2: non-performed rows",
+   "text": "Let the senior nurse say most people do well.",
+   "truth": "REASSURE",
+   "critical_mass": 0.0949,
+   "model_called": true,
+   "reading_status": "VALID",
+   "attempts": 1,
+   "codes": [],
+   "findings": [
+    {
+     "objective": "REASSURE",
+     "verdict": "NOT_SUPPORTED"
+    }
+   ],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "ABSTAIN",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_MASS",
+    "LLM_NONE_SUPPORTED"
+   ],
+   "wall_ms": 733
+  },
+  {
+   "role": "control",
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "Let's just check it's you, my love, so can you tell me your name and your date of birth?",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9998,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "Be aware she's allergic to penicillin, her face swelled and...",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.9997,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "tuned-on: challenge v5 critical_evasive",
+   "text": "I need to be sure you are the person on my list: your full name and birth date.",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9997,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "tuned-on: AI-judged v2 dev critical-labelled rows",
+   "text": "would you please state your name and your date of birth",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9997,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "trained: adversarial_critical + holdout + holdout2",
+   "text": "Has a medicine ever made you wheezy or itchy?",
+   "truth": "STATE_ALLERGY",
+   "critical_mass": 0.9996,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "tuned-on: AI-judged v2 dev critical-labelled rows",
+   "text": "If you're happy to go ahead, just sign...",
+   "truth": "CONSENT_SIGN",
+   "critical_mass": 0.9995,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "can you tell me your name and when you were born",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9995,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  },
+  {
+   "role": "control",
+   "set": "trained: adversarial_critical + holdout + holdout2",
+   "text": "He had cereal this morning, so his stomach isn't empty.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.9994,
+   "model_called": false,
+   "reading_status": "NOT_CALLED",
+   "attempts": 0,
+   "codes": [],
+   "findings": [],
+   "reported_critical": false,
+   "supported_ordinary": [],
+   "decision": "MENU",
+   "offer": null,
+   "reasons": [
+    "CRITICAL_TOPIC"
+   ],
+   "wall_ms": null
+  }
+ ],
+ "provider_log": [
+  {
+   "key": "cp0",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 939,
+   "prompt_tokens": 1456,
+   "output_tokens": 45,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp1",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 1709,
+   "prompt_tokens": 1448,
+   "output_tokens": 47,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp2",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 697,
+   "prompt_tokens": 1451,
+   "output_tokens": 51,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp3",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 646,
+   "prompt_tokens": 1446,
+   "output_tokens": 46,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp4",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 1088,
+   "prompt_tokens": 1451,
+   "output_tokens": 51,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp5",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 688,
+   "prompt_tokens": 1449,
+   "output_tokens": 48,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp6",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 2169,
+   "prompt_tokens": 1453,
+   "output_tokens": 47,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp7",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 620,
+   "prompt_tokens": 1455,
+   "output_tokens": 52,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp8",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 701,
+   "prompt_tokens": 1448,
+   "output_tokens": 44,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp9",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 647,
+   "prompt_tokens": 1450,
+   "output_tokens": 49,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp10",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 700,
+   "prompt_tokens": 1453,
+   "output_tokens": 52,
+   "answered_by": "gemma4:31b"
+  },
+  {
+   "key": "cp11",
+   "attempt": 1,
+   "error": "",
+   "status": 0,
+   "done_reason": "stop",
+   "wall_ms": 733,
+   "prompt_tokens": 1449,
+   "output_tokens": 47,
+   "answered_by": "gemma4:31b"
+  }
+ ]
+}

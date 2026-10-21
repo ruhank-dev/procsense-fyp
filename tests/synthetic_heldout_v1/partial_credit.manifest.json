@@ -1,0 +1,24 @@
+{
+ "set": "synthetic_heldout_v1 partial credit addendum",
+ "kind": "synthetic FRESH HELD-OUT addendum: 32 short AI-written items, one per (objective, band) in new topics; expected bands fixed before the model was run; not independent, not human-labelled",
+ "bands": {
+  "full": [
+   0.9,
+   1.0
+  ],
+  "partial": [
+   0.1,
+   0.9
+  ],
+  "wrong": [
+   0.0,
+   0.25
+  ],
+  "irrelevant": [
+   0.0,
+   0.1
+  ]
+ },
+ "n": 32,
+ "sha256": "3d690870f812e7c3f5f20fc58e9b3f78b8be2f2f42014ef221b6275da9f7427f"
+}

@@ -1,0 +1,62 @@
+[
+ {
+  "variant": "B alone",
+  "item_recall": [
+   172,
+   176
+  ],
+  "per_act_recall": [
+   196,
+   200
+  ],
+  "precision": 0.827,
+  "false_credit_items_on_no_credit": 26,
+  "extra_or_wrong_acts_on_eligible": 15,
+  "ordinary_credit_on_critical_items": 8
+ },
+ {
+  "variant": "B + R1 critical-content rule",
+  "item_recall": [
+   168,
+   176
+  ],
+  "per_act_recall": [
+   191,
+   200
+  ],
+  "precision": 0.8604,
+  "false_credit_items_on_no_credit": 16,
+  "extra_or_wrong_acts_on_eligible": 15,
+  "ordinary_credit_on_critical_items": 1
+ },
+ {
+  "variant": "B + shipped assertion layer veto only",
+  "item_recall": [
+   164,
+   176
+  ],
+  "per_act_recall": [
+   187,
+   200
+  ],
+  "precision": 0.8698,
+  "false_credit_items_on_no_credit": 13,
+  "extra_or_wrong_acts_on_eligible": 15,
+  "ordinary_credit_on_critical_items": 8
+ },
+ {
+  "variant": "B + R1 + shipped assertion layer veto",
+  "item_recall": [
+   160,
+   176
+  ],
+  "per_act_recall": [
+   182,
+   200
+  ],
+  "precision": 0.901,
+  "false_credit_items_on_no_credit": 5,
+  "extra_or_wrong_acts_on_eligible": 15,
+  "ordinary_credit_on_critical_items": 1
+ }
+]

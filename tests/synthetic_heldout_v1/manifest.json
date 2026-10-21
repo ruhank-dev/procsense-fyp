@@ -1,0 +1,127 @@
+{
+ "set": "synthetic_heldout_v1",
+ "kind": "FRESH HELD-OUT acceptance data: AI-written and AI-reviewed (the same assistant), synthetic; not independent, not human-labelled, not real audio, not a headset result",
+ "frozen_before_utterances": true,
+ "seed": 20261201,
+ "reserved_personas_used": [
+  "P5",
+  "P7"
+ ],
+ "topic_groups": [
+  "H1 cataract and eye drops",
+  "H2 dental extraction",
+  "H3 hand surgery under an arm block",
+  "H4 varicose veins and leg compression"
+ ],
+ "n": 259,
+ "specs_sha256": "1b5374723b2ea05de25050602bf600ebe057cbbd9fbcb1dabfac616ce4f82536",
+ "plan_sources_sha256": {
+  "seeds.py": "cd1d34743a4375a459aec132e8d5407e32fee1b5bd4d084124d36823c2ce5632",
+  "plan.py": "8746c7c7075305cd216c091f1ca8ac7e083486f8471f4cc2ff05b1fc559872da"
+ },
+ "development_sources_sha256": {
+  "gold.py": "c70ee0cf9fd9391124c4db4d15ac324168bde5e1f60308085a62e033dbe8e444",
+  "plan.py": "53d6c35601a0dc1da1119862a68a5b10236e2eb496e8495f5686f77b20222199"
+ },
+ "sources_of_truth": [
+  "content/assessment/taxonomy.json",
+  "content/assessment/mapping.json",
+  "tests/classifier_synthetic_v2/rubric.md"
+ ],
+ "coverage": {
+  "n": 259,
+  "by_class": {
+   "A": 84,
+   "C": 70,
+   "B": 18,
+   "D": 15,
+   "E": 30,
+   "F": 24,
+   "G": 18
+  },
+  "by_objective": {
+   "ASK_TOPIC": 15,
+   "CLARIFY": 13,
+   "ANSWER_QUESTION": 15,
+   "EXPLAIN_PROCEDURE": 14,
+   "EXPLAIN_TEST": 14,
+   "EXPLAIN_ACTION": 13,
+   "CHECK_UNDERSTANDING": 12,
+   "ACKNOWLEDGE_EMOTION": 14,
+   "REASSURE": 14,
+   "ACKNOWLEDGE_FACT": 13,
+   "CLOSED_LOOP": 16,
+   "ESCALATE_SPEECH": 13,
+   "REPORT_FAULT": 12,
+   "VOICE_ORDER": 12,
+   "CONFIRM_IDENTITY": 8,
+   "STATE_ALLERGY": 8,
+   "CONSENT_SIGN": 8,
+   "HANDOVER_CRITICAL_ELEMENT": 8,
+   "SBAR_ELEMENT": 8,
+   "NONE": 29
+  },
+  "by_situation": {
+   "performed": 135,
+   "negated": 19,
+   "intended_later": 19,
+   "hypothetical": 19,
+   "reported_about_someone_else": 19,
+   "other_actor_does_it": 19,
+   "critical_topic_discussion": 5,
+   "small_talk": 4,
+   "thinking_aloud": 4,
+   "filler_or_noise_words": 4,
+   "off_topic_statement": 4,
+   "near_miss": 8
+  },
+  "credit_eligible": 102,
+  "no_credit": 157,
+  "safety_sensitive": 50,
+  "contrast_sets": 19,
+  "contrast_items": 114,
+  "by_style": {
+   "hesitant": 33,
+   "conversational": 38,
+   "formal": 51,
+   "methodical": 51,
+   "indirect": 43,
+   "verbose": 15,
+   "concise": 28
+  },
+  "by_persona": {
+   "P7": 160,
+   "P5": 99
+  },
+  "by_form": {
+   "request_or_instruction": 22,
+   "statement": 192,
+   "question": 23,
+   "noise": 4,
+   "multi_clause": 18
+  },
+  "hedged": 0,
+  "context_reference": 48,
+  "out_of_window": 14,
+  "state_absent": 4
+ },
+ "utterances_sha256": "d949f504717a02e2b72e363cf90d8f58fea9c1b4069dc97a03b85a5b66302228",
+ "dataset_sha256": "7cdd07086c9821d367273c52bb3e9718fe63acb8b97c0a89267d2730d286d93a",
+ "validation": {
+  "historical_sentences_compared": 15884,
+  "near_copies": 0,
+  "exact_copies": 0,
+  "most_common_opener_outside_marked_contrast_members": [
+   "you",
+   10,
+   0.061
+  ],
+  "words_per_sentence": {
+   "min": 1,
+   "median": 13,
+   "max": 34
+  }
+ },
+ "frozen_before_scoring": true,
+ "note": "The sentences were written after the specifications were frozen and reviewed once by the author before any evaluator run (rewrites: 3 sentences that did not carry both acts of a multi-intent specification clearly). Nothing was changed after seeing a result."
+}

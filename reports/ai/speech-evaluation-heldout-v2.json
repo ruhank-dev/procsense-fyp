@@ -1,0 +1,1571 @@
+{
+ "set": "synthetic_heldout_v2",
+ "kind": "AI-written and AI-reviewed synthetic held-out data. Not independent human validation, not real audio, not a headset result: the real Meta Quest and ASR end-to-end validation (DC-10, Sannan) remains a separate, later check.",
+ "run_utc": "2026-10-21T18:27:30Z",
+ "prompt_version": "gemma-eval-5",
+ "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+ "model": "gemma4:31b-cloud",
+ "verdict": "NOT APPROVED (owner decision)",
+ "criteria": [
+  {
+   "id": "B1",
+   "name": "critical physical completions credited from speech",
+   "metric": "critical_physical_completions",
+   "op": "==",
+   "value": 0,
+   "blocking": true,
+   "observed": 0.0,
+   "passed": true
+  },
+  {
+   "id": "B2",
+   "name": "engine window and state enforcement: items placed out of their behaviour window, or without the waiting question or read-back they need, on which the objective that specification names earns credit (a different objective that really is in window for the same words is judged by precision, not here)",
+   "metric": "window_state_bypass_items",
+   "op": "==",
+   "value": 0,
+   "blocking": true,
+   "observed": 0,
+   "passed": true
+  },
+  {
+   "id": "C1",
+   "name": "legitimate credit recall (final engine score at least 0.5)",
+   "metric": "legitimate_recall",
+   "op": ">=",
+   "value": 0.9,
+   "blocking": false,
+   "observed": 0.9896,
+   "passed": true
+  },
+  {
+   "id": "C2",
+   "name": "credited precision (credited acts that are right)",
+   "metric": "credited_precision",
+   "op": ">=",
+   "value": 0.95,
+   "blocking": false,
+   "observed": 1.0,
+   "passed": true
+  },
+  {
+   "id": "C3",
+   "name": "performed versus not performed understanding (accuracy)",
+   "metric": "performed_vs_not_accuracy",
+   "op": ">=",
+   "value": 0.95,
+   "blocking": false,
+   "observed": 0.9918,
+   "passed": true
+  },
+  {
+   "id": "C4",
+   "name": "valid structured replies after the bounded retry",
+   "metric": "valid_reply_rate",
+   "op": ">=",
+   "value": 0.995,
+   "blocking": false,
+   "observed": 1.0,
+   "passed": true
+  },
+  {
+   "id": "C5",
+   "name": "controlled partial-credit items inside their expected band",
+   "metric": "partial_in_band_rate",
+   "op": ">=",
+   "value": 0.8,
+   "blocking": false,
+   "observed": 0.7812,
+   "passed": false
+  },
+  {
+   "id": "C6",
+   "name": "median response time per utterance (ms)",
+   "metric": "median_latency_ms",
+   "op": "<=",
+   "value": 4000,
+   "blocking": false,
+   "observed": 2343,
+   "passed": true
+  },
+  {
+   "id": "D1",
+   "name": "non-performed items (negated, planned, hypothetical, reported, another actor; ordinary and critical) that earn any credit: at most 1 percent of them",
+   "metric": "non_performed_false_credit_rate",
+   "op": "<=",
+   "value": 0.01,
+   "blocking": false,
+   "observed": 0.0,
+   "passed": true
+  },
+  {
+   "id": "D2",
+   "name": "UNJUSTIFIED ordinary credit on critical-content items: an ordinary objective credited on an item whose specification lists no independent ordinary objective; at most 3 percent of the single-critical items (one item in about forty)",
+   "metric": "unjustified_ordinary_credit_rate",
+   "op": "<=",
+   "value": 0.03,
+   "blocking": false,
+   "observed": 0.0,
+   "passed": true
+  },
+  {
+   "id": "D3",
+   "name": "JUSTIFIED mixed items (a critical act and an independent ordinary act both performed): the ordinary act is credited and the critical behaviour is not (recall of the independent ordinary act)",
+   "metric": "mixed_ordinary_recall",
+   "op": ">=",
+   "value": 0.8,
+   "blocking": false,
+   "observed": 1.0,
+   "passed": true
+  },
+  {
+   "id": "E1",
+   "name": "multi-intent per-act recall (every performed objective of a multi-intent item credited)",
+   "metric": "multi_intent_act_recall",
+   "op": ">=",
+   "value": 0.9,
+   "blocking": false,
+   "observed": 1.0,
+   "passed": true
+  },
+  {
+   "id": "E2",
+   "name": "multi-intent items that earn an extra, unlisted credit (at most one)",
+   "metric": "multi_intent_extra_credit_items",
+   "op": "<=",
+   "value": 1,
+   "blocking": false,
+   "observed": 0,
+   "passed": true
+  },
+  {
+   "id": "E3",
+   "name": "contrast sets fully correct (every member right)",
+   "metric": "contrast_set_rate",
+   "op": ">=",
+   "value": 0.85,
+   "blocking": false,
+   "observed": 1.0,
+   "passed": true
+  }
+ ],
+ "detail": {
+  "non_performed_items_credited": [],
+  "non_performed_n": 95,
+  "single_critical_n": 40,
+  "unjustified_ordinary_credit_items": [],
+  "mixed_n": 8,
+  "mixed_ok": 8,
+  "multi_intent": {
+   "items": 26,
+   "acts_found": 40,
+   "acts_total": 40,
+   "extra_credit_items": []
+  },
+  "contrast": {
+   "correct": 19,
+   "n": 19,
+   "ordinary": [
+    14,
+    14
+   ],
+   "critical": [
+    5,
+    5
+   ],
+   "failing": []
+  }
+ },
+ "ordinary_credit_on_critical_content_items": [
+  {
+   "id": "HO2-0237",
+   "text": "Could you tell me your name and date of birth? Then I'm about to clip the pulse sensor onto your finger.",
+   "objective": "CONFIRM_IDENTITY",
+   "situation": "performed",
+   "credited": [
+    "EXPLAIN_ACTION"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "EXPLAIN_ACTION"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0238",
+   "text": "Do you react to any medicine? Also, do you snore?",
+   "objective": "STATE_ALLERGY",
+   "situation": "performed",
+   "credited": [
+    "ASK_TOPIC"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "ASK_TOPIC"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0239",
+   "text": "Please sign the consent form here. And tell me back what you've agreed to.",
+   "objective": "CONSENT_SIGN",
+   "situation": "performed",
+   "credited": [
+    "CHECK_UNDERSTANDING"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "CHECK_UNDERSTANDING"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0240",
+   "text": "Nurse, the patient took a blood thinner today. Please fetch another trolley.",
+   "objective": "HANDOVER_CRITICAL_ELEMENT",
+   "situation": "performed",
+   "credited": [
+    "VOICE_ORDER"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "VOICE_ORDER"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0241",
+   "text": "Background: knee replacement last year, no complications. Also, the call bell in this bay is dead.",
+   "objective": "SBAR_ELEMENT",
+   "situation": "performed",
+   "credited": [
+    "REPORT_FAULT"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "REPORT_FAULT"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0242",
+   "text": "Name and date of birth, please. You seem nervous, by the way.",
+   "objective": "CONFIRM_IDENTITY",
+   "situation": "performed",
+   "credited": [
+    "ACKNOWLEDGE_EMOTION"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "ACKNOWLEDGE_EMOTION"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0243",
+   "text": "Do you have an allergy to dressings? You'll be well looked after, I promise.",
+   "objective": "STATE_ALLERGY",
+   "situation": "performed",
+   "credited": [
+    "REASSURE"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "REASSURE"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  },
+  {
+   "id": "HO2-0244",
+   "text": "Are you happy for the test to go ahead? I am staying with you throughout.",
+   "objective": "CONSENT_SIGN",
+   "situation": "performed",
+   "credited": [
+    "REASSURE"
+   ],
+   "listed_independent_ordinary_in_specification": [
+    "REASSURE"
+   ],
+   "justified_by_specification": true,
+   "class": "G"
+  }
+ ],
+ "intervals_wilson95": {
+  "multi_intent_act_recall": [
+   0.9124,
+   1.0
+  ],
+  "legitimate_recall": [
+   0.9433,
+   0.9982
+  ],
+  "credited_precision": [
+   0.966,
+   1.0
+  ],
+  "performed_vs_not": [
+   0.97,
+   1.0
+  ],
+  "valid_replies": [
+   0.9845,
+   1.0
+  ],
+  "partial_in_band": [
+   0.6124,
+   0.8898
+  ]
+ },
+ "counts": {
+  "items": 244,
+  "eligible": 96,
+  "recall": [
+   95,
+   96
+  ],
+  "precision": [
+   109,
+   109
+  ],
+  "non_performed_false_credit_items": 0,
+  "false_credit_items_on_no_credit_items": 0,
+  "wrong_or_extra_on_eligible": 0,
+  "performed_found": [
+   124,
+   124
+  ]
+ },
+ "metrics": {
+  "n": 244,
+  "prompt_version": "gemma-eval-5",
+  "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+  "model": "gemma4:31b-cloud",
+  "reader": {
+   "status": {
+    "VALID": 244
+   },
+   "valid_rate": 1.0,
+   "codes": {
+    "SCHEMA": 1
+   },
+   "retried_items": 1,
+   "calls": 245,
+   "tokens": 1487573,
+   "tokens_per_item": 6097,
+   "stopped": "",
+   "prompt_tokens": 1462747,
+   "output_tokens": 24826,
+   "wall_ms_per_call": {
+    "median": 2343,
+    "p95": 4049,
+    "max": 7566
+   },
+   "run_wall_s": 205.0,
+   "workers": 3
+  },
+  "1_objective_accuracy": {
+   "exact_set_match": [
+    122,
+    124
+   ],
+   "per_act_recall": [
+    144,
+    146
+   ],
+   "per_act_precision": [
+    144,
+    148
+   ],
+   "confusions": [
+    [
+     "CHECK_UNDERSTANDING",
+     "ASK_TOPIC",
+     1
+    ],
+    [
+     "HANDOVER_CRITICAL_ELEMENT,VOICE_ORDER",
+     "SBAR_ELEMENT+VOICE_ORDER",
+     1
+    ]
+   ]
+  },
+  "2_performed_vs_not": {
+   "accuracy": 0.9918,
+   "performed_found": [
+    124,
+    124
+   ],
+   "non_performed_called_performed": [
+    2,
+    120
+   ],
+   "by_situation_called_performed": {
+    "critical_topic_discussion": [
+     0,
+     5
+    ],
+    "filler_or_noise_words": [
+     0,
+     3
+    ],
+    "hypothetical": [
+     0,
+     19
+    ],
+    "intended_later": [
+     0,
+     19
+    ],
+    "near_miss": [
+     0,
+     8
+    ],
+    "negated": [
+     0,
+     19
+    ],
+    "off_topic_statement": [
+     0,
+     3
+    ],
+    "other_actor_does_it": [
+     0,
+     19
+    ],
+    "performed": [
+     124,
+     124
+    ],
+    "reported_about_someone_else": [
+     0,
+     19
+    ],
+    "small_talk": [
+     0,
+     3
+    ],
+    "thinking_aloud": [
+     2,
+     3
+    ]
+   }
+  },
+  "3_modality_for_the_items_own_objective": {
+   "negated": {
+    "negated": 14
+   },
+   "intended_later": {
+    "intended_later": 14
+   },
+   "hypothetical": {
+    "hypothetical": 14
+   },
+   "reported_about_someone_else": {
+    "reported": 14
+   },
+   "other_actor_does_it": {
+    "other_actor": 14
+   }
+  },
+  "credit": {
+   "meaningful_ge_0.5": {
+    "threshold": 0.5,
+    "4_legitimate_credit_recall": [
+     95,
+     96
+    ],
+    "per_act_recall": [
+     109,
+     110
+    ],
+    "5_precision": [
+     109,
+     109,
+     1.0
+    ],
+    "6_false_credit_items_on_no_credit": 0,
+    "7_wrong_or_extra_acts_on_eligible": 0,
+    "no_credit_rejection": [
+     148,
+     148
+    ]
+   },
+   "full_ge_0.9": {
+    "threshold": 0.9,
+    "4_legitimate_credit_recall": [
+     88,
+     96
+    ],
+    "per_act_recall": [
+     100,
+     110
+    ],
+    "5_precision": [
+     100,
+     100,
+     1.0
+    ],
+    "6_false_credit_items_on_no_credit": 0,
+    "7_wrong_or_extra_acts_on_eligible": 0,
+    "no_credit_rejection": [
+     148,
+     148
+    ]
+   },
+   "any_positive": {
+    "threshold": 1e-09,
+    "4_legitimate_credit_recall": [
+     95,
+     96
+    ],
+    "per_act_recall": [
+     109,
+     110
+    ],
+    "5_precision": [
+     109,
+     109,
+     1.0
+    ],
+    "6_false_credit_items_on_no_credit": 0,
+    "7_wrong_or_extra_acts_on_eligible": 0,
+    "no_credit_rejection": [
+     148,
+     148
+    ]
+   }
+  },
+  "6_false_credits_by_category": {},
+  "8_critical": {
+   "critical_items": 54,
+   "physical_completion_credit": 0.0,
+   "model_claims_physical_action": [
+    13,
+    244
+   ],
+   "ordinary_credit_on_critical_items": 8,
+   "critical_flag": [
+    34,
+    54
+   ],
+   "critical_flag_on_non_critical": [
+    0,
+    190
+   ],
+   "class_D_critical_act_named_performed": [
+    10,
+    10
+   ],
+   "class_E_called_performed": [
+    0,
+    30
+   ]
+  },
+  "9_multi_intent": {
+   "items": 26,
+   "credit_acts": 40,
+   "found_ge_0.5": 40,
+   "performed_set_exact": 25,
+   "items_with_extra_credit": 0
+  },
+  "10_contrast_sets": {
+   "correct": 19,
+   "n": 19,
+   "ordinary": [
+    14,
+    14
+   ],
+   "critical": [
+    5,
+    5
+   ],
+   "failing": []
+  },
+  "11_window_state": {
+   "n": 18,
+   "model_names_the_performed_act": 18,
+   "credited (>=0.5)": 0,
+   "out_of_window": [
+    0,
+    14
+   ],
+   "state_absent": [
+    0,
+    4
+   ]
+  },
+  "12_grade_distributions_by_class": {
+   "A": {
+    "with_finding": 69,
+    "relevance_levels": {
+     "3": 69
+    },
+    "correctness_levels": {
+     "3": 69
+    },
+    "completeness_levels": {
+     "3": 65,
+     "2": 4
+    }
+   },
+   "B": {
+    "with_finding": 18,
+    "relevance_levels": {
+     "3": 18
+    },
+    "correctness_levels": {
+     "3": 18
+    },
+    "completeness_levels": {
+     "3": 16,
+     "2": 2
+    }
+   },
+   "C": {
+    "with_finding": 70,
+    "relevance_levels": {
+     "3": 70
+    },
+    "correctness_levels": {
+     "3": 70
+    },
+    "completeness_levels": {
+     "3": 51,
+     "2": 12,
+     "0": 2,
+     "1": 5
+    }
+   },
+   "D": {
+    "with_finding": 10,
+    "relevance_levels": {
+     "3": 10
+    },
+    "correctness_levels": {
+     "3": 10
+    },
+    "completeness_levels": {
+     "3": 10
+    }
+   },
+   "E": {
+    "with_finding": 25,
+    "relevance_levels": {
+     "3": 25
+    },
+    "correctness_levels": {
+     "3": 25
+    },
+    "completeness_levels": {
+     "3": 14,
+     "1": 7,
+     "2": 4
+    }
+   },
+   "F": {
+    "with_finding": 0,
+    "relevance_levels": {},
+    "correctness_levels": {},
+    "completeness_levels": {}
+   },
+   "G": {
+    "with_finding": 25,
+    "relevance_levels": {
+     "3": 25
+    },
+    "correctness_levels": {
+     "3": 25
+    },
+    "completeness_levels": {
+     "2": 3,
+     "3": 22
+    }
+   }
+  },
+  "13_score_distributions": {
+   "legitimate performed (A): the objective's score": {
+    "n": 70,
+    "mean": 0.974,
+    "median": 1.0,
+    "min": 0.0,
+    "max": 1.0,
+    "zero": 1,
+    "ge_0.5": 69,
+    "ge_0.9": 65,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     4,
+     65
+    ]
+   },
+   "mixed multi-intent: the performed act's score": {
+    "n": 4,
+    "mean": 0.9,
+    "median": 1.0,
+    "min": 0.8,
+    "max": 1.0,
+    "zero": 0,
+    "ge_0.5": 4,
+    "ge_0.9": 2,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2
+    ]
+   },
+   "no-act (F): highest ordinary score": {
+    "n": 20,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 20,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     20,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "negated (C): highest ordinary score": {
+    "n": 14,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 14,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     14,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "intended-later (C): highest ordinary score": {
+    "n": 14,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 14,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     14,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "hypothetical (C): highest ordinary score": {
+    "n": 14,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 14,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     14,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "reported (C): highest ordinary score": {
+    "n": 14,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 14,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     14,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "another actor (C): highest ordinary score": {
+    "n": 14,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 14,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     14,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "critical-topic discussion (E): highest ordinary score": {
+    "n": 30,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 30,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     30,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "genuine critical claims without simulator evidence (D): total communication credit": {
+    "n": 10,
+    "mean": 0.25,
+    "median": 0.25,
+    "min": 0.25,
+    "max": 0.25,
+    "zero": 0,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     0,
+     0,
+     0,
+     10,
+     0,
+     0,
+     0
+    ]
+   },
+   "scenario-ineligible performed speech (B): highest ordinary score": {
+    "n": 18,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "zero": 18,
+    "ge_0.5": 0,
+    "ge_0.9": 0,
+    "hist[0,.01,.1,.25,.5,.75,.9,1]": [
+     18,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  "13_separation": {
+   "auc": 0.9929,
+   "non_performed_or_irrelevant_ge_0.25": [
+    0,
+    90
+   ],
+   "legitimate_lt_0.5": [
+    1,
+    70
+   ]
+  },
+  "per_objective": {
+   "ACKNOWLEDGE_EMOTION": {
+    "n": 12,
+    "eligible": 6,
+    "recall": [
+     6,
+     6
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 12
+   },
+   "ACKNOWLEDGE_FACT": {
+    "n": 13,
+    "eligible": 7,
+    "recall": [
+     7,
+     7
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 13
+   },
+   "ANSWER_QUESTION": {
+    "n": 14,
+    "eligible": 6,
+    "recall": [
+     6,
+     6
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 14
+   },
+   "ASK_TOPIC": {
+    "n": 11,
+    "eligible": 5,
+    "recall": [
+     5,
+     5
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 11
+   },
+   "CHECK_UNDERSTANDING": {
+    "n": 11,
+    "eligible": 5,
+    "recall": [
+     4,
+     5
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 10
+   },
+   "CLARIFY": {
+    "n": 14,
+    "eligible": 8,
+    "recall": [
+     8,
+     8
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 14
+   },
+   "CLOSED_LOOP": {
+    "n": 15,
+    "eligible": 7,
+    "recall": [
+     7,
+     7
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 15
+   },
+   "CONFIRM_IDENTITY": {
+    "n": 9,
+    "eligible": 2,
+    "recall": [
+     2,
+     2
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 9
+   },
+   "CONSENT_SIGN": {
+    "n": 9,
+    "eligible": 2,
+    "recall": [
+     2,
+     2
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 9
+   },
+   "ESCALATE_SPEECH": {
+    "n": 12,
+    "eligible": 6,
+    "recall": [
+     6,
+     6
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 12
+   },
+   "EXPLAIN_ACTION": {
+    "n": 11,
+    "eligible": 5,
+    "recall": [
+     5,
+     5
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 11
+   },
+   "EXPLAIN_PROCEDURE": {
+    "n": 11,
+    "eligible": 5,
+    "recall": [
+     5,
+     5
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 11
+   },
+   "EXPLAIN_TEST": {
+    "n": 14,
+    "eligible": 8,
+    "recall": [
+     8,
+     8
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 14
+   },
+   "HANDOVER_CRITICAL_ELEMENT": {
+    "n": 8,
+    "eligible": 1,
+    "recall": [
+     1,
+     1
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 7
+   },
+   "NONE": {
+    "n": 25,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 23
+   },
+   "REASSURE": {
+    "n": 13,
+    "eligible": 7,
+    "recall": [
+     7,
+     7
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 13
+   },
+   "REPORT_FAULT": {
+    "n": 11,
+    "eligible": 5,
+    "recall": [
+     5,
+     5
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 11
+   },
+   "SBAR_ELEMENT": {
+    "n": 8,
+    "eligible": 1,
+    "recall": [
+     1,
+     1
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 8
+   },
+   "STATE_ALLERGY": {
+    "n": 9,
+    "eligible": 2,
+    "recall": [
+     2,
+     2
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 9
+   },
+   "VOICE_ORDER": {
+    "n": 14,
+    "eligible": 8,
+    "recall": [
+     8,
+     8
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 14
+   }
+  },
+  "per_situation": {
+   "critical_topic_discussion": {
+    "n": 5,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 5
+   },
+   "filler_or_noise_words": {
+    "n": 3,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 3
+   },
+   "hypothetical": {
+    "n": 19,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 19
+   },
+   "intended_later": {
+    "n": 19,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 19
+   },
+   "near_miss": {
+    "n": 8,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 8
+   },
+   "negated": {
+    "n": 19,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 19
+   },
+   "off_topic_statement": {
+    "n": 3,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 3
+   },
+   "other_actor_does_it": {
+    "n": 19,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 19
+   },
+   "performed": {
+    "n": 124,
+    "eligible": 96,
+    "recall": [
+     95,
+     96
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 122
+   },
+   "reported_about_someone_else": {
+    "n": 19,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 19
+   },
+   "small_talk": {
+    "n": 3,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 3
+   },
+   "thinking_aloud": {
+    "n": 3,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 1
+   }
+  },
+  "per_class": {
+   "A": {
+    "n": 70,
+    "eligible": 70,
+    "recall": [
+     69,
+     70
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 69
+   },
+   "B": {
+    "n": 18,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 18
+   },
+   "C": {
+    "n": 70,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 70
+   },
+   "D": {
+    "n": 10,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 10
+   },
+   "E": {
+    "n": 30,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 30
+   },
+   "F": {
+    "n": 20,
+    "eligible": 0,
+    "recall": [
+     0,
+     0
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 18
+   },
+   "G": {
+    "n": 26,
+    "eligible": 26,
+    "recall": [
+     26,
+     26
+    ],
+    "false_credit_items": 0,
+    "exact_performed_set": 25
+   }
+  },
+  "failures": {
+   "eligible_misses": [
+    "0077"
+   ],
+   "false_credit_items": []
+  }
+ },
+ "partial_credit": {
+  "n": 32,
+  "in_band": 25,
+  "in_band_rate": 0.7812,
+  "in_band_by_band": {
+   "full": [
+    5,
+    8
+   ],
+   "partial": [
+    6,
+    8
+   ],
+   "wrong": [
+    6,
+    8
+   ],
+   "irrelevant": [
+    8,
+    8
+   ]
+  },
+  "mean_score_by_band": {
+   "full": 0.75,
+   "partial": 0.75,
+   "wrong": 0.225,
+   "irrelevant": 0.0
+  },
+  "items": [
+   {
+    "id": "PH2-001",
+    "objective": "EXPLAIN_PROCEDURE",
+    "band": "full",
+    "score": 0,
+    "in_band": false
+   },
+   {
+    "id": "PH2-002",
+    "objective": "EXPLAIN_PROCEDURE",
+    "band": "partial",
+    "score": 0.6,
+    "in_band": true
+   },
+   {
+    "id": "PH2-003",
+    "objective": "EXPLAIN_PROCEDURE",
+    "band": "wrong",
+    "score": 0.8,
+    "in_band": false
+   },
+   {
+    "id": "PH2-004",
+    "objective": "EXPLAIN_PROCEDURE",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-005",
+    "objective": "EXPLAIN_TEST",
+    "band": "full",
+    "score": 0,
+    "in_band": false
+   },
+   {
+    "id": "PH2-006",
+    "objective": "EXPLAIN_TEST",
+    "band": "partial",
+    "score": 0.6,
+    "in_band": true
+   },
+   {
+    "id": "PH2-007",
+    "objective": "EXPLAIN_TEST",
+    "band": "wrong",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-008",
+    "objective": "EXPLAIN_TEST",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-009",
+    "objective": "EXPLAIN_ACTION",
+    "band": "full",
+    "score": 2,
+    "in_band": true
+   },
+   {
+    "id": "PH2-010",
+    "objective": "EXPLAIN_ACTION",
+    "band": "partial",
+    "score": 0.8,
+    "in_band": true
+   },
+   {
+    "id": "PH2-011",
+    "objective": "EXPLAIN_ACTION",
+    "band": "wrong",
+    "score": 1,
+    "in_band": false
+   },
+   {
+    "id": "PH2-012",
+    "objective": "EXPLAIN_ACTION",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-013",
+    "objective": "REASSURE",
+    "band": "full",
+    "score": 1,
+    "in_band": true
+   },
+   {
+    "id": "PH2-014",
+    "objective": "REASSURE",
+    "band": "partial",
+    "score": 0.6,
+    "in_band": true
+   },
+   {
+    "id": "PH2-015",
+    "objective": "REASSURE",
+    "band": "wrong",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-016",
+    "objective": "REASSURE",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-017",
+    "objective": "ACKNOWLEDGE_EMOTION",
+    "band": "full",
+    "score": 1,
+    "in_band": true
+   },
+   {
+    "id": "PH2-018",
+    "objective": "ACKNOWLEDGE_EMOTION",
+    "band": "partial",
+    "score": 1,
+    "in_band": false
+   },
+   {
+    "id": "PH2-019",
+    "objective": "ACKNOWLEDGE_EMOTION",
+    "band": "wrong",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-020",
+    "objective": "ACKNOWLEDGE_EMOTION",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-021",
+    "objective": "ANSWER_QUESTION",
+    "band": "full",
+    "score": 0,
+    "in_band": false
+   },
+   {
+    "id": "PH2-022",
+    "objective": "ANSWER_QUESTION",
+    "band": "partial",
+    "score": 0.8,
+    "in_band": true
+   },
+   {
+    "id": "PH2-023",
+    "objective": "ANSWER_QUESTION",
+    "band": "wrong",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-024",
+    "objective": "ANSWER_QUESTION",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-025",
+    "objective": "CHECK_UNDERSTANDING",
+    "band": "full",
+    "score": 1,
+    "in_band": true
+   },
+   {
+    "id": "PH2-026",
+    "objective": "CHECK_UNDERSTANDING",
+    "band": "partial",
+    "score": 1,
+    "in_band": false
+   },
+   {
+    "id": "PH2-027",
+    "objective": "CHECK_UNDERSTANDING",
+    "band": "wrong",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-028",
+    "objective": "CHECK_UNDERSTANDING",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-029",
+    "objective": "REPORT_FAULT",
+    "band": "full",
+    "score": 1,
+    "in_band": true
+   },
+   {
+    "id": "PH2-030",
+    "objective": "REPORT_FAULT",
+    "band": "partial",
+    "score": 0.6,
+    "in_band": true
+   },
+   {
+    "id": "PH2-031",
+    "objective": "REPORT_FAULT",
+    "band": "wrong",
+    "score": 0,
+    "in_band": true
+   },
+   {
+    "id": "PH2-032",
+    "objective": "REPORT_FAULT",
+    "band": "irrelevant",
+    "score": 0,
+    "in_band": true
+   }
+  ]
+ },
+ "free_plan": {
+  "calls": 281,
+  "tokens": 1706370,
+  "stopped": "",
+  "paid_api": false
+ },
+ "caveat": "AI-written and AI-reviewed synthetic data; the same assistant wrote the development set, the prompt guidance and this set. The real Meta Quest and ASR end-to-end validation (DC-09, Sannan) is still to be done."
+}

@@ -1,0 +1,657 @@
+{
+ "set": "synthetic_partial_v3",
+ "kind": "AI-written and AI-reviewed synthetic data. Not independent human validation, not real audio, not a headset result: the real Meta Quest and ASR end-to-end validation (DC-10, Sannan) remains a separate, later check.",
+ "run_utc": "2026-10-21T19:22:26Z",
+ "prompt_version": "gemma-eval-5",
+ "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+ "model": "gemma4:31b-cloud",
+ "verdict": "APPROVED",
+ "criteria": [
+  {
+   "id": "P1",
+   "name": "partial-credit items inside their expected score band (full >= 0.9, partial 0.1 to 0.9, wrong <= 0.25, irrelevant <= 0.1)",
+   "metric": "partial_in_band_rate",
+   "op": ">=",
+   "value": 0.8,
+   "blocking": true,
+   "observed": 0.8438,
+   "passed": true
+  },
+  {
+   "id": "P2",
+   "name": "replies rejected because the quoted evidence was too long (DT-247)",
+   "metric": "evidence_length_rejections",
+   "op": "==",
+   "value": 0,
+   "blocking": true,
+   "observed": 0,
+   "passed": true
+  }
+ ],
+ "wilson95_in_band": [
+  0.6825,
+  0.9314
+ ],
+ "in_band": 27,
+ "n": 32,
+ "in_band_by_band": {
+  "full": [
+   8,
+   8
+  ],
+  "partial": [
+   5,
+   8
+  ],
+  "wrong": [
+   6,
+   8
+  ],
+  "irrelevant": [
+   8,
+   8
+  ]
+ },
+ "long_items": {
+  "n": 10,
+  "in_band": 9,
+  "valid": 10
+ },
+ "valid_replies": [
+  32,
+  32
+ ],
+ "mean_score_by_band": {
+  "full": 1.125,
+  "partial": 0.817,
+  "wrong": 0.225,
+  "irrelevant": 0.0
+ },
+ "items": [
+  {
+   "id": "PH3-001",
+   "objective": "EXPLAIN_PROCEDURE",
+   "band": "full",
+   "long": true,
+   "chars": 273,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 1788,
+   "utterance": "Right, so what happens is that we put a little local anaesthetic around the base of the toe, which stings for a few seconds and then makes the whole toe numb, and then the surgeon removes the ingrown part of the nail and puts a dressing on, and you can walk out afterwards."
+  },
+  {
+   "id": "PH3-002",
+   "objective": "EXPLAIN_PROCEDURE",
+   "band": "partial",
+   "long": false,
+   "chars": 50,
+   "score": 0.8,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 3741,
+   "utterance": "We numb the toe first and then deal with the nail."
+  },
+  {
+   "id": "PH3-003",
+   "objective": "EXPLAIN_PROCEDURE",
+   "band": "wrong",
+   "long": false,
+   "chars": 122,
+   "score": 0.8,
+   "in_band": false,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 2863,
+   "utterance": "For the toenail operation you will be fully asleep with a breathing tube, and the surgeon will operate through your groin."
+  },
+  {
+   "id": "PH3-004",
+   "objective": "EXPLAIN_PROCEDURE",
+   "band": "irrelevant",
+   "long": true,
+   "chars": 206,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2419,
+   "utterance": "Honestly I was reading something yesterday about the council moving the bus stop to the other side of the road, which seems a bit silly to me because everyone uses the one on the corner and always has done."
+  },
+  {
+   "id": "PH3-005",
+   "objective": "EXPLAIN_TEST",
+   "band": "full",
+   "long": true,
+   "chars": 256,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2694,
+   "utterance": "The MRI scanner uses a strong magnet and radio waves to take detailed pictures of the inside of your knee, it makes loud knocking noises, you will wear ear protection, and you need to keep very still for about thirty minutes so that the pictures are clear."
+  },
+  {
+   "id": "PH3-006",
+   "objective": "EXPLAIN_TEST",
+   "band": "partial",
+   "long": false,
+   "chars": 45,
+   "score": 0.8,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 2760,
+   "utterance": "It's a scan that takes pictures of your knee."
+  },
+  {
+   "id": "PH3-007",
+   "objective": "EXPLAIN_TEST",
+   "band": "wrong",
+   "long": false,
+   "chars": 83,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    0,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 3579,
+   "utterance": "The MRI scan uses a lot of x-rays, so we have to limit how many scans you can have."
+  },
+  {
+   "id": "PH3-008",
+   "objective": "EXPLAIN_TEST",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 49,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2862,
+   "utterance": "The vending machine in the lobby takes cards now."
+  },
+  {
+   "id": "PH3-009",
+   "objective": "EXPLAIN_ACTION",
+   "band": "full",
+   "long": true,
+   "chars": 193,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 3152,
+   "utterance": "Now I'm going to clean your toe with some cold antiseptic and then lay a sterile paper drape over your foot, so you will feel something cool and then a bit of paper on top, but nothing painful."
+  },
+  {
+   "id": "PH3-010",
+   "objective": "EXPLAIN_ACTION",
+   "band": "partial",
+   "long": false,
+   "chars": 37,
+   "score": 0.6,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    1
+   ],
+   "other_objectives": [],
+   "wall_ms": 2666,
+   "utterance": "I'm just going to get on with it now."
+  },
+  {
+   "id": "PH3-011",
+   "objective": "EXPLAIN_ACTION",
+   "band": "wrong",
+   "long": false,
+   "chars": 79,
+   "score": 1,
+   "in_band": false,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2682,
+   "utterance": "I won't be touching your foot yet, although the antiseptic is already going on."
+  },
+  {
+   "id": "PH3-012",
+   "objective": "EXPLAIN_ACTION",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 46,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2028,
+   "utterance": "The queue at the canteen was ridiculous today."
+  },
+  {
+   "id": "PH3-013",
+   "objective": "REASSURE",
+   "band": "full",
+   "long": true,
+   "chars": 235,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 1976,
+   "utterance": "Please don't worry, honestly. You're in a calm, well-run unit, everyone here does this every day, we're not in any rush, and I'll be standing right next to you the whole time, so if anything at all bothers you, just say and we'll stop."
+  },
+  {
+   "id": "PH3-014",
+   "objective": "REASSURE",
+   "band": "partial",
+   "long": true,
+   "chars": 232,
+   "score": 1,
+   "in_band": false,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2059,
+   "utterance": "Well, you know, it will all be fine in the end, I wouldn't worry about it too much, these things usually go the way they should and then you'll be home with a cup of tea before you know it, so honestly don't give it another thought."
+  },
+  {
+   "id": "PH3-015",
+   "objective": "REASSURE",
+   "band": "wrong",
+   "long": false,
+   "chars": 80,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    0,
+    1
+   ],
+   "other_objectives": [],
+   "wall_ms": 2358,
+   "utterance": "To be honest the team isn't really that experienced, but just hope for the best."
+  },
+  {
+   "id": "PH3-016",
+   "objective": "REASSURE",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 43,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2072,
+   "utterance": "I forgot to bring my umbrella this morning."
+  },
+  {
+   "id": "PH3-017",
+   "objective": "ACKNOWLEDGE_EMOTION",
+   "band": "full",
+   "long": true,
+   "chars": 211,
+   "score": 2,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [
+    "ACKNOWLEDGE_FACT"
+   ],
+   "wall_ms": 2497,
+   "utterance": "I can see that the thought of being inside the scanner is making you really anxious, and that's a completely understandable thing to feel, lots of people find small spaces difficult, so thank you for telling me."
+  },
+  {
+   "id": "PH3-018",
+   "objective": "ACKNOWLEDGE_EMOTION",
+   "band": "partial",
+   "long": false,
+   "chars": 23,
+   "score": 1,
+   "in_band": false,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2591,
+   "utterance": "You seem a bit worried."
+  },
+  {
+   "id": "PH3-019",
+   "objective": "ACKNOWLEDGE_EMOTION",
+   "band": "wrong",
+   "long": false,
+   "chars": 73,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    0,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 2955,
+   "utterance": "There's nothing to be anxious about, so you should really snap out of it."
+  },
+  {
+   "id": "PH3-020",
+   "objective": "ACKNOWLEDGE_EMOTION",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 47,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2241,
+   "utterance": "The new lights in the corridor are very bright."
+  },
+  {
+   "id": "PH3-021",
+   "objective": "ANSWER_QUESTION",
+   "band": "full",
+   "long": true,
+   "chars": 209,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2160,
+   "utterance": "Yes, you can have a light breakfast, such as toast and tea, up to two hours before the scan, and after that just sips of water, and the radiographer will let you know if anything about that changes on the day."
+  },
+  {
+   "id": "PH3-022",
+   "objective": "ANSWER_QUESTION",
+   "band": "partial",
+   "long": false,
+   "chars": 19,
+   "score": 0.5333,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    2,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 2178,
+   "utterance": "Probably, a little."
+  },
+  {
+   "id": "PH3-023",
+   "objective": "ANSWER_QUESTION",
+   "band": "wrong",
+   "long": false,
+   "chars": 63,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    0,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2724,
+   "utterance": "No, you must not eat or drink anything for the next three days."
+  },
+  {
+   "id": "PH3-024",
+   "objective": "ANSWER_QUESTION",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 47,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2332,
+   "utterance": "The radiators in this room never work properly."
+  },
+  {
+   "id": "PH3-025",
+   "objective": "CHECK_UNDERSTANDING",
+   "band": "full",
+   "long": true,
+   "chars": 200,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2317,
+   "utterance": "Just so I know I've explained it well, could you tell me in your own words what you will do with the dressing tonight, what you will watch for tomorrow, and who you will call if something worries you?"
+  },
+  {
+   "id": "PH3-026",
+   "objective": "CHECK_UNDERSTANDING",
+   "band": "partial",
+   "long": false,
+   "chars": 25,
+   "score": 1,
+   "in_band": false,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 3963,
+   "utterance": "Does that all make sense?"
+  },
+  {
+   "id": "PH3-027",
+   "objective": "CHECK_UNDERSTANDING",
+   "band": "wrong",
+   "long": false,
+   "chars": 68,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    2,
+    0,
+    1
+   ],
+   "other_objectives": [],
+   "wall_ms": 4329,
+   "utterance": "You've clearly been daydreaming, so I doubt you took any of that in."
+  },
+  {
+   "id": "PH3-028",
+   "objective": "CHECK_UNDERSTANDING",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 57,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 4299,
+   "utterance": "Have you tried the new sandwich place on the high street?"
+  },
+  {
+   "id": "PH3-029",
+   "objective": "REPORT_FAULT",
+   "band": "full",
+   "long": true,
+   "chars": 241,
+   "score": 1,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    3
+   ],
+   "other_objectives": [],
+   "wall_ms": 2823,
+   "utterance": "I need to report that the intercom in the scanner room isn't working, I pressed the button and nothing comes through to the control room, so we can't talk to a patient inside, and it should be taken out of use until an engineer has fixed it."
+  },
+  {
+   "id": "PH3-030",
+   "objective": "REPORT_FAULT",
+   "band": "partial",
+   "long": false,
+   "chars": 25,
+   "score": 0.8,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": [
+    3,
+    3,
+    2
+   ],
+   "other_objectives": [],
+   "wall_ms": 3023,
+   "utterance": "The intercom's not great."
+  },
+  {
+   "id": "PH3-031",
+   "objective": "REPORT_FAULT",
+   "band": "wrong",
+   "long": false,
+   "chars": 91,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2940,
+   "utterance": "The intercom in the scanner room is working perfectly well, I just wanted to tell you that."
+  },
+  {
+   "id": "PH3-032",
+   "objective": "REPORT_FAULT",
+   "band": "irrelevant",
+   "long": false,
+   "chars": 36,
+   "score": 0,
+   "in_band": true,
+   "status": "VALID",
+   "codes": [],
+   "own_grades": null,
+   "other_objectives": [],
+   "wall_ms": 2295,
+   "utterance": "My phone battery died on the way in."
+  }
+ ],
+ "latency_ms": {
+  "median": 2682,
+  "max": 4329
+ },
+ "free_plan": {
+  "calls": 32,
+  "tokens": 194125,
+  "stopped": "",
+  "paid_api": false
+ },
+ "caveat": "AI-written and AI-reviewed synthetic data; acceptance evidence for the software. The real Meta Quest and ASR end-to-end validation (DC-10, Sannan) is still to be done."
+}

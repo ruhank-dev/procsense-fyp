@@ -1,0 +1,110 @@
+{
+ "set": "synthetic_dev_v1",
+ "kind": "DEVELOPMENT data: AI-written and AI-reviewed (the same model), synthetic; not independent, not human-labelled, not real-world validation",
+ "frozen_before_utterances": true,
+ "seed": 20261101,
+ "reserved_personas": [
+  "P5",
+  "P7"
+ ],
+ "reserved_topic_pools": [
+  "eval"
+ ],
+ "dev_topic_pool": "dev",
+ "n": 500,
+ "specs_sha256": "84217e78945fbd2d9776be7c440c8015f476e4b671c02f232d23ee4daf5a9592",
+ "plan_sources_sha256": {
+  "seeds.py": "3381dbe6620fe41e2c5d1cea97e9128ce9e9978556a85f0da61bc53542dff277",
+  "gold.py": "c70ee0cf9fd9391124c4db4d15ac324168bde5e1f60308085a62e033dbe8e444",
+  "plan.py": "53d6c35601a0dc1da1119862a68a5b10236e2eb496e8495f5686f77b20222199"
+ },
+ "sources_of_truth": [
+  "content/assessment/taxonomy.json",
+  "content/assessment/mapping.json",
+  "tests/classifier_synthetic_v2/rubric.md"
+ ],
+ "coverage": {
+  "n": 500,
+  "by_class": {
+   "A": 150,
+   "C": 140,
+   "B": 45,
+   "D": 55,
+   "E": 30,
+   "F": 50,
+   "G": 30
+  },
+  "by_objective": {
+   "ASK_TOPIC": 27,
+   "CLARIFY": 25,
+   "ANSWER_QUESTION": 32,
+   "EXPLAIN_PROCEDURE": 27,
+   "EXPLAIN_TEST": 26,
+   "EXPLAIN_ACTION": 26,
+   "CHECK_UNDERSTANDING": 23,
+   "ACKNOWLEDGE_EMOTION": 26,
+   "REASSURE": 25,
+   "ACKNOWLEDGE_FACT": 24,
+   "CLOSED_LOOP": 31,
+   "ESCALATE_SPEECH": 24,
+   "REPORT_FAULT": 24,
+   "VOICE_ORDER": 25,
+   "CONFIRM_IDENTITY": 16,
+   "STATE_ALLERGY": 16,
+   "CONSENT_SIGN": 16,
+   "HANDOVER_CRITICAL_ELEMENT": 16,
+   "SBAR_ELEMENT": 16,
+   "NONE": 55
+  },
+  "by_situation": {
+   "performed": 280,
+   "negated": 33,
+   "intended_later": 33,
+   "hypothetical": 33,
+   "reported_about_someone_else": 33,
+   "other_actor_does_it": 33,
+   "critical_topic_discussion": 5,
+   "small_talk": 10,
+   "thinking_aloud": 10,
+   "filler_or_noise_words": 8,
+   "off_topic_statement": 10,
+   "near_miss": 12
+  },
+  "credit_eligible": 180,
+  "no_credit": 320,
+  "safety_sensitive": 92,
+  "contrast_sets": 33,
+  "contrast_items": 198,
+  "by_style": {
+   "conversational": 93,
+   "indirect": 43,
+   "verbose": 37,
+   "concise": 86,
+   "hesitant": 38,
+   "nonnative": 53,
+   "selfcorrect": 30,
+   "informal": 65,
+   "formal": 55
+  },
+  "by_persona": {
+   "P2": 139,
+   "P3": 97,
+   "P1": 93,
+   "P4": 118,
+   "P6": 53
+  },
+  "by_form": {
+   "question": 60,
+   "statement": 373,
+   "request_or_instruction": 29,
+   "noise": 8,
+   "multi_clause": 30
+  },
+  "hedged": 28,
+  "context_reference": 79,
+  "out_of_window": 29,
+  "state_absent": 16
+ },
+ "dataset_sha256": "11dab5ae03a25a33678be0c9639d75cd97f3eb581329be1b58317068fdd93238",
+ "dataset_items": 493
+}

@@ -1,0 +1,132 @@
+{
+ "set": "synthetic_heldout_v2",
+ "kind": "FINAL FRESH HELD-OUT (v2) acceptance data: AI-written and AI-reviewed (the same assistant), synthetic; not independent, not human-labelled, not real audio, not a headset result",
+ "frozen_before_utterances": true,
+ "seed": 20261215,
+ "personas_used": [
+  "P5",
+  "P7",
+  "P8",
+  "P9"
+ ],
+ "topic_groups": [
+  "H5 endoscopy with sedation",
+  "H6 shoulder arthroscopy with a nerve block",
+  "H7 skin lesion removal under local",
+  "H8 ear surgery"
+ ],
+ "n": 244,
+ "specs_sha256": "27ea87c08711bb0f053b9a9040b38b760591a79a8b198d502e4e05c4be87b6cc",
+ "plan_sources_sha256": {
+  "seeds.py": "1cedd2b069cade210132c4191c965ee45c54211b112d1221f3b5b514bdc2d186",
+  "plan.py": "1443daa5522989f1bbfa1c19535b30bc5a56b6caa50fdd521a0665c3dbc8c2f7"
+ },
+ "development_sources_sha256": {
+  "gold.py": "c70ee0cf9fd9391124c4db4d15ac324168bde5e1f60308085a62e033dbe8e444",
+  "plan.py": "53d6c35601a0dc1da1119862a68a5b10236e2eb496e8495f5686f77b20222199"
+ },
+ "sources_of_truth": [
+  "content/assessment/taxonomy.json",
+  "content/assessment/mapping.json",
+  "tests/classifier_synthetic_v2/rubric.md"
+ ],
+ "coverage": {
+  "n": 244,
+  "by_class": {
+   "A": 70,
+   "C": 70,
+   "B": 18,
+   "D": 10,
+   "E": 30,
+   "F": 20,
+   "G": 26
+  },
+  "by_objective": {
+   "ASK_TOPIC": 11,
+   "CLARIFY": 14,
+   "ANSWER_QUESTION": 14,
+   "EXPLAIN_PROCEDURE": 11,
+   "EXPLAIN_TEST": 14,
+   "EXPLAIN_ACTION": 11,
+   "CHECK_UNDERSTANDING": 11,
+   "ACKNOWLEDGE_EMOTION": 12,
+   "REASSURE": 13,
+   "ACKNOWLEDGE_FACT": 13,
+   "CLOSED_LOOP": 15,
+   "ESCALATE_SPEECH": 12,
+   "REPORT_FAULT": 11,
+   "VOICE_ORDER": 14,
+   "CONFIRM_IDENTITY": 9,
+   "STATE_ALLERGY": 9,
+   "CONSENT_SIGN": 9,
+   "HANDOVER_CRITICAL_ELEMENT": 8,
+   "SBAR_ELEMENT": 8,
+   "NONE": 25
+  },
+  "by_situation": {
+   "performed": 124,
+   "negated": 19,
+   "intended_later": 19,
+   "hypothetical": 19,
+   "reported_about_someone_else": 19,
+   "other_actor_does_it": 19,
+   "critical_topic_discussion": 5,
+   "small_talk": 3,
+   "thinking_aloud": 3,
+   "filler_or_noise_words": 3,
+   "off_topic_statement": 3,
+   "near_miss": 8
+  },
+  "credit_eligible": 96,
+  "no_credit": 148,
+  "safety_sensitive": 54,
+  "contrast_sets": 19,
+  "contrast_items": 114,
+  "by_style": {
+   "conversational": 30,
+   "formal": 34,
+   "brisk": 39,
+   "concise": 20,
+   "warm": 44,
+   "hesitant": 13,
+   "methodical": 39,
+   "indirect": 25
+  },
+  "by_persona": {
+   "P7": 72,
+   "P9": 79,
+   "P5": 44,
+   "P8": 49
+  },
+  "by_form": {
+   "request_or_instruction": 11,
+   "statement": 176,
+   "question": 28,
+   "noise": 3,
+   "multi_clause": 26
+  },
+  "hedged": 0,
+  "context_reference": 51,
+  "out_of_window": 14,
+  "state_absent": 4
+ },
+ "utterances_sha256": "d55c3b1769157ba70b4e736211b4e11db667c376752b92bd8a73bc36b6bbff8c",
+ "dataset_sha256": "61f7dc99eac18db8480980e757777b32042ceb5cd26785d186d0c850b92bc781",
+ "validation": {
+  "historical_sentences_compared": 16175,
+  "near_copies": 0,
+  "exact_copies": 0,
+  "most_common_opener_outside_marked_contrast_members": [
+   "i",
+   12,
+   0.081
+  ],
+  "words_per_sentence": {
+   "min": 1,
+   "median": 11,
+   "max": 21
+  }
+ },
+ "frozen_before_scoring": true,
+ "note": "The sentences were written after the specifications were frozen and reviewed once by the author before any evaluator run (rewrites: 3 sentences that did not carry both acts of a multi-intent specification clearly). Nothing was changed after seeing a result."
+}

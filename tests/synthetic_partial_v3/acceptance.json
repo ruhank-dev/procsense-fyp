@@ -1,0 +1,13 @@
+{
+ "set": "synthetic_partial_v3",
+ "version": 1,
+ "kind": "Acceptance criteria of the FRESH 32-item partial-credit set (DT-247 follow-up) for the Gemma speech evaluator, written and hashed BEFORE the set was scored. The target is the owner's, unchanged since held-out v1: at least 80 percent of partial-credit items in their expected scoring band. Prompt gemma-eval-5 and the semantic held-out v2 evidence are frozen and not touched; only the reply contract (evidence length, DT-247) changed.",
+ "evidence_class": "AI-written and AI-reviewed synthetic data. Not independent human validation, not real audio, not a headset result: the real Meta Quest and ASR end-to-end validation (DC-10, Sannan) remains a separate, later check.",
+ "rule": "APPROVED only if every criterion passes at the point estimate and the contract unit tests and the full CI pass. If the set misses, the result is NOT APPROVED and nothing is changed or re-run without the owner: no second set, no further fix.",
+ "criteria": [
+  {"id": "P1", "name": "partial-credit items inside their expected score band (full >= 0.9, partial 0.1 to 0.9, wrong <= 0.25, irrelevant <= 0.1)", "metric": "partial_in_band_rate", "op": ">=", "value": 0.80, "blocking": true},
+  {"id": "P2", "name": "replies rejected because the quoted evidence was too long (DT-247)", "metric": "evidence_length_rejections", "op": "==", "value": 0, "blocking": true}
+ ],
+ "reported_without_pass_mark": ["valid replies and every rejection code", "items in band by band", "long items (more than 160 characters) in band", "mean score by band", "latency", "tokens", "free-plan usage"],
+ "run": {"model": "gemma4:31b-cloud", "workers": 3, "max_attempts": 2, "max_calls": 100, "max_tokens": 600000, "free_plan_only": true, "scored_runs_allowed": 1}
+}

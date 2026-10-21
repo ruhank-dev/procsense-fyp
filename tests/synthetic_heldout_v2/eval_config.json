@@ -1,0 +1,37 @@
+{
+ "prompt_version": "gemma-eval-5",
+ "prompt_hash": "5cf37bc78515a5f2d8d8757d7be3f0ef537e359d528d2bfa56ddaf65cb575ff7",
+ "model": "gemma4:31b-cloud",
+ "data_sha256": {
+  "dataset.jsonl": "61f7dc99eac18db8480980e757777b32042ceb5cd26785d186d0c850b92bc781",
+  "manifest.json": "9564c710743ebdce8b2cf42362fe86efdd8c9755fae398a1e4c1f2444bf5196a",
+  "specs.json": "27ea87c08711bb0f053b9a9040b38b760591a79a8b198d502e4e05c4be87b6cc",
+  "utterances.json": "ad708d2cba9e9c6e04d33cf1693972851c3cd5814ff79055349c54b766c5b592",
+  "acceptance.json": "a6d39553a0260697b93c51297716c70c7533056d26732b45e3f7291ef249e269",
+  "partial_credit.jsonl": "a2c27fa4556f54a36bef41885f05a54f0ae380f356d87f4975914df3f25dacae",
+  "partial_credit.manifest.json": "5ec7a3363f8d910a8afd80a451440eea49f176a512004f3b80eec1b6450e2331"
+ },
+ "code_sha256": {
+  "server/evaluate/prompt.py": "75364db105543e84e250052a2611184fdc8ae13084ce6b9acdb506fb64d3933b",
+  "server/evaluate/examples.py": "0486ab8e534e1a3890b1707182d450c458435b9def5414a480f6df7cd6b2b59e",
+  "server/evaluate/wording.json": "f5a9830155315a3d378cd9e37e923f12eccc93def1063b28bb925a1d69954181",
+  "server/evaluate/contract.py": "73a7402631bd95f521f88f876783905b41ec360a41bd302aff45b2e6de2ac975",
+  "server/evaluate/reader.py": "9875d41ec22e9656241702804c498db00e426485d7f996f1b910705df4ce7c37",
+  "server/evaluate/rubric.py": "685c1500b644caae8ecb3cea3a2566212a88c9ae31dd7d86a6a78d6535dd349d",
+  "server/evaluate/provider.py": "e78d205eaa8dc1f3a5bf62a257d862cf19e6f98b93af9c74b5830ba14c04bb65",
+  "server/evaluate/service.py": "a11d07d70ede0d65ee6a01a16f9ac7356f56c36a5219f649ea7a9a8e85957b6f",
+  "content/assessment/mapping.json": "4f8400ef7bc62760cc0e7b459b775cb2dcd89c93a487ec41dcad34d761c6f071",
+  "content/assessment/taxonomy.json": "25a40afdd8082d38de52d9e6ad55bbbc0936ad5ba695d689419d2ed9bebf349f",
+  "content/scoring/rubric.json": "b4193f7873d4f8a8f0cb21d7acace25bca948a99f279c845c348500b1e82d526",
+  "src/ProcSense.Core/Scoring/Evidence.cs": "3898a277bd817bfc87481974d814445c7010dbb3448b5bca7473690b35fc3b2a",
+  "src/ProcSense.Core/Scoring/CommunicationRubric.cs": "9c49ae9d2bd1dffcd23364457e7f55126a60ce91e285a029cf18479b05c9e28d",
+  "src/ProcSense.Core/Scoring/CommunicationScorer.cs": "e13ba125ee6bf55d07d4bd6bfdcca9caa1c375e89fb7c57c6ec66ea948ec8050",
+  "src/ProcSense.Core/Scoring/SpeechScoreCheck.cs": "5d8b9f244fb68258598c8906cc5acbf0072ed68cb7b3ab83c497688136c026f6",
+  "src/ProcSense.Core/Speech/SpeechStateGate.cs": "9bf2d55ca91ef93cbe9b936b856acfca6bfc48d346bf0dd3bf0728c1d33b64be",
+  "tools/synth_dev/evaluator_run.py": "ae4ec72a4af460a49f0798b758af7950a022628d375828eef7bf82cbe125f4d3",
+  "tools/synth_dev/evaluator_metrics.py": "b85d2a733042f25b88bafe92db9302141ed68caf3f6ebc65b28b8f0d3892c098",
+  "tools/synth_dev/engine_score.py": "e7bb217d4201db9cfea5f7491d2b5b67c6cddc4471be3400c88ba4510d8e8b3d"
+ },
+ "frozen_utc": "2026-10-21T18:23:49Z",
+ "note": "frozen before any model call on this set"
+}

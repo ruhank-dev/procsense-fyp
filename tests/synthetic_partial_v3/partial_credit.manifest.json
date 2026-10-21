@@ -1,0 +1,26 @@
+{
+ "set": "synthetic_partial_v3",
+ "kind": "FRESH FROZEN 32-item partial-credit acceptance set for DT-247: full, partial (vague or incomplete), wrong and irrelevant communication, 10 or more naturally long or rambling items; AI-written, expected score bands fixed before the model was run; not independent, not human-labelled",
+ "bands": {
+  "full": [
+   0.9,
+   1.0
+  ],
+  "partial": [
+   0.1,
+   0.9
+  ],
+  "wrong": [
+   0.0,
+   0.25
+  ],
+  "irrelevant": [
+   0.0,
+   0.1
+  ]
+ },
+ "n": 32,
+ "long_items": 10,
+ "compared_against_sentences": 1627,
+ "sha256": "e7d653ef330f80725ab06a33aed87ce0dc96f90974748f81ef9dcc3c328b9942"
+}
