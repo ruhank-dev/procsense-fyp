@@ -47,7 +47,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | B21 | Result variation (repeats, trends, timing) | Implemented and tested | deterministic | 1 (0) | yes | p1-live-scenario-generation-s05 | PH-09 | [B21](../plans/features/B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | Implemented and tested | ai | 1 (1) | yes | p2-ai-learning-analytics-s05 | PH-18 | [B22](../plans/features/B22.md) |
 | B23 | Investigation discovery | Implemented but incompletely tested | deterministic | 2 (1) | yes | p0-case-library-s05; p1-ai-language-s07; p1-live-scenario-generation-s03 | PH-04 | [B23](../plans/features/B23.md) |
-| C24 | Patient dialogue | Implemented but incompletely tested | hybrid | 3 (3) | yes | p1-ai-language-s04; p1-ai-language-s13 | PH-13 | [C24](../plans/features/C24.md) |
+| C24 | Patient dialogue | Implemented and tested | hybrid | 3 (3) | yes | p1-ai-language-s04; p1-ai-language-s13 | PH-13 | [C24](../plans/features/C24.md) |
 | C25 | Nurse dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C25](../plans/features/C25.md) |
 | C26 | Anaesthetist dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C26](../plans/features/C26.md) |
 | C27 | Surgeon dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C27](../plans/features/C27.md) |
@@ -60,7 +60,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | C34 | Text-to-speech | Implemented but incompletely tested | ai | 1 (1) | yes | p0-voice-audio-s02; p1-voice-input-s04 | PH-14 | [C34](../plans/features/C34.md) |
 | C35 | Voice orders and read-back | Implemented and tested | hybrid | 1 (1) | yes | p1-voice-input-s03 | PH-14 | [C35](../plans/features/C35.md) |
 | C36 | Communication acts (taxonomy and evidence mapping) | Implemented but incompletely tested | deterministic | 1 (0) | yes | p1-ai-language-s06 | PH-15 | [C36](../plans/features/C36.md) |
-| C37 | Communication classifier | Implemented but incompletely tested | ai | 3 (1) | yes | p1-ai-infrastructure-s04; p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18 | PH-15 | [C37](../plans/features/C37.md) |
+| C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | Implemented and tested | ai | 3 (1) | yes | p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 | PH-15 | [C37](../plans/features/C37.md) |
 | D38 | AI debrief | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s08 | PH-16 | [D38](../plans/features/D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | Implemented and tested | hybrid | 1 (1) | yes | p2-ai-learning-analytics-s01 | PH-18 | [D39](../plans/features/D39.md) |
 | D40 | Performance pattern analysis | Implemented and tested | hybrid | 2 (1) | yes | p1-personalisation-s02; p2-ai-learning-analytics-s01 | PH-18 | [D40](../plans/features/D40.md) |

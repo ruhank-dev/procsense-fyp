@@ -10,8 +10,8 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 
 | Status | Features |
 |---|---|
-| Implemented and tested | 40 |
-| Implemented but incompletely tested | 20 |
+| Implemented and tested | 42 |
+| Implemented but incompletely tested | 18 |
 | Partially implemented | 5 |
 | Planned | 1 |
 | Blocked | 0 |
@@ -47,7 +47,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | B21 | Result variation (repeats, trends, timing) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | ai | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/B22.md) |
 | B23 | Investigation discovery | deterministic | Implemented but incompletely tested | Planned | PH-04 | P0 | [plan](../plans/features/B23.md) |
-| C24 | Patient dialogue | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-13 | P1 | [plan](../plans/features/C24.md) |
+| C24 | Patient dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C24.md) |
 | C25 | Nurse dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C25.md) |
 | C26 | Anaesthetist dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C26.md) |
 | C27 | Surgeon dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/C27.md) |
@@ -60,7 +60,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | C34 | Text-to-speech | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/C34.md) |
 | C35 | Voice orders and read-back | hybrid | Implemented and tested | Implemented and tested | PH-14 | P1 | [plan](../plans/features/C35.md) |
 | C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Implemented but incompletely tested | Not applicable (deterministic feature) | PH-15 | P1 | [plan](../plans/features/C36.md) |
-| C37 | Communication classifier | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-15 | P1 | [plan](../plans/features/C37.md) |
+| C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | ai | Implemented and tested | Implemented and tested | PH-15 | P1 | [plan](../plans/features/C37.md) |
 | D38 | AI debrief | hybrid | Implemented and tested | Implemented and tested | PH-16 | P1 | [plan](../plans/features/D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | hybrid | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/D39.md) |
 | D40 | Performance pattern analysis | hybrid | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/D40.md) |
@@ -749,7 +749,7 @@ Problems are revealed by the result, examination or question that discovers them
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Planned |
-| Evidence (what exists) | content/problems/discovery.json; server/classify/embedding.py; content/assessment/act_head.json; content/ai/critical_cues.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/classify/ensemble.py; server/classify/assertion.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tools/ci/test_classifier_regression.py; tests/classifier_challenge_v4/challenge.json |
+| Evidence (what exists) | content/problems/discovery.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tests/classifier_challenge_v4/challenge.json |
 | Lineage (existing ids) | DT-073; DT-091 |
 | Method | Rules. |
 | LLM-first classification | Not a model task. |
@@ -777,8 +777,8 @@ Free questions answered in the patient's voice. Built: fixed history questions w
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Implemented but incompletely tested |
-| AI status | Implemented but incompletely tested |
+| Status | Implemented and tested |
+| AI status | Implemented and tested |
 | Evidence (what exists) | history step (approved); src/ProcSense.Core/AIContext/ContextBuilder.cs; server/dialogue/dialogue.py; server/routers/dialogue.py; tools/ai/eval_dialogue.py; reports/ai/dialogue-eval.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; reports/ai/dialogue-stress.json; server/tests/test_dialogue_safety.py; docs/architecture/unity_ai_hooks.md |
 | Lineage (existing ids) | p1-ai-language-s04; DT-096 |
 | Method | LLM with persona prompt and per-role context; hidden facts never in context. |
@@ -792,7 +792,7 @@ Free questions answered in the patient's voice. Built: fixed history questions w
 | Fallback | Menu of fixed history questions. |
 | Tests planned | disclosure probes (100+); persona consistency; latency |
 | Acceptance | Zero hidden-fact disclosures on the probe set; p95 under 3 s. |
-| Blockers | external acceptance: DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | — |
 | Risks | paraphrased leak of a hidden fact (context excludes hidden facts; validator is lexical); persona drift |
 | Tasks | p1-ai-language-s04; p1-ai-language-s13 |
 | Phase | PH-13 Dialogue and personas |
@@ -975,7 +975,7 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 | Kind (AI or deterministic) | ai |
 | Status | Partially implemented |
 | AI status | Partially implemented |
-| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md; server/tts/engine.py; reports/ai/tts-latency.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; server/routers/orders.py; unity/Assets/Scripts/Voice/SpeechInterpretation.cs; unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs; unity/Assets/Scripts/Bridge/SimulationHost.cs; server/interpret/decide.py; tools/ci/test_interpretation_regression.py; server/tests/test_interpret_api.py |
+| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md; server/tts/engine.py; reports/ai/tts-latency.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; server/routers/orders.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Scripts/Voice/SpeechEvaluation.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; server/evaluate/service.py; server/tests/test_evaluate_api.py |
 | Lineage (existing ids) | p1-voice-input; p0-voice-audio |
 | Method | faster-whisper + LLM + TTS. |
 | LLM-first classification | Each part is a pretrained model; no training. |
@@ -988,7 +988,7 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 | Fallback | Text and menus with subtitles. |
 | Tests planned | round-trip latency; accent tests |
 | Acceptance | p95 round trip under 4 s. |
-| Blockers | external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-voice-input-s02; p1-voice-input-s04; p1-ai-language-s12 |
 | Phase | PH-14 Voice |
@@ -1016,7 +1016,7 @@ Short spoken commands mapped to verbs (open results, call nurse).
 | Fallback | Controller menu. |
 | Tests planned | command accuracy |
 | Acceptance | At least 95 percent of scripted commands map correctly. |
-| Blockers | external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-voice-input-s02 |
 | Phase | PH-14 Voice |
@@ -1108,14 +1108,14 @@ Spoken orders (drug, dose, route) read back by the nurse before acting; closed-l
 
 ### C36 — Communication acts (taxonomy and evidence mapping)
 
-The acts the classifier reports and how the evidence store weighs them. Built: AI-reportable acts in mapping.json; the evidence store never credits a critical, low-confidence or wrong-stage act from AI.
+The acts the speech evaluator reports and how the evidence store weighs them. Built: AI-reportable acts in mapping.json; the evidence store never credits a critical, low-confidence or wrong-stage act from AI.
 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tools/ci/test_bench.py; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md |
+| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; src/ProcSense.Core/Scoring/CommunicationRubric.cs |
 | Lineage (existing ids) | p1-ai-language-s06 |
 | Method | Taxonomy + rules. |
 | LLM-first classification | Not a model task. |
@@ -1131,35 +1131,35 @@ The acts the classifier reports and how the evidence store weighs them. Built: A
 | Blockers | external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
 | Tasks | p1-ai-language-s06 |
-| Phase | PH-15 Communication acts and classifier |
+| Phase | PH-15 Communication acts and speech evaluation |
 | Tier | P1 |
 
-### C37 — Communication classifier
+### C37 — Speech evaluation (Gemma semantic evaluator, engine-scored)
 
-Interpret trainee utterances as communication acts against the real scenario state (ADR-0022): the engine builds the context (running steps, eligible objectives, pending question or read-back, recent turns, acts already accepted); the retained classifier gate (ADR-0020) proposes candidates restricted to the eligible objectives; deterministic validation (eligibility, status, critical exclusion, evidence span, duplicates) decides what may be offered; the engine's EvidenceStore accepts or refuses. Uncertain: one clarification, then the menu. P2: a small trained classifier (E60) only if it beats the gate on the independent set.
+ASR transcript, then Gemma semantic evaluation (gemma4:31b on Ollama Cloud free plan; ADR-0025): who spoke, whether it happened now, assertion and modality, the objective(s) the trainee actually performed, relevance, correctness and completeness on a 0 to 3 scale, and any physical-action claim, as strict JSON. The engine builds the context (running steps, eligible objectives, pending question or read-back, recent turns, verified actions) and is authoritative: it accepts a judgement only if the trainee performed it now, the behaviour window and the waiting state fit, the grade clears the credit floor, and it was not already judged; a critical objective is graded for a small communication credit and never accepted as evidence (its physical part comes only from deterministic accepted actions). A deterministic formula turns the grades into the communication score added to the process score; VR feedback follows. Invalid or unavailable judgement: the menu of verified actions and no speech credit.
 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Implemented but incompletely tested |
-| AI status | Implemented but incompletely tested |
-| Evidence (what exists) | server/classify/embedding.py; server/classify/guard.py; content/assessment/act_head.json; tools/bench/bench_classifier.py; reports/ai/classifier-bench-synthetic.json; tools/labelling/label.py; tools/ci/test_labelling.py; docs/research/labelling/guidelines.md; tools/bench/cross_judge.py; tests/classifier_synthetic_v2/adversarial_manifest.json; content/assessment/taxonomy.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; content/ai/critical_cues.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/classify/ensemble.py; server/classify/assertion.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tools/ci/test_classifier_regression.py; tests/classifier_challenge_v4/challenge.json; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; docs/research/rubric_evaluator.md; docs/research/nli_zero_shot.md; reports/ai/rubric-latency.json; src/ProcSense.Core/Scoring/Evidence.cs; src/ProcSense.Core/AIContext/ContextBuilder.cs; content/assessment/mapping.json; server/routers/classify.py; docs/architecture/unity_ai_hooks.md; server/routers/orders.py; server/dialogue/dialogue.py; server/routers/dialogue.py; reports/ai/dialogue-stress.json; tools/bench/act_benchmark.py; tools/bench/rubric_labelling_kit.py; docs/testing/independent_labelling_protocol.md; src/ProcSense.Core/Speech/InterpretationContext.cs; src/ProcSense.Core/Speech/InterpretationContextBuilder.cs; src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs; tests/ProcSense.Core.Tests/InterpretationContextTests.cs; server/schemas/interpretation_context.json; server/interpret/decide.py; server/interpret/validate.py; server/interpret/status.py; server/routers/interpret.py; server/schemas/interpret.py; content/ai/interpret_phrases.json; tools/ci/test_interpretation_regression.py; server/tests/test_interpret_api.py; unity/Assets/Scripts/Voice/SpeechInterpretation.cs; unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs; unity/Assets/Scripts/Bridge/SimulationHost.cs; server/tests/test_dialogue_safety.py; tools/bench/interpretation_bench.py; tools/bench/interpretation_latency.py; tools/bench/interpretation_report.py; tools/ci/test_interpretation_bench.py; reports/ai/interpretation-bench-dev.json; reports/ai/interpretation-bench-test.json; reports/ai/interpretation-bench-test2.json; reports/ai/interpretation-latency.json; docs/research/interpretation_benchmark.md; content/ai/thresholds.json; content/ai/features.json; docs/research/recall_diagnosis.md; tools/bench/recall_diagnosis.py; tools/bench/recall_eval.py; tools/bench/recall_safety_panel.py; tools/ci/test_recall_fixes.py; reports/ai/recall-eval-test.json; reports/ai/recall-eval-test2.json; tools/bench/recall_frozen.json; tools/bench/recall_cap_revision.json; tools/bench/assertion_diff.py; tools/bench/recall_report.py; tools/bench/engine_acceptance.py; tests/classifier_regression/recall_cases.json; content/assessment/act_head_hybrid.json; tools/content/build_scoring.py; src/ProcSense.Cli/Commands.cs; reports/ai/recall-confirm-test.json; reports/ai/recall-confirm-test2.json; docs/decisions/ADR-0023-unsafe-speech-hardening.md; docs/research/safety_layers_audit.md; docs/research/unsafe_speech_safety.md; docs/testing/safety_challenge_review.md; tools/bench/metamorph.py; tools/bench/safety_eval.py; tools/ci/mutation_safety.py; tools/ci/test_safety_hardening.py; tools/ci/test_mutation_safety.py; reports/ai/safety/s16-final.json; tests/safety_challenge/taxonomy.json; tests/safety_challenge/manifest.json; tests/safety_challenge/review_sheet.csv; tests/safety_challenge/regression_cases.json; tools/bench/safety_seeds.py; tools/bench/safety_regression.py; tools/bench/safety_review_sheet.py; tools/bench/unsafe_speech_report.py; tools/ci/safety_scenarios.py; reports/ai/safety/baseline-4a2ed00-final.json; reports/ai/safety/s16-dev.json; reports/ai/safety/s16-challenge.json; reports/ai/safety/mutation-service.json; docs/testing/asr_safety_evaluation.md; docs/research/safety_set_audit.md; docs/research/dt233_final_failures.md; tools/bench/safety_review_kit.py; tools/bench/safety_set_audit.py; tools/bench/safety_frozen.py; tests/safety_challenge/frozen.json; tools/ci/test_safety_review_kit.py; reports/ai/safety/set-audit.json; docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md; docs/research/semantic_reader_pipeline.md; server/interpret/semantic.py; server/interpret/llm/schema.py; server/interpret/llm/strict.py; server/interpret/llm/provider.py; server/interpret/llm/reader.py; server/interpret/llm/prompt.py; server/tests/test_semantic_reader.py; server/tests/test_semantic_interpreter.py; server/tests/test_semantic_eval_tool.py; tools/bench/semantic_eval.py; reports/ai/semantic-replay-cloud-gemma31b-full-head-dev.json; reports/ai/semantic-replay-cloud-gemma31b-full-head-test.json; reports/ai/semantic-replay-cloud-gemma31b-full-head-test2.json; reports/ai/semantic-live-gemma4_31b-cloud-head-dev.json; reports/ai/semantic-live-comparison-dev.json |
-| Lineage (existing ids) | p1-ai-language-s06, s07; DT-097 |
-| Method | Embedding + TF-IDF classifier gate (ADR-0020) as candidate generator, restricted to the objectives eligible in the current state; deterministic status and validation; no language model in the live path (ADR-0022). |
-| LLM-first classification | Measured, not assumed: the served 4B model was evaluated as classifier (ADR-0017, ADR-0020) and as a rubric evaluator over all objectives (docs/research/rubric_evaluator.md): it is slower than the live budget (3.4 s median, 4.1 s p95 against 0.79 s left in the voice round trip) and credited critical sentences under ordinary acts; the trained heads are the live candidate generator. The model stays an offline experiment. |
+| Status | Implemented and tested |
+| AI status | Implemented and tested |
+| Evidence (what exists) | server/evaluate/prompt.py; server/evaluate/contract.py; server/evaluate/reader.py; server/evaluate/service.py; server/evaluate/rubric.py; server/evaluate/examples.py; server/evaluate/wording.json; server/routers/evaluate.py; server/schemas/evaluate.py; server/tests/test_evaluate.py; server/tests/test_evaluate_api.py; server/tests/test_ex01_eval.py; tools/ci/test_evaluate_parity.py; tools/ci/mutation_safety.py; tools/ci/test_mutation_safety.py; tools/ci/test_safety_invariants.py; src/ProcSense.Core/Scoring/Evidence.cs; src/ProcSense.Core/Scoring/CommunicationRubric.cs; src/ProcSense.Core/Scoring/CommunicationScorer.cs; src/ProcSense.Core/Scoring/SpeechScoreCheck.cs; src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs; src/ProcSense.Core/Speech/SpeechJudgement.cs; src/ProcSense.Core/Speech/SpeechStateGate.cs; src/ProcSense.Core/Speech/InterpretationContext.cs; tests/ProcSense.Core.Tests/CommunicationScoringTests.cs; tests/ProcSense.Core.Tests/InterpretationContextTests.cs; unity/Assets/Scripts/Voice/SpeechEvaluation.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs; content/assessment/taxonomy.json; content/assessment/mapping.json; content/scoring/rubric.json; content/ai/thresholds.json; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; docs/research/gemma_evaluator_results.md; tools/synth_dev/evaluator_run.py; tools/synth_dev/evaluator_metrics.py; tools/synth_dev/engine_score.py; tools/synth_dev/partial_credit_report.py; tools/bench/ex01_eval.py; tools/bench/ex01_kit.py; tests/synthetic_dev_v1/dataset.jsonl; tests/synthetic_dev_v1/partial_credit_v1.jsonl; tests/synthetic_dev_v1/partial_credit_v2.jsonl; tests/synthetic_dev_v1/open_issues.md; tests/safety_challenge/frozen.json; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tests/classifier_challenge_v4/challenge.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; src/ProcSense.Core/Speech/InterpretationContextBuilder.cs; server/schemas/interpretation_context.json; unity/Assets/Scripts/Bridge/SimulationHost.cs; docs/architecture/unity_ai_hooks.md; server/dialogue/dialogue.py; server/tests/test_dialogue_safety.py; reports/ai/dialogue-stress.json; tools/bench/interpretation_report.py; reports/ai/interpretation-bench-dev.json; reports/ai/interpretation-bench-test.json; reports/ai/interpretation-bench-test2.json; reports/ai/interpretation-latency.json; docs/research/interpretation_benchmark.md; content/ai/features.json; docs/testing/independent_labelling_protocol.md; docs/research/recall_diagnosis.md; tools/bench/recall_frozen.json; tools/bench/recall_cap_revision.json; tools/bench/recall_report.py; tools/bench/engine_acceptance.py; tests/classifier_regression/recall_cases.json; tools/content/build_scoring.py; src/ProcSense.Cli/Commands.cs; reports/ai/recall-eval-test.json; reports/ai/recall-eval-test2.json; reports/ai/recall-confirm-test.json; reports/ai/recall-confirm-test2.json; docs/decisions/ADR-0023-unsafe-speech-hardening.md; docs/research/safety_layers_audit.md; docs/research/unsafe_speech_safety.md; docs/testing/safety_challenge_review.md; tests/safety_challenge/taxonomy.json; tests/safety_challenge/manifest.json; tests/safety_challenge/review_sheet.csv; tests/safety_challenge/regression_cases.json; tools/bench/safety_seeds.py; tools/bench/metamorph.py; tools/bench/safety_regression.py; tools/bench/safety_review_sheet.py; tools/bench/unsafe_speech_report.py; reports/ai/safety/baseline-4a2ed00-final.json; reports/ai/safety/s16-final.json; reports/ai/safety/s16-dev.json; reports/ai/safety/s16-challenge.json; reports/ai/safety/mutation-service.json; docs/testing/asr_safety_evaluation.md; docs/research/safety_set_audit.md; docs/research/dt233_final_failures.md; tools/bench/safety_review_kit.py; tools/bench/safety_set_audit.py; tools/bench/safety_frozen.py; tools/ci/test_safety_review_kit.py; reports/ai/safety/set-audit.json; docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md; docs/research/semantic_reader_pipeline.md; reports/ai/semantic-replay-cloud-gemma31b-full-head-dev.json; reports/ai/semantic-replay-cloud-gemma31b-full-head-test.json; reports/ai/semantic-replay-cloud-gemma31b-full-head-test2.json; docs/research/failure_attribution.md; docs/research/semantic_reader_architecture_proposal.md; docs/research/corroborated_cap_results.md; tools/bench/failure_attribution_report.py; reports/ai/failure-attribution-dev.json; reports/ai/corroborated-cap-replay.json; reports/ai/cap-panel-live.json; docs/research/recall_improvement_stage2.md; tools/bench/verifier_panel.json; reports/ai/context-recheck.json; reports/ai/critical-verifier-panel.json; docs/testing/ex01_semantic_evaluation_plan.md; docs/testing/ex01_annotator_guide.md; docs/testing/ex01_templates/AUTHOR_BRIEF.md; tools/bench/ex01_design.json; tools/ci/test_ex01_kit.py; docs/testing/ex01_role_designs.md; docs/testing/ex01_author_packages/author_A1/AUTHOR_INSTRUCTIONS.md; docs/research/direct_synthetic_dev_set_design.md; tools/synth_dev/plan.py; tools/synth_dev/gold.py; tools/synth_dev/seeds.py; tools/synth_dev/validate.py; tools/synth_dev/diversity.py; tools/ci/test_synth_dev.py; tests/synthetic_dev_v1/specs.json; tests/synthetic_dev_v1/manifest.json; tests/synthetic_dev_v1/report.json; tests/synthetic_heldout_v1/acceptance.json; tools/synth_heldout/accept.py; reports/ai/speech-evaluation-heldout.json; tests/synthetic_heldout_v1/dataset.jsonl; tests/synthetic_heldout_v2/acceptance.json; tools/synth_heldout_v2/accept.py; reports/ai/speech-evaluation-heldout-v2.json; tests/synthetic_heldout_v2/dataset.jsonl; tools/ci/test_synth_heldout_v2.py; tests/synthetic_partial_v3/acceptance.json; tools/synth_partial_v3/accept.py; reports/ai/speech-evaluation-partial-v3.json; reports/ai/speech-evaluation-acceptance.json; tools/eval/speech_acceptance.py; tests/synthetic_partial_v3/partial_credit.jsonl; tools/ci/test_synth_partial_v3.py |
+| Lineage (existing ids) | p1-ai-language-s06, s07 (the retired classifier steps); DT-097 |
+| Method | Gemma semantic evaluation with a strict output contract (ADR-0025) as the only semantic reader; the engine's state and evidence checks and a deterministic graded formula decide credit. No classifier, no agreement gate, no critical-mass cap, no lexical veto. |
+| LLM-first classification | LLM-first: a served 31B model reads the sentence with its scene (who, when, assertion, objective, grades). Measured on the 493-item synthetic development set: performed versus not performed 98.4 percent, 8 items with a false credit, 0 critical physical completions, median 2.2 s per call, about 5,000 tokens per item, free plan (docs/research/gemma_evaluator_results.md). Smaller local models (Qwen 4B) were slower than the live budget and credited critical sentences under ordinary acts (docs/research/rubric_evaluator.md). |
 | Models | MC-03 |
 | Data | — |
 | Realised by (pipeline nodes) | LG-17 |
 | Depends on | C36; E57; B19; E54 |
 | Overlaps | — |
-| Deterministic guard | Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails. |
-| Fallback | One clarification question, then the menu of the eligible objectives' actions; any service failure gives the menu. |
-| Tests planned | macro-F1 on frozen human-labelled split; context-conditioned benchmark: in-window, out-of-window, pending question and read-back (p1-ai-language-s14); regression: confusion pairs, negation, hypothetical, intention, reported, other speaker, incomplete, critical content, duplicates (p1-ai-language-s11); end-to-end latency with cold start and model contention |
-| Acceptance | speech_interpretation gate (PENDING owner approval, DT-229): on the independent set 0 critical and 0 out-of-window false credits, non-assertive false credit at most 1 percent, credited precision at least 0.95, legitimate recall at least 0.50 and not below the classifier route, interpretation p95 at most 300 ms; else off. |
-| Blockers | external acceptance: DC-08, DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
-| Risks | labelled set not available (DT-097); critical acts misclassified (never credited from AI alone); recall: about 45 to 56 percent of legitimate synthetic sentences are accepted after the 20 Oct 2026 follow-up (the remaining misses are critical mass at or above 0.05, act confusions and cue ambiguity); the revised cap (0.05) and the calibrated engine thresholds were judged only on synthetic sentences (EX-01, DT-231); unsafe speech: on a final split not used for any change the engine still accepted 10 of 407 must-not-credit rows (2.5 percent, CI 1.3 to 4.5) after the 20 Oct 2026 hardening (41 of 407 before); a recogniser that drops a negation cannot be refused by any text rule; every label is by construction and no person has reviewed the sets (EX-01, DT-233, DT-234); semantic reader: the cloud route enforces no schema (strict validation, 8 to 22 percent of recorded replies were malformed on first attempt), the pipeline did not beat the shipped path on recall (-7, -1, -4 of 140) because the critical-mass cap and the critical-cue menu set the ceiling, trainee speech would leave the machine, labels are synthetic (ADR-0024) |
-| Tasks | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18 |
-| Phase | PH-15 Communication acts and classifier |
+| Deterministic guard | The engine decides state, window, waiting question or read-back, the credit floor, duplicates, critical acts (never accepted from speech; physical part only from deterministic accepted actions) and the arithmetic (ADR-0005, ADR-0025); a judgement that breaks the contract is rejected, never repaired. |
+| Fallback | A model that is off, unreachable, too slow or invalid twice gives UNAVAILABLE with the menu of the existing verified actions and no speech credit; the session never waits on the model. |
+| Tests planned | strict contract, bounded retry and fail-safe (server/tests/test_evaluate.py); route: gate, audit, menu (server/tests/test_evaluate_api.py); engine: judgement accepted only with the trainee performing now, window, waiting state, credit floor, no critical acceptance (CommunicationScoringTests, ScoringTests, InterpretationContextTests); Python mirror equals the engine (tools/ci/test_evaluate_parity.py); mutation tests of the guards (tools/ci/mutation_safety.py); development evaluation on tests/synthetic_dev_v1 (done, synthetic); fresh frozen held-out set, then real speech on Meta Quest (DT-240) |
+| Acceptance | APPROVED 22 Oct 2026 (ADR-0025): the speech_evaluation gate reads reports/ai/speech-evaluation-acceptance.json (held-out v2 and partial-credit set v3, synthetic, each scored once against criteria fixed beforehand): 0 critical physical completions, 0 window/state bypass, recall 99.0 percent, precision 100 percent, performed versus not performed 99.2 percent, valid replies 100 percent, partial-credit bands 84.4 percent, median 2.3 s. Real-device validation: DC-10. |
+| Blockers | — |
+| Risks | the evidence is synthetic, AI-written and AI-reviewed: not independent human validation and not real audio; the real Meta Quest and ASR end-to-end check (DC-10, Sannan) is the real-speech evidence still to come; trainee speech leaves the machine for Ollama Cloud (privacy decision DT-248 before real trainee speech) and the credit path depends on quota and availability; the fail-safe is the menu; taxonomy boundary ambiguities (DT-241 to DT-244) can make overlapping objectives; the prompt teaches the contrasts, the definitions are the owner's decision; wrong or dismissive content is sometimes graded too high and vague speech sometimes graded complete (a few percent of the controlled partial-credit items); latency: median about 2.3 s and p95 about 4 s per utterance; Unity must not block on it |
+| Tasks | p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 |
+| Phase | PH-15 Communication acts and speech evaluation |
 | Tier | P1 |
 
 ## D. Assessment, feedback and learning
@@ -1707,7 +1707,7 @@ Weekly evaluation runs; any AI feature below its threshold is switched off in ai
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented and tested |
-| Evidence (what exists) | tools/eval/ai_gate.py; content/ai/thresholds.json; content/ai/features.json; server/ai_features.py; tools/ci/test_ai_gate.py; docs/report/ai-eval.md; tools/eval/collect_ai.py; tools/eval/analyse_study.py; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; tools/bench/act_benchmark.py; tools/bench/rubric_labelling_kit.py; docs/testing/independent_labelling_protocol.md; reports/ai/rubric-latency.json; tools/bench/interpretation_bench.py; tools/bench/interpretation_latency.py; tools/bench/interpretation_report.py; tools/ci/test_interpretation_bench.py; reports/ai/interpretation-bench-dev.json; reports/ai/interpretation-bench-test.json; reports/ai/interpretation-bench-test2.json; reports/ai/interpretation-latency.json; docs/research/interpretation_benchmark.md |
+| Evidence (what exists) | tools/eval/ai_gate.py; content/ai/thresholds.json; content/ai/features.json; server/ai_features.py; tools/ci/test_ai_gate.py; docs/report/ai-eval.md; tools/eval/collect_ai.py; tools/eval/analyse_study.py; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; tools/bench/rubric_labelling_kit.py; docs/testing/independent_labelling_protocol.md; reports/ai/rubric-latency.json; tools/bench/interpretation_report.py; reports/ai/interpretation-bench-dev.json; reports/ai/interpretation-bench-test.json; reports/ai/interpretation-bench-test2.json; reports/ai/interpretation-latency.json; docs/research/interpretation_benchmark.md; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; tools/bench/ex01_eval.py; docs/research/gemma_evaluator_results.md |
 | Lineage (existing ids) | p1-ai-language-s09; p1-evaluation-s02, s04 |
 | Method | Harness. |
 | LLM-first classification | Not AI. |
@@ -1812,26 +1812,26 @@ Retrieval for generation context (LG-03) and, later, grounded explanations. Line
 
 ### E60 — P2 small trained classifier
 
-The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split, critical-act guard.
+A small trained classifier on the human-labelled set: deferred. The classifier pilot (embedding and TF-IDF heads) was retired by ADR-0025 when Gemma semantic evaluation replaced it; a trained model is reconsidered only if the Gemma evaluator misses latency, cost or accuracy targets on the held-out set.
 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | server/classify/embedding.py; content/assessment/act_head.json; tests/classifier_synthetic/README.md; reports/ai/classifier-bench-synthetic2.json |
+| Evidence (what exists) | docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; reports/ai/classifier-bench-synthetic2.json |
 | Lineage (existing ids) | p2-ai-extensions-s03; DT-097 |
 | Method | Fine-tune a small encoder. |
-| LLM-first classification | Justified only if the P1 LLM classifier misses latency or accuracy targets. |
+| LLM-first classification | Justified only if the Gemma evaluator (C37) misses latency, cost or accuracy targets. |
 | Models | MC-03 |
 | Data | — |
 | Realised by (pipeline nodes) | LG-17 |
 | Depends on | C37; B19 |
 | Overlaps | — |
 | Deterministic guard | Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails. |
-| Fallback | P1 LLM classifier. |
+| Fallback | Gemma semantic evaluator (C37). |
 | Tests planned | macro-F1 on frozen split |
-| Acceptance | Beats P1 LLM classifier or is not shipped. |
+| Acceptance | Beats the Gemma evaluator on the held-out set or is not built. |
 | Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | trained model does not beat the LLM classifier (then it is not shipped) |
 | Tasks | p2-ai-extensions-s03 |
@@ -1875,7 +1875,7 @@ FastAPI on PostgreSQL (Supabase): accounts and organisations, sessions with serv
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented and tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | server/routers/ai_gateway.py; server/routers/asr.py; server/routers/tts.py; server/routers/dialogue.py; server/routers/classify.py; server/routers/debrief.py; server/llm/gateway.py; server/tests/test_ai_routes.py; src/ProcSense.Cli/Program.cs; server/sessionfile.py |
+| Evidence (what exists) | server/routers/ai_gateway.py; server/routers/asr.py; server/routers/tts.py; server/routers/dialogue.py; server/routers/debrief.py; server/llm/gateway.py; server/tests/test_ai_routes.py; src/ProcSense.Cli/Program.cs; server/sessionfile.py; server/routers/evaluate.py |
 | Lineage (existing ids) | p1-backend s01 to s13; DT-100; ADR-0009 |
 | Method | FastAPI. |
 | LLM-first classification | Not AI. |

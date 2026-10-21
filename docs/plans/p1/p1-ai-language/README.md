@@ -2,6 +2,12 @@
 
 **Tier:** P1 · **Builds on:** p1-backend, p0-scoring-debrief, p0-physiology-events-behaviour · **Feeds:** p1-voice-input, p1-scenario-composer-difficulty
 
+> **Plan update, 22 Oct 2026 (seventh, s22 approved, ADR-0025):** step s22 is closed: the contract fix for long evidence (DT-247) and a fresh partial-credit set completed the final acceptance, the `speech_evaluation` gate is ON and the architecture is final. The retired steps of this phase (s06, s07, s11, s12, s14 to s19) are closed as superseded; the real Quest and ASR validation is DC-10 (Sannan).
+>
+> **Plan update, 21 Oct 2026 (sixth, s22, ADR-0025):** step s22 replaces the speech architecture: ASR, Gemma semantic evaluation (`server/evaluate`, `gemma4:31b` on Ollama Cloud, free plan), the engine's authoritative state and evidence checks and a deterministic graded score. The classifier, two-head agreement, critical-mass cap, cues, assertion layer, interpretation service and the earlier semantic reader (the work of s06, s07, s11, s12, s14 to s19) were removed with their tests and harnesses; their steps stay ticked as history and their findings live in `docs/research/gemma_evaluator_results.md` and the open items DT-241 to DT-245. Gate `speech_evaluation` OFF; synthetic development evidence only.
+>
+> **Plan update, 21 Oct 2026 (fifth, s19):** step s19 analysed where the semantic reader loses legitimate rows (mostly the critical-mass cap) and implemented the approved corroborated cap behind a setting that stays OFF: the bounded live panel check failed (5 of 12 critical-content sentences offered).
+>
 > **Plan update, 20 Oct 2026 (fourth, s18, ADR-0024):** step s18 adds an Ollama Cloud semantic reader behind strict structured-output validation and the existing deterministic checks, off by default; the integrated pipeline is not better than the shipped path on recall, the model comparison and live run await approval, privacy and independent validation are open.
 >
 > **Plan update, 20 Oct 2026 (third, s17):** step s17 prepares the blind human review of the unsafe-speech sheet (kit, protocol, adjudication), audits the sets and the ten remaining final-split failures without changing the frozen candidate, designs the audio-to-transcript evaluation and extends the mutation tests. Nothing was reviewed, recorded or run on a headset; gate OFF.

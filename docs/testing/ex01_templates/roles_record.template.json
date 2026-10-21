@@ -1,0 +1,19 @@
+{
+ "set": "ex01-semantic",
+ "attested_by": "<the owner's name>",
+ "attested_on": "<YYYY-MM-DD>",
+ "authors": [
+  "<person>",
+  "<person>"
+ ],
+ "annotators": [
+  "<person A>",
+  "<person B>"
+ ],
+ "adjudicator": "<person>",
+ "builder_names": [
+  "<every person who built or tuned the evaluator, the prompts or the verifier>"
+ ],
+ "statement": "I confirm that these are different people, that none of the authors or annotators saw an existing benchmark sentence, a prompt, a model answer, a probability, a guard decision or another person's labels, and that no builder wrote or labelled an item. Names are real; none is invented.",
+ "notes": ""
+}

@@ -1,5 +1,7 @@
 # Audit of the speech-safety layers (20 October 2026, p1-ai-language-s16, ADR-0023)
 
+> **Historical (21 Oct 2026):** this page describes the classifier, cap and gate architecture that [ADR-0025](../decisions/ADR-0025-gemma-first-speech-evaluation.md) retired. Its findings are kept as the record of why; the current design and its results are in `docs/research/gemma_evaluator_results.md`.
+
 Starting points: `docs/research/recall_diagnosis.md`, ADR-0022 and its addendum, DT-231 and DT-232. Every statement below was checked against the code at commit `4a2ed00` and then re-checked after the changes of this step; a claim that a test "covers" a layer was accepted only when disabling the layer made a named scenario change (`tools/ci/mutation_safety.py`, results in `reports/ai/safety/mutation-service.json` and `docs/research/unsafe_speech_safety.md` section 6). Measured results are in `unsafe_speech_safety.md` (generated); this page is the reading of the design.
 
 **Scope.** Speech is evidence for the debrief only. The deterministic engine is authoritative (ADR-0005); a critical act is credited from the verified action, never from speech; `speech_evidence` is an action of no behaviour. The question audited is: through which paths could words become *credited evidence*, and what stops each?

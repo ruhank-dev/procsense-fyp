@@ -1,5 +1,7 @@
 # ADR-0018 — Hybrid credit head, two-stage order fallback, plan extras and trap writer (fourth session)
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The speech part: the classifier, gate, cap, cue, assertion and interpretation machinery of the speech part was retired and removed; the record and its measurements are kept as history. The spoken-order fallback and plan extras parts of this record are unaffected.
+
 **Date:** 18 October 2026 (fourth session) · **Status:** Accepted for the engineering; every feature stays OFF (no acceptance met) · **Related:** ADR-0005, ADR-0016, ADR-0017, DT-224
 
 ## Context

@@ -10,7 +10,7 @@ Specified on 12 October 2026; the state of each feature is in [feature_implement
 
 PH-01 → PH-02 → PH-03 → PH-05 → PH-09 → PH-10 → PH-11 → PH-12
 
-The first fresh scenario needs no language model: dataset profiles, packs, blocks, solver, numeric and media generation, validation and packaging. The LLM, voice and classifier phases run in parallel and plug in when their blockers clear; the AI composer, the knowledge base and personalisation (PH-20 to PH-23) make that fresh case AI-composed and personalised.
+The first fresh scenario needs no language model: dataset profiles, packs, blocks, solver, numeric and media generation, validation and packaging. The LLM, voice and speech-evaluation phases run in parallel and plug in when their blockers clear; the AI composer, the knowledge base and personalisation (PH-20 to PH-23) make that fresh case AI-composed and personalised.
 
 **AI critical path** (the explicitly AI-composed, personalised scenario): PH-20 → PH-07 → PH-22 → PH-08 → PH-23.
 
@@ -41,7 +41,7 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-12 | Packaging, pool and Unity integration | Planned | PH-11 | yes | — |
 | PH-13 | Dialogue and personas | Blocked | PH-07; PH-06; PH-20 | — | C24; C25; C26; C27; C28; C29; C30 |
 | PH-14 | Voice | Planned | PH-06 | — | C31; C32; C33; C34; C35 |
-| PH-15 | Communication acts and classifier | Blocked | PH-07; PH-21 | — | C36; C37 |
+| PH-15 | Communication acts and speech evaluation | Blocked | PH-07; PH-21 | — | C36; C37 |
 | PH-16 | AI debrief and grounded feedback | Blocked | PH-07 | — | D38; D46; D47; E56 |
 | PH-17 | Evaluation harness, adversarial testing and switch-off gate | Planned | PH-07 | — | B19; E50; E51; E55 |
 | PH-18 | Learning analytics and adaptive enhancements | Proposed new feature | PH-16; PH-12; PH-23 | — | B22; D39; D40; D41; D42; D44; D45; E52 |
@@ -232,7 +232,7 @@ Patient and staff dialogue, persona, reactive lines.
 | Features | C24; C25; C26; C27; C28; C29; C30 |
 | Deliverables | dialogue service |
 | Acceptance | disclosure probes zero escapes |
-| Blockers | external acceptance: DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | — |
 
 ### PH-14 — Voice
 
@@ -246,21 +246,21 @@ ASR, voice commands, voice orders with read-back, TTS.
 | Features | C31; C32; C33; C34; C35 |
 | Deliverables | ASR service; voice client |
 | Acceptance | WER and latency targets |
-| Blockers | external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-06, EX-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-06, EX-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
-### PH-15 — Communication acts and classifier
+### PH-15 — Communication acts and speech evaluation
 
-Taxonomy, classifier gate, and context-aware interpretation of trainee speech with deterministic validation (ADR-0022).
+Taxonomy, Gemma semantic evaluation of trainee speech and engine-side graded scoring (ADR-0025).
 
 | Field | Value |
 |---|---|
 | Status | Blocked |
 | Depends on | PH-07; PH-21 |
-| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18 |
+| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 |
 | Features | C36; C37 |
-| Deliverables | labelled set; classifier; interpretation context; interpretation service; clarification and fallback; context-conditioned benchmark and speech_interpretation gate |
-| Acceptance | classifier: macro-F1 0.75 on the independent set or switched off; speech_interpretation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off |
-| Blockers | external acceptance: DC-08, DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Deliverables | labelled set; evaluation context; Gemma evaluator and route; strict contract and fallback; graded communication score; development evaluation and speech_evaluation gate |
+| Acceptance | speech_evaluation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off |
+| Blockers | external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-16 — AI debrief and grounded feedback
 
@@ -306,7 +306,7 @@ Patterns, coaching, calibration, reasoning fingerprint, progression, investigati
 
 ### PH-19 — Advanced research features
 
-Digital twin, multi-agent lab, retrieval extensions, trained classifier, medical LLM benchmark, on-device ASR.
+Digital twin, multi-agent lab, retrieval extensions, an optional trained model only if Gemma misses its targets, medical LLM benchmark, on-device ASR.
 
 | Field | Value |
 |---|---|
@@ -429,7 +429,7 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | C34 | Text-to-speech | PH-14 | p0-voice-audio-s02; p1-voice-input-s04 |
 | C35 | Voice orders and read-back | PH-14 | p1-voice-input-s03 |
 | C36 | Communication acts (taxonomy and evidence mapping) | PH-15 | p1-ai-language-s06 |
-| C37 | Communication classifier | PH-15 | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18 |
+| C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | PH-15 | p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 |
 | D38 | AI debrief | PH-16 | p1-ai-language-s08 |
 | D39 | Coaching (in-session hints and between-session advice) | PH-18 | p2-ai-learning-analytics-s01 |
 | D40 | Performance pattern analysis | PH-18 | p2-ai-learning-analytics-s01 |

@@ -1,5 +1,7 @@
 # Communication-act classifier benchmark
 
+> **Historical (21 Oct 2026):** this page describes the classifier, cap and gate architecture that [ADR-0025](../../decisions/ADR-0025-gemma-first-speech-evaluation.md) retired. Its findings are kept as the record of why; the current design and its results are in `docs/research/gemma_evaluator_results.md`.
+
 Decides how ProcSense should classify the trainee's spoken communication acts (`content/assessment/taxonomy.json`, 20 labels, 5 of them critical). Three candidates only: **TF-IDF + logistic regression**
 (the existing small classifier), **sentence embeddings + logistic regression**, and the **existing Qwen 3.5 4B classifier** (`server/classify/classifier.py`). SetFit and a zero-shot model are deferred
 unless these three give insufficient results and the extra cost is justified.

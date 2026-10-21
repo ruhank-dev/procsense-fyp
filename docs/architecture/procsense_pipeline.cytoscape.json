@@ -1128,7 +1128,7 @@
    "group": "nodes",
    "data": {
     "id": "MC-03",
-    "label": "MC-03 MC-03 Communication act classification",
+    "label": "MC-03 MC-03 Speech semantic evaluation",
     "type": "model",
     "status": "Partially implemented",
     "parent": "g_models"
@@ -1504,7 +1504,7 @@
     "id": "C24",
     "label": "C24 Patient dialogue",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Implemented and tested",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1645,9 +1645,9 @@
    "group": "nodes",
    "data": {
     "id": "C37",
-    "label": "C37 Communication classifier",
+    "label": "C37 Speech evaluation (Gemma semantic evaluator, engine-scored)",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Implemented and tested",
     "parent": "g_feat_C"
    },
    "classes": "feature"

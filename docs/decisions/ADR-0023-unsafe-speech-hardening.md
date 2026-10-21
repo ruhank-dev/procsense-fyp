@@ -1,5 +1,7 @@
 # ADR-0023 — Unsafe, non-assertive and out-of-context speech is made visible to measurement, refused by named layers, and every critical check is shown by mutation to be needed
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The classifier, gate, cap, cue, assertion and interpretation machinery this record describes was retired and removed; the record and its measurements are kept as history.
+
 **Date:** 20 October 2026 · **Status:** Accepted for the engineering (owner request of 20 Oct 2026, prompt 176; step p1-ai-language-s16). Independent validation, clinical acceptance and Quest acceptance are NOT DONE; `speech_interpretation` stays OFF.
 
 ## Context

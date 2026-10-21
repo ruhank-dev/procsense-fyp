@@ -22,7 +22,7 @@ How the AI features and live scenario generation fit around the existing determi
 4. Numbers come from parameter packs (LG-07); images and ECG strips from the tagged library (LG-08).
 5. Cross-modal rules, Stage B and a headless correct-path run check the case (LG-09, LG-10); quality and novelty are measured (LG-11, LG-13); defects are repaired within budget or the fallback is used (LG-12).
 6. The package is written with provenance and a SHA-256 (LG-14) and loaded by Unity through the existing bridge and ContentGate (LG-15).
-7. The Core simulates and scores exactly as for library cases (LG-16 to LG-18). Voice and free text go ASR → classifier → structured act; the evidence store's guards decide what can be credited.
+7. The Core simulates and scores exactly as for library cases (LG-16 to LG-18). Voice and free text go ASR → Gemma semantic evaluation (ADR-0025) → structured judgement; the engine's evidence store decides what can be credited from its own state.
 8. The template debrief is produced first; the AI rewrite is shown only if the validator passes (LG-19). History is stored (LG-20) and the learner profile is updated from the session evidence (LP-02). Offline, the evaluation loop proposes changes for a reviewed release (LG-21).
 
 ## 3. Contracts (planned)

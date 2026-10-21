@@ -1,5 +1,7 @@
 # ADR-0020 — How a trainee's communication act is recognised: keep the embedding gate, widen its assertion check, keep every model out of the active path
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The classifier, gate, cap, cue, assertion and interpretation machinery this record describes was retired and removed; the record and its measurements are kept as history.
+
 **Date:** 19 October 2026 (fifth session) · **Status:** Accepted for the engineering; the `classifier` feature stays OFF · **Related:** ADR-0005, ADR-0016, ADR-0018, ADR-0019; `docs/research/act_benchmark.md`, `docs/research/public_assertion_resources.md`
 
 ## Context

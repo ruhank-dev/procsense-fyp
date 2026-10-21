@@ -1,5 +1,7 @@
 # ADR-0013 — The classifier is evaluated on AI-judged synthetic sets while no people are available; the result changes the guards, not the claim
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The classifier, gate, cap, cue, assertion and interpretation machinery this record describes was retired and removed; the record and its measurements are kept as history.
+
 **Date:** 18 October 2026 · **Status:** Accepted. Supplements ADR-0012; it does not replace the independent-set requirement.
 
 ## Context

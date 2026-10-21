@@ -123,7 +123,6 @@
    "before": "Built 17 Oct (synthetic only)",
    "now": "DONE_GATE_OFF",
    "evidence": [
-    "tools/bench/cross_judge.py",
     "tests/classifier_synthetic_v2/adversarial_manifest.json",
     "content/assessment/taxonomy.json",
     "tests/classifier_synthetic_v2/manifest.json",
@@ -133,7 +132,7 @@
     "reports/ai/act-benchmark-test2.json",
     "docs/decisions/ADR-0020-act-recognition-architecture.md"
    ],
-   "measured": "three synthetic sets AI-judged by two configurations of one model (kappa 0.84 to 0.85), frozen, leakage-checked, never called independent; a different-size cross-check labeller (J3, qwen3.5:9b) and four frozen adversarial sets added; the adjudicator is the builder and sided with the intent in nearly every case. 19 Oct (fifth session): the act benchmark (tests/action_bench_v1) scored five approaches on two frozen splits; the retained gate with a widened assertion check credited 0 of 40 critical and 0 of 300 non-assertive sentences on the second split (recall 0.49, precision 0.96); the model-based approaches credited 2 or 3 of 40 critical sentences (reports/ai/act-benchmark*.json, ADR-0020)",
+   "measured": "three synthetic sets AI-judged by two configurations of one model (kappa 0.84 to 0.85), frozen, leakage-checked, never called independent; a different-size cross-check labeller (J3, qwen3.5:9b) and four frozen adversarial sets added; the adjudicator is the builder and sided with the intent in nearly every case. 19 Oct (fifth session): the act benchmark (tests/action_bench_v1) scored five approaches on two frozen splits; the retained gate with a widened assertion check credited 0 of 40 critical and 0 of 300 non-assertive sentences on the second split (recall 0.49, precision 0.96); the model-based approaches credited 2 or 3 of 40 critical sentences (reports/ai/act-benchmark*.json, ADR-0020) [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.]",
    "open": "The classifier safety criteria are NOT met: the frozen set v5 credited 1 of 48 critical sentences; the independent set (EX-01) does not exist. The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)",
    "external": "real authors, a second labeller and an adjudicator for the independent set (docs/research/classifier_benchmark)"
   },
@@ -142,22 +141,16 @@
    "before": "Built 17 Oct (synthetic only)",
    "now": "DONE_GATE_OFF",
    "evidence": [
-    "server/classify/embedding.py",
-    "content/assessment/act_head.json",
-    "content/ai/critical_cues.json",
     "reports/ai/classifier-bench-synthetic2.json",
     "reports/ai/classifier-holdout-v3.json",
     "reports/ai/classifier-adversarial.json",
     "reports/ai/classifier-guard-only.json",
     "reports/ai/classifier-adversarial-fresh.json",
-    "server/classify/ensemble.py",
-    "server/classify/assertion.py",
     "reports/ai/classifier-safety.json",
     "docs/research/classifier_benchmark/safety_gate.md",
-    "tools/ci/test_classifier_regression.py",
     "tests/classifier_challenge_v4/challenge.json"
    ],
-   "measured": "18 Oct third session: the credit path is the embedding head AND the TF-IDF head naming the same ordinary act, both trained with hard negatives, plus an assertion check (denied, hypothetical, reported, incomplete). Failing set 3/48 credited to 0/48; frozen challenge set v4 (written first, scored once) 5/60 to 0/60 with credited precision 0.853 to 0.962 and 0/12 denials, hypotheticals or reports credited; v3 hold-out credited precision 0.942 to 0.989. Earlier: v2 test scored once TF-IDF 0.816, embeddings 0.792, Qwen 0.654 macro-F1; critical acts credited from speech 0 everywhere. Qwen 4B/9B as classifier are far below the heads and name critical content as ordinary acts (safety_gate.md). Synthetic and AI-judged, not independent",
+   "measured": "18 Oct third session: the credit path is the embedding head AND the TF-IDF head naming the same ordinary act, both trained with hard negatives, plus an assertion check (denied, hypothetical, reported, incomplete). Failing set 3/48 credited to 0/48; frozen challenge set v4 (written first, scored once) 5/60 to 0/60 with credited precision 0.853 to 0.962 and 0/12 denials, hypotheticals or reports credited; v3 hold-out credited precision 0.942 to 0.989. Earlier: v2 test scored once TF-IDF 0.816, embeddings 0.792, Qwen 0.654 macro-F1; critical acts credited from speech 0 everywhere. Qwen 4B/9B as classifier are far below the heads and name critical content as ordinary acts (safety_gate.md). Synthetic and AI-judged, not independent [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.]",
    "open": "The production gate (`classifier`) needs the independent set (EX-01): classifier.independent_evidence is SKIPPED, so the classifier stays OFF; the informational gate classifier_safety passes but switches nothing on. A further change to a head or guard needs a new frozen set (v5)",
    "external": "people: authors, a second labeller and an adjudicator (EX-01)"
   },
@@ -188,7 +181,7 @@
   "p1-ai-language-s10": {
    "owner": "Ruhan",
    "before": "Planned 19 Oct 2026 (ADR-0022); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
     "src/ProcSense.Core/Speech/InterpretationContext.cs",
@@ -198,7 +191,7 @@
     "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
     "server/schemas/interpretation_context.json"
    ],
-   "measured": "19 Oct 2026: the engine builds the interpretation context from the running session (steps of the active flow stages, eligible acts by behaviour window, accepted behaviours, waiting patient question, critical result awaiting acknowledgement, last four turns); the speech_evidence verb is logged with the steps the engine saw; EvidenceStore picks the behaviour by window and refuses a duplicate behaviour or utterance. 11 new xUnit tests, engine suite 1,322 of 1,322 pass (dotnet test); the gate's decisions are unchanged (0 differences on 1,464 benchmark rows)",
+   "measured": "19 Oct 2026: the engine builds the interpretation context from the running session (steps of the active flow stages, eligible acts by behaviour window, accepted behaviours, waiting patient question, critical result awaiting acknowledgement, last four turns); the speech_evidence verb is logged with the steps the engine saw; EvidenceStore picks the behaviour by window and refuses a duplicate behaviour or utterance. 11 new xUnit tests, engine suite 1,322 of 1,322 pass (dotnet test); the gate's decisions are unchanged (0 differences on 1,464 benchmark rows) [Closed 22 Oct 2026: accepted as part of the final architecture (ADR-0025, p1-ai-language-s22); the device checks DC-08, DC-09 and DC-10 stay Sannan's later validation and are not this step's acceptance.]",
    "open": "Built and tested. readback_pending reads the engine's only record of a result awaiting acknowledgement (the critical.unacknowledged flag); an instruction from a colleague that needs a read-back is not recorded by the engine, so CLOSED_LOOP is offered only in that case. The planned shared vectors were replaced by server/schemas/interpretation_context.json, which both the engine and the service tests compare. NOT done: a headset run of spoken interpretation (DC-09, NOT RUN)",
    "external": "Sannan: the headset run of spoken interpretation (DC-09)",
    "implementation": "complete"
@@ -206,39 +199,26 @@
   "p1-ai-language-s11": {
    "owner": "Ruhan",
    "before": "Planned 19 Oct 2026 (ADR-0022); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
-    "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
-    "server/interpret/decide.py",
-    "server/interpret/validate.py",
-    "server/interpret/status.py",
-    "server/routers/interpret.py",
-    "server/schemas/interpret.py",
-    "content/ai/interpret_phrases.json",
-    "server/classify/ensemble.py",
-    "tools/ci/test_interpretation_regression.py",
-    "server/tests/test_interpret_api.py"
+    "docs/decisions/ADR-0022-context-aware-speech-interpretation.md"
    ],
-   "measured": "19 Oct 2026: /interpret built; candidates are the retained classifier gate's own decision (classify_with_probs, identical decisions), context only removes. tools/ci/test_interpretation_regression.py 17 of 17 pass with the real heads (a mutant without the validation is caught by 9 of the 17); server route tests 7 of 7 pass on PostgreSQL (server suite 333 passed, 1 skipped). On the synthetic benchmark the path offers exactly what the route offers after the engine's window rule (test 66 of 66 right, test2 69 of 69) with 0 critical, 0 non-assertive and 0 out-of-window offers. Update 20 Oct 2026: the path now accepts 76 of 140 (test) and 79 of 140 (test2) right sentences after the recall follow-up (p1-ai-language-s15); the figures above are those of 19 Oct",
+   "measured": "19 Oct 2026: /interpret built; candidates are the retained classifier gate's own decision (classify_with_probs, identical decisions), context only removes. tools/ci/test_interpretation_regression.py 17 of 17 pass with the real heads (a mutant without the validation is caught by 9 of the 17); server route tests 7 of 7 pass on PostgreSQL (server suite 333 passed, 1 skipped). On the synthetic benchmark the path offers exactly what the route offers after the engine's window rule (test 66 of 66 right, test2 69 of 69) with 0 critical, 0 non-assertive and 0 out-of-window offers. Update 20 Oct 2026: the path now accepts 76 of 140 (test) and 79 of 140 (test2) right sentences after the recall follow-up (p1-ai-language-s15); the figures above are those of 19 Oct [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
    "open": "Built and tested; the gate speech_interpretation is OFF and SKIPPED because the independent set (EX-01) does not exist. Recall does not rise (66 of 140 on test, 69 of 140 on test2): most misses are the classifier gate's critical-mass cap, not the context rules. Synthetic results can never switch the gate on",
    "external": "EX-01 (the independent set the gate reads); the owner approves the thresholds (DT-229)",
-   "implementation": "complete"
+   "implementation": "complete",
+   "ci_note": "the interpretation service this step built was retired by ADR-0025 (21 Oct 2026) with its tests; the engine half it introduced (speech_evidence action, state gate, context builder) is held by p1-ai-language-s22 tests (InterpretationContextTests, CommunicationScoringTests, test_evaluate_api.py)"
   },
   "p1-ai-language-s12": {
    "owner": "Ruhan",
    "before": "Planned 19 Oct 2026 (ADR-0022); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
-    "unity/Assets/Scripts/Voice/SpeechInterpretation.cs",
-    "unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs",
     "unity/Assets/Scripts/Bridge/SimulationHost.cs",
-    "server/interpret/decide.py",
-    "docs/architecture/unity_ai_hooks.md",
-    "tools/ci/test_interpretation_regression.py",
-    "server/tests/test_interpret_api.py"
+    "docs/architecture/unity_ai_hooks.md"
    ],
-   "measured": "19 Oct 2026: decisions CLARIFY (one question, built from content/ai/interpret_phrases.json, never a model), ABSTAIN and MENU built; any failure (gate off, classifier or embedder down, error, busy slot, unreadable answer, no sign-in, cancelled request) is the menu and no credit. Unity script SpeechInterpretation with 8 EditMode tests; the full Unity EditMode suite 86 of 86 passed in batch mode (Unity 6000.5.10f1, desktop, no headset). Server: 17 regression and 7 route tests pass",
+   "measured": "19 Oct 2026: decisions CLARIFY (one question, built from content/ai/interpret_phrases.json, never a model), ABSTAIN and MENU built; any failure (gate off, classifier or embedder down, error, busy slot, unreadable answer, no sign-in, cancelled request) is the menu and no credit. Unity script SpeechInterpretation with 8 EditMode tests; the full Unity EditMode suite 86 of 86 passed in batch mode (Unity 6000.5.10f1, desktop, no headset). Server: 17 regression and 7 route tests pass [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
    "open": "Built and tested on the desktop. NOT built or tested: nothing in a scene calls SpeechInterpretation (the push-to-talk client of p1-voice-input-s02 is Sannan's); the headset run is DC-09 (NOT RUN). The menu entries come from mapping.json actions; the clarification answer is a new utterance or a menu tap, never a free-form reply to the question",
    "external": "Sannan: scene wiring and the headset run (DC-09)",
    "implementation": "complete"
@@ -246,7 +226,7 @@
   "p1-ai-language-s13": {
    "owner": "Ruhan",
    "before": "Planned 19 Oct 2026 (ADR-0022); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
     "server/dialogue/dialogue.py",
@@ -254,7 +234,7 @@
     "reports/ai/dialogue-stress.json",
     "docs/architecture/unity_ai_hooks.md"
    ],
-   "measured": "19 Oct 2026: the grounded dialogue was audited against the voice path. One gap closed: silence or recogniser noise (fewer than two letters) made a model call; it now makes none and asks the trainee to say it again (reason EMPTY_INPUT). 9 new server tests pass: an instruction-injection question the model obeys, an unsupported clinical question whose answer strays, an unknown intent or fact id, noise, a down model, rubbish output, at most two model calls per question, a reply with no field the engine reads as an action or evidence, the cache. Dialogue stress set: 0 violations (unchanged)",
+   "measured": "19 Oct 2026: the grounded dialogue was audited against the voice path. One gap closed: silence or recogniser noise (fewer than two letters) made a model call; it now makes none and asks the trainee to say it again (reason EMPTY_INPUT). 9 new server tests pass: an instruction-injection question the model obeys, an unsupported clinical question whose answer strays, an unknown intent or fact id, noise, a down model, rubbish output, at most two model calls per question, a reply with no field the engine reads as an action or evidence, the cache. Dialogue stress set: 0 violations (unchanged) [Closed 22 Oct 2026: accepted as part of the final architecture (ADR-0025, p1-ai-language-s22); the device checks DC-08, DC-09 and DC-10 stay Sannan's later validation and are not this step's acceptance.]",
    "open": "Built and tested; the audit found the validator, the schema and the fallback already sound. NOT done: spoken questions on the headset (DC-08, DC-09, NOT RUN); the dialogue was tested with typed probes, not with speech recognition errors in front of it",
    "external": "Sannan: spoken questions to the patient on the headset (DC-08, DC-09)",
    "implementation": "complete"
@@ -262,13 +242,10 @@
   "p1-ai-language-s14": {
    "owner": "Ruhan",
    "before": "Planned 19 Oct 2026 (ADR-0022); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
-    "tools/bench/interpretation_bench.py",
-    "tools/bench/interpretation_latency.py",
     "tools/bench/interpretation_report.py",
-    "tools/ci/test_interpretation_bench.py",
     "reports/ai/interpretation-bench-dev.json",
     "reports/ai/interpretation-bench-test.json",
     "reports/ai/interpretation-bench-test2.json",
@@ -278,7 +255,7 @@
     "content/ai/features.json",
     "docs/testing/independent_labelling_protocol.md"
    ],
-   "measured": "19 Oct 2026: context-conditioned benchmark (the state of each row derived from the engine's windows): the interpretation path equals the classifier route after the engine's window rule (test 66 of 66 right, 66 of 140 legitimate; test2 69 of 69, 69 of 140) and removes the route's wrong credits (4 of 70 on test, 3 of 72 on test2); 0 critical, 0 non-assertive and 0 out-of-window offers; critical rows get the menu with the verified actions (38 of 40 on test, 39 of 40 on test2). Latency: one interpretation median 16 ms, p95 30 ms alone and 24.5 ms p95 while the 4B model generates; a patient reply goes from 576 ms to 676 ms median under continuous interpretation load; the embedding model cold-starts in under 2 seconds. Gate speech_interpretation defined with its suites, SKIPPED and OFF. Synthetic, not independent. Update 20 Oct 2026: the benchmark counts evidence accepted by the engine and reports the shipped configuration (cap 0.05, calibrated engine thresholds); see p1-ai-language-s15",
+   "measured": "19 Oct 2026: context-conditioned benchmark (the state of each row derived from the engine's windows): the interpretation path equals the classifier route after the engine's window rule (test 66 of 66 right, 66 of 140 legitimate; test2 69 of 69, 69 of 140) and removes the route's wrong credits (4 of 70 on test, 3 of 72 on test2); 0 critical, 0 non-assertive and 0 out-of-window offers; critical rows get the menu with the verified actions (38 of 40 on test, 39 of 40 on test2). Latency: one interpretation median 16 ms, p95 30 ms alone and 24.5 ms p95 while the 4B model generates; a patient reply goes from 576 ms to 676 ms median under continuous interpretation load; the embedding model cold-starts in under 2 seconds. Gate speech_interpretation defined with its suites, SKIPPED and OFF. Synthetic, not independent. Update 20 Oct 2026: the benchmark counts evidence accepted by the engine and reports the shipped configuration (cap 0.05, calibrated engine thresholds); see p1-ai-language-s15 [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
    "open": "Built and measured on synthetic rows; the gate stays OFF. The thresholds are the engineer's proposal and wait for the owner (DT-229). The context rules were not shown to help recall; the independent set is the only evidence that can switch the gate on",
    "external": "EX-01 (the independent set; people); the owner approves the gate thresholds (DT-229)",
    "implementation": "complete"
@@ -286,23 +263,16 @@
   "p1-ai-language-s15": {
    "owner": "Ruhan",
    "before": "Planned 20 Oct 2026 (ADR-0022 addendum); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
     "docs/research/recall_diagnosis.md",
-    "tools/bench/recall_diagnosis.py",
-    "tools/bench/recall_eval.py",
-    "tools/bench/recall_safety_panel.py",
     "tools/bench/recall_frozen.json",
     "tools/bench/recall_cap_revision.json",
-    "tools/bench/assertion_diff.py",
     "tools/bench/recall_report.py",
     "tools/bench/engine_acceptance.py",
-    "tools/ci/test_recall_fixes.py",
     "tests/classifier_regression/recall_cases.json",
-    "server/classify/assertion.py",
     "content/assessment/mapping.json",
-    "content/assessment/act_head_hybrid.json",
     "tools/content/build_scoring.py",
     "src/ProcSense.Cli/Commands.cs",
     "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
@@ -311,7 +281,7 @@
     "reports/ai/recall-confirm-test.json",
     "reports/ai/recall-confirm-test2.json"
    ],
-   "measured": "20 Oct 2026, synthetic and preliminary: cap primary cause of 58 to 76 percent of missed legitimate rows (dev 44 of 58, test 45 of 77, test2 52 of 73), sole blocker of 34 to 50 percent; without the cap nine unsafe panel sentences are offered. Held-out action_bench splits scored once: evidence accepted by the engine for the right act 63 to 76 of 140 (test) and 67 to 79 of 140 (test2), credited precision 76/76 and 79/79, 0 critical, 0 non-assertive, 0 out-of-window and 0 panel sentences accepted; the shipped configuration (with the assertion fixes) accepts exactly the same sentences on a labelled second look. tools/ci/test_recall_fixes.py 12 of 12 pass (28 paraphrases offered, 84 counterexamples refused and named by the assertion layer); engine suite 1,323 of 1,323 pass",
+   "measured": "20 Oct 2026, synthetic and preliminary: cap primary cause of 58 to 76 percent of missed legitimate rows (dev 44 of 58, test 45 of 77, test2 52 of 73), sole blocker of 34 to 50 percent; without the cap nine unsafe panel sentences are offered. Held-out action_bench splits scored once: evidence accepted by the engine for the right act 63 to 76 of 140 (test) and 67 to 79 of 140 (test2), credited precision 76/76 and 79/79, 0 critical, 0 non-assertive, 0 out-of-window and 0 panel sentences accepted; the shipped configuration (with the assertion fixes) accepts exactly the same sentences on a labelled second look. tools/ci/test_recall_fixes.py 12 of 12 pass (28 paraphrases offered, 84 counterexamples refused and named by the assertion layer); engine suite 1,323 of 1,323 pass [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
    "open": "NOT done: independent validation of the revised cap (0.05) and the calibrated engine thresholds on the independent human-labelled set (EX-01, DT-231); real-play signals for ANSWER_QUESTION and CLOSED_LOOP (DT-232); the headset checks (DC-08, DC-09, NOT RUN). Remaining misses: critical mass at or above 0.05 (same as unsafe sentences), act confusions, cue ambiguity",
    "external": "EX-01 (the independent set; people); Sannan: DC-08 and DC-09 (NOT RUN)",
    "implementation": "complete"
@@ -319,7 +289,7 @@
   "p1-ai-language-s16": {
    "owner": "Ruhan",
    "before": "Planned 20 Oct 2026 (ADR-0023); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0023-unsafe-speech-hardening.md",
     "docs/research/safety_layers_audit.md",
@@ -331,17 +301,11 @@
     "tests/safety_challenge/regression_cases.json",
     "tools/bench/safety_seeds.py",
     "tools/bench/metamorph.py",
-    "tools/bench/safety_eval.py",
     "tools/bench/safety_regression.py",
     "tools/bench/safety_review_sheet.py",
     "tools/bench/unsafe_speech_report.py",
     "tools/ci/mutation_safety.py",
-    "tools/ci/safety_scenarios.py",
     "tools/ci/test_mutation_safety.py",
-    "tools/ci/test_safety_hardening.py",
-    "server/classify/assertion.py",
-    "server/interpret/decide.py",
-    "server/routers/interpret.py",
     "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs",
     "src/ProcSense.Core/Scoring/Evidence.cs",
     "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
@@ -351,7 +315,7 @@
     "reports/ai/safety/s16-challenge.json",
     "reports/ai/safety/mutation-service.json"
    ],
-   "measured": "20 Oct 2026, synthetic and preliminary (builder-written rows, labels by construction, no human review). Final split, scored once per configuration with no change made after seeing it: must-not-credit rows credited by the engine 41 of 407 (10.1 percent) for the unchanged 4a2ed00 against 10 of 407 (2.5 percent, 95 percent CI 1.3 to 4.5) for the candidate; legitimate credit 36 of 65 in both; critical 0 of 28, out-of-window 0 of 14. Development 126 of 828 to 0 and challenge 64 of 385 to 0, but those splits were used to change the code (the first look at the challenge split after development-only changes: 64 to 40, so the first pass over-fitted wordings). Mutation tests: 20 single, 6 double and 12 engine mutants all killed; with the cap's two copies removed 8 of 9 cap-only sentences are accepted by the engine, with the assertion layer's two uses removed 34 of 84 counterexamples. tools/ci/test_safety_hardening.py 16 of 16 pass; benchmark action_bench_v1 unchanged (95/140, 76/140, 79/140); engine suite 1,324 of 1,324 pass",
+   "measured": "20 Oct 2026, synthetic and preliminary (builder-written rows, labels by construction, no human review). Final split, scored once per configuration with no change made after seeing it: must-not-credit rows credited by the engine 41 of 407 (10.1 percent) for the unchanged 4a2ed00 against 10 of 407 (2.5 percent, 95 percent CI 1.3 to 4.5) for the candidate; legitimate credit 36 of 65 in both; critical 0 of 28, out-of-window 0 of 14. Development 126 of 828 to 0 and challenge 64 of 385 to 0, but those splits were used to change the code (the first look at the challenge split after development-only changes: 64 to 40, so the first pass over-fitted wordings). Mutation tests: 20 single, 6 double and 12 engine mutants all killed; with the cap's two copies removed 8 of 9 cap-only sentences are accepted by the engine, with the assertion layer's two uses removed 34 of 84 counterexamples. tools/ci/test_safety_hardening.py 16 of 16 pass; benchmark action_bench_v1 unchanged (95/140, 76/140, 79/140); engine suite 1,324 of 1,324 pass [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
    "open": "NOT done: any human review of the safety sets (560-row blind sheet prepared), the independent run (EX-01 part B), owner approval of the proposed acceptance additions (DT-229), the 10 residual final-split mechanisms (DT-233, need a fresh set), the label-error rate of the construction (DT-234), recogniser-level mitigation of a dropped negation, the headset checks (DC-08, DC-09, NOT RUN)",
    "external": "EX-01 (people: reviewers, adjudicator, new authors); Sannan: DC-08 and DC-09 (NOT RUN)",
    "implementation": "complete"
@@ -359,7 +323,7 @@
   "p1-ai-language-s17": {
    "owner": "Ruhan",
    "before": "Planned 20 Oct 2026 (ADR-0023 follow-up); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/testing/safety_challenge_review.md",
     "docs/testing/asr_safety_evaluation.md",
@@ -372,11 +336,10 @@
     "tools/ci/test_safety_review_kit.py",
     "tools/ci/mutation_safety.py",
     "tools/ci/test_mutation_safety.py",
-    "server/tests/test_interpret_api.py",
     "reports/ai/safety/set-audit.json",
     "reports/ai/safety/mutation-service.json"
    ],
-   "measured": "20 Oct 2026, preparation and audit only; no new safety result. Blind review kit (package, check, agree, merge) tested with toy data, 7 of 7 tests; set audit generated from the committed sets (provisional builder-written labels: 2,079 rows, 0 independently reviewed, 267 PENDING_HUMAN_REVIEW, 560-row sheet; no seed family or template crosses a split; 39 plain/first-of-pair sentence duplicates inside splits; wording frames shared between splits 1; 4 of 27 final frames overlap a development frame at 0.6 or more); frozen-test protections pin the sets, the final results and the candidate files; the ten final-split failures of DT-233 reduced to four closed-list or window mechanisms and a development-only plan; mutation tests extended to 49 mutants (route fallbacks and audit rules on PostgreSQL, store checks end to end through the session log, the no-running-step test added); frozen candidate, cap 0.05 and thresholds unchanged",
+   "measured": "20 Oct 2026, preparation and audit only; no new safety result. Blind review kit (package, check, agree, merge) tested with toy data, 7 of 7 tests; set audit generated from the committed sets (provisional builder-written labels: 2,079 rows, 0 independently reviewed, 267 PENDING_HUMAN_REVIEW, 560-row sheet; no seed family or template crosses a split; 39 plain/first-of-pair sentence duplicates inside splits; wording frames shared between splits 1; 4 of 27 final frames overlap a development frame at 0.6 or more); frozen-test protections pin the sets, the final results and the candidate files; the ten final-split failures of DT-233 reduced to four closed-list or window mechanisms and a development-only plan; mutation tests extended to 49 mutants (route fallbacks and audit rules on PostgreSQL, store checks end to end through the session log, the no-running-step test added); frozen candidate, cap 0.05 and thresholds unchanged [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
    "open": "NOT done: any human review (reviewers, adjudicator not named), the independent run (EX-01 part B), the audio-to-transcript evaluation (EX-01 part C, design only), a fix for the DT-233 mechanisms (needs a fresh set), owner approval of the acceptance proposals (DT-229), Unity client mutation testing (not possible without a Unity-free runner), the headset checks (DC-08, DC-09, NOT RUN)",
    "external": "EX-01 (people: two reviewers, an adjudicator, authors, speakers for part C); Sannan: DC-08 and DC-09 (NOT RUN)",
    "implementation": "complete"
@@ -384,29 +347,86 @@
   "p1-ai-language-s18": {
    "owner": "Ruhan",
    "before": "Planned 20 Oct 2026 (ADR-0024); nothing of this step existed before",
-   "now": "ENG_DONE",
+   "now": "DONE",
    "evidence": [
     "docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md",
     "docs/research/semantic_reader_pipeline.md",
-    "server/interpret/semantic.py",
-    "server/interpret/llm/schema.py",
-    "server/interpret/llm/strict.py",
-    "server/interpret/llm/provider.py",
-    "server/interpret/llm/reader.py",
-    "server/interpret/llm/prompt.py",
-    "server/tests/test_semantic_reader.py",
-    "server/tests/test_semantic_interpreter.py",
-    "server/tests/test_semantic_eval_tool.py",
-    "tools/bench/semantic_eval.py",
     "reports/ai/semantic-replay-cloud-gemma31b-full-head-dev.json",
     "reports/ai/semantic-replay-cloud-gemma31b-full-head-test.json",
     "reports/ai/semantic-replay-cloud-gemma31b-full-head-test2.json",
     "tools/ci/mutation_safety.py",
     "tools/ci/test_mutation_safety.py"
    ],
-   "measured": "20 Oct 2026, synthetic and preliminary. Structured output on the cloud route: unsupported (official page; 6 of 6 non-conforming replies with format and response_format on gemma4:31b). 62 server tests pass without the cloud; 17 mutants of the new code killed. Integrated pipeline replayed on the recorded Gemma replies of tests/action_bench_v1 (strict validation, shipped fallback): dev / test / test2 recall 88 / 75 / 75 of 140 against 95 / 76 / 79 for the shipped path, credited precision 88/89, 75/75, 75/75, critical false credit 0/40, adversarial 0/300, out-of-window offers 0 on all three; strict validity of the recorded replies 92.2 / 91.4 / 78.3 percent (fences 36 / 38 / 104). Acceptance: recall 85 percent NOT MET, schema 99.5 percent NOT MET on recorded replies (live retry unmeasured); safety criteria met on synthetic rows only. LIVE (approved, 20 Oct): gemma4:31b through the production reader on all 488 dev rows: 141 rows sent to the model, 141 calls, 192,698 tokens (about 0.5 percent of the allowance, estimated); 137 of 137 replies valid on the first attempt, 4 timeouts (defect found and fixed: a stalled attempt used the whole budget); latency median 895 ms, p95 1,302 ms, max 1,530 ms; pipeline recall 92/140 at credited precision 92/93, critical 0/40, adversarial 0/300, out-of-window 0 (shipped path 95/140). Model comparison BLOCKED: deepseek-v4.1-flash HTTP 402 (paid Pro plan), mistral-large-4 HTTP 403 (not rolled out); no paid plan enabled; no model compared, none ready. 65 server tests, 18 mutants of the new code. FREE-PLAN FOLLOW-UP (approved, 20 Oct; dev, 141 rows sent to the model each, same reader and checks): gpt-oss:120b 79/140 recall at 79/81, 140/141 valid, 0 timeouts, median 1.0 s, 218,358 tokens; nemotron-3-super 88/140 at 88/90, 112/141 first-attempt valid (22 final timeouts), median 3.5 s p95 7.5 s, 185 calls, 232,050 tokens; gemma4:31b 92/140 at 92/93; 0 critical, 0 adversarial, 0 out-of-window for all; gemma remains the strongest viable free option, no model ready",
-   "open": "NOT done: the model comparison (BLOCKED: deepseek-v4.1-flash needs the paid plan, mistral-large-4 is not rolled out; choosing other free-plan models needs approval, DT-237), a live run on test and test2; the privacy and consent decision for sending trainee speech to a third party (DT-236); an independent critical-content signal to lift the recall ceiling set by the critical-mass cap (DT-238); independent validation (EX-01); real audio; the headset checks (DC-08, DC-09, NOT RUN)",
+   "measured": "20 Oct 2026, synthetic and preliminary. Structured output on the cloud route: unsupported (official page; 6 of 6 non-conforming replies with format and response_format on gemma4:31b). 62 server tests pass without the cloud; 17 mutants of the new code killed. Integrated pipeline replayed on the recorded Gemma replies of tests/action_bench_v1 (strict validation, shipped fallback): dev / test / test2 recall 88 / 75 / 75 of 140 against 95 / 76 / 79 for the shipped path, credited precision 88/89, 75/75, 75/75, critical false credit 0/40, adversarial 0/300, out-of-window offers 0 on all three; strict validity of the recorded replies 92.2 / 91.4 / 78.3 percent (fences 36 / 38 / 104). Acceptance: recall 85 percent NOT MET, schema 99.5 percent NOT MET on recorded replies (live retry unmeasured); safety criteria met on synthetic rows only. LIVE (approved, 20 Oct): gemma4:31b through the production reader on all 488 dev rows: 141 rows sent to the model, 141 calls, 192,698 tokens (about 0.5 percent of the allowance, estimated); 137 of 137 replies valid on the first attempt, 4 timeouts (defect found and fixed: a stalled attempt used the whole budget); latency median 895 ms, p95 1,302 ms, max 1,530 ms; pipeline recall 92/140 at credited precision 92/93, critical 0/40, adversarial 0/300, out-of-window 0 (shipped path 95/140). Model comparison BLOCKED: deepseek-v4.1-flash HTTP 402 (paid Pro plan), mistral-large-4 HTTP 403 (not rolled out); no paid plan enabled; no model compared, none ready. 65 server tests, 18 mutants of the new code. FREE-PLAN FOLLOW-UP (approved, 20 Oct; dev, 141 rows sent to the model each, same reader and checks): gpt-oss:120b 79/140 recall at 79/81, 140/141 valid, 0 timeouts, median 1.0 s, 218,358 tokens; nemotron-3-super 88/140 at 88/90, 112/141 first-attempt valid (22 final timeouts), median 3.5 s p95 7.5 s, 185 calls, 232,050 tokens; gemma4:31b 92/140 at 92/93; 0 critical, 0 adversarial, 0 out-of-window for all; gemma remains the strongest viable free option, no model ready [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
+   "open": "NOT done: the model comparison (BLOCKED: deepseek-v4.1-flash needs the paid plan, mistral-large-4 is not rolled out; choosing other free-plan models needs approval, DT-249), a live run on test and test2; the privacy and consent decision for sending trainee speech to a third party (DT-248); an independent critical-content signal to lift the recall ceiling set by the critical-mass cap (DT-238); independent validation (EX-01); real audio; the headset checks (DC-08, DC-09, NOT RUN)",
    "external": "EX-01 (people); privacy review (owner); Sannan: DC-08 and DC-09 (NOT RUN)",
+   "implementation": "complete"
+  },
+  "p1-ai-language-s19": {
+   "owner": "Ruhan",
+   "before": "Planned 21 Oct 2026 (analysis request, then the approved corroborated-cap implementation); nothing of this step existed before",
+   "now": "DONE",
+   "evidence": [
+    "docs/research/failure_attribution.md",
+    "docs/research/semantic_reader_architecture_proposal.md",
+    "docs/research/corroborated_cap_results.md",
+    "tools/ci/mutation_safety.py",
+    "tools/bench/failure_attribution_report.py",
+    "reports/ai/failure-attribution-dev.json",
+    "reports/ai/corroborated-cap-replay.json",
+    "reports/ai/cap-panel-live.json",
+    "docs/research/recall_improvement_stage2.md",
+    "tools/bench/verifier_panel.json",
+    "reports/ai/context-recheck.json",
+    "reports/ai/critical-verifier-panel.json"
+   ],
+   "measured": "21 Oct 2026, synthetic and exploratory. Analysis (no cloud call): the earlier guarded evaluator (118/140; raw 122/140), the shipped path (95/140) and the live pipeline (92/140) reproduced; row by row both 84, earlier only 34, live only 8; the 34: 27 critical-mass cap, 4 engine threshold, 2 timeouts falling back to the cap, 1 critical-act menu; in 30 the model reading was right. 67 unique non-legitimate rows credited by the raw replies: 61 removed by the assertion layer and the cue, 6 survived (all test2, mass 0.105 to 0.97). Implemented: stage one (a critical objective in the reading, any verdict, is the menu) and `interpret_llm_cap_policy` hard (default) or corroborated (OFF). 115 DB-free semantic tests; 29 semantic mutants killed. Replay (real SemanticInterpreter, recorded replies), corroborated against hard, recall of 140: dev live 113 against 92, dev recorded 110 against 88, test 95 against 75, test2 104 against 75; no row lost; credited precision 113/115, 110/112, 95/95, 104/104; critical 0/40, adversarial 0/300, out-of-window 0/448, no-context 0/488 in every table; the 67 historical raw false credits: 0 of 67 offered in any context, view or policy. BOUNDED LIVE PANEL (approved, gemma4:31b, free plan, 12 calls, 17,988 tokens of 50,000, no retry, no billing signal, median 700 ms): of the 12 sentences that only the model critical report can stop, 5 were OFFERED under the corroborated policy (SBAR_ELEMENT 2, HANDOVER_CRITICAL_ELEMENT 2, CONSENT_SIGN 1, all critical-content sentences of the panel), the model critical report stopped 4, 3 abstained; the 8 positive controls never reached the model. Result: the corroborated policy FAILS the panel and stays OFF; hard remains the default. Recall target 85 percent NOT MET (best 113/140 = 80.7 percent on the design data, with the policy that must stay off; 92/140 under hard); STAGE TWO (target now 90 percent recall = 126/140, precision 95 percent, 0 critical, 0 adversarial, schema 99.5 percent): baseline hard-cap dev misses 48 = cap 31, engine threshold 6, critical cue or menu 5, window or missing context 3, timeout 2, wrong contested act 1; shipped path 95/140 and the reader 92/140 (92 rows in common). Engine-state context (patient_question_pending, readback_pending) in the reader prompt: live re-check of 24 rows (25 calls, 34,321 tokens, gemma4:31b free plan) 12 to 15 credited under the right act, 0 wrong, 4 historical timeouts now answered; estimated dev recall 95/140 at 95/96. Normalisation rejected (changes tense and meaning). Label conflict across splits: escalation and recommendation wording, EX-01. Isolated critical-claim verifier (not integrated, ONE live run, 77 calls, 43,261 tokens, 77/77 valid): critical detected 34/34 (Wilson lower bound 0.90), missed 0; legitimate cleared 35/42; the 5 failed panel sentences all flagged; would clear 19 of the 21 rows the corroborated cap recovers (estimate 114/140 = 81.4 percent if it gated a lift; the prompt was informed by the panel failures); wording-conflict escalation rows not separable. 90 percent is not reachable on these datasets with the present independent checks; 144 DB-free semantic tests, 31 semantic mutants killed [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.] [Closed 22 Oct 2026: the work of this step was retired and superseded by the final architecture (ADR-0025, p1-ai-language-s22); the external acceptance it named no longer applies.]",
+   "open": "NOT done: any lift of the cap (corroborated policy failed the panel; a verifier-gated lift needs held-out data and the owner's approval); `engine_floor` / a head-probability rule for an agreeing model (DT-248); the cue and threshold guards unchanged; independent critical-content evidence at scale (DT-238, DT-239); independent validation (EX-01); privacy decision (DT-248); real audio; the headset checks (DC-08, DC-09, NOT RUN)",
+   "external": "EX-01 (people, independent labels); the owner (decisions A to D of docs/research/corroborated_cap_results.md); privacy review (DT-248); Sannan: DC-08 and DC-09 (NOT RUN)",
+   "implementation": "complete"
+  },
+  "p1-ai-language-s20": {
+   "owner": "Ruhan",
+   "before": "Planned 21 Oct 2026 (prompt 183); EX-01 had a labelling protocol, a rubric labelling kit and a safety review kit but no coverage plan for the failure families, no blind packaging, no freeze with roles, no layered evaluation tool",
+   "now": "DONE",
+   "evidence": [
+    "docs/testing/ex01_semantic_evaluation_plan.md",
+    "docs/testing/ex01_annotator_guide.md",
+    "docs/testing/ex01_templates/AUTHOR_BRIEF.md",
+    "tools/bench/ex01_design.json",
+    "tools/bench/ex01_kit.py",
+    "tools/bench/ex01_eval.py",
+    "tools/ci/test_ex01_kit.py",
+    "server/tests/test_ex01_eval.py",
+    "docs/testing/ex01_role_designs.md",
+    "docs/testing/ex01_author_packages/author_A1/AUTHOR_INSTRUCTIONS.md"
+   ],
+   "measured": "21 Oct 2026, tooling only, no data, no labels, no model call. The full local CI of stage two passed 197/197 first. New: 17 coverage families with minimums (220 items), a kit (brief with no sentence, coverage, leak and real-recording checks, blind annotator files, agreement, adjudication, disagreements kept, specification-issue list, freeze refusing non-independent roles, SHA-256 manifest and verify), a layered evaluation tool (reader understanding before the gates, final credited output, shipped baseline, experimental verifier without any lift, understanding against downstream rejection, refusal of an unfrozen set, a changed configuration or a second scored run), 13 kit tests and 13 evaluation tests on placeholder fixtures. Sample-size arithmetic: 126/140 (90%) has a Wilson lower bound of 0.839; about 95 percent on 125 or more in-window positives is needed to show 90 percent with 95 percent confidence. Dev findings kept: 95/140 current hard pipeline, 114/140 verifier-gated hypothetical, 113/140 corroborated research-only and failed the live panel, verifier 34/34 detected and 35/42 cleared on a non-held-out experiment; UPDATE after prompt 184: target 300 items risk-weighted (164 safety-sensitive), real-ASR family at 0 and refused, ASR evaluated in a separate later phase; point estimates and 95 percent Wilson intervals reported for every target with the lower-bound claim separate and zero counts with an exact upper bound; author packages, combine, near-copy leak check, pre-freeze summary command; independence designs documented (strict five, four-person cross-annotation, three-person not recommended); 18 kit tests and 16 evaluation tests on placeholder fixtures. No sentence, label or run exists [Closed 22 Oct 2026: accepted as part of the final architecture (ADR-0025, p1-ai-language-s22); the device checks DC-08, DC-09 and DC-10 stay Sannan's later validation and are not this step's acceptance.]",
+   "open": "NOT done and not mine to do: the independence design and the real people; writing the 300 sentences; labelling; adjudication; the dataset and reviewer summary (made only after labelling); owner approval of the freeze and of the single scored run; per-item role tooling for the four-person design (only if chosen); specification and clinical review of definition-insufficient items; real-ASR evaluation (a separate later phase); the headset checks (DC-08, DC-09, NOT RUN)",
+   "external": "EX-01 (people, independent authors, annotators, adjudicator); the owner's approval of the first scored run; Sannan: DC-08 and DC-09 (NOT RUN)",
+   "implementation": "complete"
+  },
+  "p1-ai-language-s21": {
+   "owner": "Ruhan",
+   "before": "Planned 21 Oct 2026 (prompt 185); the evaluation plan was the manual EX-01 workflow",
+   "now": "DONE",
+   "evidence": [
+    "docs/research/direct_synthetic_dev_set_design.md",
+    "tools/synth_dev/plan.py",
+    "tools/synth_dev/gold.py",
+    "tools/synth_dev/seeds.py",
+    "tools/synth_dev/validate.py",
+    "tools/synth_dev/diversity.py",
+    "tools/ci/test_synth_dev.py",
+    "tests/synthetic_dev_v1/specs.json",
+    "tests/synthetic_dev_v1/manifest.json",
+    "tests/synthetic_dev_v1/dataset.jsonl",
+    "tests/synthetic_dev_v1/report.json",
+    "tests/synthetic_dev_v1/open_issues.md"
+   ],
+   "measured": "21 Oct 2026: a multi-model synthetic-data factory was built and run in three bounded free-plan pilots (2.75, 25.6, 23.1 percent accepted) and abandoned by the owner as too costly; its code, tests, reports and registrations were removed. Replacement: a 500-item directly written synthetic development set (AI-written and AI-reviewed, specifications frozen before wording, deterministic validation, no cloud call); design approved; see tests/synthetic_dev_v1/ for the generated set and its report. No guard, threshold, cue, engine, flag or frozen-set change. [Closed 22 Oct 2026: accepted as part of the final architecture (ADR-0025, p1-ai-language-s22); the device checks DC-08, DC-09 and DC-10 stay Sannan's later validation and are not this step's acceptance.]",
+   "open": "NOT done: DT-241 (taxonomy boundary ambiguities, hard-case challenge set), DT-242 (broken-off, hedged performance, performed-versus-hypothetical tail, reported versus another actor), DT-243 (delegated communication acts), DT-244 (claims of earlier completion, a possible guard gap); the fresh held-out synthetic evaluation set (frozen before scoring); the Quest protocol (DT-240); the headset checks (DC-08, DC-09, NOT RUN)",
+   "external": "The owner (decisions DT-241 to DT-244); Sannan: DC-08 and DC-09 and the final Meta Quest test (NOT RUN)",
    "implementation": "complete"
   },
   "p1-backend-s01": {
@@ -1191,11 +1211,9 @@
    "before": "Built 17 Oct",
    "now": "DONE_GATE_OFF",
    "evidence": [
-    "server/classify/embedding.py",
-    "content/assessment/act_head.json",
     "reports/ai/classifier-bench-synthetic2.json"
    ],
-   "measured": "the small classifier is the embeddings and logistic-regression head; see p1-ai-language-s07",
+   "measured": "the small classifier is the embeddings and logistic-regression head; see p1-ai-language-s07 [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.]",
    "open": "The independent set (see p1-ai-language-s07)"
   },
   "p2-ai-extensions-s05": {
@@ -2134,6 +2152,57 @@
    "evidence": [],
    "measured": "",
    "open": ""
+  },
+  "p1-ai-language-s22": {
+   "owner": "Ruhan",
+   "before": "Planned 21 Oct 2026 (prompt 193): the speech path was the hybrid-head classifier with agreement, cap, cues and assertion layers and an optional cloud reader behind them",
+   "now": "DONE",
+   "evidence": [
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "docs/research/gemma_evaluator_results.md",
+    "server/evaluate/prompt.py",
+    "server/evaluate/contract.py",
+    "server/evaluate/reader.py",
+    "server/evaluate/service.py",
+    "server/routers/evaluate.py",
+    "server/tests/test_evaluate.py",
+    "server/tests/test_evaluate_api.py",
+    "server/tests/test_ex01_eval.py",
+    "tools/ci/test_evaluate_parity.py",
+    "tools/ci/test_safety_invariants.py",
+    "tools/ci/mutation_safety.py",
+    "tools/ci/test_mutation_safety.py",
+    "src/ProcSense.Core/Scoring/Evidence.cs",
+    "src/ProcSense.Core/Scoring/CommunicationScorer.cs",
+    "tests/ProcSense.Core.Tests/CommunicationScoringTests.cs",
+    "unity/Assets/Scripts/Voice/SpeechEvaluation.cs",
+    "content/scoring/rubric.json",
+    "content/ai/thresholds.json",
+    "tools/synth_dev/evaluator_run.py",
+    "tools/synth_dev/evaluator_metrics.py",
+    "tests/synthetic_dev_v1/partial_credit_v1.jsonl",
+    "tests/synthetic_dev_v1/partial_credit_v2.jsonl",
+    "tests/synthetic_heldout_v1/acceptance.json",
+    "tests/synthetic_heldout_v1/dataset.jsonl",
+    "tools/synth_heldout/accept.py",
+    "reports/ai/speech-evaluation-heldout.json",
+    "tests/synthetic_heldout_v2/acceptance.json",
+    "tests/synthetic_heldout_v2/dataset.jsonl",
+    "tools/synth_heldout_v2/accept.py",
+    "reports/ai/speech-evaluation-heldout-v2.json",
+    "tools/ci/test_synth_heldout_v2.py",
+    "tests/synthetic_partial_v3/acceptance.json",
+    "tests/synthetic_partial_v3/partial_credit.jsonl",
+    "tools/synth_partial_v3/accept.py",
+    "reports/ai/speech-evaluation-partial-v3.json",
+    "reports/ai/speech-evaluation-acceptance.json",
+    "tools/eval/speech_acceptance.py",
+    "tools/ci/test_synth_partial_v3.py"
+   ],
+   "measured": "21 Oct 2026, SYNTHETIC development evidence (AI-written, AI-reviewed, not independent): 493 items, prompt gemma-eval-4: performed versus not performed 98.4 percent, legitimate credit recall 165/176, credited precision 188/204, 8 items with a false credit (26 before), 0 critical physical completions from speech, 489/493 valid replies, median 2.2 s, about 5,000 tokens per item, free plan only (about 7.4 million tokens). Partial-credit sets: full, partial, irrelevant graded as intended; wrong content graded too high in a few items. Full local CI result in the Change Report. Fresh held-out acceptance run (21 Oct 2026, synthetic AI-written, scored once, criteria pre-registered): critical physical completions 0; recall 98/102 (96.1%); performed versus not performed 97.3%; valid replies 99.6%; partial-credit behaviour 27/32; median 2.7 s; credited precision 92.5% (target 0.95), 2 non-performed items credited (target 0), 4 critical-content items with an ordinary credit (target 0). Verdict NOT APPROVED, owner decision DT-246. Nothing ticked as complete. Final held-out v2 (21 Oct 2026, prompt gemma-eval-5, 244 fresh items and a 32-item partial-credit addendum, AI-written synthetic, scored once, criteria frozen beforehand): critical physical completions 0; window and state bypass 0; legitimate recall 95/96 (99.0%); credited precision 109/109 (100%); performed versus not performed 99.2%; valid replies 244/244 on the main set; non-performed items credited 0 of 95; unjustified ordinary credit on critical content 0 of 40; mixed critical plus ordinary items 8/8 with the ordinary act credited and no critical behaviour credited; multi-intent 40/40 acts; contrast sets 19/19; median 2.3 s. One pre-registered criterion missed: controlled partial-credit items in their expected band 25/32 = 78.1% against 0.80 (one item short), 3 of the 7 misses being replies the strict contract rejected as invalid because the model copied more than 160 characters of a long utterance as evidence. Verdict NOT APPROVED (owner decision, DT-246, DT-247). Nothing ticked complete. Final acceptance (22 Oct 2026, ADR-0025): held-out v2 (prompt gemma-eval-5) passed every pre-registered criterion except controlled partial-credit bands (25/32 against 0.80, one item short, three misses being the 160-character evidence limit, DT-247); the contract was fixed (evidence may be as long as the utterance, at most 400 characters, still copied from it; engine span cap 400), the prompt, architecture, scoring and thresholds untouched, and a fresh frozen 32-item partial-credit set v3 (10 long items) was scored once: 27/32 = 84.4% in band, 32/32 valid replies including all 10 long ones, no reply rejected for long evidence. Both runs are synthetic, AI-written, scored once against criteria fixed beforehand. APPROVED by the owner's rule; speech_evaluation gate ON; the real Meta Quest and ASR end-to-end validation stays DC-10 (Sannan).",
+   "open": "NOT part of this step's acceptance: the real Meta Quest and ASR end-to-end validation (DC-10, Sannan, with DC-09), the transcript privacy decision before real trainee speech is sent to Ollama Cloud (DT-248), the taxonomy boundary decisions (DT-241 to DT-244). A real host (Ollama Cloud key or relay) must be configured on the server before the route does anything.",
+   "external": "Sannan: DC-09 and DC-10 on the headset (later device validation, not blocking); the owner: DT-248, DT-241 to DT-244",
+   "implementation": "complete"
   }
  }
 }

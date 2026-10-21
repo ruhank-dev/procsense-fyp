@@ -37,7 +37,7 @@ A benchmark that counts offers hides downstream refusals: always count what the 
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
-* [DC-09](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-09): Spoken communication interpreted against the scenario state: evidence, clarification, menu fallback and no credit for critical or non-performed speech (English only)
-* [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent communication-act set: authors, second labeller, adjudicator, then the independent run
+* [DC-09](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-09): Spoken communication evaluated against the scenario state: graded communication credit, menu fallback and no credit for critical or non-performed speech (English only)
+* [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent evaluation set for the speech evaluator: authors, second labeller, adjudicator, then the single scored run (paused; a fresh held-out set may replace it)
 
 <!-- external-testing:end -->

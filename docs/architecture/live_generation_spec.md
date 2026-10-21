@@ -416,17 +416,17 @@ The deterministic Core runs the case: SimClock in 0.5 s steps, subsystems, LiteP
 
 ### LG-17 Action interpretation
 
-Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR, then the context-aware interpretation of ADR-0022: the engine's context (running steps, eligible objectives, pending question, recent turns), the classifier gate as candidate generator, deterministic validation, a decision (evidence, clarify, abstain, menu) and the engine's EvidenceStore. Critical acts and non-performed sentences are never credited from speech.
+Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR, then Gemma semantic evaluation (ADR-0025) of the sentence in the engine's context (running steps, eligible objectives, pending question, recent turns, verified actions), then the engine's EvidenceStore, which accepts or refuses each judged objective from its own state, and the deterministic graded communication score. Critical acts and non-performed sentences are never credited from speech.
 
 | Field | Value |
 |---|---|
 | Inputs | VR events; menu choices; speech audio or typed text |
 | Outputs | SimAction (verb, target, channel, params); speech_evidence action (act, behaviour, span, status) accepted or refused by EvidenceStore |
-| Component | Unity ActionEmitters (exist); server/asr (exists); server/classify (exists, gated off); server/interpret and src/ProcSense.Core/Speech (planned, p1-ai-language-s10 to s12) |
-| Method | Deterministic mapping; ASR (faster-whisper); LLM act extraction with enum schema; P2 small trained classifier. |
+| Component | Unity ActionEmitters (exist); server/asr (exists); server/evaluate and src/ProcSense.Core/Speech and Scoring (exist, gated off) |
+| Method | Deterministic mapping; ASR (faster-whisper); Gemma semantic evaluation with a strict JSON contract; deterministic graded scoring. |
 | Method class | hybrid |
 | Data dependencies | content/assessment/mapping.json; content/ai/intents.json |
-| API | POST /v1/asr, POST /v1/classify (planned) |
+| API | POST /v1/asr, POST /evaluate/organisations/{id} |
 | Error handling | Low confidence: ask the trainee to repeat or choose from a menu; model down: menu only. |
 | Validation | Enum schema; critical-act guard in the evidence store (exists). |
 | Tests | mapping tests; classifier macro-F1 on the frozen split; critical-act guard tests |

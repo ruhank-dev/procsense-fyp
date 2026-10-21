@@ -1,5 +1,7 @@
 # Independent review of the unsafe-speech challenge sets and the independent safety run (protocol, EX-01 part B)
 
+> **Historical (21 Oct 2026):** this page describes the classifier, cap and gate architecture that [ADR-0025](../decisions/ADR-0025-gemma-first-speech-evaluation.md) retired. Its findings are kept as the record of why; the current design and its results are in `docs/research/gemma_evaluator_results.md`.
+
 Written 20 October 2026 (p1-ai-language-s16, ADR-0023). **Nothing in this document is a result.** No person has reviewed any row of `tests/safety_challenge`; every label there is the builder's, by construction, and PROVISIONAL. Nothing here approves a threshold: every number marked PENDING is a proposal for the owner (DT-229). Independent validation, clinical acceptance and Quest acceptance are NOT DONE.
 
 ## 1. What this protocol is for

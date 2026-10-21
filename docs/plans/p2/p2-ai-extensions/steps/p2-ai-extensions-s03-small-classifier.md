@@ -38,6 +38,6 @@ Master Plan §26 (multi-model table, component 4: LLM-based P1 → small classif
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
-* [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent communication-act set: authors, second labeller, adjudicator, then the independent run
+* [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent evaluation set for the speech evaluator: authors, second labeller, adjudicator, then the single scored run (paused; a fresh held-out set may replace it)
 
 <!-- external-testing:end -->

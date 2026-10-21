@@ -1968,7 +1968,7 @@
    "group": "g_live_deliver",
    "status": "Partially implemented",
    "method_class": "hybrid",
-   "description": "Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR, then the context-aware interpretation of ADR-0022: the engine's context (running steps, eligible objectives, pending question, recent turns), the classifier gate as candidate generator, deterministic validation, a decision (evidence, clarify, abstain, menu) and the engine's EvidenceStore. Critical acts and non-performed sentences are never credited from speech.",
+   "description": "Turn what the trainee did into structured actions: VR interactions and menu choices map deterministically; free speech goes ASR, then Gemma semantic evaluation (ADR-0025) of the sentence in the engine's context (running steps, eligible objectives, pending question, recent turns, verified actions), then the engine's EvidenceStore, which accepts or refuses each judged objective from its own state, and the deterministic graded communication score. Critical acts and non-performed sentences are never credited from speech.",
    "inputs": [
     "VR events",
     "menu choices",
@@ -1978,9 +1978,9 @@
     "SimAction (verb, target, channel, params)",
     "speech_evidence action (act, behaviour, span, status) accepted or refused by EvidenceStore"
    ],
-   "component": "Unity ActionEmitters (exist); server/asr (exists); server/classify (exists, gated off); server/interpret and src/ProcSense.Core/Speech (planned, p1-ai-language-s10 to s12)",
-   "method": "Deterministic mapping; ASR (faster-whisper); LLM act extraction with enum schema; P2 small trained classifier.",
-   "api": "POST /v1/asr, POST /v1/classify (planned)",
+   "component": "Unity ActionEmitters (exist); server/asr (exists); server/evaluate and src/ProcSense.Core/Speech and Scoring (exist, gated off)",
+   "method": "Deterministic mapping; ASR (faster-whisper); Gemma semantic evaluation with a strict JSON contract; deterministic graded scoring.",
+   "api": "POST /v1/asr, POST /evaluate/organisations/{id}",
    "validation": "Enum schema; critical-act guard in the evidence store (exists).",
    "tests": [
     "mapping tests",
@@ -3621,10 +3621,10 @@
   {
    "id": "MC-03",
    "type": "model",
-   "label": "MC-03 Communication act classification",
+   "label": "MC-03 Speech semantic evaluation",
    "group": "g_models",
    "status": "Partially implemented",
-   "description": "Communication act classification (C35, C37, E60)",
+   "description": "Speech semantic evaluation (C35, C37)",
    "model_ref": "MC-03",
    "traced_to": {
     "kind": "direct",
@@ -3649,7 +3649,9 @@
     ]
    },
    "evidence": [
-    "server/classify/embedding.py"
+    "server/evaluate/prompt.py",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "docs/research/gemma_evaluator_results.md"
    ]
   },
   {
@@ -8696,9 +8698,6 @@
    "description": "Problems are revealed by the result, examination or question that discovers them. Built: 29 discovery rules for the 17 P0 cases; P1 and P2 problems pending.",
    "evidence": [
     "content/problems/discovery.json",
-    "server/classify/embedding.py",
-    "content/assessment/act_head.json",
-    "content/ai/critical_cues.json",
     "reports/ai/classifier-bench-synthetic2.json",
     "reports/ai/classifier-holdout-v3.json",
     "reports/ai/classifier-adversarial.json",
@@ -8706,11 +8705,8 @@
     "reports/ai/classifier-adversarial-fresh.json",
     "server/generation/skeleton.py",
     "tools/ci/test_generation_skeleton.py",
-    "server/classify/ensemble.py",
-    "server/classify/assertion.py",
     "reports/ai/classifier-safety.json",
     "docs/research/classifier_benchmark/safety_gate.md",
-    "tools/ci/test_classifier_regression.py",
     "tests/classifier_challenge_v4/challenge.json"
    ],
    "lineage": [
@@ -8902,8 +8898,8 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "hybrid",
-   "status": "Implemented but incompletely tested",
-   "ai_status": "Implemented but incompletely tested",
+   "status": "Implemented and tested",
+   "ai_status": "Implemented and tested",
    "description": "Free questions answered in the patient's voice. Built: fixed history questions with quoted answers, disclosure rules, context builder, validator.",
    "evidence": [
     "history step (approved)",
@@ -8952,9 +8948,7 @@
     "latency"
    ],
    "acceptance": "Zero hidden-fact disclosures on the probe set; p95 under 3 s.",
-   "blockers": [
-    "external acceptance: DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
-   ],
+   "blockers": [],
    "risks": [
     "paraphrased leak of a hidden fact (context excludes hidden facts; validator is lexical)",
     "persona drift"
@@ -9094,7 +9088,7 @@
       "id": "C24.c3",
       "name": "Dialogue safety with the voice path in front",
       "kind": "AI (LLM)",
-      "status": "Implemented but incompletely tested",
+      "status": "Implemented and tested",
       "purpose": "Spoken questions of any kind get a grounded, approved answer; the reply never becomes trainee speech, evidence or an action.",
       "method": "The existing grounded dialogue (validator, one retry, authored fallback) audited and closed for injection, off-topic, unsupported clinical, ambiguous and empty input; bounded length; speaker attribution (p1-ai-language-s13, ADR-0022).",
       "models": [
@@ -10211,12 +10205,12 @@
     "reports/ai/tts-latency.json",
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
     "server/routers/orders.py",
-    "unity/Assets/Scripts/Voice/SpeechInterpretation.cs",
-    "unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs",
     "unity/Assets/Scripts/Bridge/SimulationHost.cs",
-    "server/interpret/decide.py",
-    "tools/ci/test_interpretation_regression.py",
-    "server/tests/test_interpret_api.py"
+    "unity/Assets/Scripts/Voice/SpeechEvaluation.cs",
+    "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "server/evaluate/service.py",
+    "server/tests/test_evaluate_api.py"
    ],
    "lineage": [
     "p1-voice-input",
@@ -10252,7 +10246,7 @@
    ],
    "acceptance": "p95 round trip under 4 s.",
    "blockers": [
-    "external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
@@ -10413,7 +10407,7 @@
    ],
    "acceptance": "At least 95 percent of scripted commands map correctly.",
    "blockers": [
-    "external acceptance: DC-08, DC-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
@@ -11037,14 +11031,12 @@
    "kind": "deterministic",
    "status": "Implemented but incompletely tested",
    "ai_status": "Not applicable (deterministic feature)",
-   "description": "The acts the classifier reports and how the evidence store weighs them. Built: AI-reportable acts in mapping.json; the evidence store never credits a critical, low-confidence or wrong-stage act from AI.",
+   "description": "The acts the speech evaluator reports and how the evidence store weighs them. Built: AI-reportable acts in mapping.json; the evidence store never credits a critical, low-confidence or wrong-stage act from AI.",
    "evidence": [
     "content/assessment/mapping.json",
     "src/ProcSense.Core/Scoring/Evidence.cs",
     "content/assessment/taxonomy.json",
     "tools/bench/dataset.py",
-    "tools/ci/test_bench.py",
-    "tools/bench/cross_judge.py",
     "tests/classifier_synthetic_v2/adversarial_manifest.json",
     "tests/classifier_synthetic_v2/manifest.json",
     "tests/classifier_synthetic_v3/manifest.json",
@@ -11052,7 +11044,9 @@
     "reports/ai/act-benchmark.json",
     "reports/ai/act-benchmark-test2.json",
     "docs/decisions/ADR-0020-act-recognition-architecture.md",
-    "docs/decisions/ADR-0022-context-aware-speech-interpretation.md"
+    "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "src/ProcSense.Core/Scoring/CommunicationRubric.cs"
    ],
    "lineage": [
     "p1-ai-language-s06"
@@ -11188,125 +11182,117 @@
   {
    "id": "C37",
    "type": "feature",
-   "label": "Communication classifier",
+   "label": "Speech evaluation (Gemma semantic evaluator, engine-scored)",
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "ai",
-   "status": "Implemented but incompletely tested",
-   "ai_status": "Implemented but incompletely tested",
-   "description": "Interpret trainee utterances as communication acts against the real scenario state (ADR-0022): the engine builds the context (running steps, eligible objectives, pending question or read-back, recent turns, acts already accepted); the retained classifier gate (ADR-0020) proposes candidates restricted to the eligible objectives; deterministic validation (eligibility, status, critical exclusion, evidence span, duplicates) decides what may be offered; the engine's EvidenceStore accepts or refuses. Uncertain: one clarification, then the menu. P2: a small trained classifier (E60) only if it beats the gate on the independent set.",
+   "status": "Implemented and tested",
+   "ai_status": "Implemented and tested",
+   "description": "ASR transcript, then Gemma semantic evaluation (gemma4:31b on Ollama Cloud free plan; ADR-0025): who spoke, whether it happened now, assertion and modality, the objective(s) the trainee actually performed, relevance, correctness and completeness on a 0 to 3 scale, and any physical-action claim, as strict JSON. The engine builds the context (running steps, eligible objectives, pending question or read-back, recent turns, verified actions) and is authoritative: it accepts a judgement only if the trainee performed it now, the behaviour window and the waiting state fit, the grade clears the credit floor, and it was not already judged; a critical objective is graded for a small communication credit and never accepted as evidence (its physical part comes only from deterministic accepted actions). A deterministic formula turns the grades into the communication score added to the process score; VR feedback follows. Invalid or unavailable judgement: the menu of verified actions and no speech credit.",
    "evidence": [
-    "server/classify/embedding.py",
-    "server/classify/guard.py",
-    "content/assessment/act_head.json",
-    "tools/bench/bench_classifier.py",
-    "reports/ai/classifier-bench-synthetic.json",
-    "tools/labelling/label.py",
-    "tools/ci/test_labelling.py",
-    "docs/research/labelling/guidelines.md",
-    "tools/bench/cross_judge.py",
-    "tests/classifier_synthetic_v2/adversarial_manifest.json",
+    "server/evaluate/prompt.py",
+    "server/evaluate/contract.py",
+    "server/evaluate/reader.py",
+    "server/evaluate/service.py",
+    "server/evaluate/rubric.py",
+    "server/evaluate/examples.py",
+    "server/evaluate/wording.json",
+    "server/routers/evaluate.py",
+    "server/schemas/evaluate.py",
+    "server/tests/test_evaluate.py",
+    "server/tests/test_evaluate_api.py",
+    "server/tests/test_ex01_eval.py",
+    "tools/ci/test_evaluate_parity.py",
+    "tools/ci/mutation_safety.py",
+    "tools/ci/test_mutation_safety.py",
+    "tools/ci/test_safety_invariants.py",
+    "src/ProcSense.Core/Scoring/Evidence.cs",
+    "src/ProcSense.Core/Scoring/CommunicationRubric.cs",
+    "src/ProcSense.Core/Scoring/CommunicationScorer.cs",
+    "src/ProcSense.Core/Scoring/SpeechScoreCheck.cs",
+    "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs",
+    "src/ProcSense.Core/Speech/SpeechJudgement.cs",
+    "src/ProcSense.Core/Speech/SpeechStateGate.cs",
+    "src/ProcSense.Core/Speech/InterpretationContext.cs",
+    "tests/ProcSense.Core.Tests/CommunicationScoringTests.cs",
+    "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
+    "unity/Assets/Scripts/Voice/SpeechEvaluation.cs",
+    "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs",
     "content/assessment/taxonomy.json",
+    "content/assessment/mapping.json",
+    "content/scoring/rubric.json",
+    "content/ai/thresholds.json",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "docs/research/gemma_evaluator_results.md",
+    "tools/synth_dev/evaluator_run.py",
+    "tools/synth_dev/evaluator_metrics.py",
+    "tools/synth_dev/engine_score.py",
+    "tools/synth_dev/partial_credit_report.py",
+    "tools/bench/ex01_eval.py",
+    "tools/bench/ex01_kit.py",
+    "tests/synthetic_dev_v1/dataset.jsonl",
+    "tests/synthetic_dev_v1/partial_credit_v1.jsonl",
+    "tests/synthetic_dev_v1/partial_credit_v2.jsonl",
+    "tests/synthetic_dev_v1/open_issues.md",
+    "tests/safety_challenge/frozen.json",
+    "tests/classifier_synthetic_v2/adversarial_manifest.json",
     "tests/classifier_synthetic_v2/manifest.json",
     "tests/classifier_synthetic_v3/manifest.json",
     "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md",
-    "content/ai/critical_cues.json",
+    "reports/ai/act-benchmark.json",
+    "reports/ai/act-benchmark-test2.json",
+    "docs/decisions/ADR-0020-act-recognition-architecture.md",
     "reports/ai/classifier-bench-synthetic2.json",
     "reports/ai/classifier-holdout-v3.json",
     "reports/ai/classifier-adversarial.json",
     "reports/ai/classifier-guard-only.json",
     "reports/ai/classifier-adversarial-fresh.json",
-    "server/classify/ensemble.py",
-    "server/classify/assertion.py",
     "reports/ai/classifier-safety.json",
     "docs/research/classifier_benchmark/safety_gate.md",
-    "tools/ci/test_classifier_regression.py",
     "tests/classifier_challenge_v4/challenge.json",
-    "reports/ai/act-benchmark.json",
-    "reports/ai/act-benchmark-test2.json",
-    "docs/decisions/ADR-0020-act-recognition-architecture.md",
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
-    "docs/research/rubric_evaluator.md",
-    "docs/research/nli_zero_shot.md",
-    "reports/ai/rubric-latency.json",
-    "src/ProcSense.Core/Scoring/Evidence.cs",
-    "src/ProcSense.Core/AIContext/ContextBuilder.cs",
-    "content/assessment/mapping.json",
-    "server/routers/classify.py",
-    "docs/architecture/unity_ai_hooks.md",
-    "server/routers/orders.py",
-    "server/dialogue/dialogue.py",
-    "server/routers/dialogue.py",
-    "reports/ai/dialogue-stress.json",
-    "tools/bench/act_benchmark.py",
-    "tools/bench/rubric_labelling_kit.py",
-    "docs/testing/independent_labelling_protocol.md",
-    "src/ProcSense.Core/Speech/InterpretationContext.cs",
     "src/ProcSense.Core/Speech/InterpretationContextBuilder.cs",
-    "src/ProcSense.Core/Speech/SpeechEvidenceSubsystem.cs",
-    "tests/ProcSense.Core.Tests/InterpretationContextTests.cs",
     "server/schemas/interpretation_context.json",
-    "server/interpret/decide.py",
-    "server/interpret/validate.py",
-    "server/interpret/status.py",
-    "server/routers/interpret.py",
-    "server/schemas/interpret.py",
-    "content/ai/interpret_phrases.json",
-    "tools/ci/test_interpretation_regression.py",
-    "server/tests/test_interpret_api.py",
-    "unity/Assets/Scripts/Voice/SpeechInterpretation.cs",
-    "unity/Assets/Tests/EditMode/SpeechInterpretationTests.cs",
     "unity/Assets/Scripts/Bridge/SimulationHost.cs",
+    "docs/architecture/unity_ai_hooks.md",
+    "server/dialogue/dialogue.py",
     "server/tests/test_dialogue_safety.py",
-    "tools/bench/interpretation_bench.py",
-    "tools/bench/interpretation_latency.py",
+    "reports/ai/dialogue-stress.json",
     "tools/bench/interpretation_report.py",
-    "tools/ci/test_interpretation_bench.py",
     "reports/ai/interpretation-bench-dev.json",
     "reports/ai/interpretation-bench-test.json",
     "reports/ai/interpretation-bench-test2.json",
     "reports/ai/interpretation-latency.json",
     "docs/research/interpretation_benchmark.md",
-    "content/ai/thresholds.json",
     "content/ai/features.json",
+    "docs/testing/independent_labelling_protocol.md",
     "docs/research/recall_diagnosis.md",
-    "tools/bench/recall_diagnosis.py",
-    "tools/bench/recall_eval.py",
-    "tools/bench/recall_safety_panel.py",
-    "tools/ci/test_recall_fixes.py",
-    "reports/ai/recall-eval-test.json",
-    "reports/ai/recall-eval-test2.json",
     "tools/bench/recall_frozen.json",
     "tools/bench/recall_cap_revision.json",
-    "tools/bench/assertion_diff.py",
     "tools/bench/recall_report.py",
     "tools/bench/engine_acceptance.py",
     "tests/classifier_regression/recall_cases.json",
-    "content/assessment/act_head_hybrid.json",
     "tools/content/build_scoring.py",
     "src/ProcSense.Cli/Commands.cs",
+    "reports/ai/recall-eval-test.json",
+    "reports/ai/recall-eval-test2.json",
     "reports/ai/recall-confirm-test.json",
     "reports/ai/recall-confirm-test2.json",
     "docs/decisions/ADR-0023-unsafe-speech-hardening.md",
     "docs/research/safety_layers_audit.md",
     "docs/research/unsafe_speech_safety.md",
     "docs/testing/safety_challenge_review.md",
-    "tools/bench/metamorph.py",
-    "tools/bench/safety_eval.py",
-    "tools/ci/mutation_safety.py",
-    "tools/ci/test_safety_hardening.py",
-    "tools/ci/test_mutation_safety.py",
-    "reports/ai/safety/s16-final.json",
     "tests/safety_challenge/taxonomy.json",
     "tests/safety_challenge/manifest.json",
     "tests/safety_challenge/review_sheet.csv",
     "tests/safety_challenge/regression_cases.json",
     "tools/bench/safety_seeds.py",
+    "tools/bench/metamorph.py",
     "tools/bench/safety_regression.py",
     "tools/bench/safety_review_sheet.py",
     "tools/bench/unsafe_speech_report.py",
-    "tools/ci/safety_scenarios.py",
     "reports/ai/safety/baseline-4a2ed00-final.json",
+    "reports/ai/safety/s16-final.json",
     "reports/ai/safety/s16-dev.json",
     "reports/ai/safety/s16-challenge.json",
     "reports/ai/safety/mutation-service.json",
@@ -11316,33 +11302,64 @@
     "tools/bench/safety_review_kit.py",
     "tools/bench/safety_set_audit.py",
     "tools/bench/safety_frozen.py",
-    "tests/safety_challenge/frozen.json",
     "tools/ci/test_safety_review_kit.py",
     "reports/ai/safety/set-audit.json",
     "docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md",
     "docs/research/semantic_reader_pipeline.md",
-    "server/interpret/semantic.py",
-    "server/interpret/llm/schema.py",
-    "server/interpret/llm/strict.py",
-    "server/interpret/llm/provider.py",
-    "server/interpret/llm/reader.py",
-    "server/interpret/llm/prompt.py",
-    "server/tests/test_semantic_reader.py",
-    "server/tests/test_semantic_interpreter.py",
-    "server/tests/test_semantic_eval_tool.py",
-    "tools/bench/semantic_eval.py",
     "reports/ai/semantic-replay-cloud-gemma31b-full-head-dev.json",
     "reports/ai/semantic-replay-cloud-gemma31b-full-head-test.json",
     "reports/ai/semantic-replay-cloud-gemma31b-full-head-test2.json",
-    "reports/ai/semantic-live-gemma4_31b-cloud-head-dev.json",
-    "reports/ai/semantic-live-comparison-dev.json"
+    "docs/research/failure_attribution.md",
+    "docs/research/semantic_reader_architecture_proposal.md",
+    "docs/research/corroborated_cap_results.md",
+    "tools/bench/failure_attribution_report.py",
+    "reports/ai/failure-attribution-dev.json",
+    "reports/ai/corroborated-cap-replay.json",
+    "reports/ai/cap-panel-live.json",
+    "docs/research/recall_improvement_stage2.md",
+    "tools/bench/verifier_panel.json",
+    "reports/ai/context-recheck.json",
+    "reports/ai/critical-verifier-panel.json",
+    "docs/testing/ex01_semantic_evaluation_plan.md",
+    "docs/testing/ex01_annotator_guide.md",
+    "docs/testing/ex01_templates/AUTHOR_BRIEF.md",
+    "tools/bench/ex01_design.json",
+    "tools/ci/test_ex01_kit.py",
+    "docs/testing/ex01_role_designs.md",
+    "docs/testing/ex01_author_packages/author_A1/AUTHOR_INSTRUCTIONS.md",
+    "docs/research/direct_synthetic_dev_set_design.md",
+    "tools/synth_dev/plan.py",
+    "tools/synth_dev/gold.py",
+    "tools/synth_dev/seeds.py",
+    "tools/synth_dev/validate.py",
+    "tools/synth_dev/diversity.py",
+    "tools/ci/test_synth_dev.py",
+    "tests/synthetic_dev_v1/specs.json",
+    "tests/synthetic_dev_v1/manifest.json",
+    "tests/synthetic_dev_v1/report.json",
+    "tests/synthetic_heldout_v1/acceptance.json",
+    "tools/synth_heldout/accept.py",
+    "reports/ai/speech-evaluation-heldout.json",
+    "tests/synthetic_heldout_v1/dataset.jsonl",
+    "tests/synthetic_heldout_v2/acceptance.json",
+    "tools/synth_heldout_v2/accept.py",
+    "reports/ai/speech-evaluation-heldout-v2.json",
+    "tests/synthetic_heldout_v2/dataset.jsonl",
+    "tools/ci/test_synth_heldout_v2.py",
+    "tests/synthetic_partial_v3/acceptance.json",
+    "tools/synth_partial_v3/accept.py",
+    "reports/ai/speech-evaluation-partial-v3.json",
+    "reports/ai/speech-evaluation-acceptance.json",
+    "tools/eval/speech_acceptance.py",
+    "tests/synthetic_partial_v3/partial_credit.jsonl",
+    "tools/ci/test_synth_partial_v3.py"
    ],
    "lineage": [
-    "p1-ai-language-s06, s07",
+    "p1-ai-language-s06, s07 (the retired classifier steps)",
     "DT-097"
    ],
-   "method": "Embedding + TF-IDF classifier gate (ADR-0020) as candidate generator, restricted to the objectives eligible in the current state; deterministic status and validation; no language model in the live path (ADR-0022).",
-   "llm_first_classification": "Measured, not assumed: the served 4B model was evaluated as classifier (ADR-0017, ADR-0020) and as a rubric evaluator over all objectives (docs/research/rubric_evaluator.md): it is slower than the live budget (3.4 s median, 4.1 s p95 against 0.79 s left in the voice round trip) and credited critical sentences under ordinary acts; the trained heads are the live candidate generator. The model stays an offline experiment.",
+   "method": "Gemma semantic evaluation with a strict output contract (ADR-0025) as the only semantic reader; the engine's state and evidence checks and a deterministic graded formula decide credit. No classifier, no agreement gate, no critical-mass cap, no lexical veto.",
+   "llm_first_classification": "LLM-first: a served 31B model reads the sentence with its scene (who, when, assertion, objective, grades). Measured on the 493-item synthetic development set: performed versus not performed 98.4 percent, 8 items with a false credit, 0 critical physical completions, median 2.2 s per call, about 5,000 tokens per item, free plan (docs/research/gemma_evaluator_results.md). Smaller local models (Qwen 4B) were slower than the live budget and credited critical sentences under ordinary acts (docs/research/rubric_evaluator.md).",
    "model_refs": [
     "MC-03"
    ],
@@ -11359,28 +11376,27 @@
    "overlaps": [],
    "inputs": [],
    "outputs": [],
-   "deterministic_guard": "Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails.",
-   "fallback": "One clarification question, then the menu of the eligible objectives' actions; any service failure gives the menu.",
+   "deterministic_guard": "The engine decides state, window, waiting question or read-back, the credit floor, duplicates, critical acts (never accepted from speech; physical part only from deterministic accepted actions) and the arithmetic (ADR-0005, ADR-0025); a judgement that breaks the contract is rejected, never repaired.",
+   "fallback": "A model that is off, unreachable, too slow or invalid twice gives UNAVAILABLE with the menu of the existing verified actions and no speech credit; the session never waits on the model.",
    "tests_planned": [
-    "macro-F1 on frozen human-labelled split",
-    "context-conditioned benchmark: in-window, out-of-window, pending question and read-back (p1-ai-language-s14)",
-    "regression: confusion pairs, negation, hypothetical, intention, reported, other speaker, incomplete, critical content, duplicates (p1-ai-language-s11)",
-    "end-to-end latency with cold start and model contention"
+    "strict contract, bounded retry and fail-safe (server/tests/test_evaluate.py)",
+    "route: gate, audit, menu (server/tests/test_evaluate_api.py)",
+    "engine: judgement accepted only with the trainee performing now, window, waiting state, credit floor, no critical acceptance (CommunicationScoringTests, ScoringTests, InterpretationContextTests)",
+    "Python mirror equals the engine (tools/ci/test_evaluate_parity.py)",
+    "mutation tests of the guards (tools/ci/mutation_safety.py)",
+    "development evaluation on tests/synthetic_dev_v1 (done, synthetic)",
+    "fresh frozen held-out set, then real speech on Meta Quest (DT-240)"
    ],
-   "acceptance": "speech_interpretation gate (PENDING owner approval, DT-229): on the independent set 0 critical and 0 out-of-window false credits, non-assertive false credit at most 1 percent, credited precision at least 0.95, legitimate recall at least 0.50 and not below the classifier route, interpretation p95 at most 300 ms; else off.",
-   "blockers": [
-    "external acceptance: DC-08, DC-09, EX-01, EX-15, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
-   ],
+   "acceptance": "APPROVED 22 Oct 2026 (ADR-0025): the speech_evaluation gate reads reports/ai/speech-evaluation-acceptance.json (held-out v2 and partial-credit set v3, synthetic, each scored once against criteria fixed beforehand): 0 critical physical completions, 0 window/state bypass, recall 99.0 percent, precision 100 percent, performed versus not performed 99.2 percent, valid replies 100 percent, partial-credit bands 84.4 percent, median 2.3 s. Real-device validation: DC-10.",
+   "blockers": [],
    "risks": [
-    "labelled set not available (DT-097)",
-    "critical acts misclassified (never credited from AI alone)",
-    "recall: about 45 to 56 percent of legitimate synthetic sentences are accepted after the 20 Oct 2026 follow-up (the remaining misses are critical mass at or above 0.05, act confusions and cue ambiguity); the revised cap (0.05) and the calibrated engine thresholds were judged only on synthetic sentences (EX-01, DT-231)",
-    "unsafe speech: on a final split not used for any change the engine still accepted 10 of 407 must-not-credit rows (2.5 percent, CI 1.3 to 4.5) after the 20 Oct 2026 hardening (41 of 407 before); a recogniser that drops a negation cannot be refused by any text rule; every label is by construction and no person has reviewed the sets (EX-01, DT-233, DT-234)",
-    "semantic reader: the cloud route enforces no schema (strict validation, 8 to 22 percent of recorded replies were malformed on first attempt), the pipeline did not beat the shipped path on recall (-7, -1, -4 of 140) because the critical-mass cap and the critical-cue menu set the ceiling, trainee speech would leave the machine, labels are synthetic (ADR-0024)"
+    "the evidence is synthetic, AI-written and AI-reviewed: not independent human validation and not real audio; the real Meta Quest and ASR end-to-end check (DC-10, Sannan) is the real-speech evidence still to come",
+    "trainee speech leaves the machine for Ollama Cloud (privacy decision DT-248 before real trainee speech) and the credit path depends on quota and availability; the fail-safe is the menu",
+    "taxonomy boundary ambiguities (DT-241 to DT-244) can make overlapping objectives; the prompt teaches the contrasts, the definitions are the owner's decision",
+    "wrong or dismissive content is sometimes graded too high and vague speech sometimes graded complete (a few percent of the controlled partial-credit items)",
+    "latency: median about 2.3 s and p95 about 4 s per utterance; Unity must not block on it"
    ],
    "tasks": [
-    "p1-ai-language-s06",
-    "p1-ai-language-s07",
     "p1-ai-language-s10",
     "p1-ai-language-s11",
     "p1-ai-language-s12",
@@ -11389,62 +11405,63 @@
     "p1-ai-language-s15",
     "p1-ai-language-s16",
     "p1-ai-language-s17",
-    "p1-ai-language-s18"
+    "p1-ai-language-s18",
+    "p1-ai-language-s19",
+    "p1-ai-language-s20",
+    "p1-ai-language-s21",
+    "p1-ai-language-s22"
    ],
    "phase": "PH-15",
    "tier": "P1",
    "plan": {
-    "user_experience": "What the trainee says is recognised as communication acts that count in the debrief only when they fit the moment of the scenario; an unclear sentence gets one short question, then the menu; nothing critical is ever credited from speech.",
+    "user_experience": "What the trainee says is understood in its context and the right communication earns graded credit in the debrief only when the trainee actually did it now, at the right moment of the scenario; an unclear or unavailable reading falls back to the menu; nothing critical is ever credited from speech.",
     "exists": [
-     "classifier gate: hybrid embedding head + TF-IDF agreement + critical-mass cap + critical cues + assertion check (server/classify, ADR-0020)",
-     "EvidenceStore.Submit: critical refusal, per-act threshold, step-window check (engine; called only by tests)",
-     "character context builder with recent turns (E54)",
-     "act benchmark tests/action_bench_v1 and the labelling kit for an independent set (synthetic, not independent)"
+     "Gemma semantic evaluator with a strict contract, bounded retry and fail-safe (server/evaluate, route POST /evaluate/organisations/{id}, gate speech_evaluation, ON since 22 Oct 2026)",
+     "engine judgement checks and graded communication score (Evidence.cs, CommunicationScorer.cs, ScoreReport.Communication)",
+     "Unity SpeechEvaluation script (request, parse, apply as speech_evidence; EditMode-tested, not in a scene)",
+     "development set of 493 items and two controlled partial-credit sets (synthetic)",
+     "layered evaluation tool for the independent set (tools/bench/ex01_eval.py)",
+     "fresh held-out sets v1 and v2 and a fresh partial-credit set v3, each scored once with criteria fixed beforehand (tools/synth_heldout, tools/synth_heldout_v2, tools/synth_partial_v3; reports/ai/speech-evaluation-*.json)",
+     "gate acceptance record (tools/eval/speech_acceptance.py, reports/ai/speech-evaluation-acceptance.json)"
     ],
     "missing": [
-     "typed interpretation context from the session and state-based eligibility (p1-ai-language-s10)",
-     "speech evidence in the session log, duplicate check, behaviour by window (s10)",
-     "interpretation service with deterministic validation and decisions (s11)",
-     "clarification, menu fallback and failure handling, Unity half (s12)",
-     "context-conditioned benchmark, end-to-end latency, speech_interpretation gate (s14)",
-     "independent human-labelled set (EX-01)",
-     "independent evaluation of the revised critical-mass cap and the calibrated engine thresholds (p1-ai-language-s15, DT-231, EX-01)",
-     "independent human review and the independent run of the unsafe-speech sets, and the residual mechanisms found by the one-time scoring of the final split (p1-ai-language-s16, EX-01, DT-233, DT-234)",
-     "blind human review and the independent run of the unsafe-speech sheet, the audio-to-transcript evaluation (design only), and a fresh final set for any fix of the DT-233 mechanisms (p1-ai-language-s17, EX-01, DT-233, DT-234, DT-235)",
-     "model comparison and live schema-compliance measurement of the Ollama Cloud semantic reader, privacy decision, an independent critical-content signal, independent validation (p1-ai-language-s18, DT-236, DT-237, DT-238, EX-01)"
+     "real Meta Quest and ASR end-to-end validation (DC-09 and DC-10, Sannan)",
+     "the transcript privacy decision before real trainee speech is sent to Ollama Cloud (DT-248)",
+     "taxonomy boundary decisions (DT-241 to DT-244)"
     ],
-    "deterministic_foundation": "Eligibility from the behaviour windows of content/assessment/mapping.json, assertion status, critical exclusion, evidence span and duplicate checks, and the engine's EvidenceStore as the only authority.",
+    "deterministic_foundation": "Eligibility from the behaviour windows of content/assessment/mapping.json, the performed-now check, waiting question and read-back, credit floor, duplicate check, critical exclusion and the graded formula of content/scoring/rubric.json, all in the engine (EvidenceStore is the only authority).",
     "ai_questions": {
-     "what_ai_does": "Propose which eligible communication act a sentence performs.",
-     "why_ai_is_useful": "Many phrasings of the same act.",
-     "method_split": "Trained heads propose (P1); deterministic rules validate; the engine accepts; E60 later only on measured gain.",
-     "deterministic_still_needed": "Eligibility, status, critical exclusion, evidence and duplicate checks, acceptance.",
-     "ai_implemented": "Classifier gate (ADR-0016, ADR-0020), gated off.",
-     "ai_missing": "Context-aware interpretation path and its gate (s10 to s14); independent evaluation.",
-     "must_build": "Context payload, interpretation service, clarification and fallback, benchmark with context, gate.",
-     "better_than_baseline": "Fewer false credits than the classifier route at no lower legitimate recall, on identical rows with context."
+     "what_ai_does": "Read what the sentence does in its scene and grade it: who, when, assertion, objective(s), relevance, correctness, completeness, physical claim.",
+     "why_ai_is_useful": "Meaning depends on negation, tense, modality and speaker; word lists and embeddings lost legitimate credit and were patched by layers.",
+     "method_split": "Gemma judges meaning (strict JSON); the engine decides what the judgement is worth from its own state.",
+     "deterministic_still_needed": "State, window, critical exclusion, physical verification, duplicates, arithmetic.",
+     "ai_implemented": "Gemma evaluator and the engine graded scoring, approved 22 Oct 2026, gate ON.",
+     "ai_missing": "Real-device (Quest and ASR) validation, DC-10.",
+     "must_build": "Nothing further for the software acceptance; scene wiring and the headset check are Sannan.",
+     "better_than_baseline": "Fewer false credits (8 against 26 items on the same development set) at comparable recall, without keyword guards."
     },
     "capabilities": [
      {
       "id": "C37.c1",
-      "name": "Candidate generator (retained classifier gate)",
+      "name": "Gemma semantic evaluator",
       "kind": "AI (LLM)",
-      "status": "Implemented but incompletely tested",
-      "purpose": "Propose acts for a sentence; never credits.",
-      "method": "Hybrid embedding head + TF-IDF agreement, critical-mass cap, critical cues, assertion check (ADR-0020); Qwen 4B evaluated and kept out of the live path (ADR-0022). Critical-mass cap 0.05 and the engine's calibrated evidence thresholds since 20 Oct 2026 (p1-ai-language-s15). Unsafe-speech hardening 20 Oct 2026: wider assertion kinds, the engine checks the waiting question and read-back itself, reason-coded audit, mutation-tested guards (p1-ai-language-s16, ADR-0023). Ollama Cloud semantic reader behind strict Pydantic validation and the same deterministic checks, OFF by default (p1-ai-language-s18, ADR-0024).",
+      "status": "Implemented and tested",
+      "purpose": "Judge what a trainee sentence does in its scene; never credits.",
+      "method": "gemma4:31b on Ollama Cloud (free plan) with the prompt gemma-eval-5: semantic precedence (who, when, assertion, objective, multi-intent, grades, physical claims), approved rubric rules verbatim, original contrast examples; strict contract, one bounded retry, menu fail-safe (ADR-0025).",
       "models": [
        "MC-03"
       ],
       "data": [],
-      "input_schema": "utterance",
-      "output_schema": "ranked acts with probabilities and the gate's refusal reason",
+      "input_schema": "utterance plus the engine InterpretationContext",
+      "output_schema": "acts (objective, assertion, actor, recipient, form, performed_now, relevance, correctness, completeness, evidence) and a physical-claim note",
       "flow": [
-       "embed",
-       "hybrid head",
-       "TF-IDF agreement",
-       "guards"
+       "context",
+       "prompt",
+       "model",
+       "strict parse",
+       "judgement"
       ],
-      "validation": "Frozen split.",
+      "validation": "Synthetic development set, 493 items; fresh held-out set later.",
       "failure_handling": {
        "errors": "Timeout or server error: one retry, then menu; logged with prompt version and model digest.",
        "hallucinations": "Output must match a JSON schema whose enums are approved ids; the grounding validator rejects invented drugs, values, diagnoses, events and hidden facts.",
@@ -11453,40 +11470,40 @@
        "invalid_input": "Inputs are schema-validated before the model is called; invalid input is a 4xx with field errors."
       },
       "tests": [
-       "macro-F1"
+       "server/tests/test_evaluate.py"
       ],
       "metrics": [
-       "macro-F1"
+       "performed versus not performed",
+       "legitimate credit recall",
+       "credited precision",
+       "false credits",
+       "schema validity",
+       "latency"
       ],
-      "baseline_comparison": "Rules-only matcher and the earlier single-head classifier on tests/action_bench_v1.",
-      "acceptance": "0 critical and 0 non-assertive false credits on the frozen synthetic splits (met on test2, ADR-0020); the independent set decides the gate.",
+      "baseline_comparison": "The retired classifier path on the same 493 items (docs/research/gemma_evaluator_results.md).",
+      "acceptance": "speech_evaluation gate ON (acceptance record of 22 Oct 2026).",
       "hardware": {
-       "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
-       "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
-       "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
-       "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "gtx1660": "Not used: the model runs on Ollama Cloud.",
+       "rtx4050": "Not used.",
+       "ram": "Small (the request holds about 5,000 tokens).",
+       "latency": "Median 2.2 s, p95 5.8 s per utterance on the free plan (development set, 21 Oct 2026); the menu stays available while it runs.",
+       "deployment": "Backend route on the inference host with an Ollama Cloud key or a signed-in local Ollama relaying gemma4:31b-cloud; no GPU needed."
       },
       "tasks": [
-       "p1-ai-language-s06",
-       "p1-ai-language-s07",
-       "p1-ai-infrastructure-s04",
-       "p1-ai-language-s15",
-       "p1-ai-language-s16",
-       "p1-ai-language-s18"
+       "p1-ai-language-s22"
       ]
      },
      {
       "id": "C37.c2",
       "name": "Interpretation context and state-based eligibility",
       "kind": "Deterministic",
-      "status": "Implemented but incompletely tested",
+      "status": "Implemented and tested",
       "purpose": "Give the interpretation the real state of the scenario; only eligible objectives may be offered.",
-      "method": "InterpretationContext built by the engine from the running flow stages, the behaviour windows, the consent subsystem and the recent turns (p1-ai-language-s10).",
+      "method": "InterpretationContext built by the engine from the running flow stages, the behaviour windows, the consent subsystem, the recent turns and the verified actions (p1-ai-language-s10, s22).",
       "models": [],
       "data": [],
       "input_schema": "Session",
-      "output_schema": "InterpretationContext{case, mode, steps, eligible[{act, behaviour, critical}], accepted, patient_question_pending, readback_pending, last_turns, addressee}",
+      "output_schema": "InterpretationContext{case, scenario, mode, steps, eligible[{act, behaviour, critical}], accepted, patient_question_pending, readback_pending, last_turns, speaker, addressee, verified_actions}",
       "flow": [
        "running stages",
        "steps",
@@ -11496,21 +11513,22 @@
       ],
       "validation": "xUnit per step and behaviour; shared vectors with the service.",
       "failure_handling": {
-       "errors": "Timeout or server error: one retry, then menu; logged with prompt version and model digest.",
-       "hallucinations": "Output must match a JSON schema whose enums are approved ids; the grounding validator rejects invented drugs, values, diagnoses, events and hidden facts.",
-       "inconsistency": "Output is cross-checked against the structured case or facts it was given; any mismatch rejects it.",
+       "errors": "Timeout or server error: one retry, then the menu of verified actions and no speech credit; logged with the prompt version and model.",
+       "hallucinations": "Output must match the strict contract (closed objective ids, grades 0 to 3, evidence quoted from the utterance); anything else is rejected, never repaired. A claim of a physical action is only a claim.",
+       "inconsistency": "performed_now must equal (assertion is performed and actor is the trainee); the engine re-checks the judgement against its own state before anything counts.",
        "model_unavailable": "Feature switch reports off; menu. The session never waits on the model.",
        "invalid_input": "Inputs are schema-validated before the model is called; invalid input is a 4xx with field errors."
       },
       "tests": [
        "eligibility per step",
        "no hidden fact in the context",
+       "verified actions listed, capped at 40",
        "replay of speech evidence"
       ],
       "metrics": [
        "out-of-window false credit"
       ],
-      "baseline_comparison": "The classifier route without context (every act eligible).",
+      "baseline_comparison": "Every act eligible in every step.",
       "acceptance": "Every behaviour window of mapping.json reproduced; an out-of-window act never accepted; replay identical.",
       "hardware": {
        "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
@@ -11525,44 +11543,49 @@
      },
      {
       "id": "C37.c3",
-      "name": "Deterministic validation and decision",
+      "name": "Engine checks and graded communication score",
       "kind": "Deterministic",
-      "status": "Implemented but incompletely tested",
-      "purpose": "Decide what may be offered to the engine: evidence, a clarification, abstention or the menu.",
-      "method": "Eligibility, status (actual or question), critical exclusion, evidence span, pending question for ANSWER_QUESTION, read-back for CLOSED_LOOP, duplicates, thresholds; one clarification then the menu (p1-ai-language-s11, s12).",
+      "status": "Implemented and tested",
+      "purpose": "Decide what a judgement is worth: accept only what the trainee performed now in the right window and state, grade it, never accept a critical objective as evidence.",
+      "method": "Evidence.cs (performed now, running step, window, waiting question or read-back, credit floor, duplicates, critical exclusion), CommunicationScorer.cs (best grade per behaviour times objective weight), formula and weights in content/scoring/rubric.json (ADR-0025).",
       "models": [],
       "data": [],
-      "input_schema": "InterpretationContext + utterance + candidates",
-      "output_schema": "Decision{OFFER_EVIDENCE|CLARIFY|ABSTAIN|MENU, evidence, clarify, menu, reasons}",
+      "input_schema": "speech_evidence action (act, span, utterance id, assertion, actor, form, relevance, correctness, completeness, claims_physical) + session state",
+      "output_schema": "EvidenceRecord{accepted, reason, grade, judgement}; ScoreReport.Communication[{behaviour, act, grade, weight, credit, physical_verified}]",
       "flow": [
-       "filter candidates",
-       "status",
-       "validate",
-       "decide",
-       "engine EvidenceStore"
+       "judgement parse",
+       "performed now by the trainee",
+       "running step and window",
+       "waiting question or read-back",
+       "credit floor",
+       "duplicate",
+       "critical exclusion",
+       "best grade per behaviour",
+       "score"
       ],
-      "validation": "Regression and hostile-stub tests; context-conditioned benchmark.",
+      "validation": "xUnit with the shared vectors; Python mirror equals the engine on every combination (tools/ci/test_evaluate_parity.py); mutation tests of each check.",
       "failure_handling": {
-       "errors": "Timeout or server error: one retry, then menu; logged with prompt version and model digest.",
-       "hallucinations": "Output must match a JSON schema whose enums are approved ids; the grounding validator rejects invented drugs, values, diagnoses, events and hidden facts.",
-       "inconsistency": "Output is cross-checked against the structured case or facts it was given; any mismatch rejects it.",
+       "errors": "Timeout or server error: one retry, then the menu of verified actions and no speech credit; logged with the prompt version and model.",
+       "hallucinations": "Output must match the strict contract (closed objective ids, grades 0 to 3, evidence quoted from the utterance); anything else is rejected, never repaired. A claim of a physical action is only a claim.",
+       "inconsistency": "performed_now must equal (assertion is performed and actor is the trainee); the engine re-checks the judgement against its own state before anything counts.",
        "model_unavailable": "Feature switch reports off; menu. The session never waits on the model.",
        "invalid_input": "Inputs are schema-validated before the model is called; invalid input is a 4xx with field errors."
       },
       "tests": [
-       "hostile classifier stub",
-       "confusion pairs with context",
-       "failure cases give the menu"
+       "not performed, other actor, wrong window, no running step, no waiting question or read-back, credit floor, duplicate, malformed judgement: nothing credited",
+       "critical objective graded but never accepted",
+       "physical part only from the deterministic actions named in critical_act_evidence",
+       "parity with the Python mirror"
       ],
       "metrics": [
-       "critical, non-assertive and out-of-window false credit",
+       "critical false credit",
+       "non-performed false credit",
+       "out-of-window false credit",
        "legitimate recall",
-       "credited precision",
-       "clarification rate",
-       "p95 latency"
+       "credited precision"
       ],
-      "baseline_comparison": "The classifier route on identical rows.",
-      "acceptance": "speech_interpretation gate (PENDING owner approval, DT-229).",
+      "baseline_comparison": "The retired classifier path on the same development items.",
+      "acceptance": "speech_evaluation gate ON (acceptance record of 22 Oct 2026).",
       "hardware": {
        "gtx1660": "Desktop GTX 1660 SUPER (Turing, 6 GB, no tensor cores), measured 16 Oct 2026 with the machine idle: qwen3.5:4b-q4_K_M (3.3 GB weights, thinking off) sits 100 percent on the GPU (3.1 GB at a 4k context) and generates about 59 tokens per second, a 50-token patient reply taking about 1.0 s (p95 1.15 s); qwen3.5:9b-q4_K_M (6.6 GB) does not fit and runs 57 percent on the GPU with the rest on the CPU, about 12 tokens per second and about 5 s for the same reply, so it is the offline batch model only. Speech recognition and the Unity Editor were not loaded in these runs; the laptop RTX 4050 is not measured.",
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
@@ -11571,44 +11594,43 @@
        "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
-       "p1-ai-language-s11",
-       "p1-ai-language-s12",
-       "p1-ai-language-s14"
+       "p1-ai-language-s22"
       ]
      }
     ],
     "integration": {
-     "unity": "SpeechInterpretation script builds the request from the engine's InterpretationContext and applies OFFER_EVIDENCE as a speech_evidence action (p1-ai-language-s12; scene and headset: Sannan, DC-09).",
-     "backend": "POST /interpret/organisations/{id} (server/interpret, gate speech_interpretation); /classify stays for the debrief tools.",
-     "simulation_state": "EvidenceStore accepts or refuses; speech evidence is a logged, replayable entry.",
+     "unity": "SpeechEvaluation script builds the request from the engine's InterpretationContext and applies each judged objective as a speech_evidence action (scene and headset: Sannan, DC-09).",
+     "backend": "POST /evaluate/organisations/{id} (server/evaluate, gate speech_evaluation ON in content/ai/features.json); the route returns a judgement, never a score; with no model host configured it answers the menu.",
+     "simulation_state": "EvidenceStore accepts or refuses; speech evidence and its judgement are logged and replayable; the debrief shows the Communication list.",
      "other_features": "C36, C31, C24, E54, E55, D67."
     },
     "prerequisites": [
      "the engine context builder (E54)",
-     "the retained classifier gate (ADR-0020)",
-     "an independent labelled set for the gate (EX-01)"
+     "a model host configured on the server (Ollama Cloud key or relay)",
+     "the transcript privacy decision before real trainee speech (DT-248)"
     ],
-    "status_rationale": "The classifier gate is built and gated off; the context-aware path of ADR-0022 is planned (p1-ai-language-s10 to s14).",
-    "reassessment": "Keep; context-aware interpretation decided 19 Oct 2026 (ADR-0022); revisit the candidate generator when the independent set exists.",
+    "status_rationale": "Built, tested and approved on 22 Oct 2026 against pre-registered criteria on synthetic held-out evidence; the gate speech_evaluation is ON in the committed gate file; real-device validation (DC-10) is a later check by Sannan.",
+    "reassessment": "Replaced the classifier-gate architecture on 21 Oct 2026 (ADR-0025); approved 22 Oct 2026. Final and frozen: do not tune the prompt or redesign without a new decision.",
     "staged_versions": {
      "initial": "Menu.",
-     "current": "Classifier gate, gated off, sentence alone.",
-     "next": "Context-aware interpretation with deterministic validation (ADR-0022), gated off until EX-01.",
-     "future": "E60 or an offline model aid only if it beats the gate on the independent set."
+     "current": "Gemma evaluator with engine-side checks and graded scoring, approved, gate ON.",
+     "next": "Real Quest and ASR validation (DC-10).",
+     "future": "A different or smaller evaluator model only if it beats this one on a new held-out set."
     },
     "deliverables": [
-     "classifier gate",
-     "interpretation context",
-     "interpretation service",
-     "clarification and fallback",
-     "benchmark and gate"
+     "Gemma evaluator and route",
+     "strict contract and fail-safe",
+     "engine judgement checks",
+     "graded communication score",
+     "development, held-out and partial-credit evaluations",
+     "gate suites and acceptance record"
     ],
     "definition_of_done": [
-     "s10 to s14 built with registered tests",
-     "context-conditioned benchmark reported against the classifier route",
-     "gate suites defined and approved by the owner",
-     "independent set scored once (EX-01)",
-     "headset check DC-09 passed (Sannan)"
+     "development evaluation reported (done, synthetic)",
+     "fresh held-out sets scored once (done: v1 not approved; v2 after one prompt refinement passed all but one criterion)",
+     "contract fix for long evidence and a fresh partial-credit set scored once (done: 84.4 percent, 0 length rejections)",
+     "gate speech_evaluation ON from the acceptance record (done)",
+     "headset check DC-10 (Sannan, later, not blocking)"
     ],
     "status_history": [
      {
@@ -11638,6 +11660,46 @@
      {
       "date": "2026-10-20",
       "change": "Free-plan comparison of the Ollama Cloud semantic reader (p1-ai-language-s18): gpt-oss:120b 79/140, nemotron-3-super 88/140 (79% first-attempt valid, 3.5 s median) against gemma4:31b 92/140; 0 observed unsafe offers for all; Gemma stays the strongest viable free option; no model ready."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Failure attribution of the semantic reader (p1-ai-language-s19, analysis only): the 118 to 92 gap is 34 rows lost and 8 gained; 27 lost to the critical-mass cap; the model's own critical-objective report is an independent signal (113/120 critical rows, 3/420 legitimate); a corroborated cap is proposed behind cap_policy (default hard), estimated at +21 to +29 rows per 140 with no previously observed unsafe credit reopened; nothing implemented, decisions requested."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Corroborated cap implemented behind interpret_llm_cap_policy (default hard) with stage one (a critical objective in the reading is the menu); 115 semantic tests, 29 mutants killed; replay dev live 92 to 113 of 140 with no unsafe offer and the 67 raw false credits blocked, BUT the one bounded live panel check offered 5 of 12 critical-content sentences: the policy stays OFF and must not be enabled (p1-ai-language-s19, docs/research/corroborated_cap_results.md)."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Target changed to 90 percent recall (126/140), 95 percent precision, 0 critical, 0 adversarial, 99.5 percent schema. Engine-state context (waiting patient question, waiting read-back) given to the reader: 92 to 95 of 140 estimated under the hard cap; isolated critical-claim verifier built and measured once (critical 34/34 detected, legitimate 35/42 cleared) but NOT integrated and no cap lifted; ASR normalisation rejected; label conflict recorded for EX-01; 90 percent not reachable on these datasets with the present independent checks (p1-ai-language-s19)."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Optimisation against dev, test and test2 stopped. EX-01 phase two prepared as tooling only (p1-ai-language-s20): coverage plan of 17 families, blind labelling kit with freeze and roles record, layered evaluation tool (reader understanding, final credited output, shipped baseline, experimental verifier without cap lift, understanding against downstream rejection). No sentence, label or run exists; the first run waits for the owner's people, the freeze and approval."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "EX-01 phase two decisions applied (p1-ai-language-s20): 300 risk-weighted items, real-ASR family at 0 (ASR evaluated separately later), point estimates with 95 percent Wilson intervals and zero counts with an upper bound, author packages and pre-freeze summary prepared, independence designs documented. No sentence, label or run exists."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Manual EX-01 workflow paused (tooling kept); the multi-model synthetic-data factory (three bounded free-plan pilots: 2.75, 25.6 and 23.1 percent accepted) was abandoned by the owner as too costly in time and cloud usage and removed from the repository; useful findings moved to DT-241 to DT-244; a 500-item directly written synthetic development set (AI-written and AI-reviewed, specifications frozen before wording, deterministic validation, no cloud call) was approved (p1-ai-language-s21). No guard, cap, cue, threshold, scoring or frozen-set change."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Architecture replaced (p1-ai-language-s22, ADR-0025): ASR, Gemma semantic evaluation, authoritative simulator state and evidence, deterministic graded score, VR feedback. The hybrid-head classifier, two-head agreement, critical-mass cap, critical cues, assertion layer, interpretation service and the earlier semantic reader were removed with their tests, harnesses and configuration; the classifier and speech_interpretation gate features were replaced by speech_evaluation (OFF). Development result on 493 synthetic items: 98.4 percent performed versus not performed, 8 false-credit items (26 before), 0 critical physical completions, 489/493 valid replies, median 2.2 s; the recall, precision and gate numbers are synthetic and unvalidated."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Fresh held-out acceptance run (21 Oct 2026, synthetic AI-written, scored once, criteria pre-registered): critical physical completions 0; recall 98/102 (96.1%); performed versus not performed 97.3%; valid replies 99.6%; partial-credit behaviour 27/32; median 2.7 s; credited precision 92.5% (target 0.95), 2 non-performed items credited (target 0), 4 critical-content items with an ordinary credit (target 0). Verdict NOT APPROVED, owner decision DT-246. Nothing ticked as complete. The real Meta Quest and ASR end-to-end validation is DC-10 in the Sannan checklist."
+     },
+     {
+      "date": "2026-10-21",
+      "change": "Final held-out v2 (21 Oct 2026, prompt gemma-eval-5, 244 fresh items and a 32-item partial-credit addendum, AI-written synthetic, scored once, criteria frozen beforehand): critical physical completions 0; window and state bypass 0; legitimate recall 95/96 (99.0%); credited precision 109/109 (100%); performed versus not performed 99.2%; valid replies 244/244 on the main set; non-performed items credited 0 of 95; unjustified ordinary credit on critical content 0 of 40; mixed critical plus ordinary items 8/8 with the ordinary act credited and no critical behaviour credited; multi-intent 40/40 acts; contrast sets 19/19; median 2.3 s. One pre-registered criterion missed: controlled partial-credit items in their expected band 25/32 = 78.1% against 0.80 (one item short), 3 of the 7 misses being replies the strict contract rejected as invalid because the model copied more than 160 characters of a long utterance as evidence. Verdict NOT APPROVED (owner decision, DT-246, DT-247). Nothing ticked complete."
+     },
+     {
+      "date": "2026-10-22",
+      "change": "Final acceptance (22 Oct 2026, ADR-0025): held-out v2 (prompt gemma-eval-5) passed every pre-registered criterion except controlled partial-credit bands (25/32 against 0.80, one item short, three misses being the 160-character evidence limit, DT-247); the contract was fixed (evidence may be as long as the utterance, at most 400 characters, still copied from it; engine span cap 400), the prompt, architecture, scoring and thresholds untouched, and a fresh frozen 32-item partial-credit set v3 (10 long items) was scored once: 27/32 = 84.4% in band, 32/32 valid replies including all 10 long ones, no reply rejected for long evidence. Both runs are synthetic, AI-written, scored once against criteria fixed beforehand. APPROVED by the owner's rule; speech_evaluation gate ON; the real Meta Quest and ASR end-to-end validation stays DC-10 (Sannan)."
      }
     ]
    },
@@ -11647,9 +11709,7 @@
      "C37"
     ],
     "steps": [
-     "p1-ai-infrastructure-s04",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07"
+     "p1-ai-infrastructure-s04"
     ],
     "plans": [
      "docs/plans/features/C37.md"
@@ -14567,19 +14627,18 @@
     "tools/eval/collect_ai.py",
     "tools/eval/analyse_study.py",
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
-    "tools/bench/act_benchmark.py",
     "tools/bench/rubric_labelling_kit.py",
     "docs/testing/independent_labelling_protocol.md",
     "reports/ai/rubric-latency.json",
-    "tools/bench/interpretation_bench.py",
-    "tools/bench/interpretation_latency.py",
     "tools/bench/interpretation_report.py",
-    "tools/ci/test_interpretation_bench.py",
     "reports/ai/interpretation-bench-dev.json",
     "reports/ai/interpretation-bench-test.json",
     "reports/ai/interpretation-bench-test2.json",
     "reports/ai/interpretation-latency.json",
-    "docs/research/interpretation_benchmark.md"
+    "docs/research/interpretation_benchmark.md",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "tools/bench/ex01_eval.py",
+    "docs/research/gemma_evaluator_results.md"
    ],
    "lineage": [
     "p1-ai-language-s09",
@@ -14628,7 +14687,7 @@
      "harness",
      "ai_features.yaml",
      "schedule",
-     "speech_interpretation gate suites (p1-ai-language-s14, thresholds pending owner approval)"
+     "real-device validation of the speech path (DC-10)"
     ],
     "deterministic_foundation": "Thresholds.",
     "ai_questions": {
@@ -15225,11 +15284,9 @@
    "kind": "ai",
    "status": "Implemented but incompletely tested",
    "ai_status": "Implemented but incompletely tested",
-   "description": "The only trained model in the plan: a small classifier trained on the human-labelled set, frozen test split, critical-act guard.",
+   "description": "A small trained classifier on the human-labelled set: deferred. The classifier pilot (embedding and TF-IDF heads) was retired by ADR-0025 when Gemma semantic evaluation replaced it; a trained model is reconsidered only if the Gemma evaluator misses latency, cost or accuracy targets on the held-out set.",
    "evidence": [
-    "server/classify/embedding.py",
-    "content/assessment/act_head.json",
-    "tests/classifier_synthetic/README.md",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
     "reports/ai/classifier-bench-synthetic2.json"
    ],
    "lineage": [
@@ -15237,7 +15294,7 @@
     "DT-097"
    ],
    "method": "Fine-tune a small encoder.",
-   "llm_first_classification": "Justified only if the P1 LLM classifier misses latency or accuracy targets.",
+   "llm_first_classification": "Justified only if the Gemma evaluator (C37) misses latency, cost or accuracy targets.",
    "model_refs": [
     "MC-03"
    ],
@@ -15253,11 +15310,11 @@
    "inputs": [],
    "outputs": [],
    "deterministic_guard": "Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails.",
-   "fallback": "P1 LLM classifier.",
+   "fallback": "Gemma semantic evaluator (C37).",
    "tests_planned": [
     "macro-F1 on frozen split"
    ],
-   "acceptance": "Beats P1 LLM classifier or is not shipped.",
+   "acceptance": "Beats the Gemma evaluator on the held-out set or is not built.",
    "blockers": [
     "external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
@@ -15543,12 +15600,12 @@
     "server/routers/asr.py",
     "server/routers/tts.py",
     "server/routers/dialogue.py",
-    "server/routers/classify.py",
     "server/routers/debrief.py",
     "server/llm/gateway.py",
     "server/tests/test_ai_routes.py",
     "src/ProcSense.Cli/Program.cs",
-    "server/sessionfile.py"
+    "server/sessionfile.py",
+    "server/routers/evaluate.py"
    ],
    "lineage": [
     "p1-backend s01 to s13",
@@ -24800,19 +24857,19 @@
   },
   {
    "id": "MC-03",
-   "purpose": "Communication act classification (C35, C37, E60)",
+   "purpose": "Speech semantic evaluation (C35, C37)",
    "candidates": [
-    "Embedding (all-minilm:22m) + TF-IDF heads with deterministic guards (ADR-0016, ADR-0020)",
-    "Qwen3.5 4B (qwen3.5:4b-q4_K_M) rubric evaluator, offline only (ADR-0022)",
-    "P2: a fine-tuned small encoder (E60)"
+    "Gemma 4 31B (gemma4:31b) on Ollama Cloud, free plan: semantic judge with a strict JSON contract (ADR-0025)",
+    "Qwen3.5 4B (qwen3.5:4b-q4_K_M) rubric evaluator, offline only: too slow and credited critical sentences under ordinary acts (rubric_evaluator.md)",
+    "Retired: embedding + TF-IDF classifier gate (ADR-0016, ADR-0020)"
    ],
-   "default": "Embedding + TF-IDF classifier gate as candidate generator, restricted to the eligible objectives; no language model in the live path (ADR-0022)",
-   "method_class": "trained heads + deterministic validation; LLM offline only",
-   "hardware": "6 GB GPU",
-   "latency": "about 15 ms for the gate including the embedding call (measured 19 Oct 2026); the 4B rubric evaluator 3.4 s median, 4.1 s p95 (too slow for the 0.79 s left in the voice round trip)",
-   "local_remote": "local",
-   "internet": "no",
-   "privacy": "trainee speech text stays local",
+   "default": "Gemma 4 31B on Ollama Cloud as the semantic evaluator; the engine decides credit from its own state and a deterministic graded formula (ADR-0025)",
+   "method_class": "LLM judge + deterministic engine",
+   "hardware": "none (cloud); the desktop GPU is not used",
+   "latency": "median 2.2 s, p95 5.8 s per utterance on the free plan (development set, 21 Oct 2026); the menu is the fallback while it runs",
+   "local_remote": "remote (Ollama Cloud, free plan)",
+   "internet": "yes",
+   "privacy": "trainee speech text leaves the machine; transcript privacy decision DT-248 is open and the feature is OFF",
    "licence": "Apache-2.0 (Qwen3.5-4B and Qwen3.5-9B model cards read 16 Oct 2026)",
    "structured_output": "ranked acts with probabilities; decision schema of the interpretation service",
    "evaluation": "tests/action_bench_v1 (synthetic, preliminary) with and without context; the independent set (EX-01) decides the gate",
@@ -25433,8 +25490,8 @@
   },
   {
    "id": "PH-15",
-   "name": "Communication acts and classifier",
-   "objective": "Taxonomy, classifier gate, and context-aware interpretation of trainee speech with deterministic validation (ADR-0022).",
+   "name": "Communication acts and speech evaluation",
+   "objective": "Taxonomy, Gemma semantic evaluation of trainee speech and engine-side graded scoring (ADR-0025).",
    "depends_on": [
     "PH-07",
     "PH-21"
@@ -25442,15 +25499,14 @@
    "status": "Blocked",
    "deliverables": [
     "labelled set",
-    "classifier",
-    "interpretation context",
-    "interpretation service",
-    "clarification and fallback",
-    "context-conditioned benchmark and speech_interpretation gate"
+    "evaluation context",
+    "Gemma evaluator and route",
+    "strict contract and fallback",
+    "graded communication score",
+    "development evaluation and speech_evaluation gate"
    ],
    "acceptance": [
-    "classifier: macro-F1 0.75 on the independent set or switched off",
-    "speech_interpretation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off"
+    "speech_evaluation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off"
    ],
    "tasks": [
     "p1-ai-language-s06",
@@ -25463,7 +25519,11 @@
     "p1-ai-language-s15",
     "p1-ai-language-s16",
     "p1-ai-language-s17",
-    "p1-ai-language-s18"
+    "p1-ai-language-s18",
+    "p1-ai-language-s19",
+    "p1-ai-language-s20",
+    "p1-ai-language-s21",
+    "p1-ai-language-s22"
    ],
    "features": [
     "C36",
@@ -25568,7 +25628,7 @@
   {
    "id": "PH-19",
    "name": "Advanced research features",
-   "objective": "Digital twin, multi-agent lab, retrieval extensions, trained classifier, medical LLM benchmark, on-device ASR.",
+   "objective": "Digital twin, multi-agent lab, retrieval extensions, an optional trained model only if Gemma misses its targets, medical LLM benchmark, on-device ASR.",
    "depends_on": [
     "PH-13",
     "PH-15",

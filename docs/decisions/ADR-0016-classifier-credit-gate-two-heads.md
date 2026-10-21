@@ -1,5 +1,7 @@
 # ADR-0016 — The classifier's credit gate needs two independent heads to agree, hard negatives and an assertion check
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The classifier, gate, cap, cue, assertion and interpretation machinery this record describes was retired and removed; the record and its measurements are kept as history.
+
 **Date:** 18 October 2026 (third session) · **Status:** Accepted (engineer, on the measurements below; the classifier stays OFF) · **Related:** ADR-0005, ADR-0012, ADR-0013, p1-ai-language-s07, DT-219, EX-01
 
 ## Context

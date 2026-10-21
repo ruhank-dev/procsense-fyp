@@ -1,5 +1,7 @@
 # ADR-0022 — Spoken communication is interpreted against the real scenario state, validated deterministically and only then offered to the engine as evidence
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The classifier, gate, cap, cue, assertion and interpretation machinery this record describes was retired and removed; the record and its measurements are kept as history.
+
 **Date:** 19 October 2026 · **Status:** Accepted for the engineering (owner request of 19 Oct 2026, prompt 174); IMPLEMENTED the same day (steps s10 to s14, engineering complete and tested; headset and independent evidence outstanding); the `speech_interpretation` gate is OFF until its acceptance passes · **Related:** ADR-0005, ADR-0011, ADR-0016, ADR-0020, ADR-0021; steps p1-ai-language-s10 to s14, p1-voice-input-s02; features C31, C36, C37, C24, E55
 
 ## Context

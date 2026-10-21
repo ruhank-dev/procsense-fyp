@@ -2,6 +2,74 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0x. Update of 22 October 2026 (speech evaluation APPROVED; the architecture is final)
+
+* **Final architecture:** ASR, Gemma semantic evaluation (`gemma4:31b`, prompt `gemma-eval-5`, frozen), authoritative simulator state and evidence, deterministic graded scoring, VR feedback (ADR-0025). Gate `speech_evaluation`: ON (reads `reports/ai/speech-evaluation-acceptance.json`).
+* **Closing step:** the DT-247 contract fix (evidence up to 400 characters, still copied from the utterance) and a fresh frozen 32-item partial-credit set scored once: 27/32 = 84.4 percent in band, 32/32 valid replies, 0 length rejections. Together with held-out v2 (recall 99.0 percent, precision 100 percent, 0 critical physical completions, contrast sets 19/19) every acceptance criterion is met. s22 and C37 are closed; DT-245 to DT-247 completed.
+* **Not claimed:** independent human validation, real audio or a headset result. Still open and outside the software acceptance: the real Meta Quest and ASR end-to-end check (DC-09 and DC-10, Sannan), the transcript privacy decision (DT-248) before real trainee speech is sent to Ollama Cloud, the taxonomy boundary decisions (DT-241 to DT-244).
+
+## 0w. Update of 21 October 2026 (held-out v2: one criterion short by one item, owner decision)
+
+* **What was done:** one prompt refinement (`gemma-eval-5`, approved definitions and general categories only, no veto) and one brand-new frozen held-out set (244 items and a 32-item partial-credit addendum), scored once against criteria written beforehand.
+* **Result:** 0 critical physical completions, 0 window/state bypass, recall 99.0 percent, precision 100 percent, performed versus not performed 99.2 percent, valid replies 100 percent, non-performed credits 0 of 95, unjustified ordinary credit on critical content 0 of 40, mixed critical plus ordinary items 8/8, multi-intent 40/40, contrast sets 19/19, median 2.3 s; partial-credit bands 25/32 = 78.1% against 0.80.
+* **Verdict:** NOT APPROVED by the pre-registered rule, owner decision DT-246; a contract limit on long evidence (DT-247) caused 3 of the 7 band misses. Nothing was ticked; v2 is not scored again. Details: `docs/research/gemma_evaluator_results.md`.
+
+## 0v. Update of 21 October 2026 (final held-out acceptance: not approved, owner decision)
+
+* **Set and rule:** a fresh frozen held-out set (259 items and a 32-item partial-credit addendum; reserved personas P5 and P7, four reserved topic groups; AI-written, AI-reviewed, synthetic) scored once with the unchanged architecture against criteria hashed beforehand. Result: 0 critical physical completions, recall 96.1 percent, performed versus not performed 97.3 percent, valid replies 99.6 percent, partial-credit behaviour 27/32, median 2.7 s; precision 92.5 percent (0.95 proposed), 2 non-performed credits (0 proposed), 4 ordinary credits on critical content (0 proposed).
+* **Verdict:** NOT APPROVED, owner decision DT-246; nothing was ticked complete and nothing was tuned. `docs/research/gemma_evaluator_results.md` has the table and the reasons. The real Meta Quest and ASR end-to-end test is DC-10 in `docs/testing/SANNAN_EXTERNAL_TESTING.md`.
+
+## 0u. Update of 21 October 2026 (the target architecture: Gemma semantic evaluation, engine-scored; the classifier stack is retired, ADR-0025)
+
+**Read this first: the sections 0h to 0t below describe the classifier, critical-mass cap and semantic-reader architecture as it was; ADR-0025 replaced it and its code was removed. They stay as the history of why.**
+
+* **Pipeline:** ASR transcript, then Gemma semantic evaluation (`gemma4:31b` on Ollama Cloud, free plan; strict JSON judgement of who spoke, whether it happened now, assertion and modality, the objectives actually performed, relevance, correctness, completeness and physical-action claims), then the engine's authoritative state and evidence checks, then a deterministic graded score, then VR feedback. Gate `speech_evaluation`: OFF, SKIPPED (no independent result file).
+* **Removed:** the hybrid-head classifier and both heads, the two-head agreement gate, the critical-mass cap and its policies, critical cues, the assertion layer, the interpretation service, the earlier semantic reader and critical verifier, per-act thresholds, `/classify` and `/interpret`, the classifier benchmark, recall, cap, NLI, rubric and safety-gate harnesses with their tests, the classifier mutation catalogue, and the `classifier*` and `speech_interpretation` gate features. **Kept:** the engine's state, window and evidence checks, physical-action verification, the process scoring, the clinical and scenario content, the taxonomy and mapping, the frozen unsafe-speech sets with their hash protection, ASR and speech orders, every result file and research page as history, the development set and its tooling.
+* **Result on the 493-item development set (synthetic, AI-written and AI-reviewed, NOT independent):** performed versus not performed 98.4 percent; legitimate credit recall 165/176 and credited precision 188/204 (at a graded score of at least 0.5); 8 items with a false credit on no-credit items (26 in the isolated experiment, as counted there) and 4 ordinary credits on critical content (8 there); 0 critical physical completions from speech; 489/493 valid replies; median 2.2 s, p95 5.8 s, about 5,000 tokens per item (`docs/research/gemma_evaluator_results.md`). Two controlled partial-credit sets show full, partial and irrelevant speech graded as intended and wrong content sometimes graded too high.
+* **Open:** a fresh frozen held-out set scored once, real speech on the Meta Quest (DT-240), the owner's approval of the gate thresholds and the experimental graded rubric (DT-245), the transcript privacy decision (DT-248), the taxonomy boundary decisions (DT-241 to DT-244), scene wiring (Sannan, DC-09).
+
+## 0t. Update of 21 October 2026 (baseline, Gemma reader and Gemma-first experiment on the 493-item development set)
+
+* **Shipped baseline** (tests/synthetic_dev_v1, development only): recall 47.7 percent, precision 84.8 percent, 13 false credits, 0 of 91 critical false offers or credits, 95.9 percent of no-credit items not offered; the critical-mass cap, the critical-topic menu and the objective confusions of the head are the main limits (`tests/synthetic_dev_v1/baseline_report.md`).
+* **Existing Gemma reader** (ADR-0024, cap hard): raw reading right on 140 of 176 eligible items, but the gates leave 77 credited; 84 of the 99 misses are understood-but-blocked (`gemma_comparison.md`).
+* **Isolated experiment, Gemma-first evaluator** (`tools/experiments/gemma_first/`, prompt/parser/scorer frozen by hash; weights EXPERIMENTAL; production untouched): 172 of 176 eligible items credited, 54 of 54 multi-intent acts, 0 physical completions, but 26 false credits (negation is the weak point) and ordinary credit on 8 critical items; recommendation pending the owner's decision (`gemma_first_comparison.md`).
+
+## 0s. Update of 21 October 2026 (synthetic-data factory abandoned; direct controlled synthetic development data)
+
+* **Owner decision:** human effort is reserved for the final Meta Quest end-to-end test; the manual EX-01 author/annotator workflow stays paused (tooling kept). A multi-model cloud synthetic-data factory was tried in three bounded free-plan pilots (2.75, 25.6 and 23.1 percent accepted) and **abandoned** as too costly in time and cloud usage for its purpose; its code, tests, reports, pilot artefacts and registrations were removed.
+* **Kept:** the diversity and leakage helpers (`tools/synth_dev/diversity.py`) and the findings that concern ProcSense itself: taxonomy boundary ambiguities (DT-241), speech-form semantics left open (DT-242: broken-off, hedged performance, performed-versus-hypothetical tail, reported versus another actor), delegated communication (DT-243), claims of earlier completion and the possible guard gap (DT-244).
+* **New direction (approved):** a 500-item **development** set written directly (AI-written, AI-reviewed by the same model, never independent or human-labelled), with every specification (objective, situation, actor, window, state, expected credit) derived from the approved rules and frozen before any sentence is written, contrast sets, deterministic validation, no cloud call. Design: `docs/research/direct_synthetic_dev_set_design.md`. A fresh held-out set (personas P5 and P7, reserved topic groups) comes later and is frozen before scoring; the real validation remains the Quest test (DT-240). DT-243 and DT-244 stay excluded.
+* **Unchanged:** `cap_policy=hard`, both switches OFF, cue, thresholds, scoring authority, verifier non-authoritative, the 90 percent recall target.
+
+## 0r. Update of 21 October 2026 (EX-01 phase two decisions applied)
+
+* **Decided by the owner:** 300 risk-weighted items; real-ASR coverage 0 here (real ASR is a separate later phase, no invented typos); each target reported as a point estimate AND a 95 percent Wilson interval (the lower-bound claim kept apart), zero counts as observed counts with an upper bound; no names assigned.
+* **Prepared:** author packages, combine, near-copy leak check, the pre-freeze dataset and reviewer summary, the independence designs (strict five-person; four-person cross-annotation as the smallest defensible alternative; three-person not recommended). Nothing is authored, labelled or run; the safe configuration is unchanged. `docs/testing/ex01_semantic_evaluation_plan.md`, `docs/testing/ex01_role_designs.md`.
+
+## 0q. Update of 21 October 2026 (optimisation stopped; EX-01 phase two prepared)
+
+* **Stopped:** further tuning against dev, test and test2. The valid configuration is unchanged: `cap_policy=hard`, both switches OFF, thresholds, cue and engine unchanged, the verifier experimental only. Targets unchanged: recall at least 90 percent, precision at least 95 percent, 0 critical and 0 adversarial false credits, schema at least 99.5 percent, no critical credit from speech.
+* **Recorded accurately (development evidence, not validation):** 95/140 current valid hard pipeline; 114/140 verifier-gated is hypothetical; 113/140 corroborated cap is research-only and failed the live panel; the isolated verifier detected 34/34 critical and cleared 35/42 legitimate sentences on a non-held-out experiment.
+* **Prepared (no data):** the EX-01 phase two plan, 17 coverage families, a blind labelling kit with roles record and a freeze, a layered evaluation tool that separates reader understanding from downstream rejection, guides and templates. The first scored run waits for the owner's people, the freeze, the dataset and reviewer summary, and approval. `docs/testing/ex01_semantic_evaluation_plan.md`.
+
+## 0p. Update of 21 October 2026 (the 90 percent target: what moved, what did not)
+
+* **New engineering target:** legitimate recall at least 90 percent (126/140 on the current set), credited precision at least 95 percent, 0 critical and 0 adversarial false credits, schema compliance at least 99.5 percent, no critical credit from speech alone. Not lowered, no guard weakened.
+* **Done:** the engine's waiting-question and waiting-read-back state is given to the reader as context (dev estimate 92 to 95 of 140 under the hard cap, the same as the shipped path); the historical timeouts answer; an isolated critical-claim verifier was built and measured once (critical 34/34 detected, legitimate 35/42 cleared) and is NOT integrated; ASR normalisation was explored and rejected.
+* **Not reachable on these datasets** with the present independent checks: the cap, the engine thresholds, the critical cue and contested labels bound the recall (see the evolution table). The next meaningful evaluation is on independent labelled data (EX-01), with DT-239 deciding any verifier-gated lift. `cap_policy` stays hard; both switches OFF. `docs/research/recall_improvement_stage2.md`.
+
+## 0o. Update of 21 October 2026 (the corroborated cap: implemented OFF, the bounded live check failed)
+
+* **Implemented (p1-ai-language-s19):** a critical objective in the model's reading, under any verdict, is the menu; the setting `interpret_llm_cap_policy` (default `hard`) can bypass the critical-mass cap only for a corroborated candidate. 115 semantic tests, 29 mutants killed; the frozen set untouched.
+* **Replay (recorded replies, design data, exploratory):** dev live 92 to 113 of 140, dev recorded 88 to 110, test 75 to 95, test2 75 to 104; no row lost; 0 critical, 0 adversarial, 0 out-of-window offers; the 67 historical raw false credits all still blocked.
+* **Bounded live panel (gemma4:31b, free plan, 12 calls, 17,988 tokens):** 5 of the 12 sentences that only the model's critical report can stop were OFFERED, all critical-content sentences. **The corroborated policy fails and stays OFF; do not enable it.** The 85 percent recall target stays NOT MET. Open decisions A to D: `docs/research/corroborated_cap_results.md`.
+
+## 0n. Update of 21 October 2026 (failure attribution of the semantic reader: analysis, a proposal and decisions requested)
+
+* **Explained:** the earlier guarded evaluator's 118/140 and the live pipeline's 92/140 differ by 34 rows lost and 8 gained; 27 of the 34 are refused by the head's critical-mass cap, which the earlier evaluator did not have; in 30 of the 34 the model's reading was right (`docs/research/failure_attribution.md`).
+* **Independent evidence found:** the model's own critical-objective report flags 113 of 120 critical rows and 3 of 420 legitimate rows; its misses are exactly the rows the cap and the dominance of the critical mass catch.
+* **Proposed, not implemented:** a corroborated cap behind `cap_policy` (default hard), estimated at +21 rows on dev (to 113/140) and +20 and +29 on test and test2 in recorded data with no previously observed unsafe credit reopened; an unresolved residual risk (8 panel sentences) needs a small live check first. Decisions are requested in `docs/research/semantic_reader_architecture_proposal.md`. `speech_interpretation` and `interpret_llm_enabled` stay OFF.
+
 ## 0m. Update of 20 October 2026 (Ollama Cloud semantic reader: release candidate behind OFF switches)
 
 * **Platform:** Ollama Cloud is the chosen inference platform (ADR-0024). Verified 20 Oct: the cloud route enforces no JSON schema (official page and a controlled test), so structured output is Pydantic-validated, strict, never repaired, with bounded retries and a fallback to the shipped decision. No Ministral model and no Qwen3.5 397B are in the cloud list.
@@ -9,7 +77,7 @@ Audit of 12 October 2026. It answers one question for every AI idea in the origi
 * **Measured, synthetic, by replay:** 0 critical, 0 adversarial and 0 out-of-window offers on dev, test and test2; recall 88, 75, 75 of 140 against 95, 76, 79 for the shipped path; strict validity of recorded replies 92.2, 91.4, 78.3 percent. Recall (85%) and schema (99.5%) targets NOT MET; the cap and the cue menu set the recall ceiling (DT-238).
 * **Live runs (20 Oct, approved):** the model comparison is BLOCKED (`deepseek-v4.1-flash` needs the paid plan, HTTP 402; `mistral-large-4` is not rolled out, HTTP 403; no paid plan enabled), so no winner was chosen; the live `gemma4:31b` run on 488 dev rows sent 141 rows to the model: 137 of 137 replies valid, 4 timeouts (defect fixed), recall 92/140 at 92/93, 0 critical, 0 adversarial, 0 out-of-window offers; shipped path 95/140. No model is ready.
 * **Free-plan comparison (20 Oct, approved):** `gpt-oss:120b` 79/140 (99.3% valid) and `nemotron-3-super` 88/140 (79.4% valid, 3.5 s median) against `gemma4:31b` 92/140; 0 observed unsafe offers for all; Gemma stays the strongest viable free option, no model is ready.
-* **Not done:** any further model (needs approval, DT-237), the privacy decision (DT-236), independent validation (EX-01), real audio, Quest (Sannan). `speech_interpretation` and `interpret_llm_enabled` stay OFF.
+* **Not done:** any further model (needs approval, DT-249), the privacy decision (DT-248), independent validation (EX-01), real audio, Quest (Sannan). `speech_interpretation` and `interpret_llm_enabled` stay OFF.
 
 ## 0l. Update of 20 October 2026 (Ollama Cloud `gemma4:31b` as a semantic reader: experiment only)
 

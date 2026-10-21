@@ -9,8 +9,8 @@
       "actor": "agent",
       "label": "C24 P1 PH-13",
       "title": "Patient dialogue",
-      "text": "Built, part tested. Free questions answered in the patient's voice.3 capability plans. Needs E53, E54, E57.",
-      "tone": "sun"
+      "text": "Built. Free questions answered in the patient's voice.3 capability plans. Needs E53, E54, E57.",
+      "tone": "mint"
     },
     {
       "id": "C25",
@@ -105,16 +105,16 @@
       "actor": "gear",
       "label": "C36 P1 PH-15",
       "title": "Communication acts",
-      "text": "Built, part tested. The acts the classifier reports and how the evidence store weighs them.1 capability plans.",
+      "text": "Built, part tested. The acts the speech evaluator reports and how the evidence store weighs them.1 capability plans.",
       "tone": "sun"
     },
     {
       "id": "C37",
       "actor": "model",
       "label": "C37 P1 PH-15",
-      "title": "Communication classifier",
-      "text": "Built, part tested. Interpret trainee utterances as communication acts against the real scenario state (ADR-0022)…3 capability plans. Needs E57, B19, E54.",
-      "tone": "sun"
+      "title": "Speech evaluation",
+      "text": "Built. ASR transcript, then Gemma semantic evaluation (gemma4:31b on Ollama Cloud free plan; ADR-0025): who spoke…3 capability plans. Needs E57, B19, E54.",
+      "tone": "mint"
     }
   ],
   "edges": [

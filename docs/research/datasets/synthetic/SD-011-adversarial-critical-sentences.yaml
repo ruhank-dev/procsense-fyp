@@ -2,7 +2,7 @@ id: SD-011
 title: Evasive sentences that touch critical content (a tuning set and three hold-outs)
 synthetic: true
 purpose: "To count how often the speech classifier would credit a sentence about an allergy, an identity check, consent, the fasting state, a worsening sign or a structured handover under an ordinary act when the words avoid the obvious cues, and to measure the guards against it."
-generator: {path: tools/bench/adversarial_critical.py, version: "1", command: "uv run --project tools tools/bench/adversarial_critical.py --set tuning --write"}
+generator: {path: tests/classifier_synthetic_v2/adversarial_manifest.json, version: "1", command: "retired by ADR-0025: the generator was removed with the classifier harnesses; the frozen data and its manifest are kept as history"}
 seed: "none: written by the language model that built the tooling"
 source: "71 sentences (the tuning set, used to choose the cues of version 3), 48 more with different wording written before that change (hold-out 1), 60 written on 18 October 2026 before the cues of version 4 (hold-out 2, tuning evidence for version 4 once seen), and 48 written after version 4 (hold-out 3, the only set no cue was chosen from), each labelled with the critical act it performs."
 method: "Authored by the builder before any v2 benchmark was run; the classifier is run on each sentence and the ones credited under an ordinary act are counted."

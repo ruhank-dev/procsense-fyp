@@ -2,7 +2,7 @@ id: SD-009
 title: Communication act sentences, version 3, a fresh hold-out (model-written, AI-judged, NOT independent)
 synthetic: true
 purpose: "To measure the changes made to the classifier after the version 2 test split had been scored once (a retrained head, a critical-mass cap, a longer cue list) on sentences nobody has tuned against: 300 new sentences from three new author profiles in two new scenario groups."
-generator: {path: tools/bench/synthetic3.py, version: "1", command: "uv run --project tools tools/bench/synthetic3.py freeze"}
+generator: {path: tests/classifier_synthetic_v3/manifest.json, version: "1", command: "retired by ADR-0025: the generator was removed with the classifier harnesses; the frozen data and its manifest are kept as history"}
 seed: "none: the sentences were written by the language model that built the tooling"
 source: "Three simulated author profiles (F1, F2, F3), 5 sentences for each of the 20 labels each, in scenario groups G9 (hip fracture and trauma) and G10 (eye day case); committed before any model saw them."
 method: "The same two AI judge configurations and rubric as version 2; 46 contested rows settled by the builder, who sided with the intent in 45 of them."

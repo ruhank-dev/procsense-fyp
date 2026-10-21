@@ -38,6 +38,6 @@ A clarification answered with "yes": the answer is a new utterance and is interp
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
-* [DC-09](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-09): Spoken communication interpreted against the scenario state: evidence, clarification, menu fallback and no credit for critical or non-performed speech (English only)
+* [DC-09](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-09): Spoken communication evaluated against the scenario state: graded communication credit, menu fallback and no credit for critical or non-performed speech (English only)
 
 <!-- external-testing:end -->

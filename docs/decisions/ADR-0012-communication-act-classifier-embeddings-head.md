@@ -1,5 +1,7 @@
 # ADR-0012 — The communication act classifier is sentence embeddings with a logistic regression head, kept off until an independent set passes
 
+> **Superseded as architecture by [ADR-0025](ADR-0025-gemma-first-speech-evaluation.md) (21 Oct 2026).** The classifier, gate, cap, cue, assertion and interpretation machinery this record describes was retired and removed; the record and its measurements are kept as history.
+
 **Date:** 17 October 2026 · **Status:** Accepted as the provisional classifier (17 October 2026, the owner's choice after the smoke test; evidence is synthetic and not independent, so the feature stays switched off in `content/ai/features.json`) · **Related:** ADR-0005, ADR-0010, ADR-0011, p1-ai-language-s06, p1-ai-language-s07, p2-ai-extensions-s03, `docs/research/classifier_benchmark/`
 
 ## Context

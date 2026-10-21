@@ -42,7 +42,7 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 | C34 | Text-to-speech | [C34.md](../../plans/features/C34.md) |
 | C35 | Voice orders and read-back | [C35.md](../../plans/features/C35.md) |
 | C36 | Communication acts (taxonomy and evidence mapping) | [C36.md](../../plans/features/C36.md) |
-| C37 | Communication classifier | [C37.md](../../plans/features/C37.md) |
+| C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | [C37.md](../../plans/features/C37.md) |
 | D38 | AI debrief | [D38.md](../../plans/features/D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | [D39.md](../../plans/features/D39.md) |
 | D40 | Performance pattern analysis | [D40.md](../../plans/features/D40.md) |

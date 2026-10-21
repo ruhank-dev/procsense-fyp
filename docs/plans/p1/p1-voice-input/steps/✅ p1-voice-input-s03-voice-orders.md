@@ -46,6 +46,6 @@ Implementation Guide B-M8, T-VO1–T-VO4.
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
-* [EX-18](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-18): A second author for the spoken-order paraphrases and for the next classifier challenge set
+* [EX-18](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-18): A second author for the spoken-order paraphrases (the classifier challenge part was retired by ADR-0025)
 
 <!-- external-testing:end -->

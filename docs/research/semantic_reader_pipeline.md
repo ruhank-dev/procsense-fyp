@@ -1,5 +1,7 @@
 # Semantic reader pipeline on Ollama Cloud: catalogue, structured output, and the integrated pipeline replayed on dev, test and test2 (20 October 2026)
 
+> **Historical (21 Oct 2026):** this page describes the classifier, cap and gate architecture that [ADR-0025](../decisions/ADR-0025-gemma-first-speech-evaluation.md) retired. Its findings are kept as the record of why; the current design and its results are in `docs/research/gemma_evaluator_results.md`.
+
 **Status: release candidate, behind two OFF switches (`interpret_llm_enabled`, `speech_interpretation`).** Decision record: `docs/decisions/ADR-0024-ollama-cloud-semantic-reader.md`. Everything measured here is **synthetic and builder-written** (`tests/action_bench_v1`), the baseline was tuned on parts of these splits, `test2` was used by the earlier Qwen experiment, there is no independent human review (EX-01), and nothing was tested with audio, on a Quest or clinically. The historical Gemma results (`docs/research/cloud_gemma_rubric.md`) are unchanged evidence from a different configuration (no pipeline, fence-stripped views, word-list guards only).
 
 ## 1. Catalogue (public list `https://ollama.com/api/tags`, read 20 Oct 2026, 23 models)
@@ -59,7 +61,7 @@ See the table in ADR-0024: recall NOT MET (live dev 92/140); precision, critical
 **6.1 Model comparison: BLOCKED, nothing was evaluated.** Both shortlisted alternatives are unavailable on this account. One harmless one-word smoke call each, through the signed-in local Ollama, returned:
 * `deepseek-v4.1-flash` (and `:1017`): HTTP 402 "This model is not in the Free plan. Pro is $20/month for $60 of usage ... Try gemma4:31b-cloud, which is in the Free plan." Enabling it needs a paid plan, which was not authorised and was not touched.
 * `mistral-large-4`: HTTP 403 "This model is currently being rolled out and is not yet available to you."
-* The same probe over the rest of the list (no evaluation, 20 output tokens at most each): free-plan models that answer are `gemma4:31b`, `gpt-oss:20b`, `gpt-oss:120b`, `nemotron-3-nano:30b`, `nemotron-3-super`, `nemotron-3-ultra`, `beam` and `minimax-m3.1-flash`; HTTP 402 for `glm-5.3-flash`, `glm-5.3`, `glm-5.2`, `deepseek-v4-pro:0813`, `kimi-*`, `minimax-m3`, `minimax-m2.7`, `mistral-large-3:675b` and `muse-spark-open`; `clef:27b` is a decision model that does not take chat. These probes are availability facts, not capability measurements. No other model was launched. Adding any free-plan model to the comparison needs the owner's approval (DT-237).
+* The same probe over the rest of the list (no evaluation, 20 output tokens at most each): free-plan models that answer are `gemma4:31b`, `gpt-oss:20b`, `gpt-oss:120b`, `nemotron-3-nano:30b`, `nemotron-3-super`, `nemotron-3-ultra`, `beam` and `minimax-m3.1-flash`; HTTP 402 for `glm-5.3-flash`, `glm-5.3`, `glm-5.2`, `deepseek-v4-pro:0813`, `kimi-*`, `minimax-m3`, `minimax-m2.7`, `mistral-large-3:675b` and `muse-spark-open`; `clef:27b` is a decision model that does not take chat. These probes are availability facts, not capability measurements. No other model was launched. Adding any free-plan model to the comparison needs the owner's approval (DT-249).
 
 **6.2 Live `gemma4:31b` on all 488 dev rows through the production reader** (`semantic_eval.py --live gemma4:31b-cloud --stride 1`, strict Pydantic validation, the new format instruction without a code fence, one bounded retry, caps 600 calls and 1,000,000 tokens, 8 s per call). Report `reports/ai/semantic-live-gemma4_31b-cloud-head-dev.json`; raw replies (no key, no header) `artifacts/ai-bench/live/gemma4_31b-cloud-head-dev-s1.jsonl`, sha256 prefix `7e9788956e4680e8`.
 * **Only 141 of the 488 rows were sent to the model.** The other 347 (all non-performed, critical and no-eligible-objective rows, among others) were final by the shipped checks, so no call was made and nothing about them left the machine. Calls: 141. Tokens: 186,307 prompt + 6,391 output = 192,698. Estimated allowance use: about 0.5 percent (the earlier measured rate was about 1.7 percent for 626k tokens; the owner's usage page is the authority and is not readable by the tool).
@@ -90,7 +92,7 @@ Shipped path on the same rows: 95/140 at 95/96. Actual allowance consumption: no
 
 **6.3 Selection state.** No model was compared, so no winner was chosen and none can be recommended on comparative evidence. On the evidence available `gemma4:31b` is the only shortlisted model that is reachable on the free plan, is schema-reliable under the new instruction (137/137), answers fast (p95 1.3 s) and has an outcome with no observed unsafe credit; it is kept as the provisional working target. **No candidate is ready:** recall misses its target (65.7 percent on dev) and it stays below the shipped path. The criteria were not lowered and no guard was weakened.
 
-**6.4 Still not done:** any further model (needs approval), the privacy and consent decision (DT-236), an independent critical-content signal (DT-238), independent labels (EX-01), real audio, the Quest checks (Sannan, DC-08, DC-09), a live run on `test` and `test2`, and any comparison with another free-plan model (needs approval).
+**6.4 Still not done:** any further model (needs approval), the privacy and consent decision (DT-248), an independent critical-content signal (DT-238), independent labels (EX-01), real audio, the Quest checks (Sannan, DC-08, DC-09), a live run on `test` and `test2`, and any comparison with another free-plan model (needs approval).
 
 ## 7. Reproduce
 ```
@@ -100,3 +102,9 @@ tools/.venv/Scripts/python.exe tools/ci/mutation_safety.py --engine --write
 tools/.venv/Scripts/python.exe tools/bench/safety_frozen.py --check
 ```
 The replay needs the raw files under `artifacts/ai-bench/rubric/` (git-ignored; hashes in `reports/ai/cloud-gemma-rubric.json`).
+
+## 8. Update of 21 October 2026 (p1-ai-language-s19)
+The reader now routes a sentence to the menu when the reading reports a critical objective under any verdict, and a setting `interpret_llm_cap_policy` (default `hard`) can bypass the critical-mass cap when the reading corroborates. The corroborated policy recovers legitimate rows on the recorded replies (dev live 92 to 113 of 140) but offered 5 of 12 critical-content panel sentences in the one bounded live check, so it is OFF and not to be enabled. Details, counts and the remaining failure attribution: `docs/research/corroborated_cap_results.md`; the earlier analysis: `docs/research/failure_attribution.md`.
+
+## 9. Update of 21 October 2026, stage two (target now 90 percent)
+The recall target is now 90 percent (was 85) with credited precision at least 95 percent. The reader's prompt now carries the engine's waiting patient question and waiting read-back (dev 92 to 95 of 140 under the hard cap, estimated from a 24-row live re-check); an isolated critical-claim verifier exists but is not integrated; the cap, the thresholds and the cue are unchanged. Everything, including the evolution table and the reasons 90 percent is not reachable on these datasets, is in `docs/research/recall_improvement_stage2.md`.

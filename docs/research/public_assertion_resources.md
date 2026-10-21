@@ -1,5 +1,7 @@
 # Public assertion-status resources: what exists, what may be used, what fits (19 October 2026)
 
+> **Historical (21 Oct 2026):** this page describes the classifier, cap and gate architecture that [ADR-0025](../decisions/ADR-0025-gemma-first-speech-evaluation.md) retired. Its findings are kept as the record of why; the current design and its results are in `docs/research/gemma_evaluator_results.md`.
+
 Desk research only: nothing was downloaded, no account was created and no data use agreement was accepted. The facts below come from the pages named; every licence must be re-read on the source page before any use.
 
 | Resource | What it labels | Access and licence (as found) | Fit for ProcSense |
