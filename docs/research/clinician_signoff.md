@@ -2,6 +2,8 @@
 
 > **Policy change, 12 October 2026 (owner; INSTRUCTIONS 8i revised, ADR-0008):** these questions **no longer gate development**. They are research items: an answer may improve or correct content, and is recorded here when it arrives, but no step, phase or generated practice case waits for one. Items stay labelled "not clinically approved" until answered; that label is information, not a block.
 
+> **Surgeon's review, 19 October 2026 (team statement, recorded by Abdul Moiz):** a surgeon, contacted by Ruhan Kamran, reviewed the clinical research document on which the content rests and **signed it**. The signed copy is kept by the team, not in the repository. The answers to the questions below are added to the Answer column when the team transcribes them from the signed review (DT-237); until then no case's approval level was changed because of it.
+
 Everything here was decided on the evidence by the project team on 12 October 2026 and is **not clinically approved**. Each item says exactly what the clinician (or the owner, for an attested approval) is asked. Nothing below may be described as clinician-approved until the answer is recorded in this file with a name and a date.
 
 | # | Question | What was decided and why | Evidence | Rows and files | Answer |
