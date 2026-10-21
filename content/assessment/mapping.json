@@ -432,26 +432,6 @@
    "ref": "SR-2864"
   }
  ],
- "thresholds": {
-  "default": 0.8,
-  "per_act": {
-   "ACKNOWLEDGE_EMOTION": 0.39,
-   "ACKNOWLEDGE_FACT": 0.182,
-   "ANSWER_QUESTION": 0.329,
-   "ASK_TOPIC": 0.191,
-   "CHECK_UNDERSTANDING": 0.254,
-   "CLARIFY": 0.274,
-   "CLOSED_LOOP": 0.315,
-   "ESCALATE_SPEECH": 0.463,
-   "EXPLAIN_ACTION": 0.185,
-   "EXPLAIN_PROCEDURE": 0.592,
-   "EXPLAIN_TEST": 0.298,
-   "REASSURE": 0.457,
-   "REPORT_FAULT": 0.747,
-   "VOICE_ORDER": 0.153
-  },
-  "note": "per-act evidence thresholds are the classifier head's calibrated credit thresholds (content/assessment/act_head_hybrid.json) floored to three decimals, exported by tools/content/build_scoring.py so the engine never refuses what the gate credited; the default 0.8 (the guide's example, provisional SR-2865) applies to an act the head does not credit"
- },
  "critical_acts": [
   "CONFIRM_IDENTITY",
   "STATE_ALLERGY",
@@ -459,6 +439,41 @@
   "HANDOVER_CRITICAL_ELEMENT",
   "SBAR_ELEMENT"
  ],
+ "critical_act_evidence": {
+  "CONFIRM_IDENTITY": {
+   "behaviour": "b13",
+   "actions": [
+    "confirm_identity"
+   ]
+  },
+  "STATE_ALLERGY": {
+   "behaviour": "b02",
+   "actions": [
+    "ask_allergies",
+    "ask_allergy_reaction"
+   ]
+  },
+  "CONSENT_SIGN": {
+   "behaviour": "b21",
+   "actions": [
+    "sign_consent"
+   ]
+  },
+  "HANDOVER_CRITICAL_ELEMENT": {
+   "behaviour": "b11",
+   "actions": [
+    "handover",
+    "finish_handover"
+   ]
+  },
+  "SBAR_ELEMENT": {
+   "behaviour": "b11",
+   "actions": [
+    "handover",
+    "finish_handover"
+   ]
+  }
+ },
  "refs": [
   "SR-2864",
   "SR-2865"

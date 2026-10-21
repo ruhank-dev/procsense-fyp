@@ -4,6 +4,7 @@ using ProcSense.Core.Actions;
 using ProcSense.Core.Content;
 using ProcSense.Core.Pipeline;
 using ProcSense.Core.Scoring;
+using ProcSense.Core.Speech;
 using ProcSense.Core.Workflow;
 using ProcSense.Core.Workflow.Steps;
 
@@ -208,8 +209,10 @@ namespace ProcSense.Core.Tests
             Assert.Equal(before, store.Records.Count);                          // adding again adds nothing new
         }
 
+        private static readonly SpeechJudgement Full = new SpeechJudgement("performed", "trainee", "statement", 3, 3, 3, false);
+
         [Fact]
-        public void T_EM1c_no_critical_act_is_credited_from_speech_at_any_confidence_in_any_step_of_any_behaviour()
+        public void T_EM1c_no_critical_act_is_accepted_as_evidence_from_speech_at_the_best_grade_in_any_step_of_any_behaviour()
         {
             Assert.NotEmpty(Tables.CriticalActs);
             int tried = 0;
@@ -218,8 +221,8 @@ namespace ProcSense.Core.Tests
                     foreach (var step in behaviour.Steps)
                     {
                         var store = new EvidenceStore(Tables);
-                        var r = store.Submit(act, "any", "a confident sentence said aloud", 1.0, step, new[] { 1 });
-                        Assert.False(r.Accepted, act + " in " + step + " of " + behaviour.Id);
+                        var r = store.Submit(act, "any", "a confident sentence said aloud", Full with { ClaimsPhysical = true }, new[] { step }, new[] { 1 });
+                        Assert.False(r.Accepted, act + " in " + step + " of " + behaviour.Id);          // graded for its small communication credit at most, never evidence for the behaviour
                         foreach (var b in Tables.Behaviours) Assert.Empty(store.Credited(b.Id));
                         tried++;
                     }
@@ -227,48 +230,44 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void T_EM1b_a_confident_sbar_element_in_a_handover_step_is_recorded_but_never_credited_to_b11()
+        public void T_EM1b_a_perfect_sbar_element_in_a_handover_step_is_graded_but_never_credited_to_b11()
         {
             var b11 = Tables.Behaviours.First(b => b.Id == "b11");
-            Assert.True(b11.Critical);                                           // the conditions under which speech could once credit b11
+            Assert.True(b11.Critical);
             Assert.Contains("SBAR_ELEMENT", b11.AiActs);
-            Assert.True(Tables.ThresholdFor("SBAR_ELEMENT") <= 0.99);
             foreach (var step in b11.Steps)
             {
                 var store = new EvidenceStore(Tables);
-                var r = store.Submit("SBAR_ELEMENT", "handover", "Situation: Mr Khan, planned surgery this morning", 0.99, step, new[] { 1 });
+                var r = store.Submit("SBAR_ELEMENT", "handover", "Situation: Mr Khan, planned surgery this morning", Full, new[] { step }, new[] { 1 });
                 Assert.False(r.Accepted);
                 Assert.Equal(EvidenceStore.CriticalNeedsAction, r.Reason);
+                Assert.Equal(1.0, r.Grade);                                      // the communication grade is kept: it is worth the critical weight (0.25) and nothing else
                 Assert.Empty(store.Credited("b11"));
                 Assert.Single(store.Records);                                    // recorded, not credited
             }
         }
 
         [Fact]
-        public void T_EM1_a_critical_act_from_speech_is_recorded_but_not_credited()
+        public void T_EM1_a_critical_act_from_speech_is_recorded_and_graded_but_not_credited()
         {
             var store = new EvidenceStore(Tables);
-            var tables = Tables.Behaviours.First(b => b.AiActs.Count > 0);
-            var critical = new ScoreTables(Tables.Behaviours.Select(b => b.Id == tables.Id ? b with { AiActs = b.AiActs.Concat(new[] { "CONFIRM_IDENTITY" }).ToList() } : b).ToList(), Tables.Rules, Tables.Points, Tables.Weights, Tables.DefaultThreshold, Tables.Thresholds, Tables.CriticalActs, Tables.Sentences);
-            var s2 = new EvidenceStore(critical);
-            var r = s2.Submit("CONFIRM_IDENTITY", "identity", "this is Mrs Khan", 0.97, tables.Steps[0], new[] { 3 });
+            var r = store.Submit("CONFIRM_IDENTITY", "identity", "this is Mrs Khan", Full, new[] { Tables.Find(Tables.CriticalEvidence["CONFIRM_IDENTITY"].Behaviour)!.Steps[0] }, new[] { 3 });
             Assert.False(r.Accepted);
             Assert.Equal(EvidenceStore.CriticalNeedsAction, r.Reason);
-            Assert.Empty(s2.Credited(tables.Id));
-            Assert.Single(s2.Records);                                           // but it is on record
-            Assert.Empty(store.Records);
+            Assert.Empty(store.Credited(r.Behaviour));
+            Assert.Single(store.Records);                                        // but it is on record
         }
 
         [Fact]
-        public void T_EM3_a_low_confidence_act_is_recorded_but_not_credited_and_a_good_one_is()
+        public void T_EM3_a_grade_under_the_credit_floor_is_recorded_but_not_credited_and_a_good_one_is()
         {
             var store = new EvidenceStore(Tables);
-            double threshold = Tables.ThresholdFor("CHECK_UNDERSTANDING");                                            // the classifier head's calibrated threshold, exported to mapping.json (20 Oct 2026)
-            var low = store.Submit("CHECK_UNDERSTANDING", "consent", "so you understand?", threshold - 0.01, 9, new[] { 7 });
+            var low = store.Submit("CHECK_UNDERSTANDING", "consent", "so you understand?", new SpeechJudgement("performed", "trainee", "question", 1, 1, 0, false), new[] { 9 }, new[] { 7 });
             Assert.False(low.Accepted);
-            Assert.Equal(EvidenceStore.LowConfidence, low.Reason);
-            var good = store.Submit("CHECK_UNDERSTANDING", "consent", "can you tell me back what we agreed?", 0.88, 9, new[] { 8 });
+            Assert.Equal(EvidenceStore.BelowCreditFloor, low.Reason);
+            var good = store.Submit("CHECK_UNDERSTANDING", "consent", "can you tell me back what we agreed?", Full with { Form = "question" }, new[] { 9 }, new[] { 8 });
             Assert.True(good.Accepted);
+            Assert.Equal(1.0, good.Grade);
             Assert.Single(store.Credited("b07"));
         }
 
@@ -276,10 +275,10 @@ namespace ProcSense.Core.Tests
         public void T_EM4_an_act_from_the_wrong_step_is_rejected_with_the_reason()
         {
             var store = new EvidenceStore(Tables);
-            var r = store.Submit("CHECK_UNDERSTANDING", "consent", "x", 0.95, 1, new[] { 1 });
+            var r = store.Submit("CHECK_UNDERSTANDING", "consent", "x", Full, new[] { 1 }, new[] { 1 });
             Assert.False(r.Accepted);
             Assert.StartsWith(EvidenceStore.ContextMismatch, r.Reason);
-            Assert.False(store.Submit("MADE_UP_ACT", "", "", 0.99, 9, new int[0]).Accepted);
+            Assert.False(store.Submit("MADE_UP_ACT", "", "", Full, new[] { 9 }, new int[0]).Accepted);
         }
 
         [Fact]

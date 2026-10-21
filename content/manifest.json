@@ -1,12 +1,12 @@
 {
  "schema": 1,
- "content_hash": "d4e53cb82d147ea914f704750dc7a355ead24677c585970ceeb4b401b102ea4e",
- "files": 684,
- "bytes": 23913244,
+ "content_hash": "03657e17db9f26eb837ac33b5e82405935d0f94ef845785330e872e7ba43e9cc",
+ "files": 678,
+ "bytes": 17842964,
  "per_folder": {
   "(root)": 64,
-  "ai": 9,
-  "assessment": 6,
+  "ai": 7,
+  "assessment": 2,
   "attributions": 1,
   "availability": 4,
   "behaviour": 3,
@@ -64,21 +64,13 @@
    "bytes": 3435,
    "sha256": "b6f334cc800a609ebca03cbb9f3a71d1389f267517fa93c21b762aa40a4e23a0"
   },
-  "ai/critical_cues.json": {
-   "bytes": 9416,
-   "sha256": "558b3c424ff66835253efa2fc9c0edbe0d7be712f1028981bf850ffca4d9ac82"
-  },
   "ai/features.json": {
-   "bytes": 14207,
-   "sha256": "e25073963fdbf80e040e60223d00a301834d01125f46b7f13bf50fd610f43eda"
+   "bytes": 8766,
+   "sha256": "c9a9010beb9de9b24ab0a46fc6bbc8aa1cf3d7c084c3198f30087924d8a55f16"
   },
   "ai/intents.json": {
    "bytes": 945,
    "sha256": "c19baf5c2f39f5a8c3e32597881fc0b9c741b1a3dc4b1af1cc4ef0bf8999fbc3"
-  },
-  "ai/interpret_phrases.json": {
-   "bytes": 1653,
-   "sha256": "940cf94636204d3f63eee5288b8a6cd1c86e6ca6034c1444901513f022ccfa14"
   },
   "ai/lexicon.json": {
    "bytes": 3860,
@@ -93,32 +85,16 @@
    "sha256": "4919423b0ed05600bf6556e38d82edb3677aba63ef9ce55d74b6c4ae17f2b324"
   },
   "ai/thresholds.json": {
-   "bytes": 26215,
-   "sha256": "2fa8ca1147725bb8c6996994e82c284af4407dfa5c7d6f3ad3c2189394d0b90f"
-  },
-  "assessment/act_head.json": {
-   "bytes": 106356,
-   "sha256": "bb46dad65130cfa0837a97a6dd62bdeaf4a03013c916c7f54919e82b1fd16841"
-  },
-  "assessment/act_head_hybrid.json": {
-   "bytes": 2477666,
-   "sha256": "009bd079f057b2d9d1e6d9fa93e0d27423a413d25c4811cf0b94be00a9f1d1d5"
-  },
-  "assessment/act_head_tfidf.json": {
-   "bytes": 3459422,
-   "sha256": "e3fcf900e4a0df6bd9b6abeea6d7fc95e56a7bab19a9bee9099b3a8471e053e9"
+   "bytes": 16595,
+   "sha256": "ce173fb302b50166bcc13138c4144ce5c7980ef6f8be8ee17f1e4ce445c49836"
   },
   "assessment/mapping.json": {
-   "bytes": 8297,
-   "sha256": "2f6ef6fc54fe752f3dce9ca0fd7543c0d69ee7d9ba482468f3bf724f9464f083"
+   "bytes": 8058,
+   "sha256": "4f8400ef7bc62760cc0e7b459b775cb2dcd89c93a487ec41dcad34d761c6f071"
   },
   "assessment/taxonomy.json": {
    "bytes": 5997,
    "sha256": "25a40afdd8082d38de52d9e6ad55bbbc0936ad5ba695d689419d2ed9bebf349f"
-  },
-  "assessment/thresholds.json": {
-   "bytes": 904,
-   "sha256": "4a5a6c6c18cb10946cb6999bf478b9357926800ed681a744c1e69daf1aa77d01"
   },
   "attributions/attributions.json": {
    "bytes": 13060,
@@ -2465,8 +2441,8 @@
    "sha256": "c25dab209685d8f9adacfd80a601d5e38df1db54d2aa023f2a0087fd796ca3e1"
   },
   "scoring/rubric.json": {
-   "bytes": 5915,
-   "sha256": "fa3d002cf6587c05276ee59cfc2fc558c32f0615ed2e7ced6f79aba5468abc42"
+   "bytes": 6352,
+   "sha256": "b4193f7873d4f8a8f0cb21d7acace25bca948a99f279c845c348500b1e82d526"
   },
   "sepsis/sepsis.json": {
    "bytes": 2479,

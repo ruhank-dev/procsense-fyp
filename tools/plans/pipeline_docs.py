@@ -221,7 +221,7 @@ def dataset_matrix(doc, nodes) -> str:
 def model_register(doc, nodes) -> str:
     out = ["# Model and technology decision register", "", HEAD, "",
            "LLM-first, model-aware: for each responsibility a served LLM or a pretrained model was considered first; a simpler deterministic, statistical or retrieval method is chosen only where the row says why. "
-           "Nothing here is trained except the P2 classifier (E60), which ships only if it beats the P1 LLM classifier. Fine-tuning an LLM (E65) and image-generating models (E64) are not used at runtime; both are kept as staged offline research tracks (PH-24) with their history, not rejected.", "",
+           "Nothing here is trained; the P2 small classifier (E60) is deferred and is reconsidered only if the Gemma speech evaluator (ADR-0025) misses its targets. Fine-tuning an LLM (E65) and image-generating models (E64) are not used at runtime; both are kept as staged offline research tracks (PH-24) with their history, not rejected.", "",
            "Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both benchmarked in `p1-ai-infrastructure-s02`; Ollama is not installed yet (checked 12 October 2026) and installing it is roadmap task `p1-ai-infrastructure-s01`.", ""]
     out += table(["ID", "Purpose", "Class", "Default", "Status"], [[m["id"], m["purpose"], m["method_class"], m["default"], m["status"]] for m in doc["model_catalog"]])
     for m in doc["model_catalog"]:
@@ -247,7 +247,7 @@ def roadmap(doc, nodes) -> str:
            "`p1-dataset-analysis`, `p1-live-scenario-generation`, `p2-ai-learning-analytics` and `p2-ai-advanced-simulation`. Milestone numbers are ids, not order.", "",
            "Specified on 12 October 2026; the state of each feature is in [feature_implementation_matrix.md](feature_implementation_matrix.md).", "",
            "## Critical path", "", " → ".join(md["critical_path"]), "",
-           "The first fresh scenario needs no language model: dataset profiles, packs, blocks, solver, numeric and media generation, validation and packaging. The LLM, voice and classifier phases run in parallel and plug in when their blockers clear; the AI composer, the knowledge base and personalisation (PH-20 to PH-23) make that fresh case AI-composed and personalised.", "",
+           "The first fresh scenario needs no language model: dataset profiles, packs, blocks, solver, numeric and media generation, validation and packaging. The LLM, voice and speech-evaluation phases run in parallel and plug in when their blockers clear; the AI composer, the knowledge base and personalisation (PH-20 to PH-23) make that fresh case AI-composed and personalised.", "",
            "**AI critical path** (the explicitly AI-composed, personalised scenario): " + " → ".join(md["ai_critical_path"]) + ".", "",
            "## Parallel work", ""] + [f"- {' ∥ '.join(p)}" for p in md["parallel_work"]] + ["", "## Phases", ""]
     out += table(["Phase", "Name", "Status", "Depends on", "Critical path", "Features"], [[p["id"], p["name"], p["status"], p["depends_on"], "yes" if p["on_critical_path"] else "", p["features"]] for p in doc["phases"]])

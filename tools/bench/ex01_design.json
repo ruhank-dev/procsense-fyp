@@ -1,0 +1,203 @@
+{
+ "version": "ex01-semantic-design-2",
+ "written": "2026-10-21",
+ "note": "Coverage plan for the independent human-labelled set of the semantic reader (EX-01, phase two). It states WHICH situations the authors must write, never a sentence, a label or an expected output. The families come from the failure families found in the development work (docs/research/recall_improvement_stage2.md, docs/research/failure_attribution.md); the dev, test and test2 sets informed them, so the set has to be written by people who have not seen those sets, the prompts, the model's answers or any label. Phase two measures SEMANTIC INTERPRETATION FROM TEXT independently of speech-recognition quality: every item is clean written text; the real-ASR family F17 has quota 0 here.",
+ "min_items_total": 300,
+ "min_authors": 2,
+ "families": [
+  {
+   "id": "F01",
+   "name": "ordinary_paraphrase",
+   "min": 24,
+   "safety_sensitive": false,
+   "what": "The trainee performs one ordinary act of the taxonomy now, in plain but unfamiliar wording (not the textbook phrasing). Cover many different acts.",
+   "weight_reason": "largest ordinary-act family; many different acts",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F02",
+   "name": "indirect_natural_speech",
+   "min": 22,
+   "safety_sensitive": false,
+   "what": "An ordinary act performed in natural, indirect or elliptical speech (no keyword of the act, relying on the situation or on how people actually talk).",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F03",
+   "name": "question_vs_assertion",
+   "min": 16,
+   "safety_sensitive": false,
+   "what": "Pairs of wordings that differ in being a question or a statement about the same content, where the approved definitions say whether the act is performed (for example an act that is performed by asking, against one that is performed by stating).",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F04",
+   "name": "request_vs_completion_claim",
+   "min": 18,
+   "safety_sensitive": true,
+   "what": "A request or instruction to do something against a claim that it has been done, about the same thing.",
+   "weight_reason": "safety-sensitive: request against completion claim",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F05",
+   "name": "hypothetical",
+   "min": 16,
+   "safety_sensitive": true,
+   "what": "The act is imagined, conditional or supposed, not performed.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F06",
+   "name": "reported_speech",
+   "min": 16,
+   "safety_sensitive": true,
+   "what": "Someone else's act or words are reported (a colleague, the patient, a chart); the trainee does not perform the act themself.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F07",
+   "name": "negation",
+   "min": 16,
+   "safety_sensitive": true,
+   "what": "The act is denied or refused, or something is not done.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F08",
+   "name": "actor_recipient",
+   "min": 16,
+   "safety_sensitive": true,
+   "what": "Who speaks, who does the act and to whom it is addressed differ (the patient or a colleague speaks; the trainee speaks to someone other than the usual recipient; an act is assigned to another person).",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F09",
+   "name": "escalation_recommendation_handover_wording",
+   "min": 26,
+   "safety_sensitive": true,
+   "what": "Requests for a senior or other person to attend, review or decide, recommendations, and handover statements, in many wordings, with and without a named recipient. Authors state the recipient and the step in the scenario.",
+   "weight_reason": "historically ambiguous (escalation against recommendation against handover wording) and safety-sensitive",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F10",
+   "name": "emotion_acknowledged_vs_reassured",
+   "min": 14,
+   "safety_sensitive": false,
+   "what": "Speech about the patient's worry or fear: some acknowledges the feeling, some offers comfort or a prediction, some does both.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F11",
+   "name": "explain_action_vs_explain_procedure",
+   "min": 14,
+   "safety_sensitive": false,
+   "what": "Explaining what the trainee is about to do to the patient now, against explaining the course of the procedure or what will happen overall.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F12",
+   "name": "answer_with_patient_question_context",
+   "min": 16,
+   "safety_sensitive": false,
+   "what": "Replies whose act can only be recognised from the patient's question in the earlier turns (the scene has a patient question still waiting). Give prior_turns and set patient_question_pending to yes.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F13",
+   "name": "closed_loop_readback_context",
+   "min": 16,
+   "safety_sensitive": false,
+   "what": "Read-backs and confirmations of a colleague's instruction or result, recognisable only from the earlier turns (a critical result or order is waiting to be read back). Give prior_turns and set readback_pending to yes.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F14",
+   "name": "critical_topic_discussion",
+   "min": 32,
+   "safety_sensitive": true,
+   "what": "Speech about identity checks, allergy, consent, fasting state, a deteriorating sign or a structured handover: questions, statements, requests, in many wordings including ones that sound like an ordinary act. These are semantically labelled as they are; they are never credited from speech.",
+   "weight_reason": "safety-sensitive: critical-topic discussion must never become critical-action credit",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F15",
+   "name": "adversarial_or_misleading_wording",
+   "min": 24,
+   "safety_sensitive": true,
+   "what": "Wording built to look like a performed act without being one, or to mislead a reader (instructions addressed to the reader, claims about what was done, quoting, sarcasm, unfinished sentences, fillers).",
+   "weight_reason": "safety-sensitive: adversarial or misleading wording",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F16",
+   "name": "out_of_window_valid_speech",
+   "min": 14,
+   "safety_sensitive": false,
+   "what": "An ordinary act that is semantically performed but spoken at a scenario step where the approved behaviour windows (content/assessment/mapping.json) do not list it. The author states the step; the engine, not the label, decides eligibility.",
+   "weight_reason": "",
+   "allowed_in_phase_two": true
+  },
+  {
+   "id": "F17",
+   "name": "asr_evidence",
+   "min": 0,
+   "safety_sensitive": true,
+   "what": "OUT OF SCOPE for the first EX-01 evaluation (quota 0, not allowed). Real speech-recognition wording will be evaluated in a separate later phase from actual recordings and transcripts (audio and headset work, DC-08, EX-18, docs/testing/asr_safety_evaluation.md). Invented typos, swapped letters or glued words are never allowed anywhere in the set.",
+   "weight_reason": "",
+   "allowed_in_phase_two": false
+  }
+ ],
+ "item_rules": {
+  "scenario_step": "a workflow step number 1 to 15 of content/assessment/mapping.json",
+  "prior_turns": "up to four earlier turns written as speaker: text separated by ' | ' (speaker is trainee, patient, colleague or tutor); empty if none",
+  "speaker_role": "who speaks the target utterance: trainee, patient, colleague or tutor",
+  "patient_question_pending": "yes only if the scene has a patient question still waiting for an answer",
+  "readback_pending": "yes only if a critical result or instruction is waiting to be read back",
+  "author_intended_acts": "the author's intention, used ONLY to check the coverage and the out-of-window family; it is never shown to an annotator and is never the label",
+  "no_clinical_inventions": "Use only the approved action definitions (content/assessment/taxonomy.json) and the scenario rules (content/assessment/mapping.json). Do not state a clinical requirement, a dose or a threshold.",
+  "author_code": "a short code for the author (A1, A2, ...) held in the roles record; never a name; never shown to an annotator",
+  "asr_source": "must be empty in phase two (no real-ASR family)",
+  "near_duplicates": "a sentence that is identical to, or a near-copy of, a sentence of any repository benchmark is refused by the owner's check; the check never shows the repository sentence to the author"
+ },
+ "reviewers": {
+  "annotators_per_item": 2,
+  "adjudicators": 1,
+  "all_items_double_labelled": true,
+  "annotator_sees": [
+   "item_id",
+   "scenario_step",
+   "scenario_context",
+   "prior_turns",
+   "speaker_role",
+   "utterance"
+  ],
+  "annotator_never_sees": [
+   "family",
+   "author_intended_acts",
+   "any model output or probability",
+   "any existing benchmark label",
+   "any guard decision",
+   "any expected ProcSense output",
+   "the other annotator's labels"
+  ]
+ },
+ "evaluation_layers": [
+  "reader_understanding_before_safety_gates",
+  "final_credited_after_safety_gates",
+  "shipped_path_baseline",
+  "experimental_verifier_no_cap_lift"
+ ],
+ "target_items_total": 300
+}

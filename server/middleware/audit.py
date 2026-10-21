@@ -2,10 +2,10 @@
 
 How an AI route uses it (the gateway routes of p1-backend-s06):
 
-    @router.post("/classify")
-    def classify(body: ClassifyIn, call: AiCallRecord = Depends(audited("classify"))):
+    @router.post("/evaluate/organisations/{organisation_id}")
+    def evaluate(body: EvaluateIn, call: AiCallRecord = Depends(audited("evaluate"))):
         call.set_model("qwen2.5-7b-instruct", "q4_K_M")
-        call.set_prompt("classify.v3", context_id=body.case_id)
+        call.set_prompt("gemma-eval-3", context_id=body.case_id)
         call.set_input(body.utterance)            # only its hash is kept
         call.session_id = body.session_id
         ...
@@ -47,7 +47,7 @@ from server.models.ai_call import AiCall
 log = logging.getLogger("procsense.audit")
 
 # the addresses of the AI capabilities (p1-backend-s06); a route under one of them must start an audit record
-AI_PREFIXES = ("/llm", "/dialogue", "/behaviour", "/classify", "/interpret", "/debrief", "/asr", "/tts", "/orders")
+AI_PREFIXES = ("/llm", "/dialogue", "/behaviour", "/evaluate", "/debrief", "/asr", "/tts", "/orders")
 SCOPE_KEY = "procsense.ai_call"
 HEADER = "x-ai-call-id"
 CODE = re.compile(r"^[A-Z][A-Z0-9_]{0,39}$")

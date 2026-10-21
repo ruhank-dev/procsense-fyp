@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using ProcSense.Core.Actions;
@@ -6,20 +7,20 @@ using ProcSense.Core.Pipeline;
 namespace ProcSense.Core.Speech
 {
     /// <summary>
-    /// Takes speech evidence into the session log (p1-ai-language-s10, ADR-0022). The verb <c>speech_evidence</c> carries one interpreted utterance that the interpretation service offered:
-    /// <c>act</c>, <c>span</c> (the words that show it), <c>confidence</c> (0 to 1), <c>utterance_id</c> and <c>status</c> (actual, or question for an act that is a question).
-    /// The subsystem changes NO simulation state and credits nothing: it checks the shape, then stamps the action with the workflow steps the trainee is in at that moment (<c>steps:2,3</c>, taken from the flow map, not from the caller),
-    /// so the log carries the context a replay needs. Whether the evidence counts is decided later, by the same rules every time, in <see cref="Scoring.EvidenceStore"/> (critical acts refused, threshold, window, duplicates).
-    /// It is not an action of any behaviour, so it can never satisfy a procedural or physical requirement. ANSWER_QUESTION needs a patient question waiting and CLOSED_LOOP a critical result waiting for read-back in the SESSION (the same definitions as the interpretation context), whatever the caller says.
+    /// Takes the semantic evaluator's judgement into the session log (p1-ai-language-s22, ADR-0025). The verb <c>speech_evidence</c> carries ONE judged objective of one utterance: <c>act</c> (the objective), <c>span</c> (the words that show it), <c>utterance_id</c>,
+    /// <c>assertion</c> (performed, negated, intended_later, hypothetical, reported, other_actor, earlier_claim, uncertain, incomplete), <c>actor</c>, <c>form</c>, the three grades <c>relevance</c>, <c>correctness</c>, <c>completeness</c> (0 to 3) and <c>claims_physical</c> (an audit note).
+    /// The subsystem changes NO simulation state and credits nothing: it checks the shape, checks the two states the engine itself holds (a waiting patient question for ANSWER_QUESTION, a waiting read-back for CLOSED_LOOP, <see cref="SpeechStateGate"/>), and stamps the action with the workflow steps
+    /// the trainee is in at that moment (<c>steps:2,3</c>, from the flow map, not from the caller). Whether and how much it counts is decided later, by the same rules every time, in <see cref="Scoring.EvidenceStore"/>. It is not an action of any behaviour, so it can never satisfy a procedural or physical requirement.
     /// </summary>
     public sealed class SpeechEvidenceSubsystem : ISubsystem
     {
         public const string Verb = "speech_evidence";
-        public const string ActParam = "act", SpanParam = "span", ConfidenceParam = "confidence", UtteranceParam = "utterance_id", StatusParam = "status";
+        public const string ActParam = "act", SpanParam = "span", UtteranceParam = "utterance_id", AssertionParam = "assertion", ActorParam = "actor", FormParam = "form";
+        public const string RelevanceParam = "relevance", CorrectnessParam = "correctness", CompletenessParam = "completeness", ClaimsPhysicalParam = "claims_physical";
         public const string StepsEffect = "steps:";
-        public const string MissingAct = "MISSING_ACT", MissingSpan = "MISSING_SPAN", MissingUtterance = "MISSING_UTTERANCE", BadConfidence = "BAD_CONFIDENCE", BadStatus = "BAD_STATUS";
-        public const string NoPendingQuestion = "NO_PENDING_QUESTION", NoReadbackPending = "NO_READBACK_PENDING";
-        public const int MaxSpan = 300;
+        public const string MissingAct = "MISSING_ACT", MissingSpan = "MISSING_SPAN", MissingUtterance = "MISSING_UTTERANCE", BadJudgement = "BAD_JUDGEMENT";
+        public const string NoPendingQuestion = SpeechStateGate.NoPendingQuestion, NoReadbackPending = SpeechStateGate.NoReadbackPending;
+        public const int MaxSpan = 400;      // the longest utterance the evaluation route accepts: the evidence span is words copied from it (DT-247)
 
         private Session _s = null!;
 
@@ -35,16 +36,24 @@ namespace ProcSense.Core.Speech
         {
             if (a.Verb != Verb) return;
             if (!Has(a, ActParam)) { o.Reject(MissingAct); return; }
-            if (!Has(a, SpanParam) || a.Params[SpanParam].Length > MaxSpan) { o.Reject(MissingSpan); return; }
             if (!Has(a, UtteranceParam)) { o.Reject(MissingUtterance); return; }
-            if (!a.Params.TryGetValue(ConfidenceParam, out var c) || !double.TryParse(c, NumberStyles.Float, CultureInfo.InvariantCulture, out var conf) || double.IsNaN(conf) || conf < 0 || conf > 1) { o.Reject(BadConfidence); return; }
-            if (!a.Params.TryGetValue(StatusParam, out var st) || (st != "actual" && st != "question")) { o.Reject(BadStatus); return; }
-            // the two acts that answer something the session must be holding: the engine checks that itself, so a client that claims a waiting question or read-back it was not given gets nothing logged as evidence (ADR-0023)
-            if (a.Params[ActParam] == "ANSWER_QUESTION" && !InterpretationContextBuilder.PatientQuestionPending(_s)) { o.Reject(NoPendingQuestion); return; }
-            if (a.Params[ActParam] == "CLOSED_LOOP" && !InterpretationContextBuilder.ReadbackPending(_s)) { o.Reject(NoReadbackPending); return; }
-            var steps = _s.RunningSteps;
-            o.Effects.Add(StepsEffect + string.Join(",", steps.Select(n => n.ToString(CultureInfo.InvariantCulture))));
+            if (!Has(a, SpanParam) || a.Params[SpanParam].Length > MaxSpan) { o.Reject(MissingSpan); return; }
+            if (Judgement(a.Params) == null) { o.Reject(BadJudgement); return; }
+            var refusal = SpeechStateGate.Check(a.Params[ActParam], InterpretationContextBuilder.PatientQuestionPending(_s), InterpretationContextBuilder.ReadbackPending(_s));      // a client that claims a waiting question or read-back it was not given gets nothing logged as evidence (ADR-0023)
+            if (refusal != null) { o.Reject(refusal); return; }
+            o.Effects.Add(StepsEffect + string.Join(",", _s.RunningSteps.Select(n => n.ToString(CultureInfo.InvariantCulture))));
         }
+
+        /// <summary>The judgement an action carries, or null when any part is missing or outside its closed vocabulary or grade range.</summary>
+        public static SpeechJudgement? Judgement(IReadOnlyDictionary<string, string> p)
+        {
+            if (!p.TryGetValue(AssertionParam, out var asr) || !p.TryGetValue(ActorParam, out var actor) || !p.TryGetValue(FormParam, out var form)) return null;
+            if (!Grade(p, RelevanceParam, out var r) || !Grade(p, CorrectnessParam, out var c) || !Grade(p, CompletenessParam, out var k)) return null;
+            var j = new SpeechJudgement(asr, actor, form, r, c, k, p.TryGetValue(ClaimsPhysicalParam, out var cp) && cp == "true");
+            return j.IsValid ? j : null;
+        }
+
+        private static bool Grade(IReadOnlyDictionary<string, string> p, string key, out int g) { g = 0; return p.TryGetValue(key, out var v) && int.TryParse(v, NumberStyles.Integer, CultureInfo.InvariantCulture, out g); }
 
         public void OnTick() { }
 

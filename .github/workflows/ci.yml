@@ -462,9 +462,6 @@ jobs:
       - name: classifier smoke dataset is current and split by speaker
         run: uv run --project tools tools/synth/gen_utterances.py --check
 
-      - name: classifier benchmark data rules and refusals
-        run: uv run --project tools tools/ci/test_bench.py
-
       - name: classifier benchmark scenario cards are current
         run: uv run --project tools tools/bench/dataset.py cards --check
 
@@ -473,9 +470,6 @@ jobs:
 
       - name: quiz candidates are current
         run: uv run --project tools tools/eval/build_quiz.py --check
-
-      - name: communication classifier head, guard and regression of the critical misroutes
-        run: uv run --project tools tools/ci/test_classifier_embedding.py
 
       - name: retrieval index and the recorded decision
         run: uv run --project tools tools/ci/test_retrieval.py

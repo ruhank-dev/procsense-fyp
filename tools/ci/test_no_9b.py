@@ -20,11 +20,9 @@ class NoNineB(unittest.TestCase):
         from llm import client
         self.assertEqual((client.LIVE_MODEL, client.BATCH_MODEL), ("qwen3.5:4b-q4_K_M", "qwen3.5:4b-q4_K_M"))
         sys.path.insert(0, str(ROOT / "tools" / "kb"))
-        sys.path.insert(0, str(ROOT / "tools" / "bench"))
         import extract_relations
-        import cross_judge
         import judge_relations
-        self.assertEqual((extract_relations.DEFAULT_MODEL, judge_relations.MODEL, cross_judge.MODEL), ("qwen3.5:4b-q4_K_M",) * 3)
+        self.assertEqual((extract_relations.DEFAULT_MODEL, judge_relations.MODEL), ("qwen3.5:4b-q4_K_M",) * 2)
 
 
 if __name__ == "__main__":

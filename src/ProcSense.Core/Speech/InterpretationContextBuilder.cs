@@ -10,12 +10,12 @@ namespace ProcSense.Core.Speech
 {
     /// <summary>
     /// Builds the <see cref="InterpretationContext"/> from the session's truth (p1-ai-language-s10, ADR-0022). Read-only: it has no way back into the session.
-    /// An act is eligible only if a behaviour that lists it as an AI act has a step window that contains one of the steps the trainee is in (the same rule <see cref="EvidenceStore.Submit(string, string, string, double, IReadOnlyCollection{int}, IReadOnlyList{int})"/> applies);
+    /// An act is eligible only if a behaviour that lists it as an AI act has a step window that contains one of the steps the trainee is in (the same rule <see cref="EvidenceStore.Submit(string, string, string, SpeechJudgement, IReadOnlyCollection{int}, IReadOnlyList{int})"/> applies);
     /// with no running step nothing is eligible, never "everything".
     /// </summary>
     public static class InterpretationContextBuilder
     {
-        public const int MaxTurns = 4, MaxTurnChars = 300;
+        public const int MaxTurns = 4, MaxTurnChars = 300, MaxVerified = 40;
 
         public static InterpretationContext Build(Session s, ContentPackage content, IReadOnlyList<ContextTurn> turns, string addressee)
         {
@@ -25,8 +25,9 @@ namespace ProcSense.Core.Speech
             store.FromLog(s.Log);
             var accepted = store.Records.Where(r => r.Source == "ai" && r.Accepted).Select(r => r.Behaviour).Distinct().OrderBy(x => x, StringComparer.Ordinal).ToList();
             var kept = turns.Skip(Math.Max(0, turns.Count - MaxTurns)).Select(t => new ContextTurn(t.Speaker, t.Text.Length > MaxTurnChars ? t.Text.Substring(0, MaxTurnChars) : t.Text)).ToList();
+            var verified = store.Records.Where(r => r.Source == "deterministic" && r.Accepted).Select(r => r.Act).Distinct().OrderBy(x => x, StringComparer.Ordinal).Take(MaxVerified).ToList();       // the simulator's own verified actions, by name: authoritative context for the evaluator, never a score
             return new InterpretationContext(s.Case.Id, s.Case.Scenario, s.Mode.ToString().ToLowerInvariant(), steps, EligibleFor(tables, steps), accepted,
-                PatientQuestionPending(s), ReadbackPending(s), kept, "trainee", addressee);
+                PatientQuestionPending(s), ReadbackPending(s), kept, "trainee", addressee, verified);
         }
 
         /// <summary>A patient question is waiting for an answer: the consent discussion has a question pending. The one definition the context and the speech-evidence check share (DT-232: no other engine event opens a question yet).</summary>

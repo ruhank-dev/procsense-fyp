@@ -1,4 +1,4 @@
-"""The dialogue, classification and debrief routes (p1-ai-language s04, s05, s07, s08; p1-backend-s06) on a real PostgreSQL with fake model hosts: answers, fallbacks, the feature gate, the audit."""
+"""The dialogue, evaluation and debrief routes (p1-ai-language s04, s07, s08, s22; p1-backend-s06) on a real PostgreSQL with fake model hosts: answers, fallbacks, the feature gate, the audit."""
 from __future__ import annotations
 
 import json
@@ -9,14 +9,13 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session as DbSession
 
 from server import ai_features, config
-from server.classify.classifier import ActClassifier
 from server.debrief.rewrite import Rewriter
 from server.dialogue.dialogue import Dialogue
 from server.llm import client as client_mod
 from server.middleware import audit
 from server.models.ai_call import AiCall
 from server.repositories import accounts
-from server.routers import classify as classify_router, debrief as debrief_router, dialogue as dialogue_router
+from server.routers import debrief as debrief_router, dialogue as dialogue_router
 
 pytestmark = pytest.mark.db
 
@@ -50,11 +49,10 @@ def world(api):
     w.api, w.org, w.me = api, org, me
     o = api.client.app.dependency_overrides
     o[dialogue_router.get_dialogue] = lambda: Dialogue(host({"intent": "answer_question", "text": "Pain low on the right for two days.", "fact_ids": ["h.complaint"]}))
-    o[classify_router.get_classifier] = lambda: ActClassifier(host({"act": "ASK_TOPIC", "confidence": 0.9}), thresholds={"per_act": {"ASK_TOPIC": 0.7}})
     o[debrief_router.get_rewriter] = lambda: Rewriter(host({"sections": [{"title": "What went well", "text": "You made the right decision, well done.", "fact_ids": ["f1"]},
                                                                            {"title": "What to improve", "text": "The case was postponed when it did not need to be, a mistake to work on.", "fact_ids": ["f2"]},
                                                                            {"title": "How the session ended", "text": "It ended safe but delayed.", "fact_ids": ["f3"]}]}))
-    w.post = lambda path, body: api.client.post(f"/{path}/organisations/{org}" + ("" if path == "classify" else ""), json=body, headers=api.headers(me))
+    w.post = lambda path, body: api.client.post(f"/{path}/organisations/{org}" , json=body, headers=api.headers(me))
     yield w
     o.clear()
 
@@ -90,43 +88,6 @@ def test_the_staff_route_uses_the_staff_prompt(world):
     assert rows(world.api)[0].prompt_id == "dialogue.staff:v1"
 
 
-def test_the_classify_route_credits_a_non_critical_act_at_its_threshold(world):
-    r = world.api.client.post(f"/classify/organisations/{world.org}", json={"text": "What about your last meal?"}, headers=world.api.headers(world.me))
-    assert (r.json()["act"], r.json()["credited"], r.json()["critical"], r.json()["source"]) == ("ASK_TOPIC", True, False, "model")
-    world.api.client.app.dependency_overrides[classify_router.get_classifier] = lambda: ActClassifier(host({"act": "STATE_ALLERGY", "confidence": 1.0}), thresholds={"per_act": {"STATE_ALLERGY": 0.1}})
-    r = world.api.client.post(f"/classify/organisations/{world.org}", json={"text": "Are you allergic to anything?"}, headers=world.api.headers(world.me))
-    assert (r.json()["act"], r.json()["credited"], r.json()["critical"]) == ("STATE_ALLERGY", False, True)
-
-
-def test_the_embedding_backend_credits_an_ordinary_act_and_never_a_critical_one_through_the_route(world):
-    """The default backend: the committed head, the sentence embedded by a stand-in for Ollama (the head's own weight row for the act, so that act wins), the same answer shape as the language-model backend."""
-    from server.classify.embedding import EmbeddingActClassifier, load_head
-    head = load_head()
-    row = lambda act: head["coef"][head["classes"].index(act)]            # noqa: E731
-    assert head["thresholds"]["ASK_TOPIC"] is not None
-    world.api.client.app.dependency_overrides[classify_router.get_classifier] = lambda: EmbeddingActClassifier(lambda text: row("ASK_TOPIC"), head)
-    r = world.api.client.post(f"/classify/organisations/{world.org}", json={"text": "What about your last meal?"}, headers=world.api.headers(world.me))
-    assert (r.json()["act"], r.json()["credited"], r.json()["critical"], r.json()["source"]) == ("ASK_TOPIC", True, False, "embedding")
-    world.api.client.app.dependency_overrides[classify_router.get_classifier] = lambda: EmbeddingActClassifier(lambda text: row("STATE_ALLERGY"), head)
-    r = world.api.client.post(f"/classify/organisations/{world.org}", json={"text": "Are you allergic to anything?"}, headers=world.api.headers(world.me))
-    assert (r.json()["act"], r.json()["credited"], r.json()["critical"], r.json()["source"]) == ("STATE_ALLERGY", False, True, "embedding")
-    world.api.client.app.dependency_overrides[classify_router.get_classifier] = lambda: EmbeddingActClassifier(lambda text: None, head)
-    r = world.api.client.post(f"/classify/organisations/{world.org}", json={"text": "What about your last meal?"}, headers=world.api.headers(world.me))
-    assert (r.json()["credited"], r.json()["source"], r.json()["error"]) == (False, "unavailable", "EMBEDDING_UNAVAILABLE")
-
-
-def test_the_default_classifier_is_the_two_head_ensemble_and_a_missing_head_credits_nothing(monkeypatch, tmp_path):
-    from server.classify import ensemble
-    config.get_settings.cache_clear()
-    classify_router.get_classifier.cache_clear()
-    assert isinstance(classify_router.get_classifier(), ensemble.EnsembleActClassifier)
-    classify_router.get_classifier.cache_clear()
-    monkeypatch.setattr(classify_router, "load_head", lambda *a: (_ for _ in ()).throw(FileNotFoundError("no head")))
-    r = classify_router.get_classifier().classify("What about your last meal?")
-    assert (r.credited, r.source, r.error) == (False, "unavailable", "CLASSIFIER_HEAD_UNAVAILABLE")
-    classify_router.get_classifier.cache_clear()
-
-
 def test_the_debrief_route_gives_the_template_and_the_rewrite_when_the_validator_passes(world):
     r = world.api.client.post(f"/debrief/organisations/{world.org}/rewrite", json={"report": REPORT}, headers=world.api.headers(world.me))
     j = r.json()
@@ -145,8 +106,8 @@ def test_with_the_gate_closed_every_route_answers_with_the_fallback(world, monke
     c = world.api.client
     d = c.post(f"/dialogue/organisations/{world.org}/patient", json={"context": CTX, "question": "x"}, headers=world.api.headers(world.me)).json()
     assert (d["source"], d["reasons"]) == ("fallback", ["FEATURE_OFF"])
-    k = c.post(f"/classify/organisations/{world.org}", json={"text": "x"}, headers=world.api.headers(world.me)).json()
-    assert (k["source"], k["credited"], k["error"]) == ("unavailable", False, "FEATURE_OFF")
+    k = c.post(f"/evaluate/organisations/{world.org}", json={"context": {"case": "X", "scenario": "s", "mode": "practice", "steps": [2], "eligible": []}, "utterance": "x", "utterance_id": "u1"}, headers=world.api.headers(world.me)).json()
+    assert (k["decision"], k["acts"], k["reasons"]) == ("UNAVAILABLE", [], ["FEATURE_OFF"])
     b = c.post(f"/debrief/organisations/{world.org}/rewrite", json={"report": REPORT}, headers=world.api.headers(world.me)).json()
     assert (b["used"], b["reasons"]) == ("template", ["FEATURE_OFF"])
     assert {r.fallback_reason for r in rows(world.api)} == {"FEATURE_OFF"}

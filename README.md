@@ -78,7 +78,6 @@ Required for `task ci`: Git, .NET SDK, uv, Task (and Docker for the backend test
 | `task ci` | `uv run --project tools tools/ci/run_all.py` — every check CI runs, locally |
 | `task external-testing` | `uv run --project tools tools/plans/external_testing.py --link-steps` — regenerates the external-testing handoff from its data, the reconciliation and the result files |
 | `task feature-matrix` | syncs the pipeline JSON statuses from the reconciliation and regenerates the feature implementation matrix and the 68 plans |
-| `task classifier-safety` | scores the credit path of the communication classifier on every labelled set (`docs/research/classifier_benchmark/safety_gate.md`) |
 | `task compose-multiproblem` | composes new multi-problem case structures by the walkthrough recipe (synthetic DRAFT fixtures, not cases) |
 | `task plans-index` | `uv run --project tools tools/plans/milestones.py` — rebuilds `docs/plans/milestones.md` from the step files and checks step references |
 | `task data-fetch` | downloads the open source datasets the pictures are built from (about 3 GB, git-ignored; **only needed to rebuild**: every generated picture, report and table is already committed). See `tools/data/README.md` |

@@ -110,51 +110,6 @@
     }
    ]
   },
-  "classifier": {
-   "label": "Communication act classifier (sentence embeddings + logistic regression)",
-   "suites": [
-    {
-     "id": "classifier.macro_f1",
-     "file": "classifier-bench-independent.json",
-     "path": "candidates.embeddings_logreg.macro_f1",
-     "op": ">=",
-     "value": 0.75,
-     "ref": "plan: below macro-F1 0.75 the classifier stays switched off"
-    },
-    {
-     "id": "classifier.credited_precision",
-     "file": "classifier-bench-independent.json",
-     "path": "candidates.embeddings_logreg.credited_precision",
-     "op": ">=",
-     "value": 0.8,
-     "ref": "plan: precision 0.8 on what is credited"
-    },
-    {
-     "id": "classifier.no_critical_credited",
-     "file": "classifier-bench-independent.json",
-     "path": "candidates.embeddings_logreg.critical_acts_credited_from_speech",
-     "op": "==",
-     "value": 0,
-     "ref": "plan: critical acts never credited from speech"
-    },
-    {
-     "id": "classifier.no_critical_misrouted",
-     "file": "classifier-bench-independent.json",
-     "path": "candidates.embeddings_logreg.critical_said_but_credited_as_other_act",
-     "op": "==",
-     "value": 0,
-     "ref": "a critical sentence must not earn credit under another act (benchmark finding)"
-    },
-    {
-     "id": "classifier.independent_evidence",
-     "file": "classifier-bench-independent.json",
-     "path": "valid_for_claims",
-     "op": "==",
-     "value": true,
-     "ref": "owner rule: no claim from synthetic or self-labelled data; the independent set (docs/research/classifier_benchmark) needs real authors, a second labeller and an adjudicator"
-    }
-   ]
-  },
   "debrief_ai": {
    "label": "AI debrief wording",
    "suites": [
@@ -261,146 +216,6 @@
     }
    ]
   },
-  "classifier_synthetic": {
-   "label": "Communication act classifier on SYNTHETIC styles (model-written and model-labelled, NOT independent; recorded for information, switches nothing on)",
-   "informational": true,
-   "suites": [
-    {
-     "id": "classifier_synthetic.macro_f1",
-     "file": "classifier-bench-synthetic.json",
-     "path": "candidates.embeddings_logreg.macro_f1",
-     "op": ">=",
-     "value": 0.75,
-     "ref": "plan: below macro-F1 0.75 the classifier stays switched off"
-    },
-    {
-     "id": "classifier_synthetic.credited_precision",
-     "file": "classifier-bench-synthetic.json",
-     "path": "candidates.embeddings_logreg.credited_precision",
-     "op": ">=",
-     "value": 0.8,
-     "ref": "plan: precision 0.8 on what is credited"
-    },
-    {
-     "id": "classifier_synthetic.no_critical_credited",
-     "file": "classifier-bench-synthetic.json",
-     "path": "candidates.embeddings_logreg.critical_acts_credited_from_speech",
-     "op": "==",
-     "value": 0,
-     "ref": "plan: critical acts never credited from speech"
-    },
-    {
-     "id": "classifier_synthetic.no_critical_misrouted",
-     "file": "classifier-bench-synthetic.json",
-     "path": "candidates.embeddings_logreg.critical_said_but_credited_as_other_act",
-     "op": "==",
-     "value": 0,
-     "ref": "a critical sentence must not earn credit under another act (benchmark finding)"
-    }
-   ]
-  },
-  "classifier_synthetic2": {
-   "label": "Communication act classifier on the AI-JUDGED synthetic sets v2 and v3 (model-written, labelled by two configurations of one local AI judge, NOT independent; recorded for information, switches nothing on)",
-   "informational": true,
-   "suites": [
-    {
-     "id": "classifier_synthetic2.macro_f1",
-     "file": "classifier-bench-synthetic2.json",
-     "path": "candidates.embeddings_logreg.macro_f1",
-     "op": ">=",
-     "value": 0.75,
-     "ref": "plan: below macro-F1 0.75 the classifier stays switched off (v2 test, as scored once)"
-    },
-    {
-     "id": "classifier_synthetic2.credited_precision",
-     "file": "classifier-bench-synthetic2.json",
-     "path": "candidates.embeddings_logreg.credited_precision",
-     "op": ">=",
-     "value": 0.8,
-     "ref": "plan: precision 0.8 on what is credited (v2 test, as scored once)"
-    },
-    {
-     "id": "classifier_synthetic2.no_critical_credited",
-     "file": "classifier-bench-synthetic2.json",
-     "path": "candidates.embeddings_logreg.critical_acts_credited_from_speech",
-     "op": "==",
-     "value": 0,
-     "ref": "plan: critical acts never credited from speech (v2 test)"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_macro_f1",
-     "file": "classifier-holdout-v3.json",
-     "path": "shipped_head.macro_f1",
-     "op": ">=",
-     "value": 0.75,
-     "ref": "the shipped head on the fresh v3 hold-out written after the v2 test was scored"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_credited_precision",
-     "file": "classifier-holdout-v3.json",
-     "path": "shipped_head.credited_precision",
-     "op": ">=",
-     "value": 0.8,
-     "ref": "the shipped head on the fresh v3 hold-out"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_no_critical_credited",
-     "file": "classifier-holdout-v3.json",
-     "path": "shipped_head.critical_acts_credited_from_speech",
-     "op": "==",
-     "value": 0,
-     "ref": "plan: critical acts never credited from speech (v3 hold-out)"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_no_critical_misrouted",
-     "file": "classifier-holdout-v3.json",
-     "path": "shipped_head.critical_said_but_credited_as_other_act",
-     "op": "==",
-     "value": 0,
-     "ref": "a critical sentence must not earn credit under another act (v3 hold-out; the last cue was added after seeing it, so post hoc)"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_tuning",
-     "file": "classifier-adversarial.json",
-     "path": "shipped_head_with_cues_v3_and_mass_guard.tuning.credited_as_ordinary_count",
-     "op": "==",
-     "value": 0,
-     "ref": "evasive critical sentences (the set the cues were chosen from)"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_holdout",
-     "file": "classifier-adversarial.json",
-     "path": "shipped_head_with_cues_v3_and_mass_guard.holdout.credited_as_ordinary_count",
-     "op": "==",
-     "value": 0,
-     "ref": "evasive critical sentences written before the cue change (same author, so only a partial check)"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_fresh_2",
-     "file": "classifier-adversarial-fresh.json",
-     "path": "holdout2.credited_as_ordinary_count",
-     "op": "==",
-     "value": 0,
-     "ref": "hold-out 2 was used for tuning the cues of version 4 once seen; recorded for information"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_fresh_3",
-     "file": "classifier-adversarial-fresh.json",
-     "path": "holdout3.credited_as_ordinary_count",
-     "op": "==",
-     "value": 0,
-     "ref": "hold-out 3 is the only adversarial set no cue was chosen from: fresh critical sentences credited under an ordinary act must be 0 (it is 3 of 48 today)"
-    },
-    {
-     "id": "classifier_synthetic2.independent_evidence",
-     "file": "classifier-holdout-v3.json",
-     "path": "valid_for_claims",
-     "op": "==",
-     "value": true,
-     "ref": "owner rule: no claim from synthetic or AI-judged data; this suite cannot pass until an independent set exists (docs/research/classifier_benchmark)"
-    }
-   ]
-  },
   "multi_agent": {
    "label": "Three characters answering one trainee turn (the patient written from earned facts, two staff choosing approved lines in one call)",
    "suites": [
@@ -419,116 +234,6 @@
      "op": "<=",
      "value": 0.1,
      "ref": "design value: at most one reply in ten falls back to a fixed line"
-    }
-   ]
-  },
-  "classifier_safety": {
-   "label": "Safety of the credit path of the communication classifier (two-head ensemble gate, hard negatives, assertion check) on SYNTHETIC sets (model-written, AI-judged, NOT independent; recorded for information, switches nothing on: the `classifier` feature still needs the independent set)",
-   "informational": true,
-   "suites": [
-    {
-     "id": "classifier_safety.no_false_credit_challenge_v4",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v4.variants.ensemble.ALL.false_credit.k",
-     "op": "==",
-     "value": 0,
-     "ref": "no evasive critical sentence of the frozen challenge set v4 is credited under an ordinary act (scored once)"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_challenge_v5",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v5.variants.ensemble.ALL.false_credit.k",
-     "op": "==",
-     "value": 0,
-     "ref": "no evasive critical sentence of the frozen challenge set v5 is credited under an ordinary act (scored ONCE, 18 October 2026: 1 of 48 was credited, so this suite FAILS as recorded; the cue and assertion fixes made after it make v5 a development set and need a new frozen set, v6)"
-    },
-    {
-     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v5",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v5.variants.ensemble.ALL.non_assertive_credited.k",
-     "op": "==",
-     "value": 0,
-     "ref": "scored ONCE on the frozen v5: 1 of 12 non-assertive sentences was credited, so this suite FAILS as recorded"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_adversarial_set_4",
-     "file": "classifier-safety.json",
-     "path": "sets.adv_holdout3.variants.ensemble.ALL.false_credit.k",
-     "op": "==",
-     "value": 0,
-     "ref": "the three sentences credited on 18 October 2026 are no longer credited (development set now)"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_v2_test",
-     "file": "classifier-safety.json",
-     "path": "sets.v2_test.variants.ensemble.ALL.false_credit.k",
-     "op": "==",
-     "value": 0,
-     "ref": "post hoc on the v2 test split"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_v3_holdout",
-     "file": "classifier-safety.json",
-     "path": "sets.v3_test.variants.ensemble.ALL.false_credit.k",
-     "op": "==",
-     "value": 0,
-     "ref": "post hoc on the v3 hold-out"
-    },
-    {
-     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v4",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v4.variants.ensemble.ALL.non_assertive_credited.k",
-     "op": "==",
-     "value": 0,
-     "ref": "a denied, hypothetical or reported act earns no credit (the patterns were written after v4, so this tests the pattern)"
-    },
-    {
-     "id": "classifier_safety.credited_precision_challenge_v4",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v4.variants.ensemble.ALL.credited_precision.rate",
-     "op": ">=",
-     "value": 0.9,
-     "ref": "precision of what is credited, with a stricter bar than the plan's 0.8"
-    },
-    {
-     "id": "classifier_safety.credited_precision_v3_holdout",
-     "file": "classifier-safety.json",
-     "path": "sets.v3_test.variants.ensemble.ALL.credited_precision.rate",
-     "op": ">=",
-     "value": 0.9,
-     "ref": "precision of what is credited on the v3 hold-out (post hoc)"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_challenge_v6",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v6.variants.ensemble.ALL.false_credit.k",
-     "op": "==",
-     "value": 0,
-     "ref": "no evasive critical sentence of the frozen challenge set v6 is credited under an ordinary act (scored ONCE, 19 October 2026, synthetic, same author family: 0 of 48)"
-    },
-    {
-     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v6",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v6.variants.ensemble.ALL.non_assertive_credited.k",
-     "op": "==",
-     "value": 0,
-     "ref": "a denied, hypothetical, reported or broken-off act earns no credit on the frozen v6 (0 of 12)"
-    },
-    {
-     "id": "classifier_safety.credited_precision_challenge_v6",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v6.variants.ensemble.ALL.credited_precision.rate",
-     "op": ">=",
-     "value": 0.9,
-     "ref": "precision of what is credited on the frozen v6"
-    },
-    {
-     "id": "classifier_safety.ordinary_credit_challenge_v6",
-     "file": "classifier-safety.json",
-     "path": "sets.challenge_v6.variants.ensemble.ALL.ordinary_credited.rate",
-     "op": ">=",
-     "value": 0.5,
-     "ref": "legitimate sentences credited on the frozen v6 (recall; 0.70 measured)"
     }
    ]
   },
@@ -644,72 +349,120 @@
     }
    ]
   },
-  "speech_interpretation": {
-   "label": "Context-aware interpretation of trainee speech as evidence (ADR-0022)",
+  "speech_evaluation": {
+   "label": "Gemma semantic evaluation of trainee speech, scored by the engine (ADR-0025): approved on synthetic held-out evidence (AI-written, scored once per set); the real Quest and ASR check is DC-10",
    "suites": [
     {
-     "id": "speech_interpretation.critical_false_credit",
-     "file": "interpretation-bench-independent.json",
-     "path": "gate_inputs.critical_false_credit",
+     "id": "speech_evaluation.critical_physical_completions",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.critical_physical_completions",
      "op": "==",
      "value": 0,
-     "ref": "no critical sentence is offered as evidence, in any context; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "ref": "a critical act never gets physical completion credit from speech (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.out_of_window_false_credit",
-     "file": "interpretation-bench-independent.json",
-     "path": "gate_inputs.out_of_window_false_credit",
+     "id": "speech_evaluation.window_state_enforcement",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.window_state_bypass_items",
      "op": "==",
      "value": 0,
-     "ref": "no act is offered outside its behaviour window; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "ref": "the objective of an item out of its window or without its waiting state never earns credit (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.non_assertive_false_credit_rate",
-     "file": "interpretation-bench-independent.json",
-     "path": "gate_inputs.non_assertive_false_credit_rate",
-     "op": "<=",
-     "value": 0.01,
-     "ref": "at most 1 percent of denied, planned, imagined, reported, other-speaker or broken-off sentences offered; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "id": "speech_evaluation.legitimate_recall",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.legitimate_recall",
+     "op": ">=",
+     "value": 0.9,
+     "ref": "at least 90 percent of legitimate sentences credited (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.credited_precision",
-     "file": "interpretation-bench-independent.json",
+     "id": "speech_evaluation.credited_precision",
+     "file": "speech-evaluation-acceptance.json",
      "path": "gate_inputs.credited_precision",
      "op": ">=",
      "value": 0.95,
-     "ref": "what is offered is right at least 95 percent of the time; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "ref": "at least 95 percent of what is credited is right (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.legitimate_recall_not_below_route",
-     "file": "interpretation-bench-independent.json",
-     "path": "gate_inputs.legitimate_recall",
+     "id": "speech_evaluation.performed_vs_not",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.performed_vs_not_accuracy",
      "op": ">=",
-     "vs": "gate_inputs.route_legitimate_recall",
-     "ref": "legitimate recall not below the classifier route's on the same rows; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "value": 0.95,
+     "ref": "performed versus not performed understanding (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.legitimate_recall_floor",
-     "file": "interpretation-bench-independent.json",
-     "path": "gate_inputs.legitimate_recall",
+     "id": "speech_evaluation.valid_replies",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.valid_reply_rate",
      "op": ">=",
-     "value": 0.5,
-     "ref": "at least half of the legitimate sentences are offered; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "value": 0.995,
+     "ref": "valid structured replies after the bounded retry (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.latency_p95_ms",
-     "file": "interpretation-latency.json",
-     "path": "warm_while_4b_generates_ms.whole.p95",
+     "id": "speech_evaluation.non_performed_false_credit",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.non_performed_false_credit_rate",
      "op": "<=",
-     "value": 300,
-     "ref": "interpretation p95 at most 300 ms while the 4B model is generating, measured on the desktop; PENDING the owner's approval (DT-229); proposed by the engineer, ADR-0022"
+     "value": 0.01,
+     "ref": "negated, planned, hypothetical, reported and another-actor sentences earn credit at most once in a hundred (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     },
     {
-     "id": "speech_interpretation.independent_evidence",
-     "file": "interpretation-bench-independent.json",
-     "path": "gate_inputs.valid_for_claims",
+     "id": "speech_evaluation.unjustified_ordinary_credit_on_critical",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.unjustified_ordinary_credit_rate",
+     "op": "<=",
+     "value": 0.03,
+     "ref": "an ordinary objective credited on a single-critical sentence at most 3 percent (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
+    },
+    {
+     "id": "speech_evaluation.mixed_items",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.mixed_ordinary_recall",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "a critical act plus an independent ordinary act: the ordinary act is credited (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
+    },
+    {
+     "id": "speech_evaluation.multi_intent_recall",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.multi_intent_act_recall",
+     "op": ">=",
+     "value": 0.9,
+     "ref": "every performed objective of a multi-intent sentence credited (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
+    },
+    {
+     "id": "speech_evaluation.contrast_sets",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.contrast_set_rate",
+     "op": ">=",
+     "value": 0.85,
+     "ref": "contrast sets fully correct (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
+    },
+    {
+     "id": "speech_evaluation.partial_credit_bands",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.partial_in_band_rate",
+     "op": ">=",
+     "value": 0.8,
+     "ref": "partial-credit items in their expected scoring band (fresh set v3) (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
+    },
+    {
+     "id": "speech_evaluation.evidence_length",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.evidence_length_rejections",
      "op": "==",
-     "value": true,
-     "ref": "owner rule: no claim from synthetic or self-labelled data; the independent set needs authors, two annotators and an adjudicator (docs/testing/independent_labelling_protocol.md, EX-01)"
+     "value": 0,
+     "ref": "no valid evaluation rejected for long quoted evidence (DT-247) (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
+    },
+    {
+     "id": "speech_evaluation.median_latency",
+     "file": "speech-evaluation-acceptance.json",
+     "path": "gate_inputs.median_latency_ms",
+     "op": "<=",
+     "value": 4000,
+     "ref": "median response at most 4 s (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     }
    ]
   }

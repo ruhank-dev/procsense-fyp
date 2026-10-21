@@ -86,11 +86,6 @@ tasks:
     cmds:
       - uv run --project tools tools/composer/multiproblem.py {{.CLI_ARGS}}
 
-  classifier-safety:
-    desc: Score the credit path of the communication classifier on every labelled set (needs Ollama with all-minilm:22m; the frozen challenge set v4 only with -- --final, once) and write reports/ai/classifier-safety.json
-    cmds:
-      - uv run --project tools tools/bench/safety_gate.py --write {{.CLI_ARGS}}
-
   classifier-safety-page:
     desc: Regenerate docs/research/classifier_benchmark/safety_gate.md from the result files
     cmds:

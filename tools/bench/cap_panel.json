@@ -1,0 +1,188 @@
+{
+ "note": "fixed before any model call; open = would be offered under the corroborated cap if the model reports no critical objective (an oracle reply); controls = every third of the 24 highest critical-mass sentences that are not open (positive controls: the model should report a critical objective)",
+ "open": [
+  {
+   "set": "tuned-on: adversarial_critical_holdout3",
+   "text": "The reason for my call is that the family are anxious and want a senior opinion.",
+   "truth": "SBAR_ELEMENT",
+   "critical_mass": 0.0978,
+   "head_top": "ESCALATE_SPEECH",
+   "open_as": "ESCALATE_SPEECH",
+   "p_top_ordinary": 0.8517
+  },
+  {
+   "set": "tuned-on: adversarial_critical_holdout3",
+   "text": "Please come and see him within twenty minutes.",
+   "truth": "SBAR_ELEMENT",
+   "critical_mass": 0.2081,
+   "head_top": "VOICE_ORDER",
+   "open_as": "VOICE_ORDER",
+   "p_top_ordinary": 0.2234
+  },
+  {
+   "set": "tuned-on: challenge v5 critical_evasive",
+   "text": "Nothing to eat or drink since midnight, is that right?",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.0913,
+   "head_top": "ASK_TOPIC",
+   "open_as": "ASK_TOPIC",
+   "p_top_ordinary": 0.3368
+  },
+  {
+   "set": "tuned-on: challenge v5 critical_evasive",
+   "text": "Did you have breakfast this morning?",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.2662,
+   "head_top": "ASK_TOPIC",
+   "open_as": "ASK_TOPIC",
+   "p_top_ordinary": 0.4939
+  },
+  {
+   "set": "final: challenge v6 critical_evasive",
+   "text": "Would you initial each box to show you have read it?",
+   "truth": "CONSENT_SIGN",
+   "critical_mass": 0.0757,
+   "head_top": "CHECK_UNDERSTANDING",
+   "open_as": "CHECK_UNDERSTANDING",
+   "p_top_ordinary": 0.7681
+  },
+  {
+   "set": "final: challenge v6 critical_evasive",
+   "text": "Remember the blood thinner was stopped three days ago.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.3186,
+   "head_top": "ACKNOWLEDGE_FACT",
+   "open_as": "ACKNOWLEDGE_FACT",
+   "p_top_ordinary": 0.62
+  },
+  {
+   "set": "non-assertive: challenge v4 + v5 + v6",
+   "text": "I am not about to repeat the check, we did it earlier.",
+   "truth": "NONE",
+   "critical_mass": 0.1332,
+   "head_top": "CLARIFY",
+   "open_as": "CLARIFY",
+   "p_top_ordinary": 0.3001
+  },
+  {
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "R: Don't start until the senior anaesthetist is present.",
+   "truth": "SBAR_ELEMENT",
+   "critical_mass": 0.1249,
+   "head_top": "ESCALATE_SPEECH",
+   "open_as": "ESCALATE_SPEECH",
+   "p_top_ordinary": 0.7665
+  },
+  {
+   "set": "bench dev: non-performed rows",
+   "text": "The nurse said she said anxiety was normal.",
+   "truth": "ACKNOWLEDGE_EMOTION",
+   "critical_mass": 0.2095,
+   "head_top": "ACKNOWLEDGE_EMOTION",
+   "open_as": "ACKNOWLEDGE_EMOTION",
+   "p_top_ordinary": 0.5734
+  },
+  {
+   "set": "bench test: critical rows",
+   "text": "which mdiines are you not able to have",
+   "truth": "STATE_ALLERGY",
+   "critical_mass": 0.1334,
+   "head_top": "ASK_TOPIC",
+   "open_as": "ASK_TOPIC",
+   "p_top_ordinary": 0.2186
+  },
+  {
+   "set": "bench test: critical rows",
+   "text": "i need tobe sure you unerstand the risks and accept them",
+   "truth": "CONSENT_SIGN",
+   "critical_mass": 0.2482,
+   "head_top": "REASSURE",
+   "open_as": "CHECK_UNDERSTANDING",
+   "p_top_ordinary": 0.3612
+  },
+  {
+   "set": "bench test2: non-performed rows",
+   "text": "Let the senior nurse say most people do well.",
+   "truth": "REASSURE",
+   "critical_mass": 0.0949,
+   "head_top": "ESCALATE_SPEECH",
+   "open_as": "ESCALATE_SPEECH",
+   "p_top_ordinary": 0.8092
+  }
+ ],
+ "controls": [
+  {
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "Let's just check it's you, my love, so can you tell me your name and your date of birth?",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9998,
+   "head_top": "CONFIRM_IDENTITY",
+   "open_as": null,
+   "p_top_ordinary": 0.0001
+  },
+  {
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "Be aware she's allergic to penicillin, her face swelled and...",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.9997,
+   "head_top": "HANDOVER_CRITICAL_ELEMENT",
+   "open_as": null,
+   "p_top_ordinary": 0.0001
+  },
+  {
+   "set": "tuned-on: challenge v5 critical_evasive",
+   "text": "I need to be sure you are the person on my list: your full name and birth date.",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9997,
+   "head_top": "CONFIRM_IDENTITY",
+   "open_as": null,
+   "p_top_ordinary": 0.0001
+  },
+  {
+   "set": "tuned-on: AI-judged v2 dev critical-labelled rows",
+   "text": "would you please state your name and your date of birth",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9997,
+   "head_top": "CONFIRM_IDENTITY",
+   "open_as": null,
+   "p_top_ordinary": 0.0001
+  },
+  {
+   "set": "trained: adversarial_critical + holdout + holdout2",
+   "text": "Has a medicine ever made you wheezy or itchy?",
+   "truth": "STATE_ALLERGY",
+   "critical_mass": 0.9996,
+   "head_top": "STATE_ALLERGY",
+   "open_as": null,
+   "p_top_ordinary": 0.0003
+  },
+  {
+   "set": "tuned-on: AI-judged v2 dev critical-labelled rows",
+   "text": "If you're happy to go ahead, just sign...",
+   "truth": "CONSENT_SIGN",
+   "critical_mass": 0.9995,
+   "head_top": "CONSENT_SIGN",
+   "open_as": null,
+   "p_top_ordinary": 0.0002
+  },
+  {
+   "set": "scored-before: AI-judged v2 test critical-labelled rows",
+   "text": "can you tell me your name and when you were born",
+   "truth": "CONFIRM_IDENTITY",
+   "critical_mass": 0.9995,
+   "head_top": "CONFIRM_IDENTITY",
+   "open_as": null,
+   "p_top_ordinary": 0.0003
+  },
+  {
+   "set": "trained: adversarial_critical + holdout + holdout2",
+   "text": "He had cereal this morning, so his stomach isn't empty.",
+   "truth": "HANDOVER_CRITICAL_ELEMENT",
+   "critical_mass": 0.9994,
+   "head_top": "HANDOVER_CRITICAL_ELEMENT",
+   "open_as": null,
+   "p_top_ordinary": 0.0001
+  }
+ ],
+ "sentences_examined": 1693
+}

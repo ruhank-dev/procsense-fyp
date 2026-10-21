@@ -6,7 +6,7 @@ using ProcSense.Core.Content;
 
 namespace ProcSense.Core.Scoring
 {
-    /// <summary>One of the 22 assessed behaviours (guide section 81): what is deterministic evidence for it, what a classifier may report for it, and the rule that decides correctness.</summary>
+    /// <summary>One of the 22 assessed behaviours (guide section 81): what is deterministic evidence for it, what the speech evaluator may report for it, and the rule that decides correctness.</summary>
     public sealed record Behaviour(string Id, string Label, IReadOnlyList<int> Steps, IReadOnlyList<string> Actions, IReadOnlyList<string> AiActs, bool Critical, string Rule, string Ref);
 
     /// <summary>Which behaviour and item type a score item belongs to (the first rule whose pattern matches the item id after its severity prefix).</summary>
@@ -15,27 +15,25 @@ namespace ProcSense.Core.Scoring
     /// <summary>The rubric (content/scoring/rubric.json), the behaviours and what counts as evidence (content/assessment/mapping.json) and the debrief sentences (content/debrief/templates.json).</summary>
     public sealed class ScoreTables
     {
-        public static readonly ScoreTables Empty = new ScoreTables(new List<Behaviour>(), new List<RubricRule>(), new Dictionary<string, int>(), new Dictionary<string, IReadOnlyDictionary<string, double>>(), 0.8,
-            new Dictionary<string, double>(), new List<string>(), new Dictionary<string, string>());
+        public static readonly ScoreTables Empty = new ScoreTables(new List<Behaviour>(), new List<RubricRule>(), new Dictionary<string, int>(), new Dictionary<string, IReadOnlyDictionary<string, double>>(), CommunicationRubric.Default,
+            new List<string>(), new Dictionary<string, CriticalEvidence>(), new Dictionary<string, string>());
 
         public ScoreTables(IReadOnlyList<Behaviour> behaviours, IReadOnlyList<RubricRule> rules, IReadOnlyDictionary<string, int> points, IReadOnlyDictionary<string, IReadOnlyDictionary<string, double>> weights,
-            double defaultThreshold, IReadOnlyDictionary<string, double> thresholds, IReadOnlyList<string> criticalActs, IReadOnlyDictionary<string, string> sentences)
+            CommunicationRubric communication, IReadOnlyList<string> criticalActs, IReadOnlyDictionary<string, CriticalEvidence> criticalEvidence, IReadOnlyDictionary<string, string> sentences)
         {
-            Behaviours = behaviours; Rules = rules; Points = points; Weights = weights; DefaultThreshold = defaultThreshold; Thresholds = thresholds; CriticalActs = criticalActs; Sentences = sentences;
+            Behaviours = behaviours; Rules = rules; Points = points; Weights = weights; Communication = communication; CriticalActs = criticalActs; CriticalEvidence = criticalEvidence; Sentences = sentences;
         }
 
         public IReadOnlyList<Behaviour> Behaviours { get; }
         public IReadOnlyList<RubricRule> Rules { get; }
         public IReadOnlyDictionary<string, int> Points { get; }
         public IReadOnlyDictionary<string, IReadOnlyDictionary<string, double>> Weights { get; }
-        public double DefaultThreshold { get; }
-        public IReadOnlyDictionary<string, double> Thresholds { get; }
+        public CommunicationRubric Communication { get; }
         public IReadOnlyList<string> CriticalActs { get; }
+        public IReadOnlyDictionary<string, CriticalEvidence> CriticalEvidence { get; }
         public IReadOnlyDictionary<string, string> Sentences { get; }
 
         public Behaviour? Find(string id) => Behaviours.FirstOrDefault(b => b.Id == id);
-
-        public double ThresholdFor(string act) => Thresholds.TryGetValue(act, out var t) ? t : DefaultThreshold;
 
         /// <summary>The rule for an item id such as "major.handover_omitted", or null when no rule matches.</summary>
         public RubricRule? RuleFor(string itemId)
@@ -91,14 +89,21 @@ namespace ProcSense.Core.Scoring
                 weights[kv.Key] = w;
             }
             foreach (var r in rub.Arr("refs")) if (!(r is string)) throw new ContentException("scoring/rubric.refs: expected register ids");
+            var communication = CommunicationRubric.Parse(rub.Obj("communication"));
             rub.Finish();
 
-            var th = map.Obj("thresholds");
-            double def = th.Num("default");
-            var per = new Dictionary<string, double>(StringComparer.Ordinal);
-            foreach (var kv in th.Any("per_act") as Dictionary<string, object?> ?? throw new ContentException("assessment/mapping.thresholds.per_act: expected an object")) per[kv.Key] = kv.Value is long l ? l : kv.Value is double d ? d : throw new ContentException("assessment/mapping.thresholds.per_act: expected a number");
-            th.Str("note"); th.Finish();
             var criticalActs = Strs(map, "critical_acts");
+            var evidence = new Dictionary<string, CriticalEvidence>(StringComparer.Ordinal);
+            var rawE = map.Obj("critical_act_evidence");
+            foreach (var act in criticalActs)
+            {
+                var e = rawE.Obj(act);
+                string beh = e.Str("behaviour");
+                if (behaviours.All(x => x.Id != beh)) throw new ContentException(e.Sub("behaviour") + ": '" + beh + "' is not a behaviour");
+                evidence[act] = new CriticalEvidence(beh, Strs(e, "actions"));
+                e.Finish();
+            }
+            rawE.Finish();
             foreach (var r in map.Arr("refs")) if (!(r is string)) throw new ContentException("assessment/mapping.refs: expected register ids");
             map.Finish();
 
@@ -107,7 +112,7 @@ namespace ProcSense.Core.Scoring
             foreach (var p in tpl.Arr("placeholders")) if (!(p is string)) throw new ContentException("debrief/templates.placeholders: expected text");
             foreach (var r in tpl.Arr("refs")) if (!(r is string)) throw new ContentException("debrief/templates.refs: expected register ids");
             tpl.Finish();
-            return new ScoreTables(behaviours, rules, points, weights, def, per, criticalActs, new Dictionary<string, string>(sentences));
+            return new ScoreTables(behaviours, rules, points, weights, communication, criticalActs, evidence, new Dictionary<string, string>(sentences));
         }
 
         private static IReadOnlyList<string> Strs(JsonObj o, string key)

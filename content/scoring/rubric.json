@@ -257,6 +257,16 @@
    "b22": 1.0
   }
  },
+ "communication": {
+  "provisional": true,
+  "ref": "SR-2865",
+  "grade_levels": 3,
+  "completeness_floor": 0.4,
+  "credit_floor": 0.1,
+  "ordinary_weight": 1.0,
+  "critical_weight": 0.25,
+  "note": "Experimental graded communication credit (ADR-0025). The model grades relevance, correctness and completeness (0 to 3); the engine converts them with this formula and its own state. Easy to change: these numbers are the only place."
+ },
  "refs": [
   "SR-2865"
  ]

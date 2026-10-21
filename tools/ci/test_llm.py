@@ -419,56 +419,6 @@ class ReportsAndCritic(unittest.TestCase):
         self.assertGreater(hit / len(a["members"]), 0.9)               # with them (server/generation/consistency.py) it finds nearly everything on this set
 
 
-class Classifier(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        sys.path.insert(0, str(ROOT / "tools"))
-        from classify import classifier
-        cls.mod = classifier
-
-    def host(self, act, conf):
-        def h(request):
-            if request.url.path == "/api/tags":
-                return httpx.Response(200, json={"models": []})
-            return httpx.Response(200, json={"message": {"content": json.dumps({"act": act, "confidence": conf})}})
-        return C.OllamaClient(transport=httpx.MockTransport(h))
-
-    def test_the_schema_is_the_taxonomy_and_an_invented_act_is_refused(self):
-        clf = self.mod.ActClassifier(self.host("MADE_UP", 0.9), thresholds={"per_act": {}})
-        r = clf.classify("hello")
-        self.assertEqual((r.source, r.credited), ("unavailable", False))
-        self.assertEqual({a["id"] for a in self.mod.taxonomy()["acts"]} - set(self.mod.schema(self.mod.taxonomy())["properties"]["act"]["enum"]), set())
-
-    def test_an_act_is_credited_only_at_or_above_its_calibrated_threshold(self):
-        t = {"per_act": {"ASK_TOPIC": 0.7, "CLARIFY": None}}
-        self.assertTrue(self.mod.ActClassifier(self.host("ASK_TOPIC", 0.8), thresholds=t).classify("x").credited)
-        self.assertFalse(self.mod.ActClassifier(self.host("ASK_TOPIC", 0.6), thresholds=t).classify("x").credited)
-        self.assertFalse(self.mod.ActClassifier(self.host("CLARIFY", 0.99), thresholds=t).classify("x").credited)       # never reached the precision: never credited
-
-    def test_critical_acts_are_recorded_and_never_credited_from_speech(self):
-        t = {"per_act": {"STATE_ALLERGY": 0.1, "SBAR_ELEMENT": 0.1}}
-        for act in ("STATE_ALLERGY", "SBAR_ELEMENT", "CONFIRM_IDENTITY", "CONSENT_SIGN", "HANDOVER_CRITICAL_ELEMENT"):
-            r = self.mod.ActClassifier(self.host(act, 1.0), thresholds=t).classify("x")
-            self.assertEqual((r.act, r.critical, r.credited), (act, True, False), act)
-
-    def test_calibration_picks_the_lowest_threshold_that_reaches_the_precision_and_skips_hopeless_acts(self):
-        dev = [("ASK_TOPIC", "ASK_TOPIC", 0.95), ("ASK_TOPIC", "ASK_TOPIC", 0.9), ("ASK_TOPIC", "ASK_TOPIC", 0.85), ("CLARIFY", "ASK_TOPIC", 0.5),
-               ("CLARIFY", "CLARIFY", 0.4), ("ASK_TOPIC", "CLARIFY", 0.9), ("EXPLAIN_TEST", "CLARIFY", 0.8), ("NONE", "CLARIFY", 0.7)]
-        out = self.mod.calibrate(dev, self.mod.taxonomy())
-        self.assertEqual(out["ASK_TOPIC"], 0.85)
-        self.assertIsNone(out["CLARIFY"])
-        self.assertNotIn("NONE", out)
-
-    def test_without_a_model_nothing_is_credited(self):
-        r = self.mod.ActClassifier(None).classify("x")
-        self.assertEqual((r.source, r.credited, r.error), ("unavailable", False, "NO_MODEL"))
-
-    def test_the_classifier_dataset_is_current_and_split_by_speaker(self):
-        import subprocess
-        p = subprocess.run([sys.executable, str(ROOT / "tools" / "synth" / "gen_utterances.py"), "--check"], capture_output=True, text=True)
-        self.assertEqual(p.returncode, 0, p.stdout)
-
-
 class DialogueTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

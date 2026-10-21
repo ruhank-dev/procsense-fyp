@@ -1,0 +1,1601 @@
+{
+ "note": "fixed before any model call",
+ "items": [
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "The reason for my call is that the family are anxious and want a senior opinion.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "Please come and see him within twenty minutes.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "Nothing to eat or drink since midnight, is that right?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "Did you have breakfast this morning?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "Would you initial each box to show you have read it?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "CONSENT_SIGN"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "Remember the blood thinner was stopped three days ago.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "I am not about to repeat the check, we did it earlier.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "unlabelled",
+   "truth": "NONE"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "R: Don't start until the senior anaesthetist is present.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "The nurse said she said anxiety was normal.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "ACKNOWLEDGE_EMOTION"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "which mdiines are you not able to have",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "i need tobe sure you unerstand the risks and accept them",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "critical",
+   "truth": "CONSENT_SIGN"
+  },
+  {
+   "group": "open",
+   "split": null,
+   "id": null,
+   "text": "Let the senior nurse say most people do well.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": true,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "REASSURE"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0003",
+   "text": "Do you sleep well at night?",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0015",
+   "text": "do you sleep well at night",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0017",
+   "text": "Do you get any cough?",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0018",
+   "text": "Have you had a cough recently?",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0019",
+   "text": "Tell me about any coughing.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0031",
+   "text": "tell me about any coughing",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0032",
+   "text": "do you getany cough",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ASK_TOPIC"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0035",
+   "text": "Heavy, in what way?",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "CLARIFY"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0112",
+   "text": "we start by placing a small line in your on",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "EXPLAIN_PROCEDURE"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0143",
+   "text": "we take blud to look at your kiney function",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "EXPLAIN_TEST"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0159",
+   "text": "this can makes pictures of your abdomen",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "EXPLAIN_TEST"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0160",
+   "text": "the scan takes pictures of belly",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "EXPLAIN_TEST"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0191",
+   "text": "Do you follow what I have said?",
+   "context": {
+    "steps": [
+     9
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "CHECK_UNDERSTANDING"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0203",
+   "text": "is that clearso far",
+   "context": {
+    "steps": [
+     9
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "CHECK_UNDERSTANDING"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0204",
+   "text": "do you follow what i have said",
+   "context": {
+    "steps": [
+     9
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "CHECK_UNDERSTANDING"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0236",
+   "text": "i can see you are nrvos",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ACKNOWLEDGE_EMOTION"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0251",
+   "text": "it is natural to feelanxious before an operation",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ACKNOWLEDGE_EMOTION"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0253",
+   "text": "You are in good hands here.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "REASSURE"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0271",
+   "text": "It is a routine operation for us.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "REASSURE"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0299",
+   "text": "i see you live alone",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ACKNOWLEDGE_FACT"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0302",
+   "text": "Understood, it began on Tuesday.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ACKNOWLEDGE_FACT"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0318",
+   "text": "Reading back: a litre over four hours.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "CLOSED_LOOP"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0319",
+   "text": "To confirm, one litre over four hours.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "CLOSED_LOOP"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0329",
+   "text": "reading back a litre over four hours",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "CLOSED_LOOP"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0332",
+   "text": "Got it, I'll tell you once the porter is here.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "CLOSED_LOOP"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0333",
+   "text": "Okay, I will let you know as soon as the porter comes.",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "CLOSED_LOOP"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0344",
+   "text": "got it i'll tell you once theporter is here",
+   "context": {
+    "steps": [
+     6
+    ],
+    "patient_question_pending": false,
+    "readback_pending": true
+   },
+   "expected": "ordinary",
+   "truth": "CLOSED_LOOP"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0376",
+   "text": "this is beond what ican manage safely so i am calling the registrar",
+   "context": {
+    "steps": [
+     3
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ESCALATE_SPEECH"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0394",
+   "text": "The monitor trace has gone completely.",
+   "context": {
+    "steps": [
+     11
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "REPORT_FAULT"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0407",
+   "text": "mnitor shows no trace at all",
+   "context": {
+    "steps": [
+     11
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "REPORT_FAULT"
+  },
+  {
+   "group": "capped",
+   "split": "dev",
+   "id": "AB-d0427",
+   "text": "I want an ECG done straight away.",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "VOICE_ORDER"
+  },
+  {
+   "group": "survivors",
+   "split": "test2",
+   "id": "AB-u0256",
+   "text": "Sorry, I never got to say most people do well.",
+   "context": {
+    "steps": [
+     2
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "REASSURE"
+  },
+  {
+   "group": "survivors",
+   "split": "test2",
+   "id": "AB-u0445",
+   "text": "Is there a food you have to stay away from for your health?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "survivors",
+   "split": "test2",
+   "id": "AB-u0448",
+   "text": "is there a food you have to stay away from for heath",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "survivors",
+   "split": "test2",
+   "id": "AB-u0470",
+   "text": "My request is that someone sees her within the hour.",
+   "context": {
+    "steps": [
+     12
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "survivors",
+   "split": "test2",
+   "id": "AB-u0444",
+   "text": "has a plaster ever left skin redand sore",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "survivors",
+   "split": "test2",
+   "id": "AB-u0471",
+   "text": "I'd like her to be reviewed within the hour.",
+   "context": {
+    "steps": [
+     12
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0441",
+   "text": "Has any medicine ever made you break out in lumps?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0443",
+   "text": "Have you ever come out in lumps after a medicine?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0445",
+   "text": "Is there something that makes your lips swell?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0447",
+   "text": "Does anything make your face puff up?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "STATE_ALLERGY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0449",
+   "text": "Say your full name and your birthday for me.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONFIRM_IDENTITY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0451",
+   "text": "Please give me your name and date of birth.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONFIRM_IDENTITY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0453",
+   "text": "I am reading your bracelet; is that your name on it?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONFIRM_IDENTITY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0455",
+   "text": "Does the name on your wrist band match yours?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONFIRM_IDENTITY"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0457",
+   "text": "Are you happy for us to go ahead today?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONSENT_SIGN"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0459",
+   "text": "Do you want us to go ahead with it?",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONSENT_SIGN"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0461",
+   "text": "Please put your signature at the bottom of the page.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONSENT_SIGN"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0463",
+   "text": "Sign here if you agree to the operation.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "CONSENT_SIGN"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0465",
+   "text": "I am calling about the man in bed six whose breathing is faster.",
+   "context": {
+    "steps": [
+     12
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0467",
+   "text": "The reason for my call is his faster breathing.",
+   "context": {
+    "steps": [
+     12
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0469",
+   "text": "My recommendation is that someone reviews him now.",
+   "context": {
+    "steps": [
+     12
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0471",
+   "text": "What I would like is for him to be reviewed urgently.",
+   "context": {
+    "steps": [
+     12
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "SBAR_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0473",
+   "text": "She has had nothing to eat since midnight.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0475",
+   "text": "She has been fasting since midnight.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0477",
+   "text": "His blood pressure has been falling all afternoon.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "critical",
+   "split": "dev",
+   "id": "AB-d0479",
+   "text": "The blood pressure keeps going down.",
+   "context": {
+    "steps": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "critical",
+   "truth": "HANDOVER_CRITICAL_ELEMENT"
+  },
+  {
+   "group": "conflict",
+   "split": "dev",
+   "id": "AB-d0345",
+   "text": "I would like the senior doctor to see him.",
+   "context": {
+    "steps": [
+     3
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ESCALATE_SPEECH"
+  },
+  {
+   "group": "conflict",
+   "split": "dev",
+   "id": "AB-d0359",
+   "text": "i would like the senior doctor to see him",
+   "context": {
+    "steps": [
+     3
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ESCALATE_SPEECH"
+  },
+  {
+   "group": "conflict",
+   "split": "dev",
+   "id": "AB-d0410",
+   "text": "I would like a chest x ray requested.",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "VOICE_ORDER"
+  },
+  {
+   "group": "conflict",
+   "split": "dev",
+   "id": "AB-d0423",
+   "text": "i would like a chest x ray reuested",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "VOICE_ORDER"
+  },
+  {
+   "group": "conflict",
+   "split": "test",
+   "id": "AB-t0411",
+   "text": "I would like a full blood count and CRP.",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "VOICE_ORDER"
+  },
+  {
+   "group": "conflict",
+   "split": "test",
+   "id": "AB-t0427",
+   "text": "I would like the porter to take her to the scanner.",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "VOICE_ORDER"
+  },
+  {
+   "group": "conflict",
+   "split": "test2",
+   "id": "AB-u0345",
+   "text": "I need the registrar to come and see her now.",
+   "context": {
+    "steps": [
+     3
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "ESCALATE_SPEECH"
+  },
+  {
+   "group": "conflict",
+   "split": "test2",
+   "id": "AB-u0410",
+   "text": "I would like an abdominal ultrasound arranged.",
+   "context": {
+    "steps": [
+     8
+    ],
+    "patient_question_pending": false,
+    "readback_pending": false
+   },
+   "expected": "ordinary",
+   "truth": "VOICE_ORDER"
+  }
+ ],
+ "groups": {
+  "open": 12,
+  "capped": 31,
+  "survivors": 6,
+  "critical": 20,
+  "conflict": 8
+ }
+}

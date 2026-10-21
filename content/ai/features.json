@@ -32,233 +32,6 @@
     }
    ]
   },
-  "classifier": {
-   "label": "Communication act classifier (sentence embeddings + logistic regression)",
-   "status": "SKIPPED",
-   "enabled": false,
-   "suites": [
-    {
-     "id": "classifier.macro_f1",
-     "status": "SKIPPED",
-     "why": "no result file classifier-bench-independent.json"
-    },
-    {
-     "id": "classifier.credited_precision",
-     "status": "SKIPPED",
-     "why": "no result file classifier-bench-independent.json"
-    },
-    {
-     "id": "classifier.no_critical_credited",
-     "status": "SKIPPED",
-     "why": "no result file classifier-bench-independent.json"
-    },
-    {
-     "id": "classifier.no_critical_misrouted",
-     "status": "SKIPPED",
-     "why": "no result file classifier-bench-independent.json"
-    },
-    {
-     "id": "classifier.independent_evidence",
-     "status": "SKIPPED",
-     "why": "no result file classifier-bench-independent.json"
-    }
-   ]
-  },
-  "classifier_safety": {
-   "label": "Safety of the credit path of the communication classifier (two-head ensemble gate, hard negatives, assertion check) on SYNTHETIC sets (model-written, AI-judged, NOT independent; recorded for information, switches nothing on: the `classifier` feature still needs the independent set)",
-   "status": "FAIL",
-   "enabled": false,
-   "informational": true,
-   "suites": [
-    {
-     "id": "classifier_safety.no_false_credit_challenge_v4",
-     "status": "SKIPPED",
-     "why": "the result file has no sets.challenge_v4.variants.ensemble.ALL.false_credit.k"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_challenge_v5",
-     "status": "FAIL",
-     "got": 1,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v5",
-     "status": "FAIL",
-     "got": 1,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_adversarial_set_4",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_v2_test",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_v3_holdout",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v4",
-     "status": "SKIPPED",
-     "why": "the result file has no sets.challenge_v4.variants.ensemble.ALL.non_assertive_credited.k"
-    },
-    {
-     "id": "classifier_safety.credited_precision_challenge_v4",
-     "status": "SKIPPED",
-     "why": "the result file has no sets.challenge_v4.variants.ensemble.ALL.credited_precision.rate"
-    },
-    {
-     "id": "classifier_safety.credited_precision_v3_holdout",
-     "status": "PASS",
-     "got": 0.988,
-     "needs": ">= 0.9"
-    },
-    {
-     "id": "classifier_safety.no_false_credit_challenge_v6",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.no_denial_or_hypothetical_credited_challenge_v6",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_safety.credited_precision_challenge_v6",
-     "status": "PASS",
-     "got": 0.98,
-     "needs": ">= 0.9"
-    },
-    {
-     "id": "classifier_safety.ordinary_credit_challenge_v6",
-     "status": "PASS",
-     "got": 0.7,
-     "needs": ">= 0.5"
-    }
-   ]
-  },
-  "classifier_synthetic": {
-   "label": "Communication act classifier on SYNTHETIC styles (model-written and model-labelled, NOT independent; recorded for information, switches nothing on)",
-   "status": "FAIL",
-   "enabled": false,
-   "informational": true,
-   "suites": [
-    {
-     "id": "classifier_synthetic.macro_f1",
-     "status": "PASS",
-     "got": 0.809,
-     "needs": ">= 0.75"
-    },
-    {
-     "id": "classifier_synthetic.credited_precision",
-     "status": "PASS",
-     "got": 0.916,
-     "needs": ">= 0.8"
-    },
-    {
-     "id": "classifier_synthetic.no_critical_credited",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic.no_critical_misrouted",
-     "status": "FAIL",
-     "got": 1,
-     "needs": "== 0.0"
-    }
-   ]
-  },
-  "classifier_synthetic2": {
-   "label": "Communication act classifier on the AI-JUDGED synthetic sets v2 and v3 (model-written, labelled by two configurations of one local AI judge, NOT independent; recorded for information, switches nothing on)",
-   "status": "FAIL",
-   "enabled": false,
-   "informational": true,
-   "suites": [
-    {
-     "id": "classifier_synthetic2.macro_f1",
-     "status": "PASS",
-     "got": 0.792,
-     "needs": ">= 0.75"
-    },
-    {
-     "id": "classifier_synthetic2.credited_precision",
-     "status": "PASS",
-     "got": 0.858,
-     "needs": ">= 0.8"
-    },
-    {
-     "id": "classifier_synthetic2.no_critical_credited",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_macro_f1",
-     "status": "PASS",
-     "got": 0.842,
-     "needs": ">= 0.75"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_credited_precision",
-     "status": "PASS",
-     "got": 0.942,
-     "needs": ">= 0.8"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_no_critical_credited",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.holdout_no_critical_misrouted",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_tuning",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_holdout",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_fresh_2",
-     "status": "PASS",
-     "got": 0,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.adversarial_fresh_3",
-     "status": "FAIL",
-     "got": 3,
-     "needs": "== 0.0"
-    },
-    {
-     "id": "classifier_synthetic2.independent_evidence",
-     "status": "FAIL",
-     "got": false,
-     "needs": "== 1.0"
-    }
-   ]
-  },
   "critic": {
    "label": "Text consistency critic",
    "status": "PASS",
@@ -483,51 +256,94 @@
     }
    ]
   },
-  "speech_interpretation": {
-   "label": "Context-aware interpretation of trainee speech as evidence (ADR-0022)",
-   "status": "SKIPPED",
-   "enabled": false,
+  "speech_evaluation": {
+   "label": "Gemma semantic evaluation of trainee speech, scored by the engine (ADR-0025): approved on synthetic held-out evidence (AI-written, scored once per set); the real Quest and ASR check is DC-10",
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
-     "id": "speech_interpretation.critical_false_credit",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
-    },
-    {
-     "id": "speech_interpretation.out_of_window_false_credit",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
-    },
-    {
-     "id": "speech_interpretation.non_assertive_false_credit_rate",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
-    },
-    {
-     "id": "speech_interpretation.credited_precision",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
-    },
-    {
-     "id": "speech_interpretation.legitimate_recall_not_below_route",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
-    },
-    {
-     "id": "speech_interpretation.legitimate_recall_floor",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
-    },
-    {
-     "id": "speech_interpretation.latency_p95_ms",
+     "id": "speech_evaluation.critical_physical_completions",
      "status": "PASS",
-     "got": 24.5,
-     "needs": "<= 300.0"
+     "got": 0.0,
+     "needs": "== 0.0"
     },
     {
-     "id": "speech_interpretation.independent_evidence",
-     "status": "SKIPPED",
-     "why": "no result file interpretation-bench-independent.json"
+     "id": "speech_evaluation.window_state_enforcement",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "speech_evaluation.legitimate_recall",
+     "status": "PASS",
+     "got": 0.9896,
+     "needs": ">= 0.9"
+    },
+    {
+     "id": "speech_evaluation.credited_precision",
+     "status": "PASS",
+     "got": 1.0,
+     "needs": ">= 0.95"
+    },
+    {
+     "id": "speech_evaluation.performed_vs_not",
+     "status": "PASS",
+     "got": 0.9918,
+     "needs": ">= 0.95"
+    },
+    {
+     "id": "speech_evaluation.valid_replies",
+     "status": "PASS",
+     "got": 1.0,
+     "needs": ">= 0.995"
+    },
+    {
+     "id": "speech_evaluation.non_performed_false_credit",
+     "status": "PASS",
+     "got": 0.0,
+     "needs": "<= 0.01"
+    },
+    {
+     "id": "speech_evaluation.unjustified_ordinary_credit_on_critical",
+     "status": "PASS",
+     "got": 0.0,
+     "needs": "<= 0.03"
+    },
+    {
+     "id": "speech_evaluation.mixed_items",
+     "status": "PASS",
+     "got": 1.0,
+     "needs": ">= 0.8"
+    },
+    {
+     "id": "speech_evaluation.multi_intent_recall",
+     "status": "PASS",
+     "got": 1.0,
+     "needs": ">= 0.9"
+    },
+    {
+     "id": "speech_evaluation.contrast_sets",
+     "status": "PASS",
+     "got": 1.0,
+     "needs": ">= 0.85"
+    },
+    {
+     "id": "speech_evaluation.partial_credit_bands",
+     "status": "PASS",
+     "got": 0.8438,
+     "needs": ">= 0.8"
+    },
+    {
+     "id": "speech_evaluation.evidence_length",
+     "status": "PASS",
+     "got": 0,
+     "needs": "== 0.0"
+    },
+    {
+     "id": "speech_evaluation.median_latency",
+     "status": "PASS",
+     "got": 2343,
+     "needs": "<= 4000.0"
     }
    ]
   },

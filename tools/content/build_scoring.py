@@ -4,17 +4,15 @@
     uv run --project tools tools/content/build_scoring.py --check    # fail if the files are out of date
 
 What it holds
-  * the 22 assessed behaviours of the guide (section 81, "AI-assisted assessment across the whole workflow"): the steps they belong to, the deterministic actions that are evidence for them, the communication acts an AI
-    classifier may one day report for them (none exist in P0), and the rule that decides correctness;
+  * the 22 assessed behaviours of the guide (section 81, "AI-assisted assessment across the whole workflow"): the steps they belong to, the deterministic actions that are evidence for them, the communication objectives the Gemma semantic evaluator may report for them (ADR-0025), and the rule that decides correctness;
   * the rubric: every score item the engine can record (credit., minor., major., critical., info.) belongs to one behaviour and one item type, with points per severity and a weight per behaviour and scenario;
   * the debrief sentences, one template per item type and severity, whose only placeholders are facts of the item.
-The weights, the points and the 0.8 confidence threshold are simulator design values (provisional, SR-2864): the clinical judgement is in the rules that raise the items, not in these numbers.
+The weights, the points and the graded-communication parameters are simulator design values (provisional, SR-2864): the clinical judgement is in the rules that raise the items, not in these numbers.
 The builder fails if an item id found in the source code or the content has no rubric rule, so a new item can never score nothing silently.
 """
 from __future__ import annotations
 
 import json
-import math
 import re
 import sys
 from pathlib import Path
@@ -23,9 +21,18 @@ ROOT = Path(__file__).resolve().parents[2]
 RUBRIC = ROOT / "content" / "scoring" / "rubric.json"
 MAPPING = ROOT / "content" / "assessment" / "mapping.json"
 TEMPLATES = ROOT / "content" / "debrief" / "templates.json"
-HEAD = ROOT / "content" / "assessment" / "act_head_hybrid.json"
 REF = "SR-2864"          # the 22 behaviours and what is evidence for each (guide section 81)
 REF_RUBRIC = "SR-2865"   # points, weights, threshold and sentences (design values)
+
+# Graded communication credit (ADR-0025, EXPERIMENTAL design values, SR-2865): a performed objective earns relevance/3 * correctness/3 * (floor + (1 - floor) * completeness/3) of its weight; below credit_floor it earns nothing.
+# An ordinary objective weighs 1.0 (the one credit point a behaviour already carries); a critical objective only 0.25, because its physical part is earned by the verified actions below and never by speech.
+COMMUNICATION = {"provisional": True, "ref": "SR-2865", "grade_levels": 3, "completeness_floor": 0.4, "credit_floor": 0.1, "ordinary_weight": 1.0, "critical_weight": 0.25,
+                 "note": "Experimental graded communication credit (ADR-0025). The model grades relevance, correctness and completeness (0 to 3); the engine converts them with this formula and its own state. Easy to change: these numbers are the only place."}
+# The behaviour a critical objective is spoken for and the verified (simulator) actions that earn its physical part, named in the behaviours below: b13 confirm_identity, b02 ask_allergies/ask_allergy_reaction,
+# b21 sign_consent, b11 handover/finish_handover. Speech may add the small communication credit of its weight; the physical part is earned only by these verified actions, never by speech.
+CRITICAL_ACT_EVIDENCE = {"CONFIRM_IDENTITY": {"behaviour": "b13", "actions": ["confirm_identity"]}, "STATE_ALLERGY": {"behaviour": "b02", "actions": ["ask_allergies", "ask_allergy_reaction"]},
+                         "CONSENT_SIGN": {"behaviour": "b21", "actions": ["sign_consent"]}, "HANDOVER_CRITICAL_ELEMENT": {"behaviour": "b11", "actions": ["handover", "finish_handover"]},
+                         "SBAR_ELEMENT": {"behaviour": "b11", "actions": ["handover", "finish_handover"]}}
 
 TYPES = ["REQUIRED", "CONTRAINDICATED", "TIMING", "ORDER", "RESPONSE", "APPROPRIATENESS", "INTERPRETATION", "COMMUNICATION", "CRITICAL"]
 
@@ -144,24 +151,18 @@ def build() -> dict[Path, str]:
         "types": TYPES,
         "rules": [{"match": p, "behaviour": bid, "type": typ, "teaching": teaching} for p, bid, typ, teaching in RULES],
         "weights": {sc: {x["id"]: 1.0 for x in BEHAVIOURS} for sc in ("S1", "S2")},
+        "communication": COMMUNICATION,
         "refs": [REF_RUBRIC],
     }
     mapping = {
         "behaviours": BEHAVIOURS,
-        "thresholds": {"default": 0.8, "per_act": per_act_thresholds(), "note": "per-act evidence thresholds are the classifier head's calibrated credit thresholds (content/assessment/act_head_hybrid.json) floored to three decimals, exported by tools/content/build_scoring.py so the engine never refuses what the gate credited; the default 0.8 (the guide's example, provisional SR-2865) applies to an act the head does not credit"},
         "critical_acts": ["CONFIRM_IDENTITY", "STATE_ALLERGY", "CONSENT_SIGN", "HANDOVER_CRITICAL_ELEMENT", "SBAR_ELEMENT"],
+        "critical_act_evidence": CRITICAL_ACT_EVIDENCE,
         "refs": [REF, REF_RUBRIC],
     }
     templates = {"sentences": SENTENCES, "placeholders": ["label", "rule_id", "source"], "refs": [REF_RUBRIC]}
     dump = lambda d: json.dumps(d, indent=1, ensure_ascii=False) + "\n"
     return {RUBRIC: dump(rubric), MAPPING: dump(mapping), TEMPLATES: dump(templates)}
-
-
-def per_act_thresholds() -> dict[str, float]:
-    """The engine's per-act evidence thresholds: the classifier head's calibrated credit thresholds (content/assessment/act_head_hybrid.json, ADR-0016) FLOORED to three decimals. The interpretation offer carries its probability rounded to three decimals, so a threshold
-    rounded up could refuse evidence the gate credited; floored, the engine never refuses what the gate credited at its own threshold and never accepts below it. A critical act has no threshold (it is refused whatever its confidence)."""
-    head = json.loads(HEAD.read_text(encoding="utf-8"))
-    return {act: math.floor(t * 1000) / 1000 for act, t in sorted(head["thresholds"].items()) if t is not None}
 
 
 def critical_act_problems(mapping: dict) -> list[str]:
@@ -172,6 +173,10 @@ def critical_act_problems(mapping: dict) -> list[str]:
     flagged = {a["id"] for a in json.loads(path.read_text(encoding="utf-8"))["acts"] if a["critical"]}
     listed = set(mapping["critical_acts"])
     out = [f"taxonomy.json and critical_acts disagree: only in taxonomy {sorted(flagged - listed)}, only in critical_acts {sorted(listed - flagged)}"] if flagged != listed else []
+    by_id = {b["id"]: b for b in mapping["behaviours"]}
+    ev = mapping.get("critical_act_evidence", {})
+    out += [f"critical_act_evidence misses {a}" for a in sorted(listed) if a not in ev]
+    out += [f"critical_act_evidence for {a} names an action that behaviour {e['behaviour']} does not have: {x}" for a, e in ev.items() for x in e["actions"] if e["behaviour"] not in by_id or x not in by_id[e["behaviour"]]["actions"]]
     out += [f"critical behaviour {b['id']} lets speech report {a}, which is not in critical_acts" for b in mapping["behaviours"] if b["critical"] for a in b["ai_acts"] if a not in listed]
     return out
 

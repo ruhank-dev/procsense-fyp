@@ -65,17 +65,14 @@ class Settings(BaseSettings):
     asr_device: str = "auto"                     # "cuda" on the desktop with a card (needs the asr-gpu extra on Windows), "cpu" otherwise
     asr_compute: str = "int8"                    # "int8_float16" on the card: 0.57 s for a 3 to 7 s clip beside the resident 4B model, against 6 s on the processor (reports/ai/asr-wer.json)
     ai_features_override: str = ""               # features forced on for development and tests ("all" or names); empty in production: the evaluation gate decides (content/ai/features.json)
-    classifier_backend: str = "ensemble"         # "ensemble" (the embedding head AND the TF-IDF head must name the same ordinary act, and the sentence must be assertive: server/classify/ensemble.py), "embeddings" (sentence embeddings + logistic regression head, content/assessment/act_head.json), "tfidf" (word features + logistic regression in plain Python, content/assessment/act_head_tfidf.json: no service call) or "llm" (the language-model classifier); chosen by the benchmark in docs/research/classifier_benchmark
-    embed_model: str = "all-minilm:22m"          # the Ollama embedding model the head was trained on; changing it needs a new head
     ai_live_timeout_seconds: float = 20.0
-    # semantic reader (p1-ai-language-s18, ADR-0024): a large model on Ollama Cloud proposes a reading of an utterance; deterministic checks decide. OFF by default and separate from the `speech_interpretation` evaluation gate, which stays OFF
-    interpret_llm_enabled: bool = False
-    interpret_llm_model: str = "gemma4:31b"                  # the model name as the direct API lists it (https://ollama.com/api/tags); through a signed-in local Ollama use the `-cloud` form
-    interpret_llm_base_url: str = ""                         # empty = the local Ollama (ollama_url), which relays a cloud model when signed in; "https://ollama.com" = the direct API with the key below
-    interpret_llm_api_key: SecretStr = SecretStr("")         # direct API only; never logged, never in a request body, never committed (.env or the host's secret store)
-    interpret_llm_timeout_seconds: float = 8.0
-    interpret_llm_budget_ms: int = 12000                     # total wall budget for one reading including a retry
-    interpret_llm_max_attempts: int = 2
+    # speech evaluation (p1-ai-language-s22, ADR-0025): gemma4:31b on Ollama Cloud judges what the trainee's speech does (structured output); the engine scores. The route is closed by the `speech_evaluation` evaluation gate until an independent evaluation passes
+    speech_eval_model: str = "gemma4:31b-cloud"              # through a signed-in local Ollama use the `-cloud` form; for the direct API use "gemma4:31b" with the base url and key below (https://ollama.com/api/tags lists the names)
+    speech_eval_base_url: str = ""                           # empty = the local Ollama (ollama_url), which relays a cloud model when signed in; "https://ollama.com" = the direct API with the key below
+    speech_eval_api_key: SecretStr = SecretStr("")           # direct API only; never logged, never in a request body, never committed (.env or the host's secret store)
+    speech_eval_timeout_seconds: float = 15.0                # one attempt (the measured median is 2.4 s, p95 about 4 s, free plan)
+    speech_eval_budget_ms: int = 25000                       # total wall budget for one evaluation including a retry
+    speech_eval_max_attempts: int = 2
     ai_batch_timeout_seconds: float = 600.0
     # privacy (p1-backend-s12): design values to be confirmed with a qualified person (DT-127)
     consent_required_for_upload: bool = True   # a session is accepted only from a person who agreed to the processing of their results (the current text)

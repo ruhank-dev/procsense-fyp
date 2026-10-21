@@ -1,0 +1,2 @@
+"""Gemma semantic evaluation of the trainee's speech (p1-ai-language-s22, ADR-0025): ASR text -> Gemma structured evaluation -> authoritative simulator state and evidence -> deterministic score.
+This package judges what the speech DOES. It never scores, never credits and never decides whether a physical action happened: the engine (src/ProcSense.Core) does the first two from the evaluation plus its own state, and only the simulation verifies the third."""

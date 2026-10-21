@@ -1,7 +1,7 @@
 """Does retrieval over approved content help the dialogue and the debrief? (p2-ai-extensions-s02, feature E58): `uv run --project tools tools/ai/eval_retrieval.py [--cases 12]`.
 
 The step asks for a flat embedding index over approved content (case facts) to choose which facts go into a prompt, and for the effect on the prompt size and on missing a needed fact; if it does not help, the decision
-is recorded and it is not shipped. This measures it with the embedding model already in use (all-minilm:22m through Ollama, server/classify/embedding.py) on the P0 cases:
+is recorded and it is not shipped. This measures it with the embedding model already in use (all-minilm:22m through Ollama, server/retrieval/embedder.py) on the P0 cases:
 
 - DIALOGUE. Every non-volunteered history fact of a case is indexed; the nurse's question about its topic (two wordings) is embedded; reported: how often the asked fact is the top 1, 3 and 5 hits. Then the size of the facts
   block of the prompt in three arms: ALL facts of the case (no Core filter), the facts the Core allows (what the dialogue prompt holds today: volunteered facts plus the one just earned), and the top 3 hits of the
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     ap.add_argument("--cases", type=int, default=12)
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     a = ap.parse_args()
-    from classify.embedding import OllamaEmbedder
+    from retrieval.embedder import OllamaEmbedder
     from composer import blocks as B
     from retrieval.flat import FlatIndex
     emb = OllamaEmbedder(a.ollama, "all-minilm:22m", timeout=60.0)

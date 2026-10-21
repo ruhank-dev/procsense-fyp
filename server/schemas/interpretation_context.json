@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://procsense.local/schemas/interpretation_context.json",
-  "title": "InterpretationContext v1 (p1-ai-language-s10, ADR-0022)",
+  "title": "InterpretationContext v2 (p1-ai-language-s10, ADR-0022; verified_actions added in p1-ai-language-s22, ADR-0025)",
   "description": "What the engine tells the interpretation service about ONE trainee utterance. Made by src/ProcSense.Core/Speech/InterpretationContextBuilder.cs from the running session; read by server/schemas/interpret.py (ContextIn). Holds no hidden fact, expected answer, score or hint. The engine test InterpretationContextTests and tools/ci/test_interpretation_regression.py both compare their keys with this list.",
   "type": "object",
-  "required": ["case", "scenario", "mode", "steps", "eligible", "accepted", "patient_question_pending", "readback_pending", "last_turns", "speaker", "addressee"],
+  "required": ["case", "scenario", "mode", "steps", "eligible", "accepted", "patient_question_pending", "readback_pending", "last_turns", "speaker", "addressee", "verified_actions"],
   "additionalProperties": false,
   "properties": {
     "case": {"type": "string"},
@@ -17,6 +17,7 @@
     "readback_pending": {"type": "boolean", "description": "a critical result waits for acknowledgement (flag critical.unacknowledged); false where the engine records nothing"},
     "last_turns": {"type": "array", "maxItems": 4, "items": {"type": "object", "required": ["speaker", "text"], "properties": {"speaker": {"type": "string"}, "text": {"type": "string", "maxLength": 300}}}},
     "speaker": {"const": "trainee"},
-    "addressee": {"type": "string"}
+    "addressee": {"type": "string"},
+    "verified_actions": {"type": "array", "maxItems": 40, "items": {"type": "string"}, "description": "names of the physical and system actions the engine itself accepted so far (authoritative; context for the evaluator, never a score)"}
   }
 }

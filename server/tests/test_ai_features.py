@@ -16,10 +16,10 @@ def test_the_server_reads_the_gate_file_and_an_override_forces_features_on(monke
     gate = json.loads((ROOT / "content" / "ai" / "features.json").read_text(encoding="utf-8"))["features"]
     thresholds = json.loads((ROOT / "content" / "ai" / "thresholds.json").read_text(encoding="utf-8"))["features"]
     assert {k for k in thresholds if ai_features.enabled(k)} == {k for k, v in gate.items() if v["enabled"]}
-    assert not ai_features.enabled("classifier")                            # no independent evidence yet: the classifier is off
-    monkeypatch.setenv("AI_FEATURES_OVERRIDE", "classifier, tts")
+    assert ai_features.enabled("speech_evaluation")                         # on since the final acceptance (ADR-0025): the gate reads the two frozen acceptance reports
+    monkeypatch.setenv("AI_FEATURES_OVERRIDE", "speech_evaluation, tts")
     config.get_settings.cache_clear()
-    assert ai_features.enabled("classifier") and ai_features.enabled("tts")
+    assert ai_features.enabled("speech_evaluation") and ai_features.enabled("tts")
     monkeypatch.setenv("AI_FEATURES_OVERRIDE", "all")
     config.get_settings.cache_clear()
     assert all(ai_features.enabled(k) for k in thresholds)

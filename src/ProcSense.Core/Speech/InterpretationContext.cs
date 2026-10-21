@@ -15,7 +15,7 @@ namespace ProcSense.Core.Speech
     /// </summary>
     public sealed record InterpretationContext(
         string Case, string Scenario, string Mode, IReadOnlyList<int> Steps, IReadOnlyList<EligibleAct> Eligible, IReadOnlyList<string> Accepted,
-        bool PatientQuestionPending, bool ReadbackPending, IReadOnlyList<ContextTurn> LastTurns, string Speaker, string Addressee)
+        bool PatientQuestionPending, bool ReadbackPending, IReadOnlyList<ContextTurn> LastTurns, string Speaker, string Addressee, IReadOnlyList<string> VerifiedActions)
     {
         /// <summary>The context as JSON, in a fixed key order (what the service receives).</summary>
         public string ToJson()
@@ -40,7 +40,9 @@ namespace ProcSense.Core.Speech
                 sb.Append('{'); Str(sb, "speaker", LastTurns[i].Speaker); sb.Append(','); Str(sb, "text", LastTurns[i].Text); sb.Append('}');
             }
             sb.Append("],"); Str(sb, "speaker", Speaker); sb.Append(','); Str(sb, "addressee", Addressee);
-            return sb.Append('}').ToString();
+            sb.Append(",\"verified_actions\":[");
+            for (int i = 0; i < VerifiedActions.Count; i++) { if (i > 0) sb.Append(','); JsonText.Quote(sb, VerifiedActions[i]); }
+            return sb.Append("]}").ToString();
         }
 
         private static void Str(StringBuilder sb, string key, string value) { JsonText.Quote(sb, key); sb.Append(':'); JsonText.Quote(sb, value); }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ProcSense.Core.Actions;
 using ProcSense.Core.AIContext;
@@ -9,7 +10,7 @@ using ProcSense.Core.Workflow;
 
 namespace ProcSense.Core.Tests
 {
-    /// <summary>The interpretation context, state-based eligibility and speech evidence in the log (p1-ai-language-s10, ADR-0022).</summary>
+    /// <summary>The interpretation context, state-based eligibility and judged speech evidence in the log (p1-ai-language-s10, ADR-0022; judgement and graded credit p1-ai-language-s22, ADR-0025).</summary>
     public class InterpretationContextTests
     {
         private static readonly ContentPackage Content = TestCase.Package();
@@ -18,20 +19,25 @@ namespace ProcSense.Core.Tests
 
         private static Session Start() => new Session(Content.Cases["VAR-S1-A"], 42, SessionMode.Practice, Subsystems.Default(Content));
 
-        private static ActionOutcome Say(Session s, string act, string utterance, double conf = 0.99, string status = "actual") =>
+        private static ActionOutcome Say(Session s, string act, string utterance, string assertion = "performed", string actor = "trainee", int r = 3, int c = 3, int k = 3, string form = "statement") =>
             s.Apply(new SimAction(SpeechEvidenceSubsystem.Verb, "", Channel.Cli, new Dictionary<string, string>
             {
                 [SpeechEvidenceSubsystem.ActParam] = act,
                 [SpeechEvidenceSubsystem.SpanParam] = "words from the sentence",
-                [SpeechEvidenceSubsystem.ConfidenceParam] = conf.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 [SpeechEvidenceSubsystem.UtteranceParam] = utterance,
-                [SpeechEvidenceSubsystem.StatusParam] = status
+                [SpeechEvidenceSubsystem.AssertionParam] = assertion,
+                [SpeechEvidenceSubsystem.ActorParam] = actor,
+                [SpeechEvidenceSubsystem.FormParam] = form,
+                [SpeechEvidenceSubsystem.RelevanceParam] = r.ToString(CultureInfo.InvariantCulture),
+                [SpeechEvidenceSubsystem.CorrectnessParam] = c.ToString(CultureInfo.InvariantCulture),
+                [SpeechEvidenceSubsystem.CompletenessParam] = k.ToString(CultureInfo.InvariantCulture),
+                [SpeechEvidenceSubsystem.ClaimsPhysicalParam] = "false"
             }));
 
         private static EvidenceStore Evidence(Session s) { var st = new EvidenceStore(Tables); st.FromLog(s.Log); return st; }
 
         /// <summary>An ordinary act that is eligible in the session's current state, or null when the state allows none.</summary>
-        private static EligibleAct? AnyOrdinary(Session s) => InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").Eligible.FirstOrDefault(e => !e.Critical && e.Act != "ANSWER_QUESTION" && e.Act != "CLOSED_LOOP");   // those two need a waiting question or read-back in the session
+        private static EligibleAct? AnyOrdinary(Session s) => InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").Eligible.FirstOrDefault(e => !e.Critical && e.Act != "ANSWER_QUESTION" && e.Act != "CLOSED_LOOP");
 
         [Fact]
         public void Eligibility_follows_the_behaviour_windows_of_the_mapping_step_by_step()
@@ -54,16 +60,29 @@ namespace ProcSense.Core.Tests
         public void The_context_is_made_from_the_session_and_holds_no_hidden_or_scoring_field()
         {
             var s = Start();
-            var ctx = InterpretationContextBuilder.Build(s, Content, new[] { new ContextTurn("patient", "Will it hurt?"), new ContextTurn("trainee", "A little.") }, "patient");
+            var turns = new[] { new ContextTurn("patient", "Will it hurt?"), new ContextTurn("trainee", "A little.") };
+            var ctx = InterpretationContextBuilder.Build(s, Content, turns, "patient");
             Assert.Equal(s.RunningSteps, ctx.Steps);
             Assert.Equal("VAR-S1-A", ctx.Case);
             Assert.Equal("practice", ctx.Mode);
             Assert.Equal("trainee", ctx.Speaker);
             Assert.All(ctx.Eligible, e => Assert.Contains(Tables.Behaviours, b => b.Id == e.Behaviour && b.AiActs.Contains(e.Act) && b.Steps.Any(ctx.Steps.Contains)));
             var json = ctx.ToJson();
-            foreach (var key in new[] { "\"case\"", "\"scenario\"", "\"mode\"", "\"steps\"", "\"eligible\"", "\"accepted\"", "\"patient_question_pending\"", "\"readback_pending\"", "\"last_turns\"", "\"speaker\"", "\"addressee\"" }) Assert.Contains(key, json);
+            foreach (var key in new[] { "\"case\"", "\"scenario\"", "\"mode\"", "\"steps\"", "\"eligible\"", "\"accepted\"", "\"patient_question_pending\"", "\"readback_pending\"", "\"last_turns\"", "\"speaker\"", "\"addressee\"", "\"verified_actions\"" }) Assert.Contains(key, json);
             foreach (var banned in new[] { "hidden", "score", "expected", "hint", "goal" }) Assert.DoesNotContain(banned, json);
-            Assert.Equal(json, InterpretationContextBuilder.Build(s, Content, new[] { new ContextTurn("patient", "Will it hurt?"), new ContextTurn("trainee", "A little.") }, "patient").ToJson());   // deterministic
+            Assert.Equal(json, InterpretationContextBuilder.Build(s, Content, turns, "patient").ToJson());   // deterministic
+        }
+
+        [Fact]
+        public void The_context_names_the_actions_the_simulator_itself_accepted_and_nothing_a_speaker_claimed()
+        {
+            var s = Start();
+            Assert.Empty(InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").VerifiedActions);
+            Say(s, "CONFIRM_IDENTITY", "u1");                                                                  // a spoken claim of the identity check
+            Assert.DoesNotContain("confirm_identity", InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").VerifiedActions);
+            var real = s.Apply(new SimAction("open_notes", "", Channel.Cli, new Dictionary<string, string>()));
+            Assert.True(real.Accepted, real.RejectReason);
+            Assert.Contains("open_notes", InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").VerifiedActions);        // the engine accepted a real action
         }
 
         [Fact]
@@ -73,6 +92,29 @@ namespace ProcSense.Core.Tests
             var ctx = InterpretationContextBuilder.Build(Start(), Content, turns, "patient");
             Assert.Equal(InterpretationContextBuilder.MaxTurns, ctx.LastTurns.Count);
             Assert.All(ctx.LastTurns, t => Assert.Equal(InterpretationContextBuilder.MaxTurnChars, t.Text.Length));
+        }
+
+        [Fact]
+        public void An_evidence_span_up_to_the_longest_utterance_is_accepted_and_a_longer_one_is_refused()
+        {
+            var s = Start();
+            ActionOutcome Span(string utterance, int length) => s.Apply(new SimAction(SpeechEvidenceSubsystem.Verb, "", Channel.Cli, new Dictionary<string, string>
+            {
+                [SpeechEvidenceSubsystem.ActParam] = "ASK_TOPIC",
+                [SpeechEvidenceSubsystem.SpanParam] = new string('a', length),
+                [SpeechEvidenceSubsystem.UtteranceParam] = utterance,
+                [SpeechEvidenceSubsystem.AssertionParam] = "performed",
+                [SpeechEvidenceSubsystem.ActorParam] = "trainee",
+                [SpeechEvidenceSubsystem.FormParam] = "question",
+                [SpeechEvidenceSubsystem.RelevanceParam] = "3",
+                [SpeechEvidenceSubsystem.CorrectnessParam] = "3",
+                [SpeechEvidenceSubsystem.CompletenessParam] = "3",
+                [SpeechEvidenceSubsystem.ClaimsPhysicalParam] = "false"
+            }));
+            Assert.Equal(400, SpeechEvidenceSubsystem.MaxSpan);
+            Assert.True(Span("long-1", 400).Accepted);
+            Assert.Equal(SpeechEvidenceSubsystem.MissingSpan, Span("long-2", 401).RejectReason);
+            Assert.True(Span("short-1", 12).Accepted);
         }
 
         [Fact]
@@ -96,39 +138,42 @@ namespace ProcSense.Core.Tests
             Assert.DoesNotContain(s.Log.Entries, e => e.Verb == SpeechEvidenceSubsystem.Verb && e.Accepted);
             Assert.Empty(Evidence(s).Records);
             s.Patient.Clinical.SetFlag(ProcSense.Core.Workflow.Steps.ResultReviewSubsystem.CriticalFlag);
-            Assert.True(InterpretationContextBuilder.ReadbackPending(s));                                                             // the definition the check shares with the context (the result-review step owns the flag in play, so the logged path is exercised there)
+            Assert.True(InterpretationContextBuilder.ReadbackPending(s));
             Assert.Equal(SpeechEvidenceSubsystem.NoPendingQuestion, Say(s, "ANSWER_QUESTION", "u4").RejectReason);                      // still no question
             Assert.True(Say(s, "ASK_TOPIC", "u5").Accepted);                                                                         // other acts need no waiting state
         }
 
         [Fact]
-        public void Malformed_speech_evidence_is_rejected_and_logged_as_rejected()
+        public void A_malformed_judgement_is_rejected_and_logged_as_rejected()
         {
             var s = Start();
-            Assert.Equal(SpeechEvidenceSubsystem.BadConfidence, Say(s, "ASK_TOPIC", "u1", 1.5).RejectReason);
-            Assert.Equal(SpeechEvidenceSubsystem.BadStatus, Say(s, "ASK_TOPIC", "u2", 0.9, "denied").RejectReason);
-            Assert.Equal(SpeechEvidenceSubsystem.MissingAct, s.Apply(new SimAction(SpeechEvidenceSubsystem.Verb, "", Channel.Cli, new Dictionary<string, string> { ["utterance_id"] = "u3" })).RejectReason);
-            Assert.Equal(SpeechEvidenceSubsystem.MissingUtterance, s.Apply(new SimAction(SpeechEvidenceSubsystem.Verb, "", Channel.Cli, new Dictionary<string, string> { ["act"] = "ASK_TOPIC", ["span"] = "x", ["confidence"] = "0.9", ["status"] = "actual" })).RejectReason);
+            Assert.Equal(SpeechEvidenceSubsystem.BadJudgement, Say(s, "ASK_TOPIC", "u1", r: 4).RejectReason);                           // a grade out of range
+            Assert.Equal(SpeechEvidenceSubsystem.BadJudgement, Say(s, "ASK_TOPIC", "u2", assertion: "definitely").RejectReason);          // outside the closed vocabulary
+            Assert.Equal(SpeechEvidenceSubsystem.BadJudgement, Say(s, "ASK_TOPIC", "u3", form: "shout").RejectReason);
+            Assert.Equal(SpeechEvidenceSubsystem.MissingAct, s.Apply(new SimAction(SpeechEvidenceSubsystem.Verb, "", Channel.Cli, new Dictionary<string, string> { ["utterance_id"] = "u4" })).RejectReason);
+            Assert.Equal(SpeechEvidenceSubsystem.MissingUtterance, s.Apply(new SimAction(SpeechEvidenceSubsystem.Verb, "", Channel.Cli, new Dictionary<string, string> { ["act"] = "ASK_TOPIC", ["span"] = "x" })).RejectReason);
             Assert.Empty(Evidence(s).Records);
         }
 
         [Fact]
-        public void An_eligible_act_is_accepted_once_and_an_out_of_window_act_is_refused()
+        public void An_eligible_act_is_graded_a_better_utterance_counts_and_an_out_of_window_act_is_refused()
         {
             var s = Start();
             var eligible = AnyOrdinary(s);
             Assert.NotNull(eligible);
-            Assert.True(Say(s, eligible!.Act, "u1").Accepted);
+            Assert.True(Say(s, eligible!.Act, "u1", k: 1).Accepted);                                          // correct but incomplete
             var rec = Assert.Single(Evidence(s).Records);
             Assert.True(rec.Accepted, rec.Reason);
             Assert.Equal(eligible.Behaviour, rec.Behaviour);
             Assert.Equal("ai", rec.Source);
+            Assert.InRange(rec.Grade!.Value, 0.5, 0.9);                                                       // substantial partial credit
 
             var ctxAfter = InterpretationContextBuilder.Build(s, Content, NoTurns, "patient");
-            Assert.Contains(eligible.Behaviour, ctxAfter.Accepted);                                          // the context now says it was credited
+            Assert.Contains(eligible.Behaviour, ctxAfter.Accepted);
 
-            Say(s, eligible.Act, "u2");                                                                      // the same behaviour again, a new utterance
-            Assert.Equal(EvidenceStore.DuplicateBehaviour, Evidence(s).Records.Last().Reason);
+            Say(s, eligible.Act, "u2");                                                                      // the same behaviour again, a complete and correct utterance
+            var comm = Scorer.Score(s, Content).Communication;
+            Assert.Equal(1.0, Assert.Single(comm, c => c.Behaviour == eligible.Behaviour).Grade);               // the best performance counts once, repeating cannot add up
 
             var outside = Tables.Behaviours.SelectMany(b => b.AiActs.Select(a => (a, b))).First(x => !Tables.CriticalActs.Contains(x.a) && !x.b.Steps.Any(s.RunningSteps.Contains));
             Say(s, outside.a, "u3");
@@ -136,35 +181,61 @@ namespace ProcSense.Core.Tests
             Assert.False(Evidence(s).Records.Last().Accepted);
         }
 
+        [Theory]
+        [InlineData("negated", "trainee")]
+        [InlineData("intended_later", "trainee")]
+        [InlineData("hypothetical", "trainee")]
+        [InlineData("reported", "other")]
+        [InlineData("other_actor", "other")]
+        [InlineData("earlier_claim", "trainee")]
+        [InlineData("uncertain", "unclear")]
+        [InlineData("incomplete", "trainee")]
+        [InlineData("performed", "other")]
+        public void Speech_that_the_trainee_does_not_perform_now_earns_nothing(string assertion, string actor)
+        {
+            var s = Start();
+            var a = AnyOrdinary(s)!;
+            Assert.True(Say(s, a.Act, "u1", assertion, actor).Accepted);                                      // the action is logged: the record shows what was said
+            var rec = Assert.Single(Evidence(s).Records);
+            Assert.False(rec.Accepted);
+            Assert.StartsWith(EvidenceStore.NotPerformed, rec.Reason);
+            Assert.Equal(0, rec.Grade);
+            Assert.Empty(Scorer.Score(s, Content).Communication);
+        }
+
         [Fact]
         public void Evidence_with_no_running_step_is_refused_for_that_reason_not_as_a_window_mismatch()
         {
             var act = Tables.Behaviours.SelectMany(b => b.AiActs).First(a => !Tables.CriticalActs.Contains(a));
-            var rec = new EvidenceStore(Tables).Submit(act, "", "words", 0.99, new int[0], new[] { 0 });
+            var rec = new EvidenceStore(Tables).Submit(act, "", "words", new SpeechJudgement("performed", "trainee", "statement", 3, 3, 3, false), new int[0], new[] { 0 });
             Assert.False(rec.Accepted);
             Assert.Equal(EvidenceStore.NoRunningStep, rec.Reason);
         }
 
         [Fact]
-        public void The_same_utterance_cannot_be_credited_twice()
+        public void The_same_utterance_and_objective_cannot_be_credited_twice_but_two_objectives_of_one_utterance_both_count()
         {
             var s = Start();
-            var a = AnyOrdinary(s)!;
-            Say(s, a.Act, "same");
-            Say(s, a.Act, "same");
+            var acts = InterpretationContextBuilder.Build(s, Content, NoTurns, "patient").Eligible.Where(e => !e.Critical && e.Act != "ANSWER_QUESTION" && e.Act != "CLOSED_LOOP").Select(e => e.Act).Distinct().Take(2).ToList();
+            Assert.Equal(2, acts.Count);
+            Say(s, acts[0], "same");
+            Say(s, acts[0], "same");
             Assert.Equal(EvidenceStore.DuplicateUtterance, Evidence(s).Records.Last().Reason);
-            Assert.Equal(1, Evidence(s).Records.Count(r => r.Accepted));
+            Say(s, acts[1], "same");                                                                         // a second job in the same utterance
+            Assert.Equal(2, Evidence(s).Records.Count(r => r.Accepted));
         }
 
         [Fact]
-        public void A_critical_act_is_never_accepted_from_speech_at_any_confidence_in_any_state()
+        public void A_critical_act_is_never_accepted_from_speech_at_any_grade_in_any_state_and_never_physically_complete()
         {
             foreach (var act in Tables.CriticalActs)
             {
                 var s = Start();
-                Say(s, act, "u1", 1.0);
+                Say(s, act, "u1");
                 Assert.All(Evidence(s).Records, r => Assert.False(r.Accepted));
-                Assert.Contains(Evidence(s).Records.Last().Reason, new[] { EvidenceStore.CriticalNeedsAction, EvidenceStore.UnknownAct });          // a critical act that no behaviour lists is an unknown AI act: refused either way
+                string why = Evidence(s).Records.Last().Reason;
+                Assert.True(why == EvidenceStore.CriticalNeedsAction || why.StartsWith(EvidenceStore.ContextMismatch) || why == EvidenceStore.NoRunningStep, why);
+                Assert.All(Scorer.Score(s, Content).Communication.Where(c => c.Critical), c => Assert.False(c.PhysicalVerified));     // a spoken claim never makes the physical part true
             }
         }
 
@@ -179,6 +250,8 @@ namespace ProcSense.Core.Tests
             Assert.DoesNotContain(store.Records, r => r.Source == "deterministic");
             var scoreAfter = Scorer.Score(s, Content);
             Assert.Equal(scoreBefore.Items.Select(i => i.Id + i.Status), scoreAfter.Items.Select(i => i.Id + i.Status));
+            Assert.Equal(scoreBefore.ProcessTotal, scoreAfter.ProcessTotal);                                    // the process score is untouched; speech adds only its separate communication credit
+            Assert.True(scoreAfter.CommunicationTotal > 0);
         }
 
         [Fact]
@@ -189,27 +262,9 @@ namespace ProcSense.Core.Tests
                 var s = Start();
                 var a = AnyOrdinary(s)!;
                 Say(s, a.Act, "u1"); Say(s, "CONFIRM_IDENTITY", "u2"); Say(s, a.Act, "u3");
-                return string.Join("|", s.Log.Entries.Select(e => e.Verb + e.Accepted + string.Join(",", e.Effects))) + "#" + string.Join("|", Evidence(s).Records.Select(r => r.Act + r.Accepted + r.Reason));
+                return string.Join("|", s.Log.Entries.Select(e => e.Verb + e.Accepted + string.Join(",", e.Effects))) + "#" + string.Join("|", Evidence(s).Records.Select(r => r.Act + r.Accepted + r.Reason + r.Grade));
             }
             Assert.Equal(Run(), Run());
-        }
-
-        [Fact]
-        public void The_engine_evidence_thresholds_are_the_classifiers_calibrated_ones_a_critical_act_has_none_and_the_boundary_is_exact()
-        {
-            Assert.Equal(14, Tables.Thresholds.Count);                                                                // every act the classifier head can credit
-            foreach (var kv in Tables.Thresholds)
-            {
-                Assert.InRange(kv.Value, 0.1, Tables.DefaultThreshold);                                               // calibrated, never above the old 0.8 placeholder
-                Assert.DoesNotContain(kv.Key, Tables.CriticalActs);                                                   // a critical act has no threshold: it is refused whatever its confidence
-                var behaviour = Tables.Behaviours.First(b => b.AiActs.Contains(kv.Key));
-                int step = behaviour.Steps[0];
-                var at = new EvidenceStore(Tables).Submit(kv.Key, "", "", kv.Value, new[] { step }, new[] { 1 });
-                Assert.True(at.Accepted, kv.Key + " at its threshold: " + at.Reason);                                 // evidence the gate credited at its own threshold is accepted
-                var below = new EvidenceStore(Tables).Submit(kv.Key, "", "", kv.Value - 0.001, new[] { step }, new[] { 1 });
-                Assert.Equal(EvidenceStore.LowConfidence, below.Reason);                                              // and one notch below is refused
-            }
-            Assert.Equal(0.8, Tables.DefaultThreshold);                                                               // the default still applies to an act the head does not credit
         }
 
         [Fact]

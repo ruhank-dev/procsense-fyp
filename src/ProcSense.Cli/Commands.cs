@@ -18,7 +18,7 @@ internal static class Commands
         "  procsense-sim next-case --history dir --trainee pseudonym [--mode practice|assessment] [--content dir]\n" +
         "  procsense-sim record-session --history dir --trainee pseudonym --facts report.json\n" +
         "  procsense-sim golden [--dir tests/golden] [--update] [--content dir]\n" +
-        "  procsense-sim evidence-check --offers offers.json [--out verdicts.json] [--per-act thresholds.json] [--content dir]";
+        "  procsense-sim speech-score --items items.json [--out scores.json] [--content dir]";
 
     public static int Run(string[] args)
     {
@@ -35,7 +35,7 @@ internal static class Commands
                 "next-case" => NextCase(opts),
                 "record-session" => RecordSession(opts),
                 "golden" => Golden(opts),
-                "evidence-check" => EvidenceCheck(opts),
+                "speech-score" => SpeechScore(opts),
                 _ => Fail($"unknown command '{args[0]}'\n{Usage}"),
             };
         }
@@ -46,35 +46,12 @@ internal static class Commands
     }
 
     /// <summary>
-    /// Runs offered speech evidence through the engine's own <see cref="ProcSense.Core.Scoring.EvidenceStore"/> (ADR-0022 follow-up): each offer in the file ({"id","act","confidence","steps":[...]}) is submitted to a fresh store, so one offer never changes another's answer,
-    /// and the verdict (accepted, reason, behaviour) is written as JSON. It measures what the engine would accept; it changes nothing and decides nothing.
+    /// Runs judged speech through the engine's own evidence store and communication scorer (p1-ai-language-s22, ADR-0025): see <see cref="ProcSense.Core.Scoring.SpeechScoreCheck"/> for the file format. It measures what the engine would do; it changes nothing and decides nothing.
     /// </summary>
-    private static int EvidenceCheck(Dictionary<string, string> o)
+    private static int SpeechScore(Dictionary<string, string> o)
     {
         var content = ContentLoader.Load(Reader(o), "VAR-S1-A");
-        var offers = (List<object?>)MiniJson.Parse(File.ReadAllText(Need(o, "offers")))!;
-        var tables = content.Scoring;
-        if (o.TryGetValue("per-act", out var perActPath))                  // a what-if: judge the same offers with other per-act thresholds (a JSON object, act to number); nothing is written
-        {
-            var per = ((Dictionary<string, object?>)MiniJson.Parse(File.ReadAllText(perActPath))!).ToDictionary(kv => kv.Key, kv => Convert.ToDouble(kv.Value, CultureInfo.InvariantCulture));
-            tables = new ProcSense.Core.Scoring.ScoreTables(tables.Behaviours, tables.Rules, tables.Points, tables.Weights, tables.DefaultThreshold, per, tables.CriticalActs, tables.Sentences);
-        }
-        var verdicts = new List<string>();
-        var stores = new Dictionary<string, ProcSense.Core.Scoring.EvidenceStore>();
-        foreach (var item in offers)
-        {
-            var d = (Dictionary<string, object?>)item!;
-            var steps = ((List<object?>)d["steps"]!).Select(x => (int)Convert.ToInt64(x, CultureInfo.InvariantCulture)).ToList();
-            // an offer with a "group" shares one store with the others of that group, in file order (a session: duplicates are judged against what came before); one without gets a fresh store
-            string group = d.TryGetValue("group", out var g) && g is string gs ? gs : "";
-            ProcSense.Core.Scoring.EvidenceStore store;
-            if (group.Length == 0) store = new ProcSense.Core.Scoring.EvidenceStore(tables);
-            else if (!stores.TryGetValue(group, out store!)) stores[group] = store = new ProcSense.Core.Scoring.EvidenceStore(tables);
-            string utterance = d.TryGetValue("utterance", out var u) && u is string us ? us : "";
-            var r = store.SubmitUtterance(utterance, (string)d["act"]!, "", Convert.ToDouble(d["confidence"], CultureInfo.InvariantCulture), steps, new[] { 0 });
-            verdicts.Add($"{{\"id\":\"{d["id"]}\",\"accepted\":{(r.Accepted ? "true" : "false")},\"reason\":\"{r.Reason.Replace("\"", "'")}\",\"behaviour\":\"{r.Behaviour}\"}}");
-        }
-        string text = "[" + string.Join(",\n", verdicts) + "]\n";
+        string text = ProcSense.Core.Scoring.SpeechScoreCheck.Run(File.ReadAllText(Need(o, "items")), content.Scoring);
         if (o.TryGetValue("out", out var path)) File.WriteAllText(path, text); else Console.Write(text);
         return 0;
     }

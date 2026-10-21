@@ -14,8 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "tests" / "safety_challenge" / "frozen.json"
 SETS = ["tests/safety_challenge/dev.jsonl", "tests/safety_challenge/challenge.jsonl", "tests/safety_challenge/final.jsonl", "tests/safety_challenge/manifest.json", "tests/safety_challenge/taxonomy.json"]
 RESULTS = ["reports/ai/safety/baseline-4a2ed00-final.json", "reports/ai/safety/baseline-4a2ed00-final-raw.json", "reports/ai/safety/s16-final.json", "reports/ai/safety/s16-final-raw.json", "reports/ai/safety/s16-final-reproduction.json"]
-CANDIDATE = ["server/classify/assertion.py", "server/classify/ensemble.py", "server/classify/embedding.py", "server/classify/hybrid.py", "server/classify/tfidf.py", "server/classify/guard.py", "server/interpret/decide.py", "server/interpret/validate.py", "server/interpret/status.py",
-             "content/assessment/act_head_hybrid.json", "content/assessment/mapping.json", "content/ai/critical_cues.json", "content/ai/interpret_phrases.json", "content/ai/lexicon.json", "content/ai/thresholds.json"]
+RETIRED_NOTE = ("The frozen candidate `s16` was the hybrid-head classifier path (classifier, assertion layer, critical cues, critical-mass cap, interpretation service). ADR-0025 retired it and removed its code and heads; the sha256 values it was frozen with are kept in frozen.json under `retired_candidate_files` as history and are no longer checked, because the files they name no longer exist. The sets and the final-split results stay protected.")
 
 
 def sha(rel: str) -> str:
@@ -23,23 +22,21 @@ def sha(rel: str) -> str:
 
 
 def current() -> dict:
-    head = json.loads((ROOT / "content/assessment/act_head_hybrid.json").read_text(encoding="utf-8"))
-    return {"note": "Frozen on 20 October 2026 (p1-ai-language-s17) for the candidate `s16` scored on the final split of tests/safety_challenge. See tools/bench/safety_frozen.py for the rule.", "critical_mass_max": head["critical_mass_max"],
-            "interpret_version": "interpret-2026-10-20.2", "sets": {r: sha(r) for r in SETS}, "final_results": {r: sha(r) for r in RESULTS}, "candidate_files": {r: sha(r) for r in CANDIDATE}}
+    rec = json.loads(OUT.read_text(encoding="utf-8"))
+    return {"note": "Frozen on 20 October 2026 (p1-ai-language-s17) for the candidate `s16` scored on the final split of tests/safety_challenge. See tools/bench/safety_frozen.py for the rule. " + RETIRED_NOTE, "critical_mass_max": rec["critical_mass_max"],
+            "interpret_version": rec["interpret_version"], "sets": {r: sha(r) for r in SETS}, "final_results": {r: sha(r) for r in RESULTS}, "retired_candidate_files": rec.get("retired_candidate_files") or rec["candidate_files"]}
 
 
 def check() -> list[str]:
     rec = json.loads(OUT.read_text(encoding="utf-8"))
     now = current()
     problems = []
-    for group in ("sets", "final_results", "candidate_files"):
+    for group in ("sets", "final_results"):
         for rel, h in rec[group].items():
             if now[group][rel] != h:
                 problems.append(f"{group}: {rel} changed")
-    if now["critical_mass_max"] != rec["critical_mass_max"]:
-        problems.append("critical_mass_max changed")
     if problems:
-        problems.append("A change to the frozen candidate must be a NEW named configuration scored on a FRESH final set (tests/safety_challenge/README.md); the final split of this set is spent for every configuration after s16.")
+        problems.append("The final split of this set is spent (tests/safety_challenge/README.md); a change to a set or a recorded final result is a violation.")
     return problems
 
 
@@ -49,7 +46,7 @@ def main(argv):
         print("wrote", OUT.relative_to(ROOT).as_posix())
         return 0
     p = check()
-    print("frozen candidate, sets and final results unchanged" if not p else "\n".join(p))
+    print("sets and final results unchanged (the retired candidate's code hashes are history, ADR-0025)" if not p else "\n".join(p))
     return 1 if p else 0
 
 

@@ -18,10 +18,16 @@ namespace ProcSense.Core.Scoring
     public sealed record Lateness(string What, double Minutes, string Source);
 
     /// <summary>The result of a case: the end state, the pass or fail verdict, every item, the criticals, the score per behaviour and the lateness.</summary>
-    public sealed record ScoreReport(string Case, string Mode, string EndState, string Result, IReadOnlyList<ScoreItem> Items, IReadOnlyList<ScoreItem> Critical, IReadOnlyList<CategoryScore> Categories, IReadOnlyList<Lateness> Lateness)
+    public sealed record ScoreReport(string Case, string Mode, string EndState, string Result, IReadOnlyList<ScoreItem> Items, IReadOnlyList<ScoreItem> Critical, IReadOnlyList<CategoryScore> Categories, IReadOnlyList<Lateness> Lateness, IReadOnlyList<CommunicationItem> Communication)
     {
         /// <summary>The weighted process score over all behaviours (provisional; the verdict does not depend on it).</summary>
         public double ProcessTotal => Categories.Sum(c => c.Weighted);
+
+        /// <summary>The graded communication credit over all behaviours (EXPERIMENTAL weights, ADR-0025): what the evaluator judged the trainee said, converted by the engine. Never includes any physical credit.</summary>
+        public double CommunicationTotal => Communication.Sum(c => c.Credit);
+
+        /// <summary>Process score plus communication credit (provisional; the pass or fail verdict depends on neither).</summary>
+        public double Total => ProcessTotal + CommunicationTotal;
     }
 
     /// <summary>Turns what the engine recorded into score items (p0-scoring-debrief s01) and the outcome (s03). Nothing here judges medicine: the rules that raised each item did; this only files and adds them up.</summary>
@@ -95,7 +101,10 @@ namespace ProcSense.Core.Scoring
             var sepsis = s.Sepsis;
             if (sepsis != null) foreach (var t in sepsis.Timers) if (t.LateMinutes > 0) late.Add(new Lateness(t.Kind, Math.Round(t.LateMinutes, 1), "SR-2859"));
             foreach (var i in items) if (content.EndStates.DelayItems.Contains(i.Id)) late.Add(new Lateness(i.Id, 0, "SR-0813"));
-            return new ScoreReport(s.Case.Id, s.Mode.ToString().ToLowerInvariant(), end, result, items, critical, categories, late);
+            var store = new EvidenceStore(tables);
+            store.FromLog(s.Log);
+            var communication = CommunicationScorer.Collect(store, tables, weights);
+            return new ScoreReport(s.Case.Id, s.Mode.ToString().ToLowerInvariant(), end, result, items, critical, categories, late, communication);
         }
     }
 }
