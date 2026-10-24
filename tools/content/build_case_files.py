@@ -27,6 +27,7 @@ import fasting_intake  # noqa: E402
 import lib  # noqa: E402
 import s1, s1b, s2, stk, p1v, p1stk, p2  # noqa: E402,F401
 from risk import RISK  # noqa: E402
+from responsible_adults import RESPONSIBLE_ADULT  # noqa: E402
 
 # The cases whose patient is pregnant (history and the pregnancy test say so): NEWS2 is not the tool for them once the trainee knows.
 # Facts that change which critical limits apply (see content/investigations/critical.json): SC-13 is on warfarin; no case has known kidney failure.
@@ -71,6 +72,9 @@ def fill(c: dict, ctx: dict) -> dict:
         c["pregnant"] = True
     if cid in FACTS:
         c["facts"] = list(FACTS[cid])
+    if cid in RESPONSIBLE_ADULT:
+        who, home, night, say = RESPONSIBLE_ADULT[cid]
+        c["responsible_adult"] = {"who": who, "takes_home": home, "stays_overnight": night, "text": say, "wording": "quote"}
     if cid in RISK:
         c["risk"] = json.loads(json.dumps(RISK[cid]))
     meas = sorted({r["source_row"] for r in c["results"] if r.get("source_row")} | {m for m, r in ctx["measurements"].items() if r["case_id"] == cid})

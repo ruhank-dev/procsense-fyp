@@ -268,9 +268,17 @@ namespace ProcSense.Core.Content
                 comp.Finish();
             }
             if (createdBy == "composer" && spine == null) throw new ContentException("composition: a composed case says which approved case it keeps the story of");
+            ResponsibleAdult? adult = null;
+            if (c.Has("responsible_adult"))
+            {
+                var r = c.Obj("responsible_adult");
+                adult = new ResponsibleAdult(r.Str("who"), r.Bool("takes_home"), r.Bool("stays_overnight"), r.Str("text"), r.Enum("wording", new[] { "quote", "narration" }));
+                r.Finish();
+            }
             c.Finish();
             return new CaseFile(id, label, scenario, tier, status, approval, referenceDate, baseCard, identity, spoken, wristband, allergies, allergyAnswer, reason, presentation, history, observations,
-                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts, createdBy, spine);
+                examination, results, scores, problems, decisions, endState, variantEnds, paths, debrief, verification, new CaseFileSources(story, authored, measurements), risk, pregnant, facts, createdBy, spine)
+            { ResponsibleAdult = adult };
         }
 
         // The checks that need no table: they hold for any case file.

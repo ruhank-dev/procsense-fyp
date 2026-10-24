@@ -452,6 +452,19 @@
       },
       "description": "Facts that change which critical-result limits apply. Omitted means none."
     },
+    "responsible_adult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["who", "takes_home", "stays_overnight", "text", "wording"],
+      "properties": {
+        "who": {"type": "string"},
+        "takes_home": {"type": "boolean"},
+        "stays_overnight": {"type": "boolean"},
+        "text": {"type": "string", "minLength": 1},
+        "wording": {"enum": ["quote", "narration"]}
+      },
+      "description": "Who takes the patient home and stays with them (DT-178). Omitted means the case does not say and the answer is 'not stated'."
+    },
     "pregnant": {
       "type": "boolean",
       "const": true,

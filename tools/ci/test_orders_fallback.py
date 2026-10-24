@@ -81,12 +81,13 @@ class Mapper(unittest.TestCase):
         self.assertNotIn(" 1 g", json.dumps(seen))
         self.assertNotIn("dose", str(h.action))
 
-    def test_a_medicine_named_with_a_hold_word_is_a_hold_and_has_no_engine_verb(self):
+    def test_a_medicine_named_with_a_hold_word_is_a_hold_released_to_the_hold_verb(self):
         rb = ReadBack(VOCAB, LF.OrderMapper(host({"target": "home_medicine:metformin", "confidence": 0.9})))
         h = rb.hear("leave out the sugar tablet today")
-        self.assertEqual((h.intent, h.action), ("HOLD_MED", None))
-        self.assertIsNone(rb.confirm("yes"))
-        self.assertEqual(rb.released, [])
+        hold = {"verb": "hold_medicine", "params": {"drug": "metformin"}}            # DT-208
+        self.assertEqual((h.intent, h.action), ("HOLD_MED", hold))
+        self.assertEqual(rb.confirm("yes"), hold)                                      # only after the spoken yes
+        self.assertEqual(rb.released, [hold])
 
     def test_the_shortlist_is_short_and_comes_from_the_content(self):
         cands = LF.shortlist("get a trace of his heart", VOCAB)

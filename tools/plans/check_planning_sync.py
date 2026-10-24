@@ -27,6 +27,15 @@ ID_PATTERNS = [r"\bLG-\d\d\b", r"\bOFF-\d\d\b", r"\bLP-\d\d\b", r"\bCMP-[A-Z]+\b
                r"\bEXT-[A-Z0-9]+\b", r"\bVR-(?:D|CM|G)-[A-Z0-9-]*[A-Z0-9]\b"]
 
 
+def git_ignored(path) -> bool:
+    """True when git ignores this path (so a local, untracked toolkit folder inside docs/ does not count as a project document)."""
+    import subprocess
+    try:
+        return subprocess.run(["git", "check-ignore", "-q", str(path)], cwd=ROOT, capture_output=True).returncode == 0
+    except OSError:
+        return False
+
+
 def read(p: Path) -> str:
     return p.read_text(encoding="utf-8", errors="replace")
 
@@ -125,7 +134,7 @@ def main() -> int:
     cited = set()
     skip = ("previous_prompt", "ProcSense_Implementation", "ProcSense_Master", "ProcSense_Medical", "ProcSense_Data_Source", "CONVERSION_REPORT")
     for p in (ROOT / "docs").rglob("*.md"):
-        if not any(k in p.name for k in skip):
+        if not any(k in p.name for k in skip) and not git_ignored(p):
             cited |= set(re.findall(r"DT-\d{3}", read(p)))
     for d in sorted(cited - have):
         problems.append(f"registers: {d} is cited but missing from docs/deferred-tasks.md")
@@ -137,6 +146,8 @@ def main() -> int:
     else:
         idx = read(idx_path)
         for e in sorted((ROOT / "docs").iterdir()):
+            if git_ignored(e):
+                continue                          # a local, git-ignored folder (a downloaded toolkit) is not part of the project's documents
             if not re.search(r"^\| \[" + re.escape(e.name) + r"/?\]", idx, re.M):
                 problems.append(f"index: docs/{e.name} has no row in section 3 of docs/index.md")
         for name in ("src", "tests", "content", "tools", "server", "unity", ".github", "Taskfile.yml"):

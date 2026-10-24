@@ -51,6 +51,9 @@ namespace ProcSense.Core.Content
         /// <summary>The case whose tables apply (discovery rules, imaging reports, infection, deterioration, end-state surfacing): for a case composed from an approved spine it is the spine, otherwise the case itself.</summary>
         public string TableKey => Spine ?? Id;
 
+        /// <summary>Who takes the patient home and stays with them, when the case file states it (DT-178); null means the case says nothing and the card answers "not stated".</summary>
+        public ResponsibleAdult? ResponsibleAdult { get; init; }
+
         /// <summary>Facts about the patient that change which critical limits apply: on_warfarin, known_kidney_failure.</summary>
         public IReadOnlyList<string> Facts => FactsOrNull ?? new List<string>();
     }

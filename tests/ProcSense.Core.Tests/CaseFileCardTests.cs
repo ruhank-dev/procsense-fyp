@@ -24,6 +24,20 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void The_responsible_adult_answer_comes_from_the_file_and_is_not_stated_only_when_the_file_says_nothing()
+        {
+            // DT-178: the 16 P0 files that stated none now do; a planned patient is taken home, an emergency patient is admitted
+            var planned = All.Cases["VAR-S1-B"].ResponsibleAdult;
+            Assert.True(planned.TakesHome && planned.StaysOvernight);
+            Assert.Equal("quote", planned.Wording);
+            var admitted = All.Cases["VAR-S2-PD"].ResponsibleAdult;
+            Assert.False(admitted.TakesHome);
+            Assert.All(new[] { "VAR-S1-B", "VAR-S1-C", "VAR-S1-D", "VAR-S1-E", "VAR-S1-G", "VAR-S1-H", "VAR-S1-J", "VAR-S1-PB", "STK-S1-D", "VAR-S2-B", "VAR-S2-D", "VAR-S2-F", "VAR-S2-G", "VAR-S2-PC", "VAR-S2-PD", "STK-S2-B" },
+                id => Assert.NotEqual("Not stated in this case.", All.Cases[id].ResponsibleAdult.Text));
+            Assert.Equal("Not stated in this case.", All.Cases["SC-1"].ResponsibleAdult.Text);   // a file that says nothing still answers "not stated"
+        }
+
+        [Fact]
         public void A_card_made_from_the_file_agrees_with_the_hand_made_card_where_both_exist()
         {
             var hand = TestCase.Package().Cases["VAR-S1-A"];

@@ -80,3 +80,8 @@ Thumbs.db
 /build/blender/
 /build/previews/
 .local-ci/
+
+# Local creative-production toolkit (downloaded copy; not part of this project)
+/docs/3d-blender-unity-skills/
+/.claude/
+/.mcp.json

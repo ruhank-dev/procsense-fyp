@@ -11,6 +11,14 @@ Complete all remaining Ruhan and Moiz tasks end to end in one continuous session
 (This entry keeps the requirements, shortened.)
 ``````
 
+## 201. 24 October 2026, 2:40 AM UTC
+_Session: fe0a6c20_
+
+``````text
+One-time full authorization: implement the whole technically feasible backlog (Ruhan, Moiz and other contributors' tasks), generate labelled synthetic material where human material is missing, research clinical questions, revisit blockers, run CI, commit and push safely; headset testing stays with Sannan. Also: never attribute commits to an AI assistant, disable automatic attribution, inspect contributor history and report; any rewrite of published history needs separate approval.
+(This entry keeps the requirements, shortened.)
+``````
+
 ## Sources and gaps
 
 - Reconstructed on 09 October 2026 from the session records of the coding tool for this project (3 sessions, 08–09 October 2026); later prompts are appended as they arrive. Prompts 39 to 117 (09 to 11 October 2026) were added on 12 October 2026 from the session record, because they had not been appended when they were given; IDE notices and tool notifications are not prompts and are left out.

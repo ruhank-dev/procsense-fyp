@@ -389,6 +389,13 @@
    "SR-2444"
   ]
  },
+ "responsible_adult": {
+  "who": "sister",
+  "takes_home": true,
+  "stays_overnight": true,
+  "text": "My sister is coming for me and she will stay with me tonight.",
+  "wording": "quote"
+ },
  "risk": {
   "asa": {
    "min": 2,
@@ -400,8 +407,8 @@
   "plan": "standard_ga"
  },
  "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+  "by": "Owner (Ruhan Kamran), one-time authorization of 24 Oct 2026; recorded by the engineer",
+  "date": "2026-10-24",
+  "note": "Re-recorded after the responsible_adult field was added (DT-178). The added wording is synthetic practice material about who takes the patient home; no clinician reviewed it; the earlier owner-attested approval of the rest of the case is unchanged"
  }
 }

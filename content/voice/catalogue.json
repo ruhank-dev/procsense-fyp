@@ -54,7 +54,7 @@
    "id": "PAT-STK-S1-D-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "STK-S1-D",
-   "text": "",
+   "text": "My daughter will take me home when I am discharged and stay with me for the first night.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -242,7 +242,7 @@
    "id": "PAT-STK-S2-B-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "STK-S2-B",
-   "text": "",
+   "text": "I will be staying in hospital. My wife is coming in now.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -603,7 +603,7 @@
    "id": "PAT-VAR-S1-B-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-B",
-   "text": "",
+   "text": "My son will take me home and stay with me tonight.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -778,7 +778,7 @@
    "id": "PAT-VAR-S1-C-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-C",
-   "text": "",
+   "text": "My husband is taking the day off. He will drive me home and stay the night.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -950,7 +950,7 @@
    "id": "PAT-VAR-S1-D-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-D",
-   "text": "",
+   "text": "My daughter will pick me up and sleep over at mine.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -1149,7 +1149,7 @@
    "id": "PAT-VAR-S1-E-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-E",
-   "text": "",
+   "text": "My sister is coming for me and she will stay with me tonight.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -1321,7 +1321,7 @@
    "id": "PAT-VAR-S1-G-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-G",
-   "text": "",
+   "text": "My mum will take me home and stay a couple of nights.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -1493,7 +1493,7 @@
    "id": "PAT-VAR-S1-H-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-H",
-   "text": "",
+   "text": "My partner will bring me home and stay with me tonight.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -1665,7 +1665,7 @@
    "id": "PAT-VAR-S1-J-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-J",
-   "text": "",
+   "text": "My wife will drive me home and stay with me overnight.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -1840,7 +1840,7 @@
    "id": "PAT-VAR-S1-PB-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S1-PB",
-   "text": "",
+   "text": "My husband will take me home and look after me tonight.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -2015,7 +2015,7 @@
    "id": "PAT-VAR-S2-B-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S2-B",
-   "text": "",
+   "text": "I will be staying in hospital. My friend is on her way to be with me.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -2187,7 +2187,7 @@
    "id": "PAT-VAR-S2-D-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S2-D",
-   "text": "",
+   "text": "I will be admitted, so I will not go home tonight. My mum is on her way in.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -2359,7 +2359,7 @@
    "id": "PAT-VAR-S2-F-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S2-F",
-   "text": "",
+   "text": "I will not be going home tonight. My mum is coming to the hospital.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -2534,7 +2534,7 @@
    "id": "PAT-VAR-S2-G-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S2-G",
-   "text": "",
+   "text": "I am staying in. My son is coming after work.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -2706,7 +2706,7 @@
    "id": "PAT-VAR-S2-PC-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S2-PC",
-   "text": "",
+   "text": "I will be staying in. My dad is on his way here.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -2881,7 +2881,7 @@
    "id": "PAT-VAR-S2-PD-RESPONSIBLE_ADULT",
    "speaker": "patient",
    "case": "VAR-S2-PD",
-   "text": "",
+   "text": "I will be admitted. My wife is on her way to the hospital.",
    "event": {
     "verb": "ask_responsible_adult"
    },
@@ -3401,6 +3401,6 @@
   "lines": 310,
   "templates": 10,
   "authored_variants": 24,
-  "events_without_a_line": 18
+  "events_without_a_line": 2
  }
 }

@@ -424,6 +424,13 @@
  "variant_end_states": {
   "B2": "postponed"
  },
+ "responsible_adult": {
+  "who": "son",
+  "takes_home": true,
+  "stays_overnight": true,
+  "text": "My son will take me home and stay with me tonight.",
+  "wording": "quote"
+ },
  "risk": {
   "asa": {
    "min": 2,

@@ -85,6 +85,12 @@ Measurements made on this machine (not web research): `tools/ai/benchmark.py`, d
 | R-049 | Git LFS quota | https://docs.github.com/en/billing/concepts/product-billing/git-lfs | 2026-10-18 | 10 GiB storage and 10 GiB bandwidth on Free and Pro, always counted on the repository owner's account; with a USD 0 budget, "Git LFS usage is blocked for the rest of the calendar month"; an Actions download of an LFS file uses the owner's bandwidth. | High; no separate allowance for public repositories is stated. |
 | R-050 | Scheduled workflows in a public repository | https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows | 2026-10-18 | "In a public repository, scheduled workflows are automatically disabled when no repository activity has occurred in 60 days." Re-enabled from the Actions tab (Enable workflow). | High. |
 
+## 24 October 2026: responsible adult after day surgery (DT-178)
+
+| # | Question | Source (URL) | Accessed | Finding | Certainty and open points |
+|---|---|---|---|---|---|
+| R-051 | Is a responsible adult who takes the patient home and stays after day surgery a normal requirement? | https://www.enherts-tr.nhs.uk/wp-content/uploads/2019/10/Post-Op-Discharge-Gen-Anaesthetic-and-Sedation-V2-06.2019.pdf (an NHS trust leaflet reproducing British Association of Day Surgery advice); ANZCA PG15 day-stay guideline (named in the same search, page not read) | 2026-10-24 | The leaflet advises a responsible adult to accompany the patient home and stay for 24 hours after general anaesthetic or sedation. A review reported in the same search says this is an absolute eligibility criterion for day surgery in most centres, with wide variation in detail. | Medium. Only the leaflet was read in full; the UK Association of Anaesthetists wording was not found. Used for the planned (S1) cases only; the invented people and sentences are synthetic practice wording. |
+
 ## Not researched in this update (stated so nobody assumes otherwise)
 
 | Topic | Why it matters | Where it is tracked |
