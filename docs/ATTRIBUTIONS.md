@@ -10,6 +10,7 @@ Sources that clinical values in the content cite (from `docs/research/source_reg
 
 | Source | Values citing it | Link |
 |---|---|---|
+| Alberta Precision Laboratories, laboratory bulletin on blood gas reference intervals and critical values | 1 | https://www.albertahealthservices.ca/assets/wf/lab/if-lab-hp-lab-bulletin-changes-to-blood-gas-reference-intervals-and-critical-values.pdf |
 | CODA Collaborative, A Randomized Trial Comparing Antibiotics with Appendectomy for Appendicitis (New England Journal of Medicine 2020) | 1 | https://doi.org/10.1056/NEJMoa2014320 |
 | Grant and Chowdhury, New guidance on the perioperative management of diabetes (Clinical Medicine 2022;22:41-44), summarising the Centre for Perioperative Care guideline (2021) | 1 | https://pmc.ncbi.nlm.nih.gov/articles/PMC8813019/ |
 | Hartle et al., The measurement of adult blood pressure and management of hypertension before elective surgery: Joint Guidelines from the Association of Anaesthetists of Great Britain and Ireland and the British Hypertension Society (Anaesthesia 2016) | 1 | https://pmc.ncbi.nlm.nih.gov/articles/PMC5066735/ |
@@ -26,6 +27,7 @@ Sources that clinical values in the content cite (from `docs/research/source_reg
 | Pucher et al., Outcome trends and safety measures after 30 years of laparoscopic cholecystectomy (Surgical Endoscopy 2018, SAGES Safe Cholecystectomy Task Force) | 1 | https://pmc.ncbi.nlm.nih.gov/articles/PMC5897463/ |
 | Pucher et al., Outcome trends and safety measures after 30 years of laparoscopic cholecystectomy: a systematic review and pooled data analysis (Surgical Endoscopy 2018, SAGES Safe Cholecystectomy Task Force) | 1 | https://pmc.ncbi.nlm.nih.gov/articles/PMC5897463/ |
 | RCP National Early Warning Score (NEWS) 2 (2017); ProcSense Medical Walkthrough v5.1 | 40 | https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf |
+| Resuscitation Council UK ALS course, module on blood gases | 1 | https://lms.resus.org.uk/modules/m35-v2-blood-gasses/10346/m35/t05/content/m35_t05_005.htm |
 | Salminen et al., Five-Year Follow-up of Antibiotic Therapy for Uncomplicated Acute Appendicitis in the APPAC Randomized Clinical Trial (JAMA 2018;320:1259-1265) | 1 | https://pmc.ncbi.nlm.nih.gov/articles/PMC6233612/ |
 | VitalDB (Lee et al., Sci Data 2022) | 6 | https://vitaldb.net/dataset |
 
