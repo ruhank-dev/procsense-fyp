@@ -1,6 +1,11 @@
 {
  "sources": [
   {
+   "name": "Alberta Precision Laboratories, laboratory bulletin on blood gas reference intervals and critical values",
+   "url": "https://www.albertahealthservices.ca/assets/wf/lab/if-lab-hp-lab-bulletin-changes-to-blood-gas-reference-intervals-and-critical-values.pdf",
+   "rows": 1
+  },
+  {
    "name": "CODA Collaborative, A Randomized Trial Comparing Antibiotics with Appendectomy for Appendicitis (New England Journal of Medicine 2020)",
    "url": "https://doi.org/10.1056/NEJMoa2014320",
    "rows": 1
@@ -79,6 +84,11 @@
    "name": "RCP National Early Warning Score (NEWS) 2 (2017); ProcSense Medical Walkthrough v5.1",
    "url": "https://www.rcp.ac.uk/media/a4ibkkbf/news2-final-report_0_0.pdf",
    "rows": 40
+  },
+  {
+   "name": "Resuscitation Council UK ALS course, module on blood gases",
+   "url": "https://lms.resus.org.uk/modules/m35-v2-blood-gasses/10346/m35/t05/content/m35_t05_005.htm",
+   "rows": 1
   },
   {
    "name": "Salminen et al., Five-Year Follow-up of Antibiotic Therapy for Uncomplicated Acute Appendicitis in the APPAC Randomized Clinical Trial (JAMA 2018;320:1259-1265)",

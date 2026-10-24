@@ -3,7 +3,7 @@
 Transcribed from the walkthrough's Part D section by section (p1-case-library-extended-s02, 17 Oct 2026; first version by Ruhan Kamran, 10 Oct 2026): the observations (section 3), the
 history (4), the problems in the order of the priority table (8), one decision per step of the trainee's decision process (9), the results (12), the correct, incorrect, missed and recovery
 paths (16 to 19) and the debrief (20). The problem types are those of the 12 Oct 2026 evidence review. tools/content/stacked_ranks.py checks the ranks, the decisions and the results against
-Part D. Not transcribed: STK-S2-C's venous CO2 of 7.4 kPa (the engine has no blood-gas test yet: p1-case-library-extended-s03, DT-186). Every patient is synthetic. The book mentions doses in places; none is copied here."""
+Part D. STK-S2-C's venous CO2 of 7.4 kPa is transcribed since the blood-gas test exists (DT-186). Every patient is synthetic. The book mentions doses in places; none is copied here."""
 from lib import D, E, O, P, R, S, mk, person
 
 CASES = {}
@@ -226,6 +226,7 @@ CASES["STK-S2-C"] = partd(mk(
      E("ex.abdomen", "abdomen", "Tender low on the right.", True)],
     [R("lab.cbg", "Capillary glucose", 5.6, "mmol/L", "4-7.8", "normal", "Normal: low glucose excluded as the cause of the drowsiness", None, 2, origin="book"),
      R("lab.wbc", "WBC", 15.4, "x10^9/L", "4.0-11.0", "high", "Raised", None, 45),
+     R("lab.vbg_co2", "Venous pCO2", 7.4, "kPa", "4.7-6.7", "high", "Raised: slow shallow breathing after the opioid is holding carbon dioxide in (Part D section 12); a venous value, so it also runs a little above an arterial one", None, 5, origin="book"),
      R("lab.cxr", "Chest X-ray", "Clear", "", "clear", "normal", "No aspiration: proceed", None, 30, origin="book")],
     [S("NEWS2", "8", "Slow breathing, low saturation, reduced alertness, heart rate 96", "authored")],
     [P("stkc2.airway", "life_threat", "Airway at risk: vomiting with reduced consciousness", 1, "Airway first in ABCDE; stomach contents can reach the lungs.", ["Call for help: nurse and anaesthetist", "Side position, suction", "Stop further opioid"]),

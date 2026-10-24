@@ -184,11 +184,11 @@
    "note": "Re-recorded after the responsible_adult field was added (DT-178). The added wording is synthetic practice material about who takes the patient home; no clinician reviewed it; the earlier owner-attested approval of the rest of the case is unchanged"
   },
   "STK-S2-C": {
-   "sha256": "b262903a6f8a6069c3795bed37f32d11d66bda83a9e77c179ff6f7f4c2653034",
+   "sha256": "c1607dd7fc777e4e6dde420d0e140c88343457725351760d626a7c865a005e70",
    "level": "APPROVED_FOR_TRAINING",
-   "by": "Owner (Abdul Moiz)",
-   "date": "2026-10-17",
-   "note": "Owner approval of the cases as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02), including the 12 Oct 2026 problem types of STK-S1-A; STK-S2-D's top priority to be settled by the clinician (DT-185); reconfirm with the named clinician before assessment use"
+   "by": "Owner (Ruhan Kamran), one-time authorization of 24 Oct 2026; recorded by the engineer",
+   "date": "2026-10-24",
+   "note": "Re-recorded after the venous pCO2 result of Part D section 12 was added (DT-186). The value is the book's; the reference range is from SR-4133; no clinician reviewed the addition; the earlier owner-attested approval is unchanged"
   },
   "STK-S2-D": {
    "sha256": "b8ea90ff4cf760a47d6fb2dde7f9a1a44882d3f4977088677a011d785a454f4f",

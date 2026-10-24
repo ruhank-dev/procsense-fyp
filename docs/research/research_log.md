@@ -91,6 +91,13 @@ Measurements made on this machine (not web research): `tools/ai/benchmark.py`, d
 |---|---|---|---|---|---|
 | R-051 | Is a responsible adult who takes the patient home and stays after day surgery a normal requirement? | https://www.enherts-tr.nhs.uk/wp-content/uploads/2019/10/Post-Op-Discharge-Gen-Anaesthetic-and-Sedation-V2-06.2019.pdf (an NHS trust leaflet reproducing British Association of Day Surgery advice); ANZCA PG15 day-stay guideline (named in the same search, page not read) | 2026-10-24 | The leaflet advises a responsible adult to accompany the patient home and stay for 24 hours after general anaesthetic or sedation. A review reported in the same search says this is an absolute eligibility criterion for day surgery in most centres, with wide variation in detail. | Medium. Only the leaflet was read in full; the UK Association of Anaesthetists wording was not found. Used for the planned (S1) cases only; the invented people and sentences are synthetic practice wording. |
 
+## 24 October 2026: blood-gas reference intervals (DT-186)
+
+| # | Question | Source (URL) | Accessed | Finding | Certainty and open points |
+|---|---|---|---|---|---|
+| R-052 | Venous blood gas reference intervals in kPa | https://www.albertahealthservices.ca/assets/wf/lab/if-lab-hp-lab-bulletin-changes-to-blood-gas-reference-intervals-and-critical-values.pdf ; https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11663395/ | 2026-10-24 | Alberta Precision Laboratories venous: pH 7.30-7.40, pCO2 35-50 mmHg (4.7-6.7 kPa), HCO3 20-27 mmol/L. A Danish donor study gives pCO2 5.3-8.1 kPa. | Medium: read through a search summary; ranges differ by laboratory, so the range is shown with each result (SR-4133). |
+| R-053 | Arterial blood gas reference intervals | https://lms.resus.org.uk/modules/m35-v2-blood-gasses/10346/m35/t05/content/m35_t05_005.htm | 2026-10-24 | pH 7.35-7.45; PaCO2 4.7-6.0 kPa; bicarbonate about 22-26 mmol/L; sources disagree on PaO2 (10-14 or 11-14 kPa on air), so PaO2 and base excess are not offered. | Medium (SR-4134). |
+
 ## Not researched in this update (stated so nobody assumes otherwise)
 
 | Topic | Why it matters | Where it is tracked |

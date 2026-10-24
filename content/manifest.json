@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "1b6f3c9b606a235c0b56cf34c014640a6a69ad07d80d7fea0a95f265024b8c42",
+ "content_hash": "9b80f91b44cfaffc47aa40c1deebccd09a6962c3ccaa5ae920bf2c9bc75e343b",
  "files": 678,
- "bytes": 17849100,
+ "bytes": 17850462,
  "per_folder": {
   "(root)": 64,
   "ai": 7,
@@ -97,8 +97,8 @@
    "sha256": "25a40afdd8082d38de52d9e6ad55bbbc0936ad5ba695d689419d2ed9bebf349f"
   },
   "attributions/attributions.json": {
-   "bytes": 13060,
-   "sha256": "9eaf1c34e6c634167fac2a48499f4983b09eda0b10169a0d23a81e1738b2ab49"
+   "bytes": 13552,
+   "sha256": "eaf2f8441b73cf4b0cd8b054400988e13c039b6a7c37dd952e58609ee8ba86ae"
   },
   "availability/config.json": {
    "bytes": 348,
@@ -1169,8 +1169,8 @@
    "sha256": "7d1fffa2b320b56ee285b70a21a5a0b947bc2c7a534188aeb229e72c8b298e8a"
   },
   "case_approvals.json": {
-   "bytes": 26071,
-   "sha256": "fb3f09276f55f638f6644ba780d8fce59ad0372b5634f2745b289a7d13142d7b"
+   "bytes": 26087,
+   "sha256": "d863845c4dcf0d6ed617fc7e16aba061c2d907dd2c315a57ec97a33f4988a06e"
   },
   "case_files/SC-1.json": {
    "bytes": 11070,
@@ -1277,8 +1277,8 @@
    "sha256": "e2cd6a2cd9c0308bee69dfeadc848312beb0a8be5e81a0862dc21d17e9a4eb08"
   },
   "case_files/STK-S2-C.json": {
-   "bytes": 12237,
-   "sha256": "636f84ece685eb4610e1b628390b78699a590e4090a07a2f400d090950d6c834"
+   "bytes": 12664,
+   "sha256": "7be3682f7aaf779eb218b27ba88d544f143c7f4859518cd974955983cf7056a1"
   },
   "case_files/STK-S2-D.json": {
    "bytes": 11617,
@@ -2237,8 +2237,8 @@
    "sha256": "ed7dee31fcfffcc4f2729df318cd6072978c283fee9f29ef5d756c5d3333c8ee"
   },
   "investigations/investigations.json": {
-   "bytes": 6368,
-   "sha256": "a3a463dcdca61753bdf48c2b27b5c474036e95028b34905b6fa5321ddb3be298"
+   "bytes": 6795,
+   "sha256": "dec93b0008d7e1f9c202239ee2f330a099b2804349748c232a0ec6074c12f1f1"
   },
   "investigations/normal_results.json": {
    "bytes": 1765,

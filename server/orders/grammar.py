@@ -86,6 +86,33 @@ def clean(text: str) -> tuple[str, bool]:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9' ]+", " ", t)).strip(), removed
 
 
+# A spoken order is never read back when the words say it is not an order: a question, a hypothetical, a condition or a negated order verb ("should I hold the metformin", "if he is diabetic
+# hold it", "do not hold the metformin", "don't order a CRP"). "do not give" and "don't give" are themselves hold orders, so they are taken out first; a negation that is not in front of an
+# order word ("she must not have the metformin") is left to the grammar and the model. DT-208 safety review, 24 Oct 2026.
+QUESTION_OR_CONDITION = re.compile(r"(?:^| )(?:should (?:i|we)|shall (?:i|we)|what if|even if|suppose|supposing|do you think|is it (?:ok|okay|safe) to|can i|may i|hypothetically|maybe|perhaps)(?: |$)|^if ")
+NEGATION = r"(?:not|never|dont|don't|do not|no need to|no need|without|instead of|rather than)"
+HOLD_BY_NEGATION = ("do not give", "dont give", "don't give")
+HOLD_BY_MODAL = re.compile(r" (?:should not|must not|shouldn't|mustn't|cannot|can't|is not to|are not to) (?:take|have|get|be given|receive) ")   # "she should not take her warfarin" is a hold, not a refusal
+NOT_AN_ORDER_REPLY = "That sounded like a question, a condition or a negative, so I did not take it as an order. Say the order plainly or use the menu."
+
+
+def _negated_order_word() -> re.Pattern:
+    words = sorted({w for ws in TRIGGERS.values() for w in ws}, key=len, reverse=True)
+    return re.compile(r"(?:^| )" + NEGATION + r"(?: \w+){0,2} (?:" + "|".join(re.escape(w) for w in words) + r")(?: |$)")
+
+
+NEGATED_ORDER = _negated_order_word()
+
+
+def not_an_order(text: str) -> bool:
+    """True when the cleaned transcript is phrased as a question, a hypothetical, a condition or a negated order, so nothing may be read back or released from it."""
+    t = f" {text} "
+    for w in HOLD_BY_NEGATION:
+        t = t.replace(f" {w} ", " hold ")
+    t = HOLD_BY_MODAL.sub(" hold ", t).strip()
+    return QUESTION_OR_CONDITION.search(t) is not None or NEGATED_ORDER.search(t) is not None
+
+
 def intent_of(text: str, has_entity: dict[str, bool]) -> str | None:
     """The first intent whose trigger is in the text and whose kind of entity was named; HOLD_MED and CALL_STAFF and REQUEST_TRANSPORT are checked first (their trigger words are more specific)."""
     padded = f" {text} "
@@ -153,6 +180,11 @@ class ReadBack:
     def hear(self, transcript: str) -> Hearing:
         t0 = time.monotonic()
         text, removed = clean(transcript)
+        if not_an_order(text):
+            h = Hearing("menu", read_back=NOT_AN_ORDER_REPLY, options=sorted(MENU.values()), dose_removed=removed)
+            self.pending = None
+            self._log(transcript, h, t0)
+            return h
         found = {k: matches(text, self.vocab, (k,)) for k in ("test", "medicine", "home_medicine", "place", "staff")}
         intent = intent_of(text, {k: bool(v) for k, v in found.items()})
         if intent is None:

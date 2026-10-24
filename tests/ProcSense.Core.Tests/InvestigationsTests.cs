@@ -51,7 +51,7 @@ namespace ProcSense.Core.Tests
         public void The_content_defines_every_test_in_the_walkthrough_table_with_its_kind_tube_and_place()
         {
             var t = Content.Investigations;
-            Assert.Equal(23, t.Tests.Count);
+            Assert.Equal(24, t.Tests.Count);
             Assert.Equal(17, t.Indications.Count);
             Assert.All(t.Tests.Where(x => x.Kind == "blood"), x => Assert.Contains(x.Tube, t.Tubes));
             Assert.All(t.Tests.Where(x => x.Kind == "imaging"), x => Assert.Contains(x.Location, Content.Locations.Locations.Select(l => l.Id)));
@@ -283,6 +283,21 @@ namespace ProcSense.Core.Tests
             Assert.Contains("indication:appropriate", Order(s, "chest_xray").Effects);
             var plain = NewSession("VAR-S2-PC", "S2");
             Assert.Contains("indication:not_indicated", Order(plain, "chest_xray").Effects);
+        }
+
+        [Fact]
+        public void A_blood_gas_is_a_bedside_test_and_shows_the_cases_venous_carbon_dioxide_with_its_range()
+        {
+            // DT-186: STK-S2-C's venous pCO2 of 7.4 kPa (Part D section 12) can now be ordered, performed at the bedside and read
+            Assert.Equal("bedside", Content.Investigations.Find("blood_gas")!.Kind);
+            var s = NewSession("STK-S2-C", "S2");
+            Assert.True(Order(s, "blood_gas").Accepted);
+            Assert.True(Do(s, "perform_bedside_test", ("test", "blood_gas")).Accepted);
+            Minutes(s, 6);
+            Assert.True(Do(s, "view_result", ("test", "blood_gas")).Accepted);
+            var r = Assert.Single(s.Observable.Investigations.Single().Results);
+            Assert.Equal(("Venous pCO2", "7.4", "kPa", "4.7-6.7"), (r.Analyte, r.Value, r.Unit, r.Range));
+            Assert.Equal("high", r.Flag);
         }
 
         [Fact]

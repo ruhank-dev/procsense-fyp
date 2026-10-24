@@ -335,6 +335,26 @@
    },
    "ref": "SR-0751",
    "location": "xray"
+  },
+  {
+   "id": "blood_gas",
+   "label": "Blood gas (pH, carbon dioxide, bicarbonate, lactate)",
+   "kind": "bedside",
+   "analytes": [
+    "Venous pH",
+    "Venous pCO2",
+    "Venous bicarbonate",
+    "Venous lactate",
+    "Arterial pH",
+    "Arterial pCO2",
+    "Arterial bicarbonate",
+    "Arterial lactate"
+   ],
+   "minutes": {
+    "min": 5,
+    "max": 5
+   },
+   "ref": "SR-4132"
   }
  ],
  "delay": {
@@ -353,7 +373,10 @@
   "SR-0087",
   "SR-0750",
   "SR-0751",
-  "SR-0752"
+  "SR-0752",
+  "SR-4132",
+  "SR-4133",
+  "SR-4134"
  ],
  "note": "Simulator design: which analytes belong to which test, the tube each blood test goes in (the usual colour convention), the kind of test and where imaging is done. Turnaround is only a default: each case states the minutes for each of its own results, which win; FBC 45 minutes and imaging 60 to 120 minutes are the walkthrough's (SR-0750, SR-0751), the other defaults are the project's (WT-I10 unresolved). Sample quality: a drip-arm sample is diluted to 0.6 of its value and a blood test taken into an EDTA tube that should have gone in a gold tube raises potassium by 2.5 mmol/L; both numbers are the project's settings (the table says only 'diluted' and 'falsely raises').",
  "labels": [

@@ -89,6 +89,29 @@ class Mapper(unittest.TestCase):
         self.assertEqual(rb.confirm("yes"), hold)                                      # only after the spoken yes
         self.assertEqual(rb.released, [hold])
 
+    def test_a_question_a_condition_or_a_negated_order_is_never_read_back_or_released(self):
+        # DT-208 safety review: these used to read back "hold metformin" and release it on a yes
+        rb = ReadBack(VOCAB, LF.OrderMapper(host({"target": "home_medicine:metformin", "confidence": 0.9})))
+        for say in ("do not hold the metformin", "don't hold the metformin", "please don't skip the metformin", "never stop the metformin", "I would not hold metformin",
+                    "should I hold the metformin", "what if I hold the metformin", "if he is diabetic hold the metformin", "don't order a CRP", "even if she is fine order an ECG"):
+            h = rb.hear(say)
+            self.assertEqual((h.status, h.action), ("menu", None), say)
+            self.assertIsNone(rb.confirm("yes"), say)
+        self.assertEqual(rb.released, [])
+
+    def test_real_holds_and_orders_are_not_blocked_by_the_negation_guard(self):
+        rb = ReadBack(VOCAB, LF.OrderMapper(host({"target": "NONE", "confidence": 0.9})))
+        for say in ("hold the metformin", "do not give metformin", "could you order an ECG please", "order a CRP"):
+            self.assertEqual(rb.hear(say).status, "confirm", say)
+        self.assertIn(rb.hear("hold the").status, ("menu",))                 # incomplete: nothing named
+        self.assertIn(rb.hear("hold the unicornol").status, ("menu",))       # a medicine that does not exist
+        self.assertEqual(rb.hear("hold metformin and give insulin").status, "clarify")   # two medicines: ask which
+
+    def test_a_down_host_leaves_the_menu_for_a_hold_the_grammar_cannot_find(self):
+        rb = ReadBack(VOCAB, LF.OrderMapper(down()))
+        h = rb.hear("leave out the sugar tablet today")
+        self.assertEqual((h.status, h.action), ("menu", None))
+
     def test_the_shortlist_is_short_and_comes_from_the_content(self):
         cands = LF.shortlist("get a trace of his heart", VOCAB)
         self.assertLessEqual(len(cands), LF.LIST_SIZE)

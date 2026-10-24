@@ -296,6 +296,19 @@
    "origin": "authored"
   },
   {
+   "id": "lab.vbg_co2",
+   "test": "Venous pCO2",
+   "value": "7.4",
+   "unit": "kPa",
+   "normal_range": "4.7-6.7",
+   "flag": "high",
+   "comment": "Raised: slow shallow breathing after the opioid is holding carbon dioxide in (Part D section 12); a venous value, so it also runs a little above an arterial one",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "book"
+  },
+  {
    "id": "lab.cxr",
    "test": "Chest X-ray",
    "value": "Clear",
@@ -510,8 +523,8 @@
   "plan": "rsi"
  },
  "approval": {
-  "by": "Owner (Abdul Moiz)",
-  "date": "2026-10-17",
-  "note": "Owner approval of the cases as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02), including the 12 Oct 2026 problem types of STK-S1-A; STK-S2-D's top priority to be settled by the clinician (DT-185); reconfirm with the named clinician before assessment use"
+  "by": "Owner (Ruhan Kamran), one-time authorization of 24 Oct 2026; recorded by the engineer",
+  "date": "2026-10-24",
+  "note": "Re-recorded after the venous pCO2 result of Part D section 12 was added (DT-186). The value is the book's; the reference range is from SR-4133; no clinician reviewed the addition; the earlier owner-attested approval is unchanged"
  }
 }
