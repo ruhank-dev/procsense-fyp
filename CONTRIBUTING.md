@@ -6,7 +6,7 @@ Three people work in this repository. Everyone with write access pushes **direct
 
 ## The workflow in six lines
 
-1. `task setup` once after cloning: installs the pre-push hook and checks your tools.
+1. `task setup` once after cloning: installs the pre-push hook and a commit-msg hook that refuses AI co-author lines and checks your tools.
 2. Work on your own branch from the latest `origin/main`: `sannan47/<what>` or `myt1x54/<what>`.
 3. Merge `origin/main` into your branch (`git fetch origin`, `git merge origin/main`), fix conflicts keeping both sides.
 4. `task ci` must be all `PASS`.

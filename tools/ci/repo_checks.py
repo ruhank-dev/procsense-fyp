@@ -230,7 +230,7 @@ def check_steps() -> list[str]:
 TEAM_GUARDS = [
     "CONTRIBUTING.md", "docs/TEAM_GIT_WORKFLOW.md", "docs/CI.md", ".github/branch-protection.json", ".github/dependabot.yml",
     ".github/workflows/ci.yml", ".github/workflows/release.yml", ".github/workflows/main-guard.yml",
-    ".githooks/pre-push", "tools/ci/test_pre_push_hook.py", "tools/ci/setup_check.py",
+    ".githooks/pre-push", ".githooks/commit-msg", "tools/ci/test_pre_push_hook.py", "tools/ci/setup_check.py",
 ]
 
 

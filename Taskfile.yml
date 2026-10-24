@@ -57,7 +57,7 @@ tasks:
     desc: One-time setup after cloning - installs the pre-push hook (runs task ci before main is updated) and checks your tools
     cmds:
       - git config core.hooksPath .githooks
-      - cmd: chmod +x .githooks/pre-push
+      - cmd: chmod +x .githooks/pre-push .githooks/commit-msg
         ignore_error: true
       - uv run --project tools tools/ci/setup_check.py
 
