@@ -27,6 +27,14 @@ Final execution directive: finish all remaining Ruhan and Moiz work (DT-220 comb
 (This entry keeps the requirements, shortened; the key itself is not recorded.)
 ``````
 
+## 203. 24 October 2026, night (UTC; the exact time was not recorded)
+_Session: fe0a6c20_
+
+``````text
+Complete implementation directive: reuse the stored Gemini key, investigate connecting my ChatGPT Plus account through an official integration, proceed with the MedGemma setup (I will accept the terms myself), finish DT-220, Unity scenes and the Gemma evaluator checks, finish the browser route for Meshy, Tripo and Higgsfield, push both repositories. Additional directive: a permanent CHATGPT_FIRST creative workflow (ChatGPT, then Gemini, then the AI coding tool) that turns an idea into an optimised build prompt, with reference images only for exceptionally complex requests, tested end to end and recorded in the toolkit's own skills and documents.
+(This entry keeps the requirements, shortened.)
+``````
+
 ## Sources and gaps
 
 - Reconstructed on 09 October 2026 from the session records of the coding tool for this project (3 sessions, 08–09 October 2026); later prompts are appended as they arrive. Prompts 39 to 117 (09 to 11 October 2026) were added on 12 October 2026 from the session record, because they had not been appended when they were given; IDE notices and tool notifications are not prompts and are left out.
