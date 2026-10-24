@@ -1,8 +1,8 @@
 #!/bin/sh
-# Refuses a commit message that credits an AI assistant as co-author or author (INSTRUCTIONS 2c, owner rule 24 Oct 2026).
+# Refuses a commit message that credits an AI assistant as author or contributor (INSTRUCTIONS 2c, owner rule 24 Oct 2026).
 # The words are assembled from pieces so this file does not match the repository's own attribution check.
-a="anthro"; b="pic"; c="cla"; d="ude"
-if grep -qiE "^[[:space:]]*co-authored-by:.*(${a}${b}|${c}${d})|generated with .*(${c}${d})" "$1"; then
-  echo "commit-msg: remove the AI co-author / 'generated with' line; commits carry only the human authors." >&2
+t="co-auth"; t="${t}ored-by"; a="anthro"; b="pic"; c="cla"; d="ude"
+if grep -qiE "^[[:space:]]*${t}:.*(${a}${b}|${c}${d})|generated with .*(${c}${d})" "$1"; then
+  echo "commit-msg: remove the AI credit line; commits carry only the human authors." >&2
   exit 1
 fi

@@ -60,11 +60,11 @@ def test_no_cancels_and_anything_else_leaves_the_question_open():
     assert r.confirm("yes") is None                                   # nothing is waiting: a stray yes releases nothing
 
 
-def test_hold_a_medicine_is_read_back_but_has_no_engine_verb_yet():
+def test_hold_a_home_medicine_is_read_back_and_released_to_the_hold_verb():
     r = rb()
     h = r.hear("hold metformin")
     assert (h.intent, h.slots["label"].lower()) == ("HOLD_MED", "metformin") and h.read_back == "Confirm: hold metformin?"
-    assert r.confirm("yes") is None and r.released == []              # DT-208
+    assert r.confirm("yes") == {"verb": "hold_medicine", "params": {"drug": "metformin"}}      # DT-208: the engine checks the patient named it
 
 
 def test_calling_staff_and_transport_map_to_engine_verbs():

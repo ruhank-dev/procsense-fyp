@@ -134,7 +134,9 @@ def action_for(intent: str, e: Entry) -> dict | None:
         return {"verb": "request_transport", "params": {"to": e.target}}
     if intent == "CALL_STAFF":
         return {"verb": "request_anaesthetic_review", "params": {}} if e.target in ("anaesthetist",) else {"verb": "escalate", "params": {"to": e.target}}
-    return None                                  # HOLD_MED has no engine verb yet: it is read back and logged, not released (DT-208)
+    if intent == "HOLD_MED" and e.kind == "home_medicine":
+        return {"verb": "hold_medicine", "params": {"drug": e.target}}   # DT-208: the engine refuses a drug the patient has not named
+    return None                                  # holding a treatment the trainee ordered (a medicine kind) has no engine verb; it is read back and logged only
 
 
 READBACK = {"ORDER_TEST": "order {label}", "REQUEST_MEDICATION": "request {label}", "HOLD_MED": "hold {label}", "REQUEST_TRANSPORT": "transport the patient to {label}", "CALL_STAFF": "call {label}"}

@@ -15,6 +15,7 @@ namespace ProcSense.Core.Workflow
             new Location.TransportSubsystem(content),
             new IdentitySubsystem(content),
             new HistorySubsystem(content),
+            new HomeMedicineSubsystem(),
             new ObservationsSubsystem(content),
             new ExaminationSubsystem(content),
             new FastingSubsystem(content),

@@ -100,11 +100,11 @@ def test_the_model_fallback_only_suggests_a_read_back(world):
     assert world.post("hear", {"text": "get a trace of his heart"}).json()["status"] == "menu"
 
 
-def test_a_hold_is_read_back_and_logged_but_has_no_engine_verb(world):
+def test_a_hold_is_read_back_and_released_to_the_hold_verb(world):
     h = world.post("hear", {"text": "hold the metformin"}).json()
     assert (h["intent"], h["status"]) == ("HOLD_MED", "confirm")
     c = world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()
-    assert (c["outcome"], c["action"], c["reason"]) == ("released", None, "NO_ENGINE_VERB")
+    assert (c["outcome"], c["action"]) == ("released", {"verb": "hold_medicine", "params": {"drug": "metformin"}})
 
 
 def test_with_the_gate_closed_the_menu_is_offered_and_every_call_is_audited(world, monkeypatch):

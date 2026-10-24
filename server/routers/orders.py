@@ -106,7 +106,7 @@ def confirm(body: ConfirmIn, call: AiCallRecord = Depends(audited("orders"))) ->
         ticket.decide(claims)
         call.validated(True)
         call.set_output(ref="released" if claims["a"] else "logged_only")
-        return ConfirmOut(outcome="released", action=claims["a"], reason="" if claims["a"] else "NO_ENGINE_VERB")      # a hold has no engine verb yet: it is read back and logged, not released
+        return ConfirmOut(outcome="released", action=claims["a"], reason="" if claims["a"] else "NO_ENGINE_VERB")      # a hold of a home medicine releases to hold_medicine (DT-208); a hold of an ordered treatment has no engine verb and is read back and logged only
     if answer in NO or answer.split(" ")[0] in NO:
         ticket.decide(claims)
         call.validated(True)
