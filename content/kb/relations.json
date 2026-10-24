@@ -5,7 +5,7 @@
   "critical_limit": 16,
   "finding_tag": 60,
   "problem_action": 296,
-  "problem_result": 254,
+  "problem_result": 256,
   "test_indicated": 34,
   "treatment_clash": 18,
   "whatif": 47
@@ -16518,6 +16518,39 @@
     "kind": "case",
     "row": "stkc2.airway"
    },
+   "id": "result.STK-S2-C.stkc2.airway.lab_vbg_co2",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_pco2:high",
+    "kind": "result",
+    "label": "Venous pCO2 7.4 kPa (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:STK-S2-C"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "STK-S2-C.stkc2.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/STK-S2-C.json",
+    "kind": "case",
+    "row": "stkc2.airway"
+   },
    "id": "result.STK-S2-C.stkc2.airway.lab_wbc",
    "note": "a single authored example, not a frequency",
    "object": {
@@ -16541,6 +16574,39 @@
     "id": "STK-S2-C.stkc2.airway",
     "kind": "problem",
     "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/STK-S2-C.json",
+    "kind": "case",
+    "row": "stkc2.breath"
+   },
+   "id": "result.STK-S2-C.stkc2.breath.lab_vbg_co2",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_pco2:high",
+    "kind": "result",
+    "label": "Venous pCO2 7.4 kPa (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:STK-S2-C"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "STK-S2-C.stkc2.breath",
+    "kind": "problem",
+    "label": "Breathing: RR 9 and SpO2 90"
    },
    "type": "problem_result"
   },
