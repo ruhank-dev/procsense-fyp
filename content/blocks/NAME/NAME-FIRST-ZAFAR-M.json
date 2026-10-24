@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Zafar"
+ },
+ "derived_from": [
+  "SC-25"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-ZAFAR-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

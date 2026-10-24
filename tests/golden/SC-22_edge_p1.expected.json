@@ -1,0 +1,36 @@
+{
+  "case": "SC-22",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "a0f46e0497f4f7ab75f18a87e2ce41829cafce8a9a23f0c87702d6de6bcae41a",
+  "state_hash": "ec15244615fc010f5c8e5c7255f52f1c88e673865df0574bb98fcf7eb51663b7",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.diabetes",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "REDIRECTED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 2,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

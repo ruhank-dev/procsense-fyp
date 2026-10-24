@@ -21,7 +21,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 CLI = ["dotnet", "run", "--no-build", "-c", "Release", "--project", "src/ProcSense.Cli", "--"]
 GOLDEN = ROOT / "tests" / "golden"
-P1_CASES = {"VAR-S1-I", "VAR-S1-K", "VAR-S1-L", "VAR-S1-M", "VAR-S2-E", "VAR-S2-H", "VAR-S2-I", "VAR-S2-J", "VAR-S2-K", "VAR-S2-L", "STK-S1-A", "STK-S1-B", "STK-S1-C", "STK-S2-A", "STK-S2-C", "STK-S2-D"}
+P1_CASES = {"VAR-S1-I", "VAR-S1-K", "VAR-S1-L", "VAR-S1-M", "VAR-S2-E", "VAR-S2-H", "VAR-S2-I", "VAR-S2-J", "VAR-S2-K", "VAR-S2-L", "STK-S1-A", "STK-S1-B", "STK-S1-C", "STK-S2-A", "STK-S2-C", "STK-S2-D"} | {f"SC-{n}" for n in range(21, 33)}   # the twelve combination cases (DT-220) use the same `_p1` names as the other cases after P0
 
 
 def stem(case_id: str) -> str:
@@ -288,7 +288,8 @@ def probe(case_id: str, s: Script) -> str:
     raise SystemExit(f"{case_id}: the engine did not say what it expects")
 
 
-SERVICE = {"STK-S1-C": "acute medical team", "VAR-S1-E": "acute surgical team", "STK-S1-D": "acute surgical and medical team", "VAR-S2-B": "gynaecology", "VAR-S2-D": "senior surgical review and further imaging"}
+SERVICE = {"STK-S1-C": "acute medical team", "VAR-S1-E": "acute surgical team", "STK-S1-D": "acute surgical and medical team", "VAR-S2-B": "gynaecology", "VAR-S2-D": "senior surgical review and further imaging",
+           "SC-21": "senior surgical team for duct imaging and drainage", "SC-22": "acute surgical team and critical care", "SC-24": "pre-operative anaesthetic and cardiology review", "SC-25": "acute surgical and medical team"}
 
 
 def decided(c: dict) -> Script:
@@ -306,6 +307,10 @@ def decided(c: dict) -> Script:
 
 
 BUILDERS = {
+    # the twelve combination cases (DT-220): the six planned ones end postponed or redirected, the emergency ones are played to ready (SC-32 is delayed after resuscitation)
+    "SC-21": decided, "SC-22": decided, "SC-23": decided, "SC-24": decided, "SC-25": decided, "SC-26": decided, "SC-32": decided,
+    "SC-27": with_options(emergency=True, antibiotic=True), "SC-28": with_options(emergency=True, antibiotic=True), "SC-29": with_options(emergency=True, antibiotic=True),
+    "SC-30": with_options(emergency=True, antibiotic=True), "SC-31": with_options(emergency=True, antibiotic=True),
     "VAR-S1-G": decided, "VAR-S1-H": decided, "VAR-S1-PB": decided, "VAR-S1-E": decided, "STK-S1-D": decided, "VAR-S2-B": decided, "VAR-S2-D": decided,
     # the P1 cases (p1-case-library-extended-s03, EXP-CASE-3): the same segments play all sixteen to their expected end state with nothing refused, so no engine addition is needed for them
     "VAR-S1-I": planned_ready, "VAR-S1-M": planned_ready, "VAR-S1-K": decided, "VAR-S1-L": decided, "VAR-S2-E": decided,

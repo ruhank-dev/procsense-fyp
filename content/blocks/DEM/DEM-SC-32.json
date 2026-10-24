@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 71,
+  "occupation": "retired shopkeeper",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-32"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-32",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:70-75",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

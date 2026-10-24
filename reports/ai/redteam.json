@@ -2,23 +2,23 @@
  "validator": "server/validation/validator.py",
  "classes": {
   "verbatim": {
-   "attacks": 282,
+   "attacks": 354,
    "escapes": 0,
    "escape_rate": 0.0,
    "critical": true,
    "examples": []
   },
   "numbers": {
-   "attacks": 84,
+   "attacks": 100,
    "escapes": 0,
    "escape_rate": 0.0,
    "critical": true,
    "examples": []
   },
   "partial": {
-   "attacks": 222,
-   "escapes": 177,
-   "escape_rate": 0.797,
+   "attacks": 280,
+   "escapes": 216,
+   "escape_rate": 0.771,
    "critical": false,
    "examples": [
     {
@@ -39,9 +39,9 @@
    ]
   },
   "synonym": {
-   "attacks": 8,
+   "attacks": 13,
    "escapes": 3,
-   "escape_rate": 0.375,
+   "escape_rate": 0.231,
    "critical": false,
    "examples": [
     {
@@ -62,22 +62,22 @@
    ]
   },
   "number_words": {
-   "attacks": 65,
+   "attacks": 78,
    "escapes": 0,
    "escape_rate": 0.0,
    "critical": false,
    "examples": []
   },
   "hedged": {
-   "attacks": 273,
+   "attacks": 345,
    "escapes": 0,
    "escape_rate": 0.0,
    "critical": false,
    "examples": []
   },
   "denial": {
-   "attacks": 273,
-   "escapes": 273,
+   "attacks": 345,
+   "escapes": 345,
    "escape_rate": 1.0,
    "critical": false,
    "examples": [

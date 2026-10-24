@@ -1,0 +1,536 @@
+{
+ "schema": 1,
+ "id": "SC-22",
+ "walkthrough_label": "COMBINATION CARD 22 (S1) - Cholangitis with sepsis + weekly GLP-1 injection + beta-blocker masking + acute cholecystitis",
+ "scenario": "S1",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Rukhsana Baig",
+  "sex": "F",
+  "age": 63,
+  "occupation": "primary school secretary",
+  "dob": "1962-11-02",
+  "mrn": "635022"
+ },
+ "spoken_identity_answer": "Rukhsana Baig, second of November 1962.",
+ "wristband": {
+  "name_text": "RUKHSANA BAIG",
+  "dob_text": "02/11/1962",
+  "mrn_text": "MR 635022"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mrs Rukhsana Baig, 63, listed for gallbladder removal at 10:00: temperature 38.9, heart rate only 56 and BP 92/58, jaundiced. She injects semaglutide weekly (last dose 3 days ago) and takes bisoprolol."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I feel shaky and cold, the pain is under my ribs, and my husband says I look yellow.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Fever and shaking since the night, right-sided pain, dark urine, very bloated and nauseated for two days.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Type 2 diabetes, high blood pressure, obesity (BMI 38).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Semaglutide injection once a week (the last one was on Sunday), bisoprolol, metformin.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dry toast yesterday at 18:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "light_meal",
+    "hours_before_now": 14.0
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 1.5
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 56,
+   "heart_rhythm": "regular",
+   "systolic_bp": 92,
+   "diastolic_bp": 58,
+   "respiratory_rate": 22,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 38.9,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 6,
+   "note": "Heart rate 56 on a beta-blocker looks reassuring but is not: the usual tachycardia of sepsis is blocked.",
+   "origin": "authored"
+  },
+  {
+   "time": "09:30",
+   "condition": "after_correct_action",
+   "heart_rate": 74,
+   "heart_rhythm": "regular",
+   "systolic_bp": 108,
+   "diastolic_bp": 66,
+   "respiratory_rate": 19,
+   "spo2": 97,
+   "oxygen": "supplemental",
+   "temperature_c": 37.9,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 3,
+   "note": "After the sepsis bundle and escalation.",
+   "origin": "authored"
+  },
+  {
+   "time": "09:30",
+   "condition": "if_no_action",
+   "heart_rate": 50,
+   "heart_rhythm": "regular",
+   "systolic_bp": 78,
+   "diastolic_bp": 46,
+   "respiratory_rate": 28,
+   "spo2": 90,
+   "oxygen": "room_air",
+   "temperature_c": 39.6,
+   "acvpu": "V",
+   "pain_score": 8,
+   "news2": 15,
+   "note": "Untreated: septic shock.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Flushed, shivering, yellow eyes, breathing fast.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender under the right ribs, bloated.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true
+  },
+  {
+   "id": "ex.cap",
+   "system": "perfusion",
+   "finding": "Cool hands, slow capillary refill.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:perfusion"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.bili",
+   "test": "Bilirubin",
+   "value": "78",
+   "unit": "umol/L",
+   "normal_range": "3-21",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.alp",
+   "test": "ALP",
+   "value": "260",
+   "unit": "U/L",
+   "normal_range": "30-130",
+   "flag": "high",
+   "comment": "Raised: cholestasis",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "19.4",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Systemic inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "180",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Markedly raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.1",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion (2.0 or more)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "132",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Raised: early kidney injury",
+   "quality": null,
+   "previous": {
+    "value": "72",
+    "when": "usual"
+   },
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.glu",
+   "test": "Capillary glucose",
+   "value": "11.8",
+   "unit": "mmol/L",
+   "normal_range": "6-10",
+   "flag": "high",
+   "comment": "Above target; a stress response",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "7",
+   "note": "Respiratory rate, saturation, systolic pressure and temperature score; the slow pulse scores nothing because of the beta-blocker",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc22.sepsis",
+   "type": "life_threat",
+   "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+   "rank": 1,
+   "why": "High-risk sepsis: antibiotics within 1 hour, fluids, senior and anaesthetic call, urgent drainage plan.",
+   "expected_actions": [
+    "Call the senior and the anaesthetist",
+    "Cultures and lactate",
+    "Antibiotic by the prescriber within 1 hour"
+   ]
+  },
+  {
+   "id": "sc22.bb",
+   "type": "time_critical",
+   "label": "Slow heart and low BP: tachycardia masked by the beta-blocker",
+   "rank": 2,
+   "why": "A heart rate of 56 does not mean she is well; treat the pressure and the lactate.",
+   "expected_actions": [
+    "Do not rely on the pulse",
+    "Fluids by clinician order and reassess",
+    "Medicines review by the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc22.glp1",
+   "type": "safety_blocker",
+   "label": "Weekly GLP-1 injection 3 days ago with nausea and bloating: stomach may still hold food",
+   "rank": 3,
+   "why": "Delayed gastric emptying raises aspiration risk; a full-stomach plan is needed if she needs urgent anaesthesia.",
+   "expected_actions": [
+    "Tell the anaesthetist about the injection date",
+    "Ask about nausea, bloating and vomiting"
+   ]
+  },
+  {
+   "id": "sc22.chole",
+   "type": "pathway_changing",
+   "label": "Acute cholecystitis behind the picture",
+   "rank": 4,
+   "why": "The gallbladder is not today's operation: drain and treat first.",
+   "expected_actions": [
+    "Surgical and radiology review"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc22.d1",
+   "prompt": "NEWS2 7, lactate 3.1, jaundice and fever.",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc22.d1.1",
+     "text": "Escalate now as high-risk sepsis: senior and anaesthetist, cultures, fluids and an antibiotic within 1 hour; cancel the elective list",
+     "correct": true,
+     "consequence": "Life threat first."
+    },
+    {
+     "id": "sc22.d1.2",
+     "text": "Wait for the liver ultrasound",
+     "correct": false,
+     "consequence": "Delay in antibiotics."
+    }
+   ]
+  },
+  {
+   "id": "sc22.d2",
+   "prompt": "Her pulse is 56 and the BP 92/58.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc22.d2.1",
+     "text": "Treat the low pressure and lactate despite the slow pulse: the beta-blocker hides the tachycardia",
+     "correct": true,
+     "consequence": "The anaesthetist reviews the beta-blocker."
+    },
+    {
+     "id": "sc22.d2.2",
+     "text": "Reassure: a slow pulse is a good sign",
+     "correct": false,
+     "consequence": "Shock is missed."
+    }
+   ]
+  },
+  {
+   "id": "sc22.d3",
+   "prompt": "Semaglutide last Sunday, nauseated and bloated.",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "sc22.d3.1",
+     "text": "Tell the anaesthetist: treat as a full stomach if she needs anaesthesia",
+     "correct": true,
+     "consequence": "Aspiration risk planned for."
+    },
+    {
+     "id": "sc22.d3.2",
+     "text": "She has fasted since 18:00, so there is no risk",
+     "correct": false,
+     "consequence": "GLP-1 drugs delay emptying despite fasting."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Sepsis recognised despite a slow pulse",
+   "Senior and anaesthetist called",
+   "GLP-1 date given",
+   "Redirected to urgent drainage and treatment"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Keeps her on the elective list",
+    "shows": "She deteriorates on the table",
+    "risk": "Septic shock",
+    "recovery": "Stop; escalate"
+   }
+  ],
+  "missed": [
+   "Beta-blocker effect not considered",
+   "GLP-1 not asked about"
+  ],
+  "recovery": [
+   "Read the pressure and lactate, not the pulse"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+   "Slow heart and low BP: tachycardia masked by the beta-blocker"
+  ],
+  "missed": [
+   "Beta-blocker effect not considered",
+   "GLP-1 not asked about"
+  ],
+  "priority": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+  "why_priority": "High-risk sepsis: antibiotics within 1 hour, fluids, senior and anaesthetic call, urgent drainage plan.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "NEWS2 7 or more or lactate 2.0 or more",
+  "if_ignored": "Septic shock before any operation",
+  "remember": "A normal pulse on a beta-blocker proves nothing in sepsis."
+ },
+ "verification": [
+  "V-02",
+  "V-04",
+  "V-05",
+  "V-21",
+  "V-40",
+  "V-49",
+  "V-75"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "risk": {
+  "asa": {
+   "min": 4,
+   "max": 4,
+   "emergency": true,
+   "why": "Sepsis with hypotension and lactate 3.1 is ASA 4 in the ASA's examples; obesity (BMI 38) and type 2 diabetes add to it; urgent drainage makes it an emergency, and the weekly GLP-1 injection means a full-stomach plan.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ }
+}

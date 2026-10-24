@@ -1,0 +1,35 @@
+{
+  "case": "SC-25",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "b25002728f6fac64c1f25860e41674daea92620758daf3fb2f0e423aa280f05d",
+  "state_hash": "9ead4e587dee1379e0c935c7c565c2aed44bbcb0bdcc79ba84122031c72983bb",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.kidney_injury",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open"
+    ],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "REDIRECTED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 2,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

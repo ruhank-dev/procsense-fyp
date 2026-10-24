@@ -61,7 +61,7 @@ namespace ProcSense.Core.Tests
                         }
                     }
             }
-            Assert.Equal(53, cases);
+            Assert.Equal(TestCase.AllCases, cases);
             Assert.True(generated > 0);
         }
 

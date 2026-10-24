@@ -1,0 +1,499 @@
+{
+ "schema": 1,
+ "id": "SC-32",
+ "walkthrough_label": "COMBINATION CARD 32 (S2) - Full stomach + diverticulitis or bowel cancer in an older man + surgery after resuscitation",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Fazal Dastgir",
+  "sex": "M",
+  "age": 71,
+  "occupation": "retired shopkeeper",
+  "dob": "1955-10-06",
+  "mrn": "635032"
+ },
+ "spoken_identity_answer": "Fazal Dastgir, sixth of October 1955.",
+ "wristband": {
+  "name_text": "FAZAL DASTGIR",
+  "dob_text": "06/10/1955",
+  "mrn_text": "MR 635032"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have pain on my left side.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "15:00",
+  "summary": "Mr Fazal Dastgir, 71, left-sided abdominal pain for 4 days, temperature 38.5, HR 110, BP 104/64, dry; he ate a heavy meal 3 hours ago. CT: a sigmoid abscess with a perforation; a cancer cannot be excluded."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "The pain is on my left side and I have a fever. I ate lunch before the pain got bad.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Four days of left-sided pain, a change in bowel habit for six weeks, some blood in the stools last month.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "High blood pressure, diverticulosis known on a scan.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Amlodipine.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "A heavy lunch of rice and meat at 12:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "heavy_meal",
+    "hours_before_now": 3.0
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Tea at 14:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 1.0
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "15:00",
+   "condition": "initial",
+   "heart_rate": 110,
+   "heart_rhythm": "regular",
+   "systolic_bp": 104,
+   "diastolic_bp": 64,
+   "respiratory_rate": 20,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 38.5,
+   "acvpu": "A",
+   "pain_score": 6,
+   "news2": 3,
+   "note": "Fever, fast pulse, dry.",
+   "origin": "authored"
+  },
+  {
+   "time": "17:00",
+   "condition": "after_correct_action",
+   "heart_rate": 92,
+   "heart_rhythm": "regular",
+   "systolic_bp": 122,
+   "diastolic_bp": 74,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 37.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "After fluids and antibiotics; surgery follows resuscitation.",
+   "origin": "authored"
+  },
+  {
+   "time": "17:00",
+   "condition": "if_no_action",
+   "heart_rate": 128,
+   "heart_rhythm": "regular",
+   "systolic_bp": 88,
+   "diastolic_bp": 50,
+   "respiratory_rate": 26,
+   "spo2": 93,
+   "oxygen": "room_air",
+   "temperature_c": 39.2,
+   "acvpu": "V",
+   "pain_score": 0,
+   "news2": 15,
+   "note": "Untreated: sepsis from the abscess.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Flushed, dry mouth, uncomfortable.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender and guarded in the left lower quadrant.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "18.3",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "210",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Markedly raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.hb",
+   "test": "Haemoglobin",
+   "value": "118",
+   "unit": "g/L",
+   "normal_range": "130-170",
+   "flag": "low",
+   "comment": "Mild anaemia",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "124",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "high",
+   "comment": "Raised: dehydration",
+   "quality": null,
+   "previous": {
+    "value": "88",
+    "when": "usual"
+   },
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "2.4",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Mild hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.ct",
+   "test": "CT abdomen",
+   "value": "Sigmoid wall thickening with a 5 cm abscess and gas; a tumour cannot be excluded",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Complicated diverticulitis or a perforated tumour (picture result)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "4",
+   "note": "Respiratory rate, pulse and temperature",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc32.stomach",
+   "type": "safety_blocker",
+   "label": "Full stomach for anaesthesia (a heavy meal 3 hours ago)",
+   "rank": 1,
+   "why": "Rapid sequence plan; the meal does not cancel an urgent operation but changes how it is done.",
+   "expected_actions": [
+    "Tell the anaesthetist the time and the content of the meal"
+   ]
+  },
+  {
+   "id": "sc32.resus",
+   "type": "time_critical",
+   "label": "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first",
+   "rank": 2,
+   "why": "Operating while dry and septic raises the risk; a short delay for resuscitation is correct.",
+   "expected_actions": [
+    "Fluids by order",
+    "Antibiotic by the prescriber",
+    "Repeat lactate and creatinine"
+   ]
+  },
+  {
+   "id": "sc32.cancer",
+   "type": "pathway_changing",
+   "label": "Older person with a change in bowel habit and blood: cancer is possible",
+   "rank": 3,
+   "why": "The surgeon plans the operation knowing that cancer is possible; he is told and followed up.",
+   "expected_actions": [
+    "Tell the surgeon about the bowel change and blood",
+    "Follow-up tests are arranged"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc32.d1",
+   "prompt": "A heavy lunch 3 hours ago and an urgent operation is needed.",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "sc32.d1.1",
+     "text": "Tell the anaesthetist: rapid sequence plan, no cancellation",
+     "correct": true,
+     "consequence": "Aspiration risk planned."
+    },
+    {
+     "id": "sc32.d1.2",
+     "text": "Wait 8 hours for the stomach to empty",
+     "correct": false,
+     "consequence": "Sepsis progresses."
+    }
+   ]
+  },
+  {
+   "id": "sc32.d2",
+   "prompt": "He is dry with a lactate of 2.4 and creatinine 124.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc32.d2.1",
+     "text": "Resuscitate first by the clinician's order, then operate: a short, planned delay",
+     "correct": true,
+     "consequence": "Safer anaesthetic."
+    },
+    {
+     "id": "sc32.d2.2",
+     "text": "Go to theatre at once to save time",
+     "correct": false,
+     "consequence": "Hypotension on induction."
+    }
+   ]
+  },
+  {
+   "id": "sc32.d3",
+   "prompt": "Six weeks of changed bowel habit and some blood.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc32.d3.1",
+     "text": "Tell the surgeon: a bowel cancer is possible and needs follow-up",
+     "correct": true,
+     "consequence": "Cancer pathway kept."
+    },
+    {
+     "id": "sc32.d3.2",
+     "text": "Leave it: it is only diverticulitis",
+     "correct": false,
+     "consequence": "A cancer is missed."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "delayed",
+ "paths": {
+  "correct": [
+   "Meal time told",
+   "Resuscitated before surgery",
+   "Cancer possibility passed on"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Operates at once without resuscitation",
+    "shows": "Collapse on induction",
+    "risk": "Harm",
+    "recovery": "Stop; resuscitate"
+   }
+  ],
+  "missed": [
+   "Bowel change not asked"
+  ],
+  "recovery": [
+   "Ask about the bowel habit"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Full stomach for anaesthesia (a heavy meal 3 hours ago)",
+   "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first"
+  ],
+  "missed": [
+   "Bowel change not asked"
+  ],
+  "priority": "Full stomach for anaesthesia (a heavy meal 3 hours ago)",
+  "why_priority": "Rapid sequence plan; the meal does not cancel an urgent operation but changes how it is done.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "A short delay to resuscitate is part of the plan, not a failure."
+ },
+ "verification": [
+  "V-09",
+  "V-12",
+  "V-17",
+  "V-21",
+  "V-40",
+  "V-46"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 3,
+   "emergency": true,
+   "why": "Systemic inflammation and dehydration in a 71-year-old with high blood pressure: ASA 3E; a heavy meal means a rapid sequence plan.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ }
+}

@@ -1,0 +1,503 @@
+{
+ "schema": 1,
+ "id": "SC-30",
+ "walkthrough_label": "COMBINATION CARD 30 (S2) - Sepsis with poor circulation + opioid sedation + dehydration with kidney injury",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mrs",
+  "full_name": "Bushra Qazi",
+  "sex": "F",
+  "age": 58,
+  "occupation": "bank cashier",
+  "dob": "1968-05-27",
+  "mrn": "635030"
+ },
+ "spoken_identity_answer": "Bushra Qazi, twenty-seventh of May 1968.",
+ "wristband": {
+  "name_text": "BUSHRA QAZI",
+  "dob_text": "27/05/1968",
+  "mrn_text": "MR 635030"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "12:00",
+  "summary": "Mrs Bushra Qazi, 58, perforated appendix with sepsis: temperature 38.8, HR 118, BP 94/58, RR 24, lactate 3.4; creatinine 142 against a usual 88; drowsy after morphine."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "My tummy hurts everywhere and I have been sick all week.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Five days of pain and vomiting, little urine, fever.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "High blood pressure.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Ramipril and amlodipine; morphine given today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Nothing for two days.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "none"
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 09:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 3.0
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Postmenopausal.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 118,
+   "heart_rhythm": "regular",
+   "systolic_bp": 94,
+   "diastolic_bp": 58,
+   "respiratory_rate": 24,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 38.8,
+   "acvpu": "V",
+   "pain_score": 5,
+   "news2": 11,
+   "note": "Sepsis; the opioid blunts her pain and her breathing drive.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:40",
+   "condition": "after_correct_action",
+   "heart_rate": 98,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 68,
+   "respiratory_rate": 18,
+   "spo2": 97,
+   "oxygen": "supplemental",
+   "temperature_c": 38.0,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 3,
+   "note": "After the sepsis bundle, fluids and stopping the opioid.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:40",
+   "condition": "if_no_action",
+   "heart_rate": 138,
+   "heart_rhythm": "regular",
+   "systolic_bp": 80,
+   "diastolic_bp": 44,
+   "respiratory_rate": 8,
+   "spo2": 87,
+   "oxygen": "room_air",
+   "temperature_c": 39.5,
+   "acvpu": "P",
+   "pain_score": 0,
+   "news2": 17,
+   "note": "Untreated: shock and kidney failure.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Drowsy, dry, breathing fast.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Rigid, tender everywhere.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true,
+   "flags": [
+    "finding.rigid_abdomen"
+   ]
+  },
+  {
+   "id": "ex.skin",
+   "system": "skin",
+   "finding": "Skin tenting, cool hands.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:skin"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.4",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "142",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Acute kidney injury stage 1 against her usual 88 (1.6 times)",
+   "quality": null,
+   "previous": {
+    "value": "88",
+    "when": "usual"
+   },
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.urea",
+   "test": "Urea",
+   "value": "13.8",
+   "unit": "mmol/L",
+   "normal_range": "2.5-7.8",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "20.4",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Severe inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "5.1",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "normal",
+   "comment": "Upper normal; recheck",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "9",
+   "note": "High risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc30.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis with poor circulation",
+   "rank": 1,
+   "why": "Antibiotic within 1 hour, cultures and fluids; senior and anaesthetist.",
+   "expected_actions": [
+    "Call the senior and the anaesthetist",
+    "Cultures and lactate",
+    "Antibiotic within 1 hour"
+   ]
+  },
+  {
+   "id": "sc30.opioid",
+   "type": "safety_blocker",
+   "label": "Opioid sedation: the cause of the drowsiness to rule out",
+   "rank": 2,
+   "why": "Check the dose and time on the chart and report to the clinician, who decides about an antidote.",
+   "expected_actions": [
+    "Check the drug chart",
+    "Stop more opioid",
+    "Report to the clinician"
+   ]
+  },
+  {
+   "id": "sc30.aki",
+   "type": "time_critical",
+   "label": "Dehydration with acute kidney injury (stage 1)",
+   "rank": 3,
+   "why": "Fluids by order; hold ramipril; strict urine output; no anti-inflammatories.",
+   "expected_actions": [
+    "Fluids and urine output",
+    "Medicines review",
+    "Repeat creatinine"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc30.d1",
+   "prompt": "NEWS2 9 and lactate 3.4.",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc30.d1.1",
+     "text": "Senior and anaesthetist, cultures and lactate, antibiotic within 1 hour, fluids by order",
+     "correct": true,
+     "consequence": "Life threat first."
+    },
+    {
+     "id": "sc30.d1.2",
+     "text": "Give her fluids only and reassess in 6 hours",
+     "correct": false,
+     "consequence": "Delay in antibiotics."
+    }
+   ]
+  },
+  {
+   "id": "sc30.d2",
+   "prompt": "She is drowsy and received morphine.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc30.d2.1",
+     "text": "Check the dose and time, stop more opioid and report: the clinician decides about an antidote",
+     "correct": true,
+     "consequence": "Cause found."
+    },
+    {
+     "id": "sc30.d2.2",
+     "text": "Assume the drowsiness is only sepsis and give more morphine",
+     "correct": false,
+     "consequence": "Respiratory depression."
+    }
+   ]
+  },
+  {
+   "id": "sc30.d3",
+   "prompt": "Creatinine 142 (usual 88) and she takes ramipril.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc30.d3.1",
+     "text": "Report the kidney injury; the clinician holds ramipril; fluids and urine output monitored",
+     "correct": true,
+     "consequence": "AKI managed."
+    },
+    {
+     "id": "sc30.d3.2",
+     "text": "Continue all her usual tablets",
+     "correct": false,
+     "consequence": "Kidney injury worsens."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Sepsis bundle",
+   "Opioid sedation recognised",
+   "Ramipril held on order"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Continues ramipril",
+    "shows": "Kidney injury worsens",
+    "risk": "Harm",
+    "recovery": "Stop; report"
+   }
+  ],
+  "missed": [
+   "Drug chart not checked"
+  ],
+  "recovery": [
+   "Check the chart"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Sepsis with poor circulation",
+   "Opioid sedation: the cause of the drowsiness to rule out"
+  ],
+  "missed": [
+   "Drug chart not checked"
+  ],
+  "priority": "Sepsis with poor circulation",
+  "why_priority": "Antibiotic within 1 hour, cultures and fluids; senior and anaesthetist.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Drowsiness in sepsis has two causes to separate: the infection and the drug."
+ },
+ "verification": [
+  "V-02",
+  "V-17",
+  "V-21",
+  "V-40",
+  "V-52",
+  "V-64",
+  "V-68",
+  "V-75"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "risk": {
+  "asa": {
+   "min": 4,
+   "max": 4,
+   "emergency": true,
+   "why": "Sepsis with poor circulation and acute kidney injury is ASA 4E.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ }
+}

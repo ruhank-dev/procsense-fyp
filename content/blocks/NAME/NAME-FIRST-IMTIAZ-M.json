@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Imtiaz"
+ },
+ "derived_from": [
+  "SC-29"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-IMTIAZ-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

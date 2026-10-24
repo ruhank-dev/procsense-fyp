@@ -1,0 +1,24 @@
+{
+ "attributes": {
+  "alcohol": "None.",
+  "smoking": "Never."
+ },
+ "derived_from": [
+  "SC-22"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "SOC-SC-22",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "alcohol:none",
+  "smoking:never"
+ ],
+ "type": "SOC"
+}

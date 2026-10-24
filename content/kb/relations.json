@@ -4,8 +4,8 @@
   "analyte_zone": 104,
   "critical_limit": 16,
   "finding_tag": 60,
-  "problem_action": 296,
-  "problem_result": 256,
+  "problem_action": 393,
+  "problem_result": 368,
   "test_indicated": 34,
   "treatment_clash": 18,
   "whatif": 47
@@ -1427,6 +1427,1781 @@
   {
    "confidence": "authored",
    "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "action.SC-21.sc21.cbd.ask_the_red_flag_questions_and_look_at_t",
+   "object": {
+    "id": "ask_the_red_flag_questions_and_look_at_the_eyes",
+    "kind": "action",
+    "label": "Ask the red-flag questions and look at the eyes"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "action.SC-21.sc21.cbd.do_not_proceed_call_the_senior_surgeon",
+   "object": {
+    "id": "do_not_proceed_call_the_senior_surgeon",
+    "kind": "action",
+    "label": "Do not proceed; call the senior surgeon"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "action.SC-21.sc21.cbd.liver_tests_and_ultrasound",
+   "object": {
+    "id": "liver_tests_and_ultrasound",
+    "kind": "action",
+    "label": "Liver tests and ultrasound"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.chole"
+   },
+   "id": "action.SC-21.sc21.chole.look_for_systemic_signs",
+   "object": {
+    "id": "look_for_systemic_signs",
+    "kind": "action",
+    "label": "Look for systemic signs"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis with early systemic signs"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.chole"
+   },
+   "id": "action.SC-21.sc21.chole.request_inflammatory_markers",
+   "object": {
+    "id": "request_inflammatory_markers",
+    "kind": "action",
+    "label": "Request inflammatory markers"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis with early systemic signs"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.chole"
+   },
+   "id": "action.SC-21.sc21.chole.surgical_review",
+   "object": {
+    "id": "surgical_review",
+    "kind": "action",
+    "label": "Surgical review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis with early systemic signs"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.doac"
+   },
+   "id": "action.SC-21.sc21.doac.check_kidney_function",
+   "object": {
+    "id": "check_kidney_function",
+    "kind": "action",
+    "label": "Check kidney function"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.doac",
+    "kind": "problem",
+    "label": "Apixaban taken last night: bleeding risk at surgery"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.doac"
+   },
+   "id": "action.SC-21.sc21.doac.confirm_the_time_of_the_last_dose",
+   "object": {
+    "id": "confirm_the_time_of_the_last_dose",
+    "kind": "action",
+    "label": "Confirm the time of the last dose"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.doac",
+    "kind": "problem",
+    "label": "Apixaban taken last night: bleeding risk at surgery"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.doac"
+   },
+   "id": "action.SC-21.sc21.doac.tell_the_surgeon_and_the_anaesthetist",
+   "object": {
+    "id": "tell_the_surgeon_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Tell the surgeon and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-21.sc21.doac",
+    "kind": "problem",
+    "label": "Apixaban taken last night: bleeding risk at surgery"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.bb"
+   },
+   "id": "action.SC-22.sc22.bb.do_not_rely_on_the_pulse",
+   "object": {
+    "id": "do_not_rely_on_the_pulse",
+    "kind": "action",
+    "label": "Do not rely on the pulse"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.bb",
+    "kind": "problem",
+    "label": "Slow heart and low BP: tachycardia masked by the beta-blocker"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.bb"
+   },
+   "id": "action.SC-22.sc22.bb.fluids_by_clinician_order_and_reassess",
+   "object": {
+    "id": "fluids_by_clinician_order_and_reassess",
+    "kind": "action",
+    "label": "Fluids by clinician order and reassess"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.bb",
+    "kind": "problem",
+    "label": "Slow heart and low BP: tachycardia masked by the beta-blocker"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.bb"
+   },
+   "id": "action.SC-22.sc22.bb.medicines_review_by_the_anaesthetist",
+   "object": {
+    "id": "medicines_review_by_the_anaesthetist",
+    "kind": "action",
+    "label": "Medicines review by the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.bb",
+    "kind": "problem",
+    "label": "Slow heart and low BP: tachycardia masked by the beta-blocker"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "action.SC-22.sc22.chole.surgical_and_radiology_review",
+   "object": {
+    "id": "surgical_and_radiology_review",
+    "kind": "action",
+    "label": "Surgical and radiology review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.glp1"
+   },
+   "id": "action.SC-22.sc22.glp1.ask_about_nausea_bloating_and_vomiting",
+   "object": {
+    "id": "ask_about_nausea_bloating_and_vomiting",
+    "kind": "action",
+    "label": "Ask about nausea, bloating and vomiting"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.glp1",
+    "kind": "problem",
+    "label": "Weekly GLP-1 injection 3 days ago with nausea and bloating: stomach may still hold food"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.glp1"
+   },
+   "id": "action.SC-22.sc22.glp1.tell_the_anaesthetist_about_the_injectio",
+   "object": {
+    "id": "tell_the_anaesthetist_about_the_injection_date",
+    "kind": "action",
+    "label": "Tell the anaesthetist about the injection date"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.glp1",
+    "kind": "problem",
+    "label": "Weekly GLP-1 injection 3 days ago with nausea and bloating: stomach may still hold food"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "action.SC-22.sc22.sepsis.antibiotic_by_the_prescriber_within_1_ho",
+   "object": {
+    "id": "antibiotic_by_the_prescriber_within_1_hour",
+    "kind": "action",
+    "label": "Antibiotic by the prescriber within 1 hour"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "action.SC-22.sc22.sepsis.call_the_senior_and_the_anaesthetist",
+   "object": {
+    "id": "call_the_senior_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Call the senior and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "action.SC-22.sc22.sepsis.cultures_and_lactate",
+   "object": {
+    "id": "cultures_and_lactate",
+    "kind": "action",
+    "label": "Cultures and lactate"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "action.SC-23.sc23.anaemia.do_not_give_iron_as_the_only_answer",
+   "object": {
+    "id": "do_not_give_iron_as_the_only_answer",
+    "kind": "action",
+    "label": "Do not give iron as the only answer"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "action.SC-23.sc23.anaemia.refer_for_investigation_of_the_source",
+   "object": {
+    "id": "refer_for_investigation_of_the_source",
+    "kind": "action",
+    "label": "Refer for investigation of the source"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "action.SC-23.sc23.anaemia.repeat_the_blood_count",
+   "object": {
+    "id": "repeat_the_blood_count",
+    "kind": "action",
+    "label": "Repeat the blood count"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.doac"
+   },
+   "id": "action.SC-23.sc23.doac.confirm_the_last_dose",
+   "object": {
+    "id": "confirm_the_last_dose",
+    "kind": "action",
+    "label": "Confirm the last dose"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.doac",
+    "kind": "problem",
+    "label": "Apixaban not stopped: bleeding risk"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.doac"
+   },
+   "id": "action.SC-23.sc23.doac.tell_the_surgeon_and_the_anaesthetist",
+   "object": {
+    "id": "tell_the_surgeon_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Tell the surgeon and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.doac",
+    "kind": "problem",
+    "label": "Apixaban not stopped: bleeding risk"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "action.SC-23.sc23.hba1c.re_list_when_below_69",
+   "object": {
+    "id": "re_list_when_below_69",
+    "kind": "action",
+    "label": "Re-list when below 69"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "action.SC-23.sc23.hba1c.tell_the_diabetes_team",
+   "object": {
+    "id": "tell_the_diabetes_team",
+    "kind": "action",
+    "label": "Tell the diabetes team"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "action.SC-23.sc23.osa.plan_post_operative_monitoring",
+   "object": {
+    "id": "plan_post_operative_monitoring",
+    "kind": "action",
+    "label": "Plan post-operative monitoring"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "action.SC-23.sc23.osa.tell_the_anaesthetist",
+   "object": {
+    "id": "tell_the_anaesthetist",
+    "kind": "action",
+    "label": "Tell the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.consent"
+   },
+   "id": "action.SC-24.sc24.consent.check_she_understands_the_operation",
+   "object": {
+    "id": "check_she_understands_the_operation",
+    "kind": "action",
+    "label": "Check she understands the operation"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.consent",
+    "kind": "problem",
+    "label": "Consent form not signed"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.consent"
+   },
+   "id": "action.SC-24.sc24.consent.do_not_ask_her_to_sign_without_the_surge",
+   "object": {
+    "id": "do_not_ask_her_to_sign_without_the_surgeon",
+    "kind": "action",
+    "label": "Do not ask her to sign without the surgeon"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.consent",
+    "kind": "problem",
+    "label": "Consent form not signed"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.consent"
+   },
+   "id": "action.SC-24.sc24.consent.tell_the_surgeon_the_form_is_missing",
+   "object": {
+    "id": "tell_the_surgeon_the_form_is_missing",
+    "kind": "action",
+    "label": "Tell the surgeon the form is missing"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.consent",
+    "kind": "problem",
+    "label": "Consent form not signed"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.fit"
+   },
+   "id": "action.SC-24.sc24.fit.record_in_the_handover",
+   "object": {
+    "id": "record_in_the_handover",
+    "kind": "action",
+    "label": "Record in the handover"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.fit",
+    "kind": "problem",
+    "label": "Otherwise fit and fasted correctly"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.slow"
+   },
+   "id": "action.SC-24.sc24.slow.12_lead_ecg",
+   "object": {
+    "id": "12_lead_ecg",
+    "kind": "action",
+    "label": "12-lead ECG"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.slow",
+    "kind": "problem",
+    "label": "Slow heart and low BP in a patient with AF on a beta-blocker"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.slow"
+   },
+   "id": "action.SC-24.sc24.slow.anaesthetic_review",
+   "object": {
+    "id": "anaesthetic_review",
+    "kind": "action",
+    "label": "Anaesthetic review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.slow",
+    "kind": "problem",
+    "label": "Slow heart and low BP in a patient with AF on a beta-blocker"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.slow"
+   },
+   "id": "action.SC-24.sc24.slow.repeat_the_observations_after_sitting",
+   "object": {
+    "id": "repeat_the_observations_after_sitting",
+    "kind": "action",
+    "label": "Repeat the observations after sitting"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-24.sc24.slow",
+    "kind": "problem",
+    "label": "Slow heart and low BP in a patient with AF on a beta-blocker"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.aki"
+   },
+   "id": "action.SC-25.sc25.aki.fluids_and_urine_output",
+   "object": {
+    "id": "fluids_and_urine_output",
+    "kind": "action",
+    "label": "Fluids and urine output"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.aki",
+    "kind": "problem",
+    "label": "Acute kidney injury: creatinine 178 against a usual 82"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.aki"
+   },
+   "id": "action.SC-25.sc25.aki.medicines_review_by_the_clinician",
+   "object": {
+    "id": "medicines_review_by_the_clinician",
+    "kind": "action",
+    "label": "Medicines review by the clinician"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.aki",
+    "kind": "problem",
+    "label": "Acute kidney injury: creatinine 178 against a usual 82"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.aki"
+   },
+   "id": "action.SC-25.sc25.aki.repeat_creatinine",
+   "object": {
+    "id": "repeat_creatinine",
+    "kind": "action",
+    "label": "Repeat creatinine"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.aki",
+    "kind": "problem",
+    "label": "Acute kidney injury: creatinine 178 against a usual 82"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "action.SC-25.sc25.anaemia.investigate_the_source",
+   "object": {
+    "id": "investigate_the_source",
+    "kind": "action",
+    "label": "Investigate the source"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "action.SC-25.sc25.anaemia.tell_the_team_and_the_gp",
+   "object": {
+    "id": "tell_the_team_and_the_gp",
+    "kind": "action",
+    "label": "Tell the team and the GP"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "action.SC-25.sc25.chol.antibiotic_by_the_prescriber",
+   "object": {
+    "id": "antibiotic_by_the_prescriber",
+    "kind": "action",
+    "label": "Antibiotic by the prescriber"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "action.SC-25.sc25.chol.call_the_senior_surgeon",
+   "object": {
+    "id": "call_the_senior_surgeon",
+    "kind": "action",
+    "label": "Call the senior surgeon"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "action.SC-25.sc25.chol.cultures_and_lactate",
+   "object": {
+    "id": "cultures_and_lactate",
+    "kind": "action",
+    "label": "Cultures and lactate"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.anaes"
+   },
+   "id": "action.SC-26.sc26.anaes.request_anaesthetic_review",
+   "object": {
+    "id": "request_anaesthetic_review",
+    "kind": "action",
+    "label": "Request anaesthetic review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-26.sc26.anaes",
+    "kind": "problem",
+    "label": "Anaesthetist decides"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "action.SC-26.sc26.cbd.ask_the_red_flag_questions_and_look_at_h",
+   "object": {
+    "id": "ask_the_red_flag_questions_and_look_at_her_eyes",
+    "kind": "action",
+    "label": "Ask the red-flag questions and look at her eyes"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "action.SC-26.sc26.cbd.do_not_proceed_today_call_the_senior_sur",
+   "object": {
+    "id": "do_not_proceed_today_call_the_senior_surgeon",
+    "kind": "action",
+    "label": "Do not proceed today; call the senior surgeon"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "action.SC-26.sc26.cbd.request_liver_tests_and_ultrasound",
+   "object": {
+    "id": "request_liver_tests_and_ultrasound",
+    "kind": "action",
+    "label": "Request liver tests and ultrasound"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.doac"
+   },
+   "id": "action.SC-26.sc26.doac.record_the_dates",
+   "object": {
+    "id": "record_the_dates",
+    "kind": "action",
+    "label": "Record the dates"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-26.sc26.doac",
+    "kind": "problem",
+    "label": "Apixaban correctly stopped 3 days ago"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.doac"
+   },
+   "id": "action.SC-26.sc26.doac.tell_the_anaesthetist",
+   "object": {
+    "id": "tell_the_anaesthetist",
+    "kind": "action",
+    "label": "Tell the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-26.sc26.doac",
+    "kind": "problem",
+    "label": "Apixaban correctly stopped 3 days ago"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "action.SC-27.sc27.airway.call_the_anaesthetist",
+   "object": {
+    "id": "call_the_anaesthetist",
+    "kind": "action",
+    "label": "Call the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "action.SC-27.sc27.airway.stimulate_and_oxygen",
+   "object": {
+    "id": "stimulate_and_oxygen",
+    "kind": "action",
+    "label": "Stimulate and oxygen"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "action.SC-27.sc27.airway.stop_further_opioid",
+   "object": {
+    "id": "stop_further_opioid",
+    "kind": "action",
+    "label": "Stop further opioid"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.dehyd"
+   },
+   "id": "action.SC-27.sc27.dehyd.fluid_bolus_by_clinician_order",
+   "object": {
+    "id": "fluid_bolus_by_clinician_order",
+    "kind": "action",
+    "label": "Fluid bolus by clinician order"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.dehyd",
+    "kind": "problem",
+    "label": "Dehydration with a rising creatinine"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.dehyd"
+   },
+   "id": "action.SC-27.sc27.dehyd.repeat_creatinine",
+   "object": {
+    "id": "repeat_creatinine",
+    "kind": "action",
+    "label": "Repeat creatinine"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.dehyd",
+    "kind": "problem",
+    "label": "Dehydration with a rising creatinine"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.dehyd"
+   },
+   "id": "action.SC-27.sc27.dehyd.urine_output",
+   "object": {
+    "id": "urine_output",
+    "kind": "action",
+    "label": "Urine output"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.dehyd",
+    "kind": "problem",
+    "label": "Dehydration with a rising creatinine"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.lang"
+   },
+   "id": "action.SC-27.sc27.lang.ask_the_allergy_and_medicine_questions_t",
+   "object": {
+    "id": "ask_the_allergy_and_medicine_questions_through_the_interpret",
+    "kind": "action",
+    "label": "Ask the allergy and medicine questions through the interpreter"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.lang",
+    "kind": "problem",
+    "label": "Language barrier: allergies, medicines and consent cannot be taken safely"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.lang"
+   },
+   "id": "action.SC-27.sc27.lang.request_an_interpreter_now",
+   "object": {
+    "id": "request_an_interpreter_now",
+    "kind": "action",
+    "label": "Request an interpreter now"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-27.sc27.lang",
+    "kind": "problem",
+    "label": "Language barrier: allergies, medicines and consent cannot be taken safely"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "action.SC-28.sc28.airway.call_the_senior_and_the_anaesthetist",
+   "object": {
+    "id": "call_the_senior_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Call the senior and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "action.SC-28.sc28.airway.side_position_suction",
+   "object": {
+    "id": "side_position_suction",
+    "kind": "action",
+    "label": "Side position, suction"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "action.SC-28.sc28.aki.fluids_by_clinician_order",
+   "object": {
+    "id": "fluids_by_clinician_order",
+    "kind": "action",
+    "label": "Fluids by clinician order"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "action.SC-28.sc28.aki.medicines_review",
+   "object": {
+    "id": "medicines_review",
+    "kind": "action",
+    "label": "Medicines review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "action.SC-28.sc28.aki.repeat_creatinine",
+   "object": {
+    "id": "repeat_creatinine",
+    "kind": "action",
+    "label": "Repeat creatinine"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.dka"
+   },
+   "id": "action.SC-28.sc28.dka.call_the_diabetes_team",
+   "object": {
+    "id": "call_the_diabetes_team",
+    "kind": "action",
+    "label": "Call the diabetes team"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.dka",
+    "kind": "problem",
+    "label": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.dka"
+   },
+   "id": "action.SC-28.sc28.dka.ketones_and_venous_gas",
+   "object": {
+    "id": "ketones_and_venous_gas",
+    "kind": "action",
+    "label": "Ketones and venous gas"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.dka",
+    "kind": "problem",
+    "label": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.dka"
+   },
+   "id": "action.SC-28.sc28.dka.stop_the_sglt2_inhibitor",
+   "object": {
+    "id": "stop_the_sglt2_inhibitor",
+    "kind": "action",
+    "label": "Stop the SGLT2 inhibitor"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-28.sc28.dka",
+    "kind": "problem",
+    "label": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.opioid"
+   },
+   "id": "action.SC-29.sc29.opioid.clinician_chooses_another_pain_plan",
+   "object": {
+    "id": "clinician_chooses_another_pain_plan",
+    "kind": "action",
+    "label": "Clinician chooses another pain plan"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.opioid",
+    "kind": "problem",
+    "label": "Stop further opioid: drowsy with slow breathing"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.opioid"
+   },
+   "id": "action.SC-29.sc29.opioid.oxygen_and_monitor",
+   "object": {
+    "id": "oxygen_and_monitor",
+    "kind": "action",
+    "label": "Oxygen and monitor"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.opioid",
+    "kind": "problem",
+    "label": "Stop further opioid: drowsy with slow breathing"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.opioid"
+   },
+   "id": "action.SC-29.sc29.opioid.stop_opioids",
+   "object": {
+    "id": "stop_opioids",
+    "kind": "action",
+    "label": "Stop opioids"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.opioid",
+    "kind": "problem",
+    "label": "Stop further opioid: drowsy with slow breathing"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "action.SC-29.sc29.sepsis.antibiotic_within_1_hour",
+   "object": {
+    "id": "antibiotic_within_1_hour",
+    "kind": "action",
+    "label": "Antibiotic within 1 hour"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "action.SC-29.sc29.sepsis.call_the_senior_and_the_anaesthetist",
+   "object": {
+    "id": "call_the_senior_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Call the senior and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "action.SC-29.sc29.sepsis.cultures_and_lactate",
+   "object": {
+    "id": "cultures_and_lactate",
+    "kind": "action",
+    "label": "Cultures and lactate"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.stomach"
+   },
+   "id": "action.SC-29.sc29.stomach.tell_the_anaesthetist_the_time_of_the_me",
+   "object": {
+    "id": "tell_the_anaesthetist_the_time_of_the_meal",
+    "kind": "action",
+    "label": "Tell the anaesthetist the time of the meal"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-29.sc29.stomach",
+    "kind": "problem",
+    "label": "Full stomach: a large meal 2 hours ago"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
     "file": "content/case_files/SC-3.json",
     "kind": "case",
     "row": "sc3.preg"
@@ -1521,6 +3296,656 @@
     "id": "SC-3.sc3.preg",
     "kind": "problem",
     "label": "Appendicitis in pregnancy with fever"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.aki"
+   },
+   "id": "action.SC-30.sc30.aki.fluids_and_urine_output",
+   "object": {
+    "id": "fluids_and_urine_output",
+    "kind": "action",
+    "label": "Fluids and urine output"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.aki",
+    "kind": "problem",
+    "label": "Dehydration with acute kidney injury (stage 1)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.aki"
+   },
+   "id": "action.SC-30.sc30.aki.medicines_review",
+   "object": {
+    "id": "medicines_review",
+    "kind": "action",
+    "label": "Medicines review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.aki",
+    "kind": "problem",
+    "label": "Dehydration with acute kidney injury (stage 1)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.aki"
+   },
+   "id": "action.SC-30.sc30.aki.repeat_creatinine",
+   "object": {
+    "id": "repeat_creatinine",
+    "kind": "action",
+    "label": "Repeat creatinine"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.aki",
+    "kind": "problem",
+    "label": "Dehydration with acute kidney injury (stage 1)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.opioid"
+   },
+   "id": "action.SC-30.sc30.opioid.check_the_drug_chart",
+   "object": {
+    "id": "check_the_drug_chart",
+    "kind": "action",
+    "label": "Check the drug chart"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.opioid",
+    "kind": "problem",
+    "label": "Opioid sedation: the cause of the drowsiness to rule out"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.opioid"
+   },
+   "id": "action.SC-30.sc30.opioid.report_to_the_clinician",
+   "object": {
+    "id": "report_to_the_clinician",
+    "kind": "action",
+    "label": "Report to the clinician"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.opioid",
+    "kind": "problem",
+    "label": "Opioid sedation: the cause of the drowsiness to rule out"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.opioid"
+   },
+   "id": "action.SC-30.sc30.opioid.stop_more_opioid",
+   "object": {
+    "id": "stop_more_opioid",
+    "kind": "action",
+    "label": "Stop more opioid"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.opioid",
+    "kind": "problem",
+    "label": "Opioid sedation: the cause of the drowsiness to rule out"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "action.SC-30.sc30.sepsis.antibiotic_within_1_hour",
+   "object": {
+    "id": "antibiotic_within_1_hour",
+    "kind": "action",
+    "label": "Antibiotic within 1 hour"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "action.SC-30.sc30.sepsis.call_the_senior_and_the_anaesthetist",
+   "object": {
+    "id": "call_the_senior_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Call the senior and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "action.SC-30.sc30.sepsis.cultures_and_lactate",
+   "object": {
+    "id": "cultures_and_lactate",
+    "kind": "action",
+    "label": "Cultures and lactate"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "action.SC-31.sc31.appy.antibiotic_by_the_prescriber",
+   "object": {
+    "id": "antibiotic_by_the_prescriber",
+    "kind": "action",
+    "label": "Antibiotic by the prescriber"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "action.SC-31.sc31.appy.surgical_and_anaesthetic_review",
+   "object": {
+    "id": "surgical_and_anaesthetic_review",
+    "kind": "action",
+    "label": "Surgical and anaesthetic review"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.consent"
+   },
+   "id": "action.SC-31.sc31.consent.involve_the_mother_who_is_on_her_way",
+   "object": {
+    "id": "involve_the_mother_who_is_on_her_way",
+    "kind": "action",
+    "label": "Involve the mother who is on her way"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.consent",
+    "kind": "problem",
+    "label": "A minor (16): consent follows the applicable local law and the parent is involved"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.consent"
+   },
+   "id": "action.SC-31.sc31.consent.record_who_consented",
+   "object": {
+    "id": "record_who_consented",
+    "kind": "action",
+    "label": "Record who consented"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.consent",
+    "kind": "problem",
+    "label": "A minor (16): consent follows the applicable local law and the parent is involved"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.consent"
+   },
+   "id": "action.SC-31.sc31.consent.tell_the_senior_clinician",
+   "object": {
+    "id": "tell_the_senior_clinician",
+    "kind": "action",
+    "label": "Tell the senior clinician"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.consent",
+    "kind": "problem",
+    "label": "A minor (16): consent follows the applicable local law and the parent is involved"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "action.SC-31.sc31.dka.diabetes_team",
+   "object": {
+    "id": "diabetes_team",
+    "kind": "action",
+    "label": "Diabetes team"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "action.SC-31.sc31.dka.ketones_and_gas",
+   "object": {
+    "id": "ketones_and_gas",
+    "kind": "action",
+    "label": "Ketones and gas"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "action.SC-31.sc31.dka.protocol_by_the_clinician",
+   "object": {
+    "id": "protocol_by_the_clinician",
+    "kind": "action",
+    "label": "Protocol by the clinician"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "action.SC-31.sc31.k.call_the_senior_and_the_anaesthetist",
+   "object": {
+    "id": "call_the_senior_and_the_anaesthetist",
+    "kind": "action",
+    "label": "Call the senior and the anaesthetist"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "action.SC-31.sc31.k.continuous_ecg",
+   "object": {
+    "id": "continuous_ecg",
+    "kind": "action",
+    "label": "Continuous ECG"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "action.SC-31.sc31.k.treatment_by_clinician_order",
+   "object": {
+    "id": "treatment_by_clinician_order",
+    "kind": "action",
+    "label": "Treatment by clinician order"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "action.SC-32.sc32.cancer.follow_up_tests_are_arranged",
+   "object": {
+    "id": "follow_up_tests_are_arranged",
+    "kind": "action",
+    "label": "Follow-up tests are arranged"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "action.SC-32.sc32.cancer.tell_the_surgeon_about_the_bowel_change_",
+   "object": {
+    "id": "tell_the_surgeon_about_the_bowel_change_and_blood",
+    "kind": "action",
+    "label": "Tell the surgeon about the bowel change and blood"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.resus"
+   },
+   "id": "action.SC-32.sc32.resus.antibiotic_by_the_prescriber",
+   "object": {
+    "id": "antibiotic_by_the_prescriber",
+    "kind": "action",
+    "label": "Antibiotic by the prescriber"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-32.sc32.resus",
+    "kind": "problem",
+    "label": "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.resus"
+   },
+   "id": "action.SC-32.sc32.resus.fluids_by_order",
+   "object": {
+    "id": "fluids_by_order",
+    "kind": "action",
+    "label": "Fluids by order"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-32.sc32.resus",
+    "kind": "problem",
+    "label": "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.resus"
+   },
+   "id": "action.SC-32.sc32.resus.repeat_lactate_and_creatinine",
+   "object": {
+    "id": "repeat_lactate_and_creatinine",
+    "kind": "action",
+    "label": "Repeat lactate and creatinine"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-32.sc32.resus",
+    "kind": "problem",
+    "label": "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first"
+   },
+   "type": "problem_action"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.stomach"
+   },
+   "id": "action.SC-32.sc32.stomach.tell_the_anaesthetist_the_time_and_the_c",
+   "object": {
+    "id": "tell_the_anaesthetist_the_time_and_the_content_of_the_meal",
+    "kind": "action",
+    "label": "Tell the anaesthetist the time and the content of the meal"
+   },
+   "predicate": "expects_action",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "subject": {
+    "id": "SC-32.sc32.stomach",
+    "kind": "problem",
+    "label": "Full stomach for anaesthesia (a heavy meal 3 hours ago)"
    },
    "type": "problem_action"
   },
@@ -12422,6 +14847,2679 @@
   {
    "confidence": "authored",
    "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "result.SC-21.sc21.cbd.lab_alp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alp:high",
+    "kind": "result",
+    "label": "ALP 210 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "result.SC-21.sc21.cbd.lab_alt",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alt:high",
+    "kind": "result",
+    "label": "ALT 96 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "result.SC-21.sc21.cbd.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 48 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "result.SC-21.sc21.cbd.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 62 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "result.SC-21.sc21.cbd.lab_us",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ultrasound_abdomen:abnormal",
+    "kind": "result",
+    "label": "Ultrasound abdomen Gallstones with a thick wall; common bile duct 9 mm  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-21.json",
+    "kind": "case",
+    "row": "sc21.cbd"
+   },
+   "id": "result.SC-21.sc21.cbd.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 14.2 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-21"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-21.sc21.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what he was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_alp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alp:high",
+    "kind": "result",
+    "label": "ALP 260 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 78 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 132 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 180 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 11.8 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_lactate",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "lactate:high",
+    "kind": "result",
+    "label": "Lactate 3.1 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.chole"
+   },
+   "id": "result.SC-22.sc22.chole.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 19.4 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.chole",
+    "kind": "problem",
+    "label": "Acute cholecystitis behind the picture"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_alp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alp:high",
+    "kind": "result",
+    "label": "ALP 260 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 78 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 132 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 180 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 11.8 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_lactate",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "lactate:high",
+    "kind": "result",
+    "label": "Lactate 3.1 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-22.json",
+    "kind": "case",
+    "row": "sc22.sepsis"
+   },
+   "id": "result.SC-22.sc22.sepsis.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 19.4 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-22"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-22.sc22.sepsis",
+    "kind": "problem",
+    "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "result.SC-23.sc23.anaemia.lab_ferr",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ferritin:low",
+    "kind": "result",
+    "label": "Ferritin 9 ug/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "result.SC-23.sc23.anaemia.lab_hb",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "haemoglobin:low",
+    "kind": "result",
+    "label": "Haemoglobin 98 g/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "result.SC-23.sc23.anaemia.lab_hba1c",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "hba1c:high",
+    "kind": "result",
+    "label": "HbA1c 76 mmol/mol (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "result.SC-23.sc23.anaemia.lab_mcv",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "mcv:low",
+    "kind": "result",
+    "label": "MCV 72 fL (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.anaemia"
+   },
+   "id": "result.SC-23.sc23.anaemia.lab_stop",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "stop_bang:high",
+    "kind": "result",
+    "label": "STOP-BANG 6 points (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "result.SC-23.sc23.hba1c.lab_ferr",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ferritin:low",
+    "kind": "result",
+    "label": "Ferritin 9 ug/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "result.SC-23.sc23.hba1c.lab_hb",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "haemoglobin:low",
+    "kind": "result",
+    "label": "Haemoglobin 98 g/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "result.SC-23.sc23.hba1c.lab_hba1c",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "hba1c:high",
+    "kind": "result",
+    "label": "HbA1c 76 mmol/mol (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "result.SC-23.sc23.hba1c.lab_mcv",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "mcv:low",
+    "kind": "result",
+    "label": "MCV 72 fL (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.hba1c"
+   },
+   "id": "result.SC-23.sc23.hba1c.lab_stop",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "stop_bang:high",
+    "kind": "result",
+    "label": "STOP-BANG 6 points (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.hba1c",
+    "kind": "problem",
+    "label": "HbA1c 76 above the limit of 69 for planned surgery"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "result.SC-23.sc23.osa.lab_ferr",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ferritin:low",
+    "kind": "result",
+    "label": "Ferritin 9 ug/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "result.SC-23.sc23.osa.lab_hb",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "haemoglobin:low",
+    "kind": "result",
+    "label": "Haemoglobin 98 g/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "result.SC-23.sc23.osa.lab_hba1c",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "hba1c:high",
+    "kind": "result",
+    "label": "HbA1c 76 mmol/mol (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "result.SC-23.sc23.osa.lab_mcv",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "mcv:low",
+    "kind": "result",
+    "label": "MCV 72 fL (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-23.json",
+    "kind": "case",
+    "row": "sc23.osa"
+   },
+   "id": "result.SC-23.sc23.osa.lab_stop",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "stop_bang:high",
+    "kind": "result",
+    "label": "STOP-BANG 6 points (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-23"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-23.sc23.osa",
+    "kind": "problem",
+    "label": "High risk of obstructive sleep apnoea with BMI 37"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.fit"
+   },
+   "id": "result.SC-24.sc24.fit.lab_ecg",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ecg:abnormal",
+    "kind": "result",
+    "label": "ECG Atrial fibrillation, slow ventricular rate 46, no pauses  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-24.sc24.fit",
+    "kind": "problem",
+    "label": "Otherwise fit and fasted correctly"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-24.json",
+    "kind": "case",
+    "row": "sc24.slow"
+   },
+   "id": "result.SC-24.sc24.slow.lab_ecg",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ecg:abnormal",
+    "kind": "result",
+    "label": "ECG Atrial fibrillation, slow ventricular rate 46, no pauses  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-24"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-24.sc24.slow",
+    "kind": "problem",
+    "label": "Slow heart and low BP in a patient with AF on a beta-blocker"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "result.SC-25.sc25.anaemia.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 84 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "result.SC-25.sc25.anaemia.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 178 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "result.SC-25.sc25.anaemia.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 140 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "result.SC-25.sc25.anaemia.lab_ferr",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ferritin:low",
+    "kind": "result",
+    "label": "Ferritin 12 ug/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "result.SC-25.sc25.anaemia.lab_hb",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "haemoglobin:low",
+    "kind": "result",
+    "label": "Haemoglobin 104 g/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.anaemia"
+   },
+   "id": "result.SC-25.sc25.anaemia.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 16.8 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.anaemia",
+    "kind": "problem",
+    "label": "Unexplained iron-deficiency anaemia in an older man"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "result.SC-25.sc25.chol.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 84 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "result.SC-25.sc25.chol.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 178 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "result.SC-25.sc25.chol.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 140 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "result.SC-25.sc25.chol.lab_ferr",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ferritin:low",
+    "kind": "result",
+    "label": "Ferritin 12 ug/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "result.SC-25.sc25.chol.lab_hb",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "haemoglobin:low",
+    "kind": "result",
+    "label": "Haemoglobin 104 g/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-25.json",
+    "kind": "case",
+    "row": "sc25.chol"
+   },
+   "id": "result.SC-25.sc25.chol.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 16.8 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-25"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-25.sc25.chol",
+    "kind": "problem",
+    "label": "Obstructed infected bile duct (acute cholangitis)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.anaes"
+   },
+   "id": "result.SC-26.sc26.anaes.lab_alp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alp:high",
+    "kind": "result",
+    "label": "ALP 240 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.anaes",
+    "kind": "problem",
+    "label": "Anaesthetist decides"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.anaes"
+   },
+   "id": "result.SC-26.sc26.anaes.lab_alt",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alt:high",
+    "kind": "result",
+    "label": "ALT 110 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.anaes",
+    "kind": "problem",
+    "label": "Anaesthetist decides"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.anaes"
+   },
+   "id": "result.SC-26.sc26.anaes.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 71 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.anaes",
+    "kind": "problem",
+    "label": "Anaesthetist decides"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.anaes"
+   },
+   "id": "result.SC-26.sc26.anaes.lab_us",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ultrasound_abdomen:abnormal",
+    "kind": "result",
+    "label": "Ultrasound abdomen Gallstones; common bile duct 10 mm  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.anaes",
+    "kind": "problem",
+    "label": "Anaesthetist decides"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "result.SC-26.sc26.cbd.lab_alp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alp:high",
+    "kind": "result",
+    "label": "ALP 240 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "result.SC-26.sc26.cbd.lab_alt",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alt:high",
+    "kind": "result",
+    "label": "ALT 110 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "result.SC-26.sc26.cbd.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 71 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.cbd"
+   },
+   "id": "result.SC-26.sc26.cbd.lab_us",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ultrasound_abdomen:abnormal",
+    "kind": "result",
+    "label": "Ultrasound abdomen Gallstones; common bile duct 10 mm  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.cbd",
+    "kind": "problem",
+    "label": "Probable stone in the main bile duct: not what she was booked for"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.doac"
+   },
+   "id": "result.SC-26.sc26.doac.lab_alp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alp:high",
+    "kind": "result",
+    "label": "ALP 240 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.doac",
+    "kind": "problem",
+    "label": "Apixaban correctly stopped 3 days ago"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.doac"
+   },
+   "id": "result.SC-26.sc26.doac.lab_alt",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "alt:high",
+    "kind": "result",
+    "label": "ALT 110 U/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.doac",
+    "kind": "problem",
+    "label": "Apixaban correctly stopped 3 days ago"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.doac"
+   },
+   "id": "result.SC-26.sc26.doac.lab_bili",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "bilirubin:high",
+    "kind": "result",
+    "label": "Bilirubin 71 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.doac",
+    "kind": "problem",
+    "label": "Apixaban correctly stopped 3 days ago"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-26.json",
+    "kind": "case",
+    "row": "sc26.doac"
+   },
+   "id": "result.SC-26.sc26.doac.lab_us",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ultrasound_abdomen:abnormal",
+    "kind": "result",
+    "label": "Ultrasound abdomen Gallstones; common bile duct 10 mm  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-26"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-26.sc26.doac",
+    "kind": "problem",
+    "label": "Apixaban correctly stopped 3 days ago"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "result.SC-27.sc27.airway.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 126 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "result.SC-27.sc27.airway.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 48 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "result.SC-27.sc27.airway.lab_na",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "sodium:high",
+    "kind": "result",
+    "label": "Sodium 148 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "result.SC-27.sc27.airway.lab_urea",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "urea:high",
+    "kind": "result",
+    "label": "Urea 12.4 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-27.json",
+    "kind": "case",
+    "row": "sc27.airway"
+   },
+   "id": "result.SC-27.sc27.airway.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 15.9 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-27"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-27.sc27.airway",
+    "kind": "problem",
+    "label": "Slow breathing and drowsiness after morphine"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "result.SC-28.sc28.airway.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 124 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "result.SC-28.sc28.airway.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 11.2 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "result.SC-28.sc28.airway.lab_ket",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_ketones:high",
+    "kind": "result",
+    "label": "Capillary ketones 4.8 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "result.SC-28.sc28.airway.lab_vhco3",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_bicarbonate:low",
+    "kind": "result",
+    "label": "Venous bicarbonate 9 mmol/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.airway"
+   },
+   "id": "result.SC-28.sc28.airway.lab_vph",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_ph:low",
+    "kind": "result",
+    "label": "Venous pH 7.17  (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.airway",
+    "kind": "problem",
+    "label": "Airway at risk: vomiting with reduced consciousness"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "result.SC-28.sc28.aki.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 124 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "result.SC-28.sc28.aki.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 11.2 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "result.SC-28.sc28.aki.lab_ket",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_ketones:high",
+    "kind": "result",
+    "label": "Capillary ketones 4.8 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "result.SC-28.sc28.aki.lab_vhco3",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_bicarbonate:low",
+    "kind": "result",
+    "label": "Venous bicarbonate 9 mmol/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-28.json",
+    "kind": "case",
+    "row": "sc28.aki"
+   },
+   "id": "result.SC-28.sc28.aki.lab_vph",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_ph:low",
+    "kind": "result",
+    "label": "Venous pH 7.17  (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-28"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-28.sc28.aki",
+    "kind": "problem",
+    "label": "Pre-renal acute kidney injury, stage 1"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "result.SC-29.sc29.sepsis.lab_bc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "blood_cultures:abnormal",
+    "kind": "result",
+    "label": "Blood cultures Taken  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "result.SC-29.sc29.sepsis.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 118 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "result.SC-29.sc29.sepsis.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 240 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "result.SC-29.sc29.sepsis.lab_lactate",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "lactate:high",
+    "kind": "result",
+    "label": "Lactate 3.8 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-29.json",
+    "kind": "case",
+    "row": "sc29.sepsis"
+   },
+   "id": "result.SC-29.sc29.sepsis.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 22.1 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-29"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-29.sc29.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
     "file": "content/case_files/SC-3.json",
     "kind": "case",
     "row": "sc3.preg"
@@ -12515,6 +17613,1029 @@
     "id": "SC-3.sc3.preg",
     "kind": "problem",
     "label": "Appendicitis in pregnancy with fever"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "result.SC-30.sc30.sepsis.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 142 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "result.SC-30.sc30.sepsis.lab_lactate",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "lactate:high",
+    "kind": "result",
+    "label": "Lactate 3.4 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "result.SC-30.sc30.sepsis.lab_urea",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "urea:high",
+    "kind": "result",
+    "label": "Urea 13.8 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-30.json",
+    "kind": "case",
+    "row": "sc30.sepsis"
+   },
+   "id": "result.SC-30.sc30.sepsis.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 20.4 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-30"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-30.sc30.sepsis",
+    "kind": "problem",
+    "label": "Sepsis with poor circulation"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_ecg",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ecg:abnormal",
+    "kind": "result",
+    "label": "ECG Peaked T waves, no arrhythmia yet  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 24.6 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_k",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "potassium:critical_high",
+    "kind": "result",
+    "label": "Potassium 6.7 mmol/L (critical_high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_ket",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_ketones:high",
+    "kind": "result",
+    "label": "Capillary ketones 4.4 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_vhco3",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_bicarbonate:low",
+    "kind": "result",
+    "label": "Venous bicarbonate 8 mmol/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_vph",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_ph:low",
+    "kind": "result",
+    "label": "Venous pH 7.1  (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.appy"
+   },
+   "id": "result.SC-31.sc31.appy.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 21.7 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.appy",
+    "kind": "problem",
+    "label": "Perforated appendix: urgent source control after stabilising"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_ecg",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ecg:abnormal",
+    "kind": "result",
+    "label": "ECG Peaked T waves, no arrhythmia yet  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 24.6 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_k",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "potassium:critical_high",
+    "kind": "result",
+    "label": "Potassium 6.7 mmol/L (critical_high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_ket",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_ketones:high",
+    "kind": "result",
+    "label": "Capillary ketones 4.4 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_vhco3",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_bicarbonate:low",
+    "kind": "result",
+    "label": "Venous bicarbonate 8 mmol/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_vph",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_ph:low",
+    "kind": "result",
+    "label": "Venous pH 7.1  (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.dka"
+   },
+   "id": "result.SC-31.sc31.dka.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 21.7 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.dka",
+    "kind": "problem",
+    "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_ecg",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ecg:abnormal",
+    "kind": "result",
+    "label": "ECG Peaked T waves, no arrhythmia yet  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_glu",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_glucose:high",
+    "kind": "result",
+    "label": "Capillary glucose 24.6 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_k",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "potassium:critical_high",
+    "kind": "result",
+    "label": "Potassium 6.7 mmol/L (critical_high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_ket",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "capillary_ketones:high",
+    "kind": "result",
+    "label": "Capillary ketones 4.4 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_vhco3",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_bicarbonate:low",
+    "kind": "result",
+    "label": "Venous bicarbonate 8 mmol/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_vph",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "venous_ph:low",
+    "kind": "result",
+    "label": "Venous pH 7.1  (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-31.json",
+    "kind": "case",
+    "row": "sc31.k"
+   },
+   "id": "result.SC-31.sc31.k.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 21.7 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-31"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-31.sc31.k",
+    "kind": "problem",
+    "label": "Potassium 6.7 with ECG changes"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "result.SC-32.sc32.cancer.lab_creat",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "creatinine:high",
+    "kind": "result",
+    "label": "Creatinine 124 umol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "result.SC-32.sc32.cancer.lab_crp",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "crp:high",
+    "kind": "result",
+    "label": "CRP 210 mg/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "result.SC-32.sc32.cancer.lab_ct",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "ct_abdomen:abnormal",
+    "kind": "result",
+    "label": "CT abdomen Sigmoid wall thickening with a 5 cm abscess and gas; a tumour cannot be excluded  (abnormal)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "result.SC-32.sc32.cancer.lab_hb",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "haemoglobin:low",
+    "kind": "result",
+    "label": "Haemoglobin 118 g/L (low)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "result.SC-32.sc32.cancer.lab_lactate",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "lactate:high",
+    "kind": "result",
+    "label": "Lactate 2.4 mmol/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
+   },
+   "type": "problem_result"
+  },
+  {
+   "confidence": "authored",
+   "evidence": {
+    "file": "content/case_files/SC-32.json",
+    "kind": "case",
+    "row": "sc32.cancer"
+   },
+   "id": "result.SC-32.sc32.cancer.lab_wbc",
+   "note": "a single authored example, not a frequency",
+   "object": {
+    "id": "wbc:high",
+    "kind": "result",
+    "label": "WBC 18.3 x10^9/L (high)"
+   },
+   "predicate": "comes_with",
+   "sources": [
+    "CASE:SC-32"
+   ],
+   "status": "approved",
+   "strength": {
+    "ci95": null,
+    "estimate": null,
+    "measure": "one authored case",
+    "n": 1,
+    "weak": true
+   },
+   "subject": {
+    "id": "SC-32.sc32.cancer",
+    "kind": "problem",
+    "label": "Older person with a change in bowel habit and blood: cancer is possible"
    },
    "type": "problem_result"
   },

@@ -1,0 +1,35 @@
+{
+  "case": "SC-32",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5c4a3d7f4072d2a444c12b8472e6523f28a9263cb8fa3ada968f2fdf35db8989",
+  "state_hash": "f3ec031d59f8689810938384b828bcc56a8ab17dc266b04ca5b5a7f6bbeef60c",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": -1,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFE_BUT_DELAYED"
+  },
+  "score": {
+    "result": "SUCCESS_WITH_DELAY",
+    "credits": 1,
+    "minor": [],
+    "major": ["major.postponed_unnecessarily"],
+    "critical": []
+  }
+}

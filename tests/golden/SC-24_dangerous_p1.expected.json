@@ -1,0 +1,36 @@
+{
+  "case": "SC-24",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "fb3d96093999c46181961f4a95115804bbce1ebbd7e5ae003042a636c1dacf5c",
+  "state_hash": "cfc699f0cf9814cd383a399960efac7dc5583722701672a2cde24181aa51ca44",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": ["identity", "allergies", "reason_for_admission", "responsible_adult"],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "condition.blood_thinner",
+      "decision.declared",
+      "endstate.resolved",
+      "identity_asked_open",
+      "introduced"
+    ],
+    "rejections": [{ "verb": "order_investigation", "reason": "IDENTITY_NOT_CONFIRMED" }, { "verb": "take_sample", "reason": "IDENTITY_NOT_CONFIRMED" }],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "REDIRECTED_APPROPRIATELY"
+  },
+  "score": {
+    "result": "SUCCESS",
+    "credits": 2,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

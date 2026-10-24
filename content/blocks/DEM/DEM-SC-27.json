@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 52,
+  "occupation": "kitchen porter",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-27"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-27",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:50-55",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

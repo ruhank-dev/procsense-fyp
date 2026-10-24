@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 66,
+  "occupation": "pharmacy driver",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-21"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-21",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:65-70",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

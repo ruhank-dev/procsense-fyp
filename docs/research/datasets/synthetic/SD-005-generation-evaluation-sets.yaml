@@ -13,5 +13,5 @@ labels: The case ids that hold each query, taken from the cases.
 model_use: tools/generation/build_index.py and server/generation/retrieve.py (recall at 20)
 use: dev_only
 files: [tests/generation/gold_scenarios.json, tests/generation/retrieval_queries.json]
-rows: {tests/generation/gold_scenarios.json: {scenarios: 53}}
+rows: {tests/generation/gold_scenarios.json: {scenarios: 65}}
 licence: The project's own content

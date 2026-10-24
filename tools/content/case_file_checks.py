@@ -34,7 +34,7 @@ def rows(name: str) -> list[dict]:
 
 def load_context() -> dict:
     ver = (ROOT / "docs" / "research" / "clinical_verification.md").read_text(encoding="utf-8")
-    return {
+    ctx = {
         "schema": json.loads((CONTENT / "schema" / "case_file.schema.json").read_text(encoding="utf-8")),
         "rules": {r["id"] for r in rows("decision_rules")}, "end_states": {r["id"] for r in rows("end_states")}, "problem_types": {r["id"] for r in rows("problem_types")},
         "quality": {r["id"] for r in rows("sample_quality")}, "verification": set(re.findall(r"\| (V-\d\d) \|", ver)),
@@ -42,6 +42,16 @@ def load_context() -> dict:
         "case_seeds": {r["id"]: r["ref"] for r in rows("case_seeds")}, "authoring": {r["case_id"]: r["ref"] for r in rows("case_files_authoring")},
         "imaging": [r for r in rows("case_imaging")],
     }
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "cases"))
+    import p2comb                      # the combination cases (DT-220) have no book story: their story and authoring rows are the two design rows of the register
+    ctx = _ctx_with_combinations(ctx, p2comb)
+    return ctx
+
+
+def _ctx_with_combinations(ctx: dict, p2comb) -> dict:
+    ctx["case_seeds"].update({cid: p2comb.STORY_REF for cid in p2comb.CASES})
+    ctx["authoring"].update({cid: p2comb.AUTHORING_REF for cid in p2comb.CASES})
+    return ctx
 
 
 def _num(text: str):

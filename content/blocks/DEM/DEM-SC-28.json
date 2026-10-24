@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 33,
+  "occupation": "primary school teacher",
+  "sex": "F",
+  "title": "Ms"
+ },
+ "derived_from": [
+  "SC-28"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-28",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:18-50",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

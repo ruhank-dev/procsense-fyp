@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Farida"
+ },
+ "derived_from": [
+  "SC-26"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-FARIDA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

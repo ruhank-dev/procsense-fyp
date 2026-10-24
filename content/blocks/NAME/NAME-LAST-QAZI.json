@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Qazi"
+ },
+ "derived_from": [
+  "SC-30"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-QAZI",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}

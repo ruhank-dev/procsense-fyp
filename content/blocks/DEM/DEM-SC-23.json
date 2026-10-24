@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 71,
+  "occupation": "retired tailor",
+  "sex": "M",
+  "title": "Mr"
+ },
+ "derived_from": [
+  "SC-23"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-23",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:70-75",
+  "sex:M"
+ ],
+ "type": "DEM"
+}

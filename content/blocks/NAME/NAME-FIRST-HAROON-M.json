@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Haroon"
+ },
+ "derived_from": [
+  "SC-21"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-HAROON-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

@@ -1,0 +1,522 @@
+{
+ "schema": 1,
+ "id": "SC-21",
+ "walkthrough_label": "COMBINATION CARD 21 (S1) - Apixaban not stopped + acute cholecystitis + probable bile-duct stone",
+ "scenario": "S1",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Haroon Siddique",
+  "sex": "M",
+  "age": 66,
+  "occupation": "pharmacy driver",
+  "dob": "1960-03-08",
+  "mrn": "635021"
+ },
+ "spoken_identity_answer": "Haroon Siddique, eighth of March 1960.",
+ "wristband": {
+  "name_text": "HAROON SIDDIQUE",
+  "dob_text": "08/03/1960",
+  "mrn_text": "MR 635021"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Haroon Siddique, 66, is booked for keyhole gallbladder removal at 10:00. His eyes look slightly yellow, he has right-sided pain, temperature 37.9, and he took apixaban last night at 20:00."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I came for my gallbladder, but the pain has been worse since Tuesday and my wife says my eyes are yellow.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Right-sided pain for three days, dark urine, pale stools since yesterday. A shiver last night.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Atrial fibrillation (rate controlled), gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Apixaban twice a day and bisoprolol. I took the apixaban last night at eight, as usual; nobody told me to stop it.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 19:30 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "heavy_meal",
+    "hours_before_now": 12.5
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 1.5
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 88,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 138,
+   "diastolic_bp": 82,
+   "respiratory_rate": 18,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 37.9,
+   "acvpu": "A",
+   "pain_score": 5,
+   "news2": 0,
+   "note": "NEWS2 1 for temperature and pulse together; the numbers hide the three problems.",
+   "origin": "authored"
+  },
+  {
+   "time": "09:30",
+   "condition": "after_correct_action",
+   "heart_rate": 84,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 136,
+   "diastolic_bp": 80,
+   "respiratory_rate": 17,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 37.6,
+   "acvpu": "A",
+   "pain_score": 4,
+   "news2": 0,
+   "note": "After postponement and referral: stable.",
+   "origin": "authored"
+  },
+  {
+   "time": "09:30",
+   "condition": "if_no_action",
+   "heart_rate": 102,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 118,
+   "diastolic_bp": 70,
+   "respiratory_rate": 22,
+   "spo2": 95,
+   "oxygen": "room_air",
+   "temperature_c": 38.7,
+   "acvpu": "A",
+   "pain_score": 7,
+   "news2": 5,
+   "note": "Proceeding: cholangitis picture develops.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Slightly yellow sclerae, comfortable at rest.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Tender under the right ribs with a catch on deep breath in.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true
+  },
+  {
+   "id": "ex.pulse",
+   "system": "pulse",
+   "finding": "Irregular, rate controlled.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:pulse"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.bili",
+   "test": "Bilirubin",
+   "value": "48",
+   "unit": "umol/L",
+   "normal_range": "3-21",
+   "flag": "high",
+   "comment": "Raised: obstruction of the bile duct likely (above 4 mg/dL, 68 umol/L, with a dilated duct is high risk; this value alone is not)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.alp",
+   "test": "ALP",
+   "value": "210",
+   "unit": "U/L",
+   "normal_range": "30-130",
+   "flag": "high",
+   "comment": "Raised, in keeping with a blocked duct",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.alt",
+   "test": "ALT",
+   "value": "96",
+   "unit": "U/L",
+   "normal_range": "7-40",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "14.2",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Raised: inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "62",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "98",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "normal",
+   "comment": "Normal: apixaban clearance is not reduced",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.us",
+   "test": "Ultrasound abdomen",
+   "value": "Gallstones with a thick wall; common bile duct 9 mm",
+   "unit": "",
+   "normal_range": "normal",
+   "flag": "abnormal",
+   "comment": "Dilated duct (above 6 mm) plus raised bilirubin: a stone in the duct is probable",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "1",
+   "note": "Temperature 37.9 scores 0 and pulse 88 scores 0; irregular rhythm is not scored, so the total understates the risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc21.doac",
+   "type": "safety_blocker",
+   "label": "Apixaban taken last night: bleeding risk at surgery",
+   "rank": 1,
+   "why": "Apixaban is omitted for 2 days before a high-bleeding-risk operation with normal kidney function.",
+   "expected_actions": [
+    "Confirm the time of the last dose",
+    "Check kidney function",
+    "Tell the surgeon and the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc21.chole",
+   "type": "time_critical",
+   "label": "Acute cholecystitis with early systemic signs",
+   "rank": 2,
+   "why": "Infection needs treatment and a surgical plan within days, not today's list.",
+   "expected_actions": [
+    "Look for systemic signs",
+    "Request inflammatory markers",
+    "Surgical review"
+   ]
+  },
+  {
+   "id": "sc21.cbd",
+   "type": "pathway_changing",
+   "label": "Probable stone in the main bile duct: not what he was booked for",
+   "rank": 3,
+   "why": "The duct must be cleared or imaged first; routine gallbladder removal today would miss it.",
+   "expected_actions": [
+    "Ask the red-flag questions and look at the eyes",
+    "Liver tests and ultrasound",
+    "Do not proceed; call the senior surgeon"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc21.d1",
+   "prompt": "He took apixaban last night at 20:00. The list is at 10:00.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc21.d1.1",
+     "text": "Postpone: apixaban is omitted for 2 days before this operation; re-list after the duct problem is dealt with",
+     "correct": true,
+     "consequence": "Bleeding risk avoided."
+    },
+    {
+     "id": "sc21.d1.2",
+     "text": "Proceed because the operation is keyhole",
+     "correct": false,
+     "consequence": "Bleeding risk with an anticoagulant on board."
+    }
+   ]
+  },
+  {
+   "id": "sc21.d2",
+   "prompt": "Bilirubin 48, ALP 210 and a duct of 9 mm on ultrasound.",
+   "rule": "duct_stone_high_risk",
+   "options": [
+    {
+     "id": "sc21.d2.1",
+     "text": "Do not proceed with routine gallbladder removal: a duct stone is probable, so call the senior surgeon about duct imaging and drainage",
+     "correct": true,
+     "consequence": "Duct stone pathway."
+    },
+    {
+     "id": "sc21.d2.2",
+     "text": "Proceed and look at the duct during the operation",
+     "correct": false,
+     "consequence": "The stone is missed and cholangitis follows."
+    }
+   ]
+  },
+  {
+   "id": "sc21.d3",
+   "prompt": "Temperature 37.9, WBC 14.2, CRP 62 with right-sided tenderness.",
+   "rule": "acute_cholecystitis_surgery",
+   "options": [
+    {
+     "id": "sc21.d3.1",
+     "text": "Treat as acute cholecystitis with a possible duct problem: surgical review, fluids and antibiotics by the clinician's order",
+     "correct": true,
+     "consequence": "Source control is planned."
+    },
+    {
+     "id": "sc21.d3.2",
+     "text": "Treat as a normal pre-assessment",
+     "correct": false,
+     "consequence": "Infection is missed."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "redirected",
+ "paths": {
+  "correct": [
+   "Last apixaban dose asked",
+   "Yellow eyes and dark urine noticed",
+   "Liver tests and ultrasound read",
+   "Postponed and redirected to the duct pathway"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Proceeds with routine surgery",
+    "shows": "Duct stone missed; anticoagulant on board",
+    "risk": "Bleeding and cholangitis",
+    "recovery": "Stop; postpone; call the senior"
+   }
+  ],
+  "missed": [
+   "Dose time not asked",
+   "Yellow eyes not seen"
+  ],
+  "recovery": [
+   "Ask about the dose and the red flags",
+   "Read the results together"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Apixaban taken last night: bleeding risk at surgery",
+   "Acute cholecystitis with early systemic signs"
+  ],
+  "missed": [
+   "Dose time not asked",
+   "Yellow eyes not seen"
+  ],
+  "priority": "Apixaban taken last night: bleeding risk at surgery",
+  "why_priority": "Apixaban is omitted for 2 days before a high-bleeding-risk operation with normal kidney function.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Bilirubin raised with a dilated duct, or any anticoagulant taken inside its stop window",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Three problems, one decision: not today, and not the operation he was booked for."
+ },
+ "verification": [
+  "V-03",
+  "V-08",
+  "V-39",
+  "V-54"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 4,
+   "emergency": false,
+   "why": "Atrial fibrillation on a blood thinner is ASA 3 in the book's list; a probable infected duct stone with fever and jaundice raises it towards 4 if it progresses.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ }
+}

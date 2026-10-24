@@ -10,6 +10,22 @@ namespace ProcSense.Core.Tests
         public static readonly string Repo = FindRepoRoot();
         public static readonly string ContentRoot = Path.Combine(Repo, "content");
 
+        /// <summary>The walkthrough's own case files (17 P0, 16 P1, 20 P2). A new walkthrough case would change this on purpose.</summary>
+        public const int BookCases = 53;
+
+        /// <summary>The combination cases of DT-220, listed by content/combination_cases.json (written by tools/content/build_case_files.py): the number of case files is BookCases plus this, never a literal.</summary>
+        public static readonly System.Collections.Generic.IReadOnlySet<string> CombinationIds = LoadCombinationIds();
+
+        public static int AllCases => BookCases + CombinationIds.Count;
+
+        private static System.Collections.Generic.IReadOnlySet<string> LoadCombinationIds()
+        {
+            using var doc = System.Text.Json.JsonDocument.Parse(File.ReadAllText(Path.Combine(Repo, "content", "combination_cases.json")));
+            var ids = new System.Collections.Generic.HashSet<string>(System.StringComparer.Ordinal);
+            foreach (var c in doc.RootElement.GetProperty("cases").EnumerateArray()) ids.Add(c.GetProperty("id").GetString()!);
+            return ids;
+        }
+
         /// <summary>VAR-S1-A plus the three test-only wristband fixtures from tests/fixtures.</summary>
         public static ContentPackage Package() => ContentLoader.Load(
             new CompositeContentReader(new FileContentReader(ContentRoot), new FileContentReader(Path.Combine(Repo, "tests", "fixtures"))),

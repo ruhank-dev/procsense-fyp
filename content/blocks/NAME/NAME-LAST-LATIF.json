@@ -4,6 +4,7 @@
   "text": "Latif"
  },
  "derived_from": [
+  "SC-31",
   "SC-9"
  ],
  "enables_events": [],
@@ -13,9 +14,11 @@
  "requires": [],
  "sources": [
   "SR-2341",
-  "SR-3741"
+  "SR-3741",
+  "SR-4135",
+  "SR-4136"
  ],
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "tags": [],
  "type": "NAME"
 }

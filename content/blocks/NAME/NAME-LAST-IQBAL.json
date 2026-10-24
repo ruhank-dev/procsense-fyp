@@ -4,6 +4,7 @@
   "text": "Iqbal"
  },
  "derived_from": [
+  "SC-25",
   "VAR-S1-K"
  ],
  "enables_events": [],
@@ -13,9 +14,11 @@
  "requires": [],
  "sources": [
   "SR-2309",
-  "SR-3718"
+  "SR-3718",
+  "SR-4135",
+  "SR-4136"
  ],
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "tags": [],
  "type": "NAME"
 }

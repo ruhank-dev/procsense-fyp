@@ -5,7 +5,7 @@ using ProcSense.Core.Workflow;
 
 namespace ProcSense.Core.Tests
 {
-    /// <summary>Any of the 53 case files can be the patient of a session (DT-070, plan test T-VB4 idle stability).</summary>
+    /// <summary>Any of the case files (the books 53 and the combination cases) can be the patient of a session (DT-070, plan test T-VB4 idle stability).</summary>
     public class CaseFileCardTests
     {
         private static readonly string[] Ids = Directory.GetFiles(Path.Combine(TestCase.ContentRoot, "case_files"), "*.json").Select(Path.GetFileNameWithoutExtension).OrderBy(x => x, System.StringComparer.Ordinal).ToArray()!;
@@ -14,7 +14,7 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void Every_case_file_gives_a_card_and_a_session_starts_from_it()
         {
-            Assert.Equal(53, Ids.Length);
+            Assert.Equal(TestCase.AllCases, Ids.Length);
             foreach (var id in Ids)
             {
                 Assert.True(All.Cases.ContainsKey(id), id);

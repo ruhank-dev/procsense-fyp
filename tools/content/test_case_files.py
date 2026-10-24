@@ -16,6 +16,8 @@ import case_file_checks as chk  # noqa: E402
 
 CASES = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((ROOT / "content" / "case_files").glob("*.json"))}
 CTX = chk.load_context()
+COMBINATIONS = {c["id"] for c in json.loads((ROOT / "content" / "combination_cases.json").read_text(encoding="utf-8"))["cases"]}   # DT-220: the authored combination cases
+BOOK_CASES = 53                                                                                                                                 # the walkthrough's own cases
 P0 = ["VAR-S1-A", "VAR-S1-PB", "VAR-S1-E", "VAR-S1-B", "VAR-S1-C", "VAR-S1-D", "VAR-S1-G", "VAR-S1-H", "VAR-S1-J", "VAR-S2-PC", "VAR-S2-PD", "VAR-S2-B", "VAR-S2-D", "VAR-S2-F", "VAR-S2-G", "STK-S1-D", "STK-S2-B"]
 
 
@@ -50,7 +52,7 @@ class RiskData(unittest.TestCase):
     def test_every_case_has_a_range_inside_1_to_6_and_a_reason(self):
         import build_case_files
         cases = build_case_files.build()
-        self.assertEqual(len(cases), 53)
+        self.assertEqual(len(cases), BOOK_CASES + len(COMBINATIONS))
         for k, c in cases.items():
             a = c["risk"]["asa"]
             self.assertTrue(1 <= a["min"] <= a["max"] <= 6 and a["why"].strip(), k)
@@ -89,12 +91,13 @@ class FastingIntake(unittest.TestCase):
 
 
 class TheFiftyThreeCases(unittest.TestCase):
-    def test_exactly_the_53_cases_exist_in_three_tiers(self):
-        self.assertEqual(len(CASES), 53)
+    def test_exactly_the_books_53_cases_and_the_combination_cases_exist_in_three_tiers(self):
+        self.assertEqual(len(CASES), BOOK_CASES + len(COMBINATIONS))
+        self.assertEqual(len(COMBINATIONS), 12)
         tiers = {t: sorted(i for i, c in CASES.items() if c["tier"] == t) for t in ("P0", "P1", "P2")}
         self.assertEqual(tiers["P0"], sorted(P0))
-        self.assertEqual((len(tiers["P0"]), len(tiers["P1"]), len(tiers["P2"])), (17, 16, 20))
-        self.assertEqual(tiers["P2"], sorted(f"SC-{n}" for n in range(1, 21)))
+        self.assertEqual((len(tiers["P0"]), len(tiers["P1"]), len(tiers["P2"])), (17, 16, 20 + len(COMBINATIONS)))
+        self.assertEqual(tiers["P2"], sorted([f"SC-{n}" for n in range(1, 21)] + sorted(COMBINATIONS)))
 
     def test_every_case_in_the_seed_table_has_a_case_file(self):
         import csv
@@ -110,6 +113,9 @@ class TheFiftyThreeCases(unittest.TestCase):
         pending = set(json.loads((ROOT / "content/case_signoff_pending.json").read_text(encoding="utf-8"))["pending"])
         for c in CASES.values():
             self.assertTrue(c["synthetic"])
+            if c["id"] in COMBINATIONS:                # authored 25 Oct 2026 (DT-220): nobody has approved them, so they stay DRAFT until the owner grants practice use
+                self.assertEqual(c["status"], "DRAFT", c["id"])
+                continue
             if c["id"] in pending:                     # changed after the last attestation: stays DRAFT until signed off (docs/research/clinician_signoff.md)
                 self.assertEqual(c["status"], "DRAFT", c["id"])
                 continue
@@ -122,6 +128,9 @@ class TheFiftyThreeCases(unittest.TestCase):
         approvals = json.loads((ROOT / "content/case_approvals.json").read_text(encoding="utf-8"))["approvals"]
         pending = set(json.loads((ROOT / "content/case_signoff_pending.json").read_text(encoding="utf-8"))["pending"])
         for cid, c in CASES.items():
+            if cid in COMBINATIONS:                   # never approved, so there is no approval to match
+                self.assertNotIn(cid, approvals, cid)
+                continue
             if cid in pending:                        # changed since the attestation, so the old approval no longer matches and the case is DRAFT
                 self.assertNotEqual(approvals[cid]["sha256"], b.content_hash(c), cid)
             else:

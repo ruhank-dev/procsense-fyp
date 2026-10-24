@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 58,
+  "occupation": "bank cashier",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "SC-30"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-30",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:55-60",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

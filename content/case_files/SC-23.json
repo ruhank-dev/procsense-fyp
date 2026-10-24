@@ -1,0 +1,498 @@
+{
+ "schema": 1,
+ "id": "SC-23",
+ "walkthrough_label": "COMBINATION CARD 23 (S1) - Apixaban not stopped + high OSA risk + unexplained iron-deficiency anaemia + HbA1c above the limit",
+ "scenario": "S1",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Ghulam Nabi",
+  "sex": "M",
+  "age": 71,
+  "occupation": "retired tailor",
+  "dob": "1955-07-14",
+  "mrn": "635023"
+ },
+ "spoken_identity_answer": "Ghulam Nabi, fourteenth of July 1955.",
+ "wristband": {
+  "name_text": "GHULAM NABI",
+  "dob_text": "14/07/1955",
+  "mrn_text": "MR 635023"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "To have my gallbladder taken out.",
+ "presentation": {
+  "setting": "pre-assessment",
+  "time_now": "08:00",
+  "surgery_time": "10:00",
+  "summary": "Mr Ghulam Nabi, 71, listed for gallbladder removal: apixaban taken yesterday, STOP-Bang 6 with BMI 37, haemoglobin 98 with a low MCV, HbA1c 76."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I am here for my gallbladder. I am tired a lot, but I put it down to my age.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Tired and short of breath on stairs for months. Dark stools sometimes (he thought it was the iron tablets he bought).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Type 2 diabetes, atrial fibrillation, snores loudly and stops breathing in sleep according to his wife.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Apixaban, metformin, gliclazide, over-the-counter iron. Last apixaban dose yesterday evening.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Dinner at 20:00 yesterday.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "heavy_meal",
+    "hours_before_now": 12.0
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 06:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 1.5
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "08:00",
+   "condition": "initial",
+   "heart_rate": 82,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 146,
+   "diastolic_bp": 88,
+   "respiratory_rate": 18,
+   "spo2": 95,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 1,
+   "note": "Stable numbers; the problems are in the history and bloods.",
+   "origin": "authored"
+  },
+  {
+   "time": "09:30",
+   "condition": "after_correct_action",
+   "heart_rate": 80,
+   "heart_rhythm": "irregular",
+   "systolic_bp": 142,
+   "diastolic_bp": 86,
+   "respiratory_rate": 17,
+   "spo2": 96,
+   "oxygen": "room_air",
+   "temperature_c": 36.7,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 0,
+   "note": "After postponement.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Pale, comfortable at rest, thick neck.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.airway",
+   "system": "airway",
+   "finding": "Mallampati III, neck 46 cm.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:airway"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Mild tenderness under the right ribs.",
+   "abnormal": false,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.hb",
+   "test": "Haemoglobin",
+   "value": "98",
+   "unit": "g/L",
+   "normal_range": "130-170",
+   "flag": "low",
+   "comment": "Moderate anaemia (80 to 109 g/L)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.mcv",
+   "test": "MCV",
+   "value": "72",
+   "unit": "fL",
+   "normal_range": "80-100",
+   "flag": "low",
+   "comment": "Small cells: iron deficiency likely",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.ferr",
+   "test": "Ferritin",
+   "value": "9",
+   "unit": "ug/L",
+   "normal_range": "30-300",
+   "flag": "low",
+   "comment": "Low iron stores: a source of bleeding must be looked for in a man of his age",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.hba1c",
+   "test": "HbA1c",
+   "value": "76",
+   "unit": "mmol/mol",
+   "normal_range": "below 48 (below 69 is acceptable for planned surgery)",
+   "flag": "high",
+   "comment": "Above the 69 limit for planned surgery",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 120,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "92",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "normal",
+   "comment": "Normal",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.stop",
+   "test": "STOP-BANG",
+   "value": "6",
+   "unit": "points",
+   "normal_range": "below 3",
+   "flag": "high",
+   "comment": "High risk of obstructive sleep apnoea (5 to 8)",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "STOP-Bang",
+   "value": "6",
+   "note": "Snoring, tiredness, observed apnoea, high BP, BMI over 35, age over 50, neck over 40 cm, male",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc23.doac",
+   "type": "safety_blocker",
+   "label": "Apixaban not stopped: bleeding risk",
+   "rank": 1,
+   "why": "Omit 2 days before this operation with normal kidney function.",
+   "expected_actions": [
+    "Confirm the last dose",
+    "Tell the surgeon and the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc23.anaemia",
+   "type": "pathway_changing",
+   "label": "Unexplained iron-deficiency anaemia in an older man",
+   "rank": 2,
+   "why": "A bleeding source (often bowel) must be sought before an elective operation.",
+   "expected_actions": [
+    "Repeat the blood count",
+    "Refer for investigation of the source",
+    "Do not give iron as the only answer"
+   ]
+  },
+  {
+   "id": "sc23.hba1c",
+   "type": "pathway_changing",
+   "label": "HbA1c 76 above the limit of 69 for planned surgery",
+   "rank": 3,
+   "why": "Optimise glucose control first and re-list.",
+   "expected_actions": [
+    "Tell the diabetes team",
+    "Re-list when below 69"
+   ]
+  },
+  {
+   "id": "sc23.osa",
+   "type": "optimisable",
+   "label": "High risk of obstructive sleep apnoea with BMI 37",
+   "rank": 4,
+   "why": "Needs an anaesthetic plan for airway and opioid sparing.",
+   "expected_actions": [
+    "Tell the anaesthetist",
+    "Plan post-operative monitoring"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc23.d1",
+   "prompt": "Apixaban yesterday, haemoglobin 98, HbA1c 76.",
+   "rule": "s1_diabetes_postpone",
+   "options": [
+    {
+     "id": "sc23.d1.1",
+     "text": "Postpone and re-list: apixaban stop window, anaemia investigation and glucose control each need action first",
+     "correct": true,
+     "consequence": "Three independent reasons."
+    },
+    {
+     "id": "sc23.d1.2",
+     "text": "Proceed and fix the anaemia afterwards",
+     "correct": false,
+     "consequence": "Unsafe bleeding and unsafe glucose."
+    }
+   ]
+  },
+  {
+   "id": "sc23.d2",
+   "prompt": "Low iron, small cells, dark stools in a 71-year-old man.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc23.d2.1",
+     "text": "Refer for investigation of a bleeding source and tell his GP",
+     "correct": true,
+     "consequence": "Possible bowel cancer is not missed."
+    },
+    {
+     "id": "sc23.d2.2",
+     "text": "Prescribe iron and re-check later",
+     "correct": false,
+     "consequence": "Cancer is missed."
+    }
+   ]
+  },
+  {
+   "id": "sc23.d3",
+   "prompt": "STOP-Bang 6 and BMI 37.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc23.d3.1",
+     "text": "Tell the anaesthetist for an airway, opioid-sparing and monitoring plan",
+     "correct": true,
+     "consequence": "Risk planned for."
+    },
+    {
+     "id": "sc23.d3.2",
+     "text": "No action: the operation is short",
+     "correct": false,
+     "consequence": "Respiratory risk after anaesthesia."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "postponed",
+ "paths": {
+  "correct": [
+   "Dose time confirmed",
+   "Anaemia and HbA1c read",
+   "Postponed with a plan"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Proceeds because only keyhole surgery",
+    "shows": "Bleeding and respiratory events",
+    "risk": "Harm",
+    "recovery": "Stop; postpone"
+   }
+  ],
+  "missed": [
+   "Iron-deficiency source not considered"
+  ],
+  "recovery": [
+   "Ask about stools and weight loss"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Apixaban not stopped: bleeding risk",
+   "Unexplained iron-deficiency anaemia in an older man"
+  ],
+  "missed": [
+   "Iron-deficiency source not considered"
+  ],
+  "priority": "Apixaban not stopped: bleeding risk",
+  "why_priority": "Omit 2 days before this operation with normal kidney function.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Anticoagulant in its stop window, anaemia without a source, or HbA1c above 69",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Each abnormal result belongs to a different action; none is solved by proceeding."
+ },
+ "verification": [
+  "V-08",
+  "V-18",
+  "V-29",
+  "V-69",
+  "V-73"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "risk": {
+  "asa": {
+   "min": 3,
+   "max": 3,
+   "emergency": false,
+   "why": "Atrial fibrillation on a blood thinner is ASA 3 in the book's list; poorly controlled diabetes (HbA1c 76), BMI 37 and anaemia add to it.",
+   "origin": "authored"
+  },
+  "plan": "standard_ga"
+ }
+}

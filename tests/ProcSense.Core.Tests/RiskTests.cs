@@ -378,7 +378,7 @@ namespace ProcSense.Core.Tests
                 Assert.InRange(f.Risk!.Asa.Min, 1, f.Risk.Asa.Max);
                 if (f.Scenario == "S2") Assert.Equal("rsi", f.Risk.Plan);
             }
-            Assert.Equal(53, all);
+            Assert.Equal(TestCase.AllCases, all);
         }
 
         [Fact]

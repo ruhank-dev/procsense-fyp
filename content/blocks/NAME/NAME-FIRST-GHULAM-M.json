@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Ghulam"
+ },
+ "derived_from": [
+  "SC-23"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-GHULAM-M",
+ "requires": [
+  "sex:M"
+ ],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:M"
+ ],
+ "type": "NAME"
+}

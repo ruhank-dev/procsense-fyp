@@ -1,0 +1,315 @@
+{
+ "schema": 1,
+ "note": "Synthetic multi-problem practice cases authored from the fixtures of tests/composition/compositions.json (DT-220); not from the walkthrough, not clinician-reviewed.",
+ "book_cases": 53,
+ "cases": [
+  {
+   "id": "SC-21",
+   "fixture": "MP-S1-da2ee785",
+   "scenario": "S1",
+   "tier": "P2",
+   "expected_end_state": "redirected",
+   "fixture_problems": [
+    [
+     "SC-5",
+     "sc5.doac",
+     "safety_blocker"
+    ],
+    [
+     "VAR-S1-E",
+     "e.cholecystitis",
+     "pathway_changing"
+    ],
+    [
+     "VAR-S1-PB",
+     "pb.stone",
+     "pathway_changing"
+    ]
+   ]
+  },
+  {
+   "id": "SC-22",
+   "fixture": "MP-S1-30aaa2fa",
+   "scenario": "S1",
+   "tier": "P2",
+   "expected_end_state": "redirected",
+   "fixture_problems": [
+    [
+     "SC-9",
+     "sc9.sepsis",
+     "life_threat"
+    ],
+    [
+     "SC-16",
+     "sc16.glp",
+     "safety_blocker"
+    ],
+    [
+     "STK-S1-C",
+     "stkc.brady",
+     "safety_blocker"
+    ],
+    [
+     "VAR-S1-E",
+     "e.cholecystitis",
+     "pathway_changing"
+    ]
+   ]
+  },
+  {
+   "id": "SC-23",
+   "fixture": "MP-S1-9665f015",
+   "scenario": "S1",
+   "tier": "P2",
+   "expected_end_state": "postponed",
+   "fixture_problems": [
+    [
+     "SC-5",
+     "sc5.doac",
+     "safety_blocker"
+    ],
+    [
+     "VAR-S1-M",
+     "s1m.osa",
+     "pathway_changing"
+    ],
+    [
+     "STK-S1-B",
+     "stkb.anaemia",
+     "pathway_changing"
+    ],
+    [
+     "STK-S1-A",
+     "stka.hba1c",
+     "optimisable"
+    ]
+   ]
+  },
+  {
+   "id": "SC-24",
+   "fixture": "MP-S1-c63a728a",
+   "scenario": "S1",
+   "tier": "P2",
+   "expected_end_state": "redirected",
+   "fixture_problems": [
+    [
+     "SC-18",
+     "sc18.consent",
+     "safety_blocker"
+    ],
+    [
+     "STK-S1-C",
+     "stkc.brady",
+     "safety_blocker"
+    ],
+    [
+     "VAR-S1-A",
+     "a.nothing",
+     "information_only"
+    ],
+    [
+     "STK-S1-B",
+     "stkb.af",
+     "information_only"
+    ]
+   ]
+  },
+  {
+   "id": "SC-25",
+   "fixture": "MP-S1-f00253c9",
+   "scenario": "S1",
+   "tier": "P2",
+   "expected_end_state": "redirected",
+   "fixture_problems": [
+    [
+     "STK-S1-C",
+     "stkc.aki",
+     "time_critical"
+    ],
+    [
+     "STK-S1-B",
+     "stkb.anaemia",
+     "pathway_changing"
+    ],
+    [
+     "STK-S1-D",
+     "s1d.duct",
+     "pathway_changing"
+    ]
+   ]
+  },
+  {
+   "id": "SC-26",
+   "fixture": "MP-S1-0a9f54f6",
+   "scenario": "S1",
+   "tier": "P2",
+   "expected_end_state": "postponed",
+   "fixture_problems": [
+    [
+     "VAR-S1-D",
+     "d.anticoag",
+     "pathway_changing"
+    ],
+    [
+     "VAR-S1-PB",
+     "pb.stone",
+     "pathway_changing"
+    ],
+    [
+     "SC-16",
+     "sc16.plan",
+     "pathway_changing"
+    ]
+   ]
+  },
+  {
+   "id": "SC-27",
+   "fixture": "MP-S2-0ea98a0f",
+   "scenario": "S2",
+   "tier": "P2",
+   "expected_end_state": "ready",
+   "fixture_problems": [
+    [
+     "SC-7",
+     "sc7.airway",
+     "life_threat"
+    ],
+    [
+     "SC-10",
+     "sc10.int",
+     "safety_blocker"
+    ],
+    [
+     "SC-17",
+     "sc17.fluids",
+     "time_critical"
+    ]
+   ]
+  },
+  {
+   "id": "SC-28",
+   "fixture": "MP-S2-4f3d9467",
+   "scenario": "S2",
+   "tier": "P2",
+   "expected_end_state": "ready",
+   "fixture_problems": [
+    [
+     "STK-S2-C",
+     "stkc2.airway",
+     "life_threat"
+    ],
+    [
+     "SC-19",
+     "sc19.dka",
+     "life_threat"
+    ],
+    [
+     "STK-S2-A",
+     "stka2.aki",
+     "pathway_changing"
+    ]
+   ]
+  },
+  {
+   "id": "SC-29",
+   "fixture": "MP-S2-5a734263",
+   "scenario": "S2",
+   "tier": "P2",
+   "expected_end_state": "ready",
+   "fixture_problems": [
+    [
+     "SC-1",
+     "sc1.sepsis",
+     "life_threat"
+    ],
+    [
+     "VAR-S2-F",
+     "sf.stomach",
+     "safety_blocker"
+    ],
+    [
+     "SC-7",
+     "sc7.opioid",
+     "safety_blocker"
+    ]
+   ]
+  },
+  {
+   "id": "SC-30",
+   "fixture": "MP-S2-92e9152c",
+   "scenario": "S2",
+   "tier": "P2",
+   "expected_end_state": "ready",
+   "fixture_problems": [
+    [
+     "SC-1",
+     "sc1.sepsis",
+     "life_threat"
+    ],
+    [
+     "STK-S2-C",
+     "stkc2.opioid",
+     "time_critical"
+    ],
+    [
+     "VAR-S2-G",
+     "sg.aki",
+     "optimisable"
+    ]
+   ]
+  },
+  {
+   "id": "SC-31",
+   "fixture": "MP-S2-951fd322",
+   "scenario": "S2",
+   "tier": "P2",
+   "expected_end_state": "ready",
+   "fixture_problems": [
+    [
+     "SC-8",
+     "sc8.k",
+     "life_threat"
+    ],
+    [
+     "SC-19",
+     "sc19.dka",
+     "life_threat"
+    ],
+    [
+     "VAR-S2-I",
+     "s2i.consent",
+     "pathway_changing"
+    ],
+    [
+     "STK-S2-B",
+     "s2b.source",
+     "pathway_changing"
+    ]
+   ]
+  },
+  {
+   "id": "SC-32",
+   "fixture": "MP-S2-cda5d003",
+   "scenario": "S2",
+   "tier": "P2",
+   "expected_end_state": "delayed",
+   "fixture_problems": [
+    [
+     "STK-S2-C",
+     "stkc2.aspiration",
+     "time_critical"
+    ],
+    [
+     "VAR-S2-E",
+     "s2e.mimic",
+     "pathway_changing"
+    ],
+    [
+     "VAR-S2-G",
+     "sg.surgery",
+     "pathway_changing"
+    ]
+   ]
+  }
+ ]
+}

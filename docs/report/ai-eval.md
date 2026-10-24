@@ -186,13 +186,13 @@ Critical classes: 0 escapes.
 
 | Class | Attacks | Escapes | Escape rate | Kind |
 |---|---|---|---|---|
-| verbatim | 282 | 0 | 0.0% | critical |
-| numbers | 84 | 0 | 0.0% | critical |
-| partial | 222 | 177 | 79.7% | known gap |
-| synonym | 8 | 3 | 37.5% | known gap |
-| number_words | 65 | 0 | 0.0% | known gap |
-| hedged | 273 | 0 | 0.0% | known gap |
-| denial | 273 | 273 | 100.0% | known gap |
+| verbatim | 354 | 0 | 0.0% | critical |
+| numbers | 100 | 0 | 0.0% | critical |
+| partial | 280 | 216 | 77.1% | known gap |
+| synonym | 13 | 3 | 23.1% | known gap |
+| number_words | 78 | 0 | 0.0% | known gap |
+| hedged | 345 | 0 | 0.0% | known gap |
+| denial | 345 | 345 | 100.0% | known gap |
 
 Limit: a lexical check cannot see a paraphrase, a synonym or a made-up denial (DT-190, DT-211).
 

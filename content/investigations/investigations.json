@@ -273,7 +273,8 @@
    "label": "Ultrasound",
    "kind": "imaging",
    "analytes": [
-    "Ultrasound appendix"
+    "Ultrasound appendix",
+    "Ultrasound abdomen"
    ],
    "minutes": {
     "min": 60,
@@ -287,7 +288,8 @@
    "label": "CT",
    "kind": "imaging",
    "analytes": [
-    "CT appendix"
+    "CT appendix",
+    "CT abdomen"
    ],
    "minutes": {
     "min": 60,

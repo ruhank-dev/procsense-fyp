@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Haddad"
+ },
+ "derived_from": [
+  "SC-28"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-HADDAD",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}

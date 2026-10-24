@@ -4,6 +4,7 @@
   "text": "Rukhsana"
  },
  "derived_from": [
+  "SC-22",
   "VAR-S2-G"
  ],
  "enables_events": [],
@@ -15,9 +16,11 @@
  ],
  "sources": [
   "SR-2318",
-  "SR-3714"
+  "SR-3714",
+  "SR-4135",
+  "SR-4136"
  ],
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "tags": [
   "sex:F"
  ],

@@ -24,7 +24,8 @@ class StageB(unittest.TestCase):
     def test_T_VB2_every_valid_case_passes_all_checks(self):
         bad = {c["id"]: [d.code for d in stage_b.validate(c, CTX).defects] for c in CASES if not stage_b.validate(c, CTX).passed}
         self.assertEqual(bad, {})
-        self.assertEqual(len(CASES), 53)
+        combos = json.loads((ROOT / "content" / "combination_cases.json").read_text(encoding="utf-8"))["cases"]
+        self.assertEqual(len(CASES), 53 + len(combos))                   # the walkthrough's 53 plus the authored combination cases (DT-220)
 
     def test_there_are_exactly_12_contradiction_types_and_the_file_describes_each(self):
         codes = [c for c, _ in CONTRADICTIONS]

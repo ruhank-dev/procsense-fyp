@@ -1,0 +1,26 @@
+{
+ "attributes": {
+  "age": 59,
+  "occupation": "librarian",
+  "sex": "F",
+  "title": "Mrs"
+ },
+ "derived_from": [
+  "SC-26"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "DEM-SC-26",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "age_class:55-60",
+  "sex:F"
+ ],
+ "type": "DEM"
+}

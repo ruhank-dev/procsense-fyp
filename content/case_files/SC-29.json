@@ -1,0 +1,499 @@
+{
+ "schema": 1,
+ "id": "SC-29",
+ "walkthrough_label": "COMBINATION CARD 29 (S2) - Sepsis with poor circulation + full stomach + opioid to stop",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Mr",
+  "full_name": "Imtiaz Cheema",
+  "sex": "M",
+  "age": 44,
+  "occupation": "taxi driver",
+  "dob": "1982-08-19",
+  "mrn": "635029"
+ },
+ "spoken_identity_answer": "Imtiaz Cheema, nineteenth of August 1982.",
+ "wristband": {
+  "name_text": "IMTIAZ CHEEMA",
+  "dob_text": "19/08/1982",
+  "mrn_text": "MR 635029"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "12:00",
+  "summary": "Mr Imtiaz Cheema, 44, perforated appendix: temperature 39.0, HR 124, BP 92/56, lactate 3.8; he ate a large meal 2 hours ago and has been given morphine, now drowsy with RR 10."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "Terrible pain in my whole tummy. I feel very sleepy.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Pain started 3 days ago on the right, then everywhere; fever and shaking since this morning.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Healthy.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Morphine given in the ambulance and again in the department.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "A large meal at 10:00 today.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "unknown",
+    "hours_before_now": 2.0
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Tea at 11:30.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 0.5
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not applicable.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "12:00",
+   "condition": "initial",
+   "heart_rate": 124,
+   "heart_rhythm": "regular",
+   "systolic_bp": 92,
+   "diastolic_bp": 56,
+   "respiratory_rate": 10,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 39.0,
+   "acvpu": "V",
+   "pain_score": 4,
+   "news2": 10,
+   "note": "Sepsis with an opioid-slowed breathing rate.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:30",
+   "condition": "after_correct_action",
+   "heart_rate": 104,
+   "heart_rhythm": "regular",
+   "systolic_bp": 108,
+   "diastolic_bp": 66,
+   "respiratory_rate": 16,
+   "spo2": 97,
+   "oxygen": "supplemental",
+   "temperature_c": 38.2,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 5,
+   "note": "After the sepsis bundle and with opioids stopped.",
+   "origin": "authored"
+  },
+  {
+   "time": "12:30",
+   "condition": "if_no_action",
+   "heart_rate": 140,
+   "heart_rhythm": "regular",
+   "systolic_bp": 78,
+   "diastolic_bp": 40,
+   "respiratory_rate": 8,
+   "spo2": 86,
+   "oxygen": "room_air",
+   "temperature_c": 39.7,
+   "acvpu": "P",
+   "pain_score": 0,
+   "news2": 17,
+   "note": "Untreated: septic shock and aspiration risk.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Hot, drowsy, breathing slowly.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Rigid with guarding everywhere.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true,
+   "flags": [
+    "finding.rigid_abdomen"
+   ]
+  },
+  {
+   "id": "ex.cap",
+   "system": "perfusion",
+   "finding": "Cool peripheries, slow refill.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:perfusion"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.lactate",
+   "test": "Lactate",
+   "value": "3.8",
+   "unit": "mmol/L",
+   "normal_range": "below 2.0",
+   "flag": "high",
+   "comment": "Hypoperfusion",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 30,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.wbc",
+   "test": "WBC",
+   "value": "22.1",
+   "unit": "x10^9/L",
+   "normal_range": "4.0-11.0",
+   "flag": "high",
+   "comment": "Severe inflammation",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.crp",
+   "test": "CRP",
+   "value": "240",
+   "unit": "mg/L",
+   "normal_range": "below 5",
+   "flag": "high",
+   "comment": "Markedly raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "118",
+   "unit": "umol/L",
+   "normal_range": "60-110",
+   "flag": "high",
+   "comment": "Mildly raised",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.bc",
+   "test": "Blood cultures",
+   "value": "Taken",
+   "unit": "",
+   "normal_range": "negative",
+   "flag": "abnormal",
+   "comment": "Pending at 48 hours",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 60,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "9",
+   "note": "High risk",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc29.sepsis",
+   "type": "life_threat",
+   "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)",
+   "rank": 1,
+   "why": "Antibiotic within 1 hour, cultures, fluids, senior and anaesthetist, theatre as soon as he is resuscitated.",
+   "expected_actions": [
+    "Call the senior and the anaesthetist",
+    "Cultures and lactate",
+    "Antibiotic within 1 hour"
+   ]
+  },
+  {
+   "id": "sc29.opioid",
+   "type": "safety_blocker",
+   "label": "Stop further opioid: drowsy with slow breathing",
+   "rank": 2,
+   "why": "No more morphine; alternative analgesia chosen by the clinician; watch the breathing.",
+   "expected_actions": [
+    "Stop opioids",
+    "Clinician chooses another pain plan",
+    "Oxygen and monitor"
+   ]
+  },
+  {
+   "id": "sc29.stomach",
+   "type": "time_critical",
+   "label": "Full stomach: a large meal 2 hours ago",
+   "rank": 3,
+   "why": "Rapid sequence plan; food alone is not a reason to delay emergency surgery.",
+   "expected_actions": [
+    "Tell the anaesthetist the time of the meal"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc29.d1",
+   "prompt": "NEWS2 9, lactate 3.8 and a rigid abdomen.",
+   "rule": "sepsis_antibiotics",
+   "options": [
+    {
+     "id": "sc29.d1.1",
+     "text": "Call the senior and the anaesthetist, cultures and lactate, antibiotic within 1 hour, fluids",
+     "correct": true,
+     "consequence": "Life threat first."
+    },
+    {
+     "id": "sc29.d1.2",
+     "text": "Wait for the CT before treating",
+     "correct": false,
+     "consequence": "Delay."
+    }
+   ]
+  },
+  {
+   "id": "sc29.d2",
+   "prompt": "He is drowsy and breathing at 10 after morphine.",
+   "rule": "low_spo2_trigger",
+   "options": [
+    {
+     "id": "sc29.d2.1",
+     "text": "Stop more morphine, give oxygen and ask the clinician for a different pain plan",
+     "correct": true,
+     "consequence": "Breathing safe."
+    },
+    {
+     "id": "sc29.d2.2",
+     "text": "More morphine because the abdomen is rigid",
+     "correct": false,
+     "consequence": "Respiratory arrest."
+    }
+   ]
+  },
+  {
+   "id": "sc29.d3",
+   "prompt": "He ate a large meal at 10:00.",
+   "rule": "fasting_planned",
+   "options": [
+    {
+     "id": "sc29.d3.1",
+     "text": "Tell the anaesthetist: rapid sequence plan, surgery proceeds once resuscitated",
+     "correct": true,
+     "consequence": "Aspiration risk planned."
+    },
+    {
+     "id": "sc29.d3.2",
+     "text": "Cancel the operation until he has fasted for 8 hours",
+     "correct": false,
+     "consequence": "Delays source control."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Sepsis bundle",
+   "Opioid stopped",
+   "Full-stomach plan"
+  ],
+  "incorrect": [
+   {
+    "mistake": "More morphine",
+    "shows": "RR 6",
+    "risk": "Arrest",
+    "recovery": "Stop; rescue"
+   }
+  ],
+  "missed": [
+   "Meal time not told"
+  ],
+  "recovery": [
+   "Tell the anaesthetist"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Sepsis with poor circulation (NEWS2 9, lactate 3.8)",
+   "Stop further opioid: drowsy with slow breathing"
+  ],
+  "missed": [
+   "Meal time not told"
+  ],
+  "priority": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)",
+  "why_priority": "Antibiotic within 1 hour, cultures, fluids, senior and anaesthetist, theatre as soon as he is resuscitated.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "Three urgent problems share one patient: treat the infection, protect the breathing and plan the stomach."
+ },
+ "verification": [
+  "V-02",
+  "V-09",
+  "V-12",
+  "V-21",
+  "V-40",
+  "V-52",
+  "V-55",
+  "V-75"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "risk": {
+  "asa": {
+   "min": 4,
+   "max": 4,
+   "emergency": true,
+   "why": "Sepsis with poor circulation (lactate 3.8) is ASA 4E; a full stomach and opioid sedation need a rapid sequence plan.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ }
+}

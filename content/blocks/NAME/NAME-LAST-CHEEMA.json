@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Cheema"
+ },
+ "derived_from": [
+  "SC-29"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-CHEEMA",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}

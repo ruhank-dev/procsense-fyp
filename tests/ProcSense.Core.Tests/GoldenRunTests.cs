@@ -21,7 +21,7 @@ namespace ProcSense.Core.Tests
             var names = Names();
             foreach (var n in new[] { "pause_and_time_skip", "skeleton1_bloods_first", "skeleton1_closed_question", "skeleton1_correct", "wristband_mismatch_resolved", "wristband_missing_allergy", "wristband_missing_applied" })
                 Assert.Contains(n, names);
-            Assert.Equal(142, names.Length);                                           // the 7 above and four paths (correct, novice, dangerous, edge) for each of the 17 P0 cases (p0-evaluation-performance-s02), VAR-S1-A in assessment mode (s04), and the variant paths B2 and C2 (DT-093, DT-193) plus all four paths of each of the 16 P1 cases (p1-case-library-extended-s03, s04)
+            Assert.Equal(142 + 4 * TestCase.CombinationIds.Count, names.Length);                                           // the 7 above and four paths (correct, novice, dangerous, edge) for each of the 17 P0 cases (p0-evaluation-performance-s02), VAR-S1-A in assessment mode (s04), and the variant paths B2 and C2 (DT-093, DT-193) plus all four paths of each of the 16 P1 cases (p1-case-library-extended-s03, s04)
         }
 
         [Fact]

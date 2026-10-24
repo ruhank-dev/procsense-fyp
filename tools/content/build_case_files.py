@@ -25,8 +25,9 @@ import case_file_checks as chk  # noqa: E402
 import news2  # noqa: E402
 import fasting_intake  # noqa: E402
 import lib  # noqa: E402
-import s1, s1b, s2, stk, p1v, p1stk, p2  # noqa: E402,F401
+import s1, s1b, s2, stk, p1v, p1stk, p2, p2comb  # noqa: E402,F401
 from risk import RISK  # noqa: E402
+RISK.update(p2comb.RISK)
 from responsible_adults import RESPONSIBLE_ADULT  # noqa: E402
 
 # The cases whose patient is pregnant (history and the pregnancy test say so): NEWS2 is not the tool for them once the trainee knows.
@@ -43,11 +44,23 @@ NOTE = "Owner-attested clinician approval, 10 October 2026; verified against the
 
 def all_cases() -> dict[str, dict]:
     cases: dict[str, dict] = {}
-    for mod in (s1, s1b, s2, stk, p1v, p1stk, p2):
+    for mod in (s1, s1b, s2, stk, p1v, p1stk, p2, p2comb):
         for k, v in mod.CASES.items():
             assert k not in cases, k
             cases[k] = v
     return cases
+
+
+REGISTRY = ROOT / "content" / "combination_cases.json"
+
+
+def registry_text(cases: dict) -> str:
+    """The authoritative list of the combination cases (DT-220): tests and tools derive the number of cases from the book's 53 plus this list, not from a literal."""
+    fixtures = {c["id"]: c for c in json.loads((ROOT / "tests" / "composition" / "fixtures_authored.json").read_text(encoding="utf-8"))["compositions"]}
+    rows = [{"id": cid, "fixture": p2comb.FIXTURE[cid], "scenario": cases[cid]["scenario"], "tier": cases[cid]["tier"], "expected_end_state": cases[cid]["expected_end_state"],
+             "fixture_problems": [(p["source_case"], p["source_problem"], p["type"]) for p in fixtures[p2comb.FIXTURE[cid]]["problems"]]} for cid in sorted(p2comb.CASES)]
+    return json.dumps({"schema": 1, "note": "Synthetic multi-problem practice cases authored from the fixtures of tests/composition/compositions.json (DT-220); not from the walkthrough, not clinician-reviewed.",
+                       "book_cases": 53, "cases": rows}, indent=1, ensure_ascii=False) + chr(10)
 
 
 def content_hash(c: dict) -> str:
@@ -136,7 +149,10 @@ def main(argv: list[str]) -> int:
     probs = []
     for k, c in cases.items():
         probs += chk.problems(c, ctx, list(cases.values()))
+    registry = registry_text(cases)
     if "--check" in argv:
+        if not REGISTRY.exists() or REGISTRY.read_text(encoding="utf-8").replace(chr(13) + chr(10), chr(10)) != registry:
+            probs.append("content/combination_cases.json is missing or out of date: run `uv run --project tools tools/content/build_case_files.py`")
         for k, c in cases.items():
             p = OUT / f"{k}.json"
             if not p.exists() or p.read_text(encoding="utf-8").replace("\r\n", "\n") != text(c):
@@ -145,6 +161,7 @@ def main(argv: list[str]) -> int:
         probs += [f"content/case_files/{e}.json has no source in tools/content/cases" for e in sorted(extra)]
     else:
         OUT.mkdir(parents=True, exist_ok=True)
+        REGISTRY.write_text(registry, encoding="utf-8", newline=chr(10))
         for k, c in cases.items():
             (OUT / f"{k}.json").write_text(text(c), encoding="utf-8", newline="\n")
     n_ap = sum(1 for c in cases.values() if c["status"] != "DRAFT")

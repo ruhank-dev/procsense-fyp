@@ -1,0 +1,25 @@
+{
+ "attributes": {
+  "part": "first",
+  "text": "Shahida"
+ },
+ "derived_from": [
+  "SC-24"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-FIRST-SHAHIDA-F",
+ "requires": [
+  "sex:F"
+ ],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [
+  "sex:F"
+ ],
+ "type": "NAME"
+}

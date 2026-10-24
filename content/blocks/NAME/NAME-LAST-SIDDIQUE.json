@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Siddique"
+ },
+ "derived_from": [
+  "SC-21"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-SIDDIQUE",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}

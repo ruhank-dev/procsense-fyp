@@ -96,7 +96,8 @@ class Packs(unittest.TestCase):
 
     def test_evaluation_sets_cover_every_case_every_mutation_and_each_query_has_an_answer(self):
         gold = json.loads((build_packs.EVAL / "gold_scenarios.json").read_text(encoding="utf-8"))["scenarios"]
-        self.assertEqual(len(gold), 53)
+        combos = json.loads((build_packs.ROOT / "content" / "combination_cases.json").read_text(encoding="utf-8"))["cases"]
+        self.assertEqual(len(gold), 53 + len(combos))                    # the walkthrough's 53 and the authored combination cases (DT-220)
         self.assertEqual(len(json.loads((build_packs.EVAL / "mutations.json").read_text(encoding="utf-8"))["types"]), 12)
         for query in json.loads((build_packs.EVAL / "retrieval_queries.json").read_text(encoding="utf-8"))["queries"]:
             self.assertTrue(query["expected_cases"], query["query"])

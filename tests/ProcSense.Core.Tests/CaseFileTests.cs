@@ -23,17 +23,19 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void Every_case_file_loads_and_there_are_53_in_three_tiers()
+        public void Every_case_file_loads_and_there_are_the_books_53_plus_the_combination_cases_in_three_tiers()
         {
             var files = Package().CaseFiles;
 
-            Assert.Equal(53, files.Count);
+            Assert.Equal(TestCase.AllCases, files.Count);
+            Assert.Equal(12, TestCase.CombinationIds.Count);                                                   // DT-220: six planned and six emergency combinations
             Assert.Equal(17, files.Values.Count(f => f.Tier == "P0"));
             Assert.Equal(16, files.Values.Count(f => f.Tier == "P1"));
-            Assert.Equal(20, files.Values.Count(f => f.Tier == "P2"));
+            Assert.Equal(20 + TestCase.CombinationIds.Count, files.Values.Count(f => f.Tier == "P2"));
             Assert.All(files, kv => Assert.Equal(kv.Key, kv.Value.Id));
             var pending = System.Text.Json.Nodes.JsonNode.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(TestCase.ContentRoot, "case_signoff_pending.json")))!["pending"]!.AsObject().Select(kv => kv.Key).ToList();
-            Assert.All(files.Values.Where(f => !pending.Contains(f.Id)), f => Assert.Equal("APPROVED_FOR_TRAINING", f.Status));
+            Assert.All(files.Values.Where(f => !pending.Contains(f.Id) && !TestCase.CombinationIds.Contains(f.Id)), f => Assert.Equal("APPROVED_FOR_TRAINING", f.Status));
+            Assert.All(TestCase.CombinationIds, id => Assert.Equal("DRAFT", files[id].Status));                  // synthetic, never approved by anyone: the owner grants practice use with --grant-cases when they choose to
             Assert.All(files.Values.Where(f => pending.Contains(f.Id)), f => Assert.Equal("DRAFT", f.Status));       // changed after the last attestation: awaiting clinician sign-off
             Assert.Equal(new[] { "SC-4", "VAR-S1-B" }, pending.OrderBy(x => x, System.StringComparer.Ordinal));      // the six P1 stacked cases were signed off by the owner on 17 Oct 2026
         }

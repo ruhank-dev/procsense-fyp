@@ -1304,18 +1304,21 @@
   "p2-content-extensions-s02": {
    "owner": "Ruhan",
    "before": "No status recorded",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
+    "tools/content/cases/p2comb.py",
+    "tools/content/cases/p2comb_s2.py",
+    "content/combination_cases.json",
+    "tests/composition/fixtures_authored.json",
+    "tests/golden/SC-21_correct_p1.expected.json",
+    "tests/golden/SC-32_correct_p1.expected.json",
     "tools/composer/multiproblem.py",
-    "tools/composer/composition/rules.json",
-    "tests/composition/compositions.json",
-    "tools/composer/test_multiproblem.py",
-    "tools/composer/solve.py",
-    "tools/composer/blocks.py"
+    "tools/composer/test_multiproblem.py"
    ],
-   "measured": "the composition engine builds the structure of new multi-problem combinations by the walkthrough 14B.5 recipe from problems of approved cases (typed, ladder order, checks, end state, clock, handover items, cross-checks touched), enforces coherence rules (one scenario, 2 to 4 problems, at most 3 life threats, no repeated topic, no contradictory actions, sex and age requirements, genuinely new topic set), writes 12 synthetic DRAFT fixtures that are not clinically validated, and 12 tests plus a --check run in CI",
-   "open": "The authored content is missing: each combination needs every clinical value written from the sourced tables with a source row, then Stage B and golden runs (DT-). The authored content: each combination needs every clinical value written from the sourced tables with a source row, then Stage B and golden runs (DT-220). A clinician's approval is not the blocker (ADR-0008)",
-   "external": "the content author, from the sourced tables (EX-13)"
+   "measured": "twelve combination cases SC-21 to SC-32 (six planned, six emergency) were authored from the twelve fixtures of the composition engine: complete case files with observations, history, examination, flagged results, ranked problems, decisions with consequences, paths and debrief; they pass the case checker (schema, NEWS2, flags, rules, end states, no doses), Core's strict loader, Stage B, the risk, critical-result and result-generator tests, and 48 golden runs (four paths each) end as their case promises; the composition engine now treats them as authored and generates new combinations; the case count in tests is the walkthrough's 53 plus content/combination_cases.json, not a literal",
+   "open": "The cases are synthetic and DRAFT: nobody has reviewed or approved them, so practice mode refuses them until the owner grants practice use (build_case_files.py --grant-cases). Clinical values follow the verified rows cited in each case; no clinician read them (ADR-0008: not a gate)",
+   "external": "the content author or a clinician reading the authored values (EX-13); the owner granting practice use",
+   "implementation": "complete"
   },
   "p2-content-extensions-s03": {
    "owner": "Ruhan",

@@ -1,5 +1,5 @@
 {
- "note": "The 53 authored cases summarised as reference scenarios for generated ones: a generated scenario is compared with these for structure and for novelty.",
+ "note": "The authored cases (the walkthrough's 53 and the 12 combination cases) summarised as reference scenarios for generated ones: a generated scenario is compared with these for structure and for novelty.",
  "scenarios": [
   {
    "abnormal_results": [
@@ -355,6 +355,303 @@
   },
   {
    "abnormal_results": [
+    "ALP",
+    "ALT",
+    "Bilirubin",
+    "CRP",
+    "Ultrasound abdomen",
+    "WBC"
+   ],
+   "age": 66,
+   "expected_end_state": "redirected",
+   "id": "SC-21",
+   "problems": [
+    {
+     "id": "sc21.doac",
+     "label": "Apixaban taken last night: bleeding risk at surgery",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc21.chole",
+     "label": "Acute cholecystitis with early systemic signs",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc21.cbd",
+     "label": "Probable stone in the main bile duct: not what he was booked for",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "ALP",
+    "Bilirubin",
+    "CRP",
+    "Capillary glucose",
+    "Creatinine",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 63,
+   "expected_end_state": "redirected",
+   "id": "SC-22",
+   "problems": [
+    {
+     "id": "sc22.sepsis",
+     "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc22.bb",
+     "label": "Slow heart and low BP: tachycardia masked by the beta-blocker",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc22.glp1",
+     "label": "Weekly GLP-1 injection 3 days ago with nausea and bloating: stomach may still hold food",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc22.chole",
+     "label": "Acute cholecystitis behind the picture",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Ferritin",
+    "Haemoglobin",
+    "HbA1c",
+    "MCV",
+    "STOP-BANG"
+   ],
+   "age": 71,
+   "expected_end_state": "postponed",
+   "id": "SC-23",
+   "problems": [
+    {
+     "id": "sc23.doac",
+     "label": "Apixaban not stopped: bleeding risk",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc23.anaemia",
+     "label": "Unexplained iron-deficiency anaemia in an older man",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc23.hba1c",
+     "label": "HbA1c 76 above the limit of 69 for planned surgery",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc23.osa",
+     "label": "High risk of obstructive sleep apnoea with BMI 37",
+     "type": "optimisable"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "ECG"
+   ],
+   "age": 68,
+   "expected_end_state": "redirected",
+   "id": "SC-24",
+   "problems": [
+    {
+     "id": "sc24.consent",
+     "label": "Consent form not signed",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc24.slow",
+     "label": "Slow heart and low BP in a patient with AF on a beta-blocker",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc24.fit",
+     "label": "Otherwise fit and fasted correctly",
+     "type": "information_only"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Bilirubin",
+    "CRP",
+    "Creatinine",
+    "Ferritin",
+    "Haemoglobin",
+    "WBC"
+   ],
+   "age": 74,
+   "expected_end_state": "redirected",
+   "id": "SC-25",
+   "problems": [
+    {
+     "id": "sc25.chol",
+     "label": "Obstructed infected bile duct (acute cholangitis)",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc25.aki",
+     "label": "Acute kidney injury: creatinine 178 against a usual 82",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc25.anaemia",
+     "label": "Unexplained iron-deficiency anaemia in an older man",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "ALP",
+    "ALT",
+    "Bilirubin",
+    "Ultrasound abdomen"
+   ],
+   "age": 59,
+   "expected_end_state": "postponed",
+   "id": "SC-26",
+   "problems": [
+    {
+     "id": "sc26.cbd",
+     "label": "Probable stone in the main bile duct: not what she was booked for",
+     "type": "pathway_changing"
+    },
+    {
+     "id": "sc26.doac",
+     "label": "Apixaban correctly stopped 3 days ago",
+     "type": "information_only"
+    },
+    {
+     "id": "sc26.anaes",
+     "label": "Anaesthetist decides",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S1",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "Creatinine",
+    "Sodium",
+    "Urea",
+    "WBC"
+   ],
+   "age": 52,
+   "expected_end_state": "ready",
+   "id": "SC-27",
+   "problems": [
+    {
+     "id": "sc27.airway",
+     "label": "Slow breathing and drowsiness after morphine",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc27.lang",
+     "label": "Language barrier: allergies, medicines and consent cannot be taken safely",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc27.dehyd",
+     "label": "Dehydration with a rising creatinine",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Capillary glucose",
+    "Capillary ketones",
+    "Creatinine",
+    "Venous bicarbonate",
+    "Venous pH"
+   ],
+   "age": 33,
+   "expected_end_state": "ready",
+   "id": "SC-28",
+   "problems": [
+    {
+     "id": "sc28.airway",
+     "label": "Airway at risk: vomiting with reduced consciousness",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc28.dka",
+     "label": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc28.aki",
+     "label": "Pre-renal acute kidney injury, stage 1",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Blood cultures",
+    "CRP",
+    "Creatinine",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 44,
+   "expected_end_state": "ready",
+   "id": "SC-29",
+   "problems": [
+    {
+     "id": "sc29.sepsis",
+     "label": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc29.opioid",
+     "label": "Stop further opioid: drowsy with slow breathing",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc29.stomach",
+     "label": "Full stomach: a large meal 2 hours ago",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
     "MRI appendix",
     "Ultrasound appendix",
     "WBC"
@@ -371,6 +668,109 @@
    ],
    "scenario": "S2",
    "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Creatinine",
+    "Lactate",
+    "Urea",
+    "WBC"
+   ],
+   "age": 58,
+   "expected_end_state": "ready",
+   "id": "SC-30",
+   "problems": [
+    {
+     "id": "sc30.sepsis",
+     "label": "Sepsis with poor circulation",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc30.opioid",
+     "label": "Opioid sedation: the cause of the drowsiness to rule out",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc30.aki",
+     "label": "Dehydration with acute kidney injury (stage 1)",
+     "type": "time_critical"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "Capillary glucose",
+    "Capillary ketones",
+    "ECG",
+    "Potassium",
+    "Venous bicarbonate",
+    "Venous pH",
+    "WBC"
+   ],
+   "age": 16,
+   "expected_end_state": "ready",
+   "id": "SC-31",
+   "problems": [
+    {
+     "id": "sc31.k",
+     "label": "Potassium 6.7 with ECG changes",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc31.dka",
+     "label": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)",
+     "type": "life_threat"
+    },
+    {
+     "id": "sc31.consent",
+     "label": "A minor (16): consent follows the applicable local law and the parent is involved",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc31.appy",
+     "label": "Perforated appendix: urgent source control after stabilising",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "F",
+   "tier": "P2"
+  },
+  {
+   "abnormal_results": [
+    "CRP",
+    "CT abdomen",
+    "Creatinine",
+    "Haemoglobin",
+    "Lactate",
+    "WBC"
+   ],
+   "age": 71,
+   "expected_end_state": "delayed",
+   "id": "SC-32",
+   "problems": [
+    {
+     "id": "sc32.stomach",
+     "label": "Full stomach for anaesthesia (a heavy meal 3 hours ago)",
+     "type": "safety_blocker"
+    },
+    {
+     "id": "sc32.resus",
+     "label": "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first",
+     "type": "time_critical"
+    },
+    {
+     "id": "sc32.cancer",
+     "label": "Older person with a change in bowel habit and blood: cancer is possible",
+     "type": "pathway_changing"
+    }
+   ],
+   "scenario": "S2",
+   "sex": "M",
    "tier": "P2"
   },
   {

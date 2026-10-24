@@ -141,9 +141,9 @@ namespace ProcSense.Core.Tests
 
         // every critical flag the case authors wrote is one the engine would also phone about
         [Fact]
-        public void Every_critical_flag_in_the_53_case_files_is_caught_by_the_limits()
+        public void Every_critical_flag_in_the_case_files_is_caught_by_the_limits()
         {
-            int authored = 0;
+            int authored = 0, authoredInCombinations = 0;
             foreach (var path in Directory.GetFiles(Path.Combine(TestCase.ContentRoot, "case_files"), "*.json"))
             {
                 var f = File_(Path.GetFileNameWithoutExtension(path));
@@ -151,11 +151,12 @@ namespace ProcSense.Core.Tests
                 var caught = Table.Evaluate(records, new HashSet<string>(f.Facts)).Select(x => x.ResultId).ToHashSet();
                 foreach (var r in f.Results.Where(x => x.Flag.StartsWith("critical")))
                 {
-                    authored++;
+                    if (TestCase.CombinationIds.Contains(f.Id)) authoredInCombinations++; else authored++;
                     Assert.Contains(r.Id, caught);
                 }
             }
-            Assert.Equal(2, authored);
+            Assert.Equal(2, authored);                       // the walkthrough's own cases
+            Assert.Equal(1, authoredInCombinations);         // SC-31's potassium of 6.7
         }
 
         // ---------------------------------------------------------------- T07-1 and T07-2 the call

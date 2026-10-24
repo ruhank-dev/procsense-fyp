@@ -4,7 +4,8 @@
   "text": "Baig"
  },
  "derived_from": [
-  "SC-20"
+  "SC-20",
+  "SC-22"
  ],
  "enables_events": [],
  "enables_rules": [],
@@ -13,9 +14,11 @@
  "requires": [],
  "sources": [
   "SR-2352",
-  "SR-3752"
+  "SR-3752",
+  "SR-4135",
+  "SR-4136"
  ],
- "status": "APPROVED_FOR_TRAINING",
+ "status": "DRAFT",
  "tags": [],
  "type": "NAME"
 }

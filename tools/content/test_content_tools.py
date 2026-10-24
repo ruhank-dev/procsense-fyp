@@ -309,7 +309,7 @@ class ContentLibraryChecks(unittest.TestCase):
     def test_the_assessment_package_holds_no_case_file_that_is_not_approved_for_assessment(self):
         shipped, left_out = self.package.plan("assessment")
         self.assertEqual([p.name for p in shipped if p.parent.name == "case_files"], [])
-        self.assertEqual(len(left_out), 53)
+        self.assertEqual(len(left_out), len(list((self.root / "content" / "case_files").glob("*.json"))))   # every case file, whatever their number
 
     def test_the_practice_package_leaves_out_exactly_the_case_files_not_yet_approved(self):
         _, left_out = self.package.plan("practice")

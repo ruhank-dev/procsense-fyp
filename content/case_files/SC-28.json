@@ -1,0 +1,501 @@
+{
+ "schema": 1,
+ "id": "SC-28",
+ "walkthrough_label": "COMBINATION CARD 28 (S2) - Vomiting with reduced consciousness + SGLT2 inhibitor ketoacidosis + pre-renal kidney injury",
+ "scenario": "S2",
+ "tier": "P2",
+ "synthetic": true,
+ "status": "DRAFT",
+ "reference_date": "2026-10-10",
+ "base_card": null,
+ "identity": {
+  "title": "Ms",
+  "full_name": "Leila Haddad",
+  "sex": "F",
+  "age": 33,
+  "occupation": "primary school teacher",
+  "dob": "1992-12-12",
+  "mrn": "635028"
+ },
+ "spoken_identity_answer": "Leila Haddad, twelfth of December 1992.",
+ "wristband": {
+  "name_text": "LEILA HADDAD",
+  "dob_text": "12/12/1992",
+  "mrn_text": "MR 635028"
+ },
+ "allergies": [],
+ "allergy_answer": "None.",
+ "reason_answer": "I have tummy pain.",
+ "presentation": {
+  "setting": "emergency department",
+  "time_now": "11:00",
+  "summary": "Ms Leila Haddad, 33, type 2 diabetes on an SGLT2 inhibitor: 2 days of vomiting and abdominal pain, drowsy (responds to voice), breathing deeply and fast, glucose only 11."
+ },
+ "history": [
+  {
+   "id": "complaint",
+   "topic": "complaint",
+   "answer": "I feel so sick and sleepy. My stomach hurts all over.",
+   "volunteered": true,
+   "disclose_on": [],
+   "origin": "book"
+  },
+  {
+   "id": "red_flags",
+   "topic": "red_flags",
+   "answer": "Vomiting for two days, cannot eat or drink, deep breathing, thirst.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:red flags",
+    "ask:yellow",
+    "ask:fever",
+    "ask:urine colour"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "past_history",
+   "topic": "past_history",
+   "answer": "Type 2 diabetes, gallstones.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:past history",
+    "ask:illnesses",
+    "ask:operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "medicines",
+   "topic": "medicines",
+   "answer": "Empagliflozin and metformin; she kept taking both while not eating.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:medicines",
+    "ask:tablets",
+    "ask:drugs"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "herbal",
+   "topic": "herbal",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:herbal",
+    "ask:supplements"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "previous_anaesthetic",
+   "topic": "previous_anaesthetic",
+   "answer": "No previous anaesthetics.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:previous anaesthetic",
+    "ask:previous operations"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "family_anaesthetic",
+   "topic": "family_anaesthetic",
+   "answer": "No anaesthetic problems in the family.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:family anaesthetic"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "smoking",
+   "topic": "smoking",
+   "answer": "Never.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:smoking"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "alcohol",
+   "topic": "alcohol",
+   "answer": "None.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:alcohol"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "last_food",
+   "topic": "last_food",
+   "answer": "Toast two days ago.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last food",
+    "ask:when did you eat",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "light_meal",
+    "hours_before_now": 48.0
+   }
+  },
+  {
+   "id": "last_drink",
+   "topic": "last_drink",
+   "answer": "Water at 08:00.",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:last drink",
+    "ask:fasting"
+   ],
+   "origin": "authored",
+   "intake": {
+    "kind": "clear_liquids",
+    "hours_before_now": 3.0
+   }
+  },
+  {
+   "id": "pregnancy",
+   "topic": "pregnancy",
+   "answer": "Not pregnant (last period two weeks ago).",
+   "volunteered": false,
+   "disclose_on": [
+    "ask:pregnancy",
+    "ask:last period"
+   ],
+   "origin": "authored"
+  }
+ ],
+ "observations": [
+  {
+   "time": "11:00",
+   "condition": "initial",
+   "heart_rate": 118,
+   "heart_rhythm": "regular",
+   "systolic_bp": 100,
+   "diastolic_bp": 62,
+   "respiratory_rate": 26,
+   "spo2": 97,
+   "oxygen": "room_air",
+   "temperature_c": 37.2,
+   "acvpu": "V",
+   "pain_score": 5,
+   "news2": 10,
+   "note": "Deep fast breathing is the body blowing off acid; drowsy, dehydrated.",
+   "origin": "authored"
+  },
+  {
+   "time": "11:30",
+   "condition": "after_correct_action",
+   "heart_rate": 100,
+   "heart_rhythm": "regular",
+   "systolic_bp": 112,
+   "diastolic_bp": 70,
+   "respiratory_rate": 20,
+   "spo2": 98,
+   "oxygen": "supplemental",
+   "temperature_c": 37.0,
+   "acvpu": "A",
+   "pain_score": 0,
+   "news2": 3,
+   "note": "After airway positioning, fluids and the diabetes team.",
+   "origin": "authored"
+  },
+  {
+   "time": "11:30",
+   "condition": "if_no_action",
+   "heart_rate": 132,
+   "heart_rhythm": "regular",
+   "systolic_bp": 86,
+   "diastolic_bp": 48,
+   "respiratory_rate": 32,
+   "spo2": 94,
+   "oxygen": "room_air",
+   "temperature_c": 37.3,
+   "acvpu": "P",
+   "pain_score": 0,
+   "news2": 13,
+   "note": "Untreated ketoacidosis.",
+   "origin": "authored"
+  }
+ ],
+ "examination": [
+  {
+   "id": "ex.general",
+   "system": "general",
+   "finding": "Drowsy to voice, deep sighing breathing, dry mouth, retching.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:general"
+   ],
+   "origin": "authored"
+  },
+  {
+   "id": "ex.abdomen",
+   "system": "abdomen",
+   "finding": "Diffusely tender, no guarding.",
+   "abnormal": true,
+   "disclose_on": [
+    "examine:abdomen"
+   ],
+   "origin": "authored",
+   "painful": true
+  }
+ ],
+ "results": [
+  {
+   "id": "lab.glu",
+   "test": "Capillary glucose",
+   "value": "11.2",
+   "unit": "mmol/L",
+   "normal_range": "6-10",
+   "flag": "high",
+   "comment": "Only mildly raised: SGLT2 inhibitors can give ketoacidosis with a near-normal glucose",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.ket",
+   "test": "Capillary ketones",
+   "value": "4.8",
+   "unit": "mmol/L",
+   "normal_range": "below 0.6",
+   "flag": "high",
+   "comment": "3.0 or more: ketoacidosis likely",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 2,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.vph",
+   "test": "Venous pH",
+   "value": "7.17",
+   "unit": "",
+   "normal_range": "7.30-7.40",
+   "flag": "low",
+   "comment": "Acidaemia (below 7.30); the reference interval is one laboratory's, see the register",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.vhco3",
+   "test": "Venous bicarbonate",
+   "value": "9",
+   "unit": "mmol/L",
+   "normal_range": "20-27",
+   "flag": "low",
+   "comment": "Low: metabolic acidosis",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 5,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.creat",
+   "test": "Creatinine",
+   "value": "124",
+   "unit": "umol/L",
+   "normal_range": "45-90",
+   "flag": "high",
+   "comment": "Acute kidney injury stage 1 against her usual 78 (1.6 times)",
+   "quality": null,
+   "previous": {
+    "value": "78",
+    "when": "usual"
+   },
+   "minutes_to_result": 45,
+   "origin": "authored"
+  },
+  {
+   "id": "lab.k",
+   "test": "Potassium",
+   "value": "4.9",
+   "unit": "mmol/L",
+   "normal_range": "3.5-5.3",
+   "flag": "normal",
+   "comment": "Normal now; insulin and fluids will lower it, so it is rechecked",
+   "quality": null,
+   "previous": null,
+   "minutes_to_result": 45,
+   "origin": "authored"
+  }
+ ],
+ "scores": [
+  {
+   "name": "NEWS2",
+   "value": "6",
+   "note": "Respiratory rate, heart rate and voice response score",
+   "origin": "authored"
+  }
+ ],
+ "problems": [
+  {
+   "id": "sc28.airway",
+   "type": "life_threat",
+   "label": "Airway at risk: vomiting with reduced consciousness",
+   "rank": 1,
+   "why": "Side position and suction ready; anaesthetist early; she may need airway protection.",
+   "expected_actions": [
+    "Side position, suction",
+    "Call the senior and the anaesthetist"
+   ]
+  },
+  {
+   "id": "sc28.dka",
+   "type": "time_critical",
+   "label": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose",
+   "rank": 2,
+   "why": "Ketones and venous gas decide it, not the glucose; stop the SGLT2 inhibitor; the diabetes team and fluids and insulin by protocol.",
+   "expected_actions": [
+    "Ketones and venous gas",
+    "Stop the SGLT2 inhibitor",
+    "Call the diabetes team"
+   ]
+  },
+  {
+   "id": "sc28.aki",
+   "type": "pathway_changing",
+   "label": "Pre-renal acute kidney injury, stage 1",
+   "rank": 3,
+   "why": "Fluids help; metformin and ACE inhibitors are reviewed; recheck creatinine.",
+   "expected_actions": [
+    "Fluids by clinician order",
+    "Medicines review",
+    "Repeat creatinine"
+   ]
+  }
+ ],
+ "decisions": [
+  {
+   "id": "sc28.d1",
+   "prompt": "Drowsy and retching.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc28.d1.1",
+     "text": "Side position, suction ready, call the senior and the anaesthetist",
+     "correct": true,
+     "consequence": "Airway protected."
+    },
+    {
+     "id": "sc28.d1.2",
+     "text": "Lie her flat and give oral sugary drinks",
+     "correct": false,
+     "consequence": "Aspiration."
+    }
+   ]
+  },
+  {
+   "id": "sc28.d2",
+   "prompt": "Glucose 11.2 but ketones 4.8 and venous pH 7.17.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc28.d2.1",
+     "text": "Treat as ketoacidosis: stop the SGLT2 inhibitor, call the diabetes team, fluids and insulin by protocol",
+     "correct": true,
+     "consequence": "Correct treatment."
+    },
+    {
+     "id": "sc28.d2.2",
+     "text": "Reassure: the glucose is only slightly raised",
+     "correct": false,
+     "consequence": "Ketoacidosis is missed."
+    }
+   ]
+  },
+  {
+   "id": "sc28.d3",
+   "prompt": "Creatinine 124, usual 78.",
+   "rule": null,
+   "options": [
+    {
+     "id": "sc28.d3.1",
+     "text": "Report the kidney injury, give fluids as ordered and have the medicines reviewed",
+     "correct": true,
+     "consequence": "AKI managed."
+    },
+    {
+     "id": "sc28.d3.2",
+     "text": "Continue metformin as normal",
+     "correct": false,
+     "consequence": "Lactic acidosis risk."
+    }
+   ]
+  }
+ ],
+ "expected_end_state": "ready",
+ "paths": {
+  "correct": [
+   "Airway first",
+   "Ketones and gas checked",
+   "SGLT2 inhibitor stopped",
+   "Diabetes team called"
+  ],
+  "incorrect": [
+   {
+    "mistake": "Reassures because the glucose is near normal",
+    "shows": "Ketoacidosis progresses",
+    "risk": "Collapse",
+    "recovery": "Stop; check ketones"
+   }
+  ],
+  "missed": [
+   "Ketones not checked"
+  ],
+  "recovery": [
+   "Check ketones when ill on an SGLT2 inhibitor"
+  ]
+ },
+ "debrief": {
+  "recognised": [
+   "Airway at risk: vomiting with reduced consciousness",
+   "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose"
+  ],
+  "missed": [
+   "Ketones not checked"
+  ],
+  "priority": "Airway at risk: vomiting with reduced consciousness",
+  "why_priority": "Side position and suction ready; anaesthetist early; she may need airway protection.",
+  "related": "The findings in this case point to the same cause",
+  "independent": "None",
+  "trigger_escalation": "Any value outside its safe band or any breach of a safety rule",
+  "if_ignored": "Harm from the missed problem or an unsafe operation",
+  "remember": "With an SGLT2 inhibitor the glucose can lie: check ketones and the gas."
+ },
+ "verification": [
+  "V-17",
+  "V-20",
+  "V-37",
+  "V-49",
+  "V-68"
+ ],
+ "sources": {
+  "story": "SR-4135",
+  "authored": "SR-4136"
+ },
+ "variant_end_states": {
+  "if_no_action": "failure"
+ },
+ "risk": {
+  "asa": {
+   "min": 4,
+   "max": 4,
+   "emergency": true,
+   "why": "Ketoacidosis with a reduced conscious level and acute kidney injury is ASA 4 in the ASA's examples; type 2 diabetes adds to it; emergency.",
+   "origin": "authored"
+  },
+  "plan": "rsi"
+ }
+}

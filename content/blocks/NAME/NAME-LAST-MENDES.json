@@ -1,0 +1,21 @@
+{
+ "attributes": {
+  "part": "last",
+  "text": "Mendes"
+ },
+ "derived_from": [
+  "SC-27"
+ ],
+ "enables_events": [],
+ "enables_rules": [],
+ "excludes": [],
+ "id": "NAME-LAST-MENDES",
+ "requires": [],
+ "sources": [
+  "SR-4135",
+  "SR-4136"
+ ],
+ "status": "DRAFT",
+ "tags": [],
+ "type": "NAME"
+}
