@@ -3215,11 +3215,16 @@
   {
    "id": "LAB-CRITICAL_CALL",
    "speaker": "laboratory",
-   "text": "",
+   "text": "This is the laboratory with a critical result for {name}, date of birth {dob}: {values}.",
    "event": {
     "core_event": "critical_call_rings"
    },
-   "source": "src/ProcSense.Core/Workflow/Steps/ResultReviewSubsystem.cs (the words are built in code, not content)"
+   "source": "content/investigations/critical.json (call_template)",
+   "template": [
+    "dob",
+    "name",
+    "values"
+   ]
   },
   {
    "id": "NUR-WRISTBAND-CALLED",
@@ -3394,8 +3399,8 @@
  ],
  "summary": {
   "lines": 310,
-  "templates": 9,
+  "templates": 10,
   "authored_variants": 24,
-  "events_without_a_line": 19
+  "events_without_a_line": 18
  }
 }

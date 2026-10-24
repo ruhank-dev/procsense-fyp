@@ -23,6 +23,8 @@ ALIASES = {
     "haemoglobin": ["Hb", "Haemoglobin"], "platelets": ["Platelets"], "neutrophils": ["Neutrophils"], "inr": ["INR"], "lactate": ["Lactate"],
 }
 CONDITIONS = {"": "always", "without known kidney failure": "no_known_kidney_failure", "warfarin": "on_warfarin", "unexpectedly": "not_on_warfarin"}
+# What the laboratory says on the phone (DT-180); {name}, {dob} and {values} are filled from the case when the call rings. The words were in the engine's code until 24 Oct 2026 and are unchanged.
+CALL_TEMPLATE = "This is the laboratory with a critical result for {name}, date of birth {dob}: {values}."
 ACTIONS = ["repeat_sample", "treat_and_repeat", "escalate_senior", "order_ecg", "review_patient", "postpone_surgery"]
 
 
@@ -37,7 +39,7 @@ def build() -> str:
             raise SystemExit(f"critical_results.csv: the condition '{r['v_condition']}' is not one this script knows")
         rules.append({"id": r["id"], "analyte": r["analyte"], "direction": r["direction"], "inclusive": r["inclusive"] == "yes", "value": float(r["v_value"]), "unit": r["d_unit"],
                       "condition": CONDITIONS[r["v_condition"]], "ref": r["ref"]})
-    doc = {"rules": rules, "aliases": ALIASES, "actions": ACTIONS, "refs": ["SR-0076", "SR-0077"]}
+    doc = {"rules": rules, "aliases": ALIASES, "actions": ACTIONS, "call_template": CALL_TEMPLATE, "refs": ["SR-0076", "SR-0077"]}
     return json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
 
 

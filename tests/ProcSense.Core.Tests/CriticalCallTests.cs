@@ -454,6 +454,8 @@ namespace ProcSense.Core.Tests
             Assert.Contains("needs at least one action", Assert.Throws<ContentException>(() => CriticalTable.Parse(Edit(n => n["actions"] = new System.Text.Json.Nodes.JsonArray()))).Message);
             Assert.Contains("is not one of", Assert.Throws<ContentException>(() => CriticalTable.Parse(Edit(n => n["rules"]![0]!["condition"] = "sometimes"))).Message);
             Assert.Contains("unknown field", Assert.Throws<ContentException>(() => CriticalTable.Parse(Edit(n => n["colour"] = 1))).Message);
+            Assert.Contains("must contain {dob}", Assert.Throws<ContentException>(() => CriticalTable.Parse(Edit(n => n["call_template"] = "Lab here for {name}: {values}."))).Message);   // DT-180: the words live in content, with their three slots
+            Assert.Equal("Lab: Mr A, 01/02/1990, K 6.6.", CriticalTable.Parse(Edit(n => n["call_template"] = "Lab: {name}, {dob}, {values}.")).Say("Mr A", "01/02/1990", new[] { "K 6.6" }));
         }
     }
 }

@@ -3,6 +3,14 @@
 Every prompt the project owner has given, in chronological order, with the original wording preserved (typos included).
 **Append only** — never overwrite, reorder or delete entries (rule: INSTRUCTIONS.md §8f). New prompts are added at the bottom.
 
+## 200. 24 October 2026, 1:50 AM UTC
+_Session: fe0a6c20_
+
+``````text
+Complete all remaining Ruhan and Moiz tasks end to end in one continuous session: read INSTRUCTIONS.md, AGENTS.md and the plans in docs/, reconcile with the remote, implement everything in the features folder that is not Sannan's, tick each when its acceptance passes, add every headset-dependent test to Sannan's existing testing file, run the full local CI, commit and push as work completes (permission for this session only), and at the end report what was done and what is needed.
+(This entry keeps the requirements, shortened.)
+``````
+
 ## Sources and gaps
 
 - Reconstructed on 09 October 2026 from the session records of the coding tool for this project (3 sessions, 08–09 October 2026); later prompts are appended as they arrive. Prompts 39 to 117 (09 to 11 October 2026) were added on 12 October 2026 from the session record, because they had not been appended when they were given; IDE notices and tool notifications are not prompts and are left out.

@@ -2,13 +2,26 @@
 from __future__ import annotations
 
 import datetime as dt
+import json
 import uuid
+from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel
 
-# The weights Ruhan's scorer multiplies the behaviour scores by are provisional design values (the verdict does not depend on them), so every place that shows a process score says so.
-WEIGHTS_PROVISIONAL = True
+RUBRIC = Path(__file__).resolve().parents[2] / "content" / "scoring" / "rubric.json"
+
+
+def weights_provisional(path: Path = RUBRIC) -> bool:
+    """The scorer's weights are provisional design values until the rubric says otherwise (DT-147); the verdict does not depend on them. An unreadable or unclear rubric counts as provisional, never as approved."""
+    try:
+        return json.loads(path.read_text(encoding="utf-8")).get("provisional") is not False
+    except (OSError, ValueError, AttributeError):
+        return True
+
+
+# Every place that shows a process score says so while the weights are provisional.
+WEIGHTS_PROVISIONAL = weights_provisional()
 
 
 class ResultCount(BaseModel):

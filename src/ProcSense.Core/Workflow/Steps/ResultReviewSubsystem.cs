@@ -92,7 +92,7 @@ namespace ProcSense.Core.Workflow.Steps
                 Test = order.Test,
                 State = "RINGING",
                 RangAtStep = _s.Clock.Steps,
-                Message = "This is the laboratory with a critical result for " + id.FullName + ", date of birth " + born + ": " + string.Join("; ", found.Select(x => x.Spoken)) + ".",
+                Message = Critical.Say(id.FullName, born, found.Select(x => x.Spoken)),
             };
             foreach (var f in found) call.Values.Add(new CriticalValue(f.Analyte, f.Value, f.Spoken));
             Clinical.CriticalCalls.Add(call);

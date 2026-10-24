@@ -16,17 +16,26 @@ namespace ProcSense.Core.Clinical
     /// <summary>The limits the lab phones about and the actions a trainee can choose when acknowledging one (content/investigations/critical.json, built from the verified table).</summary>
     public sealed class CriticalTable
     {
-        public static readonly CriticalTable Empty = new CriticalTable(new List<CriticalRule>(), new Dictionary<string, IReadOnlyList<string>>(), new List<string>());
+        public static readonly CriticalTable Empty = new CriticalTable(new List<CriticalRule>(), new Dictionary<string, IReadOnlyList<string>>(), new List<string>(), DefaultCallTemplate);
 
-        public CriticalTable(IReadOnlyList<CriticalRule> rules, IReadOnlyDictionary<string, IReadOnlyList<string>> aliases, IReadOnlyList<string> actions)
+        /// <summary>The words of the phone call when a file carries none (older packages); {name}, {dob} and {values} are filled from the case.</summary>
+        public const string DefaultCallTemplate = "This is the laboratory with a critical result for {name}, date of birth {dob}: {values}.";
+
+        public CriticalTable(IReadOnlyList<CriticalRule> rules, IReadOnlyDictionary<string, IReadOnlyList<string>> aliases, IReadOnlyList<string> actions, string callTemplate = DefaultCallTemplate)
         {
-            Rules = rules; Aliases = aliases; Actions = actions;
+            Rules = rules; Aliases = aliases; Actions = actions; CallTemplate = callTemplate;
         }
 
         public IReadOnlyList<CriticalRule> Rules { get; }
         /// <summary>The result names the case files use for each analyte (Hb and Haemoglobin are both haemoglobin).</summary>
         public IReadOnlyDictionary<string, IReadOnlyList<string>> Aliases { get; }
         public IReadOnlyList<string> Actions { get; }
+        /// <summary>What the laboratory says on the phone, with {name}, {dob} and {values} (content, so the voice catalogue can carry it, DT-180).</summary>
+        public string CallTemplate { get; }
+
+        /// <summary>The spoken call for a patient and the spoken findings.</summary>
+        public string Say(string name, string dob, IEnumerable<string> spoken) =>
+            CallTemplate.Replace("{name}", name).Replace("{dob}", dob).Replace("{values}", string.Join("; ", spoken));
 
         public static CriticalTable Parse(string json, string source = "critical")
         {
@@ -56,8 +65,11 @@ namespace ProcSense.Core.Clinical
             foreach (var a in root.Arr("actions")) actions.Add(a as string ?? throw new ContentException(root.Sub("actions") + ": expected text"));
             if (actions.Count == 0) throw new ContentException(root.Sub("actions") + ": needs at least one action");
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
+            string template = root.Has("call_template") ? root.Str("call_template") : DefaultCallTemplate;
+            foreach (var token in new[] { "{name}", "{dob}", "{values}" })
+                if (!template.Contains(token)) throw new ContentException(root.Sub("call_template") + ": must contain " + token);
             root.Finish();
-            return new CriticalTable(rules, aliases, actions);
+            return new CriticalTable(rules, aliases, actions, template);
         }
 
         /// <summary>

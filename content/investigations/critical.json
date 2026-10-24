@@ -206,6 +206,7 @@
   "review_patient",
   "postpone_surgery"
  ],
+ "call_template": "This is the laboratory with a critical result for {name}, date of birth {dob}: {values}.",
  "refs": [
   "SR-0076",
   "SR-0077"

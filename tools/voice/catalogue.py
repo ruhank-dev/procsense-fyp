@@ -77,9 +77,9 @@ def staff_lines() -> list[dict]:
     loc = load("locations/locations.json")
     msg = loc["transport"].get("messages", {}).get("porter_unavailable", "")
     lines.append({"id": "POR-UNAVAILABLE", "speaker": "porter", "text": msg, "event": {"transport_state": "DELAYED"}, "source": "content/locations/locations.json"})
-    # the laboratory's critical-result call is put together in the engine's code from the case (ResultReviewSubsystem), not in the content: no line until it moves to content
-    lines.append({"id": "LAB-CRITICAL_CALL", "speaker": "laboratory", "text": "", "event": {"core_event": "critical_call_rings"},
-                  "source": "src/ProcSense.Core/Workflow/Steps/ResultReviewSubsystem.cs (the words are built in code, not content)"})
+    # the laboratory's critical-result call is a template in content/investigations/critical.json (DT-180); the engine fills it from the case when the call rings
+    lines.append({"id": "LAB-CRITICAL_CALL", "speaker": "laboratory", "text": load("investigations/critical.json")["call_template"], "event": {"core_event": "critical_call_rings"},
+                  "source": "content/investigations/critical.json (call_template)"})
     for l in load("voice/nurse_wristband.json")["lines"]:
         lines.append({"id": l["id"], "speaker": "nurse", "text": l["text"], "event": l["trigger"], "source": "content/voice/nurse_wristband.json (authored, p0-voice-audio-s06)",
                       "spoken_variant": "authored", "review": l["status"]})

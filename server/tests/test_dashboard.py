@@ -323,3 +323,14 @@ def test_the_dashboard_answers_within_a_second_on_a_year_of_sessions(world):
     started = time.perf_counter()
     assert len(world.get(f"{base}/export.csv", world.supervisor).text.splitlines()) == 3601
     assert time.perf_counter() - started < 5.0
+
+
+def test_weights_flag_is_read_from_the_rubric(tmp_path):
+    from server.schemas.dashboard import RUBRIC, weights_provisional
+    assert weights_provisional(RUBRIC) is True                       # the shipped rubric is still provisional
+    approved = tmp_path / "r.json"
+    approved.write_text('{"provisional": false}', encoding="utf-8")
+    assert weights_provisional(approved) is False                    # dropped once the weights are approved
+    assert weights_provisional(tmp_path / "missing.json") is True    # unreadable never counts as approved
+    approved.write_text("not json", encoding="utf-8")
+    assert weights_provisional(approved) is True
