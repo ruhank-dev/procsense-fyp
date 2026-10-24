@@ -1956,7 +1956,7 @@ Patient visually 'arrives' before Core says so → Unity must wait for the Core 
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-diagnostic-transitions/steps/p0-diagnostic-transitions-s04-lab-samples.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-diagnostic-transitions/steps/✅%20p0-diagnostic-transitions-s04-lab-samples.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -1990,7 +1990,7 @@ Tubes left on the bed table never get sent — the nurse can prompt in practice 
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-diagnostic-transitions/steps/p0-diagnostic-transitions-s05-report-handback-emr.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-diagnostic-transitions/steps/✅%20p0-diagnostic-transitions-s05-report-handback-emr.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 

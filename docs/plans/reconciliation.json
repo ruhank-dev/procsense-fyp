@@ -1574,25 +1574,35 @@
   "p0-diagnostic-transitions-s04": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tests/ProcSense.Core.Tests/SampleDispatchTests.cs",
-    "content/diagnostics/diagnostics.json"
+    "content/diagnostics/diagnostics.json",
+    "unity/Assets/Scripts/Views/DiagnosticsSceneText.cs",
+    "unity/Assets/Scripts/Views/DiagnosticsSceneView.cs",
+    "unity/Assets/Tests/EditMode/DiagnosticsSceneTests.cs"
    ],
-   "measured": "Core: take_sample with send=later keeps a tube at the bedside, send_samples sends it by tube station or porter, the turnaround starts on arrival, an unlabelled tube is rejected and must be retaken; SampleDispatchTests; golden runs unchanged",
-   "open": "The Unity half is not built: the lab-sample props, the tube station and the porter (no such code under unity/); the engine half is done and tested. The Unity half: the lab-sample props, the tube station and the porter in the scene, and the Play Mode test of a labelled and an unlabelled tube",
-   "external": "Sannan: Unity scene and Play Mode test (check UX-P0-DIAG)"
+   "measured": "Core: take_sample with send=later keeps a tube at the bedside, send_samples sends it by tube station or porter, the turnaround starts on arrival, an unlabelled tube is rejected and must be retaken; SampleDispatchTests; golden runs unchanged; Unity (25 Oct 2026): DiagnosticsSceneView shows the kept tube on the bedside tray, in the tube station or with a visible porter, from the Core diagnostics loop and applies no action; 4 EditMode tests pass in Unity batch mode (6000.5.10f1), the full EditMode suite 89 of 89 and PlayMode 110 passed, 1 skipped (live service)",
+   "open": "The props are code-built greybox: placing them in the real patient bay and the headset check are Sannan's. A labelled or unlabelled tube is refused in Core (SampleDispatchTests), not in the view",
+   "external": "Sannan: place the props in the bay and run the headset check (UX-P0-DIAG)",
+   "implementation": "complete"
   },
   "p0-diagnostic-transitions-s05": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
-    "tests/ProcSense.Core.Tests/ReportHandBackTests.cs"
+    "tests/ProcSense.Core.Tests/ReportHandBackTests.cs",
+    "unity/Assets/Scripts/Views/DiagnosticsSceneText.cs",
+    "unity/Assets/Scripts/Views/DiagnosticsSceneView.cs",
+    "unity/Assets/Tests/EditMode/DiagnosticsSceneTests.cs",
+    "unity/Assets/Scripts/Views/EmrText.cs",
+    "unity/Assets/Tests/EditMode/EmrTextTests.cs"
    ],
-   "measured": "Core: the report is on the desk when delivered and filed by file_document; the EMR, desk and folder hold the same document; refusals NOT_DELIVERED, ALREADY_FILED, NOT_A_PRINTOUT; ReportHandBackTests (3)",
-   "open": "The Unity half is not built: the printed-report prop, the folder page and the EMR Imaging tab; the engine half is done and tested. The Unity half: the printed-report prop, the folder page and the EMR Imaging tab showing the same report in a Play Mode test",
-   "external": "Sannan: Unity prop and Play Mode test (check UX-P0-DIAG)"
+   "measured": "Core: the report is on the desk when delivered and filed by file_document; the EMR, desk and folder hold the same document; refusals NOT_DELIVERED, ALREADY_FILED, NOT_A_PRINTOUT; ReportHandBackTests (3); Unity (25 Oct 2026): the printed report appears on the desk only when Core says it is delivered and the folder page lists it (DiagnosticsSceneView); the EMR Imaging tab text comes from EmrText (EmrTextTests); all EditMode tests pass in Unity batch mode",
+   "open": "The prop is code-built greybox; placing it in the bay and the headset check are Sannan's",
+   "external": "Sannan: place the report prop and run the headset check (UX-P0-DIAG)",
+   "implementation": "complete"
   },
   "p0-diagnostic-transitions-s06": {
    "owner": "Sannan",
