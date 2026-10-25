@@ -37,7 +37,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          global-json-file: global.json
+          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (26 Oct 2026); lift when Microsoft fixes it
 
       - name: Cache NuGet packages
         uses: actions/cache@v6
@@ -124,7 +124,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 9.0.319   # pinned, see ci.yml
 
       - name: Install the locked dependencies
         run: uv sync --project server --frozen
@@ -172,7 +172,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          global-json-file: global.json
+          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (26 Oct 2026); lift when Microsoft fixes it
 
       - name: Build the engine (the grounding validator tests run it)
         run: dotnet build src/ProcSense.Cli -c Release
@@ -577,7 +577,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          global-json-file: global.json
+          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (26 Oct 2026); lift when Microsoft fixes it
 
       - name: No vulnerable NuGet packages (direct or transitive)
         run: |
