@@ -13,9 +13,9 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 | Implemented and tested | 42 |
 | Implemented but incompletely tested | 21 |
 | Partially implemented | 2 |
-| Planned | 1 |
+| Planned | 0 |
 | Blocked | 0 |
-| Deferred | 2 |
+| Deferred | 3 |
 | Proposed new feature | 0 |
 | Superseded or rejected | 0 |
 
@@ -23,14 +23,14 @@ Each feature's complete implementation plan (user experience, existing versus mi
 
 | ID | Feature | Kind | Status | AI status | Phase | Tier | Plan |
 |---|---|---|---|---|---|---|---|
-| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-04 | P1 | [plan](../plans/features/A1.md) |
-| A2 | Live dataset-driven scenario generation | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-05 | P1 | [plan](../plans/features/A2.md) |
+| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-04 | P1 | [plan](../plans/features/%5Bx%5D%20A1.md) |
+| A2 | Live dataset-driven scenario generation | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-05 | P1 | [plan](../plans/features/%5Bx%5D%20A2.md) |
 | A3 | Patient profile generation | hybrid | Implemented and tested | Implemented and tested | PH-08 | P1 | [plan](../plans/features/%5Bx%5D%20A3.md) |
-| A4 | Mixed (multi-problem) case generation | hybrid | Implemented but incompletely tested | Planned | PH-05 | P1 | [plan](../plans/features/A4.md) |
-| A5 | Dynamic events (selection and generated variants) | hybrid | Implemented but incompletely tested | Planned | PH-10 | P1 | [plan](../plans/features/A5.md) |
+| A4 | Mixed (multi-problem) case generation | hybrid | Implemented but incompletely tested | Planned | PH-05 | P1 | [plan](../plans/features/%5Bx%5D%20A4.md) |
+| A5 | Dynamic events (selection and generated variants) | hybrid | Implemented but incompletely tested | Planned | PH-10 | P1 | [plan](../plans/features/%5Bx%5D%20A5.md) |
 | A6 | Novelty control and scenario fingerprinting | deterministic | Implemented and tested | Implemented and tested | PH-11 | P1 | [plan](../plans/features/%5Bx%5D%20A6.md) |
-| A7 | Adversarial (trap) scenario generation for trainees | hybrid | Implemented but incompletely tested | Planned | PH-11 | P1 | [plan](../plans/features/A7.md) |
-| A8 | Branching scenario paths | deterministic | Implemented but incompletely tested | Planned | PH-10 | P1 | [plan](../plans/features/A8.md) |
+| A7 | Adversarial (trap) scenario generation for trainees | hybrid | Implemented but incompletely tested | Planned | PH-11 | P1 | [plan](../plans/features/%5Bx%5D%20A7.md) |
+| A8 | Branching scenario paths | deterministic | Implemented but incompletely tested | Planned | PH-10 | P1 | [plan](../plans/features/%5Bx%5D%20A8.md) |
 | A9 | Scenario quality evaluation (per scenario, in the pipeline) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-11 | P1 | [plan](../plans/features/%5Bx%5D%20A9.md) |
 | A10 | Validation, repair and rejection | deterministic | Implemented and tested | Implemented and tested | PH-10 | P1 | [plan](../plans/features/%5Bx%5D%20A10.md) |
 | A11 | Difficulty control in generation | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-05 | P1 | [plan](../plans/features/%5Bx%5D%20A11.md) |
@@ -54,12 +54,12 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | C28 | Porter dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C28.md) |
 | C29 | Persona system | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C29.md) |
 | C30 | Context-aware and reactive dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C30.md) |
-| C31 | Voice interaction (end to end) | ai | Partially implemented | Partially implemented | PH-14 | P1 | [plan](../plans/features/C31.md) |
-| C32 | Voice commands | hybrid | Planned | Planned | PH-14 | P1 | [plan](../plans/features/C32.md) |
+| C31 | Voice interaction (end to end) | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C31.md) |
+| C32 | Voice commands | hybrid | Partially implemented | Planned | PH-14 | P1 | [plan](../plans/features/C32.md) |
 | C33 | Speech-to-text | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C33.md) |
 | C34 | Text-to-speech | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C34.md) |
 | C35 | Voice orders and read-back | hybrid | Implemented and tested | Implemented and tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Implemented but incompletely tested | Not applicable (deterministic feature) | PH-15 | P1 | [plan](../plans/features/C36.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | deterministic | Implemented but incompletely tested | Not applicable (deterministic feature) | PH-15 | P1 | [plan](../plans/features/%5Bx%5D%20C36.md) |
 | C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | ai | Implemented and tested | Implemented and tested | PH-15 | P1 | [plan](../plans/features/%5Bx%5D%20C37.md) |
 | D38 | AI debrief | hybrid | Implemented and tested | Implemented and tested | PH-16 | P1 | [plan](../plans/features/%5Bx%5D%20D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | hybrid | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/%5Bx%5D%20D39.md) |
@@ -84,7 +84,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | E56 | Difficulty explanation to the trainee | hybrid | Implemented and tested | Implemented and tested | PH-16 | P1 | [plan](../plans/features/%5Bx%5D%20E56.md) |
 | E57 | LLM serving and benchmark | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-07 | P1 | [plan](../plans/features/%5Bx%5D%20E57.md) |
 | E58 | Retrieval over approved content (RAG) | hybrid | Implemented and tested | Implemented and tested | PH-05 | P1 | [plan](../plans/features/%5Bx%5D%20E58.md) |
-| E60 | P2 small trained classifier | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E60.md) |
+| E60 | P2 small trained classifier | ai | Deferred | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E60.md) |
 | E61 | Medical LLM benchmark (for example MedGemma) | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E61.md) |
 | E62 | Backend and AI gateway | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-06 | P1 | [plan](../plans/features/%5Bx%5D%20E62.md) |
 | E63 | On-device speech recognition | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/%5Bx%5D%20E63.md) |
@@ -973,9 +973,9 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Partially implemented |
-| AI status | Partially implemented |
-| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md; server/tts/engine.py; reports/ai/tts-latency.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; server/routers/orders.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Scripts/Voice/SpeechEvaluation.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; server/evaluate/service.py; server/tests/test_evaluate_api.py |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
+| Evidence (what exists) | server/routers/asr.py; server/routers/tts.py; docs/architecture/unity_ai_hooks.md; server/tts/engine.py; reports/ai/tts-latency.json; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; server/routers/orders.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Scripts/Voice/SpeechEvaluation.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; server/evaluate/service.py; server/tests/test_evaluate_api.py; unity/Assets/Scripts/Voice/PushToTalk.cs; unity/Assets/Scripts/Voice/AsrClient.cs; unity/Assets/Scripts/Voice/VoiceHealth.cs; unity/Assets/Scripts/Voice/TeamConversation.cs; unity/Assets/Tests/EditMode/VoiceClientTests.cs |
 | Lineage (existing ids) | p1-voice-input; p0-voice-audio |
 | Method | faster-whisper + LLM + TTS. |
 | LLM-first classification | Each part is a pretrained model; no training. |
@@ -988,7 +988,7 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 | Fallback | Text and menus with subtitles. |
 | Tests planned | round-trip latency; accent tests |
 | Acceptance | p95 round trip under 4 s. |
-| Blockers | external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09, DC-10, DC-11 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-voice-input-s02; p1-voice-input-s04; p1-ai-language-s12 |
 | Phase | PH-14 Voice |
@@ -1001,9 +1001,9 @@ Short spoken commands mapped to verbs (open results, call nurse).
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Planned |
+| Status | Partially implemented |
 | AI status | Planned |
-| Evidence (what exists) | server/orders/grammar.py; tools/ai/eval_orders.py |
+| Evidence (what exists) | server/orders/grammar.py; tools/ai/eval_orders.py; unity/Assets/Scripts/Voice/PushToTalk.cs; unity/Assets/Scripts/Voice/AsrClient.cs; unity/Assets/Scripts/Voice/VoiceHealth.cs; unity/Assets/Scripts/Voice/TeamConversation.cs; unity/Assets/Tests/EditMode/VoiceClientTests.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs |
 | Lineage (existing ids) | p1-voice-input-s02 |
 | Method | ASR + deterministic grammar; LLM only for unmatched phrases. |
 | LLM-first classification | Grammar first (fast, exact); LLM fallback. |
@@ -1016,7 +1016,7 @@ Short spoken commands mapped to verbs (open results, call nurse).
 | Fallback | Controller menu. |
 | Tests planned | command accuracy |
 | Acceptance | At least 95 percent of scripted commands map correctly. |
-| Blockers | external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09, DC-10, DC-11 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 | Risks | model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold) |
 | Tasks | p1-voice-input-s02 |
 | Phase | PH-14 Voice |
@@ -1817,9 +1817,9 @@ A small trained classifier on the human-labelled set: deferred. The classifier p
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Implemented but incompletely tested |
+| Status | Deferred |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; reports/ai/classifier-bench-synthetic2.json |
+| Evidence (what exists) | docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; reports/ai/classifier-bench-synthetic2.json; reports/ai/speech-evaluation-acceptance.json |
 | Lineage (existing ids) | p2-ai-extensions-s03; DT-097 |
 | Method | Fine-tune a small encoder. |
 | LLM-first classification | Justified only if the Gemma evaluator (C37) misses latency, cost or accuracy targets. |

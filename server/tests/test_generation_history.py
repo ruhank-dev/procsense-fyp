@@ -66,7 +66,7 @@ def test_the_entries_are_the_generators_own_type_and_feed_the_objectives(world, 
 
 def test_a_generated_session_keeps_its_package_fingerprint_and_levels(world):
     sid = "6f1c1c1e-0000-4000-8000-000000000001"
-    entry = H.HistoryEntry("T-ABCD2345", sid, "GEN-1", "SC-4", "P1", {"b01": [2, 1]}, "2026-10-26T08:00:00Z", "pkg-1", "a" * 64, "fp-1", {"patient": ["a", "b"]})
+    entry = H.HistoryEntry("T-ABCD2345", sid, "GEN-1", "SC-4", "P1", {"b01": [2, 1]}, "2026-10-25T08:00:00Z", "pkg-1", "a" * 64, "fp-1", {"patient": ["a", "b"]})
     with DbSession(world.api.engine) as s:
         table.record(s, world.org, world.trainee, entry)
         table.record(s, world.org, world.trainee, entry)        # twice: still one row
@@ -105,7 +105,7 @@ def test_a_package_is_built_on_request_stored_by_its_hash_and_steered_by_the_his
         raw = repository.get_package(s, offer["package_hash"])
     assert raw is not None and offer["case_id"].startswith("GEN-")
     # the story just played is not offered again: record a session of that spine, then ask for the next one
-    entry = H.HistoryEntry("T-ABCD2345", "6f1c1c1e-0000-4000-8000-000000000002", offer["case_id"], offer["spine"], "P0", {"b01": [1, 3]}, "2026-10-26T08:00:00Z")
+    entry = H.HistoryEntry("T-ABCD2345", "6f1c1c1e-0000-4000-8000-000000000002", offer["case_id"], offer["spine"], "P0", {"b01": [1, 3]}, "2026-10-25T08:00:00Z")
     with DbSession(world.api.engine) as s:
         table.record(s, world.org, world.trainee, entry)
         s.commit()

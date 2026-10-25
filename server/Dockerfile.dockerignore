@@ -11,9 +11,14 @@
 !tools/
 !tools/composer/
 !tools/composer/**
+!tools/content/
+!tools/content/**
 !tests/
 !tests/golden/
 !tests/golden/**
+!docs/
+!docs/research/
+!docs/research/clinical_verification.md
 # never into an image: secrets, local environments, tests, caches
 server/.env
 server/.env.*

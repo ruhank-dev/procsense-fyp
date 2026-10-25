@@ -37,7 +37,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (26 Oct 2026); lift when Microsoft fixes it
+          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (25 Oct 2026 (UTC)); lift when Microsoft fixes it
 
       - name: Cache NuGet packages
         uses: actions/cache@v6
@@ -177,7 +177,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (26 Oct 2026); lift when Microsoft fixes it
+          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (25 Oct 2026 (UTC)); lift when Microsoft fixes it
 
       - name: Build the engine (the grounding validator tests run it)
         run: dotnet build src/ProcSense.Cli -c Release
@@ -582,7 +582,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (26 Oct 2026); lift when Microsoft fixes it
+          dotnet-version: 9.0.319   # pinned: the 9.0.320 download link answers 409 (25 Oct 2026 (UTC)); lift when Microsoft fixes it
 
       - name: No vulnerable NuGet packages (direct or transitive)
         run: |

@@ -3,13 +3,13 @@
     plan_name("A1", "Complete")  ->  "[x] A1.md";   plan_name("A9", "Partly built")  ->  "A9.md"
     plan_link("A1", "Complete", "../plans/features")  ->  "../plans/features/%5Bx%5D%20A1.md"
 
-The prefix is derived, never typed: a feature is ticked when tools/plans/feature_matrix.py derives "Complete" or "Engineering complete" for it (everything the team can build and test without a headset is done; the headset
+The prefix is derived, never typed: a feature is ticked when tools/plans/feature_matrix.py derives "Complete", "Engineering complete" or "Engineering complete, gated off" (built and tested, its switch OFF until human evidence exists: the plan's checklist says so) for it (everything the team can build and test without a headset is done; the headset
 checks that remain are Sannan's entries in docs/testing/SANNAN_EXTERNAL_TESTING.md and are listed inside the plan). A feature that is built but gated off, partly built, owned by others or deferred is not ticked.
 tools/plans/pipeline_docs.py writes the files under these names and removes the other spelling.
 """
 from urllib.parse import quote
 
-TICKED = ("Complete", "Engineering complete")
+TICKED = ("Complete", "Engineering complete", "Engineering complete, gated off")
 PREFIX = "[x] "
 
 

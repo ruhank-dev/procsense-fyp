@@ -3423,7 +3423,7 @@ CUDA not found → matching cuDNN/CTranslate2 build; slow on 1660 → beam 1 for
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-voice-input/steps/p1-voice-input-s02-voice-client.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-voice-input/steps/✅%20p1-voice-input-s02-voice-client.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 

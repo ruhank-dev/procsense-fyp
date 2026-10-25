@@ -10200,8 +10200,8 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "ai",
-   "status": "Partially implemented",
-   "ai_status": "Partially implemented",
+   "status": "Implemented but incompletely tested",
+   "ai_status": "Implemented but incompletely tested",
    "description": "Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.",
    "evidence": [
     "server/routers/asr.py",
@@ -10216,7 +10216,12 @@
     "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs",
     "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
     "server/evaluate/service.py",
-    "server/tests/test_evaluate_api.py"
+    "server/tests/test_evaluate_api.py",
+    "unity/Assets/Scripts/Voice/PushToTalk.cs",
+    "unity/Assets/Scripts/Voice/AsrClient.cs",
+    "unity/Assets/Scripts/Voice/VoiceHealth.cs",
+    "unity/Assets/Scripts/Voice/TeamConversation.cs",
+    "unity/Assets/Tests/EditMode/VoiceClientTests.cs"
    ],
    "lineage": [
     "p1-voice-input",
@@ -10252,7 +10257,7 @@
    ],
    "acceptance": "p95 round trip under 4 s.",
    "blockers": [
-    "external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: DC-08, DC-09, DC-10, DC-11 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
@@ -10290,7 +10295,7 @@
       "id": "C31.c1",
       "name": "Voice round trip",
       "kind": "AI (pretrained + LLM)",
-      "status": "Partially implemented",
+      "status": "Implemented but incompletely tested",
       "purpose": "Speak and hear.",
       "method": "faster-whisper → dialogue → TTS.",
       "models": [
@@ -10381,12 +10386,18 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "hybrid",
-   "status": "Planned",
+   "status": "Partially implemented",
    "ai_status": "Planned",
    "description": "Short spoken commands mapped to verbs (open results, call nurse).",
    "evidence": [
     "server/orders/grammar.py",
-    "tools/ai/eval_orders.py"
+    "tools/ai/eval_orders.py",
+    "unity/Assets/Scripts/Voice/PushToTalk.cs",
+    "unity/Assets/Scripts/Voice/AsrClient.cs",
+    "unity/Assets/Scripts/Voice/VoiceHealth.cs",
+    "unity/Assets/Scripts/Voice/TeamConversation.cs",
+    "unity/Assets/Tests/EditMode/VoiceClientTests.cs",
+    "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs"
    ],
    "lineage": [
     "p1-voice-input-s02"
@@ -10413,7 +10424,7 @@
    ],
    "acceptance": "At least 95 percent of scripted commands map correctly.",
    "blockers": [
-    "external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+    "external acceptance: DC-08, DC-09, DC-10, DC-11 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
    ],
    "risks": [
     "model output wrong, leaking or slow (mitigated by schema, grounding validator, fallback and the switch-off threshold)"
@@ -15316,12 +15327,13 @@
    "category": "Platform, evaluation and advanced research",
    "group": "g_feat_E",
    "kind": "ai",
-   "status": "Implemented but incompletely tested",
+   "status": "Deferred",
    "ai_status": "Implemented but incompletely tested",
    "description": "A small trained classifier on the human-labelled set: deferred. The classifier pilot (embedding and TF-IDF heads) was retired by ADR-0025 when Gemma semantic evaluation replaced it; a trained model is reconsidered only if the Gemma evaluator misses latency, cost or accuracy targets on the held-out set.",
    "evidence": [
     "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
-    "reports/ai/classifier-bench-synthetic2.json"
+    "reports/ai/classifier-bench-synthetic2.json",
+    "reports/ai/speech-evaluation-acceptance.json"
    ],
    "lineage": [
     "p2-ai-extensions-s03",
@@ -15386,7 +15398,7 @@
       "id": "E60.c1",
       "name": "Small trained classifier",
       "kind": "AI (trained)",
-      "status": "Implemented but incompletely tested",
+      "status": "Deferred",
       "purpose": "Fast acts.",
       "method": "Fine-tuned small encoder.",
       "models": [

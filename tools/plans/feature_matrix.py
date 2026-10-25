@@ -34,7 +34,7 @@ PIPELINE = ROOT / "docs" / "architecture" / "procsense_full_pipeline.json"
 OVERLAY = ROOT / "docs" / "architecture" / "feature_overlay.json"
 FEATURES = ROOT / "content" / "ai" / "features.json"
 OUT = ROOT / "docs" / "architecture" / "feature_implementation_matrix.md"
-RESULT_TO_STATUS = {"Complete": "Implemented and tested", "Engineering complete": "Implemented but incompletely tested", "Built, gated off": "Implemented but incompletely tested", "Partly built": "Partially implemented",
+RESULT_TO_STATUS = {"Complete": "Implemented and tested", "Engineering complete": "Implemented but incompletely tested", "Built, gated off": "Implemented but incompletely tested", "Engineering complete, gated off": "Implemented but incompletely tested", "Partly built": "Partially implemented",
                     "Owned by others": "Planned", "Research: trigger not met": "Deferred"}
 TEST = re.compile(r"(^|/)(test_[^/]*|[^/]*Tests?\.[a-z]+)$|^tests/|/tests/")
 
@@ -83,6 +83,8 @@ def derive(f: dict, ctx: dict) -> dict:
     problems += [f"task {t} has no reconciliation entry" for t in tasks if t not in ctx["entries"]]
     result = result_of(st, unticked_others) if st else "Partly built"
     unbuilt = {k: v for k, v in ctx["notbuilt"].items() if k.split(".")[0] == f["id"]}
+    if result == "Built, gated off" and ov.get("engineering_complete"):
+        result = "Engineering complete, gated off"           # everything the team can build and test is done; the gate stays OFF until the human evidence the overlay names exists
     if unbuilt and result in ("Complete", "Engineering complete"):
         result = "Partly built"                                    # a capability of the plan that no step built, however done its other steps are
     ext = [i["id"] for i in ctx["ext"] if set(i["steps"]) & set(tasks)]

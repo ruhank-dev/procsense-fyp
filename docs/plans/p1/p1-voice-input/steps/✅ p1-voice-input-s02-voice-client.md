@@ -37,5 +37,6 @@ This step has acceptance that only a person, device or account outside the engin
 * [DC-08](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-08): Push-to-talk voice client, voice orders with read-back and live speech output (English only)
 * [DC-09](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-09): Spoken communication evaluated against the scenario state: graded communication credit, menu fallback and no credit for critical or non-performed speech (English only)
 * [DC-10](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-10): Real Meta Quest and ASR end-to-end validation of the speech evaluation path: Quest microphone, ASR, Gemma, authoritative simulator state and evidence, deterministic graded scoring, VR feedback (final device-testing phase, English only)
+* [DC-11](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-11): Coaching hints on the tablet, timed pulse and breath counts, fever and cold event cards, voice offline banner and the speaker muted while the trainee talks
 
 <!-- external-testing:end -->

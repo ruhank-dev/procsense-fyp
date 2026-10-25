@@ -113,6 +113,8 @@ def _checklist(f, r) -> str:
     lines = ["", "", "**Completion checklist** (derived; the file name carries `[x] ` when the first line is ticked, see [plan_files.py](../../../tools/plans/plan_files.py)):", "",
              f"- [{'x' if done else ' '}] Engineering: built, wired and tested by the team ({r['result']}).",
              ] + [f"- [ ] Acceptance still needed: [{e}](../../testing/SANNAN_EXTERNAL_TESTING.md#{e.lower()}) (not recorded as passed)." for e in r["ext"]]
+    if r["result"] == "Engineering complete, gated off":
+        lines.append("- [ ] Feature switch: OFF on purpose. " + r["overlay"].get("engineering_complete", ""))
     if not r["ext"]:
         lines.append("- [x] No headset or external acceptance entry is linked to this feature." if done else "- [ ] No external entry yet; see the result above.")
     return "\n".join(lines)

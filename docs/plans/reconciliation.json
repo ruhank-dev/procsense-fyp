@@ -1095,11 +1095,21 @@
    "implementation": "complete"
   },
   "p1-voice-input-s02": {
-   "owner": "Sannan",
+   "owner": "Sannan (built by Ruhan under the 25 Oct 2026 (UTC) authorisation)",
    "before": "No status recorded",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Scripts/Voice/PushToTalk.cs",
+    "unity/Assets/Scripts/Voice/AsrClient.cs",
+    "unity/Assets/Scripts/Voice/VoiceHealth.cs",
+    "unity/Assets/Scripts/Voice/TeamConversation.cs",
+    "unity/Assets/Tests/EditMode/VoiceClientTests.cs",
+    "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs"
+   ],
+   "measured": "EditMode tests: the health check every 30 s with a 3 s timeout and one failed check meaning offline at once, the offline banner refusing the microphone, say again, the speaker muted while recording; the recogniser itself is measured in p1-voice-input-s01",
+   "open": "The Quest checks T-VC1 to T-VC5 (DC-08, DC-11): microphone permission on the headset, echo with the real speaker, a clip waiting for a speaking character, and the offline banner with the network dropped",
+   "external": "a physical Meta Quest (DC-08, DC-11, DC-10)",
+   "implementation": "complete"
   },
   "p1-voice-input-s03": {
    "owner": "Ruhan",
@@ -1250,12 +1260,13 @@
   "p2-ai-extensions-s03": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "DONE_GATE_OFF",
+   "now": "RESEARCH_NEGATIVE",
    "evidence": [
-    "reports/ai/classifier-bench-synthetic2.json"
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "reports/ai/speech-evaluation-acceptance.json"
    ],
-   "measured": "the small classifier is the embeddings and logistic-regression head; see p1-ai-language-s07 [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.]",
-   "open": "The independent set (see p1-ai-language-s07)"
+   "measured": "the small trained classifier was built as a pilot and then retired by ADR-0025 (21 Oct 2026): speech is judged by the Gemma evaluator against the simulator's state, which met its acceptance (reports/ai/speech-evaluation-acceptance.json), so a trained classifier has no job to do",
+   "open": "Reopens only if the Gemma evaluator misses its targets in the final Quest validation (DC-10); no classifier code, gate or model is kept"
   },
   "p2-ai-extensions-s05": {
    "owner": "Ruhan",

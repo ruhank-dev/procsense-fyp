@@ -246,7 +246,7 @@ ASR, voice commands, voice orders with read-back, TTS.
 | Features | C31; C32; C33; C34; C35 |
 | Deliverables | ASR service; voice client |
 | Acceptance | WER and latency targets |
-| Blockers | external acceptance: DC-08, DC-09, DC-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-06, EX-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-08, DC-09, DC-10, DC-11 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-06, EX-09 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-15 — Communication acts and speech evaluation
 

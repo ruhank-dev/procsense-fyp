@@ -1581,7 +1581,7 @@
     "id": "C31",
     "label": "C31 Voice interaction (end to end)",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1592,7 +1592,7 @@
     "id": "C32",
     "label": "C32 Voice commands",
     "type": "feature",
-    "status": "Planned",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1889,7 +1889,7 @@
     "id": "E60",
     "label": "E60 P2 small trained classifier",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Deferred",
     "parent": "g_feat_E"
    },
    "classes": "feature"

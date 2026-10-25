@@ -30,6 +30,11 @@ namespace ProcSense.Tests.EditMode
             }
         }
 
+        private static void Drain(IEnumerator e)
+        {
+            while (e.MoveNext()) if (e.Current is IEnumerator inner) Drain(inner);        // a coroutine yields the one it waits for
+        }
+
         private static PushToTalk Talk(FakeMic mic) { var t = new GameObject("talk").AddComponent<PushToTalk>(); t.Mic = mic; return t; }
 
         [Test]
@@ -58,13 +63,13 @@ namespace ProcSense.Tests.EditMode
             var http = new AnswerHttp { Answer = new HttpResult(200, "{}") };
             bool? reachable = null;
             var e = VoiceHealth.Check(http, "https://svc", ok => reachable = ok);
-            while (e.MoveNext()) { }
+            Drain(e);
             Assert.AreEqual("https://svc/health", http.LastUrl);
             Assert.LessOrEqual(http.LastTimeout, 3);
             Assert.IsTrue(reachable);
             http.Answer = new HttpResult(0, "", true);
             e = VoiceHealth.Check(http, "https://svc", ok => reachable = ok);
-            while (e.MoveNext()) { }
+            Drain(e);
             Assert.IsFalse(reachable);
         }
 

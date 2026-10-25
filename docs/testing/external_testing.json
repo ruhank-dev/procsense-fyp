@@ -316,6 +316,35 @@
    "pass_rule": "Every critical physical action and critical behaviour is credited only by the simulator, never from speech (zero exceptions). Non-performed speech (negated, future, hypothetical, reported, another speaker) earns no credit in all but at most one in twenty tries, each one written down. Natural full answers earn high credit in at least nine of ten tries, partial answers less than full, irrelevant answers none. A stopped or unreachable service gives the menu and no credit within the timeout every time. The median and 95th percentile response times are recorded, and the app stays usable while waiting. Failures are findings for the engineers, not silently retried.",
    "who": "Sannan",
    "after": "Ruhan records the result in docs/testing/results/DC-10.md, compares it with docs/research/gemma_evaluator_results.md and updates DT-240 and the reconciliation of p1-ai-language-s22. This is the real-speech evidence that the synthetic development and held-out runs cannot give."
+  },
+  {
+   "id": "DC-11",
+   "title": "Coaching hints on the tablet, timed pulse and breath counts, fever and cold event cards, voice offline banner and the speaker muted while the trainee talks",
+   "steps": [
+    "p2-ai-learning-analytics-s01",
+    "p1-voice-input-s02"
+   ],
+   "needs": "Quest with the current Unity build, signed in to the backend; practice mode; the stand-in or a real recogniser reachable, and a way to stop the backend (unplug the network or stop the service) for the offline step",
+   "prepared": [
+    "src/ProcSense.Core/Workflow/Steps/ObservationsSubsystem.cs",
+    "content/events/events.json",
+    "unity/Assets/Scripts/Voice/VoiceHealth.cs",
+    "unity/Assets/Scripts/Voice/PushToTalk.cs",
+    "unity/Assets/Tests/EditMode/VoiceClientTests.cs",
+    "server/analytics/next_case.py"
+   ],
+   "procedure": [
+    "Start a practice session and ask for help twice (the hint button on the tablet). The hint is the engine's own text for the last refused action (`Session.PracticeAids`, practice only and only at difficulty 2 or lower); confirm it names what to do next and never a hidden fact. In an assessment session the hint button must not offer a hint.",
+    "Finish the session and open the debrief; confirm the between-session advice (the next case suggested by `server/analytics/next_case.py`) is shown and is a case the trainee can play.",
+    "On the tablet press the pulse button and the breath-count button: each takes 30 seconds by default, the result appears only when the time has passed, and a second press while counting is refused with a plain message. Confirm the monitor shows the rate and (for the pulse) the rhythm when the time is up.",
+    "Play a case whose patient starts with a temperature of 38.0 or more (for example VAR-S1-E) and leave the senior uncalled for five minutes: a fever event card appears and, unanswered, costs one major item in the debrief (`major.e_fever_not_escalated`). Replay and call the senior within five minutes: the debrief shows the credit instead.",
+    "Hold push-to-talk while a character is speaking: the speaker goes quiet while you talk, and your clip is sent only after the character has finished (T-VC4). Say something unintelligible: the 'Say again' button appears and listens again when pressed.",
+    "Stop the backend. Within about 30 seconds the voice button shows the banner 'Voice is offline: use the tablet menu' and refuses the microphone; every tablet action still works. Start the backend again: within about 30 seconds voice works again without restarting the app.",
+    "Try to order a test before confirming identity (for example a full blood count right after starting): the order is refused, and the debrief lists one critical item 'action before identity' and the result FAIL. Start another session, skip the introduction and ask the identity question first: the debrief lists one minor 'no introduction' item."
+   ],
+   "pass_rule": "Hints appear only in practice at the allowed difficulty and never reveal a hidden fact; pulse and breath counts take their time and are refused twice at once; the fever event card appears and scores as described; voice goes offline within 35 seconds of the service stopping and returns within 35 seconds of it starting; the speaker is silent while recording; the identity attempt and the missing introduction are scored as described and nothing else changes.",
+   "who": "Sannan",
+   "after": "Ruhan ticks p2-ai-learning-analytics-s01 and p1-voice-input-s02."
   }
  ],
  "unity_groups": [

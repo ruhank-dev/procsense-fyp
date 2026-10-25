@@ -19,7 +19,9 @@ COPY prompts ./prompts
 COPY content/ai ./content/ai
 COPY content ./content
 COPY tools/composer ./tools/composer
+COPY tools/content ./tools/content
 COPY tests/golden ./tests/golden
+COPY docs/research/clinical_verification.md ./docs/research/clinical_verification.md
 # the engine and the content it verifies with, prepared by `task server-engine-prepare` (CI does it before the image is built)
 COPY server/engine /opt/engine
 ENV ENGINE_CLI=/opt/engine/bin/procsense-sim ENGINE_CONTENT_ROOT=/opt/engine/content DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/dotnet-bundle DOTNET_CLI_TELEMETRY_OPTOUT=1

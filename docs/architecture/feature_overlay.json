@@ -10,7 +10,8 @@
    ],
    "gates": [
     "plan_composer"
-   ]
+   ],
+   "engineering_complete": "the plan composer is built and tested; its gate `plan_composer` opens only after two raters have compared it with the solver alone on 40 cases (DT-203)"
   },
   "A2": {
    "runtime": "`server/generation/pipeline.py` (objectives, skeleton, numbers, media, gate, repair, novelty, package) served by `server/routers/scenario_packages.py`; the engine plays the package (`src/ProcSense.Core` ScenarioPackage)",
@@ -23,7 +24,8 @@
    "gates": [
     "plan_composer",
     "narrative"
-   ]
+   ],
+   "engineering_complete": "live generation is built and tested end to end; the AI steps stay behind `plan_composer` and `narrative` until the human ratings exist (DT-203, EX-03)"
   },
   "A3": {
    "runtime": "patient identity blocks (`tools/composer/blocks.py`: DEM, NAME, SOC, PSH, ALG) and numeric profile (`server/generation/numeric.py`) with the narrator (`server/generation/narrative.py`) rewording the patient's lines",
@@ -45,7 +47,8 @@
    ],
    "gates": [
     "plan_extras"
-   ]
+   ],
+   "engineering_complete": "the stacked cases and the composition engine are built; the interaction proposals (A4.c2) reach the most the data allows (24 of 24 cases that have a pair) and stay behind `plan_extras` until a person rates their relevance (EX-03)"
   },
   "A5": {
    "runtime": "`src/ProcSense.Core` EventDirector and the intra-operative and sepsis subsystems fire events from data in `content/events`; the plan restricts practice events (`server/generation/plan_extras.py`, `src/ProcSense.Core/Events/EventDirector.cs`)",
@@ -58,7 +61,8 @@
    ],
    "gates": [
     "plan_extras"
-   ]
+   ],
+   "engineering_complete": "dynamic events are built and tested; the model's choice of events stays behind `plan_extras` until a person rates how well they fit (EX-03)"
   },
   "A6": {
    "runtime": "`server/generation/novelty.py` fingerprints every candidate at three levels and the pipeline retries or labels low novelty",
@@ -76,7 +80,8 @@
    ],
    "gates": [
     "trap_writer"
-   ]
+   ],
+   "engineering_complete": "trap fairness and the trap-wording writer are built and tested; the writer stays OFF until two raters judge its plausibility (EX-03); two AI-simulated review passes are in docs/research/ex03_trap_writer_ai_review.md and do not open the gate"
   },
   "A8": {
    "runtime": "`src/ProcSense.Core` CaseGraph and session level options choose branches deterministically; planned what-if events (`server/generation/plan_extras.py`)",
@@ -87,7 +92,8 @@
    ],
    "gates": [
     "plan_extras"
-   ]
+   ],
+   "engineering_complete": "branching paths are built and tested; the model's plan stays behind `plan_extras` until a person rates it (EX-03)"
   },
   "A9": {
    "runtime": "`server/generation/quality.py` scores every package; `server/generation/judge.py` adds advisory model scores that nothing reads (4B, seeded-defect proxy: flags 52 percent of the defects the rules miss with 6.7 percent clean cases flagged, `reports/ai/judge-eval.json`; the plan's human calibration is EX-15, so it is unvalidated)",
@@ -338,7 +344,8 @@
     "tests/ProcSense.Core.Tests/ScoringTests.cs",
     "tests/ProcSense.Core.Tests/CommunicationScoringTests.cs"
    ],
-   "gates": []
+   "gates": [],
+   "engineering_complete": "the communication taxonomy and evidence mapping are built and tested; nothing further is gated here"
   },
   "C37": {
    "runtime": "`server/evaluate` (the Gemma semantic evaluator: prompt, strict contract, bounded retry, menu fail-safe) behind `server/routers/evaluate.py` and the `speech_evaluation` gate; the engine (`src/ProcSense.Core/Speech`, `src/ProcSense.Core/Scoring/Evidence.cs`, `src/ProcSense.Core/Scoring/CommunicationScorer.cs`) accepts a judgement only for what the trainee performed now, in its window and state, refuses critical acts as evidence and scores the grades; the Unity half is `unity/Assets/Scripts/Voice/SpeechEvaluation.cs` (ADR-0025)",

@@ -51,7 +51,7 @@ class Evidence(unittest.TestCase):
         script = ROOT / "tests" / "golden" / "VAR-S1-A_correct.actions.json"
         with tempfile.TemporaryDirectory() as t:
             report = report_of("VAR-S1-A", script, Path(t))
-        ev = evidence.extract(report, "trainee-001", "s1", "2026-10-26T10:00:00Z")
+        ev = evidence.extract(report, "trainee-001", "s1", "2026-10-25T10:00:00Z")
         scored = {x["text"] for x in report["timeline"] if x["kind"] == "action"}
         everything = [a["verb"] for a in ev["actions"]]
         self.assertGreater(len(set(everything) - scored), 0, "at least one accepted verb is not a scored one")

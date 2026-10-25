@@ -65,7 +65,7 @@
       "actor": "model",
       "label": "C31 P1 PH-14",
       "title": "Voice interaction (end to end)",
-      "text": "Partly built. Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.1 capability plans.",
+      "text": "Built, part tested. Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.1 capability plans.",
       "tone": "sun"
     },
     {
@@ -73,8 +73,8 @@
       "actor": "agent",
       "label": "C32 P1 PH-14",
       "title": "Voice commands",
-      "text": "Planned. Short spoken commands mapped to verbs (open results, call nurse).1 capability plans.",
-      "tone": "blue"
+      "text": "Partly built. Short spoken commands mapped to verbs (open results, call nurse).1 capability plans.",
+      "tone": "sun"
     },
     {
       "id": "C33",

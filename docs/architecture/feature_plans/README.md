@@ -6,14 +6,14 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 
 | ID | Feature | Plan |
 |---|---|---|
-| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | [A1.md](../../plans/features/A1.md) |
-| A2 | Live dataset-driven scenario generation | [A2.md](../../plans/features/A2.md) |
+| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | [[x] A1.md](../../plans/features/%5Bx%5D%20A1.md) |
+| A2 | Live dataset-driven scenario generation | [[x] A2.md](../../plans/features/%5Bx%5D%20A2.md) |
 | A3 | Patient profile generation | [[x] A3.md](../../plans/features/%5Bx%5D%20A3.md) |
-| A4 | Mixed (multi-problem) case generation | [A4.md](../../plans/features/A4.md) |
-| A5 | Dynamic events (selection and generated variants) | [A5.md](../../plans/features/A5.md) |
+| A4 | Mixed (multi-problem) case generation | [[x] A4.md](../../plans/features/%5Bx%5D%20A4.md) |
+| A5 | Dynamic events (selection and generated variants) | [[x] A5.md](../../plans/features/%5Bx%5D%20A5.md) |
 | A6 | Novelty control and scenario fingerprinting | [[x] A6.md](../../plans/features/%5Bx%5D%20A6.md) |
-| A7 | Adversarial (trap) scenario generation for trainees | [A7.md](../../plans/features/A7.md) |
-| A8 | Branching scenario paths | [A8.md](../../plans/features/A8.md) |
+| A7 | Adversarial (trap) scenario generation for trainees | [[x] A7.md](../../plans/features/%5Bx%5D%20A7.md) |
+| A8 | Branching scenario paths | [[x] A8.md](../../plans/features/%5Bx%5D%20A8.md) |
 | A9 | Scenario quality evaluation (per scenario, in the pipeline) | [[x] A9.md](../../plans/features/%5Bx%5D%20A9.md) |
 | A10 | Validation, repair and rejection | [[x] A10.md](../../plans/features/%5Bx%5D%20A10.md) |
 | A11 | Difficulty control in generation | [[x] A11.md](../../plans/features/%5Bx%5D%20A11.md) |
@@ -36,12 +36,12 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 | C28 | Porter dialogue | [[x] C28.md](../../plans/features/%5Bx%5D%20C28.md) |
 | C29 | Persona system | [[x] C29.md](../../plans/features/%5Bx%5D%20C29.md) |
 | C30 | Context-aware and reactive dialogue | [[x] C30.md](../../plans/features/%5Bx%5D%20C30.md) |
-| C31 | Voice interaction (end to end) | [C31.md](../../plans/features/C31.md) |
+| C31 | Voice interaction (end to end) | [[x] C31.md](../../plans/features/%5Bx%5D%20C31.md) |
 | C32 | Voice commands | [C32.md](../../plans/features/C32.md) |
 | C33 | Speech-to-text | [[x] C33.md](../../plans/features/%5Bx%5D%20C33.md) |
 | C34 | Text-to-speech | [[x] C34.md](../../plans/features/%5Bx%5D%20C34.md) |
 | C35 | Voice orders and read-back | [[x] C35.md](../../plans/features/%5Bx%5D%20C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | [C36.md](../../plans/features/C36.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | [[x] C36.md](../../plans/features/%5Bx%5D%20C36.md) |
 | C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | [[x] C37.md](../../plans/features/%5Bx%5D%20C37.md) |
 | D38 | AI debrief | [[x] D38.md](../../plans/features/%5Bx%5D%20D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | [[x] D39.md](../../plans/features/%5Bx%5D%20D39.md) |

@@ -16,6 +16,7 @@ class PlanFiles(unittest.TestCase):
     def test_names(self):
         self.assertEqual(PF.plan_name("A1", "Complete"), "[x] A1.md")
         self.assertEqual(PF.plan_name("A1", "Engineering complete"), "[x] A1.md")
+        self.assertEqual(PF.plan_name("A1", "Engineering complete, gated off"), "[x] A1.md")
         for r in ("Built, gated off", "Partly built", "Owned by others", "Research: trigger not met"):
             self.assertEqual(PF.plan_name("A1", r), "A1.md")
         self.assertEqual(PF.feature_id("[x] A12.md"), "A12")
@@ -27,7 +28,7 @@ class PlanFiles(unittest.TestCase):
         self.assertEqual(sorted(PF.feature_id(n) for n in names), sorted(ids), "one file per feature, no duplicates")
         matrix = (ROOT / "docs/architecture/feature_implementation_matrix.md").read_text(encoding="utf-8")
         for fid in ids:
-            row = re.search(rf"^\| \[{fid}\]\(([^)]+)\)[^\n]*\*\*(Complete|Engineering complete|Built, gated off|Partly built|Owned by others|Research: trigger not met)\*\*", matrix, re.M)
+            row = re.search(rf"^\| \[{fid}\]\(([^)]+)\)[^\n]*\*\*(Complete|Engineering complete, gated off|Engineering complete|Built, gated off|Partly built|Owned by others|Research: trigger not met)\*\*", matrix, re.M)
             self.assertIsNotNone(row, fid)
             self.assertTrue((ROOT / "docs/architecture" / row.group(1).replace("%5B", "[").replace("%5D", "]").replace("%20", " ")).exists(), row.group(1))
             self.assertEqual(any(n == f"[x] {fid}.md" for n in names), PF.ticked(row.group(2)), fid)
