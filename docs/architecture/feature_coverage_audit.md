@@ -74,7 +74,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | Implemented and tested | hybrid | 3 (2) | yes | p1-personalisation-s01; p1-personalisation-s02; p1-personalisation-s04 | PH-23 | [D67](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | Implemented and tested | hybrid | 3 (2) | yes | p1-personalisation-s03; p1-personalisation-s05 | PH-23 | [D68](../plans/features/D68.md) |
 | E48 | Patient Digital Twin | Implemented but incompletely tested | hybrid | 2 (1) | yes | p2-ai-advanced-simulation-s02 | PH-19 | [E48](../plans/features/E48.md) |
-| E49 | Multi-Agent Clinical Simulation Lab | Partially implemented | ai | 1 (1) | yes | p2-ai-advanced-simulation-s03 | PH-19 | [E49](../plans/features/E49.md) |
+| E49 | Multi-Agent Clinical Simulation Lab | Implemented but incompletely tested | ai | 1 (1) | yes | p2-ai-advanced-simulation-s03 | PH-19 | [E49](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s09; p2-ai-advanced-simulation-s01 | PH-17 | [E50](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | Implemented and tested | hybrid | 1 (1) | yes | p1-evaluation-s02; p1-live-scenario-generation-s12 | PH-17 | [E51](../plans/features/E51.md) |
 | E52 | Investigation analytics | Implemented and tested | deterministic | 2 (1) | yes | p2-ai-learning-analytics-s04 | PH-18 | [E52](../plans/features/E52.md) |

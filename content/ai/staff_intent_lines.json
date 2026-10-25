@@ -1,0 +1,46 @@
+{
+ "version": 1,
+ "status": "awaiting_review",
+ "note": "The line a staff member speaks for each allowed intent of content/ai/intents.json (ADR-0005, ADR-0026). A model only CHOOSES the intent; the words are these. Synthetic, written by the engineer for the simulation: general, free of doses, numbers, diagnoses and orders, and not tied to one case. They are not clinician-reviewed (status awaiting_review). Observations and results that the trainee should hear come from the engine, never from these lines.",
+ "roles": {
+  "nurse": {
+   "ask_clarification": "Sorry, could you say that again so that I get it right?",
+   "confirm_order": "Just to check I have this right, you would like me to go ahead with that?",
+   "report_observation": "I will check the observations now and tell you what I find.",
+   "ask_prep_status": "Has the preparation been completed, the consent, the fasting and the checks?",
+   "report_patient_request": "The patient has asked to speak with you about how they are feeling."
+  },
+  "anaesthesia": {
+   "ask_fasting_allergy_airway": "Can you tell me about the patient's fasting, allergies and airway?",
+   "raise_approved_concern": "I have a concern about this patient. Can we go through it before we carry on?",
+   "respond_to_escalation": "I am on my way. Tell me what has changed.",
+   "sign_in_answer": "Let us go through the sign in checks together."
+  },
+  "surgeon": {
+   "request_update": "Can you give me an update on the patient?",
+   "decision_response": "I have heard your decision. Let me think about it and come back to you.",
+   "time_out_answer": "I am ready for the time out.",
+   "approved_intraop_issue": "There is something I need to tell the team."
+  },
+  "porter": {
+   "confirm_transfer": "I can take the patient when you are ready.",
+   "report_delay": "I am sorry, there will be a short delay.",
+   "ask_monitoring": "Does the patient need any monitoring on the way?"
+  },
+  "lab": {
+   "report_approved_result": "I have a result for you. Would you like it now?",
+   "report_sample_rejected": "I am sorry, the sample could not be used and needs to be taken again.",
+   "report_delay": "The sample is still being processed."
+  },
+  "scrub": {
+   "report_missing_item": "An item seems to be missing from the tray.",
+   "report_fault": "One of the items looks faulty.",
+   "confirm_ready": "The tray is ready.",
+   "count_status": "I will go through the count with you."
+  },
+  "ward": {
+   "confirm_admission_details": "I am checking the admission details now.",
+   "report_bed_status": "I will check the bed and let you know."
+  }
+ }
+}

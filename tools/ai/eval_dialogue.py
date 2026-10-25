@@ -28,6 +28,9 @@ def context(case, asked_topic, earn):
     return {"role": "patient", "case": case["id"], "allowed_intents": json.loads((ROOT / "content" / "ai" / "intents.json").read_text(encoding="utf-8"))["roles"]["patient"], "facts": facts, "last_turns": [], "results": []}
 
 
+INTENTS = json.loads((ROOT / "content" / "ai" / "intents.json").read_text(encoding="utf-8"))["roles"]
+
+
 def words(text):
     return {w for w in re.findall(r"[a-z]{5,}", text.lower())}
 
@@ -37,6 +40,8 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--cases", type=int, default=12)
     ap.add_argument("--timeout", type=float, default=60.0)
+    ap.add_argument("--team", action="store_true", help="answer through Dialogue.team (the patient and the staff of the three voices) and score the patient part")
+    ap.add_argument("--out", default="")
     a = ap.parse_args()
     from composer import blocks as B
     from dialogue import dialogue as D
@@ -59,7 +64,12 @@ if __name__ == "__main__":
             for earn in (True, False):
                 d.cache.clear()
                 t = time.monotonic()
-                r = d.reply(context(c, h["topic"], earn), q, age=c["identity"]["age"], sex=c["identity"]["sex"], authored=authored, asked_fact=fid)
+                if a.team:
+                    d.cache.clear()
+                    staff = {role: {"role": role, "case": c["id"], "allowed_intents": INTENTS[role], "facts": [], "last_turns": [], "results": []} for role in ("nurse", "anaesthesia")}
+                    r = d.team(context(c, h["topic"], earn), staff, q, age=c["identity"]["age"], sex=c["identity"]["sex"], authored=authored, asked_fact=fid)["patient"]
+                else:
+                    r = d.reply(context(c, h["topic"], earn), q, age=c["identity"]["age"], sex=c["identity"]["sex"], authored=authored, asked_fact=fid)
                 lat.append((time.monotonic() - t) * 1000)
                 if earn:
                     earned["n"] += 1
@@ -76,7 +86,7 @@ if __name__ == "__main__":
                     if len(samples) < 40:
                         samples.append({"case": c["id"], "topic": h["topic"], "hidden_fact": h["answer"], "reply": r.text, "intent": r.intent, "source": r.source, "shared_words": sorted(shared)})
     out = {"model": a.model, "digest": client.models().get(a.model, ""), "cases": len(cases), "earned": earned, "withheld": withheld, "ms_p50": round(statistics.median(lat)), "ms_p95": round(sorted(lat)[int(0.95 * len(lat)) - 1]), "samples": samples}
-    path = ROOT / "artifacts" / "ai-bench" / "dialogue-eval.json"
+    path = Path(a.out) if a.out else ROOT / "artifacts" / "ai-bench" / "dialogue-eval.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k != "samples"}, indent=1))

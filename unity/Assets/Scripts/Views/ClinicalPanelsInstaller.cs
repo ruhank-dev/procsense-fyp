@@ -1,4 +1,5 @@
 using ProcSense.VR.Bridge;
+using ProcSense.VR.Voice;
 using UnityEngine;
 
 namespace ProcSense.VR.Views
@@ -19,6 +20,9 @@ namespace ProcSense.VR.Views
         public DiagnosticsSceneView Diagnostics { get; private set; }
         public NurseSubtitleView Subtitles { get; private set; }
         public TeamVoicesView Team { get; private set; }
+        public TeamConversation Conversation { get; private set; }
+        public PushToTalk Talk { get; private set; }
+        public static readonly Vector3 TalkDefault = new Vector3(-0.6f, 1.2f, 1.1f);
         public static readonly Vector3 SubtitlesDefault = new Vector3(0.6f, 1.9f, 1.4f);
 
         private void Update() => Install();
@@ -54,6 +58,25 @@ namespace ProcSense.VR.Views
             {
                 var go = Place("Team voices", "TeamVoicesAnchor", Vector3.zero, Quaternion.identity);
                 Team = go.AddComponent<TeamVoicesView>();
+            }
+            if (Conversation == null)
+            {
+                var go = Place("Team conversation", "TeamConversationAnchor", Vector3.zero, Quaternion.identity);
+                go.SetActive(false);                                                   // so Voices is set before OnEnable subscribes
+                Conversation = go.AddComponent<TeamConversation>();
+                Conversation.Voices = Team;
+                Conversation.Player = go.AddComponent<UnityClipPlayer>();
+                go.SetActive(true);
+            }
+            if (Talk == null)
+            {
+                var go = Place("Push to talk", "PushToTalkAnchor", TalkDefault, Quaternion.identity);
+                go.SetActive(false);
+                Talk = go.AddComponent<PushToTalk>();
+                var view = go.AddComponent<PushToTalkView>();
+                view.Talk = Talk;
+                Talk.Transcribed += text => Conversation.Ask(text, null);               // the words the recogniser heard go to the conversation; a topic is only ever released by the engine
+                go.SetActive(true);
             }
             return true;
         }

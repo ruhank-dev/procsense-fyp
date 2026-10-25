@@ -11,8 +11,8 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 | Status | Features |
 |---|---|
 | Implemented and tested | 42 |
-| Implemented but incompletely tested | 20 |
-| Partially implemented | 3 |
+| Implemented but incompletely tested | 21 |
+| Partially implemented | 2 |
 | Planned | 1 |
 | Blocked | 0 |
 | Deferred | 2 |
@@ -74,7 +74,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Implemented and tested | Implemented and tested | PH-23 | P1 | [plan](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Implemented and tested | Implemented and tested | PH-23 | P1 | [plan](../plans/features/D68.md) |
 | E48 | Patient Digital Twin | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E48.md) |
-| E49 | Multi-Agent Clinical Simulation Lab | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E49.md) |
+| E49 | Multi-Agent Clinical Simulation Lab | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | hybrid | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E51.md) |
 | E52 | Investigation analytics | deterministic | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/E52.md) |
@@ -1537,9 +1537,9 @@ Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-ta
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Partially implemented |
-| AI status | Partially implemented |
-| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json; server/dialogue/dialogue.py; prompts/dialogue/staff_pick_many_v1.txt; docs/testing/SANNAN_EXTERNAL_TESTING.md; unity/Assets/Scripts/Views/TeamVoicesView.cs; unity/Assets/Tests/EditMode/TeamVoicesTests.cs |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
+| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json; server/dialogue/dialogue.py; prompts/dialogue/staff_pick_many_v1.txt; docs/testing/SANNAN_EXTERNAL_TESTING.md; unity/Assets/Scripts/Views/TeamVoicesView.cs; unity/Assets/Tests/EditMode/TeamVoicesTests.cs; server/routers/dialogue.py; server/llm/routing.py; content/ai/staff_intent_lines.json; unity/Assets/Scripts/Voice/TeamConversation.cs; unity/Assets/Scripts/Voice/TeamDialogueClient.cs; unity/Assets/Scripts/Voice/PushToTalk.cs; unity/Assets/Scripts/Voice/AsrClient.cs; unity/Assets/Scripts/Voice/TtsClient.cs; unity/Assets/Tests/EditMode/TeamConversationTests.cs; server/tests/test_dialogue_team.py; reports/ai/e2e-synthetic.json; reports/ai/cloud-routing-benchmark.json; docs/decisions/ADR-0026-per-task-model-routing-ollama-cloud.md |
 | Lineage (existing ids) | — |
 | Method | Multiple LLM roles orchestrated by the ReactionQueue. |
 | LLM-first classification | LLM roles; orchestration deterministic. |

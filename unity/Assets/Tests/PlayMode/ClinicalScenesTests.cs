@@ -69,6 +69,9 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsNotNull(installer.Diagnostics);
             Assert.IsNotNull(installer.Subtitles);
             Assert.IsNotNull(installer.Team);
+            Assert.IsNotNull(installer.Conversation);
+            Assert.AreSame(installer.Team, installer.Conversation.Voices);
+            Assert.IsNotNull(installer.Talk);
             Assert.GreaterOrEqual(installer.Emr.TabButtons.Count, 7);
             var emr = installer.Emr;
             yield return null;

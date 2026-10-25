@@ -166,3 +166,51 @@ def test_live_cloud_route_answers_with_synthetic_text(routes):
     routes({"model": CLOUD, "data_class": "synthetic"})
     r = gateway.run(client_mod.OllamaClient(), "compose.narrative", VARS, task="compose_narrative", retries=1)
     assert r.ok and r.audit["cloud"] and r.audit["fell_back_from"] == ""
+
+
+PATIENT_VARS = {"style": "plain", "age": "50", "sex_word": "man", "intents": "answer_question, cannot_recall", "facts": "- h.x: I am fine.", "turns": "(none)", "question": "How are you?"}
+PATIENT_REPLY = json.dumps({"intent": "answer_question", "text": "I am fine.", "fact_ids": ["h.x"]})
+
+
+def test_the_cloud_model_gets_the_latest_prompt_and_the_local_model_keeps_the_one_written_for_it(monkeypatch):
+    monkeypatch.setattr(routing, "_table", lambda: {"routes": {"dialogue_patient": {"model": CLOUD, "data_class": "synthetic", "evidence": "x"}}})
+    monkeypatch.setenv("CLOUD_ROUTING_ENABLED", "1")
+    c = fake(lambda m, b: httpx.Response(402, text="plan") if m == CLOUD else ok(PATIENT_REPLY))
+    r = gateway.run(c, "dialogue.patient", PATIENT_VARS, task="dialogue_patient", retries=0)
+    assert r.ok and [b["model"] for b in c.seen] == [CLOUD, LOCAL]
+    cloud_system, local_system = c.seen[0]["messages"][0]["content"], c.seen[1]["messages"][0]["content"]
+    assert cloud_system.startswith("ROLE") and "WHAT TO DO WITH WHAT THE TRAINEE SAYS" in cloud_system          # version 2, written and measured for the cloud model
+    assert not local_system.startswith("ROLE") and len(local_system) < len(cloud_system) / 2                   # version 1: the longer prompt costs the 4B model seconds
+    assert r.audit["prompt_version"] == 1 and r.audit["fell_back_from"] == CLOUD
+
+
+def test_a_prompt_for_every_model_is_used_by_both(monkeypatch):
+    monkeypatch.setattr(routing, "_table", lambda: {"routes": {}})
+    c = fake(lambda m, b: ok())
+    r = gateway.run(c, "compose.narrative", VARS, task="compose_narrative", retries=0)
+    assert r.audit["prompt_version"] == 2 and c.seen[0]["messages"][0]["content"].startswith("ROLE")
+
+
+def test_a_busy_cloud_slot_sends_the_task_to_the_local_model_instead_of_queueing(routes, monkeypatch):
+    routes({"model": CLOUD, "data_class": "synthetic"})
+    c = fake(lambda m, b: ok())
+    monkeypatch.setattr(routing, "BATCH_WAIT_SECONDS", 0.05)
+    assert routing.acquire_cloud("live")                                      # another request holds the single cloud slot
+    try:
+        r = run(c)
+    finally:
+        routing.release_cloud()
+    assert r.ok and [b["model"] for b in c.seen] == [LOCAL] and r.attempts[0]["error"] == "CLOUD_BUSY" and r.audit["fell_back_from"] == CLOUD
+
+
+def test_the_trainee_class_needs_the_privacy_approval_or_a_synthetic_declaration_and_the_evaluator_follows_the_same_rule(monkeypatch):
+    for name in ("CLOUD_ROUTING_ENABLED", "CLOUD_TRAINEE_DATA_APPROVED", "CLOUD_SYNTHETIC_DEPLOYMENT"):
+        monkeypatch.delenv(name, raising=False)
+    assert not routing.trainee_cloud_allowed()
+    monkeypatch.setenv("CLOUD_SYNTHETIC_DEPLOYMENT", "1")
+    assert routing.trainee_cloud_allowed() and not routing.trainee_data_approved()
+    monkeypatch.setenv("CLOUD_SYNTHETIC_DEPLOYMENT", "0")
+    monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "1")
+    assert routing.trainee_cloud_allowed()
+    monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "0")
+    assert not routing.trainee_cloud_allowed() and routing.status()["trainee_routes_use_cloud"] is False

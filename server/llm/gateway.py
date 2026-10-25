@@ -37,9 +37,8 @@ def _hash(text: str) -> str:
 def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, validate: Callable[[object], list[str]] | None = None, retries: int = 1, timeout: float | None = None,
         model: str | None = None, version: int | None = None, task: str | None = None, schema: dict | None = None) -> Result:
     """`schema` replaces the prompt's own schema for this call (used when the allowed values are known only at run time, such as the ids a proposal may choose from)."""
-    prompt = prompts.get(prompt_id, version)
-    system, user = prompt.render(**variables)
-    schema = schema if schema is not None else prompt.schema
+    prompt = prompts.get(prompt_id, version)                         # the latest version: it fixes the role; each model then gets the version written for it (a local model skips a cloud-scope version)
+    caller_schema = schema
     if model is None:
         route = routing.resolve(task, prompt.id, prompt.role)
     else:                                                              # a caller that names a model (a benchmark, a test) gets exactly it; a cloud one still falls back to the local default
@@ -48,8 +47,23 @@ def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, valida
     timeout = timeout if timeout is not None else (20.0 if prompt.role == "live" else 600.0)
     legs = [route.model] + ([route.fallback_model] if route.cloud and route.fallback_model else [])
     attempts: list[dict] = []
+    reply = client_mod.Reply(False, error="NOT_CALLED")
+    system = user = ""
     for chosen in legs:
-        value, reply, ok = _attempts(client, prompt, system, user, schema, validate, chosen, retries, timeout, attempts)
+        cloud_leg = routing.is_cloud(chosen)
+        prompt = prompts.get(prompt_id, version, cloud=cloud_leg)
+        system, user = prompt.render(**variables)
+        schema = caller_schema if caller_schema is not None else prompt.schema
+        if cloud_leg and not routing.acquire_cloud(prompt.role):          # the plan allows one cloud request at a time: a live task does not queue behind another, it answers locally
+            attempts.append({"attempt": len(attempts), "model": chosen, "ok": False, "latency_ms": 0, "error": "CLOUD_BUSY", "digest": "", "output_tokens": 0, "defects": []})
+            continue
+        try:
+            leg_timeout = min(timeout, routing.cloud_timeout(prompt.role)) if cloud_leg else timeout
+            leg_retries = 0 if cloud_leg and prompt.role == "live" else retries   # a slow or invalid live cloud answer goes to the local model, not to a second wait
+            value, reply, ok = _attempts(client, prompt, system, user, schema, validate, chosen, leg_retries, leg_timeout, attempts)
+        finally:
+            if cloud_leg:
+                routing.release_cloud()
         if ok:
             return Result(True, value, False, attempts, _audit(prompt, task, chosen, reply, system + user, attempts, "ok", route, legs[0] if chosen != legs[0] else ""))
     return Result(False, None, True, attempts, _audit(prompt, task, chosen, reply, system + user, attempts, "fallback", route, legs[0] if chosen != legs[0] else ""))

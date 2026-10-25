@@ -13,6 +13,7 @@ from server.evaluate import prompt as P
 from server.evaluate import service
 from server.evaluate.provider import OllamaCloudProvider
 from server.evaluate.reader import Reader
+from server.llm import routing
 from server.middleware.audit import AiCallRecord, audited
 from server.routers import ai_gateway
 from server.schemas.evaluate import EvaluateIn, EvaluateOut
@@ -29,6 +30,10 @@ def get_reader(settings: Settings = Depends(get_settings)) -> Reader | None:
     return Reader(provider, settings.speech_eval_max_attempts, settings.speech_eval_budget_ms, settings.speech_eval_timeout_seconds)
 
 
+def _sends_to_cloud(settings: Settings) -> bool:
+    return routing.is_cloud(settings.speech_eval_model) or "ollama.com" in (settings.speech_eval_base_url or "")
+
+
 @router.post("/evaluate/organisations/{organisation_id}", response_model=EvaluateOut)
 def evaluate_speech(body: EvaluateIn, call: AiCallRecord = Depends(audited("evaluate")), settings: Settings = Depends(get_settings), reader: Reader | None = Depends(get_reader)) -> EvaluateOut:
     context = body.context.model_dump()
@@ -37,6 +42,9 @@ def evaluate_speech(body: EvaluateIn, call: AiCallRecord = Depends(audited("eval
     if not ai_features.enabled("speech_evaluation"):
         call.fell_back("FEATURE_OFF")
         return EvaluateOut(**service.unavailable(context, body.utterance_id, ["FEATURE_OFF"]))
+    if reader is not None and _sends_to_cloud(settings) and not routing.trainee_cloud_allowed():
+        call.fell_back("CLOUD_DATA_NOT_APPROVED")                       # the evaluator's model is a cloud model: the trainee's words go there only once the privacy decision is recorded (DT-248) or the deployment is declared synthetic
+        return EvaluateOut(**service.unavailable(context, body.utterance_id, ["CLOUD_DATA_NOT_APPROVED"]))
     if not ai_gateway._limiter(settings).allow(call.user_id):
         raise HTTPException(status_code=429, detail="too_many_ai_calls")
     if not ai_gateway._slot.acquire(timeout=settings.ai_queue_wait_seconds):

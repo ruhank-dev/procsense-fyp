@@ -18,7 +18,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "artifacts" / "ai-bench" / "cloud"
+SRC = ROOT / "artifacts" / "ai-bench" / "cloud"            # the runs with the first prompts (v1)
+SRC2 = ROOT / "artifacts" / "ai-bench" / "cloud2"          # the runs with the prompts of ADR-0026 (v2), the ones shipped; a file missing here (a task whose prompt did not change) is read from SRC
 OUT = ROOT / "reports" / "ai" / "cloud-routing-benchmark.json"
 LOCAL = "qwen3.5:4b-q4_K_M"
 MODELS = {"qwen3.5_4b-q4_K_M": LOCAL, "gemma4_31b-cloud": "gemma4:31b-cloud", "gpt-oss_120b-cloud": "gpt-oss:120b-cloud", "gpt-oss_20b-cloud": "gpt-oss:20b-cloud", "nemotron-3-nano_30b-cloud": "nemotron-3-nano:30b-cloud"}
@@ -26,56 +27,89 @@ MARGIN = 0.05
 BUDGET_MS = 4000
 
 
+_dirs = [SRC]
+
+
+def _path(name: str):
+    return next((d / name for d in _dirs if (d / name).exists()), None)
+
+
 def jfile(name: str):
-    p = SRC / name
-    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+    p = _path(name)
+    return json.loads(p.read_text(encoding="utf-8")) if p else None
 
 
 def jtext(name: str):
-    p = SRC / name
-    if not p.exists():
+    p = _path(name)
+    if not p:
         return None
     t = p.read_text(encoding="utf-8", errors="replace")
     return json.loads(t[t.index("{"): t.rindex("}") + 1])
 
 
-def figures() -> dict:
-    """task -> model -> the figures the rule uses, read from the stored runs."""
+CHANGED = {"dialogue.patient", "dialogue.staff", "compose.narrative", "critic", "judge.scenario", "trap.reword"}      # the tasks whose prompt ADR-0026 rewrote
+LOCAL_FIRST_PROMPT = {"dialogue.patient", "dialogue.staff", "critic"}                                                  # their new prompt is cloud-scope: the local model keeps the first one (it costs it seconds)
+
+
+def dirs_for(task: str, model: str) -> list:
+    """Where to read a model's figures for a task: the runs with the prompt that model actually gets. A task whose prompt did not change is read from the first runs; a changed one from the v2 runs, except for the local
+    model on a task where it keeps the first prompt. A cloud model measured only with the first prompt is therefore absent from a changed task: it is not compared on different wording."""
+    if task not in CHANGED:
+        return [SRC]
+    return [SRC] if model == LOCAL and task in LOCAL_FIRST_PROMPT else [SRC2]
+
+
+def figures(only_first: bool = False) -> dict:
+    """task -> model -> the figures the rule uses, read from the stored runs. `only_first=True` reads the first prompts' runs for every task (what ADR-0026 started from)."""
+    global _dirs
     out: dict = {"dialogue.patient": {}, "dialogue.staff": {}, "compose.narrative": {}, "critic": {}, "judge.scenario": {}, "trap.reword": {}, "compose_plan.extras": {}, "compose_plan.planner": {}, "debrief.rewrite": {},
                  "personalisation.interpret": {}}
     for key, model in MODELS.items():
+        def at(task):
+            global _dirs
+            _dirs = [SRC] if only_first else dirs_for(task, model)
+        at("dialogue.patient")
         d = jfile(f"dialogue-{key}.json")
         if d:
             e, w = d["earned"], d["withheld"]
             out["dialogue.patient"][model] = {"n": e["n"], "fact_used": round(e["used_fact"] / e["n"], 3), "withheld_cannot_recall": round(w["cannot_recall"] / w["n"], 3), "leaks": w["word_leaks"] + w["validator_leaks"],
                                               "model_answered": round(e["model"] / e["n"], 3), "ms_p50": d["ms_p50"], "ms_p95": d["ms_p95"]}
-        s = jfile(f"staff-{key}.json")
+        at("dialogue.staff")
+        s_ = jfile(f"staff-{key}.json")
         m = jfile(f"multiagent-{key}.json")
-        if s:
-            out["dialogue.staff"][model] = {"accepted_share": s["accepted_share"], "nurse": s["by_role"]["nurse"], "anaesthesia": s["by_role"]["anaesthesia"], "fallback_share": s["fallback_share"], "ms_p95": s["ms_p95"],
+        if s_:
+            out["dialogue.staff"][model] = {"accepted_share": s_["accepted_share"], "nurse": s_["by_role"]["nurse"], "anaesthesia": s_["by_role"]["anaesthesia"], "fallback_share": s_["fallback_share"], "ms_p95": s_["ms_p95"], "stay_silent_when_not_addressed": s_.get("stay_silent_when_not_addressed"),
                                             "three_voices_p95_s": m["all_three_s"]["p95"] if m else None, "three_voices_within_budget": m["all_three_within_budget"] if m else None}
+        at("compose.narrative")
         n = jfile(f"narrative-{key}.json")
         if n:
             out["compose.narrative"][model] = {"accept_rate": n["accept_rate"], "first_try_rate": n["first_try_rate"], "fallback_to_authored": n["fallback_to_authored"], "ms_p50": n["latency_ms_p50"]}
+        at("critic")
         c = jfile(f"critic-{key}.json")
         if c:
             out["critic"][model] = {"recall": c["recall"]["critic"], "false_alarm": c["critic_false_alarm_rate"], "union_with_rules": c["recall"]["union"], "seconds": c["seconds"]}
+        at("judge.scenario")
         j = jtext(f"judge-{key}.stdout")
         if j:
             out["judge.scenario"][model] = {"flagged_among_missed_by_rules": j["flagged_among_those_the_rules_missed"], "clean_flagged": j["clean_flagged_share"], "seconds": j["seconds"]}
+        at("trap.reword")
         t = jtext(f"traps-{key}.stdout")
         if t:
             out["trap.reword"][model] = {"accepted_share": t["accepted_share"], "fairness_lower": t["cases_with_lower_trap_fairness"], "seconds_per_case_p50": t["seconds_per_case_p50"]}
+        at("compose_plan.extras")
         x = jtext(f"planextras-{key}.stdout")
         if x:
             out["compose_plan.extras"][model] = {"cases_with_events": x["cases_with_events"], "share_with_interaction": x["share_cases_with_interaction"], "refused": x["refused_by_validation"], "ineligible": x["ineligible_events_in_final_proposals"], "seconds_p50": x["seconds_p50"]}
+        at("compose_plan.planner")
         p = jfile(f"planner-{key}.json")
         if p:
-            a = p["arms"]["planner"]
-            out["compose_plan.planner"][model] = {"served": a["served"], "passed_gate": a["passed_gate"], "coverage": a["coverage_mean"], "distinct_block_sets": a["distinct_block_sets"], "seconds_p50": a["seconds_p50"]}
-        b = jfile(f"debrief-{key}.json")
-        if b:
-            out["debrief.rewrite"][model] = {"accept_rate": b["accept_rate"], "within_8s": b["within_8s_share"], "ms_p50": b["latency_ms_p50"], "mutations_rejected": f'{b["mutations_rejected"]}/{b["mutations"]}'}
+            a_ = p["arms"]["planner"]
+            out["compose_plan.planner"][model] = {"served": a_["served"], "passed_gate": a_["passed_gate"], "coverage": a_["coverage_mean"], "distinct_block_sets": a_["distinct_block_sets"], "seconds_p50": a_["seconds_p50"]}
+        at("debrief.rewrite")
+        b_ = jfile(f"debrief-{key}.json")
+        if b_:
+            out["debrief.rewrite"][model] = {"accept_rate": b_["accept_rate"], "within_8s": b_["within_8s_share"], "ms_p50": b_["latency_ms_p50"], "mutations_rejected": f'{b_["mutations_rejected"]}/{b_["mutations"]}'}
+        at("personalisation.interpret")
         i = jfile(f"interpreter-{key}.json")
         if i:
             out["personalisation.interpret"][model] = {"confirmed": i["confirmed_by_model"], "no_proposal": i["learners_with_no_accepted_proposal"], "seconds_per_learner": i["seconds_per_learner"]}
@@ -127,13 +161,17 @@ def choose(task: str, f: dict) -> tuple[str, str]:
 
 
 def build() -> dict:
+    first = figures(only_first=True)
     fig = figures()
     decisions = {}
     for task, f in fig.items():
         model, why = choose(task, f)
         decisions[task] = {"figures": f, "selected": model, "why": why}
+        if first.get(task) and first[task] != f:
+            decisions[task]["figures_with_first_prompts"] = first[task]            # what the same task measured before ADR-0026 improved its prompt
     return {"adr": "ADR-0026", "date": "2026-10-25", "local_baseline": LOCAL,
             "rule": __doc__.split("The rules, fixed before the choice:")[1].split("Parameter count")[0].strip(),
+            "caveat": "The prompts of the six cloud-selected tasks were written and adjusted while measuring on these same synthetic sets (the 12 approved cases for dialogue, an AI-written staff set, the seeded-defect sets), so the figures are development figures, not held-out evidence; human ratings and fresh sets are DT-250.",
             "data": "synthetic only: authored cases, AI-written test sets (not human-labelled); runs of tools/ai/eval_*.py through a signed-in Ollama on the free plan; no real trainee data was sent",
             "decisions": decisions}
 

@@ -1160,7 +1160,7 @@
   "p2-ai-advanced-simulation-s03": {
    "owner": "Ruhan",
    "before": "Measured, not built",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "tools/ai/eval_multiagent.py",
@@ -1168,11 +1168,25 @@
     "prompts/dialogue/staff_pick_many_v1.txt",
     "reports/ai/multiagent-eval.json",
     "unity/Assets/Scripts/Views/TeamVoicesView.cs",
-    "unity/Assets/Tests/EditMode/TeamVoicesTests.cs"
+    "unity/Assets/Tests/EditMode/TeamVoicesTests.cs",
+    "server/routers/dialogue.py",
+    "server/llm/routing.py",
+    "content/ai/staff_intent_lines.json",
+    "unity/Assets/Scripts/Voice/TeamConversation.cs",
+    "unity/Assets/Scripts/Voice/TeamDialogueClient.cs",
+    "unity/Assets/Scripts/Voice/PushToTalk.cs",
+    "unity/Assets/Scripts/Voice/AsrClient.cs",
+    "unity/Assets/Scripts/Voice/TtsClient.cs",
+    "unity/Assets/Tests/EditMode/TeamConversationTests.cs",
+    "server/tests/test_dialogue_team.py",
+    "reports/ai/e2e-synthetic.json",
+    "reports/ai/cloud-routing-benchmark.json",
+    "docs/decisions/ADR-0026-per-task-model-routing-ollama-cloud.md"
    ],
-   "measured": "patient written, two staff choosing approved lines in one call: all three p95 3.77 s against 4 s, 100 percent of turns within 4 s, 0 fallbacks; written staff replies 5.85 s; qwen3.5 does not support parallel requests; the multi_agent gate passes; Unity: TeamVoicesView plays patient, nurse and anaesthetist in a fixed order, one at a time, with distinct voice profiles (4 EditMode tests)",
-   "open": "The Unity client that sends the question to the dialogue service and hands the three replies to TeamVoicesView is not built, and the service has per-role routes only (the one-call staff pick is not routed); audio and the headset check are Sannan's (DC-07).",
-   "external": "Sannan: playing three voices in the scene (DC-07)"
+   "measured": "patient written, two staff choosing approved lines in one call: all three p95 3.77 s against 4 s, 100 percent of turns within 4 s, 0 fallbacks; written staff replies 5.85 s; qwen3.5 does not support parallel requests; the multi_agent gate passes; Unity: TeamVoicesView plays patient, nurse and anaesthetist in a fixed order, one at a time, with distinct voice profiles (4 EditMode tests); ADR-0026: POST /dialogue/organisations/{id}/team (patient written from the earned facts, staff choose an intent from the server's closed lists and speak approved lines, a team member who is not addressed stays silent); gemma4:31b-cloud three voices p95 1.67 s against 3.55 s local, staff intent 93.8 to 100% against 70.8%; Unity push to talk, recogniser client, dialogue client, voice client and conversation (EditMode 111 of 111); synthetic end to end: 8 of 8 questions heard, dialogue median 2.3 s on the cloud model, 4.0 s local",
+   "open": "The headset check (DC-07); the staff lines are the engineer's synthetic text awaiting review (DT-252); a spoken question releases no history topic and the evaluator hook has no Unity caller (DT-251); the cloud use of patient dialogue and staff for real trainees waits for DT-248.",
+   "external": "Sannan: the headset check DC-07; the owner: DT-248, DT-251",
+   "implementation": "complete"
   },
   "p2-ai-advanced-simulation-s04": {
    "owner": "Ruhan",

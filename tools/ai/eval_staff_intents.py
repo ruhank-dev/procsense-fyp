@@ -18,6 +18,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     ap.add_argument("--repeats", type=int, default=3)
+    ap.add_argument("--team", action="store_true", help="choose through Dialogue.team (the patient answers in the same call) instead of Dialogue.pick_many")
     ap.add_argument("--out", default="")
     a = ap.parse_args()
     from dialogue import dialogue as D
@@ -26,7 +27,8 @@ if __name__ == "__main__":
     if a.model not in client.models():
         raise SystemExit(f"{a.model} is not installed")
     intents = json.loads((ROOT / "content" / "ai" / "intents.json").read_text(encoding="utf-8"))["roles"]
-    items = json.loads((ROOT / "tests" / "dialogue_staff" / "staff_intents_v1.json").read_text(encoding="utf-8"))["items"]
+    doc = json.loads((ROOT / "tests" / "dialogue_staff" / "staff_intents_v1.json").read_text(encoding="utf-8"))
+    items, silent_items = doc["items"], doc.get("silent_items", [])
     d = D.Dialogue(client, model=a.model, timeout=60.0)
     ok = {"nurse": [0, 0], "anaesthesia": [0, 0]}
     fallbacks, lat, misses = 0, [], []
@@ -34,7 +36,12 @@ if __name__ == "__main__":
         for it in items:
             ctxs = {r: {"role": r, "case": "SYN", "allowed_intents": intents[r], "facts": [], "last_turns": [{"who": "trainee", "text": it["say"]}], "results": []} for r in ("nurse", "anaesthesia")}
             t = time.monotonic()
-            out = d.pick_many(ctxs, it["say"], {})
+            if a.team:
+                d.cache.clear()
+                pctx = {"role": "patient", "case": "SYN", "allowed_intents": intents["patient"], "facts": [], "last_turns": [{"who": "trainee", "text": it["say"]}], "results": []}
+                out = d.team(pctx, ctxs, it["say"])
+            else:
+                out = d.pick_many(ctxs, it["say"], {})
             lat.append((time.monotonic() - t) * 1000)
             r = out[it["role"]]
             fallbacks += r.source == "fallback"
@@ -43,9 +50,21 @@ if __name__ == "__main__":
                 ok[it["role"]][0] += 1
             elif len(misses) < 12:
                 misses.append({"say": it["say"], "role": it["role"], "chose": r.intent, "source": r.source, "accepted": it["accept"]})
+    quiet = [0, 0]                                                                       # sentences to the patient: both staff members should stay silent
+    for rep in range(a.repeats):
+        for it in silent_items:
+            ctxs = {r: {"role": r, "case": "SYN", "allowed_intents": intents[r], "facts": [], "last_turns": [{"who": "trainee", "text": it["say"]}], "results": []} for r in ("nurse", "anaesthesia")}
+            pctx = {"role": "patient", "case": "SYN", "allowed_intents": intents["patient"], "facts": [], "last_turns": [{"who": "trainee", "text": it["say"]}], "results": []}
+            d.cache.clear()
+            out = d.team(pctx, ctxs, it["say"])
+            spoke = [r for r in ("nurse", "anaesthesia") if r in out]
+            quiet[1] += 1
+            quiet[0] += not spoke
+            if spoke and len(misses) < 12:
+                misses.append({"say": it["say"], "role": "silent", "chose": {r: out[r].intent for r in spoke}, "source": "model", "accepted": ["stay_silent"]})
     n = sum(v[1] for v in ok.values())
     res = {"model": a.model, "set": "staff_intents_v1 (synthetic, AI-written)", "items": len(items), "repeats": a.repeats, "accepted_share": round(sum(v[0] for v in ok.values()) / n, 3),
-           "by_role": {k: round(v[0] / v[1], 3) for k, v in ok.items()}, "fallback_share": round(fallbacks / n, 3), "ms_p50": round(statistics.median(lat)), "ms_p95": round(sorted(lat)[int(0.95 * len(lat)) - 1]), "misses": misses}
+           "by_role": {k: round(v[0] / v[1], 3) for k, v in ok.items()}, "stay_silent_when_not_addressed": round(quiet[0] / quiet[1], 3) if quiet[1] else None, "fallback_share": round(fallbacks / n, 3), "ms_p50": round(statistics.median(lat)), "ms_p95": round(sorted(lat)[int(0.95 * len(lat)) - 1]), "misses": misses}
     path = Path(a.out) if a.out else ROOT / "artifacts" / "ai-bench" / "staff-intents.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(res, indent=2) + "\n", encoding="utf-8")

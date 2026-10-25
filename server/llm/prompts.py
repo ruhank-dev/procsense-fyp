@@ -42,6 +42,7 @@ class Prompt:
     think: bool
     sha256: str
     gateway: bool = False           # may be called through the AI gateway (it also needs a validator in validators.py)
+    scope: str = "any"              # "any": every model; "cloud": written and measured for the cloud model only (a longer prompt that costs the 4B local model seconds), so a local model uses the latest "any" version (ADR-0026)
 
     @property
     def key(self) -> str:
@@ -73,8 +74,9 @@ def registry() -> dict:
     return json.loads(REGISTRY.read_text(encoding="utf-8"))
 
 
-def get(prompt_id: str, version: int | None = None) -> Prompt:
-    entries = [e for e in registry()["prompts"] if e["id"] == prompt_id]
+def get(prompt_id: str, version: int | None = None, cloud: bool = True) -> Prompt:
+    """The latest version (or the named one). With `cloud=False` a version whose scope is "cloud" is skipped: the local model keeps the latest version written for it."""
+    entries = [e for e in registry()["prompts"] if e["id"] == prompt_id and (cloud or e.get("scope", "any") == "any" or version is not None)]
     if not entries:
         raise PromptError(f"no prompt {prompt_id}")
     e = max(entries, key=lambda x: x["version"]) if version is None else next((x for x in entries if x["version"] == version), None)
@@ -88,7 +90,7 @@ def get(prompt_id: str, version: int | None = None) -> Prompt:
     slots = tuple(dict.fromkeys(SLOT.findall(system + "\n" + user)))
     if set(slots) != set(e["variables"]):
         raise PromptError(f"{e['file']}: the slots in the text {sorted(slots)} are not the variables the registry lists {sorted(e['variables'])}")
-    return Prompt(e["id"], e["version"], e["role"], system, user, tuple(e["variables"]), schema, int(e.get("num_predict", 400)), bool(e.get("think", False)), e["sha256"], bool(e.get("gateway", False)))
+    return Prompt(e["id"], e["version"], e["role"], system, user, tuple(e["variables"]), schema, int(e.get("num_predict", 400)), bool(e.get("think", False)), e["sha256"], bool(e.get("gateway", False)), e.get("scope", "any"))
 
 
 def check() -> list[str]:

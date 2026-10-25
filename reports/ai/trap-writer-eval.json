@@ -2,86 +2,86 @@
   "synthetic": false,
   "model": "qwen3.5:4b-q4_K_M",
   "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
-  "cases": 50,
-  "wrong_options_offered": 98,
-  "accepted": 24,
-  "accepted_and_different_from_authored": 24,
-  "left_as_authored": 10,
-  "accepted_share": 0.245,
+  "cases": 62,
+  "wrong_options_offered": 132,
+  "accepted": 60,
+  "accepted_and_different_from_authored": 60,
+  "left_as_authored": 59,
+  "accepted_share": 0.455,
   "cases_with_lower_trap_fairness": 0,
-  "seconds_per_case_p50": 3.8,
+  "seconds_per_case_p50": 8.8,
   "pairs_for_human_rating": [
+    {
+      "case": "SC-1",
+      "option": "sc1.d2.2",
+      "authored": "Standard first-line penicillin",
+      "reworded": "Start standard first-line penicillin immediately."
+    },
     {
       "case": "SC-1",
       "option": "sc1.d3.2",
       "authored": "Ignore the creatinine",
-      "reworded": "Ignore the creatinine."
-    },
-    {
-      "case": "SC-10",
-      "option": "sc10.d1.2",
-      "authored": "Use the 10-year-old brother as interpreter",
-      "reworded": "Use the patient's 10-year-old brother as an interpreter."
+      "reworded": "Ignore the creatinine result for now and focus on the patient's symptoms."
     },
     {
       "case": "SC-11",
       "option": "sc11.d1.2",
       "authored": "Take the earlier refusal as final and do nothing",
-      "reworded": "Take the earlier refusal as final and do nothing."
+      "reworded": "Consider the earlier refusal final and do nothing."
+    },
+    {
+      "case": "SC-13",
+      "option": "sc13.d1.2",
+      "authored": "Proceed after checking the INR only",
+      "reworded": "Go ahead with the procedure after verifying the INR."
+    },
+    {
+      "case": "SC-15",
+      "option": "sc15.d1.2",
+      "authored": "Give the same antibiotic again",
+      "reworded": "Administer the same antibiotic again immediately."
+    },
+    {
+      "case": "SC-16",
+      "option": "sc16.d1.2",
+      "authored": "Assume she is safe because she has fasted",
+      "reworded": "Assume she is safe because she has fasted."
+    },
+    {
+      "case": "SC-19",
+      "option": "sc19.d1.2",
+      "authored": "Treat only the sepsis",
+      "reworded": "Treat the patient for sepsis and address the hyperglycemia."
     },
     {
       "case": "SC-2",
       "option": "sc2.d1.2",
       "authored": "Continue the appendicitis pathway",
-      "reworded": "Continue down the appendicitis pathway."
+      "reworded": "Continue following the appendicitis management pathway."
     },
     {
-      "case": "SC-3",
-      "option": "sc3.d2.2",
-      "authored": "Anti-inflammatory tablets",
-      "reworded": "Give her some anti-inflammatory tablets."
+      "case": "SC-21",
+      "option": "sc21.d2.2",
+      "authored": "Proceed and look at the duct during the operation",
+      "reworded": "Go ahead with the procedure and examine the duct directly during the operation."
     },
     {
-      "case": "STK-S1-B",
-      "option": "stkb.d2.2",
-      "authored": "Treat the anaemia as 'just mild'",
-      "reworded": "Manage the anaemia as 'just mild'."
+      "case": "SC-21",
+      "option": "sc21.d3.2",
+      "authored": "Treat as a normal pre-assessment",
+      "reworded": "Manage this patient as a normal pre-assessment."
     },
     {
-      "case": "STK-S1-C",
-      "option": "stkc.d2.2",
-      "authored": "Assume it is haemolysed and wait for a repeat",
-      "reworded": "Assume it's haemolysed and wait for a repeat"
+      "case": "SC-22",
+      "option": "sc22.d1.2",
+      "authored": "Wait for the liver ultrasound",
+      "reworded": "Hold off on the liver ultrasound until you have more data."
     },
     {
-      "case": "STK-S1-C",
-      "option": "stkc.d4.2",
-      "authored": "Stop monitoring once the first treatment is given",
-      "reworded": "Administer IV magnesium sulfate and stop monitoring once the first treatment is given"
-    },
-    {
-      "case": "STK-S2-A",
-      "option": "stka2.d1.2",
-      "authored": "Send her to theatre before fluids",
-      "reworded": "Send her straight to theatre before giving any fluids."
-    },
-    {
-      "case": "STK-S2-B",
-      "option": "s2b.d3.2",
-      "authored": "Delay surgery to normalise the kidneys",
-      "reworded": "Delay surgery to allow renal function to normalize"
-    },
-    {
-      "case": "STK-S2-C",
-      "option": "stkc2.d4.2",
-      "authored": "Cancel the operation because he has eaten",
-      "reworded": "Cancel the operation because he has eaten."
-    },
-    {
-      "case": "STK-S2-D",
-      "option": "stkd.d1.2",
-      "authored": "Put the heart rate down to pregnancy and wait",
-      "reworded": "Put the heart rate down to what is expected for pregnancy and wait"
+      "case": "SC-22",
+      "option": "sc22.d2.2",
+      "authored": "Reassure: a slow pulse is a good sign",
+      "reworded": "Reassure her that a slow pulse is a good sign."
     }
   ],
   "note": "Plausibility above the authored wording needs two raters (EX-03); what is measured is that the lexical checks hold and fairness does not fall."

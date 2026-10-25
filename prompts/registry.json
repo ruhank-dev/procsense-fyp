@@ -435,6 +435,162 @@
       "num_predict": 120,
       "think": false,
       "gateway": false
+    },
+    {
+      "id": "dialogue.patient",
+      "version": 2,
+      "role": "live",
+      "file": "dialogue/patient_v2.txt",
+      "sha256": "86b6f56749fa24f7a402e60558b5937f91f022fe8de59950090f9f9fece11548",
+      "schema": null,
+      "variables": [
+        "style",
+        "age",
+        "sex_word",
+        "intents",
+        "facts",
+        "turns",
+        "question"
+      ],
+      "num_predict": 200,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
+      "id": "dialogue.staff",
+      "version": 2,
+      "role": "live",
+      "file": "dialogue/staff_v2.txt",
+      "sha256": "814c854d7500dbdbe86b40ba6a75b970784d289d0ed441ebe69e561445be404a",
+      "schema": null,
+      "variables": [
+        "role",
+        "intents",
+        "facts",
+        "turns",
+        "question"
+      ],
+      "num_predict": 200,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
+      "id": "dialogue.staff_pick",
+      "version": 2,
+      "role": "live",
+      "file": "dialogue/staff_pick_v2.txt",
+      "sha256": "91c118942697fb2e68dcbb2347a68884f27dcdf1724427057da0f695eb315cb0",
+      "schema": null,
+      "variables": [
+        "role",
+        "intents",
+        "turns",
+        "question"
+      ],
+      "num_predict": 40,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
+      "id": "dialogue.staff_pick_many",
+      "version": 2,
+      "role": "live",
+      "file": "dialogue/staff_pick_many_v2.txt",
+      "sha256": "090533e4afea6876752c31f31edb243382fd28dc93bafde8650955ed6a6e0ee9",
+      "schema": null,
+      "variables": [
+        "roles",
+        "turns",
+        "question"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
+      "id": "compose.narrative",
+      "version": 2,
+      "role": "batch",
+      "file": "compose/v2.txt",
+      "sha256": "cef89cce60a3d92a7a9cb7cf63e07260da2b9bcefd0c3a86fa9418a2767b4959",
+      "schema": "server/schemas/ai/narrative_line.json",
+      "variables": [
+        "style",
+        "age",
+        "sex_word",
+        "topic",
+        "original"
+      ],
+      "num_predict": 300,
+      "think": false,
+      "gateway": true
+    },
+    {
+      "id": "critic.claims",
+      "version": 2,
+      "role": "batch",
+      "file": "critic/claims_v2.txt",
+      "sha256": "ae7d463e42de8d48fe024f0f35f2dd0193e9cbda6e6bb7cd4951effe83648894",
+      "schema": null,
+      "variables": [
+        "facts",
+        "lines"
+      ],
+      "num_predict": 500,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
+      "id": "critic.verify",
+      "version": 2,
+      "role": "batch",
+      "file": "critic/verify_v2.txt",
+      "sha256": "aaa1620136b9be2cac877463015505100fc63180561d6333b55aa548c1ff1152",
+      "schema": null,
+      "variables": [
+        "fact",
+        "line",
+        "claim"
+      ],
+      "num_predict": 40,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
+      "id": "judge.scenario",
+      "version": 2,
+      "role": "batch",
+      "file": "judge/scenario_v2.txt",
+      "sha256": "1f51833c7ff90776b6b9c8af94fdba2614dc6629c14b7e844ac76e201c982656",
+      "schema": null,
+      "variables": [
+        "facts",
+        "lines"
+      ],
+      "num_predict": 160,
+      "think": false,
+      "gateway": false
+    },
+    {
+      "id": "trap.reword",
+      "version": 2,
+      "role": "batch",
+      "file": "trap/reword_v2.txt",
+      "sha256": "9fe2493d7c00834815b3e761adbd950047d47befe25ff3ad01e10728d9231368",
+      "schema": "server/schemas/ai/narrative_line.json",
+      "variables": [
+        "prompt",
+        "original"
+      ],
+      "num_predict": 120,
+      "think": false,
+      "gateway": false
     }
   ]
 }

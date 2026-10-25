@@ -9,9 +9,9 @@ The plan set has 68 features: A1 to E65 except one number (a language feature th
 | Result | Features |
 |---|---|
 | Complete | 42 |
-| Engineering complete | 11 |
+| Engineering complete | 12 |
 | Built, gated off | 9 |
-| Partly built | 3 |
+| Partly built | 2 |
 | Owned by others | 1 |
 | Research: trigger not met | 2 |
 
@@ -72,7 +72,7 @@ The plan set has 68 features: A1 to E65 except one number (a language feature th
 | [D67](../plans/features/D67.md) Trainee learning profile (Bayesian learner model and perform | See plan. | `server/personalisation/learner_model.py` and `evidence.py` | `tools/ci/test_personalisation_model.py`<br>`tools/ci/test_personalisation_evidence.py` | DONE 3 | interpreter: ON | **Complete** | - |
 | [D68](../plans/features/D68.md) Personalised scenario targeting (policy, objectives for the  | See plan. | `server/personalisation/policy.py` (rules, expected gain, bandit) chosen in `content/generation/policy.json` and read by `server/generation/objectives.py` | `tools/ci/test_personalisation_policy.py` | DONE 2 | - | **Complete** | [EX-05](../testing/SANNAN_EXTERNAL_TESTING.md#ex-05) |
 | [E48](../plans/features/E48.md) Patient Digital Twin | Twin state replays. | `src/ProcSense.Core` patient twin and the recorded Pulse traces | `tests/ProcSense.Core.Tests/PatientTwinTests.cs`<br>`tests/ProcSense.Core.Tests/PulseTraceTests.cs`<br>`tools/ci/test_pulse.py` | ENG_DONE 1 | - | **Engineering complete** | [DC-07](../testing/SANNAN_EXTERNAL_TESTING.md#dc-07) |
-| [E49](../plans/features/E49.md) Multi-Agent Clinical Simulation Lab | p95 latency under 4 s with three roles. | `Dialogue.pick_many` in `server/dialogue/dialogue.py`; the three-voice host in Unity is Sannan's | `tools/ci/test_llm.py`<br>`tools/ci/test_dialogue_stress.py` | PARTLY 1 | multi_agent: ON | **Partly built** | [DC-07](../testing/SANNAN_EXTERNAL_TESTING.md#dc-07) |
+| [E49](../plans/features/E49.md) Multi-Agent Clinical Simulation Lab | p95 latency under 4 s with three roles. | `Dialogue.pick_many` in `server/dialogue/dialogue.py`; the three-voice host in Unity is Sannan's | `tools/ci/test_llm.py`<br>`tools/ci/test_dialogue_stress.py` | ENG_DONE 1 | multi_agent: ON | **Engineering complete** | [DC-07](../testing/SANNAN_EXTERNAL_TESTING.md#dc-07) |
 | [E50](../plans/features/E50.md) Adversarial generator (red-team for validators and dialogue) | Escape rate reported per release; zero for critical classes. | `tools/redteam/run.py` attacks the grounding validator | `tools/ci/test_redteam.py`<br>`tools/ci/test_safety_invariants.py` | DONE 2 | - | **Complete** | - |
 | [E51](../plans/features/E51.md) Scenario Quality Evaluator (offline batch) | Report per release. | `server/generation/quality.py` evaluation run offline over batches | `tools/ci/test_generation_quality.py` | DONE 2 | - | **Complete** | - |
 | [E52](../plans/features/E52.md) Investigation analytics | Reproduces from logs. | `server/analytics` investigation analytics | `tools/ci/test_analytics.py` | DONE 1 | - | **Complete** | - |

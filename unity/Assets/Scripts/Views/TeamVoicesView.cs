@@ -24,17 +24,19 @@ namespace ProcSense.VR.Views
     public sealed class TeamVoicesView : MonoBehaviour
     {
         public const float SecondsPerLine = 3f;
-        public static readonly string[] Order = { "patient", "nurse", "anaesthetist" };
+        public static readonly string[] Order = { "patient", "nurse", "anaesthesia" };          // the role names of content/ai/intents.json; "anaesthetist" is accepted as the same role
         /// <summary>The voice profile of each role (distinct on purpose: a trainee tells the speakers apart by ear).</summary>
-        public static readonly Dictionary<string, string> Voices = new Dictionary<string, string> { { "patient", "voice.patient" }, { "nurse", "voice.nurse" }, { "anaesthetist", "voice.anaesthetist" } };
+        public static readonly Dictionary<string, string> Voices = new Dictionary<string, string> { { "patient", "voice.patient" }, { "nurse", "voice.nurse" }, { "anaesthesia", "voice.anaesthetist" } };
         private static readonly Dictionary<string, Vector3> Places = new Dictionary<string, Vector3>
         {
-            { "patient", new Vector3(0f, 1.5f, 1.2f) }, { "nurse", new Vector3(-0.8f, 1.9f, 1.4f) }, { "anaesthetist", new Vector3(0.8f, 1.9f, 1.4f) },
+            { "patient", new Vector3(0f, 1.5f, 1.2f) }, { "nurse", new Vector3(-0.8f, 1.9f, 1.4f) }, { "anaesthesia", new Vector3(0.8f, 1.9f, 1.4f) },
         };
 
         /// <summary>Raised when a line starts: role, text, voice profile. The audio layer plays the recorded line of the same words.</summary>
         public event Action<string, string, string> Spoke;
 
+        /// <summary>When it answers true (a recorded line is still playing) the next character waits, so the voices never overlap.</summary>
+        public Func<bool> Busy;
         public IReadOnlyList<string> SpokenRoles => _spoken;
         public int Pending => _queue.Count;
         public string Current(string role) => _labels.TryGetValue(role, out var l) ? l.text : "";
@@ -49,7 +51,8 @@ namespace ProcSense.VR.Views
         /// <summary>The replies in the order they play: the known roles in <see cref="Order"/>; a reply with no words or an unknown role is left out; the first reply of a role wins.</summary>
         public static List<TeamReply> Arrange(IEnumerable<TeamReply> replies)
         {
-            var list = (replies ?? Enumerable.Empty<TeamReply>()).Where(r => r != null && !string.IsNullOrWhiteSpace(r.Text) && Voices.ContainsKey(r.Role ?? "")).ToList();
+            var list = (replies ?? Enumerable.Empty<TeamReply>()).Where(r => r != null).Select(r => { if (r.Role == "anaesthetist") r.Role = "anaesthesia"; return r; })
+                .Where(r => !string.IsNullOrWhiteSpace(r.Text) && Voices.ContainsKey(r.Role ?? "")).ToList();
             return Order.Select(role => list.FirstOrDefault(r => r.Role == role)).Where(r => r != null).ToList();
         }
 
@@ -66,6 +69,7 @@ namespace ProcSense.VR.Views
         {
             _until -= seconds;
             if (_until > 0f) return;
+            if (Busy != null && Busy()) return;
             if (_active != null && _canvases.TryGetValue(_active, out var old)) old.gameObject.SetActive(false);
             _active = null;
             if (_queue.Count == 0) return;

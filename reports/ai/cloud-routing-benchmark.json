@@ -3,10 +3,33 @@
  "date": "2026-10-25",
  "local_baseline": "qwen3.5:4b-q4_K_M",
  "rule": "* the local model (qwen3.5:4b-q4_K_M) is the default and keeps the task unless a candidate is no worse on every safety figure AND better on the quality figure by the margin of the task;\n  * real-time dialogue (patient, staff): quality at least equal, no more leaks than local, 95th percentile under the 4 s budget; among eligible models the best quality, then the lower median wins;\n  * offline generation (narrative, critic, judge, trap writer): quality better by at least 5 points, false alarms no higher; speed alone never moves an offline task to the cloud;\n  * a task with no benchmark, or whose candidate is not better, stays local.",
+ "caveat": "The prompts of the six cloud-selected tasks were written and adjusted while measuring on these same synthetic sets (the 12 approved cases for dialogue, an AI-written staff set, the seeded-defect sets), so the figures are development figures, not held-out evidence; human ratings and fresh sets are DT-250.",
  "data": "synthetic only: authored cases, AI-written test sets (not human-labelled); runs of tools/ai/eval_*.py through a signed-in Ollama on the free plan; no real trainee data was sent",
  "decisions": {
   "dialogue.patient": {
    "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "n": 82,
+     "fact_used": 0.902,
+     "withheld_cannot_recall": 0.927,
+     "leaks": 1,
+     "model_answered": 0.976,
+     "ms_p50": 1882,
+     "ms_p95": 2289
+    },
+    "gemma4:31b-cloud": {
+     "n": 82,
+     "fact_used": 0.976,
+     "withheld_cannot_recall": 0.976,
+     "leaks": 0,
+     "model_answered": 0.976,
+     "ms_p50": 661,
+     "ms_p95": 3337
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "figures_with_first_prompts": {
     "qwen3.5:4b-q4_K_M": {
      "n": 82,
      "fact_used": 0.902,
@@ -52,9 +75,7 @@
      "ms_p50": 935,
      "ms_p95": 2010
     }
-   },
-   "selected": "gemma4:31b-cloud",
-   "why": "best eligible candidate by the rule"
+   }
   },
   "dialogue.staff": {
    "figures": {
@@ -64,6 +85,31 @@
      "anaesthesia": 0.833,
      "fallback_share": 0.0,
      "ms_p95": 1517,
+     "stay_silent_when_not_addressed": null,
+     "three_voices_p95_s": 3.55,
+     "three_voices_within_budget": 1.0
+    },
+    "gemma4:31b-cloud": {
+     "accepted_share": 0.938,
+     "nurse": 0.875,
+     "anaesthesia": 1.0,
+     "fallback_share": 0.0,
+     "ms_p95": 1142,
+     "stay_silent_when_not_addressed": 1.0,
+     "three_voices_p95_s": 1.67,
+     "three_voices_within_budget": 1.0
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "figures_with_first_prompts": {
+    "qwen3.5:4b-q4_K_M": {
+     "accepted_share": 0.708,
+     "nurse": 0.583,
+     "anaesthesia": 0.833,
+     "fallback_share": 0.0,
+     "ms_p95": 1517,
+     "stay_silent_when_not_addressed": null,
      "three_voices_p95_s": 3.55,
      "three_voices_within_budget": 1.0
     },
@@ -73,6 +119,7 @@
      "anaesthesia": 1.0,
      "fallback_share": 0.0,
      "ms_p95": 717,
+     "stay_silent_when_not_addressed": null,
      "three_voices_p95_s": 2.09,
      "three_voices_within_budget": 1.0
     },
@@ -82,15 +129,30 @@
      "anaesthesia": 0.958,
      "fallback_share": 0.0,
      "ms_p95": 3616,
+     "stay_silent_when_not_addressed": null,
      "three_voices_p95_s": 3.72,
      "three_voices_within_budget": 1.0
     }
-   },
-   "selected": "gemma4:31b-cloud",
-   "why": "best eligible candidate by the rule"
+   }
   },
   "compose.narrative": {
    "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "accept_rate": 0.887,
+     "first_try_rate": 0.566,
+     "fallback_to_authored": 12,
+     "ms_p50": 3035
+    },
+    "gemma4:31b-cloud": {
+     "accept_rate": 0.972,
+     "first_try_rate": 0.792,
+     "fallback_to_authored": 3,
+     "ms_p50": 654
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "figures_with_first_prompts": {
     "qwen3.5:4b-q4_K_M": {
      "accept_rate": 0.717,
      "first_try_rate": 0.472,
@@ -109,12 +171,26 @@
      "fallback_to_authored": 12,
      "ms_p50": 1400
     }
-   },
-   "selected": "gemma4:31b-cloud",
-   "why": "best eligible candidate by the rule"
+   }
   },
   "critic": {
    "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "recall": 0.688,
+     "false_alarm": 0.031,
+     "union_with_rules": 0.991,
+     "seconds": 431
+    },
+    "gemma4:31b-cloud": {
+     "recall": 0.879,
+     "false_alarm": 0.0,
+     "union_with_rules": 0.995,
+     "seconds": 393
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "figures_with_first_prompts": {
     "qwen3.5:4b-q4_K_M": {
      "recall": 0.688,
      "false_alarm": 0.031,
@@ -133,12 +209,24 @@
      "union_with_rules": 0.995,
      "seconds": 785
     }
-   },
-   "selected": "gemma4:31b-cloud",
-   "why": "best eligible candidate by the rule"
+   }
   },
   "judge.scenario": {
    "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "flagged_among_missed_by_rules": 0.63,
+     "clean_flagged": 0.0,
+     "seconds": 150
+    },
+    "gemma4:31b-cloud": {
+     "flagged_among_missed_by_rules": 1.0,
+     "clean_flagged": 0.0,
+     "seconds": 36
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "figures_with_first_prompts": {
     "qwen3.5:4b-q4_K_M": {
      "flagged_among_missed_by_rules": 0.37,
      "clean_flagged": 0.0,
@@ -154,12 +242,24 @@
      "clean_flagged": 0.0,
      "seconds": 132
     }
-   },
-   "selected": "gemma4:31b-cloud",
-   "why": "best eligible candidate by the rule"
+   }
   },
   "trap.reword": {
    "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "accepted_share": 0.455,
+     "fairness_lower": 0,
+     "seconds_per_case_p50": 8.8
+    },
+    "gemma4:31b-cloud": {
+     "accepted_share": 0.735,
+     "fairness_lower": 0,
+     "seconds_per_case_p50": 5.7
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "figures_with_first_prompts": {
     "qwen3.5:4b-q4_K_M": {
      "accepted_share": 0.235,
      "fairness_lower": 0,
@@ -170,9 +270,7 @@
      "fairness_lower": 0,
      "seconds_per_case_p50": 3.8
     }
-   },
-   "selected": "gemma4:31b-cloud",
-   "why": "best eligible candidate by the rule"
+   }
   },
   "compose_plan.extras": {
    "figures": {

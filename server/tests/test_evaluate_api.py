@@ -33,7 +33,8 @@ def context(steps=(9,), **kw):
 
 
 @pytest.fixture
-def world(api):
+def world(api, monkeypatch):
+    monkeypatch.setenv("CLOUD_SYNTHETIC_DEPLOYMENT", "1")                  # these tests play invented trainees: the deployment is declared synthetic
     def build(s: DbSession):
         org = accounts.create_organisation(s, "Alpha", "alpha-org")
         me = api.person(s)
@@ -128,3 +129,16 @@ def test_a_busy_model_slot_gives_the_menu_and_no_judgement(world, monkeypatch):
         config.get_settings.cache_clear()
     assert (j["decision"], j["reasons"], j["acts"]) == ("UNAVAILABLE", ["MODEL_BUSY"], [])
     assert rows(world.api)[-1].fallback_reason == "MODEL_BUSY"
+
+
+def test_real_trainee_words_do_not_reach_the_cloud_evaluator_without_the_privacy_approval(world, monkeypatch):
+    monkeypatch.delenv("CLOUD_SYNTHETIC_DEPLOYMENT", raising=False)
+    monkeypatch.delenv("CLOUD_TRAINEE_DATA_APPROVED", raising=False)
+    provider = MockProvider([judgement()])
+    world.api.client.app.dependency_overrides[speech_route.get_reader] = lambda: Reader(provider, 2, 5000, 5.0)
+    r = world.post({"context": context(), "utterance": TEXT, "utterance_id": "u9"})
+    j = r.json()
+    assert (j["decision"], j["reasons"][0], j["acts"]) == ("UNAVAILABLE", "CLOUD_DATA_NOT_APPROVED", []) and j["menu"]
+    assert provider.calls == []                                                  # nothing was sent to the model
+    monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "1")                       # the privacy decision, once recorded, releases it
+    assert world.post({"context": context(), "utterance": TEXT, "utterance_id": "u10"}).json()["decision"] == "EVALUATED"

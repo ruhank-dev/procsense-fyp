@@ -4,11 +4,11 @@
  "seeded": 30,
  "unanswered": 0,
  "flag_at": 2,
- "flagged_share": 0.467,
+ "flagged_share": 0.6,
  "seeded_not_flagged_by_rules": 27,
- "flagged_among_those_the_rules_missed": 0.519,
+ "flagged_among_those_the_rules_missed": 0.63,
  "clean_cases": 15,
- "clean_flagged_share": 0.067,
+ "clean_flagged_share": 0.0,
  "human_calibration": "none: Spearman with human ratings needs the rated set (EX-15); the judge is advisory and unvalidated",
- "seconds": 148
+ "seconds": 150
 }

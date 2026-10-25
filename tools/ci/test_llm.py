@@ -233,7 +233,7 @@ class InPipeline(unittest.TestCase):
         p = r.package
         self.assertTrue(any(x["method"] == "model" for x in p["narrative"]["lines"]))
         self.assertEqual(p["provenance"]["models"][0]["digest"], "d9")
-        self.assertIn("compose.narrative@1", p["provenance"]["prompts"])
+        self.assertIn("compose.narrative@2", p["provenance"]["prompts"])
         self.assertIn("LG-06", p["provenance"]["stages"])
         self.assertTrue(package.verify_seal(p))
         self.assertTrue(package.validate(p, self.cases)["passed"])

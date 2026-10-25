@@ -71,10 +71,10 @@ def test_a_member_gets_a_checked_answer_and_the_audit_holds_no_text(world):
     r = world.post()
     assert r.status_code == 200, r.text
     body = r.json()
-    assert (body["ok"], body["fallback"], body["model"], body["prompt"], body["attempts"]) == (True, False, "qwen3.5:4b-q4_K_M", "compose.narrative@1", 1)
+    assert (body["ok"], body["fallback"], body["model"], body["prompt"], body["attempts"]) == (True, False, "qwen3.5:4b-q4_K_M", "compose.narrative@2", 1)
     assert "amlodipine" in body["value"]["text"]
     (row,) = rows(world.api)
-    assert (row.task, row.validation, row.fallback, row.model, row.prompt_id, row.organisation_id, row.user_id) == ("llm_generate", "passed", False, "qwen3.5:4b-q4_K_M", "compose.narrative:v1", world.a, world.me)
+    assert (row.task, row.validation, row.fallback, row.model, row.prompt_id, row.organisation_id, row.user_id) == ("llm_generate", "passed", False, "qwen3.5:4b-q4_K_M", "compose.narrative:v2", world.a, world.me)
     assert row.model_version == "56671c2ab938"
     assert "amlodipine" not in json.dumps([row.input_hash, row.output_ref, row.prompt_id, row.context_id])
     assert uuid.UUID(r.headers["x-ai-call-id"]) == row.id

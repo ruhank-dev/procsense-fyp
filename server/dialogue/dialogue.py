@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[2]
 LEXICON = ROOT / "content" / "ai" / "lexicon.json"
 CANNOT_RECALL = "I am sorry, I am not sure about that."
 CLARIFY = "Could you say that another way?"
+SILENT = "stay_silent"                    # a staff member who is not being spoken to and has nothing to add chooses this: no line is spoken (the model decides who has a turn, ADR-0026)
 
 
 @dataclass
@@ -93,6 +94,22 @@ class Dialogue:
             return out
         return self._fallback(role, ctx, shown, asked_fact, authored, fallback_lines, [d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"], r.audit)
 
+    def team(self, ctx: dict, staff_ctxs: dict[str, dict], question: str, style: str = "plain", age: int = 50, sex: str = "M", authored: dict[str, str] | None = None,
+             staff_lines: dict[str, dict[str, str]] | None = None, asked_fact: str | None = None) -> dict[str, Reply]:
+        """One trainee turn answered by the patient and the staff (the three voices): the patient's words are written from the earned facts by `reply` (grounding validator, authored fallback), and the staff
+        CHOOSE their intents from the roles' closed lists in ONE call (`pick_many`) and speak the approved line of the intent (`staff_lines[role][intent]`), so nothing a model writes is spoken for staff.
+        Two calls, not three: measured against a single combined call (patient and staff in one answer), the two separate prompts kept the patient's answers more often on the right fact and staff intents
+        more often correct (docs/research/cloud_model_routing.md), at about 0.6 s more. A team member who is not being spoken to chooses silence and is left out. Returns {"patient": Reply, role: Reply, ...}."""
+        out = {"patient": self.reply(ctx, question, "patient", style, age, sex, authored, None, asked_fact)}
+        audit = out["patient"].audit or {}
+        if staff_ctxs and audit.get("cloud") and not audit.get("fell_back_from"):
+            # The staff are chosen by the cloud model only. The local model cannot be trusted to stay silent when it is not its turn (measured: it answered for the wrong role and spoke on every turn), so after an
+            # outage, a usage limit, an authored answer or a local patient answer the staff do not speak: the patient answers alone, and nobody is made to speak a line that no good choice produced.
+            for role, r in self.pick_many(staff_ctxs, question, staff_lines or {}).items():
+                if r.intent != SILENT and r.source != "fallback" and (r.audit or {}).get("cloud"):
+                    out[role] = r
+        return out
+
     def pick(self, ctx: dict, question: str, role: str, fallback_lines: dict[str, str]) -> Reply:
         """A staff reply that is CHOSEN, not written: the model names which of the allowed intents fits (a one-word answer, so it is fast) and the words are the approved line of that intent
         (`fallback_lines`, the pre-rendered voice lines), so nothing the model writes is ever spoken. Measured (tools/ai/eval_multiagent.py --staff-pick) as the way three characters can answer within
@@ -120,12 +137,12 @@ class Dialogue:
             return {r: self._fallback(r, ctxs[r], [], None, {}, fallback_lines.get(r, {}), why) for r in roles}
         if self.client is None:
             return fallback(["NO_MODEL"])
-        schema = {"type": "object", "additionalProperties": False, "required": list(roles), "properties": {r: {"type": "string", "enum": intents} for r, intents in roles.items()}}
+        schema = {"type": "object", "additionalProperties": False, "required": list(roles), "properties": {r: {"type": "string", "enum": [*intents, SILENT]} for r, intents in roles.items()}}
         r = gateway.run(self.client, "dialogue.staff_pick_many", {"roles": "\n".join(f"{name}: {', '.join(intents)}" for name, intents in roles.items()), "turns": turns, "question": question}, schema=schema,
                         model=self.model, timeout=self.timeout, retries=1, task="dialogue_pick_many")
         if not r.ok:
             return fallback([d.split(":")[0] for d in r.audit["defects"]] or [r.audit["error"] or "REJECTED"])
-        return {name: Reply(fallback_lines.get(name, {}).get(r.value[name], CLARIFY), r.value[name], [], "model", [], r.audit) for name in roles}
+        return {name: Reply("" if r.value[name] == SILENT else fallback_lines.get(name, {}).get(r.value[name], CLARIFY), r.value[name], [], "model", [], r.audit) for name in roles}
 
     def _fallback(self, role, ctx, shown, asked_fact, authored, fallback_lines, reasons, audit=None) -> Reply:
         if role == "patient":

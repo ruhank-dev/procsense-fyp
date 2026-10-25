@@ -143,6 +143,23 @@ namespace ProcSense.VR.Auth
             done(result);
         }
 
+        /// <summary>The same as <see cref="Authorized"/> for a request whose body is bytes (a recorded clip).</summary>
+        public IEnumerator AuthorizedBytes(string method, string path, byte[] body, string contentType, Action<HttpResult> done)
+        {
+            if (!IsSignedIn) { done(new HttpResult(401, "")); yield break; }
+            if (Time.realtimeSinceStartup >= _expiresAt - 60f) yield return Renew();
+            if (!IsSignedIn) { done(new HttpResult(401, "")); yield break; }
+            HttpResult result = default;
+            yield return _http.SendBytes(method, _baseUrl + path, body, contentType, BearerHeaders(null), _timeout, r => result = r);
+            if (result.Status == 401 && !result.NetworkError)
+            {
+                yield return Renew();
+                if (!IsSignedIn) { done(result); yield break; }
+                yield return _http.SendBytes(method, _baseUrl + path, body, contentType, BearerHeaders(null), _timeout, r => result = r);
+            }
+            done(result);
+        }
+
         private IEnumerator Renew()
         {
             if (_refreshToken == null) { SignOut(); yield break; }

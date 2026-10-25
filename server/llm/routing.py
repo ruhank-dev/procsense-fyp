@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -42,28 +43,62 @@ def reload() -> None:
     _table.cache_clear()
 
 
-def _flag(name: str) -> bool:
-    return os.environ.get(name, "").strip().lower() in ("1", "true", "yes", "on")
-
-
-def _setting(name: str) -> bool:
-    """The same switch from the service's settings (.env), for when the process environment does not carry it."""
+def _switch(env_name: str, setting: str) -> bool:
+    """A switch: the process environment when it names the variable (so a test or a one-off run can force either way), otherwise the service's settings (.env), otherwise off."""
+    raw = os.environ.get(env_name)
+    if raw is not None and raw.strip() != "":
+        return raw.strip().lower() in ("1", "true", "yes", "on")
     try:
         try:
             from ..config import get_settings
         except ImportError:
             from config import get_settings                    # the tools put server/ on the path
-        return bool(getattr(get_settings(), name))
+        return bool(getattr(get_settings(), setting))
     except Exception:                                          # settings that cannot be built (a tool without the service's environment) mean "off"
         return False
 
 
 def enabled() -> bool:
-    return _flag("CLOUD_ROUTING_ENABLED") or _setting("cloud_routing_enabled")
+    return _switch("CLOUD_ROUTING_ENABLED", "cloud_routing_enabled")
 
 
 def trainee_data_approved() -> bool:
-    return _flag("CLOUD_TRAINEE_DATA_APPROVED") or _setting("cloud_trainee_data_approved")
+    """The privacy decision (DT-248, DT-127) is recorded: real trainee data may go to the cloud."""
+    return _switch("CLOUD_TRAINEE_DATA_APPROVED", "cloud_trainee_data_approved")
+
+
+def synthetic_deployment() -> bool:
+    """The owner's declaration that THIS deployment handles synthetic data only (development, demonstrations, tests with invented people). It releases the trainee-class routes for such a deployment; it is not the
+    privacy approval and must never be set on a deployment that real trainees use."""
+    return _switch("CLOUD_SYNTHETIC_DEPLOYMENT", "cloud_synthetic_deployment")
+
+
+def trainee_cloud_allowed() -> bool:
+    return trainee_data_approved() or synthetic_deployment()
+
+
+def status() -> dict:
+    """What the routing does right now, for /health and the operator: no secrets."""
+    return {"cloud_routing": enabled(), "synthetic_deployment": synthetic_deployment(), "trainee_data_approved": trainee_data_approved(),
+            "trainee_routes_use_cloud": enabled() and trainee_cloud_allowed()}
+
+
+# The free plan allows one cloud request at a time. A task takes the slot without waiting longer than a moment (a live task must not queue behind another: it answers on the local model instead); an offline task may wait.
+_CLOUD_SLOT = threading.Semaphore(1)
+LIVE_WAIT_SECONDS = 0.25
+BATCH_WAIT_SECONDS = 120.0
+
+
+def acquire_cloud(role: str) -> bool:
+    return _CLOUD_SLOT.acquire(timeout=LIVE_WAIT_SECONDS if role == "live" else BATCH_WAIT_SECONDS)
+
+
+def release_cloud() -> None:
+    _CLOUD_SLOT.release()
+
+
+def cloud_timeout(role: str) -> float:
+    return float(_table().get("cloud_timeout_seconds", {}).get(role, 4.0 if role == "live" else 120.0))
 
 
 @dataclass(frozen=True)
@@ -90,7 +125,7 @@ def resolve(task: str | None, prompt_id: str, role: str) -> Route:
         return Route(model, False, "route", "", data_class)
     if not enabled():
         return Route(local, False, "switch_off", "", data_class)
-    if data_class != "synthetic" and not trainee_data_approved():
+    if data_class != "synthetic" and not trainee_cloud_allowed():
         return Route(local, False, "privacy_gate", "", data_class)
     return Route(model, True, "route", entry.get("fallback", local), data_class)
 

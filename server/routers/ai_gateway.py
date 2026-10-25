@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 
 from server.config import Settings, get_settings
 from server import ai_features
-from server.llm import client as client_mod, gateway, prompts
+from server.llm import client as client_mod, gateway, prompts, routing
 from server.llm.validators import VALIDATORS
 from server.middleware.audit import AiCallRecord, audited
 from server.ratelimit import RateLimiter
@@ -110,6 +110,6 @@ def generate(body: GenerateIn, request: Request, call: AiCallRecord = Depends(au
 def ai_health(client: client_mod.OllamaClient | None = Depends(get_llm_client)) -> dict:
     """Whether the model host answers (no sign-in: it says nothing about any person)."""
     if client is None:
-        return {"llm": {"up": False, "configured": False}, "features": ai_features.status()}
+        return {"llm": {"up": False, "configured": False}, "features": ai_features.status(), "routing": routing.status()}
     h = client.health()
-    return {"llm": {"up": h["up"], "configured": True, "models": len(h["models"]), "ms": h["ms"]}, "features": ai_features.status()}
+    return {"llm": {"up": h["up"], "configured": True, "models": len(h["models"]), "ms": h["ms"]}, "features": ai_features.status(), "routing": routing.status()}

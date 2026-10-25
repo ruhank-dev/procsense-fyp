@@ -115,5 +115,9 @@
    "evidence": "reports/ai/cloud-routing-benchmark.json",
    "why": "Real-time spoken orders; not benchmarked against a cloud model; stays local."
   }
+ },
+ "cloud_timeout_seconds": {
+  "live": 4.0,
+  "batch": 120.0
  }
 }
