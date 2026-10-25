@@ -8,7 +8,7 @@
  "note": "Synthetic DRAFT planning fixtures made by tools/composer/multiproblem.py from problems of approved cases by the walkthrough's 14B.5 recipe. They are not case files and not clinically validated; the clinical values that make each combination true must still be authored from sourced tables (p2-content-extensions-s02, DT-220).",
  "compositions": [
   {
-   "id": "MP-S1-6c7af708",
+   "id": "MP-S1-6c96bfb5",
    "scenario": "S1",
    "problems": [
     {
@@ -28,17 +28,17 @@
     {
      "order": 2,
      "type": "pathway_changing",
-     "label": "Unexplained anaemia: bleeding on warfarin",
-     "source_case": "SC-13",
-     "source_problem": "sc13.anaemia",
+     "label": "Unexplained iron-deficiency anaemia in an older man",
+     "source_case": "SC-23",
+     "source_problem": "sc23.anaemia",
      "source_rank": 2,
      "topics": [
-      "anaemia",
-      "blood thinners"
+      "anaemia"
      ],
      "checks": [
-      "Group and save",
-      "Investigate"
+      "Repeat the blood count",
+      "Refer for investigation of the source",
+      "Do not give iron as the only answer"
      ]
     },
     {
@@ -69,13 +69,18 @@
      "time": null
     },
     {
-     "problem": "Unexplained anaemia: bleeding on warfarin",
-     "action": "Group and save",
+     "problem": "Unexplained iron-deficiency anaemia in an older man",
+     "action": "Repeat the blood count",
      "time": null
     },
     {
-     "problem": "Unexplained anaemia: bleeding on warfarin",
-     "action": "Investigate",
+     "problem": "Unexplained iron-deficiency anaemia in an older man",
+     "action": "Refer for investigation of the source",
+     "time": null
+    },
+    {
+     "problem": "Unexplained iron-deficiency anaemia in an older man",
+     "action": "Do not give iron as the only answer",
      "time": null
     },
     {
@@ -89,9 +94,7 @@
      "time": null
     }
    ],
-   "cross_checks": [
-    "blood thinners"
-   ],
+   "cross_checks": [],
    "requires": {
     "sex": null,
     "minor": false
@@ -120,293 +123,38 @@
    }
   },
   {
-   "id": "MP-S1-6d972092",
+   "id": "MP-S1-77dd7c12",
    "scenario": "S1",
    "problems": [
     {
      "order": 1,
-     "type": "safety_blocker",
-     "label": "Slow heart and low BP",
-     "source_case": "STK-S1-C",
-     "source_problem": "stkc.brady",
-     "source_rank": 3,
+     "type": "pathway_changing",
+     "label": "High risk of obstructive sleep apnoea with BMI 41",
+     "source_case": "VAR-S1-M",
+     "source_problem": "s1m.osa",
+     "source_rank": 1,
      "topics": [],
      "checks": [
-      "Manual pulse and repeat BP",
-      "Tell the anaesthetist"
+      "Tell the anaesthetist",
+      "ASA grade 3 recorded",
+      "Plan extra monitoring after surgery and careful painkillers",
+      "Anaesthetist decides: proceed with precautions or sleep study first"
      ]
     },
     {
      "order": 2,
      "type": "pathway_changing",
-     "label": "Anticoagulant still active: bleeding risk at surgery",
-     "source_case": "VAR-S1-D",
-     "source_problem": "d.anticoag",
-     "source_rank": 1,
-     "topics": [
-      "blood thinners",
-      "kidneys"
-     ],
-     "checks": [
-      "Ask exactly when he last took apixaban",
-      "Check kidney function",
-      "Decide: three days ago means proceed; this morning means defer and re-list",
-      "Tell the surgeon and the anaesthetist"
-     ]
-    },
-    {
-     "order": 3,
-     "type": "pathway_changing",
-     "label": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "source_case": "STK-S1-B",
-     "source_problem": "stkb.anaemia",
-     "source_rank": 2,
-     "topics": [
-      "anaemia"
-     ],
-     "checks": [
-      "FBC and ferritin",
-      "Ask about dark stools",
-      "Refer for investigation of the cause (GI)"
-     ]
-    }
-   ],
-   "end_state": "redirected",
-   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
-   "clock": {
-    "set_by": "stkc.brady",
-    "type": "safety_blocker",
-    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
-   },
-   "handover_items": [
-    {
-     "problem": "Slow heart and low BP",
-     "action": "Manual pulse and repeat BP",
-     "time": null
-    },
-    {
-     "problem": "Slow heart and low BP",
-     "action": "Tell the anaesthetist",
-     "time": null
-    },
-    {
-     "problem": "Anticoagulant still active: bleeding risk at surgery",
-     "action": "Ask exactly when he last took apixaban",
-     "time": null
-    },
-    {
-     "problem": "Anticoagulant still active: bleeding risk at surgery",
-     "action": "Check kidney function",
-     "time": null
-    },
-    {
-     "problem": "Anticoagulant still active: bleeding risk at surgery",
-     "action": "Decide: three days ago means proceed; this morning means defer and re-list",
-     "time": null
-    },
-    {
-     "problem": "Anticoagulant still active: bleeding risk at surgery",
-     "action": "Tell the surgeon and the anaesthetist",
-     "time": null
-    },
-    {
-     "problem": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "action": "FBC and ferritin",
-     "time": null
-    },
-    {
-     "problem": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "action": "Ask about dark stools",
-     "time": null
-    },
-    {
-     "problem": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "action": "Refer for investigation of the cause (GI)",
-     "time": null
-    }
-   ],
-   "cross_checks": [
-    "blood thinners",
-    "kidneys"
-   ],
-   "requires": {
-    "sex": null,
-    "minor": false
-   },
-   "authoring_required": [
-    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
-    "the decision prompts and options for the combined case",
-    "Stage B and golden runs of the authored case"
-   ],
-   "status": "DRAFT",
-   "synthetic": true,
-   "clinically_validated": false,
-   "practice_only": true,
-   "recipe": {
-    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
-    "steps_run": [
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7
-    ],
-    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
-   }
-  },
-  {
-   "id": "MP-S1-a7014e5a",
-   "scenario": "S1",
-   "problems": [
-    {
-     "order": 1,
-     "type": "time_critical",
-     "label": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
-     "source_case": "STK-S1-C",
-     "source_problem": "stkc.aki",
-     "source_rank": 2,
-     "topics": [
-      "kidneys"
-     ],
-     "checks": [
-      "Fluid status and urine output",
-      "Flag the medicines to hold",
-      "Fluid plan with heart-failure caution"
-     ]
-    },
-    {
-     "order": 2,
-     "type": "pathway_changing",
-     "label": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)",
-     "source_case": "STK-S1-D",
-     "source_problem": "s1d.duct",
-     "source_rank": 2,
-     "topics": [
-      "liver"
-     ],
-     "checks": [
-      "Request urgent liver tests and ultrasound",
-      "Refer to gastroenterology for ERCP",
-      "The elective list is cancelled"
-     ]
-    },
-    {
-     "order": 3,
-     "type": "information_only",
-     "label": "Blood pressure 174/102, repeat 172/100 (below 180/110)",
-     "source_case": "STK-S1-A",
-     "source_problem": "stka.bp",
+     "label": "Acute cholecystitis behind the picture",
+     "source_case": "SC-22",
+     "source_problem": "sc22.chole",
      "source_rank": 4,
      "topics": [],
      "checks": [
-      "Repeat after rest",
-      "Document; GP letter"
-     ]
-    }
-   ],
-   "end_state": "redirected",
-   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
-   "clock": {
-    "set_by": "stkc.aki",
-    "type": "time_critical",
-    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
-   },
-   "handover_items": [
-    {
-     "problem": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
-     "action": "Fluid status and urine output",
-     "time": null
-    },
-    {
-     "problem": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
-     "action": "Flag the medicines to hold",
-     "time": null
-    },
-    {
-     "problem": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
-     "action": "Fluid plan with heart-failure caution",
-     "time": null
-    },
-    {
-     "problem": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)",
-     "action": "Request urgent liver tests and ultrasound",
-     "time": null
-    },
-    {
-     "problem": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)",
-     "action": "Refer to gastroenterology for ERCP",
-     "time": null
-    },
-    {
-     "problem": "Obstructed infected bile duct (TG18 acute cholangitis, Grade II)",
-     "action": "The elective list is cancelled",
-     "time": null
-    },
-    {
-     "problem": "Blood pressure 174/102, repeat 172/100 (below 180/110)",
-     "action": "Repeat after rest",
-     "time": null
-    },
-    {
-     "problem": "Blood pressure 174/102, repeat 172/100 (below 180/110)",
-     "action": "Document; GP letter",
-     "time": null
-    }
-   ],
-   "cross_checks": [
-    "kidneys",
-    "liver"
-   ],
-   "requires": {
-    "sex": null,
-    "minor": false
-   },
-   "authoring_required": [
-    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
-    "the decision prompts and options for the combined case",
-    "Stage B and golden runs of the authored case"
-   ],
-   "status": "DRAFT",
-   "synthetic": true,
-   "clinically_validated": false,
-   "practice_only": true,
-   "recipe": {
-    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
-    "steps_run": [
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7
-    ],
-    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
-   }
-  },
-  {
-   "id": "MP-S1-e11c5e0b",
-   "scenario": "S1",
-   "problems": [
-    {
-     "order": 1,
-     "type": "life_threat",
-     "label": "Severe hyperkalaemia (6.6) with ECG changes",
-     "source_case": "STK-S1-C",
-     "source_problem": "stkc.k",
-     "source_rank": 1,
-     "topics": [],
-     "checks": [
-      "Read back the critical result",
-      "Call for help: senior and the medical or emergency team",
-      "Cardiac monitor and IV access",
-      "Treat without waiting for a repeat sample (ECG already abnormal)"
+      "Surgical and radiology review"
      ]
     },
     {
-     "order": 2,
+     "order": 3,
      "type": "information_only",
      "label": "Nothing abnormal: the patient is fit and fasted",
      "source_case": "VAR-S1-A",
@@ -430,29 +178,34 @@
    "end_state": "redirected",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
-    "set_by": "stkc.k",
-    "type": "life_threat",
+    "set_by": "s1m.osa",
+    "type": "pathway_changing",
     "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
    },
    "handover_items": [
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Read back the critical result",
+     "problem": "High risk of obstructive sleep apnoea with BMI 41",
+     "action": "Tell the anaesthetist",
      "time": null
     },
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Call for help: senior and the medical or emergency team",
+     "problem": "High risk of obstructive sleep apnoea with BMI 41",
+     "action": "ASA grade 3 recorded",
      "time": null
     },
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Cardiac monitor and IV access",
+     "problem": "High risk of obstructive sleep apnoea with BMI 41",
+     "action": "Plan extra monitoring after surgery and careful painkillers",
      "time": null
     },
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Treat without waiting for a repeat sample (ECG already abnormal)",
+     "problem": "High risk of obstructive sleep apnoea with BMI 41",
+     "action": "Anaesthetist decides: proceed with precautions or sleep study first",
+     "time": null
+    },
+    {
+     "problem": "Acute cholecystitis behind the picture",
+     "action": "Surgical and radiology review",
      "time": null
     },
     {
@@ -509,109 +262,490 @@
    }
   },
   {
-   "id": "MP-S1-eb713de6",
+   "id": "MP-S1-9148a0b1",
    "scenario": "S1",
    "problems": [
     {
      "order": 1,
-     "type": "life_threat",
-     "label": "Severe hyperkalaemia (6.6) with ECG changes",
-     "source_case": "STK-S1-C",
-     "source_problem": "stkc.k",
+     "type": "safety_blocker",
+     "label": "Fasting rule broken: a light meal 2 hours before surgery",
+     "source_case": "VAR-S1-G",
+     "source_problem": "g.fasting",
      "source_rank": 1,
-     "topics": [],
+     "topics": [
+      "fasting"
+     ],
      "checks": [
-      "Read back the critical result",
-      "Call for help: senior and the medical or emergency team",
-      "Cardiac monitor and IV access",
-      "Treat without waiting for a repeat sample (ECG already abnormal)"
+      "Record the exact time and what she ate",
+      "Tell the anaesthetist immediately and honestly",
+      "Do not round the time"
      ]
     },
     {
      "order": 2,
-     "type": "safety_blocker",
-     "label": "Identity, allergy, consent and pregnancy-status checkpoints",
-     "source_case": "VAR-S1-A",
-     "source_problem": "a.blockers",
-     "source_rank": 2,
-     "topics": [
-      "allergy",
-      "consent",
-      "identity",
-      "pregnancy"
-     ],
+     "type": "pathway_changing",
+     "label": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+     "source_case": "VAR-S1-E",
+     "source_problem": "e.cholecystitis",
+     "source_rank": 1,
+     "topics": [],
      "checks": [
-      "Close each checkpoint before transfer"
+      "Recognise A (local signs), B (systemic signs) and C (imaging)",
+      "Grade it: Grade I",
+      "Do not take her on today's planned list as a routine case",
+      "Senior surgeon review; antibiotics per protocol; move to the acute pathway"
      ]
     },
     {
      "order": 3,
      "type": "pathway_changing",
-     "label": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "source_case": "STK-S1-B",
-     "source_problem": "stkb.anaemia",
-     "source_rank": 2,
+     "label": "Probable stone in the main bile duct: not what he was booked for",
+     "source_case": "SC-21",
+     "source_problem": "sc21.cbd",
+     "source_rank": 3,
      "topics": [
-      "anaemia"
+      "liver"
      ],
      "checks": [
-      "FBC and ferritin",
-      "Ask about dark stools",
-      "Refer for investigation of the cause (GI)"
+      "Ask the red-flag questions and look at the eyes",
+      "Liver tests and ultrasound",
+      "Do not proceed; call the senior surgeon"
      ]
     }
    ],
    "end_state": "redirected",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
-    "set_by": "stkc.k",
+    "set_by": "g.fasting",
+    "type": "safety_blocker",
+    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
+   },
+   "handover_items": [
+    {
+     "problem": "Fasting rule broken: a light meal 2 hours before surgery",
+     "action": "Record the exact time and what she ate",
+     "time": null
+    },
+    {
+     "problem": "Fasting rule broken: a light meal 2 hours before surgery",
+     "action": "Tell the anaesthetist immediately and honestly",
+     "time": null
+    },
+    {
+     "problem": "Fasting rule broken: a light meal 2 hours before surgery",
+     "action": "Do not round the time",
+     "time": null
+    },
+    {
+     "problem": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+     "action": "Recognise A (local signs), B (systemic signs) and C (imaging)",
+     "time": null
+    },
+    {
+     "problem": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+     "action": "Grade it: Grade I",
+     "time": null
+    },
+    {
+     "problem": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+     "action": "Do not take her on today's planned list as a routine case",
+     "time": null
+    },
+    {
+     "problem": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018",
+     "action": "Senior surgeon review; antibiotics per protocol; move to the acute pathway",
+     "time": null
+    },
+    {
+     "problem": "Probable stone in the main bile duct: not what he was booked for",
+     "action": "Ask the red-flag questions and look at the eyes",
+     "time": null
+    },
+    {
+     "problem": "Probable stone in the main bile duct: not what he was booked for",
+     "action": "Liver tests and ultrasound",
+     "time": null
+    },
+    {
+     "problem": "Probable stone in the main bile duct: not what he was booked for",
+     "action": "Do not proceed; call the senior surgeon",
+     "time": null
+    }
+   ],
+   "cross_checks": [
+    "liver"
+   ],
+   "requires": {
+    "sex": null,
+    "minor": false
+   },
+   "authoring_required": [
+    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
+    "the decision prompts and options for the combined case",
+    "Stage B and golden runs of the authored case"
+   ],
+   "status": "DRAFT",
+   "synthetic": true,
+   "clinically_validated": false,
+   "practice_only": true,
+   "recipe": {
+    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
+    "steps_run": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
+   }
+  },
+  {
+   "id": "MP-S1-ab36ac1a",
+   "scenario": "S1",
+   "problems": [
+    {
+     "order": 1,
+     "type": "safety_blocker",
+     "label": "Warfarin not stopped: INR 2.6",
+     "source_case": "SC-13",
+     "source_problem": "sc13.inr",
+     "source_rank": 1,
+     "topics": [
+      "blood thinners"
+     ],
+     "checks": [
+      "Tell the anaesthetist",
+      "Anticoagulation clinic plan"
+     ]
+    },
+    {
+     "order": 2,
+     "type": "pathway_changing",
+     "label": "HbA1c 76 above the limit of 69 for planned surgery",
+     "source_case": "SC-23",
+     "source_problem": "sc23.hba1c",
+     "source_rank": 3,
+     "topics": [
+      "diabetes"
+     ],
+     "checks": [
+      "Tell the diabetes team",
+      "Re-list when below 69"
+     ]
+    }
+   ],
+   "end_state": "postponed",
+   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
+   "clock": {
+    "set_by": "sc13.inr",
+    "type": "safety_blocker",
+    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
+   },
+   "handover_items": [
+    {
+     "problem": "Warfarin not stopped: INR 2.6",
+     "action": "Tell the anaesthetist",
+     "time": null
+    },
+    {
+     "problem": "Warfarin not stopped: INR 2.6",
+     "action": "Anticoagulation clinic plan",
+     "time": null
+    },
+    {
+     "problem": "HbA1c 76 above the limit of 69 for planned surgery",
+     "action": "Tell the diabetes team",
+     "time": null
+    },
+    {
+     "problem": "HbA1c 76 above the limit of 69 for planned surgery",
+     "action": "Re-list when below 69",
+     "time": null
+    }
+   ],
+   "cross_checks": [
+    "blood thinners",
+    "diabetes"
+   ],
+   "requires": {
+    "sex": null,
+    "minor": false
+   },
+   "authoring_required": [
+    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
+    "the decision prompts and options for the combined case",
+    "Stage B and golden runs of the authored case"
+   ],
+   "status": "DRAFT",
+   "synthetic": true,
+   "clinically_validated": false,
+   "practice_only": true,
+   "recipe": {
+    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
+    "steps_run": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
+   }
+  },
+  {
+   "id": "MP-S1-b27b982d",
+   "scenario": "S1",
+   "problems": [
+    {
+     "order": 1,
+     "type": "life_threat",
+     "label": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+     "source_case": "SC-22",
+     "source_problem": "sc22.sepsis",
+     "source_rank": 1,
+     "topics": [
+      "liver",
+      "sepsis"
+     ],
+     "checks": [
+      "Call the senior and the anaesthetist",
+      "Cultures and lactate",
+      "Antibiotic by the prescriber within 1 hour"
+     ]
+    },
+    {
+     "order": 2,
+     "type": "time_critical",
+     "label": "Acute cholecystitis with early systemic signs",
+     "source_case": "SC-21",
+     "source_problem": "sc21.chole",
+     "source_rank": 2,
+     "topics": [],
+     "checks": [
+      "Look for systemic signs",
+      "Request inflammatory markers",
+      "Surgical review"
+     ]
+    },
+    {
+     "order": 3,
+     "type": "pathway_changing",
+     "label": "Real low sodium from the water tablet",
+     "source_case": "SC-12",
+     "source_problem": "sc12.na",
+     "source_rank": 1,
+     "topics": [
+      "electrolytes"
+     ],
+     "checks": [
+      "Postpone",
+      "Medical review"
+     ]
+    }
+   ],
+   "end_state": "redirected",
+   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
+   "clock": {
+    "set_by": "sc22.sepsis",
     "type": "life_threat",
     "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
    },
    "handover_items": [
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Read back the critical result",
+     "problem": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+     "action": "Call the senior and the anaesthetist",
      "time": null
     },
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Call for help: senior and the medical or emergency team",
+     "problem": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+     "action": "Cultures and lactate",
      "time": null
     },
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Cardiac monitor and IV access",
+     "problem": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)",
+     "action": "Antibiotic by the prescriber within 1 hour",
+     "time": "within 1 hour"
+    },
+    {
+     "problem": "Acute cholecystitis with early systemic signs",
+     "action": "Look for systemic signs",
      "time": null
     },
     {
-     "problem": "Severe hyperkalaemia (6.6) with ECG changes",
-     "action": "Treat without waiting for a repeat sample (ECG already abnormal)",
+     "problem": "Acute cholecystitis with early systemic signs",
+     "action": "Request inflammatory markers",
      "time": null
     },
     {
-     "problem": "Identity, allergy, consent and pregnancy-status checkpoints",
-     "action": "Close each checkpoint before transfer",
+     "problem": "Acute cholecystitis with early systemic signs",
+     "action": "Surgical review",
      "time": null
     },
     {
-     "problem": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "action": "FBC and ferritin",
+     "problem": "Real low sodium from the water tablet",
+     "action": "Postpone",
      "time": null
     },
     {
-     "problem": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "action": "Ask about dark stools",
+     "problem": "Real low sodium from the water tablet",
+     "action": "Medical review",
+     "time": null
+    }
+   ],
+   "cross_checks": [
+    "liver"
+   ],
+   "requires": {
+    "sex": null,
+    "minor": false
+   },
+   "authoring_required": [
+    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
+    "the decision prompts and options for the combined case",
+    "Stage B and golden runs of the authored case"
+   ],
+   "status": "DRAFT",
+   "synthetic": true,
+   "clinically_validated": false,
+   "practice_only": true,
+   "recipe": {
+    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
+    "steps_run": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
+   }
+  },
+  {
+   "id": "MP-S1-f9f500fd",
+   "scenario": "S1",
+   "problems": [
+    {
+     "order": 1,
+     "type": "time_critical",
+     "label": "Acute cholecystitis with early systemic signs",
+     "source_case": "SC-21",
+     "source_problem": "sc21.chole",
+     "source_rank": 2,
+     "topics": [],
+     "checks": [
+      "Look for systemic signs",
+      "Request inflammatory markers",
+      "Surgical review"
+     ]
+    },
+    {
+     "order": 2,
+     "type": "time_critical",
+     "label": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
+     "source_case": "STK-S1-C",
+     "source_problem": "stkc.aki",
+     "source_rank": 2,
+     "topics": [
+      "kidneys"
+     ],
+     "checks": [
+      "Fluid status and urine output",
+      "Flag the medicines to hold",
+      "Fluid plan with heart-failure caution"
+     ]
+    },
+    {
+     "order": 3,
+     "type": "information_only",
+     "label": "Nothing abnormal: the patient is fit and fasted",
+     "source_case": "VAR-S1-A",
+     "source_problem": "a.nothing",
+     "source_rank": 1,
+     "topics": [
+      "allergy",
+      "fasting",
+      "identity",
+      "liver",
+      "pregnancy"
+     ],
+     "checks": [
+      "Complete the identity check against the wristband and the notes",
+      "Confirm there are no allergies",
+      "Check fasting times",
+      "Do the liver tests and the urine pregnancy test"
+     ]
+    }
+   ],
+   "end_state": "redirected",
+   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
+   "clock": {
+    "set_by": "sc21.chole",
+    "type": "time_critical",
+    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
+   },
+   "handover_items": [
+    {
+     "problem": "Acute cholecystitis with early systemic signs",
+     "action": "Look for systemic signs",
      "time": null
     },
     {
-     "problem": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)",
-     "action": "Refer for investigation of the cause (GI)",
+     "problem": "Acute cholecystitis with early systemic signs",
+     "action": "Request inflammatory markers",
+     "time": null
+    },
+    {
+     "problem": "Acute cholecystitis with early systemic signs",
+     "action": "Surgical review",
+     "time": null
+    },
+    {
+     "problem": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
+     "action": "Fluid status and urine output",
+     "time": null
+    },
+    {
+     "problem": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
+     "action": "Flag the medicines to hold",
+     "time": null
+    },
+    {
+     "problem": "Acute kidney injury (creatinine 178, baseline 112) with dehydration",
+     "action": "Fluid plan with heart-failure caution",
+     "time": null
+    },
+    {
+     "problem": "Nothing abnormal: the patient is fit and fasted",
+     "action": "Complete the identity check against the wristband and the notes",
+     "time": null
+    },
+    {
+     "problem": "Nothing abnormal: the patient is fit and fasted",
+     "action": "Confirm there are no allergies",
+     "time": null
+    },
+    {
+     "problem": "Nothing abnormal: the patient is fit and fasted",
+     "action": "Check fasting times",
+     "time": null
+    },
+    {
+     "problem": "Nothing abnormal: the patient is fit and fasted",
+     "action": "Do the liver tests and the urine pregnancy test",
      "time": null
     }
    ],
    "cross_checks": [
     "allergy",
+    "kidneys",
+    "liver",
     "pregnancy"
    ],
    "requires": {
@@ -642,98 +776,105 @@
    }
   },
   {
-   "id": "MP-S1-fb492670",
-   "scenario": "S1",
+   "id": "MP-S2-42b211d8",
+   "scenario": "S2",
    "problems": [
     {
      "order": 1,
-     "type": "life_threat",
-     "label": "High-risk sepsis (NEWS2 7, lactate 2.6)",
-     "source_case": "STK-S1-D",
-     "source_problem": "s1d.sepsis",
+     "type": "time_critical",
+     "label": "Deterioration overrides wait-and-see",
+     "source_case": "SC-14",
+     "source_problem": "sc14.det",
      "source_rank": 1,
      "topics": [
       "sepsis"
      ],
      "checks": [
-      "Call the senior",
-      "IV access; blood cultures; lactate",
-      "Antibiotics and fluids within 1 hour by the clinician's order"
+      "Senior now",
+      "Sepsis screen"
      ]
     },
     {
      "order": 2,
-     "type": "pathway_changing",
-     "label": "Unexplained anaemia: bleeding on warfarin",
-     "source_case": "SC-13",
-     "source_problem": "sc13.anaemia",
-     "source_rank": 2,
+     "type": "time_critical",
+     "label": "Full stomach: a large meal 2 hours ago",
+     "source_case": "SC-29",
+     "source_problem": "sc29.stomach",
+     "source_rank": 3,
      "topics": [
-      "anaemia",
-      "blood thinners"
+      "fasting"
      ],
      "checks": [
-      "Group and save",
-      "Investigate"
+      "Tell the anaesthetist the time of the meal"
      ]
     },
     {
      "order": 3,
-     "type": "information_only",
-     "label": "Low-risk planned operation: an antibiotic is probably not needed",
-     "source_case": "VAR-S1-I",
-     "source_problem": "s1i.lowrisk",
-     "source_rank": 2,
-     "topics": [],
+     "type": "pathway_changing",
+     "label": "Appendicitis in pregnancy with fever",
+     "source_case": "SC-3",
+     "source_problem": "sc3.preg",
+     "source_rank": 1,
+     "topics": [
+      "pregnancy"
+     ],
      "checks": [
-      "Note the plan for the prescriber"
+      "Obstetrics early",
+      "MRI",
+      "Left tilt",
+      "Maternity score"
      ]
     }
    ],
-   "end_state": "redirected",
+   "end_state": "ready",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
-    "set_by": "s1d.sepsis",
-    "type": "life_threat",
+    "set_by": "sc14.det",
+    "type": "time_critical",
     "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
    },
    "handover_items": [
     {
-     "problem": "High-risk sepsis (NEWS2 7, lactate 2.6)",
-     "action": "Call the senior",
+     "problem": "Deterioration overrides wait-and-see",
+     "action": "Senior now",
+     "time": "now"
+    },
+    {
+     "problem": "Deterioration overrides wait-and-see",
+     "action": "Sepsis screen",
      "time": null
     },
     {
-     "problem": "High-risk sepsis (NEWS2 7, lactate 2.6)",
-     "action": "IV access; blood cultures; lactate",
+     "problem": "Full stomach: a large meal 2 hours ago",
+     "action": "Tell the anaesthetist the time of the meal",
      "time": null
     },
     {
-     "problem": "High-risk sepsis (NEWS2 7, lactate 2.6)",
-     "action": "Antibiotics and fluids within 1 hour by the clinician's order",
-     "time": "within 1 hour"
-    },
-    {
-     "problem": "Unexplained anaemia: bleeding on warfarin",
-     "action": "Group and save",
+     "problem": "Appendicitis in pregnancy with fever",
+     "action": "Obstetrics early",
      "time": null
     },
     {
-     "problem": "Unexplained anaemia: bleeding on warfarin",
-     "action": "Investigate",
+     "problem": "Appendicitis in pregnancy with fever",
+     "action": "MRI",
      "time": null
     },
     {
-     "problem": "Low-risk planned operation: an antibiotic is probably not needed",
-     "action": "Note the plan for the prescriber",
+     "problem": "Appendicitis in pregnancy with fever",
+     "action": "Left tilt",
+     "time": null
+    },
+    {
+     "problem": "Appendicitis in pregnancy with fever",
+     "action": "Maternity score",
      "time": null
     }
    ],
    "cross_checks": [
-    "blood thinners"
+    "pregnancy"
    ],
    "requires": {
-    "sex": null,
+    "sex": "F",
     "minor": false
    },
    "authoring_required": [
@@ -760,7 +901,147 @@
    }
   },
   {
-   "id": "MP-S2-2c6c9976",
+   "id": "MP-S2-4d17fe32",
+   "scenario": "S2",
+   "problems": [
+    {
+     "order": 1,
+     "type": "life_threat",
+     "label": "Possible ruptured ectopic pregnancy with internal bleeding",
+     "source_case": "VAR-S2-B",
+     "source_problem": "sb.bleed",
+     "source_rank": 1,
+     "topics": [
+      "blood thinners",
+      "pregnancy"
+     ],
+     "checks": [
+      "Stop the appendicitis pathway",
+      "Call for help",
+      "Two large drips; crossmatch blood",
+      "Gynaecology now; keep nil by mouth"
+     ]
+    },
+    {
+     "order": 2,
+     "type": "pathway_changing",
+     "label": "Perforated appendix: urgent source control",
+     "source_case": "STK-S2-B",
+     "source_problem": "s2b.source",
+     "source_rank": 3,
+     "topics": [
+      "allergy"
+     ],
+     "checks": [
+      "Anaesthetist and senior now",
+      "RSI; allergy check for anaesthetic drugs; renal dosing",
+      "Antibiotic cover before and after (2 to 3 days, WSES 2025)"
+     ]
+    },
+    {
+     "order": 3,
+     "type": "optimisable",
+     "label": "Mild anaemia with weight loss",
+     "source_case": "VAR-S2-E",
+     "source_problem": "s2e.anaemia",
+     "source_rank": 2,
+     "topics": [
+      "anaemia"
+     ],
+     "checks": [
+      "Iron studies",
+      "Refer the cause for follow-up"
+     ]
+    }
+   ],
+   "end_state": "redirected",
+   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
+   "clock": {
+    "set_by": "sb.bleed",
+    "type": "life_threat",
+    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
+   },
+   "handover_items": [
+    {
+     "problem": "Possible ruptured ectopic pregnancy with internal bleeding",
+     "action": "Stop the appendicitis pathway",
+     "time": null
+    },
+    {
+     "problem": "Possible ruptured ectopic pregnancy with internal bleeding",
+     "action": "Call for help",
+     "time": null
+    },
+    {
+     "problem": "Possible ruptured ectopic pregnancy with internal bleeding",
+     "action": "Two large drips; crossmatch blood",
+     "time": null
+    },
+    {
+     "problem": "Possible ruptured ectopic pregnancy with internal bleeding",
+     "action": "Gynaecology now; keep nil by mouth",
+     "time": "now"
+    },
+    {
+     "problem": "Perforated appendix: urgent source control",
+     "action": "Anaesthetist and senior now",
+     "time": "now"
+    },
+    {
+     "problem": "Perforated appendix: urgent source control",
+     "action": "RSI; allergy check for anaesthetic drugs; renal dosing",
+     "time": null
+    },
+    {
+     "problem": "Perforated appendix: urgent source control",
+     "action": "Antibiotic cover before and after (2 to 3 days, WSES 2025)",
+     "time": null
+    },
+    {
+     "problem": "Mild anaemia with weight loss",
+     "action": "Iron studies",
+     "time": null
+    },
+    {
+     "problem": "Mild anaemia with weight loss",
+     "action": "Refer the cause for follow-up",
+     "time": null
+    }
+   ],
+   "cross_checks": [
+    "allergy",
+    "blood thinners",
+    "pregnancy"
+   ],
+   "requires": {
+    "sex": "F",
+    "minor": false
+   },
+   "authoring_required": [
+    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
+    "the decision prompts and options for the combined case",
+    "Stage B and golden runs of the authored case"
+   ],
+   "status": "DRAFT",
+   "synthetic": true,
+   "clinically_validated": false,
+   "practice_only": true,
+   "recipe": {
+    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
+    "steps_run": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
+   }
+  },
+  {
+   "id": "MP-S2-4eb6f1f4",
    "scenario": "S2",
    "problems": [
     {
@@ -781,34 +1062,36 @@
     },
     {
      "order": 2,
-     "type": "life_threat",
-     "label": "Breathing: RR 9 and SpO2 90",
-     "source_case": "STK-S2-C",
-     "source_problem": "stkc2.breath",
+     "type": "time_critical",
+     "label": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose",
+     "source_case": "SC-28",
+     "source_problem": "sc28.dka",
      "source_rank": 2,
-     "topics": [],
+     "topics": [
+      "diabetes"
+     ],
      "checks": [
-      "Check the probe and the chest",
-      "Oxygen to the target; stimulate",
-      "Reassess every few minutes"
+      "Ketones and venous gas",
+      "Stop the SGLT2 inhibitor",
+      "Call the diabetes team"
      ]
     },
     {
      "order": 3,
-     "type": "optimisable",
-     "label": "Aspirin usually continues",
-     "source_case": "SC-20",
-     "source_problem": "sc20.asp",
+     "type": "pathway_changing",
+     "label": "A minor: consent per law",
+     "source_case": "SC-10",
+     "source_problem": "sc10.consent",
      "source_rank": 2,
      "topics": [
-      "blood thinners"
+      "consent"
      ],
      "checks": [
-      "Senior decides"
+      "Follow hospital policy"
      ]
     }
    ],
-   "end_state": "delayed",
+   "end_state": "ready",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
     "set_by": "sc11.sepsis",
@@ -832,32 +1115,32 @@
      "time": null
     },
     {
-     "problem": "Breathing: RR 9 and SpO2 90",
-     "action": "Check the probe and the chest",
+     "problem": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose",
+     "action": "Ketones and venous gas",
      "time": null
     },
     {
-     "problem": "Breathing: RR 9 and SpO2 90",
-     "action": "Oxygen to the target; stimulate",
+     "problem": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose",
+     "action": "Stop the SGLT2 inhibitor",
      "time": null
     },
     {
-     "problem": "Breathing: RR 9 and SpO2 90",
-     "action": "Reassess every few minutes",
+     "problem": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose",
+     "action": "Call the diabetes team",
      "time": null
     },
     {
-     "problem": "Aspirin usually continues",
-     "action": "Senior decides",
+     "problem": "A minor: consent per law",
+     "action": "Follow hospital policy",
      "time": null
     }
    ],
    "cross_checks": [
-    "blood thinners"
+    "diabetes"
    ],
    "requires": {
     "sex": null,
-    "minor": false
+    "minor": true
    },
    "authoring_required": [
     "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
@@ -883,103 +1166,89 @@
    }
   },
   {
-   "id": "MP-S2-7110e393",
+   "id": "MP-S2-5ce632bd",
    "scenario": "S2",
    "problems": [
     {
      "order": 1,
-     "type": "life_threat",
-     "label": "Septic shock",
+     "type": "safety_blocker",
+     "label": "No suxamethonium; correct potassium first",
      "source_case": "SC-8",
-     "source_problem": "sc8.shock",
-     "source_rank": 2,
+     "source_problem": "sc8.anaes",
+     "source_rank": 3,
      "topics": [
-      "sepsis"
+      "electrolytes"
      ],
      "checks": [
-      "Cultures",
-      "Antibiotics in 1 hour",
-      "Fluids by clinician"
+      "Tell the anaesthetist"
      ]
     },
     {
      "order": 2,
-     "type": "pathway_changing",
-     "label": "Perforated appendix: urgent source control",
-     "source_case": "VAR-S2-PD",
-     "source_problem": "pd.source",
+     "type": "time_critical",
+     "label": "Dehydration with a rising creatinine",
+     "source_case": "SC-27",
+     "source_problem": "sc27.dehyd",
      "source_rank": 3,
      "topics": [
-      "fasting",
       "kidneys"
      ],
      "checks": [
-      "Request urgent CT if the senior wants it (escort and monitor)",
-      "Emergency call at 15:15: senior surgeon and anaesthetist",
-      "Handover with lactate, fluids, antibiotic time, NEWS2, kidney injury, aspiration risk"
+      "Fluid bolus by clinician order",
+      "Urine output",
+      "Repeat creatinine"
      ]
     },
     {
      "order": 3,
-     "type": "optimisable",
-     "label": "Aspirin usually continues",
-     "source_case": "SC-20",
-     "source_problem": "sc20.asp",
-     "source_rank": 2,
+     "type": "time_critical",
+     "label": "Full stomach for anaesthesia (a kebab 3 hours ago)",
+     "source_case": "STK-S2-C",
+     "source_problem": "stkc2.aspiration",
+     "source_rank": 4,
      "topics": [
-      "blood thinners"
+      "fasting"
      ],
      "checks": [
-      "Senior decides"
+      "Tell the anaesthetist"
      ]
     }
    ],
-   "end_state": "delayed",
+   "end_state": "ready",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
-    "set_by": "sc8.shock",
-    "type": "life_threat",
+    "set_by": "sc8.anaes",
+    "type": "safety_blocker",
     "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
    },
    "handover_items": [
     {
-     "problem": "Septic shock",
-     "action": "Cultures",
+     "problem": "No suxamethonium; correct potassium first",
+     "action": "Tell the anaesthetist",
      "time": null
     },
     {
-     "problem": "Septic shock",
-     "action": "Antibiotics in 1 hour",
+     "problem": "Dehydration with a rising creatinine",
+     "action": "Fluid bolus by clinician order",
      "time": null
     },
     {
-     "problem": "Septic shock",
-     "action": "Fluids by clinician",
+     "problem": "Dehydration with a rising creatinine",
+     "action": "Urine output",
      "time": null
     },
     {
-     "problem": "Perforated appendix: urgent source control",
-     "action": "Request urgent CT if the senior wants it (escort and monitor)",
+     "problem": "Dehydration with a rising creatinine",
+     "action": "Repeat creatinine",
      "time": null
     },
     {
-     "problem": "Perforated appendix: urgent source control",
-     "action": "Emergency call at 15:15: senior surgeon and anaesthetist",
-     "time": null
-    },
-    {
-     "problem": "Perforated appendix: urgent source control",
-     "action": "Handover with lactate, fluids, antibiotic time, NEWS2, kidney injury, aspiration risk",
-     "time": null
-    },
-    {
-     "problem": "Aspirin usually continues",
-     "action": "Senior decides",
+     "problem": "Full stomach for anaesthesia (a kebab 3 hours ago)",
+     "action": "Tell the anaesthetist",
      "time": null
     }
    ],
    "cross_checks": [
-    "blood thinners",
     "kidneys"
    ],
    "requires": {
@@ -1010,11 +1279,27 @@
    }
   },
   {
-   "id": "MP-S2-72cbb718",
+   "id": "MP-S2-acd3fa21",
    "scenario": "S2",
    "problems": [
     {
      "order": 1,
+     "type": "life_threat",
+     "label": "Sepsis with poor circulation",
+     "source_case": "SC-30",
+     "source_problem": "sc30.sepsis",
+     "source_rank": 1,
+     "topics": [
+      "sepsis"
+     ],
+     "checks": [
+      "Call the senior and the anaesthetist",
+      "Cultures and lactate",
+      "Antibiotic within 1 hour"
+     ]
+    },
+    {
+     "order": 2,
      "type": "safety_blocker",
      "label": "No suxamethonium; correct potassium first",
      "source_case": "SC-8",
@@ -1025,217 +1310,58 @@
      ],
      "checks": [
       "Tell the anaesthetist"
-     ]
-    },
-    {
-     "order": 2,
-     "type": "pathway_changing",
-     "label": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside",
-     "source_case": "VAR-S2-L",
-     "source_problem": "s2l.choice",
-     "source_rank": 1,
-     "topics": [
-      "consent"
-     ],
-     "checks": [
-      "Explain both options honestly",
-      "Senior discussion",
-      "Respect his choice and document it",
-      "Safety-net advice: return if pain worsens, fever, vomiting"
-     ]
-    },
-    {
-     "order": 3,
-     "type": "pathway_changing",
-     "label": "Perforated appendix: urgent source control",
-     "source_case": "STK-S2-B",
-     "source_problem": "s2b.source",
-     "source_rank": 3,
-     "topics": [
-      "allergy"
-     ],
-     "checks": [
-      "Anaesthetist and senior now",
-      "RSI; allergy check for anaesthetic drugs; renal dosing",
-      "Antibiotic cover before and after (2 to 3 days, WSES 2025)"
-     ]
-    }
-   ],
-   "end_state": "ready",
-   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
-   "clock": {
-    "set_by": "sc8.anaes",
-    "type": "safety_blocker",
-    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
-   },
-   "handover_items": [
-    {
-     "problem": "No suxamethonium; correct potassium first",
-     "action": "Tell the anaesthetist",
-     "time": null
-    },
-    {
-     "problem": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside",
-     "action": "Explain both options honestly",
-     "time": null
-    },
-    {
-     "problem": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside",
-     "action": "Senior discussion",
-     "time": null
-    },
-    {
-     "problem": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside",
-     "action": "Respect his choice and document it",
-     "time": null
-    },
-    {
-     "problem": "Capable refusal of surgery: antibiotics-only is a recognised option for simple appendicitis without a stone inside",
-     "action": "Safety-net advice: return if pain worsens, fever, vomiting",
-     "time": null
-    },
-    {
-     "problem": "Perforated appendix: urgent source control",
-     "action": "Anaesthetist and senior now",
-     "time": "now"
-    },
-    {
-     "problem": "Perforated appendix: urgent source control",
-     "action": "RSI; allergy check for anaesthetic drugs; renal dosing",
-     "time": null
-    },
-    {
-     "problem": "Perforated appendix: urgent source control",
-     "action": "Antibiotic cover before and after (2 to 3 days, WSES 2025)",
-     "time": null
-    }
-   ],
-   "cross_checks": [
-    "allergy"
-   ],
-   "requires": {
-    "sex": null,
-    "minor": false
-   },
-   "authoring_required": [
-    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
-    "the decision prompts and options for the combined case",
-    "Stage B and golden runs of the authored case"
-   ],
-   "status": "DRAFT",
-   "synthetic": true,
-   "clinically_validated": false,
-   "practice_only": true,
-   "recipe": {
-    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
-    "steps_run": [
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7
-    ],
-    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
-   }
-  },
-  {
-   "id": "MP-S2-9aa65f6e",
-   "scenario": "S2",
-   "problems": [
-    {
-     "order": 1,
-     "type": "safety_blocker",
-     "label": "Full stomach: aspiration risk",
-     "source_case": "VAR-S2-F",
-     "source_problem": "sf.stomach",
-     "source_rank": 1,
-     "topics": [
-      "fasting"
-     ],
-     "checks": [
-      "Record the exact time and what he ate",
-      "Tell the anaesthetist",
-      "Anaesthetist plans RSI"
-     ]
-    },
-    {
-     "order": 2,
-     "type": "safety_blocker",
-     "label": "Stop further opioid",
-     "source_case": "SC-7",
-     "source_problem": "sc7.opioid",
-     "source_rank": 3,
-     "topics": [],
-     "checks": [
-      "Clinician decides"
      ]
     },
     {
      "order": 3,
      "type": "time_critical",
-     "label": "Severe pain (8/10) must not wait for the paperwork",
-     "source_case": "VAR-S2-PC",
-     "source_problem": "pc.pain",
-     "source_rank": 1,
+     "label": "Full stomach: a large meal 2 hours ago",
+     "source_case": "SC-29",
+     "source_problem": "sc29.stomach",
+     "source_rank": 3,
      "topics": [
-      "allergy"
+      "fasting"
      ],
      "checks": [
-      "Check allergies",
-      "Ask the nurse for pain relief now",
-      "Re-check after treatment"
+      "Tell the anaesthetist the time of the meal"
      ]
     }
    ],
    "end_state": "ready",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
-    "set_by": "sf.stomach",
-    "type": "safety_blocker",
+    "set_by": "sc30.sepsis",
+    "type": "life_threat",
     "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
    },
    "handover_items": [
     {
-     "problem": "Full stomach: aspiration risk",
-     "action": "Record the exact time and what he ate",
+     "problem": "Sepsis with poor circulation",
+     "action": "Call the senior and the anaesthetist",
      "time": null
     },
     {
-     "problem": "Full stomach: aspiration risk",
+     "problem": "Sepsis with poor circulation",
+     "action": "Cultures and lactate",
+     "time": null
+    },
+    {
+     "problem": "Sepsis with poor circulation",
+     "action": "Antibiotic within 1 hour",
+     "time": "within 1 hour"
+    },
+    {
+     "problem": "No suxamethonium; correct potassium first",
      "action": "Tell the anaesthetist",
      "time": null
     },
     {
-     "problem": "Full stomach: aspiration risk",
-     "action": "Anaesthetist plans RSI",
-     "time": null
-    },
-    {
-     "problem": "Stop further opioid",
-     "action": "Clinician decides",
-     "time": null
-    },
-    {
-     "problem": "Severe pain (8/10) must not wait for the paperwork",
-     "action": "Check allergies",
-     "time": null
-    },
-    {
-     "problem": "Severe pain (8/10) must not wait for the paperwork",
-     "action": "Ask the nurse for pain relief now",
-     "time": "now"
-    },
-    {
-     "problem": "Severe pain (8/10) must not wait for the paperwork",
-     "action": "Re-check after treatment",
+     "problem": "Full stomach: a large meal 2 hours ago",
+     "action": "Tell the anaesthetist the time of the meal",
      "time": null
     }
    ],
-   "cross_checks": [
-    "allergy"
-   ],
+   "cross_checks": [],
    "requires": {
     "sex": null,
     "minor": false
@@ -1264,224 +1390,118 @@
    }
   },
   {
-   "id": "MP-S2-dc6844f9",
+   "id": "MP-S2-c50f93de",
    "scenario": "S2",
    "problems": [
     {
      "order": 1,
-     "type": "safety_blocker",
-     "label": "Record the new allergy",
-     "source_case": "SC-15",
-     "source_problem": "sc15.record",
+     "type": "life_threat",
+     "label": "Sepsis now",
+     "source_case": "SC-11",
+     "source_problem": "sc11.sepsis",
      "source_rank": 1,
      "topics": [
-      "allergy"
+      "sepsis"
      ],
      "checks": [
-      "Record the allergy",
-      "Allergy band",
-      "Prescriber chooses"
+      "Senior now",
+      "Cultures",
+      "Antibiotics in 1 hour"
      ]
     },
     {
      "order": 2,
-     "type": "pathway_changing",
-     "label": "A minor (16): consent follows the applicable law",
-     "source_case": "VAR-S2-I",
-     "source_problem": "s2i.consent",
+     "type": "life_threat",
+     "label": "Possible internal bleeding",
+     "source_case": "SC-2",
+     "source_problem": "sc2.bleed",
      "source_rank": 1,
      "topics": [
-      "consent"
+      "blood thinners"
      ],
      "checks": [
-      "Follow the hospital policy on consent for a minor",
-      "Involve Hamid in the discussion",
-      "Document who consented and how"
+      "Call for help",
+      "Two large IV lines",
+      "Crossmatch"
      ]
     },
     {
      "order": 3,
-     "type": "information_only",
-     "label": "White cell count partly raised by pregnancy",
-     "source_case": "VAR-S2-H",
-     "source_problem": "s2h.wbc",
-     "source_rank": 2,
-     "topics": [
-      "pregnancy"
-     ],
-     "checks": [
-      "Trend the result"
-     ]
-    }
-   ],
-   "end_state": "ready",
-   "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
-   "clock": {
-    "set_by": "sc15.record",
-    "type": "safety_blocker",
-    "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
-   },
-   "handover_items": [
-    {
-     "problem": "Record the new allergy",
-     "action": "Record the allergy",
-     "time": null
-    },
-    {
-     "problem": "Record the new allergy",
-     "action": "Allergy band",
-     "time": null
-    },
-    {
-     "problem": "Record the new allergy",
-     "action": "Prescriber chooses",
-     "time": null
-    },
-    {
-     "problem": "A minor (16): consent follows the applicable law",
-     "action": "Follow the hospital policy on consent for a minor",
-     "time": null
-    },
-    {
-     "problem": "A minor (16): consent follows the applicable law",
-     "action": "Involve Hamid in the discussion",
-     "time": null
-    },
-    {
-     "problem": "A minor (16): consent follows the applicable law",
-     "action": "Document who consented and how",
-     "time": null
-    },
-    {
-     "problem": "White cell count partly raised by pregnancy",
-     "action": "Trend the result",
-     "time": null
-    }
-   ],
-   "cross_checks": [
-    "allergy",
-    "pregnancy"
-   ],
-   "requires": {
-    "sex": "F",
-    "minor": true
-   },
-   "authoring_required": [
-    "observations, results, history, medicines and timings that make these problems true together (each value with a source row, ADR-0008)",
-    "the decision prompts and options for the combined case",
-    "Stage B and golden runs of the authored case"
-   ],
-   "status": "DRAFT",
-   "synthetic": true,
-   "clinically_validated": false,
-   "practice_only": true,
-   "recipe": {
-    "source": "docs/context/ProcSense_Medical_Walkthrough_v5_1.md section 14B.5",
-    "steps_run": [
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7
-    ],
-    "step_8": "approval not recorded (optional under ADR-0008); nothing here claims it"
-   }
-  },
-  {
-   "id": "MP-S2-df3f45fb",
-   "scenario": "S2",
-   "problems": [
-    {
-     "order": 1,
-     "type": "safety_blocker",
-     "label": "No suxamethonium; correct potassium first",
-     "source_case": "SC-8",
-     "source_problem": "sc8.anaes",
+     "type": "time_critical",
+     "label": "Dehydration with acute kidney injury (stage 1)",
+     "source_case": "SC-30",
+     "source_problem": "sc30.aki",
      "source_rank": 3,
      "topics": [
-      "electrolytes"
+      "kidneys"
      ],
      "checks": [
-      "Tell the anaesthetist"
-     ]
-    },
-    {
-     "order": 2,
-     "type": "pathway_changing",
-     "label": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)",
-     "source_case": "STK-S2-D",
-     "source_problem": "stkd.preg",
-     "source_rank": 2,
-     "topics": [
-      "consent",
-      "pregnancy"
-     ],
-     "checks": [
-      "Request an MRI after the non-diagnostic ultrasound; avoid CT as a first choice",
-      "Laparoscopic appendectomy is acceptable in pregnancy (SAGES)",
-      "Consent including the fetal risks"
-     ]
-    },
-    {
-     "order": 3,
-     "type": "pathway_changing",
-     "label": "Surgery proceeds once she is resuscitated: the infection is part of the cause",
-     "source_case": "VAR-S2-G",
-     "source_problem": "sg.surgery",
-     "source_rank": 2,
-     "topics": [],
-     "checks": [
-      "Senior surgeon and anaesthetist aware",
-      "Proceed once resuscitation has started"
+      "Fluids and urine output",
+      "Medicines review",
+      "Repeat creatinine"
      ]
     }
    ],
-   "end_state": "ready",
+   "end_state": "redirected",
    "end_state_basis": "recipe step 5: the most diverted end state of the source cases",
    "clock": {
-    "set_by": "sc8.anaes",
-    "type": "safety_blocker",
+    "set_by": "sc11.sepsis",
+    "type": "life_threat",
     "note": "recipe step 6: the most dangerous untreated problem sets the speed; the numbers are the deterioration tables'"
    },
    "handover_items": [
     {
-     "problem": "No suxamethonium; correct potassium first",
-     "action": "Tell the anaesthetist",
+     "problem": "Sepsis now",
+     "action": "Senior now",
+     "time": "now"
+    },
+    {
+     "problem": "Sepsis now",
+     "action": "Cultures",
      "time": null
     },
     {
-     "problem": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)",
-     "action": "Request an MRI after the non-diagnostic ultrasound; avoid CT as a first choice",
+     "problem": "Sepsis now",
+     "action": "Antibiotics in 1 hour",
      "time": null
     },
     {
-     "problem": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)",
-     "action": "Laparoscopic appendectomy is acceptable in pregnancy (SAGES)",
+     "problem": "Possible internal bleeding",
+     "action": "Call for help",
      "time": null
     },
     {
-     "problem": "Timely diagnosis and surgery: appendicitis in pregnancy (18 weeks)",
-     "action": "Consent including the fetal risks",
+     "problem": "Possible internal bleeding",
+     "action": "Two large IV lines",
      "time": null
     },
     {
-     "problem": "Surgery proceeds once she is resuscitated: the infection is part of the cause",
-     "action": "Senior surgeon and anaesthetist aware",
+     "problem": "Possible internal bleeding",
+     "action": "Crossmatch",
      "time": null
     },
     {
-     "problem": "Surgery proceeds once she is resuscitated: the infection is part of the cause",
-     "action": "Proceed once resuscitation has started",
+     "problem": "Dehydration with acute kidney injury (stage 1)",
+     "action": "Fluids and urine output",
+     "time": null
+    },
+    {
+     "problem": "Dehydration with acute kidney injury (stage 1)",
+     "action": "Medicines review",
+     "time": null
+    },
+    {
+     "problem": "Dehydration with acute kidney injury (stage 1)",
+     "action": "Repeat creatinine",
      "time": null
     }
    ],
    "cross_checks": [
-    "pregnancy"
+    "blood thinners",
+    "kidneys"
    ],
    "requires": {
-    "sex": "F",
+    "sex": null,
     "minor": false
    },
    "authoring_required": [

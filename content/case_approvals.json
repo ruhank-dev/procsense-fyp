@@ -92,12 +92,96 @@
    "date": "2026-10-10",
    "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
   },
+  "SC-21": {
+   "sha256": "5c5da63d04dea44870fb907df83aafce2c1a75e6f8a4aa77a2c7cdbcf93e8609",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-22": {
+   "sha256": "5ad38dac25b5990f6885b962aaa81ef00dded48c3bbfdf87c9c55756947ba249",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-23": {
+   "sha256": "8565fc30f23451109b664b3e3c84ee8ebb31e86cd9804943bf6ba9b0f185c089",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-24": {
+   "sha256": "afb6dd5962f4bbf39e2a28f4cdf8cae9bc65149a9cb5545c64a197046ff1bb21",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-25": {
+   "sha256": "cc5523af00dee5ca0dc8484e9c3017256e8dd66e49678e6c7a39729e75948086",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-26": {
+   "sha256": "914b83b4215ef50400898238471adf8d6a4d009fbd1809b3a00cb6fd969f265e",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-27": {
+   "sha256": "2b239b14ca62f77a41663dd6dffc83e2261566809c8d8e6c6fabe5d3083ccd65",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-28": {
+   "sha256": "084f4e9060e19408862a01fab88dcfc2da7de011cc5228024abd25f7fbe30f40",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-29": {
+   "sha256": "2edcfa3a76e04b7ee4f4897d509c7e9a874afc8fd72fab20c0172dbd30a40fd3",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
   "SC-3": {
    "sha256": "3a6e2380c5b98b37fb2791cdb89b5558a26eb32d195edb29c9f99419904b4164",
    "level": "APPROVED_FOR_TRAINING",
    "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
    "date": "2026-10-10",
    "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+  },
+  "SC-30": {
+   "sha256": "11db9a9f6a7cc085f900c873c981730dd3e2d23e9179748467c6fcb3a6ece751",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-31": {
+   "sha256": "0636a7fa660dce8eba9d1f82f44800e84114e539adaa8f07b2f4a2253ba468d6",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  },
+  "SC-32": {
+   "sha256": "294c5d3d7a46ddec2bb81baf6dc7dad3ecee9e5f3a7e6c567bc4f869265807cf",
+   "level": "APPROVED_FOR_TRAINING",
+   "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+   "date": "2026-10-25",
+   "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
   },
   "SC-4": {
    "sha256": "f235a602496f52877ec3c2007394fd3bacc05ddf0956c355ded03ba9651cf4dd",

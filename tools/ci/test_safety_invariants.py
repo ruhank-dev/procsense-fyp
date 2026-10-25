@@ -79,10 +79,12 @@ class Gate(unittest.TestCase):
             if "NOT independent" in f["label"]:
                 self.assertFalse(f["enabled"], name)
 
-    def test_a_gated_model_candidate_has_no_recorded_acceptance(self):
+    def test_a_gated_model_candidate_acceptance_is_a_persons_statement_recorded_as_such(self):
         for c in j("content/ai/model_candidates.json")["candidates"]:
-            if c["gated"]:
-                self.assertIsNone(c["terms"]["accepted_by"], c["id"])         # only a person with the right to accept writes this
+            t = c["terms"]
+            if c["gated"] and t["accepted_by"]:                               # only a person with the right to accept writes this, with date, eligibility and what was not checked
+                self.assertTrue(t["accepted_on"] and t["account_holder_eligibility_confirmed"], c["id"])
+                self.assertIn("not independently verified", t["note"], c["id"])
 
     def test_live_drug_availability_is_off_and_no_source_is_permitted(self):
         self.assertFalse(j("content/availability/config.json")["live_enabled"])

@@ -499,6 +499,300 @@
    "text": "She says her pain started yesterday."
   },
   {
+   "id": "SC-21:allergy_invented",
+   "case": "SC-21",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-21:operation_wrong",
+   "case": "SC-21",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my appendix taken out."
+  },
+  {
+   "id": "SC-21:pain_denied_elsewhere",
+   "case": "SC-21",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-21:age_wrong",
+   "case": "SC-21",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mr Haroon Siddique, 83, is booked for keyhole gallbladder removal at 10:00. His eyes look slightly yellow, he has right-sided pain, temperature 37.9, and he took apixaban last night at 20:00."
+  },
+  {
+   "id": "SC-21:sex_wrong",
+   "case": "SC-21",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "She says her pain started yesterday."
+  },
+  {
+   "id": "SC-22:allergy_invented",
+   "case": "SC-22",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-22:operation_wrong",
+   "case": "SC-22",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my appendix taken out."
+  },
+  {
+   "id": "SC-22:pain_denied_elsewhere",
+   "case": "SC-22",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-22:age_wrong",
+   "case": "SC-22",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mrs Rukhsana Baig, 80, listed for gallbladder removal at 10:00: temperature 38.9, heart rate only 56 and BP 92/58, jaundiced. She injects semaglutide weekly (last dose 3 days ago) and takes bisoprolol."
+  },
+  {
+   "id": "SC-22:sex_wrong",
+   "case": "SC-22",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-23:allergy_invented",
+   "case": "SC-23",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-23:operation_wrong",
+   "case": "SC-23",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my appendix taken out."
+  },
+  {
+   "id": "SC-23:age_wrong",
+   "case": "SC-23",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mr Ghulam Nabi, 88, listed for gallbladder removal: apixaban taken yesterday, STOP-Bang 6 with BMI 37, haemoglobin 98 with a low MCV, HbA1c 76."
+  },
+  {
+   "id": "SC-23:sex_wrong",
+   "case": "SC-23",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "She says her pain started yesterday."
+  },
+  {
+   "id": "SC-24:allergy_invented",
+   "case": "SC-24",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-24:operation_wrong",
+   "case": "SC-24",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my appendix taken out."
+  },
+  {
+   "id": "SC-24:age_wrong",
+   "case": "SC-24",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mrs Shahida Parveen, 85, arrives otherwise fit: heart rate 46, BP 98/60, known atrial fibrillation on a rate-limiting tablet, and the consent form is not signed."
+  },
+  {
+   "id": "SC-24:sex_wrong",
+   "case": "SC-24",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-25:allergy_invented",
+   "case": "SC-25",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-25:operation_wrong",
+   "case": "SC-25",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my appendix taken out."
+  },
+  {
+   "id": "SC-25:pain_denied_elsewhere",
+   "case": "SC-25",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-25:age_wrong",
+   "case": "SC-25",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mr Zafar Iqbal, 91, listed for gallbladder removal: creatinine 178 (usually 82), haemoglobin 104 with low iron, fever 38.4 and jaundice."
+  },
+  {
+   "id": "SC-25:sex_wrong",
+   "case": "SC-25",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "She says her pain started yesterday."
+  },
+  {
+   "id": "SC-26:allergy_invented",
+   "case": "SC-26",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-26:operation_wrong",
+   "case": "SC-26",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my appendix taken out."
+  },
+  {
+   "id": "SC-26:age_wrong",
+   "case": "SC-26",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mrs Farida Hussain, 76, apixaban stopped 3 days ago as instructed, but yellow eyes and a bilirubin of 71 with a duct of 10 mm; the anaesthetist has not yet seen her."
+  },
+  {
+   "id": "SC-26:sex_wrong",
+   "case": "SC-26",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-27:allergy_invented",
+   "case": "SC-27",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-27:operation_wrong",
+   "case": "SC-27",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my gallbladder taken out."
+  },
+  {
+   "id": "SC-27:pain_denied_elsewhere",
+   "case": "SC-27",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-27:age_wrong",
+   "case": "SC-27",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mr Jorge Mendes, 69, speaks little English: right-sided abdominal pain for 3 days, vomiting, dry mouth. After morphine his breathing is slow: RR 9, SpO2 92, drowsy."
+  },
+  {
+   "id": "SC-27:sex_wrong",
+   "case": "SC-27",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "She says her pain started yesterday."
+  },
+  {
+   "id": "SC-28:allergy_invented",
+   "case": "SC-28",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-28:operation_wrong",
+   "case": "SC-28",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my gallbladder taken out."
+  },
+  {
+   "id": "SC-28:pain_denied_elsewhere",
+   "case": "SC-28",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-28:age_wrong",
+   "case": "SC-28",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Ms Leila Haddad, 50, type 2 diabetes on an SGLT2 inhibitor: 2 days of vomiting and abdominal pain, drowsy (responds to voice), breathing deeply and fast, glucose only 11."
+  },
+  {
+   "id": "SC-28:sex_wrong",
+   "case": "SC-28",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-29:allergy_invented",
+   "case": "SC-29",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-29:operation_wrong",
+   "case": "SC-29",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my gallbladder taken out."
+  },
+  {
+   "id": "SC-29:pain_denied_elsewhere",
+   "case": "SC-29",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-29:age_wrong",
+   "case": "SC-29",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mr Imtiaz Cheema, 61, perforated appendix: temperature 39.0, HR 124, BP 92/56, lactate 3.8; he ate a large meal 2 hours ago and has been given morphine, now drowsy with RR 10."
+  },
+  {
+   "id": "SC-29:sex_wrong",
+   "case": "SC-29",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "She says her pain started yesterday."
+  },
+  {
    "id": "SC-3:allergy_invented",
    "case": "SC-3",
    "kind": "allergy_invented",
@@ -539,6 +833,118 @@
    "kind": "sex_wrong",
    "line": "h.complaint",
    "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-30:allergy_invented",
+   "case": "SC-30",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-30:operation_wrong",
+   "case": "SC-30",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my gallbladder taken out."
+  },
+  {
+   "id": "SC-30:pain_denied_elsewhere",
+   "case": "SC-30",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-30:age_wrong",
+   "case": "SC-30",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mrs Bushra Qazi, 75, perforated appendix with sepsis: temperature 38.8, HR 118, BP 94/58, RR 24, lactate 3.4; creatinine 142 against a usual 88; drowsy after morphine."
+  },
+  {
+   "id": "SC-30:sex_wrong",
+   "case": "SC-30",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-31:allergy_invented",
+   "case": "SC-31",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-31:operation_wrong",
+   "case": "SC-31",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my gallbladder taken out."
+  },
+  {
+   "id": "SC-31:pain_denied_elsewhere",
+   "case": "SC-31",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-31:age_wrong",
+   "case": "SC-31",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Ms Hira Latif, 33, has type 1 diabetes and missed insulin for 2 days: abdominal pain, vomiting, deep breathing, ketones 4.4, venous pH 7.10, potassium 6.7 and a rigid abdomen from a perforated appendix."
+  },
+  {
+   "id": "SC-31:sex_wrong",
+   "case": "SC-31",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "He says his pain started yesterday."
+  },
+  {
+   "id": "SC-32:allergy_invented",
+   "case": "SC-32",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "Penicillin: my throat swelled up and I collapsed."
+  },
+  {
+   "id": "SC-32:operation_wrong",
+   "case": "SC-32",
+   "kind": "operation_wrong",
+   "line": "reason",
+   "text": "I am having my gallbladder taken out."
+  },
+  {
+   "id": "SC-32:side_flip",
+   "case": "SC-32",
+   "kind": "side_flip",
+   "line": "h.complaint",
+   "text": "The pain is on my right side and I have a fever. I ate lunch before the pain got bad."
+  },
+  {
+   "id": "SC-32:pain_denied_elsewhere",
+   "case": "SC-32",
+   "kind": "pain_denied_elsewhere",
+   "line": "h.red_flags",
+   "text": "No pain at all, I only feel tired."
+  },
+  {
+   "id": "SC-32:age_wrong",
+   "case": "SC-32",
+   "kind": "age_wrong",
+   "line": "summary",
+   "text": "Mr Fazal Dastgir, 88, left-sided abdominal pain for 4 days, temperature 38.5, HR 110, BP 104/64, dry; he ate a heavy meal 3 hours ago. CT: a sigmoid abscess with a perforation; a cancer cannot be excluded."
+  },
+  {
+   "id": "SC-32:sex_wrong",
+   "case": "SC-32",
+   "kind": "sex_wrong",
+   "line": "h.complaint",
+   "text": "She says her pain started yesterday."
   },
   {
    "id": "SC-5:allergy_invented",
@@ -891,32 +1297,11 @@
    "text": "None. I have never had a reaction to anything."
   },
   {
-   "id": "STK-S2-B:operation_wrong",
-   "case": "STK-S2-B",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my gallbladder taken out."
-  },
-  {
    "id": "STK-S2-B:pain_denied_elsewhere",
    "case": "STK-S2-B",
    "kind": "pain_denied_elsewhere",
    "line": "h.red_flags",
    "text": "No pain at all, I only feel tired."
-  },
-  {
-   "id": "STK-S2-B:age_wrong",
-   "case": "STK-S2-B",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mr Ravi Patel, 51, has had three days of abdominal pain, now generalised. Hot, sweaty, breathing fast, lying very still, abdomen rigid; allergic to penicillin (throat swelling and collapse in 2019)."
-  },
-  {
-   "id": "STK-S2-B:sex_wrong",
-   "case": "STK-S2-B",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "She says her pain started yesterday."
   },
   {
    "id": "STK-S2-C:allergy_invented",
@@ -926,13 +1311,6 @@
    "text": "Penicillin: my throat swelled up and I collapsed."
   },
   {
-   "id": "STK-S2-C:operation_wrong",
-   "case": "STK-S2-C",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my gallbladder taken out."
-  },
-  {
    "id": "STK-S2-C:pain_denied_elsewhere",
    "case": "STK-S2-C",
    "kind": "pain_denied_elsewhere",
@@ -940,32 +1318,11 @@
    "text": "No pain at all, I only feel tired."
   },
   {
-   "id": "STK-S2-C:age_wrong",
-   "case": "STK-S2-C",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mr Leo Chen, 39, has suspected appendicitis. IV morphine was titrated by the ED doctor 40 minutes ago. He is drowsy, rousable to voice, retching, with slow shallow breathing: RR 9, SpO2 90. He ate a kebab 3 hours ago."
-  },
-  {
-   "id": "STK-S2-C:sex_wrong",
-   "case": "STK-S2-C",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "She says her pain started yesterday."
-  },
-  {
    "id": "STK-S2-D:allergy_invented",
    "case": "STK-S2-D",
    "kind": "allergy_invented",
    "line": "allergy",
    "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "STK-S2-D:operation_wrong",
-   "case": "STK-S2-D",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my gallbladder taken out."
   },
   {
    "id": "STK-S2-D:side_flip",
@@ -982,67 +1339,11 @@
    "text": "No pain at all, I only feel tired."
   },
   {
-   "id": "STK-S2-D:age_wrong",
-   "case": "STK-S2-D",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mrs Maria Santos, 46, is 18 weeks pregnant (second pregnancy). 20 hours of right-sided pain and nausea; tenderness slightly higher than usual for appendicitis. HR 108, BP 112/68, T 37.9. WBC 15.8, CRP 64. Ultrasound did not see the appendix."
-  },
-  {
-   "id": "STK-S2-D:sex_wrong",
-   "case": "STK-S2-D",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-A:allergy_invented",
-   "case": "VAR-S1-A",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-A:operation_wrong",
-   "case": "VAR-S1-A",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
-  },
-  {
    "id": "VAR-S1-A:side_flip",
    "case": "VAR-S1-A",
    "kind": "side_flip",
    "line": "h.complaint",
    "text": "Attacks under my left ribs after oily food, settle in an hour or two. None in the last 3 weeks."
-  },
-  {
-   "id": "VAR-S1-A:age_wrong",
-   "case": "VAR-S1-A",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "A fit 59-year-old teacher booked for planned keyhole gallbladder removal at 09:00. Nothing is wrong today: the case teaches careful confirmation without over-investigating."
-  },
-  {
-   "id": "VAR-S1-A:sex_wrong",
-   "case": "VAR-S1-A",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-C:allergy_invented",
-   "case": "VAR-S1-C",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-C:operation_wrong",
-   "case": "VAR-S1-C",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
   },
   {
    "id": "VAR-S1-C:pain_denied_elsewhere",
@@ -1052,67 +1353,11 @@
    "text": "No pain at all, I only feel tired."
   },
   {
-   "id": "VAR-S1-C:age_wrong",
-   "case": "VAR-S1-C",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mrs Nasreen, 72, has type 2 diabetes treated with metformin and gliclazide. HbA1c was 58 mmol/mol two months ago and her finger-prick sugar this morning is 7.8. Variant C2 has HbA1c 82, sugar 13.4 and ketones 0.4."
-  },
-  {
-   "id": "VAR-S1-C:sex_wrong",
-   "case": "VAR-S1-C",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-D:allergy_invented",
-   "case": "VAR-S1-D",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-D:operation_wrong",
-   "case": "VAR-S1-D",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
-  },
-  {
    "id": "VAR-S1-D:pain_denied_elsewhere",
    "case": "VAR-S1-D",
    "kind": "pain_denied_elsewhere",
    "line": "h.red_flags",
    "text": "No pain at all, I only feel tired."
-  },
-  {
-   "id": "VAR-S1-D:age_wrong",
-   "case": "VAR-S1-D",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mr Imran, 84, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
-  },
-  {
-   "id": "VAR-S1-D:sex_wrong",
-   "case": "VAR-S1-D",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "She says her pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-E:allergy_invented",
-   "case": "VAR-S1-E",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-E:operation_wrong",
-   "case": "VAR-S1-E",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
   },
   {
    "id": "VAR-S1-E:side_flip",
@@ -1129,67 +1374,11 @@
    "text": "No pain at all, I only feel tired."
   },
   {
-   "id": "VAR-S1-E:age_wrong",
-   "case": "VAR-S1-E",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mrs Rabia, 65, booked for planned gallbladder removal, arrives with constant pain for 2 days and felt hot overnight: she now has an acute illness."
-  },
-  {
-   "id": "VAR-S1-E:sex_wrong",
-   "case": "VAR-S1-E",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-G:allergy_invented",
-   "case": "VAR-S1-G",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-G:operation_wrong",
-   "case": "VAR-S1-G",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
-  },
-  {
    "id": "VAR-S1-G:pain_denied_elsewhere",
    "case": "VAR-S1-G",
    "kind": "pain_denied_elsewhere",
    "line": "h.red_flags",
    "text": "No pain at all, I only feel tired."
-  },
-  {
-   "id": "VAR-S1-G:age_wrong",
-   "case": "VAR-S1-G",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Ms Sana, 56, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
-  },
-  {
-   "id": "VAR-S1-G:sex_wrong",
-   "case": "VAR-S1-G",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-H:allergy_invented",
-   "case": "VAR-S1-H",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-H:operation_wrong",
-   "case": "VAR-S1-H",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
   },
   {
    "id": "VAR-S1-H:pain_denied_elsewhere",
@@ -1199,32 +1388,11 @@
    "text": "No pain at all, I only feel tired."
   },
   {
-   "id": "VAR-S1-H:age_wrong",
-   "case": "VAR-S1-H",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Ms Hina, 46, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
-  },
-  {
-   "id": "VAR-S1-H:sex_wrong",
-   "case": "VAR-S1-H",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
    "id": "VAR-S1-I:allergy_denied",
    "case": "VAR-S1-I",
    "kind": "allergy_denied",
    "line": "allergy",
    "text": "None. I have never had a reaction to anything."
-  },
-  {
-   "id": "VAR-S1-I:operation_wrong",
-   "case": "VAR-S1-I",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
   },
   {
    "id": "VAR-S1-I:side_flip",
@@ -1241,109 +1409,11 @@
    "text": "No pain at all, I only feel tired."
   },
   {
-   "id": "VAR-S1-I:age_wrong",
-   "case": "VAR-S1-I",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mrs Amna Hashmi, 62, is booked for keyhole gallbladder removal. She is well. In 2015 penicillin caused throat swelling and collapse."
-  },
-  {
-   "id": "VAR-S1-I:sex_wrong",
-   "case": "VAR-S1-I",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-J:allergy_invented",
-   "case": "VAR-S1-J",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-J:operation_wrong",
-   "case": "VAR-S1-J",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
-  },
-  {
-   "id": "VAR-S1-J:pain_denied_elsewhere",
-   "case": "VAR-S1-J",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
-  },
-  {
-   "id": "VAR-S1-J:age_wrong",
-   "case": "VAR-S1-J",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mr Kamran, 67, is well. The pre-operative potassium comes back 6.4 'haemolysed'. His ECG and kidney function are normal."
-  },
-  {
-   "id": "VAR-S1-J:sex_wrong",
-   "case": "VAR-S1-J",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "She says her pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-K:allergy_invented",
-   "case": "VAR-S1-K",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-K:operation_wrong",
-   "case": "VAR-S1-K",
-   "kind": "operation_wrong",
-   "line": "reason",
-   "text": "I am having my appendix taken out."
-  },
-  {
    "id": "VAR-S1-K:side_flip",
    "case": "VAR-S1-K",
    "kind": "side_flip",
    "line": "h.complaint",
    "text": "Pain under my left ribs after fatty food, and I am very tired all the time."
-  },
-  {
-   "id": "VAR-S1-K:pain_denied_elsewhere",
-   "case": "VAR-S1-K",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
-  },
-  {
-   "id": "VAR-S1-K:age_wrong",
-   "case": "VAR-S1-K",
-   "kind": "age_wrong",
-   "line": "summary",
-   "text": "Mrs Shazia Iqbal, 69, is booked for keyhole gallbladder removal. She feels tired. Her Hb is 98 and her red cells are small (MCV 72)."
-  },
-  {
-   "id": "VAR-S1-K:sex_wrong",
-   "case": "VAR-S1-K",
-   "kind": "sex_wrong",
-   "line": "h.complaint",
-   "text": "He says his pain started yesterday."
-  },
-  {
-   "id": "VAR-S1-L:allergy_invented",
-   "case": "VAR-S1-L",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S1-M:allergy_invented",
-   "case": "VAR-S1-M",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
   },
   {
    "id": "VAR-S1-M:side_flip",
@@ -1353,39 +1423,11 @@
    "text": "Pain under my left ribs after rich meals. My wife says I snore and stop breathing at night."
   },
   {
-   "id": "VAR-S1-M:pain_denied_elsewhere",
-   "case": "VAR-S1-M",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
-  },
-  {
-   "id": "VAR-S1-PB:allergy_invented",
-   "case": "VAR-S1-PB",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
-   "id": "VAR-S2-B:allergy_invented",
-   "case": "VAR-S2-B",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "Penicillin: my throat swelled up and I collapsed."
-  },
-  {
    "id": "VAR-S2-B:side_flip",
    "case": "VAR-S2-B",
    "kind": "side_flip",
    "line": "h.complaint",
    "text": "Pain in the lower left tummy, and a pain at the tip of my shoulder. I feel dizzy."
-  },
-  {
-   "id": "VAR-S2-B:pain_denied_elsewhere",
-   "case": "VAR-S2-B",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
   },
   {
    "id": "VAR-S2-D:side_flip",
@@ -1395,25 +1437,11 @@
    "text": "Pain in the lower left tummy since yesterday."
   },
   {
-   "id": "VAR-S2-D:pain_denied_elsewhere",
-   "case": "VAR-S2-D",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
-  },
-  {
    "id": "VAR-S2-E:side_flip",
    "case": "VAR-S2-E",
    "kind": "side_flip",
    "line": "h.complaint",
    "text": "Pain low on the left for four days, and I have lost weight over the last months."
-  },
-  {
-   "id": "VAR-S2-E:pain_denied_elsewhere",
-   "case": "VAR-S2-E",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
   },
   {
    "id": "VAR-S2-F:side_flip",
@@ -1423,13 +1451,6 @@
    "text": "Tummy pain that started around the belly button and moved to the lower left."
   },
   {
-   "id": "VAR-S2-F:pain_denied_elsewhere",
-   "case": "VAR-S2-F",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
-  },
-  {
    "id": "VAR-S2-G:side_flip",
    "case": "VAR-S2-G",
    "kind": "side_flip",
@@ -1437,25 +1458,11 @@
    "text": "Vomiting for two days and pain in the lower left tummy."
   },
   {
-   "id": "VAR-S2-G:pain_denied_elsewhere",
-   "case": "VAR-S2-G",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
-  },
-  {
    "id": "VAR-S2-H:side_flip",
    "case": "VAR-S2-H",
    "kind": "side_flip",
    "line": "h.complaint",
    "text": "Pain on the left side, higher up than I would expect, and I feel sick."
-  },
-  {
-   "id": "VAR-S2-H:pain_denied_elsewhere",
-   "case": "VAR-S2-H",
-   "kind": "pain_denied_elsewhere",
-   "line": "h.red_flags",
-   "text": "No pain at all, I only feel tired."
   },
   {
    "id": "VAR-S2-I:side_flip",
@@ -1508,6 +1515,12 @@
   "SC-17",
   "SC-19",
   "SC-20",
+  "SC-22",
+  "SC-24",
+  "SC-26",
+  "SC-28",
+  "SC-3",
+  "SC-31",
   "SC-5",
   "SC-7",
   "SC-9",
@@ -1535,6 +1548,6 @@
   "age_wrong": 36,
   "sex_wrong": 36,
   "allergy_invented": 36,
-  "side_flip": 29
+  "side_flip": 30
  }
 }

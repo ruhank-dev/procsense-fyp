@@ -9,6 +9,12 @@
   },
   {
    "expected_cases": [
+    "SC-31"
+   ],
+   "query": "A minor (16): consent follows the applicable local law and the parent is involved"
+  },
+  {
+   "expected_cases": [
     "SC-10"
    ],
    "query": "A minor: consent per law"
@@ -18,6 +24,18 @@
     "VAR-S1-E"
    ],
    "query": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "Acute cholecystitis behind the picture"
+  },
+  {
+   "expected_cases": [
+    "SC-21"
+   ],
+   "query": "Acute cholecystitis with early systemic signs"
   },
   {
    "expected_cases": [
@@ -39,6 +57,12 @@
   },
   {
    "expected_cases": [
+    "SC-25"
+   ],
+   "query": "Acute kidney injury: creatinine 178 against a usual 82"
+  },
+  {
+   "expected_cases": [
     "SC-16"
    ],
    "query": "Airway and sleep apnoea risk"
@@ -51,6 +75,7 @@
   },
   {
    "expected_cases": [
+    "SC-28",
     "STK-S2-C"
    ],
    "query": "Airway at risk: vomiting with reduced consciousness"
@@ -75,7 +100,8 @@
   },
   {
    "expected_cases": [
-    "SC-16"
+    "SC-16",
+    "SC-26"
    ],
    "query": "Anaesthetist decides"
   },
@@ -105,6 +131,13 @@
   },
   {
    "expected_cases": [
+    "SC-26"
+   ],
+   "query": "Apixaban correctly stopped 3 days ago"
+  },
+  {
+   "expected_cases": [
+    "SC-23",
     "SC-5"
    ],
    "query": "Apixaban not stopped: bleeding risk"
@@ -114,6 +147,12 @@
     "STK-S1-B"
    ],
    "query": "Apixaban taken at 07:00 today although the plan was to stop it two days before"
+  },
+  {
+   "expected_cases": [
+    "SC-21"
+   ],
+   "query": "Apixaban taken last night: bleeding risk at surgery"
   },
   {
    "expected_cases": [
@@ -183,6 +222,12 @@
   },
   {
    "expected_cases": [
+    "SC-22"
+   ],
+   "query": "Cholangitis with sepsis (NEWS2 7, lactate 3.1)"
+  },
+  {
+   "expected_cases": [
     "STK-S1-D"
    ],
    "query": "Cholecystectomy"
@@ -195,7 +240,8 @@
   },
   {
    "expected_cases": [
-    "SC-18"
+    "SC-18",
+    "SC-24"
    ],
    "query": "Consent form not signed"
   },
@@ -213,6 +259,13 @@
   },
   {
    "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Dehydration with a rising creatinine"
+  },
+  {
+   "expected_cases": [
+    "SC-30",
     "VAR-S2-G"
    ],
    "query": "Dehydration with acute kidney injury (stage 1)"
@@ -234,6 +287,12 @@
     "VAR-S1-C"
    ],
    "query": "Diabetes control and the medicine plan for the fasting day"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Diabetic ketoacidosis (ketones 4.4, pH 7.10)"
   },
   {
    "expected_cases": [
@@ -285,9 +344,21 @@
   },
   {
    "expected_cases": [
+    "SC-32"
+   ],
+   "query": "Full stomach for anaesthesia (a heavy meal 3 hours ago)"
+  },
+  {
+   "expected_cases": [
     "STK-S2-C"
    ],
    "query": "Full stomach for anaesthesia (a kebab 3 hours ago)"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "Full stomach: a large meal 2 hours ago"
   },
   {
    "expected_cases": [
@@ -315,9 +386,16 @@
   },
   {
    "expected_cases": [
+    "SC-23",
     "STK-S1-A"
    ],
    "query": "HbA1c 76 above the limit of 69 for planned surgery"
+  },
+  {
+   "expected_cases": [
+    "SC-23"
+   ],
+   "query": "High risk of obstructive sleep apnoea with BMI 37"
   },
   {
    "expected_cases": [
@@ -375,6 +453,12 @@
   },
   {
    "expected_cases": [
+    "SC-28"
+   ],
+   "query": "Ketoacidosis on an SGLT2 inhibitor with a near-normal glucose"
+  },
+  {
+   "expected_cases": [
     "STK-S1-B"
    ],
    "query": "Known atrial fibrillation, rate controlled"
@@ -384,6 +468,12 @@
     "SC-10"
    ],
    "query": "Language barrier"
+  },
+  {
+   "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Language barrier: allergies, medicines and consent cannot be taken safely"
   },
   {
    "expected_cases": [
@@ -465,9 +555,33 @@
   },
   {
    "expected_cases": [
+    "SC-25"
+   ],
+   "query": "Obstructed infected bile duct (acute cholangitis)"
+  },
+  {
+   "expected_cases": [
+    "SC-32"
+   ],
+   "query": "Older person with a change in bowel habit and blood: cancer is possible"
+  },
+  {
+   "expected_cases": [
     "STK-S2-C"
    ],
    "query": "Opioid sedation: the cause"
+  },
+  {
+   "expected_cases": [
+    "SC-30"
+   ],
+   "query": "Opioid sedation: the cause of the drowsiness to rule out"
+  },
+  {
+   "expected_cases": [
+    "SC-24"
+   ],
+   "query": "Otherwise fit and fasted correctly"
   },
   {
    "expected_cases": [
@@ -487,6 +601,12 @@
     "VAR-S2-PD"
    ],
    "query": "Perforated appendix: urgent source control"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Perforated appendix: urgent source control after stabilising"
   },
   {
    "expected_cases": [
@@ -520,6 +640,18 @@
   },
   {
    "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Potassium 6.7 with ECG changes"
+  },
+  {
+   "expected_cases": [
+    "SC-28"
+   ],
+   "query": "Pre-renal acute kidney injury, stage 1"
+  },
+  {
+   "expected_cases": [
     "VAR-S2-B"
    ],
    "query": "Pregnancy status positive: it changes everything"
@@ -532,6 +664,13 @@
   },
   {
    "expected_cases": [
+    "SC-21"
+   ],
+   "query": "Probable stone in the main bile duct: not what he was booked for"
+  },
+  {
+   "expected_cases": [
+    "SC-26",
     "VAR-S1-PB"
    ],
    "query": "Probable stone in the main bile duct: not what she was booked for"
@@ -574,7 +713,8 @@
   },
   {
    "expected_cases": [
-    "SC-1"
+    "SC-1",
+    "SC-30"
    ],
    "query": "Sepsis with poor circulation"
   },
@@ -583,6 +723,12 @@
     "VAR-S2-PD"
    ],
    "query": "Sepsis with poor circulation (NEWS2 5 then 10)"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "Sepsis with poor circulation (NEWS2 9, lactate 3.8)"
   },
   {
    "expected_cases": [
@@ -616,15 +762,45 @@
   },
   {
    "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Slow breathing and drowsiness after morphine"
+  },
+  {
+   "expected_cases": [
     "STK-S1-C"
    ],
    "query": "Slow heart and low BP"
   },
   {
    "expected_cases": [
+    "SC-24"
+   ],
+   "query": "Slow heart and low BP in a patient with AF on a beta-blocker"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "Slow heart and low BP: tachycardia masked by the beta-blocker"
+  },
+  {
+   "expected_cases": [
     "SC-7"
    ],
    "query": "Stop further opioid"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "Stop further opioid: drowsy with slow breathing"
+  },
+  {
+   "expected_cases": [
+    "SC-32"
+   ],
+   "query": "Surgery proceeds once he is resuscitated: fluids, antibiotics and kidney protection first"
   },
   {
    "expected_cases": [
@@ -664,6 +840,13 @@
   },
   {
    "expected_cases": [
+    "SC-23",
+    "SC-25"
+   ],
+   "query": "Unexplained iron-deficiency anaemia in an older man"
+  },
+  {
+   "expected_cases": [
     "STK-S1-B"
    ],
    "query": "Unexplained iron-deficiency anaemia in an older man on a blood thinner (darker stools)"
@@ -679,6 +862,12 @@
     "VAR-S1-PB"
    ],
    "query": "Watch for infection of the duct (cholangitis)"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "Weekly GLP-1 injection 3 days ago with nausea and bloating: stomach may still hold food"
   },
   {
    "expected_cases": [
@@ -850,6 +1039,234 @@
   },
   {
    "expected_cases": [
+    "SC-21"
+   ],
+   "query": "Apixaban is omitted for 2 days before a high-bleeding-risk operation with normal kidney function"
+  },
+  {
+   "expected_cases": [
+    "SC-21"
+   ],
+   "query": "Infection needs treatment and a surgical plan within days, not today's list"
+  },
+  {
+   "expected_cases": [
+    "SC-21"
+   ],
+   "query": "The duct must be cleared or imaged first; routine gallbladder removal today would miss it"
+  },
+  {
+   "expected_cases": [
+    "SC-21"
+   ],
+   "query": "Three problems, one decision: not today, and not the operation he was booked for"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "High-risk sepsis: antibiotics within 1 hour, fluids, senior and anaesthetic call, urgent drainage plan"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "A heart rate of 56 does not mean she is well; treat the pressure and the lactate"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "Delayed gastric emptying raises aspiration risk; a full-stomach plan is needed if she needs urgent anaesthesia"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "The gallbladder is not today's operation: drain and treat first"
+  },
+  {
+   "expected_cases": [
+    "SC-22"
+   ],
+   "query": "A normal pulse on a beta-blocker proves nothing in sepsis"
+  },
+  {
+   "expected_cases": [
+    "SC-23"
+   ],
+   "query": "Omit 2 days before this operation with normal kidney function"
+  },
+  {
+   "expected_cases": [
+    "SC-23"
+   ],
+   "query": "A bleeding source (often bowel) must be sought before an elective operation"
+  },
+  {
+   "expected_cases": [
+    "SC-23"
+   ],
+   "query": "Optimise glucose control first and re-list"
+  },
+  {
+   "expected_cases": [
+    "SC-23"
+   ],
+   "query": "Needs an anaesthetic plan for airway and opioid sparing"
+  },
+  {
+   "expected_cases": [
+    "SC-23"
+   ],
+   "query": "Each abnormal result belongs to a different action; none is solved by proceeding"
+  },
+  {
+   "expected_cases": [
+    "SC-24"
+   ],
+   "query": "No operation without valid consent; the surgeon takes it with the patient, not the trainee"
+  },
+  {
+   "expected_cases": [
+    "SC-24"
+   ],
+   "query": "Needs an anaesthetic and medical review before any list; the plan for the beta-blocker is not the trainee's to change"
+  },
+  {
+   "expected_cases": [
+    "SC-24"
+   ],
+   "query": "Fitness does not remove the two blockers above"
+  },
+  {
+   "expected_cases": [
+    "SC-24"
+   ],
+   "query": "Feeling well does not make a patient ready: consent and the pulse both need an owner"
+  },
+  {
+   "expected_cases": [
+    "SC-25"
+   ],
+   "query": "Antibiotics and urgent drainage; not a list case"
+  },
+  {
+   "expected_cases": [
+    "SC-25"
+   ],
+   "query": "Stop kidney-harming medicines (ibuprofen, ramipril) on clinician order and give fluids; no contrast without a plan"
+  },
+  {
+   "expected_cases": [
+    "SC-25"
+   ],
+   "query": "A source must be sought after he is stable; ibuprofen may be a clue"
+  },
+  {
+   "expected_cases": [
+    "SC-25"
+   ],
+   "query": "A raised creatinine is a new problem to fix, not a background number"
+  },
+  {
+   "expected_cases": [
+    "SC-26"
+   ],
+   "query": "Bilirubin above 68 umol/L with a dilated duct is the high-risk group for a duct stone"
+  },
+  {
+   "expected_cases": [
+    "SC-26"
+   ],
+   "query": "No bleeding blocker, but the restart plan depends on the duct procedure"
+  },
+  {
+   "expected_cases": [
+    "SC-26"
+   ],
+   "query": "The anaesthetist must see her before any list"
+  },
+  {
+   "expected_cases": [
+    "SC-26"
+   ],
+   "query": "A correct medicines plan does not rescue the wrong operation"
+  },
+  {
+   "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Airway and breathing first: stimulate, oxygen, stop more opioid, call the anaesthetist; the clinician decides about the antidote"
+  },
+  {
+   "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Use a professional interpreter (telephone is fine); a relative is not used for sensitive questions or consent unless nothing else exists in an emergency, and then it is recorded"
+  },
+  {
+   "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Fluids by clinician order and reassess; two days of lost water is the cause"
+  },
+  {
+   "expected_cases": [
+    "SC-27"
+   ],
+   "query": "Breathing first, then the history he can safely give, then the fluids"
+  },
+  {
+   "expected_cases": [
+    "SC-28"
+   ],
+   "query": "Side position and suction ready; anaesthetist early; she may need airway protection"
+  },
+  {
+   "expected_cases": [
+    "SC-28"
+   ],
+   "query": "Ketones and venous gas decide it, not the glucose; stop the SGLT2 inhibitor; the diabetes team and fluids and insulin by protocol"
+  },
+  {
+   "expected_cases": [
+    "SC-28"
+   ],
+   "query": "Fluids help; metformin and ACE inhibitors are reviewed; recheck creatinine"
+  },
+  {
+   "expected_cases": [
+    "SC-28"
+   ],
+   "query": "With an SGLT2 inhibitor the glucose can lie: check ketones and the gas"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "Antibiotic within 1 hour, cultures, fluids, senior and anaesthetist, theatre as soon as he is resuscitated"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "No more morphine; alternative analgesia chosen by the clinician; watch the breathing"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "Rapid sequence plan; food alone is not a reason to delay emergency surgery"
+  },
+  {
+   "expected_cases": [
+    "SC-29"
+   ],
+   "query": "Three urgent problems share one patient: treat the infection, protect the breathing and plan the stomach"
+  },
+  {
+   "expected_cases": [
     "SC-3"
    ],
    "query": "Obstetrics early, MRI not CT first, analgesia avoiding anti-inflammatories, antibiotics from the safe local list, left tilt"
@@ -859,6 +1276,84 @@
     "SC-3"
    ],
    "query": "Appendicitis in pregnancy needs the obstetric team and MRI"
+  },
+  {
+   "expected_cases": [
+    "SC-30"
+   ],
+   "query": "Antibiotic within 1 hour, cultures and fluids; senior and anaesthetist"
+  },
+  {
+   "expected_cases": [
+    "SC-30"
+   ],
+   "query": "Check the dose and time on the chart and report to the clinician, who decides about an antidote"
+  },
+  {
+   "expected_cases": [
+    "SC-30"
+   ],
+   "query": "Fluids by order; hold ramipril; strict urine output; no anti-inflammatories"
+  },
+  {
+   "expected_cases": [
+    "SC-30"
+   ],
+   "query": "Drowsiness in sepsis has two causes to separate: the infection and the drug"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Treat now by the hyperkalaemia protocol on clinician order; continuous ECG; recheck"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Fluids and insulin by the DKA protocol; diabetes team; potassium watched closely"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "In an emergency treatment is not delayed to wait for a parent; the senior clinician applies the local rule and it is recorded"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Surgery needs the acidosis and potassium under treatment first; antibiotic by the prescriber"
+  },
+  {
+   "expected_cases": [
+    "SC-31"
+   ],
+   "query": "Two life threats first, the law and the family second but not later, the operation when she is safe"
+  },
+  {
+   "expected_cases": [
+    "SC-32"
+   ],
+   "query": "Rapid sequence plan; the meal does not cancel an urgent operation but changes how it is done"
+  },
+  {
+   "expected_cases": [
+    "SC-32"
+   ],
+   "query": "Operating while dry and septic raises the risk; a short delay for resuscitation is correct"
+  },
+  {
+   "expected_cases": [
+    "SC-32"
+   ],
+   "query": "The surgeon plans the operation knowing that cancer is possible; he is told and followed up"
+  },
+  {
+   "expected_cases": [
+    "SC-32"
+   ],
+   "query": "A short delay to resuscitate is part of the plan, not a failure"
   },
   {
    "expected_cases": [

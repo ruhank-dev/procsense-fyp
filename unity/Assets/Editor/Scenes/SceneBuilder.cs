@@ -88,6 +88,7 @@ namespace ProcSense.EditorTools
             if (rig == null) throw new InvalidOperationException("Player rig missing: " + PlayerRigPath);
             ((GameObject)PrefabUtility.InstantiatePrefab(rig)).transform.position = new Vector3(0, 0, -1.4f);
             new GameObject("RoomLoader").AddComponent<ProcSense.VR.Boot.RoomLoader>();
+            new GameObject("Clinical panels").AddComponent<ProcSense.VR.Views.ClinicalPanelsInstaller>();
             Save(scene, "Sys_Core");
         }
 

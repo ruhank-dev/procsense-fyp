@@ -13,5 +13,5 @@ labels: The kind of inconsistency and the changed line, given by the generator, 
 model_use: tools/ai/eval_critic.py (the critic and the baseline are scored on it); never used to train a model.
 use: dev_only
 files: [tests/generation/text_inconsistencies.json]
-rows: {tests/generation/text_inconsistencies.json: {members: 214, clean: 26}}
+rows: {tests/generation/text_inconsistencies.json: {members: 215, clean: 32}}
 licence: The project's own content

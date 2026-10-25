@@ -3369,20 +3369,34 @@
   {
    "id": "NPC-TIME_OUT-04",
    "speaker": "surgeon",
-   "text": "",
+   "text": "The critical steps are {critical_steps}. I expect it to take about {duration}, with {blood_loss} blood loss.",
    "event": {
     "checklist_item": "time_out.04"
    },
-   "source": "content/checklist/safety_checklist.json (SR-2160): Anticipated critical events — To surgeon: What are the critical or non-routine steps? How long will the case take? What is the anticipated blood loss?"
+   "source": "content/checklist/safety_checklist.json (SR-2160): Anticipated critical events — To surgeon: What are the critical or non-routine steps? How long will the case take? What is the anticipated blood loss?",
+   "source_text": "",
+   "spoken_variant": "authored",
+   "review": "awaiting_review",
+   "template": [
+    "blood_loss",
+    "critical_steps",
+    "duration"
+   ]
   },
   {
    "id": "NPC-TIME_OUT-05",
    "speaker": "anaesthetist",
-   "text": "",
+   "text": "No patient-specific concerns from the anaesthetic side, apart from {anaesthetic_concerns}.",
    "event": {
     "checklist_item": "time_out.05"
    },
-   "source": "content/checklist/safety_checklist.json (SR-2161): To anaesthetist: Are there any patient-specific concerns?"
+   "source": "content/checklist/safety_checklist.json (SR-2161): To anaesthetist: Are there any patient-specific concerns?",
+   "source_text": "",
+   "spoken_variant": "authored",
+   "review": "awaiting_review",
+   "template": [
+    "anaesthetic_concerns"
+   ]
   },
   {
    "id": "NPC-TIME_OUT-06",
@@ -3399,8 +3413,8 @@
  ],
  "summary": {
   "lines": 310,
-  "templates": 10,
-  "authored_variants": 24,
-  "events_without_a_line": 2
+  "templates": 12,
+  "authored_variants": 26,
+  "events_without_a_line": 0
  }
 }

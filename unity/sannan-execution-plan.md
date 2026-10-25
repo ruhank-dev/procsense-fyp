@@ -2168,7 +2168,7 @@ Searching with the virtual keyboard is slow — the quick list must already show
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-patient-records-emr/steps/p0-patient-records-emr-s04-emr-sections.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-patient-records-emr/steps/✅%20p0-patient-records-emr-s04-emr-sections.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -2203,7 +2203,7 @@ Historical data that contradicts the current case misleads trainees — every hi
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-patient-records-emr/steps/p0-patient-records-emr-s05-auto-update-badges.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-patient-records-emr/steps/✅%20p0-patient-records-emr-s05-auto-update-badges.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -2710,7 +2710,7 @@ Band text unreadable at arm's length → font size/contrast (EXP-UI-2); two butt
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-voice-audio/steps/p0-voice-audio-s01-voice-line-catalogue.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-voice-audio/steps/✅%20p0-voice-audio-s01-voice-line-catalogue.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -2882,7 +2882,7 @@ Alarm fatigue: continuous loud alarms annoy testers — follow real priority pat
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-voice-audio/steps/p0-voice-audio-s06-wristband-nurse-lines.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-voice-audio/steps/✅%20p0-voice-audio-s06-wristband-nurse-lines.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3039,7 +3039,7 @@ Thermal throttling skews long captures — always start from a cool headset and 
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p0/p0-evaluation-performance/steps/p0-evaluation-performance-s04-assessment-mode-lock.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p0/p0-evaluation-performance/steps/✅%20p0-evaluation-performance-s04-assessment-mode-lock.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3286,7 +3286,7 @@ Fault not reported → minor item (E15-A).
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-theatre-extension/steps/p1-theatre-extension-s02-intra-op-events.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-theatre-extension/steps/✅%20p1-theatre-extension-s02-intra-op-events.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3319,7 +3319,7 @@ Every event visibly labelled as an extension.
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p1/p1-theatre-extension/steps/p1-theatre-extension-s03-recovery-handover.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p1/p1-theatre-extension/steps/✅%20p1-theatre-extension-s03-recovery-handover.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 

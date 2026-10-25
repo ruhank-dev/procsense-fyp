@@ -14,10 +14,14 @@ BASE = {"valid_rate": 1.0, "earned_pass": 0.98, "withheld_pass": 1.0, "p50_s": 1
 
 
 class Gate(unittest.TestCase):
-    def test_medgemma_is_gated_and_terms_are_not_recorded_in_the_repository(self):
-        c = REG["candidates"][0]
+    def test_medgemma_is_gated_and_a_tool_never_writes_the_acceptance(self):
+        c = json.loads(json.dumps(REG["candidates"][0]))
         self.assertTrue(c["gated"])
-        self.assertIsNone(c["terms"]["accepted_by"])                    # a person records this; a tool never does
+        t = c["terms"]
+        if t["accepted_by"]:                                            # a person's statement, recorded as such and as unverified
+            self.assertTrue(t["accepted_on"] and t["account_holder_eligibility_confirmed"])
+            self.assertIn("unverified", t["note"].lower().replace("not independently verified", "unverified"))
+        c["terms"].update(accepted_by=None, accepted_on=None, account_holder_eligibility_confirmed=False)
         state, step = mc.candidate_state(c, {"medgemma-4b-it-q4"}, 6144)
         self.assertEqual(state, "terms_not_recorded")                    # installed or not, it is not ready
         self.assertIn("accept", step)
@@ -31,7 +35,7 @@ class Gate(unittest.TestCase):
 
     def test_half_recorded_terms_are_not_enough(self):
         c = json.loads(json.dumps(REG["candidates"][0]))
-        c["terms"].update(accepted_by="A. Holder", accepted_on="2026-11-01")          # eligibility not confirmed
+        c["terms"].update(accepted_by="A. Holder", accepted_on="2026-11-01", account_holder_eligibility_confirmed=False)          # eligibility not confirmed
         self.assertEqual(mc.candidate_state(c, {c["model"]}, 6144)[0], "terms_not_recorded")
 
 

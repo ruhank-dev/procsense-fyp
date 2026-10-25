@@ -408,46 +408,389 @@
    "text": "I am only in my twenties, nothing like this runs in my family."
   },
   {
+   "id": "SC-21:allergy_invented",
+   "case": "SC-21",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with bee stings and my lips swell up."
+  },
+  {
+   "id": "SC-21:operation_described_wrongly",
+   "case": "SC-21",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "It is my bowel that is being operated on today, the worm-like bit."
+  },
+  {
+   "id": "SC-21:tests_said_normal",
+   "case": "SC-21",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mr Haroon Siddique, 66, is booked for keyhole gallbladder removal at 10:00. His eyes look slightly yellow, he has right-sided pain, temperature 37.9, and he took apixaban last night at 20:00. I was told this morning that every test they did came back normal."
+  },
+  {
+   "id": "SC-21:pregnancy_in_a_man",
+   "case": "SC-21",
+   "kind": "pregnancy_in_a_man",
+   "line": "h.red_flags",
+   "text": "I found out I am pregnant last month and have not told anyone at work yet."
+  },
+  {
+   "id": "SC-21:age_said_in_other_words",
+   "case": "SC-21",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am twenty-three, so I have never had to think about my health before."
+  },
+  {
+   "id": "SC-22:allergy_invented",
+   "case": "SC-22",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with hair dye and my lips swell up."
+  },
+  {
+   "id": "SC-22:operation_described_wrongly",
+   "case": "SC-22",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "I am here to have the small bowel tag removed, the one that gets infected in young people."
+  },
+  {
+   "id": "SC-22:tests_said_normal",
+   "case": "SC-22",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mrs Rukhsana Baig, 63, listed for gallbladder removal at 10:00: temperature 38.9, heart rate only 56 and BP 92/58, jaundiced. She injects semaglutide weekly (last dose 3 days ago) and takes bisoprolol. The doctors told me all my blood tests were completely normal."
+  },
+  {
+   "id": "SC-22:age_said_in_other_words",
+   "case": "SC-22",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am only in my twenties, nothing like this runs in my family."
+  },
+  {
+   "id": "SC-23:allergy_invented",
+   "case": "SC-23",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with dust mites and my lips swell up."
+  },
+  {
+   "id": "SC-23:operation_described_wrongly",
+   "case": "SC-23",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "They said they will take away the inflamed bowel tag with a camera."
+  },
+  {
+   "id": "SC-23:condition_denied",
+   "case": "SC-23",
+   "kind": "condition_denied",
+   "line": "h.past_history",
+   "text": "I have never had any medical problems, I am completely healthy."
+  },
+  {
+   "id": "SC-23:tests_said_normal",
+   "case": "SC-23",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mr Ghulam Nabi, 71, listed for gallbladder removal: apixaban taken yesterday, STOP-Bang 6 with BMI 37, haemoglobin 98 with a low MCV, HbA1c 76. I was told this morning that every test they did came back normal."
+  },
+  {
+   "id": "SC-23:pregnancy_in_a_man",
+   "case": "SC-23",
+   "kind": "pregnancy_in_a_man",
+   "line": "h.red_flags",
+   "text": "I found out I am pregnant last month and have not told anyone at work yet."
+  },
+  {
+   "id": "SC-23:age_said_in_other_words",
+   "case": "SC-23",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am twenty-three, so I have never had to think about my health before."
+  },
+  {
+   "id": "SC-24:allergy_invented",
+   "case": "SC-24",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with cat fur and my lips swell up."
+  },
+  {
+   "id": "SC-24:operation_described_wrongly",
+   "case": "SC-24",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "They are going to take out the inflamed bit of my bowel low on the right hand side."
+  },
+  {
+   "id": "SC-24:tests_said_normal",
+   "case": "SC-24",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mrs Shahida Parveen, 68, arrives otherwise fit: heart rate 46, BP 98/60, known atrial fibrillation on a rate-limiting tablet, and the consent form is not signed. The doctors told me all my blood tests were completely normal."
+  },
+  {
+   "id": "SC-24:age_said_in_other_words",
+   "case": "SC-24",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am only in my twenties, nothing like this runs in my family."
+  },
+  {
+   "id": "SC-25:allergy_invented",
+   "case": "SC-25",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with strawberries and my lips swell up."
+  },
+  {
+   "id": "SC-25:operation_described_wrongly",
+   "case": "SC-25",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "It is my bowel that is being operated on today, the worm-like bit."
+  },
+  {
+   "id": "SC-25:condition_denied",
+   "case": "SC-25",
+   "kind": "condition_denied",
+   "line": "h.past_history",
+   "text": "I have been fit all my life and never been under a doctor."
+  },
+  {
+   "id": "SC-25:tests_said_normal",
+   "case": "SC-25",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mr Zafar Iqbal, 74, listed for gallbladder removal: creatinine 178 (usually 82), haemoglobin 104 with low iron, fever 38.4 and jaundice. I was told this morning that every test they did came back normal."
+  },
+  {
+   "id": "SC-25:pregnancy_in_a_man",
+   "case": "SC-25",
+   "kind": "pregnancy_in_a_man",
+   "line": "h.red_flags",
+   "text": "I found out I am pregnant last month and have not told anyone at work yet."
+  },
+  {
+   "id": "SC-25:age_said_in_other_words",
+   "case": "SC-25",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am twenty-three, so I have never had to think about my health before."
+  },
+  {
+   "id": "SC-26:allergy_invented",
+   "case": "SC-26",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with sesame seeds and my lips swell up."
+  },
+  {
+   "id": "SC-26:operation_described_wrongly",
+   "case": "SC-26",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "I am here to have the small bowel tag removed, the one that gets infected in young people."
+  },
+  {
+   "id": "SC-26:tests_said_normal",
+   "case": "SC-26",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mrs Farida Hussain, 59, apixaban stopped 3 days ago as instructed, but yellow eyes and a bilirubin of 71 with a duct of 10 mm; the anaesthetist has not yet seen her. The doctors told me all my blood tests were completely normal."
+  },
+  {
+   "id": "SC-26:age_said_in_other_words",
+   "case": "SC-26",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am only in my twenties, nothing like this runs in my family."
+  },
+  {
+   "id": "SC-27:allergy_invented",
+   "case": "SC-27",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with soy sauce and my lips swell up."
+  },
+  {
+   "id": "SC-27:operation_described_wrongly",
+   "case": "SC-27",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "The surgeon will go in for the stones in the bile bag today."
+  },
+  {
+   "id": "SC-27:tests_said_normal",
+   "case": "SC-27",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mr Jorge Mendes, 52, speaks little English: right-sided abdominal pain for 3 days, vomiting, dry mouth. After morphine his breathing is slow: RR 9, SpO2 92, drowsy. I was told this morning that every test they did came back normal."
+  },
+  {
+   "id": "SC-27:pregnancy_in_a_man",
+   "case": "SC-27",
+   "kind": "pregnancy_in_a_man",
+   "line": "h.red_flags",
+   "text": "I found out I am pregnant last month and have not told anyone at work yet."
+  },
+  {
+   "id": "SC-27:age_said_in_other_words",
+   "case": "SC-27",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am twenty-three, so I have never had to think about my health before."
+  },
+  {
+   "id": "SC-28:allergy_invented",
+   "case": "SC-28",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with plaster glue and my lips swell up."
+  },
+  {
+   "id": "SC-28:operation_described_wrongly",
+   "case": "SC-28",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "I am here to have my gallstones dealt with."
+  },
+  {
+   "id": "SC-28:tests_said_normal",
+   "case": "SC-28",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Ms Leila Haddad, 33, type 2 diabetes on an SGLT2 inhibitor: 2 days of vomiting and abdominal pain, drowsy (responds to voice), breathing deeply and fast, glucose only 11. The doctors told me all my blood tests were completely normal."
+  },
+  {
+   "id": "SC-29:allergy_invented",
+   "case": "SC-29",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with grass pollen and my lips swell up."
+  },
+  {
+   "id": "SC-29:operation_described_wrongly",
+   "case": "SC-29",
+   "kind": "operation_described_wrongly",
+   "line": "reason",
+   "text": "They are going to take the stones out of the little sac under my liver."
+  },
+  {
+   "id": "SC-29:tests_said_normal",
+   "case": "SC-29",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Mr Imtiaz Cheema, 44, perforated appendix: temperature 39.0, HR 124, BP 92/56, lactate 3.8; he ate a large meal 2 hours ago and has been given morphine, now drowsy with RR 10. I was told this morning that every test they did came back normal."
+  },
+  {
+   "id": "SC-29:pregnancy_in_a_man",
+   "case": "SC-29",
+   "kind": "pregnancy_in_a_man",
+   "line": "h.red_flags",
+   "text": "I found out I am pregnant last month and have not told anyone at work yet."
+  },
+  {
    "id": "SC-3:allergy_invented",
    "case": "SC-3",
    "kind": "allergy_invented",
    "line": "allergy",
-   "text": "I come out in hives with bee stings and my lips swell up."
+   "text": "I come out in hives with cow's milk and my lips swell up."
   },
   {
    "id": "SC-3:operation_described_wrongly",
    "case": "SC-3",
    "kind": "operation_described_wrongly",
    "line": "reason",
-   "text": "They are going to take the stones out of the little sac under my liver."
+   "text": "It is for the stones that cause my colic after fatty food."
   },
   {
    "id": "SC-3:tests_said_normal",
    "case": "SC-3",
    "kind": "tests_said_normal",
    "line": "summary",
-   "text": "Mrs Rabia Hussain, 32, 20 weeks pregnant: T 38.2, HR 108, WBC 15, ultrasound non-diagnostic. I was told this morning that every test they did came back normal."
+   "text": "Mrs Rabia Hussain, 32, 20 weeks pregnant: T 38.2, HR 108, WBC 15, ultrasound non-diagnostic. The doctors told me all my blood tests were completely normal."
   },
   {
-   "id": "SC-5:allergy_invented",
-   "case": "SC-5",
+   "id": "SC-30:allergy_invented",
+   "case": "SC-30",
    "kind": "allergy_invented",
    "line": "allergy",
-   "text": "I come out in hives with hair dye and my lips swell up."
+   "text": "I come out in hives with hazelnut spread and my lips swell up."
   },
   {
-   "id": "SC-5:operation_described_wrongly",
-   "case": "SC-5",
+   "id": "SC-30:operation_described_wrongly",
+   "case": "SC-30",
    "kind": "operation_described_wrongly",
    "line": "reason",
-   "text": "I am here to have the small bowel tag removed, the one that gets infected in young people."
+   "text": "The surgeon will go in for the stones in the bile bag today."
   },
   {
-   "id": "SC-5:tests_said_normal",
-   "case": "SC-5",
+   "id": "SC-30:tests_said_normal",
+   "case": "SC-30",
    "kind": "tests_said_normal",
    "line": "summary",
-   "text": "Mr Sajid Mahmood, 72: HR 124 irregular, BP 128/80; took his apixaban this morning out of habit. The doctors told me all my blood tests were completely normal."
+   "text": "Mrs Bushra Qazi, 58, perforated appendix with sepsis: temperature 38.8, HR 118, BP 94/58, RR 24, lactate 3.4; creatinine 142 against a usual 88; drowsy after morphine. I was told this morning that every test they did came back normal."
+  },
+  {
+   "id": "SC-30:age_said_in_other_words",
+   "case": "SC-30",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am twenty-three, so I have never had to think about my health before."
+  },
+  {
+   "id": "SC-31:allergy_invented",
+   "case": "SC-31",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with kiwi fruit and my lips swell up."
+  },
+  {
+   "id": "SC-31:condition_denied",
+   "case": "SC-31",
+   "kind": "condition_denied",
+   "line": "h.past_history",
+   "text": "I have never had any medical problems, I am completely healthy."
+  },
+  {
+   "id": "SC-31:tests_said_normal",
+   "case": "SC-31",
+   "kind": "tests_said_normal",
+   "line": "summary",
+   "text": "Ms Hira Latif, 16, has type 1 diabetes and missed insulin for 2 days: abdominal pain, vomiting, deep breathing, ketones 4.4, venous pH 7.10, potassium 6.7 and a rigid abdomen from a perforated appendix. The doctors told me all my blood tests were completely normal."
+  },
+  {
+   "id": "SC-31:age_said_in_other_words",
+   "case": "SC-31",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am in my seventies and have been retired for a good while."
+  },
+  {
+   "id": "SC-32:allergy_invented",
+   "case": "SC-32",
+   "kind": "allergy_invented",
+   "line": "allergy",
+   "text": "I come out in hives with bee stings and my lips swell up."
+  },
+  {
+   "id": "SC-32:pregnancy_in_a_man",
+   "case": "SC-32",
+   "kind": "pregnancy_in_a_man",
+   "line": "h.red_flags",
+   "text": "I found out I am pregnant last month and have not told anyone at work yet."
+  },
+  {
+   "id": "SC-32:age_said_in_other_words",
+   "case": "SC-32",
+   "kind": "age_said_in_other_words",
+   "line": "h.past_history",
+   "text": "I am twenty-three, so I have never had to think about my health before."
   },
   {
    "id": "SC-5:pregnancy_in_a_man",
@@ -464,53 +807,11 @@
    "text": "I am only in my twenties, nothing like this runs in my family."
   },
   {
-   "id": "SC-6:allergy_invented",
-   "case": "SC-6",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with dust mites and my lips swell up."
-  },
-  {
-   "id": "SC-6:operation_described_wrongly",
-   "case": "SC-6",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "They said they will take away the inflamed bowel tag with a camera."
-  },
-  {
-   "id": "SC-6:tests_said_normal",
-   "case": "SC-6",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mrs Uzma Aziz, 49, ate toast at 07:00 because her sugar felt low; she is on basal insulin; glucose 4.6. I was told this morning that every test they did came back normal."
-  },
-  {
    "id": "SC-6:age_said_in_other_words",
    "case": "SC-6",
    "kind": "age_said_in_other_words",
    "line": "h.past_history",
    "text": "I am twenty-three, so I have never had to think about my health before."
-  },
-  {
-   "id": "SC-7:allergy_invented",
-   "case": "SC-7",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with cat fur and my lips swell up."
-  },
-  {
-   "id": "SC-7:operation_described_wrongly",
-   "case": "SC-7",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "I am here to have my gallstones dealt with."
-  },
-  {
-   "id": "SC-7:tests_said_normal",
-   "case": "SC-7",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mr Adnan Qureshi, 27: RR 10, SpO2 93, drowsy after morphine, vomiting. The doctors told me all my blood tests were completely normal."
   },
   {
    "id": "SC-7:pregnancy_in_a_man",
@@ -527,27 +828,6 @@
    "text": "I am in my seventies and have been retired for a good while."
   },
   {
-   "id": "SC-8:allergy_invented",
-   "case": "SC-8",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with strawberries and my lips swell up."
-  },
-  {
-   "id": "SC-8:operation_described_wrongly",
-   "case": "SC-8",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "They are going to take the stones out of the little sac under my liver."
-  },
-  {
-   "id": "SC-8:tests_said_normal",
-   "case": "SC-8",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mr Waqas Nadeem, 63: K 6.6, creatinine 210, lactate 4.2, BP 88/50. I was told this morning that every test they did came back normal."
-  },
-  {
    "id": "SC-8:pregnancy_in_a_man",
    "case": "SC-8",
    "kind": "pregnancy_in_a_man",
@@ -562,60 +842,11 @@
    "text": "I am twenty-three, so I have never had to think about my health before."
   },
   {
-   "id": "SC-9:allergy_invented",
-   "case": "SC-9",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with sesame seeds and my lips swell up."
-  },
-  {
-   "id": "SC-9:operation_described_wrongly",
-   "case": "SC-9",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "I am here to have the small bowel tag removed, the one that gets infected in young people."
-  },
-  {
-   "id": "SC-9:tests_said_normal",
-   "case": "SC-9",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mr Zahid Latif, 73: bilirubin 85, T 39.1, HR 118, BP 100/62; clopidogrel for a stent two years ago. The doctors told me all my blood tests were completely normal."
-  },
-  {
    "id": "SC-9:pregnancy_in_a_man",
    "case": "SC-9",
    "kind": "pregnancy_in_a_man",
    "line": "h.red_flags",
    "text": "I am about twelve weeks pregnant, so I was worried about the scan."
-  },
-  {
-   "id": "SC-9:age_said_in_other_words",
-   "case": "SC-9",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am only in my twenties, nothing like this runs in my family."
-  },
-  {
-   "id": "STK-S1-A:allergy_invented",
-   "case": "STK-S1-A",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with soy sauce and my lips swell up."
-  },
-  {
-   "id": "STK-S1-A:operation_described_wrongly",
-   "case": "STK-S1-A",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "They said they will take away the inflamed bowel tag with a camera."
-  },
-  {
-   "id": "STK-S1-A:tests_said_normal",
-   "case": "STK-S1-A",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mr Imran Siddiqui, 58, is booked for keyhole gallbladder removal. He is slightly pale and sweaty and says he feels a bit shaky and hungry. Glucose 3.6. BP 174/102, repeat 172/100. I was told this morning that every test they did came back normal."
   },
   {
    "id": "STK-S1-A:pregnancy_in_a_man",
@@ -625,39 +856,11 @@
    "text": "I found out I am pregnant last month and have not told anyone at work yet."
   },
   {
-   "id": "STK-S1-A:age_said_in_other_words",
-   "case": "STK-S1-A",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am twenty-three, so I have never had to think about my health before."
-  },
-  {
-   "id": "STK-S1-B:allergy_invented",
-   "case": "STK-S1-B",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with plaster glue and my lips swell up."
-  },
-  {
-   "id": "STK-S1-B:operation_described_wrongly",
-   "case": "STK-S1-B",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "They are going to take out the inflamed bit of my bowel low on the right hand side."
-  },
-  {
    "id": "STK-S1-B:condition_denied",
    "case": "STK-S1-B",
    "kind": "condition_denied",
    "line": "h.past_history",
    "text": "I have been fit all my life and never been under a doctor."
-  },
-  {
-   "id": "STK-S1-B:tests_said_normal",
-   "case": "STK-S1-B",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mr George Mensah, 69, is booked for keyhole gallbladder removal. Known atrial fibrillation on apixaban, which the plan said to stop two days before. He is calm, well-looking and slightly pale; Hb 104, MCV 74, ferritin 9. The doctors told me all my blood tests were completely normal."
   },
   {
    "id": "STK-S1-B:pregnancy_in_a_man",
@@ -667,109 +870,11 @@
    "text": "I am about twelve weeks pregnant, so I was worried about the scan."
   },
   {
-   "id": "STK-S1-B:age_said_in_other_words",
-   "case": "STK-S1-B",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am only in my twenties, nothing like this runs in my family."
-  },
-  {
-   "id": "STK-S1-C:allergy_invented",
-   "case": "STK-S1-C",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with grass pollen and my lips swell up."
-  },
-  {
-   "id": "STK-S1-C:operation_described_wrongly",
-   "case": "STK-S1-C",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "It is my bowel that is being operated on today, the worm-like bit."
-  },
-  {
-   "id": "STK-S1-C:tests_said_normal",
-   "case": "STK-S1-C",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mrs Helena Novak, 71, is booked for keyhole gallbladder removal. She has heart failure and kidney disease and had three days of diarrhoea last week. Tired, a little dizzy on standing, dry mouth, slow pulse (52), BP 104/62 (usual about 130/80). Potassium 6.6 with peaked T waves. I was told this morning that every test they did came back normal."
-  },
-  {
-   "id": "STK-S1-C:age_said_in_other_words",
-   "case": "STK-S1-C",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am twenty-three, so I have never had to think about my health before."
-  },
-  {
-   "id": "STK-S1-D:allergy_invented",
-   "case": "STK-S1-D",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with cow's milk and my lips swell up."
-  },
-  {
-   "id": "STK-S1-D:operation_described_wrongly",
-   "case": "STK-S1-D",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "I am here to have the small bowel tag removed, the one that gets infected in young people."
-  },
-  {
-   "id": "STK-S1-D:tests_said_normal",
-   "case": "STK-S1-D",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mrs Aisha Bello, 62, is admitted for her booked laparoscopic cholecystectomy after three episodes of biliary colic. Since pre-assessment she has developed fever, jaundice and rigors: the elective pathway no longer simply continues. The doctors told me all my blood tests were completely normal."
-  },
-  {
-   "id": "STK-S1-D:age_said_in_other_words",
-   "case": "STK-S1-D",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am only in my twenties, nothing like this runs in my family."
-  },
-  {
-   "id": "STK-S2-A:allergy_invented",
-   "case": "STK-S2-A",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with hazelnut spread and my lips swell up."
-  },
-  {
-   "id": "STK-S2-A:operation_described_wrongly",
-   "case": "STK-S2-A",
-   "kind": "operation_described_wrongly",
-   "line": "reason",
-   "text": "The surgeon will go in for the stones in the bile bag today."
-  },
-  {
-   "id": "STK-S2-A:tests_said_normal",
-   "case": "STK-S2-A",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mrs Sofia Rossi, 45, has had 48 hours of pain moving to the right lower tummy and vomiting 6 to 8 times a day. Lying still, pale, dry lips, faint on standing. HR 118, BP 102/64, T 38.1, capillary refill 3 s. Creatinine 158 (baseline 82), potassium 3.0. I was told this morning that every test they did came back normal."
-  },
-  {
-   "id": "STK-S2-A:age_said_in_other_words",
-   "case": "STK-S2-A",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am twenty-three, so I have never had to think about my health before."
-  },
-  {
    "id": "STK-S2-B:allergy_denied",
    "case": "STK-S2-B",
    "kind": "allergy_denied",
    "line": "allergy",
-   "text": "None. My body takes everything well."
-  },
-  {
-   "id": "STK-S2-B:tests_said_normal",
-   "case": "STK-S2-B",
-   "kind": "tests_said_normal",
-   "line": "summary",
-   "text": "Mr Ravi Patel, 34, has had three days of abdominal pain, now generalised. Hot, sweaty, breathing fast, lying very still, abdomen rigid; allergic to penicillin (throat swelling and collapse in 2019). The doctors told me all my blood tests were completely normal."
+   "text": "No, not that I have ever noticed, I have never reacted to anything."
   },
   {
    "id": "STK-S2-B:pregnancy_in_a_man",
@@ -779,39 +884,11 @@
    "text": "I am about twelve weeks pregnant, so I was worried about the scan."
   },
   {
-   "id": "STK-S2-C:allergy_invented",
-   "case": "STK-S2-C",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with bee stings and my lips swell up."
-  },
-  {
    "id": "STK-S2-C:pregnancy_in_a_man",
    "case": "STK-S2-C",
    "kind": "pregnancy_in_a_man",
    "line": "h.red_flags",
    "text": "I found out I am pregnant last month and have not told anyone at work yet."
-  },
-  {
-   "id": "STK-S2-C:age_said_in_other_words",
-   "case": "STK-S2-C",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am sixty-eight, so I have had my share of hospital visits."
-  },
-  {
-   "id": "STK-S2-D:allergy_invented",
-   "case": "STK-S2-D",
-   "kind": "allergy_invented",
-   "line": "allergy",
-   "text": "I come out in hives with hair dye and my lips swell up."
-  },
-  {
-   "id": "STK-S2-D:age_said_in_other_words",
-   "case": "STK-S2-D",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am in my seventies and have been retired for a good while."
   },
   {
    "id": "VAR-S1-C:condition_denied",
@@ -821,13 +898,6 @@
    "text": "Nothing wrong with me before today, no conditions, no tablets, no check-ups."
   },
   {
-   "id": "VAR-S1-C:age_said_in_other_words",
-   "case": "VAR-S1-C",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am only in my twenties, nothing like this runs in my family."
-  },
-  {
    "id": "VAR-S1-D:pregnancy_in_a_man",
    "case": "VAR-S1-D",
    "kind": "pregnancy_in_a_man",
@@ -835,18 +905,11 @@
    "text": "I found out I am pregnant last month and have not told anyone at work yet."
   },
   {
-   "id": "VAR-S1-D:age_said_in_other_words",
-   "case": "VAR-S1-D",
-   "kind": "age_said_in_other_words",
-   "line": "h.past_history",
-   "text": "I am twenty-three, so I have never had to think about my health before."
-  },
-  {
    "id": "VAR-S1-I:allergy_denied",
    "case": "VAR-S1-I",
    "kind": "allergy_denied",
    "line": "allergy",
-   "text": "No allergies. I have been given all sorts of drugs and had no trouble."
+   "text": "Nothing at all, I can take any tablet they give me."
   },
   {
    "id": "VAR-S1-J:pregnancy_in_a_man",
@@ -884,13 +947,6 @@
    "text": "Nothing wrong with me before today, no conditions, no tablets, no check-ups."
   },
   {
-   "id": "VAR-S1-M:pregnancy_in_a_man",
-   "case": "VAR-S1-M",
-   "kind": "pregnancy_in_a_man",
-   "line": "h.red_flags",
-   "text": "I found out I am pregnant last month and have not told anyone at work yet."
-  },
-  {
    "id": "VAR-S2-E:condition_denied",
    "case": "VAR-S2-E",
    "kind": "condition_denied",
@@ -898,46 +954,11 @@
    "text": "I have been fit all my life and never been under a doctor."
   },
   {
-   "id": "VAR-S2-E:pregnancy_in_a_man",
-   "case": "VAR-S2-E",
-   "kind": "pregnancy_in_a_man",
-   "line": "h.red_flags",
-   "text": "I found out I am pregnant last month and have not told anyone at work yet."
-  },
-  {
-   "id": "VAR-S2-F:pregnancy_in_a_man",
-   "case": "VAR-S2-F",
-   "kind": "pregnancy_in_a_man",
-   "line": "h.red_flags",
-   "text": "I am about twelve weeks pregnant, so I was worried about the scan."
-  },
-  {
-   "id": "VAR-S2-I:pregnancy_in_a_man",
-   "case": "VAR-S2-I",
-   "kind": "pregnancy_in_a_man",
-   "line": "h.red_flags",
-   "text": "I found out I am pregnant last month and have not told anyone at work yet."
-  },
-  {
    "id": "VAR-S2-K:allergy_denied",
    "case": "VAR-S2-K",
    "kind": "allergy_denied",
    "line": "allergy",
-   "text": "I don't react to anything, medicines, food or otherwise."
-  },
-  {
-   "id": "VAR-S2-K:pregnancy_in_a_man",
-   "case": "VAR-S2-K",
-   "kind": "pregnancy_in_a_man",
-   "line": "h.red_flags",
-   "text": "I found out I am pregnant last month and have not told anyone at work yet."
-  },
-  {
-   "id": "VAR-S2-L:pregnancy_in_a_man",
-   "case": "VAR-S2-L",
-   "kind": "pregnancy_in_a_man",
-   "line": "h.red_flags",
-   "text": "I am about twelve weeks pregnant, so I was worried about the scan."
+   "text": "None. My body takes everything well."
   }
  ],
  "clean": [
@@ -948,6 +969,12 @@
   "SC-17",
   "SC-19",
   "SC-20",
+  "SC-22",
+  "SC-24",
+  "SC-26",
+  "SC-28",
+  "SC-3",
+  "SC-31",
   "SC-5",
   "SC-7",
   "SC-9",
@@ -975,6 +1002,6 @@
   "pregnancy_in_a_man": 24,
   "allergy_invented": 24,
   "age_said_in_other_words": 24,
-  "condition_denied": 9
+  "condition_denied": 12
  }
 }

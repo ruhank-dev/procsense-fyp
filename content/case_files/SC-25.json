@@ -5,7 +5,7 @@
  "scenario": "S1",
  "tier": "P2",
  "synthetic": true,
- "status": "DRAFT",
+ "status": "APPROVED_FOR_TRAINING",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -508,5 +508,10 @@
    "origin": "authored"
   },
   "plan": "standard_ga"
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
+  "date": "2026-10-25",
+  "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
  }
 }

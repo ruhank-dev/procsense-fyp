@@ -142,6 +142,9 @@ namespace ProcSense.VR.Bridge
             if (Session.Clock.Steps != before) Refresh();
         }
 
+        /// <summary>Raised after every action the host applied, accepted or refused, so a view (the nurse's subtitles) can show what it caused. It must not change the session.</summary>
+        public event Action<SimAction, ActionOutcome> Applied;
+
         /// <summary>The only way Unity changes the simulation. A Core exception pauses the session and returns a rejection.</summary>
         public ActionOutcome Apply(SimAction action)
         {
@@ -150,6 +153,7 @@ namespace ProcSense.VR.Bridge
             {
                 var outcome = Session.Apply(action);
                 Refresh();
+                Applied?.Invoke(action, outcome);
                 return outcome;
             }
             catch (Exception e)

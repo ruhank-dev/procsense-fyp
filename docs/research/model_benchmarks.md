@@ -53,3 +53,7 @@ The 4B model fits wholly on the 6 GB card and answers in about a second; the 9B 
 | Communication-act classification | all-minilm:22m embeddings + logistic regression | 22M parameters, no card needed (ADR-0012); the 4B model stays as an alternative |
 | Speech recognition | faster-whisper small.en on the card (int8_float16, beside the resident 4B model; the processor is the fallback) | 0.58 s for a 3 to 7 s clip against 5.9 s on the processor; word error rate 0.085 on rendered lines and 0.217 on real mock consultations (reports/ai/asr-wer.json, asr-primock57.json) |
 | Speech output | Piper en_GB-cori-high on the processor | first sentence 2.19 s at the 95th percentile on a quiet processor |
+
+## MedGemma 4B candidate (25 Oct 2026, DT-222)
+
+`medgemma:4b` (Ollama library build of the gated Google model; the owner states they accepted the Health AI Developer Foundations terms as `arceus1rk`, recorded as unverified in `content/ai/model_candidates.json`) was run through `tools/ai/benchmark.py` b0 to b2 and `model_candidate.py compare`. It measured at parity with the current choice on the automatic checks and leaked the disclosure line once in 60 replies. The compare rule needs at least 50 blind human ratings before it can say SWITCH, so the verdict is INCONCLUSIVE and production stays unchanged (ADR-0025 freeze). Outputs are preliminary and not for clinical decisions.

@@ -1036,30 +1036,37 @@
   "p1-theatre-extension-s02": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "src/ProcSense.Core/Workflow/Steps/IntraOpSubsystem.cs",
     "content/extension/intra_op_events.json",
     "unity/Assets/Scripts/Views/EventCardsView.cs",
-    "unity/Assets/Tests/EditMode/EmrTextTests.cs"
+    "unity/Assets/Tests/EditMode/EmrTextTests.cs",
+    "unity/Assets/Scripts/Views/ClinicalPanelsInstaller.cs",
+    "unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs"
    ],
-   "measured": "4 labelled events, practice mode only, 11 tests in TheatreExtensionTests",
-   "open": "The event cards view is BUILT and EditMode-tested (EventCardsView shows the cue lines). NOT done: placing it in a scene and the headset check DC-06 (NOT RUN).",
-   "external": "Sannan: the event cards in the scene (DC-06)"
+   "measured": "4 labelled events, practice mode only, 11 tests in TheatreExtensionTests; the event cards are installed above the patient bay with the session; Unity 6000.5.10f1 batch run of 25 Oct 2026: EditMode 94 of 94, PlayMode 115 passed, 1 skipped (live service), 0 failed",
+   "open": "Placement and the headset check (DC-06) are Sannan's",
+   "external": "Sannan: DC-06",
+   "implementation": "complete"
   },
   "p1-theatre-extension-s03": {
    "owner": "Ruhan",
    "before": "Built 17 Oct",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "src/ProcSense.Core/Workflow/Steps/RecoveryHandoverSubsystem.cs",
-    "content/handover/recovery_required.json"
+    "content/handover/recovery_required.json",
+    "unity/Assets/Scripts/Views/RecoveryHandoverView.cs",
+    "unity/Assets/Scenes/Recovery.unity",
+    "unity/Assets/Editor/Scenes/AddonScenesSetup.cs"
    ],
-   "measured": "12 required handover items sourced, practice mode only, tested",
-   "open": "The recovery bay scene and the nurse avatar are not built in Unity; the engine half is done and tested. The recovery bay scene and the nurse avatar are Sannan's (DC-06). No clinician has read the 12 items; under ADR-0008 that is not a gate",
-   "external": "Sannan: the recovery bay scene and nurse avatar (DC-06)"
+   "measured": "12 required handover items sourced, practice mode only, tested; Recovery.unity with a recovery nurse figure and the handover panel (one button per required item, Finish, engine refusals in words, nurse questions in practice only); PlayMode tests; Unity 6000.5.10f1 batch run of 25 Oct 2026: EditMode 94 of 94, PlayMode 115 passed, 1 skipped (live service), 0 failed",
+   "open": "Greybox nurse (no animation or audio) and no door to the scene yet; the headset check (DC-06) is Sannan's. No clinician has read the 12 items (ADR-0008: not a gate)",
+   "external": "Sannan: DC-06",
+   "implementation": "complete"
   },
   "p1-theatre-extension-s04": {
    "owner": "Sannan",
@@ -1701,18 +1708,22 @@
   "p0-evaluation-performance-s04": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tests/ProcSense.Core.Tests/AssessmentModeTests.cs",
     "tests/golden/VAR-S1-A_assessment.expected.json",
     "unity/Assets/Scripts/Bridge/ModeGate.cs",
     "unity/Assets/Tests/EditMode/ModeGateTests.cs",
     "unity/Assets/Scripts/Bridge/ModeChoice.cs",
-    "unity/Assets/Scripts/Views/ModeChooserView.cs"
+    "unity/Assets/Scripts/Views/ModeChooserView.cs",
+    "unity/Assets/Scripts/Views/MainMenuController.cs",
+    "unity/Assets/Scenes/MainMenu.unity",
+    "unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs"
    ],
-   "measured": "AssessmentModeTests (7): only assessment-approved content loads, fixed case order, no hints or helpers, critical items logged strictly, header says assessment, no verb changes the mode; golden run VAR-S1-A_assessment",
-   "open": "BUILT and EditMode-tested: the central mode check (ModeGate), the mode choice locked during a session (ModeChoice) and a two-button chooser (ModeChooserView). NOT built: a main-menu scene that holds the chooser, the PracticeOnly component on scene objects (the consent tracker and nurse prompts do not exist yet; the tablet hint already goes through ModeGate), and the debrief showing the mode label. UX-P0-ASSESS is NOT RUN.",
-   "external": "Sannan: the Unity mode gate and the headset check (check UX-P0-ASSESS); content approved for assessment is the owner's decision (DT-177)"
+   "measured": "AssessmentModeTests (7): only assessment-approved content loads, fixed case order, no hints or helpers, critical items logged strictly, header says assessment, no verb changes the mode; golden run VAR-S1-A_assessment; MainMenu scene (mode chooser, Start loading Boot, Quit) with a PracticeOnly hint; PlayMode tests choose the mode, start Boot without a session, refuse while the mode is locked and show the hint in practice only; Unity 6000.5.10f1 batch run of 25 Oct 2026: EditMode 94 of 94, PlayMode 115 passed, 1 skipped (live service), 0 failed",
+   "open": "The menu is built and tested in the editor; the headset check of the whole gate (UX-P0-ASSESS) and the debrief's mode label are not done",
+   "external": "Sannan: the headset check UX-P0-ASSESS",
+   "implementation": "complete"
   },
   "p0-evaluation-performance-s05": {
    "owner": "Sannan",
@@ -1784,31 +1795,37 @@
   "p0-patient-records-emr-s04": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tests/ProcSense.Core.Tests/EmrSectionsTests.cs",
     "src/ProcSense.Core/Records/EmrSections.cs",
     "unity/Assets/Scripts/Views/EmrText.cs",
     "unity/Assets/Scripts/Views/EmrPanelView.cs",
-    "unity/Assets/Tests/EditMode/EmrTextTests.cs"
+    "unity/Assets/Tests/EditMode/EmrTextTests.cs",
+    "unity/Assets/Scripts/Views/ClinicalPanelsInstaller.cs",
+    "unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs"
    ],
-   "measured": "EmrSectionsTests (5): every one of the 17 P0 cases shows every section from content; a case with no image shows the report-only notice",
-   "open": "The Unity view is BUILT and EditMode-tested (EmrText, EmrPanelView: all seven tabs, empty-state lines, a tab switcher). NOT done: the panel is not placed in a scene (tablet or wall), its layout and 3D screen are Sannan's, and UX-P0-EMR is NOT RUN.",
-   "external": "Sannan: the EMR screens in Unity (check UX-P0-EMR)"
+   "measured": "EmrSectionsTests (5): every one of the 17 P0 cases shows every section from content; a case with no image shows the report-only notice; the EMR panel is installed with the session by ClinicalPanelsInstaller at EmrPanelAnchor or on the bay wall, seven tabs, created once; Unity 6000.5.10f1 batch run of 25 Oct 2026: EditMode 94 of 94, PlayMode 115 passed, 1 skipped (live service), 0 failed",
+   "open": "Placement is a default or an anchor in the scene: the exact place and the headset check (UX-P0-EMR) are Sannan's",
+   "external": "Sannan: UX-P0-EMR",
+   "implementation": "complete"
   },
   "p0-patient-records-emr-s05": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tests/ProcSense.Core.Tests/BadgesTests.cs",
     "src/ProcSense.Core/Records/Badges.cs",
     "unity/Assets/Scripts/Views/EmrText.cs",
-    "unity/Assets/Tests/EditMode/EmrTextTests.cs"
+    "unity/Assets/Tests/EditMode/EmrTextTests.cs",
+    "unity/Assets/Scripts/Views/ClinicalPanelsInstaller.cs",
+    "unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs"
    ],
-   "measured": "BadgesTests (6): a result badges its tab when ready, opening it clears the badge, the lab phone call is kept; replay gives the same badges",
-   "open": "The badge in the Unity view is BUILT and EditMode-tested (a lab result puts Lab results (1) on the tab and opening the document clears it). NOT done: the headset check that the badge appears when the patient returns and clears on opening (UX-P0-EMR, NOT RUN) and the placement in a scene.",
-   "external": "Sannan: Unity badges and the headset check (check UX-P0-EMR)"
+   "measured": "BadgesTests (6): a result badges its tab when ready, opening it clears the badge, the lab phone call is kept; replay gives the same badges; the EMR panel is installed with the session by ClinicalPanelsInstaller at EmrPanelAnchor or on the bay wall, seven tabs, created once; Unity 6000.5.10f1 batch run of 25 Oct 2026: EditMode 94 of 94, PlayMode 115 passed, 1 skipped (live service), 0 failed",
+   "open": "Placement is a default or an anchor in the scene: the exact place and the headset check (UX-P0-EMR) are Sannan's",
+   "external": "Sannan: UX-P0-EMR",
+   "implementation": "complete"
   },
   "p0-patient-records-emr-s06": {
    "owner": "Sannan",
@@ -1821,15 +1838,17 @@
   "p0-voice-audio-s01": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "tools/voice/catalogue.py",
     "content/voice/catalogue.json",
-    "tools/ci/test_voice_catalogue.py"
+    "tools/ci/test_voice_catalogue.py",
+    "content/voice/spoken_variants.json"
    ],
-   "measured": "task voice-catalogue builds a catalogue of 310 lines for the 17 P0 cases; 19 events without a line are listed, not invented; checked in CI",
-   "open": "19 events have no words yet (DT-178 to DT-180); the authoring is the owner's decision. 19 events still have no words (DT-178 to DT-180) and 14 authored variants await review",
-   "external": "authoring of the 19 missing lines (owner's decision) and a reviewer of the drafted lines"
+   "measured": "task voice-catalogue builds a catalogue of 310 lines for the 17 P0 cases; 19 events without a line are listed, not invented; checked in CI; the last 2 events without a line (the surgeon's and the anaesthetist's Time Out answers) now have authored template lines awaiting review; 0 events without a line",
+   "open": "The 26 authored variants and templates await a reviewer (status awaiting_review); the values the two Time Out templates use are not in the case files (DT-179)",
+   "external": "a reviewer of the drafted lines",
+   "implementation": "complete"
   },
   "p0-voice-audio-s02": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1872,14 +1891,17 @@
   "p0-voice-audio-s06": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
    "before": "Implementation notes in the step file (16 to 17 Oct 2026); not ticked",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "content/voice/nurse_wristband.json",
-    "tools/ci/test_voice_catalogue.py"
+    "tools/ci/test_voice_catalogue.py",
+    "unity/Assets/Scripts/Views/NurseSubtitles.cs",
+    "unity/Assets/Tests/EditMode/NurseSubtitleTests.cs"
    ],
-   "measured": "10 nurse lines with trigger, procedural wording only, no clinical fact; the catalogue reports any nurse step without a line; test_voice_catalogue (5)",
-   "open": "Rendering is done but the Play Mode scenario with subtitles for each nurse state is not built in Unity, and the 10 lines are not reviewed. Review of the 10 lines, rendering, subtitles and the Play Mode scenario of each nurse state",
-   "external": "Sannan: Play Mode scenario with subtitles (check UX-P0-VOICE); a reviewer of the drafted lines"
+   "measured": "10 nurse lines with trigger, procedural wording only, no clinical fact; the catalogue reports any nurse step without a line; test_voice_catalogue (5); NurseSubtitles and NurseSubtitleView show the nurse's lines in the engine's order for every state of the walk and every reply; all 10 authored lines are reached by real engine flows (5 EditMode tests); Unity 6000.5.10f1 batch run of 25 Oct 2026: EditMode 94 of 94, PlayMode 115 passed, 1 skipped (live service), 0 failed",
+   "open": "Audio playback, the avatar and the headset check (UX-P0-VOICE) are Sannan's; the 10 lines await review",
+   "external": "Sannan: UX-P0-VOICE; a reviewer of the lines",
+   "implementation": "complete"
   },
   "p0-vr-interaction-ui-s02": {
    "owner": "Sannan",

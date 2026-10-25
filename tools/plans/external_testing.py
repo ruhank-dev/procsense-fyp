@@ -139,9 +139,12 @@ def readiness(item: dict, recon: dict, steps: dict[str, dict]) -> tuple[str, lis
 
 def built_lines(i: dict) -> list[str]:
     """What the engineer built and unit-tested for an item, kept apart from the physical test itself (which is NOT RUN until the named person does it)."""
-    if not i.get("built_and_unit_tested"):
-        return []
-    return ["**Built and unit-tested by the engineer** (this is NOT the physical test; the item is NOT RUN until you do it):", ""] + [f"* {x}" for x in i["built_and_unit_tested"]] + [""]
+    out: list[str] = []
+    if i.get("built_and_unit_tested"):
+        out += ["**Built and unit-tested by the engineer** (this is NOT the physical test; the item is NOT RUN until you do it):", ""] + [f"* {x}" for x in i["built_and_unit_tested"]] + [""]
+    if i.get("headset_checks"):
+        out += ["**Headset checks to run** (what only the device can show; each is NOT RUN):", ""] + [f"* {x}" for x in i["headset_checks"]] + [""]
+    return out
 
 
 def render(data: dict, recon: dict, steps: dict[str, dict]) -> str:

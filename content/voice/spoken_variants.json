@@ -1,19 +1,101 @@
 {
  "note": "Spoken first-person variants written by the developer (p0-voice-audio-s01) where the content holds a narration or no line a person would say. Each is a draft awaiting review: status awaiting_review until the team (and for clinical wording the clinician) approves it. The voice catalogue uses the variant and keeps the source text beside it.",
  "variants": [
-  {"id": "PAT-STK-S1-D-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-STK-S2-B-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S1-B-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S1-D-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S1-J-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S1-PB-PREGNANCY", "text": "No, I'm past the menopause.", "source": "case file: Not applicable (past the menopause).", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S2-F-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S2-PC-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S2-PD-PREGNANCY", "text": "No, that doesn't apply to me.", "source": "case file: Not applicable.", "status": "awaiting_review"},
-  {"id": "PAT-STK-S2-B-ALLERGY_REACTION", "text": "Penicillin. My throat swelled up and I collapsed. That was in 2019.", "source": "case file: Penicillin: Throat swelling and collapse in 2019 (anaphylaxis)", "status": "awaiting_review"},
-  {"id": "PAT-VAR-S1-A-RESPONSIBLE_ADULT", "text": "My husband will take me home and stay with me overnight.", "source": "case card: Her husband will take her home and stay overnight.", "status": "awaiting_review"},
-  {"id": "NPC-SIGN_IN-03", "text": "Yes, the anaesthesia machine and medication check is complete.", "source": "safety checklist item sign_in.03 (answered by the team, no answer text in the content)", "status": "awaiting_review"},
-  {"id": "NPC-TIME_OUT-01", "text": "Everyone has introduced themselves by name and role.", "source": "safety checklist item time_out.01 (answered by the team, no answer text in the content)", "status": "awaiting_review"},
-  {"id": "NPC-TIME_OUT-06", "text": "Sterility is confirmed, including the indicator results. No equipment issues or concerns.", "source": "safety checklist item time_out.06 (answered by the team, no answer text in the content)", "status": "awaiting_review"}
+  {
+   "id": "PAT-STK-S1-D-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-STK-S2-B-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S1-B-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S1-D-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S1-J-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S1-PB-PREGNANCY",
+   "text": "No, I'm past the menopause.",
+   "source": "case file: Not applicable (past the menopause).",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S2-F-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S2-PC-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S2-PD-PREGNANCY",
+   "text": "No, that doesn't apply to me.",
+   "source": "case file: Not applicable.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-STK-S2-B-ALLERGY_REACTION",
+   "text": "Penicillin. My throat swelled up and I collapsed. That was in 2019.",
+   "source": "case file: Penicillin: Throat swelling and collapse in 2019 (anaphylaxis)",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "PAT-VAR-S1-A-RESPONSIBLE_ADULT",
+   "text": "My husband will take me home and stay with me overnight.",
+   "source": "case card: Her husband will take her home and stay overnight.",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "NPC-SIGN_IN-03",
+   "text": "Yes, the anaesthesia machine and medication check is complete.",
+   "source": "safety checklist item sign_in.03 (answered by the team, no answer text in the content)",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "NPC-TIME_OUT-01",
+   "text": "Everyone has introduced themselves by name and role.",
+   "source": "safety checklist item time_out.01 (answered by the team, no answer text in the content)",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "NPC-TIME_OUT-06",
+   "text": "Sterility is confirmed, including the indicator results. No equipment issues or concerns.",
+   "source": "safety checklist item time_out.06 (answered by the team, no answer text in the content)",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "NPC-TIME_OUT-04",
+   "text": "The critical steps are {critical_steps}. I expect it to take about {duration}, with {blood_loss} blood loss.",
+   "source": "safety checklist item time_out.04 (surgeon's answer; the content holds no answer text; the three values come from the case when it states them, DT-179)",
+   "status": "awaiting_review"
+  },
+  {
+   "id": "NPC-TIME_OUT-05",
+   "text": "No patient-specific concerns from the anaesthetic side, apart from {anaesthetic_concerns}.",
+   "source": "safety checklist item time_out.05 (anaesthetist's answer; the content holds no answer text; the concern comes from the case when it states one, DT-179)",
+   "status": "awaiting_review"
+  }
  ]
 }

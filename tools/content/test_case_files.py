@@ -113,8 +113,10 @@ class TheFiftyThreeCases(unittest.TestCase):
         pending = set(json.loads((ROOT / "content/case_signoff_pending.json").read_text(encoding="utf-8"))["pending"])
         for c in CASES.values():
             self.assertTrue(c["synthetic"])
-            if c["id"] in COMBINATIONS:                # authored 25 Oct 2026 (DT-220): nobody has approved them, so they stay DRAFT until the owner grants practice use
-                self.assertEqual(c["status"], "DRAFT", c["id"])
+            if c["id"] in COMBINATIONS:                # authored 25 Oct 2026 (DT-220); the owner authorized educational practice use the same day, and nobody claims clinical review
+                self.assertEqual(c["status"], "APPROVED_FOR_TRAINING", c["id"])
+                self.assertIn("educational practice use", c["approval"]["by"])
+                self.assertIn("No clinician reviewed", c["approval"]["note"])
                 continue
             if c["id"] in pending:                     # changed after the last attestation: stays DRAFT until signed off (docs/research/clinician_signoff.md)
                 self.assertEqual(c["status"], "DRAFT", c["id"])
@@ -128,9 +130,6 @@ class TheFiftyThreeCases(unittest.TestCase):
         approvals = json.loads((ROOT / "content/case_approvals.json").read_text(encoding="utf-8"))["approvals"]
         pending = set(json.loads((ROOT / "content/case_signoff_pending.json").read_text(encoding="utf-8"))["pending"])
         for cid, c in CASES.items():
-            if cid in COMBINATIONS:                   # never approved, so there is no approval to match
-                self.assertNotIn(cid, approvals, cid)
-                continue
             if cid in pending:                        # changed since the attestation, so the old approval no longer matches and the case is DRAFT
                 self.assertNotEqual(approvals[cid]["sha256"], b.content_hash(c), cid)
             else:
