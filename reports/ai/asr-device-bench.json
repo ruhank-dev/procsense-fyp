@@ -1,0 +1,57 @@
+{
+ "data": "synthetic only: invented questions spoken by a synthetic voice",
+ "clips": 8,
+ "devices": {
+  "processor (cpu, int8)": {
+   "ok": true,
+   "ms_each": [
+    7250,
+    7360,
+    7390,
+    7875,
+    7813,
+    8375,
+    7562,
+    9047
+   ],
+   "ms_p50": 7688,
+   "ms_p95": 9047,
+   "heard": [
+    "Do you have any allergies?",
+    "What medications are you taking?",
+    "Have you had surgery before?",
+    "NURSE. What are the latest observations?",
+    "When did you last eat or drink anything?",
+    "Can you tell me your full name and date of birth, peas?",
+    "Do you smoke or drink alcohol?",
+    "I am worried. The saturation is dropping. I need the anaesthetist here now."
+   ]
+  },
+  "card (cuda, int8_float16)": {
+   "ok": true,
+   "ms_each": [
+    594,
+    672,
+    719,
+    750,
+    765,
+    844,
+    703,
+    875
+   ],
+   "ms_p50": 734,
+   "ms_p95": 875,
+   "heard": [
+    "Do you have any allergies?",
+    "What medications are you taking?",
+    "Have you had surgery before?",
+    "NURSE. What are the latest observations?",
+    "When did you last eat or drink anything?",
+    "Can you tell me your full name and date of birth, peas?",
+    "Do you smoke or drink alcohol?",
+    "I am worried. The saturation is dropping. I need the anaesthetist here now."
+   ]
+  }
+ },
+ "same_words_on_both": 8
+}

@@ -19,6 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "artifacts" / "ai-bench" / "cloud"            # the runs with the first prompts (v1)
+SRC3 = ROOT / "artifacts" / "ai-bench" / "cloud3"          # the runs of the spoken-action interpreter (ADR-0027), a task that had no first prompt
 SRC2 = ROOT / "artifacts" / "ai-bench" / "cloud2"          # the runs with the prompts of ADR-0026 (v2), the ones shipped; a file missing here (a task whose prompt did not change) is read from SRC
 OUT = ROOT / "reports" / "ai" / "cloud-routing-benchmark.json"
 LOCAL = "qwen3.5:4b-q4_K_M"
@@ -47,13 +48,15 @@ def jtext(name: str):
     return json.loads(t[t.index("{"): t.rindex("}") + 1])
 
 
-CHANGED = {"dialogue.patient", "dialogue.staff", "compose.narrative", "critic", "judge.scenario", "trap.reword"}      # the tasks whose prompt ADR-0026 rewrote
+CHANGED = {"speech.action", "dialogue.patient", "dialogue.staff", "compose.narrative", "critic", "judge.scenario", "trap.reword"}      # the tasks whose prompt ADR-0026 rewrote
 LOCAL_FIRST_PROMPT = {"dialogue.patient", "dialogue.staff", "critic"}                                                  # their new prompt is cloud-scope: the local model keeps the first one (it costs it seconds)
 
 
 def dirs_for(task: str, model: str) -> list:
     """Where to read a model's figures for a task: the runs with the prompt that model actually gets. A task whose prompt did not change is read from the first runs; a changed one from the v2 runs, except for the local
     model on a task where it keeps the first prompt. A cloud model measured only with the first prompt is therefore absent from a changed task: it is not compared on different wording."""
+    if task == "speech.action":
+        return [SRC3]
     if task not in CHANGED:
         return [SRC]
     return [SRC] if model == LOCAL and task in LOCAL_FIRST_PROMPT else [SRC2]
@@ -62,12 +65,16 @@ def dirs_for(task: str, model: str) -> list:
 def figures(only_first: bool = False) -> dict:
     """task -> model -> the figures the rule uses, read from the stored runs. `only_first=True` reads the first prompts' runs for every task (what ADR-0026 started from)."""
     global _dirs
-    out: dict = {"dialogue.patient": {}, "dialogue.staff": {}, "compose.narrative": {}, "critic": {}, "judge.scenario": {}, "trap.reword": {}, "compose_plan.extras": {}, "compose_plan.planner": {}, "debrief.rewrite": {},
+    out: dict = {"speech.action": {}, "dialogue.patient": {}, "dialogue.staff": {}, "compose.narrative": {}, "critic": {}, "judge.scenario": {}, "trap.reword": {}, "compose_plan.extras": {}, "compose_plan.planner": {}, "debrief.rewrite": {},
                  "personalisation.interpret": {}}
     for key, model in MODELS.items():
         def at(task):
             global _dirs
             _dirs = [SRC] if only_first else dirs_for(task, model)
+        at("speech.action")
+        sp = jfile(f"spoken-{key}.json")
+        if sp:
+            out["speech.action"][model] = {"exact_match": sp["exact_match"], "false_action_rate": sp["false_action_rate"], "recall_of_expected": sp["recall_of_expected"], "fallback_share": sp["fallback_share"], "ms_p50": sp["ms_p50"], "ms_p95": sp["ms_p95"]}
         at("dialogue.patient")
         d = jfile(f"dialogue-{key}.json")
         if d:
@@ -124,7 +131,10 @@ def choose(task: str, f: dict) -> tuple[str, str]:
     others = {m: v for m, v in f.items() if m != LOCAL}
     ok: dict[str, tuple] = {}
     for m, v in others.items():
-        if task == "dialogue.patient":
+        if task == "speech.action":
+            if v["false_action_rate"] <= loc["false_action_rate"] and v["exact_match"] >= loc["exact_match"] + MARGIN and v["fallback_share"] <= 0.02 and v["ms_p95"] <= BUDGET_MS:
+                ok[m] = (v["exact_match"], -v["false_action_rate"], -v["ms_p50"])
+        elif task == "dialogue.patient":
             if v["leaks"] <= loc["leaks"] and v["withheld_cannot_recall"] >= loc["withheld_cannot_recall"] and v["fact_used"] >= loc["fact_used"] and v["ms_p95"] <= BUDGET_MS:
                 ok[m] = (v["withheld_cannot_recall"], v["fact_used"], -v["ms_p50"])
         elif task == "dialogue.staff":

@@ -53,6 +53,27 @@ namespace ProcSense.VR.Views
         public string SubtitleText => _subtitle.text;
         public string NoteText => _note.text;
 
+        /// <summary>The id of a tablet action in the spoken-action list (content/ai/spoken_actions.json): the verb, or verb:value for an action with a parameter.</summary>
+        private static string IdOf(Item item) => string.IsNullOrEmpty(item.Key) ? item.Verb : item.Verb + ":" + item.Value;
+
+        /// <summary>The ids of the actions on the tablet that are enabled now (the first three tabs; gestures registered by emitters are not here). The service keeps only those that may be started by speech, so a physical or safety-critical button is never offered to the interpreter.</summary>
+        public IReadOnlyList<string> EnabledActionIds()
+        {
+            var state = SimulationHost.Instance != null ? SimulationHost.Instance.Observable : null;
+            if (state == null) return new List<string>();
+            return _tabs.Take(3).SelectMany(t => t).Where(i => i.Enabled(state)).Select(IdOf).Distinct().ToList();
+        }
+
+        public string LabelOf(string id) => _tabs.Take(3).SelectMany(t => t).Where(i => IdOf(i) == id).Select(i => i.Label).FirstOrDefault() ?? id;
+
+        /// <summary>Starts the tablet action with this id exactly as pressing its button does (the same emitter, the same engine path), so a spoken action and a tapped one cannot differ. False when there is no such enabled button.</summary>
+        public bool PressId(string id)
+        {
+            var state = SimulationHost.Instance != null ? SimulationHost.Instance.Observable : null;
+            var item = _tabs.Take(3).SelectMany(t => t).FirstOrDefault(i => IdOf(i) == id && state != null && i.Enabled(state));
+            return item != null && Press(item.Verb, item.Key, item.Value);
+        }
+
         /// <summary>Deterministic test/desktop dispatch, including inactive tabs and rejected actions. Physical clicks use normal UI gating/debounce.</summary>
         public bool Press(string verb, string key = "", string value = "")
         {

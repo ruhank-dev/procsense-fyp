@@ -1,0 +1,28 @@
+{
+ "version": 1,
+ "status": "awaiting_review",
+ "note": "The simulator actions a trainee may start by speaking (DT-251, ADR-0027). Each entry is an action that already exists on the tablet; `means` is the plain description the language model reads to decide whether a sentence is that action. Only conversational actions are here. Physical or safety-critical actions (confirming identity, reporting a mismatch, reading the wristband, opening the notes, attaching or removing a sensor, measuring) are never started by speech: they stay gestures or tablet buttons, so a spoken sentence cannot earn credit for a physical act. The engine, not the model, decides whether the action is allowed now and what it changes.",
+ "actions": [
+  {"id": "introduce_self", "verb": "introduce_self", "label": "Introduce yourself", "means": "The trainee greets the patient and says who they are and what they are going to do."},
+  {"id": "ask_identity", "verb": "ask_identity", "label": "Ask name and date of birth", "means": "The trainee asks the patient to say their full name and their date of birth."},
+  {"id": "ask_allergies", "verb": "ask_allergies", "label": "Ask about allergies", "means": "The trainee asks whether the patient has any allergies."},
+  {"id": "ask_allergy_reaction", "verb": "ask_allergy_reaction", "label": "Ask what happened", "means": "The trainee asks what happened when the patient had an allergic reaction, or what the reaction was like."},
+  {"id": "ask_reason_for_admission", "verb": "ask_reason_for_admission", "label": "Ask why she is here", "means": "The trainee asks why the patient has come in, or what the operation is for."},
+  {"id": "ask_responsible_adult", "verb": "ask_responsible_adult", "label": "Ask about home support", "means": "The trainee asks who will take the patient home or look after them at home after the operation."},
+  {"id": "ask:complaint", "verb": "ask", "key": "topic", "value": "complaint", "label": "Main problem (pain)", "means": "The trainee asks about the main problem or pain: where it is, when it started, what it is like."},
+  {"id": "ask:red_flags", "verb": "ask", "key": "topic", "value": "red_flags", "label": "Red flags", "means": "The trainee asks about warning symptoms such as fever, yellow eyes, dark urine, pale stools, vomiting or itching."},
+  {"id": "ask:past_history", "verb": "ask", "key": "topic", "value": "past_history", "label": "Other illnesses", "means": "The trainee asks about other illnesses or medical conditions the patient has, for example diabetes, heart or blood pressure problems."},
+  {"id": "ask:medicines", "verb": "ask", "key": "topic", "value": "medicines", "label": "Medicines", "means": "The trainee asks which tablets, medicines or blood thinners the patient takes."},
+  {"id": "ask:herbal", "verb": "ask", "key": "topic", "value": "herbal", "label": "Herbal remedies", "means": "The trainee asks about herbal remedies or supplements."},
+  {"id": "ask:previous_anaesthetic", "verb": "ask", "key": "topic", "value": "previous_anaesthetic", "label": "Previous anaesthetic", "means": "The trainee asks whether the patient has had an operation or an anaesthetic before and whether it went well."},
+  {"id": "ask:family_anaesthetic", "verb": "ask", "key": "topic", "value": "family_anaesthetic", "label": "Family anaesthetic", "means": "The trainee asks whether anyone in the family has had problems with an anaesthetic."},
+  {"id": "ask:smoking", "verb": "ask", "key": "topic", "value": "smoking", "label": "Smoking", "means": "The trainee asks whether the patient smokes."},
+  {"id": "ask:alcohol", "verb": "ask", "key": "topic", "value": "alcohol", "label": "Alcohol", "means": "The trainee asks about alcohol."},
+  {"id": "ask:last_food", "verb": "ask", "key": "topic", "value": "last_food", "label": "Last food", "means": "The trainee asks when the patient last ate."},
+  {"id": "ask:last_drink", "verb": "ask", "key": "topic", "value": "last_drink", "label": "Last drink", "means": "The trainee asks when the patient last had something to drink."},
+  {"id": "ask:pregnancy", "verb": "ask", "key": "topic", "value": "pregnancy", "label": "Pregnancy (privately)", "means": "The trainee asks, privately, about pregnancy or the last period."},
+  {"id": "summarise", "verb": "summarise", "label": "Summarise", "means": "The trainee sums up what the patient has told them and checks it is right."},
+  {"id": "ask_pain_score", "verb": "ask_pain_score", "label": "Ask pain score", "means": "The trainee asks the patient to give their pain a number out of ten."},
+  {"id": "request_wristband", "verb": "request_wristband", "label": "Ask nurse for a wristband", "means": "The trainee asks the nurse to bring or put on an identity wristband for the patient."}
+ ]
+}

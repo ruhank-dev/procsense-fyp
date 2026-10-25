@@ -26,7 +26,7 @@ def _state(db: DbSession, user: CurrentUser) -> ConsentState:
         row = latest.get(kind)
         current = row is not None and row.text_version == privacy.CONSENT_VERSION and (row.granted or not text["required"])
         kinds.append(ConsentKind(kind=kind, title=text["title"], text=text["text"], required=text["required"], granted=row.granted if row else None,
-                                 answered_version=row.text_version if row else None, current=current))
+                                 answered_version=row.text_version if row else None, documents=list(text.get("documents", ())), current=current))
     return ConsentState(version=privacy.CONSENT_VERSION, needs_consent=any(k.required and not (k.current and k.granted) for k in kinds), kinds=kinds)
 
 
@@ -42,6 +42,15 @@ def give_consent(body: ConsentIn, user: CurrentUser = Depends(current_user), _we
     repository.record_consent(db, user.profile.user_id, body.kind, body.granted)
     db.commit()
     return _state(db, user)
+
+
+@router.get("/legal/{name}")
+def legal_document(name: str) -> dict:
+    """The Terms and Conditions and the Privacy Notice, public so that they can be read before signing up. The version and the hash are what a recorded answer refers to."""
+    try:
+        return privacy.legal_document(name.replace("-", "_"))
+    except KeyError:
+        raise HTTPException(status_code=404, detail="no_such_document") from None
 
 
 @router.get("/privacy/access-log", response_model=list[AccessEntry])

@@ -36,13 +36,18 @@ def has_current(db: DbSession, user_id: uuid.UUID, kind: str) -> bool:
     return row is not None and row.granted and row.text_version == privacy.CONSENT_VERSION
 
 
-def record_consent(db: DbSession, user_id: uuid.UUID, kind: str, granted: bool) -> ConsentRecord:
+def cloud_consent(db: DbSession, user_id: uuid.UUID) -> bool:
+    """True only if the person's latest answer to the cloud AI question is yes, given to the current text. No answer, a no, a withdrawal or an older text all mean no."""
+    return has_current(db, user_id, "cloud")
+
+
+def record_consent(db: DbSession, user_id: uuid.UUID, kind: str, granted: bool, via: str = "web") -> ConsentRecord:
     """Adds an answer. Its time is always later than the person's previous answer to the same question, so "the latest answer" is never a tie, even for two answers in the same clock tick."""
     when = _now()
     last = db.scalar(select(func.max(ConsentRecord.recorded_at)).where(ConsentRecord.user_id == user_id, ConsentRecord.kind == kind))
     if last is not None and when <= last:
         when = last + dt.timedelta(microseconds=1)
-    row = ConsentRecord(user_id=user_id, kind=kind, text_version=privacy.CONSENT_VERSION, granted=granted, recorded_at=when)
+    row = ConsentRecord(user_id=user_id, kind=kind, text_version=privacy.CONSENT_VERSION, granted=granted, recorded_at=when, text_sha256=privacy.text_hash(kind), via=via)
     db.add(row)
     db.flush()
     return row
@@ -80,7 +85,7 @@ def export_person(db: DbSession, profile: Profile) -> dict:
     uid = profile.user_id
     memberships = [dict(organisation=o.name, role=m.role, status=m.status, since=m.created_at) for m, o in accounts.memberships_of(db, uid)]
     cohorts = [dict(cohort=c.name, role=cm.role) for cm, c in db.execute(select(CohortMember, Cohort).join(Cohort, Cohort.id == CohortMember.cohort_id).where(CohortMember.user_id == uid))]
-    consents = [dict(kind=c.kind, granted=c.granted, text_version=c.text_version, at=c.recorded_at) for c in db.scalars(select(ConsentRecord).where(ConsentRecord.user_id == uid).order_by(ConsentRecord.recorded_at))]
+    consents = [dict(kind=c.kind, granted=c.granted, text_version=c.text_version, text_sha256=c.text_sha256, via=c.via, at=c.recorded_at) for c in db.scalars(select(ConsentRecord).where(ConsentRecord.user_id == uid).order_by(ConsentRecord.recorded_at))]
     sessions = []
     for s in db.scalars(select(Session).where(Session.user_id == uid).order_by(Session.received_at)):
         items = [dict(item=i.item_id, behaviour=i.behaviour, severity=i.severity, status=i.status, points=float(i.points), step=i.step, evidence=i.evidence)

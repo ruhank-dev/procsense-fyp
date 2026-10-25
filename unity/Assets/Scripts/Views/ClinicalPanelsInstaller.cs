@@ -22,6 +22,7 @@ namespace ProcSense.VR.Views
         public TeamVoicesView Team { get; private set; }
         public TeamConversation Conversation { get; private set; }
         public PushToTalk Talk { get; private set; }
+        public SpokenActionRouter Router { get; private set; }
         public static readonly Vector3 TalkDefault = new Vector3(-0.6f, 1.2f, 1.1f);
         public static readonly Vector3 SubtitlesDefault = new Vector3(0.6f, 1.9f, 1.4f);
 
@@ -75,7 +76,10 @@ namespace ProcSense.VR.Views
                 Talk = go.AddComponent<PushToTalk>();
                 var view = go.AddComponent<PushToTalkView>();
                 view.Talk = Talk;
-                Talk.Transcribed += text => Conversation.Ask(text, null);               // the words the recogniser heard go to the conversation; a topic is only ever released by the engine
+                Router = go.AddComponent<SpokenActionRouter>();
+                Router.Talk = Conversation;
+                view.Router = Router;
+                Talk.Transcribed += text => Router.OnTranscribed(text);                // the words the recogniser heard become tablet actions (the engine decides), then the voices answer
                 go.SetActive(true);
             }
             return true;

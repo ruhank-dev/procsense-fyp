@@ -9,12 +9,13 @@ from pydantic import BaseModel, Field
 
 
 class ConsentKind(BaseModel):
-    kind: Literal["results", "research"]
+    kind: Literal["results", "research", "terms", "cloud"]
     title: str
     text: str
     required: bool
     granted: bool | None            # the person's latest answer, or null when they have never answered
     answered_version: str | None
+    documents: list[str] = []       # the legal documents this question points to (read them at GET /legal/{name})
     current: bool                   # answered yes to the current text (or, for an optional kind, has answered it at all)
 
 
@@ -25,7 +26,7 @@ class ConsentState(BaseModel):
 
 
 class ConsentIn(BaseModel):
-    kind: Literal["results", "research"]
+    kind: Literal["results", "research", "terms", "cloud"]
     granted: bool
 
 

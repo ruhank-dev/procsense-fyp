@@ -43,16 +43,17 @@ def test_a_person_who_has_not_answered_must_answer_and_the_answer_is_kept(api):
     who = api.seed(lambda s: api.person(s, consent=False))
     state = api.client.get("/privacy/consent", headers=api.headers(who)).json()
     assert state["needs_consent"] is True and state["version"] == privacy.CONSENT_VERSION
-    assert [(k["kind"], k["required"], k["granted"]) for k in state["kinds"]] == [("results", True, None), ("research", False, None)]
+    assert [(k["kind"], k["required"], k["granted"]) for k in state["kinds"]] == [("terms", True, None), ("results", True, None), ("research", False, None), ("cloud", False, None)]
     assert all(k["text"] and k["title"] for k in state["kinds"])
+    api.client.post("/privacy/consent", json={"kind": "terms", "granted": True}, headers=api.headers(who))
     after = api.client.post("/privacy/consent", json={"kind": "results", "granted": True}, headers=api.headers(who)).json()
     assert after["needs_consent"] is False
     api.client.post("/privacy/consent", json={"kind": "research", "granted": True}, headers=api.headers(who))
     api.client.post("/privacy/consent", json={"kind": "research", "granted": False}, headers=api.headers(who))
     state = api.client.get("/privacy/consent", headers=api.headers(who)).json()
-    assert {k["kind"]: k["granted"] for k in state["kinds"]} == {"results": True, "research": False}   # the latest answer counts
+    assert {k["kind"]: k["granted"] for k in state["kinds"]} == {"terms": True, "results": True, "research": False, "cloud": None}   # the latest answer counts
     with DbSession(api.engine) as s:
-        assert s.scalar(select(func.count()).select_from(ConsentRecord).where(ConsentRecord.user_id == who)) == 3   # and every answer is kept
+        assert s.scalar(select(func.count()).select_from(ConsentRecord).where(ConsentRecord.user_id == who)) == 4   # and every answer is kept
 
 
 def test_saying_no_to_the_required_question_still_needs_an_answer(api):
@@ -136,7 +137,7 @@ def test_T_PR2_export_my_data_returns_only_that_persons_data(world):
     body, raw = r.json(), r.text
     assert [s["session_id"] for s in body["sessions"]] == [str(mine)] and body["sessions"][0]["score_items"][0]["item"] == "critical.x" and body["sessions"][0]["report"]["schema"] == "debrief_facts.v1"
     assert body["profile"]["display_name"] == "Jane Doe" and body["memberships"][0]["organisation"] == "Alpha" and body["cohorts"] == [{"cohort": "Cohort 1", "role": "trainee"}]
-    assert body["consents"][0]["kind"] == "results" and len(body["who_looked_at_my_data"]) == 1
+    assert sorted(c["kind"] for c in body["consents"]) == ["results", "terms"] and len(body["who_looked_at_my_data"]) == 1
     with DbSession(world.api.engine) as s:
         others = {s.get(Profile, u).pseudonym for u in (world.colleague, world.trainee_b)}   # the supervisor who looked is, rightly, named in "who looked at my data"
     assert not any(p in raw for p in others) and str(theirs) not in raw and str(other_org) not in raw and "Beta" not in raw

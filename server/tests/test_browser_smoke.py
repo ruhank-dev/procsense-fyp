@@ -150,7 +150,11 @@ def test_the_pages_work_in_a_real_browser(stack, browser):
     page.get_by_role("heading", name="Your data and your choices").wait_for()
     page.get_by_role("button", name="Save my choices").click()
     page.get_by_text("You can use ProcSense only if you agree").wait_for()
-    page.get_by_label("needed to store my sessions").check()
+    page.get_by_role("button", name="Read the Privacy Notice").click()               # the notice can be read before answering
+    page.get_by_text("Ollama Cloud").first.wait_for()
+    assert not page.locator("#consent-cloud").is_checked()                           # the optional cloud question starts unticked: consent is an affirmative act
+    for box in page.get_by_label("needed to use ProcSense").all():
+        box.check()
     page.get_by_role("button", name="Save my choices").click()
     page.get_by_role("heading", name="My progress").wait_for()
     page.get_by_role("link", name="Privacy").click()

@@ -10,6 +10,8 @@ existed. The module decides nothing about clinical content, credit or scoring: a
 """
 from __future__ import annotations
 
+import contextlib
+import contextvars
 import json
 import os
 import threading
@@ -73,14 +75,34 @@ def synthetic_deployment() -> bool:
     return _switch("CLOUD_SYNTHETIC_DEPLOYMENT", "cloud_synthetic_deployment")
 
 
+_CONSENT: contextvars.ContextVar = contextvars.ContextVar("cloud_consent", default=None)
+
+
+@contextlib.contextmanager
+def consent(granted: bool):
+    """Inside the block the person whose words are being processed has (True) or has not (False) given the optional cloud AI consent, current text, not withdrawn. A route sets it from the stored answer; outside any
+    block there is no consent. Real trainee data reaches the cloud only with it (and the institutional approval, below)."""
+    token = _CONSENT.set(bool(granted))
+    try:
+        yield
+    finally:
+        _CONSENT.reset(token)
+
+
+def has_consent() -> bool:
+    return bool(_CONSENT.get())
+
+
 def trainee_cloud_allowed() -> bool:
-    return trainee_data_approved() or synthetic_deployment()
+    """May the words of the person being processed go to the cloud? Yes for a deployment declared synthetic (invented data). Otherwise only when the applicable institutional and privacy requirements are recorded
+    (`CLOUD_TRAINEE_DATA_APPROVED`, set by the operator) AND this person has given the optional cloud consent: accepting the Terms is not enough."""
+    return synthetic_deployment() or (trainee_data_approved() and has_consent())
 
 
 def status() -> dict:
     """What the routing does right now, for /health and the operator: no secrets."""
     return {"cloud_routing": enabled(), "synthetic_deployment": synthetic_deployment(), "trainee_data_approved": trainee_data_approved(),
-            "trainee_routes_use_cloud": enabled() and trainee_cloud_allowed()}
+            "trainee_routes_use_cloud": enabled() and (synthetic_deployment() or trainee_data_approved()), "needs_personal_consent": enabled() and not synthetic_deployment() and trainee_data_approved()}
 
 
 # The free plan allows one cloud request at a time. A task takes the slot without waiting longer than a moment (a live task must not queue behind another: it answers on the local model instead); an offline task may wait.
@@ -126,7 +148,7 @@ def resolve(task: str | None, prompt_id: str, role: str) -> Route:
     if not enabled():
         return Route(local, False, "switch_off", "", data_class)
     if data_class != "synthetic" and not trainee_cloud_allowed():
-        return Route(local, False, "privacy_gate", "", data_class)
+        return Route(local, False, "no_consent" if trainee_data_approved() else "privacy_gate", "", data_class)
     return Route(model, True, "route", entry.get("fallback", local), data_class)
 
 

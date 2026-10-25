@@ -183,4 +183,4 @@ def test_a_cloud_staff_choice_that_fails_leaves_the_patient_answered_and_the_sta
 
 def test_the_health_page_says_what_the_routing_does_without_any_secret(world, cloud):
     status = world.api.client.get("/ai/health").json()["routing"]
-    assert status == {"cloud_routing": True, "synthetic_deployment": True, "trainee_data_approved": False, "trainee_routes_use_cloud": True}
+    assert status == {"cloud_routing": True, "synthetic_deployment": True, "trainee_data_approved": False, "trainee_routes_use_cloud": True, "needs_personal_consent": False}

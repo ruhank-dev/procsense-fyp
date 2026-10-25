@@ -76,10 +76,17 @@ def test_trainee_data_stays_local_until_the_privacy_decision_is_recorded(routes)
     routes({"model": CLOUD, "data_class": "trainee"})
     c = fake(lambda m, b: ok())
     assert run(c).audit["route"] == "privacy_gate" and [b["model"] for b in c.seen] == [LOCAL]
-    routes({"model": CLOUD, "data_class": "trainee"}, trainee_ok=True)
+    routes({"model": CLOUD, "data_class": "trainee"}, trainee_ok=True)                   # the institutional approval alone is not enough: this person has not consented
     c = fake(lambda m, b: ok())
-    run(c)
+    assert run(c).audit["route"] == "no_consent" and [b["model"] for b in c.seen] == [LOCAL]
+    c = fake(lambda m, b: ok())
+    with routing.consent(True):                                                         # approval and this person's own consent
+        run(c)
     assert [b["model"] for b in c.seen] == [CLOUD]
+    c = fake(lambda m, b: ok())
+    with routing.consent(False):                                                        # withdrawn
+        run(c)
+    assert [b["model"] for b in c.seen] == [LOCAL]
 
 
 @pytest.mark.parametrize("failure", [
@@ -211,6 +218,12 @@ def test_the_trainee_class_needs_the_privacy_approval_or_a_synthetic_declaration
     assert routing.trainee_cloud_allowed() and not routing.trainee_data_approved()
     monkeypatch.setenv("CLOUD_SYNTHETIC_DEPLOYMENT", "0")
     monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "1")
-    assert routing.trainee_cloud_allowed()
+    assert not routing.trainee_cloud_allowed()                                          # approved, but this person has not consented
+    with routing.consent(True):
+        assert routing.trainee_cloud_allowed()
+    with routing.consent(False):
+        assert not routing.trainee_cloud_allowed()
     monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "0")
-    assert not routing.trainee_cloud_allowed() and routing.status()["trainee_routes_use_cloud"] is False
+    with routing.consent(True):
+        assert not routing.trainee_cloud_allowed()                                      # consent without the institutional approval does not open the cloud
+    assert routing.status()["trainee_routes_use_cloud"] is False

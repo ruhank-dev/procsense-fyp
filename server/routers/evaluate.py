@@ -14,6 +14,9 @@ from server.evaluate import service
 from server.evaluate.provider import OllamaCloudProvider
 from server.evaluate.reader import Reader
 from server.llm import routing
+from server.auth.dependencies import db_session
+from server.repositories import privacy as privacy_repository
+from sqlalchemy.orm import Session as DbSession
 from server.middleware.audit import AiCallRecord, audited
 from server.routers import ai_gateway
 from server.schemas.evaluate import EvaluateIn, EvaluateOut
@@ -35,7 +38,12 @@ def _sends_to_cloud(settings: Settings) -> bool:
 
 
 @router.post("/evaluate/organisations/{organisation_id}", response_model=EvaluateOut)
-def evaluate_speech(body: EvaluateIn, call: AiCallRecord = Depends(audited("evaluate")), settings: Settings = Depends(get_settings), reader: Reader | None = Depends(get_reader)) -> EvaluateOut:
+def evaluate_speech(body: EvaluateIn, call: AiCallRecord = Depends(audited("evaluate")), settings: Settings = Depends(get_settings), reader: Reader | None = Depends(get_reader), db: DbSession = Depends(db_session)) -> EvaluateOut:
+    with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):
+        return _evaluate(body, call, settings, reader)
+
+
+def _evaluate(body: EvaluateIn, call: AiCallRecord, settings: Settings, reader: Reader | None) -> EvaluateOut:
     context = body.context.model_dump()
     call.set_input(body.utterance)
     call.set_prompt(P.VERSION, context_id="")                          # which prompt produced the judgement (no text)
@@ -43,7 +51,7 @@ def evaluate_speech(body: EvaluateIn, call: AiCallRecord = Depends(audited("eval
         call.fell_back("FEATURE_OFF")
         return EvaluateOut(**service.unavailable(context, body.utterance_id, ["FEATURE_OFF"]))
     if reader is not None and _sends_to_cloud(settings) and not routing.trainee_cloud_allowed():
-        call.fell_back("CLOUD_DATA_NOT_APPROVED")                       # the evaluator's model is a cloud model: the trainee's words go there only once the privacy decision is recorded (DT-248) or the deployment is declared synthetic
+        call.fell_back("CLOUD_DATA_NOT_APPROVED")                       # no consent or no approval: the evaluator's model is a cloud model: the trainee's words go there only once the privacy decision is recorded (DT-248) or the deployment is declared synthetic
         return EvaluateOut(**service.unavailable(context, body.utterance_id, ["CLOUD_DATA_NOT_APPROVED"]))
     if not ai_gateway._limiter(settings).allow(call.user_id):
         raise HTTPException(status_code=429, detail="too_many_ai_calls")

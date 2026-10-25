@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "content_hash": "2b3474a52c9b0fa6999d4ac57429963915b709eafede80e2490e72db92106602",
- "files": 748,
- "bytes": 18197687,
+ "content_hash": "4c19b2012a184fda5a14b4a6198b7e93e295f1b9d4163bf14c25c96311d3a885",
+ "files": 751,
+ "bytes": 18213566,
  "per_folder": {
   "(root)": 65,
-  "ai": 9,
+  "ai": 10,
   "assessment": 2,
   "attributions": 1,
   "availability": 4,
@@ -35,6 +35,7 @@
   "imaging": 3,
   "investigations": 4,
   "kb": 3,
+  "legal": 2,
   "locations": 1,
   "news2": 1,
   "npc": 1,
@@ -65,8 +66,8 @@
    "sha256": "b6f334cc800a609ebca03cbb9f3a71d1389f267517fa93c21b762aa40a4e23a0"
   },
   "ai/features.json": {
-   "bytes": 8766,
-   "sha256": "db488e6e4220b1780d6809013f75aa4fdcaea5a99047a94b0a5ea49f68cc0f6f"
+   "bytes": 9615,
+   "sha256": "f7079414a20baeaa0bce1d6ce10ca6481864c64056212454e2cde93265ccfd16"
   },
   "ai/intents.json": {
    "bytes": 945,
@@ -81,20 +82,24 @@
    "sha256": "bdbbe1b13780f553d2181c21fa8aad4ac2474ce4baa84b7c9e932ca8c523a007"
   },
   "ai/model_routes.json": {
-   "bytes": 5097,
-   "sha256": "475cad57f67943348c3ed0e0f146f29182c0cc38066f1aabdf09854708bc3a30"
+   "bytes": 5497,
+   "sha256": "40467887d03c24260670d556c79e87f6e5abe38595a801429a4017f1a63b4117"
   },
   "ai/persona.json": {
    "bytes": 701,
    "sha256": "4919423b0ed05600bf6556e38d82edb3677aba63ef9ce55d74b6c4ae17f2b324"
   },
+  "ai/spoken_actions.json": {
+   "bytes": 4745,
+   "sha256": "df4545521b94958a33ff345d4669db08f3bd18479d271c6ebad5d086058ae343"
+  },
   "ai/staff_intent_lines.json": {
-   "bytes": 2589,
-   "sha256": "facce22021938e6e7343198f159430342ed8c1154cebaa5c3893b4edc6e6deda"
+   "bytes": 3064,
+   "sha256": "207dfc7c6a3aabfc61b0f66f0b5cd537672745d3b63ee9d13b549a6da06eeff2"
   },
   "ai/thresholds.json": {
-   "bytes": 16595,
-   "sha256": "ce173fb302b50166bcc13138c4144ce5c7980ef6f8be8ee17f1e4ce445c49836"
+   "bytes": 17933,
+   "sha256": "05145a5d7c36cab42261fcfa7bec540efbca570f94806a608aa8a6844758a340"
   },
   "assessment/mapping.json": {
    "bytes": 8058,
@@ -2543,6 +2548,14 @@
   "lab_plausibility.csv": {
    "bytes": 927,
    "sha256": "08cabd9ea0f1cc90f35d8d477d3cee2b64da3046495421c2b60bb7b65d46aec6"
+  },
+  "legal/privacy_notice.json": {
+   "bytes": 5829,
+   "sha256": "67b35168be502c446ad69315ef220bba62bb2fe6a4bf5b7833169cd2bf20502e"
+  },
+  "legal/terms.json": {
+   "bytes": 2243,
+   "sha256": "17b0a84e8de5883d9dd9ce9061a79a29a73185fa21c4b0bde16ea6e36097e609"
   },
   "locations/locations.json": {
    "bytes": 3500,

@@ -47,7 +47,7 @@ from server.models.ai_call import AiCall
 log = logging.getLogger("procsense.audit")
 
 # the addresses of the AI capabilities (p1-backend-s06); a route under one of them must start an audit record
-AI_PREFIXES = ("/llm", "/dialogue", "/behaviour", "/evaluate", "/debrief", "/asr", "/tts", "/orders")
+AI_PREFIXES = ("/llm", "/dialogue", "/speech", "/behaviour", "/evaluate", "/debrief", "/asr", "/tts", "/orders")
 SCOPE_KEY = "procsense.ai_call"
 HEADER = "x-ai-call-id"
 CODE = re.compile(r"^[A-Z][A-Z0-9_]{0,39}$")

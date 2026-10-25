@@ -1,0 +1,90 @@
+{
+  "model": "qwen3.5:4b-q4_K_M",
+  "set": "spoken_actions_v1 (synthetic, AI-written)",
+  "sentences": 53,
+  "repeats": 1,
+  "exact_match": 0.906,
+  "nothing_when_nothing_expected": 0.9,
+  "false_action_rate": 0.1,
+  "recall_of_expected": 0.914,
+  "fallback_share": 0.0,
+  "by_kind": {
+    "direct": 0.952,
+    "explain": 1.0,
+    "followup": 1.0,
+    "hypothetical": 1.0,
+    "indirect": 1.0,
+    "multi": 1.0,
+    "negated": 1.0,
+    "noise": 1.0,
+    "other": 0.333,
+    "physical": 1.0,
+    "planned": 0.5,
+    "recogniser": 1.0,
+    "reported": 1.0,
+    "retraction": 1.0,
+    "self": 1.0,
+    "smalltalk": 1.0,
+    "staff": 0.5
+  },
+  "ms_p50": 3103,
+  "ms_p95": 3547,
+  "misses": [
+    {
+      "say": "Could there be any chance you are pregnant?",
+      "kind": "direct",
+      "expected": [
+        "ask:pregnancy"
+      ],
+      "got": [
+        "ask_pain_score"
+      ],
+      "source": "model",
+      "reasons": []
+    },
+    {
+      "say": "I will ask about smoking in a minute, first the pain.",
+      "kind": "planned",
+      "expected": [],
+      "got": [
+        "ask_pain_score"
+      ],
+      "source": "model",
+      "reasons": []
+    },
+    {
+      "say": "Anaesthetist, can you come over to the bedside please?",
+      "kind": "staff",
+      "expected": [],
+      "got": [
+        "request_wristband"
+      ],
+      "source": "model",
+      "reasons": []
+    },
+    {
+      "say": "Are you taking the pill or any contraception?",
+      "kind": "other",
+      "expected": [
+        "ask:pregnancy"
+      ],
+      "got": [
+        "ask:medicines"
+      ],
+      "source": "model",
+      "reasons": []
+    },
+    {
+      "say": "Have you ever been told you have a bad reaction to latex?",
+      "kind": "other",
+      "expected": [
+        "ask_allergies"
+      ],
+      "got": [
+        "ask_allergy_reaction"
+      ],
+      "source": "model",
+      "reasons": []
+    }
+  ]
+}

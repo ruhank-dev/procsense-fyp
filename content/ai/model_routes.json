@@ -114,6 +114,13 @@
    "data_class": "trainee",
    "evidence": "reports/ai/cloud-routing-benchmark.json",
    "why": "Real-time spoken orders; not benchmarked against a cloud model; stays local."
+  },
+  "speech.action": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.speech.action",
+   "fallback": "qwen3.5:4b-q4_K_M",
+   "why": "Reads the trainee's words, so cloud use needs the personal consent; the local model's proposals are shown for confirmation, never started by themselves (false actions 10% against 0%)."
   }
  },
  "cloud_timeout_seconds": {

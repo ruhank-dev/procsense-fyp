@@ -58,6 +58,7 @@ def build(port: int, database_url: str):
             people[email] = uid
             accounts.ensure_profile(s, uid).display_name = name
             if email != "colleague@alpha.test":   # this one has not agreed yet: the consent page comes first for them
+                privacy_repository.record_consent(s, uid, "terms", True)
                 privacy_repository.record_consent(s, uid, "results", True)
             accounts.add_membership(s, uid, org.id, role)
         cohort = accounts.create_cohort(s, a.id, "Cohort 1")

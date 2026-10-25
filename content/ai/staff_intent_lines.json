@@ -1,7 +1,7 @@
 {
  "version": 1,
- "status": "awaiting_review",
- "note": "The line a staff member speaks for each allowed intent of content/ai/intents.json (ADR-0005, ADR-0026). A model only CHOOSES the intent; the words are these. Synthetic, written by the engineer for the simulation: general, free of doses, numbers, diagnoses and orders, and not tied to one case. They are not clinician-reviewed (status awaiting_review). Observations and results that the trainee should hear come from the engine, never from these lines.",
+ "status": "approved_for_practice_synthetic",
+ "note": "The line a staff member speaks for each allowed intent of content/ai/intents.json (ADR-0005, ADR-0026). A model only CHOOSES the intent; the words are these. Synthetic, written by the engineer for the simulation: general, free of doses, numbers, diagnoses and orders, and not tied to one case. Approved by the owner for educational practice use (see approval); NOT clinician-reviewed. Observations the trainee should hear come from the engine, never from these lines.",
  "roles": {
   "nurse": {
    "ask_clarification": "Sorry, could you say that again so that I get it right?",
@@ -42,5 +42,11 @@
    "confirm_admission_details": "I am checking the admission details now.",
    "report_bed_status": "I will check the bed and let you know."
   }
+ },
+ "approval": {
+  "by": "Owner (Ruhan Kamran), project-level authorization given in chat on 25 Oct 2026 (DT-252)",
+  "scope": "educational practice use of these synthetic nurse and anaesthetist lines in ProcSense",
+  "not": "independent clinician validation, and not approval for assessment use; those remain separate requirements (EX-13 and the assessment review)",
+  "lines_authored_by": "the engineer, synthetic text for the simulation"
  }
 }

@@ -1,0 +1,33 @@
+{
+  "model": "gemma4:31b-cloud",
+  "set": "spoken_actions_v1 (synthetic, AI-written)",
+  "sentences": 53,
+  "repeats": 2,
+  "exact_match": 1.0,
+  "nothing_when_nothing_expected": 1.0,
+  "false_action_rate": 0.0,
+  "recall_of_expected": 1.0,
+  "fallback_share": 0.0,
+  "by_kind": {
+    "direct": 1.0,
+    "explain": 1.0,
+    "followup": 1.0,
+    "hypothetical": 1.0,
+    "indirect": 1.0,
+    "multi": 1.0,
+    "negated": 1.0,
+    "noise": 1.0,
+    "other": 1.0,
+    "physical": 1.0,
+    "planned": 1.0,
+    "recogniser": 1.0,
+    "reported": 1.0,
+    "retraction": 1.0,
+    "self": 1.0,
+    "smalltalk": 1.0,
+    "staff": 1.0
+  },
+  "ms_p50": 692,
+  "ms_p95": 3500,
+  "misses": []
+}

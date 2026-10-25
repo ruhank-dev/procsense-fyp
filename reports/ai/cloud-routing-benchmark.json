@@ -6,6 +6,28 @@
  "caveat": "The prompts of the six cloud-selected tasks were written and adjusted while measuring on these same synthetic sets (the 12 approved cases for dialogue, an AI-written staff set, the seeded-defect sets), so the figures are development figures, not held-out evidence; human ratings and fresh sets are DT-250.",
  "data": "synthetic only: authored cases, AI-written test sets (not human-labelled); runs of tools/ai/eval_*.py through a signed-in Ollama on the free plan; no real trainee data was sent",
  "decisions": {
+  "speech.action": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "exact_match": 0.906,
+     "false_action_rate": 0.1,
+     "recall_of_expected": 0.914,
+     "fallback_share": 0.0,
+     "ms_p50": 3103,
+     "ms_p95": 3547
+    },
+    "gemma4:31b-cloud": {
+     "exact_match": 1.0,
+     "false_action_rate": 0.0,
+     "recall_of_expected": 1.0,
+     "fallback_share": 0.0,
+     "ms_p50": 692,
+     "ms_p95": 3500
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
   "dialogue.patient": {
    "figures": {
     "qwen3.5:4b-q4_K_M": {

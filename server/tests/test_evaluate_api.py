@@ -140,5 +140,11 @@ def test_real_trainee_words_do_not_reach_the_cloud_evaluator_without_the_privacy
     j = r.json()
     assert (j["decision"], j["reasons"][0], j["acts"]) == ("UNAVAILABLE", "CLOUD_DATA_NOT_APPROVED", []) and j["menu"]
     assert provider.calls == []                                                  # nothing was sent to the model
-    monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "1")                       # the privacy decision, once recorded, releases it
-    assert world.post({"context": context(), "utterance": TEXT, "utterance_id": "u10"}).json()["decision"] == "EVALUATED"
+    monkeypatch.setenv("CLOUD_TRAINEE_DATA_APPROVED", "1")                       # the institutional approval alone does not release a person's words
+    assert world.post({"context": context(), "utterance": TEXT, "utterance_id": "u10"}).json()["reasons"][0] == "CLOUD_DATA_NOT_APPROVED"
+    consent = lambda granted: world.api.client.post("/privacy/consent", json={"kind": "cloud", "granted": granted}, headers=world.api.headers(world.me))
+    consent(True)                                                                # their own optional cloud consent, given on the web
+    assert world.post({"context": context(), "utterance": TEXT, "utterance_id": "u11"}).json()["decision"] == "EVALUATED"
+    consent(False)                                                               # withdrawn: from the next request on nothing is sent
+    provider.calls.clear()
+    assert world.post({"context": context(), "utterance": TEXT, "utterance_id": "u12"}).json()["reasons"][0] == "CLOUD_DATA_NOT_APPROVED" and provider.calls == []

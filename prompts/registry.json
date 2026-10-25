@@ -591,6 +591,22 @@
       "num_predict": 120,
       "think": false,
       "gateway": false
+    },
+    {
+      "id": "speech.action",
+      "version": 1,
+      "role": "live",
+      "file": "speech/action_v1.txt",
+      "sha256": "6bad38fefb18f7a0a0d120c2ec5640c062732cc44f589c205ad4bee93a7b854e",
+      "schema": null,
+      "variables": [
+        "menu",
+        "turns",
+        "utterance"
+      ],
+      "num_predict": 80,
+      "think": false,
+      "gateway": false
     }
   ]
 }

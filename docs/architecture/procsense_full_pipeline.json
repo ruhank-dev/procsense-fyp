@@ -13595,7 +13595,17 @@
     "server/tests/test_dialogue_team.py",
     "reports/ai/e2e-synthetic.json",
     "reports/ai/cloud-routing-benchmark.json",
-    "docs/decisions/ADR-0026-per-task-model-routing-ollama-cloud.md"
+    "docs/decisions/ADR-0026-per-task-model-routing-ollama-cloud.md",
+    "server/routers/speech_action.py",
+    "server/speech_action/service.py",
+    "content/ai/spoken_actions.json",
+    "unity/Assets/Scripts/Voice/SpokenActionRouter.cs",
+    "unity/Assets/Tests/PlayMode/SpokenActionTests.cs",
+    "server/tests/test_cloud_consent.py",
+    "content/legal/privacy_notice.json",
+    "docs/decisions/ADR-0027-consent-spoken-actions-and-staff-lines.md",
+    "reports/ai/speech-actions-eval.json",
+    "reports/ai/asr-device-bench.json"
    ],
    "lineage": [],
    "method": "Multiple LLM roles orchestrated by the ReactionQueue.",

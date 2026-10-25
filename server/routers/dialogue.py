@@ -17,6 +17,9 @@ from server import ai_features
 from server.config import Settings, get_settings
 from server.dialogue.dialogue import Dialogue
 from server.llm import client as client_mod, routing
+from server.auth.dependencies import db_session
+from server.repositories import privacy as privacy_repository
+from sqlalchemy.orm import Session as DbSession
 from server.middleware.audit import AiCallRecord, audited
 from server.routers import ai_gateway
 
@@ -49,7 +52,12 @@ def get_dialogue() -> Dialogue:
     return Dialogue(client_mod.OllamaClient(s.ollama_url) if s.ollama_url else None)
 
 
-def _run(body: DialogueIn, role: str, call: AiCallRecord, settings: Settings, d: Dialogue) -> DialogueOut:
+def _run(body: DialogueIn, role: str, call: AiCallRecord, settings: Settings, d: Dialogue, db: DbSession) -> DialogueOut:
+    with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):          # the person's own optional consent decides whether their words may go to the cloud
+        return _run_inner(body, role, call, settings, d)
+
+
+def _run_inner(body: DialogueIn, role: str, call: AiCallRecord, settings: Settings, d: Dialogue) -> DialogueOut:
     ctx = body.context
     if not isinstance(ctx.get("allowed_intents"), list) or not isinstance(ctx.get("facts"), list) or not ctx["allowed_intents"]:
         raise HTTPException(status_code=422, detail="context_needs_allowed_intents_and_facts")
@@ -80,13 +88,13 @@ def _run(body: DialogueIn, role: str, call: AiCallRecord, settings: Settings, d:
 
 
 @router.post("/dialogue/organisations/{organisation_id}/patient", response_model=DialogueOut)
-def patient(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_patient")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue)) -> DialogueOut:
-    return _run(body, "patient", call, settings, d)
+def patient(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_patient")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session)) -> DialogueOut:
+    return _run(body, "patient", call, settings, d, db)
 
 
 @router.post("/dialogue/organisations/{organisation_id}/staff", response_model=DialogueOut)
-def staff(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_staff")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue)) -> DialogueOut:
-    return _run(body, "staff", call, settings, d)
+def staff(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_staff")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session)) -> DialogueOut:
+    return _run(body, "staff", call, settings, d, db)
 
 
 # ---- one trainee turn answered by the patient and the staff in one call (ADR-0026) ---------------------------------------------------------------------------------------------------------------------
@@ -133,7 +141,12 @@ class TeamOut(BaseModel):
 
 
 @router.post("/dialogue/organisations/{organisation_id}/team", response_model=TeamOut)
-def team(body: TeamIn, call: AiCallRecord = Depends(audited("dialogue_team")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue)) -> TeamOut:
+def team(body: TeamIn, call: AiCallRecord = Depends(audited("dialogue_team")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session)) -> TeamOut:
+    with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):
+        return _team(body, call, settings, d)
+
+
+def _team(body: TeamIn, call: AiCallRecord, settings: Settings, d: Dialogue) -> TeamOut:
     """The staff's allowed intents and their approved lines come from the server's own content, not from the request: a client cannot widen the closed lists or choose the words a staff member says."""
     intents, lines = _intents(), _staff_lines()
     roles = [r for r in dict.fromkeys(body.staff_roles) if r in intents and r != "patient" and r in lines]

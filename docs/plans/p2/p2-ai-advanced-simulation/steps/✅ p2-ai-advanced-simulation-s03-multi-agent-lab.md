@@ -39,6 +39,6 @@ E49.
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
-* [DC-07](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-07): Three characters speaking in turn, and a follow-up encounter with the same patient
+* [DC-07](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-07): Three characters speaking in turn, a follow-up encounter, spoken questions as actions, and the consent flow
 
 <!-- external-testing:end -->

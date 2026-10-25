@@ -127,6 +127,7 @@ class Api:
         profile = accounts.ensure_profile(session, user_id)
         profile.is_platform_admin = platform_admin
         if consent:
+            privacy_repository.record_consent(session, user_id, "terms", True)
             privacy_repository.record_consent(session, user_id, "results", True)   # test people have agreed to the storing of their results (p1-backend-s12); tests of the refusal use `person(..., consent=False)`
         return user_id
 

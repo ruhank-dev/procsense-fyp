@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using ProcSense.VR.Auth;
 using ProcSense.VR.Views;
 using TMPro;
@@ -97,18 +98,45 @@ namespace ProcSense.VR.Voice
     public sealed class PushToTalkView : MonoBehaviour
     {
         public PushToTalk Talk;
+        public SpokenActionRouter Router;
         public Canvas Canvas { get; private set; }
+        public Button[] SuggestionButtons { get; private set; }
         public Button TalkButton { get; private set; }
         private TMP_Text _status, _caption;
 
         public void Build()
         {
             if (Canvas != null) return;
-            Canvas = UiKit.WorldCanvas("Push to talk", transform, new Vector2(420, 150), 0.0006f);
+            Canvas = UiKit.WorldCanvas("Push to talk", transform, new Vector2(420, 280), 0.0006f);
             TalkButton = UiKit.MakeButton(Canvas.transform, "Talk", new Vector2(20, 14), new Vector2(380, 70), 28f);
             _caption = TalkButton.GetComponentInChildren<TMP_Text>();
-            _status = UiKit.Label(Canvas.transform, "Status", "", new Vector2(20, 94), new Vector2(380, 48), 20, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
+            _status = UiKit.Label(Canvas.transform, "Status", "", new Vector2(20, 90), new Vector2(380, 60), 17, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             TalkButton.onClick.AddListener(Toggle);
+            SuggestionButtons = new[] { UiKit.MakeButton(Canvas.transform, "Suggestion 1", new Vector2(20, 160), new Vector2(380, 50), 20f), UiKit.MakeButton(Canvas.transform, "Suggestion 2", new Vector2(20, 220), new Vector2(380, 50), 20f) };
+            for (int i = 0; i < SuggestionButtons.Length; i++)
+            {
+                int index = i;
+                SuggestionButtons[i].onClick.AddListener(() => { if (Router != null && index < Router.Suggestions.Count) Router.Confirm(Router.Suggestions[index]); });
+                SuggestionButtons[i].gameObject.SetActive(false);
+            }
+        }
+
+        private void Update()
+        {
+            if (SuggestionButtons == null) return;
+            if (_status != null && Talk != null)                                               // what the trainee needs to read: the recogniser, then what was understood, then which model answered
+            {
+                string text = string.Join("\n", new[] { Talk.Status, Router != null ? Router.Status : "", Router != null && Router.Talk != null ? Router.Talk.Status : "" }.Where(x => !string.IsNullOrEmpty(x)).Distinct());
+                if (_status.text != text) _status.text = text;
+            }
+            int n = Router != null ? Router.Suggestions.Count : 0;
+            var tablet = Router != null ? Router.Tablet : null;
+            for (int i = 0; i < SuggestionButtons.Length; i++)
+            {
+                bool on = i < n;
+                if (SuggestionButtons[i].gameObject.activeSelf != on) SuggestionButtons[i].gameObject.SetActive(on);
+                if (on) { var label = SuggestionButtons[i].GetComponentInChildren<TMP_Text>(); string want = "Yes: " + (tablet != null ? tablet.LabelOf(Router.Suggestions[i]) : Router.Suggestions[i]); if (label != null && label.text != want) label.text = want; }
+            }
         }
 
         private void OnEnable() { Build(); if (Talk != null) Talk.StatusChanged += OnStatus; }

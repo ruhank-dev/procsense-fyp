@@ -1,6 +1,6 @@
 {
- "adr": "ADR-0026",
- "asr_device": "cpu",
+ "adr": "ADR-0027",
+ "asr_device": "cuda",
  "data": "synthetic only: an invented case, a synthetic voice, invented text",
  "case": "VAR-S1-A",
  "configurations": [
@@ -11,20 +11,26 @@
     "CLOUD_SYNTHETIC_DEPLOYMENT": "0",
     "CLOUD_TRAINEE_DATA_APPROVED": "0"
    },
+   "person_consented": false,
    "questions": 8,
    "cloud_calls": 0,
    "models": [
     "qwen3.5:4b-q4_K_M"
    ],
-   "dialogue_ms": {
-    "p50": 2938,
-    "p95": 3531
+   "recognised": 8,
+   "action_correct": 7,
+   "recognition_ms": {
+    "p50": 766,
+    "p95": 4640
+   },
+   "action_plus_dialogue_ms": {
+    "p50": 5274,
+    "p95": 6266
    },
    "heard_to_first_voice_ms": {
-    "p50": 4360,
-    "p95": 5828
+    "p50": 6984,
+    "p95": 8438
    },
-   "recognised": 8,
    "patient_from_model": 8,
    "staff_lines_all_approved": true,
    "runs": [
@@ -32,8 +38,15 @@
      "question": "Do you have any red flag symptoms like fever or yellow eyes?",
      "heard": "Do you have any red flag symptoms like fever or yellow eyes?",
      "heard_ok": true,
-     "topic": "red_flags",
-     "patient": "No, I do not have a fever, yellow eyes, or back pain.",
+     "expected_action": "ask:red_flags",
+     "actions": [
+      "ask:red_flags"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "No fever, no yellow eyes.",
      "patient_source": "model",
      "patient_intent": "answer_question",
      "staff": {},
@@ -46,262 +59,26 @@
      "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 4078,
-      "recognition": 13422,
-      "dialogue": 3531,
-      "first_voice_ready": 2079,
-      "voices_ready": 2079,
-      "question_heard_to_first_voice": 5610
+      "recognition": 4640,
+      "action": 3375,
+      "dialogue": 2891,
+      "heard_to_first_voice": 7625,
+      "voices_ready": 1359
      },
-     "audio_bytes": 30974
+     "audio_bytes": 19659
     },
     {
      "question": "Can you tell me what medicines you take?",
      "heard": "Can you tell me what medicines you take?",
      "heard_ok": true,
-     "topic": "medicines",
-     "patient": "I only take paracetamol sometimes.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
+     "expected_action": "ask:medicines",
+     "actions": [
+      "ask:medicines"
      ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 1218,
-      "recognition": 7328,
-      "dialogue": 2907,
-      "first_voice_ready": 1484,
-      "voices_ready": 1484,
-      "question_heard_to_first_voice": 4391
-     },
-     "audio_bytes": 24295
-    },
-    {
-     "question": "When did you last have something to eat?",
-     "heard": "When did you last have something to eat?",
-     "heard_ok": true,
-     "topic": "last_food",
-     "patient": "I had dinner last night at 21:00.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 1141,
-      "recognition": 7515,
-      "dialogue": 3266,
-      "first_voice_ready": 1766,
-      "voices_ready": 1766,
-      "question_heard_to_first_voice": 5032
-     },
-     "audio_bytes": 28179
-    },
-    {
-     "question": "Have you had an anaesthetic before?",
-     "heard": "Have you had an anaesthetic before?",
-     "heard_ok": true,
-     "topic": "previous_anaesthetic",
-     "patient": "Yes, I had a C-section in 2012 and had no problems.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 1187,
-      "recognition": 7078,
-      "dialogue": 3516,
-      "first_voice_ready": 2312,
-      "voices_ready": 2312,
-      "question_heard_to_first_voice": 5828
-     },
-     "audio_bytes": 35526
-    },
-    {
-     "question": "Do you smoke?",
-     "heard": "Do you smoke?",
-     "heard_ok": true,
-     "topic": "smoking",
-     "patient": "No, I never smoke.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 657,
-      "recognition": 7109,
-      "dialogue": 2969,
-      "first_voice_ready": 1359,
-      "voices_ready": 1359,
-      "question_heard_to_first_voice": 4328
-     },
-     "audio_bytes": 18705
-    },
-    {
-     "question": "Nurse, please check the pulse and tell me what it is.",
-     "heard": "Nurse, please check the pulse and tell me what it is.",
-     "heard_ok": true,
-     "topic": null,
-     "patient": "I'm not sure about my pulse.",
-     "patient_source": "model",
-     "patient_intent": "cannot_recall",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 2313,
-      "recognition": 7031,
-      "dialogue": 2656,
-      "first_voice_ready": 1250,
-      "voices_ready": 1250,
-      "question_heard_to_first_voice": 3906
-     },
-     "audio_bytes": 19690
-    },
-    {
-     "question": "Hello, I am the doctor and I am going to look after you today.",
-     "heard": "Alova I am the doctor and I am going to look after you today.",
-     "heard_ok": true,
-     "topic": null,
-     "patient": "Yes, Doctor.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 1656,
-      "recognition": 7125,
-      "dialogue": 2563,
-      "first_voice_ready": 703,
-      "voices_ready": 703,
-      "question_heard_to_first_voice": 3266
-     },
-     "audio_bytes": 11973
-    },
-    {
-     "question": "I am worried, the saturation is dropping, I need the anaesthetist here now.",
-     "heard": "I am worried, the saturation is dropping, I need the ANISA to steer now.",
-     "heard_ok": true,
-     "topic": null,
-     "patient": "I have no pain or anxiety.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "switch_off",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 2281,
-      "recognition": 7313,
-      "dialogue": 2578,
-      "first_voice_ready": 1187,
-      "voices_ready": 1187,
-      "question_heard_to_first_voice": 3765
-     },
-     "audio_bytes": 18936
-    }
-   ]
-  },
-  {
-   "label": "cloud routing on, privacy gate closed (a real deployment)",
-   "env": {
-    "CLOUD_ROUTING_ENABLED": "1",
-    "CLOUD_SYNTHETIC_DEPLOYMENT": "0",
-    "CLOUD_TRAINEE_DATA_APPROVED": "0"
-   },
-   "questions": 8,
-   "cloud_calls": 0,
-   "models": [
-    "qwen3.5:4b-q4_K_M"
-   ],
-   "dialogue_ms": {
-    "p50": 2968,
-    "p95": 6468
-   },
-   "heard_to_first_voice_ms": {
-    "p50": 4281,
-    "p95": 6468
-   },
-   "recognised": 8,
-   "patient_from_model": 8,
-   "staff_lines_all_approved": true,
-   "runs": [
-    {
-     "question": "Do you have any red flag symptoms like fever or yellow eyes?",
-     "heard": "Do you have any red flag symptoms like fever or yellow eyes?",
-     "heard_ok": true,
-     "topic": "red_flags",
-     "patient": "No, I don't have any of those symptoms.",
-     "patient_source": "model",
-     "patient_intent": "answer_question",
-     "staff": {},
-     "silent_staff": [
-      "nurse",
-      "anaesthesia"
-     ],
-     "model": "qwen3.5:4b-q4_K_M",
-     "cloud": false,
-     "route": "privacy_gate",
-     "fell_back_from": "",
-     "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 6891,
-      "dialogue": 3187,
-      "first_voice_ready": 1625,
-      "voices_ready": 1625,
-      "question_heard_to_first_voice": 4812
-     },
-     "audio_bytes": 26439
-    },
-    {
-     "question": "Can you tell me what medicines you take?",
-     "heard": "Can you tell me what medicines you take?",
-     "heard_ok": true,
-     "topic": "medicines",
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
      "patient": "I take none except paracetamol sometimes.",
      "patient_source": "model",
      "patient_intent": "answer_question",
@@ -312,23 +89,29 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7454,
-      "dialogue": 3062,
-      "first_voice_ready": 1578,
-      "voices_ready": 1578,
-      "question_heard_to_first_voice": 4640
+      "recognition": 765,
+      "action": 2829,
+      "dialogue": 2500,
+      "heard_to_first_voice": 7266,
+      "voices_ready": 1937
      },
-     "audio_bytes": 25483
+     "audio_bytes": 26122
     },
     {
      "question": "When did you last have something to eat?",
      "heard": "When did you last have something to eat?",
      "heard_ok": true,
-     "topic": "last_food",
+     "expected_action": "ask:last_food",
+     "actions": [
+      "ask:last_food"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
      "patient": "I had dinner last night at 21:00.",
      "patient_source": "model",
      "patient_intent": "answer_question",
@@ -339,23 +122,29 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7610,
-      "dialogue": 6468,
-      "first_voice_ready": 0,
-      "voices_ready": 0,
-      "question_heard_to_first_voice": 6468
+      "recognition": 766,
+      "action": 2922,
+      "dialogue": 2906,
+      "heard_to_first_voice": 7750,
+      "voices_ready": 1922
      },
-     "audio_bytes": 28179
+     "audio_bytes": 26002
     },
     {
      "question": "Have you had an anaesthetic before?",
      "heard": "Have you had an anaesthetic before?",
      "heard_ok": true,
-     "topic": "previous_anaesthetic",
+     "expected_action": "ask:previous_anaesthetic",
+     "actions": [
+      "ask:previous_anaesthetic"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
      "patient": "Yes, I had a Caesarean section in 2012 with no problems.",
      "patient_source": "model",
      "patient_intent": "answer_question",
@@ -366,23 +155,29 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7282,
-      "dialogue": 3609,
-      "first_voice_ready": 2562,
-      "voices_ready": 2562,
-      "question_heard_to_first_voice": 6171
+      "recognition": 765,
+      "action": 3047,
+      "dialogue": 2953,
+      "heard_to_first_voice": 8438,
+      "voices_ready": 2438
      },
-     "audio_bytes": 38422
+     "audio_bytes": 36691
     },
     {
      "question": "Do you smoke?",
      "heard": "Do you smoke?",
      "heard_ok": true,
-     "topic": "smoking",
+     "expected_action": "ask:smoking",
+     "actions": [
+      "ask:smoking"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
      "patient": "No, I never smoke.",
      "patient_source": "model",
      "patient_intent": "answer_question",
@@ -393,24 +188,28 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7172,
-      "dialogue": 2875,
-      "first_voice_ready": 0,
-      "voices_ready": 0,
-      "question_heard_to_first_voice": 2875
+      "recognition": 656,
+      "action": 2860,
+      "dialogue": 2359,
+      "heard_to_first_voice": 6281,
+      "voices_ready": 1062
      },
-     "audio_bytes": 18705
+     "audio_bytes": 17126
     },
     {
      "question": "Nurse, please check the pulse and tell me what it is.",
      "heard": "Nurse, please check the pulse and tell me what it is.",
      "heard_ok": true,
-     "topic": null,
-     "patient": "I am not sure about my pulse.",
+     "expected_action": null,
+     "actions": [],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "nurse",
+     "patient": "I am not sure of my pulse right now.",
      "patient_source": "model",
      "patient_intent": "cannot_recall",
      "staff": {},
@@ -420,24 +219,30 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7141,
-      "dialogue": 2672,
-      "first_voice_ready": 1250,
-      "voices_ready": 1250,
-      "question_heard_to_first_voice": 3922
+      "recognition": 703,
+      "action": 2547,
+      "dialogue": 2015,
+      "heard_to_first_voice": 5797,
+      "voices_ready": 1235
      },
-     "audio_bytes": 19340
+     "audio_bytes": 22555
     },
     {
      "question": "Hello, I am the doctor and I am going to look after you today.",
-     "heard": "Alova I am the doctor and I am going to look after you today.",
+     "heard": "Hello, I'm the doctor and I'm going to look after you today.",
      "heard_ok": true,
-     "topic": null,
-     "patient": "Yes, please.",
+     "expected_action": "introduce_self",
+     "actions": [
+      "introduce_self"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "Hello.",
      "patient_source": "model",
      "patient_intent": "answer_question",
      "staff": {},
@@ -447,26 +252,32 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7719,
-      "dialogue": 2562,
-      "first_voice_ready": 781,
-      "voices_ready": 781,
-      "question_heard_to_first_voice": 3343
+      "recognition": 766,
+      "action": 2563,
+      "dialogue": 1843,
+      "heard_to_first_voice": 4922,
+      "voices_ready": 516
      },
-     "audio_bytes": 12402
+     "audio_bytes": 10016
     },
     {
      "question": "I am worried, the saturation is dropping, I need the anaesthetist here now.",
-     "heard": "I am worried, the saturation is dropping, I need the ANISA to steer now.",
+     "heard": "I am worried. The saturation is dropping. I need the anesthetist here now.",
      "heard_ok": true,
-     "topic": null,
-     "patient": "I am not sure about that.",
+     "expected_action": null,
+     "actions": [
+      "request_wristband"
+     ],
+     "action_ok": false,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "nobody",
+     "patient": "I am fine, my attacks have not happened in three weeks.",
      "patient_source": "model",
-     "patient_intent": "cannot_recall",
+     "patient_intent": "answer_question",
      "staff": {},
      "silent_staff": [
       "nurse",
@@ -474,42 +285,46 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "privacy_gate",
+     "route": "switch_off",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7250,
-      "dialogue": 2578,
-      "first_voice_ready": 1313,
-      "voices_ready": 1313,
-      "question_heard_to_first_voice": 3891
+      "recognition": 828,
+      "action": 2672,
+      "dialogue": 2297,
+      "heard_to_first_voice": 6703,
+      "voices_ready": 1734
      },
-     "audio_bytes": 17615
+     "audio_bytes": 31400
     }
    ]
   },
   {
-   "label": "cloud routing on, deployment declared synthetic",
+   "label": "institutional approval recorded, this person has NOT consented",
    "env": {
     "CLOUD_ROUTING_ENABLED": "1",
-    "CLOUD_SYNTHETIC_DEPLOYMENT": "1",
-    "CLOUD_TRAINEE_DATA_APPROVED": "0"
+    "CLOUD_SYNTHETIC_DEPLOYMENT": "0",
+    "CLOUD_TRAINEE_DATA_APPROVED": "1"
    },
+   "person_consented": false,
    "questions": 8,
-   "cloud_calls": 6,
+   "cloud_calls": 0,
    "models": [
-    "gemma4:31b-cloud",
     "qwen3.5:4b-q4_K_M"
    ],
-   "dialogue_ms": {
-    "p50": 1930,
-    "p95": 7453
+   "recognised": 8,
+   "action_correct": 7,
+   "recognition_ms": {
+    "p50": 688,
+    "p95": 813
+   },
+   "action_plus_dialogue_ms": {
+    "p50": 5078,
+    "p95": 5422
    },
    "heard_to_first_voice_ms": {
-    "p50": 3516,
-    "p95": 9703
+    "p50": 5797,
+    "p95": 7578
    },
-   "recognised": 8,
    "patient_from_model": 8,
    "staff_lines_all_approved": true,
    "runs": [
@@ -517,8 +332,15 @@
      "question": "Do you have any red flag symptoms like fever or yellow eyes?",
      "heard": "Do you have any red flag symptoms like fever or yellow eyes?",
      "heard_ok": true,
-     "topic": "red_flags",
-     "patient": "No fever, no yellow eyes, and my urine is a normal colour.",
+     "expected_action": "ask:red_flags",
+     "actions": [
+      "ask:red_flags"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "No, I don't have a fever, yellow eyes, or back pain.",
      "patient_source": "model",
      "patient_intent": "answer_question",
      "staff": {},
@@ -528,23 +350,324 @@
      ],
      "model": "qwen3.5:4b-q4_K_M",
      "cloud": false,
-     "route": "route",
-     "fell_back_from": "gemma4:31b-cloud",
+     "route": "no_consent",
+     "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7094,
-      "dialogue": 7453,
-      "first_voice_ready": 2250,
-      "voices_ready": 2250,
-      "question_heard_to_first_voice": 9703
+      "recognition": 719,
+      "action": 2563,
+      "dialogue": 2453,
+      "heard_to_first_voice": 6641,
+      "voices_ready": 1625
      },
-     "audio_bytes": 33669
+     "audio_bytes": 29846
     },
     {
      "question": "Can you tell me what medicines you take?",
      "heard": "Can you tell me what medicines you take?",
      "heard_ok": true,
-     "topic": "medicines",
+     "expected_action": "ask:medicines",
+     "actions": [
+      "ask:medicines"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "I only take paracetamol sometimes.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 609,
+      "action": 2609,
+      "dialogue": 2141,
+      "heard_to_first_voice": 5938,
+      "voices_ready": 1188
+     },
+     "audio_bytes": 22834
+    },
+    {
+     "question": "When did you last have something to eat?",
+     "heard": "When did you last have something to eat?",
+     "heard_ok": true,
+     "expected_action": "ask:last_food",
+     "actions": [
+      "ask:last_food"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "I had dinner last night at 21:00.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 609,
+      "action": 2578,
+      "dialogue": 2375,
+      "heard_to_first_voice": 4953,
+      "voices_ready": 0
+     },
+     "audio_bytes": 26002
+    },
+    {
+     "question": "Have you had an anaesthetic before?",
+     "heard": "Have you had an anaesthetic before?",
+     "heard_ok": true,
+     "expected_action": "ask:previous_anaesthetic",
+     "actions": [
+      "ask:previous_anaesthetic"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "Yes, I had a Caesarean section in 2012 with no problems.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 609,
+      "action": 2610,
+      "dialogue": 2656,
+      "heard_to_first_voice": 5266,
+      "voices_ready": 0
+     },
+     "audio_bytes": 36691
+    },
+    {
+     "question": "Do you smoke?",
+     "heard": "Do you smoke?",
+     "heard_ok": true,
+     "expected_action": "ask:smoking",
+     "actions": [
+      "ask:smoking"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "No, I never smoke.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 656,
+      "action": 2907,
+      "dialogue": 2406,
+      "heard_to_first_voice": 5313,
+      "voices_ready": 0
+     },
+     "audio_bytes": 17126
+    },
+    {
+     "question": "Nurse, please check the pulse and tell me what it is.",
+     "heard": "Nurse, please check the pulse and tell me what it is.",
+     "heard_ok": true,
+     "expected_action": null,
+     "actions": [],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "nurse",
+     "patient": "I don't know my pulse.",
+     "patient_source": "model",
+     "patient_intent": "cannot_recall",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 781,
+      "action": 2984,
+      "dialogue": 2157,
+      "heard_to_first_voice": 6063,
+      "voices_ready": 922
+     },
+     "audio_bytes": 15470
+    },
+    {
+     "question": "Hello, I am the doctor and I am going to look after you today.",
+     "heard": "Hello, I'm the doctor and I'm going to look after you today.",
+     "heard_ok": true,
+     "expected_action": "introduce_self",
+     "actions": [
+      "introduce_self"
+     ],
+     "action_ok": true,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "patient",
+     "patient": "I am ready for my surgery.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 812,
+      "action": 2688,
+      "dialogue": 1984,
+      "heard_to_first_voice": 5656,
+      "voices_ready": 984
+     },
+     "audio_bytes": 16131
+    },
+    {
+     "question": "I am worried, the saturation is dropping, I need the anaesthetist here now.",
+     "heard": "I am worried. The saturation is dropping. I need the anesthetist here now.",
+     "heard_ok": true,
+     "expected_action": null,
+     "actions": [
+      "request_wristband"
+     ],
+     "action_ok": false,
+     "action_model": "qwen3.5:4b-q4_K_M",
+     "action_cloud": false,
+     "addressee": "nobody",
+     "patient": "I understand, but please tell me what you are worried about.",
+     "patient_source": "model",
+     "patient_intent": "express_anxiety",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "no_consent",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 813,
+      "action": 3000,
+      "dialogue": 2422,
+      "heard_to_first_voice": 7578,
+      "voices_ready": 2156
+     },
+     "audio_bytes": 29683
+    }
+   ]
+  },
+  {
+   "label": "institutional approval recorded, this person has consented",
+   "env": {
+    "CLOUD_ROUTING_ENABLED": "1",
+    "CLOUD_SYNTHETIC_DEPLOYMENT": "0",
+    "CLOUD_TRAINEE_DATA_APPROVED": "1"
+   },
+   "person_consented": true,
+   "questions": 8,
+   "cloud_calls": 15,
+   "models": [
+    "gemma4:31b-cloud",
+    "qwen3.5:4b-q4_K_M"
+   ],
+   "recognised": 8,
+   "action_correct": 8,
+   "recognition_ms": {
+    "p50": 758,
+    "p95": 843
+   },
+   "action_plus_dialogue_ms": {
+    "p50": 3274,
+    "p95": 4500
+   },
+   "heard_to_first_voice_ms": {
+    "p50": 5000,
+    "p95": 6719
+   },
+   "patient_from_model": 8,
+   "staff_lines_all_approved": true,
+   "runs": [
+    {
+     "question": "Do you have any red flag symptoms like fever or yellow eyes?",
+     "heard": "Do you have any red flag symptoms like fever or yellow eyes?",
+     "heard_ok": true,
+     "expected_action": "ask:red_flags",
+     "actions": [
+      "ask:red_flags"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "No, I haven't had any fever or yellow eyes, and my urine is a normal colour and I have no back pain.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 828,
+      "action": 1656,
+      "dialogue": 1657,
+      "heard_to_first_voice": 6719,
+      "voices_ready": 3406
+     },
+     "audio_bytes": 50585
+    },
+    {
+     "question": "Can you tell me what medicines you take?",
+     "heard": "Can you tell me what medicines you take?",
+     "heard_ok": true,
+     "expected_action": "ask:medicines",
+     "actions": [
+      "ask:medicines"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
      "patient": "I don't take any, except for some paracetamol every now and then.",
      "patient_source": "model",
      "patient_intent": "answer_question",
@@ -558,21 +681,27 @@
      "route": "route",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7359,
-      "dialogue": 1672,
-      "first_voice_ready": 2438,
-      "voices_ready": 2438,
-      "question_heard_to_first_voice": 4110
+      "recognition": 765,
+      "action": 1735,
+      "dialogue": 1375,
+      "heard_to_first_voice": 5672,
+      "voices_ready": 2562
      },
-     "audio_bytes": 39038
+     "audio_bytes": 38964
     },
     {
      "question": "When did you last have something to eat?",
      "heard": "When did you last have something to eat?",
      "heard_ok": true,
-     "topic": "last_food",
-     "patient": "I had dinner last night at 21:00.",
+     "expected_action": "ask:last_food",
+     "actions": [
+      "ask:last_food"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "I had dinner at 21:00 last night.",
      "patient_source": "model",
      "patient_intent": "answer_question",
      "staff": {},
@@ -585,21 +714,27 @@
      "route": "route",
      "fell_back_from": "gemma4:31b-cloud",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7500,
-      "dialogue": 4312,
-      "first_voice_ready": 0,
-      "voices_ready": 0,
-      "question_heard_to_first_voice": 4312
+      "recognition": 750,
+      "action": 672,
+      "dialogue": 3578,
+      "heard_to_first_voice": 6219,
+      "voices_ready": 1969
      },
-     "audio_bytes": 28179
+     "audio_bytes": 27573
     },
     {
      "question": "Have you had an anaesthetic before?",
      "heard": "Have you had an anaesthetic before?",
      "heard_ok": true,
-     "topic": "previous_anaesthetic",
-     "patient": "Yes, I had a Caesarean section in 2012 and there were no problems.",
+     "expected_action": "ask:previous_anaesthetic",
+     "actions": [
+      "ask:previous_anaesthetic"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "Yes, I had a C-section in 2012 and there weren't any problems.",
      "patient_source": "model",
      "patient_intent": "answer_question",
      "staff": {},
@@ -612,20 +747,26 @@
      "route": "route",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7266,
-      "dialogue": 2687,
-      "first_voice_ready": 2860,
-      "voices_ready": 2860,
-      "question_heard_to_first_voice": 5547
+      "recognition": 750,
+      "action": 734,
+      "dialogue": 1438,
+      "heard_to_first_voice": 4828,
+      "voices_ready": 2656
      },
-     "audio_bytes": 42457
+     "audio_bytes": 42657
     },
     {
      "question": "Do you smoke?",
      "heard": "Do you smoke?",
      "heard_ok": true,
-     "topic": "smoking",
+     "expected_action": "ask:smoking",
+     "actions": [
+      "ask:smoking"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
      "patient": "No, I've never smoked.",
      "patient_source": "model",
      "patient_intent": "answer_question",
@@ -639,27 +780,30 @@
      "route": "route",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 6546,
-      "dialogue": 1844,
-      "first_voice_ready": 1078,
-      "voices_ready": 1078,
-      "question_heard_to_first_voice": 2922
+      "recognition": 625,
+      "action": 735,
+      "dialogue": 2515,
+      "heard_to_first_voice": 4203,
+      "voices_ready": 953
      },
-     "audio_bytes": 17256
+     "audio_bytes": 16208
     },
     {
      "question": "Nurse, please check the pulse and tell me what it is.",
      "heard": "Nurse, please check the pulse and tell me what it is.",
      "heard_ok": true,
-     "topic": null,
-     "patient": "Okay.",
+     "expected_action": null,
+     "actions": [],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "nurse",
+     "patient": "Okay, I'll just wait then.",
      "patient_source": "model",
      "patient_intent": "thank",
      "staff": {
       "nurse": {
        "intent": "report_observation",
-       "source": "model",
        "approved_line": true
       }
      },
@@ -671,21 +815,27 @@
      "route": "route",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7000,
-      "dialogue": 2016,
-      "first_voice_ready": 750,
-      "voices_ready": 2812,
-      "question_heard_to_first_voice": 2766
+      "recognition": 750,
+      "action": 703,
+      "dialogue": 1829,
+      "heard_to_first_voice": 3469,
+      "voices_ready": 2593
      },
-     "audio_bytes": 38978
+     "audio_bytes": 44440
     },
     {
      "question": "Hello, I am the doctor and I am going to look after you today.",
-     "heard": "Alova I am the doctor and I am going to look after you today.",
+     "heard": "Hello, I'm the doctor and I'm going to look after you today.",
      "heard_ok": true,
-     "topic": null,
-     "patient": "Hello doctor, thank you.",
+     "expected_action": "introduce_self",
+     "actions": [
+      "introduce_self"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "Hello, doctor. Nice to meet you.",
      "patient_source": "model",
      "patient_intent": "thank",
      "staff": {},
@@ -698,27 +848,30 @@
      "route": "route",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7297,
-      "dialogue": 1500,
-      "first_voice_ready": 860,
-      "voices_ready": 860,
-      "question_heard_to_first_voice": 2360
+      "recognition": 797,
+      "action": 1031,
+      "dialogue": 3469,
+      "heard_to_first_voice": 5172,
+      "voices_ready": 1485
      },
-     "audio_bytes": 14313
+     "audio_bytes": 25228
     },
     {
      "question": "I am worried, the saturation is dropping, I need the anaesthetist here now.",
-     "heard": "I am worried, the saturation is dropping, I need the ANISA to steer now.",
+     "heard": "I am worried. The saturation is dropping. I need the anesthetist here now.",
      "heard_ok": true,
-     "topic": null,
+     "expected_action": null,
+     "actions": [],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "anaesthesia",
      "patient": "What's happening? Why are you worried?",
      "patient_source": "model",
      "patient_intent": "express_anxiety",
      "staff": {
       "anaesthesia": {
        "intent": "respond_to_escalation",
-       "source": "model",
        "approved_line": true
       }
      },
@@ -730,14 +883,314 @@
      "route": "route",
      "fell_back_from": "",
      "ms": {
-      "synthetic_question_audio": 0,
-      "recognition": 7218,
-      "dialogue": 1407,
-      "first_voice_ready": 797,
-      "voices_ready": 3375,
-      "question_heard_to_first_voice": 2204
+      "recognition": 843,
+      "action": 1735,
+      "dialogue": 1562,
+      "heard_to_first_voice": 4188,
+      "voices_ready": 3375
      },
-     "audio_bytes": 52311
+     "audio_bytes": 52967
+    }
+   ]
+  },
+  {
+   "label": "deployment declared synthetic (development, demonstrations)",
+   "env": {
+    "CLOUD_ROUTING_ENABLED": "1",
+    "CLOUD_SYNTHETIC_DEPLOYMENT": "1",
+    "CLOUD_TRAINEE_DATA_APPROVED": "0"
+   },
+   "person_consented": false,
+   "questions": 8,
+   "cloud_calls": 15,
+   "models": [
+    "gemma4:31b-cloud",
+    "qwen3.5:4b-q4_K_M"
+   ],
+   "recognised": 8,
+   "action_correct": 8,
+   "recognition_ms": {
+    "p50": 782,
+    "p95": 875
+   },
+   "action_plus_dialogue_ms": {
+    "p50": 2179,
+    "p95": 2765
+   },
+   "heard_to_first_voice_ms": {
+    "p50": 2610,
+    "p95": 5312
+   },
+   "patient_from_model": 8,
+   "staff_lines_all_approved": true,
+   "runs": [
+    {
+     "question": "Do you have any red flag symptoms like fever or yellow eyes?",
+     "heard": "Do you have any red flag symptoms like fever or yellow eyes?",
+     "heard_ok": true,
+     "expected_action": "ask:red_flags",
+     "actions": [
+      "ask:red_flags"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "No, I haven't had any fever or yellow eyes, my urine is a normal colour and I have no back pain.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 735,
+      "action": 656,
+      "dialogue": 1484,
+      "heard_to_first_voice": 5312,
+      "voices_ready": 3172
+     },
+     "audio_bytes": 50880
+    },
+    {
+     "question": "Can you tell me what medicines you take?",
+     "heard": "Can you tell me what medicines you take?",
+     "heard_ok": true,
+     "expected_action": "ask:medicines",
+     "actions": [
+      "ask:medicines"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "I don't take any, except for some paracetamol every now and then.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 672,
+      "action": 609,
+      "dialogue": 1907,
+      "heard_to_first_voice": 2516,
+      "voices_ready": 0
+     },
+     "audio_bytes": 38964
+    },
+    {
+     "question": "When did you last have something to eat?",
+     "heard": "When did you last have something to eat?",
+     "heard_ok": true,
+     "expected_action": "ask:last_food",
+     "actions": [
+      "ask:last_food"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "I had dinner at 21:00 last night.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "qwen3.5:4b-q4_K_M",
+     "cloud": false,
+     "route": "route",
+     "fell_back_from": "gemma4:31b-cloud",
+     "ms": {
+      "recognition": 750,
+      "action": 656,
+      "dialogue": 2047,
+      "heard_to_first_voice": 2703,
+      "voices_ready": 0
+     },
+     "audio_bytes": 27573
+    },
+    {
+     "question": "Have you had an anaesthetic before?",
+     "heard": "Have you had an anaesthetic before?",
+     "heard_ok": true,
+     "expected_action": "ask:previous_anaesthetic",
+     "actions": [
+      "ask:previous_anaesthetic"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "Yes, for a C-section in 2012, and I didn't have any problems.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 843,
+      "action": 641,
+      "dialogue": 1469,
+      "heard_to_first_voice": 5157,
+      "voices_ready": 3047
+     },
+     "audio_bytes": 43398
+    },
+    {
+     "question": "Do you smoke?",
+     "heard": "Do you smoke?",
+     "heard_ok": true,
+     "expected_action": "ask:smoking",
+     "actions": [
+      "ask:smoking"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "No, I've never smoked.",
+     "patient_source": "model",
+     "patient_intent": "answer_question",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 718,
+      "action": 735,
+      "dialogue": 1359,
+      "heard_to_first_voice": 2094,
+      "voices_ready": 0
+     },
+     "audio_bytes": 16208
+    },
+    {
+     "question": "Nurse, please check the pulse and tell me what it is.",
+     "heard": "Nurse, please check the pulse and tell me what it is.",
+     "heard_ok": true,
+     "expected_action": null,
+     "actions": [],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "nurse",
+     "patient": "Okay.",
+     "patient_source": "model",
+     "patient_intent": "thank",
+     "staff": {
+      "nurse": {
+       "intent": "report_observation",
+       "approved_line": true
+      }
+     },
+     "silent_staff": [
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 813,
+      "action": 1422,
+      "dialogue": 1343,
+      "heard_to_first_voice": 3422,
+      "voices_ready": 657
+     },
+     "audio_bytes": 39060
+    },
+    {
+     "question": "Hello, I am the doctor and I am going to look after you today.",
+     "heard": "Hello, I'm the doctor and I'm going to look after you today.",
+     "heard_ok": true,
+     "expected_action": "introduce_self",
+     "actions": [
+      "introduce_self"
+     ],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "patient",
+     "patient": "Hello, doctor. Nice to meet you.",
+     "patient_source": "model",
+     "patient_intent": "thank",
+     "staff": {},
+     "silent_staff": [
+      "nurse",
+      "anaesthesia"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 875,
+      "action": 781,
+      "dialogue": 1359,
+      "heard_to_first_voice": 2140,
+      "voices_ready": 0
+     },
+     "audio_bytes": 25228
+    },
+    {
+     "question": "I am worried, the saturation is dropping, I need the anaesthetist here now.",
+     "heard": "I am worried. The saturation is dropping. I need the anesthetist here now.",
+     "heard_ok": true,
+     "expected_action": null,
+     "actions": [],
+     "action_ok": true,
+     "action_model": "gemma4:31b-cloud",
+     "action_cloud": true,
+     "addressee": "anaesthesia",
+     "patient": "What's happening? Why are you worried?",
+     "patient_source": "model",
+     "patient_intent": "express_anxiety",
+     "staff": {
+      "anaesthesia": {
+       "intent": "respond_to_escalation",
+       "approved_line": true
+      }
+     },
+     "silent_staff": [
+      "nurse"
+     ],
+     "model": "gemma4:31b-cloud",
+     "cloud": true,
+     "route": "route",
+     "fell_back_from": "",
+     "ms": {
+      "recognition": 860,
+      "action": 781,
+      "dialogue": 1437,
+      "heard_to_first_voice": 2218,
+      "voices_ready": 0
+     },
+     "audio_bytes": 52967
     }
    ]
   }

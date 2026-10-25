@@ -81,7 +81,7 @@ def test_a_real_dump_restores_into_a_throwaway_database_with_the_same_counts(api
     api.seed(seed)
 
     manifest = backup.dump(db_url, tmp_path, KEY)
-    assert manifest["tables"]["profile"] == 5 and manifest["tables"]["consent_record"] == 5
+    assert manifest["tables"]["profile"] == 5 and manifest["tables"]["consent_record"] == 10
     assert manifest["migration"] and manifest["bytes"] > 0
     file = tmp_path / manifest["file"]
     assert b"PGDMP" not in file.read_bytes()                 # the dump itself is not readable in the stored file

@@ -15,7 +15,7 @@ ROLES = ("trainee", "supervisor", "org_admin")
 MEMBER_STATUSES = ("active", "deactivated")
 COHORT_ROLES = ("trainee", "supervisor")
 INVITATION_STATUSES = ("pending", "accepted", "revoked")
-CONSENT_KINDS = ("results", "research")
+CONSENT_KINDS = ("results", "research", "terms", "cloud")
 
 
 def _uuid_pk() -> Mapped[uuid.UUID]:
@@ -124,3 +124,5 @@ class ConsentRecord(Base):
     text_version: Mapped[str] = mapped_column(String(40), nullable=False)
     granted: Mapped[bool] = mapped_column(Boolean, nullable=False)
     recorded_at: Mapped[dt.datetime] = _created()
+    text_sha256: Mapped[str | None] = mapped_column(String(64))                       # the fingerprint of the question and the documents the person was shown when they answered
+    via: Mapped[str] = mapped_column(String(16), nullable=False, server_default=text("'web'"))   # where the answer was given: only the web can give one

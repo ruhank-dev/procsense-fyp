@@ -465,6 +465,43 @@
      "ref": "median response at most 4 s (final acceptance criteria fixed before the runs; owner decision of 22 Oct 2026, ADR-0025)"
     }
    ]
+  },
+  "speech_actions": {
+   "label": "Spoken questions as simulator actions (DT-251, ADR-0027): the model on the selected cloud route reads the transcript and names the tablet actions; the engine decides. Synthetic AI-written set, not human-labelled. The local model only proposes, the trainee confirms.",
+   "suites": [
+    {
+     "id": "speech_actions.exact_match",
+     "file": "speech-actions-eval.json",
+     "path": "exact_match",
+     "op": ">=",
+     "value": 0.9,
+     "ref": "fixed before the run (25 Oct 2026): at least nine sentences in ten start exactly the expected actions"
+    },
+    {
+     "id": "speech_actions.false_actions",
+     "file": "speech-actions-eval.json",
+     "path": "false_action_rate",
+     "op": "<=",
+     "value": 0.02,
+     "ref": "fixed before the run: a denial, a plan, a hypothetical, a staff request or a physical act starts no action, at most 2 in 100"
+    },
+    {
+     "id": "speech_actions.valid_replies",
+     "file": "speech-actions-eval.json",
+     "path": "fallback_share",
+     "op": "<=",
+     "value": 0.02,
+     "ref": "fixed before the run: at most 2 in 100 replies refused"
+    },
+    {
+     "id": "speech_actions.latency_p95_ms",
+     "file": "speech-actions-eval.json",
+     "path": "ms_p95",
+     "op": "<=",
+     "value": 4000,
+     "ref": "the live budget of 4 s"
+    }
+   ]
   }
  }
 }

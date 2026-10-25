@@ -69,6 +69,8 @@ def add_cuda_dlls() -> None:
     for base in nvidia.__path__:
         for sub in Path(base).glob("*/bin"):
             os.add_dll_directory(str(sub))
+            if str(sub) not in os.environ.get("PATH", ""):                                   # CTranslate2 loads the libraries with a plain LoadLibrary, which looks on PATH, not in directories added above
+                os.environ["PATH"] = str(sub) + os.pathsep + os.environ.get("PATH", "")
 
 
 class AsrService:
@@ -76,6 +78,7 @@ class AsrService:
         self.model_name, self.device, self.compute_type = model_name, device, compute_type
         self._factory = model_factory
         self._model = None
+        self.fell_back_from_card = ""                                         # why the card was given up, when it was
         self._lock = threading.Lock()
         self.prompt = json.loads(VOCAB.read_text(encoding="utf-8"))["prompt"] if VOCAB.exists() else ""
 
@@ -88,6 +91,11 @@ class AsrService:
                 from faster_whisper import WhisperModel          # the optional dependency
                 self._model = WhisperModel(self.model_name, device=self.device, compute_type=self.compute_type)
         return self._model
+
+    def _run(self, buffer):
+        model = self._load()
+        segments, _info = model.transcribe(buffer, beam_size=3, temperature=0, vad_filter=True, initial_prompt=self.prompt or None, word_timestamps=True, language="en")
+        return list(segments)
 
     def available(self) -> bool:
         if self._factory is not None:
@@ -109,10 +117,15 @@ class AsrService:
             return AsrResult(False, duration=duration, error="CLIP_TOO_LONG")
         with self._lock:                                                    # one clip at a time: a second request waits its turn
             t = time.monotonic()
-            model = self._load()
             import io
-            segments, _info = model.transcribe(io.BytesIO(wav), beam_size=3, temperature=0, vad_filter=True, initial_prompt=self.prompt or None, word_timestamps=True, language="en")
-            segs = list(segments)
+            try:
+                segs = self._run(io.BytesIO(wav))
+            except RuntimeError as e:
+                # The card failed (a library missing or a driver problem; CTranslate2 only finds out when it first computes). The processor takes over for good, once, and the clip is recognised again.
+                if self.device == "cpu" or self._factory is not None or not any(w in str(e).lower() for w in ("cublas", "cudnn", "cuda", "not found or cannot be loaded")):
+                    raise
+                self.device, self.compute_type, self._model, self.fell_back_from_card = "cpu", "int8", None, str(e)[:160]
+                segs = self._run(io.BytesIO(wav))
         words = [(w.word.strip(), round(w.start, 2), round(w.end, 2), round(w.probability, 3)) for s in segs for w in (s.words or [])]
         avg = sum(s.avg_logprob for s in segs) / len(segs) if segs else -9.0
         text = " ".join(s.text.strip() for s in segs).strip()

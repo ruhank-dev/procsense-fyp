@@ -192,19 +192,36 @@ export function deviceView(ctx) {
 
 // ---- consent and privacy ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+const DOCUMENT_NAMES = { terms: 'Terms and Conditions', privacy_notice: 'Privacy Notice' };
+
+// A legal document (GET /legal/{name}) as a block the person can open and read before answering.
+function legalBlock(name, ctx) {
+  const body = h('div', { class: 'legal', hidden: true });
+  const open = h('button', { class: 'secondary', type: 'button', text: `Read the ${DOCUMENT_NAMES[name] || name}`, onclick: guard(ctx, async () => {
+    if (!body.dataset.loaded) {
+      const doc = await api.get(`/legal/${name.replace('_', '-')}`);
+      body.append(h('p', { class: 'muted', text: `Version ${doc.version}. ${doc.status}` }));
+      for (const section of doc.sections) body.append(h('h3', { text: section.heading }), ...section.paragraphs.map((p) => h('p', { text: p })));
+      body.dataset.loaded = '1';
+    }
+    body.hidden = !body.hidden;
+  }) });
+  return h('div', {}, open, body);
+}
+
 export function consentView(ctx, state, after) {
   const boxes = {};
   const blocks = state.kinds.map((k) => {
     boxes[k.kind] = h('input', { id: `consent-${k.kind}`, type: 'checkbox', checked: k.granted === true && k.current });
-    return h('div', { class: 'card' }, h('h2', { text: k.title }), h('p', { text: k.text }),
-      h('label', { class: 'inline' }, boxes[k.kind], k.required ? ' I agree (needed to store my sessions)' : ' I agree (optional)'));
+    return h('div', { class: 'card' }, h('h2', { text: k.title }), h('p', { text: k.text }), ...(k.documents || []).map((name) => legalBlock(name, ctx)),
+      h('label', { class: 'inline' }, boxes[k.kind], k.required ? ' I agree (needed to use ProcSense and to store my sessions)' : ' I agree (optional; I can say no and still use everything, and I can change my mind later)'));
   });
   return h('section', {}, h('h1', { text: 'Your data and your choices' }),
     h('p', { text: 'Please read this before you continue. You can change your choices later on the Privacy page.' }), ...blocks,
     h('div', { class: 'row' }, h('button', { text: 'Save my choices', onclick: guard(ctx, async () => {
       for (const k of state.kinds) {
         const now = boxes[k.kind].checked;
-        if (k.required && !now) { ctx.say('You can use ProcSense only if you agree to the first one: otherwise your sessions cannot be stored.', 'error'); return; }
+        if (k.required && !now) { ctx.say('You can use ProcSense only if you agree to the Terms and to the storing of your results (the questions marked needed). The other questions are optional.', 'error'); return; }
         if (now !== (k.granted === true && k.current) || (k.required && !k.current)) await api.post('/privacy/consent', { kind: k.kind, granted: now });
       }
       ctx.say('Your choices are saved.', 'ok');
@@ -231,6 +248,7 @@ export async function privacyView(ctx, consentState) {
   const months = retention ? h('input', { id: 'retention', type: 'number', min: 6, max: 60, value: retention.retention_months ?? '', placeholder: String(retention.default_months) }) : null;
   const change = () => ctx.show(() => consentView(ctx, consentState, async () => { await ctx.refreshConsent(); ctx.go('#/privacy'); }));
   return h('section', {}, h('h1', { text: 'Privacy' }),
+    h('h2', { text: 'The documents I agreed to' }), legalBlock('terms', ctx), legalBlock('privacy_notice', ctx),
     h('h2', { text: 'My choices' }), table(['Question', 'My answer'], consentState.kinds.map((k) => [k.title, k.granted === null ? 'Not answered' : (k.granted ? 'Yes' : 'No')])),
     h('div', { class: 'row' }, h('button', { class: 'secondary', text: 'Change my choices', onclick: change })),
     h('h2', { text: 'Who looked at my data' }),

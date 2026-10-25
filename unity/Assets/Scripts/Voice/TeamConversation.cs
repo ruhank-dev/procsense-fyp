@@ -35,6 +35,8 @@ namespace ProcSense.VR.Voice
         public bool SpeakAloud = true;
         /// <summary>React to the history questions the trainee asks from the tablet menu (the engine's <c>ask</c> action), so the patient answers in a voice.</summary>
         public bool AnswerMenuQuestions = true;
+        /// <summary>Set by <see cref="SpokenActionRouter"/> while it starts a spoken action, so the tablet-style reaction below does not answer a second time.</summary>
+        public bool SuppressAuto;
 
         public IReadOnlyList<ContextTurn> Turns => _turns;
         public TeamAnswer Last { get; private set; }
@@ -60,7 +62,7 @@ namespace ProcSense.VR.Voice
         /// <summary>The engine released a history fact because the trainee asked about the topic: the patient answers aloud.</summary>
         public void OnApplied(SimAction action, ActionOutcome outcome)
         {
-            if (!AnswerMenuQuestions || action == null || outcome == null || action.Verb != "ask" || !outcome.Accepted || !ModeGate.PracticeAids) return;
+            if (SuppressAuto || !AnswerMenuQuestions || action == null || outcome == null || action.Verb != "ask" || !outcome.Accepted || !ModeGate.PracticeAids) return;
             string topic = outcome.Effects.Where(e => e.StartsWith("answered:")).Select(e => e.Substring("answered:".Length)).FirstOrDefault();
             if (topic == null) return;
             Ask(QuestionFor(topic), topic);
@@ -88,10 +90,30 @@ namespace ProcSense.VR.Voice
             yield return TeamDialogueClient.Ask(Auth(), host, question, askedTopic, turns, a => answer = a);
             if (mine != _generation) yield break;                            // the trainee has already said something else
             Last = answer;
+            foreach (var r in answer.Replies)
+                if (r.Role == "nurse" && r.Intent == "report_observation") r.Text = ObservationReport.Build(host.Session.Observable);        // the nurse's numbers are the engine's, never a model's
             foreach (var r in answer.Replies) _turns.Add(new ContextTurn(r.Role, r.Text));
             while (_turns.Count > 12) _turns.RemoveAt(0);
             Status = answer.FromService ? (answer.Cloud ? "Answered (cloud model)." : "Answered (local model).") : "Answered without the service (" + answer.Reason + ").";
             if (Voices != null) Voices.Offer(answer.Replies);
+        }
+
+        /// <summary>Speaks a line the engine itself produced (the patient's authored answer to an action that is not a history topic) through the same subtitle and voice path. The turn is remembered.</summary>
+        public void Say(string role, string text, string intent = "answer_question")
+        {
+            if (string.IsNullOrWhiteSpace(text) || Voices == null) return;
+            _generation++;
+            _turns.Add(new ContextTurn(role, text));
+            Last = new TeamAnswer { Replies = { new TeamReply(role, text) { Intent = intent, Source = "engine" } }, Reason = "ENGINE" };
+            Voices.Offer(Last.Replies);
+        }
+
+        /// <summary>Remember what the trainee said when no turn follows it (a spoken action the engine refused, or a suggestion waiting for a yes).</summary>
+        public void Remember(string speaker, string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return;
+            _turns.Add(new ContextTurn(speaker, text));
+            while (_turns.Count > 12) _turns.RemoveAt(0);
         }
 
         private void OnSpoke(string role, string text, string voice)

@@ -1,0 +1,57 @@
+{
+ "id": "privacy_notice",
+ "version": "2026-10-25.1",
+ "title": "ProcSense Privacy Notice",
+ "status": "Written by the project team in plain language from what the service does. It has not been reviewed by a lawyer or a data-protection officer and it does not claim legal compliance (DT-127). The institution that gives you access completes the fields marked [institution].",
+ "sections": [
+  {
+   "heading": "Who is responsible",
+   "paragraphs": [
+    "ProcSense is a training simulator for the pre-operative check. Every patient in it is invented. The service is run for the organisation that gave you access (your institution). [institution: name, address and the contact for privacy questions of the organisation that runs this deployment.]",
+    "Your organisation's administrators can see your results (see below). You can ask them, or use the Privacy page of this site, to look at, download or delete what is held about you."
+   ]
+  },
+  {
+   "heading": "What ProcSense keeps about you",
+   "paragraphs": [
+    "Your sign-in account (an email address kept by the sign-in service, a display name and a code name), the actions you take in the simulator, your scores and your reports, linked to your account. Supervisors and administrators of your organisation can see your results, including your display name. Results are kept for the period your organisation chose (24 months unless it chose another) and then the stored session log is removed.",
+    "A record of each AI request: when it was made, which feature and model answered, how long it took, whether the answer was accepted, and a fingerprint (hash) of the question and the answer. The record does not contain the words you said or the words the AI answered."
+   ]
+  },
+  {
+   "heading": "When you speak to the simulator",
+   "paragraphs": [
+    "Your voice is recorded only while you hold the Talk button, for at most 15 seconds. The recording is sent to the ProcSense service and turned into text by speech recognition that runs on the ProcSense service itself. The recording is not stored, and it is never sent to a cloud AI provider.",
+    "The text of what you said (the transcript) is then used to run the simulation: to work out which action you meant (for example, asking about allergies), to let the patient and the staff answer, and to judge how well you communicated. Which AI model reads the transcript depends on your choice below."
+   ]
+  },
+  {
+   "heading": "Your choice: cloud AI processing (optional)",
+   "paragraphs": [
+    "If you say yes, then when you speak to the simulator, the transcript of what you said, up to the four previous lines of the conversation, the facts of the invented patient that the patient is allowed to say at that moment, the list of simulator actions that are available, and an identifier of the training scenario are sent over the internet to Ollama Cloud (Ollama Inc.), which runs the Gemma 4 31B language model and returns the answer. We do not send your name, email address, account identifier, display name or code name, and we do not send the audio.",
+    "The purpose is to understand your spoken questions, to write the patient's replies and to choose which staff member speaks, with better quality and speed than the smaller model on our own service.",
+    "If you say no, or later withdraw your consent, the same features keep working with a smaller language model that runs on the ProcSense service itself, and nothing about what you say is sent to Ollama. Some features are simpler with the local model: staff members do not join in the conversation, and the replies may be less natural. Your results and scores are not affected by your choice.",
+    "You can change your mind at any time on the Privacy page. Withdrawing stops any new transmission from the next request. It cannot recall what was already processed by the provider."
+   ]
+  },
+  {
+   "heading": "What the provider says (checked on 25 October 2026)",
+   "paragraphs": [
+    "From Ollama's privacy policy (https://ollama.com/privacy): for cloud-hosted models, \"we process your prompts and responses transiently to provide the service and never train on it\"; \"We do not use your inputs or outputs to train any AI models\"; this content \"is not stored beyond the time required to fulfill the request\"; Ollama collects \"Diagnostic metadata for troubleshooting (does not include prompt or response content)\"; \"Data may be transferred to and processed in the United States\"; third parties that help Ollama operate include \"cloud infrastructure providers, model inference providers\". Ollama's cloud documentation (https://docs.ollama.com/cloud) says \"Ollama processes cloud prompts and responses to answer your requests. We do not use them to train models.\"",
+    "What we could not verify: the policy gives no fixed retention period, does not list the companies that host or run the models, and does not say where in the world the models run. We therefore make no promise about retention or location beyond the provider's own statements above. Ollama's contact for privacy requests is hello@ollama.com. Ollama's policy is theirs and may change; the link above is the current version."
+   ]
+  },
+  {
+   "heading": "Your rights",
+   "paragraphs": [
+    "On the Privacy page you can see who opened your results, download everything held about you, change your choices, and delete your account and cut every link between you and your sessions. Your organisation's administrator can also help. Contact for the organisation: see the first section."
+   ]
+  },
+  {
+   "heading": "Changes",
+   "paragraphs": [
+    "When this notice or the choices change, the version number changes and you are asked again before anything new applies to you. The version you agreed to and the time you agreed are recorded with your answer."
+   ]
+  }
+ ]
+}

@@ -256,6 +256,37 @@
     }
    ]
   },
+  "speech_actions": {
+   "label": "Spoken questions as simulator actions (DT-251, ADR-0027): the model on the selected cloud route reads the transcript and names the tablet actions; the engine decides. Synthetic AI-written set, not human-labelled. The local model only proposes, the trainee confirms.",
+   "status": "PASS",
+   "enabled": true,
+   "suites": [
+    {
+     "id": "speech_actions.exact_match",
+     "status": "PASS",
+     "got": 1.0,
+     "needs": ">= 0.9"
+    },
+    {
+     "id": "speech_actions.false_actions",
+     "status": "PASS",
+     "got": 0.0,
+     "needs": "<= 0.02"
+    },
+    {
+     "id": "speech_actions.valid_replies",
+     "status": "PASS",
+     "got": 0.0,
+     "needs": "<= 0.02"
+    },
+    {
+     "id": "speech_actions.latency_p95_ms",
+     "status": "PASS",
+     "got": 3500,
+     "needs": "<= 4000.0"
+    }
+   ]
+  },
   "speech_evaluation": {
    "label": "Gemma semantic evaluation of trainee speech, scored by the engine (ADR-0025): approved on synthetic held-out evidence (AI-written, scored once per set); the real Quest and ASR check is DC-10",
    "status": "PASS",
