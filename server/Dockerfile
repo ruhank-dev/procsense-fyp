@@ -16,7 +16,9 @@ COPY --from=builder /opt/venv /opt/venv
 COPY server ./server
 # what the AI gateway reads at run time: the registered prompts and the word lists its validators use (p1-backend-s06)
 COPY prompts ./prompts
-COPY content/ai ./content/ai
+COPY content ./content
+COPY tools/composer ./tools/composer
+COPY tests/golden ./tests/golden
 # the engine and the content it verifies with, prepared by `task server-engine-prepare` (CI does it before the image is built)
 COPY server/engine /opt/engine
 ENV ENGINE_CLI=/opt/engine/bin/procsense-sim ENGINE_CONTENT_ROOT=/opt/engine/content DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/dotnet-bundle DOTNET_CLI_TELEMETRY_OPTOUT=1
