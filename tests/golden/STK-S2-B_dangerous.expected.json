@@ -2,8 +2,8 @@
   "case": "STK-S2-B",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "f845e70b3ca1723052a204741c74c170fb9ae600b3b709065d92de573f845d2e",
-  "state_hash": "fc671b02d3a6cf5dfd44774e162317b14d1f12096c3845968ba0b5464e9baa12",
+  "log_hash": "4ec0b59b3a6a48d831ca6bf42c9b7b3441638ecf0190e4750c0acade82772553",
+  "state_hash": "625761f447550605376e11ab6d73847c760847593b546ba47ed93f72b42933f6",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -39,7 +39,7 @@
       "consent.emergency_route",
       "consent.signed",
       "endstate.resolved",
-      "event.e-fast-breathing.missed",
+      "event.e-fast-breathing.handled",
       "event.e-fever.missed",
       "event.e-high-hr.missed",
       "exam.permission_asked",
@@ -68,9 +68,9 @@
   },
   "score": {
     "result": "FAIL",
-    "credits": 12,
+    "credits": 14,
     "minor": [],
-    "major": ["major.e_fast_breathing_not_escalated", "major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
+    "major": ["major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
     "critical": ["critical.action_before_identity"]
   }
 }

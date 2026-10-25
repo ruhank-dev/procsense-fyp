@@ -2,8 +2,8 @@
   "case": "SC-25",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "712cb4a7d7a6c2d8a24b4159e0f930210637d967259dd8dbc0ff4ad7e5f5b173",
-  "state_hash": "9ead4e587dee1379e0c935c7c565c2aed44bbcb0bdcc79ba84122031c72983bb",
+  "log_hash": "7d46fb1816952c666a1b6603f27c90132f240008cfc74d0fc37368878fb94978",
+  "state_hash": "0d5470afa940a490ba41d99d0e72dc322875ae54a2de97c943fa2a745faf2f4a",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -16,7 +16,7 @@
       "condition.kidney_injury",
       "decision.declared",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "identity_asked_open",
       "introduced"
     ],
@@ -29,9 +29,9 @@
   },
   "score": {
     "result": "FAIL",
-    "credits": 2,
+    "credits": 4,
     "minor": [],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": ["critical.action_before_identity"]
   }
 }

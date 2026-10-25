@@ -2,8 +2,8 @@
   "case": "VAR-S1-E",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "b93203742ec5ea7a890c2186b58b7e6ea0b6453e196bdac09395a63ed4b0780f",
-  "state_hash": "ed41f4ffbb8a26dbb3e4bfbe006631baac4c09118863c04917fbb1b75abd870a",
+  "log_hash": "596177c9de20dfb57788455e9a08d7acc80d8bd52990be24b91221b3db8e7627",
+  "state_hash": "836919b0a38968e651b28d6368e3751f6357207ef1fc25aa8b2e3d97e0324af5",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -15,7 +15,7 @@
       "allergy_reaction_asked",
       "decision.declared",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "identity_asked_open",
       "pregnancy.status_required"
     ],
@@ -28,9 +28,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 2,
+    "credits": 4,
     "minor": ["minor.no_introduction"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

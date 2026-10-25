@@ -2,8 +2,8 @@
   "case": "SC-32",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "a52f6fa7d0853e4ae0d5080e5ba67468ca620cb9cfaa7295449e9100516611a0",
-  "state_hash": "f3ec031d59f8689810938384b828bcc56a8ab17dc266b04ca5b5a7f6bbeef60c",
+  "log_hash": "55213464f2308b28948a9f17a157a33133825bd83b1a55f3cbe826b7c01b0b41",
+  "state_hash": "2c11fa7645583631fac67440b2b063c10027f22ca04972b4ffda0adc16d0efcb",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -15,7 +15,7 @@
       "allergy_reaction_asked",
       "decision.declared",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "identity_asked_open"
     ],
     "rejections": [],
@@ -27,9 +27,9 @@
   },
   "score": {
     "result": "SUCCESS_WITH_DELAY",
-    "credits": 1,
+    "credits": 3,
     "minor": ["minor.no_introduction"],
-    "major": ["major.e_fever_not_escalated", "major.postponed_unnecessarily"],
+    "major": ["major.postponed_unnecessarily"],
     "critical": []
   }
 }

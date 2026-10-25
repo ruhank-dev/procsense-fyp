@@ -146,6 +146,9 @@ namespace ProcSense.VR.Voice
     {
         public AudioSource Source;
         public bool IsPlaying => Source != null && Source.isPlaying;
+        /// <summary>While the trainee is recording the speaker is silent (the microphone would hear it).</summary>
+        public bool Muted { get; private set; }
+        public void SetMuted(bool muted) { Muted = muted; if (Source != null) Source.mute = muted; }
 
         public IEnumerator Play(byte[] oggVorbis, Action<bool> done)
         {
@@ -158,6 +161,7 @@ namespace ProcSense.VR.Voice
                 yield return request.SendWebRequest();
                 if (request.result != UnityEngine.Networking.UnityWebRequest.Result.Success) { done(false); yield break; }
                 Source.clip = UnityEngine.Networking.DownloadHandlerAudioClip.GetContent(request);
+                Source.mute = Muted;
                 Source.Play();
                 while (Source.isPlaying) yield return null;
             }

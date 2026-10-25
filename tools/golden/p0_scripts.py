@@ -73,6 +73,13 @@ def identity(s: Script) -> None:
         s.add(v)
 
 
+def temperature_alert(s: Script, c: dict) -> None:
+    """A patient whose temperature is 38.0 or more, or 36.0 or less, from the start: the fever and cold events (E-FEVER, E-COLD, DT-087) expect the senior or the anaesthetist to be told."""
+    t = c["observations"][0]["temperature_c"]
+    if t >= 38.0 or t <= 36.0:
+        s.add("escalate", 2, role="senior", s="the patient has an abnormal temperature before the procedure", b="temperature outside the normal range on the observations", a="it may change the pathway", r="please review the patient")
+
+
 def history(s: Script) -> None:
     for t in TOPICS:
         s.add("ask", topic=t)
@@ -185,7 +192,7 @@ def antibiotics(s: Script) -> None:
 
 def planned_ready(c: dict, emergency: bool = False, antibiotic: bool = False, repeat: list[str] | None = None) -> Script:
     s = Script()
-    identity(s); history(s)
+    identity(s); temperature_alert(s, c); history(s)
     tests = tests_for(c)
     order_tests(s, tests)
     readings(s); examination(s, c); risk(s, c)
@@ -295,7 +302,7 @@ SERVICE = {"STK-S1-C": "acute medical team", "VAR-S1-E": "acute surgical team", 
 def decided(c: dict) -> Script:
     """Finds the problems, declares the outcome the engine expects, then postpones or redirects."""
     s = Script()
-    identity(s)
+    identity(s); temperature_alert(s, c)
     evidence(s, c)
     s.add("declare_outcome", 4, outcome=probe(c["id"], s), reason=c["problems"][0]["label"][:80])
     if c["expected_end_state"] in ("postponed", "delayed"):

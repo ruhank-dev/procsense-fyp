@@ -2,8 +2,8 @@
   "case": "VAR-S2-K",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "1f34c9278fd73869c18b09a5ef38b8c7fbb5957c71d3ab76f2846fc20607d579",
-  "state_hash": "ce56e22c012f50492cabeca4f17253f02b61b3f3a40b2e4c4f5fa7b46a5a0088",
+  "log_hash": "c09e2a1f7735f12fbf69fe92c1003e37009209cb8c80fd8fc670029c7b0948ff",
+  "state_hash": "2d8ad37bfb11381d123b4036f99e5e759aa0875ecd99975f79bbc646897ec595",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -39,7 +39,7 @@
       "consent.signed",
       "consent.teach_back_ok",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "fasting.rsi",
@@ -65,9 +65,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 15,
+    "credits": 17,
     "minor": ["minor.no_introduction", "minor.question_unanswered", "minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

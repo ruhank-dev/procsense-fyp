@@ -2,8 +2,8 @@
   "case": "STK-S1-D",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "673405caac8baf02db203f5a2f338615375acafc2703786c700edcd1edd478a4",
-  "state_hash": "378884c8a0f246f5da9f4d63909ffba27e1afd9157f229e9f2899f321f9df6cd",
+  "log_hash": "a0e903062f8062a705260920812d095715f21f85e201b2e026a32a34ec35e4f2",
+  "state_hash": "9b12adb943005c04eeb90833938a33c32597054806749fb520bf3fa9aeb46f4e",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -21,7 +21,7 @@
       "allergy_reaction_asked",
       "decision.declared",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "identity_asked_open",
       "mode.emergency",
       "news2.computed",
@@ -36,9 +36,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 4,
+    "credits": 6,
     "minor": ["minor.no_introduction"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

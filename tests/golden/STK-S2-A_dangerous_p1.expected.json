@@ -2,8 +2,8 @@
   "case": "STK-S2-A",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "369a5a43afe0443615bfcfd4a3c522c52d38db59f21a05deffd052c2c6665a69",
-  "state_hash": "0b225d868bb341bfb745cea35eccb6820950d6971d0db92045e7fd2b5038c88b",
+  "log_hash": "99f60f65b850dd0bde15d745201f634602d3fcc3f7c60da01cd8f740a3815e08",
+  "state_hash": "bcc945369719076c02f021836ba1a39b735c401c5d609c040380774fb680ffdf",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -39,7 +39,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "identity_asked_open",
@@ -66,9 +66,9 @@
   },
   "score": {
     "result": "FAIL",
-    "credits": 22,
+    "credits": 24,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": ["critical.action_before_identity"]
   }
 }

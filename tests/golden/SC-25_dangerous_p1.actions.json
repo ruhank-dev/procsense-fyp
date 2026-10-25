@@ -10,8 +10,9 @@
   {"t": 24.0, "verb": "ask_allergy_reaction"},
   {"t": 28.0, "verb": "ask_reason_for_admission"},
   {"t": 32.0, "verb": "ask_responsible_adult"},
-  {"t": 36.0, "verb": "time_skip", "params": {"minutes": "60"}},
-  {"t": 3637.0, "verb": "declare_outcome", "params": {"outcome": "INVESTIGATE", "reason": "Obstructed infected bile duct (acute cholangitis)"}},
-  {"t": 3641.0, "verb": "redirect", "params": {"service": "acute surgical and medical team"}},
-  {"t": 3645.0, "verb": "wait"}
+  {"t": 36.0, "verb": "escalate", "params": {"role": "senior", "s": "the patient has an abnormal temperature before the procedure", "b": "temperature outside the normal range on the observations", "a": "it may change the pathway", "r": "please review the patient"}},
+  {"t": 38.0, "verb": "time_skip", "params": {"minutes": "60"}},
+  {"t": 3639.0, "verb": "declare_outcome", "params": {"outcome": "INVESTIGATE", "reason": "Obstructed infected bile duct (acute cholangitis)"}},
+  {"t": 3643.0, "verb": "redirect", "params": {"service": "acute surgical and medical team"}},
+  {"t": 3647.0, "verb": "wait"}
 ]

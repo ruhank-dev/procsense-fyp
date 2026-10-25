@@ -2,8 +2,8 @@
   "case": "SC-30",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "2f350745a7eb20afbe31441ede563df483dbf90f6f171edff461c887bd4ab46b",
-  "state_hash": "b5e32e9e9049f6b4e056d77006ce18f3ecdb4b47785543718c0c0b31923703d7",
+  "log_hash": "cdcb842bd261ca61b9aa5f83a716088e188e54b03c65bead21541e26042e7f29",
+  "state_hash": "ad76a1cac3f94655e667b21861bdd7fa29fc95f5390de3ff95d62cf3b1a80f48",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -40,7 +40,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -70,9 +70,9 @@
   },
   "score": {
     "result": "FAIL",
-    "credits": 11,
+    "credits": 14,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": ["critical.action_before_identity"]
   }
 }

@@ -2,8 +2,8 @@
   "case": "VAR-S2-PD",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "d3367fcc1fb74d2f9dc7e64302030fc7348579cd2705856804973fbd3683788b",
-  "state_hash": "8b8c3a8b372c18be3e60bf5157b90dca7bdcd6b9ac45febc22dc8c49ccc87171",
+  "log_hash": "742c09a6fa16323ac7b795a1d36cb00779ac8e803f527fccc522082649a651f7",
+  "state_hash": "ef2c78c5063294ef18f68466c7ab3b093d467deab20e6c8c3804c8f2ac417dcb",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -38,7 +38,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -66,9 +66,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 21,
+    "credits": 23,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

@@ -7,10 +7,11 @@
   {"t": 24.0, "verb": "ask_allergy_reaction"},
   {"t": 28.0, "verb": "ask_reason_for_admission"},
   {"t": 32.0, "verb": "ask_responsible_adult"},
-  {"t": 36.0, "verb": "order_investigation", "params": {"test": "ultrasound"}},
-  {"t": 38.0, "verb": "request_transport", "params": {"to": "ultrasound", "mode": "trolley", "escort": "porter,nurse", "monitoring": "none", "accompany": "false", "oxygen": "false"}},
-  {"t": 42.0, "verb": "time_skip", "params": {"minutes": "60"}},
-  {"t": 3643.0, "verb": "declare_outcome", "params": {"outcome": "INVESTIGATE", "reason": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018"}},
-  {"t": 3647.0, "verb": "redirect", "params": {"service": "acute surgical team"}},
-  {"t": 3651.0, "verb": "wait"}
+  {"t": 36.0, "verb": "escalate", "params": {"role": "senior", "s": "the patient has an abnormal temperature before the procedure", "b": "temperature outside the normal range on the observations", "a": "it may change the pathway", "r": "please review the patient"}},
+  {"t": 38.0, "verb": "order_investigation", "params": {"test": "ultrasound"}},
+  {"t": 40.0, "verb": "request_transport", "params": {"to": "ultrasound", "mode": "trolley", "escort": "porter,nurse", "monitoring": "none", "accompany": "false", "oxygen": "false"}},
+  {"t": 44.0, "verb": "time_skip", "params": {"minutes": "60"}},
+  {"t": 3645.0, "verb": "declare_outcome", "params": {"outcome": "INVESTIGATE", "reason": "Acute cholecystitis (inflamed gallbladder), definite by Tokyo 2018"}},
+  {"t": 3649.0, "verb": "redirect", "params": {"service": "acute surgical team"}},
+  {"t": 3653.0, "verb": "wait"}
 ]

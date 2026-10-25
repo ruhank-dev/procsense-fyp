@@ -2,8 +2,8 @@
   "case": "SC-22",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "f7f8aaad829edf06ec0adf2fcf9767615dfb8498e66cd2450ba303daa91971b3",
-  "state_hash": "ec15244615fc010f5c8e5c7255f52f1c88e673865df0574bb98fcf7eb51663b7",
+  "log_hash": "76d57a67e127653cb38daa34251cfb0a1ac831feeef4c54c99818538808d8c63",
+  "state_hash": "cd2c34e2b543f1b51467ee172c584497b088d88b821e1eff87f3f1ecf4a5af18",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -16,7 +16,7 @@
       "condition.diabetes",
       "decision.declared",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "identity_asked_open"
     ],
     "rejections": [],
@@ -28,9 +28,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 2,
+    "credits": 4,
     "minor": ["minor.no_introduction"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

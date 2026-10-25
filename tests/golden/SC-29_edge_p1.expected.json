@@ -2,8 +2,8 @@
   "case": "SC-29",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "c7cc8b2b5bf89372b03573152b0280ae2bf203e8896763990209e557f4b9510a",
-  "state_hash": "0094ecaed73d4326902aa40ecaba382f81b747ede8985ddec4f23f20f3e4037a",
+  "log_hash": "dafdad29568958722875540d2b2c710312a9095d4b7a1d20ed5a5ddc9738fbe2",
+  "state_hash": "816872f87926919c08a95328a3a89ca8302f19a119a7d7341e6fb3f2880b13dc",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -38,7 +38,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "event.e-high-hr.handled",
       "exam.permission_asked",
       "exam.started",
@@ -70,9 +70,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 13,
+    "credits": 16,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

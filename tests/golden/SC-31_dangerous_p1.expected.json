@@ -2,8 +2,8 @@
   "case": "SC-31",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "9448b44a025b8074342d6ae1833f12d4d2f14614fc20dc5d9a61cd0e7f3b1dc5",
-  "state_hash": "cb442ebff99a0fe73b3a86748ddccd903239d528778dad50401276914bfc685f",
+  "log_hash": "6567f0b723c5f5bd8d0b21519b59ce04549624d1393d30590af87ea494cf677b",
+  "state_hash": "4961d5dec3fdf9cf279ab0732aac1a88cc3a7f9483214a0a3278acc879b62b1b",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -41,7 +41,7 @@
       "critical.unacknowledged",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fast-breathing.missed",
+      "event.e-fast-breathing.handled",
       "event.e-fever.missed",
       "event.e-high-hr.missed",
       "exam.permission_asked",
@@ -73,9 +73,9 @@
   },
   "score": {
     "result": "FAIL",
-    "credits": 12,
+    "credits": 15,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fast_breathing_not_escalated", "major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
+    "major": ["major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
     "critical": ["critical.action_before_identity", "critical.ignored_critical_result"]
   }
 }

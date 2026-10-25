@@ -53,6 +53,12 @@ namespace ProcSense.VR.Voice
         public Func<AuthService> Auth = () => AuthService.Current;
         public event Action<string> Transcribed;
         public event Action<string> StatusChanged;
+        /// <summary>Raised when recording starts and stops, so the speaker can be muted while the trainee talks (no echo into the microphone).</summary>
+        public event Action<bool> RecordingChanged;
+        /// <summary>Set by the headset layer to <see cref="VoiceHealthState.Offline"/>: voice never blocks play, so offline means the tablet menu at once.</summary>
+        public Func<bool> Offline = () => false;
+        /// <summary>True while a character is speaking: a clip recorded meanwhile waits until the character has finished (T-VC4).</summary>
+        public Func<bool> CharacterSpeaking = () => false;
         public bool Recording { get; private set; }
         public string Status { get; private set; } = "";
         public float RecordedSeconds { get; private set; }
@@ -64,11 +70,21 @@ namespace ProcSense.VR.Voice
         public bool Press()
         {
             if (Recording) return false;
+            if (Offline()) { Set(VoiceHealthState.OfflineBanner); return false; }
             if (!Mic.Begin(out _rate)) { Set("No microphone found: use the tablet."); return false; }
             Recording = true;
             _startedAt = Time.realtimeSinceStartup;
             Set("Listening...");
+            RecordingChanged?.Invoke(true);
             return true;
+        }
+
+        /// <summary>After "Say that again, please": clears the message and listens again, so the trainee does not have to find the button first.</summary>
+        public bool SayAgain()
+        {
+            if (Recording) return false;
+            Set("");
+            return Press();
         }
 
         /// <summary>Ends the recording; the answer is raised through <see cref="Transcribed"/> when it arrives.</summary>
@@ -76,6 +92,7 @@ namespace ProcSense.VR.Voice
         {
             if (!Recording) return;
             Recording = false;
+            RecordingChanged?.Invoke(false);
             var samples = Mic.End();
             RecordedSeconds = _rate > 0 ? samples.Length / (float)_rate : 0f;
             if (!WavEncoder.HasSpeech(samples, _rate)) { Set("I did not hear anything. Hold the button and speak."); return; }
@@ -84,6 +101,8 @@ namespace ProcSense.VR.Voice
 
         public IEnumerator Send(byte[] wav)
         {
+            if (CharacterSpeaking()) { Set("Waiting for them to finish..."); while (CharacterSpeaking()) yield return null; }
+            if (Offline()) { Set(VoiceHealthState.OfflineBanner); yield break; }
             Set("Recognising...");
             AsrResult result = null;
             yield return AsrClient.Transcribe(Auth(), wav, r => result = r);
@@ -99,6 +118,9 @@ namespace ProcSense.VR.Voice
     {
         public PushToTalk Talk;
         public SpokenActionRouter Router;
+        public VoiceHealth Health;
+        public UnityClipPlayer Speaker;
+        public Button SayAgainButton { get; private set; }
         public Canvas Canvas { get; private set; }
         public Button[] SuggestionButtons { get; private set; }
         public Button TalkButton { get; private set; }
@@ -112,6 +134,9 @@ namespace ProcSense.VR.Voice
             _caption = TalkButton.GetComponentInChildren<TMP_Text>();
             _status = UiKit.Label(Canvas.transform, "Status", "", new Vector2(20, 90), new Vector2(380, 60), 17, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             TalkButton.onClick.AddListener(Toggle);
+            SayAgainButton = UiKit.MakeButton(Canvas.transform, "Say again", new Vector2(20, 280), new Vector2(380, 50), 20f);
+            SayAgainButton.onClick.AddListener(() => { if (Talk != null) Talk.SayAgain(); });
+            SayAgainButton.gameObject.SetActive(false);
             SuggestionButtons = new[] { UiKit.MakeButton(Canvas.transform, "Suggestion 1", new Vector2(20, 160), new Vector2(380, 50), 20f), UiKit.MakeButton(Canvas.transform, "Suggestion 2", new Vector2(20, 220), new Vector2(380, 50), 20f) };
             for (int i = 0; i < SuggestionButtons.Length; i++)
             {
@@ -124,6 +149,11 @@ namespace ProcSense.VR.Voice
         private void Update()
         {
             if (SuggestionButtons == null) return;
+            if (SayAgainButton != null && Talk != null)
+            {
+                bool again = !Talk.Recording && (Talk.Status.StartsWith("Say that again") || Talk.Status.StartsWith("I did not hear"));
+                if (SayAgainButton.gameObject.activeSelf != again) SayAgainButton.gameObject.SetActive(again);
+            }
             if (_status != null && Talk != null)                                               // what the trainee needs to read: the recogniser, then what was understood, then which model answered
             {
                 string text = string.Join("\n", new[] { Talk.Status, Router != null ? Router.Status : "", Router != null && Router.Talk != null ? Router.Talk.Status : "" }.Where(x => !string.IsNullOrEmpty(x)).Distinct());
@@ -139,8 +169,24 @@ namespace ProcSense.VR.Voice
             }
         }
 
-        private void OnEnable() { Build(); if (Talk != null) Talk.StatusChanged += OnStatus; }
-        private void OnDisable() { if (Talk != null) Talk.StatusChanged -= OnStatus; }
+        private void OnEnable()
+        {
+            Build();
+            if (Talk == null) return;
+            Talk.StatusChanged += OnStatus;
+            Talk.RecordingChanged += OnRecording;
+            if (Health != null) Talk.Offline = () => Health.State.Offline;
+            if (Speaker != null) Talk.CharacterSpeaking = () => Speaker.IsPlaying;
+        }
+
+        private void OnDisable()
+        {
+            if (Talk == null) return;
+            Talk.StatusChanged -= OnStatus;
+            Talk.RecordingChanged -= OnRecording;
+        }
+
+        private void OnRecording(bool on) { if (Speaker != null) Speaker.SetMuted(on); }
         private void OnStatus(string s) { if (_status != null) _status.text = s; if (_caption != null) _caption.text = Talk != null && Talk.Recording ? "Send" : "Talk"; }
 
         public void Toggle()
