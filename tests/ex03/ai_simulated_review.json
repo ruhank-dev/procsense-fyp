@@ -1,0 +1,428 @@
+{
+ "label": "AI-simulated reviewer passes (EX-03 evidence). Two readings by the same AI assistant; not two people. Does NOT satisfy the human_plausibility gate.",
+ "date": "2026-10-26",
+ "dimensions": [
+  "plausibility",
+  "clinical_consistency",
+  "educational_relevance",
+  "clarity",
+  "ambiguity",
+  "difficulty",
+  "realism",
+  "unfair_or_misleading"
+ ],
+ "summary": {
+  "v2_before": {
+   "items": 12,
+   "failed": 6,
+   "split_between_passes": 4
+  },
+  "v3_first_run": {
+   "items": 12,
+   "failed": 1
+  },
+  "v3_final_retest": {
+   "items": 12,
+   "failed": 0
+  }
+ },
+ "rows": [
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-1",
+   "authored": "Standard first-line penicillin",
+   "reworded": "Start standard first-line penicillin immediately.",
+   "pass1_fails": [
+    "clinical_consistency"
+   ],
+   "pass2_fails": [
+    "clinical_consistency",
+    "unfair_or_misleading"
+   ],
+   "agreed": false,
+   "resolved": "fail"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-1",
+   "authored": "Ignore the creatinine",
+   "reworded": "Ignore the creatinine result for now and focus on the patient's symptoms.",
+   "pass1_fails": [
+    "clinical_consistency",
+    "ambiguity"
+   ],
+   "pass2_fails": [
+    "clinical_consistency",
+    "ambiguity"
+   ],
+   "agreed": true,
+   "resolved": "fail"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-11",
+   "authored": "Take the earlier refusal as final and do nothing",
+   "reworded": "Consider the earlier refusal final and do nothing.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-13",
+   "authored": "Proceed after checking the INR only",
+   "reworded": "Go ahead with the procedure after verifying the INR.",
+   "pass1_fails": [
+    "clinical_consistency"
+   ],
+   "pass2_fails": [
+    "clinical_consistency"
+   ],
+   "agreed": true,
+   "resolved": "fail"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-15",
+   "authored": "Give the same antibiotic again",
+   "reworded": "Administer the same antibiotic again immediately.",
+   "pass1_fails": [
+    "clinical_consistency"
+   ],
+   "pass2_fails": [
+    "clinical_consistency"
+   ],
+   "agreed": true,
+   "resolved": "fail"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-16",
+   "authored": "Assume she is safe because she has fasted",
+   "reworded": "Assume she is safe because she has fasted.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-19",
+   "authored": "Treat only the sepsis",
+   "reworded": "Treat the patient for sepsis and address the hyperglycemia.",
+   "pass1_fails": [
+    "clinical_consistency",
+    "unfair_or_misleading"
+   ],
+   "pass2_fails": [
+    "clinical_consistency",
+    "unfair_or_misleading",
+    "difficulty"
+   ],
+   "agreed": false,
+   "resolved": "fail"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-2",
+   "authored": "Continue the appendicitis pathway",
+   "reworded": "Continue following the appendicitis management pathway.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-21",
+   "authored": "Proceed and look at the duct during the operation",
+   "reworded": "Go ahead with the procedure and examine the duct directly during the operation.",
+   "pass1_fails": [],
+   "pass2_fails": [
+    "clarity"
+   ],
+   "agreed": false,
+   "resolved": "pass"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-21",
+   "authored": "Treat as a normal pre-assessment",
+   "reworded": "Manage this patient as a normal pre-assessment.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-22",
+   "authored": "Wait for the liver ultrasound",
+   "reworded": "Hold off on the liver ultrasound until you have more data.",
+   "pass1_fails": [
+    "clinical_consistency",
+    "unfair_or_misleading"
+   ],
+   "pass2_fails": [
+    "clinical_consistency"
+   ],
+   "agreed": false,
+   "resolved": "fail"
+  },
+  {
+   "set": "v2 wording (before)",
+   "case": "SC-22",
+   "authored": "Reassure: a slow pulse is a good sign",
+   "reworded": "Reassure her that a slow pulse is a good sign.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-1",
+   "authored": "Standard first-line penicillin",
+   "reworded": "Use the standard first-line penicillin.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-1",
+   "authored": "Ignore the creatinine",
+   "reworded": "Ignore the creatinine.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-10",
+   "authored": "Use the 10-year-old brother as interpreter",
+   "reworded": "Have the 10-year-old brother interpret.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-11",
+   "authored": "Take the earlier refusal as final and do nothing",
+   "reworded": "Treat the earlier refusal as final and take no further action.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-12",
+   "authored": "Treat the potassium and ignore the sodium",
+   "reworded": "Manage the potassium and ignore the sodium.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-13",
+   "authored": "Proceed after checking the INR only",
+   "reworded": "Check the INR and then proceed.",
+   "pass1_fails": [
+    "clinical_consistency"
+   ],
+   "pass2_fails": [
+    "clinical_consistency"
+   ],
+   "agreed": true,
+   "resolved": "fail"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-15",
+   "authored": "Give the same antibiotic again",
+   "reworded": "Administer the same antibiotic again.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-16",
+   "authored": "Assume she is safe because she has fasted",
+   "reworded": "Consider her safe given she has fasted.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-17",
+   "authored": "Call it acute bleeding",
+   "reworded": "Attribute this to acute bleeding.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-18",
+   "authored": "Rush through to save time",
+   "reworded": "Rush through to save time.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-19",
+   "authored": "Treat only the sepsis",
+   "reworded": "Focus treatment on the sepsis only.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, first run",
+   "case": "SC-2",
+   "authored": "Continue the appendicitis pathway",
+   "reworded": "Stay on the appendicitis pathway.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-1",
+   "authored": "Standard first-line penicillin",
+   "reworded": "Use the standard first-line penicillin.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-1",
+   "authored": "Ignore the creatinine",
+   "reworded": "Ignore the creatinine level.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-10",
+   "authored": "Use the 10-year-old brother as interpreter",
+   "reworded": "Have the 10-year-old brother interpret.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-11",
+   "authored": "Take the earlier refusal as final and do nothing",
+   "reworded": "Accept the previous refusal as final and do nothing.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-12",
+   "authored": "Treat the potassium and ignore the sodium",
+   "reworded": "Manage the potassium but ignore the sodium.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-13",
+   "authored": "Proceed after checking the INR only",
+   "reworded": "Go ahead after checking only the INR.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-15",
+   "authored": "Give the same antibiotic again",
+   "reworded": "Administer the same antibiotic again.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-16",
+   "authored": "Assume she is safe because she has fasted",
+   "reworded": "Assume she is safe as she has fasted.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-17",
+   "authored": "Call it acute bleeding",
+   "reworded": "Attribute this to acute bleeding.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-18",
+   "authored": "Rush through to save time",
+   "reworded": "Rush through to save time.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-19",
+   "authored": "Treat only the sepsis",
+   "reworded": "Focus treatment on the sepsis only.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  },
+  {
+   "set": "v3 prompt, final (retest)",
+   "case": "SC-2",
+   "authored": "Continue the appendicitis pathway",
+   "reworded": "Stay on the appendicitis pathway.",
+   "pass1_fails": [],
+   "pass2_fails": [],
+   "agreed": true,
+   "resolved": "pass"
+  }
+ ]
+}

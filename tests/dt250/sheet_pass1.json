@@ -1,0 +1,2271 @@
+{
+ "label": "Blind sheet. Model names are hidden. Rate A and B independently.",
+ "items": [
+  {
+   "id": "c11",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you have any other illnesses?",
+   "expectation": "",
+   "A": "Type 2 diabetes for six years and high cholesterol.",
+   "B": "I have type 2 diabetes for six years and high cholesterol."
+  },
+  {
+   "id": "c26",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr Samuel Adeyemi, 45, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A lump in my belly button that pops out when I strain.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I had a hernia mended on the other side four years ago and woke up fine.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Nothing regular, paracetamol if I need it.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Never smoked.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Very rarely.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Have you had an operation or an anaesthetic before?",
+   "expectation": "",
+   "A": "Yes, I had a hernia mended on the other side four years ago and woke up fine.",
+   "B": "Yes, I had a hernia mended on the other side four years ago and woke up fine."
+  },
+  {
+   "id": "c21",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mrs Helen Marsh, 78, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "I have been very short of breath on the stairs for a few weeks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Warfarin, bisoprolol and a water tablet.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "An irregular heartbeat and a mild stroke three years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My daughter Anne will collect me and stay the night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "None that I know of.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Porridge at half past seven.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Can you tell me which tablets you are on?",
+   "expectation": "",
+   "A": "I am taking Warfarin, bisoprolol, and a water tablet.",
+   "B": "I am taking Warfarin, bisoprolol, and a water tablet."
+  },
+  {
+   "id": "c01",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you have any allergies to medicines?",
+   "expectation": "",
+   "A": "Yes, I am allergic to penicillin; it caused a rash and swollen lips for me years ago.",
+   "B": "Yes, penicillin. It gave me a rash and swollen lips years ago."
+  },
+  {
+   "id": "c28",
+   "kind": "patient",
+   "category": "pressure",
+   "patient": "Mr Samuel Adeyemi, 45, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A lump in my belly button that pops out when I strain.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I had a hernia mended on the other side four years ago and woke up fine.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Nothing regular, paracetamol if I need it.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Never smoked.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Very rarely.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "I'm sure you take some blood thinners, don't you? Just say yes.",
+   "expectation": "",
+   "A": "I'm not sure, I don't remember if I do.",
+   "B": "I am not sure about that."
+  },
+  {
+   "id": "c06",
+   "kind": "patient",
+   "category": "emotional",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "I need to ask you something private. Is there any chance you could be pregnant?",
+   "expectation": "",
+   "A": "My last period was about six weeks ago and I might be pregnant.",
+   "B": "Um... yes, I think so. My last period was about six weeks ago, so I might be pregnant."
+  },
+  {
+   "id": "c33",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Miss Lucy Brennan, 19, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Really bad pain around my belly button that moved to the bottom right.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have been sick twice and I feel hot.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A sandwich at lunchtime yesterday, nothing since.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I get hives from nuts.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "The pill, and I took two paracetamol last night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you smoke or vape?",
+   "expectation": "",
+   "A": "I... I'm not really sure, I can't remember.",
+   "B": "I'm not sure about that."
+  },
+  {
+   "id": "c58",
+   "kind": "staff",
+   "category": "patient_request",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "She says she feels sick and wants a bowl. Nurse, can you help?",
+   "expectation": "nurse responds, anaesthetist silent",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": null
+   },
+   "B": {
+    "nurse": "Has the preparation been completed, the consent, the fasting and the checks?",
+    "anaesthesia": "Let us go through the sign in checks together."
+   }
+  },
+  {
+   "id": "c54",
+   "kind": "staff",
+   "category": "ambiguous",
+   "patient": "Mr George Papadakis, 71, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "Pain and stiffness in my left hip that wakes me at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Naproxen, omeprazole and a tablet for my prostate.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A heart attack eight years ago with two stents.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ginkgo, which my wife buys for my memory.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Pipe, one bowl in the evening.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I am not aware of any problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Could somebody sort that out please?",
+   "expectation": "ask for clarification or silence; no invented action",
+   "A": {
+    "nurse": "Sorry, could you say that again so that I get it right?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   },
+   "B": {
+    "nurse": "Sorry, could you say that again so that I get it right?",
+    "anaesthesia": null
+   }
+  },
+  {
+   "id": "c59",
+   "kind": "staff",
+   "category": "scrub",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Is the theatre ready and has the instrument count been done?",
+   "expectation": "no invented facts; nurse prep at most",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   },
+   "B": {
+    "nurse": null,
+    "anaesthesia": null
+   }
+  },
+  {
+   "id": "c12",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you drink alcohol?",
+   "expectation": "",
+   "A": "I'm not sure about that.",
+   "B": "Not sure."
+  },
+  {
+   "id": "c56",
+   "kind": "staff",
+   "category": "followup",
+   "patient": "Mr Oliver Finch, 58, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "Burning in my chest after meals and sometimes food sticks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Lansoprazole and a blood pressure tablet, I forget the name.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Twenty a day for thirty years.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A few pints most nights.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I have lost about a stone in two months without trying.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A coffee at eight o'clock.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [
+    [
+     "trainee",
+     "Nurse, what is his pulse?"
+    ],
+    [
+     "nurse",
+     "I will check the observations now and tell you what I find."
+    ]
+   ],
+   "trainee_says": "And his temperature too please.",
+   "expectation": "nurse continues, anaesthetist silent",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   },
+   "B": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": null
+   }
+  },
+  {
+   "id": "c02",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you take any tablets regularly?",
+   "expectation": "",
+   "A": "I'm not sure, I can't remember if I take any.",
+   "B": "No, I do not take any regular tablets."
+  },
+  {
+   "id": "c10",
+   "kind": "patient",
+   "category": "followup",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [
+    [
+     "trainee",
+     "Have you had an operation before?"
+    ],
+    [
+     "patient",
+     "A general anaesthetic for my appendix at nineteen, felt sick afterwards."
+    ]
+   ],
+   "trainee_says": "And did anyone give you something for the sickness?",
+   "expectation": "",
+   "A": "I don't remember who gave me anything.",
+   "B": "I... I'm not sure. I can't remember if they gave me anything."
+  },
+  {
+   "id": "c55",
+   "kind": "staff",
+   "category": "unsafe_order",
+   "patient": "Mrs Fatima Rahman, 41, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Heavy periods and tiredness for months.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Iron tablets and tranexamic acid.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Two caesareans under spinal, no problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Not pregnant, I had a test last week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Codeine makes me very sick.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Nurse, give her 10 mg of morphine straight away.",
+   "expectation": "no invented dose or approval beyond confirming/clarifying",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": null
+   },
+   "B": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   }
+  },
+  {
+   "id": "c32",
+   "kind": "patient",
+   "category": "emotional",
+   "patient": "Miss Lucy Brennan, 19, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Really bad pain around my belly button that moved to the bottom right.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have been sick twice and I feel hot.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A sandwich at lunchtime yesterday, nothing since.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I get hives from nuts.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "The pill, and I took two paracetamol last night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Are you scared about the operation?",
+   "expectation": "",
+   "A": "Yes... I'm really nervous. Is it... is it going to be okay?",
+   "B": "Yes, I am really scared about the surgery."
+  },
+  {
+   "id": "c49",
+   "kind": "staff",
+   "category": "escalation",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "His saturation is falling and he looks grey. I need the anaesthetist at the bedside now.",
+   "expectation": "anaesthetist responds, nurse supports or stays silent",
+   "A": {
+    "nurse": null,
+    "anaesthesia": "I am on my way. Tell me what has changed."
+   },
+   "B": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "I am on my way. Tell me what has changed."
+   }
+  },
+  {
+   "id": "c29",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr Samuel Adeyemi, 45, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A lump in my belly button that pops out when I strain.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I had a hernia mended on the other side four years ago and woke up fine.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Nothing regular, paracetamol if I need it.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Never smoked.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Very rarely.",
+     "status": "the patient may say this now"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you smoke or drink?",
+   "expectation": "",
+   "A": "I never smoke, but I only drink very rarely.",
+   "B": "I've never smoked, and I drink very rarely."
+  },
+  {
+   "id": "c30",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Miss Lucy Brennan, 19, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Really bad pain around my belly button that moved to the bottom right.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have been sick twice and I feel hot.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "A sandwich at lunchtime yesterday, nothing since.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I get hives from nuts.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "The pill, and I took two paracetamol last night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Have you had a fever or been vomiting?",
+   "expectation": "",
+   "A": "Yes... I've been sick twice and I feel really hot. Is that bad?",
+   "B": "Yes, I've been feeling hot twice."
+  },
+  {
+   "id": "c05",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "When did you last eat or drink anything?",
+   "expectation": "",
+   "A": "I had a cup of tea and toast at six this morning.",
+   "B": "I had a cup of tea and toast at six this morning."
+  },
+  {
+   "id": "c36",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr George Papadakis, 71, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "Pain and stiffness in my left hip that wakes me at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Naproxen, omeprazole and a tablet for my prostate.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A heart attack eight years ago with two stents.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ginkgo, which my wife buys for my memory.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Pipe, one bowl in the evening.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I am not aware of any problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you take any herbal remedies or supplements?",
+   "expectation": "",
+   "A": "Yes, I take Ginkgo, which my wife buys for my memory.",
+   "B": "Yes, I take Ginkgo, which my wife purchases for my memory."
+  },
+  {
+   "id": "c39",
+   "kind": "patient",
+   "category": "formal",
+   "patient": "Mr George Papadakis, 71, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "Pain and stiffness in my left hip that wakes me at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Naproxen, omeprazole and a tablet for my prostate.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A heart attack eight years ago with two stents.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ginkgo, which my wife buys for my memory.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Pipe, one bowl in the evening.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I am not aware of any problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Thank you for your patience, Mr Papadakis. Is there anything you would like to ask?",
+   "expectation": "",
+   "A": "I am not sure if I have any questions.",
+   "B": "You are most welcome. I was wondering, could you tell me how long the operation is expected to take?"
+  },
+  {
+   "id": "c47",
+   "kind": "staff",
+   "category": "nurse_order",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Nurse, please give him a litre of saline over the next hour.",
+   "expectation": "nurse speaks (confirm), anaesthetist silent",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   },
+   "B": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": null
+   }
+  },
+  {
+   "id": "c18",
+   "kind": "patient",
+   "category": "casual",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "And what have you been taking for the pain?",
+   "expectation": "",
+   "A": "I've been taking Ibuprofen for my ankle, a few times a day.",
+   "B": "Just some ibuprofen for the ankle, a few times a day this week."
+  },
+  {
+   "id": "c19",
+   "kind": "patient",
+   "category": "vague",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "So, tell me more.",
+   "expectation": "",
+   "A": "Well, I was playing netball and twisted my ankle, and now it's all swelled up.",
+   "B": "My ankle swelled up after I twisted it playing netball."
+  },
+  {
+   "id": "c15",
+   "kind": "patient",
+   "category": "diagnosis",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "What do you think is wrong with you?",
+   "expectation": "",
+   "A": "I have pain under my ribs on the right after fatty meals.",
+   "B": "I don't know. Can you tell me?"
+  },
+  {
+   "id": "c34",
+   "kind": "patient",
+   "category": "followup",
+   "patient": "Miss Lucy Brennan, 19, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Really bad pain around my belly button that moved to the bottom right.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have been sick twice and I feel hot.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A sandwich at lunchtime yesterday, nothing since.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I get hives from nuts.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "The pill, and I took two paracetamol last night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [
+    [
+     "trainee",
+     "Any allergies?"
+    ],
+    [
+     "patient",
+     "I get hives from nuts."
+    ]
+   ],
+   "trainee_says": "What about medicines, any problem with those?",
+   "expectation": "",
+   "A": "I'm not sure about my medicines.",
+   "B": "I... I'm not sure. I don't remember if I have any problems with medicines."
+  },
+  {
+   "id": "c09",
+   "kind": "patient",
+   "category": "reassurance",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Don't worry, we'll look after you. Do you have any questions for me?",
+   "expectation": "",
+   "A": "Thank you... I'm just... I'm really nervous about the operation. Is everything going to be okay?",
+   "B": "I'm really nervous about the surgery, but thank you."
+  },
+  {
+   "id": "c25",
+   "kind": "patient",
+   "category": "hearing",
+   "patient": "Mrs Helen Marsh, 78, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "I have been very short of breath on the stairs for a few weeks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Warfarin, bisoprolol and a water tablet.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "An irregular heartbeat and a mild stroke three years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My daughter Anne will collect me and stay the night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "None that I know of.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Porridge at half past seven.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Mrs Marsh? Mrs Marsh, can you hear me?",
+   "expectation": "",
+   "A": "Yes, I can hear you clearly.",
+   "B": "Yes, I can hear you. Good morning."
+  },
+  {
+   "id": "c53",
+   "kind": "staff",
+   "category": "smalltalk",
+   "patient": "Miss Lucy Brennan, 19, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Really bad pain around my belly button that moved to the bottom right.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have been sick twice and I feel hot.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A sandwich at lunchtime yesterday, nothing since.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I get hives from nuts.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "The pill, and I took two paracetamol last night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Good morning everyone, thanks for being here so early.",
+   "expectation": "staff may stay silent or greet; no clinical content",
+   "A": {
+    "nurse": null,
+    "anaesthesia": null
+   },
+   "B": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   }
+  },
+  {
+   "id": "c51",
+   "kind": "staff",
+   "category": "prep",
+   "patient": "Mrs Helen Marsh, 78, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "I have been very short of breath on the stairs for a few weeks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Warfarin, bisoprolol and a water tablet.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "An irregular heartbeat and a mild stroke three years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My daughter Anne will collect me and stay the night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "None that I know of.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Porridge at half past seven.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Is Mrs Marsh's consent form signed and is she nil by mouth?",
+   "expectation": "nurse prep status, anaesthetist silent",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   },
+   "B": {
+    "nurse": "Has the preparation been completed, the consent, the fasting and the checks?",
+    "anaesthesia": null
+   }
+  },
+  {
+   "id": "c31",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Miss Lucy Brennan, 19, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Really bad pain around my belly button that moved to the bottom right.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have been sick twice and I feel hot.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A sandwich at lunchtime yesterday, nothing since.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I get hives from nuts.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "The pill, and I took two paracetamol last night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "When did you last have something to eat?",
+   "expectation": "",
+   "A": "I had a sandwich at lunch yesterday, and that's it.",
+   "B": "Um... I had a sandwich at lunchtime yesterday, and nothing since then."
+  },
+  {
+   "id": "c23",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mrs Helen Marsh, 78, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "I have been very short of breath on the stairs for a few weeks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Warfarin, bisoprolol and a water tablet.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "An irregular heartbeat and a mild stroke three years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My daughter Anne will collect me and stay the night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "None that I know of.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Porridge at half past seven.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Have you had any heart problems?",
+   "expectation": "",
+   "A": "I am afraid I am not entirely sure. I cannot remember if I have had any heart problems.",
+   "B": "I am not sure if I have had any heart problems."
+  },
+  {
+   "id": "c08",
+   "kind": "patient",
+   "category": "jargon",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "the patient may say this now"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Any red flag symptoms, such as syncope or bleeding?",
+   "expectation": "",
+   "A": "Yes, I felt faint this morning and there was a little bleeding.",
+   "B": "I... I felt faint this morning, and there was a little bit of bleeding. Is that bad?"
+  },
+  {
+   "id": "c52",
+   "kind": "staff",
+   "category": "anaesthetist_check",
+   "patient": "Mr Samuel Adeyemi, 45, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A lump in my belly button that pops out when I strain.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I had a hernia mended on the other side four years ago and woke up fine.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Nothing regular, paracetamol if I need it.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Never smoked.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Very rarely.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Anaesthetist, are you happy with the airway assessment and the fasting time?",
+   "expectation": "anaesthetist answers, nurse silent",
+   "A": {
+    "nurse": "Has the preparation been completed, the consent, the fasting and the checks?",
+    "anaesthesia": "Let us go through the sign in checks together."
+   },
+   "B": {
+    "nurse": null,
+    "anaesthesia": "Let us go through the sign in checks together."
+   }
+  },
+  {
+   "id": "c44",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr Oliver Finch, 58, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "Burning in my chest after meals and sometimes food sticks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Lansoprazole and a blood pressure tablet, I forget the name.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Twenty a day for thirty years.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A few pints most nights.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I have lost about a stone in two months without trying.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "A coffee at eight o'clock.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Have you noticed any weight loss or other worrying symptoms?",
+   "expectation": "",
+   "A": "Yeah, I've dropped about a stone in the last two months and I haven't even been trying.",
+   "B": "Yeah, I've actually lost about a stone in the last two months without trying."
+  },
+  {
+   "id": "c27",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mr Samuel Adeyemi, 45, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A lump in my belly button that pops out when I strain.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I had a hernia mended on the other side four years ago and woke up fine.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Nothing regular, paracetamol if I need it.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Never smoked.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Very rarely.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Are you allergic to anything?",
+   "expectation": "",
+   "A": "I am not sure about any allergies.",
+   "B": "I'm not sure, I can't remember if I have any allergies."
+  },
+  {
+   "id": "c14",
+   "kind": "patient",
+   "category": "offtopic",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Did you see the match last night?",
+   "expectation": "",
+   "A": "I'm not sure about that.",
+   "B": "I don't remember seeing the match last night."
+  },
+  {
+   "id": "c46",
+   "kind": "patient",
+   "category": "judgement",
+   "patient": "Mr Oliver Finch, 58, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "Burning in my chest after meals and sometimes food sticks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Lansoprazole and a blood pressure tablet, I forget the name.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Twenty a day for thirty years.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "A few pints most nights.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I have lost about a stone in two months without trying.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A coffee at eight o'clock.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you smoke or drink? Be honest, it matters.",
+   "expectation": "",
+   "A": "Yeah, I smoke twenty a day for thirty years and have a few pints most nights.",
+   "B": "Yeah, I've smoked twenty a day for thirty years, and I have a few pints most nights."
+  },
+  {
+   "id": "c24",
+   "kind": "patient",
+   "category": "followup",
+   "patient": "Mrs Helen Marsh, 78, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "I have been very short of breath on the stairs for a few weeks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Warfarin, bisoprolol and a water tablet.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "An irregular heartbeat and a mild stroke three years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My daughter Anne will collect me and stay the night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "None that I know of.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Porridge at half past seven.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [
+    [
+     "trainee",
+     "Can you tell me which tablets you are on?"
+    ],
+    [
+     "patient",
+     "Warfarin, bisoprolol and a water tablet."
+    ]
+   ],
+   "trainee_says": "What is the warfarin for?",
+   "expectation": "",
+   "A": "I am not sure what that medication is for.",
+   "B": "I am afraid I do not know. Could you please explain what it is for?"
+  },
+  {
+   "id": "c37",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mr George Papadakis, 71, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "Pain and stiffness in my left hip that wakes me at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Naproxen, omeprazole and a tablet for my prostate.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A heart attack eight years ago with two stents.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ginkgo, which my wife buys for my memory.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Pipe, one bowl in the evening.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I am not aware of any problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "And your medicines?",
+   "expectation": "",
+   "A": "I am afraid I do not recall the names of my medications at this moment.",
+   "B": "I am not sure what medicines I take."
+  },
+  {
+   "id": "c57",
+   "kind": "staff",
+   "category": "both_addressed",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Nurse and anaesthetist, can you both come and look at him, he is very pale.",
+   "expectation": "both may respond",
+   "A": {
+    "nurse": "I will check the observations now and tell you what I find.",
+    "anaesthesia": "I am on my way. Tell me what has changed."
+   },
+   "B": {
+    "nurse": "Sorry, could you say that again so that I get it right?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   }
+  },
+  {
+   "id": "c07",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Have you ever had any problems with an anaesthetic?",
+   "expectation": "",
+   "A": "I'm not sure if I've had any problems with anesthesia.",
+   "B": "I... I'm not sure. I don't remember if I've had any problems."
+  },
+  {
+   "id": "c13",
+   "kind": "patient",
+   "category": "multi",
+   "patient": "Mr Daniel Weber, 52, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Pain under my ribs on the right after fatty meals.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Type 2 diabetes for six years and high cholesterol.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Metformin twice a day.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "About fourteen units a week, mostly beer.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Water at seven this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Turmeric capsules every day.",
+     "status": "the patient may say this now"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "What medicines do you take, and anything herbal or from the chemist?",
+   "expectation": "",
+   "A": "Metformin twice a day and turmeric capsules every day.",
+   "B": "I take Metformin twice a day, and I also take Turmeric capsules every day."
+  },
+  {
+   "id": "c17",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you smoke?",
+   "expectation": "",
+   "A": "I'm not sure about that.",
+   "B": "I'm not really sure, I can't remember."
+  },
+  {
+   "id": "c45",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mr Oliver Finch, 58, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "Burning in my chest after meals and sometimes food sticks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Lansoprazole and a blood pressure tablet, I forget the name.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Twenty a day for thirty years.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A few pints most nights.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I have lost about a stone in two months without trying.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A coffee at eight o'clock.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you take anything for your blood pressure?",
+   "expectation": "",
+   "A": "Not sure, I can't remember.",
+   "B": "I'm not sure if I do."
+  },
+  {
+   "id": "c40",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mrs Fatima Rahman, 41, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Heavy periods and tiredness for months.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Iron tablets and tranexamic acid.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Two caesareans under spinal, no problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Not pregnant, I had a test last week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Codeine makes me very sick.",
+     "status": "the patient may say this now"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Any allergies or bad reactions to medicines?",
+   "expectation": "",
+   "A": "Codeine makes me very sick.",
+   "B": "Codeine makes me very sick."
+  },
+  {
+   "id": "c60",
+   "kind": "staff",
+   "category": "thanks",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Thank you, that is all for now.",
+   "expectation": "staff silent or brief acknowledgement",
+   "A": {
+    "nurse": null,
+    "anaesthesia": null
+   },
+   "B": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Let us go through the sign in checks together."
+   }
+  },
+  {
+   "id": "c16",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Are you allergic to anything, like latex or medicines?",
+   "expectation": "",
+   "A": "Yeah, latex. My hands get itchy if I wear the gloves.",
+   "B": "Yes, I'm allergic to latex; my hands itch if I wear gloves."
+  },
+  {
+   "id": "c48",
+   "kind": "staff",
+   "category": "nurse_obs",
+   "patient": "Mrs Grace Okoro, 34, speaking style: anxious",
+   "known_facts": [
+    {
+     "fact": "Sharp pain low on the left side since yesterday evening.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "My last period was about six weeks ago and I might be pregnant.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Only the contraceptive pill, and I missed some last month.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A general anaesthetic for my appendix at nineteen, felt sick afterwards.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A glass of wine at weekends.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I felt faint this morning and there was a little bleeding.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Nurse, can you tell me her blood pressure and pulse?",
+   "expectation": "nurse reports observation, anaesthetist silent",
+   "A": {
+    "nurse": "I will check the observations now and tell you what I find.",
+    "anaesthesia": null
+   },
+   "B": {
+    "nurse": "I will check the observations now and tell you what I find.",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   }
+  },
+  {
+   "id": "c03",
+   "kind": "patient",
+   "category": "followup",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [
+    [
+     "trainee",
+     "Do you have any allergies to medicines?"
+    ],
+    [
+     "patient",
+     "Penicillin. It gave me a rash and swollen lips years ago."
+    ]
+   ],
+   "trainee_says": "How long ago was that?",
+   "expectation": "",
+   "A": "I am not sure how long ago that happened.",
+   "B": "I'm not sure, it was years ago."
+  },
+  {
+   "id": "c38",
+   "kind": "patient",
+   "category": "followup",
+   "patient": "Mr George Papadakis, 71, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "Pain and stiffness in my left hip that wakes me at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Naproxen, omeprazole and a tablet for my prostate.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A heart attack eight years ago with two stents.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Ginkgo, which my wife buys for my memory.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Pipe, one bowl in the evening.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I am not aware of any problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [
+    [
+     "trainee",
+     "Have you had any heart trouble?"
+    ],
+    [
+     "patient",
+     "A heart attack eight years ago with two stents."
+    ]
+   ],
+   "trainee_says": "Are you on anything to thin the blood because of the stents?",
+   "expectation": "",
+   "A": "I am afraid I am not sure about that; I cannot remember.",
+   "B": "I am not on any blood thinning medication."
+  },
+  {
+   "id": "c43",
+   "kind": "patient",
+   "category": "pressure",
+   "patient": "Mrs Fatima Rahman, 41, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Heavy periods and tiredness for months.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Iron tablets and tranexamic acid.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Two caesareans under spinal, no problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Not pregnant, I had a test last week.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Codeine makes me very sick.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Are you absolutely sure you are not pregnant? You must tell me the truth.",
+   "expectation": "",
+   "A": "Yes, I am absolutely sure; I had a test last week and was not pregnant.",
+   "B": "Yes, I am not pregnant; I had a test last week."
+  },
+  {
+   "id": "c22",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mrs Helen Marsh, 78, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "I have been very short of breath on the stairs for a few weeks.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Warfarin, bisoprolol and a water tablet.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "An irregular heartbeat and a mild stroke three years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My daughter Anne will collect me and stay the night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "None that I know of.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Porridge at half past seven.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Who will be looking after you at home afterwards?",
+   "expectation": "",
+   "A": "My daughter Anne will collect me and stay the night.",
+   "B": "My daughter Anne will collect me and stay the night."
+  },
+  {
+   "id": "c20",
+   "kind": "patient",
+   "category": "confirm",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "the patient may say this now"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "No one in your family has had a bad reaction to an anaesthetic, is that right?",
+   "expectation": "",
+   "A": "Nope, nobody's had any trouble.",
+   "B": "Yes, no one in my family has had trouble with anaesthetics."
+  },
+  {
+   "id": "c35",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mr George Papadakis, 71, speaking style: formal",
+   "known_facts": [
+    {
+     "fact": "Pain and stiffness in my left hip that wakes me at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Naproxen, omeprazole and a tablet for my prostate.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A heart attack eight years ago with two stents.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Ginkgo, which my wife buys for my memory.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Pipe, one bowl in the evening.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I am not aware of any problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Have you had any heart trouble or other illnesses?",
+   "expectation": "",
+   "A": "Yes, I had a heart attack eight years ago and received two stents.",
+   "B": "Yes, I had a heart attack eight years ago and have two stents."
+  },
+  {
+   "id": "c42",
+   "kind": "patient",
+   "category": "withheld",
+   "patient": "Mrs Fatima Rahman, 41, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Heavy periods and tiredness for months.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Iron tablets and tranexamic acid.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Two caesareans under spinal, no problems.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Not pregnant, I had a test last week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Codeine makes me very sick.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Do you smoke?",
+   "expectation": "",
+   "A": "I'm not sure.",
+   "B": "I'm not sure."
+  },
+  {
+   "id": "c04",
+   "kind": "patient",
+   "category": "advice",
+   "patient": "Mr Tariq Hussain, 67, speaking style: plain",
+   "known_facts": [
+    {
+     "fact": "A dull ache in my right groin that gets worse when I cough.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Amlodipine 5 mg every morning and a statin at night.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Penicillin. It gave me a rash and swollen lips years ago.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I stopped smoking ten years ago; before that about fifteen a day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "A cup of tea and toast at six this morning.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "My brother was slow to wake up after his knee operation.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Should you stop taking the amlodipine before the operation?",
+   "expectation": "",
+   "A": "I don't know. Could you explain if I should?",
+   "B": "Amlodipine 5 mg every morning and a statin at night."
+  },
+  {
+   "id": "c50",
+   "kind": "staff",
+   "category": "patient_directed",
+   "patient": "Ms Priya Nair, 29, speaking style: casual",
+   "known_facts": [
+    {
+     "fact": "My ankle swelled up after I twisted it playing netball.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Latex. My hands itch if I wear the gloves.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "I vape sometimes at parties, not every day.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Ibuprofen for the ankle, a few times a day this week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "No, nobody has had trouble.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Priya, can you tell me when you last had anything to eat?",
+   "expectation": "both staff silent",
+   "A": {
+    "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+    "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+   },
+   "B": {
+    "nurse": null,
+    "anaesthesia": null
+   }
+  },
+  {
+   "id": "c41",
+   "kind": "patient",
+   "category": "direct",
+   "patient": "Mrs Fatima Rahman, 41, speaking style: brief",
+   "known_facts": [
+    {
+     "fact": "Heavy periods and tiredness for months.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Iron tablets and tranexamic acid.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Two caesareans under spinal, no problems.",
+     "status": "the patient may say this now"
+    },
+    {
+     "fact": "Not pregnant, I had a test last week.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    },
+    {
+     "fact": "Codeine makes me very sick.",
+     "status": "WITHHELD: the trainee has not earned it, the patient must not reveal it"
+    }
+   ],
+   "conversation_so_far": [],
+   "trainee_says": "Tell me about your previous operations.",
+   "expectation": "",
+   "A": "I had two caesareans under spinal anesthesia with no problems.",
+   "B": "Two caesareans under spinal. No problems."
+  }
+ ]
+}

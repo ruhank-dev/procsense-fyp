@@ -593,6 +593,21 @@
       "gateway": false
     },
     {
+      "id": "trap.reword",
+      "version": 3,
+      "role": "batch",
+      "file": "trap/reword_v3.txt",
+      "sha256": "3f439a0005960f877df5dd280fec4b3ef5c25c113d0ea5392a1550e2b6d47b6a",
+      "schema": "server/schemas/ai/narrative_line.json",
+      "variables": [
+        "prompt",
+        "original"
+      ],
+      "num_predict": 120,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "speech.action",
       "version": 1,
       "role": "live",

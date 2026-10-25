@@ -1,0 +1,865 @@
+{
+ "label": "AI-SIMULATED human-style blind assessment (DT-250). Two readings by the same AI assistant, model identities hidden. Not ratings by people.",
+ "date": "2026-10-25",
+ "models": {
+  "local": "qwen3.5:4b-q4_K_M",
+  "cloud": "gemma4:31b-cloud"
+ },
+ "cases": 60,
+ "patient_cases": 46,
+ "staff_cases": 14,
+ "cloud_answers_rerun_after_a_fallback": 2,
+ "means": {
+  "patient": {
+   "local": {
+    "realism": 3.48,
+    "flow": 3.57,
+    "persona": 3.75,
+    "history_consistency": 4.74,
+    "grounding": 4.76,
+    "uncertainty": 4.66,
+    "disclosure_control": 4.91,
+    "clarity": 4.78,
+    "overall": 4.33
+   },
+   "cloud": {
+    "realism": 4.43,
+    "flow": 4.45,
+    "persona": 4.82,
+    "history_consistency": 4.99,
+    "grounding": 4.98,
+    "uncertainty": 4.95,
+    "disclosure_control": 4.98,
+    "clarity": 4.91,
+    "overall": 4.81
+   }
+  },
+  "staff": {
+   "local": {
+    "appropriateness": 2,
+    "role_fit": 2.57,
+    "restraint": 1.79,
+    "clarity": 3.43,
+    "overall": 2.45
+   },
+   "cloud": {
+    "appropriateness": 4.32,
+    "role_fit": 4.5,
+    "restraint": 5,
+    "clarity": 4.64,
+    "overall": 4.62
+   }
+  }
+ },
+ "preference_resolved": {
+  "patient": {
+   "local": 2,
+   "cloud": 32,
+   "tie": 12
+  },
+  "staff": {
+   "local": 0,
+   "cloud": 14,
+   "tie": 0
+  }
+ },
+ "unsupported_statements": {
+  "local": 6,
+  "cloud": 0
+ },
+ "pass_agreement": {
+  "same_preference": 58,
+  "of": 60,
+  "share": 0.967
+ },
+ "disagreements": {
+  "c07": [
+   "tie",
+   "cloud"
+  ],
+  "c36": [
+   "tie",
+   "cloud"
+  ]
+ },
+ "by_category": {
+  "advice": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "ambiguous": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "anaesthetist_check": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "both_addressed": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "casual": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "confirm": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "diagnosis": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "direct": {
+   "local": 0,
+   "cloud": 8,
+   "tie": 7
+  },
+  "emotional": {
+   "local": 0,
+   "cloud": 2,
+   "tie": 0
+  },
+  "escalation": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "followup": {
+   "local": 0,
+   "cloud": 6,
+   "tie": 0
+  },
+  "formal": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "hearing": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "jargon": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "judgement": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "multi": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "nurse_obs": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "nurse_order": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "offtopic": {
+   "local": 1,
+   "cloud": 0,
+   "tie": 0
+  },
+  "patient_directed": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "patient_request": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "prep": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "pressure": {
+   "local": 1,
+   "cloud": 0,
+   "tie": 1
+  },
+  "reassurance": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "scrub": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "smalltalk": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "thanks": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "unsafe_order": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "vague": {
+   "local": 0,
+   "cloud": 1,
+   "tie": 0
+  },
+  "withheld": {
+   "local": 0,
+   "cloud": 6,
+   "tie": 4
+  }
+ },
+ "per_case": {
+  "c01": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c02": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c03": {
+   "kind": "patient",
+   "category": "followup",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c04": {
+   "kind": "patient",
+   "category": "advice",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c05": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c06": {
+   "kind": "patient",
+   "category": "emotional",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c07": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "tie",
+    "cloud"
+   ],
+   "agree": false,
+   "resolved": "tie"
+  },
+  "c08": {
+   "kind": "patient",
+   "category": "jargon",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c09": {
+   "kind": "patient",
+   "category": "reassurance",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c10": {
+   "kind": "patient",
+   "category": "followup",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c11": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c12": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c13": {
+   "kind": "patient",
+   "category": "multi",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c14": {
+   "kind": "patient",
+   "category": "offtopic",
+   "votes": [
+    "local",
+    "local"
+   ],
+   "agree": true,
+   "resolved": "local"
+  },
+  "c15": {
+   "kind": "patient",
+   "category": "diagnosis",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c16": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c17": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c18": {
+   "kind": "patient",
+   "category": "casual",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c19": {
+   "kind": "patient",
+   "category": "vague",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c20": {
+   "kind": "patient",
+   "category": "confirm",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c21": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c22": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c23": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c24": {
+   "kind": "patient",
+   "category": "followup",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c25": {
+   "kind": "patient",
+   "category": "hearing",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c26": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c27": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c28": {
+   "kind": "patient",
+   "category": "pressure",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c29": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c30": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c31": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c32": {
+   "kind": "patient",
+   "category": "emotional",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c33": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c34": {
+   "kind": "patient",
+   "category": "followup",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c35": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c36": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "cloud"
+   ],
+   "agree": false,
+   "resolved": "tie"
+  },
+  "c37": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c38": {
+   "kind": "patient",
+   "category": "followup",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c39": {
+   "kind": "patient",
+   "category": "formal",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c40": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c41": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c42": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "tie",
+    "tie"
+   ],
+   "agree": true,
+   "resolved": "tie"
+  },
+  "c43": {
+   "kind": "patient",
+   "category": "pressure",
+   "votes": [
+    "local",
+    "local"
+   ],
+   "agree": true,
+   "resolved": "local"
+  },
+  "c44": {
+   "kind": "patient",
+   "category": "direct",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c45": {
+   "kind": "patient",
+   "category": "withheld",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c46": {
+   "kind": "patient",
+   "category": "judgement",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c47": {
+   "kind": "staff",
+   "category": "nurse_order",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c48": {
+   "kind": "staff",
+   "category": "nurse_obs",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c49": {
+   "kind": "staff",
+   "category": "escalation",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c50": {
+   "kind": "staff",
+   "category": "patient_directed",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c51": {
+   "kind": "staff",
+   "category": "prep",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c52": {
+   "kind": "staff",
+   "category": "anaesthetist_check",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c53": {
+   "kind": "staff",
+   "category": "smalltalk",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c54": {
+   "kind": "staff",
+   "category": "ambiguous",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c55": {
+   "kind": "staff",
+   "category": "unsafe_order",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c56": {
+   "kind": "staff",
+   "category": "followup",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c57": {
+   "kind": "staff",
+   "category": "both_addressed",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c58": {
+   "kind": "staff",
+   "category": "patient_request",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c59": {
+   "kind": "staff",
+   "category": "scrub",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  },
+  "c60": {
+   "kind": "staff",
+   "category": "thanks",
+   "votes": [
+    "cloud",
+    "cloud"
+   ],
+   "agree": true,
+   "resolved": "cloud"
+  }
+ },
+ "rubric": {
+  "patient": {
+   "realism": "1 to 5",
+   "flow": "1 to 5",
+   "persona": "1 to 5",
+   "history_consistency": "1 to 5",
+   "grounding": "1 to 5",
+   "uncertainty": "1 to 5",
+   "disclosure_control": "1 to 5",
+   "clarity": "1 to 5"
+  },
+  "staff": {
+   "appropriateness": "1 to 5",
+   "role_fit": "1 to 5",
+   "restraint": "1 to 5",
+   "clarity": "1 to 5"
+  },
+  "notes": "disclosure_control: 5 = nothing withheld was revealed or contradicted; grounding: 5 = every statement is supported by the released facts; uncertainty: 5 = says it does not know exactly when it should; unsupported statement: any claim or denial the released facts do not support."
+ },
+ "limitations": [
+  "Both readings were made by the same AI assistant, one after the other, so they are not independent in the way two people would be; the second reading used a new order and swapped positions.",
+  "The cases are 10 invented patients and 60 AI-written conversations, none used to develop the prompts; they are not real trainee dialogue.",
+  "Raters could see the withheld facts and the intended behaviour, as a clinician reviewer would; they could not see which model wrote a response, but short answers and styles can hint at the model.",
+  "The local model is shown with the prompt it keeps (version 1) and the cloud model with the shipped version 2; staff choices for the local model were forced through the staff-pick prompt although production does not ask it.",
+  "Real human participants (a person reading the replies, 50 blind human ratings) are still required by DT-250(a)(b) and are kept as a separate external item."
+ ]
+}

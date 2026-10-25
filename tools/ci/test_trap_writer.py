@@ -77,7 +77,7 @@ class InPipeline(unittest.TestCase):
         if pkg is None:
             self.skipTest("no seed gave a case with a reworded trap in 40 tries (the fake wording changes only 'Wait' and 'Do not')")
         self.assertTrue(package.validate(pkg, B.load_cases())["passed"])
-        self.assertIn("trap.reword@2", pkg["provenance"]["prompts"])
+        self.assertIn("trap.reword@3", pkg["provenance"]["prompts"])
 
 
 if __name__ == "__main__":

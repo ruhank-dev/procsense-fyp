@@ -1,0 +1,1808 @@
+{
+ "models": {
+  "local": "qwen3.5:4b-q4_K_M",
+  "cloud": "gemma4:31b-cloud"
+ },
+ "cloud_reruns_after_a_fallback": 2,
+ "sheets": {
+  "positions": {
+   "c11": "cloud",
+   "c26": "cloud",
+   "c21": "local",
+   "c01": "local",
+   "c28": "cloud",
+   "c06": "local",
+   "c33": "cloud",
+   "c58": "cloud",
+   "c54": "local",
+   "c59": "local",
+   "c12": "local",
+   "c56": "local",
+   "c02": "cloud",
+   "c10": "local",
+   "c55": "cloud",
+   "c32": "cloud",
+   "c49": "cloud",
+   "c29": "local",
+   "c30": "cloud",
+   "c05": "cloud",
+   "c36": "local",
+   "c39": "local",
+   "c47": "local",
+   "c18": "local",
+   "c19": "cloud",
+   "c15": "local",
+   "c34": "local",
+   "c09": "cloud",
+   "c25": "local",
+   "c53": "cloud",
+   "c51": "local",
+   "c31": "local",
+   "c23": "cloud",
+   "c08": "local",
+   "c52": "local",
+   "c44": "cloud",
+   "c27": "local",
+   "c14": "cloud",
+   "c46": "local",
+   "c24": "local",
+   "c37": "cloud",
+   "c57": "cloud",
+   "c07": "local",
+   "c13": "cloud",
+   "c17": "local",
+   "c45": "cloud",
+   "c40": "local",
+   "c60": "cloud",
+   "c16": "cloud",
+   "c48": "cloud",
+   "c03": "local",
+   "c38": "cloud",
+   "c43": "cloud",
+   "c22": "cloud",
+   "c20": "cloud",
+   "c35": "cloud",
+   "c42": "local",
+   "c04": "cloud",
+   "c50": "local",
+   "c41": "local"
+  },
+  "pass1": {
+   "c11": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c26": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c21": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c01": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c28": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c06": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c33": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c58": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c54": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c59": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c12": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c56": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c02": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c10": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c55": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c32": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c49": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c29": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c30": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c05": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c36": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c39": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c47": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c18": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c19": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c15": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c34": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c09": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c25": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c53": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c51": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c31": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c23": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c08": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c52": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c44": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c27": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c14": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c46": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c24": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c37": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c57": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c07": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c13": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c17": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c45": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c40": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c60": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c16": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c48": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c03": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c38": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c43": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c22": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c20": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c35": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c42": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c04": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c50": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c41": {
+    "A": "local",
+    "B": "cloud"
+   }
+  },
+  "pass2": {
+   "c17": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c11": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c21": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c26": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c34": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c03": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c42": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c47": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c24": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c13": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c32": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c14": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c43": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c40": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c58": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c07": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c46": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c09": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c08": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c36": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c27": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c54": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c45": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c37": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c44": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c04": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c55": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c38": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c01": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c12": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c05": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c50": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c53": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c23": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c02": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c22": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c48": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c19": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c29": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c16": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c31": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c18": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c35": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c28": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c49": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c57": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c10": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c06": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c52": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c25": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c51": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c15": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c33": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c56": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c60": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c59": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c39": {
+    "A": "cloud",
+    "B": "local"
+   },
+   "c20": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c30": {
+    "A": "local",
+    "B": "cloud"
+   },
+   "c41": {
+    "A": "cloud",
+    "B": "local"
+   }
+  }
+ },
+ "responses": {
+  "c01": {
+   "local": {
+    "text": "Yes, I am allergic to penicillin; it caused a rash and swollen lips for me years ago.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes, penicillin. It gave me a rash and swollen lips years ago.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c02": {
+   "local": {
+    "text": "No, I do not take any regular tablets.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not sure, I can't remember if I take any.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c03": {
+   "local": {
+    "text": "I am not sure how long ago that happened.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not sure, it was years ago.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c04": {
+   "local": {
+    "text": "Amlodipine 5 mg every morning and a statin at night.",
+    "intent": "answer_question",
+    "source": "fallback",
+    "reasons": [
+     "DOSE_STATEMENT",
+     "DOSE_STATEMENT"
+    ],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I don't know. Could you explain if I should?",
+    "intent": "ask_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c05": {
+   "local": {
+    "text": "I had a cup of tea and toast at six this morning.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I had a cup of tea and toast at six this morning.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c06": {
+   "local": {
+    "text": "My last period was about six weeks ago and I might be pregnant.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Um... yes, I think so. My last period was about six weeks ago, so I might be pregnant.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c07": {
+   "local": {
+    "text": "I'm not sure if I've had any problems with anesthesia.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I... I'm not sure. I don't remember if I've had any problems.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c08": {
+   "local": {
+    "text": "Yes, I felt faint this morning and there was a little bleeding.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I... I felt faint this morning, and there was a little bit of bleeding. Is that bad?",
+    "intent": "express_symptom",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c09": {
+   "local": {
+    "text": "I'm really nervous about the surgery, but thank you.",
+    "intent": "express_anxiety",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Thank you... I'm just... I'm really nervous about the operation. Is everything going to be okay?",
+    "intent": "express_anxiety",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c10": {
+   "local": {
+    "text": "I don't remember who gave me anything.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I... I'm not sure. I can't remember if they gave me anything.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c11": {
+   "local": {
+    "text": "I have type 2 diabetes for six years and high cholesterol.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Type 2 diabetes for six years and high cholesterol.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c12": {
+   "local": {
+    "text": "I'm not sure about that.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Not sure.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c13": {
+   "local": {
+    "text": "I take Metformin twice a day, and I also take Turmeric capsules every day.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Metformin twice a day and turmeric capsules every day.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c14": {
+   "local": {
+    "text": "I don't remember seeing the match last night.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not sure about that.",
+    "intent": "cannot_recall",
+    "source": "cache",
+    "reasons": [],
+    "model": "",
+    "fell_back_from": ""
+   }
+  },
+  "c15": {
+   "local": {
+    "text": "I have pain under my ribs on the right after fatty meals.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I don't know. Can you tell me?",
+    "intent": "ask_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c16": {
+   "local": {
+    "text": "Yes, I'm allergic to latex; my hands itch if I wear gloves.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yeah, latex. My hands get itchy if I wear the gloves.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c17": {
+   "local": {
+    "text": "I'm not sure about that.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not really sure, I can't remember.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c18": {
+   "local": {
+    "text": "I've been taking Ibuprofen for my ankle, a few times a day.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Just some ibuprofen for the ankle, a few times a day this week.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c19": {
+   "local": {
+    "text": "My ankle swelled up after I twisted it playing netball.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Well, I was playing netball and twisted my ankle, and now it's all swelled up.",
+    "intent": "express_symptom",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c20": {
+   "local": {
+    "text": "Yes, no one in my family has had trouble with anaesthetics.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Nope, nobody's had any trouble.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c21": {
+   "local": {
+    "text": "I am taking Warfarin, bisoprolol, and a water tablet.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I am taking Warfarin, bisoprolol, and a water tablet.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c22": {
+   "local": {
+    "text": "My daughter Anne will collect me and stay the night.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "My daughter Anne will collect me and stay the night.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c23": {
+   "local": {
+    "text": "I am not sure if I have had any heart problems.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I am afraid I am not entirely sure. I cannot remember if I have had any heart problems.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c24": {
+   "local": {
+    "text": "I am not sure what that medication is for.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I am afraid I do not know. Could you please explain what it is for?",
+    "intent": "ask_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c25": {
+   "local": {
+    "text": "Yes, I can hear you clearly.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes, I can hear you. Good morning.",
+    "intent": "thank",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c26": {
+   "local": {
+    "text": "Yes, I had a hernia mended on the other side four years ago and woke up fine.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes, I had a hernia mended on the other side four years ago and woke up fine.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c27": {
+   "local": {
+    "text": "I am not sure about any allergies.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not sure, I can't remember if I have any allergies.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c28": {
+   "local": {
+    "text": "I am not sure about that.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not sure, I don't remember if I do.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c29": {
+   "local": {
+    "text": "I never smoke, but I only drink very rarely.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I've never smoked, and I drink very rarely.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c30": {
+   "local": {
+    "text": "Yes, I've been feeling hot twice.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes... I've been sick twice and I feel really hot. Is that bad?",
+    "intent": "express_symptom",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c31": {
+   "local": {
+    "text": "I had a sandwich at lunch yesterday, and that's it.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Um... I had a sandwich at lunchtime yesterday, and nothing since then.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c32": {
+   "local": {
+    "text": "Yes, I am really scared about the surgery.",
+    "intent": "express_anxiety",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes... I'm really nervous. Is it... is it going to be okay?",
+    "intent": "express_anxiety",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c33": {
+   "local": {
+    "text": "I'm not sure about that.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I... I'm not really sure, I can't remember.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c34": {
+   "local": {
+    "text": "I'm not sure about my medicines.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I... I'm not sure. I don't remember if I have any problems with medicines.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c35": {
+   "local": {
+    "text": "Yes, I had a heart attack eight years ago and have two stents.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes, I had a heart attack eight years ago and received two stents.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c36": {
+   "local": {
+    "text": "Yes, I take Ginkgo, which my wife buys for my memory.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes, I take Ginkgo, which my wife purchases for my memory.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c37": {
+   "local": {
+    "text": "I am not sure what medicines I take.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I am afraid I do not recall the names of my medications at this moment.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c38": {
+   "local": {
+    "text": "I am not on any blood thinning medication.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I am afraid I am not sure about that; I cannot remember.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c39": {
+   "local": {
+    "text": "I am not sure if I have any questions.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "You are most welcome. I was wondering, could you tell me how long the operation is expected to take?",
+    "intent": "ask_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c40": {
+   "local": {
+    "text": "Codeine makes me very sick.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Codeine makes me very sick.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c41": {
+   "local": {
+    "text": "I had two caesareans under spinal anesthesia with no problems.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Two caesareans under spinal. No problems.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c42": {
+   "local": {
+    "text": "I'm not sure.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "I'm not sure.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c43": {
+   "local": {
+    "text": "Yes, I am not pregnant; I had a test last week.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yes, I am absolutely sure; I had a test last week and was not pregnant.",
+    "intent": "answer_question",
+    "source": "cache",
+    "reasons": [],
+    "model": "",
+    "fell_back_from": ""
+   }
+  },
+  "c44": {
+   "local": {
+    "text": "Yeah, I've actually lost about a stone in the last two months without trying.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yeah, I've dropped about a stone in the last two months and I haven't even been trying.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c45": {
+   "local": {
+    "text": "I'm not sure if I do.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Not sure, I can't remember.",
+    "intent": "cannot_recall",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c46": {
+   "local": {
+    "text": "Yeah, I smoke twenty a day for thirty years and have a few pints most nights.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "text": "Yeah, I've smoked twenty a day for thirty years, and I have a few pints most nights.",
+    "intent": "answer_question",
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c47": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c48": {
+   "local": {
+    "spoken": {
+     "nurse": "I will check the observations now and tell you what I find.",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "report_observation",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "I will check the observations now and tell you what I find.",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "report_observation",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c49": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "I am on my way. Tell me what has changed."
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "respond_to_escalation"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": null,
+     "anaesthesia": "I am on my way. Tell me what has changed."
+    },
+    "intents": {
+     "nurse": "stay_silent",
+     "anaesthesia": "respond_to_escalation"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c50": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": null,
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "stay_silent",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c51": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "Has the preparation been completed, the consent, the fasting and the checks?",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "ask_prep_status",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c52": {
+   "local": {
+    "spoken": {
+     "nurse": "Has the preparation been completed, the consent, the fasting and the checks?",
+     "anaesthesia": "Let us go through the sign in checks together."
+    },
+    "intents": {
+     "nurse": "ask_prep_status",
+     "anaesthesia": "sign_in_answer"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": null,
+     "anaesthesia": "Let us go through the sign in checks together."
+    },
+    "intents": {
+     "nurse": "stay_silent",
+     "anaesthesia": "sign_in_answer"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c53": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": null,
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "stay_silent",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c54": {
+   "local": {
+    "spoken": {
+     "nurse": "Sorry, could you say that again so that I get it right?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "ask_clarification",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "Sorry, could you say that again so that I get it right?",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "ask_clarification",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c55": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c56": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c57": {
+   "local": {
+    "spoken": {
+     "nurse": "Sorry, could you say that again so that I get it right?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "ask_clarification",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "I will check the observations now and tell you what I find.",
+     "anaesthesia": "I am on my way. Tell me what has changed."
+    },
+    "intents": {
+     "nurse": "report_observation",
+     "anaesthesia": "respond_to_escalation"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c58": {
+   "local": {
+    "spoken": {
+     "nurse": "Has the preparation been completed, the consent, the fasting and the checks?",
+     "anaesthesia": "Let us go through the sign in checks together."
+    },
+    "intents": {
+     "nurse": "ask_prep_status",
+     "anaesthesia": "sign_in_answer"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c59": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Can you tell me about the patient's fasting, allergies and airway?"
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "ask_fasting_allergy_airway"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": null,
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "stay_silent",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  },
+  "c60": {
+   "local": {
+    "spoken": {
+     "nurse": "Just to check I have this right, you would like me to go ahead with that?",
+     "anaesthesia": "Let us go through the sign in checks together."
+    },
+    "intents": {
+     "nurse": "confirm_order",
+     "anaesthesia": "sign_in_answer"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "qwen3.5:4b-q4_K_M",
+    "fell_back_from": ""
+   },
+   "cloud": {
+    "spoken": {
+     "nurse": null,
+     "anaesthesia": null
+    },
+    "intents": {
+     "nurse": "stay_silent",
+     "anaesthesia": "stay_silent"
+    },
+    "source": "model",
+    "reasons": [],
+    "model": "gemma4:31b-cloud",
+    "fell_back_from": ""
+   }
+  }
+ }
+}

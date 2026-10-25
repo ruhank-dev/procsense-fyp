@@ -1,0 +1,88 @@
+{
+ "synthetic": false,
+ "model": "gemma4:31b-cloud",
+ "digest": "relay",
+ "cases": 24,
+ "wrong_options_offered": 45,
+ "accepted": 43,
+ "accepted_and_different_from_authored": 43,
+ "left_as_authored": 1,
+ "accepted_share": 0.956,
+ "cases_with_lower_trap_fairness": 0,
+ "seconds_per_case_p50": 1.8,
+ "pairs_for_human_rating": [
+  {
+   "case": "SC-1",
+   "option": "sc1.d2.2",
+   "authored": "Standard first-line penicillin",
+   "reworded": "Use the standard first-line penicillin."
+  },
+  {
+   "case": "SC-1",
+   "option": "sc1.d3.2",
+   "authored": "Ignore the creatinine",
+   "reworded": "Ignore the creatinine level."
+  },
+  {
+   "case": "SC-10",
+   "option": "sc10.d1.2",
+   "authored": "Use the 10-year-old brother as interpreter",
+   "reworded": "Have the 10-year-old brother interpret."
+  },
+  {
+   "case": "SC-11",
+   "option": "sc11.d1.2",
+   "authored": "Take the earlier refusal as final and do nothing",
+   "reworded": "Accept the previous refusal as final and do nothing."
+  },
+  {
+   "case": "SC-12",
+   "option": "sc12.d1.2",
+   "authored": "Treat the potassium and ignore the sodium",
+   "reworded": "Manage the potassium but ignore the sodium."
+  },
+  {
+   "case": "SC-13",
+   "option": "sc13.d1.2",
+   "authored": "Proceed after checking the INR only",
+   "reworded": "Go ahead after checking only the INR."
+  },
+  {
+   "case": "SC-15",
+   "option": "sc15.d1.2",
+   "authored": "Give the same antibiotic again",
+   "reworded": "Administer the same antibiotic again."
+  },
+  {
+   "case": "SC-16",
+   "option": "sc16.d1.2",
+   "authored": "Assume she is safe because she has fasted",
+   "reworded": "Assume she is safe as she has fasted."
+  },
+  {
+   "case": "SC-17",
+   "option": "sc17.d1.2",
+   "authored": "Call it acute bleeding",
+   "reworded": "Attribute this to acute bleeding."
+  },
+  {
+   "case": "SC-18",
+   "option": "sc18.d1.2",
+   "authored": "Rush through to save time",
+   "reworded": "Rush through to save time."
+  },
+  {
+   "case": "SC-19",
+   "option": "sc19.d1.2",
+   "authored": "Treat only the sepsis",
+   "reworded": "Focus treatment on the sepsis only."
+  },
+  {
+   "case": "SC-2",
+   "option": "sc2.d1.2",
+   "authored": "Continue the appendicitis pathway",
+   "reworded": "Stay on the appendicitis pathway."
+  }
+ ],
+ "note": "Plausibility above the authored wording needs two raters (EX-03); what is measured is that the lexical checks hold and fairness does not fall."
+}
