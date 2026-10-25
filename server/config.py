@@ -48,6 +48,7 @@ class Settings(BaseSettings):
 
     max_upload_bytes: int = 2 * 1024 * 1024
     max_package_bytes: int = 1024 * 1024
+    live_generation: bool = False          # POST /scenario-packages/generate builds a package on request from the person's own history (DT-199); off by default: it needs the composer and content in the image
     package_pool_dir: str = ""             # a folder of pre-generated packages (tools/generation/pool.py makes it: index.json and *.package.json); empty = POST /scenario-packages/next answers 503 no_pool
     # verification (p1-backend-s09): the engine's command line and the content packages, one folder per content version (practice and assessment each have their own version)
     engine_cli: str = ""                   # the command that runs `procsense-sim`, e.g. /opt/engine/procsense-sim, or "dotnet /path/ProcSense.Cli.dll"; empty = verification is off and sessions wait as pending

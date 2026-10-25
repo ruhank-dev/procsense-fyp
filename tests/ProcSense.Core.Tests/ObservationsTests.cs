@@ -165,13 +165,31 @@ namespace ProcSense.Core.Tests
             s.Tick(10);
 
             foreach (var verb in new[] { "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score" }) Assert.True(Do(s, verb).Accepted, verb);
+            Assert.False(Vitals(s).ContainsKey("respiratory_rate"));       // the breaths are still being counted (DT-040)
+            s.Tick(35);                                                     // more than the 30 seconds
 
             var v = Vitals(s);
             Assert.Equal(Num(b.TemperatureC), v["temperature_c"]);
             Assert.Equal(Num(b.RespiratoryRate), v["respiratory_rate"]);
             Assert.Equal(b.Acvpu, v["acvpu"]);
             Assert.Equal(b.PainScore.ToString(CultureInfo.InvariantCulture), v["pain_score"]);
-            Assert.All(s.Observable.Vitals, x => Assert.Equal("08:00:10", x.At));
+            Assert.Equal("08:00:10", s.Observable.Vitals.First(x => x.Name == "temperature_c").At);
+            Assert.Equal("08:00:40", s.Observable.Vitals.First(x => x.Name == "respiratory_rate").At);
+        }
+
+        [Fact] // DT-040: the breath count takes 30 to 60 seconds, one at a time
+        public void Counting_breaths_takes_the_chosen_seconds_and_refuses_a_bad_length_or_a_second_count()
+        {
+            var s = New();
+            Assert.Equal(ProcSense.Core.Workflow.Steps.ObservationsSubsystem.RrSecondsOutOfRange, s.Apply(new SimAction("count_rr", parameters: new System.Collections.Generic.Dictionary<string, string> { ["seconds"] = "10" })).RejectReason);
+            Assert.Equal(ProcSense.Core.Workflow.Steps.ObservationsSubsystem.RrSecondsOutOfRange, s.Apply(new SimAction("count_rr", parameters: new System.Collections.Generic.Dictionary<string, string> { ["seconds"] = "x" })).RejectReason);
+            Assert.True(s.Apply(new SimAction("count_rr", parameters: new System.Collections.Generic.Dictionary<string, string> { ["seconds"] = "60" })).Accepted);
+            Assert.Equal(ProcSense.Core.Workflow.Steps.ObservationsSubsystem.RrInProgress, Do(s, "count_rr").RejectReason);
+            s.Tick(50);
+            Assert.False(Vitals(s).ContainsKey("respiratory_rate"));
+            s.Tick(15);
+            Assert.True(Vitals(s).ContainsKey("respiratory_rate"));
+            Assert.True(Do(s, "count_rr").Accepted);                       // a new count may start once the last is read
         }
 
         [Fact]

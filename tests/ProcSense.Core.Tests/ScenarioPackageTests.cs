@@ -82,6 +82,19 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void A_composed_patient_has_no_earlier_record_of_the_spines_patient()
+        {
+            // DT-200: the record tables are keyed by the case id; a composed case has its own id, so it shows this admission's paperwork and none of the spine patient's history
+            var content = ContentLoader.Load(Reader, Package.CaseId);
+            var session = new Session(content.Cases[Package.CaseId], 42, SessionMode.Practice, Subsystems.Default(content), new SessionOptions(TrainingLevel.Beginner, ""));
+            var records = session.Records!;
+            Assert.DoesNotContain(records.Documents, d => d.Episode == "record");
+            Assert.All(records.Documents, d => Assert.Equal("current", d.Episode));
+            Assert.Contains(records.Patients, p => p.Id == Package.CaseId);
+            Assert.DoesNotContain(records.Patients, p => p.Id == "VAR-S1-G");
+        }
+
+        [Fact]
         public void The_spines_correct_path_is_the_generated_cases_correct_path_and_the_patient_is_the_new_one()
         {
             var content = ContentLoader.Load(Reader, Package.CaseId);

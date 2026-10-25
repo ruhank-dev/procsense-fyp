@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import pytest
+import uuid
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session as DbSession
 
@@ -86,3 +87,29 @@ def test_the_export_holds_the_entries_and_deleting_the_person_removes_them(world
         privacy_repository.delete_person(s, world.trainee)
         s.commit()
         assert s.scalar(select(func.count()).select_from(GenerationHistory)) == 0
+
+
+# --- DT-199: a package built on request from the person's own history ----------------------------------------------------------------------------------------------------------------
+
+def test_a_package_is_built_on_request_stored_by_its_hash_and_steered_by_the_history(world, monkeypatch):
+    from server import config
+    from server.repositories import sessions as repository
+    headers = world.api.headers(world.trainee)
+    assert world.api.client.post("/scenario-packages/generate", json={"scenario": "S1", "level": "advanced"}, headers=headers).status_code == 503      # off by default
+    monkeypatch.setenv("LIVE_GENERATION", "true")
+    config.get_settings.cache_clear()
+    first = world.api.client.post("/scenario-packages/generate", json={"scenario": "S1", "level": "advanced"}, headers=headers)
+    assert first.status_code == 200, first.text
+    offer = first.json()
+    with DbSession(world.api.engine) as s:
+        raw = repository.get_package(s, offer["package_hash"])
+    assert raw is not None and offer["case_id"].startswith("GEN-")
+    # the story just played is not offered again: record a session of that spine, then ask for the next one
+    entry = H.HistoryEntry("T-ABCD2345", "6f1c1c1e-0000-4000-8000-000000000002", offer["case_id"], offer["spine"], "P0", {"b01": [1, 3]}, "2026-10-26T08:00:00Z")
+    with DbSession(world.api.engine) as s:
+        table.record(s, world.org, world.trainee, entry)
+        s.commit()
+    second = world.api.client.post("/scenario-packages/generate", json={"scenario": "S1", "level": "advanced"}, headers=headers)
+    assert second.status_code == 200 and second.json()["spine"] != offer["spine"]
+    assert world.api.client.post("/scenario-packages/generate", json={"scenario": "S1", "level": "advanced"}, headers=world.api.headers(uuid.uuid4())).status_code == 403
+    config.get_settings.cache_clear()

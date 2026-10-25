@@ -13,7 +13,7 @@ namespace ProcSense.Core.Workflow.Steps
     /// <summary>
     /// Walkthrough Step 3: sensors and vital signs. The monitor is blank until a sensor is attached; every other value is a reading the
     /// trainee takes. Values come from the patient's current vitals (the case baseline until physiology exists). Not gated on identity.
-    /// shortcut: temperature, respiratory-rate count, ACVPU and pain score are instant readings with no duration; add durations when a
+    /// shortcut: temperature, respiratory-rate count, ACVPU and pain score are instant readings with no duration; the breath count now takes 30 to 60 seconds (DT-040); add durations when a
     /// content value exists for them.
     /// </summary>
     public sealed class ObservationsSubsystem : ISubsystem
@@ -28,6 +28,8 @@ namespace ProcSense.Core.Workflow.Steps
         public const string CycleInProgress = "CYCLE_IN_PROGRESS";
         public const string PulseSecondsOutOfRange = "PULSE_SECONDS_OUT_OF_RANGE";
         public const string PulseInProgress = "PULSE_IN_PROGRESS";
+        public const string RrSecondsOutOfRange = "RR_SECONDS_OUT_OF_RANGE";
+        public const string RrInProgress = "RR_IN_PROGRESS";
         public const string PalpatePulseVerb = "palpate_pulse";
         /// <summary>The walkthrough (Part E, heart rate): feel the radial pulse for 30 to 60 seconds; irregularity needs palpation or an ECG.</summary>
         public const int PulseMinSeconds = 30, PulseMaxSeconds = 60;
@@ -37,6 +39,7 @@ namespace ProcSense.Core.Workflow.Steps
         private SimRandom _devices = null!;
         private long? _nibpEndStep; // sim step at which the running cuff cycle finishes
         private long? _pulseEndStep; // sim step at which the pulse being felt is read
+        private long? _rrEndStep; // sim step at which the breath count being made is read
 
         public ObservationsSubsystem(ContentPackage content) { _content = content; }
 
@@ -62,7 +65,7 @@ namespace ProcSense.Core.Workflow.Steps
                 case "measure_nibp": MeasureNibp(o); break;
                 case PalpatePulseVerb: PalpatePulse(a, o); break;
                 case "measure_temperature": Record("temperature_c", ObservableBuilder.Num(Physio.Vitals.TemperatureC), o); break;
-                case "count_rr": Record("respiratory_rate", ObservableBuilder.Num(Physio.Vitals.RespiratoryRate), o); break;
+                case "count_rr": CountRr(a, o); break;
                 case "assess_acvpu": Record("acvpu", Physio.Vitals.Acvpu, o); break;
                 case "ask_pain_score": Record("pain_score", Physio.Vitals.PainScore.ToString(CultureInfo.InvariantCulture), o); break;
                 case "wait": o.Effects.Add("waited"); break; // time passes before the action runs; nothing else happens
@@ -77,6 +80,11 @@ namespace ProcSense.Core.Workflow.Steps
                 Physio.Record("heart_rate", ObservableBuilder.Num(Physio.Vitals.HeartRate), pulseEnd);
                 Physio.Record("heart_rhythm", Physio.Vitals.HeartRhythm, pulseEnd);
                 _pulseEndStep = null;
+            }
+            if (_rrEndStep is long rrEnd && _s.Clock.Steps >= rrEnd)
+            {
+                Physio.Record("respiratory_rate", ObservableBuilder.Num(Physio.Vitals.RespiratoryRate), rrEnd);
+                _rrEndStep = null;
             }
             if (_nibpEndStep is long end && _s.Clock.Steps >= end)
             {
@@ -137,6 +145,17 @@ namespace ProcSense.Core.Workflow.Steps
             if (_pulseEndStep != null) { o.Reject(PulseInProgress); return; }
             _pulseEndStep = _s.Clock.Steps + (long)Math.Round(seconds / SimClock.Step);
             o.Effects.Add("pulse_started:" + seconds.ToString(CultureInfo.InvariantCulture) + "_s");
+        }
+
+        // Counting the breaths takes the seconds the trainee chooses (30 to 60, the walkthrough's range); the rate is known when the time has passed (DT-040).
+        private void CountRr(SimAction a, ActionOutcome o)
+        {
+            int seconds = PulseMinSeconds;
+            if (a.Params.TryGetValue("seconds", out var text) && !int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out seconds)) { o.Reject(RrSecondsOutOfRange); return; }
+            if (seconds < PulseMinSeconds || seconds > PulseMaxSeconds) { o.Reject(RrSecondsOutOfRange); return; }
+            if (_rrEndStep != null) { o.Reject(RrInProgress); return; }
+            _rrEndStep = _s.Clock.Steps + (long)Math.Round(seconds / SimClock.Step);
+            o.Effects.Add("rr_count_started:" + seconds.ToString(CultureInfo.InvariantCulture) + "_s");
         }
 
         private void Record(string name, string value, ActionOutcome o)

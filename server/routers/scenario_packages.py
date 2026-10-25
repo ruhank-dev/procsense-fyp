@@ -16,6 +16,8 @@ from sqlalchemy.orm import Session as DbSession
 
 from server.auth.dependencies import CurrentUser, current_user, db_session
 from server.config import Settings, get_settings
+from server.generation import history as generation_history
+from server.repositories import generation_history as history_table
 from server.repositories import sessions as repository
 from server.schemas.sessions import PackageOffer, PackageReply, PackageRequest
 
@@ -60,6 +62,42 @@ def next_package(body: PackageRequest, user: CurrentUser = Depends(current_user)
         db.commit()
         return PackageOffer(package_hash=digest, scenario=body.scenario, level=body.level, case_id=pkg["case"]["id"], spine=e["spine"])
     raise HTTPException(status_code=404, detail={"code": "pool_empty"})
+
+
+_CONTEXT: list = []
+
+
+def _context():
+    """What the pipeline reads and never changes, built once per process (the index takes a moment)."""
+    if not _CONTEXT:
+        from server.generation import objectives as ob, pipeline, retrieve, skeleton
+        B, _ = skeleton._composer()
+        _CONTEXT.append(pipeline.Context(retrieve.build_index(), B.load_cases(), ob.Tables.load()))
+    return _CONTEXT[0]
+
+
+@router.post("/scenario-packages/generate", response_model=PackageOffer)
+def generate_package(body: PackageRequest, user: CurrentUser = Depends(current_user), db: DbSession = Depends(db_session), settings: Settings = Depends(get_settings)) -> PackageOffer:
+    """A package built on request (DT-199, p1-live-scenario-generation): the person's own history (DT-201) steers the objectives and the novelty check, the deterministic pipeline builds and gates a package, and it is stored by its hash
+    like a pooled one. Practice only. Answers 503 generation_off unless LIVE_GENERATION is on, and 404 pool_fallback when the pipeline could not make a good package (the headset then asks for a pooled one, or plays an authored case)."""
+    _active_member(user)
+    if not settings.live_generation:
+        raise HTTPException(status_code=503, detail={"code": "generation_off"})
+    from server.generation import pipeline
+    entries = history_table.entries(db, user.profile.user_id, user.profile.pseudonym)
+    fingerprints = generation_history.recent_fingerprints(entries) + list(body.exclude_fingerprints)
+    request = {"version": 1, "trainee": user.profile.pseudonym, "mode": "practice", "scenario": body.scenario, "level": body.level}
+    result = pipeline.generate(request, generation_history.session_records(entries), generation_history.novelty_history(entries), _context(), recent_fingerprints=fingerprints)
+    if result.package is None:
+        raise HTTPException(status_code=404, detail={"code": "pool_fallback", "fallback": result.fallback})
+    from server.generation import package as package_module
+    raw = package_module.file_text(result.package).encode("utf-8")
+    if len(raw) > settings.max_package_bytes:
+        raise HTTPException(status_code=413, detail={"code": "package_too_large"})
+    digest = hashlib.sha256(raw).hexdigest()
+    repository.store_package(db, digest, raw)
+    db.commit()
+    return PackageOffer(package_hash=digest, scenario=body.scenario, level=body.level, case_id=result.package["case"]["id"], spine=result.package["provenance"]["spine"])
 
 
 @router.get("/scenario-packages/{package_hash}")

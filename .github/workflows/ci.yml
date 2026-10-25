@@ -132,6 +132,11 @@ jobs:
       - name: Build the engine (the verification tests run it)
         run: dotnet build src/ProcSense.Cli -c Release
 
+      - name: The engine writes a session and the service reads it (the contract between them, header version 2)
+        run: |
+          dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-A --seed 42 --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/run.json"
+          uv run --project server python -m server.scripts.check_session_file "$RUNNER_TEMP/run.session.jsonl"
+
       - name: Install the browser the web page test drives
         run: uv run --project server playwright install --with-deps chromium
 
