@@ -2,7 +2,7 @@
 
     f = features(evidence)       # from a SessionEvidence record (its ordered actions)
 
-Features, all from the ordered actions in the session evidence. LIMIT: the evidence holds the actions the scoring maps to a behaviour (the debrief timeline), not every verb the engine accepted, so an action that no behaviour names (examine, for one) can look absent; the features are read as "in the scored actions". DT-209 asks for the full action list in the evidence.
+Features, all from the ordered actions in the session evidence. The evidence holds every accepted action (debrief facts `accepted_actions`, DT-209); a record made from a report older than that field holds only the scored ones in the timeline, so an action no behaviour names (examine, for one) can look absent there.
 
   gathering_order      the first position of each kind of action (identity, history, examination, observations, investigations, risk, decision), so the order of working is visible
   history_before_tests whether any history question came before the first investigation was ordered

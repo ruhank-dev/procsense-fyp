@@ -58,3 +58,38 @@ def test_the_real_project_publishes_keys_the_verifier_can_use():
     for k in document["keys"]:
         assert k["alg"] in ALGORITHMS and k.get("kid")
         assert jwt.PyJWK.from_dict(k).key is not None
+
+
+@pytest.mark.db
+def test_delete_person_cuts_the_links_removes_the_account_and_refuses_the_last_administrator(migrated):
+    """DT-156: the team's deletion for a person who cannot sign in. The sign-in service is a stand-in that records the call."""
+    from server.auth.supabase_admin import DeleteUserError
+    from server.models.accounts import Profile
+
+    class Service:
+        def __init__(self, fail=False):
+            self.fail, self.deleted = fail, []
+
+        def delete_user(self, user_id):
+            if self.fail:
+                raise DeleteUserError("down")
+            self.deleted.append(user_id)
+
+    with Session(migrated) as s:
+        org, _ = admin.create_organisation_with_admin(s, "Alpha", "alpha", "boss@example.com")
+        admin_id, trainee_id = uuid.uuid4(), uuid.uuid4()
+        for uid in (admin_id, trainee_id):
+            s.add(Profile(user_id=uid, pseudonym=accounts.new_pseudonym(), display_name=""))
+        s.flush()
+        accounts.add_membership(s, admin_id, org.id, "org_admin")
+        accounts.add_membership(s, trainee_id, org.id, "trainee")
+        s.commit()
+        refused = Service()
+        assert admin.delete_person(s, refused, admin_id).startswith("not deleted: they are the last administrator") and refused.deleted == []
+        down = Service(fail=True)
+        assert admin.delete_person(s, down, trainee_id).startswith("not deleted: the sign-in service refused")
+        assert s.get(Profile, trainee_id) is not None                  # nothing was cut
+        ok = Service()
+        assert admin.delete_person(s, ok, trainee_id).startswith("deleted") and ok.deleted == [str(trainee_id)]
+        s.expire_all()
+        assert s.get(Profile, trainee_id) is None

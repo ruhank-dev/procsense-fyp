@@ -3,6 +3,7 @@
     uv run --project server python -m server.scripts.admin create-organisation --name "Alpha Hospital" --slug alpha-hospital --admin-email boss@example.com [--send]
     uv run --project server python -m server.scripts.admin grant-platform-admin --user-id <the person's id from Supabase's Authentication > Users page>
     uv run --project server python -m server.scripts.admin add-member --slug alpha-hospital --user-id <id> --role trainee|supervisor|org_admin
+    uv run --project server python -m server.scripts.admin delete-person --user-id <id> --confirm DELETE      (DT-156: for a person who cannot sign in to use the Privacy page; the same deletion)
 
 The database is the one in DATABASE_URL (server/.env). The first administrator of an organisation is invited by email address: when that address signs in, they become its administrator.
 --send also asks Supabase to email the invitation (needs the Supabase address and the secret key in server/.env).
@@ -58,6 +59,25 @@ def add_member(session: Session, slug: str, user_id: uuid.UUID, role: str) -> st
     return f"added to {slug} as {role}"
 
 
+def delete_person(session: Session, admin: SupabaseAdmin, user_id: uuid.UUID) -> str:
+    """The Privacy page's deletion, run by the team for a person who cannot sign in (DT-156): the links to their sessions are cut (the sessions stay, so totals do not change), their history and consents go,
+    and the sign-in account is removed. The account is removed before anything is committed, so if it cannot be removed nothing is cut and the command can be run again. The written procedure is in server/RUNBOOK.md."""
+    from server.repositories import privacy as repository
+    from server.auth.supabase_admin import DeleteUserError
+    try:
+        repository.delete_person(session, user_id)
+    except repository.LastAdministrator as e:
+        session.rollback()
+        return f"not deleted: they are the last administrator of {e.organisation}; make someone else an administrator first"
+    try:
+        admin.delete_user(str(user_id))
+    except DeleteUserError as e:
+        session.rollback()
+        return f"not deleted: the sign-in service refused ({e}); nothing was changed, run it again later"
+    session.commit()
+    return "deleted: the sign-in account is gone and the links to their sessions are cut"
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -72,6 +92,9 @@ def main(argv: list[str] | None = None) -> int:
     member.add_argument("--slug", required=True)
     member.add_argument("--user-id", required=True, type=uuid.UUID)
     member.add_argument("--role", required=True, choices=["trainee", "supervisor", "org_admin"])
+    gone = sub.add_parser("delete-person")
+    gone.add_argument("--user-id", required=True, type=uuid.UUID)
+    gone.add_argument("--confirm", required=True, help="type DELETE")
     args = parser.parse_args(argv)
 
     engine = get_engine()
@@ -86,6 +109,13 @@ def main(argv: list[str] | None = None) -> int:
                 return 0
             print("no such person: they must sign in once first (that creates their profile)")
             return 1
+        if args.command == "delete-person":
+            if args.confirm.strip().upper() != "DELETE":
+                print("type --confirm DELETE to confirm")
+                return 2
+            message = delete_person(session, SupabaseAdmin.from_settings(settings), args.user_id)
+            print(message)
+            return 0 if message.startswith("deleted") else 1
         if args.command == "add-member":
             print(add_member(session, args.slug, args.user_id, args.role))
             return 0

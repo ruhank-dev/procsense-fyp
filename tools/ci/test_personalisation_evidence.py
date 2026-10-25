@@ -46,6 +46,18 @@ class Evidence(unittest.TestCase):
                 self.assertEqual(a["story"], case)
                 self.assertTrue(a["steps"] or a["errors"], case)
 
+    def test_the_evidence_holds_every_accepted_action_not_only_the_scored_ones(self):
+        """DT-209: a verb no behaviour names (a bedside examination, for one) is in the evidence, in the order it happened."""
+        script = ROOT / "tests" / "golden" / "VAR-S1-A_correct.actions.json"
+        with tempfile.TemporaryDirectory() as t:
+            report = report_of("VAR-S1-A", script, Path(t))
+        ev = evidence.extract(report, "trainee-001", "s1", "2026-10-26T10:00:00Z")
+        scored = {x["text"] for x in report["timeline"] if x["kind"] == "action"}
+        everything = [a["verb"] for a in ev["actions"]]
+        self.assertGreater(len(set(everything) - scored), 0, "at least one accepted verb is not a scored one")
+        self.assertEqual(everything, [a["verb"] for a in report["accepted_actions"]][:len(everything)])
+        self.assertEqual([a["seq"] for a in ev["actions"]], sorted(a["seq"] for a in ev["actions"]))
+
     def test_a_generated_session_carries_its_story_and_tier(self):
         pkg = ROOT / "tests" / "fixtures" / "generated" / "GEN-S1-0003-001.package.json"
         with tempfile.TemporaryDirectory() as t:

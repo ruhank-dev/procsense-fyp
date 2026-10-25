@@ -158,3 +158,13 @@ def clear_stale_invitations(db: DbSession, days_after_expiry: int = 30, now: dt.
     now = now or _now()
     return len(db.execute(update(Invitation).where(Invitation.status == "pending", Invitation.expires_at < now - dt.timedelta(days=days_after_expiry))
                           .values(email=None, status="revoked").returning(Invitation.id)).all())
+
+
+def purge_device_rows(db: DbSession, now: dt.datetime | None = None, login_days: int = 1, session_days: int = 30) -> int:
+    """DT-142: a headset sign-in request is useless a day after it expired (used, denied or never answered), and a headset sign-in that was revoked, or whose refresh token ran out, a month ago is only clutter.
+    They hold hashes only, never a secret; this keeps the tables small. Returns how many rows were deleted."""
+    now = now or _now()
+    logins = db.execute(delete(DeviceLogin).where(DeviceLogin.expires_at < now - dt.timedelta(days=login_days)).returning(DeviceLogin.id)).all()
+    cutoff = now - dt.timedelta(days=session_days)
+    sessions = db.execute(delete(DeviceSession).where((DeviceSession.revoked_at < cutoff) | (DeviceSession.refresh_expires_at < cutoff)).returning(DeviceSession.id)).all()
+    return len(logins) + len(sessions)

@@ -12,7 +12,7 @@ from server import database, logging_setup
 from server.config import get_settings
 from server.middleware.audit import AuditMiddleware, get_writer
 from server.middleware.security_headers import SecurityHeaders
-from server.routers import ai_audit, ai_gateway, asr, debrief, evaluate, dialogue, orders, speech_action, tts, dashboard, device_auth, export, health, internal, me, organisations, pages, privacy, scenario_packages, sessions
+from server.routers import ai_audit, ai_gateway, asr, content, debrief, evaluate, dialogue, orders, speech_action, tts, dashboard, device_auth, export, health, internal, me, organisations, pages, privacy, scenario_packages, sessions
 
 
 def _sweep_on_start() -> None:
@@ -58,6 +58,7 @@ def create_app() -> FastAPI:
     app.include_router(speech_action.router)
     app.include_router(debrief.router)
     app.include_router(scenario_packages.router)
+    app.include_router(content.router)
     app.include_router(internal.router)
     app.include_router(pages.router)
     app.mount("/static", StaticFiles(directory=pages.STATIC), name="static")

@@ -255,7 +255,7 @@ def test_the_retention_job_removes_old_logs_and_keeps_every_result(world):
     recent = old_session(world, world.org_a, world.trainee, 3)
     before = world.get(f"/organisations/{world.org_a}/overview", world.supervisor).json()
     done = world.api.seed(lambda s: retention.run(s, config.get_settings(), now=dt.datetime(2026, 10, 14, 12, tzinfo=dt.timezone.utc)))
-    assert done == {"sessions_purged": 1, "pending_rejected": 0, "access_log_deleted": 0, "invitation_emails_cleared": 0, "ai_calls_deleted": 0}
+    assert done == {"sessions_purged": 1, "pending_rejected": 0, "access_log_deleted": 0, "invitation_emails_cleared": 0, "device_rows_deleted": 0, "ai_calls_deleted": 0}
     with DbSession(world.api.engine) as s:
         a, b = s.get(Session, old), s.get(Session, recent)
         assert (a.log_gz, a.report_html_gz, a.header_line) == (b"", None, "") and a.log_purged_at is not None
@@ -293,7 +293,7 @@ def test_old_access_log_rows_and_purged_pending_sessions_are_cleaned_up(world):
     world.api.seed(lambda s: s.execute(update(AccessLog).values(at=dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=800))))
     world.get(f"/organisations/{world.org_a}/members/{world.trainee}/progress", world.admin)
     done = world.api.seed(lambda s: retention.run(s, config.get_settings()))
-    assert done == {"sessions_purged": 1, "pending_rejected": 1, "access_log_deleted": 1, "invitation_emails_cleared": 0, "ai_calls_deleted": 0}
+    assert done == {"sessions_purged": 1, "pending_rejected": 1, "access_log_deleted": 1, "invitation_emails_cleared": 0, "device_rows_deleted": 0, "ai_calls_deleted": 0}
     with DbSession(world.api.engine) as s:
         assert s.get(Session, pending).status == "rejected" and s.get(Session, pending).reject_reason == "RETENTION_EXPIRED"
     assert len(world.get("/privacy/access-log", world.trainee).json()) == 1
@@ -325,7 +325,7 @@ def test_the_retention_route_is_for_the_scheduler_only(world, monkeypatch):
     assert world.api.client.post("/internal/retention").status_code == 403
     assert world.api.client.post("/internal/retention", headers={"X-Internal-Key": "wrong"}).status_code == 403
     r = world.api.client.post("/internal/retention", headers={"X-Internal-Key": "scheduler-key-for-tests"})
-    assert r.status_code == 200 and set(r.json()) == {"sessions_purged", "pending_rejected", "access_log_deleted", "invitation_emails_cleared", "ai_calls_deleted"}
+    assert r.status_code == 200 and set(r.json()) == {"sessions_purged", "pending_rejected", "access_log_deleted", "invitation_emails_cleared", "device_rows_deleted", "ai_calls_deleted"}
     config.get_settings.cache_clear()
 
 
@@ -370,3 +370,31 @@ def test_the_new_table_is_closed_to_the_public_roles(migrated):
     with migrated.connect() as conn:
         assert conn.execute(text("select relrowsecurity from pg_class where relname = 'access_log'")).scalar_one() is True
         assert conn.execute(text("select count(*) from pg_policies where tablename = 'access_log'")).scalar_one() == 0
+
+
+# --- DT-142: the clean-up of headset sign-ins --------------------------------------------------------------------------------------------------------------------------------------------
+
+def test_expired_headset_requests_and_long_revoked_headset_sign_ins_are_removed_and_live_ones_stay(api):
+    from server.models.device_session import DeviceLogin, DeviceSession
+    from server.repositories import devices
+    now = dt.datetime.now(dt.timezone.utc)
+
+    def build(s):
+        who = api.person(s)
+        old_login, _ = devices.start_login(s, "Old", 10, 5)
+        old_login.expires_at = now - dt.timedelta(days=3)
+        fresh_login, _ = devices.start_login(s, "Fresh", 10, 5)
+        revoked = devices.issue(s, who, "Revoked", 15, 30)
+        gone = devices.issue(s, who, "Gone", 15, 30)
+        live = devices.issue(s, who, "Live", 15, 30)
+        rows = {d.device_name: d for d in devices.devices_of(s, who)}
+        rows["Revoked"].revoked_at = now - dt.timedelta(days=40)
+        rows["Gone"].refresh_expires_at = now - dt.timedelta(days=40)
+        return old_login.id, fresh_login.id
+    old_id, fresh_id = api.seed(build)
+    with DbSession(api.engine) as s:
+        assert repository.purge_device_rows(s, now) == 3      # the old request, the long-revoked sign-in, the sign-in whose refresh token ran out a month ago
+        s.commit()
+        assert s.get(DeviceLogin, old_id) is None and s.get(DeviceLogin, fresh_id) is not None
+        assert [d.device_name for d in s.scalars(select(DeviceSession))] == ["Live"]
+        assert repository.purge_device_rows(s, now) == 0

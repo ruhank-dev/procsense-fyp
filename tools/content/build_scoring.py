@@ -99,6 +99,10 @@ RULES = [
     (r"^(checklist_contradiction|checklist_skipped_repeatedly|checklist_item_skipped|sign_in_complete|time_out_complete|sign_out_complete|specimen_name_wrong|count_discrepancy_handled)$", "b21", "REQUIRED", False),
     (r"^(ward_checklist_complete|ward_signed_with_gaps|ward_tick_false|ward_tick_unverified|razor_used)$", "b21", "REQUIRED", False),
     (r"^(emergency_not_declared|handover_omitted)$", "b11", "COMMUNICATION", False),
+    (r"^action_before_identity$", "b13", "CRITICAL", False),
+    (r"^identity_asked_closed$", "b13", "REQUIRED", False),
+    (r"^unnecessary_mismatch_report$", "b13", "APPROPRIATENESS", False),
+    (r"^no_introduction$", "b06", "COMMUNICATION", False),
 ]
 
 POINTS = {"credit": 1, "info": 0, "minor": -1, "major": -3, "critical": 0}

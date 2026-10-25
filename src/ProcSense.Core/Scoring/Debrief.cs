@@ -46,6 +46,9 @@ namespace ProcSense.Core.Scoring
         /// <summary>Set only for a case composed by the generator; every debrief sentence still comes from the engine's own items, so provenance adds a statement of where the case came from and nothing a trainee could be told wrongly.</summary>
         public GeneratedInfo? Generated { get; set; }
 
+        /// <summary>Every accepted action in the order it happened (DT-209), not only those the scoring maps to a behaviour like the timeline: the learner model and the reasoning features read it, so a verb such as examine is no longer invisible. Nothing is judged from it here.</summary>
+        public IReadOnlyList<TimelineEntry> AcceptedActions { get; set; } = new List<TimelineEntry>();
+
         public static DebriefFacts Build(Session s, ContentPackage content)
         {
             var report = Scorer.Score(s, content);
@@ -70,6 +73,7 @@ namespace ProcSense.Core.Scoring
             var events = s.Director?.History.Where(h => h.Kind == "event_fired").Select(h => h.Id).ToList() ?? new List<string>();
             var sources = lines.Select(l => l.Source).Where(x => x.Length > 0).Concat(report.Lateness.Select(l => l.Source)).Distinct().OrderBy(x => x, StringComparer.Ordinal).ToList();
             var facts = new DebriefFacts(report.Case, report.Mode, report.EndState, report.Result, lines, report.Categories, ordered, report.Lateness, events, store.NotShown(), sources);
+            facts.AcceptedActions = s.Log.Entries.Where(e => e.Accepted).Select(e => new TimelineEntry(e.Step, Clock(s, e.Step), "action", e.Verb, e.Seq)).ToList();
             if (content.CaseFiles.TryGetValue(s.Case.Id, out var file) && file.CreatedBy == "composer" && file.Spine != null) facts.Generated = new GeneratedInfo(file.Spine, file.Status, file.Tier, "");
             return facts;
         }
@@ -140,6 +144,14 @@ namespace ProcSense.Core.Scoring
             sb.Append("],\"events\":["); sb.Append(string.Join(",", Events.Select(e => Quoted(e))));
             sb.Append("],\"not_shown\":["); sb.Append(string.Join(",", NotShown.Select(e => Quoted(e))));
             sb.Append("],\"sources\":["); sb.Append(string.Join(",", Sources.Select(e => Quoted(e))));
+            sb.Append("],\"accepted_actions\":[");
+            for (int i = 0; i < AcceptedActions.Count; i++)
+            {
+                var a = AcceptedActions[i];
+                if (i > 0) sb.Append(',');
+                sb.Append("{\"seq\":").Append(a.Seq.ToString(System.Globalization.CultureInfo.InvariantCulture)).Append(",\"time\":"); JsonText.Quote(sb, a.Time);
+                sb.Append(",\"verb\":"); JsonText.Quote(sb, a.Text); sb.Append('}');
+            }
             sb.Append(']');
             if (Generated != null)
             {

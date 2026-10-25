@@ -34,7 +34,10 @@ def extract(report: dict, trainee: str, session_id: str, ended_at: str, tier: st
         if i["id"] in late and steps and steps[-1]["item"] == i["id"]:
             steps[-1]["late_minutes"] = late[i["id"]]
     gen = report.get("generated")
-    actions = [{"seq": t["seq"], "at": t["time"], "verb": t["text"]} for t in report["timeline"] if t["kind"] == "action"][:MAX_ACTIONS]
+    if "accepted_actions" in report:            # every accepted action (DT-209); a report made before that field existed falls back to the scored ones in the timeline
+        actions = [{"seq": a["seq"], "at": a["time"], "verb": a["verb"]} for a in report["accepted_actions"]][:MAX_ACTIONS]
+    else:
+        actions = [{"seq": t["seq"], "at": t["time"], "verb": t["text"]} for t in report["timeline"] if t["kind"] == "action"][:MAX_ACTIONS]
     return {"version": 1, "trainee": trainee, "session_id": session_id, "ended_at": ended_at, "case": report["case"], "story": gen["spine"] if gen else report["case"],
             "tier": gen["tier"] if gen else tier, "mode": report["mode"], "generated": bool(gen), "end_state": report["end_state"], "result": report["result"], "steps": steps, "errors": errors,
             "actions": actions, "events": [{"event": e, "response_latency_s": None} for e in report["events"]],

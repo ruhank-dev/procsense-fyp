@@ -1,7 +1,7 @@
 """The scheduled clean-up (p1-backend-s12): removes what has passed its retention period. Run it daily: `python -m server.jobs.retention`, or call `POST /internal/retention` with the internal key (p1-backend-s13 schedules it).
 
 What goes: the stored log and the report page of sessions older than their organisation's period (the results, score items and behaviours stay, so totals do not change), pending sessions that were purged
-before they could be verified (rejected), access-log rows and AI audit rows (p1-backend-s05) older than the platform's periods, and the email address of invitations nobody accepted a month after they expired.
+before they could be verified (rejected), access-log rows and AI audit rows (p1-backend-s05) older than the platform's periods, the email address of invitations nobody accepted a month after they expired, and expired headset sign-in requests and long-revoked headset sign-ins (DT-142).
 """
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ def run(db: DbSession, settings: Settings | None = None, now=None) -> dict:
         "pending_rejected": 0,
         "access_log_deleted": privacy.purge_access_log(db, settings.retention_access_log_months, now),
         "invitation_emails_cleared": privacy.clear_stale_invitations(db, now=now),
+        "device_rows_deleted": privacy.purge_device_rows(db, now),
         "ai_calls_deleted": ai_audit.purge(db, settings.retention_ai_call_months, now or dt.datetime.now(dt.timezone.utc)),
     }
     result["pending_rejected"] = privacy.reject_purged_pending(db)
