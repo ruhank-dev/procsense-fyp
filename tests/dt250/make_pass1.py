@@ -23,7 +23,7 @@ P = {  # id: (A, B, uA, uB, pref)
  "c43": ("44345555", "55555555", 0, 0, "B"), "c22": ("44555555", "44555555", 0, 0, "tie"), "c20": ("55555555", "44355555", 0, 0, "A"), "c35": ("44555555", "44455555", 0, 0, "tie"),
  "c42": ("44555555", "44555555", 0, 0, "tie"), "c04": ("44455555", "11234152", 0, 0, "A"), "c50": ("1113", "5555", 0, 0, "B"), "c41": ("44555555", "55555555", 0, 0, "B"),
 }
-out = {"pass": 1, "rater": "AI-simulated (Claude), blind to model identity, before the key was opened", "ratings": {}}
+out = {"pass": 1, "rater": "AI-simulated (AI assistant), blind to model identity, before the key was opened", "ratings": {}}
 for cid, (a, b, ua, ub, pref) in P.items():
     out["ratings"][cid] = {"A": [int(x) for x in a], "B": [int(x) for x in b], "uA": ua, "uB": ub, "pref": pref}
 assert len(out["ratings"]) == 60, len(out["ratings"])

@@ -16,6 +16,7 @@ COPY --from=builder /opt/venv /opt/venv
 COPY server ./server
 # what the AI gateway reads at run time: the registered prompts and the word lists its validators use (p1-backend-s06)
 COPY prompts ./prompts
+COPY content/ai ./content/ai
 COPY content ./content
 COPY tools/composer ./tools/composer
 COPY tests/golden ./tests/golden

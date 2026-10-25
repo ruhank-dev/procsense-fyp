@@ -21,7 +21,7 @@ P = {
  "c33": ("33355555", "44554545", 0, 0, "B"), "c56": ("3454", "2323", 0, 0, "A"), "c60": ("1113", "5555", 0, 0, "B"), "c59": ("3354", "1213", 0, 0, "A"),
  "c39": ("55555555", "22355453", 0, 0, "A"), "c20": ("44355555", "55555555", 0, 0, "B"), "c30": ("22233552", "55555555", 1, 0, "B"), "c41": ("55555555", "44355555", 0, 0, "A"),
 }
-out = {"pass": 2, "rater": "AI-simulated (Claude), blind to model identity, second reading on a re-ordered sheet with the positions swapped, before the key was opened", "ratings": {}}
+out = {"pass": 2, "rater": "AI-simulated (AI assistant), blind to model identity, second reading on a re-ordered sheet with the positions swapped, before the key was opened", "ratings": {}}
 for cid, (a, b, ua, ub, pref) in P.items():
     out["ratings"][cid] = {"A": [int(x) for x in a], "B": [int(x) for x in b], "uA": ua, "uB": ub, "pref": pref}
 assert len(out["ratings"]) == 60, len(out["ratings"])

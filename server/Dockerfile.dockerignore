@@ -7,6 +7,13 @@
 !content/
 !content/ai/
 !content/ai/**
+!content/**
+!tools/
+!tools/composer/
+!tools/composer/**
+!tests/
+!tests/golden/
+!tests/golden/**
 # never into an image: secrets, local environments, tests, caches
 server/.env
 server/.env.*
