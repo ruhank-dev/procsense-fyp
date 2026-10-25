@@ -67,7 +67,7 @@
   "score": {
     "result": "SUCCESS",
     "credits": 10,
-    "minor": ["minor.treatment_documentation"],
+    "minor": ["minor.no_introduction", "minor.treatment_documentation"],
     "major": ["major.e_low_oxygen_not_escalated"],
     "critical": []
   }

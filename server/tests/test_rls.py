@@ -77,7 +77,7 @@ def test_the_models_know_the_same_tables_as_the_lock_list():
     assert set(ACCOUNT_TABLES) <= set(Base.metadata.tables)
 
 
-SESSION_TABLES = ["session", "session_score_item", "session_behaviour", "session_evidence", "learner_profile", "scenario_package", "ai_call"]
+SESSION_TABLES = ["session", "session_score_item", "session_behaviour", "session_evidence", "learner_profile", "scenario_package", "ai_call", "generation_history"]
 
 
 def test_every_session_table_has_the_lock_switched_on_and_a_public_role_would_see_nothing(migrated, public_role):

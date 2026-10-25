@@ -19,10 +19,10 @@
     "last_rejection": ""
   },
   "score": {
-    "result": "IN_PROGRESS",
+    "result": "FAIL",
     "credits": 0,
-    "minor": [],
+    "minor": ["minor.no_introduction"],
     "major": [],
-    "critical": []
+    "critical": ["critical.action_before_identity"]
   }
 }

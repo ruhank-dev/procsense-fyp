@@ -65,10 +65,10 @@
     "end_state": "READY_SAFE"
   },
   "score": {
-    "result": "SUCCESS",
+    "result": "FAIL",
     "credits": 18,
     "minor": ["minor.treatment_documentation"],
     "major": ["major.consent_minor_without_senior"],
-    "critical": []
+    "critical": ["critical.action_before_identity"]
   }
 }

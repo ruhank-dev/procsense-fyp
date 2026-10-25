@@ -71,7 +71,7 @@
   "score": {
     "result": "FAIL",
     "credits": 12,
-    "minor": ["minor.treatment_documentation"],
+    "minor": ["minor.no_introduction", "minor.treatment_documentation"],
     "major": ["major.e_fast_breathing_not_escalated", "major.e_high_hr_not_escalated"],
     "critical": ["critical.ignored_critical_result"]
   }

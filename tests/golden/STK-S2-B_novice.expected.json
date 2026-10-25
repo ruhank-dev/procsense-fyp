@@ -66,7 +66,7 @@
   "score": {
     "result": "SUCCESS",
     "credits": 12,
-    "minor": [],
+    "minor": ["minor.no_introduction"],
     "major": ["major.e_fast_breathing_not_escalated", "major.e_high_hr_not_escalated"],
     "critical": []
   }

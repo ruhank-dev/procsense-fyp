@@ -205,6 +205,30 @@
    "behaviour": "b11",
    "type": "COMMUNICATION",
    "teaching": false
+  },
+  {
+   "match": "^action_before_identity$",
+   "behaviour": "b13",
+   "type": "CRITICAL",
+   "teaching": false
+  },
+  {
+   "match": "^identity_asked_closed$",
+   "behaviour": "b13",
+   "type": "REQUIRED",
+   "teaching": false
+  },
+  {
+   "match": "^unnecessary_mismatch_report$",
+   "behaviour": "b13",
+   "type": "APPROPRIATENESS",
+   "teaching": false
+  },
+  {
+   "match": "^no_introduction$",
+   "behaviour": "b06",
+   "type": "COMMUNICATION",
+   "teaching": false
   }
  ],
  "weights": {

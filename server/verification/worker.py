@@ -19,7 +19,11 @@ from sqlalchemy.orm import Session as DbSession
 
 from server.config import Settings, get_settings
 from server.database import get_engine
+from server.generation import history as generation_history
+from server.models.accounts import Profile
 from server.models.sessions import ScenarioPackage, Session, SessionBehaviour, SessionScoreItem
+from server.repositories import generation_history as history_table
+from server.repositories import sessions as sessions_repository
 from server.verification.runner import EngineRunner, RunnerError
 
 log = logging.getLogger("procsense.verification")
@@ -102,6 +106,21 @@ def _store_result(db: DbSession, row: Session, data: dict, log_text: str, html: 
     row.end_state, row.result, row.process_score = facts["end_state"], facts["result"], data["process_total"]
     row.report_json = facts
     row.report_html_gz = gzip.compress(html, compresslevel=6, mtime=0) if html else None
+    _remember(db, row, facts)
+
+
+def _remember(db: DbSession, row: Session, facts: dict) -> None:
+    """DT-201: the verified session joins the person's generation history (what the next objectives and the novelty check read). Best effort: a session that cannot be remembered is still verified."""
+    try:
+        profile = db.get(Profile, row.user_id)
+        package = None
+        if facts.get("generated"):
+            raw = sessions_repository.get_package(db, row.scenario_package_hash)
+            package = json.loads(raw) if raw else None
+        entry = generation_history.entry_from_report(profile.pseudonym, str(row.id), facts, ended_at=generation_history.now_utc(), package=package, package_file_sha256=row.scenario_package_hash or None)
+        history_table.record(db, row.organisation_id, row.user_id, entry)
+    except (generation_history.HistoryError, KeyError, ValueError, AttributeError, TypeError) as e:
+        log.warning("generation history not written for session %s: %s", row.id, e)
 
 
 def verify_pending(limit: int, runner: EngineRunner | None = None, settings: Settings | None = None) -> dict:

@@ -60,6 +60,23 @@ namespace ProcSense.Core.Scoring
                     items.Add(Make(tables, id, new GraphEvent("effect", entry.Verb, entry.Step, Array.Empty<string>()), entry.Seq));
                 }
             }
+            // DT-003: an attempt at a test, medicine, consent step, decision or transfer before the identity is confirmed is refused by the engine and is still a critical safety failure (once, at the first attempt)
+            foreach (var entry in s.Log.Entries)
+            {
+                if (entry.Accepted || entry.Reject != Workflow.Steps.IdentitySubsystem.IdentityNotConfirmed) continue;
+                const string attempt = "critical.action_before_identity";
+                if (items.Any(i => i.Id == attempt)) break;
+                items.Add(Make(tables, attempt, new GraphEvent("rejected", entry.Verb, entry.Step, Array.Empty<string>()), entry.Seq));
+            }
+            // DT-004: the first thing done to the patient was an identity step and no introduction came before it
+            foreach (var entry in s.Log.Entries)
+            {
+                if (!entry.Accepted || !s.Verbs.RequiresPatient(entry.Verb)) continue;
+                if (entry.Verb == "introduce_self") break;
+                if (!Workflow.Steps.IdentitySubsystem.IdentityVerbs.Contains(entry.Verb)) break;
+                items.Add(Make(tables, "minor.no_introduction", new GraphEvent("effect", entry.Verb, entry.Step, Array.Empty<string>()), entry.Seq));
+                break;
+            }
             return items.OrderBy(i => i.Step).ToList();
         }
 

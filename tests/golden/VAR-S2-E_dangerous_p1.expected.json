@@ -27,10 +27,10 @@
     "end_state": "SAFE_BUT_DELAYED"
   },
   "score": {
-    "result": "SUCCESS_WITH_DELAY",
+    "result": "FAIL",
     "credits": 1,
     "minor": [],
     "major": ["major.postponed_unnecessarily"],
-    "critical": []
+    "critical": ["critical.action_before_identity"]
   }
 }

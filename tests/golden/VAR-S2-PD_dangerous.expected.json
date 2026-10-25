@@ -64,10 +64,10 @@
     "end_state": "READY_SAFE"
   },
   "score": {
-    "result": "SUCCESS",
+    "result": "FAIL",
     "credits": 21,
     "minor": ["minor.treatment_documentation"],
     "major": [],
-    "critical": []
+    "critical": ["critical.action_before_identity"]
   }
 }

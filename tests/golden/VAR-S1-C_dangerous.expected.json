@@ -66,10 +66,10 @@
     "end_state": "READY_SAFE"
   },
   "score": {
-    "result": "SUCCESS",
+    "result": "FAIL",
     "credits": 19,
     "minor": [],
     "major": [],
-    "critical": []
+    "critical": ["critical.action_before_identity"]
   }
 }

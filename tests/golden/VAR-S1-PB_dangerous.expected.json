@@ -27,10 +27,10 @@
     "end_state": "POSTPONED_APPROPRIATELY"
   },
   "score": {
-    "result": "SUCCESS",
+    "result": "FAIL",
     "credits": 3,
     "minor": [],
     "major": [],
-    "critical": []
+    "critical": ["critical.action_before_identity"]
   }
 }

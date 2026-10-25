@@ -2,7 +2,7 @@
   "case": "VAR-S1-A",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "5271a9930093e6df969331558da706e22f1f3391e6e4a22926812ee0d72b93d6",
+  "log_hash": "dc4869113c237d780c96f6024518b399e6bf005539947f251470a94cb6db2010",
   "state_hash": "682081c13b394386bb1599ef1880c45606b5d04b74b636d5b21752c715071e43",
   "facts": {
     "identity_confirmed": false,
@@ -21,7 +21,7 @@
   "score": {
     "result": "IN_PROGRESS",
     "credits": 0,
-    "minor": [],
+    "minor": ["minor.identity_asked_closed"],
     "major": [],
     "critical": []
   }

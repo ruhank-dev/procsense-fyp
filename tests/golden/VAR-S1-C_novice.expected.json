@@ -66,7 +66,7 @@
   "score": {
     "result": "SUCCESS",
     "credits": 16,
-    "minor": ["minor.question_unanswered"],
+    "minor": ["minor.no_introduction", "minor.question_unanswered"],
     "major": [],
     "critical": []
   }

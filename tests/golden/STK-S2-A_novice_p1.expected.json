@@ -64,7 +64,7 @@
   "score": {
     "result": "SUCCESS",
     "credits": 19,
-    "minor": ["minor.question_unanswered", "minor.treatment_documentation"],
+    "minor": ["minor.no_introduction", "minor.question_unanswered", "minor.treatment_documentation"],
     "major": [],
     "critical": []
   }

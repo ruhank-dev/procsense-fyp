@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Linq;
 using ProcSense.Core.Actions;
 using ProcSense.Core.Content;
 using ProcSense.Core.Pipeline;
@@ -37,14 +38,19 @@ namespace ProcSense.Core.Workflow.Steps
 
         private ClinicalLayer Clinical => _s.Patient.Clinical;
 
+        private static readonly string[] AllVerbs =
+        {
+            "introduce_self", "ask_identity", "read_name_to_patient", "read_wristband", "open_notes", "confirm_identity",
+            "report_mismatch", "request_wristband", "ask_allergies", "ask_allergy_reaction", "ask_reason_for_admission", "ask_responsible_adult",
+        };
+
+        /// <summary>The verbs of this step other than the introduction: if the first thing done to the patient is one of these, the introduction was skipped (DT-004).</summary>
+        public static readonly System.Collections.Generic.HashSet<string> IdentityVerbs = new System.Collections.Generic.HashSet<string>(AllVerbs.Where(v => v != "introduce_self"));
+
         public void Init(Session session)
         {
             _s = session;
-            foreach (var v in new[]
-            {
-                "introduce_self", "ask_identity", "read_name_to_patient", "read_wristband", "open_notes", "confirm_identity",
-                "report_mismatch", "request_wristband", "ask_allergies", "ask_allergy_reaction", "ask_reason_for_admission", "ask_responsible_adult",
-            })
+            foreach (var v in AllVerbs)
                 session.Verbs.Register(v, requiresPatient: v != "open_notes" && v != "confirm_identity" && v != "report_mismatch");   // the notes are the folder, and confirming or reporting is the trainee's own judgement
         }
 
@@ -100,6 +106,7 @@ namespace ProcSense.Core.Workflow.Steps
         {
             Clinical.SetFlag(IdentityAskedClosed);
             Clinical.SetFlag(WrongBloodRisk);
+            o.Effects.Add("score:minor.identity_asked_closed");
             o.Effects.Add("patient_agrees");
             o.Effects.Add("armed:" + WrongBloodRisk);
         }
@@ -149,6 +156,7 @@ namespace ProcSense.Core.Workflow.Steps
             {
                 Clinical.SetFlag(UnnecessaryMismatchReport);
                 o.Effects.Add("no_mismatch_found");
+                o.Effects.Add("score:minor.unnecessary_mismatch_report");
                 return;
             }
             Clinical.SetFlag(MismatchReported);

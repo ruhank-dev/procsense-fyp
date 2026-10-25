@@ -30,7 +30,7 @@ namespace ProcSense.Core.Tests
                 .Concat(new ISubsystem[] { new DecisionSubsystem(Content, file), problems, new OrReadinessSubsystem(Content, file), new EndStateSubsystem(Content, file) });
             var card = Content.Cases["VAR-S1-A"] with { Scenario = file.Scenario };
             var s = new Session(card, 42, SessionMode.Practice, chain);
-            foreach (var verb in new[] { "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(Do(s, verb).Accepted, verb);
+            foreach (var verb in new[] { "introduce_self", "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(Do(s, verb).Accepted, verb);
             return s;
         }
 

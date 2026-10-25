@@ -37,7 +37,7 @@
   "score": {
     "result": "SUCCESS_WITH_DELAY",
     "credits": 1,
-    "minor": [],
+    "minor": ["minor.no_introduction"],
     "major": ["major.postponed_unnecessarily"],
     "critical": []
   }
