@@ -11,9 +11,9 @@ namespace ProcSense.Core.Tests
     /// </summary>
     public class PerformanceTests
     {
-        private readonly Xunit.Abstractions.ITestOutputHelper _out;
+        private readonly ITestOutputHelper _out;
 
-        public PerformanceTests(Xunit.Abstractions.ITestOutputHelper output) => _out = output;
+        public PerformanceTests(ITestOutputHelper output) => _out = output;
 
         private const int Ticks = 1000;
 

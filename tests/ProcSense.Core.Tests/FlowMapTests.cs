@@ -13,9 +13,9 @@ namespace ProcSense.Core.Tests
     /// <summary>The two scenario master maps run as data: parallel tracks, joins, skipped stages and emergency interrupts (p0-simulation-workflow-s06, EXP-WF-1).</summary>
     public class FlowMapTests
     {
-        private readonly Xunit.Abstractions.ITestOutputHelper _out;
+        private readonly ITestOutputHelper _out;
 
-        public FlowMapTests(Xunit.Abstractions.ITestOutputHelper output) => _out = output;
+        public FlowMapTests(ITestOutputHelper output) => _out = output;
 
         private static FlowMaps RealMaps() => FlowMaps.Parse(File.ReadAllText(Path.Combine(TestCase.Repo, "content", "flow", "flow_maps.json")), "flow_maps");
 

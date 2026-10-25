@@ -10,9 +10,9 @@ namespace ProcSense.Core.Tests
     /// <summary>The clinical calculators (p0-clinical-logic-s05): the walkthrough's worked examples, the edges of every range, missing inputs and broken tables.</summary>
     public class ScoresTests
     {
-        private readonly Xunit.Abstractions.ITestOutputHelper _out;
+        private readonly ITestOutputHelper _out;
 
-        public ScoresTests(Xunit.Abstractions.ITestOutputHelper output) => _out = output;
+        public ScoresTests(ITestOutputHelper output) => _out = output;
 
         private static readonly ScoreTables Tables = ScoreTables.Parse(File.ReadAllText(Path.Combine(TestCase.Repo, "content", "scores", "scores.json")), "scores");
         private static readonly ScoreCalculator Calc = new ScoreCalculator(Tables);

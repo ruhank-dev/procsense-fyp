@@ -16,9 +16,9 @@ namespace ProcSense.Core.Tests
     /// <summary>Goals, deadlines, decision points, blockers and hints (p0-simulation-workflow-s05, plan tests T-CG1 to T-CG6).</summary>
     public class CaseGraphTests
     {
-        private readonly Xunit.Abstractions.ITestOutputHelper _out;
+        private readonly ITestOutputHelper _out;
 
-        public CaseGraphTests(Xunit.Abstractions.ITestOutputHelper output) => _out = output;
+        public CaseGraphTests(ITestOutputHelper output) => _out = output;
 
         private static CaseGraph Fixture() =>
             CaseGraph.Parse(File.ReadAllText(Path.Combine(TestCase.Repo, "tests", "fixtures", "workflow", "test_workflow.json")), "test_workflow");

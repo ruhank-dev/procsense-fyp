@@ -14,9 +14,9 @@ namespace ProcSense.Core.Tests
     /// <summary>NEWS2 (p0-clinical-logic-s03): the walkthrough's worked examples, the edge of every cell, both scales, the tiers, missing readings and pregnancy.</summary>
     public class News2Tests
     {
-        private readonly Xunit.Abstractions.ITestOutputHelper _out;
+        private readonly ITestOutputHelper _out;
 
-        public News2Tests(Xunit.Abstractions.ITestOutputHelper output) => _out = output;
+        public News2Tests(ITestOutputHelper output) => _out = output;
 
         private static readonly ContentPackage Content = TestCase.Package();
         private static readonly News2Table Table = News2Table.Parse(File.ReadAllText(Path.Combine(TestCase.Repo, "content", "news2", "news2.json")), "news2");
