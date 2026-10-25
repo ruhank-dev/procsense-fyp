@@ -2,7 +2,7 @@
   "case": "VAR-S2-PD",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "09c9ff51fc20da82f03e0f8f4852abc9fd09d59841076a6ef3d1981f5048ad69",
+  "log_hash": "15abd42cf58cfd21836246348ba8c34d8870ae2282ecaeaf085bfade18b97a5f",
   "state_hash": "8b8c3a8b372c18be3e60bf5157b90dca7bdcd6b9ac45febc22dc8c49ccc87171",
   "facts": {
     "identity_confirmed": true,
@@ -38,6 +38,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -65,7 +66,7 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 21,
+    "credits": 23,
     "minor": ["minor.treatment_documentation"],
     "major": [],
     "critical": []

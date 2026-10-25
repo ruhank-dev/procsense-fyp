@@ -43,7 +43,7 @@ namespace ProcSense.Core.Tests
         public void The_content_has_the_hypersensitivity_event_and_the_six_vital_sign_events_with_a_source()
         {
             var ids = Content.Events.Events.Select(e => e.Id).ToList();
-            Assert.Equal(new[] { "E-HYPERSENSITIVITY", "E-LOW-BP", "E-HIGH-HR", "E-LOW-HR", "E-LOW-OXYGEN", "E-FAST-BREATHING", "E-SLOW-BREATHING" }, ids);
+            Assert.Equal(new[] { "E-HYPERSENSITIVITY", "E-LOW-BP", "E-HIGH-HR", "E-LOW-HR", "E-LOW-OXYGEN", "E-FAST-BREATHING", "E-FEVER", "E-COLD", "E-SLOW-BREATHING" }, ids);
             foreach (var e in Content.Events.Events) { Assert.Contains("SR-2863", e.Sources); Assert.NotEmpty(e.Expected); }
             Assert.Equal((20, 180.0, 90.0, 1, 1), (Content.Events.EvaluateEverySteps, Content.Events.WarmupSeconds, Content.Events.GlobalCooldownSeconds, Content.Events.MaxClinical, Content.Events.MaxOther));
         }

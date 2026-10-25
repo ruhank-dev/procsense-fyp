@@ -417,6 +417,136 @@
    ]
   },
   {
+   "id": "E-FEVER",
+   "whatif": "w05",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    ">=": [
+     {
+      "var": "vitals.temp"
+     },
+     38.0
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "temp",
+    "op": ">=",
+    "value": 38.0
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Tell the senior: a fever may change the pathway (DT-087)"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_fever_escalated"
+     ],
+     "flag": "event.e-fever.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_fever_not_escalated"
+     ],
+     "flag": "event.e-fever.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-2204",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-COLD",
+   "whatif": "w06",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "<=": [
+     {
+      "var": "vitals.temp"
+     },
+     36.0
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "temp",
+    "op": "<=",
+    "value": 36.0
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Tell the anaesthetist: warm the patient before theatre (DT-087)"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_cold_escalated"
+     ],
+     "flag": "event.e-cold.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_cold_not_escalated"
+     ],
+     "flag": "event.e-cold.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-2205",
+    "SR-2863"
+   ]
+  },
+  {
    "id": "E-SLOW-BREATHING",
    "whatif": "w09",
    "category": "clinical",

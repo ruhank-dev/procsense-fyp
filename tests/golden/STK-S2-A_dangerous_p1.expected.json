@@ -39,6 +39,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.missed",
       "exam.permission_asked",
       "exam.started",
       "identity_asked_open",
@@ -67,7 +68,7 @@
     "result": "FAIL",
     "credits": 22,
     "minor": ["minor.treatment_documentation"],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": ["critical.action_before_identity"]
   }
 }

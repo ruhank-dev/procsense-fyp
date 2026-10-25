@@ -21,6 +21,7 @@
       "allergy_reaction_asked",
       "decision.declared",
       "endstate.resolved",
+      "event.e-fever.missed",
       "identity_asked_open",
       "mode.emergency",
       "news2.computed",
@@ -37,7 +38,7 @@
     "result": "SUCCESS",
     "credits": 4,
     "minor": ["minor.no_introduction"],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": []
   }
 }

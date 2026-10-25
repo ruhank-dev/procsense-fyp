@@ -39,6 +39,7 @@
       "consent.signed",
       "consent.teach_back_ok",
       "endstate.resolved",
+      "event.e-fever.missed",
       "exam.permission_asked",
       "exam.started",
       "fasting.rsi",
@@ -68,7 +69,7 @@
     "result": "SUCCESS",
     "credits": 18,
     "minor": ["minor.treatment_documentation"],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": []
   }
 }

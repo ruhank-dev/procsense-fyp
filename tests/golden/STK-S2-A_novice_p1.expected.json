@@ -39,6 +39,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.missed",
       "exam.permission_asked",
       "exam.started",
       "identity_asked_open",
@@ -65,7 +66,7 @@
     "result": "SUCCESS",
     "credits": 19,
     "minor": ["minor.no_introduction", "minor.question_unanswered", "minor.treatment_documentation"],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": []
   }
 }

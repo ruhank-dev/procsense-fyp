@@ -2,7 +2,7 @@
   "case": "SC-22",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "60a6d8d5313df4b502f6e1cb8b1b16ecb01b0e5e2bedf9d06b539b7fd180aa56",
+  "log_hash": "61296e53dc273a6321d60d013a5f4a22043fe31d37eb25a72a764a933a30dde3",
   "state_hash": "ec15244615fc010f5c8e5c7255f52f1c88e673865df0574bb98fcf7eb51663b7",
   "facts": {
     "identity_confirmed": true,
@@ -16,6 +16,7 @@
       "condition.diabetes",
       "decision.declared",
       "endstate.resolved",
+      "event.e-fever.handled",
       "identity_asked_open",
       "introduced"
     ],
@@ -28,7 +29,7 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 2,
+    "credits": 4,
     "minor": [],
     "major": [],
     "critical": []

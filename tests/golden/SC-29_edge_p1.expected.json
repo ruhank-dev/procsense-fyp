@@ -38,6 +38,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.missed",
       "event.e-high-hr.handled",
       "exam.permission_asked",
       "exam.started",
@@ -71,7 +72,7 @@
     "result": "SUCCESS",
     "credits": 13,
     "minor": ["minor.treatment_documentation"],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": []
   }
 }

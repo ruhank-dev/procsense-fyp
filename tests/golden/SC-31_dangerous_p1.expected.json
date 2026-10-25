@@ -2,7 +2,7 @@
   "case": "SC-31",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "d1f251a6a5c6b96f3387e451afd54cef49beb10d843bbcf70e92e7b3ca022118",
+  "log_hash": "9448b44a025b8074342d6ae1833f12d4d2f14614fc20dc5d9a61cd0e7f3b1dc5",
   "state_hash": "cb442ebff99a0fe73b3a86748ddccd903239d528778dad50401276914bfc685f",
   "facts": {
     "identity_confirmed": true,
@@ -42,6 +42,7 @@
       "deterioration.treated",
       "endstate.resolved",
       "event.e-fast-breathing.missed",
+      "event.e-fever.missed",
       "event.e-high-hr.missed",
       "exam.permission_asked",
       "exam.started",
@@ -74,7 +75,7 @@
     "result": "FAIL",
     "credits": 12,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fast_breathing_not_escalated", "major.e_high_hr_not_escalated"],
+    "major": ["major.e_fast_breathing_not_escalated", "major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
     "critical": ["critical.action_before_identity", "critical.ignored_critical_result"]
   }
 }

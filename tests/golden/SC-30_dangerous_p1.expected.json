@@ -40,6 +40,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.missed",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -71,7 +72,7 @@
     "result": "FAIL",
     "credits": 11,
     "minor": ["minor.treatment_documentation"],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": ["critical.action_before_identity"]
   }
 }

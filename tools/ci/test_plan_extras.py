@@ -42,7 +42,7 @@ class Candidates(unittest.TestCase):
         without = next(c for c in CASES.values() if not c["allergies"])
         self.assertIn("E-HYPERSENSITIVITY", [e["id"] for e in PE.eligible_events(with_allergy)])
         self.assertNotIn("E-HYPERSENSITIVITY", [e["id"] for e in PE.eligible_events(without)])
-        self.assertEqual({e["id"] for e in PE.eligible_events(without)}, {"E-LOW-BP", "E-HIGH-HR", "E-LOW-HR", "E-LOW-OXYGEN", "E-FAST-BREATHING", "E-SLOW-BREATHING"})
+        self.assertEqual({e["id"] for e in PE.eligible_events(without)}, {"E-LOW-BP", "E-HIGH-HR", "E-LOW-HR", "E-LOW-OXYGEN", "E-FAST-BREATHING", "E-SLOW-BREATHING", "E-FEVER", "E-COLD"})
 
     def test_an_interaction_candidate_is_two_problems_the_knowledge_base_ties_to_the_same_evidence(self):
         c = PE.interaction_candidates(CASES["SC-1"])

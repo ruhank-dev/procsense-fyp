@@ -61,16 +61,16 @@ EVENTS = [
     recognition("E-LOW-HR", "w04", "Call the senior, the anaesthetist and the medical team", ("hr", "<=", 40), "SR-0105"),
     recognition("E-LOW-OXYGEN", "w07", "Call the anaesthetist or senior urgently", ("spo2", "<=", 91), "SR-0124"),
     recognition("E-FAST-BREATHING", "w08", "Call the senior urgently", ("rr", ">=", 25), "SR-0119"),
+    recognition("E-FEVER", "w05", "Tell the senior: a fever may change the pathway (DT-087)", ("temp", ">=", 38.0), "SR-2204"),
+    recognition("E-COLD", "w06", "Tell the anaesthetist: warm the patient before theatre (DT-087)", ("temp", "<=", 36.0), "SR-2205"),
     recognition("E-SLOW-BREATHING", "w09", "Call the emergency team and the anaesthetist immediately", ("rr", "<=", 8), "SR-0120"),
 ]
 
 # how every what-if is covered: ("event", event id) | ("engine", test file, what) | ("data", why there is no runtime)
 COVER = {
-    "w01": ("event", "E-LOW-BP"), "w03": ("event", "E-HIGH-HR"), "w04": ("event", "E-LOW-HR"), "w07": ("event", "E-LOW-OXYGEN"), "w08": ("event", "E-FAST-BREATHING"), "w09": ("event", "E-SLOW-BREATHING"),
+    "w01": ("event", "E-LOW-BP"), "w03": ("event", "E-HIGH-HR"), "w04": ("event", "E-LOW-HR"), "w07": ("event", "E-LOW-OXYGEN"), "w08": ("event", "E-FAST-BREATHING"), "w09": ("event", "E-SLOW-BREATHING"), "w05": ("event", "E-FEVER"), "w06": ("event", "E-COLD"),
     "w29": ("event", "E-HYPERSENSITIVITY"),
     "w02": ("engine", "DecisionEngineTests.cs", "a clinic pressure of 180/110 or more on repeat postpones a planned case (decision engine)"),
-    "w05": ("data", "fever is scored by NEWS2 and the sepsis tiers; there is no separate fever event"),
-    "w06": ("data", "a cold patient is scored by NEWS2 temperature; there is no separate event"),
     "w10": ("engine", "BehaviourTests.cs", "low oxygen or low sugar sets the confusion flag the behaviour model reads"),
     "w11": ("data", "a sudden worse pain or a rigid abdomen needs a case timeline that says so; none of the P0 cases does"),
     "w12": ("engine", "CriticalCallTests.cs", "critical potassium is phoned through"),

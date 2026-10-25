@@ -2,7 +2,7 @@
   "case": "SC-29",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "5214b053f6c0d350c0ab7eb1ec69f0367aceb0a637c7287b75fe125f21463186",
+  "log_hash": "2c9f367f3ec0081e2df9a661a6ef8cc79a800dce97e9d95f18ed27989357700d",
   "state_hash": "0094ecaed73d4326902aa40ecaba382f81b747ede8985ddec4f23f20f3e4037a",
   "facts": {
     "identity_confirmed": true,
@@ -38,6 +38,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.handled",
       "event.e-high-hr.handled",
       "exam.permission_asked",
       "exam.started",
@@ -69,7 +70,7 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 13,
+    "credits": 16,
     "minor": ["minor.treatment_documentation"],
     "major": [],
     "critical": []

@@ -2,7 +2,7 @@
   "case": "VAR-S2-I",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "5258cd8e62e077fd60b67298f6809e8d86b2eb4fcecec7d95004942d99c0dbcd",
+  "log_hash": "552ab189fb81107fd50466c7a890fa8d6ba7bb7adf5949ab5cd2c9851cd7bd0d",
   "state_hash": "ca3b093e668a81ba343ea218d6d071272528f05fd8a5276d8386ba7b815cc877",
   "facts": {
     "identity_confirmed": true,
@@ -39,6 +39,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "fasting.rsi",
@@ -66,9 +67,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 18,
+    "credits": 21,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.consent_minor_without_senior"],
+    "major": [],
     "critical": []
   }
 }

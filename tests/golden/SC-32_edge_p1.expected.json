@@ -15,6 +15,7 @@
       "allergy_reaction_asked",
       "decision.declared",
       "endstate.resolved",
+      "event.e-fever.missed",
       "identity_asked_open",
       "introduced"
     ],
@@ -29,7 +30,7 @@
     "result": "SUCCESS_WITH_DELAY",
     "credits": 1,
     "minor": [],
-    "major": ["major.postponed_unnecessarily"],
+    "major": ["major.e_fever_not_escalated", "major.postponed_unnecessarily"],
     "critical": []
   }
 }

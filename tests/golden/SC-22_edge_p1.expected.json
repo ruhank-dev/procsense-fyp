@@ -16,6 +16,7 @@
       "condition.diabetes",
       "decision.declared",
       "endstate.resolved",
+      "event.e-fever.missed",
       "identity_asked_open",
       "introduced"
     ],
@@ -30,7 +31,7 @@
     "result": "SUCCESS",
     "credits": 2,
     "minor": [],
-    "major": [],
+    "major": ["major.e_fever_not_escalated"],
     "critical": []
   }
 }
