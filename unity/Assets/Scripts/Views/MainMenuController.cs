@@ -19,6 +19,7 @@ namespace ProcSense.VR.Views
         public Canvas Canvas { get; private set; }
         public Button StartButton { get; private set; }
         public Button QuitButton { get; private set; }
+        public Button GeneratedButton { get; private set; }
         public GameObject PracticeHint { get; private set; }
         public string Loading { get; private set; } = "";
         /// <summary>Replaced by tests so no scene is loaded.</summary>
@@ -37,18 +38,20 @@ namespace ProcSense.VR.Views
             Chooser = chooserGo.AddComponent<ModeChooserView>();
             Chooser.Build();
 
-            Canvas = UiKit.WorldCanvas("Main menu", transform, new Vector2(640, 250), 0.0006f);
+            Canvas = UiKit.WorldCanvas("Main menu", transform, new Vector2(640, 330), 0.0006f);
             Canvas.transform.localPosition = new Vector3(0f, 1.2f, 0f);
             UiKit.Label(Canvas.transform, "Title", "ProcSense", new Vector2(24, 12), new Vector2(592, 48), 36);
             StartButton = UiKit.MakeButton(Canvas.transform, "Start", new Vector2(24, 70), new Vector2(280, 72), 30f);
             QuitButton = UiKit.MakeButton(Canvas.transform, "Quit", new Vector2(336, 70), new Vector2(280, 72), 30f);
-            _line = UiKit.Label(Canvas.transform, "Line", "", new Vector2(24, 160), new Vector2(592, 80), 22, TextAlignmentOptions.TopLeft, UiKit.WarnColor);
+            GeneratedButton = UiKit.MakeButton(Canvas.transform, "Generated scenario (practice)", new Vector2(24, 154), new Vector2(592, 64), 24f);
+            _line = UiKit.Label(Canvas.transform, "Line", "", new Vector2(24, 226), new Vector2(592, 50), 22, TextAlignmentOptions.TopLeft, UiKit.WarnColor);
             StartButton.onClick.AddListener(() => Start_());
+            GeneratedButton.onClick.AddListener(() => StartGenerated());
             QuitButton.onClick.AddListener(Quit);
 
             PracticeHint = new GameObject("Practice hint");
             PracticeHint.transform.SetParent(Canvas.transform, false);
-            UiKit.Label(PracticeHint.transform, "Text", "Practice: hints and prompts are on.", new Vector2(24, 215), new Vector2(592, 30), 20, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
+            UiKit.Label(PracticeHint.transform, "Text", "Practice: hints and prompts are on.", new Vector2(24, 290), new Vector2(592, 30), 20, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             PracticeHint.AddComponent<PracticeOnly>();
         }
 
@@ -63,6 +66,16 @@ namespace ProcSense.VR.Views
             _line.text = "Starting " + (Mode == SessionMode.Assessment ? "an assessment" : "practice") + "...";
             LoadScene(BootScene);
             return true;
+        }
+
+        /// <summary>Starts like Start, but asks for a pre-generated scenario (plan p1-live-scenario-generation-s10). Practice only: in assessment the menu says so and starts nothing. The fetch happens in the persistent scene once a session exists;
+        /// if it fails the authored case plays.</summary>
+        public bool StartGenerated()
+        {
+            if (ModeChoice.Locked) { _line.text = "A session is running; the mode cannot be changed."; return false; }
+            if (!ModeChoice.Chosen.HasValue) ModeChoice.Choose(SessionMode.Practice);
+            if (!GeneratedScenarioRequest.Ask(Mode)) { _line.text = GeneratedScenarioRequest.Message; return false; }
+            return Start_();
         }
 
         public void Quit()

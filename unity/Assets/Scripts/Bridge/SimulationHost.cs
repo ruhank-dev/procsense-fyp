@@ -8,6 +8,7 @@ using ProcSense.Core.Content;
 using ProcSense.Core.Observation;
 using ProcSense.Core.Pipeline;
 using ProcSense.Core.Replay;
+using ProcSense.Core.Twin;
 using ProcSense.Core.Workflow;
 using ProcSense.VR.Content;
 using ProcSense.VR.Sync;
@@ -55,6 +56,10 @@ namespace ProcSense.VR.Bridge
         /// <summary>SHA-256 of the generated scenario package this session plays (line endings normalised), or empty for an authored case. Written to the session header so the server can replay the session against the same package.</summary>
         public string PackageHash { get; private set; } = "";
 
+        /// <summary>Hash of the patient twin this session started from (a follow-up encounter), or empty. A session with a twin is saved beside its twin file and is not uploaded: the service cannot replay it without the twin.</summary>
+        public string TwinHash { get; private set; } = "";
+        private TwinSnapshot _twin;
+
         /// <summary>Test seam: where session files are saved (default: the application's data folder, `sessions`).</summary>
         public static string SessionsDirectoryOverride { get; set; }
 
@@ -96,6 +101,8 @@ namespace ProcSense.VR.Bridge
         public void StartSession(string caseId, ulong seed, SessionMode mode, IContentReader reader = null, SessionOptions options = null)
         {
             PackageHash = "";
+            TwinHash = "";
+            _twin = null;
             reader = reader ?? UnityContentReader.ForThisPlatform();
             // the mode decides what may be loaded: assessment plays only a case approved for assessment (p0-evaluation-performance-s04); the service refuses the rest too
             var load = ContentMode.Load(reader, mode, false, caseId);
@@ -111,6 +118,34 @@ namespace ProcSense.VR.Bridge
             Paused = false;
             PauseReason = "";
             Refresh();
+        }
+
+        /// <summary>The patient as the session leaves them (plan p2-ai-advanced-simulation-s02): what a follow-up encounter starts from. Null without a session.</summary>
+        public TwinSnapshot CaptureTwin() => Session == null ? null : PatientTwin.Capture(Session);
+
+        /// <summary>
+        /// Starts the follow-up encounter with the same patient (plan p2-ai-advanced-simulation-s02): the card of the case with the carried clock and vital signs, and the carried flags, behaviour and treatments put in before the first action.
+        /// Practice only. The finished encounter is saved first, so nothing the trainee did is lost. Returns the twin hash.
+        /// </summary>
+        public string StartFollowUp(TwinSnapshot twin, ulong seed)
+        {
+            if (Session == null || Content == null) throw new InvalidOperationException("no encounter to follow up");
+            if (Session.Mode == SessionMode.Assessment) throw new ContentException("A follow-up encounter is for practice only.");
+            if (!Content.Cases.TryGetValue(twin.CaseId, out var card)) throw new ContentException("the case " + twin.CaseId + " is not in the content this session was built from");
+            var next = new Session(PatientTwin.FollowUp(card, twin), seed, Session.Mode, (SubsystemFactory ?? Subsystems.Default)(Content));
+            PatientTwin.Apply(next, twin);
+            EndSession();                                                                // the encounter that ends is saved and queued as it was played
+            Session = next;
+            _twin = twin;
+            TwinHash = twin.Hash();
+            PackageHash = "";
+            ModeChoice.Lock();
+            SessionId = Guid.NewGuid().ToString();
+            _ended = false;
+            Paused = false;
+            PauseReason = "";
+            Refresh();
+            return TwinHash;
         }
 
         private void Update()
@@ -177,6 +212,11 @@ namespace ProcSense.VR.Bridge
             string dir = SessionsDirectoryOverride ?? Path.Combine(Application.persistentDataPath, "sessions");
             Directory.CreateDirectory(dir);
             string file = Path.Combine(dir, Session.Case.Id + "_" + Session.Seed + "_" + SessionId + ".jsonl");
+            if (_twin != null)
+            {
+                file = Path.Combine(dir, Session.Case.Id + "_" + Session.Seed + "_followup_" + TwinHash.Substring(0, 12) + "_" + SessionId + ".jsonl");
+                File.WriteAllText(Path.ChangeExtension(file, ".twin.json"), _twin.ToJson());                       // the replay needs the twin the encounter started from
+            }
             File.WriteAllText(file, SessionFile.Write(Session, new SessionMeta(SessionId, ContentVersion, PackageHash)));
             return file;
         }
@@ -189,7 +229,7 @@ namespace ProcSense.VR.Bridge
             if (file == null) return null;
             _ended = true;
             ModeChoice.Unlock();
-            SessionUploader.Enqueue(SessionId, file);
+            if (_twin == null) SessionUploader.Enqueue(SessionId, file);          // a follow-up encounter stays on the device with its twin file: the service cannot replay it without the twin
             SessionEnded?.Invoke(SessionId);
             return file;
         }

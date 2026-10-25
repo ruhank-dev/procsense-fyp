@@ -35,7 +35,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | A10 | Validation, repair and rejection | Implemented and tested | deterministic | 2 (1) | yes | p1-live-scenario-generation-s07; p1-live-scenario-generation-s08 | PH-10 | [A10](../plans/features/A10.md) |
 | A11 | Difficulty control in generation | Implemented and tested | deterministic | 2 (1) | yes | p1-live-scenario-generation-s03; p1-personalisation-s02 | PH-05 | [A11](../plans/features/A11.md) |
 | A12 | Recombination of case components | Implemented but incompletely tested | deterministic | 2 (1) | yes | p1-dataset-analysis-s06; p1-scenario-composer-difficulty-s01; p1-scenario-composer-difficulty-s02 | PH-04 | [A12](../plans/features/A12.md) |
-| A13 | Provenance and reproducibility of generated scenarios | Partially implemented | deterministic | 1 (0) | yes | p1-live-scenario-generation-s09; p1-live-scenario-generation-s10 | PH-11 | [A13](../plans/features/A13.md) |
+| A13 | Provenance and reproducibility of generated scenarios | Implemented but incompletely tested | deterministic | 1 (0) | yes | p1-live-scenario-generation-s09; p1-live-scenario-generation-s10 | PH-11 | [A13](../plans/features/A13.md) |
 | A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | Implemented but incompletely tested | hybrid | 3 (1) | yes | p1-dataset-analysis-s06 | PH-22 | [A66](../plans/features/A66.md) |
 | B14 | Dataset-driven numeric generation (labs, vitals, trends) | Implemented and tested | deterministic | 2 (1) | yes | p1-dataset-analysis-s02; p1-dataset-analysis-s05; p1-live-scenario-generation-s05; p1-live-scenario-generation-s14 | PH-09 | [B14](../plans/features/B14.md) |
 | B15 | ECG generation and variation | Implemented and tested | deterministic | 2 (1) | yes | p1-dataset-analysis-s03; p1-live-scenario-generation-s06; p2-ai-advanced-simulation-s04 | PH-09 | [B15](../plans/features/B15.md) |
@@ -73,7 +73,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | D47 | Evidence-based feedback | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s08 | PH-16 | [D47](../plans/features/D47.md) |
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | Implemented and tested | hybrid | 3 (2) | yes | p1-personalisation-s01; p1-personalisation-s02; p1-personalisation-s04 | PH-23 | [D67](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | Implemented and tested | hybrid | 3 (2) | yes | p1-personalisation-s03; p1-personalisation-s05 | PH-23 | [D68](../plans/features/D68.md) |
-| E48 | Patient Digital Twin | Partially implemented | hybrid | 2 (1) | yes | p2-ai-advanced-simulation-s02 | PH-19 | [E48](../plans/features/E48.md) |
+| E48 | Patient Digital Twin | Implemented but incompletely tested | hybrid | 2 (1) | yes | p2-ai-advanced-simulation-s02 | PH-19 | [E48](../plans/features/E48.md) |
 | E49 | Multi-Agent Clinical Simulation Lab | Partially implemented | ai | 1 (1) | yes | p2-ai-advanced-simulation-s03 | PH-19 | [E49](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s09; p2-ai-advanced-simulation-s01 | PH-17 | [E50](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | Implemented and tested | hybrid | 1 (1) | yes | p1-evaluation-s02; p1-live-scenario-generation-s12 | PH-17 | [E51](../plans/features/E51.md) |

@@ -69,7 +69,11 @@
    "built_and_unit_tested": [
     "`unity/Assets/Scripts/Sync/PackageClient.cs` (fetch the next package from the service and check its SHA-256), `PackageSessionStarter.cs` (fetch, then `SimulationHost.StartFromPackage`; never fetches in assessment mode; any failure starts nothing). EditMode tests: `PackageClientTests` (7) and `PackageSessionTests` (3), run in batch mode on the desktop.",
     "Server: `POST /scenario-packages/next` (from a pool folder, setting `PACKAGE_POOL_DIR`) and `GET /scenario-packages/{hash}`; 3 new tests in `server/tests/test_sessions_api.py`, run against PostgreSQL 17 locally and on GitHub.",
-    "NOT built or not done: a button or menu entry in a scene that calls `PackageSessionStarter.Run`; a round trip against the real hosted service from the headset; the picture display of a generated case (DT-198). Everything you must do is the procedure below; its status is NOT RUN."
+    "NOT built or not done: a button or menu entry in a scene that calls `PackageSessionStarter.Run`; a round trip against the real hosted service from the headset; the picture display of a generated case (DT-198). Everything you must do is the procedure below; its status is NOT RUN.",
+    "The main menu has a button `Generated scenario (practice)` (`MainMenuController.StartGenerated`) that asks for a package; once the Boot scene has a session, `GeneratedScenarioLauncher` fetches it through `PackageSessionStarter` and replaces the untouched authored session, or leaves the authored case playing with a sentence saying why. In assessment the menu refuses and starts nothing (PlayMode `ClinicalScenesTests`, 2 tests). The round trip to the hosted service is the headset check."
+   ],
+   "headset_checks": [
+    "From the main menu press `Generated scenario (practice)` with the service reachable: the scenario that plays must be the generated one (the tablet's Session tab shows the case id); with the service off it must play the authored case and say so; in assessment mode the button must start nothing."
    ]
   },
   {
@@ -187,7 +191,14 @@
    ],
    "pass_rule": "All three voices start within 4 s (95th percentile over 10 questions); the follow-up shows exactly the earned facts.",
    "who": "Sannan",
-   "after": "Ruhan ticks p2-ai-advanced-simulation-s02 and s03."
+   "after": "Ruhan ticks p2-ai-advanced-simulation-s02 and s03.",
+   "built_and_unit_tested": [
+    "`TeamVoicesView` (installed by `ClinicalPanelsInstaller`) plays the patient, nurse and anaesthetist replies one after another in a fixed order, one subtitle at a time, each with its own voice profile, and raises `Spoke` for the audio layer (EditMode `TeamVoicesTests`, 4). The Unity client that sends a question to the dialogue service and hands the replies to it is not built.",
+    "The tablet's Session tab has `Follow-up encounter (practice)`: `SimulationHost.CaptureTwin` and `StartFollowUp` start the same patient from the carried clock, vital signs, flags, behaviour and treatments, save the finished encounter, keep the follow-up on the device with its twin file and refuse it in assessment (EditMode `FollowUpEncounterTests`, 3)."
+   ],
+   "headset_checks": [
+    "Finish an encounter in practice mode, press `Follow-up encounter (practice)` on the Session tab: the clock and monitor must continue from where the first encounter ended, and the earned facts (not the checklist progress) must carry over; in assessment mode the button must stay off."
+   ]
   },
   {
    "id": "DC-08",

@@ -11,8 +11,8 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 | Status | Features |
 |---|---|
 | Implemented and tested | 42 |
-| Implemented but incompletely tested | 18 |
-| Partially implemented | 5 |
+| Implemented but incompletely tested | 20 |
+| Partially implemented | 3 |
 | Planned | 1 |
 | Blocked | 0 |
 | Deferred | 2 |
@@ -35,7 +35,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | A10 | Validation, repair and rejection | deterministic | Implemented and tested | Implemented and tested | PH-10 | P1 | [plan](../plans/features/A10.md) |
 | A11 | Difficulty control in generation | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-05 | P1 | [plan](../plans/features/A11.md) |
 | A12 | Recombination of case components | deterministic | Implemented but incompletely tested | Implemented but incompletely tested | PH-04 | P1 | [plan](../plans/features/A12.md) |
-| A13 | Provenance and reproducibility of generated scenarios | deterministic | Partially implemented | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A13.md) |
+| A13 | Provenance and reproducibility of generated scenarios | deterministic | Implemented but incompletely tested | Not applicable (deterministic feature) | PH-11 | P1 | [plan](../plans/features/A13.md) |
 | A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-22 | P1 | [plan](../plans/features/A66.md) |
 | B14 | Dataset-driven numeric generation (labs, vitals, trends) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B14.md) |
 | B15 | ECG generation and variation | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/B15.md) |
@@ -73,7 +73,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | D47 | Evidence-based feedback | hybrid | Implemented and tested | Implemented and tested | PH-16 | P1 | [plan](../plans/features/D47.md) |
 | D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | hybrid | Implemented and tested | Implemented and tested | PH-23 | P1 | [plan](../plans/features/D67.md) |
 | D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | hybrid | Implemented and tested | Implemented and tested | PH-23 | P1 | [plan](../plans/features/D68.md) |
-| E48 | Patient Digital Twin | hybrid | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E48.md) |
+| E48 | Patient Digital Twin | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E48.md) |
 | E49 | Multi-Agent Clinical Simulation Lab | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E49.md) |
 | E50 | Adversarial generator (red-team for validators and dialogue) | hybrid | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E50.md) |
 | E51 | Scenario Quality Evaluator (offline batch) | hybrid | Implemented and tested | Implemented and tested | PH-17 | P1 | [plan](../plans/features/E51.md) |
@@ -131,7 +131,7 @@ Generate a fresh, coherent, validated scenario for each practice session from th
 | Kind (AI or deterministic) | hybrid |
 | Status | Implemented but incompletely tested |
 | AI status | Implemented but incompletely tested |
-| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs; unity/Assets/Scripts/Sync/PackageClient.cs; unity/Assets/Scripts/Sync/PackageSessionStarter.cs; unity/Assets/Tests/EditMode/PackageClientTests.cs; server/routers/scenario_packages.py; server/tests/test_sessions_api.py |
+| Evidence (what exists) | building blocks exist: Stage B, Elo selector, band sampling (EXP-DATA-2), imaging library, EventDirector; server/generation/pipeline.py; server/generation/pool.py; server/generation/compose_plan.py; server/schemas/session_request.json; server/generation/contracts.py; server/generation/retrieve.py; tools/ci/test_generation_retrieve.py; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; server/llm/gateway.py; server/generation/narrative.py; reports/ai/narrative-4b.json; server/generation/numeric.py; tools/ci/test_generation_numeric.py; server/generation/media.py; tools/ci/test_generation_media.py; server/generation/crossmodal.py; tools/ci/test_generation_crossmodal.py; server/generation/quality.py; server/generation/repair.py; tools/ci/test_generation_quality.py; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; tools/ci/test_generation_live.py; tests/golden_generated; server/generation/history.py; tools/ci/test_generation_history.py; prompts/compose_plan/spine_v2.txt; reports/ai/planner-eval.json; tools/generation/fit_joint.py; content/generation/releases.json; server/generation/plan_extras.py; server/generation/trap_writer.py; reports/ai/plan-extras-eval.json; reports/ai/trap-writer-eval.json; tools/ci/test_plan_extras.py; tools/ci/test_trap_writer.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs; unity/Assets/Scripts/Sync/PackageClient.cs; unity/Assets/Scripts/Sync/PackageSessionStarter.cs; unity/Assets/Tests/EditMode/PackageClientTests.cs; server/routers/scenario_packages.py; server/tests/test_sessions_api.py; unity/Assets/Scripts/Views/GeneratedScenarioLauncher.cs; unity/Assets/Scripts/Views/MainMenuController.cs; unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs |
 | Lineage (existing ids) | new (this planning update, 12 Oct 2026); extends A1 |
 | Method | Hybrid: deterministic selection and validation, statistical numbers, retrieval of media; the AI composer (LLM with retrieval over the scenario knowledge base) proposes the scenario plan and the LLM writes the narrative, all constrained by the solver and validators. |
 | LLM-first classification | LLM-first examined per stage; it is used only where language is the product (narrative, persona). Values, media and decisions use statistical, retrieval or rule methods because they must be calibrated, licensed and reproducible. |
@@ -437,9 +437,9 @@ Every generated package records seed, pack versions, prompt versions, model dige
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Partially implemented |
+| Status | Implemented but incompletely tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs; unity/Assets/Scripts/Sync/PackageClient.cs; unity/Assets/Scripts/Sync/PackageSessionStarter.cs; unity/Assets/Tests/EditMode/PackageClientTests.cs; server/routers/scenario_packages.py; server/tests/test_sessions_api.py |
+| Evidence (what exists) | src/ProcSense.Core/Replay/SessionFile.cs; content/manifest.json; docs/research/source_register.csv; server/generation/novelty.py; tools/ci/test_generation_novelty.py; docs/testing/SANNAN_EXTERNAL_TESTING.md; server/generation/package.py; tools/ci/test_generation_package.py; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Tests/EditMode/PackageSessionTests.cs; unity/Assets/Scripts/Sync/PackageClient.cs; unity/Assets/Scripts/Sync/PackageSessionStarter.cs; unity/Assets/Tests/EditMode/PackageClientTests.cs; server/routers/scenario_packages.py; server/tests/test_sessions_api.py; unity/Assets/Scripts/Views/GeneratedScenarioLauncher.cs; unity/Assets/Scripts/Views/MainMenuController.cs; unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs |
 | Lineage (existing ids) | — |
 | Method | Canonical JSON and hashing; LLM output stored in the package (never regenerated on replay). |
 | LLM-first classification | Not an AI task. |
@@ -1509,9 +1509,9 @@ A patient model whose physiology, history and responses persist and evolve acros
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
-| AI status | Partially implemented |
-| Evidence (what exists) | src/ProcSense.Core/Physiology/LitePhysio.cs; src/ProcSense.Core/Twin/PatientTwin.cs; tests/ProcSense.Core.Tests/PatientTwinTests.cs; docs/testing/SANNAN_EXTERNAL_TESTING.md |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
+| Evidence (what exists) | src/ProcSense.Core/Physiology/LitePhysio.cs; src/ProcSense.Core/Twin/PatientTwin.cs; tests/ProcSense.Core.Tests/PatientTwinTests.cs; docs/testing/SANNAN_EXTERNAL_TESTING.md; unity/Assets/Scripts/Bridge/SimulationHost.cs; unity/Assets/Scripts/Views/SessionTabView.cs; unity/Assets/Tests/EditMode/FollowUpEncounterTests.cs |
 | Lineage (existing ids) | p1-pulse-physiology |
 | Method | Deterministic physiology + generated profile; LLM voice. |
 | LLM-first classification | LLM cannot be the physiology. |
@@ -1539,7 +1539,7 @@ Several AI characters (nurse, anaesthetist, surgeon) acting at once with turn-ta
 | Kind (AI or deterministic) | ai |
 | Status | Partially implemented |
 | AI status | Partially implemented |
-| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json; server/dialogue/dialogue.py; prompts/dialogue/staff_pick_many_v1.txt; docs/testing/SANNAN_EXTERNAL_TESTING.md |
+| Evidence (what exists) | tools/ai/eval_multiagent.py; reports/ai/multiagent-eval.json; server/dialogue/dialogue.py; prompts/dialogue/staff_pick_many_v1.txt; docs/testing/SANNAN_EXTERNAL_TESTING.md; unity/Assets/Scripts/Views/TeamVoicesView.cs; unity/Assets/Tests/EditMode/TeamVoicesTests.cs |
 | Lineage (existing ids) | — |
 | Method | Multiple LLM roles orchestrated by the ReactionQueue. |
 | LLM-first classification | LLM roles; orchestration deterministic. |

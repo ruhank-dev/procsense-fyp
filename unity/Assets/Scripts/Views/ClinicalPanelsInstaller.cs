@@ -18,6 +18,7 @@ namespace ProcSense.VR.Views
         public EventCardsView Cards { get; private set; }
         public DiagnosticsSceneView Diagnostics { get; private set; }
         public NurseSubtitleView Subtitles { get; private set; }
+        public TeamVoicesView Team { get; private set; }
         public static readonly Vector3 SubtitlesDefault = new Vector3(0.6f, 1.9f, 1.4f);
 
         private void Update() => Install();
@@ -48,6 +49,11 @@ namespace ProcSense.VR.Views
             {
                 var go = Place("Nurse subtitles", "NurseSubtitleAnchor", SubtitlesDefault, Quaternion.identity);
                 Subtitles = go.AddComponent<NurseSubtitleView>();
+            }
+            if (Team == null)
+            {
+                var go = Place("Team voices", "TeamVoicesAnchor", Vector3.zero, Quaternion.identity);
+                Team = go.AddComponent<TeamVoicesView>();
             }
             return true;
         }

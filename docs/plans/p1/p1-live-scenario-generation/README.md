@@ -24,7 +24,7 @@ Generate a fresh, coherent, validated practice scenario for each session from th
 | [p1-live-scenario-generation-s07](steps/✅%20p1-live-scenario-generation-s07-crossmodal-validation.md) | Cross-modal consistency and Stage B on generated packages (LG-09, LG-10) |
 | [p1-live-scenario-generation-s08](steps/✅%20p1-live-scenario-generation-s08-quality-repair.md) | Quality evaluation, repair and rejection (LG-11, LG-12) |
 | [p1-live-scenario-generation-s09](steps/✅%20p1-live-scenario-generation-s09-novelty-provenance.md) | Novelty fingerprints and provenance (LG-13) |
-| [p1-live-scenario-generation-s10](steps/p1-live-scenario-generation-s10-packaging-unity.md) | Packaging, pre-generated pool and Unity delivery (LG-14, LG-15) |
+| [p1-live-scenario-generation-s10](steps/✅%20p1-live-scenario-generation-s10-packaging-unity.md) | Packaging, pre-generated pool and Unity delivery (LG-14, LG-15) |
 | [p1-live-scenario-generation-s11](steps/✅%20p1-live-scenario-generation-s11-live-loop.md) | Live loop on generated cases: events, branches, scoring (LG-16 to LG-18) |
 | [p1-live-scenario-generation-s12](steps/✅%20p1-live-scenario-generation-s12-debrief-history-feedback.md) | Grounded debrief, history and the offline feedback loop (LG-19 to LG-21) |
 | [p1-live-scenario-generation-s13](steps/p1-live-scenario-generation-s13-ai-scenario-composer.md) | AI scenario plan composer: LLM with retrieval, structured generation and solver completion (LG-04) |

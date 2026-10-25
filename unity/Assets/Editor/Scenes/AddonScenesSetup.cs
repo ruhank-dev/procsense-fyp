@@ -110,11 +110,18 @@ namespace ProcSense.EditorTools
             string path = ScenesDir + "/Sys_Core.unity";
             if (!File.Exists(path)) return;
             var scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+            bool changed = false;
             if (scene.GetRootGameObjects().All(g => g.GetComponent<ClinicalPanelsInstaller>() == null))
             {
                 new GameObject("Clinical panels").AddComponent<ClinicalPanelsInstaller>();
-                EditorSceneManager.SaveScene(scene);
+                changed = true;
             }
+            if (scene.GetRootGameObjects().All(g => g.GetComponent<GeneratedScenarioLauncher>() == null))
+            {
+                new GameObject("Generated scenario launcher").AddComponent<GeneratedScenarioLauncher>();
+                changed = true;
+            }
+            if (changed) EditorSceneManager.SaveScene(scene);
         }
     }
 }

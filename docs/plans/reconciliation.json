@@ -787,7 +787,7 @@
   "p1-live-scenario-generation-s10": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (Core)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "server/generation/package.py",
@@ -798,11 +798,15 @@
     "unity/Assets/Scripts/Sync/PackageSessionStarter.cs",
     "unity/Assets/Tests/EditMode/PackageClientTests.cs",
     "server/routers/scenario_packages.py",
-    "server/tests/test_sessions_api.py"
+    "server/tests/test_sessions_api.py",
+    "unity/Assets/Scripts/Views/GeneratedScenarioLauncher.cs",
+    "unity/Assets/Scripts/Views/MainMenuController.cs",
+    "unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs"
    ],
-   "measured": "the Core plays a generated package; the gate refuses it in assessment. Unity EditMode (batch mode, Unity 6000.5.10f1, 19 Oct 2026): 64 of 64 passed, including the 3 package tests",
-   "open": "BUILT and tested (19 Oct 2026): the Unity bridge (SimulationHost.StartFromPackage), the fetch client and the starter (PackageClient, PackageSessionStarter; EditMode, 78 of 78 pass in batch mode) and the server routes POST /scenario-packages/next and GET /scenario-packages/{hash} (3 tests on PostgreSQL). NOT built: a menu entry in a scene that calls the starter, a round trip from the headset to the hosted service (DC-02, NOT RUN), and the picture display of a generated case (DT-198).",
-   "external": "Sannan: the Unity fetch and play of a package (check DC-02)"
+   "measured": "the Core plays a generated package; the gate refuses it in assessment. Unity EditMode (batch mode, Unity 6000.5.10f1, 19 Oct 2026): 64 of 64 passed, including the 3 package tests; main-menu entry `Generated scenario (practice)` and GeneratedScenarioLauncher (PlayMode: assessment refuses and starts nothing, a failed fetch keeps the authored case, an accepted package replaces the untouched session)",
+   "open": "The headset round trip to the hosted service (DC-02, NOT RUN) and the picture display of a generated case (DT-198).",
+   "external": "Sannan: the Unity fetch and play of a package (check DC-02)",
+   "implementation": "complete"
   },
   "p1-live-scenario-generation-s11": {
    "owner": "Ruhan",
@@ -1139,15 +1143,19 @@
   "p2-ai-advanced-simulation-s02": {
    "owner": "Ruhan",
    "before": "Not built (research)",
-   "now": "PARTLY",
+   "now": "ENG_DONE",
    "evidence": [
     "docs/testing/SANNAN_EXTERNAL_TESTING.md",
     "src/ProcSense.Core/Twin/PatientTwin.cs",
-    "tests/ProcSense.Core.Tests/PatientTwinTests.cs"
+    "tests/ProcSense.Core.Tests/PatientTwinTests.cs",
+    "unity/Assets/Scripts/Bridge/SimulationHost.cs",
+    "unity/Assets/Scripts/Views/SessionTabView.cs",
+    "unity/Assets/Tests/EditMode/FollowUpEncounterTests.cs"
    ],
-   "measured": "7 tests: snapshot, hash, follow-up card, the carried state replays to the same snapshot; the 142 golden runs are untouched",
-   "open": "The Unity host that offers the follow-up encounter is not built; a Pulse-driven twin waits for DT-207. The Unity host does not offer a follow-up encounter yet (Sannan); a Pulse-driven twin waits for DT-207",
-   "external": "Sannan: a Unity host that offers the follow-up encounter (DC-07); a Pulse-driven twin waits for the Pulse result"
+   "measured": "7 tests: snapshot, hash, follow-up card, the carried state replays to the same snapshot; the 142 golden runs are untouched; Unity host: CaptureTwin and StartFollowUp, a Follow-up encounter button on the Session tab, practice only, 3 EditMode tests",
+   "open": "A Pulse-driven twin waits for DT-207; no case content uses a prior treatment as a reason (DT-215); a follow-up session stays on the device with its twin file because the service cannot replay it without the twin; the headset check is DC-07.",
+   "external": "Sannan: a Unity host that offers the follow-up encounter (DC-07); a Pulse-driven twin waits for the Pulse result",
+   "implementation": "complete"
   },
   "p2-ai-advanced-simulation-s03": {
    "owner": "Ruhan",
@@ -1158,10 +1166,12 @@
     "tools/ai/eval_multiagent.py",
     "server/dialogue/dialogue.py",
     "prompts/dialogue/staff_pick_many_v1.txt",
-    "reports/ai/multiagent-eval.json"
+    "reports/ai/multiagent-eval.json",
+    "unity/Assets/Scripts/Views/TeamVoicesView.cs",
+    "unity/Assets/Tests/EditMode/TeamVoicesTests.cs"
    ],
-   "measured": "patient written, two staff choosing approved lines in one call: all three p95 3.77 s against 4 s, 100 percent of turns within 4 s, 0 fallbacks; written staff replies 5.85 s; qwen3.5 does not support parallel requests; the multi_agent gate passes",
-   "open": "The Unity side that plays three voices is not built; staff speak fixed approved lines in the engine. Staff speak fixed approved lines (the price of the budget); the Unity side that plays three voices is Sannan's",
+   "measured": "patient written, two staff choosing approved lines in one call: all three p95 3.77 s against 4 s, 100 percent of turns within 4 s, 0 fallbacks; written staff replies 5.85 s; qwen3.5 does not support parallel requests; the multi_agent gate passes; Unity: TeamVoicesView plays patient, nurse and anaesthetist in a fixed order, one at a time, with distinct voice profiles (4 EditMode tests)",
+   "open": "The Unity client that sends the question to the dialogue service and hands the three replies to TeamVoicesView is not built, and the service has per-role routes only (the one-call staff pick is not routed); audio and the headset check are Sannan's (DC-07).",
    "external": "Sannan: playing three voices in the scene (DC-07)"
   },
   "p2-ai-advanced-simulation-s04": {

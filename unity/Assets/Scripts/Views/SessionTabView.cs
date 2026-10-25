@@ -17,7 +17,7 @@ namespace ProcSense.VR.Views
         public const float RefreshWhilePendingSeconds = 8f;
 
         private TMP_Text _account, _upload, _results, _note;
-        private Button _finish, _refresh;
+        private Button _finish, _refresh, _followUp;
         private float _nextText;
         private bool _fetching;
         private string _message = "";
@@ -28,6 +28,7 @@ namespace ProcSense.VR.Views
         public string MessageText => _note != null ? _note.text : "";
         public Button FinishButton => _finish;
         public Button RefreshButton => _refresh;
+        public Button FollowUpButton => _followUp;
 
         /// <summary>Draws the tab's controls under <paramref name="root"/> (the tablet's tab area starts 190 px from the top).</summary>
         public void Build(Transform root)
@@ -37,12 +38,14 @@ namespace ProcSense.VR.Views
             _upload = UiKit.Label(root, "Upload status", "", new Vector2(14, 224), new Vector2(872, 54), 22);
             _finish = UiKit.MakeButton(root, "Finish session and upload", new Vector2(10, 284), new Vector2(430, 50), 22);
             _refresh = UiKit.MakeButton(root, "Refresh my results", new Vector2(460, 284), new Vector2(430, 50), 22);
-            _note = UiKit.Label(root, "Message", "", new Vector2(14, 338), new Vector2(872, 28), 20, TextAlignmentOptions.TopLeft, UiKit.WarnColor);
+            _note = UiKit.Label(root, "Message", "", new Vector2(14, 338), new Vector2(440, 28), 20, TextAlignmentOptions.TopLeft, UiKit.WarnColor);
+            _followUp = UiKit.MakeButton(root, "Follow-up encounter (practice)", new Vector2(460, 334), new Vector2(430, 34), 20);
             UiKit.Label(root, "Results title", "My latest sessions on the service", new Vector2(14, 368), new Vector2(872, 28), 20, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             _results = UiKit.Label(root, "Results", "", new Vector2(14, 398), new Vector2(872, 160), 21);
             UiKit.Label(root, "Footnote", "The score uses provisional weights; the result does not depend on them.", new Vector2(14, 562), new Vector2(872, 28), 16, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             _finish.onClick.AddListener(FinishSession);
             _refresh.onClick.AddListener(() => StartCoroutine(RefreshResults()));
+            _followUp.onClick.AddListener(() => StartFollowUp());
             RefreshText();
         }
 
@@ -68,6 +71,7 @@ namespace ProcSense.VR.Views
             SetText(_upload, sync != null ? sync.Describe() : "Uploads are not running.");
             var host = SimulationHost.Instance;
             _finish.interactable = host != null && !host.Ended && host.Session != null && host.Session.Log.Count > 0;
+            _followUp.interactable = host != null && host.Session != null && host.Session.Mode == ProcSense.Core.SessionMode.Practice && host.Session.Log.Count > 0;
             if (_message.StartsWith("Session saved. Sending") && sync != null && auth != null && auth.IsSignedIn && sync.LastUploadUnix > 0 && !UploadsWaiting())
                 _message = "Saved on the service.";
             SetText(_note, _message);
@@ -90,6 +94,22 @@ namespace ProcSense.VR.Views
                 : auth != null && auth.IsSignedIn ? "Session saved. Sending it to the service..." : "Session saved on this device. Sign in to upload sessions.";
             RefreshText();
             if (file != null && auth != null && auth.IsSignedIn) StartCoroutine(Watch());
+        }
+
+        /// <summary>Plan p2-ai-advanced-simulation-s02: the same patient again, from where this encounter left them (the host saves the encounter that ends). Practice only; the host refuses assessment.</summary>
+        public bool StartFollowUp()
+        {
+            var host = SimulationHost.Instance;
+            if (host == null || host.Session == null) return false;
+            try
+            {
+                var twin = host.CaptureTwin();
+                host.StartFollowUp(twin, host.Session.Seed + 1);
+                _message = "Follow-up encounter started: the same patient at " + twin.ClockTime + ". It stays on this device.";
+                RefreshText();
+                return true;
+            }
+            catch (ProcSense.Core.Content.ContentException e) { _message = e.Message; RefreshText(); return false; }
         }
 
         /// <summary>Fetches the latest sessions now, and again every few seconds while one is still waiting to be checked (for a couple of minutes).</summary>

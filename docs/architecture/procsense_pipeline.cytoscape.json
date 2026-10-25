@@ -1383,7 +1383,7 @@
     "id": "A13",
     "label": "A13 Provenance and reproducibility of generated scenarios",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_A"
    },
    "classes": "feature"
@@ -1768,7 +1768,7 @@
     "id": "E48",
     "label": "E48 Patient Digital Twin",
     "type": "feature",
-    "status": "Partially implemented",
+    "status": "Implemented but incompletely tested",
     "parent": "g_feat_E"
    },
    "classes": "feature"
