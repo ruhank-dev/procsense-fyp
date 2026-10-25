@@ -73,6 +73,9 @@ class Settings(BaseSettings):
     speech_eval_timeout_seconds: float = 15.0                # one attempt (the measured median is 2.4 s, p95 about 4 s, free plan)
     speech_eval_budget_ms: int = 25000                       # total wall budget for one evaluation including a retry
     speech_eval_max_attempts: int = 2
+    # per-task model routing (ADR-0026, content/ai/model_routes.json): both OFF, every task then uses the local model
+    cloud_routing_enabled: bool = False            # a task whose route names an Ollama Cloud model may use it (free plan; any outage, usage limit or invalid reply falls back to the local model)
+    cloud_trainee_data_approved: bool = False      # routes that carry what a trainee said or did may go to the cloud; waits for the privacy decision (DT-248, DT-127)
     ai_batch_timeout_seconds: float = 600.0
     # privacy (p1-backend-s12): design values to be confirmed with a qualified person (DT-127)
     consent_required_for_upload: bool = True   # a session is accepted only from a person who agreed to the processing of their results (the current text)

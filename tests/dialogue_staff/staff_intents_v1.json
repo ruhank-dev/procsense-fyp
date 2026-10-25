@@ -1,0 +1,22 @@
+{
+ "id": "staff_intents_v1",
+ "label": "SYNTHETIC: 16 trainee sentences written by an AI assistant, each aimed at one staff role, with the intents a reasonable reader would accept. Not human-labelled and not independent evidence; it checks that a model picks a sensible allowed intent, not that the intent is clinically ideal. Staff speak a fixed approved line of the chosen intent, so a wrong pick is an unfitting but safe line.",
+ "items": [
+  {"role": "nurse", "say": "Nurse, please give the patient 500 millilitres of saline now.", "accept": ["confirm_order"]},
+  {"role": "nurse", "say": "Can you check the blood pressure and tell me what it reads?", "accept": ["report_observation"]},
+  {"role": "nurse", "say": "Is the patient prepped and has the consent form been signed?", "accept": ["ask_prep_status", "report_observation"]},
+  {"role": "nurse", "say": "Please start an infusion of paracetamol, one gram.", "accept": ["confirm_order"]},
+  {"role": "nurse", "say": "Does the patient need anything, are they asking for anything?", "accept": ["report_patient_request"]},
+  {"role": "nurse", "say": "Could you repeat that, I did not catch which bag you meant?", "accept": ["ask_clarification", "confirm_order"]},
+  {"role": "nurse", "say": "What do the observations look like at the moment?", "accept": ["report_observation"]},
+  {"role": "nurse", "say": "Order the blood tests and the chest x-ray please.", "accept": ["confirm_order"]},
+  {"role": "anaesthesia", "say": "Doctor, the patient has not fasted since midnight, is that acceptable?", "accept": ["ask_fasting_allergy_airway", "raise_approved_concern"]},
+  {"role": "anaesthesia", "say": "The saturation has dropped to 85 percent and I need you here now.", "accept": ["respond_to_escalation"]},
+  {"role": "anaesthesia", "say": "Are you happy with the airway assessment and the allergies before we start?", "accept": ["sign_in_answer", "ask_fasting_allergy_airway"]},
+  {"role": "anaesthesia", "say": "I am worried about the falling blood pressure, do you have any concerns?", "accept": ["raise_approved_concern", "respond_to_escalation"]},
+  {"role": "anaesthesia", "say": "Anaesthetist, please come to the bedside, the patient is deteriorating.", "accept": ["respond_to_escalation"]},
+  {"role": "anaesthesia", "say": "Can you confirm the sign in checks are complete?", "accept": ["sign_in_answer"]},
+  {"role": "anaesthesia", "say": "Does the patient have any difficult airway features I should know about?", "accept": ["ask_fasting_allergy_airway", "sign_in_answer"]},
+  {"role": "anaesthesia", "say": "Is there anything you want to flag before we go ahead?", "accept": ["raise_approved_concern", "sign_in_answer"]}
+ ]
+}

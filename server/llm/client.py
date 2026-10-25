@@ -13,6 +13,7 @@ Options follow ADR-0010: the 4B model for live work and, since ADR-0017, for the
 from __future__ import annotations
 
 import json
+import os
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -60,6 +61,10 @@ class OllamaClient:
             self._digests = {m["name"]: m.get("digest", "") for m in r.json().get("models", [])}
         except (httpx.HTTPError, ValueError, KeyError):
             return {}
+        # Benchmarks only: cloud models relayed by a signed-in Ollama are not installed locally, so they are not listed by /api/tags. PROCSENSE_RELAY_MODELS="gemma4:31b-cloud,..." names them for the
+        # evaluation tools' "is it installed" check; the digest is the word "relay". Unset in production, where a missing model must stay missing.
+        for name in filter(None, (n.strip() for n in os.environ.get("PROCSENSE_RELAY_MODELS", "").split(","))):
+            self._digests.setdefault(name, "relay")
         return dict(self._digests)
 
     def health(self) -> dict:

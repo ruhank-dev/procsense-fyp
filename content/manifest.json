@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "content_hash": "6687ee9aeab527e121ec7b8675edb92252644e0dade47c9cb4a963efad5fb54f",
- "files": 746,
- "bytes": 18190001,
+ "content_hash": "03d6654694dbf6c59a36347700b4d76753a0f6b25a89d05023170ba489ae51c2",
+ "files": 747,
+ "bytes": 18195034,
  "per_folder": {
   "(root)": 65,
-  "ai": 7,
+  "ai": 8,
   "assessment": 2,
   "attributions": 1,
   "availability": 4,
@@ -79,6 +79,10 @@
   "ai/model_candidates.json": {
    "bytes": 2511,
    "sha256": "bdbbe1b13780f553d2181c21fa8aad4ac2474ce4baa84b7c9e932ca8c523a007"
+  },
+  "ai/model_routes.json": {
+   "bytes": 5033,
+   "sha256": "006572b6d560a7be8430a039fcd81374fea53f7650b1cf63af00405c893c61b7"
   },
   "ai/persona.json": {
    "bytes": 701,

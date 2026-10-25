@@ -1,0 +1,119 @@
+{
+ "version": 1,
+ "adr": "ADR-0026",
+ "note": "Which model answers which task. A route names the model, the class of data the task sends (synthetic = authored content only; trainee = anything a trainee said or did) and the benchmark that chose it. A cloud route is used only when CLOUD_ROUTING_ENABLED is set, and a trainee-class cloud route also needs CLOUD_TRAINEE_DATA_APPROVED, which waits for the privacy decision DT-248. On any cloud failure the local model answers. Speech recognition (faster-whisper), text-to-speech (Piper) and the speech evaluator (ADR-0025) are not routed here.",
+ "routes": {
+  "dialogue.patient": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.dialogue.patient",
+   "fallback": "qwen3.5:4b-q4_K_M",
+   "why": "Carries what the trainee said; cloud use waits for the privacy decision (DT-248)."
+  },
+  "dialogue.staff": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.dialogue.staff",
+   "fallback": "qwen3.5:4b-q4_K_M",
+   "why": "Carries what the trainee said; cloud use waits for the privacy decision (DT-248)."
+  },
+  "dialogue.staff_pick": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.dialogue.staff",
+   "fallback": "qwen3.5:4b-q4_K_M",
+   "why": "Carries what the trainee said; cloud use waits for the privacy decision (DT-248)."
+  },
+  "dialogue.staff_pick_many": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.dialogue.staff",
+   "fallback": "qwen3.5:4b-q4_K_M",
+   "why": "Carries what the trainee said; cloud use waits for the privacy decision (DT-248)."
+  },
+  "compose.narrative": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.compose.narrative",
+   "fallback": "qwen3.5:4b-q4_K_M"
+  },
+  "critic.claims": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.critic",
+   "fallback": "qwen3.5:4b-q4_K_M"
+  },
+  "critic.verify": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.critic",
+   "fallback": "qwen3.5:4b-q4_K_M"
+  },
+  "judge.scenario": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.judge.scenario",
+   "fallback": "qwen3.5:4b-q4_K_M"
+  },
+  "trap.reword": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.trap.reword",
+   "fallback": "qwen3.5:4b-q4_K_M"
+  },
+  "compose_plan.events": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.compose_plan.extras",
+   "why": "No candidate was better by the margin."
+  },
+  "compose_plan.interactions": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.compose_plan.extras",
+   "why": "No candidate was better by the margin."
+  },
+  "compose_plan.spine": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.compose_plan.planner",
+   "why": "Gate pass and coverage equal; the cloud plans were less varied."
+  },
+  "compose_plan.blocks": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "synthetic",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.compose_plan.planner",
+   "why": "Gate pass and coverage equal; the cloud plans were less varied."
+  },
+  "debrief.rewrite": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.debrief.rewrite",
+   "why": "The local model was accepted more often (16 of 16 against 15 of 16)."
+  },
+  "personalisation.interpret": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.personalisation.interpret",
+   "why": "Equal confirmation rate; no accuracy gain."
+  },
+  "analytics.explain_result": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json",
+   "why": "No benchmark of this task against a cloud model; stays local."
+  },
+  "orders.kind": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json",
+   "why": "Real-time spoken orders; not benchmarked against a cloud model; stays local."
+  },
+  "orders.map": {
+   "model": "qwen3.5:4b-q4_K_M",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json",
+   "why": "Real-time spoken orders; not benchmarked against a cloud model; stays local."
+  }
+ }
+}

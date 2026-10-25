@@ -1,0 +1,277 @@
+{
+ "adr": "ADR-0026",
+ "date": "2026-10-25",
+ "local_baseline": "qwen3.5:4b-q4_K_M",
+ "rule": "* the local model (qwen3.5:4b-q4_K_M) is the default and keeps the task unless a candidate is no worse on every safety figure AND better on the quality figure by the margin of the task;\n  * real-time dialogue (patient, staff): quality at least equal, no more leaks than local, 95th percentile under the 4 s budget; among eligible models the best quality, then the lower median wins;\n  * offline generation (narrative, critic, judge, trap writer): quality better by at least 5 points, false alarms no higher; speed alone never moves an offline task to the cloud;\n  * a task with no benchmark, or whose candidate is not better, stays local.",
+ "data": "synthetic only: authored cases, AI-written test sets (not human-labelled); runs of tools/ai/eval_*.py through a signed-in Ollama on the free plan; no real trainee data was sent",
+ "decisions": {
+  "dialogue.patient": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "n": 82,
+     "fact_used": 0.902,
+     "withheld_cannot_recall": 0.927,
+     "leaks": 1,
+     "model_answered": 0.976,
+     "ms_p50": 1882,
+     "ms_p95": 2289
+    },
+    "gemma4:31b-cloud": {
+     "n": 82,
+     "fact_used": 1.0,
+     "withheld_cannot_recall": 0.988,
+     "leaks": 0,
+     "model_answered": 0.976,
+     "ms_p50": 684,
+     "ms_p95": 1716
+    },
+    "gpt-oss:120b-cloud": {
+     "n": 82,
+     "fact_used": 1.0,
+     "withheld_cannot_recall": 0.976,
+     "leaks": 0,
+     "model_answered": 0.976,
+     "ms_p50": 979,
+     "ms_p95": 1595
+    },
+    "gpt-oss:20b-cloud": {
+     "n": 82,
+     "fact_used": 0.988,
+     "withheld_cannot_recall": 0.878,
+     "leaks": 0,
+     "model_answered": 0.976,
+     "ms_p50": 2034,
+     "ms_p95": 3151
+    },
+    "nemotron-3-nano:30b-cloud": {
+     "n": 82,
+     "fact_used": 0.988,
+     "withheld_cannot_recall": 0.415,
+     "leaks": 7,
+     "model_answered": 0.976,
+     "ms_p50": 935,
+     "ms_p95": 2010
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
+  "dialogue.staff": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "accepted_share": 0.708,
+     "nurse": 0.583,
+     "anaesthesia": 0.833,
+     "fallback_share": 0.0,
+     "ms_p95": 1517,
+     "three_voices_p95_s": 3.55,
+     "three_voices_within_budget": 1.0
+    },
+    "gemma4:31b-cloud": {
+     "accepted_share": 0.938,
+     "nurse": 0.875,
+     "anaesthesia": 1.0,
+     "fallback_share": 0.0,
+     "ms_p95": 717,
+     "three_voices_p95_s": 2.09,
+     "three_voices_within_budget": 1.0
+    },
+    "gpt-oss:120b-cloud": {
+     "accepted_share": 0.896,
+     "nurse": 0.833,
+     "anaesthesia": 0.958,
+     "fallback_share": 0.0,
+     "ms_p95": 3616,
+     "three_voices_p95_s": 3.72,
+     "three_voices_within_budget": 1.0
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
+  "compose.narrative": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "accept_rate": 0.717,
+     "first_try_rate": 0.472,
+     "fallback_to_authored": 30,
+     "ms_p50": 2643
+    },
+    "gemma4:31b-cloud": {
+     "accept_rate": 0.925,
+     "first_try_rate": 0.745,
+     "fallback_to_authored": 8,
+     "ms_p50": 672
+    },
+    "gpt-oss:120b-cloud": {
+     "accept_rate": 0.887,
+     "first_try_rate": 0.726,
+     "fallback_to_authored": 12,
+     "ms_p50": 1400
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
+  "critic": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "recall": 0.688,
+     "false_alarm": 0.031,
+     "union_with_rules": 0.991,
+     "seconds": 431
+    },
+    "gemma4:31b-cloud": {
+     "recall": 0.893,
+     "false_alarm": 0.0,
+     "union_with_rules": 0.995,
+     "seconds": 334
+    },
+    "gpt-oss:120b-cloud": {
+     "recall": 0.856,
+     "false_alarm": 0.031,
+     "union_with_rules": 0.995,
+     "seconds": 785
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
+  "judge.scenario": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "flagged_among_missed_by_rules": 0.37,
+     "clean_flagged": 0.0,
+     "seconds": 127
+    },
+    "gemma4:31b-cloud": {
+     "flagged_among_missed_by_rules": 0.926,
+     "clean_flagged": 0.0,
+     "seconds": 33
+    },
+    "gpt-oss:120b-cloud": {
+     "flagged_among_missed_by_rules": 0.889,
+     "clean_flagged": 0.0,
+     "seconds": 132
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
+  "trap.reword": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "accepted_share": 0.235,
+     "fairness_lower": 0,
+     "seconds_per_case_p50": 3.6
+    },
+    "gemma4:31b-cloud": {
+     "accepted_share": 0.712,
+     "fairness_lower": 0,
+     "seconds_per_case_p50": 3.8
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule"
+  },
+  "compose_plan.extras": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "cases_with_events": 62,
+     "share_with_interaction": 0.477,
+     "refused": 0,
+     "ineligible": 0,
+     "seconds_p50": 5.0
+    },
+    "gemma4:31b-cloud": {
+     "cases_with_events": 61,
+     "share_with_interaction": 0.462,
+     "refused": 0,
+     "ineligible": 0,
+     "seconds_p50": 1.1
+    },
+    "gpt-oss:120b-cloud": {
+     "cases_with_events": 62,
+     "share_with_interaction": 0.477,
+     "refused": 0,
+     "ineligible": 0,
+     "seconds_p50": 2.4
+    }
+   },
+   "selected": "qwen3.5:4b-q4_K_M",
+   "why": "no candidate is better by the rule's margin without a worse safety figure"
+  },
+  "compose_plan.planner": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "served": 10,
+     "passed_gate": 10,
+     "coverage": 1.0,
+     "distinct_block_sets": 10,
+     "seconds_p50": 14.9
+    },
+    "gemma4:31b-cloud": {
+     "served": 10,
+     "passed_gate": 10,
+     "coverage": 1.0,
+     "distinct_block_sets": 4,
+     "seconds_p50": 3.5
+    },
+    "gpt-oss:120b-cloud": {
+     "served": 10,
+     "passed_gate": 10,
+     "coverage": 1.0,
+     "distinct_block_sets": 9,
+     "seconds_p50": 8.3
+    }
+   },
+   "selected": "qwen3.5:4b-q4_K_M",
+   "why": "no candidate is better by the rule's margin without a worse safety figure"
+  },
+  "debrief.rewrite": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "accept_rate": 1.0,
+     "within_8s": 0.938,
+     "ms_p50": 6027,
+     "mutations_rejected": "63/63"
+    },
+    "gemma4:31b-cloud": {
+     "accept_rate": 0.938,
+     "within_8s": 0.938,
+     "ms_p50": 1820,
+     "mutations_rejected": "59/59"
+    },
+    "gpt-oss:120b-cloud": {
+     "accept_rate": 0.938,
+     "within_8s": 0.938,
+     "ms_p50": 2290,
+     "mutations_rejected": "59/59"
+    }
+   },
+   "selected": "qwen3.5:4b-q4_K_M",
+   "why": "no candidate is better by the rule's margin without a worse safety figure"
+  },
+  "personalisation.interpret": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "confirmed": 0.854,
+     "no_proposal": 1,
+     "seconds_per_learner": 10.3
+    },
+    "gemma4:31b-cloud": {
+     "confirmed": 0.855,
+     "no_proposal": 0,
+     "seconds_per_learner": 1.5
+    },
+    "gpt-oss:120b-cloud": {
+     "confirmed": 0.85,
+     "no_proposal": 0,
+     "seconds_per_learner": 4.7
+    }
+   },
+   "selected": "qwen3.5:4b-q4_K_M",
+   "why": "no candidate is better by the rule's margin without a worse safety figure"
+  }
+ }
+}

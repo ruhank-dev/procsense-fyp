@@ -19,6 +19,11 @@ Audit of 12 October 2026. It answers one question for every AI idea in the origi
 * **Set and rule:** a fresh frozen held-out set (259 items and a 32-item partial-credit addendum; reserved personas P5 and P7, four reserved topic groups; AI-written, AI-reviewed, synthetic) scored once with the unchanged architecture against criteria hashed beforehand. Result: 0 critical physical completions, recall 96.1 percent, performed versus not performed 97.3 percent, valid replies 99.6 percent, partial-credit behaviour 27/32, median 2.7 s; precision 92.5 percent (0.95 proposed), 2 non-performed credits (0 proposed), 4 ordinary credits on critical content (0 proposed).
 * **Verdict:** NOT APPROVED, owner decision DT-246; nothing was ticked complete and nothing was tuned. `docs/research/gemma_evaluator_results.md` has the table and the reasons. The real Meta Quest and ASR end-to-end test is DC-10 in `docs/testing/SANNAN_EXTERNAL_TESTING.md`.
 
+## 0v. Update of 25 October 2026 (per-task model routing, ADR-0026)
+
+* Every language-model task has a configured route (`content/ai/model_routes.json`, `server/llm/routing.py`). Measured on synthetic data (`reports/ai/cloud-routing-benchmark.json`, `docs/research/cloud_model_routing.md`): patient dialogue, staff intent, scenario narrative, text critic, scenario judge and trap writer are routed to `gemma4:31b-cloud`; the planner, plan extras, debrief rewrite, performance interpreter and the unbenchmarked tasks stay on `qwen3.5:4b-q4_K_M`. Speech recognition, speech output and the speech evaluator are unchanged.
+* Cloud routing is OFF (`CLOUD_ROUTING_ENABLED`); the routes that carry trainee speech also need `CLOUD_TRAINEE_DATA_APPROVED`, which waits for the privacy decision (DT-248). DT-250 holds the human validation.
+
 ## 0u. Update of 21 October 2026 (the target architecture: Gemma semantic evaluation, engine-scored; the classifier stack is retired, ADR-0025)
 
 **Read this first: the sections 0h to 0t below describe the classifier, critical-mass cap and semantic-reader architecture as it was; ADR-0025 replaced it and its code was removed. They stay as the history of why.**

@@ -18,7 +18,7 @@ from typing import Callable
 
 import jsonschema
 
-from . import client as client_mod, prompts
+from . import client as client_mod, prompts, routing
 
 
 @dataclass
@@ -40,13 +40,27 @@ def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, valida
     prompt = prompts.get(prompt_id, version)
     system, user = prompt.render(**variables)
     schema = schema if schema is not None else prompt.schema
-    chosen = model or (client_mod.LIVE_MODEL if prompt.role == "live" else client_mod.BATCH_MODEL)
+    if model is None:
+        route = routing.resolve(task, prompt.id, prompt.role)
+    else:                                                              # a caller that names a model (a benchmark, a test) gets exactly it; a cloud one still falls back to the local default
+        local = routing.default_model(prompt.role)
+        route = routing.Route(model, routing.is_cloud(model), "explicit", local if routing.is_cloud(model) else "")
     timeout = timeout if timeout is not None else (20.0 if prompt.role == "live" else 600.0)
+    legs = [route.model] + ([route.fallback_model] if route.cloud and route.fallback_model else [])
     attempts: list[dict] = []
+    for chosen in legs:
+        value, reply, ok = _attempts(client, prompt, system, user, schema, validate, chosen, retries, timeout, attempts)
+        if ok:
+            return Result(True, value, False, attempts, _audit(prompt, task, chosen, reply, system + user, attempts, "ok", route, legs[0] if chosen != legs[0] else ""))
+    return Result(False, None, True, attempts, _audit(prompt, task, chosen, reply, system + user, attempts, "fallback", route, legs[0] if chosen != legs[0] else ""))
+
+
+def _attempts(client, prompt, system: str, user: str, schema, validate, chosen: str, retries: int, timeout: float, attempts: list[dict]):
+    """One model, up to retries + 1 tries; appends a record per try to `attempts`. Returns (value, last reply, ok)."""
     avoid = ""
     for attempt in range(retries + 1):
-        reply = client.chat(chosen, system, user + avoid, schema=schema, think=prompt.think, timeout=timeout, num_predict=prompt.num_predict)
-        record = {"attempt": attempt, "ok": reply.ok, "latency_ms": reply.latency_ms, "error": reply.error, "digest": reply.digest, "output_tokens": reply.output_tokens}
+        reply = client.chat(chosen, system, routing.prompt_for(chosen, user, schema) + avoid, schema=schema, think=prompt.think, timeout=timeout, num_predict=routing.tokens_for(chosen, prompt.num_predict))
+        record = {"attempt": len(attempts), "model": chosen, "ok": reply.ok, "latency_ms": reply.latency_ms, "error": reply.error, "digest": reply.digest, "output_tokens": reply.output_tokens}
         defects: list[str] = []
         if reply.ok and schema is not None:
             try:
@@ -58,14 +72,15 @@ def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, valida
         record["defects"] = defects
         attempts.append(record)
         if reply.ok and not defects:
-            return Result(True, reply.json if schema is not None else reply.text, False, attempts, _audit(prompt, task, chosen, reply, system + user, attempts, "ok"))
-        if reply.error in ("UNREACHABLE", "TIMEOUT", "MODEL_MISSING"):
-            break                                                      # retrying a host that is down only makes the trainee wait
+            return (reply.json if schema is not None else reply.text), reply, True
+        if reply.error in ("UNREACHABLE", "TIMEOUT", "MODEL_MISSING") or (reply.error == "HTTP_ERROR" and routing.is_cloud(chosen)):
+            break                                                      # retrying a host that is down (or a cloud usage limit, HTTP 402 or 429) only makes the trainee wait
         avoid = "\n\nYour previous answer was rejected for these reasons; answer again and fix them:\n- " + "\n- ".join(defects or [reply.error + ": " + reply.detail])
-    return Result(False, None, True, attempts, _audit(prompt, task, chosen, reply, system + user, attempts, "fallback"))
+    return None, reply, False
 
 
-def _audit(prompt: prompts.Prompt, task: str | None, model: str, reply: client_mod.Reply, filled: str, attempts: list[dict], outcome: str) -> dict:
+def _audit(prompt: prompts.Prompt, task: str | None, model: str, reply: client_mod.Reply, filled: str, attempts: list[dict], outcome: str, route: routing.Route | None = None, fell_back_from: str = "") -> dict:
     return {"task": task or prompt.id, "prompt_id": prompt.id, "prompt_version": prompt.version, "prompt_sha256": prompt.sha256, "model": model, "model_digest": reply.digest,
+            "route": route.reason if route else "", "data_class": route.data_class if route else "", "cloud": routing.is_cloud(model), "fell_back_from": fell_back_from,
             "input_hash": _hash(filled), "output_hash": _hash(reply.text) if reply.text else "", "latency_ms": sum(a["latency_ms"] for a in attempts), "attempts": len(attempts),
             "first_try_schema_valid": bool(attempts[0]["ok"]) and not any(d.startswith("SCHEMA") for d in attempts[0]["defects"]), "outcome": outcome, "defects": [d for a in attempts for d in a["defects"]], "error": reply.error, "at": reply.at}
