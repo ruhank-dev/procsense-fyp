@@ -27,6 +27,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import external_testing as XT  # noqa: E402
 import reconcile as RC  # noqa: E402
+import plan_files as PF  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 PIPELINE = ROOT / "docs" / "architecture" / "procsense_full_pipeline.json"
@@ -105,7 +106,7 @@ def render(ctx: dict) -> str:
         gate = ", ".join(f"{g}: {'ON' if v.get('enabled') else 'off'}{' (info)' if v.get('informational') else ''}" for g, v in r["gates"]) or "-"
         st = ", ".join(f"{k} {v}" for k, v in sorted(r["states"].items()))
         tests = "<br>".join(f"`{t}`" for t in ov.get("tests", [])[:4])
-        L.append(f"| [{f['id']}](../plans/features/{f['id']}.md) {f['label'][:60]} | {f['acceptance'].replace('|', '/')[:220]} | {ov.get('runtime', '-').replace('|', '/')} | {tests} | {st} | {gate} | **{r['result']}**{(' (not built: ' + ', '.join(r['unbuilt']) + ')') if r['unbuilt'] else ''}{(' (deferred by design: ' + ', '.join(r['deferred']) + ')') if r['deferred'] else ''} | {', '.join(f'[{e}](../testing/SANNAN_EXTERNAL_TESTING.md#{e.lower()})' for e in r['ext']) or '-'} |")
+        L.append(f"| [{f['id']}]({PF.plan_link(f['id'], r['result'], '../plans/features')}) {f['label'][:60]} | {f['acceptance'].replace('|', '/')[:220]} | {ov.get('runtime', '-').replace('|', '/')} | {tests} | {st} | {gate} | **{r['result']}**{(' (not built: ' + ', '.join(r['unbuilt']) + ')') if r['unbuilt'] else ''}{(' (deferred by design: ' + ', '.join(r['deferred']) + ')') if r['deferred'] else ''} | {', '.join(f'[{e}](../testing/SANNAN_EXTERNAL_TESTING.md#{e.lower()})' for e in r['ext']) or '-'} |")
     L += ["", "## Realising steps per feature", "", "| Feature | Steps | Evidence paths from the reconciliation |", "|---|---|---|"]
     for f, r in zip(feats, rows):
         L.append(f"| {f['id']} | {', '.join(r['tasks'])} | {'<br>'.join(f'`{p}`' for p in r['evidence'][:6]) or '-'} |")

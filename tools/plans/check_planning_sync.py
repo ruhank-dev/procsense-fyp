@@ -50,7 +50,7 @@ def main() -> int:
 
     # files
     PLANS = ARCH.parent / "plans" / "features"
-    plan_files = {p.stem for p in PLANS.glob("*.md")} if PLANS.exists() else set()
+    plan_files = {(p.stem[4:] if p.stem.startswith("[x] ") else p.stem) for p in PLANS.glob("*.md")} if PLANS.exists() else set()
     stray = sorted(p.name for p in (ARCH / "feature_plans").glob("*.md") if p.name != "README.md")
     if stray:
         problems.append(f"files: plan files must live only in docs/plans/features, found in docs/architecture/feature_plans: {stray}")
