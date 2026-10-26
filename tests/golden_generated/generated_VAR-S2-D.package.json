@@ -14,19 +14,19 @@
     "reference_date": "2026-10-10",
     "base_card": null,
     "identity": {
-      "title": "Ms",
-      "full_name": "Sadia Bello",
+      "title": "Mrs",
+      "full_name": "Nasreen Begum",
       "sex": "F",
-      "age": 21,
-      "occupation": "salon assistant",
-      "dob": "2005-02-18",
-      "mrn": "456614"
+      "age": 43,
+      "occupation": "seamstress",
+      "dob": "1983-01-23",
+      "mrn": "261254"
     },
-    "spoken_identity_answer": "Sadia Bello, eighteenth of February 2005.",
+    "spoken_identity_answer": "Nasreen Begum, twenty-third of January 1983.",
     "wristband": {
-      "name_text": "SADIA BELLO",
-      "dob_text": "18/02/2005",
-      "mrn_text": "MR 456614"
+      "name_text": "NASREEN BEGUM",
+      "dob_text": "23/01/1983",
+      "mrn_text": "MR 261254"
     },
     "allergies": [
       {
@@ -39,7 +39,7 @@
     "presentation": {
       "setting": "emergency department",
       "time_now": "13:00",
-      "summary": "Ms Sadia, 21, has pain 5/10 in the lower right tummy. The ultrasound says 'appendix not visualised, no free fluid'."
+      "summary": "Mrs Nasreen, 43, has pain 5/10 in the lower right tummy. The ultrasound says 'appendix not visualised, no free fluid'."
     },
     "history": [
       {
@@ -101,7 +101,7 @@
       {
         "id": "previous_anaesthetic",
         "topic": "previous_anaesthetic",
-        "answer": "None, but I am nervous about being put to sleep.",
+        "answer": "Tonsils out at seven, no problems.",
         "volunteered": false,
         "disclose_on": [
           "ask:previous anaesthetic",
@@ -309,6 +309,25 @@
             "consequence": "Not indicated yet."
           }
         ]
+      },
+      {
+        "id": "adv.adv-01",
+        "prompt": "The patient needs an antibiotic. Which one?",
+        "rule": null,
+        "options": [
+          {
+            "id": "adv.adv-01.1",
+            "text": "Check the allergy record first and choose a non-penicillin, discussing the reaction history with the prescriber.",
+            "correct": true,
+            "consequence": "Matches the guidance: NICE CG183 drug allergy; Resuscitation Council UK anaphylaxis guideline."
+          },
+          {
+            "id": "adv.adv-01.2",
+            "text": "Give the standard first-line penicillin: it is what the pathway says.",
+            "correct": false,
+            "consequence": "The record names a penicillin allergy: a standard penicillin could cause an allergic reaction."
+          }
+        ]
       }
     ],
     "expected_end_state": "redirected",
@@ -357,6 +376,13 @@
       "story": "SR-2316",
       "authored": "SR-3712"
     },
+    "responsible_adult": {
+      "who": "mother",
+      "takes_home": false,
+      "stays_overnight": false,
+      "text": "I will be admitted, so I will not go home tonight. My mum is on her way in.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 1,
@@ -374,11 +400,11 @@
       "spine": "VAR-S2-D",
       "blocks": [
         "ALG-PENICILLIN-1",
-        "DEM-SC-2",
-        "NAME-FIRST-SADIA-F",
-        "NAME-LAST-BELLO",
-        "PSH-VAR-S1-M",
-        "SOC-SC-6"
+        "DEM-VAR-S2-G",
+        "NAME-FIRST-NASREEN-F",
+        "NAME-LAST-BEGUM",
+        "PSH-VAR-S2-I",
+        "SOC-SC-31"
       ],
       "solver_steps": 8
     }
@@ -389,13 +415,13 @@
     "spine": "VAR-S2-D",
     "blocks": [
       "ALG-PENICILLIN-1",
-      "DEM-SC-2",
-      "NAME-FIRST-SADIA-F",
-      "NAME-LAST-BELLO",
-      "PSH-VAR-S1-M",
-      "SOC-SC-6"
+      "DEM-VAR-S2-G",
+      "NAME-FIRST-NASREEN-F",
+      "NAME-LAST-BEGUM",
+      "PSH-VAR-S2-I",
+      "SOC-SC-31"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -409,7 +435,8 @@
       "LG-04",
       "LG-05",
       "LG-07",
-      "LG-08"
+      "LG-08",
+      "LG-06b"
     ],
     "plan": {
       "method": "solver",
@@ -424,7 +451,7 @@
       }
     ]
   },
-  "fingerprint": "57b4711b55db145f",
+  "fingerprint": "7b5f15d9b387aea5",
   "quality": {
     "numeric_log": [
       {
@@ -470,7 +497,7 @@
       "discoverable": 1.0,
       "difficulty": 1.0,
       "fairness": 1.0,
-      "trap_fairness": 0.5,
+      "trap_fairness": 0.667,
       "reading": 1.0,
       "persona": 1.0,
       "coherence": 1.0,
@@ -486,6 +513,16 @@
       }
     ],
     "unmet_dimensions": []
+  },
+  "adversarial": {
+    "status": "awaiting_review",
+    "added": [
+      {
+        "block": "ADV-01",
+        "decision": "adv.adv-01",
+        "anchor": "allergies"
+      }
+    ]
   },
   "media": {
     "slots": [
@@ -579,7 +616,7 @@
   "fingerprint_levels": {
     "structural": [
       "block:ALG-PENICILLIN-1",
-      "block:PSH-VAR-S1-M",
+      "block:PSH-VAR-S2-I",
       "primary:sd.unknown",
       "scenario:S2",
       "spine:VAR-S2-D"
@@ -594,10 +631,10 @@
       "rhythm:regular"
     ],
     "surface": [
-      "age:20s",
-      "block:DEM-SC-2",
-      "block:SOC-SC-6",
-      "name:77158e3e13",
+      "age:40s",
+      "block:DEM-VAR-S2-G",
+      "block:SOC-SC-31",
+      "name:7a9ef2efae",
       "sex:F"
     ]
   },
@@ -608,6 +645,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "3eb1042ec6bd85c09d1a810996b106362889f2fb6ca19aeb760ddbb42e4e7a20",
-  "package_sha256": "d3b5b9542bddb2ad288f2359beb54a9dc1e7206f6722bf24c30490a5c4614d2d"
+  "reproducibility_key": "47b5213921ec7934be674e17d2def757e56721229976f4bb14404ca3a0d3e06e",
+  "package_sha256": "8ce7852d1dc59574626a414f884fa29fa68b5ac53b4dce0f9c6ad1e836be950e"
 }

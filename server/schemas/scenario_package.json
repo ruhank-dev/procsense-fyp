@@ -30,6 +30,7 @@
     "reproducibility_key": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "package_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "narrative": {"type": "object", "required": ["persona", "lines"], "properties": {"persona": {"type": "array", "items": {"type": "string"}}, "lines": {"type": "array", "items": {"type": "object", "required": ["id", "method"], "properties": {"id": {"type": "string"}, "method": {"enum": ["model", "template"]}}}}}},
+    "adversarial": {"type": "object", "required": ["status", "added"], "properties": {"status": {"const": "awaiting_review"}, "added": {"type": "array", "items": {"type": "object", "required": ["block", "decision", "anchor"], "properties": {"block": {"type": "string"}, "decision": {"type": "string"}, "anchor": {"type": "string"}}}}}},
     "trap_wording": {"type": "object", "required": ["lines"], "properties": {"lines": {"type": "array", "items": {"type": "object", "required": ["id", "method"], "properties": {"id": {"type": "string"}, "method": {"enum": ["model", "template"]}}}}}},
     "quality": {"type": "object"}
   }

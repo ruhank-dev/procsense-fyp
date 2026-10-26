@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Rabia Mirza",
+      "full_name": "Amna Santos",
       "sex": "F",
-      "age": 26,
+      "age": 25,
       "occupation": "salon assistant",
-      "dob": "2000-06-06",
-      "mrn": "351045"
+      "dob": "2001-05-09",
+      "mrn": "821986"
     },
-    "spoken_identity_answer": "Rabia Mirza, sixth of June 2000.",
+    "spoken_identity_answer": "Amna Santos, ninth of May 2001.",
     "wristband": {
-      "name_text": "RABIA MIRZA",
-      "dob_text": "06/06/2000",
-      "mrn_text": "MR 351045"
+      "name_text": "AMNA SANTOS",
+      "dob_text": "09/05/2001",
+      "mrn_text": "MR 821986"
     },
     "allergies": [
       {
@@ -40,7 +40,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "09:00",
-      "summary": "Ms Rabia, 26, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
+      "summary": "Ms Amna, 25, says: 'I had toast and tea with milk at 07:00.' Surgery is planned for 09:00."
     },
     "history": [
       {
@@ -276,6 +276,25 @@
             "consequence": "Falsifying the time is a safety failure."
           }
         ]
+      },
+      {
+        "id": "adv.adv-01",
+        "prompt": "The patient needs an antibiotic. Which one?",
+        "rule": null,
+        "options": [
+          {
+            "id": "adv.adv-01.1",
+            "text": "Check the allergy record first and choose a non-penicillin, discussing the reaction history with the prescriber.",
+            "correct": true,
+            "consequence": "Matches the guidance: NICE CG183 drug allergy; Resuscitation Council UK anaphylaxis guideline."
+          },
+          {
+            "id": "adv.adv-01.2",
+            "text": "Give the standard first-line penicillin: it is what the pathway says.",
+            "correct": false,
+            "consequence": "The record names a penicillin allergy: a standard penicillin could cause an allergic reaction."
+          }
+        ]
       }
     ],
     "expected_end_state": "delayed",
@@ -324,6 +343,13 @@
       "story": "SR-2306",
       "authored": "SR-3706"
     },
+    "responsible_adult": {
+      "who": "mother",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My mum will take me home and stay a couple of nights.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 1,
@@ -342,11 +368,11 @@
       "blocks": [
         "ALG-PENICILLIN-1",
         "DEM-SC-2",
-        "NAME-FIRST-RABIA-F",
-        "NAME-LAST-MIRZA",
-        "PSH-VAR-S2-F"
+        "NAME-FIRST-AMNA-F",
+        "NAME-LAST-SANTOS",
+        "PSH-SC-17"
       ],
-      "solver_steps": 5
+      "solver_steps": 7
     }
   },
   "provenance": {
@@ -356,11 +382,11 @@
     "blocks": [
       "ALG-PENICILLIN-1",
       "DEM-SC-2",
-      "NAME-FIRST-RABIA-F",
-      "NAME-LAST-MIRZA",
-      "PSH-VAR-S2-F"
+      "NAME-FIRST-AMNA-F",
+      "NAME-LAST-SANTOS",
+      "PSH-SC-17"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -374,7 +400,8 @@
       "LG-04",
       "LG-05",
       "LG-07",
-      "LG-08"
+      "LG-08",
+      "LG-06b"
     ],
     "plan": {
       "method": "solver",
@@ -389,7 +416,7 @@
       }
     ]
   },
-  "fingerprint": "4f77c2b3d38ca7af",
+  "fingerprint": "0151739c1c34c151",
   "quality": {
     "numeric_log": [
       {
@@ -441,7 +468,7 @@
       "discoverable": 1.0,
       "difficulty": 1.0,
       "fairness": 1.0,
-      "trap_fairness": 0.5,
+      "trap_fairness": 0.667,
       "reading": 1.0,
       "persona": 1.0,
       "coherence": 1.0,
@@ -457,6 +484,16 @@
       }
     ],
     "unmet_dimensions": []
+  },
+  "adversarial": {
+    "status": "awaiting_review",
+    "added": [
+      {
+        "block": "ADV-01",
+        "decision": "adv.adv-01",
+        "anchor": "allergies"
+      }
+    ]
   },
   "media": {
     "slots": [
@@ -515,7 +552,7 @@
   "fingerprint_levels": {
     "structural": [
       "block:ALG-PENICILLIN-1",
-      "block:PSH-VAR-S2-F",
+      "block:PSH-SC-17",
       "primary:g.fasting",
       "scenario:S1",
       "spine:VAR-S1-G"
@@ -530,7 +567,7 @@
     "surface": [
       "age:20s",
       "block:DEM-SC-2",
-      "name:e5425c4732",
+      "name:5f2ba8af1a",
       "sex:F"
     ]
   },
@@ -541,6 +578,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "82261d1676ed2aba891d65ea1e38ad3109f733ea7d0c23a049aa2bbbaa9f9217",
-  "package_sha256": "9fbb1f6b59604825c3fe567723ceda4fb5b668b1f8bd59decec5fbaed4daf547"
+  "reproducibility_key": "99eb6e92d36ea53ee6a1510dfc1799ef5c3344da573ac2cf678a4f27424b762f",
+  "package_sha256": "903dde6abdfdfbae1f76e7f39c33778ff573ca1f4ac1bc28ad9edfd29806186a"
 }

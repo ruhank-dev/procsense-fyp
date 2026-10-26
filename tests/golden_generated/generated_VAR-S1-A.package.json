@@ -14,19 +14,19 @@
     "reference_date": "2026-10-10",
     "base_card": "VAR-S1-A",
     "identity": {
-      "title": "Mrs",
-      "full_name": "Sadia Javed",
+      "title": "Ms",
+      "full_name": "Uzma Ahmed",
       "sex": "F",
-      "age": 26,
-      "occupation": "nursery assistant",
-      "dob": "2000-02-18",
-      "mrn": "456614"
+      "age": 25,
+      "occupation": "salon assistant",
+      "dob": "2001-01-25",
+      "mrn": "724467"
     },
-    "spoken_identity_answer": "Sadia Javed, eighteenth of February 2000.",
+    "spoken_identity_answer": "Uzma Ahmed, twenty-fifth of January 2001.",
     "wristband": {
-      "name_text": "SADIA JAVED",
-      "dob_text": "18/02/2000",
-      "mrn_text": "MR 456614"
+      "name_text": "UZMA AHMED",
+      "dob_text": "25/01/2001",
+      "mrn_text": "MR 724467"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "09:00",
-      "summary": "A fit 26-year-old nursery assistant booked for planned keyhole gallbladder removal at 09:00. Nothing is wrong today: the case teaches careful confirmation without over-investigating."
+      "summary": "A fit 25-year-old salon assistant booked for planned keyhole gallbladder removal at 09:00. Nothing is wrong today: the case teaches careful confirmation without over-investigating."
     },
     "history": [
       {
@@ -388,7 +388,7 @@
     "decisions": [
       {
         "id": "a.d1",
-        "prompt": "Which extra tests does Mrs Javed need before surgery?",
+        "prompt": "Which extra tests does Ms Ahmed need before surgery?",
         "rule": null,
         "options": [
           {
@@ -517,11 +517,11 @@
       "seed": 300,
       "spine": "VAR-S1-A",
       "blocks": [
-        "DEM-STK-S2-D",
-        "NAME-FIRST-SADIA-F",
-        "NAME-LAST-JAVED",
-        "PSH-VAR-S2-F",
-        "SOC-VAR-S2-L"
+        "DEM-SC-2",
+        "NAME-FIRST-UZMA-F",
+        "NAME-LAST-AHMED",
+        "PSH-VAR-S1-G",
+        "SOC-VAR-S1-C"
       ],
       "solver_steps": 7
     }
@@ -531,13 +531,13 @@
     "seed": 300,
     "spine": "VAR-S1-A",
     "blocks": [
-      "DEM-STK-S2-D",
-      "NAME-FIRST-SADIA-F",
-      "NAME-LAST-JAVED",
-      "PSH-VAR-S2-F",
-      "SOC-VAR-S2-L"
+      "DEM-SC-2",
+      "NAME-FIRST-UZMA-F",
+      "NAME-LAST-AHMED",
+      "PSH-VAR-S1-G",
+      "SOC-VAR-S1-C"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -566,7 +566,7 @@
       }
     ]
   },
-  "fingerprint": "85724479a9cfcdfa",
+  "fingerprint": "331c12d22cd52dd6",
   "quality": {
     "numeric_log": [
       {
@@ -725,7 +725,7 @@
   "discovery": [],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-VAR-S2-F",
+      "block:PSH-VAR-S1-G",
       "primary:a.nothing",
       "scenario:S1",
       "spine:VAR-S1-A"
@@ -740,9 +740,9 @@
     ],
     "surface": [
       "age:20s",
-      "block:DEM-STK-S2-D",
-      "block:SOC-VAR-S2-L",
-      "name:7f5601802a",
+      "block:DEM-SC-2",
+      "block:SOC-VAR-S1-C",
+      "name:332f517f33",
       "sex:F"
     ]
   },
@@ -753,6 +753,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "6a9ff3b3ea0bf1db8f55653cd5bfc3b1b66a089942c8e2aed74aa292bc8390dc",
-  "package_sha256": "2d103c546b61e4974162d7acd192a33a3923802efca9b889dc9f1273c6cc7082"
+  "reproducibility_key": "270f16823b467f36f91244bace0d976d23f41b689098108ad27ae0f427a2ec87",
+  "package_sha256": "b1b57af08ab57a4a8e3bd0ebfa93ad53c7d0ad0790cb84e03a1d49b17c7df91b"
 }

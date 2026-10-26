@@ -30,6 +30,10 @@ def text_of(case: dict, where: str) -> str:
         return " ".join((a.get("allergen", "") + " " + str(a.get("reaction", ""))) if isinstance(a, dict) else str(a) for a in case["allergies"]) + " " + case.get("allergy_answer", "")
     if where == "history":
         return " ".join(h["answer"] for h in case["history"]) + " " + case["presentation"].get("summary", "") if isinstance(case.get("presentation"), dict) else " ".join(h["answer"] for h in case["history"])
+    if where == "problems":
+        return " ".join(p["label"] + " " + p.get("why", "") for p in case["problems"])
+    if where == "last_food":
+        return " ".join(h["answer"] for h in case["history"] if h["topic"] == "last_food")
     if where == "results":
         return " ".join(r["test"] + " " + str(r.get("value", "")) for r in case["results"])
     raise ValueError(where)

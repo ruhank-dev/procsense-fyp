@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Helena Chaudhry",
+      "full_name": "Uzma Sheikh",
       "sex": "F",
-      "age": 24,
+      "age": 28,
       "occupation": "dental student",
-      "dob": "2002-09-01",
-      "mrn": "600743"
+      "dob": "1998-04-12",
+      "mrn": "873489"
     },
-    "spoken_identity_answer": "Helena Chaudhry, first of September 2002.",
+    "spoken_identity_answer": "Uzma Sheikh, twelfth of April 1998.",
     "wristband": {
-      "name_text": "HELENA CHAUDHRY",
-      "dob_text": "01/09/2002",
-      "mrn_text": "MR 600743"
+      "name_text": "UZMA SHEIKH",
+      "dob_text": "12/04/1998",
+      "mrn_text": "MR 873489"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -34,7 +34,7 @@
     "presentation": {
       "setting": "emergency department",
       "time_now": "11:00",
-      "summary": "Ms Helena, 24, has lower-right pain, shoulder-tip pain and feels dizzy. Her last period was 7 weeks ago and the urine pregnancy test is positive."
+      "summary": "Ms Uzma, 28, has lower-right pain, shoulder-tip pain and feels dizzy. Her last period was 7 weeks ago and the urine pregnancy test is positive."
     },
     "history": [
       {
@@ -308,6 +308,25 @@
             "consequence": "Unsafe."
           }
         ]
+      },
+      {
+        "id": "adv.adv-10",
+        "prompt": "The haemoglobin is low in an older man. What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "adv.adv-10.1",
+            "text": "Proceed: mild anaemia is common at his age.",
+            "correct": false,
+            "consequence": "A low haemoglobin is in the case: unexplained iron-deficiency anaemia in an older man needs investigation, not acceptance."
+          },
+          {
+            "id": "adv.adv-10.2",
+            "text": "Find the cause (iron stores, bleeding) before elective surgery and tell the senior.",
+            "correct": true,
+            "consequence": "Matches the guidance: NICE NG12 suspected cancer recognition; BSG iron deficiency guidance."
+          }
+        ]
       }
     ],
     "expected_end_state": "redirected",
@@ -357,6 +376,13 @@
       "authored": "SR-3711"
     },
     "pregnant": true,
+    "responsible_adult": {
+      "who": "friend",
+      "takes_home": false,
+      "stays_overnight": false,
+      "text": "I will be staying in hospital. My friend is on her way to be with me.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -374,11 +400,11 @@
       "spine": "VAR-S2-B",
       "blocks": [
         "DEM-SC-17",
-        "NAME-FIRST-HELENA-F",
-        "NAME-LAST-CHAUDHRY",
-        "PSH-SC-11"
+        "NAME-FIRST-UZMA-F",
+        "NAME-LAST-SHEIKH",
+        "PSH-SC-22"
       ],
-      "solver_steps": 16
+      "solver_steps": 5
     }
   },
   "provenance": {
@@ -387,11 +413,11 @@
     "spine": "VAR-S2-B",
     "blocks": [
       "DEM-SC-17",
-      "NAME-FIRST-HELENA-F",
-      "NAME-LAST-CHAUDHRY",
-      "PSH-SC-11"
+      "NAME-FIRST-UZMA-F",
+      "NAME-LAST-SHEIKH",
+      "PSH-SC-22"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -405,7 +431,8 @@
       "LG-04",
       "LG-05",
       "LG-07",
-      "LG-08"
+      "LG-08",
+      "LG-06b"
     ],
     "plan": {
       "method": "solver",
@@ -420,7 +447,7 @@
       }
     ]
   },
-  "fingerprint": "f95e41e9ae90ab19",
+  "fingerprint": "06456ca14f689d10",
   "quality": {
     "numeric_log": [
       {
@@ -468,6 +495,16 @@
     ],
     "advisory": [],
     "unmet_dimensions": []
+  },
+  "adversarial": {
+    "status": "awaiting_review",
+    "added": [
+      {
+        "block": "ADV-10",
+        "decision": "adv.adv-10",
+        "anchor": "results"
+      }
+    ]
   },
   "media": {
     "slots": [
@@ -562,7 +599,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-SC-11",
+      "block:PSH-SC-22",
       "primary:sb.bleed",
       "scenario:S2",
       "spine:VAR-S2-B"
@@ -580,7 +617,7 @@
     "surface": [
       "age:20s",
       "block:DEM-SC-17",
-      "name:c05bb2c90b",
+      "name:ff6a9e8f3f",
       "sex:F"
     ]
   },
@@ -591,6 +628,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "47f8d7c69ab14bfd09f188812f1fdb5a29746a73dd4406871823f66709c9b05b",
-  "package_sha256": "53cf81e250c905613ce065925856935a3a3ba545e5a1f132c445f69383017700"
+  "reproducibility_key": "ae22e7185feae7236a4dad366c359fc72c03c5914e861033850fee35751ad670",
+  "package_sha256": "96e750709c13cd944610d701ce44c3ccce2450e9b07e68dbe4023ef4a6122d86"
 }

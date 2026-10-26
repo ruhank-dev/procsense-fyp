@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mr",
-      "full_name": "Anwar Sheikh",
+      "full_name": "Zahid Javed",
       "sex": "M",
-      "age": 40,
-      "occupation": "electrician",
-      "dob": "1986-02-12",
-      "mrn": "392794"
+      "age": 20,
+      "occupation": "university student",
+      "dob": "2006-05-14",
+      "mrn": "588231"
     },
-    "spoken_identity_answer": "Anwar Sheikh, twelfth of February 1986.",
+    "spoken_identity_answer": "Zahid Javed, fourteenth of May 2006.",
     "wristband": {
-      "name_text": "ANWAR SHEIKH",
-      "dob_text": "12/02/1986",
-      "mrn_text": "MR 392794"
+      "name_text": "ZAHID JAVED",
+      "dob_text": "14/05/2006",
+      "mrn_text": "MR 588231"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -34,7 +34,7 @@
     "presentation": {
       "setting": "emergency department",
       "time_now": "14:00",
-      "summary": "Anwar, 40, arrives at 14:00 after three days of tummy pain he 'tried to sleep off'. The numbers change over the next two hours: the trainee must notice the trend."
+      "summary": "Zahid, 20, arrives at 14:00 after three days of tummy pain he 'tried to sleep off'. The numbers change over the next two hours: the trainee must notice the trend."
     },
     "history": [
       {
@@ -553,6 +553,13 @@
     "variant_end_states": {
       "if_no_action": "failure"
     },
+    "responsible_adult": {
+      "who": "wife",
+      "takes_home": false,
+      "stays_overnight": false,
+      "text": "I will be admitted. My wife is on her way to the hospital.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -569,11 +576,11 @@
       "seed": 500,
       "spine": "VAR-S2-PD",
       "blocks": [
-        "DEM-VAR-S2-L",
-        "NAME-FIRST-ANWAR-M",
-        "NAME-LAST-SHEIKH"
+        "DEM-STK-S2-C",
+        "NAME-FIRST-ZAHID-M",
+        "NAME-LAST-JAVED"
       ],
-      "solver_steps": 4
+      "solver_steps": 6
     }
   },
   "provenance": {
@@ -581,11 +588,11 @@
     "seed": 500,
     "spine": "VAR-S2-PD",
     "blocks": [
-      "DEM-VAR-S2-L",
-      "NAME-FIRST-ANWAR-M",
-      "NAME-LAST-SHEIKH"
+      "DEM-STK-S2-C",
+      "NAME-FIRST-ZAHID-M",
+      "NAME-LAST-JAVED"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -785,9 +792,9 @@
       "rhythm:regular"
     ],
     "surface": [
-      "age:40s",
-      "block:DEM-VAR-S2-L",
-      "name:38580d7ee5",
+      "age:20s",
+      "block:DEM-STK-S2-C",
+      "name:dcf54b249f",
       "sex:M"
     ]
   },
@@ -798,6 +805,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "1a6b81ad80d840b7c0d764868dfa2fcb24eec5b6c29c94cd7e48314c1e1dcc3d",
-  "package_sha256": "488c6f2cfa687927774d0c2f86649b332df684c95a7853439f3631c24166534c"
+  "reproducibility_key": "e9a0505a48c611ff4a34d9e4e2b241a966b285978386a30a973a1233fb4e039a",
+  "package_sha256": "a475ca93647d45da28bcee4e8d36984985fe205b462a3ec515e456f641c2bae8"
 }

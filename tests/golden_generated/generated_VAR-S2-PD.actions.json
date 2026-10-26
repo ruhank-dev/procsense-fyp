@@ -37,101 +37,112 @@
   },
   {
     "t": 36.0,
+    "verb": "escalate",
+    "params": {
+      "role": "senior",
+      "s": "the patient has an abnormal temperature before the procedure",
+      "b": "temperature outside the normal range on the observations",
+      "a": "it may change the pathway",
+      "r": "please review the patient"
+    }
+  },
+  {
+    "t": 38.0,
     "verb": "ask",
     "params": {
       "topic": "complaint"
     }
   },
   {
-    "t": 40.0,
+    "t": 42.0,
     "verb": "ask",
     "params": {
       "topic": "red_flags"
     }
   },
   {
-    "t": 44.0,
+    "t": 46.0,
     "verb": "ask",
     "params": {
       "topic": "past_history"
     }
   },
   {
-    "t": 48.0,
+    "t": 50.0,
     "verb": "ask",
     "params": {
       "topic": "medicines"
     }
   },
   {
-    "t": 52.0,
+    "t": 54.0,
     "verb": "ask",
     "params": {
       "topic": "herbal"
     }
   },
   {
-    "t": 56.0,
+    "t": 58.0,
     "verb": "ask",
     "params": {
       "topic": "previous_anaesthetic"
     }
   },
   {
-    "t": 60.0,
+    "t": 62.0,
     "verb": "ask",
     "params": {
       "topic": "family_anaesthetic"
     }
   },
   {
-    "t": 64.0,
+    "t": 66.0,
     "verb": "ask",
     "params": {
       "topic": "smoking"
     }
   },
   {
-    "t": 68.0,
+    "t": 70.0,
     "verb": "ask",
     "params": {
       "topic": "alcohol"
     }
   },
   {
-    "t": 72.0,
+    "t": 74.0,
     "verb": "ask",
     "params": {
       "topic": "last_food"
     }
   },
   {
-    "t": 76.0,
+    "t": 78.0,
     "verb": "ask",
     "params": {
       "topic": "last_drink"
     }
   },
   {
-    "t": 80.0,
+    "t": 82.0,
     "verb": "ask",
     "params": {
       "topic": "pregnancy"
     }
   },
   {
-    "t": 84.0,
+    "t": 86.0,
     "verb": "summarise"
   },
   {
-    "t": 88.0,
+    "t": 90.0,
     "verb": "order_investigation",
     "params": {
       "test": "fbc"
     }
   },
   {
-    "t": 90.0,
+    "t": 92.0,
     "verb": "take_sample",
     "params": {
       "test": "fbc",
@@ -139,14 +150,14 @@
     }
   },
   {
-    "t": 92.0,
+    "t": 94.0,
     "verb": "order_investigation",
     "params": {
       "test": "crp"
     }
   },
   {
-    "t": 94.0,
+    "t": 96.0,
     "verb": "take_sample",
     "params": {
       "test": "crp",
@@ -154,14 +165,14 @@
     }
   },
   {
-    "t": 96.0,
+    "t": 98.0,
     "verb": "order_investigation",
     "params": {
       "test": "u_and_e"
     }
   },
   {
-    "t": 98.0,
+    "t": 100.0,
     "verb": "take_sample",
     "params": {
       "test": "u_and_e",
@@ -169,14 +180,14 @@
     }
   },
   {
-    "t": 100.0,
+    "t": 102.0,
     "verb": "order_investigation",
     "params": {
       "test": "lactate_cultures"
     }
   },
   {
-    "t": 102.0,
+    "t": 104.0,
     "verb": "take_sample",
     "params": {
       "test": "lactate_cultures",
@@ -184,59 +195,59 @@
     }
   },
   {
-    "t": 104.0,
+    "t": 106.0,
     "verb": "attach_sensor",
     "params": {
       "sensor": "spo2"
     }
   },
   {
-    "t": 108.0,
+    "t": 110.0,
     "verb": "attach_sensor",
     "params": {
       "sensor": "nibp_cuff"
     }
   },
   {
-    "t": 112.0,
+    "t": 114.0,
     "verb": "measure_nibp"
   },
   {
-    "t": 124.0,
+    "t": 126.0,
     "verb": "measure_temperature"
   },
   {
-    "t": 128.0,
+    "t": 130.0,
     "verb": "count_rr"
   },
   {
-    "t": 132.0,
+    "t": 134.0,
     "verb": "assess_acvpu"
   },
   {
-    "t": 136.0,
+    "t": 138.0,
     "verb": "ask_pain_score"
   },
   {
-    "t": 140.0,
+    "t": 142.0,
     "verb": "ask_exam_permission"
   },
   {
-    "t": 144.0,
+    "t": 146.0,
     "verb": "examine",
     "params": {
       "region": "abdomen"
     }
   },
   {
-    "t": 148.0,
+    "t": 150.0,
     "verb": "examine",
     "params": {
       "region": "abdomen_later"
     }
   },
   {
-    "t": 152.0,
+    "t": 154.0,
     "verb": "assess_risk",
     "params": {
       "asa": "2",
@@ -244,14 +255,14 @@
     }
   },
   {
-    "t": 158.0,
+    "t": 160.0,
     "verb": "assess_vte",
     "params": {
       "items": "age_over_60:no,bmi_over_30:no,cancer:no,previous_clot:no,family_history_clots:no,oestrogen_or_hrt:no,pregnancy:no,dehydration:no,reduced_mobility:no,surgery_over_90_minutes:no,acute_tummy_inflammation:no,active_bleeding:no,blood_thinners:no,platelets_below_75:no,very_high_bp:no"
     }
   },
   {
-    "t": 164.0,
+    "t": 166.0,
     "verb": "compute_score",
     "params": {
       "score": "stopbang",
@@ -266,71 +277,71 @@
     }
   },
   {
-    "t": 172.0,
+    "t": 174.0,
     "verb": "request_anaesthetic_review"
   },
   {
-    "t": 176.0,
+    "t": 178.0,
     "verb": "time_skip",
     "params": {
       "minutes": "60"
     }
   },
   {
-    "t": 3777.0,
+    "t": 3779.0,
     "verb": "view_result",
     "params": {
       "test": "fbc"
     }
   },
   {
-    "t": 3778.0,
+    "t": 3780.0,
     "verb": "view_result",
     "params": {
       "test": "crp"
     }
   },
   {
-    "t": 3779.0,
+    "t": 3781.0,
     "verb": "view_result",
     "params": {
       "test": "u_and_e"
     }
   },
   {
-    "t": 3780.0,
+    "t": 3782.0,
     "verb": "view_result",
     "params": {
       "test": "lactate_cultures"
     }
   },
   {
-    "t": 3781.0,
+    "t": 3783.0,
     "verb": "check_capacity"
   },
   {
-    "t": 3782.0,
+    "t": 3784.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "diagnosis"
     }
   },
   {
-    "t": 3783.0,
+    "t": 3785.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "operation"
     }
   },
   {
-    "t": 3784.0,
+    "t": 3786.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "benefits"
     }
   },
   {
-    "t": 3785.0,
+    "t": 3787.0,
     "verb": "answer_question",
     "params": {
       "q": "s2.children",
@@ -338,21 +349,21 @@
     }
   },
   {
-    "t": 3786.0,
+    "t": 3788.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "risks"
     }
   },
   {
-    "t": 3787.0,
+    "t": 3789.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "alternatives"
     }
   },
   {
-    "t": 3788.0,
+    "t": 3790.0,
     "verb": "answer_question",
     "params": {
       "q": "s2.tablets",
@@ -360,36 +371,36 @@
     }
   },
   {
-    "t": 3789.0,
+    "t": 3791.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "no_treatment"
     }
   },
   {
-    "t": 3790.0,
+    "t": 3792.0,
     "verb": "consent_discussion",
     "params": {
       "topic": "matters"
     }
   },
   {
-    "t": 3791.0,
+    "t": 3793.0,
     "verb": "teach_back"
   },
   {
-    "t": 3792.0,
+    "t": 3794.0,
     "verb": "sign_consent"
   },
   {
-    "t": 3793.0,
+    "t": 3795.0,
     "verb": "check_treatment_timing",
     "params": {
       "treatment": "TR-ABX-S2"
     }
   },
   {
-    "t": 3795.0,
+    "t": 3797.0,
     "verb": "request_medication",
     "params": {
       "class": "TR-ABX-S2",
@@ -397,70 +408,70 @@
     }
   },
   {
-    "t": 3947.0,
+    "t": 3949.0,
     "verb": "decide_ready",
     "params": {
       "option": "proceed"
     }
   },
   {
-    "t": 3957.0,
+    "t": 3959.0,
     "verb": "check_station",
     "params": {
       "station": "anaesthetic_machine"
     }
   },
   {
-    "t": 3958.0,
+    "t": 3960.0,
     "verb": "check_station",
     "params": {
       "station": "monitors"
     }
   },
   {
-    "t": 3959.0,
+    "t": 3961.0,
     "verb": "check_station",
     "params": {
       "station": "suction"
     }
   },
   {
-    "t": 3960.0,
+    "t": 3962.0,
     "verb": "check_station",
     "params": {
       "station": "oxygen_airway"
     }
   },
   {
-    "t": 3961.0,
+    "t": 3963.0,
     "verb": "check_station",
     "params": {
       "station": "lap_tower"
     }
   },
   {
-    "t": 3962.0,
+    "t": 3964.0,
     "verb": "check_station",
     "params": {
       "station": "co2_cylinder"
     }
   },
   {
-    "t": 3963.0,
+    "t": 3965.0,
     "verb": "check_station",
     "params": {
       "station": "diathermy"
     }
   },
   {
-    "t": 3964.0,
+    "t": 3966.0,
     "verb": "check_station",
     "params": {
       "station": "warming"
     }
   },
   {
-    "t": 3965.0,
+    "t": 3967.0,
     "verb": "checklist_item",
     "params": {
       "phase": "sign_in",
@@ -469,7 +480,7 @@
     }
   },
   {
-    "t": 3966.0,
+    "t": 3968.0,
     "verb": "checklist_item",
     "params": {
       "phase": "sign_in",
@@ -478,7 +489,7 @@
     }
   },
   {
-    "t": 3977.0,
+    "t": 3979.0,
     "verb": "checklist_item",
     "params": {
       "phase": "sign_in",
@@ -487,7 +498,7 @@
     }
   },
   {
-    "t": 3978.0,
+    "t": 3980.0,
     "verb": "checklist_item",
     "params": {
       "phase": "sign_in",
@@ -496,7 +507,7 @@
     }
   },
   {
-    "t": 3979.0,
+    "t": 3981.0,
     "verb": "checklist_item",
     "params": {
       "phase": "sign_in",
@@ -505,7 +516,7 @@
     }
   },
   {
-    "t": 3980.0,
+    "t": 3982.0,
     "verb": "checklist_item",
     "params": {
       "phase": "sign_in",
@@ -514,7 +525,7 @@
     }
   },
   {
-    "t": 3991.0,
+    "t": 3993.0,
     "verb": "checklist_item",
     "params": {
       "phase": "time_out",
@@ -523,7 +534,7 @@
     }
   },
   {
-    "t": 3992.0,
+    "t": 3994.0,
     "verb": "checklist_item",
     "params": {
       "phase": "time_out",
@@ -532,7 +543,7 @@
     }
   },
   {
-    "t": 4023.0,
+    "t": 4025.0,
     "verb": "checklist_item",
     "params": {
       "phase": "time_out",
@@ -541,15 +552,15 @@
     }
   },
   {
-    "t": 4024.0,
+    "t": 4026.0,
     "verb": "declare_or_ready"
   },
   {
-    "t": 4025.0,
+    "t": 4027.0,
     "verb": "complete_time_out"
   },
   {
-    "t": 4026.0,
+    "t": 4028.0,
     "verb": "wait"
   }
 ]

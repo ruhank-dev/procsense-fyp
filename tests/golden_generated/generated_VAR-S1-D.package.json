@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mr",
-      "full_name": "Zahid Tufail",
+      "full_name": "Fazal Tufail",
       "sex": "M",
-      "age": 65,
-      "occupation": "retired bus driver",
-      "dob": "1961-02-14",
-      "mrn": "344531"
+      "age": 67,
+      "occupation": "retired shopkeeper",
+      "dob": "1959-04-22",
+      "mrn": "784871"
     },
-    "spoken_identity_answer": "Zahid Tufail, fourteenth of February 1961.",
+    "spoken_identity_answer": "Fazal Tufail, twenty-second of April 1959.",
     "wristband": {
-      "name_text": "ZAHID TUFAIL",
-      "dob_text": "14/02/1961",
-      "mrn_text": "MR 344531"
+      "name_text": "FAZAL TUFAIL",
+      "dob_text": "22/04/1959",
+      "mrn_text": "MR 784871"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "10:00",
-      "summary": "Mr Zahid, 65, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
+      "summary": "Mr Fazal, 67, has atrial fibrillation treated with apixaban and kidney function eGFR 68. When he last took apixaban decides whether surgery can proceed."
     },
     "history": [
       {
@@ -412,6 +412,13 @@
     "variant_end_states": {
       "D2": "postponed"
     },
+    "responsible_adult": {
+      "who": "daughter",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My daughter will pick me up and sleep over at mine.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 3,
@@ -428,11 +435,11 @@
       "seed": 200,
       "spine": "VAR-S1-D",
       "blocks": [
-        "DEM-VAR-S1-D",
-        "NAME-FIRST-ZAHID-M",
+        "DEM-VAR-S2-E",
+        "NAME-FIRST-FAZAL-M",
         "NAME-LAST-TUFAIL"
       ],
-      "solver_steps": 4
+      "solver_steps": 3
     }
   },
   "provenance": {
@@ -440,11 +447,11 @@
     "seed": 200,
     "spine": "VAR-S1-D",
     "blocks": [
-      "DEM-VAR-S1-D",
-      "NAME-FIRST-ZAHID-M",
+      "DEM-VAR-S2-E",
+      "NAME-FIRST-FAZAL-M",
       "NAME-LAST-TUFAIL"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -492,15 +499,16 @@
         "why": "the value is named in the story"
       },
       {
-        "slot": "obs.initial.respiratory_rate",
-        "action": "kept",
-        "why": "the value is named in the story"
-      },
-      {
         "slot": "obs.initial.systolic_bp",
         "action": "drawn",
         "from": "134",
         "to": "155"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "drawn",
+        "from": "14",
+        "to": "14"
       },
       {
         "slot": "obs.initial.spo2",
@@ -656,8 +664,8 @@
     ],
     "surface": [
       "age:60s",
-      "block:DEM-VAR-S1-D",
-      "name:b7b1f32cf4",
+      "block:DEM-VAR-S2-E",
+      "name:9470a899b8",
       "sex:M"
     ]
   },
@@ -668,6 +676,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "7b720f113c81c5ffdaf4d304a9cc381cfea5230e464359a5456985a3cafd4ae0",
-  "package_sha256": "f370fc00215283cc9bf9548bf6367eb7773413d7c7ad08852c209083e9d4492f"
+  "reproducibility_key": "ac46c6db29d5c24f68ce46569c39fe9d53ad26a06775eafc7aa1896150d81d29",
+  "package_sha256": "8fec66633456b7a7dea765214e59173271a299072dae729f290548d03f0d27ab"
 }

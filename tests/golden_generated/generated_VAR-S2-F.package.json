@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mr",
-      "full_name": "Anwar Anwar",
+      "full_name": "Ravi Hussain",
       "sex": "M",
-      "age": 19,
-      "occupation": "university student",
-      "dob": "2007-02-14",
-      "mrn": "344531"
+      "age": 31,
+      "occupation": "software tester",
+      "dob": "1995-02-17",
+      "mrn": "169234"
     },
-    "spoken_identity_answer": "Anwar Anwar, fourteenth of February 2007.",
+    "spoken_identity_answer": "Ravi Hussain, seventeenth of February 1995.",
     "wristband": {
-      "name_text": "ANWAR ANWAR",
-      "dob_text": "14/02/2007",
-      "mrn_text": "MR 344531"
+      "name_text": "RAVI HUSSAIN",
+      "dob_text": "17/02/1995",
+      "mrn_text": "MR 169234"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -34,7 +34,7 @@
     "presentation": {
       "setting": "emergency department",
       "time_now": "14:00",
-      "summary": "Mr Anwar, 19, is otherwise like Hamza (appendicitis) but ate biryani 2 hours ago: a full stomach."
+      "summary": "Mr Ravi, 31, is otherwise like Hamza (appendicitis) but ate biryani 2 hours ago: a full stomach."
     },
     "history": [
       {
@@ -284,6 +284,25 @@
             "consequence": "Falsifying the time is a safety failure."
           }
         ]
+      },
+      {
+        "id": "adv.adv-11",
+        "prompt": "The patient says she had a light meal two hours ago. Do you proceed?",
+        "rule": null,
+        "options": [
+          {
+            "id": "adv.adv-11.1",
+            "text": "Proceed: it was only a light meal.",
+            "correct": false,
+            "consequence": "The history records a recent meal: the fasting rule is broken and aspiration is a risk."
+          },
+          {
+            "id": "adv.adv-11.2",
+            "text": "Tell the anaesthetist and delay; do not tick the fasting line as met.",
+            "correct": true,
+            "consequence": "Matches the guidance: ASA and Association of Anaesthetists fasting guidance."
+          }
+        ]
       }
     ],
     "expected_end_state": "ready",
@@ -330,6 +349,13 @@
       "story": "SR-2317",
       "authored": "SR-3713"
     },
+    "responsible_adult": {
+      "who": "mother",
+      "takes_home": false,
+      "stays_overnight": false,
+      "text": "I will not be going home tonight. My mum is coming to the hospital.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 1,
@@ -346,9 +372,9 @@
       "seed": 200,
       "spine": "VAR-S2-F",
       "blocks": [
-        "DEM-STK-S2-C",
-        "NAME-FIRST-ANWAR-M",
-        "NAME-LAST-ANWAR"
+        "DEM-STK-S2-B",
+        "NAME-FIRST-RAVI-M",
+        "NAME-LAST-HUSSAIN"
       ],
       "solver_steps": 5
     }
@@ -358,11 +384,11 @@
     "seed": 200,
     "spine": "VAR-S2-F",
     "blocks": [
-      "DEM-STK-S2-C",
-      "NAME-FIRST-ANWAR-M",
-      "NAME-LAST-ANWAR"
+      "DEM-STK-S2-B",
+      "NAME-FIRST-RAVI-M",
+      "NAME-LAST-HUSSAIN"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -376,7 +402,8 @@
       "LG-04",
       "LG-05",
       "LG-07",
-      "LG-08"
+      "LG-08",
+      "LG-06b"
     ],
     "plan": {
       "method": "solver",
@@ -423,7 +450,7 @@
       "discoverable": 1.0,
       "difficulty": 1.0,
       "fairness": 1.0,
-      "trap_fairness": 0.5,
+      "trap_fairness": 0.667,
       "reading": 1.0,
       "persona": 1.0,
       "coherence": 1.0,
@@ -439,6 +466,16 @@
       }
     ],
     "unmet_dimensions": []
+  },
+  "adversarial": {
+    "status": "awaiting_review",
+    "added": [
+      {
+        "block": "ADV-11",
+        "decision": "adv.adv-11",
+        "anchor": "last_food"
+      }
+    ]
   },
   "media": {
     "slots": [
@@ -514,9 +551,9 @@
       "rhythm:regular"
     ],
     "surface": [
-      "age:10s",
-      "block:DEM-STK-S2-C",
-      "name:b7beb9a301",
+      "age:30s",
+      "block:DEM-STK-S2-B",
+      "name:0c8629d7e8",
       "sex:M"
     ]
   },
@@ -527,6 +564,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "93cb3ce2f9da0ad650a560a7e96549de961693327457542087b3620a0fd1cea5",
-  "package_sha256": "a4d276b4694a7e65b0a6c9259e54e4fe054c9fc8affd750d797efcd944c4fef0"
+  "reproducibility_key": "daaa466b02ec38836b4cceac0b05ccbce9a46977319c9d095bf3c2e73866e072",
+  "package_sha256": "e18c3bc12822b20ef073f48b0d551397b1964fd82b81a6125ab42a60c3e424bb"
 }

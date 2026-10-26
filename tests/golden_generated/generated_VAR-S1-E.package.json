@@ -14,19 +14,19 @@
     "reference_date": "2026-10-10",
     "base_card": null,
     "identity": {
-      "title": "Ms",
-      "full_name": "Maria Iqbal",
+      "title": "Mrs",
+      "full_name": "Sofia Nadeem",
       "sex": "F",
-      "age": 27,
-      "occupation": "call-centre agent",
-      "dob": "1999-02-12",
-      "mrn": "392794"
+      "age": 44,
+      "occupation": "pharmacy assistant",
+      "dob": "1982-07-10",
+      "mrn": "874340"
     },
-    "spoken_identity_answer": "Maria Iqbal, twelfth of February 1999.",
+    "spoken_identity_answer": "Sofia Nadeem, tenth of July 1982.",
     "wristband": {
-      "name_text": "MARIA IQBAL",
-      "dob_text": "12/02/1999",
-      "mrn_text": "MR 392794"
+      "name_text": "SOFIA NADEEM",
+      "dob_text": "10/07/1982",
+      "mrn_text": "MR 874340"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "10:30",
-      "summary": "Ms Maria, 27, booked for planned gallbladder removal, arrives with constant pain for 2 days and felt hot overnight: she now has an acute illness."
+      "summary": "Mrs Sofia, 44, booked for planned gallbladder removal, arrives with constant pain for 2 days and felt hot overnight: she now has an acute illness."
     },
     "history": [
       {
@@ -315,7 +315,7 @@
     "decisions": [
       {
         "id": "e.d1",
-        "prompt": "Ms Maria has fever, a positive Murphy's sign, WBC 15.2, CRP 96 and a scan with a 6 mm wall and fluid. What now?",
+        "prompt": "Mrs Sofia has fever, a positive Murphy's sign, WBC 15.2, CRP 96 and a scan with a 6 mm wall and fluid. What now?",
         "rule": "gallbladder_moderate_grade",
         "options": [
           {
@@ -394,6 +394,13 @@
         "SR-2444"
       ]
     },
+    "responsible_adult": {
+      "who": "sister",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My sister is coming for me and she will stay with me tonight.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -410,11 +417,11 @@
       "seed": 500,
       "spine": "VAR-S1-E",
       "blocks": [
-        "DEM-VAR-S2-B",
-        "NAME-FIRST-MARIA-F",
-        "NAME-LAST-IQBAL"
+        "DEM-VAR-S1-I",
+        "NAME-FIRST-SOFIA-F",
+        "NAME-LAST-NADEEM"
       ],
-      "solver_steps": 7
+      "solver_steps": 5
     }
   },
   "provenance": {
@@ -422,11 +429,11 @@
     "seed": 500,
     "spine": "VAR-S1-E",
     "blocks": [
-      "DEM-VAR-S2-B",
-      "NAME-FIRST-MARIA-F",
-      "NAME-LAST-IQBAL"
+      "DEM-VAR-S1-I",
+      "NAME-FIRST-SOFIA-F",
+      "NAME-LAST-NADEEM"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -576,9 +583,9 @@
       "rhythm:regular"
     ],
     "surface": [
-      "age:20s",
-      "block:DEM-VAR-S2-B",
-      "name:471bf32227",
+      "age:40s",
+      "block:DEM-VAR-S1-I",
+      "name:dbbc59b2ac",
       "sex:F"
     ]
   },
@@ -589,6 +596,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "cdaf5cc72c7ec471e1b577af3910431bee667f112379307daa8a6f05d081ba9e",
-  "package_sha256": "4e431cec3c1ff144c13112cacf2fff9982132a9152a25703ea154eeb27d03e69"
+  "reproducibility_key": "4115ddcaa68ce3d2f9d474283b41372bd8ddb2e59522c3a8b35c5dd8a77fd25b",
+  "package_sha256": "771fbdf2cc59a7b2f137d7ce8af3f2d67e404c8aeaf8bc263ab846b4a399193b"
 }

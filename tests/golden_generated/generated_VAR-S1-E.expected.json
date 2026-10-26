@@ -2,8 +2,8 @@
   "case": "GEN-S1-0500-001",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "cf30c1a2036c2f1cfd190149f075513c43b256fb36dcb6099900d54232072e33",
-  "state_hash": "9e22ac28a802af5081165e2de05e6afb9b70712d96660d4fe694907540ce085f",
+  "log_hash": "9cb027954d9abd173f5e7444dd8df260c5b6b71d0062cda36188e82cc2e85d24",
+  "state_hash": "9a71d9a6fcad8fcdb4f9d6c4b943106bb0e344e157322a2fd712fea03728fcfc",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -15,7 +15,7 @@
       "allergy_reaction_asked",
       "decision.declared",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "identity_asked_open",
       "introduced",
       "pregnancy.status_required"
@@ -29,9 +29,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 2,
+    "credits": 4,
     "minor": [],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

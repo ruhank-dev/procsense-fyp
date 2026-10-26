@@ -13,7 +13,7 @@ from __future__ import annotations
 import time
 from dataclasses import dataclass, field
 
-from . import consistency, contracts, novelty, objectives as ob, package, quality, repair, reports, retrieve, skeleton
+from . import adversarial, consistency, contracts, novelty, objectives as ob, package, quality, repair, reports, retrieve, skeleton
 
 
 @dataclass
@@ -29,6 +29,7 @@ class Context:
     critic: object | None = None                # generation.critic.Critic, or None: no model review of the free text
     planner: object | None = None               # generation.compose_plan.Planner, or None: the deterministic choice of story and blocks
     narrator: object | None = None              # generation.narrative.Narrator, or None: the patient keeps the authored words
+    adversarial_blocks: bool = True             # add the adversarial decision of a fitting block to the composed case (DT-197, generation/adversarial.py); False leaves the spine's own decisions only
     trap_writer: object | None = None           # generation.trap_writer.TrapWriter, or None: the wrong options keep the authored words
 
     def discovery(self, spine: str) -> list[dict]:
@@ -50,6 +51,8 @@ def _candidate(objectives: dict, ctx: Context, serial: int, **kw) -> tuple[dict,
         sk["narrative"] = ctx.narrator.apply(sk["case"], objectives["seed"])         # words only; the gate below checks the changed case again
     if ctx.trap_writer is not None:
         sk["trap_wording"] = ctx.trap_writer.apply(sk["case"], objectives["seed"])   # the text of wrong options only; ids, correct flags and consequences are untouched and the gate checks the case again
+    if ctx.adversarial_blocks:
+        sk["adversarial"] = adversarial.apply(sk["case"], objectives["seed"])          # a decision whose wrong option looks right, only where the case holds the fact that shows why; the gate checks the case again
     return sk, novelty.levels_of(sk["case"], sk["media"])
 
 

@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mr",
-      "full_name": "Hamid Hashmi",
+      "full_name": "Yasir Farooq",
       "sex": "M",
-      "age": 50,
-      "occupation": "electrician",
-      "dob": "1976-07-01",
-      "mrn": "628910"
+      "age": 52,
+      "occupation": "kitchen porter",
+      "dob": "1974-02-24",
+      "mrn": "436379"
     },
-    "spoken_identity_answer": "Hamid Hashmi, first of July 1976.",
+    "spoken_identity_answer": "Yasir Farooq, twenty-fourth of February 1974.",
     "wristband": {
-      "name_text": "HAMID HASHMI",
-      "dob_text": "01/07/1976",
-      "mrn_text": "MR 628910"
+      "name_text": "YASIR FAROOQ",
+      "dob_text": "24/02/1974",
+      "mrn_text": "MR 436379"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "10:00",
-      "summary": "Mr Hamid, 50, is well. The pre-operative potassium comes back 6.4 'haemolysed'. His ECG and kidney function are normal."
+      "summary": "Mr Yasir, 52, is well. The pre-operative potassium comes back 6.4 'haemolysed'. His ECG and kidney function are normal."
     },
     "history": [
       {
@@ -321,6 +321,25 @@
             "consequence": "An unrepeated high potassium cannot be ignored."
           }
         ]
+      },
+      {
+        "id": "adv.adv-04",
+        "prompt": "The potassium is high. What now?",
+        "rule": null,
+        "options": [
+          {
+            "id": "adv.adv-04.1",
+            "text": "Ignore it: a high potassium is usually just a haemolysed sample.",
+            "correct": false,
+            "consequence": "A potassium result is in the case: an unrepeated high value cannot be dismissed without checking the ECG and the kidneys."
+          },
+          {
+            "id": "adv.adv-04.2",
+            "text": "Repeat it urgently, look at the ECG and the kidney function, and tell the anaesthetist until it is explained.",
+            "correct": true,
+            "consequence": "Matches the guidance: UK Kidney Association hyperkalaemia guideline; Resuscitation Council UK emergency treatment of hyperkalaemia."
+          }
+        ]
       }
     ],
     "expected_end_state": "ready",
@@ -370,6 +389,13 @@
       "story": "SR-2308",
       "authored": "SR-3708"
     },
+    "responsible_adult": {
+      "who": "wife",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My wife will drive me home and stay with me overnight.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 1,
@@ -386,12 +412,12 @@
       "seed": 600,
       "spine": "VAR-S1-J",
       "blocks": [
-        "DEM-VAR-S1-J",
-        "NAME-FIRST-HAMID-M",
-        "NAME-LAST-HASHMI",
-        "SOC-SC-18"
+        "DEM-SC-27",
+        "NAME-FIRST-YASIR-M",
+        "NAME-LAST-FAROOQ",
+        "SOC-SC-14"
       ],
-      "solver_steps": 5
+      "solver_steps": 6
     }
   },
   "provenance": {
@@ -399,12 +425,12 @@
     "seed": 600,
     "spine": "VAR-S1-J",
     "blocks": [
-      "DEM-VAR-S1-J",
-      "NAME-FIRST-HAMID-M",
-      "NAME-LAST-HASHMI",
-      "SOC-SC-18"
+      "DEM-SC-27",
+      "NAME-FIRST-YASIR-M",
+      "NAME-LAST-FAROOQ",
+      "SOC-SC-14"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -418,7 +444,8 @@
       "LG-04",
       "LG-05",
       "LG-07",
-      "LG-08"
+      "LG-08",
+      "LG-06b"
     ],
     "plan": {
       "method": "solver",
@@ -433,7 +460,7 @@
       }
     ]
   },
-  "fingerprint": "9d5486a66d94f6d1",
+  "fingerprint": "076125c7a47eeac6",
   "quality": {
     "numeric_log": [
       {
@@ -519,6 +546,16 @@
     ],
     "advisory": [],
     "unmet_dimensions": []
+  },
+  "adversarial": {
+    "status": "awaiting_review",
+    "added": [
+      {
+        "block": "ADV-04",
+        "decision": "adv.adv-04",
+        "anchor": "results"
+      }
+    ]
   },
   "media": {
     "slots": [
@@ -607,9 +644,9 @@
     ],
     "surface": [
       "age:50s",
-      "block:DEM-VAR-S1-J",
-      "block:SOC-SC-18",
-      "name:663bc72498",
+      "block:DEM-SC-27",
+      "block:SOC-SC-14",
+      "name:4c3e42a1b0",
       "sex:M"
     ]
   },
@@ -620,6 +657,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "aa2f31ce27ce42a6fa30ac0d4828142de9275924880500ba44f8bcb9f4e6ec1e",
-  "package_sha256": "d08516aa188bb48d3ec5d0ec35552d08c4d6319084c6e67b78314bad005e552d"
+  "reproducibility_key": "8054f6ac27ae83d99c7e0161fa6f07f23e8d4df5796bc30959a8bc3ca44bee1d",
+  "package_sha256": "115a67607d7141699d53c17db850701711dd4d556d928a55d56c0fd2add7c723"
 }

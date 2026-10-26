@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mr",
-      "full_name": "Ravi Rehman",
+      "full_name": "Zafar Qazi",
       "sex": "M",
-      "age": 22,
-      "occupation": "delivery rider",
-      "dob": "2004-02-02",
-      "mrn": "256474"
+      "age": 34,
+      "occupation": "driver",
+      "dob": "1992-09-05",
+      "mrn": "546368"
     },
-    "spoken_identity_answer": "Ravi Rehman, second of February 2004.",
+    "spoken_identity_answer": "Zafar Qazi, fifth of September 1992.",
     "wristband": {
-      "name_text": "RAVI REHMAN",
-      "dob_text": "02/02/2004",
-      "mrn_text": "MR 256474"
+      "name_text": "ZAFAR QAZI",
+      "dob_text": "05/09/1992",
+      "mrn_text": "MR 546368"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -34,7 +34,7 @@
     "presentation": {
       "setting": "emergency department",
       "time_now": "10:00",
-      "summary": "Ravi, 22, a delivery rider, is brought in by his brother at 10:00 with tummy pain since last night. Triage: abdominal pain 14 hours, HR 108, T 37.9, pain 8/10: very urgent."
+      "summary": "Zafar, 34, a driver, is brought in by his brother at 10:00 with tummy pain since last night. Triage: abdominal pain 14 hours, HR 108, T 37.9, pain 8/10: very urgent."
     },
     "history": [
       {
@@ -117,7 +117,7 @@
       {
         "id": "smoking",
         "topic": "smoking",
-        "answer": "Never.",
+        "answer": "Ex-smoker.",
         "volunteered": false,
         "disclose_on": [
           "ask:smoking"
@@ -597,12 +597,19 @@
         "SR-2435"
       ]
     },
+    "responsible_adult": {
+      "who": "father",
+      "takes_home": false,
+      "stays_overnight": false,
+      "text": "I will be staying in. My dad is on his way here.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 1,
         "max": 1,
         "emergency": true,
-        "why": "A healthy 22-year-old with classic appendicitis: healthy S2 is 1E (walkthrough, 'S2 typical ASA 1E').",
+        "why": "A healthy 34-year-old with classic appendicitis: healthy S2 is 1E (walkthrough, 'S2 typical ASA 1E').",
         "origin": "book"
       },
       "plan": "rsi"
@@ -613,13 +620,13 @@
       "seed": 400,
       "spine": "VAR-S2-PC",
       "blocks": [
-        "DEM-VAR-S2-F",
-        "NAME-FIRST-RAVI-M",
-        "NAME-LAST-REHMAN",
-        "PSH-SC-18",
-        "SOC-SC-14"
+        "DEM-SC-15",
+        "NAME-FIRST-ZAFAR-M",
+        "NAME-LAST-QAZI",
+        "PSH-VAR-S2-K",
+        "SOC-VAR-S2-E"
       ],
-      "solver_steps": 7
+      "solver_steps": 5
     }
   },
   "provenance": {
@@ -627,13 +634,13 @@
     "seed": 400,
     "spine": "VAR-S2-PC",
     "blocks": [
-      "DEM-VAR-S2-F",
-      "NAME-FIRST-RAVI-M",
-      "NAME-LAST-REHMAN",
-      "PSH-SC-18",
-      "SOC-SC-14"
+      "DEM-SC-15",
+      "NAME-FIRST-ZAFAR-M",
+      "NAME-LAST-QAZI",
+      "PSH-VAR-S2-K",
+      "SOC-VAR-S2-E"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -662,7 +669,7 @@
       }
     ]
   },
-  "fingerprint": "6b66ac940891d023",
+  "fingerprint": "54bca5ebbd5eef85",
   "quality": {
     "numeric_log": [
       {
@@ -843,7 +850,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-SC-18",
+      "block:PSH-VAR-S2-K",
       "primary:pc.pain",
       "scenario:S2",
       "spine:VAR-S2-PC"
@@ -861,10 +868,10 @@
       "rhythm:regular"
     ],
     "surface": [
-      "age:20s",
-      "block:DEM-VAR-S2-F",
-      "block:SOC-SC-14",
-      "name:c81360bbfc",
+      "age:30s",
+      "block:DEM-SC-15",
+      "block:SOC-VAR-S2-E",
+      "name:f759310eb3",
       "sex:M"
     ]
   },
@@ -875,6 +882,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "f271cf10a7686786d126e5731efcb322b6ab4dfd0d6803447ea18a80bf91838b",
-  "package_sha256": "09524a44f53ce425c64906b640a2876271693ad44305f58086a407a86fbf03b2"
+  "reproducibility_key": "c000a9a48aebe89513dbe973f4de1c0df6826fb12b1ba13a2fa845e6c4445ee5",
+  "package_sha256": "9bfffafc778fbe5f1ba2284b9adaf73092075000852849c6a080a7ac4bfafb95"
 }

@@ -2,8 +2,8 @@
   "case": "GEN-S2-0500-001",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "09c9ff51fc20da82f03e0f8f4852abc9fd09d59841076a6ef3d1981f5048ad69",
-  "state_hash": "2f5e296b9a481309be3c3090af73c572982525aace8154aab2ed5cea8816d1e0",
+  "log_hash": "83fff9b57d5b57893e6ff213acf3d5b08cbc1209a9dd1ebea9dd464e3b0ca5c5",
+  "state_hash": "752aa288a9d6cd981c9d6ab9a6a7fd2df24b460dde96b6966b72a92f398f56cb",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -38,7 +38,7 @@
       "consent.teach_back_ok",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fever.missed",
+      "event.e-fever.handled",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -66,9 +66,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 21,
+    "credits": 23,
     "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated"],
+    "major": [],
     "critical": []
   }
 }

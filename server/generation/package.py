@@ -72,6 +72,10 @@ def assemble(skeleton: dict, objectives: dict, index: retrieve.Index, models: li
         pkg["quality"]["narrative_audit"] = [{k: a[k] for k in ("task", "latency_ms", "attempts", "outcome", "input_hash", "output_hash")} for a in nar["audit"]]
     elif nar:
         pkg["narrative"] = {"persona": nar["persona"], "lines": nar["lines"]}
+    adv = skeleton.get("adversarial")
+    if adv:
+        pkg["adversarial"] = {"status": "awaiting_review", "added": adv}                # AI-authored teaching decisions, not clinician-reviewed: the package says so
+        pkg["provenance"]["stages"].append("LG-06b")
     trap = skeleton.get("trap_wording")
     if trap and any(x["method"] == "model" for x in trap["lines"]):
         pkg["trap_wording"] = {"lines": trap["lines"]}

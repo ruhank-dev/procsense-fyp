@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mrs",
-      "full_name": "Aisha Santos",
+      "full_name": "Nasreen Haddad",
       "sex": "F",
-      "age": 62,
-      "occupation": "retired shopkeeper",
-      "dob": "1964-05-16",
-      "mrn": "808502"
+      "age": 63,
+      "occupation": "school secretary",
+      "dob": "1963-01-08",
+      "mrn": "140466"
     },
-    "spoken_identity_answer": "Aisha Santos, sixteenth of May 1964.",
+    "spoken_identity_answer": "Nasreen Haddad, eighth of January 1963.",
     "wristband": {
-      "name_text": "AISHA SANTOS",
-      "dob_text": "16/05/1964",
-      "mrn_text": "MR 808502"
+      "name_text": "NASREEN HADDAD",
+      "dob_text": "08/01/1963",
+      "mrn_text": "MR 140466"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "09:00",
-      "summary": "Mrs Santos, 62, is booked for planned keyhole gallbladder removal. Her daughter noticed yellow eyes last week and she has dark urine: a stone may have moved into the main bile duct."
+      "summary": "Mrs Haddad, 63, is booked for planned keyhole gallbladder removal. Her daughter noticed yellow eyes last week and she has dark urine: a stone may have moved into the main bile duct."
     },
     "history": [
       {
@@ -97,7 +97,7 @@
       {
         "id": "previous_anaesthetic",
         "topic": "previous_anaesthetic",
-        "answer": "No previous anaesthetics.",
+        "answer": "None.",
         "volunteered": false,
         "disclose_on": [
           "ask:previous anaesthetic",
@@ -441,7 +441,7 @@
       },
       {
         "id": "pb.d3",
-        "prompt": "What safety-net advice do you give Mrs Santos?",
+        "prompt": "What safety-net advice do you give Mrs Haddad?",
         "rule": null,
         "options": [
           {
@@ -467,7 +467,7 @@
         "Vital signs; liver tests; ultrasound",
         "Risk tool: high",
         "Stop today's plan; senior; ERCP pathway",
-        "Explain to Mrs Santos, document, safety-net advice"
+        "Explain to Mrs Haddad, document, safety-net advice"
       ],
       "incorrect": [
         {
@@ -525,6 +525,13 @@
         "SR-2420"
       ]
     },
+    "responsible_adult": {
+      "who": "husband",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My husband will take me home and look after me tonight.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -541,12 +548,12 @@
       "seed": 700,
       "spine": "VAR-S1-PB",
       "blocks": [
-        "DEM-VAR-S1-PB",
-        "NAME-FIRST-AISHA-F",
-        "NAME-LAST-SANTOS",
-        "PSH-SC-18"
+        "DEM-STK-S1-D",
+        "NAME-FIRST-NASREEN-F",
+        "NAME-LAST-HADDAD",
+        "PSH-VAR-S2-L"
       ],
-      "solver_steps": 4
+      "solver_steps": 5
     }
   },
   "provenance": {
@@ -554,12 +561,12 @@
     "seed": 700,
     "spine": "VAR-S1-PB",
     "blocks": [
-      "DEM-VAR-S1-PB",
-      "NAME-FIRST-AISHA-F",
-      "NAME-LAST-SANTOS",
-      "PSH-SC-18"
+      "DEM-STK-S1-D",
+      "NAME-FIRST-NASREEN-F",
+      "NAME-LAST-HADDAD",
+      "PSH-VAR-S2-L"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -588,7 +595,7 @@
       }
     ]
   },
-  "fingerprint": "56ba5f3e33e26ecf",
+  "fingerprint": "c35c2bc5fdeb8e19",
   "quality": {
     "numeric_log": [
       {
@@ -642,11 +649,6 @@
         ]
       },
       {
-        "slot": "obs.initial.respiratory_rate",
-        "action": "kept",
-        "why": "the value is named in the story"
-      },
-      {
         "slot": "obs.initial.heart_rate",
         "action": "drawn",
         "from": "84",
@@ -657,6 +659,12 @@
         "action": "drawn",
         "from": "138",
         "to": "144"
+      },
+      {
+        "slot": "obs.initial.respiratory_rate",
+        "action": "drawn",
+        "from": "16",
+        "to": "16"
       },
       {
         "slot": "obs.initial.spo2",
@@ -814,7 +822,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-SC-18",
+      "block:PSH-VAR-S2-L",
       "primary:pb.stone",
       "scenario:S1",
       "spine:VAR-S1-PB"
@@ -834,8 +842,8 @@
     ],
     "surface": [
       "age:60s",
-      "block:DEM-VAR-S1-PB",
-      "name:5109efb1fc",
+      "block:DEM-STK-S1-D",
+      "name:bd684456cd",
       "sex:F"
     ]
   },
@@ -846,6 +854,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "ee945202d24bea74580f664af591ba396fbc512a8501299af3369424e1413d41",
-  "package_sha256": "9390a4b5b2bab9e0d19d5b96aecee1dd468f1a10314d63332a332841c428905d"
+  "reproducibility_key": "c18c46ce23b535b92371d8c3b7e0530bfd6c09fb4f772dac2c7e4e71f1b6e3a8",
+  "package_sha256": "f66d4fea31ddcfd914fab227235880c15870a3a7e41ed6244e0c0af76a9ae450"
 }

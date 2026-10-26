@@ -21,7 +21,7 @@
    "title": "An anticoagulant taken last night",
    "anchor": {
     "in": "history",
-    "match": "apixaban|warfarin|rivaroxaban|anticoag"
+    "match": "(apixaban|warfarin|rivaroxaban|anticoag)[^.]{0,80}(last night|this morning|did not stop|not stopped|yesterday|nobody told|at 7)"
    },
    "prompt": "The list is ready and the patient is fit. What now?",
    "wrong": "Proceed: the blood thinner is a routine medicine and the patient feels well.",
@@ -47,7 +47,7 @@
    "title": "A high potassium that looks like a lab error",
    "anchor": {
     "in": "results",
-    "match": "potassium"
+    "match": "potassium (5\\.[5-9]|[6-9]\\.[0-9])\\b"
    },
    "prompt": "The potassium is high. What now?",
    "wrong": "Ignore it: a high potassium is usually just a haemolysed sample.",
@@ -111,8 +111,8 @@
    "id": "ADV-08",
    "title": "A slow pulse that hides shock",
    "anchor": {
-    "in": "history",
-    "match": "beta|bisoprolol|atenolol|metoprolol"
+    "in": "problems",
+    "match": "slow heart"
    },
    "prompt": "The heart rate is 58 and the blood pressure is low. What do you make of it?",
    "wrong": "Reassure: a slow pulse is a good sign.",
@@ -138,7 +138,7 @@
    "title": "An anaemia that is not explained",
    "anchor": {
     "in": "results",
-    "match": "haemoglobin|hb|ferritin"
+    "match": "\\b(hb|haemoglobin) +([6-9][0-9]|10[0-9]|11[0-9])\\b"
    },
    "prompt": "The haemoglobin is low in an older man. What now?",
    "wrong": "Proceed: mild anaemia is common at his age.",
@@ -150,8 +150,8 @@
    "id": "ADV-11",
    "title": "A fasting breach",
    "anchor": {
-    "in": "history",
-    "match": "\\bate\\b|meal|breakfast|biryani|kebab"
+    "in": "last_food",
+    "match": "(toast|breakfast|meal|kebab|biryani|lunch)[^.;]{0,30}(at [0-9]{1,2}:[0-9]{2} today|[1-4] hours? ago)"
    },
    "prompt": "The patient says she had a light meal two hours ago. Do you proceed?",
    "wrong": "Proceed: it was only a light meal.",

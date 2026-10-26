@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Nimra Butt",
+      "full_name": "Zainab Rehman",
       "sex": "F",
-      "age": 25,
-      "occupation": "nurse",
-      "dob": "2001-10-07",
-      "mrn": "832517"
+      "age": 21,
+      "occupation": "call-centre agent",
+      "dob": "2005-01-27",
+      "mrn": "808587"
     },
-    "spoken_identity_answer": "Nimra Butt, seventh of October 2001.",
+    "spoken_identity_answer": "Zainab Rehman, twenty-seventh of January 2005.",
     "wristband": {
-      "name_text": "NIMRA BUTT",
-      "dob_text": "07/10/2001",
-      "mrn_text": "MR 832517"
+      "name_text": "ZAINAB REHMAN",
+      "dob_text": "27/01/2005",
+      "mrn_text": "MR 808587"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -34,7 +34,7 @@
     "presentation": {
       "setting": "emergency department",
       "time_now": "12:00",
-      "summary": "Ms Nimra, 25, has been vomiting for two days: HR 116, BP 104/66, dry mouth, little urine. Urea 12.4 and creatinine 160 (usual 85)."
+      "summary": "Ms Zainab, 21, has been vomiting for two days: HR 116, BP 104/66, dry mouth, little urine. Urea 12.4 and creatinine 160 (usual 85)."
     },
     "history": [
       {
@@ -389,6 +389,13 @@
       "story": "SR-2318",
       "authored": "SR-3714"
     },
+    "responsible_adult": {
+      "who": "son",
+      "takes_home": false,
+      "stays_overnight": false,
+      "text": "I am staying in. My son is coming after work.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -405,12 +412,12 @@
       "seed": 0,
       "spine": "VAR-S2-G",
       "blocks": [
-        "DEM-VAR-S2-D",
-        "NAME-FIRST-NIMRA-F",
-        "NAME-LAST-BUTT",
-        "PSH-VAR-S1-G"
+        "DEM-VAR-S2-B",
+        "NAME-FIRST-ZAINAB-F",
+        "NAME-LAST-REHMAN",
+        "PSH-VAR-S1-D"
       ],
-      "solver_steps": 5
+      "solver_steps": 8
     }
   },
   "provenance": {
@@ -418,12 +425,12 @@
     "seed": 0,
     "spine": "VAR-S2-G",
     "blocks": [
-      "DEM-VAR-S2-D",
-      "NAME-FIRST-NIMRA-F",
-      "NAME-LAST-BUTT",
-      "PSH-VAR-S1-G"
+      "DEM-VAR-S2-B",
+      "NAME-FIRST-ZAINAB-F",
+      "NAME-LAST-REHMAN",
+      "PSH-VAR-S1-D"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -452,7 +459,7 @@
       }
     ]
   },
-  "fingerprint": "beb6ae2597fc9bca",
+  "fingerprint": "57bd1b7256a02a57",
   "quality": {
     "numeric_log": [
       {
@@ -581,7 +588,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-VAR-S1-G",
+      "block:PSH-VAR-S1-D",
       "primary:sg.aki",
       "scenario:S2",
       "spine:VAR-S2-G"
@@ -599,8 +606,8 @@
     ],
     "surface": [
       "age:20s",
-      "block:DEM-VAR-S2-D",
-      "name:b951619e01",
+      "block:DEM-VAR-S2-B",
+      "name:352c737e40",
       "sex:F"
     ]
   },
@@ -611,6 +618,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "7f3ead9ac1389686202b336c40ecbaf3d4e86b7ec8be11ced0ecf58114733711",
-  "package_sha256": "d14ff2d4206fe4c8e3aba2b7a2833f884940b961573846207134656caafad2fa"
+  "reproducibility_key": "c3392e4b2811d3f24e7ead4e05994db4007ed47912ab7ba60eda5242d3da99f6",
+  "package_sha256": "61b6e6c9da09b9cce16fe000ca3f281795de020121790fe48c020ddc57413c93"
 }

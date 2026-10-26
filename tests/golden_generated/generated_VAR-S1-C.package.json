@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Mrs",
-      "full_name": "Zainab Baig",
+      "full_name": "Zainab Tufail",
       "sex": "F",
       "age": 55,
       "occupation": "primary school cook",
-      "dob": "1971-09-25",
-      "mrn": "923362"
+      "dob": "1971-01-04",
+      "mrn": "860132"
     },
-    "spoken_identity_answer": "Zainab Baig, twenty-fifth of September 1971.",
+    "spoken_identity_answer": "Zainab Tufail, fourth of January 1971.",
     "wristband": {
-      "name_text": "ZAINAB BAIG",
-      "dob_text": "25/09/1971",
-      "mrn_text": "MR 923362"
+      "name_text": "ZAINAB TUFAIL",
+      "dob_text": "04/01/1971",
+      "mrn_text": "MR 860132"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -412,6 +412,13 @@
     "variant_end_states": {
       "C2": "postponed"
     },
+    "responsible_adult": {
+      "who": "husband",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My husband is taking the day off. He will drive me home and stay the night.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -430,11 +437,11 @@
       "blocks": [
         "DEM-VAR-S1-C",
         "NAME-FIRST-ZAINAB-F",
-        "NAME-LAST-BAIG",
-        "PSH-SC-5",
-        "SOC-VAR-S1-H"
+        "NAME-LAST-TUFAIL",
+        "PSH-STK-S1-B",
+        "SOC-VAR-S2-I"
       ],
-      "solver_steps": 7
+      "solver_steps": 5
     }
   },
   "provenance": {
@@ -444,11 +451,11 @@
     "blocks": [
       "DEM-VAR-S1-C",
       "NAME-FIRST-ZAINAB-F",
-      "NAME-LAST-BAIG",
-      "PSH-SC-5",
-      "SOC-VAR-S1-H"
+      "NAME-LAST-TUFAIL",
+      "PSH-STK-S1-B",
+      "SOC-VAR-S2-I"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -477,7 +484,7 @@
       }
     ]
   },
-  "fingerprint": "3dc513faaae59188",
+  "fingerprint": "5d84767009afc0bc",
   "quality": {
     "numeric_log": [
       {
@@ -617,7 +624,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-SC-5",
+      "block:PSH-STK-S1-B",
       "primary:c.diabetes",
       "scenario:S1",
       "spine:VAR-S1-C"
@@ -632,8 +639,8 @@
     "surface": [
       "age:50s",
       "block:DEM-VAR-S1-C",
-      "block:SOC-VAR-S1-H",
-      "name:20f44e8de6",
+      "block:SOC-VAR-S2-I",
+      "name:cb6017ee0c",
       "sex:F"
     ]
   },
@@ -644,6 +651,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "7fec139afa34879f4e38fb3eb5d06b54ee891896ac494b97cb177f1b01f1911c",
-  "package_sha256": "b16d7a7ef3cdb4fe206998f240f0659523e5064a6954f19fb1bc46b7abc67c06"
+  "reproducibility_key": "488731ab906ed75aee7964aa531a01e127ebaf58cf624e27bda592e59f1189c5",
+  "package_sha256": "fb04bf661d9dab455c38976eac1af5b97e9149bf36ad28d215f420015e9f9a6a"
 }

@@ -37,13 +37,24 @@
   },
   {
     "t": 36.0,
+    "verb": "escalate",
+    "params": {
+      "role": "senior",
+      "s": "the patient has an abnormal temperature before the procedure",
+      "b": "temperature outside the normal range on the observations",
+      "a": "it may change the pathway",
+      "r": "please review the patient"
+    }
+  },
+  {
+    "t": 38.0,
     "verb": "order_investigation",
     "params": {
       "test": "ultrasound"
     }
   },
   {
-    "t": 38.0,
+    "t": 40.0,
     "verb": "request_transport",
     "params": {
       "to": "ultrasound",
@@ -55,14 +66,14 @@
     }
   },
   {
-    "t": 42.0,
+    "t": 44.0,
     "verb": "time_skip",
     "params": {
       "minutes": "60"
     }
   },
   {
-    "t": 3643.0,
+    "t": 3645.0,
     "verb": "declare_outcome",
     "params": {
       "outcome": "INVESTIGATE",
@@ -70,14 +81,14 @@
     }
   },
   {
-    "t": 3647.0,
+    "t": 3649.0,
     "verb": "redirect",
     "params": {
       "service": "acute surgical team"
     }
   },
   {
-    "t": 3651.0,
+    "t": 3653.0,
     "verb": "wait"
   }
 ]

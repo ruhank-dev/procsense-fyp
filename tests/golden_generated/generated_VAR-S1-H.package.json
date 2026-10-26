@@ -15,18 +15,18 @@
     "base_card": null,
     "identity": {
       "title": "Ms",
-      "full_name": "Helena Chaudhry",
+      "full_name": "Uzma Sheikh",
       "sex": "F",
-      "age": 24,
+      "age": 28,
       "occupation": "dental student",
-      "dob": "2002-09-01",
-      "mrn": "600743"
+      "dob": "1998-04-12",
+      "mrn": "873489"
     },
-    "spoken_identity_answer": "Helena Chaudhry, first of September 2002.",
+    "spoken_identity_answer": "Uzma Sheikh, twelfth of April 1998.",
     "wristband": {
-      "name_text": "HELENA CHAUDHRY",
-      "dob_text": "01/09/2002",
-      "mrn_text": "MR 600743"
+      "name_text": "UZMA SHEIKH",
+      "dob_text": "12/04/1998",
+      "mrn_text": "MR 873489"
     },
     "allergies": [],
     "allergy_answer": "None.",
@@ -35,7 +35,7 @@
       "setting": "pre-assessment",
       "time_now": "08:00",
       "surgery_time": "10:00",
-      "summary": "Ms Helena, 24, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
+      "summary": "Ms Uzma, 28, last period 7 weeks ago. The urine pregnancy test is positive. She may not have known; this needs private, sensitive handling."
     },
     "history": [
       {
@@ -303,6 +303,25 @@
             "consequence": "Incorrect."
           }
         ]
+      },
+      {
+        "id": "adv.adv-05",
+        "prompt": "A CT scan would answer the question. What do you do?",
+        "rule": null,
+        "options": [
+          {
+            "id": "adv.adv-05.1",
+            "text": "Book the CT: the diagnosis matters more than the radiation.",
+            "correct": false,
+            "consequence": "A pregnancy test is in the case: ionising radiation to a pregnant patient needs a deliberate decision."
+          },
+          {
+            "id": "adv.adv-05.2",
+            "text": "Open the pregnancy result first; if she is pregnant choose an ultrasound or MRI and involve the senior.",
+            "correct": true,
+            "consequence": "Matches the guidance: IR(ME)R 2017 pregnancy enquiry; RCR guidance on pregnancy and ionising radiation."
+          }
+        ]
       }
     ],
     "expected_end_state": "postponed",
@@ -354,6 +373,13 @@
       "authored": "SR-3707"
     },
     "pregnant": true,
+    "responsible_adult": {
+      "who": "partner",
+      "takes_home": true,
+      "stays_overnight": true,
+      "text": "My partner will bring me home and stay with me tonight.",
+      "wording": "quote"
+    },
     "risk": {
       "asa": {
         "min": 2,
@@ -371,11 +397,11 @@
       "spine": "VAR-S1-H",
       "blocks": [
         "DEM-SC-17",
-        "NAME-FIRST-HELENA-F",
-        "NAME-LAST-CHAUDHRY",
-        "PSH-SC-11"
+        "NAME-FIRST-UZMA-F",
+        "NAME-LAST-SHEIKH",
+        "PSH-SC-22"
       ],
-      "solver_steps": 16
+      "solver_steps": 5
     }
   },
   "provenance": {
@@ -384,11 +410,11 @@
     "spine": "VAR-S1-H",
     "blocks": [
       "DEM-SC-17",
-      "NAME-FIRST-HELENA-F",
-      "NAME-LAST-CHAUDHRY",
-      "PSH-SC-11"
+      "NAME-FIRST-UZMA-F",
+      "NAME-LAST-SHEIKH",
+      "PSH-SC-22"
     ],
-    "content_hash": "d6a68fb8aefc7b5e776fbd8d8213e53b290eb5e9c85738dd0e3603059dae895e",
+    "content_hash": "c9e06166ad317032d96c1501a96ff1d1d4a7fc20d7f598028d666404214d7ac0",
     "packs": {
       "correlations": "69f0f4aab79cdfc8",
       "ecg": "bd62e3f3c5795e37",
@@ -402,7 +428,8 @@
       "LG-04",
       "LG-05",
       "LG-07",
-      "LG-08"
+      "LG-08",
+      "LG-06b"
     ],
     "plan": {
       "method": "solver",
@@ -417,7 +444,7 @@
       }
     ]
   },
-  "fingerprint": "7ffca592103434fd",
+  "fingerprint": "19d2d439cde7a41f",
   "quality": {
     "numeric_log": [
       {
@@ -473,7 +500,7 @@
       "discoverable": 1.0,
       "difficulty": 1.0,
       "fairness": 1.0,
-      "trap_fairness": 0.667,
+      "trap_fairness": 0.75,
       "reading": 1.0,
       "persona": 1.0,
       "coherence": 1.0,
@@ -489,6 +516,16 @@
       }
     ],
     "unmet_dimensions": []
+  },
+  "adversarial": {
+    "status": "awaiting_review",
+    "added": [
+      {
+        "block": "ADV-05",
+        "decision": "adv.adv-05",
+        "anchor": "results"
+      }
+    ]
   },
   "media": {
     "slots": [
@@ -563,7 +600,7 @@
   ],
   "fingerprint_levels": {
     "structural": [
-      "block:PSH-SC-11",
+      "block:PSH-SC-22",
       "primary:h.preg",
       "scenario:S1",
       "spine:VAR-S1-H"
@@ -579,7 +616,7 @@
     "surface": [
       "age:20s",
       "block:DEM-SC-17",
-      "name:c05bb2c90b",
+      "name:ff6a9e8f3f",
       "sex:F"
     ]
   },
@@ -590,6 +627,6 @@
     "reasons": [],
     "per_level": {}
   },
-  "reproducibility_key": "59332f28eb6d372eb822c48c4b3fd6b98d8634b9d36fe7ddf29fae4a7ee8cd73",
-  "package_sha256": "49ac40272af04b6549f3e1b82d53d908c4a16b24387799019124d384bd8d31ee"
+  "reproducibility_key": "6f7574a341528638ed849fe50edd6515df16300ef1d8b3ddd6426a725bed9667",
+  "package_sha256": "ffc2706cb77a827853bdd3a42b2f2f89263460de4daa99348497688bc5c92f93"
 }
