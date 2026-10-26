@@ -547,14 +547,6 @@
    ],
    "gates": []
   },
-  "E60": {
-   "runtime": "deferred: the classifier pilot was retired by ADR-0025; a trained model is reconsidered only if the Gemma evaluator (C37) misses its targets",
-   "tests": [
-    "tools/ci/test_safety_invariants.py"
-   ],
-   "gates": [],
-   "retired": "Retired by ADR-0025 (21 Oct 2026): speech is judged by the Gemma evaluator against the simulator state, which met its acceptance; the classifier pilot, its gate and its code were removed. It is reconsidered only if the Gemma evaluator misses its targets in the final Quest validation (DC-10)."
-  },
   "E61": {
    "runtime": "`tools/ai/model_candidate.py` and `content/ai/model_candidates.json`; nothing is downloaded or accepted",
    "tests": [

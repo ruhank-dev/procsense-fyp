@@ -12,7 +12,7 @@ not a list of optional features.
 ## How to read the marks (27 Oct 2026)
 * **Step files** (`docs/plans/p*/*/steps/`): the `✅ ` prefix means the owner approved the step; no prefix means it is not approved (the state of the work is in `reconciliation.json`).
 * **Feature plans** (`docs/plans/features/`): the `✅ ` prefix is derived by `tools/plans/pipeline_docs.py` from the implementation result of `tools/plans/feature_matrix.py` (it replaced `[x] ` on 27 Oct 2026). A ticked plan is either **Complete** or **Engineering complete**: built and tested by the team, with any outside check (Sannan's headset checks, a clinician, a human-authored set) still listed inside the plan as not recorded. The first line of every plan says which it is: `Status: ✅ Complete`, `Status: ✅ Engineering complete; external validation pending (...)` or `Status: Not complete: <result>`. An unticked plan is partly built, owned by others, gated, retired or conditional research.
-* **Retired or superseded plans** are not ticked and are listed with their reason in [archive/README.md](archive/README.md); archived documents live there too.
+* **Retired or rejected plans are removed** (ADR-0029 lists the classifier plans removed on 27 Oct 2026); [archive/README.md](archive/README.md) lists the archived documents and what is still unticked on purpose.
 
 ## Tiers
 

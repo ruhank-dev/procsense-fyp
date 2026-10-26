@@ -3770,7 +3770,7 @@ Retrieval that misses a needed fact causes 'I don't know' answers — measure bo
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s03-small-classifier.md). Initial status: Planned; no implementation acceptance claimed.
+**Removed on 27 Oct 2026 (ADR-0029, `docs/decisions/ADR-0029-retired-classifier-plans-removed.md`): the classifier was retired by ADR-0025 and this step was deleted from the plan set; no work remains for Sannan here. The text below is kept as the record of what was planned.** Initial status was: Planned; no implementation acceptance claimed.
 
 **What**
 
@@ -3793,7 +3793,7 @@ EXP-P2AI-2 table; ship only within the agreed F1 margin.
 
 **Dependencies**
 
-p1-ai-language-s07.
+p1-ai-language-s07 (removed 27 Oct 2026, ADR-0029).
 
 **Common issues**
 

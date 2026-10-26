@@ -17,7 +17,7 @@ AI tests and the classifier depend on synthetic data; without cards (purpose, ge
 ## Status (17 October 2026)
 
 - **Built:** `tools/synth/card_schema.json`, `tools/synth/publish.py` (refuses an incomplete card, checks generators, files and row counts, writes the index) and five cards SD-001 to SD-005 in `docs/research/datasets/synthetic/` for the synthetic datasets that exist (text inconsistencies, generated goldens, difficulty vectors, simulated learners, gold scenarios and queries). `tools/ci/test_synth_cards.py` covers T-SD1 and T-SD4.
-- **Not built:** the LLM generators of utterances and handovers (they wait for p1-ai-language-s06); a spot-check of 50 rows by a person (T-SD3).
+- **Not built:** the LLM generators of utterances and handovers (they waited for the classifier dataset step, removed on 27 Oct 2026, ADR-0029); a spot-check of 50 rows by a person (T-SD3).
 
 ## Verification
 T-SD1–T-SD4 green; card index lists every dataset.
@@ -26,7 +26,7 @@ T-SD1–T-SD4 green; card index lists every dataset.
 `tools/synth/card_schema.json`, `tools/synth/publish.py`, `tools/synth/gen_*.py`, `data/<dataset>/card.yaml`, card index `docs/research/datasets/README.md`.
 
 ## Dependencies
-p1-ai-language-s06.
+the classifier dataset step (removed 27 Oct 2026, ADR-0029).
 
 ## Common issues
 LLM repeats itself → vary seeds/temperature; dedupe.

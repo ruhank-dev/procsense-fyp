@@ -1994,7 +1994,6 @@
     "tools/ci/test_generation_live.py (a generated case ends and scores like its spine)"
    ],
    "tasks": [
-    "p1-ai-language-s07",
     "p1-voice-input-s01",
     "p1-voice-input-s03"
    ],
@@ -2016,11 +2015,9 @@
      "C31",
      "C32",
      "C35",
-     "C37",
-     "E60"
+     "C37"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ],
@@ -2030,8 +2027,7 @@
      "docs/plans/features/C31.md",
      "docs/plans/features/C32.md",
      "docs/plans/features/C35.md",
-     "docs/plans/features/C37.md",
-     "docs/plans/features/E60.md"
+     "docs/plans/features/C37.md"
     ]
    }
   },
@@ -3634,8 +3630,7 @@
      "C32",
      "C35",
      "C37",
-     "E57",
-     "E60"
+     "E57"
     ],
     "steps": [],
     "plans": [
@@ -3644,8 +3639,7 @@
      "docs/plans/features/C32.md",
      "docs/plans/features/C35.md",
      "docs/plans/features/C37.md",
-     "docs/plans/features/E57.md",
-     "docs/plans/features/E60.md"
+     "docs/plans/features/E57.md"
     ]
    },
    "evidence": [
@@ -8722,7 +8716,18 @@
     "reports/ai/orders-ai-heldout_v1.json",
     "reports/ai/orders-ai-dev_v1.json",
     "tests/orders/ai_authored/heldout_v1.json",
-    "docs/research/ai_clinical_review.md"
+    "docs/research/ai_clinical_review.md",
+    "server/orders/grammar.py",
+    "reports/ai/orders-eval.json",
+    "server/routers/orders.py",
+    "server/orders/ticket.py",
+    "server/orders/llm_fallback.py",
+    "server/tests/test_orders_route.py",
+    "tools/ci/test_orders_fallback.py",
+    "tests/orders/paraphrases.json",
+    "tests/orders/paraphrases_v2.json",
+    "reports/ai/orders-mapper-compare-v4.json",
+    "tests/orders/paraphrases_v4.json"
    ],
    "lineage": [
     "DT-073",
@@ -8752,7 +8757,8 @@
    ],
    "tasks": [
     "p0-case-library-s05",
-    "p1-live-scenario-generation-s03"
+    "p1-live-scenario-generation-s03",
+    "p1-voice-input-s03"
    ],
    "phase": "PH-04",
    "tier": "P0",
@@ -8824,7 +8830,7 @@
       "id": "B23.c2",
       "name": "Free-text order and question mapper",
       "kind": "AI (LLM)",
-      "status": "Deferred",
+      "status": "Implemented and tested",
       "purpose": "Understand phrasing.",
       "method": "Qwen3.5 4B enum classification with confidence.",
       "models": [
@@ -8862,7 +8868,7 @@
        "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
-       "p1-ai-language-s07"
+       "p1-voice-input-s03"
       ]
      }
     ],
@@ -8897,8 +8903,8 @@
     ],
     "steps": [
      "p0-case-library-s05",
-     "p1-ai-language-s07",
-     "p1-live-scenario-generation-s03"
+     "p1-live-scenario-generation-s03",
+     "p1-voice-input-s03"
     ],
     "plans": [
      "docs/plans/features/B23.md"
@@ -11063,7 +11069,7 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "deterministic",
-   "status": "Implemented but incompletely tested",
+   "status": "Implemented and tested",
    "ai_status": "Not applicable (deterministic feature)",
    "description": "The acts the speech evaluator reports and how the evidence store weighs them. Built: AI-reportable acts in mapping.json; the evidence store never credits a critical, low-confidence or wrong-stage act from AI.",
    "evidence": [
@@ -11081,10 +11087,48 @@
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
     "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
     "src/ProcSense.Core/Scoring/CommunicationRubric.cs",
-    "reports/ai/speech-evaluation-acceptance.json"
+    "reports/ai/speech-evaluation-acceptance.json",
+    "docs/research/gemma_evaluator_results.md",
+    "server/evaluate/prompt.py",
+    "server/evaluate/contract.py",
+    "server/evaluate/reader.py",
+    "server/evaluate/service.py",
+    "server/routers/evaluate.py",
+    "server/tests/test_evaluate.py",
+    "server/tests/test_evaluate_api.py",
+    "server/tests/test_ex01_eval.py",
+    "tools/ci/test_evaluate_parity.py",
+    "tools/ci/test_safety_invariants.py",
+    "tools/ci/mutation_safety.py",
+    "tools/ci/test_mutation_safety.py",
+    "src/ProcSense.Core/Scoring/CommunicationScorer.cs",
+    "tests/ProcSense.Core.Tests/CommunicationScoringTests.cs",
+    "unity/Assets/Scripts/Voice/SpeechEvaluation.cs",
+    "content/scoring/rubric.json",
+    "content/ai/thresholds.json",
+    "tools/synth_dev/evaluator_run.py",
+    "tools/synth_dev/evaluator_metrics.py",
+    "tests/synthetic_dev_v1/partial_credit_v1.jsonl",
+    "tests/synthetic_dev_v1/partial_credit_v2.jsonl",
+    "tests/synthetic_heldout_v1/acceptance.json",
+    "tests/synthetic_heldout_v1/dataset.jsonl",
+    "tools/synth_heldout/accept.py",
+    "reports/ai/speech-evaluation-heldout.json",
+    "tests/synthetic_heldout_v2/acceptance.json",
+    "tests/synthetic_heldout_v2/dataset.jsonl",
+    "tools/synth_heldout_v2/accept.py",
+    "reports/ai/speech-evaluation-heldout-v2.json",
+    "tools/ci/test_synth_heldout_v2.py",
+    "tests/synthetic_partial_v3/acceptance.json",
+    "tests/synthetic_partial_v3/partial_credit.jsonl",
+    "tools/synth_partial_v3/accept.py",
+    "reports/ai/speech-evaluation-partial-v3.json",
+    "tools/eval/speech_acceptance.py",
+    "tools/ci/test_synth_partial_v3.py"
    ],
    "lineage": [
-    "p1-ai-language-s06"
+    "ADR-0025",
+    "ADR-0029"
    ],
    "method": "Taxonomy + rules.",
    "llm_first_classification": "Not a model task.",
@@ -11104,14 +11148,12 @@
     "evidence guard tests"
    ],
    "acceptance": "Guard tests pass.",
-   "blockers": [
-    "external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
-   ],
+   "blockers": [],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
    ],
    "tasks": [
-    "p1-ai-language-s06"
+    "p1-ai-language-s22"
    ],
    "phase": "PH-15",
    "tier": "P1",
@@ -11141,7 +11183,7 @@
       "id": "C36.c1",
       "name": "Taxonomy and guards",
       "kind": "existing deterministic",
-      "status": "Deferred",
+      "status": "Implemented and tested",
       "purpose": "Fair credit.",
       "method": "Rules.",
       "models": [],
@@ -11176,7 +11218,7 @@
        "deployment": "Python generation service or offline tool; C# Core where it touches state."
       },
       "tasks": [
-       "p1-ai-language-s06"
+       "p1-ai-language-s22"
       ]
      }
     ],
@@ -11207,7 +11249,7 @@
      "C36"
     ],
     "steps": [
-     "p1-ai-language-s06"
+     "p1-ai-language-s22"
     ],
     "plans": [
      "docs/plans/features/C36.md"
@@ -11390,7 +11432,7 @@
     "tools/ci/test_synth_partial_v3.py"
    ],
    "lineage": [
-    "p1-ai-language-s06, s07 (the retired classifier steps)",
+    "the retired classifier steps (ADR-0029)",
     "DT-097"
    ],
    "method": "Gemma semantic evaluation with a strict output contract (ADR-0025) as the only semantic reader; the engine's state and evidence checks and a deterministic graded formula decide credit. No classifier, no agreement gate, no critical-mass cap, no lexical veto.",
@@ -15339,163 +15381,6 @@
    }
   },
   {
-   "id": "E60",
-   "type": "feature",
-   "label": "P2 small trained classifier",
-   "category": "Platform, evaluation and advanced research",
-   "group": "g_feat_E",
-   "kind": "ai",
-   "status": "Deferred",
-   "ai_status": "Implemented but incompletely tested",
-   "description": "A small trained classifier on the human-labelled set: deferred. The classifier pilot (embedding and TF-IDF heads) was retired by ADR-0025 when Gemma semantic evaluation replaced it; a trained model is reconsidered only if the Gemma evaluator misses latency, cost or accuracy targets on the held-out set.",
-   "evidence": [
-    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
-    "reports/ai/classifier-bench-synthetic2.json",
-    "reports/ai/speech-evaluation-acceptance.json"
-   ],
-   "lineage": [
-    "p2-ai-extensions-s03",
-    "DT-097"
-   ],
-   "method": "Fine-tune a small encoder.",
-   "llm_first_classification": "Justified only if the Gemma evaluator (C37) misses latency, cost or accuracy targets.",
-   "model_refs": [
-    "MC-03"
-   ],
-   "dataset_refs": [],
-   "realised_by": [
-    "LG-17"
-   ],
-   "depends_on": [
-    "C37",
-    "B19"
-   ],
-   "overlaps": [],
-   "inputs": [],
-   "outputs": [],
-   "deterministic_guard": "Rules decide state, critical scoring and action acceptance (ADR-0005); model output is checked by the grounding validator or a schema and replaced by a template or menu when it fails.",
-   "fallback": "Gemma semantic evaluator (C37).",
-   "tests_planned": [
-    "macro-F1 on frozen split"
-   ],
-   "acceptance": "Beats the Gemma evaluator on the held-out set or is not built.",
-   "blockers": [
-    "external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
-   ],
-   "risks": [
-    "trained model does not beat the LLM classifier (then it is not shipped)"
-   ],
-   "tasks": [
-    "p2-ai-extensions-s03"
-   ],
-   "phase": "PH-19",
-   "tier": "P2",
-   "plan": {
-    "user_experience": "Communication acts are recognised fast and offline.",
-    "exists": [
-     "nothing"
-    ],
-    "missing": [
-     "labelled set",
-     "training",
-     "frozen split"
-    ],
-    "deterministic_foundation": "Guards.",
-    "ai_questions": {
-     "what_ai_does": "Classify acts with a small trained model.",
-     "why_ai_is_useful": "Lower latency and no GPU at runtime.",
-     "method_split": "Trained small encoder; distillation from the LLM labels allowed only for training, never for the test split.",
-     "deterministic_still_needed": "Guards.",
-     "ai_implemented": "None.",
-     "ai_missing": "Training pipeline.",
-     "must_build": "Training code, frozen split.",
-     "better_than_baseline": "Must beat or match the P1 LLM classifier."
-    },
-    "capabilities": [
-     {
-      "id": "E60.c1",
-      "name": "Small trained classifier",
-      "kind": "AI (trained)",
-      "status": "Deferred",
-      "purpose": "Fast acts.",
-      "method": "Fine-tuned small encoder.",
-      "models": [
-       "MC-03"
-      ],
-      "data": [],
-      "input_schema": "utterance",
-      "output_schema": "CommAct",
-      "flow": [
-       "train offline",
-       "evaluate on frozen split",
-       "export"
-      ],
-      "validation": "Frozen split.",
-      "failure_handling": {
-       "errors": "Timeout or server error: one retry, then P1 LLM classifier; logged with prompt version and model digest.",
-       "hallucinations": "Output must match a JSON schema whose enums are approved ids; the grounding validator rejects invented drugs, values, diagnoses, events and hidden facts.",
-       "inconsistency": "Output is cross-checked against the structured case or facts it was given; any mismatch rejects it.",
-       "model_unavailable": "Feature switch reports off; P1 LLM classifier. The session never waits on the model.",
-       "invalid_input": "Inputs are schema-validated before the model is called; invalid input is a 4xx with field errors."
-      },
-      "tests": [
-       "macro-F1"
-      ],
-      "metrics": [
-       "macro-F1",
-       "latency"
-      ],
-      "baseline_comparison": "P1 LLM classifier.",
-      "acceptance": "Macro-F1 at least equal to LLM with under 100 ms latency.",
-      "hardware": {
-       "gtx1660": "Training a small encoder (about 66 to 110 million parameters) fits easily; inference on CPU in milliseconds.",
-       "rtx4050": "Same.",
-       "ram": "Under 2 GB.",
-       "latency": "Under 100 ms per utterance.",
-       "deployment": "Exported model (for example ONNX) in the inference service."
-      },
-      "tasks": [
-       "p2-ai-extensions-s03"
-      ]
-     }
-    ],
-    "integration": {
-     "unity": "None.",
-     "backend": "Classify endpoint.",
-     "simulation_state": "Evidence.",
-     "other_features": "C37."
-    },
-    "prerequisites": [
-     "labelled set"
-    ],
-    "status_rationale": "Blocked on labels.",
-    "reassessment": "Keep.",
-    "staged_versions": {
-     "initial": "LLM.",
-     "future": "Trained."
-    },
-    "deliverables": [
-     "model"
-    ],
-    "definition_of_done": [
-     "met"
-    ],
-    "status_history": []
-   },
-   "traced_to": {
-    "kind": "direct",
-    "features": [
-     "E60"
-    ],
-    "steps": [
-     "p2-ai-extensions-s03"
-    ],
-    "plans": [
-     "docs/plans/features/E60.md"
-    ]
-   }
-  },
-  {
    "id": "E61",
    "type": "feature",
    "label": "Medical LLM benchmark (for example MedGemma)",
@@ -17523,7 +17408,6 @@
      "A2"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-live-scenario-generation-s11",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
@@ -17542,7 +17426,6 @@
      "C35"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-live-scenario-generation-s11",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
@@ -18910,7 +18793,6 @@
      "C24"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -19075,7 +18957,6 @@
      "A2"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -19171,11 +19052,9 @@
      "C35",
      "C37",
      "E57",
-     "E60",
      "E69"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -19215,7 +19094,6 @@
      "C31"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -19674,11 +19552,9 @@
      "C24",
      "C32",
      "C35",
-     "C37",
-     "E60"
+     "C37"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -19697,7 +19573,6 @@
      "C35"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -20463,7 +20338,6 @@
      "A2"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-live-scenario-generation-s01",
      "p1-live-scenario-generation-s02",
      "p1-live-scenario-generation-s03",
@@ -22266,7 +22140,6 @@
     ],
     "steps": [
      "p0-case-library-s05",
-     "p1-ai-language-s07",
      "p1-live-scenario-generation-s03"
     ]
    }
@@ -22283,7 +22156,6 @@
     ],
     "steps": [
      "p0-case-library-s05",
-     "p1-ai-language-s07",
      "p1-live-scenario-generation-s03"
     ]
    }
@@ -22330,7 +22202,6 @@
     ],
     "steps": [
      "p1-ai-language-s04",
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -22751,7 +22622,6 @@
      "C31"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s02",
      "p1-voice-input-s03",
@@ -22825,7 +22695,6 @@
      "C32"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s02",
      "p1-voice-input-s03"
@@ -22913,7 +22782,6 @@
      "C35"
     ],
     "steps": [
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -22965,7 +22833,6 @@
      "C36"
     ],
     "steps": [
-     "p1-ai-language-s06",
      "p1-voice-input-s03"
     ]
    }
@@ -22980,9 +22847,7 @@
     "features": [
      "C36"
     ],
-    "steps": [
-     "p1-ai-language-s06"
-    ]
+    "steps": []
    }
   },
   {
@@ -22996,7 +22861,6 @@
      "C36"
     ],
     "steps": [
-     "p1-ai-language-s06",
      "p1-live-scenario-generation-s11"
     ]
    }
@@ -23013,8 +22877,6 @@
     ],
     "steps": [
      "p1-ai-infrastructure-s04",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07",
      "p1-voice-input-s01",
      "p1-voice-input-s03"
     ]
@@ -23032,9 +22894,7 @@
      "C37"
     ],
     "steps": [
-     "p1-ai-infrastructure-s04",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07"
+     "p1-ai-infrastructure-s04"
     ]
    }
   },
@@ -23053,9 +22913,7 @@
      "p1-ai-infrastructure-s01",
      "p1-ai-infrastructure-s02",
      "p1-ai-infrastructure-s04",
-     "p1-ai-language-s02",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07"
+     "p1-ai-language-s02"
     ]
    }
   },
@@ -23072,8 +22930,6 @@
     ],
     "steps": [
      "p1-ai-infrastructure-s04",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07",
      "p1-evaluation-s01"
     ]
    }
@@ -24017,60 +23873,6 @@
    }
   },
   {
-   "id": "E364",
-   "source": "E60",
-   "target": "LG-17",
-   "type": "realised_by",
-   "label": "",
-   "traced_to": {
-    "features": [
-     "E60"
-    ],
-    "steps": [
-     "p1-ai-language-s07",
-     "p1-voice-input-s01",
-     "p1-voice-input-s03",
-     "p2-ai-extensions-s03"
-    ]
-   }
-  },
-  {
-   "id": "E365",
-   "source": "E60",
-   "target": "C37",
-   "type": "depends_on",
-   "label": "",
-   "traced_to": {
-    "features": [
-     "C37",
-     "E60"
-    ],
-    "steps": [
-     "p1-ai-infrastructure-s04",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07",
-     "p2-ai-extensions-s03"
-    ]
-   }
-  },
-  {
-   "id": "E366",
-   "source": "E60",
-   "target": "B19",
-   "type": "depends_on",
-   "label": "",
-   "traced_to": {
-    "features": [
-     "B19",
-     "E60"
-    ],
-    "steps": [
-     "p1-evaluation-s01",
-     "p2-ai-extensions-s03"
-    ]
-   }
-  },
-  {
    "id": "E367",
    "source": "E61",
    "target": "OFF-08",
@@ -24422,8 +24224,6 @@
      "C37"
     ],
     "steps": [
-     "p1-ai-language-s06",
-     "p1-ai-language-s07",
      "p1-ai-language-s10",
      "p1-ai-language-s11",
      "p1-ai-language-s12",
@@ -24447,8 +24247,6 @@
     ],
     "steps": [
      "p1-ai-language-s03",
-     "p1-ai-language-s06",
-     "p1-ai-language-s07",
      "p1-ai-language-s10",
      "p1-ai-language-s11",
      "p1-ai-language-s12",
@@ -25573,8 +25371,6 @@
     "speech_evaluation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off"
    ],
    "tasks": [
-    "p1-ai-language-s06",
-    "p1-ai-language-s07",
     "p1-ai-language-s10",
     "p1-ai-language-s11",
     "p1-ai-language-s12",
@@ -25710,13 +25506,11 @@
     "p2-ai-advanced-simulation-s03",
     "p2-ai-extensions-s01",
     "p2-ai-extensions-s02",
-    "p2-ai-extensions-s03",
     "p2-ai-extensions-s05"
    ],
    "features": [
     "E48",
     "E49",
-    "E60",
     "E61",
     "E63"
    ],

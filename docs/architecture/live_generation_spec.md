@@ -52,7 +52,7 @@ The full architecture (learning from evidence, AI composition, how each modality
 | 14 | LG-14 | Packaging with provenance | Partially implemented | deterministic | 100 | p1-live-scenario-generation-s10 |
 | 15 | LG-15 | Unity integration | Partially implemented | deterministic | 2000 | p1-live-scenario-generation-s10 |
 | 16 | LG-16 | Live simulation | Implemented and tested | deterministic | 0 | p1-live-scenario-generation-s11 |
-| 17 | LG-17 | Action interpretation | Partially implemented | hybrid | 1500 | p1-ai-language-s07; p1-voice-input-s01; p1-voice-input-s03 |
+| 17 | LG-17 | Action interpretation | Partially implemented | hybrid | 1500 | p1-voice-input-s01; p1-voice-input-s03 |
 | 18 | LG-18 | Deterministic state update and scoring | Implemented and tested | deterministic | 0 | p1-live-scenario-generation-s11 |
 | 19 | LG-19 | Grounded debrief | Partially implemented | hybrid | 15000 | p1-ai-language-s08; p1-live-scenario-generation-s12 |
 | 20 | LG-20 | Session history | Partially implemented | deterministic | 100 | p1-backend-s02; p1-live-scenario-generation-s12 |
@@ -434,7 +434,7 @@ Turn what the trainee did into structured actions: VR interactions and menu choi
 | Status | Partially implemented |
 | Evidence | unity/Assets/_Project/Scripts/ActionEmitters; src/ProcSense.Core/Scoring/Evidence.cs; tools/ci/test_generation_live.py (a generated case ends and scores like its spine) |
 | Blockers | — |
-| Tasks | p1-ai-language-s07; p1-voice-input-s01; p1-voice-input-s03 |
+| Tasks | p1-voice-input-s01; p1-voice-input-s03 |
 
 ### LG-18 Deterministic state update and scoring
 

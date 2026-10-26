@@ -18,7 +18,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parents[2]
 ARCH = ROOT / "docs" / "architecture"
 SRC = ARCH / "procsense_full_pipeline.json"
-PLANS = "../plans/features"                 # relative to ARCH: the canonical home of the 68 feature plans
+PLANS = "../plans/features"                 # relative to ARCH: the canonical home of the feature plans
 sys.path.insert(0, str(Path(__file__).parent))
 from validate_pipeline import coverage  # noqa: E402
 import plan_files  # noqa: E402
@@ -44,7 +44,7 @@ def feature_registry(doc, nodes) -> str:
     feats = sorted((n for n in nodes.values() if n["type"] == "feature"), key=lambda f: fid_key(f["id"]))
     phases = {p["id"]: p for p in doc["phases"]}
     out = ["# ProcSense AI feature registry", "", HEAD, "",
-           "Every AI-related feature found in the plans, the code and this planning update, one entry each (68 features: A1 to E65 except one number, a language feature the owner retired on 18 October 2026 (Change Report decision 117), plus A66, D67, D68 and E69 added in the second pass). Overlapping features are kept separate and cross-referenced, not merged. "
+           "Every AI-related feature found in the plans, the code and this planning update, one entry each (67 features: A1 to E65 except two numbers, a language feature the owner retired on 18 October 2026 (Change Report decision 117) and the small trained classifier plan E60 removed on 27 October 2026 (ADR-0029), plus A66, D67, D68 and E69 added in the second pass). Overlapping features are kept separate and cross-referenced, not merged. "
            "**Status** is the feature as a whole; **AI status** is only its model-driven part, so deterministic work is never counted as AI. Statuses: " + ", ".join(doc["legend"]["statuses"]) + ".", "",
            "Specified on 12 October 2026; the status of each feature is derived from the task reconciliation and the feature gate (see [feature_implementation_matrix.md](feature_implementation_matrix.md)). Anything marked Planned, Proposed, Blocked or Deferred is not built.", "", "## Summary", ""]
     by = defaultdict(int)
@@ -253,7 +253,7 @@ def dataset_matrix(doc, nodes) -> str:
 def model_register(doc, nodes) -> str:
     out = ["# Model and technology decision register", "", HEAD, "",
            "LLM-first, model-aware: for each responsibility a served LLM or a pretrained model was considered first; a simpler deterministic, statistical or retrieval method is chosen only where the row says why. "
-           "Nothing here is trained; the P2 small classifier (E60) is deferred and is reconsidered only if the Gemma speech evaluator (ADR-0025) misses its targets. Fine-tuning an LLM (E65) and image-generating models (E64) are not used at runtime; both are kept as staged offline research tracks (PH-24) with their history, not rejected.", "",
+           "Nothing here is trained; the small trained classifier was retired by ADR-0025 and its plans were removed by ADR-0029; a trained model would be a new plan, considered only if the Gemma speech evaluator misses its targets. Fine-tuning an LLM (E65) and image-generating models (E64) are not used at runtime; both are kept as staged offline research tracks (PH-24) with their history, not rejected.", "",
            "Hardware: a desktop GTX 1660 SUPER (6 GB) and a laptop RTX 4050 (6 GB), both benchmarked in `p1-ai-infrastructure-s02`; Ollama is not installed yet (checked 12 October 2026) and installing it is roadmap task `p1-ai-infrastructure-s01`.", ""]
     out += table(["ID", "Purpose", "Class", "Default", "Status"], [[m["id"], m["purpose"], m["method_class"], m["default"], m["status"]] for m in doc["model_catalog"]])
     for m in doc["model_catalog"]:

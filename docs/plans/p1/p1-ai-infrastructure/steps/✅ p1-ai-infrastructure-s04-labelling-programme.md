@@ -27,7 +27,7 @@ At least 300 utterances, 100 rated scenarios and 100 relation labels with kappa 
 `tools/labelling/`, `tests/labelled/`
 
 ## Dependencies
-p1-ai-language-s06
+the classifier dataset step (removed 27 Oct 2026, ADR-0029)
 
 ## Common issues
 Labeller drift: weekly agreement checks.

@@ -28,7 +28,7 @@ Already implemented; to repeat: `tools/.venv/Scripts/python.exe tools/bench/meta
 Built and tested (implementation); measured on synthetic data (preliminary, builder-written, provisional labels). On the final split, scored once for each configuration with no change made after seeing it: unsafe credit 41/407 for the unchanged `4a2ed00` against 10/407 for the candidate (10.1 percent against 2.5 percent, 95 percent CI 1.3 to 4.5), legitimate credit unchanged (36/65). On development (126/828 to 0) and challenge (64/385 to 0) the code was changed against those rows, so they are not generalisation evidence. **Independent validation: NOT DONE** (no person has labelled any row; EX-01). The 10 remaining final-split failures are not fixed on purpose (DT-233). **Quest and headset checks: NOT RUN** (Sannan, DC-08 and DC-09). The `speech_interpretation` gate stays OFF.
 
 ## Dependencies
-p1-ai-language-s10, s11, s14, s15 (the path, its benchmark and the recall follow-up), p1-ai-language-s07 (the gate).
+p1-ai-language-s10, s11, s14, s15 (the path, its benchmark and the recall follow-up), the gate of the removed step s07 (ADR-0029).
 
 ## Common issues
 A mutation that "survives" usually means another layer refuses the same input: test the layer on its own and remove all the copies of the barrier together. A result file for the final split is locked: a second look makes it development data. Never edit the generator to fit a reviewer's label; add an override file with the reviewers' ids.

@@ -27,7 +27,7 @@ Folder `server/interpret/` (own responsibility, INSTRUCTIONS section 2); reuse `
 Built and tested (19 Oct 2026). `tools/ci/test_interpretation_regression.py` 17 of 17 pass with the real heads and each sentence's committed embedding; a mutant without the validation is caught by 9 of them. Route tests 7 of 7 on PostgreSQL (server suite 333 passed, 1 skipped). The gate `speech_interpretation` is OFF and SKIPPED.
 
 ## Dependencies
-p1-ai-language-s10, p1-ai-language-s07.
+p1-ai-language-s10 (and the classifier gate of the removed step s07, ADR-0029).
 
 ## Common issues
 The eligible list filters the head's ranking after the softmax: do not renormalise and then compare against thresholds tuned on the full distribution; compare the raw probability.

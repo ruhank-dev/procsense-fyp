@@ -18,7 +18,7 @@ class Reconcile(unittest.TestCase):
 
     def test_the_real_data_covers_every_step_and_names_existing_evidence(self):
         self.assertEqual(R.problems(self.found, self.data), [])
-        self.assertEqual({t: sum(1 for f in self.found.values() if f["tier"] == t) for t in ("p0", "p1", "p2")}, {"p0": 173, "p1": 90, "p2": 19})          # 281 steps, as docs/plans/milestones.md counts them (269 before the speech interpretation steps of 19 Oct 2026 and the recall follow-up of 20 Oct 2026; 278 before the failure attribution of 21 Oct 2026; 279 before the EX-01 phase two kit; 280 before the synthetic data factory proposal)
+        self.assertEqual({t: sum(1 for f in self.found.values() if f["tier"] == t) for t in ("p0", "p1", "p2")}, {"p0": 173, "p1": 88, "p2": 18})          # 279 steps (three retired classifier steps removed on 27 Oct 2026, ADR-0029; 281 before), as docs/plans/milestones.md counts them (269 before the speech interpretation steps of 19 Oct 2026 and the recall follow-up of 20 Oct 2026; 278 before the failure attribution of 21 Oct 2026; 279 before the EX-01 phase two kit; 280 before the synthetic data factory proposal)
 
     def test_the_committed_page_is_what_the_data_gives(self):
         self.assertEqual(R.OUT.read_text(encoding="utf-8"), R.render(self.found, self.data))

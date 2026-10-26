@@ -45,7 +45,7 @@ The first fresh scenario needs no language model: dataset profiles, packs, block
 | PH-16 | AI debrief and grounded feedback | Blocked | PH-07 | — | D38; D46; D47; E56 |
 | PH-17 | Evaluation harness, adversarial testing and switch-off gate | Planned | PH-07 | — | B19; E50; E51; E55 |
 | PH-18 | Learning analytics and adaptive enhancements | Proposed new feature | PH-16; PH-12; PH-23 | — | B22; D39; D40; D41; D42; D44; D45; E52 |
-| PH-19 | Advanced research features | Proposed new feature | PH-13; PH-15; PH-17 | — | E48; E49; E60; E61; E63 |
+| PH-19 | Advanced research features | Proposed new feature | PH-13; PH-15; PH-17 | — | E48; E49; E61; E63 |
 | PH-20 | AI infrastructure and dual-GPU benchmark | Planned | PH-01 | — | E69 |
 | PH-21 | Labelling programme | Planned | PH-01 | — | — |
 | PH-22 | Scenario knowledge base and AI composer | Partially implemented | PH-03; PH-05; PH-20 | — | A66 |
@@ -256,11 +256,11 @@ Taxonomy, Gemma semantic evaluation of trainee speech and engine-side graded sco
 |---|---|
 | Status | Blocked |
 | Depends on | PH-07; PH-21 |
-| Tasks (plan steps) | p1-ai-language-s06; p1-ai-language-s07; p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 |
+| Tasks (plan steps) | p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 |
 | Features | C36; C37 |
 | Deliverables | labelled set; evaluation context; Gemma evaluator and route; strict contract and fallback; graded communication score; development evaluation and speech_evaluation gate |
 | Acceptance | speech_evaluation: every suite passes on the independent set (thresholds PENDING owner approval) or switched off |
-| Blockers | external acceptance: EX-01, EX-18, EX-19 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | — |
 
 ### PH-16 — AI debrief and grounded feedback
 
@@ -312,11 +312,11 @@ Digital twin, multi-agent lab, retrieval extensions, an optional trained model o
 |---|---|
 | Status | Proposed new feature |
 | Depends on | PH-13; PH-15; PH-17 |
-| Tasks (plan steps) | p2-ai-advanced-simulation-s02; p2-ai-advanced-simulation-s03; p2-ai-extensions-s01; p2-ai-extensions-s02; p2-ai-extensions-s03; p2-ai-extensions-s05 |
-| Features | E48; E49; E60; E61; E63 |
+| Tasks (plan steps) | p2-ai-advanced-simulation-s02; p2-ai-advanced-simulation-s03; p2-ai-extensions-s01; p2-ai-extensions-s02; p2-ai-extensions-s05 |
+| Features | E48; E49; E61; E63 |
 | Deliverables | research prototypes |
 | Acceptance | defined per step |
-| Blockers | external acceptance: DC-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: DC-07 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-07 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: DC-04 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: DC-07 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-07 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-20 — AI infrastructure and dual-GPU benchmark
 
@@ -415,7 +415,7 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | B20 | Anomalies and artefacts (deliberate and realistic) | PH-09 | p1-live-scenario-generation-s05 |
 | B21 | Result variation (repeats, trends, timing) | PH-09 | p1-live-scenario-generation-s05 |
 | B22 | Investigation Interpreter (teaching aid) | PH-18 | p2-ai-learning-analytics-s05 |
-| B23 | Investigation discovery | PH-04 | p0-case-library-s05; p1-live-scenario-generation-s03 |
+| B23 | Investigation discovery | PH-04 | p0-case-library-s05; p1-live-scenario-generation-s03; p1-voice-input-s03 |
 | C24 | Patient dialogue | PH-13 | p1-ai-language-s04; p1-ai-language-s13 |
 | C25 | Nurse dialogue | PH-13 | p1-ai-language-s05 |
 | C26 | Anaesthetist dialogue | PH-13 | p1-ai-language-s05 |
@@ -428,7 +428,7 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | C33 | Speech-to-text | PH-14 | p1-voice-input-s01 |
 | C34 | Text-to-speech | PH-14 | p0-voice-audio-s02; p1-voice-input-s04 |
 | C35 | Voice orders and read-back | PH-14 | p1-voice-input-s03 |
-| C36 | Communication acts (taxonomy and evidence mapping) | PH-15 | p1-ai-language-s06 |
+| C36 | Communication acts (taxonomy and evidence mapping) | PH-15 | p1-ai-language-s22 |
 | C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | PH-15 | p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 |
 | D38 | AI debrief | PH-16 | p1-ai-language-s08 |
 | D39 | Coaching (in-session hints and between-session advice) | PH-18 | p2-ai-learning-analytics-s01 |
@@ -453,7 +453,6 @@ Offline generative image and waveform synthesis; conditional LLM adaptation.
 | E56 | Difficulty explanation to the trainee | PH-16 | p1-scenario-composer-difficulty-s04 |
 | E57 | LLM serving and benchmark | PH-07 | p1-ai-language-s02 |
 | E58 | Retrieval over approved content (RAG) | PH-05 | p1-live-scenario-generation-s02; p2-ai-extensions-s02 |
-| E60 | P2 small trained classifier | PH-19 | p2-ai-extensions-s03 |
 | E61 | Medical LLM benchmark (for example MedGemma) | PH-19 | p2-ai-extensions-s05 |
 | E62 | Backend and AI gateway | PH-06 | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 |
 | E63 | On-device speech recognition | PH-19 | p2-ai-extensions-s01 |

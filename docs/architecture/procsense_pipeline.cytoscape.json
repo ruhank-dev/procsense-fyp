@@ -1636,7 +1636,7 @@
     "id": "C36",
     "label": "C36 Communication acts (taxonomy and evidence mapping)",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Implemented and tested",
     "parent": "g_feat_C"
    },
    "classes": "feature"
@@ -1879,17 +1879,6 @@
     "label": "E58 Retrieval over approved content (RAG)",
     "type": "feature",
     "status": "Implemented and tested",
-    "parent": "g_feat_E"
-   },
-   "classes": "feature"
-  },
-  {
-   "group": "nodes",
-   "data": {
-    "id": "E60",
-    "label": "E60 P2 small trained classifier",
-    "type": "feature",
-    "status": "Deferred",
     "parent": "g_feat_E"
    },
    "classes": "feature"
@@ -6307,42 +6296,6 @@
     "id": "E360",
     "source": "E58",
     "target": "OFF-04",
-    "type": "depends_on",
-    "label": "",
-    "cycle": false
-   },
-   "classes": "depends_on"
-  },
-  {
-   "group": "edges",
-   "data": {
-    "id": "E364",
-    "source": "E60",
-    "target": "LG-17",
-    "type": "realised_by",
-    "label": "",
-    "cycle": false
-   },
-   "classes": "realised_by"
-  },
-  {
-   "group": "edges",
-   "data": {
-    "id": "E365",
-    "source": "E60",
-    "target": "C37",
-    "type": "depends_on",
-    "label": "",
-    "cycle": false
-   },
-   "classes": "depends_on"
-  },
-  {
-   "group": "edges",
-   "data": {
-    "id": "E366",
-    "source": "E60",
-    "target": "B19",
     "type": "depends_on",
     "label": "",
     "cycle": false

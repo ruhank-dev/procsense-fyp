@@ -9,7 +9,7 @@ The map of the whole repository is [../index.md](../index.md); this README cover
 | Topic | Authoritative file | Kind |
 |---|---|---|
 | Whole plan as a graph (stages, features, datasets, models, phases, rules) | [procsense_full_pipeline.json](procsense_full_pipeline.json) | canonical source |
-| Feature inventory (68 features: A1 to E65 except one retired number, plus A66, D67, D68, E69) with status and evidence | [feature_registry.md](feature_registry.md) | generated |
+| Feature inventory (67 features: A1 to E65 except two retired numbers, plus A66, D67, D68, E69) with status and evidence | [feature_registry.md](feature_registry.md) | generated |
 | Complete implementation plan for every feature (separate capability plans, seven AI questions, schemas, failure handling, both-GPU hardware, tasks, acceptance) | `../plans/features/<ID>.md` (68 files; [feature_plans/README.md](feature_plans/README.md) here is only a pointer) | generated |
 | Synverk flow diagrams of the pipeline (10 linked files, each under 64 KB; schema `/api/flows/schema`) | `flows/*.json` (start with `00-live-pipeline.json`) | generated |
 | Feature coverage audit (computed, not asserted) | [feature_coverage_audit.md](feature_coverage_audit.md) | generated |

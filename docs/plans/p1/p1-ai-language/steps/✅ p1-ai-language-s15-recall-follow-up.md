@@ -27,7 +27,7 @@ Already implemented; to repeat: `tools/.venv/Scripts/python.exe tools/bench/reca
 Built and tested (implementation), measured on synthetic data (preliminary). On the held-out action_bench splits, scored once: evidence accepted by the engine for the right act 63 to 76 of 140 (test) and 67 to 79 of 140 (test2), credited precision 76/76 and 79/79, no critical, non-assertive, out-of-window or safety-panel sentence accepted; the shipped configuration (with the assertion fixes) accepts exactly the same sentences on a second look. Without ANSWER_QUESTION and CLOSED_LOOP (which the benchmark gives a waiting question or read-back) the gain is 56 to 69 of 120 (test) and 58 to 69 of 120 (test2). **Independent validation: NOT DONE.** The independent set (EX-01) must be scored with this exact configuration before any claim; the `speech_interpretation` gate stays OFF. Quest and headset checks: NOT RUN (Sannan, DC-08 and DC-09).
 
 ## Dependencies
-p1-ai-language-s10, s11, s14 (the path and its benchmark), p1-ai-language-s07 (the classifier gate).
+p1-ai-language-s10, s11, s14 (the path and its benchmark), the classifier gate of the removed step s07 (ADR-0029).
 
 ## Common issues
 A benchmark that counts offers hides downstream refusals: always count what the engine accepts. A recall gain bought with a relaxed cap needs the panel run at the new value and the counterexample fixtures; a cap above the nearest unsafe sentence's critical mass leaks.

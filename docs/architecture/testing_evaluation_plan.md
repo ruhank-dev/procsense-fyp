@@ -37,7 +37,7 @@ Specification only (12 October 2026): these tests are planned with the features 
 | Structured-output validity | Schema-valid on first try | 95 percent | p1-ai-language-s02 |
 | Dialogue intent compliance | Every staff reply maps to an approved intent | 100 percent of sampled replies | p1-ai-language-s05 |
 | Persona consistency | Persona stable across turns | 90 percent agreement | p1-ai-language-s04 |
-| Classifier | Macro-F1 on the frozen human-labelled split | 0.75 or switched off | p1-ai-language-s07 |
+| Classifier (retired by ADR-0025; its plans were removed by ADR-0029) | Macro-F1 on the frozen human-labelled split | 0.75 or switched off | none |
 | ASR | WER on the medical vocabulary set and accented speech | under 15 percent | p1-voice-input-s01 |
 | Voice orders | No order acted on without a confirmed read-back | 100 percent | p1-voice-input-s03 |
 | Red team | Escape rate per attack class | zero for critical classes | p2-ai-advanced-simulation-s01 |

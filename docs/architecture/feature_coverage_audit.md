@@ -8,12 +8,12 @@ Computed from the pipeline JSON by the same function the validator uses (`covera
 
 | Measure | Count | Share |
 |---|---|---|
-| Features | 68 | 100% |
-| Complete implementation plans | 68 | 100% |
-| Mapped to concrete, phased tasks | 68 | 100% |
-| Acceptance criteria on every capability | 68 | 100% |
-| Capability plans | 107 | — |
-| of which AI capabilities | 65 | — |
+| Features | 67 | 100% |
+| Complete implementation plans | 67 | 100% |
+| Mapped to concrete, phased tasks | 67 | 100% |
+| Acceptance criteria on every capability | 67 | 100% |
+| Capability plans | 106 | — |
+| of which AI capabilities | 64 | — |
 
 ## Gaps
 
@@ -46,7 +46,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | B20 | Anomalies and artefacts (deliberate and realistic) | Implemented and tested | deterministic | 2 (0) | yes | p1-live-scenario-generation-s05; p1-personalisation-s03 | PH-09 | [B20](../plans/features/%E2%9C%85%20B20.md) |
 | B21 | Result variation (repeats, trends, timing) | Implemented and tested | deterministic | 1 (0) | yes | p1-live-scenario-generation-s05 | PH-09 | [B21](../plans/features/%E2%9C%85%20B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | Implemented and tested | ai | 1 (1) | yes | p2-ai-learning-analytics-s05 | PH-18 | [B22](../plans/features/%E2%9C%85%20B22.md) |
-| B23 | Investigation discovery | Implemented and tested | deterministic | 2 (1) | yes | p0-case-library-s05; p1-ai-language-s07; p1-live-scenario-generation-s03 | PH-04 | [B23](../plans/features/%E2%9C%85%20B23.md) |
+| B23 | Investigation discovery | Implemented and tested | deterministic | 2 (1) | yes | p0-case-library-s05; p1-live-scenario-generation-s03; p1-voice-input-s03 | PH-04 | [B23](../plans/features/%E2%9C%85%20B23.md) |
 | C24 | Patient dialogue | Implemented and tested | hybrid | 3 (3) | yes | p1-ai-language-s04; p1-ai-language-s13 | PH-13 | [C24](../plans/features/%E2%9C%85%20C24.md) |
 | C25 | Nurse dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C25](../plans/features/%E2%9C%85%20C25.md) |
 | C26 | Anaesthetist dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C26](../plans/features/%E2%9C%85%20C26.md) |
@@ -59,7 +59,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | C33 | Speech-to-text | Implemented but incompletely tested | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-voice-input-s01 | PH-14 | [C33](../plans/features/%E2%9C%85%20C33.md) |
 | C34 | Text-to-speech | Implemented but incompletely tested | ai | 1 (1) | yes | p0-voice-audio-s02; p1-voice-input-s04 | PH-14 | [C34](../plans/features/%E2%9C%85%20C34.md) |
 | C35 | Voice orders and read-back | Implemented and tested | hybrid | 1 (1) | yes | p1-voice-input-s03 | PH-14 | [C35](../plans/features/%E2%9C%85%20C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | Implemented but incompletely tested | deterministic | 1 (0) | yes | p1-ai-language-s06 | PH-15 | [C36](../plans/features/%E2%9C%85%20C36.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | Implemented and tested | deterministic | 1 (0) | yes | p1-ai-language-s22 | PH-15 | [C36](../plans/features/%E2%9C%85%20C36.md) |
 | C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | Implemented and tested | ai | 3 (1) | yes | p1-ai-language-s10; p1-ai-language-s11; p1-ai-language-s12; p1-ai-language-s13; p1-ai-language-s14; p1-ai-language-s15; p1-ai-language-s16; p1-ai-language-s17; p1-ai-language-s18; p1-ai-language-s19; p1-ai-language-s20; p1-ai-language-s21; p1-ai-language-s22 | PH-15 | [C37](../plans/features/%E2%9C%85%20C37.md) |
 | D38 | AI debrief | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s08 | PH-16 | [D38](../plans/features/%E2%9C%85%20D38.md) |
 | D39 | Coaching (in-session hints and between-session advice) | Implemented and tested | hybrid | 1 (1) | yes | p2-ai-learning-analytics-s01 | PH-18 | [D39](../plans/features/%E2%9C%85%20D39.md) |
@@ -84,7 +84,6 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | E56 | Difficulty explanation to the trainee | Implemented and tested | hybrid | 1 (1) | yes | p1-scenario-composer-difficulty-s04 | PH-16 | [E56](../plans/features/%E2%9C%85%20E56.md) |
 | E57 | LLM serving and benchmark | Implemented but incompletely tested | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-ai-infrastructure-s02; p1-ai-language-s02 | PH-07 | [E57](../plans/features/%E2%9C%85%20E57.md) |
 | E58 | Retrieval over approved content (RAG) | Implemented and tested | hybrid | 1 (1) | yes | p1-live-scenario-generation-s02; p2-ai-extensions-s02 | PH-05 | [E58](../plans/features/%E2%9C%85%20E58.md) |
-| E60 | P2 small trained classifier | Deferred | ai | 1 (1) | yes | p2-ai-extensions-s03 | PH-19 | [E60](../plans/features/E60.md) |
 | E61 | Medical LLM benchmark (for example MedGemma) | Implemented but incompletely tested | ai | 1 (1) | yes | p2-ai-extensions-s05 | PH-19 | [E61](../plans/features/%E2%9C%85%20E61.md) |
 | E62 | Backend and AI gateway | Implemented and tested | deterministic | 1 (0) | yes | p1-backend-s01; p1-backend-s02; p1-backend-s06; p1-backend-s07; p1-backend-s08; p1-backend-s09 | PH-06 | [E62](../plans/features/%E2%9C%85%20E62.md) |
 | E63 | On-device speech recognition | Implemented but incompletely tested | ai | 1 (1) | yes | p2-ai-extensions-s01 | PH-19 | [E63](../plans/features/%E2%9C%85%20E63.md) |

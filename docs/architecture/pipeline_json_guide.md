@@ -101,7 +101,7 @@ The schema allows at most 30 nodes, 60 edges and 6 notes per flowchart (read 12 
 | `02-models-and-stages.json` | Models MC-01 to MC-13 and the stages that use them | 25 / 14 |
 | `03-components-and-stages.json` | Existing and planned components and the stages they serve | 27 / 22 |
 | `04-roadmap-phases.json` | Phases PH-01 to PH-24 with dependencies and the critical path | 24 / 40 |
-| `05` to `09-features-*.json` | The 68 features by category A to E, with their dependencies | 14 to 19 per file |
+| `05` to `09-features-*.json` | The 67 features by category A to E, with their dependencies | 14 to 19 per file |
 
 How the JSON maps to the format: a box's `label` is its id in the canonical JSON (features: id, tier, phase), `title` a short name, `text` the status plus the first sentence of the description and the feature plans that trace to it, `tone` the status (mint built, sun partly built, blue planned, aqua proposed, coral blocked, grey deferred), `actor` a fixed icon per node type or stage. Edges come from the JSON's flow edges; edges to nodes outside a diagram are dropped, so use the Cytoscape export when you need every edge. The generator raises an error rather than cutting content if a diagram would break a limit.
 
