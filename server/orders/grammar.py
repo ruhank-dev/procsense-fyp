@@ -154,14 +154,28 @@ class Hearing:
 
 
 def action_for(intent: str, e: Entry) -> dict | None:
+    """The engine verb and parameters of a confirmed order, as the engine's subsystems read them (the parameter names are theirs: `test`, `class`, `type`, `to`, `role`, `drug`). An order whose verb needs more than the sentence gave (the oxygen device, how the patient
+    is moved) is completed by the trainee before the confirmation (server/orders/details.py); an order the engine has no verb for (calling a surgeon, a nurse or a porter) is read back and logged only."""
+    from server.orders import details
     if intent == "ORDER_TEST":
         return {"verb": "order_investigation", "params": {"test": e.target}}
     if intent == "REQUEST_MEDICATION":
+        kind = details.treatment_kind(e.target)
+        if kind == "fluid":
+            return {"verb": "request_fluids", "params": {"type": e.target}}
+        if kind == "oxygen":
+            return {"verb": "request_oxygen", "params": {}}
+        if kind == "procedure":
+            return {"verb": "request_iv_access", "params": {}}
         return {"verb": "request_medication", "params": {"class": e.target}}
     if intent == "REQUEST_TRANSPORT":
         return {"verb": "request_transport", "params": {"to": e.target}}
     if intent == "CALL_STAFF":
-        return {"verb": "request_anaesthetic_review", "params": {}} if e.target in ("anaesthetist",) else {"verb": "escalate", "params": {"to": e.target}}
+        if e.target == "anaesthetist":
+            return {"verb": "request_anaesthetic_review", "params": {}}
+        if e.target == "senior":
+            return {"verb": "escalate", "params": {"role": "senior"}}
+        return None                              # the engine escalates to the senior and the anaesthetist only
     if intent == "HOLD_MED" and e.kind == "home_medicine":
         return {"verb": "hold_medicine", "params": {"drug": e.target}}   # DT-208: the engine refuses a drug the patient has not named
     return None                                  # holding a treatment the trainee ordered (a medicine kind) has no engine verb; it is read back and logged only

@@ -132,9 +132,9 @@ def _demo(monkeypatch):
 def test_in_the_demonstration_profile_gemma_reads_the_order_and_only_the_yes_releases_it(world, monkeypatch):
     from server.orders.cloud_interpreter import CloudOnlyInterpreter
     _demo(monkeypatch)
-    ask = {"kind": "order", "intent": "REQUEST_MEDICATION", "target": "medicine:TR-OXYGEN", "confidence": 0.9}
+    ask = {"kind": "order", "intent": "REQUEST_MEDICATION", "target": "medicine:TR-PARACETAMOL", "confidence": 0.9}
     world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: CloudOnlyInterpreter(host(ask))
-    h = world.post("hear", {"text": "can I get some oxygen on her?"}).json()
+    h = world.post("hear", {"text": "can I get some paracetamol for her?"}).json()
     assert (h["status"], h["interpreter"], h["interpreter_model"], h["fallback_reason"]) == ("confirm", "gemma_cloud", "gemma4:31b-cloud", "") and h["ticket"]
     assert world.post("confirm", {"ticket": h["ticket"], "spoken": "maybe"}).json()["outcome"] == "open"                    # nothing is released by anything but a yes
     assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["action"]["verb"] == "request_medication"
@@ -166,3 +166,35 @@ def test_live_the_real_gemma_cloud_answers_through_the_whole_route(world, monkey
     assert (h["status"], h["interpreter"], h["label"]) == ("confirm", "gemma_cloud", "CRP")
     assert "gemma" in h["interpreter_reported_model"].lower()                                                                  # the host itself names the model that answered
     assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["action"] == {"verb": "order_investigation", "params": {"test": "crp"}}
+
+
+def test_a_missing_detail_is_chosen_from_a_closed_list_and_the_completed_order_gets_its_own_single_use_ticket(world):
+    h = world.post("hear", {"text": "transport the patient to the ct"}).json()
+    assert (h["status"], [n["param"] for n in h["needs"]]) == ("confirm", ["mode"])
+    bad = world.post("details", {"ticket": h["ticket"], "choices": {"mode": "helicopter"}}).json()
+    assert (bad["status"], bad["error"], bad["ticket"]) == ("menu", "VALUE_NOT_ALLOWED", "")                                   # the open ticket is not used up by a refused choice
+    d = world.post("details", {"ticket": h["ticket"], "choices": {"mode": "trolley"}}).json()
+    assert (d["status"], d["needs"], d["interpreter"]) == ("confirm", [], "") and d["ticket"] and d["ticket"] != h["ticket"]
+    assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["outcome"] == "refused"                         # the first ticket was used up by the completion
+    c = world.post("confirm", {"ticket": d["ticket"], "spoken": "yes"}).json()
+    assert (c["outcome"], c["verb"]) == ("released", "request_transport") and sorted((p["k"], p["v"]) for p in c["action_pairs"]) == [("mode", "trolley"), ("to", "ct")]
+    assert world.post("confirm", {"ticket": d["ticket"], "spoken": "yes"}).json()["outcome"] == "refused"                         # single use
+
+
+def test_a_ticket_of_another_person_or_a_forged_one_cannot_be_completed(world):
+    h = world.post("hear", {"text": "transport the patient to the ct"}).json()
+    other = world.api.client.post(f"/orders/organisations/{world.org}/details", json={"ticket": h["ticket"], "choices": {"mode": "walk"}}, headers=world.api.headers(world.other)).json()
+    assert other["status"] == "menu" and other["error"] == "TICKET_NOT_YOURS"
+    assert world.post("details", {"ticket": h["ticket"][:-3] + "AAA", "choices": {"mode": "walk"}}).json()["error"] == "TICKET_FORGED"
+
+
+def test_the_exact_body_unity_sends_is_answered_by_the_real_route_in_the_contract_shape(world):
+    """The request file is the byte-for-byte output of SpokenOrderClient.HearBody (compared in the Unity test); the route answers it and the answer has every field the Unity parser reads."""
+    from pathlib import Path
+    body = (Path(__file__).resolve().parents[2] / "tests" / "orders" / "unity_contract" / "requests" / "hear.json").read_text(encoding="utf-8")
+    r = world.api.client.post(f"/orders/organisations/{world.org}/hear", content=body, headers={**world.api.headers(world.me), "Content-Type": "application/json"})
+    assert r.status_code == 200
+    answer = r.json()
+    for field in ("status", "intent", "label", "read_back", "options", "dose_removed", "source", "interpretation", "ticket", "error", "interpreter", "interpreter_model", "interpreter_reported_model", "fallback_reason", "interpreter_ms", "needs"):
+        assert field in answer, field
+    assert answer["interpreter"] == "offline_grammar"                                                                           # no interpreter is built in this fixture: the grammar answered, and says so

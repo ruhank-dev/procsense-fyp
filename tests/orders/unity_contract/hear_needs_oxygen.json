@@ -1,0 +1,37 @@
+{
+ "status": "confirm",
+ "intent": "REQUEST_MEDICATION",
+ "label": "Oxygen",
+ "read_back": "Confirm: request oxygen?",
+ "options": [],
+ "dose_removed": false,
+ "source": "model",
+ "interpretation": "order",
+ "ticket": "TICKET-O2.sig",
+ "error": "",
+ "interpreter": "gemma_cloud",
+ "interpreter_model": "gemma4:31b-cloud",
+ "interpreter_reported_model": "gemma4:31b",
+ "fallback_reason": "",
+ "interpreter_ms": 812,
+ "needs": [
+  {
+   "param": "device",
+   "question": "Which oxygen device?",
+   "options": [
+    {
+     "id": "nasal_cannula",
+     "label": "Nasal cannula"
+    },
+    {
+     "id": "simple_mask",
+     "label": "Simple face mask"
+    },
+    {
+     "id": "non_rebreather_mask",
+     "label": "Non-rebreather mask"
+    }
+   ]
+  }
+ ]
+}

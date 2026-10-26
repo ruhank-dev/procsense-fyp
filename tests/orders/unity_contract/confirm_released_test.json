@@ -1,0 +1,17 @@
+{
+ "outcome": "released",
+ "action": {
+  "verb": "order_investigation",
+  "params": {
+   "test": "crp"
+  }
+ },
+ "verb": "order_investigation",
+ "action_pairs": [
+  {
+   "k": "test",
+   "v": "crp"
+  }
+ ],
+ "reason": ""
+}

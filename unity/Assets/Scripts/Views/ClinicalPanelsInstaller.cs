@@ -23,6 +23,9 @@ namespace ProcSense.VR.Views
         public TeamConversation Conversation { get; private set; }
         public PushToTalk Talk { get; private set; }
         public SpokenActionRouter Router { get; private set; }
+        public SpokenOrderFlow Orders { get; private set; }
+        public OrderPanelView OrderPanel { get; private set; }
+        public static readonly Vector3 OrderPanelDefault = new Vector3(-0.6f, 1.55f, 1.1f);
         public static readonly Vector3 TalkDefault = new Vector3(-0.6f, 1.2f, 1.1f);
         public static readonly Vector3 SubtitlesDefault = new Vector3(0.6f, 1.9f, 1.4f);
 
@@ -79,7 +82,18 @@ namespace ProcSense.VR.Views
                 Router = go.AddComponent<SpokenActionRouter>();
                 Router.Talk = Conversation;
                 view.Router = Router;
+                Orders = go.AddComponent<SpokenOrderFlow>();                            // the spoken medical orders: Gemma Cloud first, the offline grammar as the fallback, the trainee's yes before anything reaches the engine
+                Orders.Talk = Conversation;
+                Router.Orders = Orders;
                 Talk.Transcribed += text => Router.OnTranscribed(text);                // the words the recogniser heard become tablet actions (the engine decides), then the voices answer
+                go.SetActive(true);
+            }
+            if (OrderPanel == null && Orders != null)
+            {
+                var go = Place("Spoken order panel", "OrderPanelAnchor", OrderPanelDefault, Quaternion.identity);
+                go.SetActive(false);                                                   // so Flow is set before OnEnable subscribes
+                OrderPanel = go.AddComponent<OrderPanelView>();
+                OrderPanel.Flow = Orders;
                 go.SetActive(true);
             }
             return true;

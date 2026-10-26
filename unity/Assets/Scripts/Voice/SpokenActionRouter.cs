@@ -34,6 +34,8 @@ namespace ProcSense.VR.Voice
         public const float RepeatWindowSeconds = 4f;
         public TabletView Tablet;
         public TeamConversation Talk;
+        /// <summary>The spoken medical orders (ADR-0028): asked only about a sentence that started no tablet action and was not addressed to the patient, so an ordinary sentence costs no second model call. A proposal waits for the trainee's yes before anything reaches the engine.</summary>
+        public SpokenOrderFlow Orders;
         public Func<AuthService> Auth = () => AuthService.Current;
         public Func<SimulationHost> Host = () => SimulationHost.Instance;
         /// <summary>Replaced by tests; the real one asks the service.</summary>
@@ -64,8 +66,20 @@ namespace ProcSense.VR.Voice
             if (key == _lastText && Time.realtimeSinceStartup - _lastAt < RepeatWindowSeconds) return false;
             _lastText = key;
             _lastAt = Time.realtimeSinceStartup;
-            StartCoroutine(Handle(text.Trim()));
+            StartCoroutine(Route(text.Trim()));
             return true;
+        }
+
+        /// <summary>A pending order proposal is answered first ("yes", "no"); any other sentence goes the ordinary way and may start a new proposal.</summary>
+        public IEnumerator Route(string text)
+        {
+            if (Orders != null && Orders.Pending)
+            {
+                bool answered = false;
+                yield return Orders.AnswerBySpeech(text, c => answered = c);
+                if (answered) { Status = "Heard: " + text; yield break; }
+            }
+            yield return Handle(text);
         }
 
         public IEnumerator Handle(string text)
@@ -87,6 +101,18 @@ namespace ProcSense.VR.Voice
                 Status = "Did you mean: " + string.Join(" and ", result.ActionIds.Select(Tablet.LabelOf)) + "? Confirm on the tablet.";
                 Talk?.Remember("trainee", text);
                 yield break;
+            }
+            if (Orders != null && result.ActionIds.Count == 0 && result.Addressee != "patient")
+            {
+                bool taken = false;
+                yield return Orders.Offer(text, t => taken = t);
+                if (taken)                                                                    // a proposal, a question or "no such order": the order panel answers, the staff dialogue does not
+                {
+                    Talk?.Remember("trainee", text);
+                    Status = "Heard: " + text;
+                    if (EvaluateSpeech) StartCoroutine(Judge(host, text, utteranceId, turns, result.Addressee));
+                    yield break;
+                }
             }
             string asked = null;
             var shown = new List<string>();

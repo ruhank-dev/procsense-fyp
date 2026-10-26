@@ -8,6 +8,16 @@ namespace ProcSense.VR.Bridge
         private static readonly Dictionary<string, string> Texts = new Dictionary<string, string>
         {
             { "IDENTITY_NOT_CONFIRMED", "Identity not confirmed" },
+            { "ORDER_PENDING", "That is already requested and waiting" },
+            { "MISSING_MODE", "Choose how the patient is moved" },
+            { "UNKNOWN_LOCATION", "The simulator does not know that place" },
+            { "ALREADY_THERE", "The patient is already there" },
+            { "MISSING_DEVICE", "Choose the oxygen device" },
+            { "NOT_A_HOME_MEDICINE", "The patient has not named that medicine" },
+            { "ALREADY_HELD", "That medicine is already held" },
+            { "UNKNOWN_ROLE", "The simulator only escalates to the senior doctor and the anaesthetist" },
+            { "IV_ACCESS_REQUIRED", "Intravenous access is needed first" },
+            { "ALREADY_IN_PLACE", "That is already in place" },
             { "IDENTITY_CHECK_INCOMPLETE", "First ask her to say her name and date of birth, read the wristband and open the notes" },
             { "ST1_MISMATCH", "Something does not match - stop and report it" },
             { "SPOKEN_ANSWER_UNCLEAR", "Her answer was not clear enough to rely on" },

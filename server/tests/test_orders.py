@@ -96,3 +96,24 @@ def test_moving_the_patient_to_a_scanner_is_a_transport_not_a_test(phrase, place
 
 def test_sending_a_test_is_still_a_test_order():
     assert rb().hear("send a full blood count").intent == "ORDER_TEST"
+
+
+def test_each_kind_of_treatment_maps_to_the_engine_verb_and_parameter_that_reads_it():
+    from server.orders.grammar import Entry, action_for
+    assert action_for("REQUEST_MEDICATION", Entry("calpol", "medicine", "TR-PARACETAMOL", "Paracetamol")) == {"verb": "request_medication", "params": {"class": "TR-PARACETAMOL"}}
+    assert action_for("REQUEST_MEDICATION", Entry("fluids", "medicine", "TR-IV-FLUIDS", "IV fluids")) == {"verb": "request_fluids", "params": {"type": "TR-IV-FLUIDS"}}
+    assert action_for("REQUEST_MEDICATION", Entry("oxygen", "medicine", "TR-OXYGEN", "Oxygen")) == {"verb": "request_oxygen", "params": {}}       # the device is chosen before the confirmation
+    assert action_for("CALL_STAFF", Entry("senior", "staff", "senior", "senior")) == {"verb": "escalate", "params": {"role": "senior"}}          # the engine's parameter is `role`
+    assert action_for("CALL_STAFF", Entry("surgeon", "staff", "surgeon", "surgeon")) is None                                                   # the engine escalates to the senior and the anaesthetist only
+
+
+def test_missing_details_are_closed_lists_and_only_those_values_complete_an_action():
+    from server.orders import details
+    need = details.needs_for({"verb": "request_oxygen", "params": {}})
+    assert [n["param"] for n in need] == ["device"] and {o["id"] for o in need[0]["options"]} == {"nasal_cannula", "simple_mask", "non_rebreather_mask"}
+    assert details.needs_for({"verb": "request_oxygen", "params": {"device": "simple_mask"}}) == [] and details.needs_for({"verb": "order_investigation", "params": {"test": "crp"}}) == []
+    assert {o["id"] for o in details.needs_for({"verb": "request_transport", "params": {"to": "ct"}})[0]["options"]} == {"walk", "wheelchair", "trolley"}
+    done, why = details.apply_choices({"verb": "request_transport", "params": {"to": "ct"}}, {"mode": "trolley"})
+    assert done == {"verb": "request_transport", "params": {"mode": "trolley", "to": "ct"}} and why == ""
+    assert details.apply_choices({"verb": "request_oxygen", "params": {}}, {"device": "jet_ventilator"})[0] is None            # not in the closed list
+    assert details.apply_choices({"verb": "request_oxygen", "params": {}}, {"device": "simple_mask", "dose": "15"})[0] is None   # nothing else can be added

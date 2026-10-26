@@ -1,0 +1,18 @@
+{
+ "status": "confirm",
+ "intent": "REQUEST_MEDICATION",
+ "label": "Oxygen (simple face mask)",
+ "read_back": "Confirm: request oxygen (simple face mask)?",
+ "options": [],
+ "dose_removed": false,
+ "source": "grammar",
+ "interpretation": "",
+ "ticket": "TICKET-O2-SM.sig",
+ "error": "",
+ "interpreter": "",
+ "interpreter_model": "",
+ "interpreter_reported_model": "",
+ "fallback_reason": "",
+ "interpreter_ms": 0,
+ "needs": []
+}

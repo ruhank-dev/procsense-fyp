@@ -1,0 +1,17 @@
+{
+ "outcome": "released",
+ "action": {
+  "verb": "request_oxygen",
+  "params": {
+   "device": "simple_mask"
+  }
+ },
+ "verb": "request_oxygen",
+ "action_pairs": [
+  {
+   "k": "device",
+   "v": "simple_mask"
+  }
+ ],
+ "reason": ""
+}

@@ -1,0 +1,21 @@
+{
+ "status": "clarify",
+ "intent": null,
+ "label": "",
+ "read_back": "CT or MRI?",
+ "options": [
+  "CT",
+  "MRI"
+ ],
+ "dose_removed": false,
+ "source": "model",
+ "interpretation": "ambiguous",
+ "ticket": "",
+ "error": "",
+ "interpreter": "gemma_cloud",
+ "interpreter_model": "gemma4:31b-cloud",
+ "interpreter_reported_model": "gemma4:31b",
+ "fallback_reason": "",
+ "interpreter_ms": 812,
+ "needs": []
+}

@@ -20,8 +20,8 @@ from server.config import Settings, get_settings
 from server.auth.dependencies import db_session
 from server.llm import client as client_mod, routing
 from server.middleware.audit import AiCallRecord, audited
-from server.orders import ticket
-from server.orders.grammar import NO, YES, Entry, Hearing, ReadBack, vocabulary
+from server.orders import details, ticket
+from server.orders.grammar import NO, READBACK as READBACK_OF, YES, Entry, Hearing, ReadBack, vocabulary
 from server.orders.cloud_interpreter import CloudOnlyInterpreter
 from server.orders.interpreter import OrderInterpreter  # noqa: F401  (the tests build the plain interpreter)
 from server.repositories import privacy as privacy_repository
@@ -52,6 +52,12 @@ class HearOut(BaseModel):
     interpreter_reported_model: str = ""          # the model name the host reported in its reply: evidence that the cloud model, not a stand-in, answered
     fallback_reason: str = ""                     # why the grammar answered instead (see server/orders/cloud_interpreter.py); empty when the cloud answered
     interpreter_ms: int = 0
+    needs: list[dict] = []                        # details the engine needs that the sentence did not give (the oxygen device, how the patient is moved), each with a closed list of values: {param, question, options:[{id,label}]}; answer them with POST .../details
+
+
+class DetailsIn(BaseModel):
+    ticket: str = Field(min_length=10, max_length=2000)
+    choices: dict[str, str] = Field(min_length=1, max_length=4)
 
 
 class ConfirmIn(BaseModel):
@@ -62,6 +68,8 @@ class ConfirmIn(BaseModel):
 class ConfirmOut(BaseModel):
     outcome: str                                  # released | cancelled | open | refused
     action: dict | None = None
+    verb: str = ""                                # the same action flattened for a client that cannot read a dictionary: the verb and the parameters as {k, v} pairs
+    action_pairs: list[dict] = []
     reason: str = ""
 
 
@@ -114,7 +122,7 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
     call.validated(True)
     call.set_output(ref=f"{h.status}:{h.intent}:{h.source}")
     t = ticket.issue(call.user_id, h.intent, h.slots, h.action) if h.status in ("confirm", "removed_dose_confirm") else ""
-    return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, interpretation=h.interpretation, ticket=t, interpreter=used, interpreter_model=last.get("model", "") if used == "gemma_cloud" else "", interpreter_reported_model=last.get("reported_model", "") if used == "gemma_cloud" else "", fallback_reason=reason, interpreter_ms=last.get("ms", 0))
+    return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, interpretation=h.interpretation, ticket=t, interpreter=used, interpreter_model=last.get("model", "") if used == "gemma_cloud" else "", interpreter_reported_model=last.get("reported_model", "") if used == "gemma_cloud" else "", fallback_reason=reason, interpreter_ms=last.get("ms", 0), needs=details.needs_for(h.action) if t else [])
 
 
 @router.post("/orders/organisations/{organisation_id}/confirm", response_model=ConfirmOut)
@@ -130,7 +138,8 @@ def confirm(body: ConfirmIn, call: AiCallRecord = Depends(audited("orders"))) ->
         ticket.decide(claims)
         call.validated(True)
         call.set_output(ref="released" if claims["a"] else "logged_only")
-        return ConfirmOut(outcome="released", action=claims["a"], reason="" if claims["a"] else "NO_ENGINE_VERB")      # a hold of a home medicine releases to hold_medicine (DT-208); a hold of an ordered treatment has no engine verb and is read back and logged only
+        act = claims["a"]
+        return ConfirmOut(outcome="released", action=act, verb=(act or {}).get("verb", ""), action_pairs=[{"k": k, "v": v} for k, v in sorted(((act or {}).get("params") or {}).items())], reason="" if act else "NO_ENGINE_VERB")      # a hold of a home medicine releases to hold_medicine (DT-208); a hold of an ordered treatment has no engine verb and is read back and logged only
     if answer in NO or answer.split(" ")[0] in NO:
         ticket.decide(claims)
         call.validated(True)
@@ -138,3 +147,26 @@ def confirm(body: ConfirmIn, call: AiCallRecord = Depends(audited("orders"))) ->
         return ConfirmOut(outcome="cancelled")
     call.set_output(ref="open")
     return ConfirmOut(outcome="open", reason="ANSWER_NOT_UNDERSTOOD")
+
+
+@router.post("/orders/organisations/{organisation_id}/details", response_model=HearOut)
+def complete(body: DetailsIn, call: AiCallRecord = Depends(audited("orders"))) -> HearOut:
+    """The trainee chose the details a proposed order still needed (the oxygen device, how the patient is moved). No model is asked: the SIGNED action of the ticket gets the chosen values from the closed lists of the content, the old ticket is used up, and a new single-use ticket
+    for the completed action is returned, so the trainee confirms exactly what will be sent and the engine still validates it."""
+    call.set_input(",".join(sorted(body.choices)))
+    try:
+        claims = ticket.open_ticket(body.ticket, call.user_id)
+    except ticket.TicketError as e:
+        call.fell_back(str(e))
+        return HearOut(status="menu", read_back="That order is no longer open. Please say it again.", error=str(e))
+    action, why = details.apply_choices(claims["a"], body.choices) if claims["a"] else (None, "NOTHING_TO_COMPLETE")
+    if action is None:
+        call.fell_back(why)
+        return HearOut(status="menu", read_back="That choice is not one the simulator offers.", error=why)
+    ticket.decide(claims)
+    slots = dict(claims["s"])
+    slots["label"] = slots.get("label", "") + " (" + ", ".join(details.label_of(k, v).lower() for k, v in sorted(body.choices.items())) + ")"
+    t = ticket.issue(call.user_id, claims["i"], slots, action)
+    call.validated(True)
+    call.set_output(ref="completed")
+    return HearOut(status="confirm", intent=claims["i"], label=slots["label"], read_back="Confirm: " + READBACK_OF.get(claims["i"], "{label}").format(label=slots["label"].lower()) + "?", ticket=t, needs=details.needs_for(action), interpreter="")      # no model read this step: the client keeps the interpreter of the hearing

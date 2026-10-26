@@ -216,24 +216,39 @@
    "needs": "Quest with the current Unity build; the backend with the recogniser (faster-whisper small.en) and Piper reachable",
    "prepared": [
     "content/voice/catalogue.json",
+    "reports/ai/demo-orders-routing.json",
     "reports/ai/orders-eval.json",
     "reports/ai/tts-latency.json",
+    "server/demo/synthetic-fyp-demo.env",
+    "server/orders/cloud_interpreter.py",
+    "server/orders/details.py",
     "server/orders/llm_fallback.py",
     "server/orders/ticket.py",
     "server/routers/asr.py",
     "server/routers/orders.py",
     "server/routers/tts.py",
-    "tools/ai/eval_orders.py"
+    "tests/orders/unity_contract/hear_proposal_gemma.json",
+    "tools/ai/eval_orders.py",
+    "tools/demo/orders_routing_check.py",
+    "unity/Assets/Scripts/Views/OrderPanelView.cs",
+    "unity/Assets/Scripts/Voice/SpokenOrderClient.cs",
+    "unity/Assets/Scripts/Voice/SpokenOrderFlow.cs",
+    "unity/Assets/Tests/EditMode/SpokenOrderTests.cs",
+    "unity/Assets/Tests/PlayMode/SpokenOrderPlayTests.cs"
    ],
    "procedure": [
-    "The order route is `POST /orders/organisations/{id}/hear` with {\"text\", \"context\"} (no Unity script calls it yet: the headset's spoken path uses the speech-action route of ADR-0027 for tablet actions, so check the order route from a laptop or the headset simulator, and wire the client before a headset test of it). The answer says which system read the sentence: `interpreter` (`gemma_cloud` or `offline_grammar`), `interpreter_model`, `interpreter_reported_model` and `fallback_reason`; it receives a read-back sentence and a signed `ticket`, or a clarifying question, or the menu (nothing is released by this call). The trainee's spoken answer goes to `POST /orders/organisations/{id}/confirm` with {\"ticket\", \"spoken\"}; only a yes returns the action, a no cancels, anything else leaves the question open (server/routers/orders.py, tested in server/tests/test_orders_route.py).",
+    "Built and unit-tested without the headset (NOT the physical test): the Unity client sends a sentence that started no tablet action and was not addressed to the patient to `POST /orders/organisations/{id}/hear` with the scene as text, shows the answer on the world-space order panel (`OrderPanelView`, anchor `OrderPanelAnchor`), and sends the trainee's yes or no to `.../confirm` (a missing detail, such as the oxygen device, to `.../details`); only a yes the route accepts releases the ticketed action, which Unity applies with `SimulationHost.Apply`, so the engine validates it (Unity EditMode `SpokenOrderTests`, PlayMode `SpokenOrderPlayTests`, server `test_orders_route.py` and `test_orders_unity_contract.py`). The ordinary spoken-action route (`/speech/organisations/{id}/action`) is unchanged and is asked first; the order route is asked only about a sentence that started no tablet action and was not addressed to the patient.",
     "Hold push-to-talk and say five orders from content/voice/catalogue.json (for example 'Give 500 millilitres of saline'); confirm the read-back is spoken and the order is only placed after the trainee confirms. Say two of them in your own words with no trigger word (for example 'get a trace of his heart'); the semantic interpreter (feature gate order_fallback, ON in content/ai/features.json for the controlled demonstration; ADR-0028) offers the item; the read-back and the yes are the same. With the gate ON also say: two permission-style requests ('Can I get some oxygen on her?', 'Could we have a CRP?') - each is read back as an order; two real questions ('What does a CRP tell us?', 'Should I hold the metformin?') - nothing is read back; one negation ('Don't order the CT') and one 'if she gets worse we could give adrenaline' - nothing is read back; one vague request ('Give him some glucose') - the app asks which one. With the gate OFF the question-form requests give the menu: that is the offline behaviour, not a failure.",
+    "Setup for the order checks: run the service with the synthetic demonstration profile (`task server-demo`; the local Ollama signed in), sign in on the Quest, start a practice session and confirm the patient's identity. Say 'Can I get a CRP on her?' (hold the button, speak, release). Expected: the order panel appears next to the push-to-talk panel with 'Read by Gemma Cloud', the read-back 'Confirm: order crp?', a Yes and a No button; nothing is ordered yet (the results phone shows no CRP). Press Yes with the controller: 'Sent to the team: CRP.' and the CRP is ordered. Repeat the order and answer by saying 'yes' aloud: the same result.",
+    "Say 'Put oxygen on her.' Expected: the panel asks 'Which oxygen device?' with up to three buttons; no Yes button yet; choose one, then the read-back with the device and a Yes. Say 'Get a scan of her tummy.' Expected: a question with two or three options and no Yes; press an option: a read-back, then Yes or No. Say 'What does a CRP actually tell us?' and 'Don't order the CRP.' Expected: no proposal, the staff answer as before. Say the same order twice within a few seconds and answer Yes twice: it is sent once ('Already sent a moment ago').",
+    "Fallback and badge: stop the Ollama service (or set the service without the cloud: no `CLOUD_ROUTING_ENABLED`), then say 'Order a CRP.' Expected: the badge reads 'Read by the offline grammar (...)' with the reason and the plain order still gets its read-back and its Yes; 'Can I get a CRP on her?' gets no proposal (the offline question guard), and the tablet works. Pull the network: the badge reads 'Orders unavailable' and nothing breaks. In a deployment that is not declared synthetic, a trainee who has not given the cloud consent sees the offline grammar with the reason NO_CONSENT.",
+    "Panel on the device: the text is readable at arm's length, the Yes, No and option buttons are reachable and not triggered by accident, the panel does not hide the tablet or the push-to-talk panel, and it can be moved by placing `OrderPanelAnchor` in the scene. Record the placement you want for the final scene.",
     "Say three sentences the recogniser should reject (silence, a cough, an order for a drug that does not exist); confirm the app shows 'Say again' or the menu and places nothing.",
     "Ask the patient three questions; time from the end of speech to the first spoken word of the reply (the target is 2.5 s at the 95th percentile, measured over at least 20 questions).",
     "Pull the network cable or stop the service; confirm the menu path still works for every action.",
     "Observation for the audio-to-transcript evaluation (optional, not a pass or fail): for the three sentences the recogniser should reject, and five more that contain a negation (\"I haven't given the oxygen\"), write down what you said and what the recogniser returned. Quest and headset checks stay NOT RUN until you do them."
    ],
-   "pass_rule": "Orders are placed only after read-back confirmation; rejected speech places nothing; 95th percentile speech-to-first-word at or under 2.5 s over 20 questions; the menu always works without the service.",
+   "pass_rule": "Orders are placed only after read-back confirmation; rejected speech places nothing; 95th percentile speech-to-first-word at or under 2.5 s over 20 questions; the menu always works without the service. Spoken medical orders: nothing is ordered before the trainee's own Yes; an ambiguous or incomplete request makes a question and no Yes; the panel always says whether Gemma Cloud or the offline grammar read the sentence; the same order is sent once; an order the simulator refuses shows the reason.",
    "who": "Sannan",
    "after": "Ruhan ticks p1-ai-infrastructure-s05 and p1-voice-input-s02."
   },
@@ -573,9 +588,6 @@
    "kind": "people",
    "who": "The owner arranges at least four people who are not the builder: two authors per split (dev and test authors differ), a second labeller for the critical rows, a third person to adjudicate. Whoever wrote the generator or the taxonomy must not write or label rows.",
    "steps": [
-    "p1-ai-language-s06",
-    "p1-ai-language-s07",
-    "p2-ai-extensions-s03",
     "p1-ai-infrastructure-s04",
     "p1-ai-language-s11",
     "p1-ai-language-s14",
@@ -1084,8 +1096,7 @@
    "kind": "people",
    "who": "A person who has not worked on the mapper or the classifier (a student, a colleague or a clinician); the owner arranges them",
    "steps": [
-    "p1-voice-input-s03",
-    "p1-ai-language-s06"
+    "p1-voice-input-s03"
    ],
    "needs": "One person who has not worked on the mapper or the classifier, about 90 minutes, no access to any test file of the repository; the owner or Ruhan to run the kit",
    "prepared": [
@@ -1109,31 +1120,6 @@
     "the engineer's one-shot result files"
    ],
    "after": "The engineer records the result in DT-224 and ADR-0020/0021; a feature gate flips only when every suite of it passes, and the classifier gate still needs EX-01's independent labelling."
-  },
-  {
-   "id": "EX-19",
-   "title": "Public assertion data (n2c2 2010) as a supplementary check of the status vocabulary",
-   "kind": "account",
-   "who": "The account holder who registers at n2c2.dbmi.hms.harvard.edu and reads and signs the data use agreement (the owner or the supervisor); nobody else may accept it for them",
-   "steps": [
-    "p1-ai-language-s06"
-   ],
-   "needs": "A registered n2c2 account and the signed agreement; the data may not be shared with third parties",
-   "prepared": [
-    "docs/research/public_assertion_resources.md",
-    "docs/research/gemma_evaluator_results.md"
-   ],
-   "procedure": [
-    "Read docs/research/public_assertion_resources.md and the agreement on the n2c2 data-use-agreement page; decide whether the project may sign it.",
-    "If signed: download the 2010 assertion data to a folder outside the repository (never commit it), and tell the engineer.",
-    "The engineer maps present/absent/possible/hypothetical/conditional/someone-else to the benchmark statuses and compares the assertion vocabulary of the speech evaluator against it as a supplementary check, reporting it apart from every ProcSense result."
-   ],
-   "pass_rule": "There is no pass rule: the data are clinical notes, not first-person speech, and cannot establish the safety of the speech evaluator (ADR-0025). The item is optional; skipping it blocks nothing.",
-   "evidence": [
-    "the signed agreement (kept by the account holder, not committed)",
-    "the engineer's supplementary report"
-   ],
-   "after": "The engineer records the supplementary result in docs/research/public_assertion_resources.md; no feature gate reads it."
   }
  ]
 }

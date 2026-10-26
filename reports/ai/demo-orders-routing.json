@@ -24,7 +24,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 781
+   "ms": 1875
   },
   {
    "kind": "permission-style order",
@@ -38,7 +38,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 687
+   "ms": 1297
   },
   {
    "kind": "polite order",
@@ -46,13 +46,13 @@
    "status": "confirm",
    "interpretation": "order",
    "label": "porter",
-   "action_proposed": true,
+   "action_proposed": false,
    "interpreter": "gemma_cloud",
    "model": "gemma4:31b-cloud",
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 1187
+   "ms": 1250
   },
   {
    "kind": "hold",
@@ -66,7 +66,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 718
+   "ms": 1515
   },
   {
    "kind": "real question",
@@ -80,7 +80,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 1750
+   "ms": 1281
   },
   {
    "kind": "negated",
@@ -94,7 +94,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 1125
+   "ms": 875
   },
   {
    "kind": "hypothetical",
@@ -108,7 +108,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 969
+   "ms": 937
   },
   {
    "kind": "ambiguous",
@@ -122,7 +122,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 766
+   "ms": 1515
   },
   {
    "kind": "incomplete",
@@ -136,7 +136,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 843
+   "ms": 906
   },
   {
    "kind": "unsupported",
@@ -150,7 +150,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 1109
+   "ms": 1265
   }
  ],
  "fallbacks": {
@@ -178,7 +178,7 @@
    "reported_model": "gemma4:31b",
    "fallback_reason": "",
    "model_calls": 1,
-   "ms": 703
+   "ms": 937
   },
   "no_institutional_approval": {
    "sentence": "Can I get a lactate and cultures on her?",
@@ -217,7 +217,7 @@
    "reported_model": "",
    "fallback_reason": "CLOUD_UNREACHABLE",
    "model_calls": 1,
-   "ms": 2015
+   "ms": 2062
   },
   "timeout": {
    "sentence": "Can I get a lactate and cultures on her?",
@@ -230,7 +230,7 @@
    "reported_model": "",
    "fallback_reason": "CLOUD_TIMEOUT",
    "model_calls": 1,
-   "ms": 16
+   "ms": 15
   }
  },
  "gemma_answered": 10,
