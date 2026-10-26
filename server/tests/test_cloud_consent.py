@@ -181,18 +181,18 @@ def test_spoken_orders_follow_the_same_consent_rule_as_the_dialogue(world, monke
         if request.url.path == "/api/tags":
             return httpx.Response(200, json={"models": [{"name": client_mod.LIVE_MODEL}, {"name": "gemma4:31b-cloud"}]})
         asked.append(_json.loads(request.content)["model"])
-        return httpx.Response(200, json={"message": {"content": _json.dumps({"kind": "order", "intent": "ORDER_TEST", "target": "test:ecg", "confidence": 0.9})}})
+        return httpx.Response(200, json={"model": "gemma4:31b", "message": {"content": _json.dumps({"kind": "order", "intent": "ORDER_TEST", "target": "test:ecg", "confidence": 0.9})}})
     world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: orders_router.CloudOnlyInterpreter(client_mod.OllamaClient(transport=httpx.MockTransport(h)))
 
     def hear():
         return world.api.client.post(f"/orders/organisations/{world.org}/hear", json={"text": "could I get a trace of his heart"}, headers=world.api.headers(world.me))
     h0 = hear().json()
-    assert "gemma4:31b-cloud" not in asked and (h0["status"], h0["source"]) == ("menu", "grammar")      # the Terms alone are not consent: the local model's reading is dropped and the grammar (with its question guard) answers
+    assert asked == [] and (h0["status"], h0["source"], h0["interpreter"], h0["fallback_reason"]) == ("menu", "grammar", "offline_grammar", "NO_CONSENT")      # the Terms alone are not consent: the local model's reading is dropped and the grammar (with its question guard) answers
     asked.clear()
     world.consent(True)
     h1 = hear().json()
-    assert asked[0] == "gemma4:31b-cloud" and (h1["status"], h1["source"]) == ("confirm", "model")        # approval and the person's own yes together: Gemma reads it, and the read-back still waits for the trainee's yes
+    assert asked == ["gemma4:31b-cloud"] and (h1["status"], h1["source"], h1["interpreter"], h1["interpreter_model"], h1["interpreter_reported_model"], h1["fallback_reason"]) == ("confirm", "model", "gemma_cloud", "gemma4:31b-cloud", "gemma4:31b", "")        # approval and the person's own yes together: Gemma reads it, and the read-back still waits for the trainee's yes
     asked.clear()
     world.consent(False)
     h2 = hear().json()
-    assert "gemma4:31b-cloud" not in asked and (h2["status"], h2["source"]) == ("menu", "grammar")        # withdrawn: nothing from the local model is used
+    assert asked == [] and (h2["status"], h2["source"], h2["interpreter"], h2["fallback_reason"]) == ("menu", "grammar", "offline_grammar", "NO_CONSENT")        # withdrawn: nothing from the local model is used

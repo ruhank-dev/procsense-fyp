@@ -40,6 +40,7 @@ class Reply:
     error: str = ""
     detail: str = ""
     thinking: str = ""
+    host_model: str = ""                    # the model name the HOST put in its own reply (`model`), as opposed to `model`, the name that was asked for: the evidence of which model answered
     at: str = field(default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
 
 
@@ -100,7 +101,7 @@ class OllamaClient:
             return Reply(False, model=model, latency_ms=latency, error="NOT_JSON", detail="the host's answer is not JSON")
         digest = self._digests.get(model) or self.models().get(model, "")
         reply = Reply(True, text=content, model=model, digest=digest, latency_ms=latency, prompt_tokens=int(doc.get("prompt_eval_count", 0)), output_tokens=int(doc.get("eval_count", 0)),
-                      thinking=(doc.get("message") or {}).get("thinking", "") or "")
+                      thinking=(doc.get("message") or {}).get("thinking", "") or "", host_model=str(doc.get("model", "") or ""))
         if not content.strip():
             reply.ok, reply.error, reply.detail = False, "EMPTY", "the model returned no text (a thinking model may have used its whole token budget)"
             return reply

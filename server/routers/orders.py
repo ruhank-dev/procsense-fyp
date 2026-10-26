@@ -7,6 +7,7 @@ calls. Without the model (or with the `order_fallback` gate off) the grammar ans
 """
 from __future__ import annotations
 
+import logging
 import re
 from functools import lru_cache
 
@@ -21,11 +22,13 @@ from server.llm import client as client_mod, routing
 from server.middleware.audit import AiCallRecord, audited
 from server.orders import ticket
 from server.orders.grammar import NO, YES, Entry, Hearing, ReadBack, vocabulary
-from server.orders.interpreter import OrderInterpreter
+from server.orders.cloud_interpreter import CloudOnlyInterpreter
+from server.orders.interpreter import OrderInterpreter  # noqa: F401  (the tests build the plain interpreter)
 from server.repositories import privacy as privacy_repository
 from server.routers import ai_gateway
 
 router = APIRouter(tags=["spoken orders"])
+log = logging.getLogger("procsense.orders")
 
 
 class HearIn(BaseModel):
@@ -44,6 +47,11 @@ class HearOut(BaseModel):
     interpretation: str = ""                      # what the semantic interpreter took the sentence for; empty when the grammar answered
     ticket: str = ""                              # present only when there is something to confirm
     error: str = ""
+    interpreter: str = "offline_grammar"          # which system answered: gemma_cloud (Gemma 4 31B Cloud read the sentence) | offline_grammar (the conservative grammar with its question guard)
+    interpreter_model: str = ""                   # the model asked, when the cloud answered
+    interpreter_reported_model: str = ""          # the model name the host reported in its reply: evidence that the cloud model, not a stand-in, answered
+    fallback_reason: str = ""                     # why the grammar answered instead (see server/orders/cloud_interpreter.py); empty when the cloud answered
+    interpreter_ms: int = 0
 
 
 class ConfirmIn(BaseModel):
@@ -62,15 +70,6 @@ def get_vocabulary() -> list[Entry]:
     return vocabulary()
 
 
-class CloudOnlyInterpreter(OrderInterpreter):
-    """The interpreter whose answer counts only when the cloud model gave it. What was evaluated and accepted is Gemma reading the sentence (97.4 percent on the held-out set); the local model with the same prompt scored 69.5 percent with 13 percent wrong items, so when the cloud is not used
-    (no institutional approval, no personal consent, an outage, a slow answer) the answer of the local model is dropped and the grammar with its question guard answers, as ADR-0028 says."""
-
-    def interpret(self, transcript, vocab, context=None, dose_removed=False):
-        it = super().interpret(transcript, vocab, context, dose_removed)
-        return it if it is not None and routing.is_cloud(it.model) else None
-
-
 def get_mapper(settings: Settings = Depends(get_settings)):
     """The semantic interpreter (ADR-0028), only when the host is configured and the `order_fallback` gate is on; otherwise the grammar answers alone. (The name is kept: the older mapper is no longer in this path.)"""
     if not settings.ollama_url or not ai_features.enabled("order_fallback"):
@@ -87,9 +86,11 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
     if not ai_gateway._limiter(settings).allow(call.user_id):
         raise HTTPException(status_code=429, detail="too_many_ai_calls")
     rb = ReadBack(get_vocabulary(), None, mapper)
+    reason = "NO_MODEL_HOST" if not settings.ollama_url else "ORDER_INTERPRETER_OFF"          # why the grammar answers alone when no interpreter is built (no model host, or the order_fallback gate is off)
     if mapper is not None:
         if not ai_gateway._slot.acquire(timeout=settings.ai_queue_wait_seconds):
             call.fell_back("MODEL_BUSY")
+            reason = "MODEL_BUSY"
             rb = ReadBack(get_vocabulary(), None)
             h: Hearing = rb.hear(body.text)
         else:
@@ -100,12 +101,20 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
                 ai_gateway._slot.release()
     else:
         h = rb.hear(body.text)
+    last = getattr(mapper, "last", None) or {}
     if h.source == "model":
         call.set_model("orders_interpret")
+        used, reason = "gemma_cloud", ""
+    else:
+        used = "offline_grammar"
+        reason = last.get("reason", reason) if mapper is not None and reason != "MODEL_BUSY" else reason
+        if mapper is not None and reason != "MODEL_BUSY":
+            call.fell_back(reason)
+    log.info("spoken order: interpreter=%s model=%s reported_model=%s fallback_reason=%s ms=%s status=%s interpretation=%s", used, last.get("model", "") if used == "gemma_cloud" else "", last.get("reported_model", "") if used == "gemma_cloud" else "", reason or "-", last.get("ms", 0), h.status, h.interpretation or "-")
     call.validated(True)
     call.set_output(ref=f"{h.status}:{h.intent}:{h.source}")
     t = ticket.issue(call.user_id, h.intent, h.slots, h.action) if h.status in ("confirm", "removed_dose_confirm") else ""
-    return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, interpretation=h.interpretation, ticket=t)
+    return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, interpretation=h.interpretation, ticket=t, interpreter=used, interpreter_model=last.get("model", "") if used == "gemma_cloud" else "", interpreter_reported_model=last.get("reported_model", "") if used == "gemma_cloud" else "", fallback_reason=reason, interpreter_ms=last.get("ms", 0))
 
 
 @router.post("/orders/organisations/{organisation_id}/confirm", response_model=ConfirmOut)

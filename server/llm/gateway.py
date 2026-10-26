@@ -35,8 +35,10 @@ def _hash(text: str) -> str:
 
 
 def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, validate: Callable[[object], list[str]] | None = None, retries: int = 1, timeout: float | None = None,
-        model: str | None = None, version: int | None = None, task: str | None = None, schema: dict | None = None) -> Result:
-    """`schema` replaces the prompt's own schema for this call (used when the allowed values are known only at run time, such as the ids a proposal may choose from)."""
+        model: str | None = None, version: int | None = None, task: str | None = None, schema: dict | None = None, cloud_only: bool = False) -> Result:
+    """`schema` replaces the prompt's own schema for this call (used when the allowed values are known only at run time, such as the ids a proposal may choose from).
+    `cloud_only`: the task has no use for a local model's answer (the spoken-order interpreter: only the evaluated cloud model counts, the grammar is its fallback). A route that is not cloud (switch off, no approval, no consent) makes no model call at all, and a cloud leg that fails has no local second leg;
+    the result is then a failure whose first attempt says why (`route:<reason>`, or the cloud error)."""
     prompt = prompts.get(prompt_id, version)                         # the latest version: it fixes the role; each model then gets the version written for it (a local model skips a cloud-scope version)
     caller_schema = schema
     if model is None:
@@ -45,7 +47,10 @@ def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, valida
         local = routing.default_model(prompt.role)
         route = routing.Route(model, routing.is_cloud(model), "explicit", local if routing.is_cloud(model) else "")
     timeout = timeout if timeout is not None else (20.0 if prompt.role == "live" else 600.0)
-    legs = [route.model] + ([route.fallback_model] if route.cloud and route.fallback_model else [])
+    if cloud_only and not route.cloud:
+        why = [{"attempt": 0, "model": "", "ok": False, "latency_ms": 0, "error": "route:" + route.reason, "digest": "", "output_tokens": 0, "defects": []}]
+        return Result(False, None, True, why, _audit(prompt, task, route.model, client_mod.Reply(False, error="route:" + route.reason), "", why, "fallback", route, ""))
+    legs = [route.model] + ([route.fallback_model] if route.cloud and route.fallback_model and not cloud_only else [])
     attempts: list[dict] = []
     reply = client_mod.Reply(False, error="NOT_CALLED")
     system = user = ""
@@ -78,7 +83,7 @@ def _attempts(client, prompt, system: str, user: str, schema, validate, chosen: 
     avoid = ""
     for attempt in range(retries + 1):
         reply = client.chat(chosen, system, routing.prompt_for(chosen, user, schema) + avoid, schema=schema, think=prompt.think, timeout=timeout, num_predict=routing.tokens_for(chosen, prompt.num_predict))
-        record = {"attempt": len(attempts), "model": chosen, "ok": reply.ok, "latency_ms": reply.latency_ms, "error": reply.error, "digest": reply.digest, "output_tokens": reply.output_tokens}
+        record = {"attempt": len(attempts), "model": chosen, "ok": reply.ok, "latency_ms": reply.latency_ms, "error": reply.error, "digest": reply.digest, "output_tokens": reply.output_tokens, "reported_model": reply.host_model}
         defects: list[str] = []
         if reply.ok and schema is not None:
             try:

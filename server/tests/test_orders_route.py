@@ -122,3 +122,47 @@ def test_with_the_gate_closed_the_menu_is_offered_and_every_call_is_audited(worl
 def test_the_text_is_bounded(world):
     assert world.post("hear", {"text": ""}).status_code == 422
     assert world.post("hear", {"text": "x" * 301}).status_code == 422
+
+
+def _demo(monkeypatch):
+    monkeypatch.setenv("CLOUD_ROUTING_ENABLED", "1")
+    monkeypatch.setenv("CLOUD_SYNTHETIC_DEPLOYMENT", "1")
+
+
+def test_in_the_demonstration_profile_gemma_reads_the_order_and_only_the_yes_releases_it(world, monkeypatch):
+    from server.orders.cloud_interpreter import CloudOnlyInterpreter
+    _demo(monkeypatch)
+    ask = {"kind": "order", "intent": "REQUEST_MEDICATION", "target": "medicine:TR-OXYGEN", "confidence": 0.9}
+    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: CloudOnlyInterpreter(host(ask))
+    h = world.post("hear", {"text": "can I get some oxygen on her?"}).json()
+    assert (h["status"], h["interpreter"], h["interpreter_model"], h["fallback_reason"]) == ("confirm", "gemma_cloud", "gemma4:31b-cloud", "") and h["ticket"]
+    assert world.post("confirm", {"ticket": h["ticket"], "spoken": "maybe"}).json()["outcome"] == "open"                    # nothing is released by anything but a yes
+    assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["action"]["verb"] == "request_medication"
+    assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["outcome"] != "released"                   # single use
+    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: CloudOnlyInterpreter(host({"kind": "ambiguous", "intent": "NONE", "target": "NONE", "alternatives": ["test:ct", "test:mri"], "confidence": 0.8, "clarification": "CT or MRI?"}))
+    a = world.post("hear", {"text": "get a scan of her tummy"}).json()
+    assert (a["status"], a["ticket"], a["interpreter"]) == ("clarify", "", "gemma_cloud")                                    # an ambiguous request makes no ticket: there is nothing to confirm or execute
+
+
+def test_when_gemma_cannot_answer_the_grammar_answers_and_the_route_says_so_and_audits_it(world, monkeypatch):
+    from server.llm import client as cm
+    from server.orders.cloud_interpreter import CloudOnlyInterpreter
+    _demo(monkeypatch)
+    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: CloudOnlyInterpreter(cm.OllamaClient("http://127.0.0.1:9"))
+    h = world.post("hear", {"text": "order a crp"}).json()
+    assert (h["status"], h["source"], h["interpreter"], h["fallback_reason"], h["interpreter_model"]) == ("confirm", "grammar", "offline_grammar", "CLOUD_UNREACHABLE", "")
+    assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["action"] == {"verb": "order_investigation", "params": {"test": "crp"}}
+    rs = rows(world.api)
+    assert rs[0].fallback_reason == "CLOUD_UNREACHABLE" and "crp" not in " ".join(r.output_ref or "" for r in rs).lower()      # the audit names the reason and never the words
+
+
+@pytest.mark.skipif(not __import__("os").environ.get("PROCSENSE_LIVE_CLOUD"), reason="live check against the signed-in Ollama and the real Gemma 4 31B Cloud; set PROCSENSE_LIVE_CLOUD=1 (synthetic sentences only, uses the free plan)")
+def test_live_the_real_gemma_cloud_answers_through_the_whole_route(world, monkeypatch):
+    from server.llm import client as cm
+    from server.orders.cloud_interpreter import CloudOnlyInterpreter
+    _demo(monkeypatch)
+    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: CloudOnlyInterpreter(cm.OllamaClient("http://127.0.0.1:11434"))
+    h = world.post("hear", {"text": "Can I get a CRP on her?", "context": "Pre-operative ward, planned cholecystectomy. Invented patient."}).json()
+    assert (h["status"], h["interpreter"], h["label"]) == ("confirm", "gemma_cloud", "CRP")
+    assert "gemma" in h["interpreter_reported_model"].lower()                                                                  # the host itself names the model that answered
+    assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["action"] == {"verb": "order_investigation", "params": {"test": "crp"}}

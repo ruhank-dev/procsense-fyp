@@ -1,5 +1,7 @@
 # Demonstration checklist (p1-backend-s13)
 
+**Spoken orders in the demonstration (ADR-0028):** run the service with the synthetic demonstration profile, `task server-demo` (or `docker run --env-file server/demo/synthetic-fyp-demo.env …`), with the local Ollama signed in so it can relay `gemma4:31b-cloud`. Gemma 4 31B Cloud then reads the spoken orders and the offline grammar answers only when Gemma is unavailable, slow or not allowed. Check it with `task demo-orders-check` (the host names the model in each reply; each answer of `/orders/.../hear` carries `interpreter`, `interpreter_reported_model` and `fallback_reason`; `/ai/health` shows `routing.spoken_orders`). Invented people only; never use this profile where real trainees play (the service refuses to start with it beside `APP_ENV=prod`).
+
 What to show: a person signs in, a session is played, it reaches the database, the engine replays and verifies it, and the result appears for the person and for their supervisor. No real patient is involved; the people are made up or the team.
 
 ## The day before

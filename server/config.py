@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Annotated, Literal
 from urllib.parse import urlsplit
 
-from pydantic import SecretStr, field_validator
+from pydantic import SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 TRANSACTION_POOLER_PORT = 6543
@@ -196,6 +196,16 @@ class Settings(BaseSettings):
     @property
     def jwks_url(self) -> str:
         return self.jwt_issuer + "/.well-known/jwks.json"
+
+    @model_validator(mode="after")
+    def _synthetic_deployment_is_never_a_real_environment(self):
+        """CLOUD_SYNTHETIC_DEPLOYMENT is the owner's declaration that the deployment handles invented data only (the FYP demonstration). It releases trainee-class routes to the cloud without the personal consent, so it must never sit next to a production environment or next to the
+        record that real trainees' data is approved: a service started with either combination refuses to start."""
+        if self.cloud_synthetic_deployment and self.app_env == "prod":
+            raise ValueError("CLOUD_SYNTHETIC_DEPLOYMENT is for the synthetic demonstration only and cannot be combined with APP_ENV=prod")
+        if self.cloud_synthetic_deployment and self.cloud_trainee_data_approved:
+            raise ValueError("CLOUD_SYNTHETIC_DEPLOYMENT (invented data only) cannot be combined with CLOUD_TRAINEE_DATA_APPROVED (real trainees): choose one")
+        return self
 
 
 @lru_cache

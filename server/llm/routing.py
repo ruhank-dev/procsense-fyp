@@ -102,7 +102,22 @@ def trainee_cloud_allowed() -> bool:
 def status() -> dict:
     """What the routing does right now, for /health and the operator: no secrets."""
     return {"cloud_routing": enabled(), "synthetic_deployment": synthetic_deployment(), "trainee_data_approved": trainee_data_approved(),
-            "trainee_routes_use_cloud": enabled() and (synthetic_deployment() or trainee_data_approved()), "needs_personal_consent": enabled() and not synthetic_deployment() and trainee_data_approved()}
+            "trainee_routes_use_cloud": enabled() and (synthetic_deployment() or trainee_data_approved()), "needs_personal_consent": enabled() and not synthetic_deployment() and trainee_data_approved(),
+            "spoken_orders": spoken_orders_status()}
+
+
+def spoken_orders_status() -> dict:
+    """Which system reads a spoken order right now, before any call: Gemma 4 31B Cloud is the preferred reader; the offline grammar answers when the cloud is not used or does not answer. Per call the answer says which one it was."""
+    preferred = _table()["routes"].get("orders.interpret", {}).get("model", "")
+    if not enabled():
+        who, why = "offline_grammar", "CLOUD_ROUTING_OFF"
+    elif synthetic_deployment():
+        who, why = "gemma_cloud", ""
+    elif trainee_data_approved():
+        who, why = "gemma_cloud_with_personal_consent", "NO_CONSENT_UNTIL_THE_PERSON_AGREES"
+    else:
+        who, why = "offline_grammar", "PRIVACY_GATE"
+    return {"preferred": preferred, "active": who, "grammar_fallback_reason": why, "profile": "synthetic_demonstration" if synthetic_deployment() else "standard"}
 
 
 # The free plan allows one cloud request at a time. A task takes the slot without waiting longer than a moment (a live task must not queue behind another: it answers on the local model instead); an offline task may wait.

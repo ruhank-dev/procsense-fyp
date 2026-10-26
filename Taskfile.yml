@@ -206,6 +206,17 @@ tasks:
     cmds:
       - uv run --project server uvicorn server.main:app --reload --port 8000
 
+  server-demo:
+    desc: Run the backend with the synthetic FYP demonstration profile (Gemma 4 31B Cloud first for spoken orders, the offline grammar as fallback; invented people only, never for real trainees)
+    dotenv: ['server/demo/synthetic-fyp-demo.env']
+    cmds:
+      - uv run --project server uvicorn server.main:app --port 8000
+
+  demo-orders-check:
+    desc: Check with the real Gemma 4 31B Cloud that the demonstration profile routes spoken orders to it, and that consent, an outage and a timeout fall back to the grammar (writes reports/ai/demo-orders-routing.json; needs the signed-in Ollama)
+    cmds:
+      - uv run --project server python tools/demo/orders_routing_check.py
+
   server-test:
     desc: Run the backend tests against a real PostgreSQL (TEST_DATABASE_URL, or a throwaway one in Docker)
     cmds:
