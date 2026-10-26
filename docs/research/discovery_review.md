@@ -161,7 +161,7 @@ Internal checks that pass today: every problem of every case has a rule (except 
 
 | Problem | Type | What the trainee must have seen | Written | Clinician (confirm / change) |
 |---|---|---|---|---|
-| sc27.airway: Slow breathing and drowsiness after morphine | life_threat | the trainee asks about medicines and learns it | derived | |
+| sc27.airway: Slow breathing and drowsiness after morphine | life_threat | the trainee takes the history: the drowsiness and slow breathing after morphine are visible at the start [AI-reviewed override: not a medicines question] | derived | |
 | sc27.lang: Language barrier: allergies, medicines and consent cannot be taken safely | safety_blocker | the allergy history has been taken | derived | |
 | sc27.dehyd: Dehydration with a rising creatinine | time_critical | the trainee opens the u and e result (Creatinine, Sodium, Urea) | derived | |
 
@@ -217,7 +217,7 @@ Internal checks that pass today: every problem of every case has a rule (except 
 | Problem | Type | What the trainee must have seen | Written | Clinician (confirm / change) |
 |---|---|---|---|---|
 | sc4.dm: HbA1c 78 above the planned-surgery limit of 69 | optimisable | the trainee opens the hba1c result (HbA1c) | derived | |
-| sc4.bp: BP 176/104 (below 180/110) | information_only | the trainee takes the history: the situation is part of what the patient says at the start | derived | |
+| sc4.bp: BP 176/104 (below 180/110) | information_only | the trainee takes the blood pressure and sees 176/104, raised but below 180/110 [AI-reviewed override: a measurement, not the history] | derived | |
 
 ## SC-5 (S1, P2)
 
@@ -265,7 +265,7 @@ Internal checks that pass today: every problem of every case has a rule (except 
 | stka.hypo: Hypoglycaemia (glucose 3.6) from a sulfonylurea taken while fasting | life_threat | the trainee opens the glucose fingerprick result (Capillary glucose, Capillary glucose (repeat after treatment), Capillary ketones) | derived | |
 | stka.sglt2: SGLT2 inhibitor taken today; ketones 0.9: risk of ketoacidosis even with a norma | safety_blocker | the trainee opens the glucose fingerprick result (Capillary glucose, Capillary glucose (repeat after treatment), Capillary ketones) | derived | |
 | stka.hba1c: HbA1c 76 above the limit of 69 for planned surgery | optimisable | the trainee opens the hba1c result (HbA1c) | derived | |
-| stka.bp: Blood pressure 174/102, repeat 172/100 (below 180/110) | information_only | the trainee takes the history: the situation is part of what the patient says at the start | derived | |
+| stka.bp: Blood pressure 174/102, repeat 172/100 (below 180/110) | information_only | the trainee takes the blood pressure and sees 174/102, raised but below 180/110 [AI-reviewed override: a measurement, not the history] | derived | |
 
 ## STK-S1-B (S1, P1)
 
@@ -314,8 +314,8 @@ Internal checks that pass today: every problem of every case has a rule (except 
 
 | Problem | Type | What the trainee must have seen | Written | Clinician (confirm / change) |
 |---|---|---|---|---|
-| stkc2.airway: Airway at risk: vomiting with reduced consciousness | life_threat | the trainee asks about medicines and learns it | derived | |
-| stkc2.breath: Breathing: RR 9 and SpO2 90 | life_threat | the trainee examines (chest) and finds: Chest clear. | derived | |
+| stkc2.airway: Airway at risk: vomiting with reduced consciousness | life_threat | the trainee takes the history: the vomiting and reduced consciousness are visible at the start [AI-reviewed override: not a medicines question] | derived | |
+| stkc2.breath: Breathing: RR 9 and SpO2 90 | life_threat | the trainee takes the history: the slow, shallow breathing after the opioid is visible at the start [AI-reviewed override: a clear chest does not show it] | derived | |
 | stkc2.opioid: Opioid sedation: the cause | time_critical | the trainee asks about medicines and learns it | derived | |
 | stkc2.aspiration: Full stomach for anaesthesia (a kebab 3 hours ago) | time_critical | the trainee asks about last food and learns it | derived | |
 
@@ -441,7 +441,7 @@ Internal checks that pass today: every problem of every case has a rule (except 
 | Problem | Type | What the trainee must have seen | Written | Clinician (confirm / change) |
 |---|---|---|---|---|
 | s2h.preg: Appendicitis in pregnancy (20 weeks): the womb pushes the appendix up | pathway_changing | the trainee opens the pregnancy result (Pregnancy test) | derived | |
-| s2h.wbc: White cell count partly raised by pregnancy | information_only | the trainee opens the pregnancy result (Pregnancy test) | derived | |
+| s2h.wbc: White cell count partly raised by pregnancy | information_only | the trainee opens the full blood count and sees the white cell count, partly raised by pregnancy [AI-reviewed override: the evidence is the blood count, not the pregnancy test] | derived | |
 
 ## VAR-S2-I (S2, P1)
 

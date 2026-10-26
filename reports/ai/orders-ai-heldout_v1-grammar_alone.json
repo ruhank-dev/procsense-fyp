@@ -1,0 +1,1217 @@
+{
+ "set": "heldout_v1",
+ "set_sha256": "5da1d4b52e6e08cac2006cec965d3d7d7b2cedffa1dc5f4dfbd58a5103bf5d44",
+ "model": "grammar",
+ "role": "heldout",
+ "authorship": "an AI assistant, by hand, 25 Oct 2026 UTC; no other model wrote or labelled any sentence; synthetic; NOT human-authored and NOT independently human-validated",
+ "independent_human": false,
+ "second_look": true,
+ "prompt_sha256": "18a411fa2f0cefb5eaeb86604cc5773617b8420206f6fc30f4047dffe119879b",
+ "interpreter_sha256": "89d381c427801f6f0f52eded60d3932a61a238c0e6ca5438d3f9aeff546ce9cc",
+ "commit": "87cad974444785aca485596db6e08c79e4f4b9aa",
+ "rows": 151,
+ "correct": 64,
+ "accuracy": 0.4238,
+ "by_category": {
+  "ambiguous": {
+   "correct": 0,
+   "n": 8,
+   "accuracy": 0.0
+  },
+  "confusable": {
+   "correct": 3,
+   "n": 8,
+   "accuracy": 0.375
+  },
+  "correction": {
+   "correct": 2,
+   "n": 6,
+   "accuracy": 0.333
+  },
+  "direct_order": {
+   "correct": 8,
+   "n": 12,
+   "accuracy": 0.667
+  },
+  "first_person": {
+   "correct": 4,
+   "n": 8,
+   "accuracy": 0.5
+  },
+  "hypothetical": {
+   "correct": 6,
+   "n": 8,
+   "accuracy": 0.75
+  },
+  "inappropriate": {
+   "correct": 2,
+   "n": 5,
+   "accuracy": 0.4
+  },
+  "incomplete": {
+   "correct": 0,
+   "n": 8,
+   "accuracy": 0.0
+  },
+  "indirect_order": {
+   "correct": 0,
+   "n": 10,
+   "accuracy": 0.0
+  },
+  "info_question": {
+   "correct": 10,
+   "n": 10,
+   "accuracy": 1.0
+  },
+  "investigation_request": {
+   "correct": 0,
+   "n": 8,
+   "accuracy": 0.0
+  },
+  "medication_request": {
+   "correct": 0,
+   "n": 8,
+   "accuracy": 0.0
+  },
+  "multi_turn": {
+   "correct": 2,
+   "n": 8,
+   "accuracy": 0.25
+  },
+  "negated": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "non_order": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "polite_request": {
+   "correct": 1,
+   "n": 8,
+   "accuracy": 0.125
+  },
+  "question_form_order": {
+   "correct": 2,
+   "n": 12,
+   "accuracy": 0.167
+  },
+  "unsupported": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  }
+ },
+ "wrong_item_rate": 0.0241,
+ "wrong_item": 2,
+ "non_order_false_positives": 2,
+ "non_order_rows": 50,
+ "non_order_false_positive_rate": 0.04,
+ "safety_related_incorrect_proposals": 0,
+ "confirmation_bypasses": 0,
+ "latency_s": {
+  "median": 0.02,
+  "p95": 0.05,
+  "max": 0.08
+ },
+ "failures": [
+  {
+   "id": "HO002",
+   "category": "direct_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:group_and_save"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Let's get a group and save done."
+  },
+  {
+   "id": "HO004",
+   "category": "direct_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:ecg"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Repeat the ECG."
+  },
+  {
+   "id": "HO010",
+   "category": "direct_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:hba1c"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Do an HbA1c."
+  },
+  {
+   "id": "HO011",
+   "category": "direct_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-IV-GLUCOSE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Start the glucose infusion."
+  },
+  {
+   "id": "HO013",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:tsh"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I would like to know his thyroid status before he goes to sleep."
+  },
+  {
+   "id": "HO014",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:blood_gas",
+    "test:lactate_cultures"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "We need to know if there is any lactic acid building up."
+  },
+  {
+   "id": "HO015",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:chest_xray"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Look at his chest with a plain film."
+  },
+  {
+   "id": "HO016",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:pregnancy"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Is she pregnant? Let us find out with a urine test."
+  },
+  {
+   "id": "HO017",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-STEROID-COVER"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Cover her with steroids, she has been on prednisolone for years."
+  },
+  {
+   "id": "HO018",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-VTE-PROPHYLAXIS"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Prevent clots in her legs with an injection tonight."
+  },
+  {
+   "id": "HO019",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "home_medicine:apixaban"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "He should not take the blood thinner this morning."
+  },
+  {
+   "id": "HO020",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ABX-S2"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Treat the infection properly, broad cover please."
+  },
+  {
+   "id": "HO021",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-PARACETAMOL"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Her pain needs only the simple tablet, nothing strong."
+  },
+  {
+   "id": "HO022",
+   "category": "indirect_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "staff:anaesthetist"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I want the anaesthetist to see her too."
+  },
+  {
+   "id": "HO023",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:chest_xray"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Could you possibly arrange a chest X-ray?"
+  },
+  {
+   "id": "HO025",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:u_and_e"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I would appreciate it if we could repeat the potassium."
+  },
+  {
+   "id": "HO026",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-OXYGEN"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "If you wouldn't mind, oxygen please."
+  },
+  {
+   "id": "HO027",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "place:theatre_reception"
+   ],
+   "seen": "clarify",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Please send her to the theatre reception."
+  },
+  {
+   "id": "HO028",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ABX-PROPHYLAXIS"
+   ],
+   "seen": "propose",
+   "proposed": "medicine:TR-ABX-S2",
+   "interpretation": "",
+   "text": "Could we start the antibiotic given at induction?"
+  },
+  {
+   "id": "HO029",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:urine_dipstick"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Might we have a urine dip, please?"
+  },
+  {
+   "id": "HO030",
+   "category": "polite_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "staff:porter"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Do you mind calling the porter for him?"
+  },
+  {
+   "id": "HO031",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:ultrasound"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can I get an ultrasound of the gallbladder?"
+  },
+  {
+   "id": "HO032",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-NALOXONE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can I give her the antidote now?"
+  },
+  {
+   "id": "HO033",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-HYPERKALAEMIA"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can we give calcium to protect the heart?"
+  },
+  {
+   "id": "HO034",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-SEPSIS-BUNDLE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Could I have the sepsis bundle started?"
+  },
+  {
+   "id": "HO036",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-FAST-SUGAR"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can I give some glucose tablets?"
+  },
+  {
+   "id": "HO037",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:clotting"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Could I order a coagulation screen?"
+  },
+  {
+   "id": "HO038",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:pregnancy"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can we do the pregnancy test first?"
+  },
+  {
+   "id": "HO039",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-OXYGEN"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can she have oxygen please?"
+  },
+  {
+   "id": "HO041",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:group_and_save"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Do you think we could get some blood group checked?"
+  },
+  {
+   "id": "HO042",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "staff:nurse"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can I have the nurse come over?"
+  },
+  {
+   "id": "HO053",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Start the drip."
+  },
+  {
+   "id": "HO054",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Take her for imaging."
+  },
+  {
+   "id": "HO055",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Hold his medicine."
+  },
+  {
+   "id": "HO056",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Get me a specialist."
+  },
+  {
+   "id": "HO057",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Get some sugar into him."
+  },
+  {
+   "id": "HO058",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Check the blood work."
+  },
+  {
+   "id": "HO059",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [
+    "medicine:TR-ABX-PROPHYLAXIS"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Antibiotics, please."
+  },
+  {
+   "id": "HO060",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Give him something to thin or thicken the blood."
+  },
+  {
+   "id": "HO061",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Please order."
+  },
+  {
+   "id": "HO062",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Give her the."
+  },
+  {
+   "id": "HO063",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Send her."
+  },
+  {
+   "id": "HO064",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Can I get a."
+  },
+  {
+   "id": "HO065",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Draw up."
+  },
+  {
+   "id": "HO066",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Ring up and ask."
+  },
+  {
+   "id": "HO067",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Start her on."
+  },
+  {
+   "id": "HO068",
+   "category": "incomplete",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Order the usual."
+  },
+  {
+   "id": "HO069",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ANTIEMETIC"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "A dose of anti-sickness drug, she feels nauseated."
+  },
+  {
+   "id": "HO070",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-NSAID"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Diclofenac for her shoulder pain."
+  },
+  {
+   "id": "HO071",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-IV-FLUIDS"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Run in a litre of crystalloid."
+  },
+  {
+   "id": "HO072",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-OPIOID"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Fentanyl for the pain, please."
+  },
+  {
+   "id": "HO073",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-STEROID-COVER"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Dexamethasone to cover the steroids."
+  },
+  {
+   "id": "HO074",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-IV-GLUCOSE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Dextrose into the vein, now."
+  },
+  {
+   "id": "HO075",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ADRENALINE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Epinephrine, intramuscular."
+  },
+  {
+   "id": "HO076",
+   "category": "medication_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-VTE-PROPHYLAXIS"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Low molecular weight heparin tonight."
+  },
+  {
+   "id": "HO077",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:ecg"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "An ECG, twelve lead."
+  },
+  {
+   "id": "HO078",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:mri"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Magnetic resonance of the pelvis."
+  },
+  {
+   "id": "HO079",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:stopbang"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "STOP-BANG score."
+  },
+  {
+   "id": "HO080",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:crp"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Inflammatory markers."
+  },
+  {
+   "id": "HO081",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:bmi"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Body mass index."
+  },
+  {
+   "id": "HO082",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:lipase"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Pancreatic enzyme level."
+  },
+  {
+   "id": "HO083",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:fbc"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Full blood picture."
+  },
+  {
+   "id": "HO084",
+   "category": "investigation_request",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:tsh"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Thyroid stimulating hormone."
+  },
+  {
+   "id": "HO103",
+   "category": "hypothetical",
+   "ok": false,
+   "expected": "no_order",
+   "want": [],
+   "seen": "propose",
+   "proposed": "home_medicine:ramipril",
+   "interpretation": "",
+   "text": "In theory we could hold the ramipril."
+  },
+  {
+   "id": "HO105",
+   "category": "hypothetical",
+   "ok": false,
+   "expected": "no_order",
+   "want": [],
+   "seen": "propose",
+   "proposed": "place:ct",
+   "interpretation": "",
+   "text": "Were she not pregnant I would send her to CT."
+  },
+  {
+   "id": "HO109",
+   "category": "correction",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "staff:anaesthetist"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Sorry, I meant the anaesthetist."
+  },
+  {
+   "id": "HO110",
+   "category": "correction",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:ultrasound"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "No, the ultrasound instead."
+  },
+  {
+   "id": "HO111",
+   "category": "correction",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:mri"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Actually, make it the MRI."
+  },
+  {
+   "id": "HO112",
+   "category": "correction",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-FAST-SUGAR"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Change that to the tablets, he can swallow."
+  },
+  {
+   "id": "HO115",
+   "category": "first_person",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-OXYGEN"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I am putting the oxygen on now."
+  },
+  {
+   "id": "HO116",
+   "category": "first_person",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "staff:senior"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I'm calling the senior."
+  },
+  {
+   "id": "HO117",
+   "category": "first_person",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:ecg"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I'll repeat the ECG."
+  },
+  {
+   "id": "HO118",
+   "category": "first_person",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "place:ultrasound"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "I want her taken to ultrasound."
+  },
+  {
+   "id": "HO123",
+   "category": "multi_turn",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:lactate_cultures"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "And the cultures."
+  },
+  {
+   "id": "HO124",
+   "category": "multi_turn",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:chest_xray"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Then the X-ray."
+  },
+  {
+   "id": "HO125",
+   "category": "multi_turn",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ADRENALINE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Yes please, do that."
+  },
+  {
+   "id": "HO127",
+   "category": "multi_turn",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "What about the other one?"
+  },
+  {
+   "id": "HO128",
+   "category": "multi_turn",
+   "ok": false,
+   "expected": "clarify",
+   "want": [],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Same for the bisoprolol."
+  },
+  {
+   "id": "HO130",
+   "category": "multi_turn",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:crp"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Also the CRP."
+  },
+  {
+   "id": "HO131",
+   "category": "confusable",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ABX-S2"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Therapeutic antibiotics, not the single dose."
+  },
+  {
+   "id": "HO132",
+   "category": "confusable",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-ABX-PROPHYLAXIS"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Single dose antibiotic at induction only."
+  },
+  {
+   "id": "HO133",
+   "category": "confusable",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-FAST-SUGAR"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Oral glucose gel."
+  },
+  {
+   "id": "HO134",
+   "category": "confusable",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-IV-GLUCOSE"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Intravenous glucose."
+  },
+  {
+   "id": "HO137",
+   "category": "confusable",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "staff:surgeon"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "The operating general surgeon, please."
+  },
+  {
+   "id": "HO147",
+   "category": "inappropriate",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:ct"
+   ],
+   "seen": "propose",
+   "proposed": "place:ct",
+   "interpretation": "",
+   "text": "Send her for a CT of the pelvis immediately."
+  },
+  {
+   "id": "HO148",
+   "category": "inappropriate",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-OPIOID"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Another dose of morphine, she is in pain."
+  },
+  {
+   "id": "HO149",
+   "category": "inappropriate",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "medicine:TR-VTE-PROPHYLAXIS"
+   ],
+   "seen": "no_order",
+   "proposed": null,
+   "interpretation": "",
+   "text": "Give him enoxaparin tonight as well."
+  }
+ ],
+ "rows_sha256": "8c7002f0c15dd70f25c14f9c515a93cb7293b4ba30751b73213ea47ea20c374e",
+ "reword_note": "After this run the repository rule against naming an AI tool in tracked files required rewording the authorship line of the set file (the assistant's product name became 'an AI assistant') and renaming the folder and report files; no row, label or rationale changed: rows_sha256 equals the hash of the rows at the time of the run (b8f4905110c8b4b3.. for the development set, 8c7002f0c15dd70f.. for the held-out set, first 16 hex digits, computed before the rename). set_sha256 is the hash of the reworded file."
+}

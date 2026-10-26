@@ -1,0 +1,149 @@
+{
+ "set": "dev_v1",
+ "set_sha256": "11d0e88eeb7dc1814368506e78c041300b643cc9815b591269670229a27ffa07",
+ "model": "gemma4:31b-cloud",
+ "role": "development",
+ "authorship": "an AI assistant, by hand, 25 Oct 2026 UTC; no other model wrote or labelled any sentence; synthetic; NOT human-authored and NOT independently human-validated",
+ "independent_human": false,
+ "second_look": false,
+ "prompt_sha256": "18a411fa2f0cefb5eaeb86604cc5773617b8420206f6fc30f4047dffe119879b",
+ "interpreter_sha256": "89d381c427801f6f0f52eded60d3932a61a238c0e6ca5438d3f9aeff546ce9cc",
+ "commit": "87cad974444785aca485596db6e08c79e4f4b9aa",
+ "rows": 153,
+ "correct": 151,
+ "accuracy": 0.9869,
+ "by_category": {
+  "ambiguous": {
+   "correct": 8,
+   "n": 9,
+   "accuracy": 0.889
+  },
+  "confusable": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "correction": {
+   "correct": 6,
+   "n": 6,
+   "accuracy": 1.0
+  },
+  "direct_order": {
+   "correct": 14,
+   "n": 14,
+   "accuracy": 1.0
+  },
+  "first_person": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "hypothetical": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "inappropriate": {
+   "correct": 5,
+   "n": 5,
+   "accuracy": 1.0
+  },
+  "incomplete": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "indirect_order": {
+   "correct": 9,
+   "n": 9,
+   "accuracy": 1.0
+  },
+  "info_question": {
+   "correct": 10,
+   "n": 10,
+   "accuracy": 1.0
+  },
+  "investigation_request": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "medication_request": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "multi_turn": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "negated": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "non_order": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "polite_request": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  },
+  "question_form_order": {
+   "correct": 11,
+   "n": 12,
+   "accuracy": 0.917
+  },
+  "unsupported": {
+   "correct": 8,
+   "n": 8,
+   "accuracy": 1.0
+  }
+ },
+ "wrong_item_rate": 0.0,
+ "wrong_item": 0,
+ "non_order_false_positives": 0,
+ "non_order_rows": 50,
+ "non_order_false_positive_rate": 0.0,
+ "safety_related_incorrect_proposals": 0,
+ "confirmation_bypasses": 0,
+ "latency_s": {
+  "median": 0.8,
+  "p95": 1.13,
+  "max": 2.25
+ },
+ "failures": [
+  {
+   "id": "DV035",
+   "category": "question_form_order",
+   "ok": false,
+   "expected": "propose",
+   "want": [
+    "test:lactate_cultures"
+   ],
+   "seen": "clarify",
+   "proposed": null,
+   "interpretation": "ambiguous",
+   "text": "Could we get a lactate?"
+  },
+  {
+   "id": "DV055",
+   "category": "ambiguous",
+   "ok": false,
+   "expected": "clarify",
+   "want": [
+    "medicine:TR-ABX-PROPHYLAXIS"
+   ],
+   "seen": "propose",
+   "proposed": "medicine:TR-ABX-PROPHYLAXIS",
+   "interpretation": "order",
+   "text": "Give him the antibiotic."
+  }
+ ],
+ "rows_sha256": "b8f4905110c8b4b3d2c54dace3073908cc8ed0c3a2e56544e41558a4f959185f",
+ "reword_note": "After this run the repository rule against naming an AI tool in tracked files required rewording the authorship line of the set file (the assistant's product name became 'an AI assistant') and renaming the folder and report files; no row, label or rationale changed: rows_sha256 equals the hash of the rows at the time of the run (b8f4905110c8b4b3.. for the development set, 8c7002f0c15dd70f.. for the held-out set, first 16 hex digits, computed before the rename). set_sha256 is the hash of the reworded file."
+}

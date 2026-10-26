@@ -134,7 +134,21 @@ def _case_has(case: dict, kind: str, ev: str | None) -> bool:
     return True
 
 
+# AI clinical review of the derived rules (26 Oct 2026, docs/research/ai_clinical_review.md): the fixed reading above chose evidence that does not show the problem for these. Each is corrected here, with the reason; the rest were read
+# one by one and kept. Not a clinician's judgement.
+OVERRIDES = {
+    ("SC-4", "sc4.bp"): (measured("systolic_bp"), "the trainee takes the blood pressure and sees 176/104, raised but below 180/110 [AI-reviewed override: a measurement, not the history]"),
+    ("STK-S1-A", "stka.bp"): (measured("systolic_bp"), "the trainee takes the blood pressure and sees 174/102, raised but below 180/110 [AI-reviewed override: a measurement, not the history]"),
+    ("VAR-S2-H", "s2h.wbc"): (seen("fbc"), "the trainee opens the full blood count and sees the white cell count, partly raised by pregnancy [AI-reviewed override: the evidence is the blood count, not the pregnancy test]"),
+    ("SC-27", "sc27.airway"): (asked("complaint"), "the trainee takes the history: the drowsiness and slow breathing after morphine are visible at the start [AI-reviewed override: not a medicines question]"),
+    ("STK-S2-C", "stkc2.airway"): (asked("complaint"), "the trainee takes the history: the vomiting and reduced consciousness are visible at the start [AI-reviewed override: not a medicines question]"),
+    ("STK-S2-C", "stkc2.breath"): (asked("complaint"), "the trainee takes the history: the slow, shallow breathing after the opioid is visible at the start [AI-reviewed override: a clear chest does not show it]"),
+}
+
+
 def derive(case: dict, problem: dict) -> tuple[dict, str]:
+    if (case["id"], problem["id"]) in OVERRIDES:
+        return OVERRIDES[(case["id"], problem["id"])]
     text = " ".join([problem["label"], problem.get("why", "")] + list(problem.get("expected_actions", []))).lower() + " "
     label = problem["label"].lower() + " "
     for words in (label, text):                                     # the label is read first, then the rest of the problem's words

@@ -28,6 +28,9 @@ def _text(case: dict, where: str) -> str:
         return " ".join((a.get("allergen", "") + " " + str(a.get("reaction", ""))) if isinstance(a, dict) else str(a) for a in case["allergies"]) + " " + case.get("allergy_answer", "")
     if where == "history":
         return " ".join(h["answer"] for h in case["history"]) + (" " + case["presentation"].get("summary", "") if isinstance(case.get("presentation"), dict) else "")
+    if where == "identity":
+        i = case.get("identity", {})
+        return f"age {i.get('age', '')} sex {i.get('sex', '')} {i.get('occupation', '')}"
     if where == "problems":
         return " ".join(p["label"] + " " + p.get("why", "") for p in case["problems"])
     if where == "last_food":

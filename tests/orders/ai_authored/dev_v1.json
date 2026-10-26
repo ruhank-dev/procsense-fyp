@@ -1,0 +1,1890 @@
+{
+ "authorship": "an AI assistant, by hand, 25 Oct 2026 UTC; no other model wrote or labelled any sentence; synthetic; NOT human-authored and NOT independently human-validated",
+ "role": "development",
+ "note": "Used to write and tune the interpreter prompt (ADR-0028). Never used as the final evaluation.",
+ "rubric": "(what an example expects; written before any example was run, not changed after a prediction was seen):\n  propose      the trainee reasonably means one action on the approved list. This includes direct and indirect orders, polite requests, permission-style questions that are really requests (\"can I get oxygen on her\"), questions put to a team member\n               (\"can you page the anaesthetist\"), first-person statements of an action being done now, corrections that replace an earlier order, short follow-ups that depend on the previous turn, and a request that the context shows is clinically\n               inappropriate (the interpreter reports it faithfully; the simulator and the scoring refuse or penalise it). The expected item is `target` (kind:id); an example may list `accept` for a second item that is just as right.\n  no_order     nothing is proposed: a real question for information, a hypothetical or a plan for later, a negated instruction, chat, news, a remark about the past.\n  clarify      the sentence is a request but fits two or more items (ambiguous) or does not say what (incomplete): the system must ask, and must not propose an item.\n  unsupported  the sentence asks for an action or an item the simulator does not have: nothing is proposed.\nAn example PASSES when the behaviour matches (and, for propose, the item). A `propose` that names the wrong item, or any proposal for a no_order, clarify or unsupported example, is a failure; a proposal for a no_order example is a non-order false positive.\nSafety-related incorrect proposals: a wrong proposal in which the wanted or the proposed item is a rescue drug, an opioid or its antidote, a glucose, the sepsis bundle, or a home medicine that changes bleeding or sugar.\nConfirmation bypass: any action released without the trainee's yes. Must be zero.",
+ "contexts": {
+  "c_ward_dm": "Pre-operative ward, planned laparoscopic cholecystectomy this morning. Type 2 diabetes on metformin and gliclazide; also ramipril. No known drug allergies. Identity confirmed. Fasted since midnight. No tests ordered yet.",
+  "c_ed_sepsis": "Emergency department. Fever, heart rate 118, blood pressure 92/58, confused. Suspected sepsis from a urine source. Penicillin allergy (rash) recorded. Lactate and cultures not yet taken; no antibiotic given.",
+  "c_anaph": "Surgical ward, five minutes after an intravenous antibiotic: new rash, wheeze, blood pressure falling to 80/50. Adrenaline not yet given. Oxygen not on.",
+  "c_preg_abd": "Young woman with right iliac fossa pain for a day, nauseated. Pregnancy status unknown. Ultrasound and blood tests not yet done. She is in the assessment bay.",
+  "c_recovery_opioid": "Recovery room after surgery. Drowsy, respiratory rate 8, oxygen saturation 90 percent. Received morphine twice in the last hour. Oxygen mask on. No naloxone given.",
+  "c_af_apixaban": "Older man for a planned hernia repair. Atrial fibrillation on apixaban (last dose this morning) and bisoprolol. ECG done earlier, rate 84. Bloods not yet sent.",
+  "c_hyperk": "Patient with kidney injury: potassium 6.6, peaked T waves on the ECG, heart rate 52. Calcium and insulin-dextrose not yet given.",
+  "c_hypo": "Diabetic patient on insulin, found sweaty and drowsy: finger-prick glucose 2.8. Can still swallow. Nothing given yet."
+ },
+ "counts": {
+  "direct_order": 14,
+  "indirect_order": 9,
+  "ambiguous": 9,
+  "polite_request": 8,
+  "question_form_order": 12,
+  "info_question": 10,
+  "incomplete": 8,
+  "medication_request": 8,
+  "investigation_request": 8,
+  "non_order": 8,
+  "negated": 8,
+  "hypothetical": 8,
+  "correction": 6,
+  "first_person": 8,
+  "multi_turn": 8,
+  "confusable": 8,
+  "unsupported": 8,
+  "inappropriate": 5
+ },
+ "rows": [
+  {
+   "id": "DV001",
+   "category": "direct_order",
+   "context_id": "c_ward_dm",
+   "text": "Order a full blood count and send it to the lab.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:fbc",
+    "accept": []
+   },
+   "rationale": "plain order"
+  },
+  {
+   "id": "DV002",
+   "category": "direct_order",
+   "context_id": "c_ward_dm",
+   "text": "Get an ECG on him before he goes to theatre.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ecg",
+    "accept": []
+   },
+   "rationale": "plain order for the tracing"
+  },
+  {
+   "id": "DV003",
+   "category": "direct_order",
+   "context_id": "c_ed_sepsis",
+   "text": "Take blood cultures and a lactate now.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:lactate_cultures",
+    "accept": []
+   },
+   "rationale": "named by content: cultures and lactate"
+  },
+  {
+   "id": "DV004",
+   "category": "direct_order",
+   "context_id": "c_ed_sepsis",
+   "text": "Start the sepsis six.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-SEPSIS-BUNDLE",
+    "accept": []
+   },
+   "rationale": "named bundle"
+  },
+  {
+   "id": "DV005",
+   "category": "direct_order",
+   "context_id": "c_anaph",
+   "text": "Give intramuscular adrenaline right now.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ADRENALINE",
+    "accept": []
+   },
+   "rationale": "rescue drug, plain order"
+  },
+  {
+   "id": "DV006",
+   "category": "direct_order",
+   "context_id": "c_anaph",
+   "text": "Put high flow oxygen on her.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-OXYGEN",
+    "accept": []
+   },
+   "rationale": "oxygen is a medicine item"
+  },
+  {
+   "id": "DV007",
+   "category": "direct_order",
+   "context_id": "c_hypo",
+   "text": "Give him glucose gel.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-FAST-SUGAR",
+    "accept": []
+   },
+   "rationale": "by mouth: he can swallow"
+  },
+  {
+   "id": "DV008",
+   "category": "direct_order",
+   "context_id": "c_recovery_opioid",
+   "text": "Give naloxone.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-NALOXONE",
+    "accept": []
+   },
+   "rationale": "antidote"
+  },
+  {
+   "id": "DV009",
+   "category": "direct_order",
+   "context_id": "c_preg_abd",
+   "text": "Do a urine pregnancy test.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:pregnancy",
+    "accept": []
+   },
+   "rationale": "plain order"
+  },
+  {
+   "id": "DV010",
+   "category": "direct_order",
+   "context_id": "c_hyperk",
+   "text": "Treat the potassium with calcium and insulin dextrose.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-HYPERKALAEMIA",
+    "accept": []
+   },
+   "rationale": "treatment named by its parts"
+  },
+  {
+   "id": "DV011",
+   "category": "direct_order",
+   "context_id": "c_af_apixaban",
+   "text": "Hold the apixaban.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "home_medicine:apixaban",
+    "accept": []
+   },
+   "rationale": "hold a home medicine"
+  },
+  {
+   "id": "DV012",
+   "category": "direct_order",
+   "context_id": "c_ward_dm",
+   "text": "Take her to theatre.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "place:theatre",
+    "accept": []
+   },
+   "rationale": "transport"
+  },
+  {
+   "id": "DV013",
+   "category": "direct_order",
+   "context_id": "c_ed_sepsis",
+   "text": "Call the anaesthetist.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:anaesthetist",
+    "accept": []
+   },
+   "rationale": "call staff"
+  },
+  {
+   "id": "DV014",
+   "category": "direct_order",
+   "context_id": "c_preg_abd",
+   "text": "Send her round to ultrasound.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "place:ultrasound",
+    "accept": []
+   },
+   "rationale": "moves the patient, not an order for the scan"
+  },
+  {
+   "id": "DV015",
+   "category": "indirect_order",
+   "context_id": "c_ward_dm",
+   "text": "I want to see how his kidneys and salts are doing.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:u_and_e",
+    "accept": []
+   },
+   "rationale": "described"
+  },
+  {
+   "id": "DV016",
+   "category": "indirect_order",
+   "context_id": "c_af_apixaban",
+   "text": "Let us check how well his blood clots before we go ahead.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:clotting",
+    "accept": []
+   },
+   "rationale": "described"
+  },
+  {
+   "id": "DV017",
+   "category": "indirect_order",
+   "context_id": "c_ed_sepsis",
+   "text": "She needs a drip of saline to bring the pressure up.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-FLUIDS",
+    "accept": []
+   },
+   "rationale": "described fluid"
+  },
+  {
+   "id": "DV018",
+   "category": "indirect_order",
+   "context_id": "c_preg_abd",
+   "text": "Let us look at the appendix with the probe.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ultrasound",
+    "accept": []
+   },
+   "rationale": "probe scan"
+  },
+  {
+   "id": "DV019",
+   "category": "indirect_order",
+   "context_id": "c_hyperk",
+   "text": "I would like a trace of the heart to see those T waves again.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ecg",
+    "accept": []
+   },
+   "rationale": "described tracing"
+  },
+  {
+   "id": "DV020",
+   "category": "indirect_order",
+   "context_id": "c_ward_dm",
+   "text": "Make sure blood is available in case he bleeds in theatre.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:group_and_save",
+    "accept": []
+   },
+   "rationale": "blood kept ready"
+  },
+  {
+   "id": "DV021",
+   "category": "indirect_order",
+   "context_id": "c_recovery_opioid",
+   "text": "Something to turn the morphine around, he is hardly breathing.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-NALOXONE",
+    "accept": []
+   },
+   "rationale": "described antidote"
+  },
+  {
+   "id": "DV022",
+   "category": "ambiguous",
+   "context_id": "c_ward_dm",
+   "text": "Tell the diabetes tablet not to be taken today.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "two diabetes tablets in the context (metformin, gliclazide): relabelled clarify after the first dev run, the label was wrong"
+  },
+  {
+   "id": "DV023",
+   "category": "indirect_order",
+   "context_id": "c_hypo",
+   "text": "Something sweet by mouth, quickly.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-FAST-SUGAR",
+    "accept": []
+   },
+   "rationale": "described fast sugar"
+  },
+  {
+   "id": "DV024",
+   "category": "indirect_order",
+   "context_id": "c_ed_sepsis",
+   "text": "Get someone senior down here, this is getting worse.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:senior",
+    "accept": []
+   },
+   "rationale": "call the senior"
+  },
+  {
+   "id": "DV025",
+   "category": "polite_request",
+   "context_id": "c_ward_dm",
+   "text": "Could I have a CRP, please?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:crp",
+    "accept": []
+   },
+   "rationale": "polite"
+  },
+  {
+   "id": "DV026",
+   "category": "polite_request",
+   "context_id": "c_ed_sepsis",
+   "text": "Would you mind taking a set of blood cultures?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:lactate_cultures",
+    "accept": []
+   },
+   "rationale": "polite, to the team"
+  },
+  {
+   "id": "DV027",
+   "category": "polite_request",
+   "context_id": "c_anaph",
+   "text": "I would be grateful if you could draw up the adrenaline.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ADRENALINE",
+    "accept": []
+   },
+   "rationale": "polite"
+  },
+  {
+   "id": "DV028",
+   "category": "polite_request",
+   "context_id": "c_preg_abd",
+   "text": "Please could we arrange an MRI of the abdomen.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:mri",
+    "accept": []
+   },
+   "rationale": "polite scan"
+  },
+  {
+   "id": "DV029",
+   "category": "polite_request",
+   "context_id": "c_af_apixaban",
+   "text": "May I ask for a full blood count?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:fbc",
+    "accept": []
+   },
+   "rationale": "single test (the first dev run showed the two-test sentence is outside one-action scope)"
+  },
+  {
+   "id": "DV030",
+   "category": "polite_request",
+   "context_id": "c_ward_dm",
+   "text": "Could you ask the porter to come?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:porter",
+    "accept": []
+   },
+   "rationale": "polite call"
+  },
+  {
+   "id": "DV031",
+   "category": "polite_request",
+   "context_id": "c_recovery_opioid",
+   "text": "Could we get some oxygen up to the maximum, please?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-OXYGEN",
+    "accept": []
+   },
+   "rationale": "polite"
+  },
+  {
+   "id": "DV032",
+   "category": "polite_request",
+   "context_id": "c_hypo",
+   "text": "Would it be possible to get a drip of glucose started?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-GLUCOSE",
+    "accept": []
+   },
+   "rationale": "polite, intravenous"
+  },
+  {
+   "id": "DV033",
+   "category": "question_form_order",
+   "context_id": "c_ward_dm",
+   "text": "Can I get a CRP on him?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:crp",
+    "accept": []
+   },
+   "rationale": "permission-style question that is a request"
+  },
+  {
+   "id": "DV034",
+   "category": "question_form_order",
+   "context_id": "c_anaph",
+   "text": "Can I give the adrenaline now?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ADRENALINE",
+    "accept": []
+   },
+   "rationale": "permission-style, urgent"
+  },
+  {
+   "id": "DV035",
+   "category": "question_form_order",
+   "context_id": "c_ed_sepsis",
+   "text": "Could we get a lactate?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:lactate_cultures",
+    "accept": []
+   },
+   "rationale": "question form"
+  },
+  {
+   "id": "DV036",
+   "category": "question_form_order",
+   "context_id": "c_preg_abd",
+   "text": "Can you page the surgeon for me?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:surgeon",
+    "accept": []
+   },
+   "rationale": "to a team member"
+  },
+  {
+   "id": "DV037",
+   "category": "question_form_order",
+   "context_id": "c_recovery_opioid",
+   "text": "Can we get naloxone drawn up?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-NALOXONE",
+    "accept": []
+   },
+   "rationale": "question form"
+  },
+  {
+   "id": "DV038",
+   "category": "question_form_order",
+   "context_id": "c_hyperk",
+   "text": "Can I have an ECG on him now?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ecg",
+    "accept": []
+   },
+   "rationale": "question form"
+  },
+  {
+   "id": "DV039",
+   "category": "question_form_order",
+   "context_id": "c_af_apixaban",
+   "text": "Can we move him to the ward?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "place:ward",
+    "accept": []
+   },
+   "rationale": "transport as a question"
+  },
+  {
+   "id": "DV040",
+   "category": "question_form_order",
+   "context_id": "c_hypo",
+   "text": "May I give him some glucose by mouth?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-FAST-SUGAR",
+    "accept": []
+   },
+   "rationale": "permission-style"
+  },
+  {
+   "id": "DV041",
+   "category": "question_form_order",
+   "context_id": "c_ward_dm",
+   "text": "Can I get some paracetamol for her headache?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-PARACETAMOL",
+    "accept": []
+   },
+   "rationale": "question form"
+  },
+  {
+   "id": "DV042",
+   "category": "question_form_order",
+   "context_id": "c_ed_sepsis",
+   "text": "Could someone get the CT booked?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ct",
+    "accept": []
+   },
+   "rationale": "question form to the room"
+  },
+  {
+   "id": "DV043",
+   "category": "question_form_order",
+   "context_id": "c_ward_dm",
+   "text": "Is it okay if I order the HbA1c?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:hba1c",
+    "accept": []
+   },
+   "rationale": "permission-style"
+  },
+  {
+   "id": "DV044",
+   "category": "question_form_order",
+   "context_id": "c_preg_abd",
+   "text": "Would you take her to the X ray department?",
+   "expect": {
+    "behaviour": "propose",
+    "target": "place:xray",
+    "accept": []
+   },
+   "rationale": "polite question form"
+  },
+  {
+   "id": "DV045",
+   "category": "info_question",
+   "context_id": "c_ward_dm",
+   "text": "What does a CRP actually tell us?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks for information"
+  },
+  {
+   "id": "DV046",
+   "category": "info_question",
+   "context_id": "c_ed_sepsis",
+   "text": "Is she allergic to penicillin?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks the record, no action"
+  },
+  {
+   "id": "DV047",
+   "category": "info_question",
+   "context_id": "c_preg_abd",
+   "text": "How long does an MRI take?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "information"
+  },
+  {
+   "id": "DV048",
+   "category": "info_question",
+   "context_id": "c_af_apixaban",
+   "text": "When did he last take the apixaban?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "history question"
+  },
+  {
+   "id": "DV049",
+   "category": "info_question",
+   "context_id": "c_hyperk",
+   "text": "What is the normal range for potassium?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "information"
+  },
+  {
+   "id": "DV050",
+   "category": "info_question",
+   "context_id": "c_hypo",
+   "text": "Should I hold the insulin?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks for advice, not an instruction"
+  },
+  {
+   "id": "DV051",
+   "category": "info_question",
+   "context_id": "c_recovery_opioid",
+   "text": "Why is her breathing so slow?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks for reasoning"
+  },
+  {
+   "id": "DV052",
+   "category": "info_question",
+   "context_id": "c_ward_dm",
+   "text": "Is the ECG going to show anything with his heart?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks about the value of a test"
+  },
+  {
+   "id": "DV053",
+   "category": "info_question",
+   "context_id": "c_anaph",
+   "text": "Is this anaphylaxis or just a drug rash?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "diagnostic question"
+  },
+  {
+   "id": "DV054",
+   "category": "info_question",
+   "context_id": "c_ed_sepsis",
+   "text": "How much fluid has she had so far?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks the record"
+  },
+  {
+   "id": "DV055",
+   "category": "ambiguous",
+   "context_id": "c_ward_dm",
+   "text": "Give him the antibiotic.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": [
+     "medicine:TR-ABX-PROPHYLAXIS"
+    ]
+   },
+   "rationale": "prophylactic dose or treatment antibiotic: the context (planned surgery, no infection) leans to prophylaxis but a question is the safe answer"
+  },
+  {
+   "id": "DV056",
+   "category": "ambiguous",
+   "context_id": "c_hypo",
+   "text": "Give him some glucose.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "by mouth or into the vein: he can swallow but is drowsy"
+  },
+  {
+   "id": "DV057",
+   "category": "ambiguous",
+   "context_id": "c_preg_abd",
+   "text": "Get a scan of her tummy.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "ultrasound, CT or MRI"
+  },
+  {
+   "id": "DV058",
+   "category": "ambiguous",
+   "context_id": "c_ed_sepsis",
+   "text": "Get the doctor.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "senior, surgeon or anaesthetist"
+  },
+  {
+   "id": "DV059",
+   "category": "ambiguous",
+   "context_id": "c_ward_dm",
+   "text": "Stop his tablets.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "which tablets: metformin, gliclazide or ramipril"
+  },
+  {
+   "id": "DV060",
+   "category": "ambiguous",
+   "context_id": "c_af_apixaban",
+   "text": "Take him round to the scanner.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "which scanner: CT, MRI or ultrasound"
+  },
+  {
+   "id": "DV061",
+   "category": "ambiguous",
+   "context_id": "c_ward_dm",
+   "text": "Do a sugar test.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "finger-prick glucose or HbA1c"
+  },
+  {
+   "id": "DV062",
+   "category": "ambiguous",
+   "context_id": "c_recovery_opioid",
+   "text": "Give her something for the pain.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "paracetamol, NSAID or opioid, and she is oversedated"
+  },
+  {
+   "id": "DV063",
+   "category": "incomplete",
+   "context_id": "c_ward_dm",
+   "text": "Order a blood test.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "which test is not said"
+  },
+  {
+   "id": "DV064",
+   "category": "incomplete",
+   "context_id": "c_ed_sepsis",
+   "text": "Give her something.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "no item"
+  },
+  {
+   "id": "DV065",
+   "category": "incomplete",
+   "context_id": "c_anaph",
+   "text": "Call.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "call whom"
+  },
+  {
+   "id": "DV066",
+   "category": "incomplete",
+   "context_id": "c_preg_abd",
+   "text": "I want a scan.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "which scan"
+  },
+  {
+   "id": "DV067",
+   "category": "incomplete",
+   "context_id": "c_ward_dm",
+   "text": "Take him.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "where to"
+  },
+  {
+   "id": "DV068",
+   "category": "incomplete",
+   "context_id": "c_af_apixaban",
+   "text": "Hold the.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "cut off"
+  },
+  {
+   "id": "DV069",
+   "category": "incomplete",
+   "context_id": "c_hyperk",
+   "text": "Start an infusion.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "which infusion: fluids, glucose or insulin treatment"
+  },
+  {
+   "id": "DV070",
+   "category": "incomplete",
+   "context_id": "c_hypo",
+   "text": "Can you get me the.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "trails off"
+  },
+  {
+   "id": "DV071",
+   "category": "medication_request",
+   "context_id": "c_ward_dm",
+   "text": "Give her some ondansetron for the nausea.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ANTIEMETIC",
+    "accept": []
+   },
+   "rationale": "brand-free drug name"
+  },
+  {
+   "id": "DV072",
+   "category": "medication_request",
+   "context_id": "c_ward_dm",
+   "text": "Prescribe ibuprofen for the pain.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-NSAID",
+    "accept": []
+   },
+   "rationale": "NSAID"
+  },
+  {
+   "id": "DV073",
+   "category": "medication_request",
+   "context_id": "c_ed_sepsis",
+   "text": "Start broad spectrum antibiotics for the infection.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ABX-S2",
+    "accept": []
+   },
+   "rationale": "treatment antibiotic"
+  },
+  {
+   "id": "DV074",
+   "category": "medication_request",
+   "context_id": "c_ward_dm",
+   "text": "Give the antibiotic before the first cut.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ABX-PROPHYLAXIS",
+    "accept": []
+   },
+   "rationale": "prophylactic dose, said by purpose"
+  },
+  {
+   "id": "DV075",
+   "category": "medication_request",
+   "context_id": "c_ward_dm",
+   "text": "Give her the anticlot injection tonight.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-VTE-PROPHYLAXIS",
+    "accept": []
+   },
+   "rationale": "enoxaparin by purpose"
+  },
+  {
+   "id": "DV076",
+   "category": "medication_request",
+   "context_id": "c_ward_dm",
+   "text": "She takes prednisolone long term, so give the hydrocortisone cover.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-STEROID-COVER",
+    "accept": []
+   },
+   "rationale": "steroid cover"
+  },
+  {
+   "id": "DV077",
+   "category": "medication_request",
+   "context_id": "c_recovery_opioid",
+   "text": "Hang a litre of Hartmann's.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-FLUIDS",
+    "accept": []
+   },
+   "rationale": "fluid"
+  },
+  {
+   "id": "DV078",
+   "category": "medication_request",
+   "context_id": "c_ward_dm",
+   "text": "Morphine for the pain, please.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-OPIOID",
+    "accept": []
+   },
+   "rationale": "opioid"
+  },
+  {
+   "id": "DV079",
+   "category": "investigation_request",
+   "context_id": "c_ward_dm",
+   "text": "Send the thyroid function.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:tsh",
+    "accept": []
+   },
+   "rationale": "named by function"
+  },
+  {
+   "id": "DV080",
+   "category": "investigation_request",
+   "context_id": "c_ward_dm",
+   "text": "Chest film, please.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:chest_xray",
+    "accept": []
+   },
+   "rationale": "terse"
+  },
+  {
+   "id": "DV081",
+   "category": "investigation_request",
+   "context_id": "c_ed_sepsis",
+   "text": "Venous gas with lactate.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:blood_gas",
+    "accept": []
+   },
+   "rationale": "terse"
+  },
+  {
+   "id": "DV082",
+   "category": "investigation_request",
+   "context_id": "c_anaph",
+   "text": "Send a tryptase.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:tryptase",
+    "accept": []
+   },
+   "rationale": "after anaphylaxis"
+  },
+  {
+   "id": "DV083",
+   "category": "investigation_request",
+   "context_id": "c_ward_dm",
+   "text": "Do the sleep apnoea questionnaire.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:stopbang",
+    "accept": []
+   },
+   "rationale": "STOP-BANG by description"
+  },
+  {
+   "id": "DV084",
+   "category": "investigation_request",
+   "context_id": "c_preg_abd",
+   "text": "Check the lipase as well.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:lipase",
+    "accept": []
+   },
+   "rationale": "pancreatitis marker"
+  },
+  {
+   "id": "DV085",
+   "category": "investigation_request",
+   "context_id": "c_ward_dm",
+   "text": "Work out his BMI.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:bmi",
+    "accept": []
+   },
+   "rationale": "plain"
+  },
+  {
+   "id": "DV086",
+   "category": "investigation_request",
+   "context_id": "c_ward_dm",
+   "text": "Dip her urine.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:urine_dipstick",
+    "accept": []
+   },
+   "rationale": "plain"
+  },
+  {
+   "id": "DV087",
+   "category": "non_order",
+   "context_id": "c_ward_dm",
+   "text": "The porter said the lift is out of order again.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "news"
+  },
+  {
+   "id": "DV088",
+   "category": "non_order",
+   "context_id": "c_ed_sepsis",
+   "text": "She had paracetamol at home before she came in.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "history statement"
+  },
+  {
+   "id": "DV089",
+   "category": "non_order",
+   "context_id": "c_ward_dm",
+   "text": "Thank you, that was quick.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "thanks"
+  },
+  {
+   "id": "DV090",
+   "category": "non_order",
+   "context_id": "c_preg_abd",
+   "text": "I am a bit nervous about this one.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "feelings"
+  },
+  {
+   "id": "DV091",
+   "category": "non_order",
+   "context_id": "c_hyperk",
+   "text": "The potassium was normal last month, I think.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "remark about the past"
+  },
+  {
+   "id": "DV092",
+   "category": "non_order",
+   "context_id": "c_af_apixaban",
+   "text": "The surgeon is running late today.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "news about a person"
+  },
+  {
+   "id": "DV093",
+   "category": "non_order",
+   "context_id": "c_recovery_opioid",
+   "text": "Morphine always makes me feel sleepy.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "personal remark"
+  },
+  {
+   "id": "DV094",
+   "category": "non_order",
+   "context_id": "c_ward_dm",
+   "text": "What a busy ward this is.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "chat"
+  },
+  {
+   "id": "DV095",
+   "category": "negated",
+   "context_id": "c_ward_dm",
+   "text": "Don't order a CRP.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "negated order"
+  },
+  {
+   "id": "DV096",
+   "category": "negated",
+   "context_id": "c_ed_sepsis",
+   "text": "No need for the CT scan at the moment.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "not needed"
+  },
+  {
+   "id": "DV097",
+   "category": "negated",
+   "context_id": "c_anaph",
+   "text": "I do not want the antibiotic given again.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "negated instruction about a hospital drug"
+  },
+  {
+   "id": "DV098",
+   "category": "negated",
+   "context_id": "c_preg_abd",
+   "text": "Do not take her to theatre yet.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "negated transport"
+  },
+  {
+   "id": "DV099",
+   "category": "negated",
+   "context_id": "c_hypo",
+   "text": "Do not give him any more insulin today.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "home_medicine:insulin",
+    "accept": []
+   },
+   "rationale": "not to give the patient's own insulin is a hold order, not a plain negation"
+  },
+  {
+   "id": "DV100",
+   "category": "negated",
+   "context_id": "c_af_apixaban",
+   "text": "We are not going to need the anaesthetist for this.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "negated, a statement of plan"
+  },
+  {
+   "id": "DV101",
+   "category": "negated",
+   "context_id": "c_ward_dm",
+   "text": "Never mind the ECG.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "withdraws a request"
+  },
+  {
+   "id": "DV102",
+   "category": "negated",
+   "context_id": "c_recovery_opioid",
+   "text": "Don't give her any more morphine.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "morphine is hospital-given here: negated order, nothing to execute"
+  },
+  {
+   "id": "DV103",
+   "category": "hypothetical",
+   "context_id": "c_anaph",
+   "text": "If she gets worse we could give a second dose of adrenaline.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "conditional plan"
+  },
+  {
+   "id": "DV104",
+   "category": "hypothetical",
+   "context_id": "c_ward_dm",
+   "text": "Maybe an ultrasound would help.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "a thought"
+  },
+  {
+   "id": "DV105",
+   "category": "hypothetical",
+   "context_id": "c_ed_sepsis",
+   "text": "In her place I would start fluids.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "advice, not an instruction"
+  },
+  {
+   "id": "DV106",
+   "category": "hypothetical",
+   "context_id": "c_hypo",
+   "text": "Suppose he does not wake up, then we give the glucose drip.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "supposition"
+  },
+  {
+   "id": "DV107",
+   "category": "hypothetical",
+   "context_id": "c_preg_abd",
+   "text": "We might need a CT later if the scan is not clear.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "plan for later"
+  },
+  {
+   "id": "DV108",
+   "category": "hypothetical",
+   "context_id": "c_ward_dm",
+   "text": "Should I give an antiemetic if she vomits?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "conditional question"
+  },
+  {
+   "id": "DV109",
+   "category": "hypothetical",
+   "context_id": "c_hyperk",
+   "text": "Would calcium make sense here?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks for opinion"
+  },
+  {
+   "id": "DV110",
+   "category": "hypothetical",
+   "context_id": "c_af_apixaban",
+   "text": "What if we held the apixaban for two days?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "what-if"
+  },
+  {
+   "id": "DV111",
+   "category": "correction",
+   "context_id": "c_preg_abd",
+   "text": "No, make that the CT, not the MRI.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ct",
+    "accept": []
+   },
+   "rationale": "replaces an earlier order",
+   "previous": "Trainee: Order an MRI of the abdomen. System: Confirm: order MRI?"
+  },
+  {
+   "id": "DV112",
+   "category": "correction",
+   "context_id": "c_ward_dm",
+   "text": "Sorry, I meant the senior, not the surgeon.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:senior",
+    "accept": []
+   },
+   "rationale": "correction of a call",
+   "previous": "Trainee: Call the surgeon. System: Confirm: call surgeon?"
+  },
+  {
+   "id": "DV113",
+   "category": "correction",
+   "context_id": "c_hypo",
+   "text": "Actually give the glucose into the vein instead.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-GLUCOSE",
+    "accept": []
+   },
+   "rationale": "correction",
+   "previous": "Trainee: Give him glucose gel. System: Confirm: request fast sugar?"
+  },
+  {
+   "id": "DV114",
+   "category": "correction",
+   "context_id": "c_ed_sepsis",
+   "text": "Wrong one, I wanted the lactate, not the CRP.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:lactate_cultures",
+    "accept": []
+   },
+   "rationale": "correction",
+   "previous": "Trainee: Send a CRP. System: Confirm: order CRP?"
+  },
+  {
+   "id": "DV115",
+   "category": "correction",
+   "context_id": "c_ward_dm",
+   "text": "Cancel that.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "withdraws the pending read-back",
+   "previous": "Trainee: Order an FBC. System: Confirm: order full blood count?"
+  },
+  {
+   "id": "DV116",
+   "category": "correction",
+   "context_id": "c_ward_dm",
+   "text": "Hold on, wait.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "pause, no instruction",
+   "previous": "Trainee: Order an FBC. System: Confirm: order full blood count?"
+  },
+  {
+   "id": "DV117",
+   "category": "first_person",
+   "context_id": "c_anaph",
+   "text": "I'm giving the adrenaline now.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ADRENALINE",
+    "accept": []
+   },
+   "rationale": "first-person action in progress"
+  },
+  {
+   "id": "DV118",
+   "category": "first_person",
+   "context_id": "c_ed_sepsis",
+   "text": "I need the anaesthetist here immediately.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:anaesthetist",
+    "accept": []
+   },
+   "rationale": "first-person need that is a call"
+  },
+  {
+   "id": "DV119",
+   "category": "first_person",
+   "context_id": "c_ward_dm",
+   "text": "I'm going to send off the bloods now.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "which bloods is not said: relabelled clarify after the first dev run, the label was wrong"
+  },
+  {
+   "id": "DV120",
+   "category": "first_person",
+   "context_id": "c_hypo",
+   "text": "I am about to start the glucose drip.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-GLUCOSE",
+    "accept": []
+   },
+   "rationale": "first-person action"
+  },
+  {
+   "id": "DV121",
+   "category": "first_person",
+   "context_id": "c_preg_abd",
+   "text": "I think I felt a mass on her right side.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "first-person finding"
+  },
+  {
+   "id": "DV122",
+   "category": "first_person",
+   "context_id": "c_ward_dm",
+   "text": "I checked the potassium this morning.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "first-person past"
+  },
+  {
+   "id": "DV123",
+   "category": "first_person",
+   "context_id": "c_recovery_opioid",
+   "text": "I'm worried about her breathing.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "first-person concern"
+  },
+  {
+   "id": "DV124",
+   "category": "first_person",
+   "context_id": "c_af_apixaban",
+   "text": "I will be in theatre until lunch.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "first-person plan about self"
+  },
+  {
+   "id": "DV125",
+   "category": "multi_turn",
+   "context_id": "c_ed_sepsis",
+   "text": "And the lactate too.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:lactate_cultures",
+    "accept": []
+   },
+   "rationale": "follow-up adds an item",
+   "previous": "Trainee: Order a full blood count. System: Confirm: order full blood count? Trainee: Yes."
+  },
+  {
+   "id": "DV126",
+   "category": "multi_turn",
+   "context_id": "c_ward_dm",
+   "text": "Yes, and the potassium.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:u_and_e",
+    "accept": []
+   },
+   "rationale": "follow-up",
+   "previous": "Trainee: Get an ECG. System: Confirm: order ECG? Trainee: Yes."
+  },
+  {
+   "id": "DV127",
+   "category": "multi_turn",
+   "context_id": "c_anaph",
+   "text": "Now the oxygen.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-OXYGEN",
+    "accept": []
+   },
+   "rationale": "next step",
+   "previous": "Trainee: Give adrenaline. System: Confirm: request adrenaline? Trainee: Yes."
+  },
+  {
+   "id": "DV128",
+   "category": "multi_turn",
+   "context_id": "c_preg_abd",
+   "text": "Why?",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "asks why after a refusal",
+   "previous": "System: A pregnancy test was refused: the patient declined. Trainee: Okay."
+  },
+  {
+   "id": "DV129",
+   "category": "multi_turn",
+   "context_id": "c_ward_dm",
+   "text": "The same again.",
+   "expect": {
+    "behaviour": "clarify",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "refers to nothing recent",
+   "previous": "Trainee: Thanks. System: Anything else?"
+  },
+  {
+   "id": "DV130",
+   "category": "multi_turn",
+   "context_id": "c_hyperk",
+   "text": "Do it.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-HYPERKALAEMIA",
+    "accept": []
+   },
+   "rationale": "follow-up to the system's proposal",
+   "previous": "System: Would you like the hyperkalaemia treatment? Trainee: Let me think."
+  },
+  {
+   "id": "DV131",
+   "category": "multi_turn",
+   "context_id": "c_ed_sepsis",
+   "text": "Actually, never mind.",
+   "expect": {
+    "behaviour": "no_order",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "withdrawal",
+   "previous": "Trainee: Call the senior. System: Confirm: call senior?"
+  },
+  {
+   "id": "DV132",
+   "category": "multi_turn",
+   "context_id": "c_af_apixaban",
+   "text": "Also the clotting screen.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:clotting",
+    "accept": []
+   },
+   "rationale": "follow-up",
+   "previous": "Trainee: Send a full blood count. System: Confirm: order full blood count? Trainee: Yes."
+  },
+  {
+   "id": "DV133",
+   "category": "confusable",
+   "context_id": "c_ward_dm",
+   "text": "Prophylactic antibiotics at induction.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ABX-PROPHYLAXIS",
+    "accept": []
+   },
+   "rationale": "prophylaxis, not treatment"
+  },
+  {
+   "id": "DV134",
+   "category": "confusable",
+   "context_id": "c_ed_sepsis",
+   "text": "Treat the infection with antibiotics.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-ABX-S2",
+    "accept": []
+   },
+   "rationale": "treatment, not prophylaxis"
+  },
+  {
+   "id": "DV135",
+   "category": "confusable",
+   "context_id": "c_hypo",
+   "text": "Dextrose bolus into the vein.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-GLUCOSE",
+    "accept": []
+   },
+   "rationale": "intravenous"
+  },
+  {
+   "id": "DV136",
+   "category": "confusable",
+   "context_id": "c_hypo",
+   "text": "Glucose tablets under the tongue.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-FAST-SUGAR",
+    "accept": []
+   },
+   "rationale": "by mouth"
+  },
+  {
+   "id": "DV137",
+   "category": "confusable",
+   "context_id": "c_ward_dm",
+   "text": "Get the surgical registrar who is operating.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:surgeon",
+    "accept": []
+   },
+   "rationale": "operating surgeon"
+  },
+  {
+   "id": "DV138",
+   "category": "confusable",
+   "context_id": "c_ed_sepsis",
+   "text": "Get my senior doctor on call.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "staff:senior",
+    "accept": []
+   },
+   "rationale": "senior"
+  },
+  {
+   "id": "DV139",
+   "category": "confusable",
+   "context_id": "c_preg_abd",
+   "text": "Take her to the theatre reception area.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "place:theatre_reception",
+    "accept": []
+   },
+   "rationale": "reception, not the theatre"
+  },
+  {
+   "id": "DV140",
+   "category": "confusable",
+   "context_id": "c_anaph",
+   "text": "Check the tryptase.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:tryptase",
+    "accept": []
+   },
+   "rationale": "tryptase, not troponin-like names"
+  },
+  {
+   "id": "DV141",
+   "category": "unsupported",
+   "context_id": "c_ed_sepsis",
+   "text": "Intubate her now.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "not on the list"
+  },
+  {
+   "id": "DV142",
+   "category": "unsupported",
+   "context_id": "c_ward_dm",
+   "text": "Book a liver transplant.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "not on the list"
+  },
+  {
+   "id": "DV143",
+   "category": "unsupported",
+   "context_id": "c_anaph",
+   "text": "Give her a unit of blood.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "no blood product on the list"
+  },
+  {
+   "id": "DV144",
+   "category": "unsupported",
+   "context_id": "c_preg_abd",
+   "text": "Do a PET scan.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "no such test"
+  },
+  {
+   "id": "DV145",
+   "category": "unsupported",
+   "context_id": "c_ward_dm",
+   "text": "Prescribe a course of chemotherapy.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "no such treatment"
+  },
+  {
+   "id": "DV146",
+   "category": "unsupported",
+   "context_id": "c_hyperk",
+   "text": "Start dialysis.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "no such action"
+  },
+  {
+   "id": "DV147",
+   "category": "unsupported",
+   "context_id": "c_recovery_opioid",
+   "text": "Call the helicopter.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "no such staff or action"
+  },
+  {
+   "id": "DV148",
+   "category": "unsupported",
+   "context_id": "c_af_apixaban",
+   "text": "Give him a general anaesthetic.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "not an order the trainee can place here"
+  },
+  {
+   "id": "DV149",
+   "category": "inappropriate",
+   "context_id": "c_hypo",
+   "text": "Give him more insulin.",
+   "expect": {
+    "behaviour": "unsupported",
+    "target": null,
+    "accept": []
+   },
+   "rationale": "insulin is not an order the simulator gives; hold is the only action on it"
+  },
+  {
+   "id": "DV150",
+   "category": "inappropriate",
+   "context_id": "c_recovery_opioid",
+   "text": "Give her more morphine for the pain.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-OPIOID",
+    "accept": []
+   },
+   "rationale": "clinically unsafe, but a faithful request: the engine and the scoring refuse or penalise it"
+  },
+  {
+   "id": "DV151",
+   "category": "inappropriate",
+   "context_id": "c_preg_abd",
+   "text": "Send her for a CT right away.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "test:ct",
+    "accept": []
+   },
+   "rationale": "possibly pregnant: a faithful request; the cross-checks and the scoring respond"
+  },
+  {
+   "id": "DV152",
+   "category": "inappropriate",
+   "context_id": "c_af_apixaban",
+   "text": "Give him the enoxaparin tonight.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-VTE-PROPHYLAXIS",
+    "accept": []
+   },
+   "rationale": "on apixaban: a faithful request; the simulator scores it"
+  },
+  {
+   "id": "DV153",
+   "category": "inappropriate",
+   "context_id": "c_hyperk",
+   "text": "Give a litre of fluid as fast as it will go.",
+   "expect": {
+    "behaviour": "propose",
+    "target": "medicine:TR-IV-FLUIDS",
+    "accept": []
+   },
+   "rationale": "fluid request, whatever the rate"
+  }
+ ]
+}

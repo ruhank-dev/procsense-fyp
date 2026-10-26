@@ -287,20 +287,20 @@
       },
       {
         "id": "adv.adv-11",
-        "prompt": "The patient says she had a light meal two hours ago. Do you proceed?",
+        "prompt": "The patient ate earlier today and the list is waiting. Do you proceed?",
         "rule": null,
         "options": [
           {
             "id": "adv.adv-11.1",
-            "text": "Proceed: it was only a light meal.",
+            "text": "Proceed: the meal was some hours ago and the patient feels well.",
             "correct": false,
             "consequence": "The history records a recent meal: the fasting rule is broken and aspiration is a risk."
           },
           {
             "id": "adv.adv-11.2",
-            "text": "Tell the anaesthetist and delay; do not tick the fasting line as met.",
+            "text": "Tell the anaesthetist, do not tick the fasting line as met, and let them decide on delay or a rapid sequence induction.",
             "correct": true,
-            "consequence": "Matches the guidance: ASA and Association of Anaesthetists fasting guidance."
+            "consequence": "Matches the guidance: Association of Anaesthetists / Royal College of Anaesthetists perioperative fasting guidance (2022 joint consensus); ASA practice guidelines for preoperative fasting."
           }
         ]
       }
@@ -565,5 +565,5 @@
     "per_level": {}
   },
   "reproducibility_key": "daaa466b02ec38836b4cceac0b05ccbce9a46977319c9d095bf3c2e73866e072",
-  "package_sha256": "e18c3bc12822b20ef073f48b0d551397b1964fd82b81a6125ab42a60c3e424bb"
+  "package_sha256": "8d75582f1a38d2552c777487fcb4c07092aa9237fbbdab815717e697b8554d77"
 }

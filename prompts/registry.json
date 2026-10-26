@@ -407,6 +407,22 @@
       "scope": "cloud"
     },
     {
+      "id": "orders.interpret",
+      "version": 1,
+      "role": "live",
+      "file": "orders/interpret_v1.txt",
+      "sha256": "18a411fa2f0cefb5eaeb86604cc5773617b8420206f6fc30f4047dffe119879b",
+      "schema": null,
+      "variables": [
+        "context",
+        "heard",
+        "items"
+      ],
+      "num_predict": 260,
+      "think": false,
+      "gateway": false
+    },
+    {
       "id": "judge.scenario",
       "version": 1,
       "role": "batch",

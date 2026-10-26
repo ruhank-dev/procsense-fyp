@@ -1,0 +1,12 @@
+{
+ "set": "heldout_v1",
+ "independent_human": false,
+ "authorship": "an AI assistant, by hand, 25 Oct 2026 UTC; no other model wrote or labelled any sentence; synthetic; NOT human-authored and NOT independently human-validated",
+ "accuracy": {
+  "cloud": 0.9735,
+  "local": 0.6954,
+  "grammar": 0.4238
+ },
+ "cloud_gain_over_grammar": 0.5497,
+ "note": "cloud: the frozen interpreter with gemma4:31b-cloud, scored once; local: the same interpreter with the local model (second look, for the routing rule only); grammar: no model"
+}

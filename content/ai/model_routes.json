@@ -123,6 +123,13 @@
    "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.speech.action",
    "fallback": "qwen3.5:4b-q4_K_M",
    "why": "Reads the trainee's words, so cloud use needs the personal consent; the local model's proposals are shown for confirmation, never started by themselves (false actions 10% against 0%)."
+  },
+  "orders.interpret": {
+   "model": "gemma4:31b-cloud",
+   "data_class": "trainee",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.orders.interpret",
+   "fallback": "qwen3.5:4b-q4_K_M",
+   "why": "Frozen AI-assistant-authored held-out set of 151 sentences (AI-authored synthetic, scored once for the cloud model, 26 Oct 2026 UTC): 97.4 percent behave as labelled, 0 wrong items, 0 of 50 non-orders offered, 0 confirmation bypasses, p50 0.74 s and p95 1.4 s, against 69.5 percent, 13.3 percent wrong items, 5 of 50 offered and p50 13.7 s for the local model with the same prompt (reports/ai/orders-ai-heldout_v1-qwen_second_look.json). A trainee's words go to the cloud only with the institutional approval and the person's own consent (ADR-0027); otherwise, or when the cloud is slow, the grammar with its question guard answers."
   }
  },
  "cloud_timeout_seconds": {

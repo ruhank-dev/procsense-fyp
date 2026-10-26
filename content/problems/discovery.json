@@ -1215,13 +1215,13 @@
    "problem": "sc27.airway",
    "trigger": {
     "in": [
-     "medicines",
+     "complaint",
      {
       "var": "topics"
      }
     ]
    },
-   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "how": "the trainee takes the history: the drowsiness and slow breathing after morphine are visible at the start [AI-reviewed override: not a medicines question] [derived from the case content]",
    "ref": "SR-2867"
   },
   {
@@ -1533,13 +1533,13 @@
    "problem": "sc4.bp",
    "trigger": {
     "in": [
-     "complaint",
+     "systolic_bp",
      {
-      "var": "topics"
+      "var": "measured"
      }
     ]
    },
-   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "how": "the trainee takes the blood pressure and sees 176/104, raised but below 180/110 [AI-reviewed override: a measurement, not the history] [derived from the case content]",
    "ref": "SR-2867"
   },
   {
@@ -1797,13 +1797,13 @@
    "problem": "stka.bp",
    "trigger": {
     "in": [
-     "complaint",
+     "systolic_bp",
      {
-      "var": "topics"
+      "var": "measured"
      }
     ]
    },
-   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "how": "the trainee takes the blood pressure and sees 174/102, raised but below 180/110 [AI-reviewed override: a measurement, not the history] [derived from the case content]",
    "ref": "SR-2867"
   },
   {
@@ -1965,13 +1965,13 @@
    "problem": "stkc2.airway",
    "trigger": {
     "in": [
-     "medicines",
+     "complaint",
      {
       "var": "topics"
      }
     ]
    },
-   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "how": "the trainee takes the history: the vomiting and reduced consciousness are visible at the start [AI-reviewed override: not a medicines question] [derived from the case content]",
    "ref": "SR-2867"
   },
   {
@@ -1979,13 +1979,13 @@
    "problem": "stkc2.breath",
    "trigger": {
     "in": [
-     "ex.chest",
+     "complaint",
      {
-      "var": "findings"
+      "var": "topics"
      }
     ]
    },
-   "how": "the trainee examines (chest) and finds: Chest clear. [derived from the case content]",
+   "how": "the trainee takes the history: the slow, shallow breathing after the opioid is visible at the start [AI-reviewed override: a clear chest does not show it] [derived from the case content]",
    "ref": "SR-2867"
   },
   {
@@ -2189,13 +2189,13 @@
    "problem": "s2h.wbc",
    "trigger": {
     "in": [
-     "pregnancy",
+     "fbc",
      {
       "var": "viewed_tests"
      }
     ]
    },
-   "how": "the trainee opens the pregnancy result (Pregnancy test) [derived from the case content]",
+   "how": "the trainee opens the full blood count and sees the white cell count, partly raised by pregnancy [AI-reviewed override: the evidence is the blood count, not the pregnancy test] [derived from the case content]",
    "ref": "SR-2867"
   },
   {

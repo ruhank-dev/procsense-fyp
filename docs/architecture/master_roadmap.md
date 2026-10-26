@@ -106,7 +106,7 @@ Blocks with requires/excludes, templates, discovery coverage; composer lineage s
 | Features | A1; A12; B23 |
 | Deliverables | content/blocks; templates; solver |
 | Acceptance | T-SOLVE; every block cites its source case |
-| Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | external acceptance: EX-03, EX-17 (docs/testing/SANNAN_EXTERNAL_TESTING.md); external acceptance: EX-10 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
 
 ### PH-05 — Live generation skeleton (deterministic path first)
 

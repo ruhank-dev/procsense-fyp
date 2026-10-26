@@ -434,6 +434,27 @@
    "selected": "gemma4:31b-cloud",
    "why": "best eligible candidate by the rule",
    "note": "measured together (the kind question and the choice are one pipeline) on the frozen held-out set 8 of spoken orders; reports/ai/orders-mapper-compare-v8_gemma.json and v8_qwen_second_look.json"
+  },
+  "orders.interpret": {
+   "figures": {
+    "qwen3.5:4b-q4_K_M": {
+     "correct": 0.6954,
+     "wrong": 0.1325,
+     "false_offer": 0.1,
+     "ms_p50": 13690,
+     "ms_p95": 14350
+    },
+    "gemma4:31b-cloud": {
+     "correct": 0.9735,
+     "wrong": 0.0,
+     "false_offer": 0.0,
+     "ms_p50": 740,
+     "ms_p95": 1380
+    }
+   },
+   "selected": "gemma4:31b-cloud",
+   "why": "best eligible candidate by the rule",
+   "note": "single semantic call (ADR-0028) on the frozen AI-assistant-authored held-out set of 151 sentences (AI-authored synthetic, not human-authored); the cloud model was scored once, the local model is a second look for this rule only; reports/ai/orders-ai-heldout_v1.json and orders-ai-heldout_v1-qwen_second_look.json"
   }
  }
 }

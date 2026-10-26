@@ -238,64 +238,63 @@
    ]
   },
   "order_fallback": {
-   "label": "Language-model fallback of the spoken-order grammar (a suggestion that is read back; nothing is released without a yes). SYNTHETIC paraphrases by one author (an AI assistant), NOT independent; the cloud model on the frozen set 10, written by a different model family (nemotron-3-nano), the least tied to the builder of the sets measured",
+   "label": "Semantic interpreter of spoken orders (ADR-0028): one Gemma 4 31B Cloud reading of the whole sentence in its scenario context; the answer is only a proposal that is read back and released by the trainee's yes. Measured on a frozen held-out set of 151 sentences written by an AI assistant: SYNTHETIC, NOT human-authored, NOT independent; the human-authored set EX-18 asks for does not exist, so the gate stays OFF",
    "suites": [
     {
      "id": "order_fallback.no_release_without_confirmation",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "sets.v10.current.released_without_confirmation",
+     "file": "orders-ai-heldout_v1.json",
+     "path": "confirmation_bypasses",
      "op": "==",
      "ref": "no action leaves the read-back before a yes",
      "value": 0
     },
     {
      "id": "order_fallback.accuracy",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "sets.v10.current.correct",
+     "file": "orders-ai-heldout_v1.json",
+     "path": "accuracy",
      "op": ">=",
-     "ref": "plan C32.c1: at least 95 percent (B23.c2: 90 percent)",
+     "ref": "plan C32.c1 / B23.c2: at least 95 percent",
      "value": 0.95
     },
     {
      "id": "order_fallback.gain_over_grammar",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "sets.v10.current.correct",
+     "file": "orders-ai-heldout_v1-comparison.json",
+     "path": "cloud_gain_over_grammar",
      "op": ">=",
      "ref": "plan B23.c2: at least 10 points above the grammar alone",
-     "vs": "sets.v10.grammar.correct",
-     "plus": 0.1
+     "value": 0.1
     },
     {
      "id": "order_fallback.wrong_item_offered",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "sets.v10.current.wrong",
+     "file": "orders-ai-heldout_v1.json",
+     "path": "wrong_item_rate",
      "op": "<=",
      "ref": "a wrong item is caught by the read-back, but more than 5 percent wastes the trainee's time",
      "value": 0.05
     },
     {
      "id": "order_fallback.non_orders_not_offered",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "sets.v10.current.false_offer",
+     "file": "orders-ai-heldout_v1.json",
+     "path": "non_order_false_positive_rate",
      "op": "<=",
-     "ref": "small talk is not turned into an order",
+     "ref": "small talk, questions and negations are not turned into an order",
      "value": 0.1
     },
     {
      "id": "order_fallback.independent_evidence",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "independent",
+     "file": "orders-ai-heldout_v1.json",
+     "path": "independent_human",
      "op": "==",
-     "ref": "no set was written by a human (EX-18 asks for one): the fallback stays OFF until a human-authored set exists",
+     "ref": "no set was written by a human (EX-18 asks for one): the interpreter stays OFF in the live route until a human-authored set exists",
      "value": true
     },
     {
-     "id": "order_fallback.latency_p95_ms",
-     "file": "orders-mapper-compare-v10_gemma.json",
-     "path": "sets.v10.current.latency_ms_p95",
+     "id": "order_fallback.latency_p95_s",
+     "file": "orders-ai-heldout_v1.json",
+     "path": "latency_s.p95",
      "op": "<=",
      "ref": "live budget of the plan: a reply to speech within 3 s",
-     "value": 3000
+     "value": 3.0
     }
    ]
   },

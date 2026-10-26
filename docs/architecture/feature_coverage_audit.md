@@ -46,7 +46,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | B20 | Anomalies and artefacts (deliberate and realistic) | Implemented and tested | deterministic | 2 (0) | yes | p1-live-scenario-generation-s05; p1-personalisation-s03 | PH-09 | [B20](../plans/features/%5Bx%5D%20B20.md) |
 | B21 | Result variation (repeats, trends, timing) | Implemented and tested | deterministic | 1 (0) | yes | p1-live-scenario-generation-s05 | PH-09 | [B21](../plans/features/%5Bx%5D%20B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | Implemented and tested | ai | 1 (1) | yes | p2-ai-learning-analytics-s05 | PH-18 | [B22](../plans/features/%5Bx%5D%20B22.md) |
-| B23 | Investigation discovery | Partially implemented | deterministic | 2 (1) | yes | p0-case-library-s05; p1-ai-language-s07; p1-live-scenario-generation-s03 | PH-04 | [B23](../plans/features/B23.md) |
+| B23 | Investigation discovery | Implemented and tested | deterministic | 2 (1) | yes | p0-case-library-s05; p1-ai-language-s07; p1-live-scenario-generation-s03 | PH-04 | [B23](../plans/features/%5Bx%5D%20B23.md) |
 | C24 | Patient dialogue | Implemented and tested | hybrid | 3 (3) | yes | p1-ai-language-s04; p1-ai-language-s13 | PH-13 | [C24](../plans/features/%5Bx%5D%20C24.md) |
 | C25 | Nurse dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C25](../plans/features/%5Bx%5D%20C25.md) |
 | C26 | Anaesthetist dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C26](../plans/features/%5Bx%5D%20C26.md) |
@@ -55,7 +55,7 @@ None: every feature has a complete plan, phased tasks and acceptance criteria.
 | C29 | Persona system | Implemented and tested | hybrid | 2 (1) | yes | p1-ai-language-s04; p1-live-scenario-generation-s04 | PH-13 | [C29](../plans/features/%5Bx%5D%20C29.md) |
 | C30 | Context-aware and reactive dialogue | Implemented and tested | hybrid | 1 (1) | yes | p1-ai-language-s05 | PH-13 | [C30](../plans/features/%5Bx%5D%20C30.md) |
 | C31 | Voice interaction (end to end) | Implemented but incompletely tested | ai | 1 (1) | yes | p1-ai-language-s12; p1-voice-input-s02; p1-voice-input-s04 | PH-14 | [C31](../plans/features/%5Bx%5D%20C31.md) |
-| C32 | Voice commands | Partially implemented | hybrid | 1 (1) | yes | p1-voice-input-s02 | PH-14 | [C32](../plans/features/C32.md) |
+| C32 | Voice commands | Implemented but incompletely tested | hybrid | 1 (1) | yes | p1-voice-input-s02 | PH-14 | [C32](../plans/features/%5Bx%5D%20C32.md) |
 | C33 | Speech-to-text | Implemented but incompletely tested | ai | 1 (1) | yes | p1-ai-infrastructure-s01; p1-voice-input-s01 | PH-14 | [C33](../plans/features/%5Bx%5D%20C33.md) |
 | C34 | Text-to-speech | Implemented but incompletely tested | ai | 1 (1) | yes | p0-voice-audio-s02; p1-voice-input-s04 | PH-14 | [C34](../plans/features/%5Bx%5D%20C34.md) |
 | C35 | Voice orders and read-back | Implemented and tested | hybrid | 1 (1) | yes | p1-voice-input-s03 | PH-14 | [C35](../plans/features/%5Bx%5D%20C35.md) |

@@ -335,9 +335,9 @@
           },
           {
             "id": "adv.adv-04.2",
-            "text": "Repeat it urgently, look at the ECG and the kidney function, and tell the anaesthetist until it is explained.",
+            "text": "Repeat it promptly, look at the ECG and the kidney function, and tell the anaesthetist until it is explained.",
             "correct": true,
-            "consequence": "Matches the guidance: UK Kidney Association hyperkalaemia guideline; Resuscitation Council UK emergency treatment of hyperkalaemia."
+            "consequence": "Matches the guidance: UK Kidney Association clinical practice guideline on acute hyperkalaemia in adults (2020); Resuscitation Council UK emergency treatment of hyperkalaemia in adults (2021)."
           }
         ]
       }
@@ -658,5 +658,5 @@
     "per_level": {}
   },
   "reproducibility_key": "8054f6ac27ae83d99c7e0161fa6f07f23e8d4df5796bc30959a8bc3ca44bee1d",
-  "package_sha256": "115a67607d7141699d53c17db850701711dd4d556d928a55d56c0fd2add7c723"
+  "package_sha256": "7c828f121acccc39dff18ad2644a96210cf2fdeeb5bc79c9c6e2c5f52efa9d26"
 }

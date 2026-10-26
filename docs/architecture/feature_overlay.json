@@ -207,14 +207,16 @@
    "gates": []
   },
   "B23": {
-   "runtime": "`src/ProcSense.Core` Discovery and Investigations subsystems; the model fallback of the order grammar reads Gemma 4 31B Cloud when consent and approval allow, the local model otherwise (`server/orders/llm_fallback.py`, prompts orders.kind@4 and orders.map@5, notes in `content/ai/order_notes.json`)",
+   "runtime": "`src/ProcSense.Core` Discovery and Investigations subsystems (156 discovery rules, AI-reviewed in docs/research/ai_clinical_review.md); free-text orders are read by the semantic interpreter of ADR-0028 (`server/orders/interpreter.py`, prompt orders.interpret@1, route orders.interpret to Gemma 4 31B Cloud with the local model as fallback, notes in `content/ai/order_notes.json`)",
    "tests": [
+    "server/tests/test_orders_interpreter.py",
     "tests/ProcSense.Core.Tests/DiscoveryTests.cs",
     "tests/ProcSense.Core.Tests/InvestigationsTests.cs"
    ],
    "gates": [
     "order_fallback"
-   ]
+   ],
+   "engineering_complete": "discovery rules for every problem and the free-text order interpreter are built and tested; on the frozen AI-assistant-authored held-out set of 151 sentences the interpreter with Gemma 4 31B Cloud behaves as labelled on 97.4 percent (0 wrong items, 0 of 50 non-orders offered, 0 confirmation bypasses; reports/ai/orders-ai-heldout_v1.json). The sets are AI-authored synthetic data: the switch `order_fallback` stays OFF until a human-authored set exists (EX-18), and the discovery rules and clinical content need an independent clinician (docs/research/clinician_signoff.md)"
   },
   "C24": {
    "runtime": "`server/dialogue/dialogue.py` behind the AI gateway (`server/routers/ai_gateway.py`) with the grounding validator",
@@ -303,14 +305,16 @@
    ]
   },
   "C32": {
-   "runtime": "`server/orders/grammar.py` parses spoken commands; the Quest client is Sannan's; measured on the frozen held-out set 8: 96.3 percent read back correctly, 0 wrong (`reports/ai/orders-mapper-compare-v8_gemma.json`), gate `order_fallback` OFF until an independent set exists (EX-18)",
+   "runtime": "`server/orders/grammar.py` (read-back, signed single-use ticket, offline grammar with its question guard) and `server/orders/interpreter.py` (one semantic Gemma 4 31B Cloud call in the scenario context, ADR-0028); the Quest client is Sannan's; measured on the frozen AI-assistant-authored held-out set: 97.4 percent as labelled, 0 confirmation bypasses, median 0.74 s (`reports/ai/orders-ai-heldout_v1.json`), gate `order_fallback` OFF until a human-authored set exists (EX-18)",
    "tests": [
-    "server/tests/test_orders.py"
+    "server/tests/test_orders.py",
+    "server/tests/test_orders_interpreter.py"
    ],
    "gates": [
     "voice_orders",
     "order_fallback"
-   ]
+   ],
+   "engineering_complete": "the spoken-order path is built and tested (ASR text, semantic interpretation, proposed action, trainee confirmation, engine verb); 97.4 percent as labelled on the frozen AI-assistant-authored held-out set with Gemma 4 31B Cloud (95 percent asked), no confirmation bypass; the Quest device check is DC-08 and the human-authored set EX-18 are external, and the live switch `order_fallback` stays OFF until then"
   },
   "C33": {
    "runtime": "`server/asr/service.py` (faster-whisper small.en on the card)",
@@ -627,8 +631,6 @@
   "A4.c2": "Built and measured, below its acceptance, gate `plan_extras` OFF: the plan composer's interaction proposals (server/generation/plan_extras.py) choose only among knowledge-base pairs found by code; every claimed pair is re-checked. On the 53 library cases the real 4B chose an interaction for 24 (45 percent), which equals the 24 cases that have a pair at all, against the plan's 80 percent (reports/ai/plan-extras-eval.json); relevance is a human rating (EX-03).",
   "A5.c2": "Built, gate `plan_extras` OFF: the model chooses up to 3 approved, eligible events per case (plan_extras.py); the engine restricts practice-mode events to the plan (SessionOptions.PlannedEvents, tests/ProcSense.Core.Tests/PlannedEventsTests.cs). No ineligible event in 53 cases; whether the chosen events fit the case is a human rating (EX-03), not measured.",
   "A7.c2": "Built, gate `trap_writer` OFF: server/generation/trap_writer.py rewords only wrong options under the narrative lexical checks and reverts any wording that lowers trap fairness (24 of 98 options reworded on the library, fairness never lower: reports/ai/trap-writer-eval.json). The plan's acceptance, plausibility higher than the authored text, is a human rating (EX-03) and is not measured.",
-  "A8.c2": "Built, gate `plan_extras` OFF: each chosen event carries the what-if it realises (whatif_id), validated against the event library and recorded in provenance.plan.events; the engine consumes the event list. Whether the proposed branches are good is a human rating (EX-03).",
-  "B23.c2": "Built and measured, below its acceptance on the independent sets, gate `order_fallback` OFF: the model fallback of the order grammar (server/orders/llm_fallback.py) read 96.3 percent correctly on set 8 (written by the builder's own assistant) but 90.2 percent on set 9 (written by gpt-oss) and 72.6 percent on set 10 (written by nemotron), with 12.5 and 33.3 percent of the non-orders offered (reports/ai/orders-mapper-compare-v9_gemma.json, v10_gemma.json, orders-breakdown-v9.json, v10.json). The plan asks for 90 percent and 10 points above the grammar: met on set 9 only. A share of the misses is the grammar's question guard (kept on purpose), sentences that name no item, and arguably mislabelled non-orders; a human-authored set (EX-18) is needed to settle it.",
-  "C32.c1": "Built and measured, below its acceptance (95 percent) on the independent sets: 90.2 percent on set 9 and 72.6 percent on set 10 (see B23.c2); the server route and read-back are on and the gate `order_fallback` is OFF. The Quest voice client is built; its device check is DC-08."
+  "A8.c2": "Built, gate `plan_extras` OFF: each chosen event carries the what-if it realises (whatif_id), validated against the event library and recorded in provenance.plan.events; the engine consumes the event list. Whether the proposed branches are good is a human rating (EX-03)."
  }
 }

@@ -149,7 +149,8 @@ class Hearing:
     options: list[str] = field(default_factory=list)
     dose_removed: bool = False
     action: dict | None = None
-    source: str = "grammar"                      # grammar | model (the language-model fallback suggested it; the read-back and the yes are the same)
+    source: str = "grammar"                      # grammar | model (the language model suggested it; the read-back and the yes are the same)
+    interpretation: str = ""                     # what the semantic interpreter took the sentence for (order, question, hypothetical, negated, ambiguous, incomplete, unsupported, other); empty when the grammar answered
 
 
 def action_for(intent: str, e: Entry) -> dict | None:
@@ -170,16 +171,24 @@ READBACK = {"ORDER_TEST": "order {label}", "REQUEST_MEDICATION": "request {label
 
 
 class ReadBack:
-    def __init__(self, vocab: list[Entry] | None = None, mapper=None):
+    def __init__(self, vocab: list[Entry] | None = None, mapper=None, interpreter=None):
         self.vocab = vocab or vocabulary()
         self.mapper = mapper                     # server/orders/llm_fallback.OrderMapper or None: used only when the grammar found no order
+        self.interpreter = interpreter           # server/orders/interpreter.OrderInterpreter or None: reads the whole sentence in its context first (ADR-0028); the grammar below is the answer when it is None or the model could not be used
         self.pending: Hearing | None = None
         self.log: list[dict] = []
         self.released: list[dict] = []
 
-    def hear(self, transcript: str) -> Hearing:
+    def hear(self, transcript: str, context=None) -> Hearing:
         t0 = time.monotonic()
         text, removed = clean(transcript)
+        if self.interpreter is not None:
+            it = self.interpreter.interpret(transcript, self.vocab, context, dose_removed=removed)
+            if it is not None:                   # the model read the sentence; None (down, slow, invalid) falls through to the grammar and its question guard
+                h = self._from_interpretation(it, removed)
+                self.pending = h if h.status in ("confirm", "removed_dose_confirm") else None
+                self._log(transcript, h, t0)
+                return h
         if not_an_order(text):
             h = Hearing("menu", read_back=NOT_AN_ORDER_REPLY, options=sorted(MENU.values()), dose_removed=removed)
             self.pending = None
@@ -223,6 +232,27 @@ class ReadBack:
         self.pending = h
         self._log(transcript, h, t0)
         return h
+
+    NOT_AN_ORDER_BY_KIND = {"question": "That was a question, so I did not take it as an order. Say the order plainly or use the menu.",
+                            "hypothetical": "That sounded like something for later or a thought, so I did not take it as an order. Say the order plainly or use the menu.",
+                            "negated": "You said not to, so nothing is ordered.",
+                            "unsupported": "The simulator has no such order. Please use the menu.",
+                            "other": "I did not take that as an order."}
+
+    def _from_interpretation(self, it, removed: bool) -> Hearing:
+        """A proposal of the model as a hearing. Only an order becomes something to confirm; everything else asks, or says nothing was taken. Nothing is released here: the yes does that."""
+        if it.kind == "order" and it.entry is not None:
+            e = it.entry
+            rb = "Confirm: " + READBACK[it.intent].format(label=e.label.lower()) + "?"
+            if removed:
+                rb = rb[:-1] + "? (I left out the dose; choose it on the form.)"
+            return Hearing("removed_dose_confirm" if removed else "confirm", it.intent, {"target": e.target, "label": e.label}, rb, dose_removed=removed, action=action_for(it.intent, e), source="model", interpretation="order")
+        if it.kind in ("ambiguous", "incomplete"):
+            names = [x.label for x in it.alternatives]
+            question = it.clarification or ("Which one: " + " or ".join(names) + "?" if names else "What exactly should I order? Please say it again or use the menu.")
+            return Hearing("clarify", None, {}, question, names, removed, source="model", interpretation=it.kind)
+        reply = self.NOT_AN_ORDER_BY_KIND.get(it.kind, self.NOT_AN_ORDER_BY_KIND["other"])
+        return Hearing("menu", None, {}, reply, sorted(MENU.values()), removed, source="model", interpretation=it.kind)
 
     def confirm(self, spoken: str) -> dict | None:
         """The action to release, only if a hearing is waiting and the answer is a yes; a no cancels it."""

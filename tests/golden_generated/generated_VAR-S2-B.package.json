@@ -310,21 +310,21 @@
         ]
       },
       {
-        "id": "adv.adv-10",
-        "prompt": "The haemoglobin is low in an older man. What now?",
+        "id": "adv.adv-05",
+        "prompt": "A CT scan would answer the question. What do you do?",
         "rule": null,
         "options": [
           {
-            "id": "adv.adv-10.1",
-            "text": "Proceed: mild anaemia is common at his age.",
+            "id": "adv.adv-05.1",
+            "text": "Book the CT: the diagnosis matters more than the radiation.",
             "correct": false,
-            "consequence": "A low haemoglobin is in the case: unexplained iron-deficiency anaemia in an older man needs investigation, not acceptance."
+            "consequence": "A pregnancy test is in the case: ionising radiation to a pregnant patient is justified only by a deliberate decision that the benefit outweighs the risk."
           },
           {
-            "id": "adv.adv-10.2",
-            "text": "Find the cause (iron stores, bleeding) before elective surgery and tell the senior.",
+            "id": "adv.adv-05.2",
+            "text": "Open the pregnancy result first; if she is pregnant choose an ultrasound or MRI where they can answer the question, and involve the senior and radiologist.",
             "correct": true,
-            "consequence": "Matches the guidance: NICE NG12 suspected cancer recognition; BSG iron deficiency guidance."
+            "consequence": "Matches the guidance: IR(ME)R 2017 (pregnancy enquiry and justification); HPA/RCR/CoR Protection of pregnant patients during diagnostic medical exposures to ionising radiation."
           }
         ]
       }
@@ -500,8 +500,8 @@
     "status": "awaiting_review",
     "added": [
       {
-        "block": "ADV-10",
-        "decision": "adv.adv-10",
+        "block": "ADV-05",
+        "decision": "adv.adv-05",
         "anchor": "results"
       }
     ]
@@ -629,5 +629,5 @@
     "per_level": {}
   },
   "reproducibility_key": "ae22e7185feae7236a4dad366c359fc72c03c5914e861033850fee35751ad670",
-  "package_sha256": "96e750709c13cd944610d701ce44c3ccce2450e9b07e68dbe4023ef4a6122d86"
+  "package_sha256": "7974927900e497cf0fe734f6897eec481f82d5b79dd39bc0b942f6f904db5aa3"
 }

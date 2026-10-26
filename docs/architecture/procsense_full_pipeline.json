@@ -8699,9 +8699,9 @@
    "category": "Data, media and investigations",
    "group": "g_feat_B",
    "kind": "deterministic",
-   "status": "Partially implemented",
-   "ai_status": "Planned",
-   "description": "Problems are revealed by the result, examination or question that discovers them. Built: 29 discovery rules for the 17 P0 cases; P1 and P2 problems pending.",
+   "status": "Implemented and tested",
+   "ai_status": "Implemented and tested",
+   "description": "Problems are revealed by the result, examination or question that discovers them. Built: discovery rules for every problem of every case (29 written by hand for the 17 P0 cases, 127 derived, six corrected in the AI clinical review of 26 Oct 2026) and a semantic reader of free-text orders (ADR-0028).",
    "evidence": [
     "content/problems/discovery.json",
     "reports/ai/classifier-bench-synthetic2.json",
@@ -8715,7 +8715,14 @@
     "docs/research/classifier_benchmark/safety_gate.md",
     "tests/classifier_challenge_v4/challenge.json",
     "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
-    "reports/ai/speech-evaluation-acceptance.json"
+    "reports/ai/speech-evaluation-acceptance.json",
+    "server/orders/interpreter.py",
+    "prompts/orders/interpret_v1.txt",
+    "docs/decisions/ADR-0028-semantic-spoken-order-interpreter.md",
+    "reports/ai/orders-ai-heldout_v1.json",
+    "reports/ai/orders-ai-dev_v1.json",
+    "tests/orders/ai_authored/heldout_v1.json",
+    "docs/research/ai_clinical_review.md"
    ],
    "lineage": [
     "DT-073",
@@ -8739,9 +8746,7 @@
     "discovery coverage test"
    ],
    "acceptance": "Every problem in every case is discoverable.",
-   "blockers": [
-    "external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
-   ],
+   "blockers": [],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
    ],
@@ -8754,11 +8759,12 @@
    "plan": {
     "user_experience": "Problems appear in the trainee's problem list only when they discover them by asking, examining or reading a result; free-text orders are understood.",
     "exists": [
-     "29 discovery rules for P0 cases"
+     "156 discovery rules for 64 cases (DT-091), AI-reviewed, awaiting an independent clinician",
+     "semantic interpreter of free-text orders: Gemma 4 31B Cloud reads the sentence in its scenario context and proposes one catalogue item, read back and released by the trainee's yes"
     ],
     "missing": [
-     "rules for P1/P2 problems (DT-091)",
-     "free-text order and question interpretation"
+     "independent clinician review of the discovery rules (docs/research/clinician_signoff.md)",
+     "a human-authored evaluation set for the spoken-order reader (EX-18)"
     ],
     "deterministic_foundation": "Discovery rules.",
     "ai_questions": {
@@ -8766,8 +8772,8 @@
      "why_ai_is_useful": "Trainees phrase orders many ways; an LLM maps them to ids better than a keyword list.",
      "method_split": "LLM mapping to enum ids with confidence; deterministic discovery rules decide what is revealed.",
      "deterministic_still_needed": "Discovery rules.",
-     "ai_implemented": "None.",
-     "ai_missing": "Free-text mapper.",
+     "ai_implemented": "Semantic interpreter of spoken orders (ADR-0028): 97.4 percent as labelled on a frozen AI-assistant-authored held-out set of 151 sentences, 0 wrong items, 0 of 50 non-orders offered, 0 confirmation bypasses, 0.74 s median.",
+     "ai_missing": "A human-authored evaluation set (EX-18); the live switch order_fallback stays OFF until then.",
      "must_build": "Prompt with id enums; confidence threshold; menu fallback.",
      "better_than_baseline": "Mapping accuracy versus keyword matcher."
     },
@@ -8818,7 +8824,7 @@
       "id": "B23.c2",
       "name": "Free-text order and question mapper",
       "kind": "AI (LLM)",
-      "status": "Planned",
+      "status": "Deferred",
       "purpose": "Understand phrasing.",
       "method": "Qwen3.5 4B enum classification with confidence.",
       "models": [
@@ -10388,9 +10394,9 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "hybrid",
-   "status": "Partially implemented",
-   "ai_status": "Planned",
-   "description": "Short spoken commands mapped to verbs (open results, call nurse).",
+   "status": "Implemented but incompletely tested",
+   "ai_status": "Implemented but incompletely tested",
+   "description": "Short spoken commands mapped to verbs (open results, call nurse): offline grammar plus a semantic Gemma 4 31B Cloud interpreter (ADR-0028); every proposal is read back and released only by the trainee's yes.",
    "evidence": [
     "server/orders/grammar.py",
     "tools/ai/eval_orders.py",
@@ -10399,7 +10405,14 @@
     "unity/Assets/Scripts/Voice/VoiceHealth.cs",
     "unity/Assets/Scripts/Voice/TeamConversation.cs",
     "unity/Assets/Tests/EditMode/VoiceClientTests.cs",
-    "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs"
+    "unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs",
+    "server/orders/interpreter.py",
+    "prompts/orders/interpret_v1.txt",
+    "docs/decisions/ADR-0028-semantic-spoken-order-interpreter.md",
+    "reports/ai/orders-ai-heldout_v1.json",
+    "reports/ai/orders-ai-dev_v1.json",
+    "tests/orders/ai_authored/heldout_v1.json",
+    "docs/research/ai_clinical_review.md"
    ],
    "lineage": [
     "p1-voice-input-s02"
@@ -10439,12 +10452,14 @@
    "plan": {
     "user_experience": "Short spoken commands ('open results', 'call the nurse') work instantly.",
     "exists": [
-     "verbs"
+     "verbs",
+     "grammar with signed single-use confirmation tickets",
+     "semantic interpreter (ADR-0028)",
+     "Quest push-to-talk client (Sannan's device check DC-08)"
     ],
     "missing": [
-     "grammar",
-     "ASR",
-     "LLM fallback for unmatched phrases"
+     "device checks DC-08 to DC-11 on the Quest (external)",
+     "a human-authored evaluation set (EX-18)"
     ],
     "deterministic_foundation": "Command grammar.",
     "ai_questions": {
@@ -10452,8 +10467,8 @@
      "why_ai_is_useful": "People do not use exact phrases.",
      "method_split": "Grammar first; LLM fallback with enum.",
      "deterministic_still_needed": "Grammar.",
-     "ai_implemented": "None.",
-     "ai_missing": "Fallback mapper.",
+     "ai_implemented": "Semantic interpreter of spoken orders (ADR-0028): 97.4 percent as labelled on a frozen AI-assistant-authored held-out set of 151 sentences, no confirmation bypass.",
+     "ai_missing": "A human-authored evaluation set (EX-18); the live switch order_fallback stays OFF until then.",
      "must_build": "Enum prompt.",
      "better_than_baseline": "Command success versus grammar only."
     },
@@ -10462,7 +10477,7 @@
       "id": "C32.c1",
       "name": "Grammar plus LLM fallback",
       "kind": "AI (pretrained + LLM)",
-      "status": "Planned",
+      "status": "Implemented but incompletely tested",
       "purpose": "Commands.",
       "method": "ASR + grammar + enum LLM.",
       "models": [

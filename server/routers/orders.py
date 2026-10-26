@@ -19,7 +19,7 @@ from server.llm import client as client_mod
 from server.middleware.audit import AiCallRecord, audited
 from server.orders import ticket
 from server.orders.grammar import NO, YES, Entry, Hearing, ReadBack, vocabulary
-from server.orders.llm_fallback import OrderMapper
+from server.orders.interpreter import OrderInterpreter
 from server.routers import ai_gateway
 
 router = APIRouter(tags=["spoken orders"])
@@ -27,6 +27,7 @@ router = APIRouter(tags=["spoken orders"])
 
 class HearIn(BaseModel):
     text: str = Field(min_length=1, max_length=300)
+    context: dict | str | None = None                 # what the headset knows (the patient, what is ordered or given, the previous turn, a read-back waiting for an answer); read only by the interpreter, never trusted as an instruction
 
 
 class HearOut(BaseModel):
@@ -37,6 +38,7 @@ class HearOut(BaseModel):
     options: list[str] = []
     dose_removed: bool = False
     source: str = "grammar"                       # grammar | model
+    interpretation: str = ""                      # what the semantic interpreter took the sentence for; empty when the grammar answered
     ticket: str = ""                              # present only when there is something to confirm
     error: str = ""
 
@@ -58,10 +60,10 @@ def get_vocabulary() -> list[Entry]:
 
 
 def get_mapper(settings: Settings = Depends(get_settings)):
-    """The model fallback, only when the host is configured and the `order_fallback` gate is on; otherwise the grammar answers alone."""
+    """The semantic interpreter (ADR-0028), only when the host is configured and the `order_fallback` gate is on; otherwise the grammar answers alone. (The name is kept: the older mapper is no longer in this path.)"""
     if not settings.ollama_url or not ai_features.enabled("order_fallback"):
         return None
-    return OrderMapper(client_mod.OllamaClient(settings.ollama_url))
+    return OrderInterpreter(client_mod.OllamaClient(settings.ollama_url))
 
 
 @router.post("/orders/organisations/{organisation_id}/hear", response_model=HearOut)
@@ -72,7 +74,7 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
         return HearOut(status="menu", read_back="Spoken orders are off. Please use the menu.", error="FEATURE_OFF")
     if not ai_gateway._limiter(settings).allow(call.user_id):
         raise HTTPException(status_code=429, detail="too_many_ai_calls")
-    rb = ReadBack(get_vocabulary(), mapper)
+    rb = ReadBack(get_vocabulary(), None, mapper)
     if mapper is not None:
         if not ai_gateway._slot.acquire(timeout=settings.ai_queue_wait_seconds):
             call.fell_back("MODEL_BUSY")
@@ -80,17 +82,17 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
             h: Hearing = rb.hear(body.text)
         else:
             try:
-                h = rb.hear(body.text)
+                h = rb.hear(body.text, body.context)
             finally:
                 ai_gateway._slot.release()
     else:
         h = rb.hear(body.text)
     if h.source == "model":
-        call.set_model("orders_map")
+        call.set_model("orders_interpret")
     call.validated(True)
     call.set_output(ref=f"{h.status}:{h.intent}:{h.source}")
     t = ticket.issue(call.user_id, h.intent, h.slots, h.action) if h.status in ("confirm", "removed_dose_confirm") else ""
-    return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, ticket=t)
+    return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, interpretation=h.interpretation, ticket=t)
 
 
 @router.post("/orders/organisations/{organisation_id}/confirm", response_model=ConfirmOut)

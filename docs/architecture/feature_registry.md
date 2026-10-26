@@ -10,9 +10,9 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 
 | Status | Features |
 |---|---|
-| Implemented and tested | 42 |
-| Implemented but incompletely tested | 21 |
-| Partially implemented | 2 |
+| Implemented and tested | 43 |
+| Implemented but incompletely tested | 22 |
+| Partially implemented | 0 |
 | Planned | 0 |
 | Blocked | 0 |
 | Deferred | 3 |
@@ -46,7 +46,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | B20 | Anomalies and artefacts (deliberate and realistic) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/%5Bx%5D%20B20.md) |
 | B21 | Result variation (repeats, trends, timing) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/%5Bx%5D%20B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | ai | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/%5Bx%5D%20B22.md) |
-| B23 | Investigation discovery | deterministic | Partially implemented | Planned | PH-04 | P0 | [plan](../plans/features/B23.md) |
+| B23 | Investigation discovery | deterministic | Implemented and tested | Implemented and tested | PH-04 | P0 | [plan](../plans/features/%5Bx%5D%20B23.md) |
 | C24 | Patient dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C24.md) |
 | C25 | Nurse dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C25.md) |
 | C26 | Anaesthetist dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C26.md) |
@@ -55,7 +55,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | C29 | Persona system | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C29.md) |
 | C30 | Context-aware and reactive dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C30.md) |
 | C31 | Voice interaction (end to end) | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C31.md) |
-| C32 | Voice commands | hybrid | Partially implemented | Planned | PH-14 | P1 | [plan](../plans/features/C32.md) |
+| C32 | Voice commands | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C32.md) |
 | C33 | Speech-to-text | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C33.md) |
 | C34 | Text-to-speech | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C34.md) |
 | C35 | Voice orders and read-back | hybrid | Implemented and tested | Implemented and tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C35.md) |
@@ -742,14 +742,14 @@ After a result is viewed (practice mode, or in the debrief), explain what it sho
 
 ### B23 — Investigation discovery
 
-Problems are revealed by the result, examination or question that discovers them. Built: 29 discovery rules for the 17 P0 cases; P1 and P2 problems pending.
+Problems are revealed by the result, examination or question that discovers them. Built: discovery rules for every problem of every case (29 written by hand for the 17 P0 cases, 127 derived, six corrected in the AI clinical review of 26 Oct 2026) and a semantic reader of free-text orders (ADR-0028).
 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Partially implemented |
-| AI status | Planned |
-| Evidence (what exists) | content/problems/discovery.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tests/classifier_challenge_v4/challenge.json; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; reports/ai/speech-evaluation-acceptance.json |
+| Status | Implemented and tested |
+| AI status | Implemented and tested |
+| Evidence (what exists) | content/problems/discovery.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tests/classifier_challenge_v4/challenge.json; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; reports/ai/speech-evaluation-acceptance.json; server/orders/interpreter.py; prompts/orders/interpret_v1.txt; docs/decisions/ADR-0028-semantic-spoken-order-interpreter.md; reports/ai/orders-ai-heldout_v1.json; reports/ai/orders-ai-dev_v1.json; tests/orders/ai_authored/heldout_v1.json; docs/research/ai_clinical_review.md |
 | Lineage (existing ids) | DT-073; DT-091 |
 | Method | Rules. |
 | LLM-first classification | Not a model task. |
@@ -762,7 +762,7 @@ Problems are revealed by the result, examination or question that discovers them
 | Fallback | n/a |
 | Tests planned | discovery coverage test |
 | Acceptance | Every problem in every case is discoverable. |
-| Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | — |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
 | Tasks | p0-case-library-s05; p1-live-scenario-generation-s03 |
 | Phase | PH-04 Block library and composer foundation |
@@ -996,14 +996,14 @@ Speak to characters and hear them answer: ASR, dialogue, TTS, lip sync.
 
 ### C32 — Voice commands
 
-Short spoken commands mapped to verbs (open results, call nurse).
+Short spoken commands mapped to verbs (open results, call nurse): offline grammar plus a semantic Gemma 4 31B Cloud interpreter (ADR-0028); every proposal is read back and released only by the trainee's yes.
 
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
-| AI status | Planned |
-| Evidence (what exists) | server/orders/grammar.py; tools/ai/eval_orders.py; unity/Assets/Scripts/Voice/PushToTalk.cs; unity/Assets/Scripts/Voice/AsrClient.cs; unity/Assets/Scripts/Voice/VoiceHealth.cs; unity/Assets/Scripts/Voice/TeamConversation.cs; unity/Assets/Tests/EditMode/VoiceClientTests.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
+| Evidence (what exists) | server/orders/grammar.py; tools/ai/eval_orders.py; unity/Assets/Scripts/Voice/PushToTalk.cs; unity/Assets/Scripts/Voice/AsrClient.cs; unity/Assets/Scripts/Voice/VoiceHealth.cs; unity/Assets/Scripts/Voice/TeamConversation.cs; unity/Assets/Tests/EditMode/VoiceClientTests.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs; server/orders/interpreter.py; prompts/orders/interpret_v1.txt; docs/decisions/ADR-0028-semantic-spoken-order-interpreter.md; reports/ai/orders-ai-heldout_v1.json; reports/ai/orders-ai-dev_v1.json; tests/orders/ai_authored/heldout_v1.json; docs/research/ai_clinical_review.md |
 | Lineage (existing ids) | p1-voice-input-s02 |
 | Method | ASR + deterministic grammar; LLM only for unmatched phrases. |
 | LLM-first classification | Grammar first (fast, exact); LLM fallback. |

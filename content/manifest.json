@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "550ce3f12c6e306d3a41e5afd23741835dc5c519e70acb6d2a3b251330af6a0e",
+ "content_hash": "e623e1fc881acb68fb1b924d8528d6036935fcca691383c860938c45bda8dc4c",
  "files": 753,
- "bytes": 18272993,
+ "bytes": 18276206,
  "per_folder": {
   "(root)": 65,
   "adversarial": 1,
@@ -63,16 +63,16 @@
    "sha256": "5facc82a956e9a80e09b9f04e2ade7aef9b44cb66bee8a3f251c06776d23d264"
   },
   "adversarial/blocks.json": {
-   "bytes": 9161,
-   "sha256": "42d4c156da90baad73c15f3925e2d397644675b58c9fcf72614478a473c664b3"
+   "bytes": 10969,
+   "sha256": "c54f2ae29a69e403ce8a9e4c358fa9039d6cbb9d6e8fa92451eac1121ee384d6"
   },
   "ai/adaptation_triggers.json": {
    "bytes": 3435,
    "sha256": "b6f334cc800a609ebca03cbb9f3a71d1389f267517fa93c21b762aa40a4e23a0"
   },
   "ai/features.json": {
-   "bytes": 9908,
-   "sha256": "b8df7ea5f07b33cb9327375c176f709cc5bf67d1563fd454bfc420e54d6c4d30"
+   "bytes": 9976,
+   "sha256": "869b63b584caf5d25607350e3d8f31c5c9b1deae66ded2b63fb8135de2a66a7d"
   },
   "ai/intents.json": {
    "bytes": 945,
@@ -87,12 +87,12 @@
    "sha256": "bdbbe1b13780f553d2181c21fa8aad4ac2474ce4baa84b7c9e932ca8c523a007"
   },
   "ai/model_routes.json": {
-   "bytes": 6534,
-   "sha256": "998a1495d153653030e406c6bda2dee6dffed821e05c4eee2c8f14167f216082"
+   "bytes": 7389,
+   "sha256": "70ab68c5edc3f4d9707f84b70cd0ec70e095f04a964a7880a10812e3cfc7fb4f"
   },
   "ai/order_notes.json": {
-   "bytes": 4022,
-   "sha256": "716d7eca0dbf4a1b715a946dd8e2bd9ddef95a594d7ccb06d521a56dec8b68a8"
+   "bytes": 4043,
+   "sha256": "b4726bb0e2bd1556bf26703f66b6450d6f2070a145eca9ec603f700539669b44"
   },
   "ai/persona.json": {
    "bytes": 701,
@@ -107,8 +107,8 @@
    "sha256": "207dfc7c6a3aabfc61b0f66f0b5cd537672745d3b63ee9d13b549a6da06eeff2"
   },
   "ai/thresholds.json": {
-   "bytes": 18449,
-   "sha256": "11db1c380f58f27f9234e15f1c45198a1c86b114861e22c82a61037d0cab22e1"
+   "bytes": 18394,
+   "sha256": "31c16dd95e20788cbd5d4c939b2a443d3066e9a4208accc98b55b2885318a466"
   },
   "assessment/mapping.json": {
    "bytes": 8058,
@@ -2671,8 +2671,8 @@
    "sha256": "8b0f51bb5936fcef5a1523395204a631e0a6238e79c15d3a15cb9eee626dc453"
   },
   "problems/discovery.json": {
-   "bytes": 44274,
-   "sha256": "453d63773581a681c11bca9ac4992cf5cc4f9754d777dd323d6563c11704d94a"
+   "bytes": 44790,
+   "sha256": "6b940c9eed2fd417c1457fa4b9f5d2f9dd25fe81166feb127fc587818253ac74"
   },
   "problems/problems.json": {
    "bytes": 3539,

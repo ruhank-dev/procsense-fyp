@@ -317,15 +317,15 @@
         "options": [
           {
             "id": "adv.adv-01.1",
-            "text": "Check the allergy record first and choose a non-penicillin, discussing the reaction history with the prescriber.",
+            "text": "Check the allergy and what the reaction was first; with the prescriber, choose a non-penicillin that suits that history.",
             "correct": true,
-            "consequence": "Matches the guidance: NICE CG183 drug allergy; Resuscitation Council UK anaphylaxis guideline."
+            "consequence": "Matches the guidance: NICE CG183 drug allergy (2014); Resuscitation Council UK anaphylaxis guideline (2021)."
           },
           {
             "id": "adv.adv-01.2",
             "text": "Give the standard first-line penicillin: it is what the pathway says.",
             "correct": false,
-            "consequence": "The record names a penicillin allergy: a standard penicillin could cause an allergic reaction."
+            "consequence": "The record names a penicillin allergy: a standard penicillin could cause an allergic reaction, and how serious the past reaction was decides which alternatives are safe."
           }
         ]
       }
@@ -646,5 +646,5 @@
     "per_level": {}
   },
   "reproducibility_key": "47b5213921ec7934be674e17d2def757e56721229976f4bb14404ca3a0d3e06e",
-  "package_sha256": "8ce7852d1dc59574626a414f884fa29fa68b5ac53b4dce0f9c6ad1e836be950e"
+  "package_sha256": "84e5c3a6fe2f41f4b89ee2ee87ca3b4a79dace38c28314306e449d5dae78ec11"
 }

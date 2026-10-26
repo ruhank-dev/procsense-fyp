@@ -13,7 +13,7 @@ from server import ai_features, config
 from server.llm import client as client_mod
 from server.middleware import audit
 from server.models.ai_call import AiCall
-from server.orders.llm_fallback import OrderMapper
+from server.orders.interpreter import OrderInterpreter
 from server.repositories import accounts
 from server.routers import orders as orders_router
 
@@ -24,9 +24,6 @@ def host(answer):
     def h(request):
         if request.url.path == "/api/tags":
             return httpx.Response(200, json={"models": []})
-        if '"kind"' in json.dumps(json.loads(request.content).get("format", {})):                   # the kind stage of the mapper: answered consistently with the item the test wants chosen
-            tgt = answer.get("target", "NONE")
-            return httpx.Response(200, json={"message": {"content": json.dumps({"kind": tgt.split(":")[0] if ":" in tgt else "NONE"})}})
         return httpx.Response(200, json={"message": {"content": json.dumps(answer)}})
     return client_mod.OllamaClient(transport=httpx.MockTransport(h))
 
@@ -91,13 +88,15 @@ def test_a_ticket_cannot_be_forged_or_used_by_someone_else(world):
     assert world.post("confirm", {"ticket": mine, "spoken": "yes"}).json()["outcome"] == "released"         # the real owner can still decide it
 
 
-def test_the_model_fallback_only_suggests_a_read_back(world):
-    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: OrderMapper(host({"target": "test:ecg", "confidence": 0.9}))
+def test_the_model_only_suggests_a_read_back(world):
+    ask = {"kind": "order", "intent": "ORDER_TEST", "target": "test:ecg", "confidence": 0.9}
+    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: OrderInterpreter(host(ask))
     h = world.post("hear", {"text": "get a trace of his heart"}).json()
-    assert (h["status"], h["source"], h["label"]) == ("confirm", "model", "ECG")
+    assert (h["status"], h["source"], h["label"], h["interpretation"]) == ("confirm", "model", "ECG", "order")
     assert world.post("confirm", {"ticket": h["ticket"], "spoken": "yes"}).json()["action"] == {"verb": "order_investigation", "params": {"test": "ecg"}}
-    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: OrderMapper(host({"target": "NONE", "confidence": 0.9}))
-    assert world.post("hear", {"text": "get a trace of his heart"}).json()["status"] == "menu"
+    world.api.client.app.dependency_overrides[orders_router.get_mapper] = lambda: OrderInterpreter(host({"kind": "question", "intent": "NONE", "target": "NONE", "confidence": 0.9}))
+    q = world.post("hear", {"text": "can I ask what an ECG shows"}).json()
+    assert (q["status"], q["ticket"], q["interpretation"]) == ("menu", "", "question")
 
 
 def test_a_hold_is_read_back_and_released_to_the_hold_verb(world):

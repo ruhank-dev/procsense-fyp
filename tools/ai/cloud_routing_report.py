@@ -121,7 +121,20 @@ def figures(only_first: bool = False) -> dict:
         i = jfile(f"interpreter-{key}.json")
         if i:
             out["personalisation.interpret"][model] = {"confirmed": i["confirmed_by_model"], "no_proposal": i["learners_with_no_accepted_proposal"], "seconds_per_learner": i["seconds_per_learner"]}
+    out["orders.interpret"] = interpret_figures()
     return {k: v for k, v in out.items() if v}
+
+
+def interpret_figures() -> dict:
+    """The single-call semantic order interpreter (ADR-0028), measured on the AI-assistant-authored held-out set 1: the frozen implementation with the cloud model (scored once) and, for the comparison only, the local model on the same sentences (a second look).
+    `correct` is the share of ALL rows behaving as the label says; `false_offer` the share of non-order rows (non-orders and unsupported) that were read back."""
+    fig = {}
+    for model, name in ((LOCAL, "orders-ai-heldout_v1-qwen_second_look.json"), ("gemma4:31b-cloud", "orders-ai-heldout_v1.json")):
+        p = ROOT / "reports" / "ai" / name
+        if p.exists():
+            d = json.loads(p.read_text(encoding="utf-8"))
+            fig[model] = {"correct": d["accuracy"], "wrong": d["wrong_item_rate"], "false_offer": d["non_order_false_positive_rate"], "ms_p50": round(d["latency_s"]["median"] * 1000), "ms_p95": round(d["latency_s"]["p95"] * 1000)}
+    return fig
 
 
 def choose(task: str, f: dict) -> tuple[str, str]:
@@ -162,7 +175,7 @@ def choose(task: str, f: dict) -> tuple[str, str]:
         elif task == "debrief.rewrite":
             if v["accept_rate"] >= loc["accept_rate"] + MARGIN:
                 ok[m] = (v["accept_rate"],)
-        elif task in ("orders.kind", "orders.map"):
+        elif task in ("orders.kind", "orders.map", "orders.interpret"):
             if v["correct"] >= loc["correct"] + MARGIN and v["wrong"] <= loc["wrong"] and v["false_offer"] <= loc["false_offer"] and v["ms_p95"] <= BUDGET_MS:
                 ok[m] = (v["correct"], -v["wrong"], -v["ms_p50"])
         elif task == "personalisation.interpret":

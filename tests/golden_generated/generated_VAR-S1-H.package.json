@@ -313,13 +313,13 @@
             "id": "adv.adv-05.1",
             "text": "Book the CT: the diagnosis matters more than the radiation.",
             "correct": false,
-            "consequence": "A pregnancy test is in the case: ionising radiation to a pregnant patient needs a deliberate decision."
+            "consequence": "A pregnancy test is in the case: ionising radiation to a pregnant patient is justified only by a deliberate decision that the benefit outweighs the risk."
           },
           {
             "id": "adv.adv-05.2",
-            "text": "Open the pregnancy result first; if she is pregnant choose an ultrasound or MRI and involve the senior.",
+            "text": "Open the pregnancy result first; if she is pregnant choose an ultrasound or MRI where they can answer the question, and involve the senior and radiologist.",
             "correct": true,
-            "consequence": "Matches the guidance: IR(ME)R 2017 pregnancy enquiry; RCR guidance on pregnancy and ionising radiation."
+            "consequence": "Matches the guidance: IR(ME)R 2017 (pregnancy enquiry and justification); HPA/RCR/CoR Protection of pregnant patients during diagnostic medical exposures to ionising radiation."
           }
         ]
       }
@@ -628,5 +628,5 @@
     "per_level": {}
   },
   "reproducibility_key": "6f7574a341528638ed849fe50edd6515df16300ef1d8b3ddd6426a725bed9667",
-  "package_sha256": "ffc2706cb77a827853bdd3a42b2f2f89263460de4daa99348497688bc5c92f93"
+  "package_sha256": "4b09a6c47bd89454e7c7e3bcd9987a64e233e19a7ad27afcab788ca06146b2dc"
 }
