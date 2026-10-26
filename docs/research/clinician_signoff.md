@@ -27,3 +27,7 @@ The question of which *evidence* was opened is in `docs/research/clinical_verifi
 ## Note of 26 Oct 2026: an AI review exists, it is not a sign-off
 
 `docs/research/ai_clinical_review.md` is an evidence-based review by an AI assistant of the adversarial blocks, the discovery rules, the synthetic ECG and laboratory content, the medication notes and the order descriptions. It corrected 12 blocks, 6 discovery rules and one order note. It is not a clinician's review: every question above, and the specific questions in the right-hand column of section 2 of that report, still need an independent clinician before the content is called clinically approved.
+
+## Note of 27 Oct 2026: the owner accepted the content for the prototype; that is not a sign-off
+
+The project owner reviewed `docs/research/ai_clinical_review.md` and accepted the clinical content for the educational final-year prototype (section 9 of that report). Engineering on the content is therefore finished and no longer waits for this page. Every question above is still open for an independent licensed clinician and stays a requirement for any real trainee or clinical use; nothing on this page is marked signed.

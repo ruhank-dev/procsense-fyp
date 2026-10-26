@@ -2,6 +2,12 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0zz. Update of 27 October 2026 (later: spoken orders in Unity, retired classifier plans removed, content accepted for the prototype)
+
+* **Unity/Quest:** spoken medical orders now have a VR experience (ADR-0028, second amendment): the speech-action route is asked first, a sentence that started no tablet action and was not addressed to the patient is offered to the order route, and an order panel shows the reader (Gemma Cloud or the offline grammar), the read-back with Yes/No, clarifying options and missing-detail choices; the trainee's yes releases a signed single-use ticket and the engine validates the applied action. Tested without a headset (EditMode 133, PlayMode 135); the headset checks DC-08/DC-11 are Sannan's and not run.
+* **Plans:** the retired classifier plans (feature E60, steps p1-ai-language-s06, p1-ai-language-s07, p2-ai-extensions-s03) were deleted (ADR-0029); the plan set is 67 features and 279 steps, the Ruhan and Moiz inventory 126 steps.
+* **Clinical content:** accepted by the project owner for the educational prototype (not a clinician's sign-off, `docs/research/ai_clinical_review.md` section 9); the quality gate enforces the anchor of every adversarial decision.
+
 ## 0z. Update of 27 October 2026 (spoken orders: Gemma Cloud first, ADR-0028; current model roles)
 
 * **Current roles (read this before the older sections):** Gemma 4 31B Cloud reads speech and spoken orders and speaks the patient, staff and nurse lines, and writes/critiques/judges synthetic scenario text; local Qwen3.5 4B is the default and fallback of every other route (plan composer, debrief rewrite, personalisation, analytics explanation) and the fallback of the dialogue routes; the offline grammar is the fallback of spoken orders. The 9B, the classifier and the two-stage order mapper are retired (ADR-0017, 0019, 0025, 0028). Per-route table: `content/ai/model_routes.json`; one-page summary: `docs/context/ProcSense_Current_State.md`.
@@ -219,7 +225,7 @@ Built by the engineer under the owner's instruction, each with tests in CI and a
 |---|---|
 | Does P0 contain any trained model or LLM? | **No.** P0 is deterministic rules and tables only. Nothing in P0 is called AI, and no rule is dressed up as a model. |
 | Where does AI start? | **P1** (milestones M10 to M12): a locally served language model (Ollama on a 6 GB GPU: the desktop GTX 1660 SUPER or the laptop RTX 4050, chosen by the dual-GPU benchmark in `p1-ai-infrastructure-s02`) for patient and staff lines, a communication classifier and a debrief rewrite; speech recognition on the desktop GPU; a FastAPI backend. |
-| Where are models *trained*? | **Only in P2** (`p2-ai-extensions-s03`): a small classifier trained on the human-labelled set. The P1 classifier, dialogue and debrief use a served model with prompts, **not** training. Speech recognition is an off-the-shelf model, not trained here. |
+| Where are models *trained*? | **Nowhere at present**: the small trained classifier planned for P2 was retired by ADR-0025 and its plans removed by ADR-0029 (a trained model would be a new plan). The P1 classifier, dialogue and debrief use a served model with prompts, **not** training. Speech recognition is an off-the-shelf model, not trained here. |
 | Who decides what is correct? | **Always the rules.** An AI only (a) turns a trainee's words into a structured act for the evidence mapper, (b) voices a line the rules have already decided, or (c) rewrites the template debrief from facts. It never sets state, never credits a critical item and never reaches the trainee unchecked (ADR-0005). |
 | What is built today? | The whole **deterministic foundation** that the AI stages stand on, plus the **safety gate** that makes AI output safe to show. See section 3. |
 | What is blocked? | Everything that needs a model, a GPU, human labellers, consented recordings or the backend. See section 5. Nothing was faked to look finished. |

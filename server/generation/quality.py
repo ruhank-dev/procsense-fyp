@@ -10,7 +10,8 @@ Deterministic metrics decide. Each returns a score from 0 to 1 and, below its th
     coverage       ADVISORY: the dimensions the objectives name that the case exercises (the ranking prefers stories that exercise more; a library of 51 stories cannot exercise every dimension in every family, and a good case that misses one is better than a fallback that misses it too). The unmet dimensions are reported to the evaluation loop, which asks for stories that exercise them (dimensions only the headset delivers are listed, not counted)
     fairness       every decision has a correct option, at least one wrong one, a consequence for each wrong one, and no duplicate options
     trap_fairness  ADVISORY: a wrong option is a trap only if the case holds the fact that shows why it is wrong. A word-overlap test flags 20 of the 53 good authored cases, so it is reported and
-                   never fails a case; a real check needs the adversarial blocks of the library (none exist yet, DT-197)
+                   never fails a case
+    adversarial_anchor  every adversarial decision (id adv.<block>, DT-197) is a block of content/adversarial/blocks.json and the case holds that block's anchor fact, so the trap is always fair; this one FAILS a case
     reading        patient-facing sentences stay short enough to read under time pressure
     persona        pronouns in the patient's own text agree with the recorded sex; the spoken name is the identity's name
     coherence      no unfilled placeholder, no empty text, no repeated answer text across different questions
@@ -21,7 +22,7 @@ from __future__ import annotations
 
 import re
 
-THRESHOLDS = {"teachable": 1.0, "discoverable": 1.0, "difficulty": 0.5,  "fairness": 1.0, "reading": 0.8, "persona": 1.0, "coherence": 1.0}
+THRESHOLDS = {"teachable": 1.0, "discoverable": 1.0, "difficulty": 0.5,  "fairness": 1.0, "reading": 0.8, "persona": 1.0, "coherence": 1.0, "adversarial_anchor": 1.0}
 MAX_SENTENCE_WORDS = 26
 HARD_SENTENCE_WORDS = 45                  # one sentence this long fails the case outright
 TIER_POINTS = 100.0
@@ -108,6 +109,15 @@ def fairness(case: dict) -> tuple[float, list[dict]]:
     return round(1.0 - len({x.split(':')[0] for x in defects}) / n, 3), ([{"code": "Q_FAIRNESS", "detail": "; ".join(defects)}] if defects else [])
 
 
+def adversarial_anchor(case: dict) -> tuple[float, list[dict]]:
+    """An adversarial decision is a trap only if the case holds the fact that shows why its wrong option is wrong (the anchor of its block). Checked against the library, so a hand-edited or stale package cannot carry an unfair trap."""
+    from . import adversarial
+    by_id = {f"adv.{b['id'].lower()}": b for b in adversarial.blocks()["blocks"]}
+    mine = [d["id"] for d in case["decisions"] if d["id"].startswith("adv.")]
+    bad = [i for i in mine if i not in by_id or not adversarial.holds(by_id[i], case)]
+    return round(1.0 - len(bad) / max(len(mine), 1), 3), ([{"code": "Q_ADVERSARIAL_ANCHOR", "detail": f"adversarial decisions whose block is unknown or whose anchor the case does not hold: {bad}"}] if bad else [])
+
+
 def trap_fairness(case: dict) -> tuple[float, list[dict]]:
     """A wrong option the case teaches with a consequence must point at something the trainee could have found: the consequence names an allergy, a result, an examination or an observation the case holds."""
     facts = " ".join([a["allergen"] if isinstance(a, dict) and "allergen" in a else str(a) for a in case["allergies"]] + [r["test"] for r in case["results"]] + [e["finding"] for e in case["examination"]] + [p["label"] for p in case["problems"]] + [p.get("why", "") for p in case["problems"]]).lower()
@@ -171,7 +181,7 @@ def evaluate(case: dict, objectives: dict, tables, discovery: list[dict] | None 
     delivery: list[str] = []
     for name, fn in (("teachable", lambda: teachable(case)), ("discoverable", lambda: discoverable(case, discovery or [])), ("difficulty", lambda: difficulty(case, objectives, tables)),
                      ("fairness", lambda: fairness(case)), ("trap_fairness", lambda: trap_fairness(case)), ("reading", lambda: reading(case)),
-                     ("persona", lambda: persona(case)), ("coherence", lambda: coherence(case))):
+                     ("persona", lambda: persona(case)), ("coherence", lambda: coherence(case)), ("adversarial_anchor", lambda: adversarial_anchor(case))):
         score, defects = fn()
         metrics[name] = score
         if name == "trap_fairness":

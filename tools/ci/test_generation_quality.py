@@ -137,6 +137,30 @@ class Gold(unittest.TestCase):
         self.assertEqual(r["verdict"], evaluate(c)["verdict"])
 
 
+class AdversarialAnchor(unittest.TestCase):
+    def test_a_block_is_only_fair_to_a_case_that_holds_its_fact(self):
+        sys.path.insert(0, str(ROOT / "server"))
+        from generation import adversarial
+        block = adversarial.blocks()["blocks"][0]                                              # ADV-01: a penicillin allergy
+        holder = next(c for c in CASES if adversarial.holds(block, c))
+        stranger = next(c for c in CASES if not adversarial.holds(block, c))
+        for case, expected in ((holder, True), (stranger, False)):
+            d = copy.deepcopy(case)
+            d["decisions"].append({"id": "adv.adv-01", "prompt": "p", "rule": None, "options": [{"id": "adv.adv-01.1", "text": "a", "correct": True, "consequence": "c"}, {"id": "adv.adv-01.2", "text": "b", "correct": False, "consequence": "penicillin allergy"}]})
+            self.assertEqual("Q_ADVERSARIAL_ANCHOR" not in codes(evaluate(d)), expected, case["id"])
+        d = copy.deepcopy(holder)
+        d["decisions"].append({"id": "adv.adv-99", "prompt": "p", "rule": None, "options": [{"id": "adv.adv-99.1", "text": "a", "correct": True, "consequence": "c"}, {"id": "adv.adv-99.2", "text": "b", "correct": False, "consequence": "d"}]})
+        self.assertIn("Q_ADVERSARIAL_ANCHOR", codes(evaluate(d)))                               # an adversarial decision of a block the library does not have
+
+    def test_what_apply_adds_always_passes_the_check(self):
+        sys.path.insert(0, str(ROOT / "server"))
+        from generation import adversarial
+        for c in CASES:
+            d = copy.deepcopy(c)
+            adversarial.apply(d, 3)
+            self.assertNotIn("Q_ADVERSARIAL_ANCHOR", codes(evaluate(d)), c["id"])
+
+
 class Repair(unittest.TestCase):
     def test_the_table_picks_the_cheapest_fix_then_the_next(self):
         d = [{"code": "VR-CM-01"}]
@@ -148,7 +172,7 @@ class Repair(unittest.TestCase):
     def test_every_code_the_gate_can_raise_has_a_strategy(self):
         for code in ("VR-CM-0%d" % i for i in range(1, 9)):
             self.assertIn(code, repair.TABLE)
-        for c in ("Q_TEACHABLE", "Q_DISCOVERABLE", "Q_DIFFICULTY", "Q_COVERAGE", "Q_FAIRNESS", "Q_READING", "Q_PERSONA", "Q_COHERENCE"):
+        for c in ("Q_TEACHABLE", "Q_DISCOVERABLE", "Q_DIFFICULTY", "Q_COVERAGE", "Q_FAIRNESS", "Q_READING", "Q_PERSONA", "Q_COHERENCE", "Q_ADVERSARIAL_ANCHOR"):
             self.assertIn(c, repair.TABLE)
 
     def test_a_defect_is_repaired_and_every_check_is_run_again(self):
