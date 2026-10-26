@@ -107,6 +107,28 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void DT080_denying_a_fact_the_state_holds_is_worse_than_leaving_it_out()
+        {
+            var s = Holding();
+            var item = s.Handover!.Required().First(i => i.Id == "allergies");
+            var o = Do(s, "handover", ("section", item.Section), ("not", "allergies"));
+            Assert.True(o.Accepted, o.RejectReason);
+            Assert.Contains("contradicted:allergies", o.Effects);
+            Assert.Contains("score:critical.handover_contradicted", o.Effects);                 // allergies are an item whose omission is critical, so a false denial is too
+            Assert.Contains(s.Handover.History, h => h.Kind == "handover_contradicted" && h.ScoreItems.Contains("critical.handover_contradicted"));
+        }
+
+        [Fact]
+        public void DT080_denying_something_the_patient_does_not_have_is_a_true_statement_and_scores_nothing()
+        {
+            var s = Holding(knowAll: false);
+            var unknown = s.Handover!.Required().First(i => !Do(Holding(knowAll: false), "handover", ("section", i.Section), ("items", i.Id)).Accepted);      // an item the trainee cannot hand over yet is one the state does not hold
+            var o = Do(s, "handover", ("section", unknown.Section), ("not", unknown.Id));
+            Assert.True(o.Accepted, o.RejectReason);
+            Assert.DoesNotContain(o.Effects, e => e.StartsWith("score:"));
+        }
+
+        [Fact]
         public void T12_2_leaving_out_the_allergy_is_critical_and_in_practice_the_anaesthetist_asks_for_it()
         {
             var s = Holding();

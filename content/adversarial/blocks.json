@@ -1,0 +1,176 @@
+{
+ "version": 1,
+ "status": "awaiting_review",
+ "note": "Adversarial decision blocks (DT-197): each is a decision whose WRONG option looks like the right thing to do, together with the fact in the case that shows why it is wrong (the anchor). Written by an AI assistant from published clinical guidance, for teaching in a simulation; NOT reviewed by a clinician. A block is offered only to a case that holds its anchor, so the trap is always fair: the trainee could have found the reason by looking. tools/content/check_adversarial.py checks every block against every case.",
+ "blocks": [
+  {
+   "id": "ADV-01",
+   "title": "The usual antibiotic in a penicillin allergy",
+   "anchor": {
+    "in": "allergies",
+    "match": "penicillin"
+   },
+   "prompt": "The patient needs an antibiotic. Which one?",
+   "wrong": "Give the standard first-line penicillin: it is what the pathway says.",
+   "right": "Check the allergy record first and choose a non-penicillin, discussing the reaction history with the prescriber.",
+   "consequence": "The record names a penicillin allergy: a standard penicillin could cause an allergic reaction.",
+   "source": "NICE CG183 drug allergy; Resuscitation Council UK anaphylaxis guideline"
+  },
+  {
+   "id": "ADV-02",
+   "title": "An anticoagulant taken last night",
+   "anchor": {
+    "in": "history",
+    "match": "apixaban|warfarin|rivaroxaban|anticoag"
+   },
+   "prompt": "The list is ready and the patient is fit. What now?",
+   "wrong": "Proceed: the blood thinner is a routine medicine and the patient feels well.",
+   "right": "Establish when the last dose was taken, check the clotting if needed and tell the anaesthetist before going on.",
+   "consequence": "The medicines history shows an anticoagulant: operating on top of it risks serious bleeding.",
+   "source": "ACCP perioperative antithrombotic guideline; NICE NG158 (VTE and anticoagulants)"
+  },
+  {
+   "id": "ADV-03",
+   "title": "Fasted, but a drug that slows the stomach",
+   "anchor": {
+    "in": "history",
+    "match": "glp|semaglutide|liraglutide|tirzepatide|ozempic"
+   },
+   "prompt": "She has fasted for the time required. What does that tell you about the stomach?",
+   "wrong": "The stomach is empty because she has fasted, so a standard induction is safe.",
+   "right": "Ask the anaesthetist: a GLP-1 medicine can leave food in the stomach even after fasting.",
+   "consequence": "The medicines history shows a GLP-1 receptor agonist such as semaglutide: delayed gastric emptying raises the aspiration risk despite fasting.",
+   "source": "ASA consensus statement on GLP-1 receptor agonists (2023); Association of Anaesthetists guidance"
+  },
+  {
+   "id": "ADV-04",
+   "title": "A high potassium that looks like a lab error",
+   "anchor": {
+    "in": "results",
+    "match": "potassium"
+   },
+   "prompt": "The potassium is high. What now?",
+   "wrong": "Ignore it: a high potassium is usually just a haemolysed sample.",
+   "right": "Repeat it urgently, look at the ECG and the kidney function, and tell the anaesthetist until it is explained.",
+   "consequence": "A potassium result is in the case: an unrepeated high value cannot be dismissed without checking the ECG and the kidneys.",
+   "source": "UK Kidney Association hyperkalaemia guideline; Resuscitation Council UK emergency treatment of hyperkalaemia"
+  },
+  {
+   "id": "ADV-05",
+   "title": "A positive pregnancy test before a scan",
+   "anchor": {
+    "in": "results",
+    "match": "pregnancy[^;]*positive"
+   },
+   "prompt": "A CT scan would answer the question. What do you do?",
+   "wrong": "Book the CT: the diagnosis matters more than the radiation.",
+   "right": "Open the pregnancy result first; if she is pregnant choose an ultrasound or MRI and involve the senior.",
+   "consequence": "A pregnancy test is in the case: ionising radiation to a pregnant patient needs a deliberate decision.",
+   "source": "IR(ME)R 2017 pregnancy enquiry; RCR guidance on pregnancy and ionising radiation"
+  },
+  {
+   "id": "ADV-04B",
+   "title": "More opioid for a drowsy patient in pain",
+   "anchor": {
+    "in": "history",
+    "match": "morphine|opioid"
+   },
+   "prompt": "The patient is still in pain and is drowsy with slow breathing. What next?",
+   "wrong": "Give more morphine: the pain is the problem.",
+   "right": "Stop the opioid, support the airway and breathing, call for help and consider naloxone.",
+   "consequence": "The history shows opioid already given: slow breathing and drowsiness are the warning of overdose.",
+   "source": "Royal College of Anaesthetists opioid guidance; NICE CG124 / NG46 where relevant"
+  },
+  {
+   "id": "ADV-06",
+   "title": "A child as interpreter",
+   "anchor": {
+    "in": "history",
+    "match": "interpreter|language|translator"
+   },
+   "prompt": "The patient does not speak English and a ten-year-old relative is with them. How do you take the history?",
+   "wrong": "Let the child interpret: it is quick and the family wants it.",
+   "right": "Use a trained interpreter, and do not use a child for consent or for sensitive questions.",
+   "consequence": "The case records a language barrier: a child cannot interpret consent, allergies or medicines safely.",
+   "source": "GMC consent guidance; NHS England interpreting and translation guidance"
+  },
+  {
+   "id": "ADV-07",
+   "title": "A minor's consent",
+   "anchor": {
+    "in": "history",
+    "match": "\\bminor\\b|aged 16|16 years|16-year|parent"
+   },
+   "prompt": "The patient is young and signs the consent form. Is that enough?",
+   "wrong": "Yes: they signed it, so consent is valid.",
+   "right": "Follow the local law on a minor's consent, involve the parent or senior and record who agreed.",
+   "consequence": "The case says the patient is a minor: consent follows the applicable local law and the parent's role.",
+   "source": "GMC 0-18 years guidance; Gillick competence"
+  },
+  {
+   "id": "ADV-08",
+   "title": "A slow pulse that hides shock",
+   "anchor": {
+    "in": "history",
+    "match": "beta|bisoprolol|atenolol|metoprolol"
+   },
+   "prompt": "The heart rate is 58 and the blood pressure is low. What do you make of it?",
+   "wrong": "Reassure: a slow pulse is a good sign.",
+   "right": "Remember the beta-blocker can hide a fast pulse: treat the low pressure as shock and call the senior.",
+   "consequence": "The medicines include a beta-blocker: the heart rate cannot rise, so a slow rate with low pressure is not reassuring.",
+   "source": "NICE NG51 sepsis; Royal College of Physicians NEWS2"
+  },
+  {
+   "id": "ADV-09",
+   "title": "A diabetes tablet and ketones",
+   "anchor": {
+    "in": "history",
+    "match": "sglt2|empagliflozin|dapagliflozin|canagliflozin|gliflozin"
+   },
+   "prompt": "The glucose is nearly normal. Is it safe to go ahead?",
+   "wrong": "Yes: the glucose is fine, so there is no diabetic emergency.",
+   "right": "Check ketones and the acid balance: an SGLT2 inhibitor can cause ketoacidosis with a near-normal glucose.",
+   "consequence": "The medicines include an SGLT2 inhibitor: ketoacidosis can occur with an almost normal glucose.",
+   "source": "MHRA drug safety update on SGLT2 inhibitors and ketoacidosis; Joint British Diabetes Societies guidance"
+  },
+  {
+   "id": "ADV-10",
+   "title": "An anaemia that is not explained",
+   "anchor": {
+    "in": "results",
+    "match": "haemoglobin|hb|ferritin"
+   },
+   "prompt": "The haemoglobin is low in an older man. What now?",
+   "wrong": "Proceed: mild anaemia is common at his age.",
+   "right": "Find the cause (iron stores, bleeding) before elective surgery and tell the senior.",
+   "consequence": "A low haemoglobin is in the case: unexplained iron-deficiency anaemia in an older man needs investigation, not acceptance.",
+   "source": "NICE NG12 suspected cancer recognition; BSG iron deficiency guidance"
+  },
+  {
+   "id": "ADV-11",
+   "title": "A fasting breach",
+   "anchor": {
+    "in": "history",
+    "match": "\\bate\\b|meal|breakfast|biryani|kebab"
+   },
+   "prompt": "The patient says she had a light meal two hours ago. Do you proceed?",
+   "wrong": "Proceed: it was only a light meal.",
+   "right": "Tell the anaesthetist and delay; do not tick the fasting line as met.",
+   "consequence": "The history records a recent meal: the fasting rule is broken and aspiration is a risk.",
+   "source": "ASA and Association of Anaesthetists fasting guidance"
+  },
+  {
+   "id": "ADV-12",
+   "title": "An earlier refusal that applies",
+   "anchor": {
+    "in": "history",
+    "match": "refus|decline|advance"
+   },
+   "prompt": "The patient is now confused and the family asks you to go ahead. What do you do?",
+   "wrong": "Go ahead: the family agrees and the patient cannot object now.",
+   "right": "Respect a valid earlier capable refusal that clearly applies; involve the senior.",
+   "consequence": "The case records an earlier capable refusal: it applies even though capacity is lost now.",
+   "source": "Mental Capacity Act 2005 advance decisions; GMC consent guidance"
+  }
+ ]
+}

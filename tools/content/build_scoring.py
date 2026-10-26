@@ -100,6 +100,7 @@ RULES = [
     (r"^(ward_checklist_complete|ward_signed_with_gaps|ward_tick_false|ward_tick_unverified|razor_used)$", "b21", "REQUIRED", False),
     (r"^(emergency_not_declared|handover_omitted)$", "b11", "COMMUNICATION", False),
     (r"^action_before_identity$", "b13", "CRITICAL", False),
+    (r"^handover_contradicted$", "b11", "COMMUNICATION", False),
     (r"^identity_asked_closed$", "b13", "REQUIRED", False),
     (r"^unnecessary_mismatch_report$", "b13", "APPROPRIATENESS", False),
     (r"^no_introduction$", "b06", "COMMUNICATION", False),

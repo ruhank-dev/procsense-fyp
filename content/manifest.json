@@ -1,10 +1,11 @@
 {
  "schema": 1,
- "content_hash": "166f37398f1cfe45deb4eccd5933d29614177a15e58c5d8ca0212de0cd098471",
- "files": 752,
- "bytes": 18262837,
+ "content_hash": "5559f2859d10dcf1b75f58c0b7ab458e35c057bbd8fa84e1c97de597925bd24a",
+ "files": 753,
+ "bytes": 18271931,
  "per_folder": {
   "(root)": 65,
+  "adversarial": 1,
   "ai": 11,
   "assessment": 2,
   "attributions": 1,
@@ -60,6 +61,10 @@
   "README.md": {
    "bytes": 1130,
    "sha256": "5facc82a956e9a80e09b9f04e2ade7aef9b44cb66bee8a3f251c06776d23d264"
+  },
+  "adversarial/blocks.json": {
+   "bytes": 8974,
+   "sha256": "49aed48ddbf531ed2c7c66992ad9544eb87357da17b0b9424d2522c7114917d1"
   },
   "ai/adaptation_triggers.json": {
    "bytes": 3435,
@@ -2738,8 +2743,8 @@
    "sha256": "c25dab209685d8f9adacfd80a601d5e38df1db54d2aa023f2a0087fd796ca3e1"
   },
   "scoring/rubric.json": {
-   "bytes": 6825,
-   "sha256": "b9b1a7d4445c3d421b6d760fa597e2c84ae471b85c12bc25f7c5996f354b4864"
+   "bytes": 6945,
+   "sha256": "ae6a0353e813d45d29814f0c37a0f300d031332b89c40c0557c4f7cd4640d14a"
   },
   "sepsis/sepsis.json": {
    "bytes": 2479,

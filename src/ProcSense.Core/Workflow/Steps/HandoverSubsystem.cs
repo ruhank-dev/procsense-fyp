@@ -129,6 +129,27 @@ namespace ProcSense.Core.Workflow.Steps
         // L12-02: one section at a time, from the menu of known facts
         private void Hand(SimAction a, ActionOutcome o)
         {
+            // DT-080: a handover said aloud can also DENY a fact ("no allergies"); the param `not` lists the items the trainee states do NOT apply. A denial the state contradicts is worse than leaving the item out:
+            // it is a critical item when the item is one whose omission is critical (allergies, fasting, aspiration risk) and a major item otherwise. A denial of something the state does not hold is simply a true statement.
+            if (a.Params.TryGetValue("not", out var denied) && denied.Trim().Length > 0)
+            {
+                if (_s.Patient.Clinical.TraineeLocation != Holding) { o.Reject(NotAtHolding); return; }
+                if (!a.Params.TryGetValue("section", out var denySection) || denySection.Length == 0) { o.Reject(MissingSection); return; }
+                if (!Tables.Sections.Contains(denySection)) { o.Reject(UnknownSection); return; }
+                var state = RuleState.Build(_s);
+                foreach (var id in denied.Split(',').Select(x => x.Trim()).Where(x => x.Length > 0))
+                {
+                    var item = Tables.Find(id);
+                    if (item == null) { o.Reject(UnknownItem); return; }
+                    if (item.Section != denySection) { o.Reject(WrongSection); return; }
+                    if (!item.Known.Test(state)) continue;
+                    string severity = item.Severity == "critical" ? "critical" : "major";
+                    o.Effects.Add("contradicted:" + id);
+                    o.Effects.Add("score:" + severity + ".handover_contradicted");
+                    _history.Add(new GraphEvent("handover_contradicted", id, _s.Clock.Steps, new[] { severity + ".handover_contradicted" }));
+                }
+                if (!a.Params.ContainsKey("items") || a.Params["items"].Trim().Length == 0) return;      // only denials: nothing to hand over beside them
+            }
             if (_s.Patient.Clinical.TraineeLocation != Holding) { o.Reject(NotAtHolding); return; }
             if (!a.Params.TryGetValue("section", out var section) || section.Length == 0) { o.Reject(MissingSection); return; }
             if (!Tables.Sections.Contains(section)) { o.Reject(UnknownSection); return; }

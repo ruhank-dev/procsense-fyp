@@ -213,6 +213,12 @@
    "teaching": false
   },
   {
+   "match": "^handover_contradicted$",
+   "behaviour": "b11",
+   "type": "COMMUNICATION",
+   "teaching": false
+  },
+  {
    "match": "^identity_asked_closed$",
    "behaviour": "b13",
    "type": "REQUIRED",
