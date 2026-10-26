@@ -27,6 +27,8 @@ namespace ProcSense.Core.Tests
             ["nausea"] = 0,
             ["sedation"] = 0,
             ["volume_deficit"] = 0,
+            ["EtCO2"] = 38,
+            ["allergy_level"] = 0,
         };
 
         [Fact]
