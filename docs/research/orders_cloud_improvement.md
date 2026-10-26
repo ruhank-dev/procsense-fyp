@@ -1,4 +1,4 @@
-# Spoken-order fallback: from 77.8 to 96.3 percent (B23.c2, C32.c1)
+# Spoken-order fallback: 77.8 to 96.3 percent on the builder's own set, 90.2 and 72.6 percent on sets written by other models (B23.c2, C32.c1)
 
 Date: 25 Oct 2026 (UTC). **Synthetic and AI-written**: every paraphrase set was written by an AI assistant before any row was run, so the sets are not independent of the builder; the second human author (EX-18) does not exist yet. The figures are a development result, not a clinician or trainee result.
 
@@ -40,3 +40,23 @@ Nothing was released without a yes in any run. Files: `reports/ai/orders-mapper-
 ## Limits
 
 One AI author, 54 orders: one wrong row moves the figure by 1.9 points. The labels of two rows in older sets ("surgical registrar", "warfarin" against "anticoagulant") are arguable and were left out of the new sets rather than changed. Accented speech and real recogniser errors are not modelled (DT-205). The Quest check of the spoken path is DC-08 and DC-10.
+
+## Independent re-evaluation (EX-18, 25 Oct 2026 UTC): the 96.3 percent does not hold
+
+Sets 6 to 8 were written by the same assistant family that builds the mapper. To measure against something less tied to the builder, two further sets were made by **other model families** from a fixed authoring prompt (`tools/ai/make_orders_set.py`), never edited by hand, with the label of each row being the item the author was asked to paraphrase: set 9 by `gpt-oss:120b-cloud` (61 orders, 24 non-orders) and set 10 by `nemotron-3-nano:30b-cloud` (62 orders, 24 non-orders). They are **machine-written, not human-authored, and do not satisfy EX-18**. Set 9 was scored once and studied; the notes of five medicines were then clarified (prophylactic or treatment antibiotics, sugar by mouth or into the vein); set 10 was scored once afterwards.
+
+| Set (author) | Model | Correct | Wrong item | Menu | Non-orders offered | p50 / p95 | Safety-related wrong offers | Released without a yes |
+|---|---|---|---|---|---|---|---|---|
+| 8 (builder's assistant) | Gemma 4 31B Cloud | 96.3 % | 0 % | 3.7 % | 1 of 10 | 1.25 s / 1.9 s | 0 | 0 |
+| 9 (gpt-oss) | Gemma 4 31B Cloud | 90.2 % | 4.9 % | 4.9 % | 3 of 24 | 0.07 s / not reported | see file | 0 |
+| **10 (nemotron), after the note changes** | Gemma 4 31B Cloud | **72.6 %** | 6.5 % | 21.0 % | 8 of 24 | 0.38 s / 1.9 s | 2 | 0 |
+
+(`reports/ai/orders-mapper-compare-v9_gemma.json`, `v10_gemma.json`.) The misses, split by cause in `reports/ai/orders-breakdown-v9.json` and `v10.json` (a second run of the cloud model, so close to the scored figure, not equal):
+
+- **The question guard.** The grammar refuses to read back a question or a condition ("can I get morphine", "should I hold the metformin"), on purpose (DT-208 safety review). Polite English requests are often phrased as questions, so these go to the menu. That is safe and it is a product decision, not a mapper error; it accounts for 3 of 61 rows in set 9 and 6 of 62 in set 10. Counting only the rows the guard lets through, 94.8 percent (set 9) and 80.4 percent (set 10) were read back correctly.
+- **Sentences that name no item** ("Stop that home med", "Hold the home medicine") whose label is the particular medicine the author was asked about: no listener could answer these.
+- **Items that fit two entries** (a broad-spectrum antibiotic is the treatment, the sepsis bundle or the prophylactic dose; a glucose bolus is by mouth or into the vein): the read-back puts the other item first or asks a question.
+- **Non-orders.** 3 of 24 and 8 of 24 sentences were offered, several of them first-person statements ("I need to administer adrenaline immediately", "I'm going to give an antiemetic") that the author labelled as not asking for anything but a trainee might well mean as an order. Four of the eight in set 10 are offered by the grammar alone.
+- Nothing was released without a yes in any run.
+
+**Conclusion, stated plainly.** The acceptance of B23.c2 (90 percent and 10 points above the grammar) was met on sets 8 and 9 and not on set 10; the acceptance of C32.c1 (95 percent) was met on set 8 only. The figures depend strongly on who writes the sentences, so a single AI author cannot settle the question and a human-authored set (EX-18) is needed. Until then the features are **partly built** (built and measured, below acceptance on the independent sets), the gate `order_fallback` reads set 10 and stays **OFF**, and the earlier claim that B23 and C32 were engineering complete is withdrawn.

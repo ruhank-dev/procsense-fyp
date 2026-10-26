@@ -300,6 +300,7 @@ def main(argv: list[str]) -> int:
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),
         ("Ruhan and Moiz inventory of 129 steps is current and has no unfinished implementation", lambda: run(["uv", "run", "--project", "tools", "tools/plans/ruhan_moiz_inventory.py", "--check"])),
         ("register triage page is current", lambda: run(["uv", "run", "--project", "tools", "tools/plans/register_triage.py", "--check"])),
+        ("engineering audit page is current and names a reason for every open engineering row", lambda: run(["uv", "run", "--project", "tools", "tools/plans/engineering_audit.py", "--check"])),
         ("execution queue up to date (generated from the reconciliation and the register)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/execution_queue.py", "--check"])),
         ("AI planning graph valid (pipeline JSON rules VR-G-*)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/validate_pipeline.py", "--quiet"])),
         ("pipeline validator catches broken graphs (15 mutations)", lambda: run(["uv", "run", "--project", "tools", "tools/plans/test_validate_pipeline.py"])),

@@ -134,7 +134,7 @@
    ]
   },
   "order_fallback": {
-   "label": "Language-model fallback of the spoken-order grammar (a suggestion that is read back; nothing is released without a yes). SYNTHETIC paraphrases by one author (an AI assistant), NOT independent; the cloud model on the frozen held-out set 8",
+   "label": "Language-model fallback of the spoken-order grammar (a suggestion that is read back; nothing is released without a yes). SYNTHETIC paraphrases by one author (an AI assistant), NOT independent; the cloud model on the frozen set 10, written by a different model family (nemotron-3-nano), the least tied to the builder of the sets measured",
    "status": "FAIL",
    "enabled": false,
    "suites": [
@@ -146,26 +146,26 @@
     },
     {
      "id": "order_fallback.accuracy",
-     "status": "PASS",
-     "got": 0.963,
+     "status": "FAIL",
+     "got": 0.726,
      "needs": ">= 0.95"
     },
     {
      "id": "order_fallback.gain_over_grammar",
      "status": "PASS",
-     "got": 0.963,
-     "needs": ">= 0.415"
+     "got": 0.726,
+     "needs": ">= 0.584"
     },
     {
      "id": "order_fallback.wrong_item_offered",
-     "status": "PASS",
-     "got": 0.0,
+     "status": "FAIL",
+     "got": 0.065,
      "needs": "<= 0.05"
     },
     {
      "id": "order_fallback.non_orders_not_offered",
-     "status": "PASS",
-     "got": 0.1,
+     "status": "FAIL",
+     "got": 0.333,
      "needs": "<= 0.1"
     },
     {
@@ -177,7 +177,7 @@
     {
      "id": "order_fallback.latency_p95_ms",
      "status": "PASS",
-     "got": 1894,
+     "got": 1875,
      "needs": "<= 3000.0"
     }
    ]

@@ -1,0 +1,612 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "human_authored": false,
+ "note": "Written by the language model nemotron-3-nano:30b-cloud on 26 Oct 2026 (UTC) from a fixed authoring prompt (sha256 b0f8ffe09b22e3c3) BEFORE any row was run through any mapper. The model is a different family from the model under test and from the assistant that wrote the earlier sets, so this set is less tied to the builder than they were; it is still machine-written, not human-authored, and does not satisfy EX-18. Labels are the item the author was asked to paraphrase; nothing was edited by hand. Frozen: scored once per model.",
+ "author_model": "nemotron-3-nano:30b-cloud",
+ "author_prompt_sha256": "b0f8ffe09b22e3c33982327c04ac348875ab4eb4a3271fb26b417486d623947e",
+ "rows": [
+  {
+   "text": "Please start the glucose.",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB001"
+  },
+  {
+   "text": "Can we move the patient to the bay?",
+   "kind": "place",
+   "target": "patient_bay",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB002"
+  },
+  {
+   "text": "Can we start the hydrocortisone now?",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB003"
+  },
+  {
+   "text": "Can you page the anaesthetist?",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF",
+   "id": "OB004"
+  },
+  {
+   "text": "I need to get to the corridor to find the supply closet.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB005"
+  },
+  {
+   "text": "Can we move the patient to the ward?",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB006"
+  },
+  {
+   "text": "I need to review the liver function tests before rounds.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB007"
+  },
+  {
+   "text": "Order the ferritin test.",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST",
+   "id": "OB008"
+  },
+  {
+   "text": "Move the patient to the operating theatre.",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB009"
+  },
+  {
+   "text": "The tryptase level spiked after the anaphylactic reaction.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB010"
+  },
+  {
+   "text": "Give the patient the anticoagulant now.",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB011"
+  },
+  {
+   "text": "Can we wheel the patient over to the MRI?",
+   "kind": "place",
+   "target": "mri",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB012"
+  },
+  {
+   "text": "The theatre lights are flickering again.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB013"
+  },
+  {
+   "text": "Hold the home medicine.",
+   "kind": "home_medicine",
+   "target": "semaglutide",
+   "intent": "HOLD_MED",
+   "id": "OB014"
+  },
+  {
+   "text": "Can we order the scan?",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST",
+   "id": "OB015"
+  },
+  {
+   "text": "Can you call the nurse over here?",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF",
+   "id": "OB016"
+  },
+  {
+   "text": "Can you order the scan?",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST",
+   "id": "OB017"
+  },
+  {
+   "text": "Can I get some morphine for the pain?",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB018"
+  },
+  {
+   "text": "Move him to the X-ray room, please.",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB019"
+  },
+  {
+   "text": "Stop the clopidogrel from home.",
+   "kind": "home_medicine",
+   "target": "clopidogrel",
+   "intent": "HOLD_MED",
+   "id": "OB020"
+  },
+  {
+   "text": "Can you page Dr. Evans?",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF",
+   "id": "OB021"
+  },
+  {
+   "text": "Give the patient some glucose.",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB022"
+  },
+  {
+   "text": "Can we get a chest X-ray on this patient?",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST",
+   "id": "OB023"
+  },
+  {
+   "text": "Can I get some oxygen?",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB024"
+  },
+  {
+   "text": "Can you order an MRCP for me?",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST",
+   "id": "OB025"
+  },
+  {
+   "text": "Stop the tramadol from home.",
+   "kind": "home_medicine",
+   "target": "tramadol",
+   "intent": "HOLD_MED",
+   "id": "OB026"
+  },
+  {
+   "text": "I'm checking the broad antibiotics list before I round.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB027"
+  },
+  {
+   "text": "Give the patient some ibuprofen.",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB028"
+  },
+  {
+   "text": "I need to run a urine dipstick on this patient.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB029"
+  },
+  {
+   "text": "I need to verify the expiration date on the Naloxone vial before administration.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB030"
+  },
+  {
+   "text": "Can you order a clotting screen, please?",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST",
+   "id": "OB031"
+  },
+  {
+   "text": "Stop empagliflozin.",
+   "kind": "home_medicine",
+   "target": "empagliflozin",
+   "intent": "HOLD_MED",
+   "id": "OB032"
+  },
+  {
+   "text": "Administer the fluid bolus now.",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB033"
+  },
+  {
+   "text": "Can you order the U and E's?",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST",
+   "id": "OB034"
+  },
+  {
+   "text": "The oxygen saturation's dropped to 88 percent.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB035"
+  },
+  {
+   "text": "I need to administer adrenaline immediately.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB036"
+  },
+  {
+   "text": "Can we go ahead and order the MRI?",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST",
+   "id": "OB037"
+  },
+  {
+   "text": "The porter just wheeled a fresh tray of meds down the hall.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB038"
+  },
+  {
+   "text": "Stop the atenolol at home.",
+   "kind": "home_medicine",
+   "target": "atenolol",
+   "intent": "HOLD_MED",
+   "id": "OB039"
+  },
+  {
+   "text": "Stop that home med.",
+   "kind": "home_medicine",
+   "target": "piperacillin",
+   "intent": "HOLD_MED",
+   "id": "OB040"
+  },
+  {
+   "text": "Can you order a full blood count for me?",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST",
+   "id": "OB041"
+  },
+  {
+   "text": "Stop the home meds.",
+   "kind": "home_medicine",
+   "target": "meropenem",
+   "intent": "HOLD_MED",
+   "id": "OB042"
+  },
+  {
+   "text": "Can you page the porter, please?",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF",
+   "id": "OB043"
+  },
+  {
+   "text": "I've got the NSAIDs ready for administration.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB044"
+  },
+  {
+   "text": "Can we run a finger-prick glucose and ketones test?",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST",
+   "id": "OB045"
+  },
+  {
+   "text": "The theatre reception desk is open for the morning shift.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB046"
+  },
+  {
+   "text": "I'm checking the IV glucose bag before I start the infusion.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB047"
+  },
+  {
+   "text": "I need you to do a urine dipstick.",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST",
+   "id": "OB048"
+  },
+  {
+   "text": "Run the CRP test, please.",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST",
+   "id": "OB049"
+  },
+  {
+   "text": "Start the IV fluids now.",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB050"
+  },
+  {
+   "text": "Can we run the HbA1c test on this patient?",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST",
+   "id": "OB051"
+  },
+  {
+   "text": "Can we get some Naloxone in here?",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB052"
+  },
+  {
+   "text": "Can you order the broad antibiotics for the patient in room 4?",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB053"
+  },
+  {
+   "text": "TSH is elevated in the bloodwork.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB054"
+  },
+  {
+   "text": "Can we move the patient to theatre reception?",
+   "kind": "place",
+   "target": "theatre_reception",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB055"
+  },
+  {
+   "text": "Let's wheel him over to the CT scanner.",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB056"
+  },
+  {
+   "text": "The sepsis protocol says we need to start the lactate test right away.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB057"
+  },
+  {
+   "text": "Order the lipase test, please.",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST",
+   "id": "OB058"
+  },
+  {
+   "text": "Let's move the patient to the ultrasound room.",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB059"
+  },
+  {
+   "text": "I've already checked the paracetamol stock in the pharmacy.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB060"
+  },
+  {
+   "text": "I need to grab some fast-acting sugar from the crash cart for the hypoglycemic episode.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB061"
+  },
+  {
+   "text": "The MRI scanner is ready for the procedure.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB062"
+  },
+  {
+   "text": "Antiemetics",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB063"
+  },
+  {
+   "text": "Give the paracetamol now.",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB064"
+  },
+  {
+   "text": "Run a lactate and blood cultures, please.",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST",
+   "id": "OB065"
+  },
+  {
+   "text": "Give the antibiotic now.",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB066"
+  },
+  {
+   "text": "I've already documented the preventive antibiotic in the chart.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB067"
+  },
+  {
+   "text": "Run the thyroid panel, please.",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST",
+   "id": "OB068"
+  },
+  {
+   "text": "Can we order an ECG for this patient?",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST",
+   "id": "OB069"
+  },
+  {
+   "text": "Can we do an ultrasound?",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST",
+   "id": "OB070"
+  },
+  {
+   "text": "Can I order liver function tests?",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST",
+   "id": "OB071"
+  },
+  {
+   "text": "The IV fluids are running a bit slow.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB072"
+  },
+  {
+   "text": "Ferritin came back elevated, so I'm holding off on the iron supplement.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB073"
+  },
+  {
+   "text": "Can we give the patient some insulin?",
+   "kind": "medicine",
+   "target": "TR-HYPERKALAEMIA",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB074"
+  },
+  {
+   "text": "I've got a patient with intractable nausea, so I'm going to administer an antiemetic.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB075"
+  },
+  {
+   "text": "I'm checking the Lipase levels for the post-operative patient.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB076"
+  },
+  {
+   "text": "Can we do a pregnancy test?",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST",
+   "id": "OB077"
+  },
+  {
+   "text": "Can I get the STOP-BANG done?",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST",
+   "id": "OB078"
+  },
+  {
+   "text": "Can you order a tryptase test?",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST",
+   "id": "OB079"
+  },
+  {
+   "text": "Can I get a dose of adrenaline?",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OB080"
+  },
+  {
+   "text": "Stop the bendroflumethiazide.",
+   "kind": "home_medicine",
+   "target": "bendroflumethiazide",
+   "intent": "HOLD_MED",
+   "id": "OB081"
+  },
+  {
+   "text": "Can we move the patient to the corridor?",
+   "kind": "place",
+   "target": "corridor",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OB082"
+  },
+  {
+   "text": "Can we get the weight and BMI done?",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST",
+   "id": "OB083"
+  },
+  {
+   "text": "Can you come to the ward, please?",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF",
+   "id": "OB084"
+  },
+  {
+   "text": "Can I get a blood gas?",
+   "kind": "test",
+   "target": "blood_gas",
+   "intent": "ORDER_TEST",
+   "id": "OB085"
+  },
+  {
+   "text": "I'm checking the X-ray room status before the procedure.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OB086"
+  }
+ ]
+}

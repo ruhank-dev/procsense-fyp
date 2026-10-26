@@ -1,0 +1,97 @@
+{
+ "model": "gemma4:31b-cloud",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v10": {
+   "file": "paraphrases_v10.json",
+   "rows": 86,
+   "frozen_scored_now": true,
+   "second_look": false,
+   "grammar": {
+    "orders": 62,
+    "correct": 0.484,
+    "wrong": 0.032,
+    "menu": 0.484,
+    "non_orders": 24,
+    "false_offer": 0.167,
+    "released_without_confirmation": 0,
+    "safety_related_wrong_offers": 1,
+    "false_offers_n": 4,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 34,
+    "latency_ms_p95": 70,
+    "by_kind": {
+     "home_medicine": "4/8",
+     "medicine": "4/16",
+     "place": "6/9",
+     "staff": "3/5",
+     "test": "13/24"
+    },
+    "wrong_examples": [
+     {
+      "said": "Administer the fluid bolus now.",
+      "wanted": "TR-SEPSIS-BUNDLE",
+      "heard": "TR-IV-FLUIDS",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "Give the antibiotic now.",
+      "wanted": "TR-ABX-PROPHYLAXIS",
+      "heard": "TR-ABX-S2",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   },
+   "current": {
+    "orders": 62,
+    "correct": 0.726,
+    "wrong": 0.065,
+    "menu": 0.21,
+    "non_orders": 24,
+    "false_offer": 0.333,
+    "released_without_confirmation": 0,
+    "safety_related_wrong_offers": 2,
+    "false_offers_n": 8,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 379,
+    "latency_ms_p95": 1875,
+    "by_kind": {
+     "home_medicine": "5/8",
+     "medicine": "10/16",
+     "place": "8/9",
+     "staff": "3/5",
+     "test": "19/24"
+    },
+    "wrong_examples": [
+     {
+      "said": "Give the patient some glucose.",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "Administer the fluid bolus now.",
+      "wanted": "TR-SEPSIS-BUNDLE",
+      "heard": "TR-IV-FLUIDS",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "Give the antibiotic now.",
+      "wanted": "TR-ABX-PROPHYLAXIS",
+      "heard": "TR-ABX-S2",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "Can you come to the ward, please?",
+      "wanted": "surgeon",
+      "heard": "nurse",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   }
+  }
+ }
+}

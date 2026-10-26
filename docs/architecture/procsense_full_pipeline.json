@@ -8699,7 +8699,7 @@
    "category": "Data, media and investigations",
    "group": "g_feat_B",
    "kind": "deterministic",
-   "status": "Implemented and tested",
+   "status": "Partially implemented",
    "ai_status": "Planned",
    "description": "Problems are revealed by the result, examination or question that discovers them. Built: 29 discovery rules for the 17 P0 cases; P1 and P2 problems pending.",
    "evidence": [
@@ -8739,7 +8739,9 @@
     "discovery coverage test"
    ],
    "acceptance": "Every problem in every case is discoverable.",
-   "blockers": [],
+   "blockers": [
+    "external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
+   ],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
    ],
@@ -8816,7 +8818,7 @@
       "id": "B23.c2",
       "name": "Free-text order and question mapper",
       "kind": "AI (LLM)",
-      "status": "Deferred",
+      "status": "Planned",
       "purpose": "Understand phrasing.",
       "method": "Qwen3.5 4B enum classification with confidence.",
       "models": [
@@ -10386,8 +10388,8 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "hybrid",
-   "status": "Implemented but incompletely tested",
-   "ai_status": "Implemented but incompletely tested",
+   "status": "Partially implemented",
+   "ai_status": "Planned",
    "description": "Short spoken commands mapped to verbs (open results, call nurse).",
    "evidence": [
     "server/orders/grammar.py",
@@ -10460,7 +10462,7 @@
       "id": "C32.c1",
       "name": "Grammar plus LLM fallback",
       "kind": "AI (pretrained + LLM)",
-      "status": "Implemented but incompletely tested",
+      "status": "Planned",
       "purpose": "Commands.",
       "method": "ASR + grammar + enum LLM.",
       "models": [

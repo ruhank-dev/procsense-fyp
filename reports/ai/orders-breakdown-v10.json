@@ -1,0 +1,52 @@
+{
+ "set": "v10",
+ "model": "gemma4:31b-cloud",
+ "orders": 62,
+ "classes": {
+  "correct": 45,
+  "false_offer": 8,
+  "non_order_ok": 16,
+  "menu": 6,
+  "guard": 6,
+  "ambiguous_item": 4,
+  "wrong": 1
+ },
+ "correct_share": 0.726,
+ "correct_share_among_rows_the_guard_lets_through": 0.804,
+ "examples": {
+  "false_offer": [
+   "I need to get to the corridor to find the supply closet.",
+   "I need to review the liver function tests before rounds.",
+   "I need to run a urine dipstick on this patient.",
+   "I need to administer adrenaline immediately.",
+   "I'm checking the IV glucose bag before I start the infusion.",
+   "The sepsis protocol says we need to start the lactate test right away."
+  ],
+  "menu": [
+   "Hold the home medicine.",
+   "Can we order the scan?",
+   "Can you order the scan?",
+   "Can you page Dr. Evans?",
+   "Stop that home med.",
+   "Stop the home meds."
+  ],
+  "guard": [
+   "Can I get some morphine for the pain?",
+   "Can I get some oxygen?",
+   "Can I order liver function tests?",
+   "Can I get the STOP-BANG done?",
+   "Can I get a dose of adrenaline?",
+   "Can I get a blood gas?"
+  ],
+  "ambiguous_item": [
+   "Give the patient some glucose.",
+   "Administer the fluid bolus now.",
+   "Can we move the patient to theatre reception?",
+   "Give the antibiotic now."
+  ],
+  "wrong": [
+   "Can you come to the ward, please?"
+  ]
+ },
+ "note": "second run of a cloud model: close to the scored figure, not equal to it; the guard is the question/condition rule of the grammar (DT-208), kept on purpose"
+}

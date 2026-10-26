@@ -1493,7 +1493,7 @@
     "id": "B23",
     "label": "B23 Investigation discovery",
     "type": "feature",
-    "status": "Implemented and tested",
+    "status": "Partially implemented",
     "parent": "g_feat_B"
    },
    "classes": "feature"
@@ -1592,7 +1592,7 @@
     "id": "C32",
     "label": "C32 Voice commands",
     "type": "feature",
-    "status": "Implemented but incompletely tested",
+    "status": "Partially implemented",
     "parent": "g_feat_C"
    },
    "classes": "feature"

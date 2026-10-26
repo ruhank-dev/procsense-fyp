@@ -72,7 +72,7 @@
    "gates": []
   },
   "A7": {
-   "runtime": "trap fairness metrics of `server/generation/quality.py`, the trap block VAR-S1-J (`content/case_files/VAR-S1-J.json`) and the wording writer `server/generation/trap_writer.py`",
+   "runtime": "trap fairness metrics of `server/generation/quality.py`, the trap block VAR-S1-J (`content/case_files/VAR-S1-J.json`) and the wording writer `server/generation/trap_writer.py`; adversarial decision blocks (`server/generation/adversarial.py`, `content/adversarial/blocks.json`)",
    "tests": [
     "tools/ci/test_generation_quality.py",
     "tools/ci/test_variant_facts.py",
@@ -81,7 +81,7 @@
    "gates": [
     "trap_writer"
    ],
-   "engineering_complete": "trap fairness and the trap-wording writer are built and tested; the writer stays OFF until two raters judge its plausibility (EX-03); two AI-simulated review passes are in docs/research/ex03_trap_writer_ai_review.md and do not open the gate"
+   "engineering_complete": "trap fairness, the trap-wording writer and, since DT-197, 13 adversarial decision blocks added to generated cases where the case holds the anchor fact are built and tested; the writer stays OFF until two raters judge its plausibility (EX-03) and a clinician has not reviewed the blocks; two AI-simulated review passes are in docs/research/ex03_trap_writer_ai_review.md and do not open the gate"
   },
   "A8": {
    "runtime": "`src/ProcSense.Core` CaseGraph and session level options choose branches deterministically; planned what-if events (`server/generation/plan_extras.py`)",
@@ -214,8 +214,7 @@
    ],
    "gates": [
     "order_fallback"
-   ],
-   "engineering_complete": "the model fallback of the order grammar is built and, on the frozen held-out set 8, reads back 96.3 percent of orders correctly with the cloud model; the switch `order_fallback` stays OFF until a second, independent author's set exists (EX-18) because all eight sets were written by one AI author"
+   ]
   },
   "C24": {
    "runtime": "`server/dialogue/dialogue.py` behind the AI gateway (`server/routers/ai_gateway.py`) with the grounding validator",
@@ -311,8 +310,7 @@
    "gates": [
     "voice_orders",
     "order_fallback"
-   ],
-   "engineering_complete": "the model fallback of the order grammar is built and, on the frozen held-out set 8, reads back 96.3 percent of orders correctly with the cloud model; the switch `order_fallback` stays OFF until a second, independent author's set exists (EX-18) because all eight sets were written by one AI author"
+   ]
   },
   "C33": {
    "runtime": "`server/asr/service.py` (faster-whisper small.en on the card)",
@@ -629,6 +627,8 @@
   "A4.c2": "Built and measured, below its acceptance, gate `plan_extras` OFF: the plan composer's interaction proposals (server/generation/plan_extras.py) choose only among knowledge-base pairs found by code; every claimed pair is re-checked. On the 53 library cases the real 4B chose an interaction for 24 (45 percent), which equals the 24 cases that have a pair at all, against the plan's 80 percent (reports/ai/plan-extras-eval.json); relevance is a human rating (EX-03).",
   "A5.c2": "Built, gate `plan_extras` OFF: the model chooses up to 3 approved, eligible events per case (plan_extras.py); the engine restricts practice-mode events to the plan (SessionOptions.PlannedEvents, tests/ProcSense.Core.Tests/PlannedEventsTests.cs). No ineligible event in 53 cases; whether the chosen events fit the case is a human rating (EX-03), not measured.",
   "A7.c2": "Built, gate `trap_writer` OFF: server/generation/trap_writer.py rewords only wrong options under the narrative lexical checks and reverts any wording that lowers trap fairness (24 of 98 options reworded on the library, fairness never lower: reports/ai/trap-writer-eval.json). The plan's acceptance, plausibility higher than the authored text, is a human rating (EX-03) and is not measured.",
-  "A8.c2": "Built, gate `plan_extras` OFF: each chosen event carries the what-if it realises (whatif_id), validated against the event library and recorded in provenance.plan.events; the engine consumes the event list. Whether the proposed branches are good is a human rating (EX-03)."
+  "A8.c2": "Built, gate `plan_extras` OFF: each chosen event carries the what-if it realises (whatif_id), validated against the event library and recorded in provenance.plan.events; the engine consumes the event list. Whether the proposed branches are good is a human rating (EX-03).",
+  "B23.c2": "Built and measured, below its acceptance on the independent sets, gate `order_fallback` OFF: the model fallback of the order grammar (server/orders/llm_fallback.py) read 96.3 percent correctly on set 8 (written by the builder's own assistant) but 90.2 percent on set 9 (written by gpt-oss) and 72.6 percent on set 10 (written by nemotron), with 12.5 and 33.3 percent of the non-orders offered (reports/ai/orders-mapper-compare-v9_gemma.json, v10_gemma.json, orders-breakdown-v9.json, v10.json). The plan asks for 90 percent and 10 points above the grammar: met on set 9 only. A share of the misses is the grammar's question guard (kept on purpose), sentences that name no item, and arguably mislabelled non-orders; a human-authored set (EX-18) is needed to settle it.",
+  "C32.c1": "Built and measured, below its acceptance (95 percent) on the independent sets: 90.2 percent on set 9 and 72.6 percent on set 10 (see B23.c2); the server route and read-back are on and the gate `order_fallback` is OFF. The Quest voice client is built; its device check is DC-08."
  }
 }

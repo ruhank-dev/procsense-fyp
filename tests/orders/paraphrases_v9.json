@@ -1,0 +1,605 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "human_authored": false,
+ "note": "Written by the language model gpt-oss:120b-cloud on 26 Oct 2026 (UTC) from a fixed authoring prompt (sha256 b0f8ffe09b22e3c3) BEFORE any row was run through any mapper. The model is a different family from the model under test and from the assistant that wrote the earlier sets, so this set is less tied to the builder than they were; it is still machine-written, not human-authored, and does not satisfy EX-18. Labels are the item the author was asked to paraphrase; nothing was edited by hand. Frozen: scored once per model.",
+ "author_model": "gpt-oss:120b-cloud",
+ "author_prompt_sha256": "b0f8ffe09b22e3c33982327c04ac348875ab4eb4a3271fb26b417486d623947e",
+ "rows": [
+  {
+   "text": "Could you transfer the patient to the bay?",
+   "kind": "place",
+   "target": "patient_bay",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA001"
+  },
+  {
+   "text": "The CT scan shows a small subdural bleed.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA002"
+  },
+  {
+   "text": "Initiating the sepsis emergency treatment protocol now.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA003"
+  },
+  {
+   "text": "Could you administer a dose of NSAIDs, please?",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA004"
+  },
+  {
+   "text": "Hold the antibiotic for now; we’ll reassess later.",
+   "kind": "home_medicine",
+   "target": "antibiotic",
+   "intent": "HOLD_MED",
+   "id": "OA005"
+  },
+  {
+   "text": "Could you run a blood gas for me?",
+   "kind": "test",
+   "target": "blood_gas",
+   "intent": "ORDER_TEST",
+   "id": "OA006"
+  },
+  {
+   "text": "Could you bring the patient over to the theatre reception, please?",
+   "kind": "place",
+   "target": "theatre_reception",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA007"
+  },
+  {
+   "text": "Can you run a CRP for me?",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST",
+   "id": "OA008"
+  },
+  {
+   "text": "Can we move the patient to the ultrasound room, please?",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA009"
+  },
+  {
+   "text": "The CRP is elevated at 18 mg/L, suggesting an acute phase response.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA010"
+  },
+  {
+   "text": "I’m giving the patient a fast-acting sugar now.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA011"
+  },
+  {
+   "text": "Please hold the furosemide for now.",
+   "kind": "home_medicine",
+   "target": "furosemide",
+   "intent": "HOLD_MED",
+   "id": "OA012"
+  },
+  {
+   "text": "Can we get a clotting screen, please?",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST",
+   "id": "OA013"
+  },
+  {
+   "text": "Can we get an abdominal ultrasound, please?",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST",
+   "id": "OA014"
+  },
+  {
+   "text": "Please order the liver function panel for this patient.",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST",
+   "id": "OA015"
+  },
+  {
+   "text": "Please start a normal saline infusion now.",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA016"
+  },
+  {
+   "text": "Please start an IV of 5% dextrose for the patient.",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA017"
+  },
+  {
+   "text": "Could you call the surgeon, please?",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF",
+   "id": "OA018"
+  },
+  {
+   "text": "Please order a chest X‑ray for this patient.",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST",
+   "id": "OA019"
+  },
+  {
+   "text": "Could you get the porter here, please?",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF",
+   "id": "OA020"
+  },
+  {
+   "text": "Please schedule an MRI for the patient.",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST",
+   "id": "OA021"
+  },
+  {
+   "text": "Give the patient a dose of prophylactic antibiotics now.",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA022"
+  },
+  {
+   "text": "Hold the aspirin for now.",
+   "kind": "home_medicine",
+   "target": "aspirin",
+   "intent": "HOLD_MED",
+   "id": "OA023"
+  },
+  {
+   "text": "Could you run the Group and save test now?",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST",
+   "id": "OA024"
+  },
+  {
+   "text": "We should hold the prednisolone at this time.",
+   "kind": "home_medicine",
+   "target": "prednisolone",
+   "intent": "HOLD_MED",
+   "id": "OA025"
+  },
+  {
+   "text": "Please start oxygen therapy for the patient.",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA026"
+  },
+  {
+   "text": "Order a lactate and blood cultures, please.",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST",
+   "id": "OA027"
+  },
+  {
+   "text": "Could you get the senior on the line, please?",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF",
+   "id": "OA028"
+  },
+  {
+   "text": "Please administer paracetamol to the patient.",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA029"
+  },
+  {
+   "text": "I’m prescribing a preventive antibiotic for the post‑operative patient to reduce infection risk.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA030"
+  },
+  {
+   "text": "The surgeon is reviewing the patient's chart before we begin.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA031"
+  },
+  {
+   "text": "Please run a urea and electrolytes panel for this patient.",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST",
+   "id": "OA032"
+  },
+  {
+   "text": "I gave the patient naloxone to counteract the opioid overdose.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA033"
+  },
+  {
+   "text": "The patient was given a low dose of opioids for pain control.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA034"
+  },
+  {
+   "text": "Could you get an ECG on this patient, please?",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST",
+   "id": "OA035"
+  },
+  {
+   "text": "Could we run a pregnancy test now?",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST",
+   "id": "OA036"
+  },
+  {
+   "text": "I just ran the finger-prick glucose and ketones test on the patient.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA037"
+  },
+  {
+   "text": "Could you call the anaesthetist over?",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF",
+   "id": "OA038"
+  },
+  {
+   "text": "Can we run the STOP‑BANG questionnaire now?",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST",
+   "id": "OA039"
+  },
+  {
+   "text": "Can we start the anticoagulant for this patient?",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA040"
+  },
+  {
+   "text": "I just finished the STOP-BANG questions for the patient.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA041"
+  },
+  {
+   "text": "I'm heading to the ultrasound room now.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA042"
+  },
+  {
+   "text": "I’ll start the patient on broad antibiotics to cover the likely pathogens.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA043"
+  },
+  {
+   "text": "Can we run a finger‑stick for glucose and ketones now?",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST",
+   "id": "OA044"
+  },
+  {
+   "text": "The patient's thyroid stimulating hormone is markedly elevated.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA045"
+  },
+  {
+   "text": "The urine dipstick is positive for leukocytes.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA046"
+  },
+  {
+   "text": "The CT scanner is ready for the next patient.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA047"
+  },
+  {
+   "text": "Please move the patient to the ward.",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA048"
+  },
+  {
+   "text": "Can we give the patient a rapid‑acting glucose bolus?",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA049"
+  },
+  {
+   "text": "The IV fluids are set at 125 mL per hour.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA050"
+  },
+  {
+   "text": "I’ll group and save the patient data now.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA051"
+  },
+  {
+   "text": "Please discontinue the warfarin until further notice.",
+   "kind": "home_medicine",
+   "target": "warfarin",
+   "intent": "HOLD_MED",
+   "id": "OA052"
+  },
+  {
+   "text": "I'm prepping the operating theatre for the next case.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA053"
+  },
+  {
+   "text": "The urine analysis returned a positive pregnancy test.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA054"
+  },
+  {
+   "text": "We need to hold the patient's dexamethasone for now.",
+   "kind": "home_medicine",
+   "target": "dexamethasone",
+   "intent": "HOLD_MED",
+   "id": "OA055"
+  },
+  {
+   "text": "Please move the patient to the MRI scanner.",
+   "kind": "place",
+   "target": "mri",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA056"
+  },
+  {
+   "text": "Can we get a ferritin level checked?",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST",
+   "id": "OA057"
+  },
+  {
+   "text": "Please move the patient to the operating theatre.",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA058"
+  },
+  {
+   "text": "I think we should start the patient on NSAIDs for pain control.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA059"
+  },
+  {
+   "text": "Can I get ondansetron for the patient, please?",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA060"
+  },
+  {
+   "text": "Hold the insulin for now.",
+   "kind": "home_medicine",
+   "target": "insulin",
+   "intent": "HOLD_MED",
+   "id": "OA061"
+  },
+  {
+   "text": "Give me a dose of adrenaline, stat.",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA062"
+  },
+  {
+   "text": "The ECG reveals a new onset atrial fibrillation.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA063"
+  },
+  {
+   "text": "Can I get a dose of broad-spectrum antibiotics, please?",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA064"
+  },
+  {
+   "text": "Please transfer the patient to the CT scanner.",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA065"
+  },
+  {
+   "text": "Administer the broad‑spectrum antibiotics immediately.",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA066"
+  },
+  {
+   "text": "The patient's ferritin is elevated at 450 ng/mL.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA067"
+  },
+  {
+   "text": "Can we give the patient steroid cover now?",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA068"
+  },
+  {
+   "text": "Give me naloxone, stat.",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA069"
+  },
+  {
+   "text": "Can we get a Tryptase level now?",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST",
+   "id": "OA070"
+  },
+  {
+   "text": "Can I get a dose of morphine for this patient?",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION",
+   "id": "OA071"
+  },
+  {
+   "text": "Can we schedule an MRCP for this patient?",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST",
+   "id": "OA072"
+  },
+  {
+   "text": "Can we get the patient to the corridor, please?",
+   "kind": "place",
+   "target": "corridor",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA073"
+  },
+  {
+   "text": "Nurse, could you come in here?",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF",
+   "id": "OA074"
+  },
+  {
+   "text": "Can we get a lipase level checked?",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST",
+   "id": "OA075"
+  },
+  {
+   "text": "Can we get a full blood count on this patient?",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST",
+   "id": "OA076"
+  },
+  {
+   "text": "Can we get a TSH level now?",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST",
+   "id": "OA077"
+  },
+  {
+   "text": "Please order a CT of the abdomen.",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST",
+   "id": "OA078"
+  },
+  {
+   "text": "The ultrasound shows a clear view of the fetal heart.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA079"
+  },
+  {
+   "text": "Please order an HbA1c.",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST",
+   "id": "OA080"
+  },
+  {
+   "text": "Could you get me the patient's weight and BMI, please?",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST",
+   "id": "OA081"
+  },
+  {
+   "text": "Please move the patient to the X‑ray room.",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT",
+   "id": "OA082"
+  },
+  {
+   "text": "Can we run a urine dipstick now?",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST",
+   "id": "OA083"
+  },
+  {
+   "text": "Please hold the bendroflumethiazide until further notice.",
+   "kind": "home_medicine",
+   "target": "bendroflumethiazide",
+   "intent": "HOLD_MED",
+   "id": "OA084"
+  },
+  {
+   "text": "I’m preparing the IV glucose for the patient now.",
+   "kind": null,
+   "target": null,
+   "intent": null,
+   "id": "OA085"
+  }
+ ]
+}

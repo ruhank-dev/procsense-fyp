@@ -23,8 +23,9 @@ def main() -> int:
     ap.add_argument("--set", default="paraphrases")
     ap.add_argument("--model", default="qwen3.5:4b-q4_K_M")
     a = ap.parse_args()
-    if a.set in CM.FROZEN:
-        raise SystemExit("REFUSED: a frozen set is scored once, not studied")
+    scored = (CM.LOCK_DIR / f"orders-{a.set}-compare-used.json").exists() or CM.OUT.with_name(f"orders-mapper-compare-{a.set}_gemma.json").exists()
+    if a.set in CM.FROZEN and not scored:
+        raise SystemExit("REFUSED: a frozen set that has not been scored yet is scored once, not studied; after its score it may be studied and is then a development set")
     client = C.OllamaClient("http://127.0.0.1:11434")
     vocab = vocabulary()
     mapper = LF.OrderMapper(client, model=a.model, timeout=60.0)

@@ -22,8 +22,8 @@ from server.llm import client as C, gateway  # noqa: E402
 from server.orders import llm_fallback as LF  # noqa: E402
 from server.orders.grammar import ReadBack, clean, vocabulary  # noqa: E402
 
-FILES = {"paraphrases": "paraphrases.json", "v2": "paraphrases_v2.json", "v3": "paraphrases_v3.json", "v4": "paraphrases_v4.json", "v5": "paraphrases_v5.json", "v6": "paraphrases_v6.json", "v7": "paraphrases_v7.json", "v8": "paraphrases_v8.json"}
-FROZEN = ("v4", "v5", "v8")                  # v4 was scored once (ADR-0021); v5 is the second author's set (EX-18), scored once when it exists
+FILES = {"paraphrases": "paraphrases.json", "v2": "paraphrases_v2.json", "v3": "paraphrases_v3.json", "v4": "paraphrases_v4.json", "v5": "paraphrases_v5.json", "v6": "paraphrases_v6.json", "v7": "paraphrases_v7.json", "v8": "paraphrases_v8.json", "v9": "paraphrases_v9.json", "v10": "paraphrases_v10.json"}
+FROZEN = ("v4", "v5", "v8", "v9", "v10")                  # v4 was scored once (ADR-0021); v5 is the second author's set (EX-18), scored once when it exists
 LOCK_DIR = ROOT / "artifacts" / "ai-bench"
 OUT = ROOT / "reports" / "ai" / "orders-mapper-compare.json"
 

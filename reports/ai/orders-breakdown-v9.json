@@ -1,0 +1,32 @@
+{
+ "set": "v9",
+ "model": "gemma4:31b-cloud",
+ "orders": 61,
+ "classes": {
+  "correct": 55,
+  "non_order_ok": 21,
+  "false_offer": 3,
+  "ambiguous_item": 3,
+  "guard": 3
+ },
+ "correct_share": 0.902,
+ "correct_share_among_rows_the_guard_lets_through": 0.948,
+ "examples": {
+  "false_offer": [
+   "Initiating the sepsis emergency treatment protocol now.",
+   "I’ll start the patient on broad antibiotics to cover the likely pathogens.",
+   "I think we should start the patient on NSAIDs for pain control."
+  ],
+  "ambiguous_item": [
+   "Give the patient a dose of prophylactic antibiotics now.",
+   "Can we give the patient a rapid‑acting glucose bolus?",
+   "Administer the broad‑spectrum antibiotics immediately."
+  ],
+  "guard": [
+   "Can I get ondansetron for the patient, please?",
+   "Can I get a dose of broad-spectrum antibiotics, please?",
+   "Can I get a dose of morphine for this patient?"
+  ]
+ },
+ "note": "second run of a cloud model: close to the scored figure, not equal to it; the guard is the question/condition rule of the grammar (DT-208), kept on purpose"
+}

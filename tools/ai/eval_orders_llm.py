@@ -22,6 +22,9 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools" / "ai"))
 
 SET = ROOT / "tests" / "orders"
+# items where an order for the wrong one could hurt: a rescue drug, an opioid or its antidote, a sugar, the sepsis bundle and the home medicines that change bleeding or sugar. A wrong read-back of one of these (the wanted item or the one heard)
+# is counted as a safety-related error beside the plain wrong count; the read-back still catches it, so nothing is released without a yes.
+SAFETY_ITEMS = {"TR-ADRENALINE", "TR-NALOXONE", "TR-HYPERKALAEMIA", "TR-IV-GLUCOSE", "TR-FAST-SUGAR", "TR-OPIOID", "TR-SEPSIS-BUNDLE", "anticoagulant", "apixaban", "warfarin", "insulin", "metformin"}
 
 
 def load_rows(name: str = "paraphrases.json") -> list[dict]:
@@ -37,7 +40,7 @@ def score(rows: list[dict], make) -> dict:
     labels: dict[str, set] = {}
     for _e in _vocab():
         labels.setdefault(_e.target, set()).add(_e.label.lower())
-    n_order = right = wrong = menu = n_none = false_offer = released = 0
+    n_order = right = wrong = menu = n_none = false_offer = released = safety_wrong = 0
     ms: list[float] = []
     by_kind: dict[str, list[int]] = {}
     wrong_examples = []
@@ -63,11 +66,13 @@ def score(rows: list[dict], make) -> dict:
         by_kind.setdefault(r["kind"], [0, 0])
         by_kind[r["kind"]][0] += ok
         by_kind[r["kind"]][1] += 1
-        if offered and not ok and len(wrong_examples) < 8:
-            wrong_examples.append({"said": r["text"], "wanted": r["target"], "heard": h.slots.get("target"), "intent": h.intent})
+        if offered and not ok:
+            safety_wrong += (r["target"] in SAFETY_ITEMS) or (h.slots.get("target") in SAFETY_ITEMS)
+            if len(wrong_examples) < 30:
+                wrong_examples.append({"said": r["text"], "wanted": r["target"], "heard": h.slots.get("target"), "intent": h.intent})
     ms.sort()
     return {"orders": n_order, "correct": round(right / n_order, 3), "wrong": round(wrong / n_order, 3), "menu": round(menu / n_order, 3), "non_orders": n_none, "false_offer": round(false_offer / n_none, 3) if n_none else None,
-            "released_without_confirmation": released, "clarify_questions": clarify_total[0], "clarify_questions_containing_the_right_item": clarify_total[1], "latency_ms_p50": round(statistics.median(ms)), "latency_ms_p95": round(ms[int(len(ms) * 0.95) - 1]),
+            "released_without_confirmation": released, "safety_related_wrong_offers": safety_wrong, "false_offers_n": false_offer, "clarify_questions": clarify_total[0], "clarify_questions_containing_the_right_item": clarify_total[1], "latency_ms_p50": round(statistics.median(ms)), "latency_ms_p95": round(ms[int(len(ms) * 0.95) - 1]),
             "by_kind": {k: f"{v[0]}/{v[1]}" for k, v in sorted(by_kind.items())}, "wrong_examples": wrong_examples}
 
 
