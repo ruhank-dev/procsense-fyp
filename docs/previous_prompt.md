@@ -3757,7 +3757,7 @@ Decisions on DT-248 / DT-127, DT-251 and DT-252, to be implemented end to end. (
 (This entry keeps the requirements, shortened.)
 ``````
 
-## 206. 25 October 2026, day (UTC; the exact time was not recorded)
+## 204. 25 October 2026, day (UTC; the exact time was not recorded)
 _Session: fe0a6c20_
 
 ``````text

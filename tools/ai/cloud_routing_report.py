@@ -5,6 +5,7 @@ model the rule picks. `--check` compares that file with what the rule gives from
 
 The rules, fixed before the choice:
   * the local model (qwen3.5:4b-q4_K_M) is the default and keeps the task unless a candidate is no worse on every safety figure AND better on the quality figure by the margin of the task;
+  * spoken orders (kind and map, measured together on a held-out set): correct read-backs better by at least 5 points, no more wrong items or false offers than local, 95th percentile under the 4 s budget (ADR-0026 amendment);
   * real-time dialogue (patient, staff): quality at least equal, no more leaks than local, 95th percentile under the 4 s budget; among eligible models the best quality, then the lower median wins;
   * offline generation (narrative, critic, judge, trap writer): quality better by at least 5 points, false alarms no higher; speed alone never moves an offline task to the cloud;
   * a task with no benchmark, or whose candidate is not better, stays local.
@@ -161,6 +162,9 @@ def choose(task: str, f: dict) -> tuple[str, str]:
         elif task == "debrief.rewrite":
             if v["accept_rate"] >= loc["accept_rate"] + MARGIN:
                 ok[m] = (v["accept_rate"],)
+        elif task in ("orders.kind", "orders.map"):
+            if v["correct"] >= loc["correct"] + MARGIN and v["wrong"] <= loc["wrong"] and v["false_offer"] <= loc["false_offer"] and v["ms_p95"] <= BUDGET_MS:
+                ok[m] = (v["correct"], -v["wrong"], -v["ms_p50"])
         elif task == "personalisation.interpret":
             if v["confirmed"] >= loc["confirmed"] + MARGIN:
                 ok[m] = (v["confirmed"],)

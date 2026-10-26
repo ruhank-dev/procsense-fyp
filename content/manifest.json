@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "5559f2859d10dcf1b75f58c0b7ab458e35c057bbd8fa84e1c97de597925bd24a",
+ "content_hash": "9254a45e0945ec02cd72ee11b7357b62d70fbbac58a878e67d4f6e9f8852636f",
  "files": 753,
- "bytes": 18271931,
+ "bytes": 18272425,
  "per_folder": {
   "(root)": 65,
   "adversarial": 1,
@@ -71,8 +71,8 @@
    "sha256": "b6f334cc800a609ebca03cbb9f3a71d1389f267517fa93c21b762aa40a4e23a0"
   },
   "ai/features.json": {
-   "bytes": 9676,
-   "sha256": "853de692d69a4f8700a1eee0f750c1b522688d6c75a340bcf3da4d9f3d7d48ad"
+   "bytes": 9805,
+   "sha256": "6ed2630edb7a415d60fb7d78527a30729ad97332361783a900e4f07e4b97bb08"
   },
   "ai/intents.json": {
    "bytes": 945,
@@ -87,8 +87,8 @@
    "sha256": "bdbbe1b13780f553d2181c21fa8aad4ac2474ce4baa84b7c9e932ca8c523a007"
   },
   "ai/model_routes.json": {
-   "bytes": 6505,
-   "sha256": "d37c64dafe7d78f2b8b1a1d6848d9669a01f57763800a8499b0fbeeb6a5560df"
+   "bytes": 6534,
+   "sha256": "998a1495d153653030e406c6bda2dee6dffed821e05c4eee2c8f14167f216082"
   },
   "ai/order_notes.json": {
    "bytes": 3824,
@@ -107,8 +107,8 @@
    "sha256": "207dfc7c6a3aabfc61b0f66f0b5cd537672745d3b63ee9d13b549a6da06eeff2"
   },
   "ai/thresholds.json": {
-   "bytes": 18033,
-   "sha256": "613eafced7707fa5f8fc81944480ad1f7a35baaff869ca001abc6badef27941f"
+   "bytes": 18369,
+   "sha256": "20ca686235acae5f7ca1e837adf62bc71aea8da6dadb77c36ca8c4346fc06ed3"
   },
   "assessment/mapping.json": {
    "bytes": 8058,

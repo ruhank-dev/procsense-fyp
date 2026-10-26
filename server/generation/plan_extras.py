@@ -43,6 +43,8 @@ def eligible_events(case: dict) -> list[dict]:
             continue
         if e["needs_flag"] == "allergy.reaction_eligible" and not case.get("allergies"):
             continue
+        if e["needs_flag"] not in ("", "allergy.reaction_eligible"):         # an event that waits for something the trainee does (a declined test) is not one a plan can schedule
+            continue
         out.append(e)
     return out
 

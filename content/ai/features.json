@@ -135,8 +135,8 @@
   },
   "order_fallback": {
    "label": "Language-model fallback of the spoken-order grammar (a suggestion that is read back; nothing is released without a yes). SYNTHETIC paraphrases by one author (an AI assistant), NOT independent; the cloud model on the frozen held-out set 8",
-   "status": "PASS",
-   "enabled": true,
+   "status": "FAIL",
+   "enabled": false,
    "suites": [
     {
      "id": "order_fallback.no_release_without_confirmation",
@@ -167,6 +167,12 @@
      "status": "PASS",
      "got": 0.1,
      "needs": "<= 0.1"
+    },
+    {
+     "id": "order_fallback.independent_evidence",
+     "status": "FAIL",
+     "got": false,
+     "needs": "== 1.0"
     },
     {
      "id": "order_fallback.latency_p95_ms",

@@ -106,14 +106,14 @@
   "orders.kind": {
    "model": "gemma4:31b-cloud",
    "data_class": "trainee",
-   "evidence": "reports/ai/orders-mapper-compare-v8_gemma.json",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.orders.kind",
    "fallback": "qwen3.5:4b-q4_K_M",
    "why": "Frozen held-out set 8 (64 synthetic rows, scored once per model, 25 Oct 2026 UTC): 96.3 percent of orders read back correctly, 0 wrong, 1 of 10 non-orders offered, p50 1.25 s and p95 1.9 s, against 90.7 percent, 0 wrong, 2 of 10 offered and p50 4.6 s for the local model with the same prompts and notes (reports/ai/orders-mapper-compare-v8_qwen_second_look.json). A trainee's words go to the cloud only with the institutional approval and the person's own consent (ADR-0027); otherwise, or when the cloud is slow, the local model answers."
   },
   "orders.map": {
    "model": "gemma4:31b-cloud",
    "data_class": "trainee",
-   "evidence": "reports/ai/orders-mapper-compare-v8_gemma.json",
+   "evidence": "reports/ai/cloud-routing-benchmark.json#decisions.orders.map",
    "fallback": "qwen3.5:4b-q4_K_M",
    "why": "Frozen held-out set 8 (64 synthetic rows, scored once per model, 25 Oct 2026 UTC): 96.3 percent of orders read back correctly, 0 wrong, 1 of 10 non-orders offered, p50 1.25 s and p95 1.9 s, against 90.7 percent, 0 wrong, 2 of 10 offered and p50 4.6 s for the local model with the same prompts and notes (reports/ai/orders-mapper-compare-v8_qwen_second_look.json). A trainee's words go to the cloud only with the institutional approval and the person's own consent (ADR-0027); otherwise, or when the cloud is slow, the local model answers."
   },

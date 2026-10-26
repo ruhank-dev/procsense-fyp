@@ -282,6 +282,14 @@
      "value": 0.1
     },
     {
+     "id": "order_fallback.independent_evidence",
+     "file": "orders-mapper-compare-v8_gemma.json",
+     "path": "independent",
+     "op": "==",
+     "ref": "the paraphrases were written by one AI author (EX-18 asks for a second, human author): the fallback stays OFF until an independent set exists",
+     "value": true
+    },
+    {
      "id": "order_fallback.latency_p95_ms",
      "file": "orders-mapper-compare-v8_gemma.json",
      "path": "sets.v8.current.latency_ms_p95",

@@ -35,7 +35,7 @@ Nothing was released without a yes in any run. Files: `reports/ai/orders-mapper-
 
 - B23.c2: at least 90 percent and at least 10 points above the grammar alone: 96.3 percent and 64.8 points above. **Met.**
 - C32.c1: at least 95 percent and above the grammar alone: 96.3 percent. **Met on the held-out set**, not on the two earlier looks (94.4 and 92.6 percent), which is why the figure to trust is the last one and why it is still one author.
-- The gate `order_fallback` (`content/ai/thresholds.json`) now reads set 8 and is ON. The routes `orders.kind` and `orders.map` use the cloud model only with the institutional approval and the person's own consent (ADR-0027) and fall back to the local model.
+- The gate `order_fallback` (`content/ai/thresholds.json`) now reads set 8: every accuracy, safety and latency suite passes, but a suite that asks for independent evidence (a second, human author, EX-18) fails, so the switch stays OFF and the features are engineering complete with the switch off. The routes `orders.kind` and `orders.map` use the cloud model only with the institutional approval and the person's own consent (ADR-0027) and fall back to the local model.
 
 ## Limits
 

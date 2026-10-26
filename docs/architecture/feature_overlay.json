@@ -214,7 +214,8 @@
    ],
    "gates": [
     "order_fallback"
-   ]
+   ],
+   "engineering_complete": "the model fallback of the order grammar is built and, on the frozen held-out set 8, reads back 96.3 percent of orders correctly with the cloud model; the switch `order_fallback` stays OFF until a second, independent author's set exists (EX-18) because all eight sets were written by one AI author"
   },
   "C24": {
    "runtime": "`server/dialogue/dialogue.py` behind the AI gateway (`server/routers/ai_gateway.py`) with the grounding validator",
@@ -303,14 +304,15 @@
    ]
   },
   "C32": {
-   "runtime": "`server/orders/grammar.py` parses spoken commands; the Quest client is Sannan's; measured on the frozen held-out set 8: 96.3 percent read back correctly, 0 wrong (`reports/ai/orders-mapper-compare-v8_gemma.json`), gate `order_fallback` ON",
+   "runtime": "`server/orders/grammar.py` parses spoken commands; the Quest client is Sannan's; measured on the frozen held-out set 8: 96.3 percent read back correctly, 0 wrong (`reports/ai/orders-mapper-compare-v8_gemma.json`), gate `order_fallback` OFF until an independent set exists (EX-18)",
    "tests": [
     "server/tests/test_orders.py"
    ],
    "gates": [
     "voice_orders",
     "order_fallback"
-   ]
+   ],
+   "engineering_complete": "the model fallback of the order grammar is built and, on the frozen held-out set 8, reads back 96.3 percent of orders correctly with the cloud model; the switch `order_fallback` stays OFF until a second, independent author's set exists (EX-18) because all eight sets were written by one AI author"
   },
   "C33": {
    "runtime": "`server/asr/service.py` (faster-whisper small.en on the card)",

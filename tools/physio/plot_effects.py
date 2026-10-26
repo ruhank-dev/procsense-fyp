@@ -18,11 +18,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PHYSIO = ROOT / "content" / "physio"
 OUT = ROOT / "docs" / "research" / "physio-plots"
-NORMAL = {"HR": 76, "SBP": 124, "DBP": 78, "RR": 14, "SpO2": 98, "Temp": 36.7, "pain": 0, "glucose": 5.5, "nausea": 0, "sedation": 0, "volume_deficit": 0}
+NORMAL = {"HR": 76, "SBP": 124, "DBP": 78, "RR": 14, "SpO2": 98, "Temp": 36.7, "pain": 0, "glucose": 5.5, "nausea": 0, "sedation": 0, "volume_deficit": 0, "EtCO2": 38, "allergy_level": 0}
 SECONDS = 7200
 SAMPLE_EVERY = 60
 # fixed y ranges per variable so charts of the same variable compare
-YRANGE = {"HR": (60, 140), "SBP": (80, 160), "DBP": (40, 100), "RR": (4, 30), "SpO2": (85, 100), "Temp": (36, 40), "pain": (0, 10), "glucose": (3, 10), "nausea": (0, 10), "sedation": (0, 3), "volume_deficit": (0, 1000)}
+YRANGE = {"HR": (60, 140), "SBP": (80, 160), "DBP": (40, 100), "RR": (4, 30), "SpO2": (85, 100), "Temp": (36, 40), "pain": (0, 10), "glucose": (3, 10), "nausea": (0, 10), "sedation": (0, 3), "EtCO2": (15, 50), "allergy_level": (0, 10), "volume_deficit": (0, 1000)}
 
 
 def factor(profile: dict, age: float) -> float:
