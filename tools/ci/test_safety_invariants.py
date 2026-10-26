@@ -79,6 +79,24 @@ class Gate(unittest.TestCase):
             if "NOT independent" in f["label"]:
                 self.assertFalse(f["enabled"], name)
 
+    def test_the_spoken_order_interpreter_is_on_only_through_the_owners_recorded_demonstration_waiver(self):
+        f = self.FEATURES["order_fallback"]
+        if not f["enabled"]:
+            return
+        w = j("reports/ai/ex18-owner-waiver.json")
+        self.assertTrue(w["owner_accepts_synthetic_evaluation_for_demonstration"])
+        self.assertEqual(w["scope"], "controlled FYP demonstration only")
+        for never in ("independent_human_authored_test_done", "clinician_validation_done", "sannan_physical_headset_checks_done", "real_trainee_use_authorised", "clinical_deployment_authorised"):
+            self.assertIs(w[never], False, never)                                  # the waiver never claims what was not done
+        self.assertIn("DEMONSTRATION ONLY", f["label"])
+        self.assertIn("waived", f["label"])
+        rep = j("reports/ai/orders-ai-heldout_v1.json")
+        self.assertFalse(rep["independent_human"])
+        self.assertGreaterEqual(rep["accuracy"], 0.95)
+        self.assertEqual(rep["confirmation_bypasses"], 0)
+        ex18 = (ROOT / "docs" / "testing" / "results" / "EX-18.md").read_text(encoding="utf-8")
+        self.assertRegex(ex18, r"(?m)^Result: NOT RUN")                         # EX-18 is not passed by a waiver
+
     def test_a_gated_model_candidate_acceptance_is_a_persons_statement_recorded_as_such(self):
         for c in j("content/ai/model_candidates.json")["candidates"]:
             t = c["terms"]

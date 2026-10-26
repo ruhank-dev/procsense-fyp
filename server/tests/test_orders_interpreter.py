@@ -89,3 +89,12 @@ def test_when_the_model_is_down_the_grammar_with_its_question_guard_still_answer
     h = rb.hear("order a CRP")
     assert (h.status, h.source) == ("confirm", "grammar")
     assert rb.hear("can i have a crp").status == "menu"            # offline safety net only
+
+
+def test_only_the_cloud_models_reading_counts_the_local_models_is_dropped_for_the_grammar():
+    from server.routers.orders import CloudOnlyInterpreter
+    answer = {"kind": "order", "intent": "ORDER_TEST", "target": "test:ecg", "confidence": 0.9}
+    it = CloudOnlyInterpreter(host(answer)).interpret("get a trace of his heart", vocabulary())          # the fake host answers as the local model
+    assert it is None
+    h = ReadBack(vocabulary(), None, CloudOnlyInterpreter(host(answer))).hear("could i get a trace of his heart")
+    assert (h.status, h.source) == ("menu", "grammar")

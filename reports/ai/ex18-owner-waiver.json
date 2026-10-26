@@ -1,0 +1,34 @@
+{
+ "id": "EX-18",
+ "decision": "The project owner reviewed the spoken-order evaluation and accepted the synthetic evaluation as sufficient for the controlled demonstration of this final-year project, and authorised activation of the spoken-order interpreter (switch order_fallback) for that demonstration. Independent human-authored testing was WAIVED for the demonstration. It was NOT carried out.",
+ "decided_by": "Ruhan Kamran, project owner (statement made in the project conversation of 26 Oct 2026, UTC; the exact time was not recorded)",
+ "owner_accepts_synthetic_evaluation_for_demonstration": true,
+ "scope": "controlled FYP demonstration only",
+ "reviewed": {
+  "report": "reports/ai/orders-ai-heldout_v1.json",
+  "rows": 151,
+  "behaves_as_labelled": 0.9735,
+  "incorrect_interpretations": 4,
+  "safety_related_incorrect_proposals": 2,
+  "confirmation_bypasses": 0,
+  "evaluation_document": "docs/research/orders_ai_evaluation.md"
+ },
+ "limitations_accepted": [
+  "all sentences and labels were written by one AI assistant: shared habits of wording are possible, and the set is small (one row is 0.7 points)",
+  "the four incorrect interpretations were vague sentences answered with the most plausible item instead of a question; two involved a glucose or a rescue drug; each was only a read-back that the trainee's own yes releases",
+  "the contexts were short text, not the live engine state"
+ ],
+ "independent_human_authored_test_done": false,
+ "clinician_validation_done": false,
+ "sannan_physical_headset_checks_done": false,
+ "real_trainee_use_authorised": false,
+ "clinical_deployment_authorised": false,
+ "still_required_before_real_trainee_use": "the institution's approval, the trainee's own consent for cloud processing (ADR-0027), privacy review, and a human-authored evaluation set (EX-18) or an explicit new decision by the institution",
+ "safeguards_unchanged": [
+  "the trainee's own yes before anything is executed (signed, single-use, per-user confirmation ticket)",
+  "approved action catalogue and intent-kind validation",
+  "ambiguous and incomplete sentences become a question",
+  "authoritative engine validation and scoring",
+  "institutional approval and personal consent before a trainee's words go to the cloud; local fallback otherwise"
+ ]
+}

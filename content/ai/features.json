@@ -134,9 +134,9 @@
    ]
   },
   "order_fallback": {
-   "label": "Semantic interpreter of spoken orders (ADR-0028): one Gemma 4 31B Cloud reading of the whole sentence in its scenario context; the answer is only a proposal that is read back and released by the trainee's yes. Measured on a frozen held-out set of 151 sentences written by an AI assistant: SYNTHETIC, NOT human-authored, NOT independent; the human-authored set EX-18 asks for does not exist, so the gate stays OFF",
-   "status": "FAIL",
-   "enabled": false,
+   "label": "Semantic interpreter of spoken orders (ADR-0028): one Gemma 4 31B Cloud reading of the whole sentence in its scenario context; the answer is only a proposal that is read back and released by the trainee's yes. Measured on a frozen held-out set of 151 sentences written by an AI assistant (synthetic, not human-authored). ENABLED FOR THE CONTROLLED FYP DEMONSTRATION ONLY by the project owner's explicit acceptance of that synthetic evaluation (reports/ai/ex18-owner-waiver.json); independent human-authored testing (EX-18) was waived for the demonstration, not done; real trainee use needs the institution's approval and the trainee's consent",
+   "status": "PASS",
+   "enabled": true,
    "suites": [
     {
      "id": "order_fallback.no_release_without_confirmation",
@@ -169,9 +169,9 @@
      "needs": "<= 0.1"
     },
     {
-     "id": "order_fallback.independent_evidence",
-     "status": "FAIL",
-     "got": false,
+     "id": "order_fallback.owner_acceptance_for_demonstration",
+     "status": "PASS",
+     "got": true,
      "needs": "== 1.0"
     },
     {

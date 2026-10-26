@@ -216,7 +216,7 @@
    "gates": [
     "order_fallback"
    ],
-   "engineering_complete": "discovery rules for every problem and the free-text order interpreter are built and tested; on the frozen AI-assistant-authored held-out set of 151 sentences the interpreter with Gemma 4 31B Cloud behaves as labelled on 97.4 percent (0 wrong items, 0 of 50 non-orders offered, 0 confirmation bypasses; reports/ai/orders-ai-heldout_v1.json). The sets are AI-authored synthetic data: the switch `order_fallback` stays OFF until a human-authored set exists (EX-18), and the discovery rules and clinical content need an independent clinician (docs/research/clinician_signoff.md)"
+   "engineering_complete": "discovery rules for every problem and the free-text order interpreter are built and tested; on the frozen AI-assistant-authored held-out set of 151 sentences the interpreter with Gemma 4 31B Cloud behaves as labelled on 97.4 percent (0 wrong items, 0 of 50 non-orders offered, 0 confirmation bypasses; reports/ai/orders-ai-heldout_v1.json). The switch `order_fallback` is ON for the controlled FYP demonstration only, by the project owner's explicit acceptance of the synthetic evaluation (reports/ai/ex18-owner-waiver.json); independent human-authored testing (EX-18) was waived for the demonstration, not done; real trainee use and clinical deployment need the institution's approval, each trainee's cloud consent and a human-authored set; the discovery rules and clinical content need an independent clinician (docs/research/clinician_signoff.md)"
   },
   "C24": {
    "runtime": "`server/dialogue/dialogue.py` behind the AI gateway (`server/routers/ai_gateway.py`) with the grounding validator",
@@ -305,7 +305,7 @@
    ]
   },
   "C32": {
-   "runtime": "`server/orders/grammar.py` (read-back, signed single-use ticket, offline grammar with its question guard) and `server/orders/interpreter.py` (one semantic Gemma 4 31B Cloud call in the scenario context, ADR-0028); the Quest client is Sannan's; measured on the frozen AI-assistant-authored held-out set: 97.4 percent as labelled, 0 confirmation bypasses, median 0.74 s (`reports/ai/orders-ai-heldout_v1.json`), gate `order_fallback` OFF until a human-authored set exists (EX-18)",
+   "runtime": "`server/orders/grammar.py` (read-back, signed single-use ticket, offline grammar with its question guard) and `server/orders/interpreter.py` (one semantic Gemma 4 31B Cloud call in the scenario context, ADR-0028); the Quest client is Sannan's; measured on the frozen AI-assistant-authored held-out set: 97.4 percent as labelled, 0 confirmation bypasses, median 0.74 s (`reports/ai/orders-ai-heldout_v1.json`), gate `order_fallback` ON for the controlled FYP demonstration only (owner acceptance of the synthetic evaluation, EX-18 waived, not done)",
    "tests": [
     "server/tests/test_orders.py",
     "server/tests/test_orders_interpreter.py"
@@ -314,7 +314,7 @@
     "voice_orders",
     "order_fallback"
    ],
-   "engineering_complete": "the spoken-order path is built and tested (ASR text, semantic interpretation, proposed action, trainee confirmation, engine verb); 97.4 percent as labelled on the frozen AI-assistant-authored held-out set with Gemma 4 31B Cloud (95 percent asked), no confirmation bypass; the Quest device check is DC-08 and the human-authored set EX-18 are external, and the live switch `order_fallback` stays OFF until then"
+   "engineering_complete": "the spoken-order path is built and tested (ASR text, semantic interpretation, proposed action, trainee confirmation, engine verb); 97.4 percent as labelled on the frozen AI-assistant-authored held-out set with Gemma 4 31B Cloud (95 percent asked), no confirmation bypass; the switch `order_fallback` is ON for the controlled FYP demonstration only, by the project owner's explicit acceptance of the synthetic evaluation (reports/ai/ex18-owner-waiver.json); independent human-authored testing (EX-18) was waived for the demonstration, not done; real trainee use and clinical deployment need the institution's approval, each trainee's cloud consent and a human-authored set; the Quest device checks DC-08 and DC-11 are Sannan's and have not been run"
   },
   "C33": {
    "runtime": "`server/asr/service.py` (faster-whisper small.en on the card)",

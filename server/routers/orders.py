@@ -12,14 +12,17 @@ from functools import lru_cache
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
+from sqlalchemy.orm import Session as DbSession
 
 from server import ai_features
 from server.config import Settings, get_settings
-from server.llm import client as client_mod
+from server.auth.dependencies import db_session
+from server.llm import client as client_mod, routing
 from server.middleware.audit import AiCallRecord, audited
 from server.orders import ticket
 from server.orders.grammar import NO, YES, Entry, Hearing, ReadBack, vocabulary
 from server.orders.interpreter import OrderInterpreter
+from server.repositories import privacy as privacy_repository
 from server.routers import ai_gateway
 
 router = APIRouter(tags=["spoken orders"])
@@ -59,15 +62,24 @@ def get_vocabulary() -> list[Entry]:
     return vocabulary()
 
 
+class CloudOnlyInterpreter(OrderInterpreter):
+    """The interpreter whose answer counts only when the cloud model gave it. What was evaluated and accepted is Gemma reading the sentence (97.4 percent on the held-out set); the local model with the same prompt scored 69.5 percent with 13 percent wrong items, so when the cloud is not used
+    (no institutional approval, no personal consent, an outage, a slow answer) the answer of the local model is dropped and the grammar with its question guard answers, as ADR-0028 says."""
+
+    def interpret(self, transcript, vocab, context=None, dose_removed=False):
+        it = super().interpret(transcript, vocab, context, dose_removed)
+        return it if it is not None and routing.is_cloud(it.model) else None
+
+
 def get_mapper(settings: Settings = Depends(get_settings)):
     """The semantic interpreter (ADR-0028), only when the host is configured and the `order_fallback` gate is on; otherwise the grammar answers alone. (The name is kept: the older mapper is no longer in this path.)"""
     if not settings.ollama_url or not ai_features.enabled("order_fallback"):
         return None
-    return OrderInterpreter(client_mod.OllamaClient(settings.ollama_url))
+    return CloudOnlyInterpreter(client_mod.OllamaClient(settings.ollama_url))
 
 
 @router.post("/orders/organisations/{organisation_id}/hear", response_model=HearOut)
-def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings: Settings = Depends(get_settings), mapper=Depends(get_mapper)) -> HearOut:
+def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings: Settings = Depends(get_settings), mapper=Depends(get_mapper), db: DbSession = Depends(db_session)) -> HearOut:
     call.set_input(body.text)
     if not ai_features.enabled("voice_orders"):
         call.fell_back("FEATURE_OFF")
@@ -82,7 +94,8 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
             h: Hearing = rb.hear(body.text)
         else:
             try:
-                h = rb.hear(body.text, body.context)
+                with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):          # the person's own optional consent decides whether their words may go to the cloud (ADR-0027); without it the local model or the grammar answers
+                    h = rb.hear(body.text, body.context)
             finally:
                 ai_gateway._slot.release()
     else:

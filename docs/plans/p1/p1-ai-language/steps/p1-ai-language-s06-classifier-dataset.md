@@ -42,7 +42,7 @@ Implementation Guide B-M6 Steps 1–4, T-TX1–T-TX3; inventory D58–D60.
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
 * [EX-01](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-01): Independent evaluation set for the speech evaluator: authors, second labeller, adjudicator, then the single scored run (paused; a fresh held-out set may replace it)
-* [EX-18](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-18): A second author for the spoken-order paraphrases (the classifier challenge part was retired by ADR-0025)
+* [EX-18](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-18): A second author for the spoken-order paraphrases (the classifier challenge part was retired by ADR-0025). WAIVED for the controlled FYP demonstration by the project owner on 26 Oct 2026; not done, still NOT RUN; needed before real trainee use
 * [EX-19](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ex-19): Public assertion data (n2c2 2010) as a supplementary check of the status vocabulary
 
 <!-- external-testing:end -->
