@@ -32,6 +32,7 @@ VARIABLES = [
     var("HR", "/min", 30, 200, 60, "guide"), var("SBP", "mmHg", 50, 220, 90, "guide"), var("DBP", "mmHg", 30, 130, 90, "design"), var("RR", "/min", 4, 45, 30, "guide bounds, design tau"),
     var("SpO2", "%", 60, 100, 30, "guide"), var("Temp", "C", 34, 41, 300, "guide bounds, design tau"), var("glucose", "mmol/L", 1.0, 30.0, 300, "design"),
     var("pain", "0-10", 0, 10, 60, "design"), var("nausea", "0-10", 0, 10, 120, "design"), var("sedation", "0-3", 0, 3, 120, "design"), var("volume_deficit", "mL", 0, 3000, 600, "design"),
+    var("EtCO2", "mmHg", 15, 80, 30, "design"), var("allergy_level", "0-10", 0, 10, 120, "design"),
 ]
 # a coupling moves a target in proportion to how far a source variable is from its baseline (design gains, provisional)
 COUPLINGS = [
@@ -40,6 +41,8 @@ COUPLINGS = [
     {"id": "pain_hr", "source": "pain", "target": "HR", "gain": 1.5, "note": "pain raises the heart rate"},
     {"id": "pain_sbp", "source": "pain", "target": "SBP", "gain": 2.0, "note": "the blood pressure"},
     {"id": "pain_rr", "source": "pain", "target": "RR", "gain": 0.5, "note": "and the breathing rate"},
+    {"id": "rr_etco2", "source": "RR", "target": "EtCO2", "gain": -0.7, "note": "faster breathing blows off carbon dioxide, slower breathing keeps it (end-tidal CO2 falls and rises with ventilation)"},
+    {"id": "sedation_etco2", "source": "sedation", "target": "EtCO2", "gain": 2.0, "note": "sedation slows ventilation, so end-tidal CO2 rises"},
 ]
 # flags the behaviour model reads: a rule over the variables
 FLAGS = [
@@ -60,11 +63,11 @@ EFFECTS = [
     eff("EFF-FLUID-BOLUS", {"SBP": 10, "DBP": 5, "HR": -6}, 0, 600, 1800, 3600, "Circulating volume rises: blood pressure up, heart rate down"),
     eff("EFF-OXYGEN", {"SpO2": 4}, 30, 120, 7200, 300, "Oxygen saturation rises"),
     eff("EFF-ANTIBIOTIC", {}, 0, 1, 0, 0, "Acts on the deterioration clock (DeteriorationSubsystem), not on a vital sign"),
-    eff("EFF-ADRENALINE", {"SBP": 25, "HR": 20, "SpO2": 4, "RR": -4}, 30, 120, 600, 900, "Allergic reaction reverses: pressure and oxygen recover, breathing eases"),
+    eff("EFF-ADRENALINE", {"SBP": 25, "HR": 20, "SpO2": 4, "RR": -4, "allergy_level": -6}, 30, 120, 600, 900, "Allergic reaction reverses: pressure and oxygen recover, breathing eases"),
     eff("EFF-GLUCOSE-RISE", {"glucose": 4}, 60, 600, 1800, 3600, "Low blood sugar corrects"),
     eff("EFF-POTASSIUM-LOWER", {}, 0, 1, 0, 0, "Potassium is a result value, not a vital sign: the model carries no variable for it yet, so a repeat result is not generated (DT-074)"),
     eff("EFF-OPIOID-REVERSAL", {"RR": 6, "SpO2": 3, "sedation": -2}, 60, 180, 1800, 1800, "Slow breathing and drowsiness from an opioid reverse"),
-    eff("EFF-ANAPHYLAXIS", {"SBP": -40, "DBP": -25, "HR": 35, "RR": 8, "SpO2": -8}, 0, 120, 3600, 1800, "An allergen given: the walkthrough 14.4 pattern (pressure falls, pulse and breathing rise, oxygen falls), improving after adrenaline"),
+    eff("EFF-ANAPHYLAXIS", {"SBP": -40, "DBP": -25, "HR": 35, "RR": 8, "SpO2": -8, "allergy_level": 8, "EtCO2": -6}, 0, 120, 3600, 1800, "An allergen given: the walkthrough 14.4 pattern (pressure falls, pulse and breathing rise, oxygen falls), improving after adrenaline"),
 ]
 # The nine vital-sign patterns of walkthrough 4.11, as bundles that push a patient from the "all normal" row to the example numbers. A number the book does not give is not invented; sleepiness is a design value.
 # The pain couplings already add heart rate, pressure and breathing rate for the pain score, so that share is taken out of the bundle (a pattern and a coupling must never count the same change twice).

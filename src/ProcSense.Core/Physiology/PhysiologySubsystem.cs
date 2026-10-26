@@ -60,6 +60,7 @@ namespace ProcSense.Core.Physiology
                 ["SpO2"] = v.Spo2,
                 ["Temp"] = v.TemperatureC,
                 ["pain"] = v.PainScore,
+                ["EtCO2"] = 38,                         // end-tidal carbon dioxide (DT-083): a normal 35 to 45 mmHg; it follows the breathing rate and sedation (couplings.json)
             };
             var glucose = _file?.Results.FirstOrDefault(r => r.Test.StartsWith("Capillary glucose", StringComparison.Ordinal) && !r.Test.Contains("repeat"));
             if (glucose != null && double.TryParse(glucose.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out double g)) { Glucose = g; _hasGlucose = true; baseline["glucose"] = g; }

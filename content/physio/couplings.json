@@ -34,6 +34,20 @@
    "target": "RR",
    "gain": 0.5,
    "note": "and the breathing rate"
+  },
+  {
+   "id": "rr_etco2",
+   "source": "RR",
+   "target": "EtCO2",
+   "gain": -0.7,
+   "note": "faster breathing blows off carbon dioxide, slower breathing keeps it (end-tidal CO2 falls and rises with ventilation)"
+  },
+  {
+   "id": "sedation_etco2",
+   "source": "sedation",
+   "target": "EtCO2",
+   "gain": 2.0,
+   "note": "sedation slows ventilation, so end-tidal CO2 rises"
   }
  ],
  "flags": [

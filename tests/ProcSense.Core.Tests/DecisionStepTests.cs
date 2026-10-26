@@ -249,7 +249,7 @@ namespace ProcSense.Core.Tests
         {
             var s = Start("SC-17");
             double hr0 = s.Patient.Physiological.Vitals.HeartRate;
-            s.Tick(30 * 60);
+            s.Tick(30 * 60 + 600);                                                        // the interval, then time for the engine to reach the new target (DT-083)
             Assert.True(s.Patient.Physiological.Vitals.HeartRate > hr0);                          // heart rate rising: the deterioration clock
             Assert.False(s.Patient.Clinical.HasFlag(DeteriorationSubsystem.TreatedFlag));
         }

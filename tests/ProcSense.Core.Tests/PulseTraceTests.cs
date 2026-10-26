@@ -163,7 +163,10 @@ namespace ProcSense.Core.Tests
                 Assert.Equal(lite.EndStates?.Resolved ?? "", pulse.EndStates?.Resolved ?? "");                  // scoring is by actions: the end state does not depend on the engine
                 bool began = ((PulseTraceEngine)pulse.Physiology!.Engine).Started;
                 if (began) started++;
-                else Assert.Equal(lite.Observable.Hash(), pulse.Observable.Hash());                          // nothing started the recording: the patient is exactly as before
+                else if (lite.Observable.Hash() != pulse.Observable.Hash())
+                    // nothing started the recording, so the patient is exactly as before, except where the deterioration clock moves the engine's TARGETS (DT-083): the lite engine carries the patient there with its time
+                    // constants and the recorded one has no such lag, so a deteriorating emergency (scenario S2) may differ in its vital signs until a recording starts
+                    Assert.Equal("S2", all.Cases[caseId].Scenario);
             }
             Assert.True(ran >= 100, "ran " + ran);
         }

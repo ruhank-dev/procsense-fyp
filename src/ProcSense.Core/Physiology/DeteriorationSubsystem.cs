@@ -63,7 +63,15 @@ namespace ProcSense.Core.Physiology
             if (_timeline != null)
             {
                 var v = _clock.At(_timeline, minutes, _treatedAtMinutes);
-                phys.Vitals = phys.Vitals with { HeartRate = Math.Round(v.HeartRate), SystolicBp = Math.Round(v.Sbp), DiastolicBp = Math.Round(v.Dbp), RespiratoryRate = Math.Round(v.RespiratoryRate), Spo2 = Math.Round(v.Spo2), TemperatureC = Math.Round(v.TemperatureC, 1), Acvpu = v.Acvpu };
+                var engine = _s.PhysiologyStep?.Engine;
+                if (engine != null)                                                                  // DT-083: the clock moves the engine's TARGETS and the engine carries the patient there (its time constants and couplings apply, effects still act on top)
+                {
+                    engine.SetBaseline("HR", v.HeartRate); engine.SetBaseline("SBP", v.Sbp); engine.SetBaseline("DBP", v.Dbp);
+                    engine.SetBaseline("RR", v.RespiratoryRate); engine.SetBaseline("SpO2", v.Spo2); engine.SetBaseline("Temp", v.TemperatureC);
+                    phys.Vitals = phys.Vitals with { Acvpu = v.Acvpu };
+                }
+                else
+                    phys.Vitals = phys.Vitals with { HeartRate = Math.Round(v.HeartRate), SystolicBp = Math.Round(v.Sbp), DiastolicBp = Math.Round(v.Dbp), RespiratoryRate = Math.Round(v.RespiratoryRate), Spo2 = Math.Round(v.Spo2), TemperatureC = Math.Round(v.TemperatureC, 1), Acvpu = v.Acvpu };
                 return;
             }
             if (_treatedAtMinutes.HasValue) return;
@@ -72,7 +80,9 @@ namespace ProcSense.Core.Physiology
             {
                 _intervals++;
                 _hr += _clock.HeartRateStep(_rng.NextInt);
-                phys.Vitals = phys.Vitals with { HeartRate = _hr };
+                var engine = _s.PhysiologyStep?.Engine;
+                if (engine != null) engine.SetBaseline("HR", _hr);                                   // a target for the heart rate, not a direct write (DT-083)
+                else phys.Vitals = phys.Vitals with { HeartRate = _hr };
             }
         }
 

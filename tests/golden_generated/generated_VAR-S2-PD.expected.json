@@ -3,7 +3,7 @@
   "seed": "42",
   "mode": "practice",
   "log_hash": "09c9ff51fc20da82f03e0f8f4852abc9fd09d59841076a6ef3d1981f5048ad69",
-  "state_hash": "61a97078f3a2d4de0be0bac8032a12b0b71cd10a68e08a1454e4b74d481901c0",
+  "state_hash": "2f5e296b9a481309be3c3090af73c572982525aace8154aab2ed5cea8816d1e0",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -27,7 +27,7 @@
       "last_drink",
       "pregnancy"
     ],
-    "vitals": { "spo2": "95", "oxygen": "room_air", "heart_rate": "123", "systolic_bp": "123", "diastolic_bp": "78", "respiratory_rate": "20", "temperature_c": "38.3", "acvpu": "A", "pain_score": "6" },
+    "vitals": { "spo2": "95", "oxygen": "room_air", "heart_rate": "124", "systolic_bp": "124", "diastolic_bp": "78", "respiratory_rate": "20", "temperature_c": "38.3", "acvpu": "A", "pain_score": "6" },
     "flags": [
       "allergy_reaction_asked",
       "anaesthetic.plan_agreed",

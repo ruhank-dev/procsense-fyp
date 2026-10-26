@@ -81,7 +81,8 @@
     "SBP": 25,
     "HR": 20,
     "SpO2": 4,
-    "RR": -4
+    "RR": -4,
+    "allergy_level": -6
    },
    "profile": {
     "onset_seconds": 30,
@@ -145,7 +146,9 @@
     "DBP": -25,
     "HR": 35,
     "RR": 8,
-    "SpO2": -8
+    "SpO2": -8,
+    "allergy_level": 8,
+    "EtCO2": -6
    },
    "profile": {
     "onset_seconds": 0,

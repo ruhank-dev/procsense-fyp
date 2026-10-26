@@ -98,6 +98,24 @@
    "tau_seconds": 600,
    "source": "design",
    "ref": "SR-2840"
+  },
+  {
+   "id": "EtCO2",
+   "unit": "mmHg",
+   "min": 15,
+   "max": 80,
+   "tau_seconds": 30,
+   "source": "design",
+   "ref": "SR-2840"
+  },
+  {
+   "id": "allergy_level",
+   "unit": "0-10",
+   "min": 0,
+   "max": 10,
+   "tau_seconds": 120,
+   "source": "design",
+   "ref": "SR-2840"
   }
  ],
  "noise_enabled": false,

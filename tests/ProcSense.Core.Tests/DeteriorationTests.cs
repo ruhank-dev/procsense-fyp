@@ -89,11 +89,14 @@ namespace ProcSense.Core.Tests
         public void In_a_session_untreated_Usman_follows_his_timeline_on_the_sim_clock()
         {
             var s = Start("VAR-S2-PD");
+            // DT-083: the clock sets the engine's targets and the engine carries the patient there with its time constants, so a reading is the book's value within a few units, a little behind the clock
             s.Tick(45 * 60);
-            Assert.Equal(116, s.Patient.Physiological.Vitals.HeartRate);
-            Assert.Equal(112, s.Patient.Physiological.Vitals.SystolicBp);
+            Assert.InRange(s.Patient.Physiological.Vitals.HeartRate, 113, 118);
+            Assert.InRange(s.Patient.Physiological.Vitals.SystolicBp, 110, 116);
             s.Tick(30 * 60);
-            Assert.Equal((128.0, 92.0, 26.0), (s.Patient.Physiological.Vitals.HeartRate, s.Patient.Physiological.Vitals.SystolicBp, s.Patient.Physiological.Vitals.RespiratoryRate));
+            Assert.InRange(s.Patient.Physiological.Vitals.HeartRate, 125, 130);
+            Assert.InRange(s.Patient.Physiological.Vitals.SystolicBp, 90, 96);
+            Assert.InRange(s.Patient.Physiological.Vitals.RespiratoryRate, 24, 28);
             s.Tick(30 * 60);
             Assert.Equal("C", s.Patient.Physiological.Vitals.Acvpu);                      // confused at 15:45 if nobody acts
         }
@@ -106,9 +109,11 @@ namespace ProcSense.Core.Tests
             Give(s, "EFF-FLUID-BOLUS");
             Assert.True(s.Patient.Clinical.HasFlag(DeteriorationSubsystem.TreatedFlag));
             s.Tick(30 * 60);
-            Assert.Equal((108.0, 64.0, 112.0), (s.Patient.Physiological.Vitals.SystolicBp, s.Patient.Physiological.Vitals.DiastolicBp, s.Patient.Physiological.Vitals.HeartRate));
+            Assert.InRange(s.Patient.Physiological.Vitals.SystolicBp, 105, 122);                  // the bolus effect acts on top of the book's treated target
+            Assert.InRange(s.Patient.Physiological.Vitals.DiastolicBp, 61, 78);
+            Assert.InRange(s.Patient.Physiological.Vitals.HeartRate, 100, 125);
             s.Tick(60 * 60);
-            Assert.Equal(108, s.Patient.Physiological.Vitals.SystolicBp);                  // it stays treated
+            Assert.InRange(s.Patient.Physiological.Vitals.SystolicBp, 105, 122);                  // it stays treated
         }
 
         [Fact]
@@ -119,7 +124,7 @@ namespace ProcSense.Core.Tests
             Give(s, "EFF-ANALGESIA");
             Assert.False(s.Patient.Clinical.HasFlag(DeteriorationSubsystem.TreatedFlag));
             s.Tick(30 * 60);
-            Assert.Equal(92, s.Patient.Physiological.Vitals.SystolicBp);
+            Assert.InRange(s.Patient.Physiological.Vitals.SystolicBp, 90, 96);                  // analgesia is not what stops the clock: the pressure goes on following the book
         }
 
         [Fact]
@@ -127,7 +132,7 @@ namespace ProcSense.Core.Tests
         {
             var s = Start("SC-1");
             double hr0 = s.Patient.Physiological.Vitals.HeartRate;
-            s.Tick(30 * 60);
+            s.Tick(30 * 60 + 600);                                                        // the interval, then ten minutes for the engine to carry the heart rate to its new target (DT-083)
             double after1 = s.Patient.Physiological.Vitals.HeartRate;
             Assert.InRange(after1 - hr0, 5, 10);
             s.Tick(30 * 60);

@@ -27,6 +27,8 @@ namespace ProcSense.Core.Tests
             ["nausea"] = 0,
             ["sedation"] = 0,
             ["volume_deficit"] = 0,
+            ["EtCO2"] = 38,
+            ["allergy_level"] = 0,
         };
 
         private static LitePhysio Make(ulong seed = 42, bool noise = false)
@@ -48,7 +50,7 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void The_content_has_the_variables_with_the_guides_bounds_and_relaxation_times()
         {
-            Assert.Equal(11, Tables.Variables.Count);
+            Assert.Equal(13, Tables.Variables.Count);                                 // the eleven of the guide and, since DT-083, end-tidal CO2 and the allergy level
             Assert.Equal((30.0, 200.0, 60.0), (Tables.Find("HR")!.Min, Tables.Find("HR")!.Max, Tables.Find("HR")!.TauSeconds));
             Assert.Equal((50.0, 220.0, 90.0), (Tables.Find("SBP")!.Min, Tables.Find("SBP")!.Max, Tables.Find("SBP")!.TauSeconds));
             Assert.Equal((60.0, 100.0, 30.0), (Tables.Find("SpO2")!.Min, Tables.Find("SpO2")!.Max, Tables.Find("SpO2")!.TauSeconds));
@@ -56,6 +58,36 @@ namespace ProcSense.Core.Tests
             Assert.Equal((34.0, 41.0), (Tables.Find("Temp")!.Min, Tables.Find("Temp")!.Max));
             Assert.False(Tables.NoiseEnabled);
             Assert.Equal(6, Tables.Noise.Count);
+        }
+
+        // ---------------------------------------------------------------- DT-083: end-tidal CO2 and the allergy level are variables
+
+        [Fact]
+        public void End_tidal_CO2_falls_with_faster_breathing_and_rises_with_sedation()
+        {
+            var fast = Make();
+            fast.Apply(Effect("fast", new[] { ("RR", 12.0) }, 0, 60, 3600, 60));
+            Run(fast, 900);
+            Assert.True(Get(fast, "EtCO2") < 38 - 5, "etco2 " + Get(fast, "EtCO2"));
+            var sedated = Make();
+            sedated.Apply(Effect("sedate", new[] { ("sedation", 2.0) }, 0, 60, 3600, 60));
+            Run(sedated, 900);
+            Assert.True(Get(sedated, "EtCO2") > 38 + 2, "etco2 " + Get(sedated, "EtCO2"));
+        }
+
+        [Fact]
+        public void The_allergy_level_rises_with_the_reaction_and_is_brought_down_by_adrenaline()
+        {
+            var p = Make();
+            var bad = Tables.FindEffect("EFF-ANAPHYLAXIS")!;
+            p.Apply(bad);
+            Run(p, 600);
+            Assert.True(Get(p, "allergy_level") > 5, "allergy " + Get(p, "allergy_level"));
+            Assert.True(Get(p, "EtCO2") < 38, "etco2 " + Get(p, "EtCO2"));
+            double high = Get(p, "allergy_level");
+            p.Apply(Tables.FindEffect("EFF-ADRENALINE")!);
+            Run(p, 400);
+            Assert.True(Get(p, "allergy_level") < high - 2, "after adrenaline " + Get(p, "allergy_level") + " from " + high);
         }
 
         // ---------------------------------------------------------------- relaxation
