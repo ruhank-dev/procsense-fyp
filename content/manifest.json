@@ -1,11 +1,11 @@
 {
  "schema": 1,
- "content_hash": "1998413f69062ea6f0b3e37b1753e5d7093302803ee99708c628337e893ff31d",
- "files": 751,
- "bytes": 18217059,
+ "content_hash": "fefc5ebf7bed6e8e02ed6ab23fb631685115c41b22955ce9da531d430f18fc29",
+ "files": 752,
+ "bytes": 18224969,
  "per_folder": {
   "(root)": 65,
-  "ai": 10,
+  "ai": 11,
   "assessment": 2,
   "attributions": 1,
   "availability": 4,
@@ -66,24 +66,28 @@
    "sha256": "b6f334cc800a609ebca03cbb9f3a71d1389f267517fa93c21b762aa40a4e23a0"
   },
   "ai/features.json": {
-   "bytes": 9615,
-   "sha256": "f7079414a20baeaa0bce1d6ce10ca6481864c64056212454e2cde93265ccfd16"
+   "bytes": 9676,
+   "sha256": "853de692d69a4f8700a1eee0f750c1b522688d6c75a340bcf3da4d9f3d7d48ad"
   },
   "ai/intents.json": {
    "bytes": 945,
    "sha256": "c19baf5c2f39f5a8c3e32597881fc0b9c741b1a3dc4b1af1cc4ef0bf8999fbc3"
   },
   "ai/lexicon.json": {
-   "bytes": 4266,
-   "sha256": "9f283e6358b3abcfdea893cd0a3311eb23a7f0d341ca9b580d3a05f492eff6ba"
+   "bytes": 4464,
+   "sha256": "0748e747b222b12fc0926870e903b7625555c0b63700ab6cf3fd8a704c9261f1"
   },
   "ai/model_candidates.json": {
    "bytes": 2511,
    "sha256": "bdbbe1b13780f553d2181c21fa8aad4ac2474ce4baa84b7c9e932ca8c523a007"
   },
   "ai/model_routes.json": {
-   "bytes": 5497,
-   "sha256": "40467887d03c24260670d556c79e87f6e5abe38595a801429a4017f1a63b4117"
+   "bytes": 6505,
+   "sha256": "d37c64dafe7d78f2b8b1a1d6848d9669a01f57763800a8499b0fbeeb6a5560df"
+  },
+  "ai/order_notes.json": {
+   "bytes": 3824,
+   "sha256": "1bd047e42e2fcd1365579415114b58e0ee701185ae520e55676a98a9bced6f1c"
   },
   "ai/persona.json": {
    "bytes": 701,
@@ -98,8 +102,8 @@
    "sha256": "207dfc7c6a3aabfc61b0f66f0b5cd537672745d3b63ee9d13b549a6da06eeff2"
   },
   "ai/thresholds.json": {
-   "bytes": 17933,
-   "sha256": "05145a5d7c36cab42261fcfa7bec540efbca570f94806a608aa8a6844758a340"
+   "bytes": 18033,
+   "sha256": "613eafced7707fa5f8fc81944480ad1f7a35baaff869ca001abc6badef27941f"
   },
   "assessment/mapping.json": {
    "bytes": 8058,
@@ -2106,8 +2110,8 @@
    "sha256": "b71712f069af2a85aca80ab23c6762630063c300762227826b6a66f4620b6b91"
   },
   "events/events.json": {
-   "bytes": 11770,
-   "sha256": "373062b5b36d60a2eef96ef038557aca15758946d03fa91d37ff3577021f8390"
+   "bytes": 14489,
+   "sha256": "234c5a7fd40a323b56b524053a2c2e9bfb04832685172cc29a8ce38e016c5f46"
   },
   "extension/intra_op_events.json": {
    "bytes": 3334,

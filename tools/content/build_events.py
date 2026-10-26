@@ -44,6 +44,17 @@ def recognition(id, whatif, label, watch, ref, escalate_within=300):
 
 EVENTS = [
     {
+        "id": "E-TEST-DECLINED", "whatif": "w27", "category": "clinical", "kind": "caused", "status": APPROVAL,
+        "trigger": {"in": ["patient.declined_test", {"var": "flags"}]}, "eligibility": True, "needs_flag": "patient.declined_test", "watch": {"vital": "", "op": "", "value": 0}, "base_probability": 1.0,
+        "severity": "high", "difficulty_tier": "standard", "cooldown_seconds": 0,
+        "cues": ["I don't want a test"], "physio_effects": [], "set_flags": ["event.test_declined"],
+        "expected_responses": [{"id": "escalate", "verb": "escalate", "params": {}, "within_seconds": 600, "label": "Respect the decision, document it, tell the senior and the anaesthetist, and treat her as possibly pregnant"}],
+        "unacceptable": [],
+        "consequences": {"handled": consequence(["credit.e_test_declined_escalated"], "event.e-test-declined.handled"),
+                         "missed": consequence(["major.e_test_declined_not_escalated"], "event.e-test-declined.missed"), "wrong": consequence()},
+        "communication_intents": ["patient_distress"], "sources": ["SR-2226", REF],
+    },
+    {
         "id": "E-HYPERSENSITIVITY", "whatif": "w29", "category": "clinical", "kind": "caused", "status": APPROVAL,
         "trigger": {"in": ["allergy.reaction_eligible", {"var": "flags"}]}, "eligibility": True, "needs_flag": "allergy.reaction_eligible", "watch": {"vital": "", "op": "", "value": 0}, "base_probability": 1.0,
         "severity": "critical", "difficulty_tier": "advanced", "cooldown_seconds": 0,
@@ -63,16 +74,19 @@ EVENTS = [
     recognition("E-FAST-BREATHING", "w08", "Call the senior urgently", ("rr", ">=", 25), "SR-0119"),
     recognition("E-FEVER", "w05", "Tell the senior: a fever may change the pathway (DT-087)", ("temp", ">=", 38.0), "SR-2204"),
     recognition("E-COLD", "w06", "Tell the anaesthetist: warm the patient before theatre (DT-087)", ("temp", "<=", 36.0), "SR-2205"),
+    recognition("E-PAIN-WORSE", "w11", "Call the senior immediately: pain this bad despite analgesia may be a perforation", ("pain", ">=", 9), "SR-2210"),
     recognition("E-SLOW-BREATHING", "w09", "Call the emergency team and the anaesthetist immediately", ("rr", "<=", 8), "SR-0120"),
 ]
 
 # how every what-if is covered: ("event", event id) | ("engine", test file, what) | ("data", why there is no runtime)
 COVER = {
-    "w01": ("event", "E-LOW-BP"), "w03": ("event", "E-HIGH-HR"), "w04": ("event", "E-LOW-HR"), "w07": ("event", "E-LOW-OXYGEN"), "w08": ("event", "E-FAST-BREATHING"), "w09": ("event", "E-SLOW-BREATHING"), "w05": ("event", "E-FEVER"), "w06": ("event", "E-COLD"),
+    "w01": ("event", "E-LOW-BP"), "w03": ("event", "E-HIGH-HR"), "w04": ("event", "E-LOW-HR"), "w07": ("event", "E-LOW-OXYGEN"), "w08": ("event", "E-FAST-BREATHING"), "w09": ("event", "E-SLOW-BREATHING"), "w05": ("event", "E-FEVER"), "w06": ("event", "E-COLD"), "w11": ("event", "E-PAIN-WORSE"), "w27": ("event", "E-TEST-DECLINED"),
+    "w35": ("engine", "ImagingTests.cs", "calling 'appendix not visualised' normal is the classic error and a major item (not_visualised_taken_as_negative)"),
+    "w44": ("engine", "OrReadinessTests.cs", "an equipment fault is found when the station is checked; ignored, it is a major item and the theatre is not ready; reported, a replacement comes after the delay"),
+    "w45": ("engine", "WardChecklistTests.cs", "the ward checklist, with its consent and documents lines, cannot be signed, so the transfer does not go, until every line is ticked and true"),
     "w29": ("event", "E-HYPERSENSITIVITY"),
     "w02": ("engine", "DecisionEngineTests.cs", "a clinic pressure of 180/110 or more on repeat postpones a planned case (decision engine)"),
     "w10": ("engine", "BehaviourTests.cs", "low oxygen or low sugar sets the confusion flag the behaviour model reads"),
-    "w11": ("data", "a sudden worse pain or a rigid abdomen needs a case timeline that says so; none of the P0 cases does"),
     "w12": ("engine", "CriticalCallTests.cs", "critical potassium is phoned through"),
     "w13": ("engine", "CriticalCallTests.cs", "critical potassium is phoned through"),
     "w14": ("engine", "ResultGeneratorTests.cs", "abnormal sodium is flagged by the result bands"),
@@ -88,14 +102,12 @@ COVER = {
     "w24": ("engine", "CriticalCallTests.cs", "critical lactate is phoned through"),
     "w25": ("engine", "InvestigationsTests.cs", "ECG tests give an approved report"),
     "w26": ("engine", "DecisionEngineTests.cs", "a positive pregnancy test changes the pathway"),
-    "w27": ("data", "declining a test has no verb or state yet"),
     "w28": ("engine", "MedicineWorkflowTests.cs", "an antibiotic against a known allergy is challenged or reacts"),
     "w30": ("engine", "ClashTests.cs", "a blood thinner raises a treatment clash"),
     "w31": ("engine", "ClashTests.cs", "diabetes raises the medicine plan clash"),
     "w32": ("engine", "ClashTests.cs", "steroids, GLP-1 and SGLT2 medicines raise plan clashes"),
     "w33": ("engine", "FastingTests.cs", "the fasting rule judges a breach"),
     "w34": ("engine", "FastingTests.cs", "unknown fasting stays unknown until asked"),
-    "w35": ("data", "an inconclusive scan has a report category but no follow-up scan is modelled"),
     "w36": ("engine", "ResultGeneratorTests.cs", "implausible and poor-quality results are flagged"),
     "w37": ("engine", "InvestigationsTests.cs", "results come after their turnaround time"),
     "w38": ("engine", "CriticalCallTests.cs", "the lab phones a critical result"),
@@ -104,8 +116,6 @@ COVER = {
     "w41": ("engine", "ConsentTests.cs", "refusal stops the case route"),
     "w42": ("engine", "ConsentTests.cs", "a patient who does not understand cannot sign"),
     "w43": ("engine", "ConsentTests.cs", "a minor needs a senior"),
-    "w44": ("data", "an equipment fault has no verb or state yet"),
-    "w45": ("data", "missing documents are not modelled beyond the ward checklist and the notes"),
     "w46": ("engine", "TransportTests.cs", "the corridor oxygen drop"),
     "w47": ("engine", "WristbandTests.cs", "a wristband mismatch is found and resolved"),
 }

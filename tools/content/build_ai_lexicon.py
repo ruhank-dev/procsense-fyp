@@ -30,7 +30,7 @@ EQUIPMENT = sorted(set("cannula catheter ventilator defibrillator laparoscope in
 # words that name each event, so a debrief cannot describe an event that never happened
 EVENT_WORDS = {"E-HYPERSENSITIVITY": ["allergic reaction", "anaphylaxis", "hypersensitivity", "swollen lips"]}
 EVENT_WORDS_DEFAULT = {"E-LOW-BP": ["low blood pressure", "hypotension"], "E-HIGH-HR": ["fast heart rate", "tachycardia"], "E-LOW-HR": ["slow heart rate", "bradycardia"], "E-LOW-OXYGEN": ["low oxygen", "desaturation"],
-                       "E-FAST-BREATHING": ["fast breathing", "tachypnoea"], "E-SLOW-BREATHING": ["slow breathing", "respiratory depression"], "E-FEVER": ["fever", "high temperature", "pyrexia"], "E-COLD": ["cold", "low temperature", "hypothermia"]}
+                       "E-FAST-BREATHING": ["fast breathing", "tachypnoea"], "E-SLOW-BREATHING": ["slow breathing", "respiratory depression"], "E-FEVER": ["fever", "high temperature", "pyrexia"], "E-COLD": ["cold", "low temperature", "hypothermia"], "E-PAIN-WORSE": ["worse pain", "severe pain", "rigid abdomen", "board-like abdomen"], "E-TEST-DECLINED": ["declined", "refused the test", "does not want the test"]}
 
 
 def build() -> str:

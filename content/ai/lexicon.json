@@ -212,6 +212,11 @@
   ]
  },
  "events": {
+  "E-TEST-DECLINED": [
+   "declined",
+   "refused the test",
+   "does not want the test"
+  ],
   "E-HYPERSENSITIVITY": [
    "allergic reaction",
    "anaphylaxis",
@@ -247,6 +252,12 @@
    "cold",
    "low temperature",
    "hypothermia"
+  ],
+  "E-PAIN-WORSE": [
+   "worse pain",
+   "severe pain",
+   "rigid abdomen",
+   "board-like abdomen"
   ],
   "E-SLOW-BREATHING": [
    "slow breathing",

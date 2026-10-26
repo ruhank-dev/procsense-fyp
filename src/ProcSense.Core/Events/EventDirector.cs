@@ -171,7 +171,7 @@ namespace ProcSense.Core.Events
             var fired = new List<object?>();
             foreach (var k in _firedAt.Keys) fired.Add(k);
             var v = _s.Patient.Physiological.Vitals;                       // the patient's true numbers, not what the trainee has been shown
-            state["vitals"] = new Dictionary<string, object?>(StringComparer.Ordinal) { ["hr"] = v.HeartRate, ["sbp"] = v.SystolicBp, ["dbp"] = v.DiastolicBp, ["rr"] = v.RespiratoryRate, ["spo2"] = v.Spo2, ["temp"] = v.TemperatureC };
+            state["vitals"] = new Dictionary<string, object?>(StringComparer.Ordinal) { ["hr"] = v.HeartRate, ["sbp"] = v.SystolicBp, ["dbp"] = v.DiastolicBp, ["rr"] = v.RespiratoryRate, ["spo2"] = v.Spo2, ["temp"] = v.TemperatureC, ["pain"] = v.PainScore };
             state["events_fired"] = fired;
             var active = new List<object?>();
             foreach (var a in _active) active.Add(a.Def.Id);

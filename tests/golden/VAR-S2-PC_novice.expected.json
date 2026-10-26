@@ -38,6 +38,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
+      "event.e-pain-worse.missed",
       "exam.painful_first",
       "exam.permission_asked",
       "exam.started",
@@ -67,7 +68,7 @@
     "result": "SUCCESS",
     "credits": 13,
     "minor": ["minor.no_introduction", "minor.treatment_documentation"],
-    "major": [],
+    "major": ["major.e_pain_worse_not_escalated"],
     "critical": []
   }
 }

@@ -29,6 +29,11 @@ namespace ProcSense.Core.Workflow.Steps
     public sealed class InvestigationsSubsystem : ISubsystem
     {
         public const string OrderVerb = "order_investigation";
+        /// <summary>The patient says no to a test that needs their agreement (w27, DT-087): reached when their cooperation is at or below <see cref="DeclinesAtCooperation"/>. Nothing is ordered; the flag opens the event E-TEST-DECLINED, which expects the senior and the anaesthetist to be told.</summary>
+        public const string PatientDeclinesTest = "PATIENT_DECLINES_TEST";
+        public const string DeclinedFlag = "patient.declined_test";
+        public const double DeclinesAtCooperation = 2;
+        private static readonly string[] NeedsAgreement = { "pregnancy" };
         public const string TakeSampleVerb = "take_sample";
         public const string BedsideVerb = "perform_bedside_test";
         public const string ViewVerb = "view_result";
@@ -169,6 +174,13 @@ namespace ProcSense.Core.Workflow.Steps
         private void Order_(SimAction a, ActionOutcome o)
         {
             if (!TestFrom(a, o, out var def)) return;
+            if (NeedsAgreement.Contains(def.Id) && _s.Behaviour != null && _s.Behaviour.State.Get("cooperation") <= DeclinesAtCooperation)
+            {
+                Clinical.SetFlag(DeclinedFlag);
+                o.Effects.Add("patient_declines:" + def.Id);
+                o.Reject(PatientDeclinesTest);
+                return;
+            }
             var last = Latest(def.Id);
             if (last != null && last.State != "RESULT_AVAILABLE" && last.State != "VIEWED" && last.State != "ACKNOWLEDGED" && last.State != "REJECTED") { o.Reject(OrderPending); return; }
             if (Tables.Gate.Blocks.Contains(def.Id) && PregnancyEligible() && !PregnancyKnown()) { o.Reject(PregnancyStatusRequired); return; }

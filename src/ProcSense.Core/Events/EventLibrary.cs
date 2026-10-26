@@ -33,7 +33,7 @@ namespace ProcSense.Core.Events
         {
             if (Vital.Length == 0) return true;
             var v = p.Physiological.Vitals;
-            double x = Vital switch { "hr" => v.HeartRate, "sbp" => v.SystolicBp, "dbp" => v.DiastolicBp, "rr" => v.RespiratoryRate, "spo2" => v.Spo2, _ => v.TemperatureC };
+            double x = Vital switch { "hr" => v.HeartRate, "sbp" => v.SystolicBp, "dbp" => v.DiastolicBp, "rr" => v.RespiratoryRate, "spo2" => v.Spo2, "pain" => v.PainScore, _ => v.TemperatureC };
             return Op switch { "<" => x < Value, "<=" => x <= Value, ">" => x > Value, _ => x >= Value };
         }
     }
@@ -105,7 +105,7 @@ namespace ProcSense.Core.Events
             double value = w.Num("value");
             w.Finish();
             if (vital.Length == 0) return VitalWatch.None;
-            if (!new[] { "hr", "sbp", "dbp", "rr", "spo2", "temp" }.Contains(vital)) throw new ContentException(o.Sub("watch") + ": '" + vital + "' is not a vital sign");
+            if (!new[] { "hr", "sbp", "dbp", "rr", "spo2", "temp", "pain" }.Contains(vital)) throw new ContentException(o.Sub("watch") + ": '" + vital + "' is not a vital sign");
             if (!new[] { "<", "<=", ">", ">=" }.Contains(op)) throw new ContentException(o.Sub("watch") + ": '" + op + "' is not a comparison");
             return new VitalWatch(vital, op, value);
         }

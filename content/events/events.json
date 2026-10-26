@@ -6,6 +6,77 @@
  "max_other": 1,
  "events": [
   {
+   "id": "E-TEST-DECLINED",
+   "whatif": "w27",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    "in": [
+     "patient.declined_test",
+     {
+      "var": "flags"
+     }
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "patient.declined_test",
+   "watch": {
+    "vital": "",
+    "op": "",
+    "value": 0
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [
+    "I don't want a test"
+   ],
+   "physio_effects": [],
+   "set_flags": [
+    "event.test_declined"
+   ],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 600,
+     "label": "Respect the decision, document it, tell the senior and the anaesthetist, and treat her as possibly pregnant"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_test_declined_escalated"
+     ],
+     "flag": "event.e-test-declined.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_test_declined_not_escalated"
+     ],
+     "flag": "event.e-test-declined.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [
+    "patient_distress"
+   ],
+   "sources": [
+    "SR-2226",
+    "SR-2863"
+   ]
+  },
+  {
    "id": "E-HYPERSENSITIVITY",
    "whatif": "w29",
    "category": "clinical",
@@ -543,6 +614,71 @@
    "communication_intents": [],
    "sources": [
     "SR-2205",
+    "SR-2863"
+   ]
+  },
+  {
+   "id": "E-PAIN-WORSE",
+   "whatif": "w11",
+   "category": "clinical",
+   "kind": "caused",
+   "status": "APPROVED_FOR_TRAINING",
+   "trigger": {
+    ">=": [
+     {
+      "var": "vitals.pain"
+     },
+     9
+    ]
+   },
+   "eligibility": true,
+   "needs_flag": "",
+   "watch": {
+    "vital": "pain",
+    "op": ">=",
+    "value": 9
+   },
+   "base_probability": 1.0,
+   "severity": "high",
+   "difficulty_tier": "standard",
+   "cooldown_seconds": 0,
+   "cues": [],
+   "physio_effects": [],
+   "set_flags": [],
+   "expected_responses": [
+    {
+     "id": "escalate",
+     "verb": "escalate",
+     "params": {},
+     "within_seconds": 300,
+     "label": "Call the senior immediately: pain this bad despite analgesia may be a perforation"
+    }
+   ],
+   "unacceptable": [],
+   "consequences": {
+    "handled": {
+     "items": [
+      "credit.e_pain_worse_escalated"
+     ],
+     "flag": "event.e-pain-worse.handled",
+     "physio_effects": []
+    },
+    "missed": {
+     "items": [
+      "major.e_pain_worse_not_escalated"
+     ],
+     "flag": "event.e-pain-worse.missed",
+     "physio_effects": []
+    },
+    "wrong": {
+     "items": [],
+     "flag": "",
+     "physio_effects": []
+    }
+   },
+   "communication_intents": [],
+   "sources": [
+    "SR-2210",
     "SR-2863"
    ]
   },

@@ -43,7 +43,7 @@ namespace ProcSense.Core.Tests
         public void The_content_has_the_hypersensitivity_event_and_the_six_vital_sign_events_with_a_source()
         {
             var ids = Content.Events.Events.Select(e => e.Id).ToList();
-            Assert.Equal(new[] { "E-HYPERSENSITIVITY", "E-LOW-BP", "E-HIGH-HR", "E-LOW-HR", "E-LOW-OXYGEN", "E-FAST-BREATHING", "E-FEVER", "E-COLD", "E-SLOW-BREATHING" }, ids);
+            Assert.Equal(new[] { "E-TEST-DECLINED", "E-HYPERSENSITIVITY", "E-LOW-BP", "E-HIGH-HR", "E-LOW-HR", "E-LOW-OXYGEN", "E-FAST-BREATHING", "E-FEVER", "E-COLD", "E-PAIN-WORSE", "E-SLOW-BREATHING" }, ids);
             foreach (var e in Content.Events.Events) { Assert.Contains("SR-2863", e.Sources); Assert.NotEmpty(e.Expected); }
             Assert.Equal((20, 180.0, 90.0, 1, 1), (Content.Events.EvaluateEverySteps, Content.Events.WarmupSeconds, Content.Events.GlobalCooldownSeconds, Content.Events.MaxClinical, Content.Events.MaxOther));
         }
@@ -60,6 +60,69 @@ namespace ProcSense.Core.Tests
                 Assert.Contains(s.Director.History, h => h.Kind == "event_fired" && h.Id == def.Id);
                 Assert.Equal(def.Cues.Count, s.Director.Cues.Count);
             }
+        }
+
+        // ---------------------------------------------------------------- DT-087: what-ifs w11 and w27
+
+        [Fact]
+        public void Pain_of_9_or_more_despite_treatment_opens_the_escalation_window_and_a_call_in_time_handles_it()
+        {
+            var s = Start(null);
+            var phys = s.Patient.Physiological;
+            phys.Vitals = phys.Vitals with { PainScore = 9 };
+            s.Tick(10);
+            Assert.True(s.Director!.IsActive("E-PAIN-WORSE"));
+            var o = s.Apply(new SimAction("escalate", "patient", Channel.Cli, new Dictionary<string, string> { ["role"] = "senior", ["s"] = "pain 9 of 10, abdomen rigid", ["b"] = "post analgesia", ["a"] = "possible perforation", ["r"] = "review now" }));
+            Assert.True(o.Accepted);
+            Assert.Contains(s.Director.History, h => h.Kind == "event_handled" && h.Id == "E-PAIN-WORSE" && h.ScoreItems.Contains("credit.e_pain_worse_escalated"));
+        }
+
+        [Fact]
+        public void Pain_nobody_answers_is_a_missed_response()
+        {
+            var s = Start(null);
+            var phys = s.Patient.Physiological;
+            phys.Vitals = phys.Vitals with { PainScore = 10 };
+            s.Tick(10);
+            s.Tick(400);
+            Assert.Contains(s.Director!.History, h => h.Kind == "event_missed" && h.Id == "E-PAIN-WORSE" && h.ScoreItems.Contains("major.e_pain_worse_not_escalated"));
+        }
+
+        private static void Identify(Session s)
+        {
+            foreach (var v in new[] { "introduce_self", "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.True(s.Apply(new SimAction(v)).Accepted, v);
+        }
+
+        [Fact]
+        public void A_patient_who_will_not_cooperate_declines_the_pregnancy_test_and_the_senior_must_be_told()
+        {
+            var s = Start(null);
+            Identify(s);
+            s.Behaviour!.State.Set("cooperation", 1);
+            var order = s.Apply(new SimAction("order_investigation", parameters: new Dictionary<string, string> { ["test"] = "pregnancy" }));
+            Assert.False(order.Accepted);
+            Assert.Equal(ProcSense.Core.Workflow.Steps.InvestigationsSubsystem.PatientDeclinesTest, order.RejectReason);
+            Assert.DoesNotContain(s.Patient.Clinical.Investigations, x => x.Test == "pregnancy");            // nothing was ordered, nothing was done to her without agreement
+            s.Tick(10);
+            Assert.True(s.Director!.IsActive("E-TEST-DECLINED"));
+            var call = s.Apply(new SimAction("escalate", "patient", Channel.Cli, new Dictionary<string, string> { ["role"] = "senior", ["s"] = "she declines the pregnancy test", ["b"] = "scan planned", ["a"] = "treat as possibly pregnant", ["r"] = "please decide with the anaesthetist" }));
+            Assert.True(call.Accepted);
+            Assert.Contains(s.Director.History, h => h.Kind == "event_handled" && h.Id == "E-TEST-DECLINED" && h.ScoreItems.Contains("credit.e_test_declined_escalated"));
+        }
+
+        [Fact]
+        public void A_cooperative_patient_does_not_decline_and_an_unanswered_refusal_is_a_missed_response()
+        {
+            var calm = Start(null);
+            Identify(calm);
+            Assert.True(calm.Apply(new SimAction("order_investigation", parameters: new Dictionary<string, string> { ["test"] = "pregnancy" })).Accepted);
+            var s = Start(null);
+            Identify(s);
+            s.Behaviour!.State.Set("cooperation", 0);
+            s.Apply(new SimAction("order_investigation", parameters: new Dictionary<string, string> { ["test"] = "pregnancy" }));
+            s.Tick(10);
+            s.Tick(700);
+            Assert.Contains(s.Director!.History, h => h.Kind == "event_missed" && h.Id == "E-TEST-DECLINED" && h.ScoreItems.Contains("major.e_test_declined_not_escalated"));
         }
 
         // ---------------------------------------------------------------- the allergic reaction (the worked example)

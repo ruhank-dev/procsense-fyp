@@ -51,7 +51,7 @@ def event_reachable(event: str, card: dict) -> bool:
     w = e["watch"]
     if not w["vital"]:
         return True
-    key = {"hr": "heart_rate", "sbp": "systolic_bp", "dbp": "diastolic_bp", "rr": "respiratory_rate", "spo2": "spo2", "temp": "temperature_c"}[w["vital"]]
+    key = {"hr": "heart_rate", "sbp": "systolic_bp", "dbp": "diastolic_bp", "rr": "respiratory_rate", "spo2": "spo2", "temp": "temperature_c", "pain": "pain_score"}[w["vital"]]
     ops = {"<": lambda a, b: a < b, "<=": lambda a, b: a <= b, ">": lambda a, b: a > b, ">=": lambda a, b: a >= b}
     return any(ops[w["op"]](o[key], w["value"]) for o in card["observations"])
 
