@@ -57,9 +57,9 @@
       "ward.site_marking.not_applicable"
     ],
     "rejections": [{ "verb": "order_investigation", "reason": "IDENTITY_NOT_CONFIRMED" }, { "verb": "take_sample", "reason": "IDENTITY_NOT_CONFIRMED" }],
-    "trust": 1,
-    "anxiety": 0,
-    "understanding": 1,
+    "trust": 5,
+    "anxiety": 5,
+    "understanding": 7,
     "last_rejection": "",
     "end_state": "READY_SAFE"
   },

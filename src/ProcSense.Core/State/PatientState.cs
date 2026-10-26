@@ -271,12 +271,26 @@ namespace ProcSense.Core.State
         public void Record(string name, string value, long atStep) => _measured[name] = new Measurement(value, atStep);
     }
 
-    /// <summary>How the patient feels about the trainee. Plain counters for now; the values that move them come from content later.</summary>
+    /// <summary>
+    /// How the patient feels about the trainee, as the change since the start of the session (DT-084). There is ONE state: the behaviour model's attributes (trust, anxiety, understanding, each bounded, Behaviour/BehaviourModel.cs).
+    /// Once <see cref="Link"/> has joined them, these counters are the model's value minus its starting value and a write moves the model, so a rule that raises trust and a rule that adds to this counter cannot disagree;
+    /// before that (a session built without the behaviour step) they are plain counters.
+    /// </summary>
     public sealed class BehaviouralLayer
     {
-        public int Trust { get; set; }
-        public int Anxiety { get; set; }
-        public int Understanding { get; set; }
+        private Behaviour.BehaviouralState? _model;
+        private double _trust0, _anxiety0, _understanding0;
+        private int _trust, _anxiety, _understanding;
+
+        public void Link(Behaviour.BehaviouralState model)
+        {
+            _model = model;
+            _trust0 = model.Get("trust"); _anxiety0 = model.Get("anxiety"); _understanding0 = model.Get("understanding");
+        }
+
+        public int Trust { get => _model == null ? _trust : (int)Math.Round(_model.Get("trust") - _trust0); set { if (_model == null) _trust = value; else _model.Set("trust", _trust0 + value); } }
+        public int Anxiety { get => _model == null ? _anxiety : (int)Math.Round(_model.Get("anxiety") - _anxiety0); set { if (_model == null) _anxiety = value; else _model.Set("anxiety", _anxiety0 + value); } }
+        public int Understanding { get => _model == null ? _understanding : (int)Math.Round(_model.Get("understanding") - _understanding0); set { if (_model == null) _understanding = value; else _model.Set("understanding", _understanding0 + value); } }
     }
 
     /// <summary>The four layers of the patient model. Built from a case card by PatientFactory; all values come from content.</summary>

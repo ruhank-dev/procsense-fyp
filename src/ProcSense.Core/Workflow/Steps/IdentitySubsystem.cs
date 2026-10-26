@@ -94,9 +94,7 @@ namespace ProcSense.Core.Workflow.Steps
             bool first = _s.Log.Count == 0 && !Clinical.HasFlag(Introduced);
             Clinical.SetFlag(Introduced);
             if (!first) { o.Effects.Add("introduced_not_first"); return; }
-            var b = _content.IntroduceSelf;
-            _s.Patient.Behavioural.Trust += (int)b.Trust;
-            _s.Patient.Behavioural.Anxiety += (int)b.Anxiety;
+            var b = _content.IntroduceSelf;                                                    // the change itself is the behaviour model's rule "introduce_self" (transitions.json); the effects name what the card says
             o.Effects.Add("trust" + Signed(b.Trust));
             o.Effects.Add("anxiety" + Signed(b.Anxiety));
         }

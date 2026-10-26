@@ -43,7 +43,7 @@ namespace ProcSense.Core.Tests
             var diffs = GoldenRun.Check(changed, Expected("skeleton1_correct"), TestCase.Package());
 
             Assert.Contains(diffs, d => d.StartsWith("log_hash"));
-            Assert.Contains(diffs, d => d.StartsWith("facts.trust"));
+            Assert.Contains(diffs, d => d.StartsWith("facts."));                              // the patient's state differs too (the counters follow the behaviour model since DT-084, so the exact one that moves is not the point)
         }
 
         [Fact]

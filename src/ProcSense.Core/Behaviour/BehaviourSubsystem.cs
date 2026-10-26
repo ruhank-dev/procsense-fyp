@@ -62,6 +62,7 @@ namespace ProcSense.Core.Behaviour
             session.BehaviourStep = this;
             _file = _fixed ?? (_content.CaseFiles.TryGetValue(session.Case.Id, out var f) ? f.ForVariant(session.Variant) : null);
             State = new BehaviouralState(Tables);
+            session.Patient.Behavioural.Link(State);                      // the older counters are now this state seen as a change since the start (DT-084)
             _engine = new TransitionEngine(Tables);
             _resolver = new ModeResolver(Tables);
             Mode = Tables.DefaultMode;
@@ -76,8 +77,8 @@ namespace ProcSense.Core.Behaviour
             if (!o.Accepted) return;
             switch (a.Verb)
             {
-                case "introduce_self": Trigger("introduce_self"); break;
-                case "summarise": Trigger("summarise"); break;
+                case "introduce_self": if (!o.Effects.Contains("introduced_not_first")) Trigger("introduce_self"); break;                  // only the first act of the session earns the change (L1-03)
+                case "summarise": if (!o.Effects.Contains("already_summarised") && !o.Effects.Any(e => e.StartsWith("too_early:", StringComparison.Ordinal))) Trigger("summarise"); break;
                 case "ask": _lastTalk = _s.Clock.Steps; break;
             }
         }

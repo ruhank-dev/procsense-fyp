@@ -81,8 +81,6 @@ namespace ProcSense.Core.Workflow.Steps
             if (Clinical.HasFlag(Summarised)) { o.Effects.Add("already_summarised"); return; }
             if (Clinical.RevealedTopics.Count < m.MinTopics) { o.Effects.Add("too_early:" + Clinical.RevealedTopics.Count.ToString(CultureInfo.InvariantCulture) + "_of_" + m.MinTopics.ToString(CultureInfo.InvariantCulture)); return; }
             Clinical.SetFlag(Summarised);
-            _s.Patient.Behavioural.Trust += (int)m.Trust;
-            _s.Patient.Behavioural.Understanding += (int)m.Understanding;
             o.Effects.Add("trust+" + m.Trust.ToString(CultureInfo.InvariantCulture));
             o.Effects.Add("understanding+" + m.Understanding.ToString(CultureInfo.InvariantCulture));
         }
