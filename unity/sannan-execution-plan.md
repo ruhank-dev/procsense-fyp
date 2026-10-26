@@ -3804,7 +3804,7 @@ Training on LLM labels can copy the LLM's mistakes — evaluate only on the huma
 
 - [ ] Self-verification and Sannan manual acceptance recorded.
 
-Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/p2-ai-extensions-s05-medical-llm-benchmark.md). Initial status: Planned; no implementation acceptance claimed.
+Source: [Original step](../docs/plans/p2/p2-ai-extensions/steps/✅%20p2-ai-extensions-s05-medical-llm-benchmark.md). Initial status: Planned; no implementation acceptance claimed.
 
 **What**
 
