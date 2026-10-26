@@ -405,6 +405,1868 @@
    },
    "how": "the trainee examines the abdomen and finds it rigid",
    "ref": "SR-2867"
+  },
+  {
+   "case": "SC-1",
+   "problem": "sc1.sepsis",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-1",
+   "problem": "sc1.allergy",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-1",
+   "problem": "sc1.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-10",
+   "problem": "sc10.int",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-10",
+   "problem": "sc10.consent",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-10",
+   "problem": "sc10.pain",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-11",
+   "problem": "sc11.sepsis",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-11",
+   "problem": "sc11.capacity",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-11",
+   "problem": "sc11.refusal",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-12",
+   "problem": "sc12.na",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Potassium, Potassium (repeat), Sodium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-12",
+   "problem": "sc12.k",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Potassium, Potassium (repeat), Sodium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-13",
+   "problem": "sc13.inr",
+   "trigger": {
+    "in": [
+     "clotting",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the clotting result (INR) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-13",
+   "problem": "sc13.anaemia",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-14",
+   "problem": "sc14.det",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-14",
+   "problem": "sc14.imaging",
+   "trigger": {
+    "in": [
+     "ct",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ct result (CT appendix) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-15",
+   "problem": "sc15.record",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-15",
+   "problem": "sc15.anaes",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-15",
+   "problem": "sc15.time",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-16",
+   "problem": "sc16.glp",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-16",
+   "problem": "sc16.osa",
+   "trigger": {
+    "in": [
+     "stopbang",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the stopbang result (STOP-BANG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-16",
+   "problem": "sc16.plan",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-17",
+   "problem": "sc17.hb",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Hb, MCV) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-17",
+   "problem": "sc17.fluids",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-18",
+   "problem": "sc18.consent",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-18",
+   "problem": "sc18.equip",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-18",
+   "problem": "sc18.time",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-19",
+   "problem": "sc19.glu",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary ketones) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-19",
+   "problem": "sc19.sepsis",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-19",
+   "problem": "sc19.dka",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary ketones) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-2",
+   "problem": "sc2.bleed",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-2",
+   "problem": "sc2.dx",
+   "trigger": {
+    "in": [
+     "pregnancy",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the pregnancy result (Pregnancy test) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-20",
+   "problem": "sc20.ct",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender low on the right with a fullness. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-20",
+   "problem": "sc20.asp",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-20",
+   "problem": "sc20.gs",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-21",
+   "problem": "sc21.doac",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-21",
+   "problem": "sc21.chole",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender under the right ribs with a catch on deep breath in. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-21",
+   "problem": "sc21.cbd",
+   "trigger": {
+    "in": [
+     "lft",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the lft result (ALP, ALT, Bilirubin) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-22",
+   "problem": "sc22.sepsis",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-22",
+   "problem": "sc22.bb",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-22",
+   "problem": "sc22.glp1",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-22",
+   "problem": "sc22.chole",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender under the right ribs, bloated. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-23",
+   "problem": "sc23.doac",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-23",
+   "problem": "sc23.anaemia",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Haemoglobin, MCV) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-23",
+   "problem": "sc23.hba1c",
+   "trigger": {
+    "in": [
+     "hba1c",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the hba1c result (HbA1c) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-23",
+   "problem": "sc23.osa",
+   "trigger": {
+    "in": [
+     "stopbang",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the stopbang result (STOP-BANG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-24",
+   "problem": "sc24.consent",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-24",
+   "problem": "sc24.slow",
+   "trigger": {
+    "in": [
+     "ecg",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ecg result (ECG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-24",
+   "problem": "sc24.fit",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-25",
+   "problem": "sc25.chol",
+   "trigger": {
+    "in": [
+     "lft",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the lft result (Bilirubin) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-25",
+   "problem": "sc25.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-25",
+   "problem": "sc25.anaemia",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Haemoglobin, WBC) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-26",
+   "problem": "sc26.cbd",
+   "trigger": {
+    "in": [
+     "lft",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the lft result (ALP, ALT, Bilirubin) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-26",
+   "problem": "sc26.doac",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-26",
+   "problem": "sc26.anaes",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-27",
+   "problem": "sc27.airway",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-27",
+   "problem": "sc27.lang",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-27",
+   "problem": "sc27.dehyd",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Sodium, Urea) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-28",
+   "problem": "sc28.airway",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-28",
+   "problem": "sc28.dka",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary ketones) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-28",
+   "problem": "sc28.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-29",
+   "problem": "sc29.sepsis",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-29",
+   "problem": "sc29.opioid",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-29",
+   "problem": "sc29.stomach",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-3",
+   "problem": "sc3.preg",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender on the right, higher than usual. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-30",
+   "problem": "sc30.sepsis",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-30",
+   "problem": "sc30.opioid",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-30",
+   "problem": "sc30.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium, Urea) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-31",
+   "problem": "sc31.k",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Potassium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-31",
+   "problem": "sc31.dka",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary ketones) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-31",
+   "problem": "sc31.consent",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-31",
+   "problem": "sc31.appy",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Rigid, guarding. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-32",
+   "problem": "sc32.stomach",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-32",
+   "problem": "sc32.resus",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-32",
+   "problem": "sc32.cancer",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-4",
+   "problem": "sc4.dm",
+   "trigger": {
+    "in": [
+     "hba1c",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the hba1c result (HbA1c) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-4",
+   "problem": "sc4.bp",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-5",
+   "problem": "sc5.af",
+   "trigger": {
+    "in": [
+     "ecg",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ecg result (ECG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-5",
+   "problem": "sc5.doac",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-6",
+   "problem": "sc6.glu",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary glucose (repeat in 30 minutes)) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-6",
+   "problem": "sc6.fast",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-6",
+   "problem": "sc6.plan",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-7",
+   "problem": "sc7.airway",
+   "trigger": {
+    "in": [
+     "ex.chest",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (chest) and finds: Reduced air entry. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-7",
+   "problem": "sc7.aspiration",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-7",
+   "problem": "sc7.opioid",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-8",
+   "problem": "sc8.k",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-8",
+   "problem": "sc8.shock",
+   "trigger": {
+    "or": [
+     {
+      "==": [
+       {
+        "var": "sepsis_tier"
+       },
+       "high"
+      ]
+     },
+     {
+      "in": [
+       "lactate_cultures",
+       {
+        "var": "viewed_tests"
+       }
+      ]
+     }
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier or the trainee opens the lactate [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-8",
+   "problem": "sc8.anaes",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-9",
+   "problem": "sc9.sepsis",
+   "trigger": {
+    "==": [
+     {
+      "var": "sepsis_tier"
+     },
+     "high"
+    ]
+   },
+   "how": "the NEWS2 shows the high-risk sepsis tier [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-9",
+   "problem": "sc9.dx",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "SC-9",
+   "problem": "sc9.antiplatelet",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-A",
+   "problem": "stka.hypo",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary glucose (repeat after treatment), Capillary ketones) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-A",
+   "problem": "stka.sglt2",
+   "trigger": {
+    "in": [
+     "glucose_fingerprick",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the glucose fingerprick result (Capillary glucose, Capillary glucose (repeat after treatment), Capillary ketones) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-A",
+   "problem": "stka.hba1c",
+   "trigger": {
+    "in": [
+     "hba1c",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the hba1c result (HbA1c) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-A",
+   "problem": "stka.bp",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-B",
+   "problem": "stkb.dose",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-B",
+   "problem": "stkb.anaemia",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Hb, MCV) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-B",
+   "problem": "stkb.af",
+   "trigger": {
+    "in": [
+     "ecg",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ecg result (ECG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-C",
+   "problem": "stkc.k",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium, Potassium (repeat after 1 hour)) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-C",
+   "problem": "stkc.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium, Potassium (repeat after 1 hour)) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-C",
+   "problem": "stkc.brady",
+   "trigger": {
+    "in": [
+     "ecg",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ecg result (ECG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S1-C",
+   "problem": "stkc.op",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-A",
+   "problem": "stka2.fluids",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-A",
+   "problem": "stka2.aki",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium, Potassium (repeat after replacement), Urea) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-A",
+   "problem": "stka2.k",
+   "trigger": {
+    "in": [
+     "u_and_e",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the u and e result (Creatinine, Potassium, Potassium (repeat after replacement), Urea) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-A",
+   "problem": "stka2.appx",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Guarded and tender low on the right. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-C",
+   "problem": "stkc2.airway",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-C",
+   "problem": "stkc2.breath",
+   "trigger": {
+    "in": [
+     "ex.chest",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (chest) and finds: Chest clear. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-C",
+   "problem": "stkc2.opioid",
+   "trigger": {
+    "in": [
+     "medicines",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about medicines and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-C",
+   "problem": "stkc2.aspiration",
+   "trigger": {
+    "in": [
+     "last_food",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee asks about last food and learns it [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-D",
+   "problem": "stkd.maternal",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-D",
+   "problem": "stkd.preg",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender on the right, slightly higher than usual for appendicitis. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-D",
+   "problem": "stkd.obstetric",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "STK-S2-D",
+   "problem": "stkd.anaesthetic",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-I",
+   "problem": "s1i.allergy",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-I",
+   "problem": "s1i.lowrisk",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-K",
+   "problem": "s1k.anaemia",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Hb, MCV) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-L",
+   "problem": "s1l.af",
+   "trigger": {
+    "in": [
+     "ecg",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the ecg result (ECG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S1-M",
+   "problem": "s1m.osa",
+   "trigger": {
+    "in": [
+     "stopbang",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the stopbang result (STOP-BANG) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-E",
+   "problem": "s2e.mimic",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Hb, WBC) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-E",
+   "problem": "s2e.anaemia",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (Hb, WBC) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-H",
+   "problem": "s2h.preg",
+   "trigger": {
+    "in": [
+     "pregnancy",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the pregnancy result (Pregnancy test) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-H",
+   "problem": "s2h.wbc",
+   "trigger": {
+    "in": [
+     "pregnancy",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the pregnancy result (Pregnancy test) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-I",
+   "problem": "s2i.consent",
+   "trigger": {
+    "in": [
+     "complaint",
+     {
+      "var": "topics"
+     }
+    ]
+   },
+   "how": "the trainee takes the history: the situation is part of what the patient says at the start [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-I",
+   "problem": "s2i.appendix",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender and guarded low on the right. [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-J",
+   "problem": "s2j.mimic",
+   "trigger": {
+    "in": [
+     "fbc",
+     {
+      "var": "viewed_tests"
+     }
+    ]
+   },
+   "how": "the trainee opens the fbc result (WBC) [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-K",
+   "problem": "s2k.allergy",
+   "trigger": {
+    "==": [
+     {
+      "var": "allergies_known"
+     },
+     true
+    ]
+   },
+   "how": "the allergy history has been taken [derived from the case content]",
+   "ref": "SR-2867"
+  },
+  {
+   "case": "VAR-S2-L",
+   "problem": "s2l.choice",
+   "trigger": {
+    "in": [
+     "ex.abdomen",
+     {
+      "var": "findings"
+     }
+    ]
+   },
+   "how": "the trainee examines (abdomen) and finds: Tender low on the right without perforation signs. [derived from the case content]",
+   "ref": "SR-2867"
   }
  ],
  "refs": [

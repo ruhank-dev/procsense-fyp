@@ -34,15 +34,19 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
-        public void The_rules_name_only_problems_of_their_case_and_cover_every_p0_problem_but_the_two_framing_ones()
+        public void The_rules_name_only_problems_of_their_case_and_cover_every_problem_of_every_case_but_the_two_framing_ones()
         {
-            Assert.Equal(29, All.Problems.Discovery.Count);
+            // 29 rules written one by one for the 17 P0 cases and, since DT-091, the rules derived from the case content for the other 36 cases (127 problems): every problem of every case has one
+            int total = All.CaseFiles.Values.Sum(c => c.Problems.Count);
+            Assert.Equal(total - 2, All.Problems.Discovery.Count);
+            Assert.Equal(29 + 127, All.Problems.Discovery.Count);
             foreach (var d in All.Problems.Discovery)
             {
                 Assert.Contains(All.CaseFiles[d.Case].Problems, p => p.Id == d.Problem);
                 Assert.StartsWith("SR-", d.Ref);
                 Assert.False(string.IsNullOrWhiteSpace(d.How));
             }
+            Assert.Equal(127, All.Problems.Discovery.Count(d => d.How.EndsWith("[derived from the case content]")));
         }
 
         [Fact]
@@ -61,10 +65,10 @@ namespace ProcSense.Core.Tests
             foreach (var d in All.Problems.Discovery) Assert.False(d.Trigger.Test(empty), d.Case + ":" + d.Problem);
             var full = new Dictionary<string, object?>
             {
-                ["viewed_tests"] = new List<object?> { "ultrasound", "pregnancy", "u_and_e", "lft", "fbc", "crp", "lactate_cultures" },
+                ["viewed_tests"] = new List<object?> { "ultrasound", "pregnancy", "u_and_e", "lft", "fbc", "crp", "lactate_cultures", "clotting", "glucose_fingerprick", "ecg", "ct", "mri", "hba1c", "ferritin", "tryptase", "stopbang", "bmi", "urine_dipstick", "chest_xray", "blood_gas", "tsh" },
                 ["topics"] = new List<object?> { "medicines", "last_food", "complaint" },
                 ["measured"] = new List<object?> { "systolic_bp", "pain_score" },
-                ["findings"] = new List<object?> { "ex.abdomen" },
+                ["findings"] = new List<object?> { "ex.abdomen", "ex.airway", "ex.chest", "ex.pulse", "ex.skin", "ex.eyes", "ex.general" },
                 ["flags"] = new List<object?> { "fasting.breach" },
                 ["sepsis_tier"] = "high",
                 ["allergies_known"] = true,
